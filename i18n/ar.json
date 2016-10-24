@@ -11,7 +11,8 @@
 			"Shbib Al-Subaie",
 			"Sonic N800",
 			"علاء",
-			"بدارين"
+			"بدارين",
+			"زكريا"
 		]
 	},
 	"enableflow": "فعّل ميزة تدفق",
@@ -263,9 +264,9 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 و{{PLURAL:$5|واحد آخر|$5 آخرون|100=99+ آخرون}} {{GENDER:$1|رد}} على <strong>$3</strong>.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 لقد قام {{GENDER:$1|بتعديل}} <span class=\"plainlinks\">[$5 منشورك]</span> على [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 و{{PLURAL:$5|واحد آخر|$5 آخرون|100=99+ آخرون}} {{GENDER:$1|عدّل}}  <span class=\"plainlinks\">[$4 منشور]</span> في\"$2\" على\"$3\".",
-	"notification-header-flow-new-topic-v2": "موضوع جديد تم إنشاؤه على <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
+	"notification-header-flow-new-topic-v2": "أنشئ موضوع جديد في <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|موضوع واحد جديد|$1 مواضيع جديدة|100=99+ مواضيع جديدة}} على <strong>$3</strong>.",
-	"notification-header-flow-new-topic-user-talk": "موضوع جديد تم إنشاؤه على <strong>صفحة نقاشك</strong>: \"<strong>$4</strong>\".",
+	"notification-header-flow-new-topic-user-talk": "أنشئ موضوع جديد في <strong>صفحة نقاشك</strong>: \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|رسالة جديدة|رسالتان جديدتان|$1 رسائل جديدة|$1 رسالة جديدة}} في '''صفحة نقاشك'''.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|رد|ردت}} في \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|رد واحد جديد|$1 ردود جديدة|100=99+ ردود جديدة}} in \"<strong>$3</strong>\".",
@@ -290,7 +291,7 @@
 	"notification-header-flow-mention-header": "$1 {{GENDER:$2|أشار|أشارت}} {{GENDER:$4|لك}} في الوصف ل<strong>$3</strong>.",
 	"notification-header-flow-mention-post-summary": "{{GENDER:$2|أشار|أشارت}} $1 {{GENDER:$4|إليك}} في  \"<strong>$5</strong>\".",
 	"notification-header-flow-enabled-on-talkpage": "تم تمكين نظام مناقشة جديد على <strong>{{GENDER:$2|صفحة نقاشك}} كمستخدم</strong>.",
-	"notification-header-flow-description-edited": "الوصف ل<strong>$1</strong> تم تعديله.",
+	"notification-header-flow-description-edited": "عُدل وصف <strong>$1</strong>.",
 	"notification-header-flow-description-edited-user-talk": "الوصف تم تعديله على <strong>{{GENDER:$2|صفحة نقاشك}}</strong>.",
 	"notification-bundle-header-flow-description-edited": "وصف </strong>$1</strong> عُدل عدة مرات.",
 	"notification-bundle-header-flow-description-edited-user-talk": "تم تحرير الوصف عدة مرات على <strong>{{GENDER:$2|صفحة نقاشك}} </strong>.",

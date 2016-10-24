@@ -3,7 +3,8 @@
 		"authors": [
 			"Pikne",
 			"Lyrixn",
-			"Boxmein"
+			"Boxmein",
+			"Cumbril"
 		]
 	},
 	"flow-desc": "Töövoo haldamise süsteem",
@@ -167,6 +168,7 @@
 	"flow-compare-revisions-header-post": "See lehekülg näitab erinevust kasutaja $3 postituse kahe versiooni vahel leheküljel [$4 $1] teemas \"[$5 $2]\".\nPostituse teisi versioone saad vaadata selle [$6 ajalooleheküljel].",
 	"flow-compare-revisions-header-postsummary": "See lehekülg näitab erinevust teema \"[$4 $2]\" kokkuvõtte kahe versiooni vahel leheküljel [$3 $1].\nTeema kokkuvõtte teisi versioone saad vaadata teema [$5 ajalooleheküljel].",
 	"flow-compare-revisions-header-header": "See lehekülg näitab {{GENDER:$2|erinevust}} kirjelduse kahe versiooni vahel leheküljel [$3 $1].\nKirjelduse teisi versioone saad vaadata selle [$4 ajalooleheküljel].",
+	"right-flow-create-board": "Luua kõikjal voogarutelusid",
 	"right-flow-hide": "Peita voogarutelu teemasid ja postitusi",
 	"right-flow-lock": "Märkida voogarutelu teemasid lahendatuks",
 	"right-flow-delete": "Kustutada voogarutelu teemasid ja postitusi",
