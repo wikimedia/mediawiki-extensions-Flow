@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aea567c8_b771130e",
+        "filename": "includes/Data/Compactor/ShallowCompactor.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-25T16:43:23Z",
+      "side": 1,
+      "message": "Good point. I brought it back. It doesn\u0027t seem to have any functional impact.",
+      "parentUuid": "aea567c8_395bbf28",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cea0dbb8_d9e842e0",
         "filename": "includes/Data/FlowObjectCache.php",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-24T21:03:25Z",
       "side": 1,
       "message": "Previous cache kept already requests data in memory.\n\nThe 2 obvious places where not having such data in memory that I can think of would be:\n* lists, like RecentChanges, history, ... (where we do 1 batch request for all data, and then process them 1-by-1 later)\n* permissions (where same data is checked repeatedly)\n\nI think most lists (like RC) are mostly covered already. AbstractQuery:: loadMetadataBatch will load a bunch of data and keep it available inside the `Query` object. Might need to doublecheck if there is none that have fallen through the cracks, though.\n\nFrom a cursory glance, permissions seems to use CollectionCache ::getLastRevisionFor, which should also be safe.\n\nMaybe there\u0027s also other places that rely on the assumption that fetching the same data more than once is cheap - should probably try out all scenarios just to be sure :)",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aea567c8_f75d5b7f",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-25T16:43:23Z",
+      "side": 1,
+      "message": "I don\u0027t mind testing all scenarios. How would you find them?",
+      "parentUuid": "cea0dbb8_d9e842e0",
       "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "aea567c8_f7e31b9b",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-25T16:43:23Z",
+      "side": 1,
+      "message": "Done. It was not even used.",
+      "parentUuid": "cea0dbb8_592d5240",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cea0dbb8_79d7f628",
         "filename": "includes/Data/FlowObjectCache.php",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "aea567c8_b7623305",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-25T16:43:23Z",
+      "side": 1,
+      "message": "This was deadwood. I removed it.\n\nWANObjectCache already logs this.",
+      "parentUuid": "cea0dbb8_79d7f628",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cea0dbb8_b9f57eb7",
         "filename": "includes/SubmissionHandler.php",
         "patchSetId": 8
@@ -81,6 +153,24 @@
       "writtenOn": "2016-10-24T21:03:25Z",
       "side": 1,
       "message": "There no longer seems to be a way to prevent cache corruption if the database transaction doesn\u0027t succeed?\nThis is probably ok - I believe - because when writing to database, you\u0027ll only be deleting stuff from cache, not writing anything new. And you\u0027ll only be writing to cache when reading from DB, so there will be no DB transactions to fail. Is my understanding correct?",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aea567c8_97d4cfbf",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2016-10-25T16:43:23Z",
+      "side": 1,
+      "message": "That\u0027s correct. The risk is to invalidate stuff from cache that doesn\u0027t change and have it repopulated with the same data on GET.\n\nWe could make it better by collecting the keys that need to be invalidated and doing it \"on successful db commit\". I\u0027m not sure where to fit this in the current code.",
+      "parentUuid": "cea0dbb8_b9f57eb7",
       "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
