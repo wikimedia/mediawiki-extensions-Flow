@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "aea567c8_d2582500",
+        "filename": "includes/Data/FlowObjectCache.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-25T17:21:20Z",
+      "side": 1,
+      "message": "IDK :) Just manually try out as much things as you can think of, I guess, while having xhprof (or similar) open to profile how many DB queries are executed.",
+      "parentUuid": "aea567c8_f75d5b7f",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cea0dbb8_592d5240",
         "filename": "includes/Data/FlowObjectCache.php",
         "patchSetId": 8
@@ -171,6 +189,24 @@
       "side": 1,
       "message": "That\u0027s correct. The risk is to invalidate stuff from cache that doesn\u0027t change and have it repopulated with the same data on GET.\n\nWe could make it better by collecting the keys that need to be invalidated and doing it \"on successful db commit\". I\u0027m not sure where to fit this in the current code.",
       "parentUuid": "cea0dbb8_b9f57eb7",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aea567c8_b247e121",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2016-10-25T17:21:20Z",
+      "side": 1,
+      "message": "The easiest would probably be some sort of wrapper around cache, that intercepts deletes \u0026 lets them execute you later.\n\nBut it\u0027s gonna be a hassle and messy and is probably not worth it.",
+      "parentUuid": "aea567c8_97d4cfbf",
       "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
