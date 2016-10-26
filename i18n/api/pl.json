@@ -4,9 +4,15 @@
 			"Chrumps",
 			"Quiddity",
 			"Tar Lócesilion",
-			"The Polish"
+			"The Polish",
+			"Woytecr"
 		]
 	},
+	"apihelp-flow-description": "Umożliwia dokonywanie akcji na stronach Flow.",
+	"apihelp-flow-param-submodule": "Podmoduł Flow do wywołania.",
+	"apihelp-flow-param-page": "Strona, na której dokonać akcji.",
+	"apihelp-flow-param-token": "Token pobrany z [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
+	"apihelp-flow-example-1": "Edycja opisu \"[[Talk:Sandbox]]\"",
 	"apihelp-flow+edit-header-param-format": "Format opisu (wikitext|html)",
 	"apihelp-flow+edit-post-param-postId": "ID wiadomości.",
 	"apihelp-flow+lock-topic-description": "Zabezpiecz albo odbezpiecz wątek.",
