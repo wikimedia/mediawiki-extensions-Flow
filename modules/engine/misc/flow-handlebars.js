@@ -558,8 +558,8 @@
 	};
 
 	// Load partials
-	$.each( mw.templates.values, function ( moduleName ) {
-		$.each( this, function ( name ) {
+	$.each( mw.templates.get(), function ( moduleName, moduleTemplates ) {
+		$.each( moduleTemplates, function ( name ) {
 			// remove extension
 			var partialMatch, partialName;
 
