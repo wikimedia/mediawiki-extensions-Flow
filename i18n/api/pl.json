@@ -13,6 +13,7 @@
 	"apihelp-flow-param-page": "Strona, na której dokonać akcji.",
 	"apihelp-flow-param-token": "Token pobrany z [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"apihelp-flow-example-1": "Edycja opisu \"[[Talk:Sandbox]]\"",
+	"apihelp-flow+close-open-topic-description": "Zdeprecjonowane na rzecz [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+edit-header-param-format": "Format opisu (wikitext|html)",
 	"apihelp-flow+edit-post-param-postId": "ID wiadomości.",
 	"apihelp-flow+lock-topic-description": "Zabezpiecz albo odbezpiecz wątek.",
