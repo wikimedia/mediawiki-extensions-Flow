@@ -157,7 +157,7 @@
 	"flow-error-protected-unknown-reason": "Desconhecido",
 	"flow-error-missing-replyto": "Não foi fornecido nenhum parâmetro \"responderA\". Este parâmetro é necessário para a ação de \"resposta\".",
 	"flow-error-missing-postId": "Não foi fornecido nenhum parâmetro \"IDpost\". Este parâmetro é necessário para a manutenção da mensagem.",
-	"flow-error-invalid-postId": "Parâmetro \"postID\" inválido. A mensagem especificada ($1) não pôde ser encontrada.",
+	"flow-error-invalid-postId": "O parâmetro \"postID\" era inválido. Não foi possível encontrar a mensagem especificada ($1).",
 	"flow-error-invalid-moderation-state": "Um valor inválido para o parâmetro ('moderationState') foi fornecido ao API do Flow.",
 	"flow-error-invalid-moderation-reason": "Por favor, indique um motivo para a moderação.",
 	"flow-error-not-allowed": "Permissões insuficientes para executar esta ação.",
