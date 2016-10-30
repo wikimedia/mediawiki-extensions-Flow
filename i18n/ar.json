@@ -251,7 +251,7 @@
 	"flow-history-week": "الأسبوع الماضي",
 	"flow-history-pages-topic": "يظهر في [$1 \"$2\" الصفحة]",
 	"flow-history-pages-post": "يظهر في [$1 $2]",
-	"flow-topic-comments": "{{PLURAL:$1|تعليق واحد|تعليقان|$1 تعليقات|$1 تعليقا|0={{GENDER:$2|كن أول}} من يعلق!}}",
+	"flow-topic-comments": "{{PLURAL:$1|تعليق واحد|تعليقان|$1 تعليقات|0={{GENDER:$2|كن أول|كوني أول}} من يعلق!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|اعرض التعليق|اعرض التعليقات}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|أخف التعليق|أخف التعليقات}}",
 	"flow-comment-restored": "استرجاع التعليق",
