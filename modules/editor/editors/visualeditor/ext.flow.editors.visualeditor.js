@@ -47,7 +47,7 @@
 		content = content || '';
 
 		// add i18n messages to VE
-		ve.init.platform.addMessages( mw.messages.values );
+		ve.init.platform.addMessages( mw.messages.get() );
 
 		this.target = ve.init.mw.targetFactory.create( 'flow' );
 
