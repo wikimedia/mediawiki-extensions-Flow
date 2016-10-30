@@ -66,7 +66,7 @@
 			this.loadPromise = mw.loader.using( 'ext.flow.visualEditor' )
 				.then( function () {
 					// HACK add i18n messages to VE
-					ve.init.platform.addMessages( mw.messages.values );
+					ve.init.platform.addMessages( mw.messages.get() );
 
 					mw.flow.ve.Target.static.setSwitchable( mw.flow.ui.VisualEditorWidget.static.switchable );
 
