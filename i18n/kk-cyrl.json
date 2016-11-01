@@ -204,7 +204,7 @@
 	"flow-rev-message-deleted-topic": "$1 «$6» тақырыбындағы  [$4 пікірді] {{GENDER:$2|жойды}} (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 «$6» тақырыбындағы  [$4 пікірді] {{GENDER:$2|жасырды}} (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 «$6» талқылау тақтасындағы  [$4 тақырыпты] шешілді деп {{GENDER:$2|белгіледі}} (<em>$5</em>)",
-	"flow-rev-message-lock-topic-reason": "шешілген деп белгілген",
+	"flow-rev-message-lock-topic-reason": "шешілген деп белгіледі",
 	"flow-rev-message-restore-topic-reason": "қайта ашты",
 	"flow-rev-message-restored-topic": "$1 «$6» дегендегі  [$4 тақырыпты] {{GENDER:$2|қалпына келтірді}} (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$2 тақтасындағы $1 тақырыбы",
