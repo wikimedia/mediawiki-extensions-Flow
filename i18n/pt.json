@@ -462,7 +462,7 @@
 	"flow-wikitext-editor-help": "A notação wiki $1.",
 	"flow-wikitext-editor-help-and-preview": "A notação wiki $1 e pode $2 a qualquer altura.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa elementos de formatação]]",
-	"flow-wikitext-editor-help-preview-the-result": "pré-visualizar o resultado",
+	"flow-wikitext-editor-help-preview-the-result": "antever o resultado",
 	"flow-wikitext-switch-editor-tooltip": "Mudar para o editor visual",
 	"flow-ve-switch-editor-tool-title": "Mudar para o editor de wikitexto",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
