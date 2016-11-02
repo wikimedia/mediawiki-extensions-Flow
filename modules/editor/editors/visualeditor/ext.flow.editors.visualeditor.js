@@ -195,7 +195,7 @@
 
 	mw.flow.editors.visualeditor.static.isSupported = function () {
 		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
-
+		// Test
 		return !!(
 			!isMobileTarget &&
 			mw.loader.getState( 'ext.visualEditor.core' ) &&
