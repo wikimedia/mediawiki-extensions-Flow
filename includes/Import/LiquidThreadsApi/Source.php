@@ -3,6 +3,7 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ApiBase;
+use ApiErrorFormatter;
 use ApiMain;
 use Exception;
 use FauxRequest;
@@ -13,6 +14,7 @@ use RequestContext;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use ApiUsageException;
 use UsageException;
 use User;
 
@@ -429,6 +431,24 @@ class LocalApiBackend extends ApiBackend {
 			$api = new ApiMain( $context );
 			$api->execute();
 			return $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
+		} catch ( ApiUsageException $exception ) {
+			// Mimic the behaviour when called remotely
+			$errors = $exception->getStatusValue()->getErrorsByType( 'error' );
+			if ( !$errors ) {
+				$errors = $exception->getStatusValue()->getErrorsByType( 'warning' );
+			}
+			if ( !$errors ) {
+				$errors = [ [ 'message' => 'unknownerror-nocode', 'params' => [] ] ];
+			}
+			$msg = ApiMessage::create( $errors[0] );
+			return array(
+				'error' => array(
+					'code' => $msg->getApiCode(),
+					'info' => ApiErrorFormatter::strupMarkup(
+						$msg->inLanguage( 'en' )->useDatabase( 'false' )->text()
+					),
+				) + $msg->getApiData()
+			);
 		} catch ( UsageException $exception ) {
 			// Mimic the behaviour when called remotely
 			return array( 'error' => $exception->getMessageArray() );

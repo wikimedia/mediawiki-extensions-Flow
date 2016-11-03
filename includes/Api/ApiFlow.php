@@ -75,17 +75,17 @@ class ApiFlow extends ApiBase {
 		// The checks for POST and tokens are the same as ApiMain.php
 		$wasPosted = $this->getRequest()->wasPosted();
 		if ( !$wasPosted && $module->mustBePosted() ) {
-			$this->dieUsageMsg( array( 'mustbeposted', $params['submodule'] ) );
+			$this->dieWithError( [ 'apierror-mustbeposted', $params['submodule'] ] );
 		}
 
 		if ( $module->needsToken() ) {
 			if ( !isset( $params['token'] ) ) {
-				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+				$this->dieWithError( [ 'apierror-missingparam', 'token' ] );
 			}
 
 			if ( is_callable( array( $module, 'validateToken' ) ) ) {
 				if ( !$module->validateToken( $params['token'], $params ) ) {
-					$this->dieUsageMsg( 'sessionfailure' );
+					$this->dieWithError( 'apierror-badtoken' );
 				}
 			} else {
 				if ( !$this->getUser()->matchEditToken(
@@ -93,7 +93,7 @@ class ApiFlow extends ApiBase {
 					$module->getTokenSalt(),
 					$this->getRequest() )
 				) {
-					$this->dieUsageMsg( 'sessionfailure' );
+					$this->dieWithError( 'apierror-badtoken' );
 				}
 			}
 		}
@@ -115,7 +115,9 @@ class ApiFlow extends ApiBase {
 	protected function getPage( $params ) {
 		$page = Title::newFromText( $params['page'] );
 		if ( !$page ) {
-			$this->dieUsage( 'Invalid page provided', 'invalid-page' );
+			$this->dieWithError(
+				[ 'apierror-invalidtitle', wfEscapeWikiText( $params['page'] ) ], 'invalid-page'
+			);
 		}
 		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
@@ -125,7 +127,7 @@ class ApiFlow extends ApiBase {
 			// (in SubmissionHandler::commit), after everything's been validated.
 			$status = $controller->safeAllowCreation( $page, $this->getUser() );
 			if ( !$status->isGood() ) {
-				$this->dieUsage( "Page provided does not have Flow enabled and safeAllowCreation failed with: " . $status->getMessage()->parse(), 'invalid-page' );
+				$this->dieWithError( [ 'apierror-flow-safeallowcreationfailed', $status->getMessage() ], 'invalid-page' );
 			}
 		}
 

@@ -16,8 +16,9 @@ class ApiParsoidUtilsFlow extends ApiBase {
 			$content = Utils::convert( $params['from'], $params['to'], $params['content'], $page->getTitle() );
 		} catch ( WikitextException $e ) {
 			$code = $e->getErrorCode();
-			$this->dieUsage( $this->msg( $code )->inContentLanguage()->useDatabase( false )->plain(), $code,
-				$e->getStatusCode(), array( 'detail' => $e->getMessage() ) );
+			$this->dieWithError( $code, $code,
+				array( 'detail' => $e->getMessage() ), $e->getStatusCode()
+			);
 			return; // helps static analysis know execution does not continue past self::dieUsage
 		}
 
