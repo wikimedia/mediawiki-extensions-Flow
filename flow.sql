@@ -19,17 +19,6 @@ CREATE TABLE /*_*/flow_workflow (
 CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, workflow_namespace, workflow_title_text);
 CREATE INDEX /*i*/flow_workflow_update_timestamp ON /*_*/flow_workflow (workflow_last_update_timestamp);
 
-CREATE TABLE /*_*/flow_subscription (
-  subscription_workflow_id int unsigned not null,
-  subscription_user_id bigint unsigned not null,
-  subscription_user_wiki varchar(64) binary not null,
-  subscription_create_timestamp varchar(14) binary not null,
-  subscription_last_updated varchar(14) binary not null
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/flow_subscription_unique_user_workflow ON /*_*/flow_subscription (subscription_workflow_id, subscription_user_id, subscription_user_wiki );
-CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscription_user_id, subscription_user_wiki, subscription_last_updated, subscription_workflow_id);
-
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
 	topic_list_id binary(11) not null,

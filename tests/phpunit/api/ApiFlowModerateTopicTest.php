@@ -12,7 +12,6 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	protected $tablesUsed = array(
 		'flow_ext_ref',
 		'flow_revision',
-		'flow_subscription',
 		'flow_topic_list',
 		'flow_tree_node',
 		'flow_tree_revision',
