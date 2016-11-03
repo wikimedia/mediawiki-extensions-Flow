@@ -198,9 +198,6 @@ class FlowHooks {
 			$updater->addExtensionField( 'flow_workflow', 'workflow_type', "$dir/db_patches/patch-add_workflow_type.sqlite" );
 			$updater->modifyExtensionField( 'flow_workflow', 'workflow_user_id', "$dir/db_patches/patch-default_null_workflow_user.sqlite.sql" );
 		} else {
-			// sqlite doesn't support alter table change, it also considers all types the same so
-			// this patch doesn't matter to it.
-			$updater->modifyExtensionField( 'flow_subscription', 'subscription_user_id', "$dir/db_patches/patch-subscription_user_id.sql" );
 			// renames columns, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sql" );
 			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
@@ -236,6 +233,7 @@ class FlowHooks {
 		$updater->addExtensionField( 'flow_wiki_ref', 'ref_id', "$dir/db_patches/patch-ref_id-phase1.sql" );
 		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_target', "$dir/db_patches/patch-ref_target_not_null.sql" );
 		$updater->dropExtensionIndex( 'flow_topic_list', 'flow_topic_list_pk', "$dir/db_patches/patch-primary-keys.sql" );
+		$updater->dropExtensionTable( 'flow_subscription', "$dir/db_patches/patch-drop-flow_subscription.sql" );
 
 		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
