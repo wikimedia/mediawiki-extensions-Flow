@@ -133,11 +133,11 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 
 			// validate the page that was passed in
 			if ( !$page->exists() ) {
-				$this->dieUsage( 'Invalid page provided', 'invalid-page' );
+				$this->dieWithError( 'apierror-missingtitle', 'invalid-page' );
 			}
 
 			if ( $page->getTitle()->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
-				$this->dieUsage( 'Page provided does not have Flow enabled', 'invalid-page' );
+				$this->dieWithError( 'apierror-flow-notenabled', 'invalid-page' );
 			}
 
 			$pageIds[] = $page->getId();
