@@ -258,6 +258,8 @@
 	"flow-topic-undo-delete": "anuliuoti trynimą",
 	"flow-edited": "Redaguota",
 	"flow-edited-by": "Redagavo $1",
+	"flow-edited-by-header": "Forumo aprašymą redagavo $1",
+	"flow-edited-by-topic-title": "Temos pavadinimą redagavo $1",
 	"flow-previous-diff": "← Senesnis keitimas",
 	"flow-next-diff": "Naujesnis keitimas →",
 	"flow-undo": "atšaukti",

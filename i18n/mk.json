@@ -463,6 +463,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Ова е објава на корисникот [[User:{{{authorUser}}}|{{{authorUser}}}]], кој на неа е потпишан како [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Изменета",
 	"flow-edited-by": "Изменил: $1",
+	"flow-edited-by-header": "Описот на разговорницата е изменет од $1",
+	"flow-edited-by-topic-title": "Насловот на темата е изменет од $1",
 	"flow-lqt-redirect-reason": "Пренасочување на повлечена објава во LiquidThreads кон нејзината претворана објава во Тек",
 	"flow-talk-conversion-move-reason": "Претворање на викитекстуален разговор во Тек од $1",
 	"flow-talk-conversion-archive-edit-reason": "Претворање на викитекстуален развговор во Тек",

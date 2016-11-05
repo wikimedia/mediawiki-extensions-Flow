@@ -72,7 +72,7 @@
 	"apihelp-flow+view-topic-description": "Ver un tema.",
 	"apihelp-flow+view-topic-param-format": "Formato no que devolver o contido.",
 	"apihelp-flow+view-topic-example-1": "Ver [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+view-topic-history-description": "Ollar o historial de revisións dun fío.",
+	"apihelp-flow+view-topic-history-description": "Ollar o historial de revisións dun tema.",
 	"apihelp-flow+view-topic-history-param-format": "Formato no que devolver o contido.",
 	"apihelp-flow+view-topic-history-example-1": "Obter as revisións das publicacións en [[Topic:S2tycnas4hcucw8w]] como texto wiki",
 	"apihelp-flow+view-topic-summary-description": "Ver o resumo dun tema.",

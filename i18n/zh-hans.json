@@ -482,6 +482,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>此帖子曾由[[User:{{{authorUser}}}|{{{authorUser}}}]]发布，但被表示为[[User:{{{signatureUser}}}|{{{signatureUser}}}]]。</em>",
 	"flow-edited": "编辑于",
 	"flow-edited-by": "由$1编辑",
+	"flow-edited-by-header": "板块描述已由$1编辑",
+	"flow-edited-by-topic-title": "话题标题已由$1编辑",
 	"flow-lqt-redirect-reason": "重定向停用的LiquidThreads帖子至转换的Flow帖子",
 	"flow-talk-conversion-move-reason": "将$1从wiki文本讨论页转换为Flow页面",
 	"flow-talk-conversion-archive-edit-reason": "Wiki文本讨论页至Flow转换",

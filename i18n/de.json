@@ -468,6 +468,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Dieser Beitrag wurde abgespeichert von [[User:{{{authorUser}}}|{{{authorUser}}}]], aber signiert als [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Bearbeitet",
 	"flow-edited-by": "Bearbeitet von $1",
+	"flow-edited-by-header": "Boardbeschreibung bearbeitet von $1",
+	"flow-edited-by-topic-title": "Thementitel bearbeitet von $1",
 	"flow-lqt-redirect-reason": "Eingeschlafenen LiquidThreads-Beitrag zum konvertierten Flow-Beitrag umgeleitet",
 	"flow-talk-conversion-move-reason": "Konvertierung der Wikitext-Diskussion zu Flow von $1",
 	"flow-talk-conversion-archive-edit-reason": "Wikitext-Diskussion-zu-Flow-Konvertierung",
