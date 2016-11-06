@@ -500,6 +500,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Cette note a été publiée par [[User:{{{authorUser}}}|{{{authorUser}}}]], mais signée avec [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Modifié",
 	"flow-edited-by": "Modifié par $1",
+	"flow-edited-by-header": "Description de la carte éditée par $1",
+	"flow-edited-by-topic-title": "Le titre de la rubrique édité par $1",
 	"flow-lqt-redirect-reason": "Redirection de message LiquidThreads retiré vers son message converti en Flow",
 	"flow-talk-conversion-move-reason": "Conversion de la discussion en wikicode de $1 vers Flow",
 	"flow-talk-conversion-archive-edit-reason": "Conversion d’une discussion en wikicode vers Flow",

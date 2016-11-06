@@ -222,6 +222,7 @@
 	"flow-importer-lqt-moved-thread-template-content": "Dës Notiz vum {{{author}}} gouf de(n) {{{date}}} geréckelt. Dir fannt se op [[{{{title}}}]].",
 	"flow-edited": "Geännert",
 	"flow-edited-by": "Geännert vum $1",
+	"flow-edited-by-header": "Board-Beschreiwung geännert vum $1",
 	"flow-edited-by-topic-title": "Titel vum Sujet geännert vum $1",
 	"flow-previous-diff": "← Méi al Ännerung",
 	"flow-next-diff": "Méi nei Ännerung →",
