@@ -30,10 +30,6 @@ class ContributionsFormatter extends AbstractFormatter {
 
 		$isNewPage = isset( $data['isNewPage'] ) && $data['isNewPage'];
 
-		if ( $ctx->newOnly && !$isNewPage ) {
-			return false;
-		}
-
 		$charDiff = ChangesList::showCharacterDifference(
 			$data['size']['old'],
 			$data['size']['new']

@@ -158,6 +158,11 @@ class ContributionsQuery extends AbstractQuery {
 			}
 		}
 
+		if ( property_exists( $pager, 'newOnly' ) && $pager->newOnly ) {
+			$conditions['rev_parent_id'] = null;
+			$conditions['rev_type'] = 'post';
+		}
+
 		// Make offset parameter.
 		if ( $offset ) {
 			$dbr = $this->dbFactory->getDB( DB_SLAVE );
