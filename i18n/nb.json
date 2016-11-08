@@ -465,6 +465,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Dette innlegget ble lagt inn av [[User:{{{authorUser}}}|{{{authorUser}}}]], men signert som [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Redigert",
 	"flow-edited-by": "Redigert av $1",
+	"flow-edited-by-header": "Tavlebeskrivelse endret av $1",
+	"flow-edited-by-topic-title": "Emnetittel redigert av $1",
 	"flow-lqt-redirect-reason": "Omdirigerer utfaset LiquidThreads-innlegg til konvertert Flow-innlegg",
 	"flow-talk-conversion-move-reason": "Konvertering av wikitekst til Flow fra $1",
 	"flow-talk-conversion-archive-edit-reason": "Konvertering av diskusjon i wikitekst til Flow.",
