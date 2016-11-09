@@ -210,6 +210,24 @@
       "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4eb4ebfb_9025afbe",
+        "filename": "includes/SubmissionHandler.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-11-09T18:59:45Z",
+      "side": 1,
+      "message": "Yeah, we discussed this earlier.  I think we can accept the occurrence of rare false positive invalidations.",
+      "parentUuid": "aea567c8_b247e121",
+      "revId": "e40eccd06ad6f2b7f2a166daeaf8158de8fd97d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
