@@ -93,4 +93,12 @@ class DbFactory {
 	public function waitForSlaves() {
 		wfWaitForSlaves( false, $this->wiki, $this->cluster );
 	}
+
+	/**
+	 * Roll back changes on all databases.
+	 * @see LBFactory::rollbackMasterChanges
+	 */
+	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		wfGetLBFactory()->rollbackMasterChanges( $fname );
+	}
 }

@@ -155,7 +155,7 @@ class SubmissionHandler {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
-			$dbw->rollback( __METHOD__ );
+			$this->dbFactory->rollbackMasterChanges( __METHOD__ );
 			throw $e;
 		}
 
