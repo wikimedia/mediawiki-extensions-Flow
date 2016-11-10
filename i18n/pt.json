@@ -404,7 +404,7 @@
 	"flow-whatlinkshere-header": "de uma [$1 descrição]",
 	"flow-whatlinkshere-post-summary": "do [$1 resumo]",
 	"flow": "Flow",
-	"flow-special-desc": "Esta página especial redireciona para um fluxo de trabalho Flow ou para uma mensagem Flow dado um Identificador Global Único.",
+	"flow-special-desc": "Esta página especial redireciona para um fluxo de trabalho Flow, ou para uma mensagem Flow, dado um Identificador Global Único.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Mensagem",
 	"flow-special-type-workflow": "Fluxo de trabalho",
