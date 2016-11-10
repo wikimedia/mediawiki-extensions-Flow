@@ -16,6 +16,29 @@
       "revId": "02a17f61ea3b9684c71241008cabad62533e6969",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4eb4ebfb_81579c04",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-11-10T20:57:36Z",
+      "side": 1,
+      "message": "This is a bit unclean, DI-wise. https://gerrit.wikimedia.org/r/#/c/320842/ adds a rollbackMasterChanges() wrapper to DbFactory, so if you rebase onto that change you can call that method instead.",
+      "range": {
+        "startLine": 145,
+        "startChar": 22,
+        "endLine": 145,
+        "endChar": 80
+      },
+      "revId": "02a17f61ea3b9684c71241008cabad62533e6969",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
