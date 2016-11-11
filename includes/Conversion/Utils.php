@@ -462,7 +462,7 @@ abstract class Utils {
 		// foo=bar; baz=bang
 		$output = array();
 		foreach ( $cookies as $key => $value ) {
-			$output[] = "$wgCookiePrefix$key=$value";
+			$output[] = "$wgCookiePrefix$key={$value['value']}";
 		}
 
 		return implode( '; ', $output );
