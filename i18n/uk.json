@@ -470,6 +470,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Це повідомлення було опубліковано [[User:{{{authorUser}}}|{{{authorUser}}}]], але підписано як [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Відредаговано",
 	"flow-edited-by": "Відредаговано $1",
+	"flow-edited-by-header": "Опис дошки відредаговано $1",
+	"flow-edited-by-topic-title": "Назву теми відредаговано $1",
 	"flow-lqt-redirect-reason": "Перенаправлення застарілого допису LiquidThreads на допис, конвертований у Flow",
 	"flow-talk-conversion-move-reason": "Перетворення розмови у вікітексті на Flow з $1",
 	"flow-talk-conversion-archive-edit-reason": "Перетворення обговорення у вікітексті на Flow",
