@@ -453,16 +453,13 @@ abstract class Utils {
 		if ( !$response instanceof FauxResponse ) {
 			throw new FlowException( 'Expected a FauxResponse in CLI environment' );
 		}
-		// FauxResponse does not yet expose the full set of cookies
-		$reflProp = new \ReflectionProperty( $response, 'cookies' );
-		$reflProp->setAccessible( true );
-		$cookies = $reflProp->getValue( $response );
+		$cookies = $response->getCookies();
 
 		// now we need to convert the array into the cookie format of
 		// foo=bar; baz=bang
 		$output = array();
 		foreach ( $cookies as $key => $value ) {
-			$output[] = "$wgCookiePrefix$key=$value";
+			$output[] = "$wgCookiePrefix$key={$value['value']}";
 		}
 
 		return implode( '; ', $output );
