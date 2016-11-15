@@ -467,6 +467,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>هذا المنشور قد تم نشره بواسطة\n [[User:{{{authorUser}}}|{{{authorUser}}}]]، ولكنه وقع كـ [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "عدلت",
 	"flow-edited-by": "حررت بواسطة $1",
+	"flow-edited-by-header": "وصف المجلس تم تعديله بواسطة $1",
+	"flow-edited-by-topic-title": "عنوان الموضوع تم تعديله بواسطة $1",
 	"flow-lqt-redirect-reason": "تحويل نقاش LiquidThreads القديم إلى نقاش Flow المحول",
 	"flow-talk-conversion-move-reason": "تحويل نقاش النص الويكي إلى خاصية التدفق من $1",
 	"flow-talk-conversion-archive-edit-reason": "تحويل نقاش بنص الويكي إلى Flow",
