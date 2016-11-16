@@ -86,21 +86,6 @@ class UrlGenerator {
 	}
 
 	/**
-	 * Edit the title of a topic workflow.
-	 *
-	 * @param Title|null $title
-	 * @param UUID $workflowId
-	 * @return Anchor
-	 */
-	public function editTitleLink( Title $title = null, UUID $workflowId ) {
-		return new Anchor(
-			wfMessage( 'flow-edit-title' ),
-			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'edit-title' )
-		);
-	}
-
-	/**
 	 * View a specific revision of a header workflow.
 	 *
 	 * @param Title|null $title
@@ -666,7 +651,7 @@ class UrlGenerator {
 			array(
 				'action' => 'edit-title',
 				'topic_postId' => $postId->getAlphadecimal(),
-				'topic_format' => 'topic-title-wikitext',
+				'topic_format' => 'wikitext',
 			)
 		);
 	}
