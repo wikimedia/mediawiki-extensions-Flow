@@ -51,9 +51,8 @@ class BoardMover {
 
 	/**
 	 * Collects the workflow and header (if it exists) and puts them into the database. Does
-	 * not commit yet. It is intended for begin to be called at the beginning of the
-	 * transaction, move to be called for each move, and commit to be called at the end
-	 * the core transaction, via a hook.
+	 * not commit yet. It is intended for move to be called for each move, and commit
+	 * to be called at the end the core transaction, via a hook.
 	 *
 	 * @param int $oldPageId Page ID before move/change
 	 * @param Title $newPage Page after move/change

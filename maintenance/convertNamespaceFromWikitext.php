@@ -15,7 +15,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts a single namespace of wikitext talk pages to Flow";
-		$this->addArg( 'namespace', 'Name of the namespace to convert' );
+		$this->addArg( 'namespaceName', 'Name of the namespace to convert' );
 		$this->addOption(
 			'no-convert-templates',
 			'Comma-separated list of templates that indicate a page should not be converted',

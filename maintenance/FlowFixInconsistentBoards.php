@@ -1,0 +1,139 @@
+<?php
+
+use Flow\Content\BoardContent;
+use Flow\Container;
+use Flow\Exception\UnknownWorkflowIdException;
+
+require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+
+/**
+ * Changes Flow boards and their topics to be associated with their current title, based on the JSON content
+ * Fixes inconsistent bugs like T138310.
+ *
+ * There is a dry run available.
+ *
+ * @ingroup Maintenance
+ */
+class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
+	/**
+	 * @var DbFactory $dbFactory
+	 */
+	protected $dbFactory;
+
+	/**
+	 * @var WorkflowLoaderFactory $workflowLoaderFactory
+	 */
+	protected $workflowLoaderFactory;
+
+	public function __construct() {
+		parent::__construct();
+
+		$this->mDescription = 'Changes Flow boards and their topics to be associated with their current title, based on the JSON content.  Must be run separately for each affected wiki.';
+
+		$this->addOption( 'dry-run', 'Only prints the board names, without changing anything.' );
+		$this->addOption( 'namespaceName', 'Name of namespace to check, otherwise all', false, true );
+		$this->addOption( 'limit', 'Limit of inconsistent pages to identify (and fix if not a dry run).  Defaults to no limit', false, true );
+
+		$this->setBatchSize( 300 );
+	}
+
+	protected function getUpdateKey() {
+		return 'FlowFixInconsistentBoards:version1';
+	}
+
+	public function doDBUpdates() {
+		global $wgLang;
+
+		$this->dbFactory = Container::get( 'db.factory' );
+		$this->workflowLoaderFactory = Container::get( 'factory.loader.workflow' );
+
+		$this->boardMover = Container::get( 'board_mover' );
+
+		$dryRun = $this->hasOption( 'dry-run' );
+
+		$limit = $this->getOption( 'limit' );
+
+		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
+
+		$iterator = new BatchRowIterator( $wikiDbw, 'page', 'page_id', $this->mBatchSize );
+		$iterator->setFetchColumns( [ 'page_namespace', 'page_title', 'page_latest' ] );
+		$iterator->addConditions( [
+			'page_content_model' => CONTENT_MODEL_FLOW_BOARD,
+		] );
+
+		if ( $this->hasOption( 'namespaceName' ) ) {
+			$namespaceName = $this->getOption( 'namespaceName' );
+			$namespaceId = $wgLang->getNsIndex( $namespaceName );
+
+			if ( !$namespaceId ) {
+				$this->error( "'$namespaceName' is not a valid namespace name" );
+				return;
+			}
+
+			if ( $namespaceId == NS_TOPIC ) {
+				$this->error( 'This script can not be run on the Flow topic namespace' );
+				return;
+			}
+
+			$iterator->addConditions( [
+				'page_namespace' => $namespaceId,
+			] );
+		} else {
+			$iterator->addConditions( [
+				'page_namespace != ' . NS_TOPIC,
+			] );
+		}
+
+		$checkedCount = 0;
+		$inconsistentCount = 0;
+		foreach ( $iterator as $rows ) {
+			foreach ( $rows as $row ) {
+				$checkedCount++;
+				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$revision = Revision::newFromId( $row->page_latest );
+				$content = $revision->getContent( Revision::RAW );
+				if ( !$content instanceof BoardContent ) {
+					$actualClass = get_class( $content );
+					$this->error( "ERROR: '$coreTitle' content is a '$actualClass', but should be '" . BoardContent::class . "'." );
+					continue;
+				}
+				$workflowId = $content->getWorkflowId();
+				$workflowIdAlphadecimal = $workflowId->getAlphadecimal();
+				try {
+					$workflow = $this->workflowLoaderFactory->loadWorkflowById( false, $workflowId );
+				} catch ( UnknownWorkflowIdException $ex ) {
+					// This is a different error (a core page refers to
+					// a non-existent workflow), which this script can not fix.
+					$this->error( "ERROR: '$coreTitle' refers to workflow ID '$workflowIdAlphadecimal', which could not be found." );
+					continue;
+				}
+				if ( !$workflow->matchesTitle( $coreTitle ) ) {
+					$workflowTitle = $workflow->getOwnerTitle();
+					$this->output( "INCONSISTENT: Core title for '$workflowIdAlphadecimal' is '$coreTitle', but Flow title is '$workflowTitle'\n" );
+
+					if ( !$dryRun ) {
+						$this->boardMover->move( (int)$row->page_id, $coreTitle );
+						$this->boardMover->commit();
+						$this->output( "FIXED: Updated '$workflowIdAlphadecimal' to match core title, '$coreTitle'\n" );
+					}
+
+					$inconsistentCount++;
+					if ( $limit !== null && $inconsistentCount >= $limit ) {
+						break;
+					}
+				}
+			}
+
+			$action = $dryRun ? 'Identified' : 'Fixed';
+			$this->output( "Checked a total of $checkedCount Flow boards.  $action a total of $inconsistentCount inconsistent boards.\n" );
+			if ( $limit !== null && $inconsistentCount >= $limit ) {
+				break;
+			}
+		}
+	}
+}
+
+$maintClass = 'FlowFixInconsistentBoards';
+require_once( RUN_MAINTENANCE_IF_MAIN );
