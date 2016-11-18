@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow sidebar expand widget
 	 *
@@ -64,7 +64,7 @@
 
 			// Change the preference
 			siderailState = this.collapsed ? 'collapsed' : 'expanded';
-			if ( !mw.user.isAnon() &&  mw.user.options.get( 'flow-side-rail-state' ) !== siderailState ) {
+			if ( !mw.user.isAnon() && mw.user.options.get( 'flow-side-rail-state' ) !== siderailState ) {
 				// update the user preferences; no preferences for anons
 
 				new mw.Api().saveOption( 'flow-side-rail-state', siderailState );
@@ -84,4 +84,4 @@
 	mw.flow.ui.SidebarExpandWidget.prototype.isCollapsed = function () {
 		return this.collapsed;
 	};
-}( jQuery ) );
+}() );

@@ -3,13 +3,13 @@
  */
 
 ( function ( mw, $, moment, Handlebars ) {
-	mw.flow = mw.flow || {}; // create mw.flow globally
-
 	var _tplcache = {},
 		_timestamp = {
-		list: [],
-		currentIndex: 0
-	};
+			list: [],
+			currentIndex: 0
+		};
+
+	mw.flow = mw.flow || {}; // create mw.flow globally
 
 	/**
 	 * Instantiates a FlowHandlebars instance for TemplateEngine.
@@ -17,7 +17,7 @@
 	 * @return {FlowHandlebars}
 	 * @constructor
 	 */
-	function FlowHandlebars( FlowStorageEngine ) {
+	function FlowHandlebars() {
 		return this;
 	}
 
@@ -86,10 +86,10 @@
 	/**
 	 * A method to call helper functions from outside templates. This removes Handlebars.SafeString wrappers.
 	 * @param {string} helperName
-	 * @param {...*} [args]
-	 * @return mixed
+	 * @param {...Mixed} [args]
+	 * @return {Mixed}
 	 */
-	FlowHandlebars.prototype.callHelper = function ( helperName, args ) {
+	FlowHandlebars.prototype.callHelper = function ( helperName ) {
 		var result = this[ helperName ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		if ( result && result.string ) {
 			return result.string;
@@ -189,7 +189,7 @@
 	 * @param {Object} [options]
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.l10n = function ( str /*, args..., options */ ) {
+	FlowHandlebars.prototype.l10n = function ( str /* , args..., options */ ) {
 		// chop off str and options leaving just args
 		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
@@ -198,9 +198,11 @@
 
 	/**
 	 * HTML-safe version of l10n.
+	 *
+	 * @param {string} str
 	 * @return {string|Handlebars.SafeString}
 	 */
-	FlowHandlebars.prototype.l10nParse = function ( str /*, args..., options */ ) {
+	FlowHandlebars.prototype.l10nParse = function ( str /* , args..., options */ ) {
 		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
 		return FlowHandlebars.prototype.html(
@@ -232,13 +234,14 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.timestamp = function ( timestamp ) {
+		var guid, formatter;
+
 		if ( isNaN( timestamp ) ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments );
 			return;
 		}
 
-		var guid,
-			formatter = moment( timestamp );
+		formatter = moment( timestamp );
 
 		// Generate a GUID for this element to find it later
 		guid = ( Math.random() + 1 ).toString( 36 ).substring( 2 );
@@ -348,7 +351,7 @@
 	 * @param {Object} options
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
+	FlowHandlebars.prototype.workflowBlock = function ( context ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
 			'flow_block_' + context.type + ( context[ 'block-action-template' ] || '' ),
 			context
@@ -362,7 +365,7 @@
 	 * @param {Object} options
 	 * @return {string}
 	 */
-	FlowHandlebars.prototype.postBlock = function ( context, revision, options ) {
+	FlowHandlebars.prototype.postBlock = function ( context, revision ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
 			'flow_post',
 			{
@@ -436,9 +439,9 @@
 
 	/**
 	 * Runs a callback when user is anonymous
-	 * @param array $options which must contain fn and inverse key mapping to functions.
 	 *
-	 * @return mixed result of callback
+	 * @param {Object} options which must contain fn and inverse key mapping to functions.
+	 * @return {Mixed} result of callback
 	 */
 	FlowHandlebars.prototype.ifAnonymous = function ( options ) {
 		if ( mw.user.isAnon() ) {
@@ -449,9 +452,9 @@
 
 	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
-	 * @param string $title
 	 *
-	 * @return string modified url
+	 * @param {string} title
+	 * @return {string} modified url
 	 */
 	FlowHandlebars.prototype.linkWithReturnTo = function ( title ) {
 		return mw.util.getUrl( title, {
@@ -534,6 +537,8 @@
 	 * @param {string} value
 	 * @param {string} operator supported values: 'or'
 	 * @param {string} value2
+	 * @param {Object} options
+	 * @return {string}
 	 */
 	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
 		if ( operator === 'or' ) {

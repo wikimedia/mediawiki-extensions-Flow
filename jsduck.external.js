@@ -56,4 +56,3 @@
  * Source: <http://handlebarsjs.com/reference.html#base-SafeString>
  * @class Handlebars.SafeString
  */
-

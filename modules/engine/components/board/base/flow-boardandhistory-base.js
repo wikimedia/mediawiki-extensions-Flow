@@ -4,12 +4,14 @@
  */
 
 ( function ( $, mw ) {
+	var inTopicNamespace;
+
 	/**
 	 *
 	 * @param {jQuery} $container
 	 * @constructor
 	 */
-	function FlowBoardAndHistoryComponentBase( $container ) {
+	function FlowBoardAndHistoryComponentBase() {
 		this.bindNodeHandlers( FlowBoardAndHistoryComponentBase.UI.events );
 	}
 	OO.initClass( FlowBoardAndHistoryComponentBase );
@@ -156,7 +158,7 @@
 
 		// Render the modal itself with mw-ui-modal
 		modal = mw.Modal( {
-			open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
+			open: $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
 			disableCloseOnOutsideClick: true
 		} );
 
@@ -262,5 +264,5 @@
 	}
 	FlowBoardAndHistoryComponentBase.static.inTopicNamespace = flowBoardInTopicNamespace;
 
-	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
+	inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
 }( jQuery, mediaWiki ) );

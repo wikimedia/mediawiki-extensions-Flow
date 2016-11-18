@@ -6,6 +6,7 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
+	 * @param {mw.flow.dm.Captcha} model
 	 * @param {Object} [config]
 	 */
 	mw.flow.ui.CaptchaWidget = function mwFlowUiCaptchaWidget( model, config ) {

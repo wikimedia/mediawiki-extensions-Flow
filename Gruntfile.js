@@ -4,15 +4,14 @@
  * @package Flow
  */
 
-/*jshint node:true */
+/* eslint-env node: */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-jscs' );
+	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
-	grunt.loadNpmTasks( 'grunt-tyops' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-tyops' );
 
 	grunt.initConfig( {
 		tyops: {
@@ -25,27 +24,11 @@ module.exports = function ( grunt ) {
 				'!build/typos.json'
 			]
 		},
-		jshint: {
-			options: {
-				jshintrc: true
-			},
+		eslint: {
 			all: [
-				'*.js',
-				'modules/**/*.js',
-				'tests/qunit/**/*.js'
+				'**/*.js',
+				'!{node_modules,vendor,docs}/**/*.js'
 			]
-		},
-		jscs: {
-			fix: {
-				options: {
-					config: true,
-					fix: true
-				},
-				src: '<%= jshint.all %>'
-			},
-			main: {
-				src: '<%= jshint.all %>'
-			}
 		},
 		stylelint: {
 			options: {
@@ -61,9 +44,9 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'.{csslintrc,jscsrc,jshintignore,jshintrc}',
-				'<%= jshint.all %>',
-				'<%= csslint.all %>'
+				'.{stylelintlintrc,eslintrc.json}',
+				'<%= eslint.all %>',
+				'<%= stylelintlint.all %>'
 			],
 			tasks: 'test'
 		},
@@ -75,8 +58,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'tyops', 'jshint', 'jscs:main', 'stylelint', 'jsonlint', 'banana' ] );
-	grunt.registerTask( 'fix', 'jscs:fix' );
+	grunt.registerTask( 'lint', [ 'tyops', 'eslint', 'stylelint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'test', 'lint' );
 	grunt.registerTask( 'default', 'test' );
 };

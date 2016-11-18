@@ -1,6 +1,4 @@
 ( function ( mw, $ ) {
-	mw.flow = mw.flow || {}; // create mw.flow globally
-
 	var apiTransformMap = {
 		// Map of API submodule name, block name, and prefix name
 		'moderate-post': [ 'topic_', 'mp' ],
@@ -19,13 +17,16 @@
 		'edit-topic-summary': [ 'topicsummary_', 'ets' ]
 	};
 
+	mw.flow = mw.flow || {}; // create mw.flow globally
+
 	/**
 	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowApi as component.Api,
 	 * so that it can store a workflowId and pageName permanently for simplicity.
+	 *
+	 * @constructor
+	 * @param {Object} storageEngine
 	 * @param {string} [workflowId]
 	 * @param {string} [pageName]
-	 * @return {FlowApi}
-	 * @constructor
 	 */
 	function FlowApi( storageEngine, workflowId, pageName ) {
 		this.StorageEngine = storageEngine;
@@ -289,7 +290,7 @@
 	 * @param {Object} queryMap
 	 * @return {jQuery.Promise}
 	 */
-	function flowApiRequestFromNode( node, queryMap ) {
+	function flowApiRequestFromNode( node ) {
 		var $node = $( node );
 
 		if ( $node.is( 'a' ) ) {
@@ -312,15 +313,16 @@
 	 * @return {undefined|jQuery.Promise}
 	 */
 	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
+		var str, prevApiCall, newApiCall;
+
 		$node = $( $node );
 
 		// transform flow_* params into (nt_*, rep_*, ...)
 		queryMap = flowApiTransformMap( queryMap );
 
 		// If this anchor already has a request in flight, abort it
-		var str = 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
-			prevApiCall = $node.data( str ),
-			newApiCall;
+		str = 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule;
+		prevApiCall = $node.data( str );
 
 		// If a previous API call was found, let's abort it
 		if ( prevApiCall ) {

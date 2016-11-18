@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Content class
 	 *
@@ -61,6 +61,7 @@
 	 * @fires contentChange
 	 */
 	mw.flow.dm.Content.prototype.set = function ( representations ) {
+		var format;
 		this.defaultFormat = null;
 		this.contentRepresentations = {};
 
@@ -68,7 +69,7 @@
 			this.defaultFormat = representations.format;
 			this.contentRepresentations[ this.defaultFormat ] = representations.content;
 
-			for ( var format in representations ) {
+			for ( format in representations ) {
 				if ( representations.hasOwnProperty( format ) ) {
 					this.contentRepresentations[ format ] = representations[ format ];
 				}
@@ -77,4 +78,4 @@
 
 		this.emit( 'contentChange' );
 	};
-}( jQuery ) );
+}() );

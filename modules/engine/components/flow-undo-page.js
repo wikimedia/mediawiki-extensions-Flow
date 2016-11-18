@@ -3,7 +3,7 @@
 	$( document ).ready( function () {
 
 		$( 'form[method=POST]' ).each( function ( index, form ) {
-			$( form ).submit( function ( event ) {
+			$( form ).submit( function () {
 				var $textarea = $( form ).find( 'textarea.flow-editor-initialized' ),
 					moduleName = $( form ).data( 'module' ),
 					editorExist = mw.flow.editor.exists( $textarea ),
@@ -26,4 +26,4 @@
 
 	} );
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

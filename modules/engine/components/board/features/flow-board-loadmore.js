@@ -9,7 +9,7 @@
 	 * @this FlowBoardComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentLoadMoreFeatureMixin( $container ) {
+	function FlowBoardComponentLoadMoreFeatureMixin() {
 		/** Stores a reference to each topic element currently on the page */
 		this.renderedTopics = {};
 		/** Stores a list of all topics titles by ID */
@@ -86,7 +86,8 @@
 		// 2a. Topic is not rendered; do we know about this topic ID?
 		if ( flowBoard.topicTitlesById[ topicId ] === undefined ) {
 			// We don't. Abort!
-			return flowBoard.debug( 'Unknown topicId', arguments );
+			flowBoard.debug( 'Unknown topicId', arguments );
+			return;
 		}
 
 		// 2b. Load that topic and jump to it
@@ -132,7 +133,7 @@
 				_scrollWithoutInfinite();
 			} )
 			// On fail, render an error
-			.fail( function ( code, data ) {
+			.fail( function ( code ) {
 				flowBoard.debug( true, 'Failed to load topics: ' + code );
 				// Failed fetching the new data to be displayed.
 				// @todo render the error at topic position and scroll to it
@@ -159,7 +160,7 @@
 	 * @param {Object} queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
-	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info, queryMap ) {
+	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info ) {
 		// Backup the topic data
 		info.component.renderedTopicsBackup = info.component.renderedTopics;
 		info.component.topicTitlesByIdBackup = info.component.topicTitlesById;
@@ -181,9 +182,8 @@
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
-	 * @return {jQuery.Promise}
 	 */
-	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info, data, jqxhr ) {
+	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info ) {
 		if ( info.status !== 'done' ) {
 			// Failed; restore the topic data
 			info.component.renderedTopics = info.component.renderedTopicsBackup;
@@ -204,20 +204,25 @@
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
 	 * @param {jqXHR} jqxhr
+	 * @return {jQuery.Promise}
 	 */
-	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data, jqxhr ) {
+	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data ) {
+		var scrollTarget,
+			$scrollContainer,
+			topicsData,
+			readingTopicPosition,
+			$this = $( this ),
+			$target = info.$target,
+			flowBoard = info.component;
+
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().resolve().promise();
 		}
 
-		var $this = $( this ),
-			$target = info.$target,
-			flowBoard = info.component,
-			scrollTarget = $this.data( 'flow-scroll-target' ),
-			$scrollContainer = $.findWithParent( $this, $this.data( 'flow-scroll-container' ) ),
-			topicsData = data.flow[ 'view-topiclist' ].result.topiclist,
-			readingTopicPosition;
+		scrollTarget = $this.data( 'flow-scroll-target' );
+		$scrollContainer = $.findWithParent( $this, $this.data( 'flow-scroll-container' ) );
+		topicsData = data.flow[ 'view-topiclist' ].result.topiclist;
 
 		if ( scrollTarget === 'window' && flowBoard.readingTopicId ) {
 			// Store the current position of the topic you are reading
@@ -321,7 +326,7 @@
 			} );
 		} else {
 			$target = $.findWithParent( $button, scrollTargetSelector );
-			$target.on( 'scroll.flow-load-more', $.throttle( 50, function ( evt ) {
+			$target.on( 'scroll.flow-load-more', $.throttle( 50, function () {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
 			} ) );
 		}
@@ -415,15 +420,16 @@
 	 * @param {jQuery} $calculationContainer Container to do scroll calculations on (height, scrollTop, offset, etc.)
 	 */
 	function _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck( $searchContainer, $calculationContainer ) {
+		var calculationContainerHeight, calculationContainerScroll, calculationContainerThreshold;
 		if ( this.infiniteScrollDisabled ) {
 			// This happens when the topic navigation is used to jump to a topic
 			// We should not infinite-load anything when we are scrolling to a topic
 			return;
 		}
 
-		var calculationContainerHeight = $calculationContainer.height(),
-			calculationContainerScroll = $calculationContainer.scrollTop(),
-			calculationContainerThreshold = ( $calculationContainer.offset() || { top: calculationContainerScroll } ).top;
+		calculationContainerHeight = $calculationContainer.height();
+		calculationContainerScroll = $calculationContainer.scrollTop();
+		calculationContainerThreshold = ( $calculationContainer.offset() || { top: calculationContainerScroll } ).top;
 
 		// Find load more buttons within our search container, and they must be visible
 		$searchContainer.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
@@ -460,13 +466,15 @@
 	 * @private
 	 */
 	function _flowBoardComponentLoadMoreFeatureRenderTopics( flowBoard, topicsData, forceShowLoadMore, $insertAt, scrollTarget, scrollContainer, scrollTemplate ) {
+		var i, j, $topic, topicId,
+			$allRendered = $( [] ),
+			toInsert = [];
+
 		if ( !topicsData.roots.length ) {
 			flowBoard.debug( 'No topics returned from API', arguments );
 			return;
 		}
 
-		/** @private
-		 */
 		function _createRevPagination( $target ) {
 			if ( !topicsData.links.pagination.fwd && !topicsData.links.pagination.rev ) {
 				return;
@@ -494,8 +502,6 @@
 			);
 		}
 
-		/** @private
-		 */
 		function _createFwdPagination( $target ) {
 			if ( forceShowLoadMore || topicsData.links.pagination.fwd ) {
 				// Add the load more to the end of the stack
@@ -542,10 +548,6 @@
 
 			return $newTopics;
 		}
-
-		var i, j, $topic, topicId,
-			$allRendered = $( [] ),
-			toInsert = [];
 
 		for ( i = 0; i < topicsData.roots.length; i++ ) {
 			topicId = topicsData.roots[ i ];

@@ -9,7 +9,7 @@
 	 * @extends FlowComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentInteractiveEventsMixin( $container ) {
+	function FlowBoardComponentInteractiveEventsMixin() {
 		this.bindNodeHandlers( FlowBoardComponentInteractiveEventsMixin.UI.events );
 	}
 	OO.initClass( FlowBoardComponentInteractiveEventsMixin );
@@ -28,6 +28,7 @@
 	 * Toggles collapse state
 	 *
 	 * @param {Event} event
+	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
 		var $target = $( this ).closest( '.flow-element-collapsible' ),

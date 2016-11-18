@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow topic list widget
 	 *
@@ -76,6 +76,8 @@
 	/**
 	 * Respond to scrolling of the menu. If we are close to the
 	 * bottom, call for more topics.
+	 *
+	 * @return {boolean} False to prevent default event
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.onMenuScroll = function () {
 		var actualHeight, naturalHeight, scrollTop, isNearBottom;
@@ -122,7 +124,7 @@
 		var widget = this;
 
 		this.loadingMoreTopics = true;
-		this.system.fetchMoreTopics()
+		return this.system.fetchMoreTopics()
 			.then( function ( hasMoreTopicsInApi ) {
 				widget.noMoreTopics = !hasMoreTopicsInApi;
 				if ( widget.noMoreTopics ) {
@@ -230,4 +232,4 @@
 		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.removeItems.call( this, items );
 	};
 
-}( jQuery ) );
+}() );

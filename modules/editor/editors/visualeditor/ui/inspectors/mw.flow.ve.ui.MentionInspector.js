@@ -276,6 +276,7 @@
 	 *
 	 * @param {Object} [data] Inspector initial data
 	 * @param {boolean} [data.selectAt] Select the '@' symbol to the left of the fragment
+	 * @return {OO.ui.Process}
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getSetupProcess = function ( data ) {
 		return mw.flow.ve.ui.MentionInspector.parent.prototype.getSetupProcess.call( this, data )

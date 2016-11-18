@@ -12,7 +12,7 @@
 	 * @constructor
 	 * @param {jQuery} $container
 	 */
-	function FlowBoardHistoryComponent( $container ) {
+	function FlowBoardHistoryComponent() {
 		this.bindNodeHandlers( FlowBoardHistoryComponent.UI.events );
 	}
 	OO.initClass( FlowBoardHistoryComponent );
@@ -39,13 +39,15 @@
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	function flowBoardHistoryModerationCallback( info, data, jqxhr ) {
+	function flowBoardHistoryModerationCallback( info ) {
+		var flowBoardHistory;
+
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up
 			return $.Deferred().resolve().promise();
 		}
 
-		var flowBoardHistory = mw.flow.getPrototypeMethod( 'boardHistory', 'getInstanceByElement' )( $( this ) );
+		flowBoardHistory = mw.flow.getPrototypeMethod( 'boardHistory', 'getInstanceByElement' )( $( this ) );
 
 		// Clear the form so we can refresh without the confirmation dialog
 		flowBoardHistory.emitWithReturn( 'cancelForm', $( this ).closest( 'form' ) );
@@ -65,7 +67,7 @@
 	 * @param {Object} data
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardHistoryComponent.UI.events.apiHandlers.lockTopic = function ( info, data ) {
+	FlowBoardHistoryComponent.UI.events.apiHandlers.lockTopic = function ( info ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().resolve().promise();
