@@ -29,7 +29,8 @@
 	/**
 	 * Checks whether the model represents a user mention
 	 *
-	 * @return boolean
+	 * @param {ve.dm.Model} model
+	 * @return {boolean}
 	 */
 	mw.flow.ve.ui.MentionInspectorTool.static.isCompatibleWith = function ( model ) {
 		return model instanceof ve.dm.MWTransclusionNode &&

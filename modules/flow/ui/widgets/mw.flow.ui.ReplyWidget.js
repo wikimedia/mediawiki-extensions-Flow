@@ -118,6 +118,9 @@
 
 	/**
 	 * Respond to editor save
+	 *
+	 * @param {string} content Content
+	 * @param {string} format Format
 	 */
 	mw.flow.ui.ReplyWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,
@@ -179,6 +182,8 @@
 
 	/**
 	 * Check if the widget is expandable
+	 *
+	 * @return {boolean}
 	 */
 	mw.flow.ui.ReplyWidget.prototype.isExpandable = function () {
 		return this.expandable;
@@ -186,6 +191,8 @@
 
 	/**
 	 * Check if the widget is expanded
+	 *
+	 * @return {boolean}
 	 */
 	mw.flow.ui.ReplyWidget.prototype.isExpanded = function () {
 		return this.expanded;

@@ -293,6 +293,8 @@
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function () {
+		var switchPromise, editor, widget;
+
 		if ( this.isActive() ) {
 			this.bindBeforeUnloadHandler();
 			return $.Deferred().resolve().promise();
@@ -300,9 +302,9 @@
 
 		// Doesn't call editorSwitcherWidget.activate() because we want to
 		// evaluate the user preference as late as possible
-		var switchPromise,
-			editor = this.initialEditor || mw.user.options.get( 'flow-editor' ),
-			widget = this;
+		editor = this.initialEditor || mw.user.options.get( 'flow-editor' );
+		widget = this;
+
 		if ( editor === 'none' ) {
 			editor = 'wikitext';
 		}

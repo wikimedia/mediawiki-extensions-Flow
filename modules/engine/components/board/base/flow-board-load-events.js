@@ -9,7 +9,7 @@
 	 * @extends FlowComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentLoadEventsMixin( $container ) {
+	function FlowBoardComponentLoadEventsMixin() {
 		this.bindNodeHandlers( FlowBoardComponentLoadEventsMixin.UI.events );
 	}
 	OO.initClass( FlowBoardComponentLoadEventsMixin );

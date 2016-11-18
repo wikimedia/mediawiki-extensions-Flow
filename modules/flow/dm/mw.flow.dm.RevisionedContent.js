@@ -185,6 +185,8 @@
 
 	/**
 	 * @see mw.flow.dm.Content
+	 * @param {string} format
+	 * @return {string}
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getContent = function ( format ) {
 		return this.content.get( format );
@@ -192,9 +194,10 @@
 
 	/**
 	 * @see mw.flow.dm.Content
+	 * @param {Object} representations
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContent = function ( representations ) {
-		return this.content.set( representations );
+		this.content.set( representations );
 	};
 
 	/**
@@ -240,7 +243,7 @@
 	/**
 	 * Set the revision change type
 	 *
-	 * @param {string} Revision change type
+	 * @param {string} type Revision change type
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setChangeType = function ( type ) {
 		if ( type !== undefined && this.changeType !== type ) {

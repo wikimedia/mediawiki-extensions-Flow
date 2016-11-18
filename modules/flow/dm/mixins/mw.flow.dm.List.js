@@ -6,12 +6,8 @@
 	 * @mixin
 	 * @abstract
 	 * @constructor
-	 * @param {Object} config Configuration options
 	 */
-	mw.flow.dm.List = function mwFlowDmList( config ) {
-		// Configuration initialization
-		config = config || {};
-
+	mw.flow.dm.List = function mwFlowDmList() {
 		this.items = [];
 
 		// Store references to items by their ids
@@ -138,6 +134,7 @@
 		}
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Add items
 	 *
@@ -196,6 +193,7 @@
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Remove items
 	 *
@@ -236,9 +234,11 @@
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Clear all items
 	 *
+	 * @chainable
 	 * @fires clear
 	 */
 	mw.flow.dm.List.prototype.clearItems = function () {

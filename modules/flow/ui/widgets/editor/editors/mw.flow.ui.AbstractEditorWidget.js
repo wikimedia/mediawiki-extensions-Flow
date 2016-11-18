@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow abstract editor widget.
 	 *
@@ -206,4 +206,4 @@
 		return this.initialContent !== this.getContent();
 	};
 
-}( jQuery ) );
+}() );

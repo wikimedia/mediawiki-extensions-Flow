@@ -70,17 +70,19 @@
 	 * @return {boolean|jQuery}
 	 */
 	function flowBoardComponentReinitializeContainer( $container ) {
+		var $retObj, $header, $boardNavigation, $board;
+
 		if ( $container === false ) {
 			return false;
 		}
 
 		// Trigger this on FlowBoardAndHistoryComponentBase
 		// @todo use EventEmitter to do this?
-		var $retObj = FlowBoardComponent.parent.prototype.reinitializeContainer.call( this, $container ),
+		$retObj = FlowBoardComponent.parent.prototype.reinitializeContainer.call( this, $container );
 		// Find any new (or previous) elements
-			$header = $container.find( '.flow-board-header' ).addBack().filter( '.flow-board-header:first' ),
-			$boardNavigation = $container.find( '.flow-board-navigation' ).addBack().filter( '.flow-board-navigation:first' ),
-			$board = $container.find( '.flow-board' ).addBack().filter( '.flow-board:first' );
+		$header = $container.find( '.flow-board-header' ).addBack().filter( '.flow-board-header:first' );
+		$boardNavigation = $container.find( '.flow-board-navigation' ).addBack().filter( '.flow-board-navigation:first' );
+		$board = $container.find( '.flow-board' ).addBack().filter( '.flow-board:first' );
 
 		if ( $retObj === false ) {
 			return false;

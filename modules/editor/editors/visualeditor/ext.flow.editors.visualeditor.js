@@ -162,6 +162,8 @@
 	};
 
 	mw.flow.editors.visualeditor.prototype.moveCursorToEnd = function () {
+		var data, cursorPos;
+
 		if ( !this.target ) {
 			this.initCallbacks.push( function () {
 				this.moveCursorToEnd();
@@ -169,8 +171,8 @@
 			return;
 		}
 
-		var data = this.target.surface.getModel().getDocument().data,
-			cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
+		data = this.target.surface.getModel().getDocument().data;
+		cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
 
 		this.target.surface.getModel().setSelection( new ve.Range( cursorPos ) );
 	};
@@ -194,10 +196,9 @@
 	// Static methods
 
 	mw.flow.editors.visualeditor.static.isSupported = function () {
-		/* jshint newcap: false */
-
 		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
 
+		/* global VisualEditorSupportCheck */
 		return !!(
 			!isMobileTarget &&
 			mw.loader.getState( 'ext.visualEditor.core' ) &&

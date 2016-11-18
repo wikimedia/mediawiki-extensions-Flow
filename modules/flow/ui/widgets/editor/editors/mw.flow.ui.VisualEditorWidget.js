@@ -42,6 +42,7 @@
 	mw.flow.ui.VisualEditorWidget.static.isSupported = function () {
 		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
 
+		/* global VisualEditorSupportCheck */
 		return !!(
 			!isMobileTarget &&
 			mw.loader.getState( 'ext.visualEditor.core' ) &&
@@ -81,6 +82,7 @@
 	 * Create a VE surface with the provided content in it.
 	 *
 	 * @param {string} content HTML to put in the surface (body only)
+	 * @return {jQuery.Promise} Promise which resolves when the surface is ready
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.createSurface = function ( content ) {
 		var widget = this,

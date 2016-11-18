@@ -8,10 +8,10 @@
  */
 
 ( function ( $, mw ) {
+	var _componentRegistry = new OO.Registry();
+
 	/** @class mw.flow */
 	mw.flow = mw.flow || {}; // create mw.flow globally
-
-	var _componentRegistry = new OO.Registry();
 
 	/**
 	 * Instantiate one or more new FlowComponents.

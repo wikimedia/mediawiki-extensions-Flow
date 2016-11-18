@@ -1,0 +1,22 @@
+{
+	"extends": "wikimedia",
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"qunit": true
+	},
+	"globals": {
+		"mw": true,
+		"ve": false,
+		"mediaWiki": false,
+		"OO": false,
+		"Handlebars": false,
+		"moment": false
+	},
+	"rules": {
+		"dot-notation": [ "error", { "allowKeywords": true } ],
+		"no-underscore-dangle": 0,
+		"camelcase": 0,
+		"no-use-before-define": 0
+	}
+}

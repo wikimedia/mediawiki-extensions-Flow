@@ -44,7 +44,7 @@
 	/**
 	 * Returns a short description emphasizing the relevant data (currently just the user name)
 	 *
-	 * @return string User name
+	 * @return {string} User name
 	 */
 	mw.flow.ve.ui.MentionContextItem.prototype.getDescription = function () {
 		var key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;

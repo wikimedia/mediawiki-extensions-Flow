@@ -10,7 +10,7 @@
 	 * @this FlowComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentSwitchEditorFeatureMixin( $container ) {
+	function FlowBoardComponentSwitchEditorFeatureMixin() {
 		// Bind element handlers
 		this.bindNodeHandlers( FlowBoardComponentSwitchEditorFeatureMixin.UI.events );
 	}
