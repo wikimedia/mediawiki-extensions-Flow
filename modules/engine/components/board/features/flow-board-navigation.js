@@ -10,7 +10,7 @@
 	 * @param {jQuery} $container
 	 * @this FlowComponent
 	 */
-	function FlowBoardComponentBoardHeaderFeatureMixin( $container ) {
+	function FlowBoardComponentBoardHeaderFeatureMixin() {
 		// Bind element handlers
 		this.bindNodeHandlers( FlowBoardComponentBoardHeaderFeatureMixin.UI.events );
 

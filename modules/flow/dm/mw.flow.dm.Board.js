@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Board
 	 *
@@ -177,7 +177,7 @@
 	/**
 	 * Set board description
 	 *
-	 * @param {mw.flow.dm.BoardDescription} Board description
+	 * @param {mw.flow.dm.BoardDescription} desc Board description
 	 * @fires descriptionChange
 	 */
 	mw.flow.dm.Board.prototype.setDescription = function ( desc ) {
@@ -212,7 +212,7 @@
 	/**
 	 * Set board sort order, 'newest' or 'updated'
 	 *
-	 * @param {string} Board sort order
+	 * @param {string} order Board sort order
 	 * @fires sortOrderChange
 	 */
 	mw.flow.dm.Board.prototype.setSortOrder = function ( order ) {
@@ -224,6 +224,8 @@
 
 	/**
 	 * Get the last offset for the API's offsetId
+	 *
+	 * @return {string}
 	 */
 	mw.flow.dm.Board.prototype.getOffsetId = function () {
 		var topics = this.getItems();
@@ -235,6 +237,8 @@
 
 	/**
 	 * Get the last offset for the API's offset timestamp
+	 *
+	 * @return {number}
 	 */
 	mw.flow.dm.Board.prototype.getOffset = function () {
 		var topics = this.getItems();
@@ -254,4 +258,4 @@
 		this.clearItems();
 		this.emit( 'reset', order );
 	};
-}( jQuery ) );
+}() );

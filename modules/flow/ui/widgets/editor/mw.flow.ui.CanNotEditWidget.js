@@ -144,7 +144,7 @@
 	 * Check if the specified group is required to edit and they lack it.
 	 *
 	 * @param {string} groupName
-	 * @return True if and only if the group is both required to edit and missing
+	 * @return {boolean} The group is both required to edit and missing
 	 */
 	mw.flow.ui.CanNotEditWidget.prototype.isMissingRequiredGroup = function ( groupName ) {
 		var isGroupRequired = $.inArray( groupName, this.restrictionEdit ) !== -1,

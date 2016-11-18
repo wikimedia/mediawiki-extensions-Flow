@@ -4,12 +4,14 @@
  */
 
 ( function ( $, mw ) {
+	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
+
 	/**
 	 *
 	 * @param {jQuery} $container
 	 * @constructor
 	 */
-	function FlowBoardAndHistoryComponentBase( $container ) {
+	function FlowBoardAndHistoryComponentBase() {
 		this.bindNodeHandlers( FlowBoardAndHistoryComponentBase.UI.events );
 	}
 	OO.initClass( FlowBoardAndHistoryComponentBase );
@@ -156,7 +158,7 @@
 
 		// Render the modal itself with mw-ui-modal
 		modal = mw.Modal( {
-			open:  $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
+			open: $( mw.flow.TemplateEngine.processTemplateGetFragment( template, params ) ).children(),
 			disableCloseOnOutsideClick: true
 		} );
 
@@ -261,6 +263,4 @@
 		return inTopicNamespace && ( !$el || $el.closest( '.flow-post' ).length === 0 );
 	}
 	FlowBoardAndHistoryComponentBase.static.inTopicNamespace = flowBoardInTopicNamespace;
-
-	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
 }( jQuery, mediaWiki ) );

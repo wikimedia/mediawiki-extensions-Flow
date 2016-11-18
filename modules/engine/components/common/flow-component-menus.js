@@ -93,6 +93,7 @@
 	 * Allows you to open a flow-menu from a secondary click handler elsewhere.
 	 * Uses data-flow-menu-target="< foo .flow-menu"
 	 * @param {Event} event
+	 * @return {jQuery.Promise}
 	 */
 	function flowComponentMenusFeatureElementMenuToggleCallback( event ) {
 		var $this = $( this ),

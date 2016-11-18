@@ -123,6 +123,9 @@
 
 	/**
 	 * Respond to editor save
+	 *
+	 * @param {string} content Content
+	 * @param {string} format Format
 	 */
 	mw.flow.ui.EditTopicSummaryWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,

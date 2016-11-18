@@ -208,7 +208,7 @@
 	 * Respond to editor save event. Save the content and display the new description.
 	 *
 	 * @param {string} content Content to save
-	 * @param {string} contentFormat Format of content
+	 * @param {string} format Format of content
 	 * @fires saveContent
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorSaveContent = function ( content, format ) {

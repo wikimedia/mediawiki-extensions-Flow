@@ -119,7 +119,7 @@
 
 		if ( isScrolledDown ) {
 			// TODO use binary search
-			$( '.flow-topic' ).each( function ( index, element ) {
+			$( '.flow-topic' ).each( function () {
 				if ( isElementInView( $( this ) ) ) {
 					topicId = $( this ).data( 'flowId' );
 					return false;

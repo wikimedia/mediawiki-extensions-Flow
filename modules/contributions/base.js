@@ -28,4 +28,4 @@
 	$( document ).ready( function () {
 		$( '#bodyContent' ).one( 'click', '.flow-click-interactive', clickedFlowLink );
 	} );
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

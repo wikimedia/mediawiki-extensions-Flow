@@ -124,6 +124,9 @@
 
 	/**
 	 * Respond to editor save
+	 *
+	 * @param {string} content Content
+	 * @param {string} format Format
 	 */
 	mw.flow.ui.EditPostWidget.prototype.onEditorSaveContent = function ( content, format ) {
 		var widget = this,

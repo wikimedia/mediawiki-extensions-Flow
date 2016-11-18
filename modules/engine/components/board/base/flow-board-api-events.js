@@ -10,7 +10,7 @@
 	 * @constructor
 	 * @param {jQuery} $container
 	 */
-	function FlowBoardComponentApiEventsMixin( $container ) {
+	function FlowBoardComponentApiEventsMixin() {
 		// Bind event callbacks
 		this.bindNodeHandlers( FlowBoardComponentApiEventsMixin.UI.events );
 	}
@@ -136,7 +136,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data ) {
 		var $rendered,
 			flowBoard = info.component,
 			dfd = $.Deferred();
@@ -172,7 +172,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function ( info, data, jqxhr ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function ( info, data ) {
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 			return $.Deferred().resolve().promise();
@@ -193,7 +193,7 @@
 	 * @param {jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
-	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.watchItem = function ( info, data, jqxhr ) {
+	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.watchItem = function ( info, data ) {
 		var watchUrl, unwatchUrl,
 			watchType, watchLinkTemplate, $newLink,
 			$target = $( this ),
@@ -321,17 +321,19 @@
 	 * @return {jQuery.Promise} return.return
 	 */
 	function _genModerateHandler( action, successCallback ) {
-		return function ( info, data, jqxhr ) {
+		return function ( info, data ) {
+			var $form, revisionId, $target, flowBoard,
+				$this = $( this );
+
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
 				return $.Deferred().resolve().promise();
 			}
 
-			var $this = $( this ),
-				$form = $this.closest( 'form' ),
-				revisionId = data.flow[ action ].committed.topic[ 'post-revision-id' ],
-				$target = $form.data( 'flow-dialog-owner' ) || $form,
-				flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
+			$form = $this.closest( 'form' );
+			revisionId = data.flow[ action ].committed.topic[ 'post-revision-id' ];
+			$target = $form.data( 'flow-dialog-owner' ) || $form;
+			flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )( $this );
 
 			// @todo: add 3rd argument (target selector); there's no need to refresh entire topic if only post was moderated
 			return _flowBoardComponentRefreshTopic( $target, data.flow[ action ].workflow )

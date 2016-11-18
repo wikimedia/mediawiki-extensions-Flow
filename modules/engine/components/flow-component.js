@@ -55,8 +55,10 @@
 	 * @param {boolean} [isError=true]
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( isError ) {
+		var args;
+		/* eslint-disable no-console */
 		if ( window.console ) {
-			var args = Array.prototype.slice.call( arguments, 0 );
+			args = Array.prototype.slice.call( arguments, 0 );
 
 			if ( typeof isError === 'boolean' ) {
 				args.shift();
@@ -68,12 +70,13 @@
 
 			if ( isError && console.error ) {
 				// If console.error is supported, send that, because it gives a stack trace
-				return console.error.apply( console, args );
+				console.error.apply( console, args );
 			}
 
 			// Otherwise, use console.log
 			console.log.apply( console, args );
 		}
+		/* eslint-enable no-console */
 	};
 
 	/**
@@ -175,13 +178,14 @@
 			'*',
 			{ flowSpawnedBy: this.$container, flowSpawnedFrom: $el },
 			function ( event ) {
+				var i, $nodes;
 				// Let's forward these events in an unusual way, similar to how jQuery propagates events...
 				// First, only take the very first, top-level event, as the rest of the propagation is handled elsewhere
 				if ( event.target === this ) {
 					// Get all the parent nodes of our target,
 					// but do not include any nodes we will already be bubbling up to (eg. body)
-					var $nodes = $eventTarget.parents().addBack().not( $( this ).parents().addBack() ),
-						i = $nodes.length;
+					$nodes = $eventTarget.parents().addBack().not( $( this ).parents().addBack() );
+					i = $nodes.length;
 
 					// For every node between $eventTarget and window that was not filtered out above...
 					while ( i-- ) {
@@ -212,14 +216,15 @@
 	 * @private
 	 */
 	function _eventForwardDispatch( event, container ) {
+		var i, ret, handleObj, matched, j,
+			args, handlers, special,
+			handlerQueue = [];
+
 		// Make a writable jQuery.Event from the native event object
 		event = jQuery.event.fix( event );
-
-		var i, ret, handleObj, matched, j,
-			handlerQueue = [],
-			args = Array.prototype.slice.call( arguments, 0 ),
-			handlers = ( jQuery._data( this, 'events' ) || {} )[ event.type ] || [],
-			special = jQuery.event.special[ event.type ] || {};
+		args = Array.prototype.slice.call( arguments, 0 );
+		handlers = ( jQuery._data( this, 'events' ) || {} )[ event.type ] || [];
+		special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
 		args[ 0 ] = event;
