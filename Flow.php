@@ -210,11 +210,6 @@ $wgAvailableRights[] = 'flow-suppress';
 $wgAvailableRights[] = 'flow-edit-post';
 $wgAvailableRights[] = 'flow-create-board';
 
-// Register Flow import paths
-$wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
-	__DIR__ . '/modules/styles/flow.less/',
-) );
-
 // Configuration
 
 // URL for more information about the Flow notification system
