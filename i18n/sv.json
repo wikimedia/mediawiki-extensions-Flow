@@ -471,6 +471,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Detta inlägg skapades av [[User:{{{authorUser}}}|{{{authorUser}}}]], men signerades som [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Redigerad",
 	"flow-edited-by": "Redigerad av $1",
+	"flow-edited-by-header": "Forumbeskrivningen redigerades av $1",
+	"flow-edited-by-topic-title": "Ämnesrubriken redigerades av $1",
 	"flow-lqt-redirect-reason": "Omdirigerar utfasad LiquidThreads-inlägg till dess konverterade Flow-inlägg",
 	"flow-talk-conversion-move-reason": "Konvertering av wikitext till Flow från $1",
 	"flow-talk-conversion-archive-edit-reason": "Konvertering av diskussion i wikitext till Flow",
