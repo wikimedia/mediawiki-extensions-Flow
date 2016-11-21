@@ -25,7 +25,7 @@ abstract class AbstractRevision {
 	 * List of available permission levels.
 	 *
 	 * @var string[]
-	 **/
+	 */
 	static public $perms = array(
 		self::MODERATED_NONE,
 		self::MODERATED_HIDDEN,

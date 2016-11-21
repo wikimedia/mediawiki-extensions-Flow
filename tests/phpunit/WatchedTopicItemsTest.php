@@ -52,7 +52,6 @@ class WatchedTopicItemTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider provideDataGetWatchStatus
-	 *
 	 */
 	public function testGetWatchStatus( $uuids, $dbResult, $result ) {
 		// give it a fake user id

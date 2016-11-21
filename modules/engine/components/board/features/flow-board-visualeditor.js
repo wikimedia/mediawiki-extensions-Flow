@@ -8,7 +8,6 @@
 	 *
 	 * @this FlowBoardComponent
 	 * @constructor
-	 *
 	 */
 	function FlowBoardComponentVisualEditorFeatureMixin( $container ) {
 	}

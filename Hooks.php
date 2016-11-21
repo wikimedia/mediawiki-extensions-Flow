@@ -1004,7 +1004,6 @@ class FlowHooks {
 	 * still be in their web notifications (if enabled), but they will never be
 	 * notified via email (regardless of batching settings) for this particular
 	 * notification.
-	 *
 	 */
 	public static function onEchoAbortEmailNotification( User $user, EchoEvent $event ) {
 		$extra = $event->getExtra();

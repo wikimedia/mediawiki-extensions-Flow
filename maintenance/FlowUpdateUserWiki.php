@@ -37,7 +37,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	 * empty *_user_id and *_user_ip, but this doesn't hurt. Alternatively, we could
 	 * add a check user_id != 0 and user_ip is not null to the query, but this will
 	 * result in more db queries
-	 *
 	 */
 	protected function doDBUpdates() {
 		$id = '';
