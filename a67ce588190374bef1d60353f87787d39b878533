@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceb9bbfa_d0b3724b",
+        "filename": "modules/styles/board/topic/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2016-11-21T19:00:30Z",
+      "side": 1,
+      "message": "Non\u0027a!",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "a67ce588190374bef1d60353f87787d39b878533",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
