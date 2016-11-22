@@ -429,13 +429,18 @@ class FlowHooks {
 			/** @var Flow\Formatter\ChangesListFormatter $formatter */
 			$formatter = Container::get( 'formatter.changeslist' );
 			$line = $formatter->format( $row, $changesList, $topicOnly );
+		} catch ( PermissionException $pe ) {
+			// It is expected that some rows won't be formatted because the current user
+			// doesn't have permission to see some of the data they contain.
+			return false;
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
-			restore_error_handler();
 			return false;
 		}
-		restore_error_handler();
+		finally {
+			restore_error_handler();
+		}
 
 		if ( $line === false ) {
 			return false;
