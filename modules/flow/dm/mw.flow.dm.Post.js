@@ -18,7 +18,7 @@
 		mw.flow.dm.Post.parent.call( this, config );
 
 		// Mixin constructor
-		mw.flow.dm.List.call( this, config );
+		mw.flow.dm.List.call( this );
 
 		this.setId( id );
 		this.populate( revisionData );
