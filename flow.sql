@@ -9,7 +9,7 @@ CREATE TABLE /*_*/flow_workflow (
 	workflow_title_text varchar(255) binary not null,
     workflow_name varchar(255) binary not null,
 	workflow_last_update_timestamp binary(14) not null,
-	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
+	-- TODO: is this useful as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
 	workflow_type varbinary(16) not null,
@@ -33,10 +33,10 @@ CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscripti
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
 	topic_list_id binary(11) not null,
-	topic_id binary(11)
+	topic_id binary(11),
+	PRIMARY KEY (topic_list_id, topic_id)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_id, topic_id);
 CREATE INDEX /*i*/flow_topic_list_topic_id ON /*_*/flow_topic_list (topic_id);
 
 -- Post Content Revisions.  Connects 1 Post to Many revisions.
@@ -53,11 +53,10 @@ CREATE TABLE /*_*/flow_tree_revision (
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
 	tree_parent_id binary(11),
-	PRIMARY KEY( tree_rev_id )
+	PRIMARY KEY(tree_rev_id)
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/flow_tree_descendant_rev_id
-	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
+CREATE INDEX /*i*/flow_tree_descendant_rev_id ON /*_*/flow_tree_revision (tree_rev_descendant_id, tree_rev_id);
 
 -- Content
 -- This is completely unoptimized right now, just a quick get-it-done for
@@ -132,10 +131,10 @@ CREATE INDEX /*i*/flow_revision_user ON
 CREATE TABLE /*_*/flow_tree_node (
 	tree_ancestor_id binary(11) not null,
 	tree_descendant_id binary(11) not null,
-	tree_depth smallint not null
+	tree_depth smallint not null,
+	PRIMARY KEY (tree_ancestor_id, tree_descendant_id)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (tree_ancestor_id, tree_descendant_id);
 CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant_id, tree_depth);
 
 CREATE TABLE /*_*/flow_wiki_ref (
