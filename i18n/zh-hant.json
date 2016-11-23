@@ -136,6 +136,7 @@
 	"flow-error-missing-summary": "您必須填寫摘要。",
 	"flow-error-missing-title": "話題沒有標題。 您需要填寫標題以儲存話題。",
 	"flow-error-parsoid-failure": "因 Parsoid 錯誤，無法解析內容。",
+	"flow-error-protected-unknown-reason": "不明",
 	"flow-error-missing-replyto": "未提供「回覆至」參數。「回覆」動作需要使用此參數。",
 	"flow-error-missing-postId": "未提供 \"postId\" 參數。 處理貼文需要使用此參數。",
 	"flow-error-invalid-postId": "\"postId\" 參數無效。 查無指定的貼文 ($1)。",
