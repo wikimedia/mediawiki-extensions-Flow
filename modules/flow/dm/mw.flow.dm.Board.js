@@ -21,7 +21,7 @@
 		mw.flow.dm.Board.parent.call( this, config );
 
 		// Mixin constructor
-		mw.flow.dm.List.call( this, config );
+		mw.flow.dm.List.call( this );
 
 		this.categories = new mw.flow.dm.Categories();
 
