@@ -43,14 +43,14 @@ mw.flow.ui.enhance = {};
 		}
 
 		function onMwUiButtonBlur( event ) {
+			var $el, $form, $siblings, $focused;
+
 			if ( event.target.className.indexOf( 'mw-ui-button' ) === -1 ) {
 				// Not a button event
 				return;
 			}
 
-			var $el       = $( event.target ),
-				$form, $siblings, $focused;
-
+			$el = $( event.target );
 			$form = $el.closest( 'form, .mw-ui-button-container' );
 			if ( $form.length ) {
 				// If this button is in a form, apply this to all the form's buttons.
@@ -171,6 +171,7 @@ mw.flow.ui.enhance = {};
 		 * @param {jQuery|HTMLElement|string} [content] A jQuery set, an element, or a string of
 		 *  HTML.  If omitted, first tries tooltipContentCallback, then target.title
 		 * @param {Object} [options]
+		 * @return {jQuery}
 		 */
 		function mwUiTooltipShow( target, content, options ) {
 			var $target = $( target ),
@@ -260,8 +261,7 @@ mw.flow.ui.enhance = {};
 			$tooltip
 				// Add the content to it
 				.find( '.flow-ui-tooltip-content' )
-					.empty()
-					[ insertFn ]( content )
+					.empty()[ insertFn ]( content )
 					.end()
 				// Move this off-page before rendering it, so that we can calculate its real dimensions
 				// @todo use .parent() loop to check for z-index and + that to this if needed
@@ -423,17 +423,17 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Event handler for mouse entering on a .flow-ui-tooltip-target
-		 * @param {Event} event
+		 * @param {jQuery.Event} event
 		 */
-		function onMwUiTooltipFocus( event ) {
+		function onMwUiTooltipFocus() {
 			mw.tooltip.show( this );
 		}
 
 		/**
 		 * Event handler for mouse leaving a .flow-ui-tooltip-target
-		 * @param {Event} event
+		 * @param {jQuery.Event} event
 		 */
-		function onMwUiTooltipBlur( event ) {
+		function onMwUiTooltipBlur() {
 			mw.tooltip.hide( this );
 		}
 

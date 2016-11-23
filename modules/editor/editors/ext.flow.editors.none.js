@@ -11,10 +11,10 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.none = function ( $node, content ) {
+		var $editor = $node.closest( '.flow-editor' );
+
 		// Parent constructor
 		mw.flow.editors.none.parent.call( this );
-
-		var $editor = $node.closest( '.flow-editor' );
 
 		// node the editor is associated with.
 		this.$node = $node;

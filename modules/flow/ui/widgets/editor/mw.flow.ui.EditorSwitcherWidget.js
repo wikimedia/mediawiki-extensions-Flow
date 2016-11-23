@@ -219,6 +219,11 @@
 	 * @fires switch
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.switchEditor = function ( name ) {
+		var promise, switchingDeferred,
+			oldName, oldEditor, oldContent, oldFormat,
+			newEditor, newFormat,
+			widget = this;
+
 		if ( !this.isEditorAvailable( name ) ) {
 			return $.Deferred().reject().promise();
 		}
@@ -241,15 +246,13 @@
 			return $.Deferred().reject().promise();
 		}
 
-		var promise,
-			switchingDeferred = $.Deferred(),
-			oldName = this.activeEditorName,
-			oldEditor = this.getActiveEditor(),
-			oldContent = oldEditor && oldEditor.getContent() || this.initialContent,
-			oldFormat = this.contentFormat,
-			newEditor = this.getEditor( name ),
-			newFormat = newEditor.getFormat(),
-			widget = this;
+		switchingDeferred = $.Deferred();
+		oldName = this.activeEditorName;
+		oldEditor = this.getActiveEditor();
+		oldContent = oldEditor && oldEditor.getContent() || this.initialContent;
+		oldFormat = this.contentFormat;
+		newEditor = this.getEditor( name );
+		newFormat = newEditor.getFormat();
 
 		this.switchingPromise = promise = switchingDeferred.promise();
 		this.switchingPromise.newEditorName = name;
@@ -388,6 +391,9 @@
 	 * @return {jQuery.Promise} Promise resolved when new content has been set
 	 */
 	mw.flow.ui.EditorSwitcherWidget.prototype.setContent = function ( content, contentFormat ) {
+		var promise, settingDeferred,
+			widget = this;
+
 		if ( this.settingPromise ) {
 			// TODO handle this more gracefully
 			return $.Deferred().reject();
@@ -401,9 +407,7 @@
 			return $.Deferred().resolve().promise();
 		}
 
-		var promise,
-			settingDeferred = $.Deferred(),
-			widget = this;
+		settingDeferred = $.Deferred();
 
 		// Setting this.settingPromise prevents switchEditor() from changing the active editor
 		// while we convert

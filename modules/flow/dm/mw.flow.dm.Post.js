@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Post
 	 *
@@ -97,4 +97,4 @@
 		return this.replyIds;
 	};
 
-}( jQuery ) );
+}() );

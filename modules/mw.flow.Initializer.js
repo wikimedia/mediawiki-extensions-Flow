@@ -599,12 +599,12 @@
 				uri = new mw.Uri( href ),
 				replyTo = uri.query.topic_postId,
 				$topic = $( this ).closest( '.flow-topic' ),
-					placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
-					// replyTo can refer to a post ID or a topic ID
-					// For posts, the ReplyWidget should go in .flow-replies
-					// For topics, it's directly inside the topic
-					$targetContainer = $( '#flow-post-' + replyTo + ' > .flow-replies, #flow-topic-' + replyTo ),
-					$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
+				placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
+				// replyTo can refer to a post ID or a topic ID
+				// For posts, the ReplyWidget should go in .flow-replies
+				// For topics, it's directly inside the topic
+				$targetContainer = $( '#flow-post-' + replyTo + ' > .flow-replies, #flow-topic-' + replyTo ),
+				$existingWidget = $targetContainer.children( '.flow-ui-replyWidget' );
 
 			// Check that there's not already a reply widget existing in the same place
 			if ( $existingWidget.length > 0 ) {
@@ -656,7 +656,7 @@
 	 * @param {string} [action] Lock action 'lock' or 'unlock'. If not given, the action
 	 *  is assumed as summary only.
 	 */
-	mw.flow.Initializer.prototype.startEditTopicSummary = function ( isFullBoard, topicId, action  ) {
+	mw.flow.Initializer.prototype.startEditTopicSummary = function ( isFullBoard, topicId, action ) {
 		var editTopicSummaryWidget,
 			self = this,
 			$topic = $( '#flow-topic-' + topicId ),
@@ -770,17 +770,6 @@
 	 * @return {mw.flow.ui.EditorWidget}
 	 */
 	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey ) {
-		function handleFailure( errorCode, errorObj ) {
-			captchaWidget.model.update( errorCode, errorObj );
-
-			if ( !captchaWidget.model.isRequired() ) {
-				error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
-				error.toggle( true );
-			}
-
-			editor.popPending();
-		}
-
 		var $wrapper,
 			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
 			anonWarning = new mw.flow.ui.AnonWarningWidget( {
@@ -800,6 +789,17 @@
 				saveMsgKey: saveMsgKey,
 				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
 			} );
+
+		function handleFailure( errorCode, errorObj ) {
+			captchaWidget.model.update( errorCode, errorObj );
+
+			if ( !captchaWidget.model.isRequired() ) {
+				error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
+				error.toggle( true );
+			}
+
+			editor.popPending();
+		}
 
 		error.toggle( false );
 		editor.toggle( true );

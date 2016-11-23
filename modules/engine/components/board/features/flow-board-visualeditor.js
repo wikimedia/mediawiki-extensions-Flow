@@ -9,7 +9,7 @@
 	 * @this FlowBoardComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentVisualEditorFeatureMixin( $container ) {
+	function FlowBoardComponentVisualEditorFeatureMixin() {
 	}
 
 	// This is not really VE-specific, but I'm not sure where best to put it.
@@ -17,7 +17,8 @@
 	/**
 	 * Finds topic authors for the given node
 	 *
-	 * @return Array List of usernames
+	 * @param {jQuery} $node
+	 * @return {string[]} List of usernames
 	 */
 	function flowVisualEditorGetTopicPosters( $node ) {
 		var $topic = $node.closest( '.flow-topic' ),

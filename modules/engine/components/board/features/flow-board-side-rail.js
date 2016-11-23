@@ -9,7 +9,7 @@
 	 * @this FlowComponent
 	 * @constructor
 	 */
-	function FlowBoardComponentSideRailFeatureMixin( $container ) {
+	function FlowBoardComponentSideRailFeatureMixin() {
 		// Bind element handlers
 		this.bindNodeHandlers( FlowBoardComponentSideRailFeatureMixin.UI.events );
 	}
@@ -33,7 +33,7 @@
 	 *
 	 * @param {Event} event
 	 */
-	function FlowBoardComponentSideRailFeatureMixinLoadCallback( event ) {
+	function FlowBoardComponentSideRailFeatureMixinLoadCallback() {
 		if ( mw.user.options.get( 'flow-side-rail-state' ) === 'collapsed' ) {
 			$( '.flow-component' ).addClass( 'expanded' );
 		}
@@ -49,7 +49,7 @@
 	 *
 	 * @param {Event} event
 	 */
-	function FlowBoardComponentSideRailFeatureMixinToggleCallback( event ) {
+	function FlowBoardComponentSideRailFeatureMixinToggleCallback() {
 		var boardIsExpanded = $( '.flow-component' ).toggleClass( 'expanded' ).hasClass( 'expanded' ),
 			sideRailState = boardIsExpanded ? 'collapsed' : 'expanded';
 

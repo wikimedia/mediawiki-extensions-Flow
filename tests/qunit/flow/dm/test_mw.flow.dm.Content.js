@@ -4,12 +4,12 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Content' );
 
 QUnit.test( 'Stores different content representations (formats)', function ( assert ) {
 	var content = new mw.flow.dm.Content( {
-			content: 'content in default format (wikitext, for instance)',
-			format: 'wikitext',
-			html: 'content in html format',
-			plaintext: 'content in plaintext format',
-			someNewFormat: 'content in some new format'
-		} );
+		content: 'content in default format (wikitext, for instance)',
+		format: 'wikitext',
+		html: 'content in html format',
+		plaintext: 'content in plaintext format',
+		someNewFormat: 'content in some new format'
+	} );
 
 	assert.equal( content.get( 'html' ), 'content in html format' );
 	assert.equal( content.get( 'wikitext' ), 'content in default format (wikitext, for instance)' );

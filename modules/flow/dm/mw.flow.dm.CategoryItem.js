@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Board
 	 *
@@ -40,4 +40,4 @@
 	mw.flow.dm.CategoryItem.prototype.exists = function () {
 		return this.categoryExists;
 	};
-}( jQuery ) );
+}() );

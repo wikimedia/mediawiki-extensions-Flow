@@ -66,14 +66,13 @@
 		 * @return {jQuery.Promise} Will resolve once editor instance is loaded
 		 */
 		load: function ( $node, content ) {
-			/**
-			 * When calling load(), loadEditor() may not yet have completed loading the
-			 * dependencies. To make sure it doesn't break, this will in interval,
-			 * check for it and only start loading once initialization is complete.
-			 *
-			 * @private
-			 */
-			var tryLoad = function ( $node, content ) {
+			var interval,
+				deferred = $.Deferred();
+
+			// When calling load(), loadEditor() may not yet have completed loading the
+			// dependencies. To make sure it doesn't break, this will in interval,
+			// check for it and only start loading once initialization is complete.
+			function tryLoad( $node, content ) {
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
@@ -86,8 +85,8 @@
 				}
 
 				deferred.resolve();
-			},
-			deferred = $.Deferred(),
+			}
+
 			interval = setInterval( $.proxy( tryLoad, this, $node, content ), 10 );
 
 			return deferred.promise();
@@ -155,6 +154,7 @@
 			$node.data( 'flow-editor', mw.flow.editor.editors.length )
 				.closest( '.flow-editor' ).addClass( 'flow-editor-' + mw.flow.editor.editor.static.name );
 
+			// eslint-disable-next-line new-cap
 			mw.flow.editor.editors.push( new mw.flow.editor.editor( $node, content ) );
 			return mw.flow.editor.getEditor( $node );
 		},
@@ -224,13 +224,14 @@
 			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
 
 				.then( function () {
+					var content, oldFormat, newFormat;
+
 					if ( !mw.flow.editors[ desiredEditor ].static.isSupported() ) {
 						return $.Deferred().reject( 'editor-not-supported' );
 					}
 
-					var content = editor.getRawContent(),
-						oldFormat = editor.constructor.static.format,
-						newFormat;
+					content = editor.getRawContent();
+					oldFormat = editor.constructor.static.format;
 
 					mw.flow.editor.editor = mw.flow.editors[ desiredEditor ];
 					newFormat = mw.flow.editor.editor.static.format;

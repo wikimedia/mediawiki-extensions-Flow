@@ -160,7 +160,7 @@
 	/**
 	 * Set the topic summary
 	 *
-	 * @param {string} Topic summary
+	 * @param {string} summary Topic summary
 	 * @fires summary
 	 */
 	mw.flow.dm.Topic.prototype.setSummary = function ( summary ) {

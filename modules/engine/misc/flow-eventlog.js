@@ -1,9 +1,13 @@
 ( function ( mw, $ ) {
+	var FlowEventLogRegistry = {
+		funnels: {},
+		generateFunnelId: mw.user.generateRandomSessionId
+	};
+
 	/**
+	 * @constructor
 	 * @param {string} schemaName Canonical schema name.
 	 * @param {Object} [eventInstance] Shared event instance data.
-	 * @return {FlowEventLog}
-	 * @constructor
 	 */
 	function FlowEventLog( schemaName, eventInstance ) {
 		this.schemaName = schemaName;
@@ -21,17 +25,6 @@
 		}
 		this.logEvent = logEvent;
 	}
-
-	var FlowEventLogRegistry = {
-		funnels: {},
-
-		/**
-		 * Generates a unique id.
-		 *
-		 * @return {string}
-		 */
-		generateFunnelId: mw.user.generateRandomSessionId
-	};
 
 	// Export
 	/**

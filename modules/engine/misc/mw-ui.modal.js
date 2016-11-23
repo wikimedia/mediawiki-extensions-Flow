@@ -179,11 +179,12 @@
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Changes the title of the modal.
 	 *
 	 * @param {string|null} title
-	 * @return MwUiModal
+	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.setTitle = function ( title ) {
 		var $heading = this.getNode().find( this.headingSelector ),
@@ -213,6 +214,7 @@
 
 	/**
 	 * @todo Implement data-mwui handlers, currently using data-flow
+	 * @return {boolean}
 	 */
 	MwUiModal.prototype.setInteractiveHandler = function () {
 		return false;
@@ -220,6 +222,8 @@
 
 	/**
 	 * Returns modal name.
+	 *
+	 * @return {string}
 	 */
 	MwUiModal.prototype.getName = function () {
 		return this.name;
@@ -274,7 +278,7 @@
 	 * @param {Object|HTMLElement|HTMLElement[]|jQuery|string} contents
 	 * @return {MwUiModal}
 	 */
-	MwUiModal.prototype.addSteps = function ( contents ) {
+	MwUiModal.prototype.addSteps = function () {
 		return false;
 	};
 
@@ -289,7 +293,7 @@
 	 * @param {HTMLElement|jQuery|string} contents
 	 * @return {MwUiModal}
 	 */
-	MwUiModal.prototype.setStep = function ( to, contents ) {
+	MwUiModal.prototype.setStep = function () {
 		return false;
 	};
 
@@ -300,7 +304,7 @@
 	 *
 	 * @return {Object}
 	 */
-	MwUiModal.prototype.getSteps = function ( to, contents ) {
+	MwUiModal.prototype.getSteps = function () {
 		return {};
 	};
 
@@ -367,7 +371,7 @@
 	 * @param {number|string} to
 	 * @return {MwUiModal|boolean} false if invalid step, MwUiModal on success
 	 */
-	MwUiModal.prototype.go = function ( to ) {
+	MwUiModal.prototype.go = function () {
 		return false;
 	};
 

@@ -46,12 +46,13 @@
 		);
 		return xhr
 			.then( function ( data ) {
+				// The parent class wants data like { query: { pages: { userid: { data } } } }
+				var i, len, user, newData = {};
+
 				if ( !data.query || !data.query.users ) {
 					return data;
 				}
 
-				// The parent class wants data like { query: { pages: { userid: { data } } } }
-				var i, len, user, newData = {};
 				for ( i = 0, len = data.query.users.length; i < len; i++ ) {
 					user = data.query.users[ i ];
 					// Parent class needs .title
@@ -78,10 +79,10 @@
 	 * @param {string|string[]} usernames One or more user names
 	 */
 	mw.flow.ve.UserCache.prototype.setAsExisting = function ( usernames ) {
+		var i, len, cacheData = {};
 		if ( typeof usernames === 'string' ) {
 			usernames = [ usernames ];
 		}
-		var i, len, cacheData = {};
 		for ( i = 0, len = usernames.length; i < len; i++ ) {
 			cacheData[ usernames[ i ] ] = { missing: false, invalid: false };
 		}

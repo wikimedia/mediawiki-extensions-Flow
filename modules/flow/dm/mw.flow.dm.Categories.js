@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Board
 	 *
@@ -23,4 +23,4 @@
 
 	OO.mixinClass( mw.flow.dm.Categories, OO.EventEmitter );
 	OO.mixinClass( mw.flow.dm.Categories, mw.flow.dm.List );
-}( jQuery ) );
+}() );
