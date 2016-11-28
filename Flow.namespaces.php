@@ -29,6 +29,11 @@ $namespaceNames['bgn'] = array(
 	NS_TOPIC =>  'سر_ئو_بُن',
 );
 
+/** Bengali */
+$namespaceNames['bn'] = array(
+	NS_TOPIC =>  'প্রসঙ্গ',
+);
+
 /** Catalan */
 $namespaceNames['ca'] = array(
 	NS_TOPIC =>  'Tema',
