@@ -25,6 +25,12 @@ $specialPageAliases['arz'] = array(
 	'Flow' => array( 'سريان' ),
 );
 
+/** Bengali (বাংলা) */
+$specialPageAliases['bn'] = array(
+	'Flow' => array( 'ফ্লো' ),
+	'EnableFlow' => array( 'ফ্লো_সক্রিয়করণ' ),
+);
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'EnableFlow' => array( 'Flow_aktivieren' ),
