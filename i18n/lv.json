@@ -130,7 +130,7 @@
 	"flow-edit-header-submit": "Saglabāt aprakstu",
 	"flow-edit-title-submit": "Nomainīt nosaukumu",
 	"flow-edit-post-submit": "Apstiprināt labojumus",
-	"flow-rev-message-edit-post": "Labot ieraksta saturu",
+	"flow-rev-message-edit-post": "$1 {{GENDER:$2|laboja}} [$3 komentāru] par \"$4\"",
 	"flow-rev-message-edit-post-recentchanges-summary": "{{GENDER:$2|Laboja}} ierakstu",
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|izveidoja}} tēmu \"[$3 $4]\"",
 	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Izveidoja}} jaunu tēmu",
