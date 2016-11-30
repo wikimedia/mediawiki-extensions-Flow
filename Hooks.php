@@ -26,6 +26,56 @@ class FlowHooks {
 	 */
 	protected static $abuseFilter;
 
+	public static function registerExtension() {
+		global $wgGroupPermissions, $wgFlowGroupPermissions, $wgAvailableRights,
+			$wgFlowActions, $wgLogActionsHandlers, $wgActions;
+
+		require_once __DIR__ . '/defines.php';
+
+		// User permissions
+		// Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,
+		// to easily fetch Flow-specific permissions in tests/PermissionsTest.php.
+		// If you wish to make local permission changes, add them to $wgGroupPermissions
+		// directly - tests will fail otherwise, since they'll be based on a different
+		// permissions config than what's assumed to test.
+		$wgFlowGroupPermissions = array();
+		$wgFlowGroupPermissions['*']['flow-hide'] = true;
+		$wgFlowGroupPermissions['user']['flow-lock'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-lock'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-delete'] = true;
+		$wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
+		$wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
+		$wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
+		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
+
+		// Make sure all of these are granted via OAuth in Hooks.php
+		$wgAvailableRights[] = 'flow-hide';
+		$wgAvailableRights[] = 'flow-lock';
+		$wgAvailableRights[] = 'flow-delete';
+		$wgAvailableRights[] = 'flow-suppress';
+		$wgAvailableRights[] = 'flow-edit-post';
+		$wgAvailableRights[] = 'flow-create-board';
+
+		// Action details config file
+		require __DIR__ . '/FlowActions.php';
+
+		// Register URL actions and activity log formatter hooks
+		foreach( $wgFlowActions as $action => $options ) {
+			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
+				$wgActions[$action] = true;
+			}
+
+			if ( !is_string( $options) && isset( $options['log_type'] ) ) {
+				$log = $options['log_type'];
+
+				// Some actions are more complex closures - they are added manually in extension.json
+				if ( is_string( $log ) ) {
+					$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
+				}
+			}
+		}
+	}
+
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
 		global $wgFlowEventLogging;
 
@@ -128,7 +178,21 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgFlowContentFormat;
+		global $wgDefaultUserOptions, $wgFlowContentFormat;
+
+		// Echo notification subscription preference
+		$wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
+		$wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
+
+		// Default sort order of a topiclist view. See TopicListBlock::getFindOptions()
+		// for more information.
+		$wgDefaultUserOptions['flow-topiclist-sortby'] = 'updated';
+
+		// Default editor to use in Flow
+		$wgDefaultUserOptions['flow-editor'] = 'wikitext';
+
+		// Default state of the side rail
+		$wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
 
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
@@ -291,24 +355,6 @@ class FlowHooks {
 			}
 		}
 
-		return true;
-	}
-
-	/**
-	 * Hook: UnitTestsList
-	 * @see http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
-	 *
-	 * @param &$files Array of unit test files
-	 * @return bool true in all cases
-	 */
-	static function getUnitTests( &$files ) {
-		$it = new RecursiveDirectoryIterator( __DIR__ . '/tests/phpunit' );
-		$it = new RecursiveIteratorIterator( $it );
-		foreach ( $it as $path => $file ) {
-			if ( substr( $path, -8 ) === 'Test.php' ) {
-				$files[] = $path;
-			}
-		}
 		return true;
 	}
 
