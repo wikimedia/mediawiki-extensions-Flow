@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ed34346_0b589c34",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 3033
+      },
+      "writtenOn": "2016-12-03T06:25:11Z",
+      "side": 1,
+      "message": "I don\u0027t think you can do this because this isn\u0027t in a specialpage is it?",
+      "range": {
+        "startLine": 1422,
+        "startChar": 10,
+        "endLine": 1422,
+        "endChar": 65
+      },
+      "revId": "1e3493432d398515cf5f6242c0e607df7b5e013a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ed34346_eb3d60b9",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 3033
+      },
+      "writtenOn": "2016-12-03T06:25:11Z",
+      "side": 1,
+      "message": "I don\u0027t think you can do this because this isn\u0027t in a specialpage is it?",
+      "range": {
+        "startLine": 1010,
+        "startChar": 31,
+        "endLine": 1010,
+        "endChar": 36
+      },
+      "revId": "1e3493432d398515cf5f6242c0e607df7b5e013a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ed34346_cb3aa4c0",
+        "filename": "includes/Formatter/CategoryViewerFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3033
+      },
+      "writtenOn": "2016-12-03T06:25:11Z",
+      "side": 1,
+      "message": "htmlspecialchars should be removed.",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 76
+      },
+      "revId": "1e3493432d398515cf5f6242c0e607df7b5e013a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ed34346_ab47684f",
+        "filename": "includes/Formatter/ChangesListFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 3033
+      },
+      "writtenOn": "2016-12-03T06:25:11Z",
+      "side": 1,
+      "message": "Note: makelink does not support a 5th parameter.",
+      "range": {
+        "startLine": 92,
+        "startChar": 10,
+        "endLine": 98,
+        "endChar": 4
+      },
+      "revId": "1e3493432d398515cf5f6242c0e607df7b5e013a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
