@@ -1007,6 +1007,6 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}
-		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+		$out->setSubtitle( '&lt; ' . $this->getLinkRenderer()->makeLink( $title ) );
 	}
 }

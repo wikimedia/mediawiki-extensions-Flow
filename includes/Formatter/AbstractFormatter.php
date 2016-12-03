@@ -291,7 +291,7 @@ abstract class AbstractFormatter {
 	 * @return string HTML linking to topic & board
 	 */
 	protected function getTitleLink( array $data, FormatterRow $row, IContextSource $ctx ) {
-		$ownerLink = Linker::link(
+		$ownerLink = $this->getLinkRenderer()->makeLink(
 			$row->workflow->getOwnerTitle(),
 			null,
 			array( 'class' => 'mw-title' )

@@ -25,13 +25,13 @@ class CategoryViewerFormatter {
 			return '';
 		}
 
-		$topic = Linker::link(
+		$topic = $this->getLinkRenderer()->makeLink(
 			$row->workflow->getArticleTitle(),
 			htmlspecialchars( $row->revision->getContent( 'topic-title-wikitext' ) ),
 			array( 'class' => 'mw-title' )
 		);
 
-		$board = Linker::link( $row->workflow->getOwnerTitle() );
+		$board = $this->getLinkRenderer()->makeLink( $row->workflow->getOwnerTitle() );
 
 		return wfMessage( 'flow-rc-topic-of-board' )->rawParams( $topic, $board )->escaped();
 	}

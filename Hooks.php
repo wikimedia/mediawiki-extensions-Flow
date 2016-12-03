@@ -1419,7 +1419,7 @@ class FlowHooks {
 		}
 
 		$content = $revision->getContent( 'topic-title-plaintext' );
-		$link = Linker::link( $title, htmlspecialchars( $content ) );
+		$link = $this->getLinkRenderer()->makeLink( $title, $content );
 
 		return true;
 	}

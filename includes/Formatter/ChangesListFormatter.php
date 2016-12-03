@@ -89,7 +89,7 @@ class ChangesListFormatter extends AbstractFormatter {
 
 		// Below code is inspired by Linker::formatAutocomments
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
-		$link = Linker::link(
+		$link = $this->getLinkRenderer()->makeLink(
 			$title = $row->workflow->getOwnerTitle(),
 			$ctx->getLanguage()->getArrow('backwards'),
 			array(),

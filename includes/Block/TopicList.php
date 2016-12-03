@@ -493,6 +493,6 @@ class TopicListBlock extends AbstractBlock {
 		$message = $out->msg( 'flow-newtopic-first-heading', $title->getPrefixedText() );
 		$out->setPageTitle( $message );
 		$out->setHtmlTitle( $message );
-		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+		$out->setSubtitle( '&lt; ' . $this->getLinkRenderer()->makeLink( $title ) );
 	}
 }
