@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ed34346_3f34b245",
+        "filename": "maintenance/compileLightncandy.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2016-12-04T19:01:55Z",
+      "side": 1,
+      "message": "There should be a space between () and {",
+      "revId": "99fb3b042bd3c9e7f2ac57c1ab213722927db7bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
