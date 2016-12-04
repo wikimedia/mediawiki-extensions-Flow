@@ -20,6 +20,8 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 
 		$this->mDescription = 'Sets rev_content_model from wgFlowOccupyPages, in preparation for dropping that config variable.';
 
+		$this->requireExtension( 'Flow' );
+
 		// Given the number of occupied pages, this probably doesn't need to be
 		// batched; just being cautious.
 		$this->setBatchSize( 10 );

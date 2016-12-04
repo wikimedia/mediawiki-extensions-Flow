@@ -21,6 +21,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$this->addOption( 'srcpage', 'Page name of the source page to import from.', true, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', true, true );
 		$this->addOption( 'debug', 'Include debug information to progress report' );
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

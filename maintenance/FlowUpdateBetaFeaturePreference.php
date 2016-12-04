@@ -16,6 +16,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->setBatchSize( 300 );
+		$this->requireExtension( 'Flow' );
 	}
 
 	/**

@@ -32,6 +32,12 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		'post-summary' => 'Flow\Model\PostSummary',
 	);
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->requireExtension( 'Flow' );
+	}
+
 	protected function doDBUpdates() {
 		$this->storage = $storage = Container::get( 'storage' );
 		$dbf = Container::get( 'db.factory' );

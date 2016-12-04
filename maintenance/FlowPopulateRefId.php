@@ -24,6 +24,8 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 		$this->mDescription = 'Populates ref_id in flow_wiki_ref & flow_ext_ref';
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {

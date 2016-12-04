@@ -26,6 +26,8 @@ class ConvertToText extends Maintenance {
 
 		$this->addOption( 'page', 'The page to convert', true /*required*/ );
 		$this->addOption( 'remoteapi', 'The api of the wiki to convert the page from (or nothing, for local wiki)', false /*required*/ );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

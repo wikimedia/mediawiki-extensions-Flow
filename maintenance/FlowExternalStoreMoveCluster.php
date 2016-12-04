@@ -56,6 +56,8 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new External Store, gives hypothetical new column values for flow_revision (but does not actually change flow_revision), and checks that old and new ES are the same.' );
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

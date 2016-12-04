@@ -48,6 +48,8 @@ class FlowRemoveOldTopics extends Maintenance {
 		$this->addOption( 'dryrun', 'Simulate script run, without actually deleting anything' );
 
 		$this->setBatchSize( 10 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {
