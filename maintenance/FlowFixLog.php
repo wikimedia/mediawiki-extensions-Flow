@@ -27,6 +27,8 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 		$this->mDescription = 'Fixes Flow log entries';
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {

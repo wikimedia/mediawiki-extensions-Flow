@@ -36,6 +36,8 @@ TEXT
 		$this->addOption( 'skip-header', 'Don\'t output the <mediawiki> header' );
 		$this->addOption( 'skip-footer', 'Don\'t output the </mediawiki> footer' );
 
+		$this->requireExtension( 'Flow' );
+
 		if ( $args ) {
 			$this->loadWithArgv( $args );
 			$this->processOptions();
