@@ -25,6 +25,8 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$this->mDescription = 'Fixes Flow References & entries in categorylinks & related tables';
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {

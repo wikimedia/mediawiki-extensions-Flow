@@ -30,6 +30,8 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		$this->addOption( 'stop', 'Timestamp to stop counting revisions at', false, true );
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {

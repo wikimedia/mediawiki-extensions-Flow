@@ -17,6 +17,12 @@ class CompileLightncandy extends Maintenance {
 	/** @var  Flow\TemplateHelper */
 	protected $lightncandy;
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->requireExtension( 'Flow' );
+	}
+
 	public function execute() {
 		$dir = __DIR__ . '/../handlebars';
 		$this->lightncandy = new TemplateHelper( $dir, /* $forceRecompile = */ true );

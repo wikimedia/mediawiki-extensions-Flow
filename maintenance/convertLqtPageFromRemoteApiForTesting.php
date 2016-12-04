@@ -25,6 +25,7 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$this->addOption( 'cacheremoteapidir', 'Cache remote api calls to the specified directory', true, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', true, true );
 		$this->addOption( 'debug', 'Include debug information to progress report' );
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

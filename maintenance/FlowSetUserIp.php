@@ -21,6 +21,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	 */
 	private $completeCount = 0;
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->requireExtension( 'Flow' );
+	}
+
 	protected function doDBUpdates() {
 		$dbf = Container::get( 'db.factory' );
 		$dbw = $dbf->getDB( DB_MASTER );

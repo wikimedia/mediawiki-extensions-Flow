@@ -61,6 +61,8 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 		parent::__construct();
 
 		$this->mDescription = "Creates templates required by Flow";
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {
