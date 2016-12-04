@@ -113,7 +113,7 @@ class WorkflowLoaderFactory {
 	 * @throws InvalidInputException
 	 * @throws UnknownWorkflowIdException
 	 */
-	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
+	public function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
 		/** @var Workflow $workflow */
 		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
 		if ( !$workflow ) {
