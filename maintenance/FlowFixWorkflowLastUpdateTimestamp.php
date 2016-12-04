@@ -28,6 +28,8 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$this->mDescription = 'Fixes any incorrect workflow_last_update_timestamp for topics';
 
 		$this->setBatchSize( 10 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

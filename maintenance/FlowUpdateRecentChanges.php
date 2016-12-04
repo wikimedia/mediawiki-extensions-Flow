@@ -27,6 +27,12 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	 */
 	protected $batchSize = 300;
 
+	public function __construct() {
+		parent::__construct();
+
+		$this->requireExtension( 'Flow' );
+	}
+
 	protected function doDBUpdates() {
 		$dbw = wfGetDB( DB_MASTER );
 
