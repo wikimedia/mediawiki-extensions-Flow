@@ -3,6 +3,7 @@
 namespace Flow\Tests;
 
 use EventRelayerNull;
+use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
@@ -38,5 +39,15 @@ class FlowTestCase extends \MediaWikiTestCase {
 		) );
 
 		return new FlowObjectCache( $wanCache, Container::get( 'db.factory' ), $wgFlowCacheTime );
+	}
+
+	protected function resetPermissions() {
+		$registry = new ExtensionRegistry();
+		$data = $registry->readFromQueue( [ __DIR__ . '../../extension.json' => 1 ] );
+		$perms = $data['globals']['wgGroupPermissions'];
+		unset( $perms[$registry::MERGE_STRATEGY] );
+		$this->stashMwGlobals( [ 'wgGroupPermissions'] );
+		global $wgGroupPermissions;
+		$wgGroupPermissions = wfArrayPlus2d( $perms, $wgGroupPermissions );
 	}
 }

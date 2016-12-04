@@ -57,13 +57,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// We don't want local config getting in the way of testing whether or
 		// not our permissions implementation works well.
-		// This will load default $wgGroupPermissions + Flow settings, so we can
-		// test if permissions work well, regardless of any custom config.
-		global $IP, $wgFlowGroupPermissions;
-		$wgGroupPermissions = array();
-		require "$IP/includes/DefaultSettings.php";
-		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
-		$this->setMwGlobals( 'wgGroupPermissions', $wgGroupPermissions );
+		$this->resetPermissions();
 
 		// When external store is used, data is written to "blobs" table, which
 		// by default doesn't exist - let's just not use externalstorage in test
