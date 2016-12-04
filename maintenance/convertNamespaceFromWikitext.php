@@ -30,6 +30,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			true, // takes argument
 			'a'
 		);
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

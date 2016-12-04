@@ -38,6 +38,8 @@ class FlowRestoreLQT extends Maintenance {
 		$this->addOption( 'overwrite-flow', 'Removes the Flow board entirely, restoring LQT to its original location' );
 
 		$this->setBatchSize( 1 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

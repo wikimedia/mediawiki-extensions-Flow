@@ -18,6 +18,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates links tables for wikis deployed before change 110090";
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function getUpdateKey() {

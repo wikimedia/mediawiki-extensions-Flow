@@ -191,6 +191,8 @@ class FlowSearchConfig extends Maintenance {
 		$this->addOption( 'justAllocation', 'Just validate the shard allocation settings.  Use ' .
 			"when you need to apply new cache warmers but want to be sure that you won't apply any other " .
 			'changes at an inopportune time.' );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function setProperties() {

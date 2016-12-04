@@ -25,6 +25,8 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 		$this->mDescription = "Update the titles of flow-topic-resolved Echo events to point to boards instead of topics";
 
 		$this->setBatchSize( 500 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function getUpdateKey() {

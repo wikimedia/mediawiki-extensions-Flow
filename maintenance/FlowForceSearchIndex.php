@@ -33,6 +33,8 @@ class FlowForceSearchIndex extends Maintenance {
 		$this->addOption( 'fromId', 'Start indexing at a specific revision id (inclusive).', false, true );
 		$this->addOption( 'toId', 'Stop indexing at a specific revision (inclusive).', false, true );
 		$this->addOption( 'namespace', 'Only index revisions in this given namespace', false, true );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {

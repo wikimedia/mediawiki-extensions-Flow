@@ -23,6 +23,8 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 		$this->addOption( 'stop', 'rev_id of first revision that was logged correctly after moderation logging fix.', true, true );
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	protected function getUpdateKey() {

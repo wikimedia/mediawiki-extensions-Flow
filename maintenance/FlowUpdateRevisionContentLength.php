@@ -48,6 +48,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Updates content length for revisions with unset content length.";
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function getUpdateKey() {
