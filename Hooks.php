@@ -32,14 +32,6 @@ class FlowHooks {
 
 		require_once __DIR__ . '/defines.php';
 
-		// Make sure all of these are granted via OAuth in Hooks.php
-		$wgAvailableRights[] = 'flow-hide';
-		$wgAvailableRights[] = 'flow-lock';
-		$wgAvailableRights[] = 'flow-delete';
-		$wgAvailableRights[] = 'flow-suppress';
-		$wgAvailableRights[] = 'flow-edit-post';
-		$wgAvailableRights[] = 'flow-create-board';
-
 		// Action details config file
 		require __DIR__ . '/FlowActions.php';
 
