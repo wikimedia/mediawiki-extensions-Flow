@@ -32,22 +32,6 @@ class FlowHooks {
 
 		require_once __DIR__ . '/defines.php';
 
-		// User permissions
-		// Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,
-		// to easily fetch Flow-specific permissions in tests/PermissionsTest.php.
-		// If you wish to make local permission changes, add them to $wgGroupPermissions
-		// directly - tests will fail otherwise, since they'll be based on a different
-		// permissions config than what's assumed to test.
-		$wgFlowGroupPermissions = array();
-		$wgFlowGroupPermissions['*']['flow-hide'] = true;
-		$wgFlowGroupPermissions['user']['flow-lock'] = true;
-		$wgFlowGroupPermissions['sysop']['flow-lock'] = true;
-		$wgFlowGroupPermissions['sysop']['flow-delete'] = true;
-		$wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
-		$wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
-		$wgFlowGroupPermissions['flow-bot']['flow-create-board'] = true;
-		$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
-
 		// Make sure all of these are granted via OAuth in Hooks.php
 		$wgAvailableRights[] = 'flow-hide';
 		$wgAvailableRights[] = 'flow-lock';
