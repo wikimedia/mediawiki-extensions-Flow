@@ -119,6 +119,6 @@
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "{{doc-apihelp-param|flow+undo-edit-topic-summary|startId}}",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "{{doc-apihelp-param|flow+undo-edit-topic-summary|endId}}",
 	"apihelp-flow+undo-edit-topic-summary-example-1": "{{doc-apihelp-example|flow+undo-edit-topic-summary}}",
-	"apierror-flow-notenabled": "{{doc-apierror}}",
-	"apierror-flow-safeallowcreationfailed": "{{doc-apierror}}\n\nParameters:\n* $1 - Localized message."
+	"apierror-flow-safeallowcreationfailed": "{{doc-apierror}}\n\nParameters:\n* $1 - Localized message.",
+	"apierror-flow-notenabled": "{{doc-apierror}}"
 }
