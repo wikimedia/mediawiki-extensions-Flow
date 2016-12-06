@@ -29,12 +29,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		// If nothing is ready to be committed, we'll consider that an error (at least some
 		// block should've been able to process the POST request)
 		if ( !count( $blocksToCommit ) ) {
-			$this->dieUsage(
-				$this->msg( 'flow-error-no-commit' )->text(),
-				'no-commit',
-				200,
-				array()
-			);
+			$this->dieWithError( 'flow-error-no-commit', 'no-commit' );
 		}
 
 		$commitMetadata = $loader->commit( $blocksToCommit );

@@ -116,5 +116,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Retrieve information necessary to undo topic summary edits.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Revision ID to start undo at.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Revision ID to end undo at.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Fetch information about undoing a topic summary edit in a specific topic"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Fetch information about undoing a topic summary edit in a specific topic",
+	"apierror-flow-safeallowcreationfailed": "Page provided does not have Flow enabled and safeAllowCreation failed with: $1",
+	"apierror-flow-notenabled": "Page provided does not have Flow enabled."
 }
