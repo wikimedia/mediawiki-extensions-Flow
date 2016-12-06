@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Import;
 
-use Flow\Import\SourceStore\Null as NullImportSourceStore;
+use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Model\PostRevision;

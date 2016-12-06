@@ -76,7 +76,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			FlowHooks::getOccupationController()->getTalkpageManager(),
 			new Flow\Import\Wikitext\ConversionStrategy(
 				$wgParser,
-				new Flow\Import\SourceStore\Null(),
+				new Flow\Import\SourceStore\NullImportSourceStore(),
 				$logger,
 				$noConvertTemplates,
 				$this->getOption( 'header-suffix', null )
