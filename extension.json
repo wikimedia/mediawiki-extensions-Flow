@@ -1173,7 +1173,6 @@
 		"ShowMissingArticle": "FlowHooks::onShowMissingArticle",
 		"WatchArticle": "FlowHooks::onWatchArticle",
 		"UnwatchArticle": "FlowHooks::onWatchArticle",
-		"CanonicalNamespaces": "FlowHooks::onCanonicalNamespaces",
 		"MovePageCheckPermissions": "FlowHooks::onMovePageCheckPermissions",
 		"MovePageIsValidMove": "FlowHooks::onMovePageIsValidMove",
 		"TitleMoveStarting": "FlowHooks::onTitleMoveStarting",
@@ -1201,22 +1200,17 @@
 		"NukeGetNewPages": "FlowHooks::onNukeGetNewPages",
 		"NukeDeletePage": "FlowHooks::onNukeDeletePage"
 	},
+	"namespaces": [
+		{
+			"id": 2600,
+			"constant": "NS_TOPIC",
+			"name": "Topic",
+			"subpages": false,
+			"defaultcontentmodel": "flow-board",
+			"capitallinkoverride": "true"
+		}
+	],
 	"config": {
-		"CapitalLinkOverrides": {
-			"value": {
-				"2600": true
-			}
-		},
-		"NamespacesWithSubpages": {
-			"value": {
-				"2600": false
-			}
-		},
-		"NamespaceContentModels": {
-			"value": {
-				"2600": "flow-board"
-			}
-		},
 		"FlowHelpPage": {
 			"value": "//www.mediawiki.org/wiki/Special:MyLanguage/Extension:Flow"
 		},
