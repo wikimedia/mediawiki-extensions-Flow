@@ -1255,14 +1255,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Adds the topic namespace.
-	 */
-	public static function onCanonicalNamespaces( &$list ) {
-		$list[NS_TOPIC] = 'Topic';
-		return true;
-	}
-
-	/**
 	 * Checks whether this is a valid move technically.  MovePageIsValidMove should not
 	 * be affected by the specific user, or user permissions.
 	 *
