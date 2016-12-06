@@ -5,7 +5,7 @@ namespace Flow\Import\SourceStore;
 use Flow\Import\IImportObject;
 use Flow\Model\UUID;
 
-class Null implements SourceStoreInterface {
+class NullImportSourceStore implements SourceStoreInterface {
 	public function setAssociation( UUID $objectId, $importSourceKey ) {
 		return '';
 	}

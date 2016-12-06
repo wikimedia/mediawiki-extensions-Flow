@@ -5,7 +5,7 @@ namespace Flow\Import\SourceStore;
 use Flow\Import\IImportObject;
 use Flow\Model\UUID;
 
-class File implements SourceStoreInterface {
+class FileImportSourceStore implements SourceStoreInterface {
 	/** @var string **/
 	protected $filename;
 	/** @var array */

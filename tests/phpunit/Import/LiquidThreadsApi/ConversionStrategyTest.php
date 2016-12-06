@@ -6,7 +6,7 @@ use DatabaseBase;
 use DateTime;
 use DateTimeZone;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
-use Flow\Import\SourceStore\Null as NullImportSourceStore;
+use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\ApiBackend;
 use Title;

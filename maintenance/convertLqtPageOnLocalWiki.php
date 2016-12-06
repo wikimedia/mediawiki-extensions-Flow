@@ -1,7 +1,7 @@
 <?php
 
 use Flow\Container;
-use Flow\Import\SourceStore\File as FileImportSourceStore;
+use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy as LiquidThreadsApiConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Psr\Log\LogLevel;
