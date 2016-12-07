@@ -446,8 +446,8 @@ abstract class Utils {
 		// now we need to convert the array into the cookie format of
 		// foo=bar; baz=bang
 		$output = array();
-		foreach ( $cookies as $key => $value ) {
-			$output[] = "$wgCookiePrefix$key=$value";
+		foreach ( $cookies as $key => $cookie ) {
+			$output[] = "$wgCookiePrefix$key=" . $cookie['value'];
 		}
 
 		return implode( '; ', $output );
