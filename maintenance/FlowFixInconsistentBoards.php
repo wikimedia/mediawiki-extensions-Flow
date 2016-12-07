@@ -98,6 +98,10 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 
 		$checkedCount = 0;
 		$inconsistentCount = 0;
+
+		// Not all of $inconsistentCount are fixable by the current script.
+		$fixableInconsistentCount = 0;
+
 		foreach ( $iterator as $rows ) {
 			foreach ( $rows as $row ) {
 				$checkedCount++;
@@ -121,22 +125,24 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 					continue;
 				}
 
-				$pageId = (int)$row->page_id;
-
-				// Sanity check, or this will fail in BoardMover
-				$workflowByPageId = $this->storage->find( 'Workflow', array(
-					'workflow_wiki' => wfWikiID(),
-					'workflow_page_id' => $pageId,
-				) );
-
-				if ( !$workflowByPageId ) {
-					$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow is linked to this page ID" );
-					continue;
-				}
-
 				if ( !$workflow->matchesTitle( $coreTitle ) ) {
+					$pageId = (int)$row->page_id;
+
 					$workflowTitle = $workflow->getOwnerTitle();
 					$this->output( "INCONSISTENT: Core title for '$workflowIdAlphadecimal' is '$coreTitle', but Flow title is '$workflowTitle'\n" );
+
+					$inconsistentCount++;
+
+					// Sanity check, or this will fail in BoardMover
+					$workflowByPageId = $this->storage->find( 'Workflow', array(
+							'workflow_wiki' => wfWikiID(),
+							'workflow_page_id' => $pageId,
+						) );
+
+					if ( !$workflowByPageId ) {
+						$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow is linked to this page ID" );
+						continue;
+					}
 
 					if ( !$dryRun ) {
 						$this->boardMover->move( $pageId, $coreTitle );
@@ -144,16 +150,17 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 						$this->output( "FIXED: Updated '$workflowIdAlphadecimal' to match core title, '$coreTitle'\n" );
 					}
 
-					$inconsistentCount++;
-					if ( $limit !== null && $inconsistentCount >= $limit ) {
+					$fixableInconsistentCount++;
+
+					if ( $limit !== null && $fixableInconsistentCount >= $limit ) {
 						break;
 					}
 				}
 			}
 
-			$action = $dryRun ? 'Identified' : 'Fixed';
-			$this->output( "Checked a total of $checkedCount Flow boards.  $action a total of $inconsistentCount inconsistent boards.\n" );
-			if ( $limit !== null && $inconsistentCount >= $limit ) {
+			$action = $dryRun ? 'identified as fixable' : 'fixed';
+			$this->output( "\nChecked a total of $checkedCount Flow boards.  Of those, $inconsistentCount boards had an inconsistent title; $fixableInconsistentCount were $action.\n" );
+			if ( $limit !== null && $fixableInconsistentCount >= $limit ) {
 				break;
 			}
 		}
