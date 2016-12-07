@@ -121,24 +121,24 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 					continue;
 				}
 
-				$pageId = (int)$row->page_id;
-
-				// Sanity check, or this will fail in BoardMover
-				$workflowByPageId = $this->storage->find( 'Workflow', array(
-					'workflow_wiki' => wfWikiID(),
-					'workflow_page_id' => $pageId,
-				) );
-
-				if ( !$workflowByPageId ) {
-					$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow is linked to this page ID" );
-					continue;
-				}
-
 				if ( !$workflow->matchesTitle( $coreTitle ) ) {
 					$workflowTitle = $workflow->getOwnerTitle();
 					$this->output( "INCONSISTENT: Core title for '$workflowIdAlphadecimal' is '$coreTitle', but Flow title is '$workflowTitle'\n" );
 
 					if ( !$dryRun ) {
+						$pageId = (int)$row->page_id;
+
+						// Sanity check, or this will fail in BoardMover
+						$workflowByPageId = $this->storage->find( 'Workflow', array(
+							'workflow_wiki' => wfWikiID(),
+							'workflow_page_id' => $pageId,
+						) );
+
+						if ( !$workflowByPageId ) {
+							$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow is linked to this page ID" );
+							continue;
+						}
+
 						$this->boardMover->move( $pageId, $coreTitle );
 						$this->boardMover->commit();
 						$this->output( "FIXED: Updated '$workflowIdAlphadecimal' to match core title, '$coreTitle'\n" );
