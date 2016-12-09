@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ed52f32_19b24ee5",
+        "filename": "maintenance/FlowFixInconsistentBoards.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2016-12-09T18:46:35Z",
+      "side": 1,
+      "message": "Why not run the sanity check in dry run mode?",
+      "revId": "b3a04ca047db84659afaf60e19f81d608eee9010",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
