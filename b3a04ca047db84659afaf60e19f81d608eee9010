@@ -16,6 +16,24 @@
       "revId": "b3a04ca047db84659afaf60e19f81d608eee9010",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2edfb757_ceb643d7",
+        "filename": "maintenance/FlowFixInconsistentBoards.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2016-12-10T01:01:46Z",
+      "side": 1,
+      "message": "I was thinking roughly, \"Because it\u0027s slow and we don\u0027t really need to unless we\u0027re calling BoardMover\".\n\nBut you\u0027re right, dry run should be thorough, and we don\u0027t really care as much about performance for it.",
+      "parentUuid": "6ed52f32_19b24ee5",
+      "revId": "b3a04ca047db84659afaf60e19f81d608eee9010",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
