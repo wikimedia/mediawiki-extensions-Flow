@@ -106,5 +106,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Bezieht die zum Rückgängigmachen einer Bearbeitung der Themenzusammenfassung nötigen Informationen.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Versionskennung, bei der mit dem Rückgängigmachen begonnen werden soll.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Versionskennung, auf die zurückgesetzt werden soll.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Bezieht Informationen zum Rückgängigmachen einer Bearbeitung der Themenzusammenfassung eines bestimmten Themas"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Bezieht Informationen zum Rückgängigmachen einer Bearbeitung der Themenzusammenfassung eines bestimmten Themas",
+	"apierror-flow-safeallowcreationfailed": "Auf der angegebenen Seite ist Flow nicht aktiviert und safeAllowCreation schlug fehl mit der Meldung: $1",
+	"apierror-flow-notenabled": "Auf der angegebenen Seite ist Flow nicht aktiviert."
 }

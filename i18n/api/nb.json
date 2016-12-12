@@ -3,7 +3,8 @@
 		"authors": [
 			"Danmichaelo",
 			"Jeblad",
-			"Kingu"
+			"Kingu",
+			"Jon Harald Søby"
 		]
 	},
 	"apihelp-flow-description": "Tillat at aksjoner kan bli tatt på Flow-sider.",
@@ -111,5 +112,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Hent informasjonen som er nødvendig for å angre redigering av sakens sammendrag.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Revisjons-ID for start av angring.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Revisjons-ID for slutt av angring.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Hent informasjon om angring av et redigert sakssammendrag i en spesifikk sak"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Hent informasjon om angring av et redigert sakssammendrag i en spesifikk sak",
+	"apierror-flow-safeallowcreationfailed": "Den angitte siden har ikke Flow slått på, og safeAllowCreation mislyktes med: $1",
+	"apierror-flow-notenabled": "Den angitte siden har ikke Flow slått på."
 }

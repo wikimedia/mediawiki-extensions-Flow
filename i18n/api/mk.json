@@ -110,5 +110,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Испис на информации неопходни за отповикување на уредување во опис на тема.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Назнака на преработката од која ќе се почне отповикувањето.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Назнака на преработката со која ќе се заврши отповикувањето.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Испиши информации за отповикување на уредување на опис на дадена тема"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Испиши информации за отповикување на уредување на опис на дадена тема",
+	"apierror-flow-safeallowcreationfailed": "Укажаната страница го нема овозможено Тек, а safeAllowCreation не успеа со: $1",
+	"apierror-flow-notenabled": "Укажаната страница го нема овозможено Тек."
 }
