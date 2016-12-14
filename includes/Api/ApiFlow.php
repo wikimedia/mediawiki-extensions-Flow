@@ -141,6 +141,14 @@ class ApiFlow extends ApiBase {
 		);
 	}
 
+	public function isWriteMode() {
+		// We can't use extractRequestParams() here because getHelpFlags() calls this function,
+		// and we'd error out because the submodule parameter isn't set.
+		$moduleName = $this->getMain()->getVal( 'submodule' );
+		$module = $this->moduleManager->getModule( $moduleName, 'submodule' );
+		return $module ? $module->isWriteMode() : false;
+	}
+
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API',
