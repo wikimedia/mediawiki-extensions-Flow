@@ -119,5 +119,6 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Récupérer l’information nécessaire pour annuler les modifications de résumé de sujet.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Id de révision auquel commencer l’annulation.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Id de révision auquel arrêter l’annulation.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Récupérer les informations sur l’annulation de la modification d’un résumé de sujet dans un sujet spécifique"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Récupérer les informations sur l’annulation de la modification d’un résumé de sujet dans un sujet spécifique",
+	"apierror-flow-notenabled": "La page fournie n'a pas activé Flow."
 }
