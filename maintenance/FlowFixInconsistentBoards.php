@@ -164,6 +164,8 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 				break;
 			}
 		}
+
+		return true;
 	}
 }
 
