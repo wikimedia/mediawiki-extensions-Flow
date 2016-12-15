@@ -107,7 +107,7 @@
 	"flow-post-actions": "Actions",
 	"flow-topic-actions": "Actions",
 	"flow-cancel": "Annuler",
-	"flow-skip-summary": "Ne pas résumer",
+	"flow-skip-summary": "Sauter",
 	"flow-edit-summary-placeholder": "Décrire brièvement le résultat de cette discussion",
 	"flow-summary-authored": "Résumé par $1",
 	"flow-summary-edited": "Résumé modifié en dernier par $1",

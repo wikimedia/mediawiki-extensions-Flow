@@ -76,7 +76,7 @@
 	"flow-post-actions": "Aktionen",
 	"flow-topic-actions": "Aktionen",
 	"flow-cancel": "Abbrechen",
-	"flow-skip-summary": "Zusammenfassung überspringen",
+	"flow-skip-summary": "Überspringen",
 	"flow-edit-summary-placeholder": "Beschreibe kurz den Ausgang dieser Diskussion",
 	"flow-summary-authored": "Zusammenfassung von $1",
 	"flow-summary-edited": "Zusammenfassung zuletzt {{GENDER:$1|bearbeitet}} von $1",

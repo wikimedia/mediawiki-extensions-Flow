@@ -17,7 +17,8 @@
 			"Statix64",
 			"Nnemo",
 			"Matteocng",
-			"Anto"
+			"Anto",
+			"Fringio"
 		]
 	},
 	"enableflow": "Attiva Flow",
@@ -491,8 +492,8 @@
 	"flow-ve-mention-template-title": "MenzioneFlow",
 	"flow-ve-mention-inspector-invalid-user": "Il nome utente \"$1\" non è registrato.",
 	"flow-wikitext-editor-help": "$1 wikitesto.",
-	"flow-wikitext-editor-help-and-preview": "$1 wikitesto e puoi fare $2 in qualsiasi momento.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|Usa markup]]",
+	"flow-wikitext-editor-help-and-preview": "La finestra $1 e puoi guardare l'$2 in qualsiasi momento.",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|supporta il markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
 	"flow-wikitext-switch-editor-tooltip": "Passa all'editor visuale",
 	"flow-ve-switch-editor-tool-title": "Passa all'editor wikitesto",
