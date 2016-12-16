@@ -58,7 +58,7 @@
 	"flow-post-actions": "操作",
 	"flow-topic-actions": "操作",
 	"flow-cancel": "取消",
-	"flow-skip-summary": "跳過摘要",
+	"flow-skip-summary": "跳過",
 	"flow-edit-summary-placeholder": "簡單的描述此次討論的結果",
 	"flow-summary-authored": "由 $1 摘要",
 	"flow-summary-edited": "摘要最後由 $1 {{GENDER:$1|編輯}}",

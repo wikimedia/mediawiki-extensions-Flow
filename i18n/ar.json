@@ -75,7 +75,7 @@
 	"flow-post-actions": "الإجراءات",
 	"flow-topic-actions": "الإجراءات",
 	"flow-cancel": "ألغ",
-	"flow-skip-summary": "تخطي الملخص",
+	"flow-skip-summary": "تجاوز",
 	"flow-edit-summary-placeholder": "وصف موجز لنتائج هذه المناقشة",
 	"flow-summary-authored": "{{GENDER:$1|لخّص|لخّصت}} $1 هذا الموضوع",
 	"flow-summary-edited": "ملخص أخير {{GENDER:$1|حرر}} بواسطة $1",

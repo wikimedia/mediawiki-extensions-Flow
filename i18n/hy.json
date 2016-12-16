@@ -5,7 +5,8 @@
 			"Vadgt",
 			"Xelgen",
 			"Aram1985",
-			"Աշոտ1997"
+			"Աշոտ1997",
+			"Kareyac"
 		]
 	},
 	"enableflow": "Միացնել հոսքը",
@@ -18,6 +19,7 @@
 	"flow-post-actions": "Գործողություններ",
 	"flow-topic-actions": "Գործողություններ",
 	"flow-cancel": "Չեղարկել",
+	"flow-skip-summary": "Բաց թողնել",
 	"flow-show-change": "Կատարված փոփոխությունները",
 	"flow-newtopic-title-placeholder": "Նոր թեմա",
 	"flow-newtopic-start-placeholder": "Սկսել նոր թեմա",

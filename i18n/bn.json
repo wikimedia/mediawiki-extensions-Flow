@@ -49,7 +49,7 @@
 	"flow-post-actions": "কার্যসমূহ",
 	"flow-topic-actions": "কার্যসমূহ",
 	"flow-cancel": "বাতিল",
-	"flow-skip-summary": "সারাংশ এড়ান",
+	"flow-skip-summary": "এড়ান",
 	"flow-summary-authored": "$1 দ্বারা সারাংশ",
 	"flow-summary-edited": "সারাংশ সর্বশেষ $1 {{GENDER:$1|সম্পাদনা করেছেন}}",
 	"flow-show-change": "পরিবর্তনসমূহ দেখাও",

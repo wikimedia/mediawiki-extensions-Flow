@@ -25,7 +25,8 @@
 			"Ядерный Трамвай",
 			"Mailman",
 			"Jack who built the house",
-			"Туллук"
+			"Туллук",
+			"Kareyac"
 		]
 	},
 	"enableflow": "Включить Поток",
@@ -83,7 +84,7 @@
 	"flow-post-actions": "Действия",
 	"flow-topic-actions": "Действия",
 	"flow-cancel": "Отменить",
-	"flow-skip-summary": "Пропустить краткое описание",
+	"flow-skip-summary": "Пропустить",
 	"flow-edit-summary-placeholder": "Кратко опишите исход обсуждения",
 	"flow-summary-authored": "Краткое содержание написано $1",
 	"flow-summary-edited": "Краткое содержание было в последний раз {{GENDER:$1|написано}} $1",

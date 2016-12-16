@@ -68,7 +68,7 @@
 	"flow-post-actions": "Toiminnot",
 	"flow-topic-actions": "Toiminnot",
 	"flow-cancel": "Peruuta",
-	"flow-skip-summary": "Ohita yhteenveto",
+	"flow-skip-summary": "Ohita",
 	"flow-edit-summary-placeholder": "Kuvaile lyhyesti tämän keskustelun lopputulos",
 	"flow-summary-authored": "Yhteenveto käyttäjältä $1",
 	"flow-summary-edited": "Yhteenvetoa on viimeksi {{GENDER:$1|muokannut}} käyttäjä $1",

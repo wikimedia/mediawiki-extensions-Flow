@@ -90,7 +90,7 @@
 	"flow-post-actions": "操作",
 	"flow-topic-actions": "操作",
 	"flow-cancel": "取消",
-	"flow-skip-summary": "跳过摘要",
+	"flow-skip-summary": "跳过",
 	"flow-edit-summary-placeholder": "简单描述此次讨论的结果",
 	"flow-summary-authored": "由$1做出的摘要",
 	"flow-summary-edited": "摘要最近由$1{{GENDER:$1|编辑}}",

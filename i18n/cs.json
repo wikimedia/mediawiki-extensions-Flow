@@ -63,7 +63,7 @@
 	"flow-post-actions": "Akce",
 	"flow-topic-actions": "Akce",
 	"flow-cancel": "Storno",
-	"flow-skip-summary": "Přeskočit shrnutí",
+	"flow-skip-summary": "Přeskočit",
 	"flow-edit-summary-placeholder": "Stručně popište výsledek této diskuse",
 	"flow-summary-authored": "Shrnutí od {{GENDER:$1|uživatele|uživatelky}} $1",
 	"flow-summary-edited": "Shrnutí naposledy {{GENDER:$1|upravil|upravila}} $1",

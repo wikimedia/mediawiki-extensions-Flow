@@ -52,7 +52,7 @@
 	"flow-post-actions": "Veiksmai",
 	"flow-topic-actions": "Veiksmai",
 	"flow-cancel": "Atšaukti",
-	"flow-skip-summary": "Praleisti santrauką",
+	"flow-skip-summary": "Praleisti",
 	"flow-edit-summary-placeholder": "Trumpai aprašykite šios diskusijos rezultatą",
 	"flow-summary-authored": "$1 santrauka",
 	"flow-summary-edited": "Santrauką paskutinį kartą {{GENDER:$1|redagavo}} $1",
