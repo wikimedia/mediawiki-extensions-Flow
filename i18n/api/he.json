@@ -110,5 +110,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "אחזור מידע נחוץ לביטול עריכות הסיכום.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "באיזה מזהה גרסה להתחיל את הביטול.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "באיזה מזהה גרסה לסיים את הביטול.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "אחזור מידע על ביטול עריכת סיכום נושא בנושא מסוים"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "אחזור מידע על ביטול עריכת סיכום נושא בנושא מסוים",
+	"apierror-flow-safeallowcreationfailed": "זרימה אינה מופעלת בדף שסופק ופעולת safeAllowCreation נכשלה עם: $1",
+	"apierror-flow-notenabled": "זרימה אינה מופעלת בדף שסופק."
 }

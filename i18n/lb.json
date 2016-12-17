@@ -39,7 +39,7 @@
 	"flow-post-actions": "Aktiounen",
 	"flow-topic-actions": "Aktiounen",
 	"flow-cancel": "Ofbriechen",
-	"flow-skip-summary": "Resumé iwwersprangen",
+	"flow-skip-summary": "Iwwersprangen",
 	"flow-summary-authored": "Resumé vum $1",
 	"flow-summary-edited": "Resumé fir d'lescht {{GENDER:$1|geännert}} vum $1",
 	"flow-show-change": "Ännerunge weisen",

@@ -86,7 +86,7 @@
 	"flow-post-actions": "Akcje",
 	"flow-topic-actions": "Akcje",
 	"flow-cancel": "Anuluj",
-	"flow-skip-summary": "Pomiń podsumowanie",
+	"flow-skip-summary": "Pomiń",
 	"flow-edit-summary-placeholder": "Opisz krótko wynik tej dyskusji",
 	"flow-summary-authored": "Streszczenie autorstwa $1",
 	"flow-summary-edited": "Streszczenie ostatnio {{GENDER:$1|edytował|edytowała}} $1",

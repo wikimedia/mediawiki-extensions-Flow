@@ -21,7 +21,8 @@
 			"Hwangjy9",
 			"Nnemo",
 			"Yearning",
-			"Ykhwong"
+			"Ykhwong",
+			"Jerrykim306"
 		]
 	},
 	"enableflow": "플로우 활성화",
@@ -82,7 +83,7 @@
 	"flow-post-actions": "동작",
 	"flow-topic-actions": "동작",
 	"flow-cancel": "취소",
-	"flow-skip-summary": "편집 요약 생략",
+	"flow-skip-summary": "건너뛰기",
 	"flow-edit-summary-placeholder": "이 토론의 결과를 간략하게 설명합니다",
 	"flow-summary-authored": "$1의 요약",
 	"flow-summary-edited": "$1이 마지막으로 {{GENDER:$1|편집한}} 요약",
