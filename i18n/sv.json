@@ -79,7 +79,7 @@
 	"flow-post-actions": "Åtgärder",
 	"flow-topic-actions": "Åtgärder",
 	"flow-cancel": "Avbryt",
-	"flow-skip-summary": "Skippa sammanfattning",
+	"flow-skip-summary": "Hoppa över",
 	"flow-edit-summary-placeholder": "Beskriv kortfattat resultatet av denna diskussion",
 	"flow-summary-authored": "Sammanfattning av $1",
 	"flow-summary-edited": "Sammanfattningen {{KÖN:$1|redigerades}} senast av $1",
