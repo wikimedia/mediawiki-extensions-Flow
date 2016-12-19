@@ -96,7 +96,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			} else {
 				$msg = $this->msg("notification-body-flow-post-reply-user-talk");
 			}
-			$msg->params( $this->getContentSnippet() );
+			$msg->plaintextParams( $this->getContentSnippet() );
 			return $msg;
 		}
 	}
