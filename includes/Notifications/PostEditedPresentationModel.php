@@ -76,7 +76,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 			$msg = $this->msg( 'notification-body-flow-post-edited-v2' );
 		}
 
-		$msg->params( $this->getContentSnippet() );
+		$msg->plaintextParams( $this->getContentSnippet() );
 		return $msg;
 	}
 

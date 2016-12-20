@@ -53,7 +53,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 
 	public function getBodyMessage() {
 		$msg = $this->msg( "notification-body-{$this->type}" );
-		$msg->params( $this->getContentSnippet() );
+		$msg->plaintextParams( $this->getContentSnippet() );
 		return $msg;
 	}
 

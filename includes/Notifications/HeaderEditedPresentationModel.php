@@ -54,7 +54,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 			$key .= '-user-talk';
 		}
 
-		return $this->msg( $key )->params( $this->getContentSnippet() );
+		return $this->msg( $key )->plaintextParams( $this->getContentSnippet() );
 	}
 
 	protected function getDiffLink() {
