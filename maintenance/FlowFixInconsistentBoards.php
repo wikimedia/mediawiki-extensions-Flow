@@ -164,6 +164,9 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 				break;
 			}
 		}
+
+		// Only mark it as completed if it's run on everything.
+		return ( !$dryRun && $limit === null && !$this->hasOption( 'namespaceName' ) );
 	}
 }
 
