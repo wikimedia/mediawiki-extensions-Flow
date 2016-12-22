@@ -113,5 +113,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Отримати інформацію, необхідну для скасування редагувань підсумку теми.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Ідентифікатор версії для початку скасування.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Ідентифікатор версії для закінчення скасування.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Вибрати інформацію про скасування редагування підсумку теми у певній темі"
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Вибрати інформацію про скасування редагування підсумку теми у певній темі",
+	"apierror-flow-safeallowcreationfailed": "На вказаній сторінці не увімкнено Flow, і safeAllowCreation завершилося невдачею: $1",
+	"apierror-flow-notenabled": "На вказаній сторінці не увімкнено Flow."
 }

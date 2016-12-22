@@ -28,7 +28,8 @@
 			"Peter Bowman",
 			"Matiia",
 			"Lemondoge",
-			"Rubentl134"
+			"Rubentl134",
+			"Dgstranz"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -76,7 +77,7 @@
 	"flow-post-actions": "Acciones",
 	"flow-topic-actions": "Acciones",
 	"flow-cancel": "Cancelar",
-	"flow-skip-summary": "Saltar resumen",
+	"flow-skip-summary": "Omitir",
 	"flow-edit-summary-placeholder": "Describir brevemente el resultado de esta discusión",
 	"flow-summary-authored": "Resumen de $1",
 	"flow-summary-edited": "Resumen {{GENDER:$1|editado}} por última vez por $1",

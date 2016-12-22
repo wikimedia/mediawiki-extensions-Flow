@@ -78,7 +78,7 @@
 	"flow-post-actions": "Дії",
 	"flow-topic-actions": "Дії",
 	"flow-cancel": "Скасувати",
-	"flow-skip-summary": "Пропустити підсумок",
+	"flow-skip-summary": "Пропустити",
 	"flow-edit-summary-placeholder": "Коротко опишіть результати цього обговорення",
 	"flow-summary-authored": "Підсумок підбитий $1",
 	"flow-summary-edited": "Підсумок востаннє {{GENDER:$1|редагував|редагувала}} $1",
