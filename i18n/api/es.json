@@ -6,7 +6,8 @@
 			"Fitoschido",
 			"Macofe",
 			"Quiddity",
-			"Ryo567"
+			"Ryo567",
+			"Dgstranz"
 		]
 	},
 	"apihelp-flow-description": "Permite realizar acciones en páginas Flows.",
@@ -72,6 +73,7 @@
 	"apihelp-flow+view-post-history-param-format": "Formato en que se devolverá el contenido.",
 	"apihelp-flow+view-post-history-example-1": "Obtener las revisiones de una publicación en [[Topic:S2tycnas4hcucw8w]] como wikitexto",
 	"apihelp-flow+view-topic-description": "Ver un tema.",
+	"apihelp-flow+view-topic-param-format": "Formato en el que devolver el contenido.",
 	"apihelp-flow+view-topic-example-1": "Ver [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-topic-history-description": "Ver el historial de revisión de un tema.",
 	"apihelp-flow+view-topic-history-param-format": "Formato en que se devolverá el contenido.",
@@ -87,6 +89,7 @@
 	"apihelp-flow+view-topiclist-param-offset-id": "Valor de desplazmiento (en formato UUID) desde el que empezar a obtener temas; utilizado solo con el ordenamiento <kbd>más nuevos</kbd>",
 	"apihelp-flow+view-topiclist-param-offset": "Valor de compensación (como un tema de actualización de sello de tiempo, en formato <code>TS_MW</code> (<code>AAAAMMDDHHMMSS</code>)), para empezar a buscar temas; usado solo con ordenamiento <kbd>updated</kbd>",
 	"apihelp-flow+view-topiclist-param-limit": "Número de temas que se obtendrán.",
+	"apihelp-flow+view-topiclist-param-format": "Formato en el que devolver el contenido.",
 	"apihelp-flow+view-topiclist-example-1": "Lista de temas en [[Talk:Sandbox]]",
 	"apihelp-flow-parsoid-utils-description": "Convertir texto entre wikitexto y HTML.",
 	"apihelp-flow-parsoid-utils-param-from": "Formato de origen para conversión de contenido.",
@@ -109,5 +112,6 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Recuperar información necesaria para deshacer las ediciones del resumen de este tema.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Identificador de revisión desde el cual empezar a deshacer.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Identificador de revisión hasta el cual terminar de deshacer.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Obtener información acerca de cómo deshacer una edición de resumen en un tema específico."
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Obtener información acerca de cómo deshacer una edición de resumen en un tema específico.",
+	"apierror-flow-notenabled": "La página proporcionada no tiene habilitado Flow."
 }
