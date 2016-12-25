@@ -145,7 +145,7 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|U}} krijgt een melding als er een nieuw onderwerp wordt gemaakt op dit bord.",
 	"flow-topic-action-watchlist-add": "Op dit onderwerp abonneren",
 	"flow-topic-action-watchlist-remove": "Uitschrijven",
-	"flow-error-allowcreation-no-usedb": "Voor allowCreation moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
+	"flow-error-allowcreation-no-usedb": "Om Flow in te schakelen op een specifieke pagina moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
 	"flow-error-allowcreation-already-exists": "Pagina bestond al, maar moest niet bestaan",
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",

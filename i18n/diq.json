@@ -3,7 +3,8 @@
 		"authors": [
 			"Kumkumuk",
 			"Mirzali",
-			"Asmen"
+			"Asmen",
+			"1917 Ekim Devrimi"
 		]
 	},
 	"enableflow": "Rodiyayışi feal ke",
@@ -18,7 +19,7 @@
 	"flow-cancel": "Bıtexelne",
 	"flow-skip-summary": "Xulasa bıvurne",
 	"flow-summary-authored": "Xulasaya $1",
-	"flow-show-change": "Vurriyayışan bımocne",
+	"flow-show-change": "Vurriyayışan bımotne",
 	"flow-newtopic-title-placeholder": "Mewzuyo newe",
 	"flow-newtopic-header": "Mewzuyo newe cı ke",
 	"flow-newtopic-save": "Mewzu vıraze",
