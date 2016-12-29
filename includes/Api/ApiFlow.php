@@ -75,7 +75,7 @@ class ApiFlow extends ApiBase {
 		// The checks for POST and tokens are the same as ApiMain.php
 		$wasPosted = $this->getRequest()->wasPosted();
 		if ( !$wasPosted && $module->mustBePosted() ) {
-			$this->dieWithError( [ 'apierror-mustbeposted', $params['submodule'] ] );
+			$this->dieWithErrorOrDebug( [ 'apierror-mustbeposted', $params['submodule'] ] );
 		}
 
 		if ( $module->needsToken() ) {
@@ -83,18 +83,10 @@ class ApiFlow extends ApiBase {
 				$this->dieWithError( [ 'apierror-missingparam', 'token' ] );
 			}
 
-			if ( is_callable( array( $module, 'validateToken' ) ) ) {
-				if ( !$module->validateToken( $params['token'], $params ) ) {
-					$this->dieWithError( 'apierror-badtoken' );
-				}
-			} else {
-				if ( !$this->getUser()->matchEditToken(
-					$params['token'],
-					$module->getTokenSalt(),
-					$this->getRequest() )
-				) {
-					$this->dieWithError( 'apierror-badtoken' );
-				}
+			$module->requirePostedParameters( [ 'token' ] );
+
+			if ( !$module->validateToken( $params['token'], $params ) ) {
+				$this->dieWithError( 'apierror-badtoken' );
 			}
 		}
 
@@ -135,18 +127,10 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$mainParams = $this->getMain()->getAllowedParams();
-		if ( $mainParams['action'][ApiBase::PARAM_TYPE] === 'submodule' ) {
-			$submodulesType = 'submodule';
-		} else {
-			/** @todo Remove this case once support for older MediaWiki is dropped */
-			$submodulesType = $this->moduleManager->getNames( 'submodule' );
-		}
-
 		return array(
 			'submodule' => array(
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => $submodulesType,
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'page' => array(
 				ApiBase::PARAM_REQUIRED => true,
