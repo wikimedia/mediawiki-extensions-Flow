@@ -20,12 +20,11 @@ Styleguide 4.0.
 	top: 1px;
 	display: inline-block;
 	padding: 0.5em;
-	background: @colorWhite;
-	*background: @colorOffWhite; // ie6
+	background: #fff;
 	color: @colorText;
 	word-wrap: break-word;
 	border-radius: 3px;
-	.box-shadow( ~'0 2px 0 0 @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
+	.box-shadow( ~'0 2px 0 0 @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
 	opacity: 0.9;
 	z-index: 99;
 
@@ -58,8 +57,7 @@ Styleguide 4.0.
 			z-index: 1;
 			width: 1em;
 			height: 1em;
-			background: @colorWhite;
-			*background: @colorOffWhite; //ie6
+			background: #fff;
 			transform: rotate( 45deg );
 			-webkit-transform: rotate( 45deg );
 		}
@@ -113,7 +111,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 0 1px 0 @{colorGrayLight}' );
+				.box-shadow( ~'0 0 1px 0 @{colorGray12}' );
 			}
 		}
 	}
@@ -130,7 +128,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 -1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
+				.box-shadow( ~'0 -1.5px 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
 			}
 		}
 	}
@@ -149,7 +147,7 @@ Styleguide 4.0.
 				/* @noflip */
 				right: -0.5em;
 				/* @noflip */
-				.box-shadow( ~'1.5px 0 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
+				.box-shadow( ~'1.5px 0 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
 			}
 		}
 	}
@@ -168,7 +166,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: -0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 1.5px 0 1.5px @{colorGrayLight}, 0 0 1px 0 @{colorGrayLight}' );
+				.box-shadow( ~'0 1.5px 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
 			}
 		}
 	}
@@ -179,7 +177,7 @@ Styleguide 4.0.
 		background: @backgroundColor;
 		/* @noflip */
 		.box-shadow( ~'0 2px 0 0 @{backgroundColorDarkened}' );
-		color: @colorWhite;
+		color: #fff;
 
 		.flow-ui-tooltip-triangle:after {
 			background: @backgroundColor;
