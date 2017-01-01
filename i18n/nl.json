@@ -154,7 +154,7 @@
 	"flow-topic-action-watchlist-add": "Op dit onderwerp abonneren",
 	"flow-topic-action-watchlist-remove": "Uitschrijven",
 	"flow-error-allowcreation-no-usedb": "Om Flow in te schakelen op een specifieke pagina moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
-	"flow-error-allowcreation-already-exists": "Pagina bestond al, maar moest niet bestaan",
+	"flow-error-allowcreation-already-exists": "Er bestaat al een pagina op het doel, dus kan een Flow bord hier niet naar toe verplaatst worden.",
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",
 	"flow-error-external": "Er is een fout opgetreden. De foutmelding is: $1",

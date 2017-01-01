@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cedric31",
-			"Nnemo"
+			"Nnemo",
+			"Nicolas Eynaud"
 		]
 	},
 	"flow-desc": "Sistèma de gestion del flux de trabalh",
@@ -74,10 +75,12 @@
 	"flow-error-missing-summary": "Vos cal sasir un resumit.",
 	"flow-error-missing-title": "Lo subjècte a pas cap de títol. Un títol es obligatòri per enregistrar un subjècte.",
 	"flow-error-parsoid-failure": "Impossible d'analisar lo contengut a causa d'una pana de Parsoid.",
+	"flow-error-protected-unknown-reason": "Desconegut",
 	"flow-error-missing-replyto": "Cap de paramètre « replyTo » es pas estat provesit. Aqueste paramètre es requesit per l'accion « respondre ».",
 	"flow-error-missing-postId": "Cap de paramètre « postId » es pas estat provesit. Aqueste paramètre es requesit per manipular un messatge.",
 	"flow-error-invalid-postId": "Lo paramètre « postId » èra pas valid. Lo messatge especificat ($1) es pas estat trobat.",
 	"flow-error-default": "Una error s'es produita.",
+	"flow-edit-header-submit": "Enregistrar una descripcion",
 	"flow-edit-title-submit": "Cambiar lo títol",
 	"flow-edit-post-submit": "Sometre las modificacions",
 	"flow-rev-message-edit-post": "$1 {{GENDER:$2|a modificat}} un [$3 comentari] sus « $4 ».",
