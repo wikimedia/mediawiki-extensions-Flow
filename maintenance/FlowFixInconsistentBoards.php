@@ -114,6 +114,17 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 					continue;
 				}
 				$workflowId = $content->getWorkflowId();
+				if ( is_null( $workflowId ) ) {
+					// See T153320.  If the workflow exists, it could
+					// be looked up by title/page ID and the JSON could
+					// be fixed with an edit.
+					//
+					// Otherwise, the core revision has to be deleted.  This
+					// script does not do either of these things.
+					$this->error( "ERROR: '$coreTitle' JSON content does not have a valid workflow ID." );
+					continue;
+				}
+
 				$workflowIdAlphadecimal = $workflowId->getAlphadecimal();
 
 				try {
