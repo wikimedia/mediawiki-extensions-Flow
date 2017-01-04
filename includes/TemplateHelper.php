@@ -436,8 +436,12 @@ class TemplateHelper {
 		$i18nKey = $revision['properties']['_key'];
 		unset( $revision['properties']['_key'] );
 
-		// a variety of the i18n history messages contain wikitext and require ->parse()
-		return self::html( wfMessage( $i18nKey, $revision['properties'] )->parse() );
+		// $revision['properties'] contains the params for the i18n message, which are named,
+		// so we need array_values() to strip the names. They are in the correct order because
+		// RevisionFormatter::getDescriptionParams() uses a foreach loop to build this array
+		// from the i18n-params definition in FlowActions.php.
+		// A variety of the i18n history messages contain wikitext and require ->parse().
+		return self::html( wfMessage( $i18nKey, array_values( $revision['properties'] ) )->parse() );
 	}
 
 	/**
