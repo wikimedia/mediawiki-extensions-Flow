@@ -2077,4 +2077,24 @@ class FlowHooks {
 		// we've handled the deletion, abort the hook
 		return false;
 	}
+
+	/**
+	 * Filter out all Flow changes when hidepageedits=1
+	 *
+	 * @param string $name
+	 * @param array $tables
+	 * @param array $fields
+	 * @param array $conds
+	 * @param array $query_options
+	 * @param array $join_conds
+	 * @param FormOptions $opts
+	 */
+	public static function onChangesListSpecialPageQuery(
+		$name, array &$tables, array &$fields, array &$conds,
+		array &$query_options, array &$join_conds, FormOptions $opts
+	) {
+		if ( $opts['hidepageedits'] ) {
+			$conds[] = 'rc_type != ' . RC_FLOW;
+		}
+	}
 }

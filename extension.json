@@ -1147,6 +1147,7 @@
 		"EnhancedChangesList::getLogText": "FlowHooks::onGetLogText",
 		"EnhancedChangesListModifyLineData": "FlowHooks::onEnhancedChangesListModifyLineData",
 		"EnhancedChangesListModifyBlockLineData": "FlowHooks::onEnhancedChangesListModifyBlockLineData",
+		"ChangesListSpecialPageQuery": "FlowHooks::onChangesListSpecialPageQuery",
 		"SkinTemplateNavigation::Universal": "FlowHooks::onSkinTemplateNavigation",
 		"Article::MissingArticleConditions": "FlowHooks::onMissingArticleConditions",
 		"SpecialWatchlistGetNonRevisionTypes": "FlowHooks::onSpecialWatchlistGetNonRevisionTypes",
