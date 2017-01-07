@@ -4,9 +4,11 @@
 			"Hwangjy9",
 			"Priviet",
 			"SeoJeongHo",
-			"Yearning"
+			"Yearning",
+			"Ykhwong"
 		]
 	},
+	"apihelp-flow-param-token": "토큰은 [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]에서 가져옵니다",
 	"apihelp-flow-example-1": "\"[[Talk:Sandbox]]\"의 설명을 편집하기",
 	"apihelp-flow+edit-header-example-1": "[[Talk:Sandbox]]의 설명을 편집하기",
 	"apihelp-flow+edit-post-example-1": "[[Topic:S2tycnas4hcucw8w]]에서 게시물을 편집합니다",
