@@ -5,7 +5,8 @@
 			"Ravichandra",
 			"రహ్మానుద్దీన్",
 			"వైజాసత్య",
-			"Praveen Illa"
+			"Praveen Illa",
+			"Veeven"
 		]
 	},
 	"flow-desc": "కార్యధార నిర్వహణా వ్యవస్థ",
@@ -17,7 +18,7 @@
 	"flow-post-actions": "చర్యలు",
 	"flow-topic-actions": "చర్యలు",
 	"flow-cancel": "రద్దుచేయి",
-	"flow-skip-summary": "సారాంశాన్ని దాటవేయి",
+	"flow-skip-summary": "దాటవేయి",
 	"flow-show-change": "తేడాలను చూపించు",
 	"flow-newtopic-title-placeholder": "కొత్త అంశం",
 	"flow-newtopic-header": "కొత్త అంశాన్ని చేర్చు",
