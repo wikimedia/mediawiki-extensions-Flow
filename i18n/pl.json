@@ -478,6 +478,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Ten post został umieszczony przez [[User:{{{authorUser}}}|{{{authorUser}}}]], ale podpisany jako [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Edytowany",
 	"flow-edited-by": "Edytowany przez $1",
+	"flow-edited-by-header": "Opis strony dyskusji edytowany przez $1",
+	"flow-edited-by-topic-title": "Tytuł wątku zmieniony przez $1",
 	"flow-lqt-redirect-reason": "Przekierowanie starych postów LiquidThreads do zmienionej wersji w Flow",
 	"flow-talk-conversion-move-reason": "Zmiana strony dyskusji $1 w wikikodzie na Flow",
 	"flow-talk-conversion-archive-edit-reason": "Zmiana strony dyskusji w wikikodzie na Flow",

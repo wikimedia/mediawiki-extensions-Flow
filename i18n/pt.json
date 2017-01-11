@@ -80,7 +80,7 @@
 	"flow-post-actions": "Ações",
 	"flow-topic-actions": "Ações",
 	"flow-cancel": "Cancelar",
-	"flow-skip-summary": "Ignorar resumo da edição",
+	"flow-skip-summary": "Ignorar",
 	"flow-edit-summary-placeholder": "Descreva sucintamente o resultado desta discussão",
 	"flow-summary-authored": "Resumo por $1",
 	"flow-summary-edited": "Resumo {{GENDER:$1|editado}} pela última vez por $1",

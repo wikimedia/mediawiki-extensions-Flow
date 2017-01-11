@@ -112,5 +112,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Hämta information som är nödvändig för att göra ämnessammanfattningsredigeringar ogjorda.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Sidversionens ID att börja ångra från.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Sidversionens ID att sluta ångra på.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Hämta information om att göra en ämnessammanfattningsredigering ogjord i ett specifikt ämne."
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Hämta information om att göra en ämnessammanfattningsredigering ogjord i ett specifikt ämne.",
+	"apierror-flow-safeallowcreationfailed": "Den angivna sidan har inte aktiverat Flow och safeAllowCreation misslyckades med: $1",
+	"apierror-flow-notenabled": "Den angivna sidan har inte aktiverat Flow."
 }
