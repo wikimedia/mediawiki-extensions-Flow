@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4efb0bce_9a4e0471",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 2113,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2017-01-19T22:35:59Z",
+      "side": 1,
+      "message": "This is supposed to make sure links like [[Topic:Sweoiur8237/Some_board/Some_title]] are not redlinked if that topic actually exists. But it seems like this was not working correctly.\n\nThere was also an issue with the \"view history\" link not being displayed on topics in the long format. I have no idea what\u0027s causing this (maybe also this hook, and the history link is not added because the page is considered to not exist?)",
+      "revId": "a86fe00d51ad89c20c535e56b3046d541f533605",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
