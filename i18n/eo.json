@@ -4,7 +4,8 @@
 			"Happy5214",
 			"Robin van der Vliet",
 			"Lucas",
-			"Gamliel Fishkin"
+			"Gamliel Fishkin",
+			"Psychoslave"
 		]
 	},
 	"flow-post-actions": "Agoj",
@@ -32,5 +33,6 @@
 	"flow-moderation-confirm-delete-topic": "Forigi",
 	"flow-moderation-confirm-hide-topic": "Kaŝi",
 	"flow-ve-mention-placeholder": "Uzantnomo",
-	"flow-dialog-cancelconfirm-title": "Ĉu vi certas?"
+	"flow-dialog-cancelconfirm-title": "Ĉu vi certas?",
+	"flow-action-not-page": "Objekto de paĝo estas ano de malkongrua klaso"
 }
