@@ -187,7 +187,8 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		return new ConversionStrategy(
 			$parser ?: $wgParser,
 			$sourceStore ?: new NullImportSourceStore,
-			Container::get( 'default_logger' )
+			Container::get( 'default_logger' ),
+			Container::get( 'occupation_controller' )->getTalkpageManager()
 		);
 	}
 }

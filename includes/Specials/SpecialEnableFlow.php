@@ -103,11 +103,12 @@ class SpecialEnableFlow extends FormSpecialPage {
 				wfGetDB( DB_MASTER ),
 				Container::get( 'importer' ),
 				$logger,
-				$this->occupationController->getTalkpageManager(),
+				$this->getUser(),
 				new EnableFlowWikitextConversionStrategy(
 					Container::get( 'parser' ),
 					new NullImportSourceStore(),
 					$logger,
+					$this->getUser(),
 					array(),
 					$data['header']
 				)
