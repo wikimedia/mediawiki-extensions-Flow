@@ -40,7 +40,8 @@ module.exports = function ( grunt ) {
 			]
 		},
 		banana: {
-			all: 'i18n/'
+			all: 'i18n/',
+			api: 'i18n/api/'
 		},
 		watch: {
 			files: [
