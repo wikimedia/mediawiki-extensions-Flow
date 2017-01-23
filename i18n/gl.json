@@ -70,7 +70,7 @@
 	"flow-post-actions": "Accións",
 	"flow-topic-actions": "Accións",
 	"flow-cancel": "Cancelar",
-	"flow-skip-summary": "Saltar o resumo",
+	"flow-skip-summary": "Omitir",
 	"flow-edit-summary-placeholder": "Describa brevemente o resultado desta conversa",
 	"flow-summary-authored": "Resumo por $1",
 	"flow-summary-edited": "Resumo {{GENDER:$1|editado}} por última vez por $1",
