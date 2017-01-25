@@ -154,21 +154,7 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgDefaultUserOptions, $wgFlowContentFormat;
-
-		// Echo notification subscription preference
-		$wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
-		$wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
-
-		// Default sort order of a topiclist view. See TopicListBlock::getFindOptions()
-		// for more information.
-		$wgDefaultUserOptions['flow-topiclist-sortby'] = 'updated';
-
-		// Default editor to use in Flow
-		$wgDefaultUserOptions['flow-editor'] = 'wikitext';
-
-		// Default state of the side rail
-		$wgDefaultUserOptions['flow-side-rail-state'] = 'expanded';
+		global $wgFlowContentFormat;
 
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
