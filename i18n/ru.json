@@ -26,7 +26,8 @@
 			"Mailman",
 			"Jack who built the house",
 			"Туллук",
-			"Kareyac"
+			"Kareyac",
+			"Alex Great"
 		]
 	},
 	"enableflow": "Включить Flow",
@@ -306,8 +307,8 @@
 	"flow-notification-newtopic-email-subject": "$1 создал{{GENDER:$1||а}} новую тему на странице $2",
 	"flow-notification-newtopic-email-batch-body": "$1 создал{{GENDER:$1||а}} новую тему с названием «$2» на странице $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 новая тема|$1 новых тем|$1 новых темы|100=99+ новых тем}} на $2",
-	"echo-category-title-flow-discussion": "Flow",
-	"echo-pref-tooltip-flow-discussion": "Уведомить меня, когда связанные со мной действия происходят в Flow.",
+	"echo-category-title-flow-discussion": "Обсуждение потока",
+	"echo-pref-tooltip-flow-discussion": "Уведомить меня об активности в темах или на страницах, которые я отслеживаю.",
 	"flow-link-post": "сообщение",
 	"flow-link-topic": "тема",
 	"flow-link-history": "история",
