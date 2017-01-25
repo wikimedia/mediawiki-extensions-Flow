@@ -146,7 +146,7 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditButtonClick = function () {
 		var widget = this,
-			contentFormat = this.editor.getInitialFormat() || 'wikitext';
+			contentFormat = this.editor.getPreferredFormat() || 'wikitext';
 
 		// Hide the edit button, any errors, and the content
 		this.button.toggle( false );

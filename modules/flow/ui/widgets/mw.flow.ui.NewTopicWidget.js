@@ -142,12 +142,16 @@
 	 * Expand the widget and make it ready to create a new topic
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.activate = function () {
+		var widget = this;
 		if ( !this.isExpanded() ) {
 			// Expand the editor
 			this.toggleExpanded( true );
-			this.editor.activate();
-			this.updateFormState();
-			this.title.focus();
+			this.editor.toggleAutoFocus( false );
+			this.editor.activate().then( function () {
+				widget.updateFormState();
+				widget.title.focus();
+				widget.editor.toggleAutoFocus( true );
+			} );
 		}
 	};
 
@@ -221,7 +225,7 @@
 			.done( function () {
 				// Clear for next use
 				widget.title.setValue( '' );
-				widget.editor.setContent( '', 'html' );
+				widget.editor.clearContent();
 				widget.updateFormState();
 			} );
 	};
