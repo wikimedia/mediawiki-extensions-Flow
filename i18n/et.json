@@ -136,7 +136,7 @@
 	"flow-notification-newtopic-email-subject": "$1 alustas uut teemat leheküljel \"$2\"",
 	"flow-notification-newtopic-email-batch-body": "$1 alustas leheküljel \"$3\" uut teemat \"$2\".",
 	"echo-category-title-flow-discussion": "Voogarutelu",
-	"echo-pref-tooltip-flow-discussion": "Teavita mind, kui voogarutelus esineb minusse puutuvaid tegevusi.",
+	"echo-pref-tooltip-flow-discussion": "Teavita mind tegevusest teemas või leheküljel, mida jälgin.",
 	"flow-link-topic": "teema",
 	"flow-moderation-placeholder-suppress-post": "Palun {{GENDER:$3|selgita}}, miks selle postituse varjad.",
 	"flow-moderation-placeholder-delete-post": "Palun {{GENDER:$3|selgita}}, miks selle postituse kustutad.",

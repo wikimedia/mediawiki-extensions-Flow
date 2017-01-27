@@ -480,7 +480,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Посмотреть}} страницу обсуждения участника",
 	"flow-notification-enabled-on-talkpage-title": "Для {{GENDER:$1|вашей}} странице обсуждения участни{{GENDER:$1|ка|цы}} включена новая система обсуждений<br /><small>Доступно на [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Новая система обсуждений на $2",
-	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, новая система обсуждений в вики, была включена на вашей странице обсуждения участнка в {{SITENAME}}. Вы можете получить более подробную информацию, оставить отзыв или отключить новую систему в любое время из бета-функций в разделе ваших настроек.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, новая система обсуждений в вики, была включена на вашей странице обсуждения в {{SITENAME}}. Вы можете получить более подробную информацию, оставить отзыв или отключить новую систему в любое время из бета-функций в разделе ваших настроек.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Добавление шаблона архива",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Удаление шаблона архива",
 	"flow-dialog-cancelconfirm-title": "Вы уверены?",

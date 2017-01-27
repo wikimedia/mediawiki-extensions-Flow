@@ -6,7 +6,8 @@
 			"Aftabuzzaman",
 			"Jim Carter",
 			"Sayma Jahan",
-			"Kayser Ahmad"
+			"Kayser Ahmad",
+			"Elias Ahmmad"
 		]
 	},
 	"enableflow": "ফ্লো সক্রিয় করুন",
@@ -127,8 +128,8 @@
 	"flow-notification-link-text-view-topic": "প্রসঙ্গ দেখুন",
 	"flow-notification-link-text-view-topics": "প্রসঙ্গ দেখুন",
 	"flow-notification-reply-email-subject": "$3-এ $2",
-	"echo-category-title-flow-discussion": "ফ্লো",
-	"echo-pref-tooltip-flow-discussion": "ফ্লোতে যখন আমার সম্পর্কিত কর্ম সঞ্চালন হবে তখন আমাকে বিজ্ঞপ্তি দাও",
+	"echo-category-title-flow-discussion": "সম্পূর্ণ আলোচনা",
+	"echo-pref-tooltip-flow-discussion": "আমার টপিক এবং পৃষ্ঠা সমূহের কর্মকাণ্ড সম্পর্কে অবহিত করো যেগুলি আমি অনুসরণ করছি।",
 	"flow-link-post": "প্রকাশনা",
 	"flow-link-topic": "প্রসঙ্গ",
 	"flow-link-history": "ইতিহাস",

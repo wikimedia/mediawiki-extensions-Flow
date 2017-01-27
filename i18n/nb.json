@@ -263,7 +263,7 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 og {{PLURAL:$5|en annen|$5 andre|100=99+ andre}} {{GENDER:$1|svarte}} på <strong>$3</strong>.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|redigerte}} <span class=\"plainlinks\">[$5 meldingen]</span> din på [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 og {{PLURAL:$5|en annen|$5 andre|100=99+ andre}} {{GENDER:$1|redigerte}} et <span class=\"plainlinks\">[$4 innlegg]</span> under «$2» på «$3».",
-	"notification-header-flow-new-topic-v2": "Ny sak skapt på <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
+	"notification-header-flow-new-topic-v2": "Ny sak skapt på <strong>$3</strong>: <bdi>«<strong>$4</strong>»</bdi>.",
 	"notification-compact-header-flow-new-topic": "«<strong>$1</strong>»",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|En ny sak|$1 nye saker|100=99+ nye saker}} på <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "En sak ble opprettet på <strong>din diskusjonsside</strong>: «<strong>$4</strong>».",

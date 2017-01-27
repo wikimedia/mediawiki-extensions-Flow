@@ -336,7 +336,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|utworzył|utworzyła|utworzył(a)}} nowy wątek na stronie $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|utworzył|utworzyła}} nowy wątek o tytule „$2” na $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Jeden nowy wątek|$1 nowe wątki|$1 nowych wątków|250=Ponad 250 nowych wątków}} na stronie $2",
-	"echo-category-title-flow-discussion": "Flow",
+	"echo-category-title-flow-discussion": "Dyskusja Flow",
 	"echo-pref-tooltip-flow-discussion": "Powiadom mnie, kiedy na Flow nastąpi akcja dotycząca mnie.",
 	"flow-link-post": "wpis",
 	"flow-link-topic": "wątek",
