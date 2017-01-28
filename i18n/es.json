@@ -324,7 +324,7 @@
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|creó}} un nuevo tema titulado \"$2\" en $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Un tema nuevo|$1 temas nuevos|100=99+ temas nuevos}} en $2",
 	"echo-category-title-flow-discussion": "Discusión de Flow",
-	"echo-pref-tooltip-flow-discussion": "Notificarme de cambios en temas o páginas que este siguiendo.",
+	"echo-pref-tooltip-flow-discussion": "Notificarme de cambios en temas o páginas que esté siguiendo.",
 	"flow-link-post": "publicación",
 	"flow-link-topic": "tema",
 	"flow-link-history": "historial",

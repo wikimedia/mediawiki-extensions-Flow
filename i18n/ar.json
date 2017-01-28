@@ -326,7 +326,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|أنشأ|أنشأت}} موضوعا جديدا في $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|أنشأ|أنشأت}} موضوعاً جديداً بعنوان \"$2\" على $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|موضوع واحد جديد|$1 مواضيع جديدة|100=99+ مواضيع جديدة}} على $2",
-	"echo-category-title-flow-discussion": "اتبع النقاش",
+	"echo-category-title-flow-discussion": "نقاش تدفق",
 	"echo-pref-tooltip-flow-discussion": "أخطرني حول النشاط في المواضيع أو الصفحات التي أتابعها.",
 	"flow-link-post": "نشر",
 	"flow-link-topic": "موضوع",

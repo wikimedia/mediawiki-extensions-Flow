@@ -168,6 +168,8 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />{{GENDER:$1|Ο|Η}} $1 και {{PLURAL:$5|άλλος ένας|άλλοι $5|100=99+ ακόμη}} απάντησαν στην <strong>$3</strong>.",
 	"notification-header-flow-post-reply": "{{GENDER:$2|Ο|Η}} $1 απάντησε στο \"<strong>$4</strong>\".",
 	"notification-header-flow-enabled-on-talkpage": "Νέο σύστημα συζητήσεων ενεργοποιήθηκε για την <strong>σελίδα συζήτησης χρήστη {{GENDER:$2|σας}}</strong>.",
+	"echo-category-title-flow-discussion": "Συζήτηση Flow",
+	"echo-pref-tooltip-flow-discussion": "Ειδοποίηση σχετικά με τη δραστηριότητα στα θέματα ή στις σελίδες ακολουθώ.",
 	"flow-revision-permalink-warning-header-first": "Αυτός είναι ένας μόνιμος σύνδεσμος στην πρώτη έκδοση της περιγραφής.\nΜπορείτε να δείτε νεότερες εκδόσεις στη [$2 σελίδα ιστορικού του πίνακα].",
 	"flow-topic-first-heading": "Θέμα στο $1",
 	"flow-no-more-fwd": "Δεν υπάρχουν παλαιότερα θέματα",

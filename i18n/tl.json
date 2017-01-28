@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jewel457",
-			"Leeheonjin"
+			"Leeheonjin",
+			"Emem.calist"
 		]
 	},
 	"flow-post-moderated-toggle-hide-show": "Ipakita ang pagpuna.",
@@ -12,10 +13,8 @@
 	"flow-post-moderated-toggle-suppress-hide": "Itago ang mungkahi",
 	"flow-post-action-post-history": "Kasaysayan",
 	"flow-post-action-edit-post": "Baguhin",
-	"notification-bundle-body-flow-post-reply": "{{GENDER:$2|Tumugon}} sila $1 at $5 {{PLURAL:$6|other|iba pa}} sa $4.",
-	"notification-body-flow-post-edited": "{{GENDER:$2|Binago}} ni $1 ang {{GENDER:$5|iyong}} tala (post) sa $3",
 	"notification-header-flow-enabled-on-talkpage": "Pinayagan ang bagong sistemang pantalakayan sa {{GENDER:$2|iyong}} usapang pahina",
-	"notification-body-flow-enabled-on-talkpage": "Makikita o matatagpuan sa $3",
+	"echo-pref-tooltip-flow-discussion": "Ipaalala sa akin ang mga kaganapan ng pinaguusapan o mga pahinang aking sinusundan.",
 	"flow-previous-diff": "← Mas lumang pagbabago",
 	"flow-next-diff": "Mas bagong pagbabago →"
 }
