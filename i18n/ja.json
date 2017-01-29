@@ -322,6 +322,8 @@
 	"flow-compare-revisions-header-post": "このページでは、[$4 $1] の話題「[$5 $2]」での $3 の投稿の 2 つの版の{{GENDER:$3|差分}}を表示しています。\nこの投稿の[$6 履歴ページ]でその他の版を閲覧できます。",
 	"flow-compare-revisions-header-postsummary": "このページでは、[$3 $1] の投稿「[$4 $2]」の要約の 2 つの版の差分を表示しています。\nこの要約の[$5 履歴ページ]でその他の版を閲覧できます。",
 	"flow-compare-revisions-header-header": "このページでは、[$3 $1] の説明の 2 つの版の{{GENDER:$2|差分}}を表示しています。\nこの説明の[$4 履歴ページ]でその他の版を閲覧できます。",
+	"right-flow-hide": "Flow の話題や投稿を非表示にする",
+	"right-flow-lock": "Flow の話題に解決済として印を付ける",
 	"right-flow-delete": "Flow の話題や投稿を削除",
 	"right-flow-edit-post": "他の利用者の Flow の投稿を編集",
 	"right-flow-suppress": "Flow の版を秘匿",

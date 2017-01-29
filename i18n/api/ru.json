@@ -36,7 +36,7 @@
 	"apihelp-flow+edit-topic-summary-example-1": "Править краткое содержание в [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+lock-topic-description": "Закрыть или отменить закрытие темы Flow.",
 	"apihelp-flow+lock-topic-param-moderationState": "Состояние, задаваемое теме: <kbd>закрыта</kbd> или <kbd>открыта</kbd>.",
-	"apihelp-flow+lock-topic-param-reason": "Причина для закрытия или открытия темы. Обратите внимание, клиент Flow в вики использует здесь \"Помечено как улаженное\" и добавляет на необязательные дополнительные сведения в краткое содержание.",
+	"apihelp-flow+lock-topic-param-reason": "Причина для закрытия или открытия темы. Обратите внимание, что клиент Flow использует «Отмечено, как решенное» и добавляет необязательные дополнительные сведения в кратком виде.",
 	"apihelp-flow+lock-topic-example-1": "Закрыть [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-description": "Модерирования сообщения Flow.",
 	"apihelp-flow+moderate-post-param-moderationState": "Какой уровень модерации.",
