@@ -9,6 +9,11 @@ require_once __DIR__ . '/defines.php';
 
 $namespaceNames = array();
 
+/** English */
+$namespaceNames['en'] = array(
+	NS_TOPIC =>  'Topic',
+);
+
 /** Arabic */
 $namespaceNames['ar'] = array(
 	NS_TOPIC => 'موضوع',
@@ -52,11 +57,6 @@ $namespaceNames['de'] = array(
 /** Zazaki */
 $namespaceNames['diq'] = array(
 	NS_TOPIC =>  'Mewzu',
-);
-
-/** English */
-$namespaceNames['en'] = array(
-	NS_TOPIC =>  'Topic',
 );
 
 /** Spanish */
