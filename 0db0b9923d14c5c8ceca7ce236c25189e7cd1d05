@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ef897d1_f7b091da",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-01-30T02:29:59Z",
+      "side": 0,
+      "message": "Why was this removed?\n\n(That said, I don\u0027t actually remember why this code was here, either.)",
+      "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
