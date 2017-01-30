@@ -92,7 +92,7 @@
 	"notification-header-flow-mention-post": "$1 Вас је {{GENDER:$2|споменуо|споменула}} {{GENDER:$4|у}} „<strong>$5</strong>“.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 је {{GENDER:$1|направио|направила}} нову тему на <strong>$3</strong>.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Једна нова тема|$1 нове теме|$1 нових тема|100=99+ нових тема}} на <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
-	"echo-category-title-flow-discussion": "Целокупан разговор",
+	"echo-category-title-flow-discussion": "Flow дискусије",
 	"echo-pref-tooltip-flow-discussion": "Обавести ме о активностима у темама или на страницама које пратим.",
 	"flow-link-topic": "тема",
 	"flow-link-history": "историја",

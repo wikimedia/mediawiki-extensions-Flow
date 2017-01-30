@@ -73,6 +73,7 @@
 	"notification-header-flow-mention-post": "$1 Vas je {{GENDER:$2|spomenuo|spomenula}} {{GENDER:$4|u}} „$5“.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 je {{GENDER:$1|napravio|napravila}} novu temu na '''$3'''.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Jedna nova tema|$1 nove teme|$1 novih tema|100=99+ novih tema}} na <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
+	"echo-category-title-flow-discussion": "Flow diskusije",
 	"flow-link-history": "istorija",
 	"flow-moderation-confirm-delete-topic": "Obriši",
 	"flow-moderation-confirm-hide-topic": "Sakrij",
