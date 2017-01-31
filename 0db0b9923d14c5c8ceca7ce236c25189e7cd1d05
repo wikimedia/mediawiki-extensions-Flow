@@ -16,6 +16,24 @@
       "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ef897d1_814eb270",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-01-31T12:11:11Z",
+      "side": 0,
+      "message": "\u0027isActive\u0027 really means \u0027hasEverBeenActivated\u0027, it doesn\u0027t go back to false when the editor instance is hidden or collapsed.\n\nWe call \u0027activate\u0027 every time we show the editor to give it a chance to reset to the user\u0027s preferred editor.\n\n\u0027bindBeforeUnloadHandler\u0027 is also called at the very end. My testing revealed no issue with reorganizing this function.",
+      "parentUuid": "2ef897d1_f7b091da",
+      "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
