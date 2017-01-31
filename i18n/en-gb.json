@@ -5,7 +5,8 @@
 			"Mdann52",
 			"Caliburn",
 			"Aursani",
-			"Andibing"
+			"Andibing",
+			"Anomie"
 		]
 	},
 	"flow-summarize-topic-placeholder": "Please summarise this discussion",
@@ -13,5 +14,5 @@
 	"flow-error-no-render": "The specified action was not recognised.",
 	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|mentioned}} {{GENDER:$4|you}} in {{GENDER:$1|his|her|their}} post in \"$2\" on $3",
 	"flow-previous-diff": "← Older edit",
-	"flow-next-diff": "اڃا نئين ترميم →"
+	"flow-next-diff": "Newer edit →"
 }
