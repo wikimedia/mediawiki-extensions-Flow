@@ -34,6 +34,24 @@
       "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ef897d1_61cdf633",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-02-01T15:46:07Z",
+      "side": 0,
+      "message": "onEditorControlsWidgetCancel calls unbindBeforeUnloadHandler(), so I suspect that removing this code could cause the following bug:\n\n1. Open an editor\n2. Type something in it\n3. Attempt to navigate away; get confirmation dialog\n4. Cancel editor\n5. Reopen editor\n6. Type some more\n7. Attempt to navigate away; you should get a confirmation dialog but I think you won\u0027t\n\nThis is a bit crazy though, and if this turns out to be correct then there should definitely be a comment explaining why this code is here.\n\n(Also, yes, I;m the one that wrote this originally, I apologize.)",
+      "parentUuid": "2ef897d1_814eb270",
+      "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
