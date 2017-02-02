@@ -70,6 +70,24 @@
       "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ef897d1_4228aedd",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-02-02T03:18:49Z",
+      "side": 0,
+      "message": "Ooh, I see, there\u0027s a call to bindBeforeUnloadHandler all the way at the bottom of this function, I missed that. Yeah, this is fine then.",
+      "parentUuid": "2ef897d1_b905597e",
+      "revId": "0db0b9923d14c5c8ceca7ce236c25189e7cd1d05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
