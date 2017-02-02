@@ -44,7 +44,7 @@
 			} );
 		this.initialEditorName =
 			( config.initialEditor === 'none' ? 'wikitext' : config.initialEditor ) ||
-			this.getInitialEditorName();
+			this.getPreferredEditorName();
 		this.switchingPromise = null;
 		this.settingPromise = null;
 
@@ -159,7 +159,7 @@
 		];
 	};
 
-	mw.flow.ui.EditorSwitcherWidget.prototype.getInitialEditorName = function () {
+	mw.flow.ui.EditorSwitcherWidget.prototype.getPreferredEditorName = function () {
 		var i, len;
 		if ( this.initialContent !== '' ) {
 			// Find the first editor that matches this.contentFormat
@@ -429,6 +429,20 @@
 				widget.error.toggle( true );
 			} );
 		return promise;
+	};
+
+	/**
+	 * Clear the content of the current editor without triggering
+	 * a change to the 'flow-editor' user preference.
+	 */
+	mw.flow.ui.EditorSwitcherWidget.prototype.clearContent = function () {
+		var editor = this.getActiveEditor(),
+			oldActiveEditorName = this.activeEditorName;
+
+		// hack: blanking activeEditorName so the change event is ignored
+		this.activeEditorName = null;
+		editor.setContent( '' );
+		this.activeEditorName = oldActiveEditorName;
 	};
 
 	/**

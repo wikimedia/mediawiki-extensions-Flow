@@ -7,8 +7,6 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [editor] The initial editor to load. Defaults to the editor
-	 *  set in the user's preferences.
 	 * @cfg {string} [content] An initial content for the textarea
 	 * @cfg {string} [contentFormat] Format of config.content
 	 * @cfg {string} [placeholder] Placeholder text to use for the editor when empty
@@ -36,7 +34,6 @@
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
 
-		this.initialEditor = config.editor;
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
 		this.leaveCallback = config.leaveCallback;
@@ -194,18 +191,18 @@
 	 *
 	 * @return {string} Name of initial editor that will be used
 	 */
-	mw.flow.ui.EditorWidget.prototype.getInitialEditorName = function () {
-		return this.initialEditor || mw.user.options.get( 'flow-editor' );
+	mw.flow.ui.EditorWidget.prototype.getPreferredEditorName = function () {
+		return mw.user.options.get( 'flow-editor' );
 	};
 
 	/**
 	 * Get the format of the editor that would be loaded if this widget were to be
 	 * activated right now.
 	 * @return {string|null} Format used by initial editor, or null if no editor is active
-	 * @see #getInitialEditorName
+	 * @see #getPreferredEditorName
 	 */
-	mw.flow.ui.EditorWidget.prototype.getInitialFormat = function () {
-		return this.editorSwitcherWidget.getEditorFormat( this.getInitialEditorName() );
+	mw.flow.ui.EditorWidget.prototype.getPreferredFormat = function () {
+		return this.editorSwitcherWidget.getEditorFormat( this.getPreferredEditorName() );
 	};
 
 	/**
@@ -293,17 +290,9 @@
 	 * @return {jQuery.Promise} Promise resolved when editor switch is done
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function () {
-		var switchPromise, editor, widget;
-
-		if ( this.isActive() ) {
-			this.bindBeforeUnloadHandler();
-			return $.Deferred().resolve().promise();
-		}
-
-		// Doesn't call editorSwitcherWidget.activate() because we want to
-		// evaluate the user preference as late as possible
-		editor = this.initialEditor || mw.user.options.get( 'flow-editor' );
-		widget = this;
+		var switchPromise,
+			editor = this.getPreferredEditorName(),
+			widget = this;
 
 		if ( editor === 'none' ) {
 			editor = 'wikitext';
@@ -381,5 +370,9 @@
 	 */
 	mw.flow.ui.EditorWidget.prototype.destroy = function () {
 		this.editorSwitcherWidget.destroy();
+	};
+
+	mw.flow.ui.EditorWidget.prototype.clearContent = function () {
+		this.editorSwitcherWidget.clearContent();
 	};
 }( jQuery ) );
