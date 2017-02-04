@@ -13,7 +13,7 @@
 	 */
 	mw.flow.ve.Target = function FlowVeTarget() {
 		mw.flow.ve.Target.parent.call( this, {
-			toolbarConfig: { actions: true }
+			toolbarConfig: { actions: true, position: 'bottom' }
 		} );
 
 		// HACK: stop VE's education popups from appearing (T116643)
@@ -30,7 +30,6 @@
 		{
 			type: 'list',
 			icon: 'textStyle',
-			indicator: 'down',
 			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
 			include: [ 'bold', 'italic' ],
 			forceExpand: [ 'bold', 'italic' ]
