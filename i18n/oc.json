@@ -43,6 +43,7 @@
 	"flow-newtopic-content-placeholder": "Mandar un messatge novèl sus « $1 »",
 	"flow-newtopic-header": "Apondre un subjècte novèl",
 	"flow-newtopic-save": "Apondre un subjècte",
+	"flow-newtopic-save-anonymously": "Apondre un subjècte d'un biais anonim",
 	"flow-newtopic-start-placeholder": "Començar un subjècte novèl",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Comentar}} « $2 »",
 	"flow-reply-link": "{{GENDER:$1|Respondre}}",
@@ -106,7 +107,7 @@
 	"flow-notification-edit": "$1 {{GENDER:$1|a modificat}} una <span class=\"plainlinks\">[$5 nòta]</span> sus « $2 » en [[$3|$4]].",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|a creat}} una \n discussion novèla sus '''$3'''.",
 	"flow-notification-rename": "$1 {{GENDER:$1|a modificat}} lo títol de <span class=\"plainlinks\">[$2 $3]</span> en « $4 » sus [[$5|$6]].",
-	"echo-category-title-flow-discussion": "Flux",
+	"echo-category-title-flow-discussion": "Discussion de Flow",
 	"flow-link-post": "nòta",
 	"flow-link-topic": "subjècte",
 	"flow-link-history": "istoric",
@@ -120,5 +121,7 @@
 	"flow-moderation-confirm-delete-topic": "Suprimir",
 	"flow-moderation-confirm-hide-topic": "Amagar",
 	"flow-previous-diff": "← Cambiament precedent",
-	"flow-next-diff": "Cambiament seguent →"
+	"flow-next-diff": "Cambiament seguent →",
+	"flow-ve-mention-context-item-label": "Mencionar",
+	"flow-ve-mention-inspector-title": "Mencionar"
 }
