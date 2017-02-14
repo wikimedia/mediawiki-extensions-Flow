@@ -14,7 +14,7 @@
 	"enableflow": "Uključi Flow",
 	"flow-desc": "Sistem za upravljanje radnog toka",
 	"flow-talk-taken-over-comment": "/* Ova stranica je pretvorena u Flow raspravu */",
-	"log-name-flow": "Flow zapisnik",
+	"log-name-flow": "Zapisnik Flowa",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|obrisao|obrisala}} je [$4 objavu] o \"[[$3|$5]]\" na [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|vratio|vratila}} je [$4 objavu] o \"[[$3|$5]]\" na [[$6]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|sakrio|sakrila}} je [$4 objavu] o \"[[$3|$5]]\" na [[$6]]",
