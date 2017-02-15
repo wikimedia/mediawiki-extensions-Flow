@@ -12,6 +12,7 @@
 			<extension base="string">
 				<attribute type="string" name="id" use="required"/>
 				<attribute type="nonNegativeInteger" name="userid" use="required"/>
+				<attribute type="nonNegativeInteger" name="globaluserid" use="optional"/>
 				<attribute type="string" name="userip" use="optional"/>
 				<attribute type="string" name="userwiki" use="required"/>
 				<attribute type="string" name="parentid" use="optional"/>
@@ -20,6 +21,7 @@
 				<attribute type="string" name="typeid" use="required"/>
 				<attribute type="string" name="flags" use="required"/>
 				<attribute type="string" name="modstate" use="required"/>
+				<attribute type="nonNegativeInteger" name="globalmoduserid" use="optional"/>
 				<attribute type="string" name="moduserid" use="optional"/>
 				<attribute type="string" name="moduserip" use="optional"/>
 				<attribute type="string" name="moduserwiki" use="optional"/>
@@ -27,6 +29,7 @@
 				<attribute type="string" name="modreason" use="optional"/>
 				<attribute type="string" name="lasteditid" use="optional"/>
 				<attribute type="string" name="edituserid" use="optional"/>
+				<attribute type="nonNegativeInteger" name="globaledituserid" use="optional"/>
 				<attribute type="string" name="edituserip" use="optional"/>
 				<attribute type="string" name="edituserwiki" use="optional"/>
 				<attribute type="nonNegativeInteger" name="contentlength" use="required"/>
@@ -42,6 +45,7 @@
 				<attribute type="string" name="treedescendantid" use="required"/>
 				<attribute type="string" name="treerevid" use="required"/>
 				<attribute type="nonNegativeInteger" name="treeoriguserid" use="required"/>
+				<attribute type="nonNegativeInteger" name="globaltreeoriguserid" use="optional"/>
 				<attribute type="string" name="treeoriguserip" use="optional"/>
 				<attribute type="string" name="treeoriguserwiki" use="required"/>
 			</extension>

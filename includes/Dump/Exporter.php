@@ -3,6 +3,8 @@
 namespace Flow\Dump;
 
 use BatchRowIterator;
+use CentralAuthIdLookup;
+use CentralIdLookup;
 use DatabaseBase;
 use Exception;
 use Flow\Collection\PostSummaryCollection;
@@ -72,6 +74,9 @@ class Exporter extends WikiExporter {
 	*/
 	protected $changeTypeProperty;
 
+	/** @var CentralAuthIdLookup  */
+	protected $lookup;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -84,6 +89,8 @@ class Exporter extends WikiExporter {
 
 		$this->changeTypeProperty = new ReflectionProperty( 'Flow\Model\AbstractRevision', 'changeType' );
 		$this->changeTypeProperty->setAccessible( true );
+
+		$this->lookup = CentralAuthIdLookup::factory();
 	}
 
 	public static function schemaVersion() {
@@ -387,6 +394,21 @@ class Exporter extends WikiExporter {
 		unset($attribs['content'], $attribs['contenturl']);
 		$format = $revision->getContentFormat();
 		$attribs['flags'] = 'utf-8,' . $format;
+
+		$userIdFields = [ 'userid', 'treeoriguserid', 'moduserid', 'edituserid' ];
+		foreach ( $userIdFields as $userIdField ) {
+			if ( isset( $attribs[ $userIdField ] ) ) {
+				$user = User::newFromId( $attribs[ $userIdField ] );
+				$globalUserId = $this->lookup->centralIdFromLocalUser(
+					$user,
+					CentralIdLookup::AUDIENCE_RAW
+				);
+				if ( $globalUserId ) {
+					$globalUserIdField = 'global' . $userIdField;
+					$attribs[ $globalUserIdField ] = $globalUserId;
+				}
+			}
+		}
 
 		$output = Xml::element(
 			'revision',

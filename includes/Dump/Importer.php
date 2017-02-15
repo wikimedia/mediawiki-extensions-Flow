@@ -2,8 +2,11 @@
 
 namespace Flow\Dump;
 
+use CentralAuthIdLookup;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
+use Flow\Import\HistoricalUIDGenerator;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -42,6 +45,25 @@ class Importer {
 	protected $topicWorkflow;
 
 	/**
+	 * @var array Map of old to new IDs
+	 */
+	protected $idMap = [];
+
+	/**
+	 * To convert between global and local user ids
+	 *
+	 * @var CentralAuthIdLookup
+	 */
+	protected $lookup;
+
+	/**
+	 * Whether the current board is being imported in trans-wiki mode
+	 *
+	 * @var bool
+	 */
+	protected $transWikiMode = false;
+
+	/**
 	 * @param WikiImporter $importer
 	 */
 	public function __construct( WikiImporter $importer ) {
@@ -53,6 +75,7 @@ class Importer {
 	 */
 	public function setStorage( ManagerGroup $storage ) {
 		$this->storage = $storage;
+		$this->lookup = CentralAuthIdLookup::factory();
 	}
 
 	/**
@@ -77,7 +100,12 @@ class Importer {
 	}
 
 	public function handleBoard() {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$this->checkTransWikiMode(
+			$this->importer->nodeAttribute( 'id' ),
+			$this->importer->nodeAttribute( 'title' )
+		);
+
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter board handler for ' . $id );
 
 		$uuid = UUID::create( $id );
@@ -110,7 +138,7 @@ class Importer {
 	}
 
 	public function handleHeader() {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter description handler for ' . $id );
 
 		$metadata = array( 'workflow' => $this->boardWorkflow );
@@ -127,10 +155,10 @@ class Importer {
 	}
 
 	public function handleTopic() {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter topic handler for ' . $id );
 
-		$uuid = UUID::create( $this->importer->nodeAttribute( 'id' ) );
+		$uuid = UUID::create( $id );
 		$title = $this->boardWorkflow->getArticleTitle();
 
 		$this->topicWorkflow = Workflow::fromStorageRow( array(
@@ -150,12 +178,31 @@ class Importer {
 			// @todo: topic-title & first-post? (used only in NotificationListener)
 		);
 
+		// create page if it does not yet exist
+		/** @var OccupationController $occupationController */
+		$occupationController = Container::get( 'occupation_controller' );
+		$creationStatus = $occupationController->safeAllowCreation(
+			$this->topicWorkflow->getArticleTitle(),
+			$occupationController->getTalkpageManager()
+		);
+		if ( !$creationStatus->isOK() ) {
+			throw new MWException( $creationStatus->getWikiText() );
+		}
+
+		$ensureStatus = $occupationController->ensureFlowRevision(
+			new \Article( $this->topicWorkflow->getArticleTitle() ),
+			$this->topicWorkflow
+		);
+		if ( !$ensureStatus->isOK() ) {
+			throw new MWException( $ensureStatus->getWikiText() );
+		}
+
 		$this->put( $this->topicWorkflow, $metadata );
 		$this->put( $topicListEntry, $metadata );
 	}
 
 	public function handlePost() {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter post handler for ' . $id );
 
 		$metadata = array(
@@ -175,7 +222,7 @@ class Importer {
 	}
 
 	public function handleSummary() {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter summary handler for ' . $id );
 
 		$metadata = array( 'workflow' => $this->topicWorkflow );
@@ -214,7 +261,7 @@ class Importer {
 	 * @return AbstractRevision
 	 */
 	protected function getRevision( $callback ) {
-		$id = $this->importer->nodeAttribute( 'id' );
+		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter revision handler for ' . $id );
 
 		// isEmptyElement will no longer be valid after we've started iterating
@@ -227,6 +274,34 @@ class Importer {
 		do {
 			$attribs[$this->importer->getReader()->name] = $this->importer->getReader()->value;
 		} while ( $this->importer->getReader()->moveToNextAttribute() );
+
+		$idFields = [ 'id', 'typeid', 'treedescendantid', 'treerevid', 'parentid', 'treeparentid' ];
+		foreach ( $idFields as $idField ) {
+			if ( isset( $attribs[ $idField ] ) ) {
+				$attribs[ $idField ] = $this->mapId( $attribs[ $idField ] );
+			}
+		}
+
+		$userIdFields = [ 'userid', 'treeoriguserid', 'moduserid', 'edituserid' ];
+		foreach ( $userIdFields as $userIdField ) {
+			$globalUserIdField = 'global' . $userIdField;
+			if ( isset( $attribs[ $globalUserIdField ] ) ) {
+				$localUser = $this->lookup->localUserFromCentralId(
+					$attribs[ $globalUserIdField ],
+					\CentralIdLookup::AUDIENCE_RAW
+				);
+				if ( $localUser ) {
+					$attribs[$userIdField] = $localUser->getId();
+				}
+			}
+		}
+
+		$wikiFields = [ 'userwiki', 'treeoriguserwiki', 'moduserwiki', 'edituserwiki' ];
+		foreach ( $wikiFields as $wikiField ) {
+			if ( isset( $attribs[ $wikiField ] ) ) {
+				$attribs[ $wikiField ] = wfWikiID();
+			}
+		}
 
 		// now that we've moved inside the node (to fetch attributes),
 		// nodeContents() is no longer reliable: is uses isEmptyContent (which
@@ -247,5 +322,46 @@ class Importer {
 		$attribs += $keys;
 
 		return call_user_func( $callback, $attribs );
+	}
+
+	/**
+	 * When in trans-wiki mode, return a new id based on the same timestamp
+	 *
+	 * @param string $id
+	 * @return string
+	 */
+	private function mapId( $id ) {
+		if ( !$this->transWikiMode ) {
+			return $id;
+		}
+
+		if ( !isset( $this->idMap[ $id ] ) ) {
+			$this->idMap[ $id ] = UUID::create( HistoricalUIDGenerator::historicalTimestampedUID88(
+				UUID::hex2timestamp( UUID::create( $id )->getHex() )
+			) )->getAlphadecimal();
+		}
+		return $this->idMap[ $id ];
+	}
+
+	/**
+	 * Check if a board already exist and should be imported in trans-wiki mode
+	 *
+	 * @param string $boardWorkflowId
+	 * @param string $title
+	 */
+	private function checkTransWikiMode( $boardWorkflowId, $title ) {
+		/** @var DbFactory $dbFactory */
+		$dbFactory = Container::get( 'db.factory' );
+		$workflowExist = !!$dbFactory->getDB( DB_MASTER )->selectField(
+			'flow_workflow',
+			'workflow_id',
+			[ 'workflow_id' => UUID::create( $boardWorkflowId )->getBinary() ],
+			__METHOD__
+		);
+
+		if ( $workflowExist ) {
+			$this->importer->debug( "$title will be imported in trans-wiki mode" );
+		}
+		$this->transWikiMode = $workflowExist;
 	}
 }
