@@ -68,9 +68,9 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$continue = $row->rc_id;
 
 			// build params
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$params = unserialize( $row->rc_params );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !$params ) {
 				$params = array();
 			}
