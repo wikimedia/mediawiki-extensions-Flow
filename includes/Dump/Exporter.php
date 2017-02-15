@@ -73,6 +73,13 @@ class Exporter extends WikiExporter {
 	protected $changeTypeProperty;
 
 	/**
+	 * To convert between local and global user ids
+	 *
+	 * @var \CentralIdLookup
+	 */
+	protected $lookup;
+
+	/**
 	 * {@inheritDoc}
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
@@ -84,6 +91,8 @@ class Exporter extends WikiExporter {
 
 		$this->changeTypeProperty = new ReflectionProperty( 'Flow\Model\AbstractRevision', 'changeType' );
 		$this->changeTypeProperty->setAccessible( true );
+
+		$this->lookup = \CentralIdLookup::factory( 'CentralAuth' );
 	}
 
 	public static function schemaVersion() {
@@ -387,6 +396,22 @@ class Exporter extends WikiExporter {
 		unset($attribs['content'], $attribs['contenturl']);
 		$format = $revision->getContentFormat();
 		$attribs['flags'] = 'utf-8,' . $format;
+
+		if ( $this->lookup ) {
+			$userIdFields = [ 'userid', 'treeoriguserid', 'moduserid', 'edituserid' ];
+			foreach ( $userIdFields as $userIdField ) {
+				if ( isset( $attribs[ $userIdField ] ) ) {
+					$user = User::newFromId( $attribs[ $userIdField ] );
+					$globalUserId = $this->lookup->centralIdFromLocalUser(
+						$user,
+						\CentralIdLookup::AUDIENCE_RAW
+					);
+					if ( $globalUserId ) {
+						$attribs[ 'global' . $userIdField ] = $globalUserId;
+					}
+				}
+			}
+		}
 
 		$output = Xml::element(
 			'revision',

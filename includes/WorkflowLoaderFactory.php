@@ -110,7 +110,7 @@ class WorkflowLoaderFactory {
 	 * @param Title|false $title
 	 * @param UUID $workflowId
 	 * @return Workflow
-	 * @throws InvalidInputException
+	 * @throws InvalidDataException
 	 * @throws UnknownWorkflowIdException
 	 */
 	public function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
