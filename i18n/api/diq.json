@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Kumkumuk",
-			"Mirzali"
+			"Mirzali",
+			"Gırd"
 		]
 	},
-	"apihelp-flow+edit-post-param-postId": "Kamiya mesaci"
+	"apihelp-flow+edit-post-param-postId": "Kamiya mesaci",
+	"apihelp-flow+view-topic-summary-param-revId": "Şıma heruna tewr çım ra viyarnayışo peyên eno versiyon bar kerê."
 }
