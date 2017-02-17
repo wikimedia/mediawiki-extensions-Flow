@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ce3c5b53_0f543cc8",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-02-17T16:14:45Z",
+      "side": 1,
+      "message": "I think by using `$lookup \u003d \\CentralIdLookup::factory( \u0027CentralAuth\u0027 );` we\u0027re protected against using other implementations. I would prefer supporting only \u0027CentralAuth\u0027 since we understand what the IDs are and how they should be used. It would be pretty bad to import a board and attribute contributions to the wrong users.",
+      "parentUuid": "ce3c5b53_6cf87947",
+      "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce3c5b53_6c8f19d2",
         "filename": "includes/Dump/Importer.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-17T02:12:39Z",
       "side": 1,
       "message": "Should discard LocalIdLookup again.",
+      "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce3c5b53_ef6b1881",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-02-17T16:14:45Z",
+      "side": 1,
+      "message": "Now using the \u0027CentralAuth\u0027 provider here also.",
+      "parentUuid": "ce3c5b53_6c8f19d2",
       "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ce3c5b53_af6510ac",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-02-17T16:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce3c5b53_0c444d6d",
+      "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce3c5b53_0c1bed83",
         "filename": "includes/Dump/Importer.php",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2017-02-17T02:12:39Z",
       "side": 1,
       "message": "This will fatal if CentralAuthUser doesn\u0027t exist.  You could check whether $this-\u003elookup is an instance of CentralAuthIdLookup, and if not throw an ImportException instead.",
+      "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce3c5b53_6fdce84b",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-02-17T16:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce3c5b53_0c1bed83",
       "revId": "1e51df8f093ba90099779bb80df2262cf3ec81b6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
