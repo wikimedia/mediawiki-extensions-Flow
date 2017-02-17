@@ -22,7 +22,7 @@
 	}
 
 	a:focus {
-		outline: none;
+		outline: 0;
 	}
 
 	// Hide the menu trigger completely in no-js mode
@@ -93,7 +93,7 @@ div > .flow-menu {
 		}
 
 		.flow-menu-js-drop a {
-			outline: none;
+			outline: 0;
 			border-color: transparent;
 			background: transparent;
 			background: rgba( 0, 0, 0, 0.05 );
@@ -113,8 +113,8 @@ div > .flow-menu {
 		background: #fff;
 		border-radius: 2px;
 
-		> section:not(:first-of-type) > li:first-of-type,
-		li.flow-menu-section:not(:first-of-type) {
+		> section:not( :first-of-type ) > li:first-of-type,
+		li.flow-menu-section:not( :first-of-type ) {
 			border-top: 1px solid @colorGray13;
 		}
 
