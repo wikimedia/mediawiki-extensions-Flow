@@ -13,7 +13,8 @@
 			"Predatorix",
 			"Quiddity",
 			"TMg",
-			"ThePiscin"
+			"ThePiscin",
+			"Umherirrender"
 		]
 	},
 	"enableflow": "Flow aktivieren",
@@ -383,7 +384,7 @@
 	"flow-moderation-placeholder-unsuppress-topic": "Bitte {{GENDER:$3|erkläre}}, warum du dieses Thema nicht mehr unterdrückst.",
 	"flow-moderation-placeholder-undelete-topic": "Bitte {{GENDER:$3|erkläre}}, warum du dieses Thema wiederherstellst.",
 	"flow-moderation-placeholder-unhide-topic": "Bitte {{GENDER:$3|erkläre}}, warum du dieses Thema einblendest.",
-	"flow-topic-permalink-warning": "Dieses Thema wurde gestartet auf  [$2 $1]",
+	"flow-topic-permalink-warning": "Dieses Thema wurde gestartet auf [$2 $1]",
 	"flow-topic-permalink-warning-user-board": "Dieses Thema wurde gestartet auf dem [$2 Board von {{GENDER:$1|$1}}]",
 	"flow-revision-permalink-warning-post": "Dies ist ein Permanentlink zu einer einzelnen Version dieses Beitrags.\nDiese Version ist vom $1.\nDu kannst die [$5 Unterschiede von der vorherigen Version] oder andere Versionen im [$4 Verlauf] ansehen.",
 	"flow-revision-permalink-warning-post-first": "Dies ist ein Permanentlink zur ersten Version dieses Beitrags.\nDu kannst spätere Versionen im [$4 Verlauf] ansehen.",
