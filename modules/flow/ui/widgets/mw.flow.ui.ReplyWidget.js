@@ -26,8 +26,6 @@
 		// Parent constructor
 		mw.flow.ui.ReplyWidget.parent.call( this, config );
 
-		this.$editorWrapper = $( '<div>' );
-
 		if ( this.expandable ) {
 			this.triggerInput = new OO.ui.TextInputWidget( {
 				multiline: false,
@@ -65,14 +63,19 @@
 		this.captcha = new mw.flow.dm.Captcha();
 		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
 
+		this.$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' );
+		this.$editorContainer = $( '<div>' ).addClass( 'flow-ui-replyWidget-editor-container' );
+
 		this.$element
 			.addClass( 'flow-ui-replyWidget' )
 			.append(
-				this.anonWarning.$element,
-				this.canNotEdit.$element,
-				this.error.$element,
-				this.captchaWidget.$element,
-				this.$editorWrapper
+				this.$messages.append(
+					this.anonWarning.$element,
+					this.canNotEdit.$element,
+					this.error.$element,
+					this.captchaWidget.$element
+				),
+				this.$editorContainer
 			);
 
 	};
@@ -170,7 +173,7 @@
 				saveable: mw.config.get( 'wgIsProbablyEditable' )
 			}, this.editorOptions ) );
 
-			this.$editorWrapper.append( this.editor.$element );
+			this.$editorContainer.append( this.editor.$element );
 
 			// Events
 			this.editor.connect( this, {
