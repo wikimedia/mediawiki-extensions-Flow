@@ -19,7 +19,6 @@
 	"flow-delete-header-content": "{{GENDER:$1|Obrisao|Obrisala}} $2",
 	"flow-edit-summary-placeholder": "Kratko opišite ishod diskusije",
 	"flow-summary-authored": "Opis {{GENDER:$1|napisao|napisala}} $1",
-	"flow-show-change": "Prikaži izmene",
 	"flow-newtopic-content-placeholder": "Napišite novu poruku na „$1“",
 	"flow-newtopic-start-placeholder": "Napravi novu temu",
 	"flow-reply-topic-title-placeholder": "Odgovori na „$1“",

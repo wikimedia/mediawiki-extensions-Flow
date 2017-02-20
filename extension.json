@@ -567,7 +567,7 @@
 			],
 			"messages": [
 				"flow-anon-warning",
-				"flow-cancel",
+				"cancel",
 				"flow-skip-summary",
 				"flow-edit-summary-placeholder",
 				"flow-summary-authored",

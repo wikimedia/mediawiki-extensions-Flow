@@ -10,8 +10,6 @@
 	"flow-topic-moderated-reason-prefix": "Arrazoia:",
 	"flow-post-actions": "Ekintzak",
 	"flow-topic-actions": "Ekintzak",
-	"flow-cancel": "Utzi",
-	"flow-show-change": "Erakutsi aldaketak",
 	"flow-newtopic-title-placeholder": "Gai berria",
 	"flow-reply-link": "{{GENDER:$1|Erantzun}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Eskertu}}}}",

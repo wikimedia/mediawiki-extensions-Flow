@@ -39,8 +39,6 @@
 	"flow-suppress-usertext": "<em>Nom d’utilizaire suprimit</em>",
 	"flow-post-actions": "Accions",
 	"flow-topic-actions": "Accions",
-	"flow-cancel": "Anullar",
-	"flow-show-change": "Veire los cambiaments",
 	"flow-last-modified-by": "{{GENDER:$1|Modificat}} en darrièr per $1",
 	"flow-newtopic-title-placeholder": "Subjècte novèl",
 	"flow-newtopic-content-placeholder": "Mandar un messatge novèl sus « $1 »",

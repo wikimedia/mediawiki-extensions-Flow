@@ -90,7 +90,6 @@
 	"flow-edit-summary-placeholder": "توضیح مختصری از نتیجهٔ این بحث بدهید",
 	"flow-summary-authored": "جمع‌بندی توسط $1",
 	"flow-summary-edited": "جمع‌بندی آخرین بار توسط $1 {{GENDER:$1|ویرایش شده‌است}}",
-	"flow-show-change": "نمایش تغییرات",
 	"flow-last-modified-by": "آخرین {{GENDER:$1|تغییر}} توسط $1",
 	"flow-stub-post-content": "<em>به دلیل یک خطای فنی، این ارسال قابل بازیابی نیست.<em>",
 	"flow-newtopic-title-placeholder": "مبحث جدید",

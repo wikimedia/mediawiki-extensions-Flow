@@ -10,8 +10,6 @@
 	"flow-topic-moderated-reason-prefix": "Motiv:",
 	"flow-post-actions": "Acțiuni",
 	"flow-topic-actions": "Acțiuni",
-	"flow-cancel": "Revocare",
-	"flow-show-change": "Arată modificările",
 	"flow-stub-post-content": "''Din cauza unei erori de natură tehnică, acest mesaj nu a putut fi obținut.''",
 	"flow-newtopic-title-placeholder": "Subiect nou",
 	"flow-newtopic-header": "Adaugă un nou subiect",

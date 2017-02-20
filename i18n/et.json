@@ -33,7 +33,6 @@
 	"flow-suppress-post-content": "$1 varjas selle kommentaari ([$2 ajalugu]).",
 	"flow-suppress-title-content": "$1 varjas selle teema.",
 	"flow-suppress-header-content": "{{GENDER:$1|Varjanud}} $2",
-	"flow-cancel": "Loobu",
 	"flow-edit-summary-placeholder": "Kirjelda lühidalt selle arutelu tulemust",
 	"flow-summary-authored": "Kokkuvõtte autor: $1",
 	"flow-newtopic-content-placeholder": "Postita uus sõnum leheküljele \"$1\"",

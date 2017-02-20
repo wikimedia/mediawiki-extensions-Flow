@@ -27,8 +27,6 @@
 	"flow-suppress-usertext": "<em>Anv implijer lamet</em>",
 	"flow-post-actions": "Oberoù",
 	"flow-topic-actions": "Oberoù",
-	"flow-cancel": "Nullañ",
-	"flow-show-change": "Diskouez ar c'hemmoù",
 	"flow-last-modified-by": "{{GENDER:$1|kemmet}} da ziwezhañ gant $1",
 	"flow-newtopic-title-placeholder": "Kaoz nevez",
 	"flow-newtopic-content-placeholder": "Postañ ur gemennadenn nevez da \"$1\"",

@@ -12,7 +12,7 @@
 	 * @cfg {string} [placeholder] Placeholder text to use for the editor when empty
 	 * @cfg {string} [termsMsgKey='flow-terms-of-use-edit'] i18n message key for the footer message
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
-	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
+	 * @cfg {string} [cancelMsgKey='cancel'] i18n message key for the cancel button
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
 	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
 	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
@@ -43,7 +43,7 @@
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
 			saveMsgKey: config.saveMsgKey || 'flow-newtopic-save',
-			cancelMsgKey: config.cancelMsgKey || 'flow-cancel',
+			cancelMsgKey: config.cancelMsgKey || 'cancel',
 			saveable: this.saveable
 		} );
 

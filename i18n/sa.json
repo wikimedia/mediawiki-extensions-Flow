@@ -7,8 +7,6 @@
 	"flow-topic-moderated-reason-prefix": "कारणम् :",
 	"flow-post-actions": "क्रियाः",
 	"flow-topic-actions": "क्रियाः",
-	"flow-cancel": "निरस्यताम्",
-	"flow-show-change": "परिवर्तनानि दृश्यन्ताम्",
 	"flow-newtopic-save": "विषयः योज्यताम्",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|कृतज्ञता पाठ्यताम्}}}}",
 	"flow-history-action-delete-post": "अपाक्रियताम्",

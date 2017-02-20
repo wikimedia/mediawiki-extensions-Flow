@@ -18,7 +18,6 @@
 	"flow-topic-moderated-reason-prefix": "कारण:",
 	"flow-post-actions": "कार्यहरू",
 	"flow-topic-actions": "कार्यहरू",
-	"flow-cancel": "रद्द गर्ने",
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|धन्यवाद दिनुहोस्}}}}",
 	"flow-history-action-delete-post": "मेटिएको",

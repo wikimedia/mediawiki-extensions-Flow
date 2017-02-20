@@ -8,7 +8,6 @@
 	"flow-delete-post-content": "دا تبصره د $1 لخوا {{GENDER:$1|ړنگه شوې}} ([$2 پېښليک])",
 	"flow-delete-title-content": "{{GENDER:$1|ړنگ شو}} د $1 لخوا",
 	"flow-delete-header-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
-	"flow-cancel": "ناگارل",
 	"flow-history-action-delete-post": "ړنگول",
 	"flow-history-action-unlock-topic": "بيا پرانيستل",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",

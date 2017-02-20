@@ -51,7 +51,7 @@
 		this.cancelButton = new OO.ui.ButtonWidget( {
 			flags: 'destructive',
 			framed: false,
-			label: mw.msg( 'flow-cancel' ),
+			label: mw.msg( 'cancel' ),
 			classes: [ 'flow-ui-topicTitleWidget-cancelButton' ]
 		} );
 		this.$buttons.append(
