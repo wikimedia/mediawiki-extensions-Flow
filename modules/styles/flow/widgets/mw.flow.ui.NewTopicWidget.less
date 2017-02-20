@@ -7,6 +7,11 @@
 		max-width: none;
 
 		input {
+			.flow-ui-newTopicWidget-expanded & {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+
 			// Match heading styles
 			font-size: 1.5em;
 			font-weight: bold;
@@ -21,7 +26,6 @@
 			padding: 0.3em 0.3em 0.3em 0.6em;
 			display: block;
 			vertical-align: middle;
-			border-radius: 2px;
 			font-family: inherit;
 			-webkit-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
 			-moz-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
@@ -48,6 +52,20 @@
 				font-style: italic;
 				font-weight: normal;
 			}
+		}
+	}
+
+	&-editor {
+		.flow-editor,
+		.flow-ui-editorSwitcherWidget {
+			margin-top: -1px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+		.flow-editor.flow-ui-focused,
+		.flow-ui-editorSwitcherWidget-focused {
+			/* Force above the title widget so border isn't cropped */
+			position: relative;
 		}
 	}
 }

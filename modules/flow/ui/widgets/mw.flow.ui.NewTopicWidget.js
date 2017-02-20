@@ -257,6 +257,7 @@
 	mw.flow.ui.NewTopicWidget.prototype.toggleExpanded = function ( expanded ) {
 		this.expanded = expanded !== undefined ? expanded : !this.expanded;
 
+		this.$element.toggleClass( 'flow-ui-newTopicWidget-expanded', this.expanded );
 		this.editor.toggle( this.expanded );
 		this.anonWarning.toggle( this.expanded );
 		this.canNotEdit.toggle( this.expanded );
