@@ -17,6 +17,9 @@
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2",
 	"flow-notification-mention-email-batch-body": "$1 Vas je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} poruci pod naslovom \"$2\" na stranici $3.",
 	"echo-category-title-flow-discussion": "Protočne rasprave",
+	"group-flow-bot": "Botovi za Protočne rasprave",
+	"group-flow-bot-member": "bot za Protočne rasprave",
+	"grouppage-flow-bot": "Project:Botovi za Protočne rasprave",
 	"flow-wikitext-switch-editor-tooltip": "Prebaci na vizualno uređivanje",
 	"flow-ve-switch-editor-tool-title": "Prebaci na uređivanje wikiteksta",
 	"flow-dialog-cancelconfirm-message": "Jeste li sigurni da želite odustati bez prethodnog spremanja?"
