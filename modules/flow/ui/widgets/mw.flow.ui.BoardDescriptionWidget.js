@@ -100,14 +100,18 @@
 		// as necessary.
 		this.model.connect( this, { editableChange: 'onModelEditableChange' } );
 
+		this.$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' );
+
 		// Initialize
 		this.$element
 			.append(
-				this.error.$element,
-				this.captchaWidget.$element,
-				this.anonWarning.$element,
-				this.button.$element,
-				this.$content,
+				this.$messages.append(
+					this.error.$element,
+					this.captchaWidget.$element,
+					this.anonWarning.$element,
+					this.button.$element,
+					this.$content
+				),
 				this.editor.$element,
 				this.categoriesWidget.$element
 			)
