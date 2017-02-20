@@ -6,7 +6,6 @@
 
 	.oo-ui-textInputWidget {
 		max-width: none;
-		padding-bottom: @editorToolbarHeight;
 
 		// Work around Chrome bug adding 5px below the textarea
 		line-height: 0;
@@ -22,6 +21,7 @@
 			&:focus {
 				border: 0;
 				box-shadow: none;
+				outline: 0;
 			}
 
 			// Comma-separating this rule doesn't work :(

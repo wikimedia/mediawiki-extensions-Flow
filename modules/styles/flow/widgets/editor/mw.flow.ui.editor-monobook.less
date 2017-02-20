@@ -12,6 +12,11 @@
 		}
 	}
 
+	.ve-init-mw-target-surface,
+	.flow-ui-wikitextEditorWidget .oo-ui-textInputWidget {
+		padding-bottom: 44px;
+	}
+
 	// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
 	@uiFontSize: 0.8em/0.625/1.27; /* 0.8em / x-small / 127% */
 
@@ -19,11 +24,23 @@
 		font-size: @uiFontSize;
 	}
 
-	.oo-ui-toolbar {
-		font-size: @uiFontSize;
-		.oo-ui-toolbar {
-			// But don't let these rules double-apply for nested toolbars
-			font-size: 1em;
+	.flow-ui-wikitextEditorWidget,
+	.flow-ui-visualEditorWidget {
+		> .oo-ui-toolbar {
+			font-size: @uiFontSize;
+			margin-top: -44px;
+		}
+	}
+
+	.flow-ui-wikitextEditorWidget {
+		> .oo-ui-toolbar > .oo-ui-toolbar-bar {
+			/* Floating mini toolbar doesn't need drop shadow */
+			box-shadow: none;
+		}
+
+		.oo-ui-textInputWidget textarea {
+			/* Adjust min-height to new font size */
+			min-height: 10em * 12.7/13.3333;
 		}
 	}
 
@@ -44,20 +61,16 @@
 	}
 }
 
-.flow-editor {
+.flow-editor,
+.flow-ui-editorSwitcherWidget {
 	// Undo border & box-shadow on textarea and re-apply it on the
 	// div that contains textarea + legal text + switch button
-	&.flow-ui-focused {
-		outline: 0;
-		border-color: #a7dcff;
-		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
-	}
+	border: 1px solid #ccc;
 }
 
-.flow-ui-editorSwitcherWidget {
-	&-focused {
-		outline: 0;
-		border-color: #a7dcff;
-		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
-	}
+.flow-editor.flow-ui-focused,
+.flow-ui-editorSwitcherWidget-focused {
+	outline: 0;
+	border-color: #a7dcff;
+	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
 }
