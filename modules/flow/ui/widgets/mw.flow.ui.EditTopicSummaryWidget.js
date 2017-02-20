@@ -46,12 +46,16 @@
 			cancel: 'onEditorCancel'
 		} );
 
+		this.$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' );
+
 		this.$element
 			.addClass( 'flow-ui-editTopicSummaryWidget' )
 			.append(
-				this.anonWarning.$element,
-				this.error.$element,
-				this.captchaWidget.$element,
+				this.$messages.append(
+					this.anonWarning.$element,
+					this.error.$element,
+					this.captchaWidget.$element
+				),
 				this.editor.$element
 			);
 	};
