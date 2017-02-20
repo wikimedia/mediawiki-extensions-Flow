@@ -21,6 +21,9 @@
 	"descriptionmsg": "flow-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.29.0"
+	},
 	"callback": "FlowHooks::registerExtension",
 	"APIModules": {
 		"flow-parsoid-utils": "Flow\\Api\\ApiParsoidUtilsFlow",
