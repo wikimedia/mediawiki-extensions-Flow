@@ -748,7 +748,6 @@
 			"position": "top",
 			"styles": [
 				"styles/common.less",
-				"styles/editors-common.less",
 				"styles/errors.less",
 				"styles/history/history-line.less"
 			],

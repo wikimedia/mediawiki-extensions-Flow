@@ -43,7 +43,7 @@
 			this.toolFactory = new OO.ui.ToolFactory();
 			this.toolFactory.register( mw.flow.ui.SwitchToVeTool );
 			this.toolGroupFactory = new OO.ui.ToolGroupFactory();
-			this.toolbar = new OO.ui.Toolbar( this.toolFactory, this.toolGroupFactory );
+			this.toolbar = new OO.ui.Toolbar( this.toolFactory, this.toolGroupFactory, { position: 'bottom' } );
 			this.toolbar.setup( [ { include: [ 'flowSwitchEditor' ] } ] );
 			this.initializedToolbar = false;
 
