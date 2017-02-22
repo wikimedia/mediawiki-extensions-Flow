@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce3c5b53_b1e9dc7d",
+        "filename": "includes/Dump/Importer.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2017-02-22T03:14:29Z",
+      "side": 1,
+      "message": "This can\u0027t happen currently due to your change to the factory call, but it doesn\u0027t hurt to make it future-proof.",
+      "revId": "b5453d650cb01bef34712ce3d4e49e8a1a8beef2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
