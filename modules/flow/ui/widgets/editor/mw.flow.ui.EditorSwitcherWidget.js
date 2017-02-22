@@ -269,9 +269,8 @@
 				return newEditor.setup( newContent );
 			} )
 			.then( function () {
-				// Hide and detach the current editor if it exists
+				// Detach the current editor if it exists
 				if ( oldEditor ) {
-					oldEditor.toggle( false );
 					return oldEditor.teardown()
 						.then( function () {
 							oldEditor.$element.detach();
@@ -291,7 +290,6 @@
 				widget.placeholderInput.$element.detach();
 				widget.$element.append( newEditor.$element );
 
-				newEditor.toggle( true );
 				newEditor.afterAttach();
 
 				switchingDeferred.resolve();
