@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .flow-ui-newTopicWidget {
 	clear: both;
 	margin-top: 1.5em;
@@ -28,26 +30,12 @@
 			-o-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
 			transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
 
-			&::-webkit-input-placeholder {
+			/* stylelint-disable indentation */
+			.mixin-placeholder( {
 				font-style: italic;
 				font-weight: normal;
-			}
-			&::-moz-placeholder {
-				font-style: italic;
-				font-weight: normal;
-			}
-			&:-moz-placeholder {
-				font-style: italic;
-				font-weight: normal;
-			}
-			&:-ms-input-placeholder {
-				font-style: italic;
-				font-weight: normal;
-			}
-			&::placeholder {
-				font-style: italic;
-				font-weight: normal;
-			}
+			} );
+			/* stylelint-enable indentation */
 		}
 	}
 }
