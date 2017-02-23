@@ -80,6 +80,18 @@
 	"apihelp-flow+view-topic-summary-example-1": "Ver el resume de [[Topic:S2tycnas4hcucw8w]] como testu wiki",
 	"apihelp-flow+view-topiclist-description": "Ver una llista d'asuntos.",
 	"apihelp-flow+view-topiclist-param-offset-dir": "Dirección d'ordenamientu de los asuntos.",
+	"apihelp-flow+view-topiclist-param-sortby": "Opción d'ordenamientu de les temes. Puede ser <kbd>updated</kbd> (ordenáu pola hora d'anovamientu de tema), o bien <kbd>newest</kbd> (ordenáu pola hora de creación de tema).",
+	"apihelp-flow+view-topiclist-param-savesortby": "Guardar la opción d'ordenamientu nes preferencies del usuariu, si se configura.",
+	"apihelp-flow-parsoid-utils-description": "Convertir testu ente testu wiki y HTML.",
+	"apihelp-flow-parsoid-utils-param-from": "Formatu del conteníu a convertir.",
+	"apihelp-flow-parsoid-utils-param-to": "Formatu al que convertir el conteníu.",
+	"apihelp-flow-parsoid-utils-param-content": "Conteníu a convertir.",
+	"apihelp-flow-parsoid-utils-param-title": "Títulu de la páxina Nun puede usase xunto con $1pageid.",
+	"apihelp-flow-parsoid-utils-param-pageid": "ID de la páxina. Nun puede usase xunto con $1title.",
+	"apihelp-flow-parsoid-utils-example-1": "Convertir el testu wiki <nowiki>'''lorem''' ''blablabla''</nowiki> a HTML",
 	"apihelp-query+flowinfo-description": "Llograr información básica de Flow sobro una páxina.",
-	"apihelp-query+flowinfo-example-1": "Llograr información de Flow sobro [[Talk:Sandbox]], [[Main Page]] y [[Talk:Flow]]"
+	"apihelp-query+flowinfo-example-1": "Llograr información de Flow sobro [[Talk:Sandbox]], [[Main Page]] y [[Talk:Flow]]",
+	"apihelp-flow+undo-edit-header-description": "Algamar la información precisa pa desfacer ediciones de descripciones.",
+	"apihelp-flow+undo-edit-header-param-startId": "ID de revisión nel que principiar a desfacer.",
+	"apihelp-flow+undo-edit-header-param-endId": "ID de revisión nel que terminar de desfacer."
 }
