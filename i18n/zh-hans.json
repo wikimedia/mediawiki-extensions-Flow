@@ -251,7 +251,7 @@
 	"flow-rev-message-restored-post": "$1{{GENDER:$2|已还原}}“$6”的一个[$4 评论]（<em>$5</em>）",
 	"flow-rev-message-hid-topic": "$1{{GENDER:$2|已隐藏}}“$6”的一个[$4 话题]（<em>$5</em>）",
 	"flow-rev-message-deleted-topic": "$1{{GENDER:$2|已删除}}“$6”的一个[$4 话题]（<em>$5</em>）",
-	"flow-rev-message-suppressed-topic": "$1{{GENDER:$2|已屏蔽}}[$4 话题]“$6”（<em>$5</em>）。",
+	"flow-rev-message-suppressed-topic": "$1{{GENDER:$2|已屏蔽}}[$4 话题]“$6”（<em>$5</em>）",
 	"flow-rev-message-locked-topic": "$1已将[$4 话题]“$6”{{GENDER:$2|标记}}为已解决（<em>$5</em>）",
 	"flow-rev-message-lock-topic-reason": "标记为已解决",
 	"flow-rev-message-restore-topic-reason": "已重启",
