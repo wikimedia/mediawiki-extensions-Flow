@@ -56,7 +56,7 @@
 '.$sp.'		/>
 '.$sp.'		<div class="flow-editor">
 '.$sp.'			<textarea name="topiclist_content"
-'.$sp.'			          class="mw-ui-input flow-form-collapsible mw-ui-input-large'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'"
+'.$sp.'			          class="mw-ui-input flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'"
 '.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
 '.$sp.'			          data-role="content"
 '.$sp.'			          required
