@@ -9,15 +9,17 @@
 .flow-ui-input-replacement-anchor {
 	display: block;
 	margin: 1em 0 0 0.9em;
+}
 
-	// FIXME: It's a shame we have to duplicate css in mw-ui-input. Need saner way going forward. mw-ui-textarea ?
-	&.mw-ui-input-large {
-		margin: 0;
-		font-size: 1.5em;
-		font-style: italic;
-		line-height: 1.25;
-		color: @colorTextLight;
-	}
+// FIXME: It's a shame we have to duplicate css in mw-ui-input. Need saner way going forward. mw-ui-textarea ?
+.flow-newtopic-form .mw-ui-input-large,
+.flow-ui-input-replacement-anchor.mw-ui-input-large {
+	margin: 0;
+	font-weight: normal;
+	font-size: 1.5em;
+	padding: 0.429em 0.381em 0.381em;
+	line-height: 1.25;
+	color: @colorTextLight;
 }
 
 .client-nojs {
