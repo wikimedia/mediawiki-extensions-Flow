@@ -3,7 +3,8 @@
 		"authors": [
 			"Fohanno",
 			"Y-M D",
-			"Nnemo"
+			"Nnemo",
+			"Fulup"
 		]
 	},
 	"enableflow": "Gweredekaat Flow",
@@ -40,7 +41,7 @@
 	"flow-reply-link": "{{GENDER:$1|Respont}}",
 	"flow-thank-link": "{{GENDER:$1|Trugarez}}",
 	"flow-history-action-hide-post": "kuzhat",
-	"flow-post-edited": "Kemennadenn {{GENDER:$1|aozet}} gant $1 $2",
+	"flow-post-edited": "Kemennadenn {{GENDER:$1|kemmet}} gant $1 $2",
 	"flow-post-action-view": "Peurliamm",
 	"flow-post-action-post-history": "Istor",
 	"flow-post-action-suppress-post": "Lemel",
@@ -80,8 +81,8 @@
 	"flow-comment-moderated": "Evezhiadenn habaskaet",
 	"flow-last-modified": "Kemm diwezhañ war-dro $1",
 	"flow-notification-link-text-view-post": "Gwelet ar gemennadenn",
-	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|en deus|he deus}} respontet d'ho kemennadenn",
-	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|en deus|he deus}} respontet d'ho kemennadenn e-barzh $2 war \"$3\"",
+	"flow-notification-reply-email-subject": "$2 war $3",
+	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|en deus|he deus}} respontet da \"$2\" war $3",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|en deus|he deus}} meneget ac'hanoc'h war $2",
 	"flow-notification-edit-email-subject": "$1 {{GENDER:$1|en deus|he deus}} aozet ur gemennadenn",
 	"flow-notification-edit-email-batch-body": "$1 {{GENDER:$1|en deus|he deus}} aozet ur gemennadenn e-barzh $2 war \"$3\"",
