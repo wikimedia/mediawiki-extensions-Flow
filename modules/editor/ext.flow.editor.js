@@ -50,6 +50,9 @@
 				editor = 'none';
 			}
 
+			// The following modules can be requested here:
+			// * ext.flow.editors.visualeditor
+			// * ext.flow.editors.none
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
 				// Some editors only work under certain circumstances
 				if ( !mw.flow.editors[ editor ].static.isSupported() ) {
@@ -221,6 +224,9 @@
 
 			markPending( true );
 
+			// The following modules can be requested here:
+			// * ext.flow.editors.visualeditor
+			// * ext.flow.editors.none
 			return mw.loader.using( 'ext.flow.editors.' + desiredEditor )
 
 				.then( function () {
