@@ -1,4 +1,4 @@
-require "watir-webdriver/wait"
+require "watir/wait"
 
 module Watir
   class Div
