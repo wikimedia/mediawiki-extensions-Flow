@@ -73,7 +73,7 @@
 	"flow-ve-mention-placeholder": "Մասնակցային անուն",
 	"flow-wikitext-editor-help-preview-the-result": "նախադիտել արդյունքը",
 	"flow-dialog-cancelconfirm-title": "Դուք վստա՞հ եք",
-	"flow-dialog-cancelconfirm-message": "Համոզվա՞ծ եք, որ ցանկանում եք չեղարկել նախքան պահպանումը",
+	"flow-dialog-cancelconfirm-message": "Չեղարկե՞լ առանց փոփոխությունները պահելու",
 	"flow-dialog-cancelconfirm-keep": "Շարունակել խմբագրել",
 	"flow-dialog-cancelconfirm-discard": "Չեղարկել փոփոխությունները",
 	"flow-guidedtour-optin-find-old-conversations": "Գտնել Ձեր հին խոսակցությունները"
