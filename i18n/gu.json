@@ -2,15 +2,27 @@
 	"@metadata": {
 		"authors": [
 			"KartikMistry",
-			"Sushant savla"
+			"Sushant savla",
+			"Nizil Shah"
 		]
 	},
 	"enableflow": "ફ્લો સક્રિય કરો",
-	"flow-board-header": "આ ચર્ચા વિષે",
+	"flow-board-header": "આ ચર્ચાપત્ર વિષે",
 	"flow-board-collapse-description": "વર્ણન છુપાવો",
 	"flow-board-expand-description": "વર્ણન દર્શાવો",
+	"flow-topic-collapse-siderail": "પૂરી પહોળાઈમાં વાંચવા વિસ્તારો",
+	"flow-topic-expand-siderail": "ઓછી પહોળાઈમાં વાંચવા સંકોચો",
 	"flow-edit-header-link": "વર્ણન સુધારો",
+	"flow-post-moderated-toggle-hide-show": "$2 દ્વારા કરવામાં આવેલ અને {{$1|છુપાવેલ}} ટિપ્પણી બતાવો.",
+	"flow-post-moderated-toggle-delete-show": "$2 દ્વારા {{$1|રદ}} કરવામાં આવેલ ટિપ્પણી બતાવો",
+	"flow-post-moderated-toggle-suppress-show": "$2 દ્વારા {{$1|દબાવી દેવાયેલ}} ટિપ્પણી બતાવો",
+	"flow-post-moderated-toggle-hide-hide": "$2 દ્વારા {{$1|છુપાવેલ}} ટિપ્પણી છુપાડો",
+	"flow-post-moderated-toggle-delete-hide": "$2 દ્વારા {{GENDER:$1|રદ કરાયેલ}} ટિપ્પણી છુપાડો",
+	"flow-post-moderated-toggle-suppress-hide": "$2 દ્વારા {{GENDER:$1|દબાવી દેવાયેલ}} ટિપ્પણી છુપાડો",
 	"flow-topic-moderated-reason-prefix": "કારણ:",
+	"flow-hide-post-content": "આ ટિપ્પણી $1 દ્વારા છ્પવાયેલ છે ([$2 ઈતિહાસ])",
+	"flow-hide-title-content": "આ વિષય $1 દ્વારા છુપાવાયેલ છે",
+	"flow-hide-header-content": "$2 દ્વારા {{$1|છુપાવાયેલ}}",
 	"flow-cancel": "રદ કરો",
 	"flow-newtopic-title-placeholder": "નવો વિષય",
 	"flow-newtopic-header": "નવો વિષય ઉમેરો",
