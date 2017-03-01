@@ -151,6 +151,7 @@
 	"flow-special-enableflow-confirmation": "Avètz creat un tablèu Flow sus [[$1]].",
 	"flow-previous-diff": "← Cambiament precedent",
 	"flow-next-diff": "Cambiament seguent →",
+	"flow-undo": "anullar",
 	"flow-ve-mention-context-item-label": "Mencionar",
 	"flow-ve-mention-inspector-title": "Mencionar",
 	"flow-wikitext-switch-editor-tooltip": "Bascular cap a l’editor visual",
