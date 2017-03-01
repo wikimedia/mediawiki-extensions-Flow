@@ -885,7 +885,6 @@
 				"flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
-				"flow/ui/widgets/editor/mw.flow.ui.SwitchToVeTool.js",
 				"flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
 				"flow/ui/widgets/mw.flow.ui.CategoryItemWidget.js",
 				"flow/ui/widgets/mw.flow.ui.CategoriesWidget.js"
@@ -1049,6 +1048,14 @@
 				"mobile"
 			]
 		},
+		"ext.flow.switching": {
+			"scripts": [
+				"flow/ui/tools/mw.flow.ui.MWEditModeTool.js"
+			],
+			"dependencies": [
+				"ext.visualEditor.switching"
+			]
+		},
 		"ext.flow.visualEditor": {
 			"scripts": [
 				"editor/editors/visualeditor/mw.flow.ve.Target.js",
@@ -1057,7 +1064,6 @@
 				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js",
 				"editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
 				"editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
-				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.SwitchEditorTool.js",
 				"editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
 				"editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js",
 				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js"
@@ -1077,6 +1083,7 @@
 				"ext.visualEditor.mwimage",
 				"ext.visualEditor.mwlink",
 				"ext.visualEditor.mwtransclusion",
+				"ext.flow.switching",
 				"oojs-ui.styles.icons-editing-advanced",
 				"site",
 				"user",
