@@ -2,7 +2,7 @@
 	"--title": "Flow - Documentation",
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
-	"--external": "OO.*,ve.*,DocumentFragment,Storer",
+	"--external": "OO.*,ve.*,mw.libs.ve.*,DocumentFragment,Storer",
 	"--output": "docs",
 	"--tags": "jsduck_custom_tags.rb",
 	"--": [
