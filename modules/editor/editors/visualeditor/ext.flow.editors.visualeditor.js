@@ -9,6 +9,8 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.visualeditor = function ( $node, content ) {
+		var modules;
+
 		// Parent constructor
 		mw.flow.editors.visualeditor.parent.call( this );
 
@@ -22,8 +24,12 @@
 			.prop( 'disabled', true )
 			.addClass( 'oo-ui-texture-pending' );
 
+		modules = [ 'ext.flow.visualEditor' ].concat(
+			mw.config.get( 'wgVisualEditorConfig' ).pluginModules.filter( mw.loader.getState )
+		);
+
 		// load dependencies & init editor
-		mw.loader.using( 'ext.flow.visualEditor', $.proxy( this.init, this, content || '' ) );
+		mw.loader.using( modules, $.proxy( this.init, this, content || '' ) );
 	};
 
 	OO.inheritClass( mw.flow.editors.visualeditor, mw.flow.editors.AbstractEditor );

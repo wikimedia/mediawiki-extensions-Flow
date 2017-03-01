@@ -62,9 +62,12 @@
 	 * @return {jQuery.Promise} Promise resolved when this.target has been created.
 	 */
 	mw.flow.ui.VisualEditorWidget.prototype.load = function () {
-		var widget = this;
+		var modules, widget = this;
 		if ( !this.loadPromise ) {
-			this.loadPromise = mw.loader.using( 'ext.flow.visualEditor' )
+			modules = [ 'ext.flow.visualEditor' ].concat(
+				mw.config.get( 'wgVisualEditorConfig' ).pluginModules.filter( mw.loader.getState )
+			);
+			this.loadPromise = mw.loader.using( modules )
 				.then( function () {
 					// HACK add i18n messages to VE
 					ve.init.platform.addMessages( mw.messages.get() );
