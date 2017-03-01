@@ -153,12 +153,25 @@
 	}
 
 	.flow-component.flow-board-page.flow-full-height-side-rail {
-		overflow: hidden;
+		position: relative;
 		.flow-board-header {
-			// this is a hack to make sure the side rail always
-			// stretches all the way to the bottom of the page
-			padding-bottom: 9999999px;
-			margin-bottom: -9999999px;
+			position: static;
+			/* background and box-shadow are moved to :before for full height */
+			background: transparent;
+			box-shadow: none;
+		}
+		.flow-board-header:before {
+			content: '';
+			display: block;
+			position: absolute;
+			height: 100%;
+			top: 0;
+			right: 0;
+			z-index: -1;
+			width: 34%;
+			box-sizing: border-box;
+			background-color: @colorGray14;
+			box-shadow: -2px 0 0 0 rgba( 0, 0, 0, 0.1 );
 		}
 	}
 
