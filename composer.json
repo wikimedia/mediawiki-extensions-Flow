@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"test": [
-			"parallel-lint . --exclude vendor/bin --exclude vendor/jakub-onderka --exclude node_modules"
+			"parallel-lint . --exclude vendor --exclude node_modules"
 		]
 	}
 }
