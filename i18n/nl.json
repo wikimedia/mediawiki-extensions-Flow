@@ -26,7 +26,8 @@
 			"Dinosaur918",
 			"MrLeopold",
 			"McDutchie",
-			"Mainframe98"
+			"Mainframe98",
+			"Huhbakker"
 		]
 	},
 	"enableflow": "Flow inschakelen",
@@ -156,6 +157,7 @@
 	"flow-error-allowcreation-no-usedb": "Om Flow in te schakelen op een specifieke pagina moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
 	"flow-error-allowcreation-already-exists": "Er bestaat al een pagina op het doel, dus kan een Flow bord hier niet naar toe verplaatst worden.",
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
+	"flow-error-can-not-edit-logged-out": "U momenteel niet in staat om deel te nemen. U kunt proberen in te loggen.",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",
 	"flow-error-external": "Er is een fout opgetreden. De foutmelding is: $1",
 	"flow-error-topic-is-locked": "Dit onderwerp is gesloten, verdere activiteit is niet mogelijk.",
@@ -164,6 +166,10 @@
 	"flow-error-missing-summary": "U moet een samenvatting invoeren.",
 	"flow-error-missing-title": "Onderwerp heeft geen titel. Een titel is vereist voor het opslaan van een onderwerp.",
 	"flow-error-parsoid-failure": "Verwerken is niet mogelijk vanwege een fout in Parsoid.",
+	"flow-error-protected-autoconfirmed-logged-in": "Deze board wordt beschermd. Alleen autoconfirmed gebruikers kunnen deelnemen. Reden: $1",
+	"flow-error-protected-autoconfirmed-logged-out": "Deze board wordt beschermd. Alleen ingelogde gebruikers die autoconfirmed kunnen deelnemen. Reden: $1",
+	"flow-error-protected-sysop-logged-in": "Deze board wordt beschermd. Alleen gebruikers met beheerdersrechten kunnen deelnemen. Reden: $1",
+	"flow-error-protected-sysop-logged-out": "Deze board wordt beschermd. Alleen ingelogde gebruikers met beheerdersrechten kunnen deelnemen. Reden: $1",
 	"flow-error-protected-unknown-reason": "Onbekend",
 	"flow-error-missing-replyto": "Er is geen parameter \"replyTo\" opgegeven. Deze parameter is verplicht voor de handeling \"reply\".",
 	"flow-error-missing-postId": "Er is geen parameter \"postId\" opgegeven. Deze parameter is verplicht bij het wijzigingen van een bericht.",
