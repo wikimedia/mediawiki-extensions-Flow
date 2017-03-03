@@ -39,8 +39,10 @@
 				return editor === 'none' ? 'wikitext' : editor;
 			} );
 		this.availableEditors = this.allEditors
-			.filter( function ( editor ) {
-				return widget.constructor.static.editorDefinitions[ editor ].static.isSupported();
+			.filter( function ( editor, i, arr ) {
+				return widget.constructor.static.editorDefinitions[ editor ].static.isSupported() &&
+					// remove all but the first occurence
+					arr.indexOf( editor ) === i;
 			} );
 		this.initialEditorName =
 			( config.initialEditor === 'none' ? 'wikitext' : config.initialEditor ) ||

@@ -1,4 +1,4 @@
-( function ( $, mw, OO, ve ) {
+( function ( $, mw, OO ) {
 	'use strict';
 
 	/**
@@ -213,4 +213,4 @@
 		);
 	};
 
-}( jQuery, mediaWiki, OO, ve ) );
+}( jQuery, mediaWiki, OO ) );
