@@ -320,7 +320,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|creou}} un novo tema en $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|creou}} un novo tema co título \"$2\" en \"$3\"",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Un novo tema|$1 novos temas|100=Máis de 99 novos temas}} en $2",
-	"echo-category-title-flow-discussion": "Fluxo",
+	"echo-category-title-flow-discussion": "Conversa de Fluxo",
 	"echo-pref-tooltip-flow-discussion": "Notificádeme cando sucedan accións relacionadas comigo no fluxo.",
 	"flow-link-post": "mensaxe",
 	"flow-link-topic": "tema",
