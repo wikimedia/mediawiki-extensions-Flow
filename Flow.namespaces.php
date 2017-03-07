@@ -163,6 +163,11 @@ $namespaceNames['pl'] = array(
 	NS_TOPIC =>  'Wątek',
 );
 
+/** Western Punjabi */
+$namespaceNames['pnb'] = array(
+	NS_TOPIC =>  'موضوع',
+);
+
 /** Portuguese */
 $namespaceNames['pt'] = array(
 	NS_TOPIC =>  'Tópico',
