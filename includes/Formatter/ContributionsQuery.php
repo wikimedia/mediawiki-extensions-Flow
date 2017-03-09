@@ -318,16 +318,18 @@ class ContributionsQuery extends AbstractQuery {
 		}
 		$minUserId = (int) ( $max - $max / 100 );
 
-		// exclude all users withing groups with bot permission
+		// exclude all users within groups with bot permission
 		$excludeUserIds = array();
 		$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 		if ( count( $groupsWithBotPermission ) ) {
-			$rows = $pager->getDatabase()->select(
+			$db = $pager->getDatabase();
+			$rows = $db->select(
 				array( 'user', 'user_groups' ),
 				'user_id',
 				array(
 					'user_id > ' . $minUserId,
-					'ug_group' => $groupsWithBotPermission
+					'ug_group' => $groupsWithBotPermission,
+					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				),
 				__METHOD__,
 				array(),
