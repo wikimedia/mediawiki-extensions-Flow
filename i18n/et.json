@@ -200,6 +200,7 @@
 	"flow-edited-by": "Redigeerinud $1",
 	"flow-ve-mention-context-item-label": "Mainimine",
 	"flow-ve-mention-inspector-title": "Mainimine",
+	"flow-ve-mention-inspector-remove-label": "Eemalda",
 	"flow-ve-mention-placeholder": "Kasutajanimi",
 	"flow-ve-mention-tool-title": "Maini kasutajat",
 	"flow-ve-mention-inspector-invalid-user": "Kasutajanimi \"$1\" pole registreeritud.",
