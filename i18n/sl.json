@@ -31,5 +31,7 @@
 	"flow-link-history": "zgodovina",
 	"flow-moderation-title-suppress-post": "Cenzoriraj objavo",
 	"flow-moderation-title-delete-post": "Izbriši objavo",
-	"flow-moderation-title-hide-post": "Skrij objavo"
+	"flow-moderation-title-hide-post": "Skrij objavo",
+	"group-flow-bot": "Boti Toka",
+	"group-flow-bot-member": "Bot Toka"
 }
