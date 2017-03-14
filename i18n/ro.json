@@ -3,7 +3,8 @@
 		"authors": [
 			"Minisarm",
 			"Tuxilina",
-			"Nnemo"
+			"Nnemo",
+			"Strainu"
 		]
 	},
 	"flow-user-moderated": "Utilizator moderat",
@@ -19,8 +20,8 @@
 	"flow-summarize-topic-placeholder": "Vă rugăm să faceți un rezumat al acestei discuții",
 	"flow-history-action-delete-post": "șterge",
 	"flow-history-action-hide-post": "ascunde",
-	"flow-history-action-lock-topic": "blochează",
-	"flow-history-action-unlock-topic": "deblochează",
+	"flow-history-action-lock-topic": "rezolvă",
+	"flow-history-action-unlock-topic": "redeschide",
 	"flow-post-action-view": "Legătură permanentă",
 	"flow-post-action-post-history": "Istoric",
 	"flow-post-action-delete-post": "Șterge",
@@ -31,9 +32,8 @@
 	"flow-topic-action-history": "Istoric",
 	"flow-topic-action-hide-topic": "Ascunde subiectul",
 	"flow-topic-action-summarize-topic": "Rezumare",
-	"flow-topic-action-resummarize-topic": "Modifică rezumatul",
+	"flow-topic-action-resummarize-topic": "Modifică rezumatul subiectului",
 	"flow-error-http": "A apărut o eroare în momentul accesării serverului.",
-	"flow-error-other": "A intervenit o eroare neașteptată.",
 	"flow-error-external": "A intervenit o eroare. <br />Mesajul de eroare primit a fost: $1.",
 	"flow-error-topic-is-locked": "Acest subiect este blocat pentru orice acțiuni suplimentare.",
 	"flow-notification-rename-email-subject": "$1 {{GENDER:$1|a redenumit}} subiectul dv."
