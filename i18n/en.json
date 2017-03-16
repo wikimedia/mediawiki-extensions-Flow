@@ -20,7 +20,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Stop}} watching this topic",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|You}} are no longer watching \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|You}} can watch [$2 this topic] anytime.",
-	"flow-desc": "Workflow management system",
+	"flow-desc": "Discussion system",
 	"flow-talk-taken-over-comment": "/* This page has been converted into a Flow discussion board */",
 	"log-name-flow": "Flow activity log",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|deleted}} a [$4 post] on \"[[$3|$5]]\" on [[$6]]",
