@@ -4,7 +4,8 @@
 			"Csega",
 			"Tacsipacsi",
 			"Tgr",
-			"Wolf Rex"
+			"Wolf Rex",
+			"Dj"
 		]
 	},
 	"enableflow": "Flow engedélyezése",
@@ -61,7 +62,7 @@
 	"flow-post-actions": "Műveletek",
 	"flow-topic-actions": "Műveletek",
 	"flow-cancel": "Mégse",
-	"flow-skip-summary": "Összefoglaló átugrása",
+	"flow-skip-summary": "Kihagy",
 	"flow-edit-summary-placeholder": "Foglald össze röviden ennek a megbeszélésnek a kimentelét",
 	"flow-summary-authored": "$1 összefoglalója",
 	"flow-summary-edited": "Az összefoglalót utoljára $1 {{GENDER:$1|szerkesztette}}",

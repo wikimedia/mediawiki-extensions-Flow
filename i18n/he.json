@@ -21,7 +21,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|הפסקת}} המעקב אחרי הנושא הזה",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|אתה כבר לא עוקב|את כבר לא עוקבת|אתם כבר לא עוקבים}} יותר אחרי הנושא \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|באפשרותך|באפשרותך|באפשרותכם}} לעקוב אחרי [$2 הנושא הזה] בכל עת.",
-	"flow-desc": "מערכת ניהול תהליכי עבודה",
+	"flow-desc": "מערכת דיונים",
 	"flow-talk-taken-over-comment": "/* הדף הזה הומר ללוח דיונים של זרימה */",
 	"log-name-flow": "יומן פעילות זרימה",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בנושא \"[[$3|$5]]\" בלוח [[$6]]",
