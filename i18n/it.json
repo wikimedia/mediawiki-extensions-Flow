@@ -28,7 +28,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Rimuovi}} questo argomento dagli osservati speciali",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Non {{GENDER:$3|stai}} più osservando \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Puoi}} inserire [$2 questo argomento] negli osservati speciali in qualsiasi momento.",
-	"flow-desc": "Sistema di gestione del flusso di lavoro",
+	"flow-desc": "Sistema di discussione",
 	"flow-talk-taken-over-comment": "/* Questa pagina è stata convertita in una bacheca di discussione Flow */",
 	"log-name-flow": "Attività sui flussi",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su \"[[$3|$5]]\" su [[$6]]",

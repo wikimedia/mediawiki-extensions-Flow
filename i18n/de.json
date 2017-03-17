@@ -24,7 +24,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "Mit dem Beobachten dieses Themas {{GENDER:$3|aufhören}}",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Du}} beobachtest nicht mehr „$1“",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Du}} kannst jederzeit [$2 dieses Thema] beobachten.",
-	"flow-desc": "Ermöglicht ein Verwaltungssystem zu Benutzerdiskussionen",
+	"flow-desc": "Diskussionssystem",
 	"flow-talk-taken-over-comment": "/* Diese Seite wurde in ein Flow-Diskussionsboard konvertiert */",
 	"log-name-flow": "Flow-Aktivitätslogbuch",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf „[[$3|$5]]“ auf [[$6]]",

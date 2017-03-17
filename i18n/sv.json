@@ -26,7 +26,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Sluta}} bevaka detta ämne",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Du}} bevakar inte längre \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Du}} kan bevaka [$2 detta ämne] när som helst.",
-	"flow-desc": "Arbetsflödeshanteringssystem",
+	"flow-desc": "Diskussionssystem",
 	"flow-talk-taken-over-comment": "/* Denna sida har omvandlats till ett Flow-diskussionsforum */",
 	"log-name-flow": "Aktivitetslogg för Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|raderade}} ett [$4 inlägg] i \"[[$3|$5]]\" på [[$6]]",

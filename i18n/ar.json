@@ -23,7 +23,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|توقف|توقفي}} عن مراقبة هذا الموضوع",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|أنت}} لم تعد تراقب \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|أنت}} يمكنك مراقبة [$2 هذا الموضوع] في أي وقت.",
-	"flow-desc": "نظام إدارة سير عمل التدفق",
+	"flow-desc": "نظام النقاش",
 	"flow-talk-taken-over-comment": "/ * هذه الصفحة تم تحويلها إلى منصة تدفق النقاشات * /",
 	"log-name-flow": "سجل نشاط التدفق",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|حذف}} [$4 منشورًا] في \"[[$3|$5]]\" على [[$6]]",

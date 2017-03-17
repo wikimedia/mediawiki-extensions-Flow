@@ -54,7 +54,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Arrêter}} de suivre cette rubrique",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Vous}} ne suivez plus «&nbsp;$1&nbsp;»",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Vous}}  pouvez suivre [$2 ce sujet] à tout moment.",
-	"flow-desc": "Système de gestion du flux de travail",
+	"flow-desc": "Système de discussion",
 	"flow-talk-taken-over-comment": "/* Cette page a été convertie en flux de discussion Flow */",
 	"log-name-flow": "Journal d’activité de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a supprimé}} un [$4 message] sur « [[$3|$5]] » sur [[$6]]",

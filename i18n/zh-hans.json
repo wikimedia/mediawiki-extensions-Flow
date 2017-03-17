@@ -37,7 +37,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|停止}}监视此话题",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|您}}已不再监视“$1”",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|您}}可以随时监视[$2 此话题]。",
-	"flow-desc": "工作流管理系统",
+	"flow-desc": "讨论系统",
 	"flow-talk-taken-over-comment": "/* 此页面已被转换至一个Flow讨论版 */",
 	"log-name-flow": "Flow活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",

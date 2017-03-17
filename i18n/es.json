@@ -33,7 +33,7 @@
 		]
 	},
 	"enableflow": "Activar Flow",
-	"flow-desc": "Sistema de gestión de flujo de trabajo",
+	"flow-desc": "Sistema de discusión",
 	"flow-talk-taken-over-comment": "/* Esta página se ha convertido en un tablero de discusión Flow */",
 	"log-name-flow": "Registro de actividad de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borró}} una [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
