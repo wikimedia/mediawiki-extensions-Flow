@@ -6,5 +6,10 @@
 		]
 	},
 	"flow-newtopic-save": "Acotcicta",
-	"flow-history-day": "Ke kicikak"
+	"flow-history-action-delete-post": "wepina",
+	"flow-post-action-delete-post": "Wepina",
+	"flow-history-day": "Ke kicikak",
+	"flow-moderation-confirm-delete-post": "Wepina",
+	"flow-moderation-confirm-delete-topic": "Wepina",
+	"flow-ve-mention-inspector-remove-label": "Manina"
 }
