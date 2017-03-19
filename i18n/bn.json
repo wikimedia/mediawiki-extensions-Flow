@@ -15,7 +15,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "নজরতালিকা থেকে এই প্রসঙ্গ দেখা {{GENDER:$3|বাদ দিন}}",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|আপনি}} আর \"$1\"-এর নজর রাখছেন না",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|আপনি}} যেকোন সময় [$2 এই প্রসঙ্গ] নজরে রাখতে পারেন।",
-	"flow-desc": "কর্মপ্রবাহ ব্যবস্থাপনা পদ্ধতি",
+	"flow-desc": "আলোচনার পদ্ধতি",
 	"flow-talk-taken-over-comment": "/* এ পৃষ্ঠাটি ফ্লো আলোচনা বোর্ডে রূপান্তরিত করা হয়েছে */",
 	"log-name-flow": "ফ্লো কার্যকলাপ লগ",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] পাতায় \"[[$3|$5]]\"-এ একটি [$4 প্রকাশনা] {{GENDER:$2|অপসারণ করেছেন}}",
