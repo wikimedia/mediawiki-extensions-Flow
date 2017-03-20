@@ -53,9 +53,14 @@
 		// variable per EditorWidget instance
 
 		if ( switchable ) {
-			mw.flow.ve.Target.static.actionGroups = [
-				{ include: [ 'flowSwitchEditor' ] }
-			];
+			ve.ui.toolFactory.register( mw.flow.ui.MWEditModeVisualTool );
+			ve.ui.toolFactory.register( mw.flow.ui.MWEditModeSourceTool );
+			mw.flow.ve.Target.static.actionGroups = [ {
+				type: 'list',
+				icon: 'edit',
+				title: mw.msg( 'visualeditor-mweditmode-tooltip' ),
+				include: [ 'editModeVisual', 'editModeSource' ]
+			} ];
 		} else {
 			mw.flow.ve.Target.static.actionGroups = [];
 		}
@@ -73,6 +78,14 @@
 
 	mw.flow.ve.Target.prototype.attachToolbar = function () {
 		this.$element.after( this.getToolbar().$element );
+	};
+
+	// TODO: Upstream should use an actionsToolbarConfig static property
+	mw.flow.ve.Target.prototype.getActions = function () {
+		if ( !this.actionsToolbar ) {
+			this.actionsToolbar = new ve.ui.TargetToolbar( this, { position: 'bottom' } );
+		}
+		return this.actionsToolbar;
 	};
 
 	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {

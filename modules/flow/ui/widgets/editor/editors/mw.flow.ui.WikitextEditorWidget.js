@@ -39,14 +39,6 @@
 			.end();
 
 		if ( mw.flow.ui.WikitextEditorWidget.static.switchable ) {
-			// Toolbar
-			this.toolFactory = new OO.ui.ToolFactory();
-			this.toolFactory.register( mw.flow.ui.SwitchToVeTool );
-			this.toolGroupFactory = new OO.ui.ToolGroupFactory();
-			this.toolbar = new OO.ui.Toolbar( this.toolFactory, this.toolGroupFactory, { position: 'bottom' } );
-			this.toolbar.setup( [ { include: [ 'flowSwitchEditor' ] } ] );
-			this.initializedToolbar = false;
-
 			$preview = $( '<a>' )
 				.attr( 'href', '#' )
 				.addClass( 'flow-ui-wikitextEditorWidget-label-preview' )
@@ -58,14 +50,38 @@
 					$preview[ 0 ].outerHTML
 				] ).parse()
 			);
-
-			// Events
-			this.toolbar.connect( this, { switchEditor: [ 'emit', 'switch' ] } );
 			$message.find( '.flow-ui-wikitextEditorWidget-label-preview' )
 				.on( 'click', function () {
 					widget.emit( 'switch' );
 					return false;
 				} );
+
+			mw.loader.using( 'ext.flow.switching', function () {
+				// Toolbar
+				var toolFactory = new OO.ui.ToolFactory(),
+					toolGroupFactory = new OO.ui.ToolGroupFactory();
+
+				toolFactory.register( mw.flow.ui.MWEditModeVisualTool );
+				toolFactory.register( mw.flow.ui.MWEditModeSourceTool );
+
+				widget.toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory, { position: 'bottom' } );
+				widget.toolbar.setup( [ {
+					type: 'list',
+					icon: 'edit',
+					title: mw.msg( 'visualeditor-mweditmode-tooltip' ),
+					include: [ 'editModeVisual', 'editModeSource' ]
+				} ] );
+				widget.toolbar.emit( 'updateState' );
+
+				widget.$element.append( widget.toolbar.$element );
+
+				// Events
+				widget.toolbar.on( 'switchEditor', function ( mode ) {
+					if ( mode === 'visual' ) {
+						widget.emit( 'switch' );
+					}
+				} );
+			} );
 		} else {
 			$message = $( '<span>' ).append(
 				mw.message( 'flow-wikitext-editor-help' ).params( [
@@ -86,10 +102,9 @@
 		// Initialize
 		this.$element
 			.addClass( 'flow-ui-wikitextEditorWidget' )
-			.append(
+			.prepend(
 				this.input.$element,
-				label.$element,
-				this.toolbar ? this.toolbar.$element : []
+				label.$element
 			);
 	};
 
@@ -163,10 +178,8 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.WikitextEditorWidget.prototype.afterAttach = function () {
-		if ( this.toolbar && !this.initializedToolbar ) {
+		if ( this.toolbar ) {
 			this.toolbar.initialize();
-			// Prevent double initialization; will not be needed with OOjs UI >=0.12.8
-			this.initializedToolbar = true;
 		}
 	};
 
