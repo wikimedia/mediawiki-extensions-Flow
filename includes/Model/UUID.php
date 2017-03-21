@@ -187,7 +187,7 @@ class UUID implements ApiSerializable {
 					return new static( $value, $type );
 				}
 			}
-		} else if ( is_object( $input ) ) {
+		} elseif ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
 				return $input;
 			} elseif ( $input instanceof Blob ) {

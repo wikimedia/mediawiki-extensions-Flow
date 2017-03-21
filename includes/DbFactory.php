@@ -47,7 +47,7 @@ class DbFactory {
 	 * Gets a database connection for the Flow-specific database.
 	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
-	 * @return \DatabaseBase
+	 * @return \Database
 	 */
 	public function getDB( $db ) {
 		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, array(), $this->wiki );
@@ -56,7 +56,7 @@ class DbFactory {
 	/**
 	 * Gets a load balancer for the Flow-specific database.
 	 *
-	 * @return \LoadBalancer
+	 * @return \Wikimedia\Rdbms\LoadBalancer
 	 */
 	public function getLB() {
 		if ( $this->cluster !== false ) {
