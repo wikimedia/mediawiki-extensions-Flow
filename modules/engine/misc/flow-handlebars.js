@@ -13,7 +13,6 @@
 
 	/**
 	 * Instantiates a FlowHandlebars instance for TemplateEngine.
-	 * @param {Object} FlowStorageEngine
 	 * @return {FlowHandlebars}
 	 * @constructor
 	 */

@@ -24,12 +24,10 @@
 	 * so that it can store a workflowId and pageName permanently for simplicity.
 	 *
 	 * @constructor
-	 * @param {Object} storageEngine
 	 * @param {string} [workflowId]
 	 * @param {string} [pageName]
 	 */
-	function FlowApi( storageEngine, workflowId, pageName ) {
-		this.StorageEngine = storageEngine;
+	function FlowApi( workflowId, pageName ) {
 		this.workflowId = workflowId;
 		this.pageName = pageName;
 
@@ -94,8 +92,6 @@
 		this.apiCall = flowApiCall;
 	}
 
-	/** @type {Storer} */
-	FlowApi.prototype.StorageEngine = null;
 	/** @type {string} */
 	FlowApi.prototype.pageName = null;
 	/** @type {string} */

@@ -430,7 +430,6 @@
 				"oojs",
 				"ext.flow.templating",
 				"ext.flow.jquery.findWithParent",
-				"ext.flow.vendor.storer",
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.Uri",
@@ -596,17 +595,6 @@
 				"mw-ui-unsubmitted-confirm",
 				"flow-reply-link",
 				"flow-reply-link-anonymously"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.vendor.storer": {
-			"localBasePath": "",
-			"remoteExtPath": "Flow",
-			"scripts": [
-				"vendor/modules/Storer.js"
 			],
 			"targets": [
 				"desktop",
