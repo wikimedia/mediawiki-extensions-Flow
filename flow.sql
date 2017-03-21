@@ -7,7 +7,7 @@ CREATE TABLE /*_*/flow_workflow (
 	workflow_namespace int not null,
 	workflow_page_id int unsigned not null,
 	workflow_title_text varchar(255) binary not null,
-    workflow_name varchar(255) binary not null,
+	workflow_name varchar(255) binary not null,
 	workflow_last_update_timestamp binary(14) not null,
 	-- TODO: is this useful as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
