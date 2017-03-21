@@ -13,7 +13,7 @@
 		]
 	},
 	"enableflow": "Aktivovat Flow",
-	"flow-desc": "Systém pro správu workflow",
+	"flow-desc": "Diskusní systém",
 	"flow-talk-taken-over-comment": "/* Tato stránka byla převedena na nástěnku Flow */",
 	"log-name-flow": "Kniha aktivity Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|smazal|smazala}} [$4 příspěvek] k tématu „[[$3|$5]]“ na stránce [[$6]]",

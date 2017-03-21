@@ -37,7 +37,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Stop}} met het volgen van dit onderwerp",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|U}} volgt \"$1\" niet meer",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|U}} kunt [$2 dit onderwerp] op elk moment volgen.",
-	"flow-desc": "Workflowmanagementsysteem",
+	"flow-desc": "Discussiesysteem",
 	"flow-talk-taken-over-comment": "/* Deze pagina is omgezet naar een Flow-discussiebord */",
 	"log-name-flow": "Logboek Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3|$5]] op [[$6]]",

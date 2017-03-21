@@ -9,7 +9,7 @@
 		]
 	},
 	"enableflow": "Flow engedélyezése",
-	"flow-desc": "Munkafolyamat-kezelő rendszer",
+	"flow-desc": "Megbeszélésrendszer",
 	"flow-talk-taken-over-comment": "/* Ez a lap át lett alakítva egy Flow-megbeszéléssé */",
 	"log-name-flow": "Flow-aktivitás naplója",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|törölt}} egy [$4 hozzászólást] a(z) „[[$3|$5]]” témából a(z) [[$6]] lapon",

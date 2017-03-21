@@ -7,7 +7,7 @@
 			"Cumbril"
 		]
 	},
-	"flow-desc": "Töövoo haldamise süsteem",
+	"flow-desc": "Arutelusüsteem",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|kustutas}} leheküljel [[$6]] [$4 postituse] \"[[$3|$5]]\"",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|taastas}} leheküljel [[$6]] [$4 postituse] \"[[$3|$5]]\"",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|varjas}} leheküljel [[$6]] [$4 postituse] \"[[$3|$5]]\"",
