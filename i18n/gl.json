@@ -17,7 +17,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Parar}} de vixiar este tema",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Xa}} non está a vixiar \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Pode}} vixiar [$2 este tema] en calquera momento.",
-	"flow-desc": "Sistema de xestión do fluxo de traballo",
+	"flow-desc": "Sistema de conversa",
 	"flow-talk-taken-over-comment": "/* Esta páxina foi convertida a un taboleiro de discusión de Flow */",
 	"log-name-flow": "Rexistro de actividade de Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borrou}} unha [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",
