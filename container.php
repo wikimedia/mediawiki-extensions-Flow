@@ -125,7 +125,6 @@ use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\BasicDbStorage;
 use Flow\Data\Storage\TopicListStorage;
-use Flow\Data\Storage\TopicListLastUpdatedStorage;
 use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
@@ -494,13 +493,6 @@ $c['storage.post_summary'] = function( $c ) {
 $c['storage.topic_list.class'] = 'Flow\Model\TopicListEntry';
 $c['storage.topic_list.table'] = 'flow_topic_list';
 $c['storage.topic_list.primary_key'] = array( 'topic_list_id', 'topic_id' );
-$c['storage.topic_list.indexes.last_updated.backend'] = function( $c ) {
-	return new TopicListLastUpdatedStorage(
-		$c['db.factory'],
-		$c['storage.topic_list.table'],
-		$c['storage.topic_list.primary_key']
-	);
-};
 $c['storage.topic_list.mapper'] = function( $c ) {
 	// Must be BasicObjectMapper, due to variance in when
 	// we have workflow_last_update_timestamp
@@ -544,7 +536,7 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 $c['storage.topic_list.indexes.last_updated'] = function( $c ) {
 	return new TopKIndex(
 		$c['flowcache'],
-		$c['storage.topic_list.indexes.last_updated.backend'],
+		$c['storage.topic_list.backend'],
 		$c['storage.topic_list.mapper'],
 		'flow_topic_list_last_updated:list',
 		array( 'topic_list_id' ),

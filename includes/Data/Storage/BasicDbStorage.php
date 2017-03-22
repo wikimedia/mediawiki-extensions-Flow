@@ -139,13 +139,7 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-		$res = $dbr->select(
-			$this->table,
-			'*',
-			$attributes,
-			__METHOD__ . " ({$this->table})",
-			$options
-		);
+		$res = $this->doFindQuery( $attributes, $options );
 		if ( $res === false ) {
 			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
@@ -155,6 +149,16 @@ class BasicDbStorage extends DbStorage {
 			$result[] = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
 		}
 		return $result;
+	}
+
+	protected function doFindQuery( array $preprocessedAttributes, array $options = array() ) {
+		return $this->dbFactory->getDB( DB_SLAVE )->select(
+			$this->table,
+			'*',
+			$preprocessedAttributes,
+			__METHOD__ . " ({$this->table})",
+			$options
+		);
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
