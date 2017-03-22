@@ -296,7 +296,7 @@ class Importer {
 					}
 					$attribs[ $userField . 'id' ] = $localUser->getId();
 					$attribs[ $userField . 'wiki' ] = wfWikiID();
-				} else if ( isset( $attribs[ $userField . 'ip' ] ) ) {
+				} elseif ( isset( $attribs[ $userField . 'ip' ] ) ) {
 					// make anons local users
 					$attribs[ $userField . 'wiki' ] = wfWikiID();
 				}

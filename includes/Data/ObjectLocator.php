@@ -281,7 +281,7 @@ class ObjectLocator {
 				$current = $index;
 
 			// Find the smallest matching index
-			} else if ( isset( $options['limit'] ) ) {
+			} elseif ( isset( $options['limit'] ) ) {
 				$current = $index->getLimit() < $current->getLimit() ? $index : $current;
 
 			// if no limit specified, find biggest matching index
