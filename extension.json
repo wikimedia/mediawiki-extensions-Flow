@@ -1060,7 +1060,6 @@
 		"Flow\\Data\\Storage\\PostSummaryRevisionBoardHistoryStorage": "includes/Data/Storage/PostSummaryRevisionBoardHistoryStorage.php",
 		"Flow\\Data\\Storage\\PostSummaryRevisionStorage": "includes/Data/Storage/PostSummaryRevisionStorage.php",
 		"Flow\\Data\\Storage\\RevisionStorage": "includes/Data/Storage/RevisionStorage.php",
-		"Flow\\Data\\Storage\\TopicListLastUpdatedStorage": "includes/Data/Storage/TopicListLastUpdatedStorage.php",
 		"Flow\\Data\\Storage\\TopicListStorage": "includes/Data/Storage/TopicListStorage.php",
 		"Flow\\Data\\Utils\\Merger": "includes/Data/Utils/Merger.php",
 		"Flow\\Data\\Utils\\MultiDimArray": "includes/Data/Utils/MultiDimArray.php",

@@ -7,6 +7,17 @@ namespace Flow\Data\Storage;
  */
 class TopicListStorage extends BasicDbStorage {
 
+	protected function doFindQuery( array $preprocessedAttributes, array $options = array() ) {
+		return $this->dbFactory->getDB( DB_SLAVE )->select(
+			array( $this->table, 'flow_workflow' ),
+			array( 'topic_list_id', 'topic_id', 'workflow_last_update_timestamp' ),
+			$preprocessedAttributes,
+			__METHOD__ . " ({$this->table})",
+			$options,
+			array( 'flow_workflow' => array( 'INNER JOIN', 'workflow_id = topic_id' ) )
+		);
+	}
+
 	/**
 	 * We need workflow_last_update_timestamp for updating
 	 * the ordering in cache
