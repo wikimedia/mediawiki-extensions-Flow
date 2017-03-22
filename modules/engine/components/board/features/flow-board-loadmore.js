@@ -476,6 +476,10 @@
 		}
 
 		function _createRevPagination( $target ) {
+			// FIXME reverse pagination is broken in the backend, don't use it
+			return;
+
+			// eslint-disable-next-line no-unreachable
 			if ( !topicsData.links.pagination.fwd && !topicsData.links.pagination.rev ) {
 				return;
 			}
@@ -589,6 +593,10 @@
 
 				// Put the new topic after the found topic above it
 				if ( j >= 0 ) {
+					// If there is a load-more here, insert after that as well
+					if ( $topic.next().hasClass( 'flow-load-more' ) ) {
+						$topic = $topic.next();
+					}
 					$topic.after( flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i ] ] );
 				}
 			}
