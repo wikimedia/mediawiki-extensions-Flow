@@ -111,5 +111,7 @@
 	"apihelp-flow+undo-edit-topic-summary-description": "Obter a información necesaria para desfacer a edición dun resumo de tema.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Identificador de revisión no que comezar a desfacer.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Identificador de revisión no que rematar de desfacer.",
-	"apihelp-flow+undo-edit-topic-summary-example-1": "Obter información sobre como desfacer unha edición nun resumo de tema nun tema específico."
+	"apihelp-flow+undo-edit-topic-summary-example-1": "Obter información sobre como desfacer unha edición nun resumo de tema nun tema específico.",
+	"apierror-flow-safeallowcreationfailed": "A páxina proporcionada non ten activado o Flow e safeAllowCreation deu o erro: $1",
+	"apierror-flow-notenabled": "A páxina proporcionada non ten activo Flow."
 }
