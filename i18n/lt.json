@@ -14,6 +14,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Nebestebėti}} šios temos",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Jūs}} nebesekate „$1“",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Jūs}} galite sekti [$2 šią temą] bet kada.",
+	"flow-desc": "Diskusijų sistema",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|ištrynė}} [$4 įrašą] „[[$3|$5]]“ [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|ištrynė}} įrašą temoje [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|atkūrė}} [$4 įrašą] „[[$3|$5]]“ [[$6]]",

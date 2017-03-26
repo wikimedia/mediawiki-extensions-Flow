@@ -27,7 +27,8 @@
 			"Jack who built the house",
 			"Туллук",
 			"Kareyac",
-			"Alex Great"
+			"Alex Great",
+			"Redredsonia"
 		]
 	},
 	"enableflow": "Включить Flow",
@@ -37,7 +38,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Перестать}} следить за этой темой",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Вы}} больше не следите за «$1»",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Вы}} можете возобновить отслеживание [$2 этой страницы] в любой момент.",
-	"flow-desc": "Система управления Flow",
+	"flow-desc": "Система обсуждения",
 	"flow-talk-taken-over-comment": "/* Эта страница была преобразована в стену обсуждений Flow */",
 	"log-name-flow": "Журнал активности Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|удалил|удалила}} [$4 сообщение] в «[[$3|$5]]» на [[$6]]",
