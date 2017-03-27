@@ -46,6 +46,7 @@
 	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|herstelde}} een reactie over een onderwerp op [[$3]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|heeft}} een [$4 bericht] onderdrukt op [[$3|$5]] op [[$6]]",
 	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3|$5]] op [[$6]]",
+	"logentry-suppress-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|verwijderde}} een reactie op een onderwerp op [[$3]]",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|heeft}} het onderwerp \"[[$3|$5]]\" op [[$6]] verwijderd",
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1 {{GENDER:$2|verwijderde}} een onderwerp op [[$3]]",
 	"logentry-delete-flow-restore-topic": "$1 {{GENDER:$2|heeft}} het onderwerp \"[[$3|$5]]\" op [[$6]] teruggeplaatst",
@@ -515,6 +516,7 @@
 	"flow-dialog-cancelconfirm-discard": "Wijzigingen annuleren",
 	"flow-optin-restore-wikitext": "Gearchiveerde wikitekstpagina herstellen.",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Welkom}} op {{GENDER:$1|uw}} nieuwe gebruikersoverlegpagina",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Uw}} overlegpagina is de plaats waar andere bewerkers contact met {{GENDER:$1|u}} kunnen zoeken. Met Flow is het makkelijker om nieuwe onderwerpen te starten en om de gesprekken bij te houden.",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Uw}} oude discussies terugvinden",
 	"flow-guidedtour-optin-find-old-conversations-description": "Eerdere discussies zijn verplaatst naar het archief.",
 	"flow-guidedtour-optin-feedback": "Geef ons {{GENDER:$1|uw}} terugkoppeling!"
