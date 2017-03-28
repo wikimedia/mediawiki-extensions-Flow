@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e436fe2_84910cfe",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2017-03-28T19:50:50Z",
+      "side": 1,
+      "message": "Requires spaces per Jenkins, I\u0027ll add them.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 53
+      },
+      "revId": "274cf24774e436331fa8f14a6fcff662d6d4983a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
