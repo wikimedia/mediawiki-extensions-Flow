@@ -6,7 +6,7 @@
 			"Nicolas Eynaud"
 		]
 	},
-	"flow-desc": "Sistèma de gestion del flux de trabalh",
+	"flow-desc": "Sistèma de discussion",
 	"log-name-flow": "Jornal de flux d’activitat",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a suprimit}} una [$4 publicacion] sus « [[$3|$5]] » sus [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|a restablit}} una [$4 nòta] sus  \"[[$3|$5]]\" lo [[$6]]",
