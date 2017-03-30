@@ -65,6 +65,8 @@
 				toolFactory.register( mw.flow.ui.MWEditModeSourceTool );
 
 				widget.toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory, { position: 'bottom' } );
+				// HACK: Disable narrow mode
+				widget.toolbar.narrowThreshold = 0;
 				widget.toolbar.setup( [ {
 					type: 'list',
 					icon: 'edit',
