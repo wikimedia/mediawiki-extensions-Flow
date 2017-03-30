@@ -298,8 +298,12 @@
 				widget.switchingPromise = null;
 
 				if ( shouldFocus ) {
-					newEditor.focus();
-					newEditor.moveCursorToEnd();
+					// Defer in case user event which triggered switch is
+					// a focus-stealing one.
+					setTimeout( function () {
+						newEditor.focus();
+						newEditor.moveCursorToEnd();
+					} );
 				}
 			} )
 			.fail( function ( error ) {
