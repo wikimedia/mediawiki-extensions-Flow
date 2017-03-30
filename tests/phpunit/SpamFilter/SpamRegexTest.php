@@ -39,7 +39,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
 		$title = Title::newFromText( 'UTPage' );
 
-		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title );
+		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
