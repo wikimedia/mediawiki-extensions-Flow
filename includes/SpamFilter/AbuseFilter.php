@@ -59,11 +59,17 @@ class AbuseFilter implements SpamFilter {
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
+	 * @param Title $ownerTitle
 	 * @return Status
 	 */
-	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title, Title $ownerTitle ) {
 		$vars = \AbuseFilter::getEditVars( $title );
-		$vars->addHolders( \AbuseFilter::generateUserVars( $context->getUser() ), \AbuseFilter::generateTitleVars( $title , 'ARTICLE' ) );
+		$vars->addHolders(
+			\AbuseFilter::generateUserVars( $context->getUser() ),
+			\AbuseFilter::generateTitleVars( $title, 'ARTICLE' ),
+			\AbuseFilter::generateTitleVars( $ownerTitle, 'BOARD' )
+		);
+
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
 
 		/*
