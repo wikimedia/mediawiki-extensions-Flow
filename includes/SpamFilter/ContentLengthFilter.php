@@ -29,7 +29,7 @@ class ContentLengthFilter implements SpamFilter {
 	 * @param Title $title
 	 * @return Status
 	 */
-	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title, Title $ownerTitle ) {
 		return $newRevision->getContentLength() > $this->maxLength
 			? Status::newFatal( 'flow-error-content-too-long', $this->maxLength )
 			: Status::newGood();

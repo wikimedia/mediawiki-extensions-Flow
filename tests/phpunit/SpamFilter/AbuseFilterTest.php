@@ -13,6 +13,9 @@ use User;
  * @group Flow
  */
 class AbuseFilterTest extends PostRevisionTestCase {
+	const BAD_TOPIC_TITLE_TEXT = 'Topic:Tnprd6ksfu1v1nme';
+	const BAD_OWNER_TITLE_TEXT = 'BadBoard';
+
 	/**
 	 * @var AbuseFilter
 	 */
@@ -26,22 +29,50 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	protected $filters = array(
 		// no CSS screen hijack
 		'(new_wikitext rlike "position\s*:\s*(fixed|absolute)|style\s*=\s*\"[a-z0-9:;\s]*&|z-index\s*:\s*\d|\|([4-9]\d{3}|\d{5,})px")' => 'disallow',
+		'(ARTICLE_PREFIXEDTEXT === "' . self::BAD_TOPIC_TITLE_TEXT . '")' => 'disallow',
+		'(BOARD_PREFIXEDTEXT === "' . self::BAD_OWNER_TITLE_TEXT . '")' => 'disallow',
 	);
 
 	public function spamProvider() {
+		$goodTopicTitle = Title::newFromText( 'Topic:Tnpn1618hctgeguu' );
+		$goodOwnerTitle = Title::newFromText( 'UTPage' );
+
+		$badTopicTitle = Title::newFromText( self::BAD_TOPIC_TITLE_TEXT );
+		$badOwnerTitle = Title::newFromText( self::BAD_OWNER_TITLE_TEXT );
+
 		return array(
 			array(
-				// default new topic title revision - no spam
+				$goodTopicTitle,
+				$goodOwnerTitle,
+				// default new topic title revision, both good titles - no spam
 				$this->generateObject(),
 				null,
-				true
+				true,
 			),
 			array(
+				$goodTopicTitle,
+				$goodOwnerTitle,
 				// revision with spam
 				// https://www.mediawiki.org/w/index.php?title=Talk:Sandbox&workflow=050bbdd07b64a1c028b2782bcb087b42#flow-post-050bbdd07b70a1c028b2782bcb087b42
 				$this->generateObject( array( 'rev_content' => '<div style="background: yellow; position: fixed; top: 0; left: 0; width: 3000px; height: 3000px; z-index: 1111;">test</div>', 'rev_flags' => 'html' ) ),
 				null,
-				false
+				false,
+			),
+			array(
+				$badTopicTitle,
+				$goodOwnerTitle,
+				$this->generateObject(),
+				// Topic title matches
+				null,
+				false,
+			),
+			array(
+				$goodTopicTitle,
+				$badOwnerTitle,
+				$this->generateObject(),
+				// Owner title matches
+				null,
+				false,
 			),
 		);
 	}
@@ -49,9 +80,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
-		$title = Title::newFromText( 'UTPage' );
-
+	public function testSpam( $title, $ownerTitle, PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
 		$context = $this->getMockBuilder( 'ContextSource' )
 				->setMethods( array( 'getUser' ) )
 				->getMock();
@@ -59,7 +88,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 				->method( 'getUser' )
 				->will( $this->returnValue( User::newFromName( 'UTSysop' ) ) );
 
-		$status = $this->spamFilter->validate( $context, $newRevision, $oldRevision, $title );
+		$status = $this->spamFilter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
