@@ -12,13 +12,15 @@
 			"JackUKElliott",
 			"Macofe",
 			"Hbseren",
-			"Sadrettin"
+			"Sadrettin",
+			"Vito Genovese"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Konulara göz at",
 	"flow-topic-moderated-reason-prefix": "Sebep:",
 	"flow-stub-post-content": "<em>Teknik bir hata nedeniyle, bu yazı alınamadı.</em>",
 	"flow-newtopic-start-placeholder": "Yeni bir konu başlat",
+	"flow-post-action-edit-post": "Düzenle",
 	"flow-topic-action-lock-topic": "Konuyu kilitle",
 	"flow-topic-action-unlock-topic": "Konunun kilidini aç",
 	"flow-topic-action-undo-moderation": "Geri alın",
