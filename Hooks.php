@@ -1859,7 +1859,7 @@ class FlowHooks {
 		$userWhere = array();
 		if ( $username ) {
 			$user = User::newFromName( $username );
-			if ( $user ) {
+			if ( $user && $user->isLoggedIn() ) {
 				$userWhere = array( 'tree_orig_user_id' => $user->getId() );
 			} else {
 				$userWhere = array( 'tree_orig_user_ip' => $username );
