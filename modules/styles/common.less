@@ -96,6 +96,14 @@
 	height: 100px;
 }
 
+
+// Override oojs-ui's frameless-buttons having
+// a white border inside the description area
+// (which has a grey background)
+.flow-ui-boardDescriptionWidget-editButton.oo-ui-widget.oo-ui-buttonElement .oo-ui-buttonElement-button {
+	border-color: transparent;
+}
+
 @media all and ( min-width: @small ) {
 	.flow-topic-meta {
 		font-size: 1em;
