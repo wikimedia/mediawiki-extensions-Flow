@@ -27,7 +27,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Parar}} de vigiar este tópico",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Já não {{GENDER:$3|está}} a vigiar \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Pode}} vigiar [$2 este tópico] em qualquer altura.",
-	"flow-desc": "Sistema de gestão do fluxo de trabalho",
+	"flow-desc": "Sistema de discussão",
 	"flow-talk-taken-over-comment": "/* Esta página foi convertida num espaço de discussão Flow */",
 	"log-name-flow": "Registo de atividade do Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|eliminou}} uma [$4 mensagem] em \"[[$3|$5]]\" no [[$6]]",
