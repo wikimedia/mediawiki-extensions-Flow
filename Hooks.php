@@ -917,6 +917,21 @@ class FlowHooks {
 	}
 
 	/**
+	 * Define and add descriptions for board-related variables
+	 * @param $realValues array
+	 * @return bool
+	 */
+	public static function onAbuseFilterBuilder( &$realValues ) {
+		$realValues['vars'] += array(
+			'board_articleid' => 'board-articleid',
+			'board_namespace' => 'board-namespace',
+			'board_text' => 'board-text',
+			'board_prefixedtext' => 'board-prefixedtext',
+		);
+		return true;
+	}
+
+	/**
 	 * Adds lazy-load methods for AbstractRevision objects.
 	 *
 	 * @param string $method: Method to generate the variable

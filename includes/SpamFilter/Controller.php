@@ -35,16 +35,18 @@ class Controller {
 	 * @param IContextSource $context
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision|null $oldRevision
-	 * @param Title $title
+	 * @param Title $title Title that is most specific to the action, e.g. topic for
+	 *   replies and board for header edits.
+	 * @param Title $ownerTitle Board title
 	 * @return Status
 	 */
-	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
+	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title, Title $ownerTitle ) {
 		foreach ( $this->spamfilters as $spamfilter ) {
 			if ( !$spamfilter->enabled() ) {
 				continue;
 			}
 
-			$status = $spamfilter->validate( $context, $newRevision, $oldRevision, $title );
+			$status = $spamfilter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
 
 			// no need to go through other filters when invalid data is discovered
 			if ( !$status->isOK() ) {

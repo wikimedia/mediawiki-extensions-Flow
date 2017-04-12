@@ -758,6 +758,7 @@
 		"ContributionsLineEnding": "FlowHooks::onContributionsLineEnding",
 		"DeletedContributionsLineEnding": "FlowHooks::onDeletedContributionsLineEnding",
 		"ApiFeedContributions::feedItem": "FlowHooks::onContributionsFeedItem",
+		"AbuseFilter-builder": "FlowHooks::onAbuseFilterBuilder",
 		"AbuseFilter-computeVariable": "FlowHooks::onAbuseFilterComputeVariable",
 		"AbortEmailNotification": "FlowHooks::onAbortEmailNotification",
 		"BeforeDisplayOrangeAlert": "FlowHooks::onBeforeDisplayOrangeAlert",

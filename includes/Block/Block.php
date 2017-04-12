@@ -319,7 +319,7 @@ abstract class AbstractBlock implements Block {
 	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
 		/** @var SpamFilterController $spamFilter */
 		$spamFilter = Container::get( 'controller.spamfilter' );
-		$status = $spamFilter->validate( $this->context, $new, $old, $this->workflow->getArticleTitle() );
+		$status = $spamFilter->validate( $this->context, $new, $old, $this->workflow->getArticleTitle(), $this->workflow->getOwnerTitle() );
 		if ( $status->isOK() ) {
 			return true;
 		}
