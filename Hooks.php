@@ -459,6 +459,7 @@ class FlowHooks {
 		if ( is_array( $classes ) ) {
 			// Add the flow class to <li>
 			$classes[] = 'flow-recentchanges-line';
+			$classes[] = 'mw-changeslist-src-mw-edit';
 		}
 		// Update the line markup
 		$s = $line;
@@ -520,8 +521,8 @@ class FlowHooks {
 	 * @param RecentChange $rc
 	 * @return bool
 	 */
-	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc ) {
-		return static::onEnhancedChangesListModifyBlockLineData( $changesList, $data, $rc );
+	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc, &$classes ) {
+		return static::onEnhancedChangesListModifyBlockLineData( $changesList, $data, $rc, $classes );
 	}
 
 	/**
@@ -530,7 +531,7 @@ class FlowHooks {
 	 * @param RecentChange $rc
 	 * @return bool
 	 */
-	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc ) {
+	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc, &$classes ) {
 		// quit if non-flow
 		if ( !FlowHooks::isFlow( $rc ) ) {
 			return true;
@@ -547,6 +548,9 @@ class FlowHooks {
 		try {
 			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
 			$data['recentChangesFlags'] = $formatter->getFlags( $row, $changesList );
+			if ( $classes ) {
+				$classes[] = 'mw-changeslist-src-mw-edit';
+			}
 		} catch ( PermissionException $e ) {
 			return false;
 		}
