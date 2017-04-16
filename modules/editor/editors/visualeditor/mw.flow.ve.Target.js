@@ -80,14 +80,6 @@
 		this.$element.after( this.getToolbar().$element );
 	};
 
-	// TODO: Upstream should use an actionsToolbarConfig static property
-	mw.flow.ve.Target.prototype.getActions = function () {
-		if ( !this.actionsToolbar ) {
-			this.actionsToolbar = new ve.ui.TargetToolbar( this, { position: 'bottom' } );
-		}
-		return this.actionsToolbar;
-	};
-
 	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {
 		var i, len;
 		for ( i = 0, len = this.surfaces.length; i < len; i++ ) {
