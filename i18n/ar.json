@@ -13,7 +13,8 @@
 			"علاء",
 			"بدارين",
 			"زكريا",
-			"Youssef"
+			"Youssef",
+			"ديفيد"
 		]
 	},
 	"enableflow": "فعّل ميزة تدفق",
@@ -26,7 +27,7 @@
 	"flow-desc": "نظام النقاش",
 	"flow-talk-taken-over-comment": "/ * هذه الصفحة تم تحويلها إلى منصة تدفق النقاشات * /",
 	"log-name-flow": "سجل نشاط التدفق",
-	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|حذف}} [$4 منشورًا] في \"[[$3|$5]]\" على [[$6]]",
+	"logentry-delete-flow-delete-post": "{{GENDER:$2|حذف}} $1 [$4 منشورًا] في \"[[$3|$5]]\" على [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|حذف}} تعليق على موضوع على [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|استعاد}} [$4 تعليق] على \"[[$3|$5]]\" على [[$6]]",
 	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|استعاد}} تعليقا على موضوع على [[$3]]",
