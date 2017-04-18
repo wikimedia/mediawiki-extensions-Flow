@@ -771,6 +771,7 @@
 	 */
 	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey ) {
 		var $wrapper,
+			$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' ),
 			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
 			anonWarning = new mw.flow.ui.AnonWarningWidget( {
 				isProbablyEditable: isProbablyEditable
@@ -808,10 +809,12 @@
 
 		$wrapper = $( '<div>' )
 			.append(
-				error.$element,
-				captchaWidget.$element,
-				anonWarning.$element,
-				canNotEdit.$element,
+				$messages.append(
+					error.$element,
+					captchaWidget.$element,
+					anonWarning.$element,
+					canNotEdit.$element
+				),
 				editor.$element
 			);
 

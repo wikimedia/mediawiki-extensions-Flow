@@ -97,13 +97,17 @@
 		// Initialization
 		this.updateFormState();
 
+		this.$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' );
+
 		this.$element
 			.addClass( 'flow-ui-newTopicWidget' )
 			.append(
-				this.anonWarning.$element,
-				this.canNotEdit.$element,
-				this.error.$element,
-				this.captchaWidget.$element,
+				this.$messages.append(
+					this.anonWarning.$element,
+					this.canNotEdit.$element,
+					this.error.$element,
+					this.captchaWidget.$element
+				),
 				this.title.$element,
 				this.editor.$element
 			);
