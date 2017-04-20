@@ -1197,6 +1197,7 @@
 		"Flow\\Log\\LqtImportFormatter": "includes/Log/LqtImportFormatter.php",
 		"Flow\\Log\\ModerationLogger": "includes/Log/ModerationLogger.php",
 		"Flow\\MentionPresentationModel": "includes/Notifications/MentionPresentationModel.php",
+		"Flow\\MentionStatusPresentationModel": "includes/Notifications/MentionStatusPresentationModel.php",
 		"Flow\\Model\\AbstractRevision": "includes/Model/AbstractRevision.php",
 		"Flow\\Model\\AbstractSummary": "includes/Model/AbstractSummary.php",
 		"Flow\\Model\\Anchor": "includes/Model/Anchor.php",
