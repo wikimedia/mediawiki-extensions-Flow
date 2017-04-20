@@ -182,6 +182,7 @@
 	mw.flow.ui.WikitextEditorWidget.prototype.afterAttach = function () {
 		if ( this.toolbar ) {
 			this.toolbar.initialize();
+			this.toolbar.emit( 'updateState' );
 		}
 	};
 
