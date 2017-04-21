@@ -229,14 +229,7 @@
 			return new OO.ui.Process( deferred.promise() );
 		} else if ( action === 'remove' ) {
 			return new OO.ui.Process( function () {
-				var doc, nodeRange;
-
-				doc = surfaceModel.getDocument();
-				nodeRange = this.selectedNode.getOuterRange();
-
-				surfaceModel.change(
-					ve.dm.Transaction.newFromRemoval( doc, nodeRange )
-				);
+				this.getFragment().removeContent();
 
 				this.close( { action: action } );
 			}, this );
