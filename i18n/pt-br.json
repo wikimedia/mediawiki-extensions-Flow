@@ -455,7 +455,7 @@
 	"flow-wikitext-editor-help": "Wikitexto $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitexto $1 e você pode $2 a qualquer momento.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa marcação]]",
-	"flow-wikitext-editor-help-preview-the-result": "visualizar resultado",
+	"flow-wikitext-editor-help-preview-the-result": "visualizar o resultado",
 	"flow-wikitext-switch-editor-tooltip": "Alternar para o VisualEditor",
 	"flow-ve-switch-editor-tool-title": "Alternar para o editor wikitexto",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
