@@ -10,11 +10,12 @@
 			"Otokoume",
 			"Sujiniku",
 			"Nnemo",
-			"Macofe"
+			"Macofe",
+			"Omotecho"
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "いつもで[$2 話題]を閲覧できます。",
-	"flow-desc": "ワークフロー管理システム",
+	"flow-desc": "議論管理システム",
 	"flow-talk-taken-over-comment": "/* このページは a Flow discussion board  に変換されています */",
 	"log-name-flow": "Flow活動記録",
 	"logentry-delete-flow-delete-post": "$1 が [[$6]]上の \"[[$3|$5]]\" の [$4 投稿]を {{GENDER:$2|削除}}",
