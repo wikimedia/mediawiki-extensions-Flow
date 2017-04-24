@@ -60,6 +60,7 @@
 	"flow-special-enableflow-invalid-title": "Geçersiz bir sayfa başlığı girildi",
 	"flow-importer-lqt-converted-archive-template-content": "Bu sayfa arşivlenmiş LiquidThreads sayfasıdır. <strong>Bu sayfanın içeriğini düzenlemeyiniz</strong>. Lütfen başka bir yorumunuz varsa [[{{{from}}}|güncel tartışma sayfası]] ile iletişime geçiniz.",
 	"flow-importer-wt-converted-archive-template-content": "Bu sayfa arşivlenmiş bir sayfadır. <strong>Bu sayfanın içeriğini düzenlemeyiniz</strong>. Lütfen başka bir yorumunuz varsa [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|güncel tartışma sayfası]] ile iletişime geçiniz.",
+	"group-flow-bot-member": "Flow botu",
 	"flow-ve-mention-placeholder": "Kullanıcı adı",
 	"flow-wikitext-switch-editor-tooltip": "Görsel düzenleyiciye geç",
 	"flow-ve-switch-editor-tool-title": "Wikimetin editörüne geç",

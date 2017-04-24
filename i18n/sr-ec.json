@@ -5,10 +5,15 @@
 			"Rancher",
 			"Macofe",
 			"Сербијана",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Obsuser"
 		]
 	},
 	"enableflow": "Омогући Flow",
+	"abusefilter-edit-builder-vars-board-articleid": "ID странице Форума за дискусију",
+	"abusefilter-edit-builder-vars-board-namespace": "Именски простор Форума за дискусију",
+	"abusefilter-edit-builder-vars-board-text": "Назив Форума за дискусију",
+	"abusefilter-edit-builder-vars-board-prefixedtext": "Пуни назив Форума за дискусију",
 	"flow-board-header-browse-topics-link": "Списак тема",
 	"flow-board-header": "О овој дискусији",
 	"flow-board-collapse-description": "Сакриј опис",
