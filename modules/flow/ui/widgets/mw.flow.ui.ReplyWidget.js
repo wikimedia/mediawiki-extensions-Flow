@@ -26,21 +26,6 @@
 		// Parent constructor
 		mw.flow.ui.ReplyWidget.parent.call( this, config );
 
-		if ( this.expandable ) {
-			this.triggerInput = new OO.ui.TextInputWidget( {
-				multiline: false,
-				classes: [ 'flow-ui-replyWidget-trigger-input' ],
-				placeholder: config.placeholder
-			} );
-			this.triggerInput.$element.on( 'focusin', this.onTriggerFocusIn.bind( this ) );
-			this.$element.append( this.triggerInput.$element );
-		} else {
-			// Only initialize the editor if we are not in 'expandable' mode
-			// Otherwise, the editor is lazy-loaded
-			this.initializeEditor();
-			this.editor.toggle( true );
-		}
-
 		this.api = new mw.flow.dm.APIHandler();
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
@@ -78,6 +63,20 @@
 				this.$editorContainer
 			);
 
+		if ( this.expandable ) {
+			this.triggerInput = new OO.ui.TextInputWidget( {
+				multiline: false,
+				classes: [ 'flow-ui-replyWidget-trigger-input' ],
+				placeholder: config.placeholder
+			} );
+			this.triggerInput.$element.on( 'focusin', this.onTriggerFocusIn.bind( this ) );
+			this.$element.append( this.triggerInput.$element );
+		} else {
+			// Only initialize the editor if we are not in 'expandable' mode
+			// Otherwise, the editor is lazy-loaded
+			this.initializeEditor();
+			this.editor.toggle( true );
+		}
 	};
 
 	/* Initialization */
