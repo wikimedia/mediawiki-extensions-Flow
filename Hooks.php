@@ -523,17 +523,21 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc, &$classes ) {
-		return static::onEnhancedChangesListModifyBlockLineData( $changesList, $data, $rc, $classes );
+		return static::modifyChangesListLine( $changesList, $data, $rc, $classes );
 	}
 
 	/**
 	 * @param EnhancedChangesList $changesList
 	 * @param array $data
 	 * @param RecentChange $rc
-	 * @param array $classes
 	 * @return bool
 	 */
-	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc, &$classes ) {
+	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc ) {
+		$classes = null;
+		return static::modifyChangesListLine( $changesList, $data, $rc, $classes );
+	}
+
+	private static function modifyChangesListLine( $changesList, &$data, $rc, &$classes ) {
 		// quit if non-flow
 		if ( !FlowHooks::isFlow( $rc ) ) {
 			return true;
