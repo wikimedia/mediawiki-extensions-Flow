@@ -24,7 +24,7 @@
 	"apihelp-flow+edit-header-description": "{{doc-apihelp-description|flow+edit-header}}",
 	"apihelp-flow+edit-header-param-prev_revision": "{{doc-apihelp-param|flow+edit-header|prev_revision}}",
 	"apihelp-flow+edit-header-param-content": "{{doc-apihelp-param|flow+edit-header|content}}",
-	"apihelp-flow+edit-header-param-format": "Do not alter the string \"(wikitext|html)\" in your translation.\n----\n{{doc-apihelp-param|flow+edit-header|format}}",
+	"apihelp-flow+edit-header-param-format": "{{doc-important|Do not alter the string \"<code><nowiki>(wikitext|html)</nowiki></code>\" in your translation.}}\n----\n{{doc-apihelp-param|flow+edit-header|format}}",
 	"apihelp-flow+edit-header-example-1": "{{doc-apihelp-example|flow+edit-header}}",
 	"apihelp-flow+edit-post-description": "{{doc-apihelp-description|flow+edit-post}}",
 	"apihelp-flow+edit-post-param-postId": "{{doc-apihelp-param|flow+edit-post|postId}}",
