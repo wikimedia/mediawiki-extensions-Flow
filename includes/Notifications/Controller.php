@@ -659,11 +659,6 @@ class NotificationController {
 			}
 
 			$users[$user->getId()] = $user;
-			// If more than 20 users are being notified this is probably a spam/attack vector.
-			// Don't send any mention notifications
-			if ( count( $users ) > 20 ) {
-				return array();
-			}
 		}
 
 		return $users;
