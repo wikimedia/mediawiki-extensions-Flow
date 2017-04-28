@@ -850,7 +850,7 @@
 			"value": 100
 		},
 		"FlowMaxMentionCount": {
-			"value": 100
+			"value": 50
 		},
 		"FlowMaxThreadingDepth": {
 			"value": 8
