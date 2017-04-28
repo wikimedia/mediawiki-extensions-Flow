@@ -587,7 +587,8 @@
 				"ext.flow.ui",
 				"mediawiki.api",
 				"mediawiki.util",
-				"mediawiki.api.options"
+				"mediawiki.api.options",
+				"oojs-ui.styles.icons-interactions"
 			],
 			"messages": [
 				"flow-error-external",
