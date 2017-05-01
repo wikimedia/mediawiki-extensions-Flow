@@ -544,7 +544,6 @@
 			],
 			"dependencies": [
 				"oojs-ui",
-				"es5-shim",
 				"ext.flow.dm",
 				"oojs-ui.styles.icons-editing-advanced",
 				"mediawiki.Title",
@@ -668,7 +667,6 @@
 				"editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less"
 			],
 			"dependencies": [
-				"es5-shim",
 				"ext.visualEditor.core",
 				"ext.visualEditor.core.desktop",
 				"ext.visualEditor.mediawiki",
