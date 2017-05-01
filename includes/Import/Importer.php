@@ -349,8 +349,8 @@ class PageImportState {
 	}
 
 	/**
-	 * @var AbstractRevision $summary
-	 * @var string           $timestamp
+	 * @param AbstractRevision $revision
+	 * @param string $timestamp
 	 */
 	public function setRevisionTimestamp( AbstractRevision $revision, $timestamp ) {
 		$uid = $this->getTimestampId( $timestamp );

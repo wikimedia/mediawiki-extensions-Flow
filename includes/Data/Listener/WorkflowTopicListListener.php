@@ -34,7 +34,7 @@ class WorkflowTopicListListener extends AbstractListener {
 	}
 
 	/**
-	 * @var string
+	 * @param string $workflowId
 	 * @return TopicListEntry|false
 	 */
 	protected function getTopicListEntry( $workflowId ) {

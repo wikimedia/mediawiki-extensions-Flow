@@ -46,12 +46,12 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $parser;
 
 	/**
-	 * @var array $archiveTitleSuggestions
+	 * @var array
 	 */
 	protected $archiveTitleSuggestions;
 
 	/**
-	 * @var string $headerSuffix
+	 * @var string
 	 */
 	protected $headerSuffix;
 

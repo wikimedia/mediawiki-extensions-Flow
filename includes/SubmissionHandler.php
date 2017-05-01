@@ -16,12 +16,12 @@ use SplQueue;
 class SubmissionHandler {
 
 	/**
-	 * @var ManagerGroup $storage
+	 * @var ManagerGroup
 	 */
 	protected $storage;
 
 	/**
-	 * @var DbFactory $dbFactory
+	 * @var DbFactory
 	 */
 	protected $dbFactory;
 

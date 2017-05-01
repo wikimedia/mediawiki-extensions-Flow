@@ -16,11 +16,13 @@ use Flow\Import\SourceStore\NullImportSourceStore;
  */
 class SpecialEnableFlow extends FormSpecialPage {
 	/**
-	 * @var \Flow\WorkflowLoaderFactory $loaderFactory
+	 * @var \Flow\WorkflowLoaderFactory
 	 */
 	protected $loaderFactory;
 
-	/** @var \Flow\TalkpageManager $controller */
+	/**
+	 * @var \Flow\TalkpageManager
+	 */
 	protected $occupationController;
 
 	/**

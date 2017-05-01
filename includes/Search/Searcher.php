@@ -16,7 +16,7 @@ class Searcher {
 	const HIGHLIGHT_POST = '</span>';
 
 	/**
-	 * @var string|false $type
+	 * @var string|bool
 	 */
 	protected $type = false;
 

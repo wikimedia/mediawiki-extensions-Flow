@@ -13,7 +13,7 @@ class MockImportSource implements IImportSource {
 	protected $topics;
 
 	/**
-	 * @var IImportHeader|null $header
+	 * @var IImportHeader|null
 	 */
 	protected $header;
 

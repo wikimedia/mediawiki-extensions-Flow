@@ -31,8 +31,8 @@ class DbFactory {
 	protected $forceMaster = false;
 
 	/**
-	 * @var string|boolean $wiki Wiki ID, or false for the current wiki
-	 * @var string|boolean $cluster External storage cluster, or false for core
+	 * @param string|boolean $wiki Wiki ID, or false for the current wiki
+	 * @param string|boolean $cluster External storage cluster, or false for core
 	 */
 	public function __construct( $wiki = false, $cluster = false ) {
 		$this->wiki = $wiki;

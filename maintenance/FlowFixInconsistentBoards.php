@@ -18,12 +18,12 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  */
 class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 	/**
-	 * @var Flow\DbFactory $dbFactory
+	 * @var Flow\DbFactory
 	 */
 	protected $dbFactory;
 
 	/**
-	 * @var Flow\WorkflowLoaderFactory $workflowLoaderFactory
+	 * @var Flow\WorkflowLoaderFactory
 	 */
 	protected $workflowLoaderFactory;
 

@@ -23,7 +23,7 @@ class Anchor implements ApiSerializable {
 	/**
 	 * Message used for the HTML title attribute of the anchor
 	 *
-	 * @var Message $titleMessage
+	 * @var Message
 	 */
 	protected $titleMessage;
 
