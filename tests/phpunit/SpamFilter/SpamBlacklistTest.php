@@ -32,20 +32,17 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 
 	public function spamProvider() {
 		return array(
-			array(
-				// default new topic title revision - no spam
+			'default new topic title revision - no spam' => array(
 				$this->generateObject(),
 				null,
 				true
 			),
-			array(
-				// revision with spam
+			'revision with spam' => array(
 				$this->generateObject( array( 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ) ),
 				null,
 				false
 			),
-			array(
-				// revision with domain blacklisted as spam, but subdomain whitelisted
+			'revision with domain blacklisted as spam, but subdomain whitelisted' => array(
 				$this->generateObject( array( 'rev_content' => 'http://a5b.sytes.net', 'rev_flags' => 'html' ) ),
 				null,
 				true
