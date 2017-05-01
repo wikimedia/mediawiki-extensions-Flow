@@ -20,13 +20,13 @@ class SpecialFlow extends FormSpecialPage {
 
 	/**
 	 * The type of content, e.g. 'post', 'workflow'
-	 * @var string $type
+	 * @var string
 	 */
 	protected $type;
 
 	/**
 	 * Flow UUID
-	 * @var string $uuid
+	 * @var string
 	 */
 	protected $uuid;
 

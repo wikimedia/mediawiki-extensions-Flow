@@ -15,7 +15,7 @@ use Flow\Parsoid\Fixer;
  */
 class BaseHrefFixer implements Fixer {
 	/**
-	 * @var string $baseHref
+	 * @var string
 	 */
 	protected $baseHref;
 

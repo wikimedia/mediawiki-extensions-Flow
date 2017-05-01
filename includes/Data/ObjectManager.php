@@ -111,7 +111,7 @@ class ObjectManager extends ObjectLocator {
 	 * Merge an object loaded from outside the object manager for update.
 	 * Without merge using self::put will trigger an insert operation.
 	 *
-	 * @var object $object
+	 * @param object $object
 	 */
 	public function merge( $object ) {
 		if ( !isset( $this->loaded[$object] ) ) {
@@ -137,8 +137,8 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * Persist a single object to storage.
 	 *
-	 * @var object $object
-	 * @var array $metadata Additional information about the object for
+	 * @param object $object
+	 * @param array $metadata Additional information about the object for
 	 *  listeners to operate on.
 	 */
 	public function put( $object, array $metadata = array() ) {
@@ -148,8 +148,8 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * Persist multiple objects to storage.
 	 *
-	 * @var object[] $objects
-	 * @var array $metadata Additional information about the object for
+	 * @param object[] $objects
+	 * @param array $metadata Additional information about the object for
 	 *  listeners to operate on.
 	 */
 	public function multiPut( array $objects, array $metadata = array() ) {
@@ -176,8 +176,8 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * Remove an object from persistent storage.
 	 *
-	 * @var object $object
-	 * @var array $metadata Additional information about the object for
+	 * @param object $object
+	 * @param array $metadata Additional information about the object for
 	 *  listeners to operate on.
 	 */
 	public function remove( $object, array $metadata = array() ) {
@@ -196,8 +196,8 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * Remove multiple objects from persistent storage.
 	 *
-	 * @var object[] $objects
-	 * @var array $metadata
+	 * @param object[] $objects
+	 * @param array $metadata
 	 */
 	public function multiRemove( $objects, array $metadata ) {
 		foreach ( $objects as $obj ) {

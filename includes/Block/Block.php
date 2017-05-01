@@ -139,8 +139,8 @@ abstract class AbstractBlock implements Block {
 	abstract public function commit();
 
 	/**
-	 * @var IContextSource $context
-	 * @var string $action
+	 * @param IContextSource $context
+	 * @param string $action
 	 */
 	public function init( IContextSource $context, $action ) {
 		$this->context = $context;

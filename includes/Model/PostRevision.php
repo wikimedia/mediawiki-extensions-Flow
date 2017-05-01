@@ -112,8 +112,8 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @var string[] $row
-	 * @var PostRevision|null $obj
+	 * @param string[] $row
+	 * @param PostRevision|null $obj
 	 * @return PostRevision
 	 * @throws DataModelException
 	 */

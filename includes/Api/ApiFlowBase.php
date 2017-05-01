@@ -14,13 +14,19 @@ use Title;
 
 abstract class ApiFlowBase extends ApiBase {
 
-	/** @var WorkflowLoader $loader */
+	/**
+	 * @var WorkflowLoader
+	 */
 	protected $loader;
 
-	/** @var Title $page */
+	/**
+	 * @var Title
+	 */
 	protected $page;
 
-	/** @var ApiFlow $apiFlow */
+	/**
+	 * @var ApiFlow
+	 */
 	protected $apiFlow;
 
 	/**

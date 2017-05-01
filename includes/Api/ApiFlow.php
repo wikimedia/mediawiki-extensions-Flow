@@ -11,7 +11,9 @@ use Title;
 
 class ApiFlow extends ApiBase {
 
-	/** @var ApiModuleManager $moduleManager */
+	/**
+	 * @var ApiModuleManager
+	 */
 	private $moduleManager;
 
 	private static $alwaysEnabledModules = array(
