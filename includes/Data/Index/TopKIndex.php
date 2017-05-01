@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Index;
 
-use BagOStuff;
 use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectMapper;

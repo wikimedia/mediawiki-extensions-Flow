@@ -14,7 +14,6 @@ use Flow\Data\ObjectStorage;
 use Flow\Model\UUID;
 use FormatJson;
 use Flow\Exception\DataModelException;
-use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Index objects with equal features($indexedColumns) into the same buckets.
