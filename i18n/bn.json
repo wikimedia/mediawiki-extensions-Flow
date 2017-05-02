@@ -7,7 +7,8 @@
 			"Jim Carter",
 			"Sayma Jahan",
 			"Kayser Ahmad",
-			"Elias Ahmmad"
+			"Elias Ahmmad",
+			"Bodhisattwa"
 		]
 	},
 	"enableflow": "ফ্লো সক্রিয় করুন",
@@ -90,6 +91,7 @@
 	"flow-topic-action-summarize-topic": "সংক্ষেপন",
 	"flow-topic-action-resummarize-topic": "প্রসঙ্গের সারাংশ সম্পাদনা করুন",
 	"flow-topic-action-update-topic-summary": "হালনাগাদের সারসংক্ষেপ",
+	"flow-topic-action-undo-moderation": "পূর্বাবস্থায় ফেরাও",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|আপনি}} এই আলোচনা বোর্ডে সদস্যতা নিয়েছেন!",
 	"flow-topic-action-watchlist-add": "এই প্রসঙ্গে সদস্যতা নিন",
 	"flow-topic-action-watchlist-remove": "সদস্যতা ত্যাগ",
@@ -184,5 +186,7 @@
 	"flow-ve-mention-inspector-invalid-user": "ব্যবহারকারী নাম \"$1\" নিবন্ধিত নয়।",
 	"flow-wikitext-editor-help": "উইকিলেখা $1।",
 	"flow-dialog-cancelconfirm-title": "আপনি কি নিশ্চিত?",
+	"flow-dialog-cancelconfirm-keep": "সম্পাদনা অব্যাহত রাখুন",
+	"flow-dialog-cancelconfirm-discard": "পরিবর্তন বাতিল করুন",
 	"flow-guidedtour-optin-feedback": "আমাদের {{GENDER:$1|আপনার}} প্রতিক্রিয়া জানান!"
 }
