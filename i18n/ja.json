@@ -317,6 +317,8 @@
 	"flow-topic-permalink-warning-user-board": "この話題は [$2 {{GENDER:$1|$1}} の掲示板]で開始されました",
 	"flow-revision-permalink-warning-post": "これはこの投稿の特定の版への固定リンクです。\nこの版は $1 時点のものです。\n[$5 以前の版との差分]や、[$4 投稿の履歴ページ]でその他の版を閲覧することもできます。",
 	"flow-revision-permalink-warning-post-first": "これはこの投稿の初版への固定リンクです。\n[$4 投稿の履歴ページ]で以降の版を閲覧できます。",
+	"flow-revision-permalink-warning-postsummary": "これはこの投稿の要約の特定の版への固定リンクです。この版は $1 時点のものです。\n[$5 以前の版との差分]や、[$4 投稿の履歴ページ]でその他の版を閲覧することもできます。",
+	"flow-revision-permalink-warning-postsummary-first": "これはこの投稿の要約の初版への固定リンクです。\n[$4 投稿の履歴ページ]で以降の版を閲覧できます。",
 	"flow-revision-permalink-warning-header": "これは説明の特定の版への固定リンクです。\nこの版は $1 時点のものです。[$3 以前の版との差分]や、[$2 掲示板の履歴ページ]でその他の版を閲覧することもできます。",
 	"flow-revision-permalink-warning-header-first": "これは説明の初版への固定リンクです。\n[$2 掲示板の履歴ページ]で以降の版を閲覧できます。",
 	"flow-compare-revisions-revision-header": "$1における {{GENDER:$2|$2}} による版",
