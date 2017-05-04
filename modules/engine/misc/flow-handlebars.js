@@ -425,6 +425,7 @@
 		}
 
 		return FlowHandlebars.prototype.html(
+			// eslint-disable-next-line no-useless-concat
 			'<scr' + 'ipt' +
 				' type="text/x-handlebars-template-progressive-enhancement"' +
 				' data-type="' + hash.type + '"' +
@@ -432,6 +433,7 @@
 				( hash.id ? ' id="' + hash.id + '"' : '' ) +
 			'>' +
 				inner +
+			// eslint-disable-next-line no-useless-concat
 			'</scr' + 'ipt>'
 		);
 	};

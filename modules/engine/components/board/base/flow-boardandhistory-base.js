@@ -215,6 +215,8 @@
 
 		// Only log if user had already entered text (= confirmation was requested)
 		if ( changedFieldCount ) {
+			// TODO: Use an OOUI dialog
+			// eslint-disable-next-line no-alert
 			if ( confirm( flowComponent.constructor.static.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
 				if ( schemaName ) {
 					flowComponent.logEvent( schemaName, { action: 'cancel-success', funnelId: funnelId } );
