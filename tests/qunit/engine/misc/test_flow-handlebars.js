@@ -95,13 +95,15 @@
 		// Render script tag
 		strictEqual(
 			this.handlebarsProto.progressiveEnhancement( opts ).string,
+			// eslint-disable-next-line no-useless-concat
 			'<scr' + 'ipt' +
 				' type="text/x-handlebars-template-progressive-enhancement"' +
 				' data-type="' + opts.hash.type + '"' +
 				' data-target="' + opts.hash.target + '"' +
 				' id="' + opts.hash.id + '">' +
 				'ok' +
-				'</scr' + 'ipt>',
+			// eslint-disable-next-line no-useless-concat
+			'</scr' + 'ipt>',
 			'Should output exact replica of script tag.'
 		);
 
