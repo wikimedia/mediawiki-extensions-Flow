@@ -19,6 +19,7 @@ use ApiResult;
 use GenderCache;
 use IContextSource;
 use Message;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * This implements a serializer for converting revision objects
@@ -191,7 +192,7 @@ class RevisionFormatter {
 	 * @throws PermissionException
 	 * @throws \Exception
 	 * @throws \Flow\Exception\InvalidInputException
-	 * @throws \TimestampException
+	 * @throws TimestampException
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$this->permissions->setUser( $ctx->getUser() );

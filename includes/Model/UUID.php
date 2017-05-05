@@ -10,8 +10,8 @@ use Flow\Exception\InvalidParameterException;
 use Flow\Exception\InvalidInputException;
 use Language;
 use MWTimestamp;
-use TimestampException;
 use User;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Immutable class modeling timestamped UUID's from

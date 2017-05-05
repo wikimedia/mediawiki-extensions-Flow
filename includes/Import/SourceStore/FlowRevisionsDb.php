@@ -15,6 +15,7 @@ use Flow\Model\UserTuple;
 use Flow\Model\UUID;
 use MWTimestamp;
 use User;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Unlike other source stores, this doesn't really "store" anything. This just
@@ -152,7 +153,7 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 *
 	 * @param MWTimestamp $timestamp
 	 * @return UUID[] [min, max]
-	 * @throws \TimestampException
+	 * @throws TimestampException
 	 */
 	protected function getUUIDRange( MWTimestamp $timestamp ) {
 		return array(
