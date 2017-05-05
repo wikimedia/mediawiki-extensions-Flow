@@ -8,6 +8,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
+use Wikimedia\Timestamp\TimestampException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

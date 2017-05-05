@@ -18,10 +18,10 @@ use Flow\Search\Iterators\AbstractIterator;
 use Flow\Search\Iterators\HeaderIterator;
 use Flow\Search\Iterators\TopicIterator;
 use ReflectionProperty;
-use TimestampException;
 use User;
 use WikiExporter;
 use Xml;
+use Wikimedia\Timestamp\TimestampException;
 
 class Exporter extends WikiExporter {
 	/**
