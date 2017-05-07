@@ -11,7 +11,8 @@
 			"Sujiniku",
 			"Nnemo",
 			"Macofe",
-			"Omotecho"
+			"Omotecho",
+			"Mirinano"
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "いつもで[$2 話題]を閲覧できます。",
@@ -81,7 +82,7 @@
 	"flow-history-action-delete-post": "削除",
 	"flow-history-action-hide-post": "非表示",
 	"flow-history-action-unsuppress-post": "秘匿を解除",
-	"flow-history-action-undelete-post": "削除を解除",
+	"flow-history-action-undelete-post": "復元",
 	"flow-history-action-unhide-post": "非表示解除",
 	"flow-history-action-restore-post": "復元",
 	"flow-history-action-lock-topic": "解決する",
