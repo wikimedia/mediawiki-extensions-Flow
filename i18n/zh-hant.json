@@ -12,7 +12,8 @@
 			"Nnemo",
 			"Bowleerin",
 			"Shizhao",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Arthur2e5"
 		]
 	},
 	"enableflow": "開啟 Flow",
@@ -438,8 +439,8 @@
 	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "使用者名稱 \"$1\" 未註冊。",
 	"flow-wikitext-editor-help": "Wikitext $1。",
-	"flow-wikitext-editor-help-and-preview": "Wikitext $1 且您可以隨時 $2。",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|使用標籤]]",
+	"flow-wikitext-editor-help-and-preview": "Wikitext $1；您可以隨時 $2。",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|標籤用法]]",
 	"flow-wikitext-editor-help-preview-the-result": "預覽結果",
 	"flow-wikitext-switch-editor-tooltip": "切換至視覺化編輯器",
 	"flow-ve-switch-editor-tool-title": "切換至 Wikitext 編輯器",

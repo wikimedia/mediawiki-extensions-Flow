@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Subi"
+		]
+	},
+	"apihelp-flow+edit-topic-summary-param-summary": "Laburpenaren edukia.",
+	"apihelp-flow+edit-topic-summary-param-format": "Laburpaneren formatua (wikitestua|html)"
+}

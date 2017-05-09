@@ -27,7 +27,8 @@
 			"Cwek",
 			"飞舞回堂前",
 			"Chiefwei",
-			"Myy730"
+			"Myy730",
+			"Arthur2e5"
 		]
 	},
 	"enableflow": "启用Flow",
@@ -512,8 +513,8 @@
 	"flow-ve-mention-template-title": "Flow提及",
 	"flow-ve-mention-inspector-invalid-user": "用户名“$1”未注册。",
 	"flow-wikitext-editor-help": "Wiki文本$1。",
-	"flow-wikitext-editor-help-and-preview": "Wiki文本$1并且您随时都可以$2。",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|使用标记]]",
+	"flow-wikitext-editor-help-and-preview": "Wiki文本$1；您随时都可以$2。",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|标记用法]]",
 	"flow-wikitext-editor-help-preview-the-result": "预览结果",
 	"flow-wikitext-switch-editor-tooltip": "切换为可视化编辑器",
 	"flow-ve-switch-editor-tool-title": "切换为Wiki文本编辑器",
