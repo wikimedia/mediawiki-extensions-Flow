@@ -53,7 +53,7 @@
 	"flow-suppress-usertext": "<em>Sakriveno korisničko ime</em>",
 	"flow-post-actions": "Radnje",
 	"flow-topic-actions": "Radnje",
-	"flow-cancel": "Odustani",
+	"flow-cancel": "Otkaži",
 	"flow-skip-summary": "Preskoči",
 	"flow-edit-summary-placeholder": "Kratko opišite ishod rasprave",
 	"flow-summary-authored": "Opis {{GENDER:$1|napisao|napisala}} $1",
