@@ -143,7 +143,7 @@ class TalkpageManager implements OccupationController {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true) {
+	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true, $forWrite = true ) {
 		global $wgContentHandlerUseDB;
 
 		// Arbitrary pages can only be enabled when content handler
@@ -154,7 +154,7 @@ class TalkpageManager implements OccupationController {
 
 		// Only allow converting a non-existent page to Flow
 		if ( $mustNotExist ) {
-			if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
+			if ( $title->exists( $forWrite ? Title::GAID_FOR_UPDATE : 0 ) ) {
 				return Status::newFatal( 'flow-error-allowcreation-already-exists' );
 			}
 		}
@@ -185,10 +185,10 @@ class TalkpageManager implements OccupationController {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function safeAllowCreation( Title $title, User $user, $mustNotExist = true ) {
+	public function safeAllowCreation( Title $title, User $user, $mustNotExist = true, $forWrite = true ) {
 		$status = Status::newGood();
 
-		$technicallyAllowedStatus = $this->checkIfCreationIsPossible( $title, $mustNotExist );
+		$technicallyAllowedStatus = $this->checkIfCreationIsPossible( $title, $mustNotExist, $forWrite );
 
 		$permissionStatus = $this->checkIfUserHasPermission( $title, $user );
 
