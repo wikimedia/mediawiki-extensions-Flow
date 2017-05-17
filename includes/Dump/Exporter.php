@@ -413,11 +413,21 @@ class Exporter extends WikiExporter {
 			}
 		}
 
-		$output = Xml::element(
-			'revision',
-			$attribs,
-			$revision->getContent( $format )
-		) . "\n";
+		if ( $this->text == WikiExporter::STUB ) {
+			// no text, only the metadata, for two-pass dumps
+			$output = Xml::element(
+				'revision',
+				$attribs
+			) . "\n";
+		}
+		else {
+			// we dump the text
+			$output = Xml::element(
+				'revision',
+				$attribs,
+				$revision->getContent( $format )
+			) . "\n";
+		}
 		$this->sink->write( $output );
 	}
 
