@@ -177,7 +177,7 @@
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|utajil|utajila}} [$4 sekci] „$6“ (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|označil|označila}} [$4 téma] „$6“ jako vyřešené (<em>$5</em>)",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|obnovil|obnovila}} [$4 téma] „$6“ (<em>$5</em>)",
-	"flow-rc-topic-of-board": "$1 v $2",
+	"flow-rc-topic-of-board": "$1 na $2",
 	"flow-board-history-empty": "Tato Flow stránka v současnosti nemá žádnou historii.",
 	"flow-history-day": "Dnes",
 	"flow-history-week": "Poslední týden",
