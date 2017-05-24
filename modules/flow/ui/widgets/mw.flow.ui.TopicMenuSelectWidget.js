@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow topic list widget
 	 *
@@ -232,4 +232,4 @@
 		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.removeItems.call( this, items );
 	};
 
-}() );
+}( mediaWiki ) );

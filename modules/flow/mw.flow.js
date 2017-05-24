@@ -1,1 +1,3 @@
-mw.flow = mw.flow || {};
+( function ( mw ) {
+	mw.flow = mw.flow || {};
+}( mediaWiki ) );

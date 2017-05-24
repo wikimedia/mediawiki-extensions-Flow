@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow Content class
 	 *
@@ -78,4 +78,4 @@
 
 		this.emit( 'contentChange' );
 	};
-}() );
+}( mediaWiki ) );

@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow wikitext editor widget
 	 *
@@ -202,4 +202,4 @@
 			this.toolbar.destroy();
 		}
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

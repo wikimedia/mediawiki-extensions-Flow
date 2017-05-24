@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow navigation widget
 	 *
@@ -146,4 +146,4 @@
 
 		this.reorderTopicsWidget.toggle( !isScrolledDown );
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

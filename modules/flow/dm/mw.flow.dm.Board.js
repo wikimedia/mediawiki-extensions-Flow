@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow Board
 	 *
@@ -258,4 +258,4 @@
 		this.clearItems();
 		this.emit( 'reset', order );
 	};
-}() );
+}( mediaWiki ) );

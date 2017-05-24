@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow board categories widget
 	 *
@@ -111,4 +111,4 @@
 			mw.msg( 'pagecategories', this.model.getCategories().getItemCount() )
 		);
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

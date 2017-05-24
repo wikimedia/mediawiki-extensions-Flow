@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow visualeditor editor widget
 	 *
@@ -206,4 +206,4 @@
 			this.target.destroy();
 		}
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

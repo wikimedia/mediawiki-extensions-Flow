@@ -1,5 +1,5 @@
 // Register the Handlebars compiler with MediaWiki.
-( function () {
+( function ( mw ) {
 	/*
 	 * @class HandlebarsTemplateCompiler
 	 * @singleton
@@ -22,4 +22,4 @@
 
 	// register Handlebars with core.
 	mw.template.registerCompiler( 'handlebars', handlebars );
-}() );
+}( mediaWiki ) );

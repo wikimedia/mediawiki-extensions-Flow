@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Dialog for confirming with the user if they reall want to cancel
 	 * the edit.
@@ -43,4 +43,4 @@
 
 	mw.flow.ui.windowFactory.register( mw.flow.ui.CancelConfirmDialog );
 
-}() );
+}( mediaWiki ) );

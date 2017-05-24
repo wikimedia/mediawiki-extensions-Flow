@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow Topic
 	 *
@@ -168,4 +168,4 @@
 		this.emit( 'summaryChange', this.summary );
 	};
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );
