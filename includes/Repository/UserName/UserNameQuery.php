@@ -9,7 +9,7 @@ namespace Flow\Repository\UserName;
  * Classes implementing the interface can lookup
  * user names based on wiki + id
  */
-Interface UserNameQuery {
+interface UserNameQuery {
 	/**
 	 * @param string $wiki wiki id
 	 * @param array $userIds List of user ids to lookup
