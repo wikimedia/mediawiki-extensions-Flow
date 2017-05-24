@@ -257,7 +257,9 @@ class FlowHooks {
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_update_timestamp', "$dir/db_patches/patch-flow_workflow_update_timestamp_idx.sql" );
 		$updater->addExtensionField( 'flow_wiki_ref', 'ref_src_wiki', "$dir/db_patches/patch-reference_wiki.sql" );
 		$updater->addExtensionField( 'flow_wiki_ref', 'ref_id', "$dir/db_patches/patch-ref_id-phase1.sql" );
+		$updater->dropExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_idx_v2', "$dir/db_patches/patch-dropindex-flow_ext_ref_idx_v2.sql" );
 		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_target', "$dir/db_patches/patch-ref_target_not_null.sql" );
+		$updater->addExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_idx_v3', "$dir/db_patches/patch-dropindex-flow_ext_ref_idx_v3.sql" );
 		$updater->dropExtensionIndex( 'flow_topic_list', 'flow_topic_list_pk', "$dir/db_patches/patch-primary-keys.sql" );
 		$updater->dropExtensionTable( 'flow_subscription', "$dir/db_patches/patch-drop-flow_subscription.sql" );
 
