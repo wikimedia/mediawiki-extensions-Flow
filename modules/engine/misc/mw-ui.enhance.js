@@ -2,11 +2,11 @@
  * Enhances mediawiki-ui style elements with JavaScript.
  */
 
-// Expose for the sake of tests
-mw.flow.ui.enhance = {};
-
 /** @class mw.ui.enhance */
 ( function ( mw, $ ) {
+	// Expose for the sake of tests
+	mw.flow.ui.enhance = {};
+
 	/*
 	* Reduce eye-wandering due to adjacent colorful buttons
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
@@ -442,4 +442,4 @@ mw.flow.ui.enhance = {};
 			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
-}( mw, jQuery ) );
+}( mediaWiki, jQuery ) );

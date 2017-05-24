@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow editor switcher widget
 	 *
@@ -630,4 +630,4 @@
 		}
 	};
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

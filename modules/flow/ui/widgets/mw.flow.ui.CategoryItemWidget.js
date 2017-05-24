@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow board categories widget
 	 *
@@ -50,4 +50,4 @@
 	mw.flow.ui.CategoryItemWidget.prototype.getData = function () {
 		return this.name;
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

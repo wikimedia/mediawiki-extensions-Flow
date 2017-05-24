@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Topic title widget
 	 *
@@ -161,4 +161,4 @@
 		this.updateDisabled();
 	};
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

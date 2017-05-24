@@ -355,4 +355,4 @@
 
 	// Export
 	mw.flow.FlowApi = FlowApi;
-}( mw, jQuery ) );
+}( mediaWiki, jQuery ) );

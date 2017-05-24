@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow ModeratedRevisionedContent class
 	 *
@@ -143,4 +143,4 @@
 		this.moderator = mod;
 	};
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

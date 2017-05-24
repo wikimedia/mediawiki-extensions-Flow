@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow Post
 	 *
@@ -97,4 +97,4 @@
 		return this.replyIds;
 	};
 
-}() );
+}( mediaWiki ) );

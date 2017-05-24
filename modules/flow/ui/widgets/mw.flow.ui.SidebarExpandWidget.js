@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow sidebar expand widget
 	 *
@@ -84,4 +84,4 @@
 	mw.flow.ui.SidebarExpandWidget.prototype.isCollapsed = function () {
 		return this.collapsed;
 	};
-}() );
+}( mediaWiki ) );

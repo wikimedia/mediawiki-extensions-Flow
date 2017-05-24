@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow editor controls widget
 	 *
@@ -92,4 +92,4 @@
 		}
 	};
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

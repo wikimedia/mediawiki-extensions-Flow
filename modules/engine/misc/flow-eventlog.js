@@ -34,4 +34,4 @@
 	mw.flow.EventLog = FlowEventLog;
 
 	mw.flow.EventLogRegistry = FlowEventLogRegistry;
-}( mw, jQuery ) );
+}( mediaWiki, jQuery ) );
