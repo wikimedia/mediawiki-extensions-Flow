@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Flow abstract editor widget.
 	 *
@@ -206,4 +206,4 @@
 		return this.initialContent !== this.getContent();
 	};
 
-}() );
+}( mediaWiki ) );

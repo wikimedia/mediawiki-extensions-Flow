@@ -1,7 +1,7 @@
 /*!
  * Runs Flow code, using methods in FlowUI.
  */
-( function ( $ ) {
+( function ( mw, $ ) {
 	// Pretend we got some data and run with it
 	/*
 	 * Now do stuff
@@ -72,4 +72,4 @@
 		// Show the board
 		initializer.finishLoading();
 	} );
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

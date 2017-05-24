@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow editor widget
 	 *
@@ -375,4 +375,4 @@
 	mw.flow.ui.EditorWidget.prototype.clearContent = function () {
 		this.editorSwitcherWidget.clearContent();
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

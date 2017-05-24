@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( mw, $ ) {
 	/**
 	 * Flow new topic widget
 	 *
@@ -273,4 +273,4 @@
 			this.title.setValue( '' );
 		}
 	};
-}( jQuery ) );
+}( mediaWiki, jQuery ) );

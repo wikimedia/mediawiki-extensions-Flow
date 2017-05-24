@@ -1,4 +1,4 @@
-( function () {
+( function ( mw ) {
 	/**
 	 * Data model for a (potential) CAPTCHA.  This is always used; it will just return false for
 	 * isRequired() if no user interaction is required.
@@ -67,4 +67,4 @@
 	mw.flow.dm.Captcha.prototype.getRenderingInformation = function () {
 		return this.renderingInformation;
 	};
-}() );
+}( mediaWiki ) );

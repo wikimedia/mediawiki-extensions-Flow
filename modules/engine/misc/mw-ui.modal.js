@@ -423,4 +423,4 @@
 			}
 		};
 	} );
-}( mw, jQuery ) );
+}( mediaWiki, jQuery ) );
