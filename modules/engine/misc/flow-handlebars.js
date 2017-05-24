@@ -328,7 +328,7 @@
 		setTimeout( timestampAutoUpdate, 100 );
 	}
 
-	$( document ).ready( timestampAutoUpdate );
+	$( timestampAutoUpdate );
 
 	/**
 	 * Do not escape HTML string. Used as a Handlebars helper.

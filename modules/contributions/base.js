@@ -25,7 +25,7 @@
 		);
 	}
 
-	$( document ).ready( function () {
+	$( function () {
 		$( '#bodyContent' ).one( 'click', '.flow-click-interactive', clickedFlowLink );
 	} );
 }( jQuery, mediaWiki ) );

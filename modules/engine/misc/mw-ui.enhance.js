@@ -12,7 +12,7 @@ mw.flow.ui.enhance = {};
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
 	* Usage: Buttons must be in a form, or in a parent with mw-ui-button-container, or they must be siblings
 	*/
-	$( document ).ready( function () {
+	$( function () {
 		function onMwUiButtonFocus( event ) {
 			var $el, $form, $siblings;
 
@@ -122,7 +122,7 @@ mw.flow.ui.enhance = {};
 	 * Disable / enable submit buttons without/with text in field.
 	 * Usage: field needs required attribute
 	 */
-	$( document ).ready( function () {
+	$( function () {
 		// We should probably not use this change detection method for VE
 		//
 		// Also, consider using the input event (which I think can replace all of these
@@ -147,7 +147,7 @@ mw.flow.ui.enhance = {};
 	 * mw-ui-tooltip
 	 * Renders tooltips on over, and also via mw.tooltip.
 	 */
-	$( document ).ready( function () {
+	$( function () {
 		var _$tooltip = $(
 				'<span class="flow-ui-tooltip flow-ui-tooltip-left">' +
 					'<span class="flow-ui-tooltip-content"></span>' +

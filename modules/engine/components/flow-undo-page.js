@@ -1,6 +1,6 @@
 ( function ( $, mw ) {
 
-	$( document ).ready( function () {
+	$( function () {
 
 		$( 'form[method=POST]' ).each( function ( index, form ) {
 			$( form ).submit( function () {

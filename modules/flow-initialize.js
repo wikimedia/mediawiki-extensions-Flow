@@ -7,7 +7,7 @@
 	 * Now do stuff
 	 * @todo not like this
 	 */
-	$( document ).ready( function () {
+	$( function () {
 		var flowBoard,
 			$component = $( '.flow-component' ),
 			$board = $( '.flow-board' ),
