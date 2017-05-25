@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0e1cb3f9_91932b5b",
+        "filename": "Hooks.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2017-05-25T22:16:30Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "0e1cb3f9_f19b8777",
+      "range": {
+        "startLine": 260,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 15
+      },
+      "revId": "ae8b3c435f0de8dbff270379e832a661fd62eb72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e1cb3f9_11995b7f",
         "filename": "Hooks.php",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-25T22:15:10Z",
       "side": 1,
       "message": "Removing this parameter too",
+      "range": {
+        "startLine": 265,
+        "startChar": 3,
+        "endLine": 265,
+        "endChar": 7
+      },
+      "revId": "ae8b3c435f0de8dbff270379e832a661fd62eb72",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e1cb3f9_31849f0e",
+        "filename": "Hooks.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2017-05-25T22:16:30Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "0e1cb3f9_11995b7f",
       "range": {
         "startLine": 265,
         "startChar": 3,
