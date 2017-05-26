@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e1cb3f9_a5de2542",
+        "filename": "includes/Log/ActionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-05-26T20:21:04Z",
+      "side": 1,
+      "message": "I think this can be protected static instead, nothing uses it outside of this class.",
+      "revId": "37dd564be2f6b309556acef57b0108bedb9950d0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
