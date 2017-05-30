@@ -11,7 +11,8 @@
 			"PifyZ",
 			"Quiddity",
 			"Trizek",
-			"Wladek92"
+			"Wladek92",
+			"Urhixidur"
 		]
 	},
 	"apihelp-flow-description": "Permet d’effectuer des actions sur les pages Flow.",
@@ -19,7 +20,7 @@
 	"apihelp-flow-param-page": "La page sur laquelle effectuer l’action.",
 	"apihelp-flow-param-token": "Un jeton obtenu via [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"apihelp-flow-example-1": "Modifier la description de « [[Talk:Sandbox]] »",
-	"apihelp-flow+close-open-topic-description": "Rendu obsolète par [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
+	"apihelp-flow+close-open-topic-description": "Rendu désuet par [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "État dans lequel mettre le sujet, « lock » ou « unlock ».",
 	"apihelp-flow+close-open-topic-param-reason": "Motif pour verrouiller ou déverrouiller ce sujet.",
 	"apihelp-flow+edit-header-description": "Modifie la description d’un flux de discussion.",
