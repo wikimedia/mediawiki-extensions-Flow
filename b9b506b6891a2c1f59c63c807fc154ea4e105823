@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce153bd1_f881b1c9",
+        "filename": "maintenance/dumpTextPass.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2017-05-31T22:44:17Z",
+      "side": 1,
+      "message": "For all of the Flow content types, you can do (storage is reusable):\n\n$storage \u003d Flow\\Container::get( \u0027storage\u0027 );\n$revision \u003d $storage-\u003eget( \u0027PostRevision\u0027, $postId );\n\nexcept that PostRevision is the corresponding class depending on type.  These are already referenced below (PostRevision, Header, PostSummary).\n\nAlso, make sure to check isAllowed as done in Flow/includes/Dump/Exporter.php .  Otherwise, we need to use $templating-\u003egetContent for security/privacy reasons (it is probably safer to the do the latter anyway, though the current exporter does use $revision-\u003egetContent).\n\nYou can get $templating from:\n\n$templating \u003d Flow\\Container::get( \u0027templating\u0027 );",
+      "revId": "b9b506b6891a2c1f59c63c807fc154ea4e105823",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
