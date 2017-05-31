@@ -27,8 +27,7 @@ class FlowHooks {
 	protected static $abuseFilter;
 
 	public static function registerExtension() {
-		global $wgGroupPermissions, $wgFlowGroupPermissions, $wgAvailableRights,
-			$wgFlowActions, $wgLogActionsHandlers, $wgActions;
+		global $wgFlowActions, $wgLogActionsHandlers, $wgActions;
 
 		require_once __DIR__ . '/defines.php';
 
