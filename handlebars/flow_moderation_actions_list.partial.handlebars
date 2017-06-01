@@ -187,7 +187,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="delete">
-				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-remove mw-ui-icon-remove-destructive-hover"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-trash mw-ui-icon-trash-destructive-hover"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-delete-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}
@@ -201,7 +201,7 @@
 			   data-flow-interactive-handler="moderationDialog"
 			   data-flow-template="flow_moderate_{{moderationTemplate}}.partial"
 			   data-role="undelete">
-				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-remove mw-ui-icon-remove-destructive-hover"></span> {{/if~}}
+				{{~#if moderationIcons}}<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-trash mw-ui-icon-trash-destructive-hover"></span> {{/if~}}
 				{{~l10n (concat "flow-" moderationType "-action-undelete-" moderationTemplate)~}}
 			</a>
 			{{~noop~}}
