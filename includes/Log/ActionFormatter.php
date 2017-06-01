@@ -20,7 +20,7 @@ class ActionFormatter extends LogFormatter {
 	/**
 	 * @var UUID[]
 	 */
-	static $uuids = array();
+	private static $uuids = array();
 
 	/**
 	 * @var RevisionActionPermissions
