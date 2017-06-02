@@ -7,7 +7,8 @@
 			"Arief",
 			"Macofe",
 			"Matiia",
-			"Beeyan"
+			"Beeyan",
+			"Hidayatsrf"
 		]
 	},
 	"enableflow": "Aktifkan Flow",
@@ -450,7 +451,7 @@
 	"flow-wikitext-editor-help-and-preview": "Teks wiki $1 dan Anda dapat $2 kapan saja.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|menggunakan markah]]",
 	"flow-wikitext-editor-help-preview-the-result": "lihat pratayang hasil",
-	"flow-wikitext-switch-editor-tooltip": "Ganti ke editor visual",
+	"flow-wikitext-switch-editor-tooltip": "Ganti ke penyunting visual",
 	"flow-ve-switch-editor-tool-title": "Ganti ke editor teks wiki",
 	"flow-mark-revision-patrolled-link-text": "Tandai halaman ini telah dipatroli",
 	"flow-mark-revision-patrolled-link-title": "Tandai halaman ini telah dipatroli",
