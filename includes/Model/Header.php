@@ -25,7 +25,7 @@ class Header extends AbstractRevision {
 	 * @param string[optional] $changeType
 	 * @return Header
 	 */
-	static public function create( Workflow $workflow, User $user, $content, $format, $changeType = 'create-header' ) {
+	public static function create( Workflow $workflow, User $user, $content, $format, $changeType = 'create-header' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
@@ -41,7 +41,7 @@ class Header extends AbstractRevision {
 	 * @param Header|null $obj
 	 * @return Header
 	 */
-	static public function fromStorageRow( array $row, $obj = null ) {
+	public static function fromStorageRow( array $row, $obj = null ) {
 		/** @var $obj Header */
 		$obj = parent::fromStorageRow( $row, $obj );
 		$obj->workflowId = UUID::create( $row['rev_type_id'] );

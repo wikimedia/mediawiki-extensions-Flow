@@ -27,7 +27,7 @@ class TopicListEntry {
 	 * @param Workflow $topic
 	 * @return TopicListEntry
 	 */
-	static public function create( Workflow $topicList, Workflow $topic ) {
+	public static function create( Workflow $topicList, Workflow $topic ) {
 		$obj = new self;
 		$obj->topicListId = $topicList->getId();
 		$obj->topicId = $topic->getId();
@@ -41,7 +41,7 @@ class TopicListEntry {
 	 * @return TopicListEntry
 	 * @throws DataModelException
 	 */
-	static public function fromStorageRow( array $row, $obj = null ) {
+	public static function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
@@ -59,7 +59,7 @@ class TopicListEntry {
 	 * @param TopicListEntry $obj
 	 * @return array
 	 */
-	static public function toStorageRow( TopicListEntry $obj ) {
+	public static function toStorageRow( TopicListEntry $obj ) {
 		$row = array(
 			'topic_list_id' => $obj->topicListId->getAlphadecimal(),
 			'topic_id' => $obj->topicId->getAlphadecimal(),

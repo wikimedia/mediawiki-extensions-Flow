@@ -79,7 +79,7 @@ class Workflow {
 	 * @return Workflow
 	 * @throws DataModelException
 	 */
-	static public function fromStorageRow( array $row, $obj = null ) {
+	public static function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
@@ -101,7 +101,7 @@ class Workflow {
 	 * @return array
 	 * @throws FailCommitException
 	 */
-	static public function toStorageRow( Workflow $obj ) {
+	public static function toStorageRow( Workflow $obj ) {
 		if ( $obj->pageId === 0 ) {
 			/*
 			 * We try to defer creating a new page as long as possible, which
@@ -142,7 +142,7 @@ class Workflow {
 	 * @return Workflow
 	 * @throws DataModelException
 	 */
-	static public function create( $type, Title $title ) {
+	public static function create( $type, Title $title ) {
 		// temporary limitation until we implement something more concrete
 		if ( !in_array( $type, self::$allowedTypes ) ) {
 			throw new DataModelException( 'Invalid workflow type provided: ' . $type, 'process-data' );

@@ -22,7 +22,7 @@ class SortArrayByKeys {
 		return self::compare( $a, $b, $this->keys, $this->strict );
 	}
 
-	static public function compare( $a, $b, $keys, $strict = false ) {
+	public static function compare( $a, $b, $keys, $strict = false ) {
 		$key = array_shift( $keys );
 		if ( !isset( $a[$key] ) ) {
 			return isset( $b[$key] ) ? -1 : 0;

@@ -12,7 +12,7 @@ use Title;
  */
 class ConversionUtilsTest extends FlowTestCase {
 
-	static public function createDomProvider() {
+	public static function createDomProvider() {
 		return array(
 			array(
 				'A document with multiple matching ids is valid parser output',
@@ -32,7 +32,7 @@ class ConversionUtilsTest extends FlowTestCase {
 		$this->assertInstanceOf( 'DOMDocument', Utils::createDOM( $content ), $message );
 	}
 
-	static public function createRelativeTitleProvider() {
+	public static function createRelativeTitleProvider() {
 		return array(
 			array(
 				'strips leading ./ and treats as non-relative',
@@ -72,7 +72,7 @@ class ConversionUtilsTest extends FlowTestCase {
 		}
 	}
 
-	static public function wikitextRoundtripProvider() {
+	public static function wikitextRoundtripProvider() {
 		return array(
 			array(
 				'italic text',
@@ -126,7 +126,7 @@ class ConversionUtilsTest extends FlowTestCase {
 		$this->assertEquals( $expectedPlaintext, $plaintext, "$message: plaintext" );
 	}
 
-	static public function topicTitleProvider() {
+	public static function topicTitleProvider() {
 		return array(
 			array(
 				'External links not processed',

@@ -149,7 +149,7 @@ class UUID implements ApiSerializable {
 	 * @return UUID|null
 	 * @throws InvalidInputException
 	 */
-	static public function create( $input = false ) {
+	public static function create( $input = false ) {
 		// Most calls to UUID::create are binary strings, check string first
 		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {

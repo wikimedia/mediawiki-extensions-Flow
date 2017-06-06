@@ -160,7 +160,7 @@ class ReferenceRecorder extends AbstractListener {
 		return array( $added, $removed );
 	}
 
-	static protected function isHidden( AbstractRevision $revision ) {
+	protected static function isHidden( AbstractRevision $revision ) {
 		return $revision->isModerated() && $revision->getModerationState() !== $revision::MODERATED_LOCKED;
 	}
 

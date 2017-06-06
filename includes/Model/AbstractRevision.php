@@ -159,7 +159,7 @@ abstract class AbstractRevision {
 	 * @return AbstractRevision
 	 * @throws DataModelException
 	 */
-	static public function fromStorageRow( array $row, $obj = null ) {
+	public static function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			/** @var AbstractRevision $obj */
 			$obj = new static;
@@ -205,7 +205,7 @@ abstract class AbstractRevision {
 	 * @param AbstractRevision $obj
 	 * @return string[]
 	 */
-	static public function toStorageRow( $obj ) {
+	public static function toStorageRow( $obj ) {
 		return array(
 			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->user->id,

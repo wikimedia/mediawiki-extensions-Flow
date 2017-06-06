@@ -77,7 +77,7 @@ class ContentFixer {
 	 * @param string $content HTML from parsoid
 	 * @return DOMDocument
 	 */
-	static public function createDOM( $content ) {
+	public static function createDOM( $content ) {
 		/*
 		 * The body tag is required otherwise <meta> tags at the top are
 		 * magic'd into <head> rather than kept with the content.

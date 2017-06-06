@@ -58,7 +58,7 @@ class PostRevision extends AbstractRevision {
 	 *  topic-title-wikitext format.
 	 * @return PostRevision
 	 */
-	static public function createTopicPost( Workflow $topic, User $user, $content ) {
+	public static function createTopicPost( Workflow $topic, User $user, $content ) {
 		$format = 'topic-title-wikitext';
 		$obj = static::newFromId( $topic->getId(), $user, $content, $format, $topic->getArticleTitle() );
 
@@ -96,7 +96,7 @@ class PostRevision extends AbstractRevision {
 	 * @param Title|null $title
 	 * @return PostRevision
 	 */
-	static public function newFromId( UUID $uuid, User $user, $content, $format, Title $title = null ) {
+	public static function newFromId( UUID $uuid, User $user, $content, $format, Title $title = null ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
@@ -117,7 +117,7 @@ class PostRevision extends AbstractRevision {
 	 * @return PostRevision
 	 * @throws DataModelException
 	 */
-	static public function fromStorageRow( array $row, $obj = null ) {
+	public static function fromStorageRow( array $row, $obj = null ) {
 		/** @var $obj PostRevision */
 		$obj = parent::fromStorageRow( $row, $obj );
 		$treeRevId = UUID::create( $row['tree_rev_id'] );
@@ -146,7 +146,7 @@ class PostRevision extends AbstractRevision {
 	 * @param PostRevision $rev
 	 * @return string[]
 	 */
-	static public function toStorageRow( $rev ) {
+	public static function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + array(
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getAlphadecimal() : null,
 			'tree_rev_descendant_id' => $rev->postId->getAlphadecimal(),

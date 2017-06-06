@@ -15,7 +15,7 @@ use Title;
  */
 class FormatterTest extends FlowTestCase {
 
-	static public function checkUserProvider() {
+	public static function checkUserProvider() {
 		$topicId = UUID::create();
 		$revId = UUID::create();
 		$postId = UUID::create();
