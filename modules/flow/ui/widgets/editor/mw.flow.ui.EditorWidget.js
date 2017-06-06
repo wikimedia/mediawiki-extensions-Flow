@@ -131,17 +131,14 @@
 		var widget = this;
 
 		if ( this.confirmCancel && this.editorSwitcherWidget.hasBeenChanged() ) {
-			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' )
-				.then( function ( opened ) {
-					opened.then( function ( closing, data ) {
-						if ( data && data.action === 'discard' ) {
-							// Remove content
-							widget.setContent( '', 'wikitext' );
-							widget.unbindBeforeUnloadHandler();
-							widget.emit( 'cancel' );
-						}
-					} );
-				} );
+			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' ).closed.then( function ( data ) {
+				if ( data && data.action === 'discard' ) {
+					// Remove content
+					widget.setContent( '', 'wikitext' );
+					widget.unbindBeforeUnloadHandler();
+					widget.emit( 'cancel' );
+				}
+			} );
 		} else {
 			this.unbindBeforeUnloadHandler();
 			this.emit( 'cancel' );
