@@ -8,7 +8,6 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use FormatJson;
 use IContextSource;
-use MWContentSerializationException;
 use MWException;
 use Page;
 
@@ -70,7 +69,10 @@ class BoardContentHandler extends \ContentHandler {
 		$uuid = null;
 
 		if ( !$info ) {
-			throw new MWContentSerializationException( 'Failed to decode blob.  It should be JSON representing valid Flow metadata.' );
+			// For transition from wikitext-type pages
+			// Make a plain content object and then when we get a chance
+			// we can insert a proper object.
+			return $this->makeEmptyContent();
 		} elseif ( isset( $info['flow-workflow'] ) ) {
 			$uuid = UUID::create( $info['flow-workflow'] );
 		}
