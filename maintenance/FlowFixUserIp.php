@@ -6,7 +6,7 @@ use Flow\Model\UUID;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 /**
  * Sets *_user_ip to null when *_user_id is > 0

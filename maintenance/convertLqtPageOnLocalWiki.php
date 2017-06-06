@@ -8,7 +8,7 @@ use Psr\Log\LogLevel;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 /**
  * This is intended for use both in testing and in production.  It converts a single LQT

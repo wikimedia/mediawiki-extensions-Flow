@@ -5,7 +5,7 @@ use Flow\Dump\Exporter;
 
 $maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'
-	: dirname( __FILE__ ) . '/../../../maintenance' );
+	: __DIR__ . '/../../../maintenance' );
 require_once $maintPath . '/Maintenance.php';
 require_once $maintPath . '/backup.inc';
 

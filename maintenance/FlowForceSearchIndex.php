@@ -7,7 +7,7 @@ use Flow\Search\Updaters\AbstractUpdater;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 /**
  * Similar to CirrusSearch's forceSearchIndex, this will force indexing of Flow

@@ -4,7 +4,7 @@ use Flow\TemplateHelper;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php' );
 
 /**
  * Populate the *_user_ip fields within flow.  This only updates
