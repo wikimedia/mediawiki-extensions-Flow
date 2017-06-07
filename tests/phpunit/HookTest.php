@@ -29,7 +29,7 @@ class HookTest extends \MediaWikiTestCase {
 		'text',
 	);
 
-	static public function onIRCLineURLProvider() {
+	public static function onIRCLineURLProvider() {
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
 		// pass closures into the test that create the objects within the correct context.

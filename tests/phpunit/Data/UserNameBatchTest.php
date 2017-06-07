@@ -18,7 +18,7 @@ class UserNameBatchTest extends FlowTestCase {
 		$this->assertEquals( 'Whale', $batch->get( 'fakewiki', 42 ) );
 	}
 
-	static public function acceptsStringOrIntIdsProvider() {
+	public static function acceptsStringOrIntIdsProvider() {
 		return array(
 			array( 42, 42 ),
 			array( 42, '42' ),

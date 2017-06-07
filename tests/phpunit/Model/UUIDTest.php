@@ -48,7 +48,7 @@ class UUIDTest extends FlowTestCase {
 		UUID::create( $invalidInput );
 	}
 
-	static public function uuidConversionProvider() {
+	public static function uuidConversionProvider() {
 		// sample uuid from UIDGenerator::newTimestampedUID128()
 		$numeric_128 = '6709199728898751234959525538795913762';
 		$hex_128 = \Wikimedia\base_convert( $numeric_128, 10, 16, 32 );
@@ -136,7 +136,7 @@ class UUIDTest extends FlowTestCase {
 		$this->assertEquals( $pretty, $uuid->getAlphadecimal(), "Compare pretty: $msg" );
 	}
 
-	static public function prettyProvider() {
+	public static function prettyProvider() {
 		return array(
 			// maximal base 36 value ( 2^88 )
 			array( '12vwzoefjlykjgcnwf' ),

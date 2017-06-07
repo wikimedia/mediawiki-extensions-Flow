@@ -97,7 +97,7 @@ class ResultDuplicator {
 
 	// merge() wasn't necessarily called in the same order as add(),  this walks back through
 	// the results to put them in the desired order with the correct keys.
-	static public function sortResult( array $order, MultiDimArray $result, $dimensions ) {
+	public static function sortResult( array $order, MultiDimArray $result, $dimensions ) {
 		$final = array();
 		foreach ( $order as $position => $query ) {
 			if ( $dimensions > 1 ) {

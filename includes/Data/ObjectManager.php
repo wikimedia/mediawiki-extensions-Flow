@@ -316,7 +316,7 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $new
 	 * @return bool
 	 */
-	static public function arrayEquals( array $old, array $new ) {
+	public static function arrayEquals( array $old, array $new ) {
 		return array_diff_assoc( $old, $new ) === array()
 			&& array_diff_assoc( $new, $old ) === array();
 	}
@@ -330,7 +330,7 @@ class ObjectManager extends ObjectLocator {
 	 *
 	 * @return array
 	 */
-	static public function makeArray( $input ) {
+	public static function makeArray( $input ) {
 		if ( is_array( $input ) ) {
 			return $input;
 		} else {
@@ -349,7 +349,7 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $new
 	 * @return array
 	 */
-	static public function calcUpdatesWithoutValidation( array $old, array $new ) {
+	public static function calcUpdatesWithoutValidation( array $old, array $new ) {
 		$updates = array();
 		foreach ( array_keys( $new ) as $key ) {
 			/*
@@ -381,7 +381,7 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $keys
 	 * @return array|null
 	 */
-	static public function splitFromRow( array $row, array $keys ) {
+	public static function splitFromRow( array $row, array $keys ) {
 		$split = array();
 		foreach ( $keys as $key ) {
 			if ( !isset( $row[$key] ) ) {

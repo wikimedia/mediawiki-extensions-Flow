@@ -18,7 +18,7 @@ class Merger {
 	 * @param string $default Value to use when no matching foreign value can be located
 	 * @return array $source array with all found foreign key values merged
 	 */
-	static public function merge( array $source, $fromKey, $callable, $name = null, $default = '' ) {
+	public static function merge( array $source, $fromKey, $callable, $name = null, $default = '' ) {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
@@ -57,7 +57,7 @@ class Merger {
 	 * @param string $default Value to use when no matching foreign value can be located
 	 * @return array $multiSource array with all found foreign key values merged
 	 */
-	static public function mergeMulti( array $multiSource, $fromKey, $callable, $name = null, $default = '' ) {
+	public static function mergeMulti( array $multiSource, $fromKey, $callable, $name = null, $default = '' ) {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}

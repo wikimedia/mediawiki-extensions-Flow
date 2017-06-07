@@ -17,7 +17,7 @@ class PostSummary extends AbstractSummary {
 	 * @param string $changeType
 	 * @return PostSummary
 	 */
-	static public function create( Title $title, PostRevision $post, User $user, $content, $format, $changeType ) {
+	public static function create( Title $title, PostRevision $post, User $user, $content, $format, $changeType ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->user = UserTuple::newFromUser( $user );

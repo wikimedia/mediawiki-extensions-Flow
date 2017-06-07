@@ -120,7 +120,7 @@ class TemplateHelper {
 	 *
 	 * @return string PHP code
 	 */
-	static public function compile( $code, $templateDir ) {
+	public static function compile( $code, $templateDir ) {
 		return LightnCandy::compile(
 			$code,
 			array(
@@ -173,7 +173,7 @@ class TemplateHelper {
 	 *
 	 * @return string
 	 */
-	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
+	public static function processTemplate( $templateName, $args, array $scopes = array() ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		/** @var TemplateHelper $lightncandy */
 		$lightncandy = Container::get( 'lightncandy' );
@@ -197,7 +197,7 @@ class TemplateHelper {
 	 * @return null|string
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function uuidTimestamp( array $args, array $named ) {
+	public static function uuidTimestamp( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -220,7 +220,7 @@ class TemplateHelper {
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function timestampHelper( array $args, array $named ) {
+	public static function timestampHelper( array $args, array $named ) {
 		if ( count( $args ) < 1 || count( $args ) > 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
@@ -235,7 +235,7 @@ class TemplateHelper {
 	 *
 	 * @return string|false
 	 */
-	static protected function timestamp( $timestamp ) {
+	protected static function timestamp( $timestamp ) {
 		global $wgLang, $wgUser;
 
 		if ( !$timestamp ) {
@@ -266,7 +266,7 @@ class TemplateHelper {
 	 *
 	 * @return string[] array(html, 'raw')
 	 */
-	static protected function html( $string ) {
+	protected static function html( $string ) {
 		return array( $string, 'raw' );
 	}
 
@@ -276,7 +276,7 @@ class TemplateHelper {
 	 *
 	 * @return string[] array(html, 'raw')
 	 */
-	static public function htmlHelper( array $args, array $named ) {
+	public static function htmlHelper( array $args, array $named ) {
 		return self::html( isset( $args[0] ) ? $args[0] : 'undefined' );
 	}
 
@@ -287,7 +287,7 @@ class TemplateHelper {
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function block( array $args, array $named ) {
+	public static function block( array $args, array $named ) {
 		if ( !isset( $args[0] ) ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -310,7 +310,7 @@ class TemplateHelper {
 	 * @return null|string HTML
 	 * @throws FlowException When callbacks are not Closure instances
 	 */
-	static public function eachPost( $context, $postIds, $options ) {
+	public static function eachPost( $context, $postIds, $options ) {
 		/** @var callable $inverse */
 		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
 		/** @var callable $fn */
@@ -359,7 +359,7 @@ class TemplateHelper {
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function post( array $args, array $named ) {
+	public static function post( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
@@ -377,7 +377,7 @@ class TemplateHelper {
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function historyTimestamp( array $args, array $named ) {
+	public static function historyTimestamp( array $args, array $named ) {
 		if ( !$args ) {
 			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
@@ -424,7 +424,7 @@ class TemplateHelper {
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function historyDescription( array $args, array $named ) {
+	public static function historyDescription( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -451,7 +451,7 @@ class TemplateHelper {
 	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function showCharacterDifference( array $args, array $named ) {
+	public static function showCharacterDifference( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
@@ -469,7 +469,7 @@ class TemplateHelper {
 	 *
 	 * @return string[]
 	 */
-	static public function progressiveEnhancement( array $options ) {
+	public static function progressiveEnhancement( array $options ) {
 		$fn = $options['fn'];
 		$input = $options['hash'];
 		$insertionType = empty( $input['type'] ) ? 'insert' : htmlspecialchars( $input['type'] );
@@ -496,7 +496,7 @@ class TemplateHelper {
 	 * @param array $named named object for arguments given by handlebars
 	 * @return string Representation of an ooui widget dom
 	 */
-	static public function oouify( array $args, array $named ) {
+	public static function oouify( array $args, array $named ) {
 		$widgetType = $named[ 'type' ];
 		$data = array();
 
@@ -539,7 +539,7 @@ class TemplateHelper {
 	 *
 	 * @return string Message output, using the 'text' format
 	 */
-	static public function l10n( array $args, array $named ) {
+	public static function l10n( array $args, array $named ) {
 		$message = null;
 		$str = array_shift( $args );
 
@@ -551,7 +551,7 @@ class TemplateHelper {
 	 *
 	 * @return string[] HTML
 	 */
-	static public function l10nParse( array $args, array $named ) {
+	public static function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );
 		return self::html( wfMessage( $str, $args )->parse() );
 	}
@@ -564,7 +564,7 @@ class TemplateHelper {
 	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function diffRevision( array $args, array $named ) {
+	public static function diffRevision( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -600,7 +600,7 @@ class TemplateHelper {
 		) );
 	}
 
-	static public function diffUndo( array $args, array $named ) {
+	public static function diffUndo( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -632,7 +632,7 @@ class TemplateHelper {
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function moderationAction( array $args, array $named ) {
+	public static function moderationAction( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
@@ -646,7 +646,7 @@ class TemplateHelper {
 	 *
 	 * @return string all unnamed arguments joined together
 	 */
-	static public function concat( array $args, array $named ) {
+	public static function concat( array $args, array $named ) {
 		return implode( '', $args );
 	}
 
@@ -658,7 +658,7 @@ class TemplateHelper {
 	 *
 	 * @return string value of property
 	 */
-	static public function user( array $args, array $named ) {
+	public static function user( array $args, array $named ) {
 		$feature = isset( $args[0] ) ? $args[0] : 'name';
 		$user = RequestContext::getMain()->getUser();
 		$userInfo = array(
@@ -677,7 +677,7 @@ class TemplateHelper {
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
-	static public function ifAnonymous( $options ) {
+	public static function ifAnonymous( $options ) {
 		if ( RequestContext::getMain()->getUser()->isAnon() ) {
 			$fn = $options['fn'];
 			if ( !$fn instanceof Closure ) {
@@ -702,7 +702,7 @@ class TemplateHelper {
 	 *
 	 * @return string modified url
 	 */
-	static protected function addReturnTo( $url ) {
+	protected static function addReturnTo( $url ) {
 		$ctx = RequestContext::getMain();
 		$returnTo = $ctx->getTitle();
 		if ( !$returnTo ) {
@@ -731,7 +731,7 @@ class TemplateHelper {
 	 * @return string modified url
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function linkWithReturnTo( array $args, array $named ) {
+	public static function linkWithReturnTo( array $args, array $named ) {
 		if ( count( $args ) !== 1 ) {
 			throw new WrongNumberArgumentsException( $args, 'one' );
 		}
@@ -759,7 +759,7 @@ class TemplateHelper {
 	 * @return string
 	 * @throws WrongNumberArgumentsException
 	 */
-	static public function escapeContent( array $args, array $named ) {
+	public static function escapeContent( array $args, array $named ) {
 		if ( count( $args ) !== 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
@@ -778,7 +778,7 @@ class TemplateHelper {
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
-	static public function ifCond( $value, $operator, $value2, $options ) {
+	public static function ifCond( $value, $operator, $value2, $options ) {
 		$doCallback = false;
 
 		// Perform operator
@@ -821,7 +821,7 @@ class TemplateHelper {
 	 *
 	 * @return string tooltip
 	 */
-	static public function tooltip( $options ) {
+	public static function tooltip( $options ) {
 		$fn = $options['fn'];
 		$params = $options['hash'];
 
@@ -839,7 +839,7 @@ class TemplateHelper {
 	/**
 	 * Adds required resource and protection for patrolling link.
 	 */
-	static public function enablePatrollingLink() {
+	public static function enablePatrollingLink() {
 		$outputPage = RequestContext::getMain()->getOutput();
 
 		$outputPage->preventClickjacking();

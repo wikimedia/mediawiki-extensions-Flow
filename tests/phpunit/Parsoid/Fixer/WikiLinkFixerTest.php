@@ -12,7 +12,7 @@ use Title;
  */
 class WikiLinkFixerTest extends PostRevisionTestCase {
 
-	static public function redLinkProvider() {
+	public static function redLinkProvider() {
 		return array(
 			array(
 				'Basic redlink application',

@@ -26,7 +26,7 @@ class BasicObjectMapper implements ObjectMapper {
 		$this->fromStorageRow = $fromStorageRow;
 	}
 
-	static public function model( $className ) {
+	public static function model( $className ) {
 		return new self( array( $className, 'toStorageRow' ), array( $className, 'fromStorageRow' ) );
 	}
 
