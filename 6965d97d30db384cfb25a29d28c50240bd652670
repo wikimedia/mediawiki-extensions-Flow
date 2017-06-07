@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e81134c_26194e7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-06-07T16:05:14Z",
+      "side": 1,
+      "message": "The bot is picky, and doesn\u0027t pick up the Bug: line this way. You have to remove the blank line between Bug: and Change-Id:",
+      "revId": "6965d97d30db384cfb25a29d28c50240bd652670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e81134c_4616d24e",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-06-07T16:05:14Z",
+      "side": 1,
+      "message": "I think we should use \\n\\n (double line break) here instead of a double br; but I\u0027ll test if that works.",
+      "range": {
+        "startLine": 550,
+        "startChar": 319,
+        "endLine": 550,
+        "endChar": 331
+      },
+      "revId": "6965d97d30db384cfb25a29d28c50240bd652670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
