@@ -258,19 +258,25 @@ class Workflow {
 	/**
 	 * @return UUID
 	 */
-	public function getId() { return $this->id; }
+	public function getId() {
+		return $this->id;
+	}
 
 	/**
 	 * @return string
 	 */
-	public function getType() { return $this->type; }
+	public function getType() {
+		return $this->type;
+	}
 
 	/**
 	 * Get the wiki ID, e.g. eswiki
 	 *
 	 * @return string
 	 */
-	public function getWiki() { return $this->wiki; }
+	public function getWiki() {
+		return $this->wiki;
+	}
 
 	/**
 	 * @return bool
@@ -297,12 +303,16 @@ class Workflow {
 	/**
 	 * @return string
 	 */
-	public function getLastUpdated() { return $this->lastUpdated; }
+	public function getLastUpdated() {
+		return $this->lastUpdated;
+	}
 
 	/**
 	 * @return \MWTimestamp
 	 */
-	public function getLastUpdatedObj() { return new MWTimestamp( $this->lastUpdated ); }
+	public function getLastUpdatedObj() {
+		return new MWTimestamp( $this->lastUpdated );
+	}
 
 	public function updateLastUpdated( UUID $latestRevisionId ) {
 		$this->lastUpdated = $latestRevisionId->getTimestamp();

@@ -372,7 +372,6 @@ class ObjectManager extends ObjectLocator {
 		return $updates;
 	}
 
-
 	/**
 	 * Separate a set of keys from an array. Returns null if not
 	 * all keys are set.

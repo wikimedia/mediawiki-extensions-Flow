@@ -520,7 +520,6 @@ abstract class RevisionStorage extends DbStorage {
 		return (bool) $this->updateRelated( $changeSet, $old );
 	}
 
-
 	// Revisions can only be removed for LIMITED circumstances,  in almost all cases
 	// the offending revision should be updated with appropriate suppression.
 	// Also note this doesnt delete the whole post, it just deletes the revision.

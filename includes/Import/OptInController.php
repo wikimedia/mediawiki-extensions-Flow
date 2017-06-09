@@ -573,7 +573,9 @@ class OptInController {
 		$this->editWikitextContent(
 			$currentTalkpageTitle,
 			null,
-			function( $content ) use ( $template ) { return $template . "\n\n" . $content; },
+			function( $content ) use ( $template ) {
+				return $template . "\n\n" . $content;
+			},
 			'wikitext'
 		);
 	}

@@ -108,7 +108,6 @@ foreach ( $it as $batch ) {
 			sort( $esIdsForCluster[$cluster] );
 			$lastId = reset( $esIdsForCluster[$cluster] );
 
-
 			foreach ( $esIdsForCluster[$cluster] as $id ) {
 				if ( $id === $lastId || $id === $lastId + 1 ) {
 					$lastId = $id;
@@ -286,7 +285,6 @@ function query_revisions( $dbr, $op, $tsEscaped ) {
 return iterator_to_array( $res );
 }
 
-
 function parsoid_to_wikitext( $content, $retry = 3 ) {
 	static $cache = array();
 	$hash = md5( $content );
@@ -301,7 +299,6 @@ function parsoid_to_wikitext( $content, $retry = 3 ) {
 		return $cache[$hash] = $content;
 	}
 }
-
 
 function truncate( $string, $length ) {
 	if ( strlen( $string ) > $length ) {

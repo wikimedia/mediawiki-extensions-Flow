@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Import;
+
 use Flow\Exception\FlowException;
 
 /**

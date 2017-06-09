@@ -318,7 +318,8 @@ class NoIndexException extends FlowException {
 /**
  * Category: Cross Wiki
  */
-class CrossWikiException extends FlowException {}
+class CrossWikiException extends FlowException {
+}
 
 /**
  * Category: Template helper

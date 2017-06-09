@@ -95,7 +95,6 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
-
 		$data = $this->doApiRequest( array(
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),

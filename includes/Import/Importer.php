@@ -336,7 +336,6 @@ class PageImportState {
 		return UUID::create( HistoricalUIDGenerator::historicalTimestampedUID88( $timestamp ) );
 	}
 
-
 	/**
 	 * Update the id of the workflow to match the provided timestamp
 	 *

@@ -150,7 +150,6 @@ EOD
 		);
 	}
 
-
 	protected function createStrategy(
 		DatabaseBase $dbr = null,
 		ImportSourceStore $sourceStore = null,

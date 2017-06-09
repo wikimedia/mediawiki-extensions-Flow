@@ -93,7 +93,12 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		}
 
 		// convert user objects back into user ids to simplify assertion
-		$users = array_map( function( $user ) { return $user->getId(); }, $users );
+		$users = array_map(
+			function( $user ) {
+				return $user->getId();
+			},
+			$users
+		);
 
 		$this->assertContains( $notifiedUser->getId(), $users );
 		$this->assertNotContains( $notNotifiedUser->getId(), $users );

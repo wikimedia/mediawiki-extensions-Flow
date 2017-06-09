@@ -194,7 +194,9 @@ class ConversionStrategy implements IConversionStrategy {
 		$patterns = array_map(
 			// delete any status: enabled or disabled doesn't matter (we're
 			// adding disabled magic word anyway and having it twice is messy)
-			function( $word ) { return '/{{\\s*#' . preg_quote( $word ) . ':\\s*[01]*\\s*}}/i'; },
+			function( $word ) {
+				return '/{{\\s*#' . preg_quote( $word ) . ':\\s*[01]*\\s*}}/i';
+			},
 			array( 'useliquidthreads' ) + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
 
 		return preg_replace( $patterns, '', $content );

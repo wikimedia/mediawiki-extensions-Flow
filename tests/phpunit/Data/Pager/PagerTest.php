@@ -55,7 +55,12 @@ class PagerTest extends \MediaWikiTestCase {
 				array( 'pager-limit' => 10 ),
 				// filter
 				function( $found ) {
-					return array_filter( $found, function( $obj ) { return $obj->foo !== 'B'; } );
+					return array_filter(
+						$found,
+						function( $obj ) {
+							return $obj->foo !== 'B';
+						}
+					);
 				},
 			),
 
@@ -117,7 +122,6 @@ class PagerTest extends \MediaWikiTestCase {
 		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
 		$this->assertEquals( $expect, $page->getResults(), $message );
 	}
-
 
 	public static function getPagingLinkOptionsProvider() {
 		$objs = array();
@@ -191,7 +195,12 @@ class PagerTest extends \MediaWikiTestCase {
 				array( 'pager-limit' => 2 ),
 				// filter
 				function( $found ) {
-					return array_filter( $found, function( $obj ) { return $obj->foo > 'B'; } );
+					return array_filter(
+						$found,
+						function( $obj ) {
+							return $obj->foo > 'B';
+						}
+					);
 				},
 			),
 
@@ -212,7 +221,12 @@ class PagerTest extends \MediaWikiTestCase {
 				array( 'pager-limit' => 2 ),
 				// filter
 				function( $found ) {
-					return array_filter( $found, function( $obj ) { return $obj->foo !== 'A'; } );
+					return array_filter(
+						$found,
+						function( $obj ) {
+							return $obj->foo !== 'A';
+						}
+					);
 				},
 			),
 

@@ -93,7 +93,6 @@ foreach ( $it as $batch ) {
 	}
 }
 
-
 echo "Considered $totalNullContentWithParent revisions with parents and no content\n";
 if ( $totalNullContentWithParent > 0 ) {
 	echo "Could not fix $totalNullParentContent (" . number_format( 100 * $totalNullParentContent / $totalNullContentWithParent ) . "%) due to parent not having content\n";

@@ -14,7 +14,6 @@ class ObjectLocatorTest extends FlowTestCase {
 		$storage = $this->getMock( 'Flow\Data\ObjectStorage' );
 		$dbFactory = $this->getMock( 'Flow\DbFactory' );
 
-
 		$locator = new \Flow\Data\ObjectLocator( $mapper, $storage, $dbFactory );
 
 		$storage->expects( $this->any() )

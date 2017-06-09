@@ -529,7 +529,6 @@ class UrlGenerator {
 		);
 	}
 
-
 	/**
 	 * Edit the specified topic summary
 	 *

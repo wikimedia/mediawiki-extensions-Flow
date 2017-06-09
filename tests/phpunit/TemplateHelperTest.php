@@ -11,16 +11,20 @@ use Flow\TemplateHelper;
 class TemplateHelperTest extends \MediaWikiTestCase {
 
 	public function provideTraversalAttackFilenames() {
-		return array_map( function( $x ) { return array( $x ); }, array(
-			'.',
-			'..',
-			'./foo',
-			'../foo',
-			'foo/./bar',
-			'foo/../bar',
-			'foo/bar/.',
-			'foo/bar/..',
-		) );
+		return array_map(
+			function( $x ) {
+				return array( $x );
+			}, array(
+				'.',
+				'..',
+				'./foo',
+				'../foo',
+				'foo/./bar',
+				'foo/../bar',
+				'foo/bar/.',
+				'foo/bar/..',
+			)
+		);
 	}
 
 	/**

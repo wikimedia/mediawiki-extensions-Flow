@@ -159,7 +159,6 @@ abstract class Reference {
 				$this->getIdentifier();
 	}
 
-
 	/**
 	 * We don't have a real PK (see comment in
 	 * ReferenceClarifier::loadReferencesForPage) but I'll do a array_unique on
