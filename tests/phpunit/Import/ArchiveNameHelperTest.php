@@ -1,9 +1,9 @@
 <?php
 
 namespace Flow\Tests\Import;
+
 use Title;
 use Flow\Import\ArchiveNameHelper;
-
 
 /**
  * @group Flow

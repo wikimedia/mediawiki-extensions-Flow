@@ -577,7 +577,6 @@ class RevisionFormatter {
 				}
 				break;
 
-
 			case 'hide-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
@@ -665,7 +664,6 @@ class RevisionFormatter {
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
 				break;
-
 
 			default:
 				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
@@ -825,7 +823,6 @@ class RevisionFormatter {
 				break;
 			}
 		}
-
 
 		return $links;
 	}

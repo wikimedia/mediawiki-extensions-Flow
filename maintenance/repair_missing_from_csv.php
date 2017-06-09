@@ -19,7 +19,6 @@ if ( fgetcsv( $csv ) !== array( 'uuid', 'esurl', 'flags' ) ) {
 	die( 'Provided CSV file does not have the expected header' );
 }
 
-
 $fixed = 0;
 $dbw = Flow\Container::get( 'db.factory' )->getDB( DB_MASTER );
 while ( $row = fgetcsv( $csv ) ) {

@@ -71,7 +71,8 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 					if ( $workflow ) {
 						$boardTitle = $workflow->getOwnerTitle();
 					}
-				} catch ( Exception $e ) {}
+				} catch ( Exception $e ) {
+				}
 				if ( $boardTitle ) {
 					$dbw->update(
 						'echo_event',

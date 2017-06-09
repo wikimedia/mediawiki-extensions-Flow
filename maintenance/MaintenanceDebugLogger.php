@@ -35,7 +35,6 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 		);
 	}
 
-
 	/**
 	 * @param string $level A LogLevel constant. Logged messages less
 	 *  severe than this level will not be output.

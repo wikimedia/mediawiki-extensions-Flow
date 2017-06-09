@@ -1992,7 +1992,9 @@ class FlowHooks {
 		// fill usernames if no $username filter was specified
 		if ( !$username ) {
 			$userIds = array_map(
-				function ( $userInfo ) { return $userInfo['userId']; },
+				function ( $userInfo ) {
+					return $userInfo['userId'];
+				},
 				array_values( $limitedRevIds )
 			);
 			$userIds = array_filter( $userIds );

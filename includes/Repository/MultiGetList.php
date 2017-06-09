@@ -62,7 +62,9 @@ class MultiGetList {
 			// returns false for not found keys.
 			$multiRes = array_filter(
 				$multiRes,
-				function( $val ) { return $val !== false; }
+				function( $val ) {
+					return $val !== false;
+				}
 			);
 			foreach ( $multiRes as $key => $value ) {
 				$idx = $cacheKeys[$key];

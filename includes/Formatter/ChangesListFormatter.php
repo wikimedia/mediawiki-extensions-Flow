@@ -214,8 +214,7 @@ class ChangesListFormatter extends AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
-	public function getFlags( RecentChangesRow $row, IContextSource $ctx )
-	{
+	public function getFlags( RecentChangesRow $row, IContextSource $ctx ) {
 		return array(
 			'newpage' => $row->isFirstReply && $row->revision->isFirstRevision(),
 			'minor' => false,

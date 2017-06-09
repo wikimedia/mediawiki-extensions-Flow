@@ -144,7 +144,6 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 		return $this->getRevision( UUID::create( $ids[$next] ) );
 	}
 
-
 	/**
 	 * Returns true if all revisions have been loaded into $this->revisions.
 	 *

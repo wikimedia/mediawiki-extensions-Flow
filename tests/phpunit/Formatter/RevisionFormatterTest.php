@@ -155,7 +155,6 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		);
 	}
 
-
 	/**
 	 * @expectedException \Flow\Exception\FlowException
 	 * @dataProvider decideContentInvalidFormatProvider
@@ -381,7 +380,6 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 		$ctx = RequestContext::getMain();
 		$ctx->setUser( $this->user );
-
 
 		if ( $returnAll ) {
 			return array( $formatter, $ctx, $permissions, $templating, $usernames, $actions );

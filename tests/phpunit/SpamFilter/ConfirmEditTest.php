@@ -2,7 +2,6 @@
 
 namespace Flow\Tests\SpamFilter;
 
-
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;

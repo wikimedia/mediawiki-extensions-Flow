@@ -30,7 +30,9 @@ class TopKIndex extends FeatureIndex {
 		$this->options = $options + array(
 			'limit' => 500,
 			'order' => 'DESC',
-			'create' => function() { return false; },
+			'create' => function() {
+				return false;
+			},
 			'shallow' => null,
 		);
 		$this->options['order'] = strtoupper( $this->options['order'] );

@@ -76,7 +76,6 @@ class View extends ContextSource {
 			$block->setPageTitle( $output );
 		}
 
-
 		$this->renderApiResponse( $apiResponse );
 	}
 

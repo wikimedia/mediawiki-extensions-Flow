@@ -2,7 +2,6 @@
 
 namespace Flow\Import;
 
-
 use Flow\Repository\TitleRepository;
 use Title;
 

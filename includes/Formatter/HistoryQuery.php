@@ -31,8 +31,8 @@ abstract class HistoryQuery extends AbstractQuery {
 	public function __construct(
 		ManagerGroup $storage,
 		TreeRepository $treeRepo,
-		FlowActions $actions )
-	{
+		FlowActions $actions
+	) {
 		parent::__construct( $storage, $treeRepo );
 		$this->actions = $actions;
 	}

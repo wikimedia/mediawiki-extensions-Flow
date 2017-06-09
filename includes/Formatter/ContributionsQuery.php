@@ -46,8 +46,8 @@ class ContributionsQuery extends AbstractQuery {
 		TreeRepository $treeRepo,
 		BagOStuff $cache,
 		DbFactory $dbFactory,
-		FlowActions $actions )
-	{
+		FlowActions $actions
+	) {
 		parent::__construct( $storage, $treeRepo );
 		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;

@@ -158,9 +158,12 @@ class BoardContent extends \AbstractContent {
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( Title $title, $revId = null,
-			ParserOptions $options = null, $generateHtml = true )
-	{
+	public function getParserOutput(
+		Title $title,
+		$revId = null,
+		ParserOptions $options = null,
+		$generateHtml = true
+	) {
 		if ( $generateHtml ) {
 			try {
 				global $wgUser;

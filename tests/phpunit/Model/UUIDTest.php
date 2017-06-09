@@ -160,8 +160,7 @@ class UUIDTest extends FlowTestCase {
 		$this->assertEquals( UUID::create( 10 )->getAlphadecimal(), '000000000000000a' );
 	}
 
-	public static function uuidProvider()
-	{
+	public static function uuidProvider() {
 		return array(
 			array( UUID::create() ),
 			array( UUID::getComparisonUUID( 1 ) ),
@@ -172,8 +171,7 @@ class UUIDTest extends FlowTestCase {
 	 * @dataProvider uuidProvider
 	 * @param UUID $uuid
 	 */
-	public function testAlphadecimalRoundtrip( UUID $uuid )
-	{
+	public function testAlphadecimalRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getAlphadecimal();
 		$new = UUID::create( $expect );
 
@@ -184,8 +182,7 @@ class UUIDTest extends FlowTestCase {
 	 * @dataProvider uuidProvider
 	 * @param UUID $uuid
 	 */
-	public function testHexRoundtrip( UUID $uuid )
-	{
+	public function testHexRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getHex();
 		$new = UUID::create( $expect );
 
@@ -196,8 +193,7 @@ class UUIDTest extends FlowTestCase {
 	 * @dataProvider uuidProvider
 	 * @param UUID $uuid
 	 */
-	public function testBinaryRoundtrip( UUID $uuid )
-	{
+	public function testBinaryRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getBinary();
 		$new = UUID::create( $expect );
 

@@ -690,7 +690,6 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function( $c ) {
 	);
 };
 
-
 $c['storage.post_topic_history.indexes'] = function( $c ) {
 	return array(
 		$c['storage.post_topic_history.indexes.topic_lookup'],

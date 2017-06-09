@@ -128,7 +128,6 @@ class PurgeAction extends \PurgeAction {
 		$boardHistoryQuery->getResults( $workflow->getId(), 499 );
 	}
 
-
 	/**
 	 * Load the requested topics.  Does not return anything, the goal
 	 * here is to populate $this->hashBag.
