@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0e81134c_558f48d1",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2017-06-11T18:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e81134c_754e0c3e",
+      "range": {
+        "startLine": 161,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "f544250d5c3d135bc9f7d2c75e2ad2fc3777f8d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e81134c_5568a884",
         "filename": "tests/phpunit/Data/Pager/PagerTest.php",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0e81134c_758cccdb",
+        "filename": "tests/phpunit/Data/Pager/PagerTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2017-06-11T18:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e81134c_5568a884",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 7
+      },
+      "revId": "f544250d5c3d135bc9f7d2c75e2ad2fc3777f8d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e81134c_b544741d",
         "filename": "tests/phpunit/TemplateHelperTest.php",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-06-11T13:34:15Z",
       "side": 1,
       "message": "This space should be a newline.",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "f544250d5c3d135bc9f7d2c75e2ad2fc3777f8d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e81134c_15b8e073",
+        "filename": "tests/phpunit/TemplateHelperTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2017-06-11T18:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e81134c_b544741d",
       "range": {
         "startLine": 17,
         "startChar": 5,
