@@ -255,6 +255,7 @@
 	"flow-no-more-fwd": "Neexistují žádná starší témata",
 	"flow-newest-topics": "Nejnovější témata",
 	"flow-recent-topics": "Nedávno aktivní témata",
+	"flow-whatlinkshere-post": "v [$1 příspěvku]",
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Příspěvek",
 	"flow-special-type-workflow": "Workflow",
