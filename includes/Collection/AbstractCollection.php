@@ -67,7 +67,7 @@ abstract class AbstractCollection {
 	 * @param UUID $uuid
 	 */
 	protected function __construct( UUID $uuid ) {
-		$this->uuid = $uuid ;
+		$this->uuid = $uuid;
 	}
 
 	/**

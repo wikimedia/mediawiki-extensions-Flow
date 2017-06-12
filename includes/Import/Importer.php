@@ -242,7 +242,7 @@ class PageImportState {
 		SplQueue $deferredQueue,
 		$allowUnknownUsernames = false
 	) {
-		$this->storage = $storage;;
+		$this->storage = $storage;
 		$this->boardWorkflow = $boardWorkflow;
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
