@@ -75,7 +75,7 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 
 		$adminUser = $this->getMockBuilder('User')
 			->setMethods(array('isAllowed'))
-                         ->getMock();
+			->getMock();
 
 		// Set up the expectation for the update() method
 		// to be called only once and with the string 'something'

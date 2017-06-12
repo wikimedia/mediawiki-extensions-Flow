@@ -269,20 +269,18 @@ echo "Found a match but invalid due to size of es gaps for $totalMatchButInvalid
 echo "Resolved $totalResolvedMultipleMatches multiple matches (" . number_format( 100 * $totalResolvedMultipleMatches / $totalMissingConsidered ) . "%)\n";
 
 function query_revisions( $dbr, $op, $tsEscaped ) {
-
 	$direction = $op[0] === '>' ? 'ASC' : 'DESC';
-	$sql =
-   "SELECT revision.rev_timestamp, text.old_text
-      FROM revision
-      JOIN text ON revision.rev_text_id = old_id
- LEFT JOIN revision parent ON parent.rev_id = revision.rev_parent_id
-     WHERE revision.rev_timestamp $op $tsEscaped
-       AND revision.rev_text_id <> parent.rev_text_id
-     ORDER BY revision.rev_timestamp $direction
-     LIMIT 10";
+	$sql = "SELECT revision.rev_timestamp, text.old_text " .
+		"     FROM revision " .
+		"     JOIN text ON revision.rev_text_id = old_id " .
+		"LEFT JOIN revision parent ON parent.rev_id = revision.rev_parent_id " .
+		"    WHERE revision.rev_timestamp $op $tsEscaped " .
+		"      AND revision.rev_text_id <> parent.rev_text_id " .
+		"    ORDER BY revision.rev_timestamp $direction " .
+		"    LIMIT 10";
 
 	$res = $dbr->query( $sql, __METHOD__ );
-return iterator_to_array( $res );
+	return iterator_to_array( $res );
 }
 
 function parsoid_to_wikitext( $content, $retry = 3 ) {

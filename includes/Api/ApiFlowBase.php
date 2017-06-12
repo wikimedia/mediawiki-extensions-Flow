@@ -73,7 +73,7 @@ abstract class ApiFlowBase extends ApiBase {
 	 */
 	protected function getLoader() {
 		if ( $this->loader === null ) {
- 			/** @var WorkflowLoaderFactory $factory */
+			/** @var WorkflowLoaderFactory $factory */
 			$factory = Container::get( 'factory.loader.workflow' );
 			$this->loader = $factory->createWorkflowLoader( $this->page );
 		}

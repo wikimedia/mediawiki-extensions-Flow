@@ -187,7 +187,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	 * @param string $signatureUsername Username extracted from signature
 	 * @return ScriptedImportRevision Generated top import revision
 	 */
-	 protected function createSignatureClarificationRevision( IObjectRevision $lastRevision, $authorUsername, $signatureUsername ) {
+	protected function createSignatureClarificationRevision( IObjectRevision $lastRevision, $authorUsername, $signatureUsername ) {
 		$wikitextForLastRevision = $lastRevision->getText();
 		$newWikitext = $wikitextForLastRevision;
 
