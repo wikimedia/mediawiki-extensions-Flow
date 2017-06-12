@@ -299,8 +299,8 @@ $wgFlowActions = array(
 		'permissions' => array(
 			// no permissions needed for own posts
 			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
-					return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
-				}
+				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
+			}
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
@@ -333,8 +333,8 @@ $wgFlowActions = array(
 		'permissions' => array(
 			// no permissions needed for own posts
 			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
-					return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
-				}
+				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
+			}
 		),
 		'root-permissions' => array(
 			PostRevision::MODERATED_NONE => '',
@@ -621,17 +621,17 @@ $wgFlowActions = array(
 			return '';
 		},
 		'rc_insert' => function( PostRevision $revision, RecentChangesListener $recentChanges ) {
-				$post = $revision->getCollection();
-				$previousRevision = $post->getPrevRevision( $revision );
-				if ( $previousRevision ) {
-					// * if topic was hidden/deleted, restore can go to RC
-					// * if topic was suppressed, restore can not go to RC
-					global $wgFlowActions;
-					return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['rc_insert'];
-				}
+			$post = $revision->getCollection();
+			$previousRevision = $post->getPrevRevision( $revision );
+			if ( $previousRevision ) {
+				// * if topic was hidden/deleted, restore can go to RC
+				// * if topic was suppressed, restore can not go to RC
+				global $wgFlowActions;
+				return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['rc_insert'];
+			}
 
-				return true;
-			},
+			return true;
+		},
 		'permissions' => array(
 			PostRevision::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),

@@ -18,7 +18,7 @@ if [ "$IGNORE_WHITESPACE" != "1" ]; then
 	git diff --cached --name-only | (while read f; do
 	  ERROR=0
 	  if grep -n '[[:space:]]$' "$f" ; then
-  		echo "'$f' has trailing whitespace\n" >&2
+		echo "'$f' has trailing whitespace\n" >&2
 		ERROR=1
 	  fi
 	done; exit $ERROR)

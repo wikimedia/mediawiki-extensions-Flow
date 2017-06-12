@@ -105,7 +105,7 @@ $namespaceNames['id'] = array(
 
 /** Italian */
 $namespaceNames['it'] = array(
-        NS_TOPIC =>  'Argomento',
+	NS_TOPIC =>  'Argomento',
 );
 
 /** Korean */

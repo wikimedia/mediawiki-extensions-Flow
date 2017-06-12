@@ -276,7 +276,9 @@ abstract class Utils {
 			$params = $vrs['modules']['restbase'];
 			$params['parsoidCompat'] = false; // backward compatibility
 			$class = 'RestbaseVirtualRESTService';
-		} else*/if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
+		} else
+		*/
+		if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
 			// there's a global parsoid config, use it next
 			$params = $vrs['modules']['parsoid'];
 			$params['restbaseCompat'] = true;

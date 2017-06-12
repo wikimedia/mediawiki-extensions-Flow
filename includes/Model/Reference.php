@@ -153,10 +153,10 @@ abstract class Reference {
 	}
 
 	public function getUniqueIdentifier() {
-		return 	$this->getSrcTitle() . '|' .
-				$this->getObjectType() . '|' .
-				$this->getObjectId()->getAlphadecimal() . '|' .
-				$this->getIdentifier();
+		return $this->getSrcTitle() . '|' .
+			$this->getObjectType() . '|' .
+			$this->getObjectId()->getAlphadecimal() . '|' .
+			$this->getIdentifier();
 	}
 
 	/**

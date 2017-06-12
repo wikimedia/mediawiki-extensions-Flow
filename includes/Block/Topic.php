@@ -982,7 +982,7 @@ class TopicBlock extends AbstractBlock {
 	 * @param \OutputPage $out
 	 *
 	 * @todo Provide more informative page title for actions other than view,
-     *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
+	 *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
 	 */
 	public function setPageTitle( \OutputPage $out ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );

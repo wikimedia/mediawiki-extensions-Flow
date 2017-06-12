@@ -9,15 +9,15 @@ require_once "$IP/maintenance/commandLine.inc";
 require_once "$IP/extensions/Flow/FlowActions.php";
 
 $moderationChangeTypes = array(
-        'hide-post',
-        'hide-topic',
-        'delete-post',
-        'delete-topic',
-        'suppress-post',
-        'suppress-topic',
-        'lock-topic',
-        'restore-post',
-        'restore-topic',
+	'hide-post',
+	'hide-topic',
+	'delete-post',
+	'delete-topic',
+	'suppress-post',
+	'suppress-topic',
+	'lock-topic',
+	'restore-post',
+	'restore-topic',
 );
 
 $csvOutput = fopen( 'repair_results_from_parent_' . wfWikiID() . '.csv', 'w' );
