@@ -162,7 +162,7 @@
 	"flow-error-protected-unknown-reason": "Desconocido",
 	"flow-error-missing-replyto": "Ningún parámetro \"replyTo\" fue suministrado. Este parámetro es requerido para hacer la acción \"responder\".",
 	"flow-error-missing-postId": "Ningún parámetro \"postId\" fue suministrado. Es requerido este parámetro para manipular una publicación.",
-	"flow-error-invalid-postId": "El parámetro \"postId\" era inválido. La publicación especificada ($1) no pudo ser encontrada.",
+	"flow-error-invalid-postId": "El parámetro «postID» no es válido. No se pudo encontrar la publicación especificada ($1).",
 	"flow-error-invalid-moderation-state": "Se envió un valor de parámetro no válido («moderationState») a la API de Flow.",
 	"flow-error-invalid-moderation-reason": "Proporciona el motivo de la moderación.",
 	"flow-error-not-allowed": "Permisos insuficientes para ejecutar esta acción.",
