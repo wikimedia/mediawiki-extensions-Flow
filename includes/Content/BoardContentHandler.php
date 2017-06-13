@@ -41,7 +41,7 @@ class BoardContentHandler extends \ContentHandler {
 	 * @throws MWException
 	 */
 	public function serializeContent( \Content $content, $format = null ) {
-		if ( ! $content instanceof BoardContent ) {
+		if ( !$content instanceof BoardContent ) {
 			throw new MWException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}
 
@@ -123,7 +123,7 @@ class BoardContentHandler extends \ContentHandler {
 		$actions = Container::get( 'flow_actions' );
 		$output = array();
 
-		foreach( $actions->getActions() as $action ) {
+		foreach ( $actions->getActions() as $action ) {
 			$actionData = $actions->getValue( $action );
 			if ( !is_array( $actionData ) ) {
 				continue;

@@ -58,7 +58,7 @@ class PurgeAction extends \PurgeAction {
 			->createWorkflowLoader( $this->page->getTitle() )
 			->getWorkflow();
 
-		switch( $workflow->getType() ) {
+		switch ( $workflow->getType() ) {
 		case 'discussion':
 			$this->fetchDiscussion( $workflow );
 			break;

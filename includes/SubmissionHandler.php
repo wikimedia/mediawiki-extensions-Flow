@@ -96,7 +96,6 @@ class SubmissionHandler {
 				// so, this is misleading, since it could be protection,
 				// etc.  The specific error message (protect, block, etc.)
 				// will still be output, though.
-				//
 				// In theory, something could be relying on the string 'block',
 				// since it's exposed to the API, but probably not.
 				reset( $interestedBlocks )->addError( 'block', $msg );
