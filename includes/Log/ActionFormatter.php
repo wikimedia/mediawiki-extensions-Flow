@@ -103,11 +103,9 @@ class ActionFormatter extends LogFormatter {
 		$rootLastRevision = $root->getLastRevision();
 
 		// Give grep a chance to find the usages:
-		//
 		// A few of the -topic-title-not-visible are not reachable with the current
 		// config (since people looking at the suppression log can see suppressed
 		// content), but are included to make it less brittle.
-		//
 		// logentry-delete-flow-delete-post, logentry-delete-flow-delete-post-topic-title-not-visible,
 		// logentry-delete-flow-restore-post, logentry-delete-flow-restore-post-topic-title-not-visible,
 		// logentry-suppress-flow-restore-post, logentry-suppress-flow-restore-post-topic-title-not-visible,

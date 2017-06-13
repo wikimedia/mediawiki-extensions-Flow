@@ -41,7 +41,7 @@ class TopicFormatter {
 
 	public function formatApi( Workflow $listWorkflow, array $found, IContextSource $ctx ) {
 		$roots = $revisions = $posts = $replies = array();
-		foreach( $found as $formatterRow ) {
+		foreach ( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
 			if ( !$serialized ) {
 				continue;
@@ -107,7 +107,7 @@ class TopicFormatter {
 			foreach ( $data['replies'] as $postId ) {
 				$stack->push( $revisions[$posts[$postId][0]] );
 			}
-		} while( !$stack->isEmpty() );
+		} while ( !$stack->isEmpty() );
 
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 

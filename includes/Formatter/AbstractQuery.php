@@ -83,7 +83,7 @@ abstract class AbstractQuery {
 		$revisions = array();
 		$previousRevisionIds = array();
 		$collectionIds = array();
-		foreach( $results as $result ) {
+		foreach ( $results as $result ) {
 			if ( $result instanceof PostRevision ) {
 				// If top-level, then just get the workflow.
 				// Otherwise we need to find the root post.
@@ -115,12 +115,11 @@ abstract class AbstractQuery {
 		// map from post Id to the related root post id
 		$rootPostIds = array_filter( $this->treeRepository->findRoots( $postIds ) );
 		$rootPostRequests = array();
-		foreach( $rootPostIds as $postId ) {
+		foreach ( $rootPostIds as $postId ) {
 			$rootPostRequests[] = array( 'rev_type_id' => $postId );
 		}
 
 		// these tree identity maps are required for determining where a reply goes when
-		//
 		// replying to a specific post.
 		$identityMap = $this->treeRepository->fetchSubtreeIdentityMap(
 			array_unique( $rootPostIds, SORT_REGULAR )

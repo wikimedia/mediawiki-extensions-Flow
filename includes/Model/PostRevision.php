@@ -122,7 +122,7 @@ class PostRevision extends AbstractRevision {
 		$obj = parent::fromStorageRow( $row, $obj );
 		$treeRevId = UUID::create( $row['tree_rev_id'] );
 
-		if ( ! $obj->revId->equals( $treeRevId ) ) {
+		if ( !$obj->revId->equals( $treeRevId ) ) {
 			$treeRevIdStr = ( $treeRevId !== null )
 				? $treeRevId->getAlphadecimal()
 				: var_export( $row['tree_rev_id'], true );

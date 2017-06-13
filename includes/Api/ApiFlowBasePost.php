@@ -36,7 +36,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$savedBlocks = array();
 		$result->setIndexedTagName( $savedBlocks, 'block' );
 
-		foreach( $blocksToCommit as $block ) {
+		foreach ( $blocksToCommit as $block ) {
 			$savedBlocks[] = $block->getName();
 		}
 

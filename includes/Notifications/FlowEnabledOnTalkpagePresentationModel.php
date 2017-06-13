@@ -33,7 +33,7 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
-		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
+		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 		return $msg;
 	}
 

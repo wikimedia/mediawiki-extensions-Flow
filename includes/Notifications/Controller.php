@@ -186,7 +186,7 @@ class NotificationController {
 		// pass along mentioned users to other notification, so it knows who to ignore
 		$extraData['mentioned-users'] = $mentionedUsers;
 
-		switch( $eventName ) {
+		switch ( $eventName ) {
 			case 'flow-post-reply':
 				$extraData += array(
 					'reply-to' => $revision->getReplyToId(),
@@ -646,7 +646,7 @@ class NotificationController {
 
 		$links = $output->getLinks();
 
-		if ( ! isset( $links[NS_USER] ) || ! is_array( $links[NS_USER] ) ) {
+		if ( !isset( $links[NS_USER] ) || !is_array( $links[NS_USER] ) ) {
 			// Nothing
 			return array();
 		}
@@ -797,7 +797,7 @@ class NotificationController {
 	 * @param array $tree Tree structure
 	 * @return UUID First post ID found, or null on failure
 	 */
-	protected function getFirstPreorderDepthFirst( array $relevantPostIds, UUID $root, array $tree  ) {
+	protected function getFirstPreorderDepthFirst( array $relevantPostIds, UUID $root, array $tree ) {
 		$rootAlpha = $root->getAlphadecimal();
 
 		if ( isset( $relevantPostIds[$rootAlpha] ) ) {
@@ -811,7 +811,7 @@ class NotificationController {
 		}
 
 		foreach ( $children as $child ) {
-			$relevantPostId = $this->getFirstPreorderDepthFirst( $relevantPostIds, UUID::create( $child ), $tree  );
+			$relevantPostId = $this->getFirstPreorderDepthFirst( $relevantPostIds, UUID::create( $child ), $tree );
 			if ( $relevantPostId !== null ) {
 				return $relevantPostId;
 			}

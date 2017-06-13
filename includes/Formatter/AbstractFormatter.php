@@ -117,7 +117,7 @@ abstract class AbstractFormatter {
 			if ( isset( $have[$key] ) ) {
 				if ( $link instanceof Anchor ) {
 					$formatted[] = $link->toHtml();
-				} elseif( $link instanceof Message ) {
+				} elseif ( $link instanceof Message ) {
 					$formatted[] = $link->escaped();
 				} else {
 					// plain text

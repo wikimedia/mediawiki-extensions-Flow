@@ -91,7 +91,7 @@ class ChangesListFormatter extends AbstractFormatter {
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
 		$link = Linker::link(
 			$title = $row->workflow->getOwnerTitle(),
-			$ctx->getLanguage()->getArrow('backwards'),
+			$ctx->getLanguage()->getArrow( 'backwards' ),
 			array(),
 			array(),
 			'noclasses'

@@ -286,7 +286,7 @@ abstract class AbstractRevision {
 	 * @return AbstractRevision
 	 */
 	public function moderate( User $user, $state, $changeType, $reason ) {
-		if ( ! $this->isValidModerationState( $state ) ) {
+		if ( !$this->isValidModerationState( $state ) ) {
 			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
 		}
@@ -504,7 +504,7 @@ abstract class AbstractRevision {
 
 		// never trust incoming html - roundtrip to wikitext first
 		if ( $format === 'html' ) {
-			$content = Utils::convert( $format, 'wikitext', $content, $title  );
+			$content = Utils::convert( $format, 'wikitext', $content, $title );
 			$format = 'wikitext';
 		}
 
@@ -757,7 +757,7 @@ abstract class AbstractRevision {
 	public static function getModerationChangeTypes() {
 		if ( self::$moderationChangeTypes === null ) {
 			self::$moderationChangeTypes = array();
-			foreach( self::$perms as $perm ) {
+			foreach ( self::$perms as $perm ) {
 				if ( $perm != '' ) {
 					self::$moderationChangeTypes[] = "{$perm}-topic";
 					self::$moderationChangeTypes[] = "{$perm}-post";
@@ -840,7 +840,9 @@ abstract class AbstractRevision {
 		// it is possible that more than 1 changes on the same page have the same timestamp
 		// the revision id is hidden in rc_params['flow-workflow-change']['revision']
 		$revId = $this->revId->getAlphadecimal();
+		// @codingStandardsIgnoreStart
 		while ( $row = $rows->next() ) {
+		// @codingStandardsIgnoreEnd
 			$rc = RecentChange::newFromRow( $row );
 			$params = $rc->parseParams();
 			if ( $params && $params['flow-workflow-change']['revision'] === $revId ) {

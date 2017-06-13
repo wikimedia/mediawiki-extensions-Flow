@@ -67,7 +67,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 	 */
 	public function buildResult( array $workflows, array $found, IContextSource $ctx ) {
 		$revisions = $posts = $replies = array();
-		foreach( $found as $formatterRow ) {
+		foreach ( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
 			if ( !$serialized ) {
 				continue;
@@ -138,7 +138,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 			foreach ( $data['replies'] as $postId ) {
 				$stack->push( $revisions[$posts[$postId][0]] );
 			}
-		} while( !$stack->isEmpty() );
+		} while ( !$stack->isEmpty() );
 
 		/** @var Workflow|null $workflow */
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
