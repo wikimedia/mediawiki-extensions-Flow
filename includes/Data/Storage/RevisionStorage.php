@@ -34,7 +34,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @Todo - This may not be necessary anymore since we don't update historical
 	 * revisions ( flow_revision ) during moderation
 	 */
-	protected $obsoleteUpdateColumns = array (
+	protected $obsoleteUpdateColumns = array(
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
@@ -274,7 +274,7 @@ abstract class RevisionStorage extends DbStorage {
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
 			//  SELECT * from flow_revision
-			//	  JOIN flow_tree_revision ON tree_rev_id = rev_id
+			//    JOIN flow_tree_revision ON tree_rev_id = rev_id
 			//   WHERE rev_id IN (...)
 			$dbr = $this->dbFactory->getDB( DB_SLAVE );
 
@@ -363,14 +363,14 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function insert( array $rows ) {
-		if ( ! is_array( reset( $rows ) ) ) {
+		if ( !is_array( reset( $rows ) ) ) {
 			$rows = array( $rows );
 		}
 
 		// Holds the subset of the row to go into the revision table
 		$revisions = array();
 
-		foreach( $rows as $key => $row ) {
+		foreach ( $rows as $key => $row ) {
 			$row = $this->processExternalStore( $row );
 			$revisions[$key] = $this->splitUpdate( $row, 'rev' );
 		}
@@ -495,7 +495,6 @@ abstract class RevisionStorage extends DbStorage {
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
 	// For the most part should insert a new revision.  This should only be called
 	// by maintenance scripts and (future) suppression features.
-	//
 	// It supports updating content, which is only intended for required mechanical
 	// transformations, such as XSS fixes.  However, since this is only intended for
 	// maintenance scripts, these columns must first be temporarily added to

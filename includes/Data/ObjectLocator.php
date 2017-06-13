@@ -104,7 +104,7 @@ class ObjectLocator {
 		}
 
 		$output = array();
-		foreach( $res as $index => $queryOutput ) {
+		foreach ( $res as $index => $queryOutput ) {
 			foreach ( $queryOutput as $k => $v ) {
 				if ( $v ) {
 					$output[$index][$k] = $this->load( $v );
@@ -151,7 +151,7 @@ class ObjectLocator {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 
-		foreach( $queries as $key => $value ) {
+		foreach ( $queries as $key => $value ) {
 			$queries[$key] = UUID::convertUUIDs( $value, 'alphadecimal' );
 		}
 
@@ -176,7 +176,6 @@ class ObjectLocator {
 	}
 
 	// Just a helper to find by primary key
-	//
 	// Be careful with regards to order on composite primary keys,
 	// must be in same order as provided to the storage implementation.
 	public function getMulti( array $objectIds ) {
@@ -364,7 +363,7 @@ class ObjectLocator {
 				$dbr = $this->dbFactory->getDB( DB_SLAVE );
 				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' . $dbr->addQuotes( $options['offset-id']->getBinary() ) );
 
-				foreach( $queries as &$query ) {
+				foreach ( $queries as &$query ) {
 					$query[] = $condition;
 				}
 		}

@@ -63,7 +63,7 @@ class Pager {
 		);
 
 		$this->options['pager-limit'] = intval( $this->options['pager-limit'] );
-		if ( ! ( $this->options['pager-limit'] > 0 && $this->options['pager-limit'] < self::MAX_LIMIT ) ) {
+		if ( !( $this->options['pager-limit'] > 0 && $this->options['pager-limit'] < self::MAX_LIMIT ) ) {
 			$this->options['pager-limit'] = self::DEFAULT_LIMIT;
 		}
 

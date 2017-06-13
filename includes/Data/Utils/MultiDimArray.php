@@ -58,8 +58,8 @@ class MultiDimArray implements \ArrayAccess {
 		foreach ( (array) $offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
 				throw new \OutOfBoundsException( 'Does not exist' );
-			} elseif ( ! is_array( $data ) ) {
-				throw new \OutOfBoundsException( "Requested offset {$key} (full offset ".implode(':', $offset)."), but $data is not an array." );
+			} elseif ( !is_array( $data ) ) {
+				throw new \OutOfBoundsException( "Requested offset {$key} (full offset ".implode( ':', $offset )."), but $data is not an array." );
 			}
 			$data =& $data[$key];
 		}
@@ -70,7 +70,7 @@ class MultiDimArray implements \ArrayAccess {
 		$offset = (array) $offset;
 		// while loop is required to not leave behind empty arrays
 		$first = true;
-		while( $offset ) {
+		while ( $offset ) {
 			$end = array_pop( $offset );
 			$data =& $this->data;
 			foreach ( $offset as $key ) {
@@ -91,8 +91,8 @@ class MultiDimArray implements \ArrayAccess {
 		foreach ( (array) $offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
 				return false;
-			} elseif ( ! is_array( $data ) ) {
-				throw new \OutOfBoundsException( "Requested offset {$key} (full offset ".implode(':', $offset)."), but $data is not an array." );
+			} elseif ( !is_array( $data ) ) {
+				throw new \OutOfBoundsException( "Requested offset {$key} (full offset ".implode( ':', $offset )."), but $data is not an array." );
 			}
 			$data =& $data[$key];
 		}

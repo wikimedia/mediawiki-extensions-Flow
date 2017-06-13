@@ -84,7 +84,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * Validate data before commiting change
 	 */
 	public function validate() {
-		switch( $this->action ) {
+		switch ( $this->action ) {
 			case 'undo-edit-topic-summary':
 			case 'edit-topic-summary':
 				$this->validateTopicSummary();
@@ -242,7 +242,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidActionException
 	 */
 	public function commit() {
-		switch( $this->action ) {
+		switch ( $this->action ) {
 			case 'undo-edit-topic-summary':
 			case 'edit-topic-summary':
 				return $this->saveTopicSummary();

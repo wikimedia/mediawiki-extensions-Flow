@@ -156,7 +156,7 @@ class ObjectManager extends ObjectLocator {
 		$updateObjects = array();
 		$insertObjects = array();
 
-		foreach( $objects as $object ) {
+		foreach ( $objects as $object ) {
 			if ( isset( $this->loaded[$object] ) ) {
 				$updateObjects[] = $object;
 			} else {
@@ -218,7 +218,7 @@ class ObjectManager extends ObjectLocator {
 		// @todo $row = $this->loaded[$object] ?
 		$row = $this->mapper->toStorageRow( $object );
 		// @todo Why not self::splitFromRow?
-		foreach( $sortFields as $field ) {
+		foreach ( $sortFields as $field ) {
 			$value = $row[$field];
 
 			if ( is_string( $value )
@@ -250,7 +250,7 @@ class ObjectManager extends ObjectLocator {
 		}
 
 		$numObjects = count( $objects );
-		for( $i = 0; $i < $numObjects; ++$i ) {
+		for ( $i = 0; $i < $numObjects; ++$i ) {
 			$object = $objects[$i];
 			$stored = $storedRows[$i];
 
@@ -274,7 +274,7 @@ class ObjectManager extends ObjectLocator {
 	 * @param array $metadata
 	 */
 	protected function update( array $objects, array $metadata ) {
-		foreach( $objects as $object ) {
+		foreach ( $objects as $object ) {
 			$this->updateSingle( $object, $metadata );
 		}
 	}

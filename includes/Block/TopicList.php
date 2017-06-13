@@ -370,7 +370,7 @@ class TopicListBlock extends AbstractBlock {
 		if ( $requestOptions['sortby'] === 'user' ) {
 			$requestOptions['sortby'] = $user->getOption( 'flow-topiclist-sortby' );
 		}
-		switch( $requestOptions['sortby'] ) {
+		switch ( $requestOptions['sortby'] ) {
 		case 'updated':
 			$findOptions = array(
 				'sortby' => 'updated',

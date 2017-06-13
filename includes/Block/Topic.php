@@ -112,7 +112,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		switch( $this->action ) {
+		switch ( $this->action ) {
 		case 'edit-title':
 			$this->validateEditTitle();
 			break;
@@ -286,7 +286,7 @@ class TopicBlock extends AbstractBlock {
 		// $moderationState should be a string like 'restore', 'suppress', etc.  The exact strings allowed
 		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
 		// a blank string would restore a post(due to AbstractRevision::MODERATED_NONE === '').
-		if ( ! $moderationState ) {
+		if ( !$moderationState ) {
 			$this->addError( 'moderate', $this->context->msg( 'flow-error-invalid-moderation-state' ) );
 			return;
 		}
@@ -318,7 +318,7 @@ class TopicBlock extends AbstractBlock {
 			$newState = $moderationState;
 		}
 
-		if ( ! $post->isValidModerationState( $newState ) ) {
+		if ( !$post->isValidModerationState( $newState ) ) {
 			$this->addError( 'moderate', $this->context->msg( 'flow-error-invalid-moderation-state' ) );
 			return;
 		}
@@ -368,7 +368,6 @@ class TopicBlock extends AbstractBlock {
 			// also exists a unique index on rev_prev_revision in mysql,
 			// meaning if someone else inserts against the parent we and
 			// the submitter think is the latest, our insert will fail.
-			//
 			// TODO: Catch whatever exception happens there, make sure the
 			// most recent revision is the one in the cache before handing
 			// user back to specific dialog indicating race condition
@@ -402,7 +401,7 @@ class TopicBlock extends AbstractBlock {
 
 	public function commit() {
 
-		switch( $this->action ) {
+		switch ( $this->action ) {
 		case 'edit-topic-summary':
 			// pseudo-action does not do anything, only includes data in api response
 			return array();
@@ -486,7 +485,7 @@ class TopicBlock extends AbstractBlock {
 
 		$topic = $this->loadTopicTitle();
 		if ( !$topic ) {
-			return $output + $this->finalizeApiOutput($options);
+			return $output + $this->finalizeApiOutput( $options );
 		}
 
 		// there's probably some OO way to turn this stack of if/else into
@@ -560,7 +559,7 @@ class TopicBlock extends AbstractBlock {
 				break;
 		}
 
-		return $output + $this->finalizeApiOutput($options);
+		return $output + $this->finalizeApiOutput( $options );
 	}
 
 	/**
@@ -660,13 +659,13 @@ class TopicBlock extends AbstractBlock {
 		if ( !$postId ) {
 			if ( isset( $options['postId'] ) ) {
 				$postId = $options['postId'];
-			} elseif( $this->newRevision ) {
+			} elseif ( $this->newRevision ) {
 				// API results after a reply will have no $postId (ID is not yet
 				// known when the reply is submitted) so we'll grab it from the
 				// newly added revision
 				$postId = $this->newRevision->getPostId();
 			} else {
-				throw new FlowException('No post id specified');
+				throw new FlowException( 'No post id specified' );
 			}
 		} else {
 			// $postId is only set for lock-topic, which should default to
