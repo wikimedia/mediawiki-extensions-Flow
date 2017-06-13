@@ -41,7 +41,7 @@ class PostCollection extends LocalCacheAbstractCollection {
 			// uses flow_topic_list:topic index, for topic->board lookups
 			array( 'topic_id' => $this->getWorkflowId() )
 		);
-		if ( !$found) {
+		if ( !$found ) {
 			throw new InvalidDataException( 'No TopicListEntry founds for topic id ' . $this->getWorkflowId()->getAlphadecimal(), 'invalid-workflow' );
 		}
 

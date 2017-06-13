@@ -40,7 +40,7 @@ class BlockFactory {
 	 * @throws InvalidDataException When multiple blocks share the same name
 	 */
 	public function createBlocks( Workflow $workflow ) {
-		switch( $workflow->getType() ) {
+		switch ( $workflow->getType() ) {
 			case 'discussion':
 				$blocks = array(
 					new HeaderBlock( $workflow, $this->storage ),

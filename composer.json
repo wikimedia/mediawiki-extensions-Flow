@@ -9,11 +9,14 @@
 		"symfony/dom-crawler": "~2.5",
 		"symfony/css-selector": "~2.5",
 		"jakub-onderka/php-parallel-lint": "0.9.2",
-		"jakub-onderka/php-console-highlighter": "0.3.2"
+		"jakub-onderka/php-console-highlighter": "0.3.2",
+		"mediawiki/mediawiki-codesniffer": "0.7.2"
 	},
 	"scripts": {
+		"fix": "phpcbf",
 		"test": [
-			"parallel-lint . --exclude vendor --exclude node_modules"
+			"parallel-lint . --exclude vendor --exclude node_modules",
+			"phpcs -p -s"
 		]
 	}
 }

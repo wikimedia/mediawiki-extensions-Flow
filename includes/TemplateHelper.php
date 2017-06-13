@@ -252,7 +252,7 @@ class TemplateHelper {
 				'time_iso' => $timestamp,
 				'time_ago' => $ts->getHumanTimestamp(),
 				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
-				'guid' => null, //generated client-side
+				'guid' => null, // generated client-side
 			)
 		) );
 	}
@@ -513,7 +513,7 @@ class TemplateHelper {
 			'classes' => $classes,
 			'data' => $data
 		);
-		switch( $widgetType ) {
+		switch ( $widgetType ) {
 			case 'BoardDescriptionWidget':
 				$dataArgs = array(
 					'infusable' => false,

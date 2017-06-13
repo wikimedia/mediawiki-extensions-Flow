@@ -57,7 +57,7 @@ class LinksTableUpdater {
 		/** @var Title[] $templates */
 		$templates = array();
 
-		foreach( $references as $reference ) {
+		foreach ( $references as $reference ) {
 			if ( $reference->getType() === 'link' ) {
 				if ( $reference instanceof URLReference ) {
 					$parserOutput->mExternalLinks[$reference->getURL()] = true;
@@ -90,7 +90,7 @@ class LinksTableUpdater {
 		$linkBatch->execute();
 		$linkCache = LinkCache::singleton();
 
-		foreach( $internalLinks as $title ) {
+		foreach ( $internalLinks as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
 			if ( !isset( $parserOutput->mLinks[$ns] ) ) {
@@ -101,7 +101,7 @@ class LinksTableUpdater {
 			$parserOutput->mLinks[$ns][$dbk] = $id;
 		}
 
-		foreach( $templates as $title ) {
+		foreach ( $templates as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
 			if ( !isset( $parserOutput->mTemplates[$ns] ) ) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="PSR2.Classes.PropertyDeclaration.ScopeMissing"/><!-- T166381 -->
+		<exclude name="Squiz.WhiteSpace.ScopeKeywordSpacing.Incorrect"/><!-- T166381 -->
+		<exclude name="Generic.Arrays.DisallowLongArraySyntax.Found"/>
+		<exclude name="Generic.Files.LineLength.TooLong"/>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
+		<properties>
+			<property name="ignoreList" type="array" value="query_revisions,parsoid_to_wikitext,truncate" />
+		</properties>
+	</rule>
+	<file>.</file>
+	<arg name="extensions" value="php,php5,inc"/>
+	<arg name="encoding" value="UTF-8"/>
+	<exclude-pattern>handlebars</exclude-pattern>
+	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>node_modules</exclude-pattern>
+</ruleset>
