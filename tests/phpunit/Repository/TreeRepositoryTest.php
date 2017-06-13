@@ -40,7 +40,7 @@ class TreeRepositoryTest extends FlowTestCase {
 			->getMock();
 		$dbFactory->expects( $this->any() )
 			->method( 'getDB' )
-			->will( $this->returnValue( $this->mockDb( $dbResult) ) );
+			->will( $this->returnValue( $this->mockDb( $dbResult ) ) );
 		return $dbFactory;
 	}
 

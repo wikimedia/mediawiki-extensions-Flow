@@ -187,7 +187,6 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 			// Without this, the timestamp can be exactly the same
 			// for two topics, which means the ordering is undefined (and thus
 			// untestable).  This was causing failures on Jenkins.
-			//
 			// Possible improvement: Make a simple class for getting the current
 			// time that normally calls wfTimestampNow.  Have an alternative
 			// implementation for tests that can be controlled by an API like

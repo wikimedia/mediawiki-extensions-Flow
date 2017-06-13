@@ -19,7 +19,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	}
 
 	public function provideDataBoardLink() {
-		return array (
+		return array(
 			array(
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				'updated',
@@ -64,7 +64,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	}
 
 	public function provideDataWatchTopicLink() {
-		return array (
+		return array(
 			array(
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				UUID::create()

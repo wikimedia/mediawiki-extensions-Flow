@@ -46,7 +46,7 @@ class FlowTestCase extends \MediaWikiTestCase {
 		$data = $registry->readFromQueue( [ __DIR__ . '/../../extension.json' => 1 ] );
 		$perms = $data['globals']['wgGroupPermissions'];
 		unset( $perms[$registry::MERGE_STRATEGY] );
-		$this->stashMwGlobals( [ 'wgGroupPermissions'] );
+		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
 		global $wgGroupPermissions;
 		$wgGroupPermissions = wfArrayPlus2d( $perms, $wgGroupPermissions );
 	}

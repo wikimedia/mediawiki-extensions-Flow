@@ -132,7 +132,7 @@ class UUIDTest extends FlowTestCase {
 		$uuid = UUID::create( $input );
 
 		$this->assertEquals( $binary, $uuid->getBinary(), "Compare binary: $msg" );
-		//$this->assertEquals( $hex, $uuid->getHex(), "Compare hex: $msg" );
+		// $this->assertEquals( $hex, $uuid->getHex(), "Compare hex: $msg" );
 		$this->assertEquals( $pretty, $uuid->getAlphadecimal(), "Compare pretty: $msg" );
 	}
 
