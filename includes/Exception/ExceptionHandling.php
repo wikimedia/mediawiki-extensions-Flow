@@ -58,7 +58,7 @@ class FlowException extends MWException {
 	 */
 	protected function getErrorCodeList() {
 		// flow-error-default
-		return array ( 'default' );
+		return array( 'default' );
 	}
 
 	/**
@@ -148,7 +148,7 @@ class FlowException extends MWException {
 class InvalidInputException extends FlowException {
 	protected function getErrorCodeList() {
 		// Comments are i18n messages, for grepping
-		return array (
+		return array(
 			'invalid-input', // flow-error-invalid-input
 			'missing-revision', // flow-error-missing-revision
 			'revision-comparison', // flow-error-revision-comparison
@@ -184,7 +184,7 @@ class InvalidReferenceException extends InvalidInputException {
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-invalid-action
-		return array ( 'invalid-action' );
+		return array( 'invalid-action' );
 	}
 
 	/**
@@ -226,7 +226,7 @@ class InvalidActionException extends FlowException {
 class FailCommitException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-fail-commit
-		return array ( 'fail-commit' );
+		return array( 'fail-commit' );
 	}
 }
 
@@ -236,7 +236,7 @@ class FailCommitException extends FlowException {
 class PermissionException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-insufficient-permission
-		return array ( 'insufficient-permission' );
+		return array( 'insufficient-permission' );
 	}
 
 	/**
@@ -253,7 +253,7 @@ class PermissionException extends FlowException {
  */
 class InvalidDataException extends FlowException {
 	protected function getErrorCodeList() {
-		return array (
+		return array(
 			'invalid-title', // flow-error-invalid-title
 			'fail-load-data', // flow-error-fail-load-data
 			'fail-load-history', // flow-error-fail-load-history
@@ -271,7 +271,7 @@ class InvalidDataException extends FlowException {
 class DataModelException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-process-data
-		return array ( 'process-data' );
+		return array( 'process-data' );
 	}
 }
 
@@ -281,7 +281,7 @@ class DataModelException extends FlowException {
 class DataPersistenceException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-process-data
-		return array ( 'process-data' );
+		return array( 'process-data' );
 	}
 }
 
@@ -291,7 +291,7 @@ class DataPersistenceException extends FlowException {
 class NoParserException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-process-wikitext
-		return array ( 'process-wikitext' );
+		return array( 'process-wikitext' );
 	}
 }
 
@@ -301,7 +301,7 @@ class NoParserException extends FlowException {
 class WikitextException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-process-wikitext
-		return array ( 'process-wikitext' );
+		return array( 'process-wikitext' );
 	}
 }
 
@@ -311,7 +311,7 @@ class WikitextException extends FlowException {
 class NoIndexException extends FlowException {
 	protected function getErrorCodeList() {
 		// flow-error-no-index
-		return array ( 'no-index' );
+		return array( 'no-index' );
 	}
 }
 

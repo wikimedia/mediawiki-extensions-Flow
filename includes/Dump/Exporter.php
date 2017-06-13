@@ -380,7 +380,7 @@ class Exporter extends WikiExporter {
 		$attribs = $revision->toStorageRow( $revision );
 
 		// make sure there are no leftover key columns (unknown to $attribs)
-		$keys = array_intersect_key(static::$map, $attribs );
+		$keys = array_intersect_key( static::$map, $attribs );
 		// now make sure $values columns are in the same order as $keys are
 		// (array_merge) and there are no leftover columns (array_intersect_key)
 		$values = array_intersect_key( array_merge( $keys, $attribs ), $keys );
@@ -393,7 +393,7 @@ class Exporter extends WikiExporter {
 
 		// references to external store etc. are useless; we'll include the real
 		// content as node text
-		unset($attribs['content'], $attribs['contenturl']);
+		unset( $attribs['content'], $attribs['contenturl'] );
 		$format = $revision->getContentFormat();
 		$attribs['flags'] = 'utf-8,' . $format;
 

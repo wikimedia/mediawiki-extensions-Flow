@@ -9,7 +9,7 @@ require __DIR__ . '/../autoload.php';
 
 class OneClassPerFile {
 
-	public function __construct( PhpParser\Parser $parser) {
+	public function __construct( PhpParser\Parser $parser ) {
 		$this->parser = $parser;
 	}
 

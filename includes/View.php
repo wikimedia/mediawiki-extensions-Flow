@@ -284,7 +284,7 @@ class View extends ContextSource {
 			}
 
 			if ( isset( $block['errors'] ) ) {
-				foreach( $block['errors'] as $error ) {
+				foreach ( $block['errors'] as $error ) {
 					if ( isset( $error['extra']['details'] ) &&
 						$error['extra']['details'] instanceof HtmlRenderingInformation ) {
 
