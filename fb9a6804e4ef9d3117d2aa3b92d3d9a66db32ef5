@@ -16,6 +16,24 @@
       "revId": "fb9a6804e4ef9d3117d2aa3b92d3d9a66db32ef5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e81134c_b719ce80",
+        "filename": "maintenance/repair_missing_from_csv.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2017-06-13T11:29:42Z",
+      "side": 1,
+      "message": "it disables the \"MediaWiki.ControlStructures.AssignmentInControlStructures\" sniff. You have to move the fgetcsv out of the while to get it fixed and that means the fgetcsv gets repeated at end of the while. The !\u003d\u003d null does not help here",
+      "parentUuid": "0e81134c_541bc082",
+      "revId": "fb9a6804e4ef9d3117d2aa3b92d3d9a66db32ef5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
