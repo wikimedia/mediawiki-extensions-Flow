@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e81134c_541bc082",
+        "filename": "maintenance/repair_missing_from_csv.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-06-13T11:26:12Z",
+      "side": 1,
+      "message": "Is there not a correct way of writing this instead of disabling CS, e.g.\n\n ( $row \u003d fgetcsv( $csv ) ) !\u003d\u003d null\n\n?",
+      "revId": "fb9a6804e4ef9d3117d2aa3b92d3d9a66db32ef5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
