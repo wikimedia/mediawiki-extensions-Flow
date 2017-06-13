@@ -69,7 +69,7 @@
 	// Methods
 
 	mw.flow.ve.Target.prototype.loadHtml = function ( html ) {
-		var doc = this.parseDocument( html );
+		var doc = this.constructor.static.parseDocument( html );
 		this.documentReady( doc );
 	};
 
