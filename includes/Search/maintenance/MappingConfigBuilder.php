@@ -16,7 +16,7 @@ class MappingConfigBuilder extends \CirrusSearch\Maintenance\MappingConfigBuilde
 	public function buildConfig( $prefixSearchStartsWithAnyWord = null, $phraseSuggestUseText = null ) {
 		$config = array(
 			'dynamic' => false,
-//			'_all' => array( 'enabled' => false ),
+			// '_all' => array( 'enabled' => false ),
 			'properties' => array(
 				'namespace' => $this->buildLongField(),
 				'namespace_text' => $this->buildKeywordField(),

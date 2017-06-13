@@ -235,7 +235,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		);
 		$data = $this->apiCall( $params + $conditions );
 
-		if ( ! isset( $data['query']['threads'] ) ) {
+		if ( !isset( $data['query']['threads'] ) ) {
 			if ( $this->isNotFoundError( $data ) ) {
 				$message = "Did not find thread with conditions: " . json_encode( $conditions );
 				$this->logger->debug( __METHOD__ . ": $message" );
@@ -247,7 +247,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		}
 
 		$firstThread = reset( $data['query']['threads'] );
-		if ( ! isset( $firstThread['replies'] ) ) {
+		if ( !isset( $firstThread['replies'] ) ) {
 			throw new ImportException( "Foreign API does not support reply exporting:" . json_encode( $data ) );
 		}
 
@@ -318,7 +318,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		);
 		$data = $this->apiCall( $conditions );
 
-		if ( ! isset( $data['query'] ) ) {
+		if ( !isset( $data['query'] ) ) {
 			if ( $this->isNotFoundError( $data ) ) {
 				$message = "Did not find pages: " . json_encode( $conditions );
 				$this->logger->debug( __METHOD__ . ": $message" );

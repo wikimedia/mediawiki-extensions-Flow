@@ -65,7 +65,7 @@ class RootPostLoader {
 			$post = reset( $result );
 			if ( $postId->equals( $post->getPostId() ) ) {
 				$res['post'] = $post;
-			} elseif( $rootId->equals( $post->getPostId() ) ) {
+			} elseif ( $rootId->equals( $post->getPostId() ) ) {
 				$res['root'] = $post;
 			} else {
 				throw new InvalidDataException( 'Unmatched: ' . $post->getPostId()->getAlphadecimal() );
@@ -215,7 +215,7 @@ class RootPostLoader {
 			// It should have returned at least $postIds
 			// TODO: log errors?
 			$res = $postIds;
-		} elseif( count( $nodeList ) === 1 ) {
+		} elseif ( count( $nodeList ) === 1 ) {
 			$res = reset( $nodeList );
 		} else {
 			$res = call_user_func_array( 'array_merge', $nodeList );

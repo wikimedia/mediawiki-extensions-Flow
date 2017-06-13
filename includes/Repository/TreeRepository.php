@@ -120,7 +120,7 @@ class TreeRepository {
 					),
 					__METHOD__
 				);
-			} catch( \DBQueryError $e ) {
+			} catch ( \DBQueryError $e ) {
 				$res = false;
 
 				/*
@@ -225,12 +225,12 @@ class TreeRepository {
 		// alphadecimal => distance => parent uuid obj
 		$paths = array();
 
-		foreach( $descendants as $descendant ) {
+		foreach ( $descendants as $descendant ) {
 			$cacheKeys[$descendant->getAlphadecimal()] = $this->cacheKey( 'rootpath', $descendant );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
-		foreach( $descendants as $descendant ) {
+		foreach ( $descendants as $descendant ) {
 			$alpha = $descendant->getAlphadecimal();
 			if ( isset( $cacheResult[$cacheKeys[$alpha]] ) ) {
 				$cacheValues[$alpha] = $cacheResult[$cacheKeys[$alpha]];
@@ -240,7 +240,7 @@ class TreeRepository {
 			}
 		}
 
-		if ( ! count( $missingValues ) ) {
+		if ( !count( $missingValues ) ) {
 			return $cacheValues;
 		}
 
@@ -263,7 +263,7 @@ class TreeRepository {
 			$paths[$alpha][$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 
-		foreach( $paths as $descendantId => &$path ) {
+		foreach ( $paths as $descendantId => &$path ) {
 			if ( !$path ) {
 				$path = null;
 				continue;
@@ -300,7 +300,7 @@ class TreeRepository {
 		$paths = $this->findRootPaths( $descendants );
 		$roots = array();
 
-		foreach( $descendants as $descendant ) {
+		foreach ( $descendants as $descendant ) {
 			$alpha = $descendant->getAlphadecimal();
 			if ( isset( $paths[$alpha] ) ) {
 				$roots[$alpha] = $paths[$alpha][0];

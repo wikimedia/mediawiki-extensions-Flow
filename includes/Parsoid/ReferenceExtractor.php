@@ -64,7 +64,7 @@ class ReferenceExtractor {
 
 		$xpath = new DOMXPath( $dom );
 
-		foreach( $extractors as $extractor ) {
+		foreach ( $extractors as $extractor ) {
 			$elements = $xpath->query( $extractor->getXPath() );
 
 			if ( !$elements ) {
@@ -72,7 +72,7 @@ class ReferenceExtractor {
 				throw new MWException( "Malformed xpath from $class: " . $extractor->getXPath() );
 			}
 
-			foreach( $elements as $element ) {
+			foreach ( $elements as $element ) {
 				try {
 					$ref = $extractor->perform( $factory, $element );
 				} catch ( InvalidReferenceException $e ) {

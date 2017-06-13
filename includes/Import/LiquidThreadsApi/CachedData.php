@@ -44,7 +44,7 @@ abstract class CachedData {
 		$this->ensureLoaded( $ids );
 
 		$output = array();
-		foreach( $ids as $id ) {
+		foreach ( $ids as $id ) {
 			$output[$id] = isset( $this->data[$id] ) ? $this->data[$id] : null;
 		}
 
@@ -109,7 +109,7 @@ class CachedThreadData extends CachedApiData {
 	protected function addData( array $data ) {
 		parent::addData( $data );
 
-		foreach( $data as $thread ) {
+		foreach ( $data as $thread ) {
 			if ( self::isTopic( $thread ) ) {
 				$this->topics[$thread['id']] = true;
 			}

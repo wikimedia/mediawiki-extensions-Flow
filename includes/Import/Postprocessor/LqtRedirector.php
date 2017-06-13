@@ -54,7 +54,7 @@ class LqtRedirector implements Postprocessor {
 			$topic->getTitle(),
 			$state->topicWorkflow->getId()
 		);
-		foreach( $this->redirectsToDo as $args ) {
+		foreach ( $this->redirectsToDo as $args ) {
 			call_user_func_array( array( $this, 'doRedirect' ), $args );
 		}
 

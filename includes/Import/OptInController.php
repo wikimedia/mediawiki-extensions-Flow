@@ -509,7 +509,7 @@ class OptInController {
 		$this->createRevision(
 			$title,
 			Utils::convert( 'html', 'wikitext', $newContent, $title ),
-			wfMessage( 'flow-beta-feature-remove-archive-template-edit-summary' )->inContentLanguage()->plain());
+			wfMessage( 'flow-beta-feature-remove-archive-template-edit-summary' )->inContentLanguage()->plain() );
 	}
 
 	/**
