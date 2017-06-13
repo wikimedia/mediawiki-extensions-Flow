@@ -159,7 +159,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 		$gen = self::singleton();
 		self::rotateNodeId( $gen );
 		$binaryUUID = $gen->getTimestampedID88(
-			array( $time, ++$counter % ( $COUNTER_MAX + 1) )
+			array( $time, ++$counter % ( $COUNTER_MAX + 1 ) )
 		);
 
 		return \Wikimedia\base_convert( $binaryUUID, 2, $base );
@@ -177,7 +177,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 		// 4 bytes = 32 bits
 		$gen->nodeId32 = \Wikimedia\base_convert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
 		// 6 bytes = 48 bits, used for 128bit uid's
-		//$gen->nodeId48 = \Wikimedia\base_convert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
+		// $gen->nodeId48 = \Wikimedia\base_convert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
 	}
 }
 
@@ -602,7 +602,7 @@ class TalkpageImportOperation {
 			$failed++;
 		}
 
-		foreach( $this->importSource->getTopics() as $topic ) {
+		foreach ( $this->importSource->getTopics() as $topic ) {
 			try {
 				// @todo this may be too large of a chunk for one commit, unsure
 				$state->begin();
@@ -638,7 +638,7 @@ class TalkpageImportOperation {
 	 */
 	public function importHeader( PageImportState $pageState, IImportHeader $importHeader ) {
 		$pageState->logger->info( 'Importing header' );
-		if ( ! $importHeader->getRevisions()->valid() ) {
+		if ( !$importHeader->getRevisions()->valid() ) {
 			$pageState->logger->info( 'no revisions located for header' );
 			// No revisions
 			return;
@@ -941,7 +941,7 @@ class TalkpageImportOperation {
 		$state->recordAssociation( $lastRevision->getCollectionId(), $importRevision );
 
 		$revisions->next();
-		while( $revisions->valid() ) {
+		while ( $revisions->valid() ) {
 			$importRevision = $revisions->current();
 			$insertObjects[] = $lastRevision =
 				$lastRevision->newNextRevision(

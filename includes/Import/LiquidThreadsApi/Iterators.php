@@ -80,7 +80,7 @@ class TopicIterator implements Iterator {
 
 		$lastOffset = $this->key();
 		do {
-			while( $this->topicIdIterator->valid() ) {
+			while ( $this->topicIdIterator->valid() ) {
 				$topicId = $this->topicIdIterator->current();
 				$this->topicIdIterator->next();
 
@@ -99,7 +99,7 @@ class TopicIterator implements Iterator {
 				$this->currentTopic = $topic;
 				return;
 			}
-		} while( $this->loadMore() );
+		} while ( $this->loadMore() );
 
 		// nothing found, nothing more to load
 		$this->current = false;
@@ -172,7 +172,7 @@ class ReplyIterator implements Iterator {
 	}
 
 	public function next() {
-		while( ++$this->replyIndex < count( $this->threadReplies ) ) {
+		while ( ++$this->replyIndex < count( $this->threadReplies ) ) {
 			try {
 				$replyId = $this->threadReplies[$this->replyIndex]['id'];
 				$this->current = $this->post->getSource()->getPost( $replyId );

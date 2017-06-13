@@ -66,7 +66,7 @@ abstract class AbstractUpdater {
 				$count++;
 			} catch ( FlowException $e ) {
 				// just ignore revisions that fail to build document...
-				wfWarn( __METHOD__ . ': Failed to build document for ' . $revision->getRevisionId()->getAlphadecimal() . ': ' . $e->getMessage());
+				wfWarn( __METHOD__ . ': Failed to build document for ' . $revision->getRevisionId()->getAlphadecimal() . ': ' . $e->getMessage() );
 				MWExceptionHandler::logException( $e );
 			}
 

@@ -35,7 +35,7 @@ class TemplateHelper {
 			}
 		}
 
-		$body = $xpath->query( '/html/body' )->item(0);
+		$body = $xpath->query( '/html/body' )->item( 0 );
 		return $dom->saveHTML( $body );
 	}
 

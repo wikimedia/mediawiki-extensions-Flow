@@ -88,7 +88,7 @@ class ConversionStrategy implements IConversionStrategy {
 		$this->headerSuffix = $headerSuffix;
 
 		$archiveFormat = wfMessage( 'flow-conversion-archive-page-name-format' )->inContentLanguage()->plain();
-		if ( strpos( $archiveFormat, "\n") === false ) {
+		if ( strpos( $archiveFormat, "\n" ) === false ) {
 			$this->archiveTitleSuggestions = array( $archiveFormat );
 		} else {
 			$this->archiveTitleSuggestions = explode( "\n", $archiveFormat );
