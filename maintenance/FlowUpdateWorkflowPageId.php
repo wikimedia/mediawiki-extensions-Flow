@@ -9,8 +9,8 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
-require_once( "$IP/maintenance/Maintenance.php" );
-require_once( "$IP/includes/utils/RowUpdateGenerator.php" );
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * In some cases we have created workflow instances before the related Title
@@ -158,4 +158,4 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 }
 
 $maintClass = "FlowUpdateWorkflowPageId";
-require_once( DO_MAINTENANCE );
+require_once DO_MAINTENANCE;

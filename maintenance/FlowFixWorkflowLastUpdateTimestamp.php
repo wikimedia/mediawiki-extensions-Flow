@@ -15,9 +15,9 @@ if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 
-require_once( "$IP/maintenance/Maintenance.php" );
-require_once( "$IP/includes/utils/RowUpdateGenerator.php" );
-require_once( "$IP/includes/utils/BatchRowWriter.php" );
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
+require_once "$IP/includes/utils/BatchRowWriter.php";
 
 /**
  * @ingroup Maintenance
@@ -111,7 +111,7 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 				throw new FlowException( 'Unknown workflow type: ' . $row->workflow_type );
 		}
 
-		if ( !$revision) {
+		if ( !$revision ) {
 			return array();
 		}
 
