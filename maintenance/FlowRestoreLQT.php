@@ -299,4 +299,4 @@ class FlowRestoreLQT extends Maintenance {
 }
 
 $maintClass = 'FlowRestoreLQT';
-require_once ( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

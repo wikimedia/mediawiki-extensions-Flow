@@ -24,7 +24,7 @@ use CirrusSearch\Util;
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: __DIR__ . '/../../../maintenance/Maintenance.php' );
-require_once( __DIR__ . '/../../CirrusSearch/includes/Maintenance/Maintenance.php' );
+require_once __DIR__ . '/../../CirrusSearch/includes/Maintenance/Maintenance.php';
 
 /**
  * Similar to CirrusSearch's UpdateOneSearchIndexConfig.
@@ -163,7 +163,7 @@ class FlowSearchConfig extends Maintenance {
 			"rebuilding it.  Once you specify a new indexIdentifier for this wiki you'll have to " .
 			"run this script with the same identifier each time.  Defaults to 'current' which " .
 			"infers the currently in use identifier.  You can also use 'now' to set the identifier " .
-			"to the current time in seconds which should give you a unique identifier.", false, true);
+			"to the current time in seconds which should give you a unique identifier.", false, true );
 		$this->addOption( 'reindexAndRemoveOk', "If the alias is held by another index then " .
 			"reindex all documents from that index (via the alias) to this one, swing the " .
 			"alias to this index, and then remove other index.  You'll have to redo all updates ".
@@ -326,7 +326,7 @@ class FlowSearchConfig extends Maintenance {
 				}
 			}
 
-//			$this->updateVersions(); // @todo: might need this some day? (see CirrusSearch's UpdateOneSearchIndexConfig::updateVersions)
+			// $this->updateVersions(); // @todo: might need this some day? (see CirrusSearch's UpdateOneSearchIndexConfig::updateVersions)
 		} catch ( \Elastica\Exception\Connection\HttpException $e ) {
 			$message = $e->getMessage();
 			$this->output( "\nUnexpected Elasticsearch failure.\n" );

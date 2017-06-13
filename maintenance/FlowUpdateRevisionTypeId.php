@@ -6,7 +6,7 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
-require_once( "$IP/maintenance/Maintenance.php" );
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Update flow_revision.rev_type_id
@@ -103,4 +103,4 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 }
 
 $maintClass = 'FlowUpdateRevisionTypeId';
-require_once( DO_MAINTENANCE );
+require_once DO_MAINTENANCE;

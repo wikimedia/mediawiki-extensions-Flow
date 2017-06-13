@@ -49,7 +49,7 @@ foreach ( $it as $batch ) {
 		}
 
 		$changeType = $rev->rev_change_type;
-		while( is_string( $wgFlowActions[$changeType] ) ) {
+		while ( is_string( $wgFlowActions[$changeType] ) ) {
 			$changeType = $wgFlowActions[$changeType];
 		}
 		if ( !in_array( $changeType, $moderationChangeTypes ) ) {
@@ -74,7 +74,7 @@ foreach ( $it as $batch ) {
 			echo "No parent found?\n";
 			$totalBadQueryResult++;
 			continue;
-		} elseif ( count ( $res ) > 1 ) {
+		} elseif ( count( $res ) > 1 ) {
 			echo "Multiple parents found?\n";
 			$totalBadQueryResult++;
 			continue;
