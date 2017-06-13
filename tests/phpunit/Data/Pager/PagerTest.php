@@ -393,7 +393,7 @@ class PagerTest extends \MediaWikiTestCase {
 	}
 
 	public function provideDataMakePagingLink() {
-		return array (
+		return array(
 			array(
 				$this->mockStorage(
 					array(

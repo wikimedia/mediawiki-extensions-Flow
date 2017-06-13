@@ -246,7 +246,7 @@ class PostRevisionTestCase extends FlowTestCase {
 
 		/** @var SplQueue $deferredQueue */
 		$deferredQueue = Container::get( 'deferred_queue' );
-		while( !$deferredQueue->isEmpty() ) {
+		while ( !$deferredQueue->isEmpty() ) {
 			try {
 				DeferredUpdates::addCallableUpdate( $deferredQueue->dequeue() );
 
@@ -264,7 +264,7 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	protected function clearExtraLifecycleHandlers() {
 		$container = Container::getContainer();
-		foreach( array_unique( $container['storage.manager_list'] ) as $storage ) {
+		foreach ( array_unique( $container['storage.manager_list'] ) as $storage ) {
 			if ( !isset( $container["$storage.listeners"] ) ) {
 				continue;
 			}

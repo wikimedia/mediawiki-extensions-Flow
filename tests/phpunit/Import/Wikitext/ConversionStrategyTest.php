@@ -85,7 +85,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 	}
 
 	public function testShouldConvertLqt() {
-		if( !class_exists( 'LqtDispatch' ) ) {
+		if ( !class_exists( 'LqtDispatch' ) ) {
 			$this->markTestSkipped( 'LiquidThreads not enabled' );
 		}
 

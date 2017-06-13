@@ -20,13 +20,13 @@ class WatchedTopicItemTest extends FlowTestCase {
 			// number of uuid per test case
 			$uuidCount = 10;
 			$uuids = $dbResult = $result = array();
-			while( $uuidCount > 0 ) {
+			while ( $uuidCount > 0 ) {
 				$uuidCount--;
 				$uuid = UUID::create()->getAlphadecimal();
 				$rand = rand( 0, 1 );
 				// put in the query result
 				if ( $rand ) {
-					$dbResult[] = ( object )array( 'wl_title' => $uuid );
+					$dbResult[] = (object)array( 'wl_title' => $uuid );
 					$result[$uuid] = true;
 				} else {
 					$result[$uuid] = false;
@@ -43,7 +43,7 @@ class WatchedTopicItemTest extends FlowTestCase {
 		while ( $emptyCount > 0 ) {
 			$emptyCount--;
 			$uuid = UUID::create()->getAlphadecimal();
-			$dbResult[] = ( object )array( 'wl_title' => $uuid );
+			$dbResult[] = (object)array( 'wl_title' => $uuid );
 		}
 		$dbResult = new \ArrayObject( $dbResult );
 		$tests[] = array( $uuids, $dbResult->getIterator(), $result );

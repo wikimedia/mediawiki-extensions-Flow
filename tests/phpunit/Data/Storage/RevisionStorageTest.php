@@ -224,7 +224,7 @@ class RevisionStorageTest extends FlowTestCase {
 	 *
 	 * @return HeaderRevisionStorage
 	 */
-	protected function getRevisionStorageWithMockExternalStore( $allowContentUpdates) {
+	protected function getRevisionStorageWithMockExternalStore( $allowContentUpdates ) {
 		$revisionStorage = new HeaderRevisionStorage(
 			Container::get( 'db.factory' ),
 			$this->MOCK_EXTERNAL_STORE_CONFIG
@@ -234,7 +234,7 @@ class RevisionStorageTest extends FlowTestCase {
 		return $revisionStorage;
 	}
 
-	protected function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates) {
+	protected function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates ) {
 		$klass = new \ReflectionClass( 'Flow\Data\Storage\HeaderRevisionStorage' );
 		$allowedUpdateColumnsProp = $klass->getProperty( 'allowedUpdateColumns' );
 		$allowedUpdateColumnsProp->setAccessible( true );

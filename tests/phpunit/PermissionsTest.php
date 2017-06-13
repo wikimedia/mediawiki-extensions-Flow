@@ -85,7 +85,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		return array(
 			// anon users can submit content, but not moderate
 			array( $this->anonUser(), null, 'create-header', true ),
-//			array( $this->anonUser(), $this->header(), 'edit-header', true ),
+			// array( $this->anonUser(), $this->header(), 'edit-header', true ),
 			array( $this->anonUser(), $this->topic(), 'edit-title', true ),
 			array( $this->anonUser(), null, 'new-post', true ),
 			array( $this->anonUser(), $this->post(), 'edit-post', false ),
@@ -104,7 +104,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// unconfirmed users can also hide posts...
 			array( $this->unconfirmedUser(), null, 'create-header', true ),
-//			array( $this->unconfirmedUser(), $this->header(), 'edit-header', true ),
+			// array( $this->unconfirmedUser(), $this->header(), 'edit-header', true ),
 			array( $this->unconfirmedUser(), $this->topic(), 'edit-title', true ),
 			array( $this->unconfirmedUser(), null, 'new-post', true ),
 			array( $this->unconfirmedUser(), $this->post(), 'edit-post', true ), // can edit own post
@@ -133,7 +133,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// confirmed users are the same as unconfirmed users, in terms of permissions
 			array( $this->confirmedUser(), null, 'create-header', true ),
-//			array( $this->confirmedUser(), $this->header(), 'edit-header', true ),
+			// array( $this->confirmedUser(), $this->header(), 'edit-header', true ),
 			array( $this->confirmedUser(), $this->topic(), 'edit-title', true ),
 			array( $this->confirmedUser(), null, 'new-post', true ),
 			array( $this->confirmedUser(), $this->post(), 'edit-post', false ),
@@ -158,7 +158,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// sysops can do all (incl. editing posts) but suppressing
 			array( $this->sysopUser(), null, 'create-header', true ),
-//			array( $this->sysopUser(), $this->header(), 'edit-header', true ),
+			// array( $this->sysopUser(), $this->header(), 'edit-header', true ),
 			array( $this->sysopUser(), $this->topic(), 'edit-title', true ),
 			array( $this->sysopUser(), null, 'new-post', true ),
 			array( $this->sysopUser(), $this->post(), 'edit-post', true ),
@@ -183,7 +183,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// oversighters can do everything + suppress (but not edit!)
 			array( $this->oversightUser(), null, 'create-header', true ),
-//			array( $this->oversightUser(), $this->header(), 'edit-header', true ),
+			// array( $this->oversightUser(), $this->header(), 'edit-header', true ),
 			array( $this->oversightUser(), $this->topic(), 'edit-title', true ),
 			array( $this->oversightUser(), null, 'new-post', true ),
 			array( $this->oversightUser(), $this->post(), 'edit-post', false ),

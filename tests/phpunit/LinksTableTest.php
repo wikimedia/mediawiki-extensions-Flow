@@ -341,7 +341,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		}
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
-		foreach( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
+		foreach ( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
 			$$varName = $this->expandReferences( $workflow, $revision, $$varName );
 		}
 
@@ -417,13 +417,13 @@ class LinksTableTest extends PostRevisionTestCase {
 		$parserOutput = new \ParserOutput;
 
 		// Clear the LinksUpdate to allow clean testing
-		foreach( array_keys( $expectedItems ) as $fieldName ) {
+		foreach ( array_keys( $expectedItems ) as $fieldName ) {
 			$parserOutput->$fieldName = array();
 		}
 
 		$this->updater->mutateParserOutput( $title, $parserOutput, $references );
 
-		foreach( $expectedItems as $method => $content ) {
+		foreach ( $expectedItems as $method => $content ) {
 			$this->assertEquals( $content, $parserOutput->$method(), $method );
 		}
 	}
@@ -440,7 +440,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		$referenceObjs = array();
 		$factory = new ReferenceFactory( $workflow, $revision->getRevisionType(), $revision->getCollectionId() );
 
-		foreach( $references as $ref ) {
+		foreach ( $references as $ref ) {
 			$referenceObjs[] = $factory->{$ref['factoryMethod']}( $ref['refType'], $ref['value'] );
 		}
 
@@ -495,7 +495,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	protected function flattenReferenceList( $input ) {
 		$list = array();
 
-		foreach( $input as $reference ) {
+		foreach ( $input as $reference ) {
 			$list[$reference->getUniqueIdentifier()] = $reference;
 		}
 

@@ -147,7 +147,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			'abuse_filter',
 			array( 'af_id' ),
 			array(
-//				'af_id',
+				// 'af_id',
 				'af_pattern' => $pattern,
 				'af_user' => $user->getId(),
 				'af_user_text' => $user->getName(),

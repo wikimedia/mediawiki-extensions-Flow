@@ -73,16 +73,16 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 		$this->assertFalse( $permissionStatus->isOK(), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
 		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
 
-		$adminUser = $this->getMockBuilder('User')
-			->setMethods(array('isAllowed'))
+		$adminUser = $this->getMockBuilder( 'User' )
+			->setMethods( array( 'isAllowed' ) )
 			->getMock();
 
 		// Set up the expectation for the update() method
 		// to be called only once and with the string 'something'
 		// as its parameter.
-		$adminUser->expects($this->once())
-			->method('isAllowed')
-			->with($this->equalTo('flow-create-board'))
+		$adminUser->expects( $this->once() )
+			->method( 'isAllowed' )
+			->with( $this->equalTo( 'flow-create-board' ) )
 			->will( $this->returnValue( true ) );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User:Test123' ), $adminUser );

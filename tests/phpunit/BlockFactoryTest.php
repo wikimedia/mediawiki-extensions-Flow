@@ -10,7 +10,7 @@ use Flow\BlockFactory;
 class BlockFactoryTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {
-		return array (
+		return array(
 			array( 'discussion', array( 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ) ),
 			array( 'topic', array( 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ) ),
 		);

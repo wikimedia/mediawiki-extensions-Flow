@@ -203,7 +203,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	 * @expectedException \Flow\Exception\FlowException
 	 * @dataProvider setContentFormatInvalidProvider
 	 */
-	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId) {
+	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId ) {
 		list( $formatter ) = $this->makeFormatter();
 		$formatter->setContentFormat( $requestedFormat, $revisionId );
 	}

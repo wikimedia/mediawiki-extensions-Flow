@@ -86,7 +86,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 						new MockImportRevision( array( 'createdTimestamp' => $now - 1000 ) ),
 					),
 					array(
-						//replies
+						// replies
 						new MockImportPost(
 							array(
 								// revisions
