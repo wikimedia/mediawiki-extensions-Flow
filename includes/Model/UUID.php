@@ -345,7 +345,7 @@ class UUID implements ApiSerializable {
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {
 		$array = ObjectManager::makeArray( $array );
-		foreach( $array as $key => $value ) {
+		foreach ( $array as $key => $value ) {
 			if ( $value instanceof UUIDBlob ) {
 				// database encoded binary value
 				if ( $format === 'alphadecimal' ) {

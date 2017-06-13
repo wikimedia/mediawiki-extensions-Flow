@@ -495,7 +495,7 @@ class RevisionFormatter {
 			if ( !$this->permissions->isAllowed( $revision, $type ) ) {
 				continue;
 			}
-			switch( $type ) {
+			switch ( $type ) {
 			case 'thank':
 				if (
 					// thanks extension must be available
@@ -639,7 +639,7 @@ class RevisionFormatter {
 					throw new FlowException( "$type called without \$postId" );
 				}
 				$moderateAction = $flowAction = null;
-				switch( $revision->getModerationState() ) {
+				switch ( $revision->getModerationState() ) {
 				case AbstractRevision::MODERATED_HIDDEN:
 				case AbstractRevision::MODERATED_DELETED:
 				case AbstractRevision::MODERATED_SUPPRESSED:
@@ -659,7 +659,7 @@ class RevisionFormatter {
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
 				// summarize link is only available to topic workflow
-				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
+				if ( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
 					continue;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
@@ -696,7 +696,7 @@ class RevisionFormatter {
 
 		$links = array();
 		foreach ( $linkTypes as $type ) {
-			switch( $type ) {
+			switch ( $type ) {
 			case 'watch-topic':
 				$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
 				break;

@@ -21,7 +21,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		) );
 
 		/** @var Block $block */
-		foreach( $blocks as $block ) {
+		foreach ( $blocks as $block ) {
 			$block->init( $context, $action );
 
 			if ( $block->canRender( $action ) ) {
@@ -44,7 +44,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 			$this->dieWithError( 'flow-error-no-render', 'no-render' );
 		}
 
-		$blocks = array_keys($output[$action]['result']);
+		$blocks = array_keys( $output[$action]['result'] );
 		$this->getResult()->setIndexedTagName( $blocks, 'block' );
 
 		// Required until php5.4 which has the JsonSerializable interface

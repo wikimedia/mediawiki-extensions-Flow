@@ -13,7 +13,6 @@ abstract class HistoryQuery extends AbstractQuery {
 	// to try to reduce the number of rounds (preferably to 1).
 	// If you raise this, also increase history_index_limit and bump the
 	// key of the indexes using history_index_limit
-	//
 	// This magic number is based on new-post/new-topic being about 26% of post revisions.
 	// (queried from production), since that is the only thing currently excluded.
 	const POST_OVERFETCH_FACTOR = 1.36;
@@ -57,7 +56,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @param UUID $offset UUID to use as offset (optional)
 	 * @return array Associative array of options for query
 	 */
-	protected function getOptions( $direction, $limit, UUID $offset = null) {
+	protected function getOptions( $direction, $limit, UUID $offset = null ) {
 		return array(
 			'sort' => 'rev_id',
 			'order' => $direction === 'fwd' ? 'DESC' : 'ASC',
@@ -120,7 +119,7 @@ abstract class HistoryQuery extends AbstractQuery {
 
 			$trimmedResultAfterFiltering = array_slice( $resultAfterFiltering, 0, $remainingNeeded );
 			$result = array_merge( $result, $trimmedResultAfterFiltering );
-		} while( count( $result ) < $limit && $internalOverfetched !== null );
+		} while ( count( $result ) < $limit && $internalOverfetched !== null );
 
 		return $result;
 	}

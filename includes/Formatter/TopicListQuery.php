@@ -60,7 +60,7 @@ class TopicListQuery extends AbstractQuery {
 		$replies = array();
 		foreach ( $posts as $post ) {
 			try {
-				if ( !$this->permissions->isAllowed( $post, 'view' )  ) {
+				if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
 					continue;
 				}
 				$row = new TopicRow;

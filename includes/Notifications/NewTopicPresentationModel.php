@@ -71,10 +71,10 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 			$count = $this->getNotificationCountForOutput();
 			// Repeat is B/C until unused parameter is removed from translations
 			$msg->numParams( $count, $count );
-			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 		} else {
 			$msg->params( $this->getAgentForOutput() );
-			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 			$msg->plaintextParams( $this->getTopicTitle() );
 		}
 

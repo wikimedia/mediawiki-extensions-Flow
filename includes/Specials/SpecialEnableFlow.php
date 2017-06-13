@@ -146,11 +146,11 @@ class SpecialEnableFlow extends FormSpecialPage {
 				$params
 			);
 
-			foreach( $blocks as $block ) {
+			foreach ( $blocks as $block ) {
 				if ( $block->hasErrors() ) {
 					$errors = $block->getErrors();
 
-					foreach( $errors as $errorKey ) {
+					foreach ( $errors as $errorKey ) {
 						$status->fatal( $block->getErrorMessage( $errorKey ) );
 					}
 				}

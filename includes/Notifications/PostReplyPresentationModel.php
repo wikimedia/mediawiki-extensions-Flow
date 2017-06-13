@@ -77,7 +77,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			return $msg;
 		} else {
 			$msg = parent::getHeaderMessage();
-			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
+			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 			$msg->plaintextParams( $this->getTopicTitle() );
 			return $msg;
 		}
@@ -92,9 +92,9 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
-				$msg = $this->msg("notification-body-flow-post-reply-v2");
+				$msg = $this->msg( "notification-body-flow-post-reply-v2" );
 			} else {
-				$msg = $this->msg("notification-body-flow-post-reply-user-talk");
+				$msg = $this->msg( "notification-body-flow-post-reply-user-talk" );
 			}
 			$msg->plaintextParams( $this->getContentSnippet() );
 			return $msg;

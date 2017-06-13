@@ -85,7 +85,7 @@ class ModerationLogger {
 		$logId = $logEntry->insert();
 
 		if ( $error ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' . $workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page");
+			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' . $workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page" );
 		}
 
 		return $logId;
@@ -98,7 +98,7 @@ class ModerationLogger {
 	 */
 	public function getLogType( PostRevision $post, $action ) {
 		$logType = $this->actions->getValue( $action, 'log_type' );
-		if ( $logType instanceof Closure) {
+		if ( $logType instanceof Closure ) {
 			$logType = $logType( $post, $this );
 		}
 

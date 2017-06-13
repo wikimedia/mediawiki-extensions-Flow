@@ -41,7 +41,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
-		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true) );
+		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 		$msg->params( $this->getViewingUserForGender() );
 
 		if ( in_array( $this->getRevisionType(), array( 'post', 'post-summary' ) ) ) {
