@@ -35,12 +35,12 @@ class FlowHooks {
 		require __DIR__ . '/FlowActions.php';
 
 		// Register URL actions and activity log formatter hooks
-		foreach( $wgFlowActions as $action => $options ) {
+		foreach ( $wgFlowActions as $action => $options ) {
 			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
 				$wgActions[$action] = true;
 			}
 
-			if ( !is_string( $options) && isset( $options['log_type'] ) ) {
+			if ( !is_string( $options ) && isset( $options['log_type'] ) ) {
 				$log = $options['log_type'];
 
 				// Some actions are more complex closures - they are added manually in extension.json
@@ -108,7 +108,7 @@ class FlowHooks {
 			GuidedTourLauncher::launchTourByCookie( 'flowOptIn', 'newTopic' );
 
 			// Destroy Flow cookie
-			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600);
+			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
 		}
 	}
 
@@ -507,7 +507,7 @@ class FlowHooks {
 		}
 		restore_error_handler();
 
-		if ($logTextLinks === false) {
+		if ( $logTextLinks === false ) {
 			return false;
 		}
 
@@ -1064,7 +1064,7 @@ class FlowHooks {
 	 * @return bool true to show the alert, false to hide(abort) the alert
 	 */
 	public static function onBeforeDisplayOrangeAlert( User $user, Title $title ) {
-		if( $title->getNamespace() === NS_TOPIC ) {
+		if ( $title->getNamespace() === NS_TOPIC ) {
 			$storage = Container::get( 'storage.workflow' );
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$workflow = $storage->get( $uuid );
@@ -1091,7 +1091,7 @@ class FlowHooks {
 
 		foreach ( $pageinfo['header-basic'] as $num => $val ) {
 			if ( $val[0] instanceof Message && in_array( $val[0]->getKey(), $badMessageKeys ) ) {
-				unset($pageinfo['header-basic'][$num]);
+				unset( $pageinfo['header-basic'][$num] );
 			}
 		}
 		return true;
@@ -1421,7 +1421,7 @@ class FlowHooks {
 
 		// build array of queries to be executed all at once
 		$queries = array();
-		foreach( $ids as $id ) {
+		foreach ( $ids as $id ) {
 			try {
 				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
 				$queries[] = array( 'rev_type_id' => $uuid );
@@ -1921,7 +1921,7 @@ class FlowHooks {
 
 		// limit results to the range of RC
 		global $wgRCMaxAge;
-		$rcTimeLimit = UUID::getComparisonUUID( strtotime("-$wgRCMaxAge seconds") );
+		$rcTimeLimit = UUID::getComparisonUUID( strtotime( "-$wgRCMaxAge seconds" ) );
 
 		// get latest revision id for each topic
 		$result = $dbr->select(
@@ -1956,7 +1956,7 @@ class FlowHooks {
 		}
 
 		$revIds = array();
-		foreach( $result as $r ) {
+		foreach ( $result as $r ) {
 			$revIds[$r->revId] = array( 'userIp' => $r->userIp, 'userId' => $r->userId, 'name' => false );
 		}
 
@@ -2007,13 +2007,13 @@ class FlowHooks {
 					array( 'user_id', 'user_name' ),
 					array( 'user_id' => array_values( $userIds ) )
 				);
-				foreach( $result as $r ) {
+				foreach ( $result as $r ) {
 					$userMap[$r->user_id] = $r->user_name;
 				}
 			}
 
 			// set name in userInfo structure
-			foreach( $limitedRevIds as $topicId => &$userInfo ) {
+			foreach ( $limitedRevIds as $topicId => &$userInfo ) {
 				if ( $userInfo['userIp'] ) {
 					$userInfo['name'] = $userInfo['userIp'];
 				} elseif ( $userInfo['userId'] ) {
@@ -2027,7 +2027,7 @@ class FlowHooks {
 		}
 
 		// add results to the list of pages to nuke
-		foreach( $limitedRevIds as $topicId => $userInfo ) {
+		foreach ( $limitedRevIds as $topicId => $userInfo ) {
 			$pages[] = array(
 				Title::makeTitle( NS_TOPIC, UUID::create( $topicId )->getAlphadecimal() ),
 				$userInfo['name']

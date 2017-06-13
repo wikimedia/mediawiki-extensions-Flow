@@ -43,7 +43,7 @@ class RevisionActionPermissions {
 	 */
 	public function getAllowedActions( AbstractRevision $revision = null ) {
 		$allowed = array();
-		foreach( array_keys( $this->actions->getActions() ) as $action ) {
+		foreach ( array_keys( $this->actions->getActions() ) as $action ) {
 			if ( $this->isAllowedAny( $revision, $action ) ) {
 				$allowed[] = $action;
 			}

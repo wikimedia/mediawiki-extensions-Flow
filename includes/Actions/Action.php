@@ -64,7 +64,7 @@ class FlowAction extends Action {
 		}
 
 		// Check if this is actually the right type of page.
-		if ( ! $this->page instanceof WikiPage && ! $this->page instanceof Article ) {
+		if ( !$this->page instanceof WikiPage && !$this->page instanceof Article ) {
 			throw new ErrorPageError( 'nosuchaction', 'flow-action-not-page' );
 		}
 
@@ -110,7 +110,7 @@ class FlowAction extends Action {
 			}
 
 			$view->show( $loader, $action );
-		} catch( FlowException $e ) {
+		} catch ( FlowException $e ) {
 			$e->setOutput( $output );
 			throw $e;
 		}

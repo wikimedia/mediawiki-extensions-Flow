@@ -26,7 +26,7 @@ class ReferenceClarifier {
 
 		// Collect referenced workflow ids and load them so we can generate
 		// links to their pages
-		foreach( $references as $reference ) {
+		foreach ( $references as $reference ) {
 			$id = $reference->getWorkflowId();
 			// utilize array key to de-duplicate
 			$ids[$id->getAlphadecimal()] = $id;
@@ -41,7 +41,7 @@ class ReferenceClarifier {
 		// * flow-whatlinkshere-post
 		// * flow-whatlinkshere-post-summary
 		// Topic is plain text and do not have links.
-		foreach( $references as $reference ) {
+		foreach ( $references as $reference ) {
 			if ( $reference->getType() === WikiReference::TYPE_CATEGORY ) {
 				// While it might make sense to have backlinks from categories to
 				// a page in what links here, thats not what mediawiki currently does.
@@ -67,7 +67,7 @@ class ReferenceClarifier {
 	 * @return WikiReference[]
 	 */
 	public function getWikiReferences( Title $from, Title $to ) {
-		if ( ! isset( $this->referenceCache[$from->getPrefixedDBkey()] ) ) {
+		if ( !isset( $this->referenceCache[$from->getPrefixedDBkey()] ) ) {
 			$this->loadReferencesForPage( $from );
 		}
 
@@ -102,7 +102,7 @@ class ReferenceClarifier {
 		/** @var Reference[] $allReferences */
 		$allReferences = array();
 
-		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {
+		foreach ( array( 'WikiReference', 'URLReference' ) as $refType ) {
 			// find() returns null for error or empty result
 			$res = $this->storage->find(
 				$refType,
@@ -129,7 +129,7 @@ class ReferenceClarifier {
 		}
 
 		$cache = array();
-		foreach( $allReferences as $reference ) {
+		foreach ( $allReferences as $reference ) {
 			if ( !isset( $cache[$reference->getTargetIdentifier()] ) ) {
 				$cache[$reference->getTargetIdentifier()] = array();
 			}
