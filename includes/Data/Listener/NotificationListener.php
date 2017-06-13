@@ -29,7 +29,7 @@ class NotificationListener extends AbstractListener {
 			return;
 		}
 
-		switch( $row['rev_change_type'] ) {
+		switch ( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':
 			if ( !isset(

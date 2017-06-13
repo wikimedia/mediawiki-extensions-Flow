@@ -77,7 +77,6 @@ class TopKIndex extends FeatureIndex {
 
 	// TODO: This is only left for now to handle non-ID offsets (e.g. updated
 	// timestamps).
-	//
 	// This has always been broken once you query past the TopKIndex limit.
 	/**
 	 * @param array $rows
@@ -179,7 +178,7 @@ class TopKIndex extends FeatureIndex {
 			throw new DataModelException( 'This Index implementation does not support offset values', 'process-data' );
 		}
 
-		foreach( $sortFields as $field ) {
+		foreach ( $sortFields as $field ) {
 			$valueInRow = $row[$field];
 			$offsetValuePart = $splitOffsetValue[$fieldIndex];
 

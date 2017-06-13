@@ -18,7 +18,7 @@ class EditCountListener extends AbstractListener {
 
 	public function onAfterInsert( $revision, array $new, array $metadata ) {
 		if ( !$revision instanceof AbstractRevision ) {
-			throw new InvalidDataException( 'EditCountListener can only attach to AbstractRevision storage');
+			throw new InvalidDataException( 'EditCountListener can only attach to AbstractRevision storage' );
 		}
 
 		$action = $revision->getChangeType();

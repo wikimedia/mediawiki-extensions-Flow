@@ -178,7 +178,7 @@ abstract class FeatureIndex implements Index {
 	 * {@inheritDoc}
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
-		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
+		$indexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
 			throw new DataModelException( 'Un-indexable row: ' . FormatJson::encode( $new ), 'process-data' );
@@ -488,7 +488,7 @@ abstract class FeatureIndex implements Index {
 	 * @return string
 	 */
 	protected function cacheKey( array $attributes ) {
-		foreach( $attributes as $key => $attr ) {
+		foreach ( $attributes as $key => $attr ) {
 			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getAlphadecimal();
 			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {

@@ -169,7 +169,7 @@ class HeaderBlock extends AbstractBlock {
 	public function commit() {
 		$metadata = $this->extraCommitMetadata;
 
-		switch( $this->action ) {
+		switch ( $this->action ) {
 			case 'undo-edit-header':
 			case 'edit-header':
 				// store data, unless we're dealing with a null-edit (in which case

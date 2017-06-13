@@ -89,11 +89,11 @@ class ManagerGroup {
 	protected function multiMethod( $method, $objects, array $metadata ) {
 		$itemsByClass = array();
 
-		foreach( $objects as $object ) {
+		foreach ( $objects as $object ) {
 			$itemsByClass[ get_class( $object ) ][] = $object;
 		}
 
-		foreach( $itemsByClass as $class => $myObjects ) {
+		foreach ( $itemsByClass as $class => $myObjects ) {
 			$this->getStorage( $class )->$method( $myObjects, $metadata );
 		}
 	}

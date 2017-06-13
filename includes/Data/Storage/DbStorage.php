@@ -79,7 +79,7 @@ abstract class DbStorage implements ObjectStorage {
 
 		$data = UUID::convertUUIDs( $data, 'binary' );
 
-		foreach( $data as $key => $value ) {
+		foreach ( $data as $key => $value ) {
 			if ( $value instanceof RawSql ) {
 				$data[$key] = $value->getSql( $db );
 			} elseif ( is_numeric( $key ) ) {
@@ -102,7 +102,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * @return boolean True if raw SQL is found
 	 */
 	protected function hasUnescapedSQL( array $row ) {
-		foreach( $row as $key => $value ) {
+		foreach ( $row as $key => $value ) {
 			if ( $value instanceof RawSql ) {
 				// Specifically allowed SQL
 				continue;
@@ -112,7 +112,7 @@ abstract class DbStorage implements ObjectStorage {
 				return true;
 			}
 
-			if ( ! preg_match( '/^' . $this->getFieldRegexFragment() . '$/', $key ) ) {
+			if ( !preg_match( '/^' . $this->getFieldRegexFragment() . '$/', $key ) ) {
 				return true;
 			}
 		}
@@ -144,7 +144,7 @@ abstract class DbStorage implements ObjectStorage {
 
 		$fieldRegex = $this->getFieldRegexFragment();
 
-		foreach( $options as $key => $value ) {
+		foreach ( $options as $key => $value ) {
 			if ( is_numeric( $key ) && in_array( strtoupper( $value ), $validUnaryOptions ) ) {
 				continue;
 			} elseif ( is_numeric( $key ) ) {
@@ -154,7 +154,7 @@ abstract class DbStorage implements ObjectStorage {
 
 			if ( $key === 'LIMIT' ) {
 				// LIMIT is one or two integers, separated by a comma.
-				if ( ! preg_match ( '/^\d+(,\d+)?$/', $value ) ) {
+				if ( !preg_match( '/^\d+(,\d+)?$/', $value ) ) {
 					wfDebug( __METHOD__.": Invalid LIMIT $value\n" );
 					return false;
 				}
@@ -165,20 +165,20 @@ abstract class DbStorage implements ObjectStorage {
 				}
 				$orderByRegex = "/^\s*$fieldRegex\s*(ASC|DESC)?\s*$/i";
 
-				foreach( $value as $orderByField ) {
-					if ( ! preg_match( $orderByRegex, $orderByField ) ) {
+				foreach ( $value as $orderByField ) {
+					if ( !preg_match( $orderByRegex, $orderByField ) ) {
 						wfDebug( __METHOD__.": invalid ORDER BY field $orderByField\n" );
 						return false;
 					}
 				}
 			} elseif ( $key === 'OFFSET' ) {
 				// OFFSET is just an integer
-				if ( ! is_numeric( $value ) ) {
+				if ( !is_numeric( $value ) ) {
 					wfDebug( __METHOD__.": non-numeric offset $value\n" );
 					return false;
 				}
 			} elseif ( $key === 'GROUP BY' ) {
-				if ( ! preg_match( "/^{$fieldRegex}(,{$fieldRegex})+$/", $value ) ) {
+				if ( !preg_match( "/^{$fieldRegex}(,{$fieldRegex})+$/", $value ) ) {
 					wfDebug( __METHOD__.": invalid GROUP BY field\n" );
 				}
 			} else {

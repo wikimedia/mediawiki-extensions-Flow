@@ -67,11 +67,11 @@ class ReferenceRecorder extends AbstractListener {
 	}
 
 	public function onAfterInsert( $revision, array $new, array $metadata ) {
-		if ( !isset( $metadata['workflow'] )) {
+		if ( !isset( $metadata['workflow'] ) ) {
 			return;
 		}
 		if ( !$revision instanceof AbstractRevision ) {
-			throw new InvalidDataException( 'ReferenceRecorder can only attach to AbstractRevision storage');
+			throw new InvalidDataException( 'ReferenceRecorder can only attach to AbstractRevision storage' );
 		}
 		/** @var Workflow $workflow */
 		$workflow = $metadata['workflow'];
@@ -285,28 +285,28 @@ class ReferenceRecorder extends AbstractListener {
 	public function referencesDifference( array $old, array $new ) {
 		$newReferences = array();
 
-		foreach( $new as $ref ) {
+		foreach ( $new as $ref ) {
 			$newReferences[$ref->getIdentifier()] = $ref;
 		}
 
 		$oldReferences = array();
 
-		foreach( $old as $ref ) {
+		foreach ( $old as $ref ) {
 			$oldReferences[$ref->getIdentifier()] = $ref;
 		}
 
 		$addReferences = array();
 
-		foreach( $newReferences as $identifier => $ref ) {
-			if ( ! isset( $oldReferences[$identifier] ) ) {
+		foreach ( $newReferences as $identifier => $ref ) {
+			if ( !isset( $oldReferences[$identifier] ) ) {
 				$addReferences[] = $ref;
 			}
 		}
 
 		$removeReferences = array();
 
-		foreach( $oldReferences as $identifier => $ref ) {
-			if ( ! isset( $newReferences[$identifier] ) ) {
+		foreach ( $oldReferences as $identifier => $ref ) {
+			if ( !isset( $newReferences[$identifier] ) ) {
 				$removeReferences[] = $ref;
 			}
 		}
