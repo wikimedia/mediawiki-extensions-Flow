@@ -21,7 +21,9 @@ if ( fgetcsv( $csv ) !== array( 'uuid', 'esurl', 'flags' ) ) {
 
 $fixed = 0;
 $dbw = Flow\Container::get( 'db.factory' )->getDB( DB_MASTER );
+// @codingStandardsIgnoreStart
 while ( $row = fgetcsv( $csv ) ) {
+// @codingStandardsIgnoreEnd
 	if ( count( $row ) !== 3 ) {
 		var_dump( $row );
 		die( 'All rows in CSV file must have 2 entries' );

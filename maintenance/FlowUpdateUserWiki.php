@@ -8,7 +8,7 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
-require_once( "$IP/maintenance/Maintenance.php" );
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Update all xxx_user_wiki field to have the correct wiki name
@@ -250,4 +250,4 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "FlowUpdateUserWiki";
-require_once( DO_MAINTENANCE );
+require_once DO_MAINTENANCE;

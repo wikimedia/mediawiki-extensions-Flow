@@ -113,4 +113,4 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "FlowPopulateLinksTables";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -7,10 +7,10 @@ $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
 	__DIR__ . '/../../..';
 
-require_once( $installPath . '/maintenance/Maintenance.php' );
+require_once $installPath . '/maintenance/Maintenance.php';
 // extending these - autoloader not yet wired up at the point these are interpreted
-require_once( $installPath .'/includes/utils/BatchRowWriter.php' );
-require_once( $installPath . '/includes/utils/RowUpdateGenerator.php' );
+require_once $installPath . '/includes/utils/BatchRowWriter.php';
+require_once $installPath . '/includes/utils/RowUpdateGenerator.php';
 
 /**
  * Populates ref_id in flow_wiki_ref & flow_ext_ref.
@@ -71,4 +71,4 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 }
 
 $maintClass = 'FlowPopulateRefId';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

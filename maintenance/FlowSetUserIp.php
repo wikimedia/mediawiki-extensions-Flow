@@ -186,4 +186,4 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 }
 
 $maintClass = 'FlowSetUserIp'; // Tells it to run the class
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

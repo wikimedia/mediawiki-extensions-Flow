@@ -92,4 +92,4 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 }
 
 $maintClass = 'FlowUpdateBetaFeaturePreference'; // Tells it to run the class
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

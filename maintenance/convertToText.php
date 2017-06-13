@@ -49,7 +49,7 @@ class ConvertToText extends Maintenance {
 		$continue = true;
 		$pagerParams = array( 'vtllimit' => 1 );
 		$topics = array();
-		while( $continue ) {
+		while ( $continue ) {
 			$continue = false;
 			$flowData = $this->flowApi(
 				$this->pageTitle,
@@ -60,7 +60,7 @@ class ConvertToText extends Maintenance {
 
 			$topicListBlock = $flowData['topiclist'];
 
-			foreach( $topicListBlock['roots'] as $rootPostId ) {
+			foreach ( $topicListBlock['roots'] as $rootPostId ) {
 				$revisionId = reset( $topicListBlock['posts'][$rootPostId] );
 				$revision = $topicListBlock['revisions'][$revisionId];
 
@@ -144,7 +144,7 @@ class ConvertToText extends Maintenance {
 		$indent = str_repeat( ':', $indentLevel );
 		$output = '';
 
-		foreach( $collection as $postId ) {
+		foreach ( $collection as $postId ) {
 			$revisionId = reset( $context['posts'][$postId] );
 			$revision = $context['revisions'][$revisionId];
 
@@ -334,4 +334,4 @@ class ConvertToText extends Maintenance {
 }
 
 $maintClass = "ConvertToText";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
