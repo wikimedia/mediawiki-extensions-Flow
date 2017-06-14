@@ -114,6 +114,8 @@
 			],
 			"dependencies": [
 				"mediawiki.template.handlebars",
+				"mediawiki.user",
+				"mediawiki.util",
 				"moment"
 			],
 			"templates": [
@@ -430,6 +432,7 @@
 				"oojs",
 				"ext.flow.templating",
 				"ext.flow.jquery.findWithParent",
+				"mediawiki.api",
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.Uri",
@@ -460,6 +463,7 @@
 				"flow/dm/mw.flow.dm.Categories.js"
 			],
 			"dependencies": [
+				"mediawiki.api",
 				"oojs"
 			],
 			"targets": [
@@ -546,7 +550,11 @@
 				"oojs-ui",
 				"ext.flow.dm",
 				"oojs-ui.styles.icons-editing-advanced",
+				"mediawiki.api",
+				"mediawiki.api.options",
 				"mediawiki.Title",
+				"mediawiki.user",
+				"mediawiki.util",
 				"ext.visualEditor.supportCheck"
 			],
 			"targets": [
@@ -585,8 +593,9 @@
 				"ext.flow.jquery.conditionalScroll",
 				"ext.flow.ui",
 				"mediawiki.api",
-				"mediawiki.util",
-				"mediawiki.api.options"
+				"mediawiki.api.options",
+				"mediawiki.user",
+				"mediawiki.util"
 			],
 			"messages": [
 				"flow-error-external",
@@ -620,6 +629,8 @@
 			],
 			"dependencies": [
 				"oojs",
+				"mediawiki.api",
+				"mediawiki.api.options",
 				"mediawiki.user"
 			],
 			"targets": [
@@ -677,6 +688,7 @@
 				"site",
 				"user",
 				"mediawiki.api",
+				"mediawiki.util",
 				"ext.flow.editors.none"
 			],
 			"messages": [
