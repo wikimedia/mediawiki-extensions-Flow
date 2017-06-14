@@ -62,7 +62,7 @@ foreach ( $it as $batch ) {
 		$tsEscaped = $dbr->addQuotes( $uuid->getTimestamp( TS_MW ) );
 
 		$changeType = $rev->rev_change_type;
-		while( is_string( $wgFlowActions[$changeType] ) ) {
+		while ( is_string( $wgFlowActions[$changeType] ) ) {
 			$changeType = $wgFlowActions[$changeType];
 		}
 		if ( in_array( $changeType, $moderationChangeTypes ) ) {

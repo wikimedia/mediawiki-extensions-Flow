@@ -8,10 +8,10 @@ $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
 	__DIR__ . '/../../..';
 
-require_once( $installPath . '/maintenance/Maintenance.php' );
+require_once $installPath . '/maintenance/Maintenance.php';
 // extending these - autoloader not yet wired up at the point these are interpreted
-require_once( $installPath .'/includes/utils/BatchRowWriter.php' );
-require_once( $installPath . '/includes/utils/RowUpdateGenerator.php' );
+require_once $installPath . '/includes/utils/BatchRowWriter.php';
+require_once $installPath . '/includes/utils/RowUpdateGenerator.php';
 
 /**
  * Fixes Flow References & entries in categorylinks & related tables.
@@ -58,7 +58,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 			$storage->multiRemove( $links, array() );
 		}
 
-		$this->output( "Removed " . count( $links ) . " links to special pages.\n");
+		$this->output( "Removed " . count( $links ) . " links to special pages.\n" );
 	}
 
 	protected function rebuildCoreTables() {
@@ -102,4 +102,4 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 }
 
 $maintClass = 'FlowFixLinks';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

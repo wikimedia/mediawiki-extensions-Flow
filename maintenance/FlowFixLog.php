@@ -12,8 +12,8 @@ if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 
-require_once( "$IP/maintenance/Maintenance.php" );
-require_once( "$IP/includes/utils/RowUpdateGenerator.php" );
+require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * Fixes Flow log entries.
@@ -197,4 +197,4 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 }
 
 $maintClass = 'FlowFixLog';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

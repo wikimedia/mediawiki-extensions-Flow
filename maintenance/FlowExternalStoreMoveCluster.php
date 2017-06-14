@@ -86,7 +86,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$updateGenerator = new ExternalStoreUpdateGenerator( $this, $to, $schema );
 
 		if ( $this->hasOption( 'dry-run' ) ) {
-			$this->output( "Starting dry run\n\n");
+			$this->output( "Starting dry run\n\n" );
 			foreach ( $iterator as $rows ) {
 				$this->output( "Starting dry run batch\n" );
 				foreach ( $rows as $row ) {
@@ -285,4 +285,4 @@ class FlowExternalStoreMoveCluster extends ExternalStoreMoveCluster {
 }
 
 $maintClass = 'FlowExternalStoreMoveCluster';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

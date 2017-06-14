@@ -65,4 +65,4 @@ class CompileLightncandy extends Maintenance {
 }
 
 $maintClass = 'CompileLightncandy'; // Tells it to run the class
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
