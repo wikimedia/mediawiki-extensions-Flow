@@ -39,6 +39,30 @@
       "revId": "6965d97d30db384cfb25a29d28c50240bd652670",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee859f59_b1bca0d6",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-06-14T01:31:43Z",
+      "side": 1,
+      "message": "Actually, never mind. It does work, but it breaks the nesting of the description inside \u003cp class\u003d\"mw-ui-feature-description\"\u003e, which I think is worse than a double \u003cbr\u003e.",
+      "parentUuid": "0e81134c_4616d24e",
+      "range": {
+        "startLine": 550,
+        "startChar": 319,
+        "endLine": 550,
+        "endChar": 331
+      },
+      "revId": "6965d97d30db384cfb25a29d28c50240bd652670",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
