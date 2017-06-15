@@ -7,203 +7,203 @@
 
 require_once __DIR__ . '/defines.php';
 
-$namespaceNames = array();
+$namespaceNames = [];
 
 /** English */
-$namespaceNames['en'] = array(
+$namespaceNames['en'] = [
 	NS_TOPIC =>  'Topic',
-);
+];
 
 /** Arabic */
-$namespaceNames['ar'] = array(
+$namespaceNames['ar'] = [
 	NS_TOPIC => 'موضوع',
-);
+];
 
 /** Asturian */
-$namespaceNames['ast'] = array(
+$namespaceNames['ast'] = [
 	NS_TOPIC =>  'Asuntu',
-);
+];
 
 /** South Azerbaijani */
-$namespaceNames['azb'] = array(
+$namespaceNames['azb'] = [
 	NS_TOPIC =>  'مبحث',
-);
+];
 
 /** Western Balochi */
-$namespaceNames['bgn'] = array(
+$namespaceNames['bgn'] = [
 	NS_TOPIC =>  'سر_ئو_بُن',
-);
+];
 
 /** Bengali */
-$namespaceNames['bn'] = array(
+$namespaceNames['bn'] = [
 	NS_TOPIC =>  'প্রসঙ্গ',
-);
+];
 
 /** Catalan */
-$namespaceNames['ca'] = array(
+$namespaceNames['ca'] = [
 	NS_TOPIC =>  'Tema',
-);
+];
 
 /** Central Kurdish */
-$namespaceNames['ckb'] = array(
+$namespaceNames['ckb'] = [
 	NS_TOPIC =>  'بابه‌ت',
-);
+];
 
 /** German */
-$namespaceNames['de'] = array(
+$namespaceNames['de'] = [
 	NS_TOPIC =>  'Thema',
-);
+];
 
 /** Zazaki */
-$namespaceNames['diq'] = array(
+$namespaceNames['diq'] = [
 	NS_TOPIC =>  'Mewzu',
-);
+];
 
 /** Spanish */
-$namespaceNames['es'] = array(
+$namespaceNames['es'] = [
 	NS_TOPIC =>  'Tema',
-);
+];
 
 /** Estonian */
-$namespaceNames['et'] = array(
+$namespaceNames['et'] = [
 	NS_TOPIC =>  'Teema',
-);
+];
 
 /** Persian */
-$namespaceNames['fa'] = array(
+$namespaceNames['fa'] = [
 	NS_TOPIC =>  'مبحث',
-);
+];
 
 /** Finnish */
-$namespaceNames['fi'] = array(
+$namespaceNames['fi'] = [
 	NS_TOPIC =>  'Aihe',
-);
+];
 
 /** French */
-$namespaceNames['fr'] = array(
+$namespaceNames['fr'] = [
 	NS_TOPIC =>  'Sujet',
-);
+];
 
-$namespaceNames['gom'] = array(
+$namespaceNames['gom'] = [
 	NS_TOPIC => 'विशय',
-);
+];
 
 /** Hebrew */
-$namespaceNames['he'] = array(
+$namespaceNames['he'] = [
 	NS_TOPIC =>  'נושא',
-);
+];
 
 /** Hungarian */
-$namespaceNames['hu'] = array(
+$namespaceNames['hu'] = [
 	NS_TOPIC =>  'Téma',
-);
+];
 
 /** Indonesian */
-$namespaceNames['id'] = array(
+$namespaceNames['id'] = [
 	NS_TOPIC => 'Topik',
-);
+];
 
 /** Italian */
-$namespaceNames['it'] = array(
+$namespaceNames['it'] = [
 	NS_TOPIC =>  'Argomento',
-);
+];
 
 /** Korean */
-$namespaceNames['ko'] = array(
+$namespaceNames['ko'] = [
 	NS_TOPIC => '주제',
-);
+];
 
 /** Luxembourgish */
-$namespaceNames['lb'] = array(
+$namespaceNames['lb'] = [
 	NS_TOPIC =>  'Thema',
-);
+];
 
 /** Northern Luri */
-$namespaceNames['lrc'] = array(
+$namespaceNames['lrc'] = [
 	NS_TOPIC =>  'گأپئسئن',
-);
+];
 
 /** Latvian */
-$namespaceNames['lv'] = array(
+$namespaceNames['lv'] = [
 	NS_TOPIC =>  'Tēma',
-);
+];
 
 /** Macedonian */
-$namespaceNames['mk'] = array(
+$namespaceNames['mk'] = [
 	NS_TOPIC =>  'Тема',
-);
+];
 
 /** Mazandarani */
-$namespaceNames['mzn'] = array(
+$namespaceNames['mzn'] = [
 	NS_TOPIC =>  'تاپیک',
-);
+];
 
 /** Norwegian Bokmål (norsk bokmål) */
-$namespaceNames['nb'] = array(
+$namespaceNames['nb'] = [
 	NS_TOPIC =>  'Sak',
-);
+];
 
 /** Dutch */
-$namespaceNames['nl'] = array(
+$namespaceNames['nl'] = [
 	NS_TOPIC =>  'Onderwerp',
-);
+];
 
 /** Occitan */
-$namespaceNames['oc'] = array(
+$namespaceNames['oc'] = [
 	NS_TOPIC =>  'Subjècte',
-);
+];
 
 /** Orya */
-$namespaceNames['or'] = array(
+$namespaceNames['or'] = [
 	NS_TOPIC =>  'ବିଷୟ',
-);
+];
 
 /** Polish */
-$namespaceNames['pl'] = array(
+$namespaceNames['pl'] = [
 	NS_TOPIC =>  'Wątek',
-);
+];
 
 /** Western Punjabi */
-$namespaceNames['pnb'] = array(
+$namespaceNames['pnb'] = [
 	NS_TOPIC =>  'موضوع',
-);
+];
 
 /** Portuguese */
-$namespaceNames['pt'] = array(
+$namespaceNames['pt'] = [
 	NS_TOPIC =>  'Tópico',
-);
+];
 
 /** Russian */
-$namespaceNames['ru'] = array(
+$namespaceNames['ru'] = [
 	NS_TOPIC =>  'Тема',
-);
+];
 
 /** Slovenian */
-$namespaceNames['sl'] = array(
+$namespaceNames['sl'] = [
 	NS_TOPIC =>  'Tema',
-);
+];
 
 /** Swedish */
-$namespaceNames['sv'] = array(
+$namespaceNames['sv'] = [
 	NS_TOPIC =>  'Ämne',
-);
+];
 
 /** Ukrainian */
-$namespaceNames['uk'] = array(
+$namespaceNames['uk'] = [
 	NS_TOPIC =>  'Тема',
-);
+];
 
 /** Urdu */
-$namespaceNames['ur'] = array(
+$namespaceNames['ur'] = [
 	NS_TOPIC =>  'موضوع',
-);
+];
 
 /** Vietnamese */
-$namespaceNames['vi'] = array(
+$namespaceNames['vi'] = [
 	NS_TOPIC =>  'Đề_tài',
-);
+];
 
 /** Yiddish */
-$namespaceNames['yi'] = array(
+$namespaceNames['yi'] = [
 	NS_TOPIC =>  'טעמע',
-);
+];
