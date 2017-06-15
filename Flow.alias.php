@@ -4,110 +4,109 @@
  * @file
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-// @codingStandardsIgnoreFile
 
-$specialPageAliases = array();
+$specialPageAliases = [];
 
 /** English (English) */
-$specialPageAliases['en'] = array(
-	'Flow' => array( 'Flow' ),
-	'EnableFlow' => array( 'EnableFlow' ),
-);
+$specialPageAliases['en'] = [
+	'Flow' => [ 'Flow' ],
+	'EnableFlow' => [ 'EnableFlow' ],
+];
 
 /** Arabic (العربية) */
-$specialPageAliases['ar'] = array(
-	'Flow' => array( 'سريان' ),
-	'EnableFlow' => array( 'فعل_سريان' ),
-);
+$specialPageAliases['ar'] = [
+	'Flow' => [ 'سريان' ],
+	'EnableFlow' => [ 'فعل_سريان' ],
+];
 
 /** Egyptian Arabic (مصرى) */
-$specialPageAliases['arz'] = array(
-	'Flow' => array( 'سريان' ),
-);
+$specialPageAliases['arz'] = [
+	'Flow' => [ 'سريان' ],
+];
 
 /** Bengali (বাংলা) */
-$specialPageAliases['bn'] = array(
-	'Flow' => array( 'ফ্লো' ),
-	'EnableFlow' => array( 'ফ্লো_সক্রিয়করণ' ),
-);
+$specialPageAliases['bn'] = [
+	'Flow' => [ 'ফ্লো' ],
+	'EnableFlow' => [ 'ফ্লো_সক্রিয়করণ' ],
+];
 
 /** German (Deutsch) */
-$specialPageAliases['de'] = array(
-	'EnableFlow' => array( 'Flow_aktivieren' ),
-);
+$specialPageAliases['de'] = [
+	'EnableFlow' => [ 'Flow_aktivieren' ],
+];
 
 /** Zazaki (Zazaki) */
-$specialPageAliases['diq'] = array(
-	'Flow' => array( 'Rodayış' ),
-);
+$specialPageAliases['diq'] = [
+	'Flow' => [ 'Rodayış' ],
+];
 
 /** Persian (فارسی) */
-$specialPageAliases['fa'] = array(
-	'Flow' => array( 'جریان' ),
-	'EnableFlow' => array( 'فعال‌سازی_جریان' ),
-);
+$specialPageAliases['fa'] = [
+	'Flow' => [ 'جریان' ],
+	'EnableFlow' => [ 'فعال‌سازی_جریان' ],
+];
 
 /** Hebrew (עברית) */
-$specialPageAliases['he'] = array(
-	'Flow' => array( 'זרימה' ),
-	'EnableFlow' => array( 'הפעלת_זרימה' ),
-);
+$specialPageAliases['he'] = [
+	'Flow' => [ 'זרימה' ],
+	'EnableFlow' => [ 'הפעלת_זרימה' ],
+];
 
 /** Hungarian (magyar) */
-$specialPageAliases['hu'] = array(
-	'EnableFlow' => array( 'Flow bekapcsolása' ),
-);
+$specialPageAliases['hu'] = [
+	'EnableFlow' => [ 'Flow bekapcsolása' ],
+];
 
 /** Korean (한국어) */
-$specialPageAliases['ko'] = array(
-	'Flow' => array( '플로우' ),
-	'EnableFlow' => array( '플로우활성화' ),
-);
+$specialPageAliases['ko'] = [
+	'Flow' => [ '플로우' ],
+	'EnableFlow' => [ '플로우활성화' ],
+];
 
 /** Northern Luri (لۊری شومالی) */
-$specialPageAliases['lrc'] = array(
-	'Flow' => array( 'جأریان' ),
-);
+$specialPageAliases['lrc'] = [
+	'Flow' => [ 'جأریان' ],
+];
 
 /** Macedonian (македонски) */
-$specialPageAliases['mk'] = array(
-	'Flow' => array( 'Тек' ),
-	'EnableFlow' => array( 'ОвозможиТек' ),
-);
+$specialPageAliases['mk'] = [
+	'Flow' => [ 'Тек' ],
+	'EnableFlow' => [ 'ОвозможиТек' ],
+];
 
 /** Malayalam (മലയാളം) */
-$specialPageAliases['ml'] = array(
-	'Flow' => array( 'പ്രവാഹം' ),
-);
+$specialPageAliases['ml'] = [
+	'Flow' => [ 'പ്രവാഹം' ],
+];
 
 /** Portuguese (português) */
-$specialPageAliases['pt'] = array(
-	'Flow' => array( 'Fluência', 'Fluencia' ),
-);
+$specialPageAliases['pt'] = [
+	'Flow' => [ 'Fluência', 'Fluencia' ],
+];
 
 /** Brazilian Portuguese (português do Brasil) */
-$specialPageAliases['pt-br'] = array(
-	'EnableFlow' => array( 'Habilitar_Flow' ),
-);
+$specialPageAliases['pt-br'] = [
+	'EnableFlow' => [ 'Habilitar_Flow' ],
+];
 
 /** Swedish (svenska) */
-$specialPageAliases['sv'] = array(
-	'Flow' => array( 'Flöde' ),
-);
+$specialPageAliases['sv'] = [
+	'Flow' => [ 'Flöde' ],
+];
 
 /** Vietnamese (Tiếng Việt) */
-$specialPageAliases['vi'] = array(
-	'Flow' => array( 'Flow' ),
-	'EnableFlow' => array( 'Kích_hoạt_Flow' ),
-);
+$specialPageAliases['vi'] = [
+	'Flow' => [ 'Flow' ],
+	'EnableFlow' => [ 'Kích_hoạt_Flow' ],
+];
 
 /** Simplified Chinese (中文（简体）‎) */
-$specialPageAliases['zh-hans'] = array(
-	'EnableFlow' => array( '启用Flow' ),
-);
+$specialPageAliases['zh-hans'] = [
+	'EnableFlow' => [ '启用Flow' ],
+];
 
 /** Traditional Chinese (中文（繁體）‎) */
-$specialPageAliases['zh-hant'] = array(
-	'Flow' => array( '流動量' ),
-	'EnableFlow' => array( '啟用流動量' ),
-);
+$specialPageAliases['zh-hant'] = [
+	'Flow' => [ '流動量' ],
+	'EnableFlow' => [ '啟用流動量' ],
+];
