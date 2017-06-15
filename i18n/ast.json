@@ -491,7 +491,7 @@
 	"flow-ve-mention-inspector-invalid-user": "L'usuariu «$1» nun ta rexistráu.",
 	"flow-wikitext-editor-help": "Testu wiki $1.",
 	"flow-wikitext-editor-help-and-preview": "Testu wiki $1 y en cualquier momentu puedes $2.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|usa un llinguaxe de marques]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|usa un llinguaxe de marques]]",
 	"flow-wikitext-editor-help-preview-the-result": "entever el resultáu",
 	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
 	"flow-ve-switch-editor-tool-title": "Cambiar al editor de testu wiki",

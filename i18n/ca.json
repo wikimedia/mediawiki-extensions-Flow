@@ -450,7 +450,7 @@
 	"flow-ve-mention-inspector-invalid-user": "L'usuari «$1» no està registrat.",
 	"flow-wikitext-editor-help": "El text wiki $1.",
 	"flow-wikitext-editor-help-and-preview": "El text wiki $1 i podeu $2 en qualsevol moment.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|utilitza marcatge]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|utilitza marcatge]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualitzar el resultat",
 	"flow-wikitext-switch-editor-tooltip": "Canvia a l'editor visual",
 	"flow-ve-switch-editor-tool-title": "Canvia a l'editor de text wiki",

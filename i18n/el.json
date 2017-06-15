@@ -276,7 +276,7 @@
 	"flow-importer-wt-converted-template-content": "Προηγούμενη συζήτηση αρχειοθετήθηκε στην <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> στις {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-edited-by": "Υπέστη επεξεργασία από $1",
 	"flow-wikitext-editor-help-and-preview": "Το κείμενο wiki $1 και μπορείτε να $2 οποτεδήποτε.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|χρησιμοποιεί κώδικα]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|χρησιμοποιεί κώδικα]]",
 	"flow-wikitext-editor-help-preview-the-result": "κάνετε προεπισκόπηση του αποτελέσματος",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Καλώς ήρθατε}} στη νέα σελίδα συζήτησης χρήστη {{GENDER:$1|σας}}",
 	"flow-guidedtour-optin-welcome-description": "Η σελίδα συζήτησής {{GENDER:$1|σας}} είναι ο χώρος όπου άλλοι συντάκτες μπορούν να έρθουν σε επαφή μαζί {{GENDER:$1|σας}}. Με το Flow, είναι πιο εύκολο να ξεκινήσετε νέα θέματα και να παρακολουθείτε τις συνομιλίες.",

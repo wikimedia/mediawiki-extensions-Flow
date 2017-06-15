@@ -495,7 +495,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Brukernavnet «$1» er ikke registrert.",
 	"flow-wikitext-editor-help": "Wikitekst $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitekst $1 og du kan $2 når som helst.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|støtter markering]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|støtter markering]]",
 	"flow-wikitext-editor-help-preview-the-result": "forhåndsvise resultatet",
 	"flow-wikitext-switch-editor-tooltip": "Bytt til visuell redigering",
 	"flow-ve-switch-editor-tool-title": "Bytt til Wikitekst-redigering",

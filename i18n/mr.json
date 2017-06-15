@@ -359,7 +359,7 @@
 	"flow-ve-mention-inspector-invalid-user": "\"$1\" हे सदस्यनाव नोंदविलेले नाही.",
 	"flow-wikitext-editor-help": "विकिमजकूर$1.",
 	"flow-wikitext-editor-help-and-preview": "विकिमजकूर $1 व आपण कधीही $2 करु शकता.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|मार्कअप वापरते]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|मार्कअप वापरते]]",
 	"flow-wikitext-editor-help-preview-the-result": "निकालाची झलक बघा",
 	"flow-wikitext-switch-editor-tooltip": "दृश्यसंपादकाकडे बदलवा",
 	"flow-ve-switch-editor-tool-title": "विकिमजकूर संपादकाकडे चला",

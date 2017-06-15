@@ -370,7 +370,7 @@
 	"flow-ve-mention-context-item-label": "メンション",
 	"flow-ve-mention-tool-title": "ある利用者にメンション",
 	"flow-wikitext-editor-help-and-preview": "ウィキテキストは$1、また、いつでも$2できます。",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|マークアップを使用]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|マークアップを使用]]",
 	"flow-wikitext-editor-help-preview-the-result": "結果をプレビュー",
 	"flow-wikitext-switch-editor-tooltip": "ビジュアルエディターに切り替え",
 	"flow-ve-switch-editor-tool-title": "ウィキテキストエディターに切り替え",

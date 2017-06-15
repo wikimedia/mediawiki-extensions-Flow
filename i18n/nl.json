@@ -499,7 +499,7 @@
 	"flow-ve-mention-inspector-invalid-user": "De gebruiker \"$1\" is niet geregistreerd.",
 	"flow-wikitext-editor-help": "Wikitekst $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 en u kunt op elk moment uw bewerking $2.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|maakt gebruik van markup]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|maakt gebruik van markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "ter controle bekijken",
 	"flow-wikitext-switch-editor-tooltip": "Overschakelen naar visuele tekstverwerker",
 	"flow-ve-switch-editor-tool-title": "Overschakelen naar wikitext",

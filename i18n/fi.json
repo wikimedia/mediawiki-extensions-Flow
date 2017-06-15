@@ -440,7 +440,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Käyttäjänimeä \"$1\" ei ole rekisteröity.",
 	"flow-wikitext-editor-help": "Wikiteksti $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikiteksti $1 ja voit $2 milloin tahansa.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting/fi|käyttää merkintäkieltä]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|käyttää merkintäkieltä]]",
 	"flow-wikitext-editor-help-preview-the-result": "esikatsella tulosta",
 	"flow-wikitext-switch-editor-tooltip": "Vaihda Visuaaliseen muokkaimeen",
 	"flow-ve-switch-editor-tool-title": "Vaihda wikitekstimuokkaimeen",

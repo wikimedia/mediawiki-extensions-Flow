@@ -447,7 +447,7 @@
 	"flow-ve-mention-inspector-invalid-user": "«$1» қатысушы есімі тіркелмеген.",
 	"flow-wikitext-editor-help": "Уикимәтін: $1.",
 	"flow-wikitext-editor-help-and-preview": "Уикимәтінін $1 және кез келген уақытта $2",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Help:Formatting|белгілеу қолданылады]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|белгілеу қолданылады]]",
 	"flow-wikitext-editor-help-preview-the-result": "нәтижесін алдын ала қарай аласыз",
 	"flow-wikitext-switch-editor-tooltip": "Көріп өңдегішке ауысу",
 	"flow-ve-switch-editor-tool-title": "Уикимәтін өңдегішіне ауысу",

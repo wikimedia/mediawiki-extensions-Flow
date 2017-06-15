@@ -79,6 +79,7 @@
 	"apihelp-flow+view-post-history-param-format": "Format dans lequel renvoyer le contenu.",
 	"apihelp-flow+view-post-history-example-1": "Récupérer les révisions d’une note sur [[Topic:S2tycnas4hcucw8w]] en wikitexte",
 	"apihelp-flow+view-topic-description": "Afficher un sujet.",
+	"apihelp-flow+view-topic-summary": "Afficher un sujet.",
 	"apihelp-flow+view-topic-param-format": "Format dans lequel renvoyer le contenu.",
 	"apihelp-flow+view-topic-example-1": "Afficher [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-topic-history-description": "Afficher l’historique des révisions d’un sujet.",
