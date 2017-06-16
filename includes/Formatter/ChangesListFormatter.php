@@ -39,7 +39,7 @@ class ChangesListFormatter extends AbstractFormatter {
 		// The ' . . ' text between elements
 		$separator = $this->changeSeparator();
 
-		$links = array();
+		$links = [];
 		$links[] = $this->getDiffAnchor( $data['links'], $ctx );
 		$links[] = $this->getHistAnchor( $data['links'], $ctx );
 
@@ -92,8 +92,8 @@ class ChangesListFormatter extends AbstractFormatter {
 		$link = Linker::link(
 			$title = $row->workflow->getOwnerTitle(),
 			$ctx->getLanguage()->getArrow( 'backwards' ),
-			array(),
-			array(),
+			[],
+			[],
 			'noclasses'
 		);
 		$summary = '<span class="autocomment">' . $msg->text() . '</span>';
@@ -177,7 +177,7 @@ class ChangesListFormatter extends AbstractFormatter {
 	 * @throws FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
-	public function getLogTextLinks( RecentChangesRow $row, IContextSource $ctx, array $block, array $links = array() ) {
+	public function getLogTextLinks( RecentChangesRow $row, IContextSource $ctx, array $block, array $links = [] ) {
 		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
 		if ( !$data ) {
 			return false;
@@ -215,12 +215,12 @@ class ChangesListFormatter extends AbstractFormatter {
 	 * @return array
 	 */
 	public function getFlags( RecentChangesRow $row, IContextSource $ctx ) {
-		return array(
+		return [
 			'newpage' => $row->isFirstReply && $row->revision->isFirstRevision(),
 			'minor' => false,
 			'unpatrolled' => ChangesList::isUnpatrolled( $row->recentChange, $ctx->getUser() ),
 			'bot' => false,
-		);
+		];
 	}
 
 	/**

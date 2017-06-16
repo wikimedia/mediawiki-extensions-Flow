@@ -81,7 +81,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			/** @var Header[] $revisions */
 			$revisions = $this->storage->find(
 				'Header',
-				array(
+				[
 					'rev_user_wiki' => wfWikiID(),
 					'rev_type' => 'header',
 					new RawSql( 'rev_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
@@ -89,12 +89,12 @@ class FlowRemoveOldTopics extends Maintenance {
 					// only fetch original post at this point: we still need to
 					// narrow down the results
 					'rev_parent_id' => null,
-				),
-				array(
+				],
+				[
 					'limit' => $this->mBatchSize,
 					'sort' => 'rev_id',
 					'order' => 'ASC',
-				)
+				]
 			);
 
 			if ( empty( $revisions ) ) {
@@ -109,22 +109,22 @@ class FlowRemoveOldTopics extends Maintenance {
 			// don't want to remove those that have revisions after that date cutoff
 			// (we don't want to break history)
 			// let's see if any has revisions more recent than timestamp
-			$conds = array();
-			$uuids = array();
+			$conds = [];
+			$uuids = [];
 			foreach ( $revisions as $revision ) {
 				// keep track of UUIDs we may want to delete
 				$uuids[$revision->getCollectionId()->getAlphadecimal()] = $revision->getCollectionId();
 
-				$conds[] = array(
+				$conds[] = [
 					'rev_user_wiki' => wfWikiID(),
 					'rev_type' => 'header',
 					new RawSql( 'rev_id >= ' . $dbr->addQuotes( $endId->getBinary() ) ),
 					'rev_type_id' => $revision->getCollectionId()->getBinary(),
-				);
+				];
 			}
 
 			/** @var Header[] $recent */
-			$recent = $this->storage->findMulti( 'Header', $conds, array( 'limit' => 1 ) );
+			$recent = $this->storage->findMulti( 'Header', $conds, [ 'limit' => 1 ] );
 
 			// now exclude collection ids where there's a revision that is more
 			// recent than the timestamp cutoff
@@ -142,11 +142,11 @@ class FlowRemoveOldTopics extends Maintenance {
 
 			$revisions = $this->storage->find(
 				'Header',
-				array(
+				[
 					'rev_user_wiki' => wfWikiID(),
 					'rev_type' => 'header',
 					'rev_type_id' => UUID::convertUUIDs( $uuids ),
-				)
+				]
 			);
 
 			$this->output( 'Removing ' . count( $revisions ) . ' header revisions from ' . count( $uuids ) . ' headers (up to ' . $startId->getTimestamp() . ")\n" );
@@ -180,17 +180,17 @@ class FlowRemoveOldTopics extends Maintenance {
 		do {
 			$workflows = $this->storage->find(
 				'Workflow',
-				array(
+				[
 					new RawSql( 'workflow_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
 					'workflow_wiki' => wfWikiID(),
 					'workflow_type' => 'topic',
 					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $timestamp ) ),
-				),
-				array(
+				],
+				[
 					'limit' => $this->mBatchSize,
 					'sort' => 'workflow_id',
 					'order' => 'ASC',
-				)
+				]
 			);
 
 			if ( empty( $workflows ) ) {
@@ -223,9 +223,9 @@ class FlowRemoveOldTopics extends Maintenance {
 
 		do {
 			$workflowIds = $dbr->selectFieldValues(
-				array( 'flow_workflow', 'flow_tree_node', 'flow_revision' ),
+				[ 'flow_workflow', 'flow_tree_node', 'flow_revision' ],
 				'workflow_id',
-				array(
+				[
 					// revisions more recent than cutoff time
 					'rev_id > ' . $dbr->addQuotes( $cutoffStartId->getBinary() ),
 					// workflow_id condition is only used to batch, the exact
@@ -234,21 +234,21 @@ class FlowRemoveOldTopics extends Maintenance {
 					'workflow_wiki' => wfWikiID(),
 					'workflow_type' => 'topic',
 					'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $timestamp ),
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'LIMIT' => $this->mBatchSize,
 					'ORDER BY' => 'workflow_id ASC',
 					// we only want to find topics that were only altered by talk
 					// page manager: as long as anyone else edited any post, we're
 					// not interested in it
 					'GROUP BY' => 'workflow_id',
-					'HAVING' => array( 'GROUP_CONCAT(DISTINCT rev_user_id)' => $talkpageManager->getId() ),
-				),
-				array(
-					'flow_tree_node' => array( 'INNER JOIN', array( 'tree_ancestor_id = workflow_id' ) ),
-					'flow_revision' => array( 'INNER JOIN', array( 'rev_type_id = tree_descendant_id' ) ),
-				)
+					'HAVING' => [ 'GROUP_CONCAT(DISTINCT rev_user_id)' => $talkpageManager->getId() ],
+				],
+				[
+					'flow_tree_node' => [ 'INNER JOIN', [ 'tree_ancestor_id = workflow_id' ] ],
+					'flow_revision' => [ 'INNER JOIN', [ 'rev_type_id = tree_descendant_id' ] ],
+				]
 			);
 
 			if ( empty( $workflowIds ) ) {
@@ -290,7 +290,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	}
 
 	protected function removeTopicList( Workflow $workflow ) {
-		$entries = $this->storage->find( 'TopicListEntry', array( 'topic_id' => $workflow->getId() ) );
+		$entries = $this->storage->find( 'TopicListEntry', [ 'topic_id' => $workflow->getId() ] );
 		if ( $entries ) {
 			$this->output( 'Removing ' . count( $entries ) . " topiclist entries.\n" );
 			$this->multiRemove( $entries );
@@ -298,7 +298,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	}
 
 	protected function removeSummary( Workflow $workflow ) {
-		$revisions = $this->storage->find( 'PostSummary', array( 'rev_type_id' => $workflow->getId() ) );
+		$revisions = $this->storage->find( 'PostSummary', [ 'rev_type_id' => $workflow->getId() ] );
 		if ( $revisions ) {
 			foreach ( $revisions as $revision ) {
 				$this->removeReferences( $revision );
@@ -315,7 +315,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 * @return array
 	 */
 	protected function sortSubtree( UUID $parentId, array $subtree ) {
-		$flat = array();
+		$flat = [];
 
 		// first recursively process all children, so they come first in $flat
 		foreach ( $subtree['children'] as $id => $data ) {
@@ -337,9 +337,9 @@ class FlowRemoveOldTopics extends Maintenance {
 		$subtree = $this->treeRepo->fetchSubtree( $workflow->getId() );
 		$uuids = $this->sortSubtree( $workflow->getId(), $subtree );
 
-		$conds = array();
+		$conds = [];
 		foreach ( $uuids as $id ) {
-			$conds[] = array( 'rev_type_id' => $id );
+			$conds[] = [ 'rev_type_id' => $id ];
 		}
 
 		$posts = $this->storage->findMulti( 'PostRevision', $conds );
@@ -361,21 +361,21 @@ class FlowRemoveOldTopics extends Maintenance {
 	}
 
 	protected function removeReferences( AbstractRevision $revision ) {
-		$wikiReferences = $this->storage->find( 'WikiReference', array(
+		$wikiReferences = $this->storage->find( 'WikiReference', [
 			'ref_src_wiki' => wfWikiID(),
 			'ref_src_object_type' => $revision->getRevisionType(),
 			'ref_src_object_id' => $revision->getCollectionId(),
-		) );
+		] );
 		if ( $wikiReferences ) {
 			$this->output( 'Removing ' . count( $wikiReferences ) . " wiki references from 1 revision.\n" );
 			$this->multiRemove( $wikiReferences );
 		}
 
-		$urlReferences = $this->storage->find( 'URLReference', array(
+		$urlReferences = $this->storage->find( 'URLReference', [
 			'ref_src_wiki' => wfWikiID(),
 			'ref_src_object_type' => $revision->getRevisionType(),
 			'ref_src_object_id' => $revision->getCollectionId(),
-		) );
+		] );
 		if ( $urlReferences ) {
 			$this->output( 'Removing ' . count( $urlReferences ) . " url references from 1 revision.\n" );
 			$this->multiRemove( $urlReferences );

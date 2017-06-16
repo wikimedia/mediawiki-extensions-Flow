@@ -20,18 +20,18 @@ class LogQuery extends AbstractQuery {
 	 * @return PostRevision[]
 	 */
 	protected function loadPostsBatch( array $uuids ) {
-		$queries = array();
+		$queries = [];
 		foreach ( $uuids as $uuid ) {
-			$queries[] = array( 'rev_type_id' => $uuid );
+			$queries[] = [ 'rev_type_id' => $uuid ];
 		}
 
 		$found = $this->storage->findMulti(
 			'PostRevision',
 			$queries,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
-		$revisions = array();
+		$revisions = [];
 		foreach ( $found as $result ) {
 			/** @var PostRevision $revision */
 			$revision = reset( $result );

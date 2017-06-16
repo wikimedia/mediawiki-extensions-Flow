@@ -42,18 +42,18 @@ class BlockFactory {
 	public function createBlocks( Workflow $workflow ) {
 		switch ( $workflow->getType() ) {
 			case 'discussion':
-				$blocks = array(
+				$blocks = [
 					new HeaderBlock( $workflow, $this->storage ),
 					new TopicListBlock( $workflow, $this->storage ),
 					new BoardHistoryBlock( $workflow, $this->storage ),
-				);
+				];
 				break;
 
 			case 'topic':
-				$blocks = array(
+				$blocks = [
 					new TopicBlock( $workflow, $this->storage, $this->rootPostLoader ),
 					new TopicSummaryBlock( $workflow, $this->storage ),
-				);
+				];
 				break;
 
 			default:
@@ -61,7 +61,7 @@ class BlockFactory {
 				break;
 		}
 
-		$return = array();
+		$return = [];
 		/** @var AbstractBlock[] $blocks */
 		foreach ( $blocks as $block ) {
 			if ( isset( $return[$block->getName()] ) ) {

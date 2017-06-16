@@ -46,9 +46,9 @@ class UrlGenerator {
 		}
 
 		$alpha = $workflowId->getAlphadecimal();
-		$workflow = $this->workflowMapper->get( array(
+		$workflow = $this->workflowMapper->get( [
 			'workflow_id' => $alpha,
-		) );
+		] );
 		if ( $workflow === null ) {
 			throw new InvalidInputException( 'Unloaded workflow:' . $alpha, 'invalid-workflow' );
 		}
@@ -66,7 +66,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-new' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'new-topic' )
+			[ 'action' => 'new-topic' ]
 		);
 	}
 
@@ -81,7 +81,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-edit-header' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'edit-header' )
+			[ 'action' => 'edit-header' ]
 		);
 	}
 
@@ -97,10 +97,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-header-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'header_revId' => $revId->getAlphadecimal(),
 				'action' => 'view-header'
-			)
+			]
 		);
 	}
 
@@ -116,10 +116,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-topic-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'topic_revId' => $revId->getAlphadecimal(),
 				'action' => 'single-view'
-			)
+			]
 		);
 	}
 
@@ -136,11 +136,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-post-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_revId' => $revId->getAlphadecimal(),
 				'action' => 'single-view'
-			)
+			]
 		);
 	}
 
@@ -156,10 +156,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-summary-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'topicsummary_revId' => $revId->getAlphadecimal(),
 				'action' => 'view-topic-summary'
-			)
+			]
 		);
 	}
 
@@ -190,11 +190,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-link-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				// If the post is moderated this will flag the backend to still
 				// include the content in the html response.
 				'topic_showPostId' => $postId->getAlphadecimal()
-			),
+			],
 			'#flow-post-' . $postId->getAlphadecimal()
 		);
 	}
@@ -211,10 +211,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-post-history' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'history',
 				'topic_postId' => $postId->getAlphadecimal(),
-			)
+			]
 		);
 	}
 
@@ -229,7 +229,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-history' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'history' )
+			[ 'action' => 'history' ]
 		);
 	}
 
@@ -243,7 +243,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'hist' ),
 			$title,
-			array( 'action' => 'history' )
+			[ 'action' => 'history' ]
 		);
 	}
 
@@ -282,11 +282,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-undo' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'undo-edit-post',
 				'topic_startId' => $startId->getAlphadecimal(),
 				'topic_endId' => $endId->getAlphadecimal(),
-			)
+			]
 		);
 	}
 
@@ -301,11 +301,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-undo' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'undo-edit-header',
 				'header_startId' => $startId->getAlphadecimal(),
 				'header_endId' => $endId->getAlphadecimal(),
-			)
+			]
 		);
 	}
 
@@ -320,11 +320,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-undo' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'undo-edit-topic-summary',
 				'topicsummary_startId' => $startId->getAlphadecimal(),
 				'topicsummary_endId' => $endId->getAlphadecimal(),
-			)
+			]
 		);
 	}
 
@@ -365,12 +365,12 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'diff' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'compare-header-revisions',
 				'header_newRevision' => $revId->getAlphadecimal(),
-			) + ( $oldRevId === null ? array() : array(
+			] + ( $oldRevId === null ? [] : [
 				'header_oldRevision' => $oldRevId->getAlphadecimal(),
-			) )
+			] )
 		);
 	}
 
@@ -391,12 +391,12 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'diff' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'compare-post-revisions',
 				'topic_newRevision' => $revId->getAlphadecimal(),
-			) + ( $oldRevId === null ? array() : array(
+			] + ( $oldRevId === null ? [] : [
 				'topic_oldRevision' => $oldRevId->getAlphadecimal(),
-			) )
+			] )
 		);
 	}
 
@@ -417,12 +417,12 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'diff' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'compare-postsummary-revisions',
 				'topicsummary_newRevision' => $revId->getAlphadecimal(),
-			) + ( $oldRevId === null ? array() : array(
+			] + ( $oldRevId === null ? [] : [
 				'topicsummary_oldRevision' => $oldRevId->getAlphadecimal(),
-			) )
+			] )
 		);
 	}
 
@@ -452,7 +452,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'watch' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'watch' )
+			[ 'action' => 'watch' ]
 		);
 	}
 
@@ -468,7 +468,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'unwatch' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'unwatch' )
+			[ 'action' => 'unwatch' ]
 		);
 	}
 
@@ -483,7 +483,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function boardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
-		$options = array();
+		$options = [];
 
 		if ( $sortBy !== null ) {
 			$options['topiclist_sortby'] = $sortBy;
@@ -521,10 +521,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-reply-link' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'reply',
 				'topic_postId' => $postId->getAlphadecimal(),
-			),
+			],
 			$hash
 		);
 	}
@@ -540,7 +540,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-summarize-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'edit-topic-summary' )
+			[ 'action' => 'edit-topic-summary' ]
 		);
 	}
 
@@ -555,10 +555,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-lock-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'lock-topic',
 				'flow_moderationState' => AbstractRevision::MODERATED_LOCKED,
-			)
+			]
 		);
 	}
 
@@ -575,10 +575,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-' . $moderationAction . '-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => $flowAction,
 				'flow_moderationState' => $moderationAction,
-			)
+			]
 		);
 	}
 
@@ -596,11 +596,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-' . $moderationAction . '-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => $flowAction,
 				'topic_moderationState' => $moderationAction,
 				'topic_postId' => $postId->getAlphadecimal(),
-			)
+			]
 		);
 	}
 
@@ -614,7 +614,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-edit-header-link' ),
 			$title,
-			array( 'action' => 'edit-header' )
+			[ 'action' => 'edit-header' ]
 		);
 	}
 
@@ -630,7 +630,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-edit-header-link' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array( 'action' => 'edit-header' )
+			[ 'action' => 'edit-header' ]
 		);
 	}
 
@@ -647,11 +647,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-edit-title' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'edit-title',
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_format' => 'wikitext',
-			)
+			]
 		);
 	}
 
@@ -668,12 +668,12 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-edit-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'edit-post',
 				'topic_postId' => $postId->getAlphadecimal(),
 				// @todo not necessary?
 				'topic_revId' => $revId->getAlphadecimal(),
-			),
+			],
 			'#flow-post-' . $postId->getAlphadecimal()
 
 		);
@@ -690,10 +690,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-hide-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-topic',
 				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
-			)
+			]
 		);
 	}
 
@@ -709,11 +709,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-hide-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-post',
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
-			)
+			]
 		);
 	}
 
@@ -728,10 +728,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-delete-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-topic',
 				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
-			)
+			]
 		);
 	}
 
@@ -747,11 +747,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-delete-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-post',
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
-			)
+			]
 		);
 	}
 
@@ -766,10 +766,10 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-suppress-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-topic',
 				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
-			)
+			]
 		);
 	}
 
@@ -785,11 +785,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-post-action-suppress-post' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'moderate-post',
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
-			)
+			]
 		);
 	}
 
@@ -798,9 +798,9 @@ class UrlGenerator {
 			wfMessage( 'flow-newtopic-start-placeholder' ),
 			// resolveTitle doesn't accept null uuid
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'new-topic'
-			)
+			]
 		);
 	}
 
@@ -814,7 +814,7 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-thank-link', $sender, $recipient )->text(),
 			SpecialPage::getTitleFor( 'Thanks', 'Flow/' . $postId->getAlphadecimal() ),
-			array(),
+			[],
 			null,
 			wfMessage( 'flow-thank-link-title', $sender, $recipient )->text()
 		);
@@ -835,11 +835,11 @@ class UrlGenerator {
 		return new Anchor(
 			wfMessage( 'flow-mark-revision-patrolled-link-text' )->text(),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
+			[
 				'action' => 'markpatrolled',
 				'rcid' => $rc->getAttribute( 'rc_id' ),
 				'token' => $token,
-			)
+			]
 		);
 	}
 }

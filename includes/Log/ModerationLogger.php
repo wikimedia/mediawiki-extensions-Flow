@@ -49,9 +49,9 @@ class ModerationLogger {
 			return null;
 		}
 
-		$params = array(
+		$params = [
 			'topicId' => $workflowId->getAlphadecimal(),
-		);
+		];
 		if ( !$post->isTopicTitle() ) {
 			$params['postId'] = $post->getPostId()->getAlphadecimal();
 		}

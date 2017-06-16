@@ -21,7 +21,7 @@ class Workflow {
 	/**
 	 * @var string[]
 	 */
-	static private $allowedTypes = array( 'discussion', 'topic' );
+	static private $allowedTypes = [ 'discussion', 'topic' ];
 
 	/**
 	 * @var UUID
@@ -122,7 +122,7 @@ class Workflow {
 			}
 		}
 
-		return array(
+		return [
 			'workflow_id' => $obj->id->getAlphadecimal(),
 			'workflow_type' => $obj->type,
 			'workflow_wiki' => $obj->wiki,
@@ -133,7 +133,7 @@ class Workflow {
 			'workflow_last_update_timestamp' => $obj->lastUpdated,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
-		);
+		];
 	}
 
 	/**
@@ -167,8 +167,8 @@ class Workflow {
 		// we just created a new workflow; wipe out any cached data for the
 		// associated title
 		if ( self::$titleCache !== null ) {
-			$key = implode( '|', array( $obj->wiki, $obj->namespace, $obj->titleText ) );
-			self::$titleCache->clear( array( $key ) );
+			$key = implode( '|', [ $obj->wiki, $obj->namespace, $obj->titleText ] );
+			self::$titleCache->clear( [ $key ] );
 		}
 
 		return $obj;
@@ -241,7 +241,7 @@ class Workflow {
 			self::$titleCache = new MapCacheLRU( 50 );
 		}
 
-		$key = implode( '|', array( $wiki, $namespace, $titleText ) );
+		$key = implode( '|', [ $wiki, $namespace, $titleText ] );
 		$title = self::$titleCache->get( $key );
 		if ( $title === null ) {
 			$title = Title::makeTitleSafe( $namespace, $titleText );
@@ -406,6 +406,6 @@ class Workflow {
 			return $errors;
 		}
 
-		return array();
+		return [];
 	}
 }

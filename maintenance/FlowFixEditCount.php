@@ -19,7 +19,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	 *
 	 * @var array
 	 */
-	protected $updates = array();
+	protected $updates = [];
 
 	public function __construct() {
 		parent::__construct();
@@ -65,19 +65,19 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	public function refreshBatch( DatabaseBase $dbr, UUID $continue, $countableActions, UUID $stop ) {
 		$rows = $dbr->select(
 			'flow_revision',
-			array( 'rev_id', 'rev_user_id' ),
-			array(
+			[ 'rev_id', 'rev_user_id' ],
+			[
 				'rev_id > ' . $dbr->addQuotes( $continue->getBinary() ),
 				'rev_id <= ' . $dbr->addQuotes( $stop->getBinary() ),
 				'rev_user_id > 0',
 				'rev_user_wiki' => wfWikiID(),
 				'rev_change_type' => $countableActions,
-			),
+			],
 			__METHOD__,
-			array(
+			[
 				'ORDER BY' => 'rev_id ASC',
 				'LIMIT' => $this->mBatchSize,
-			)
+			]
 		);
 
 		// end of data
@@ -113,7 +113,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	 * @return array
 	 */
 	protected function getCountableActions() {
-		$allowedActions = array();
+		$allowedActions = [];
 
 		/** @var FlowActions $actions */
 		$actions = \Flow\Container::get( 'flow_actions' );

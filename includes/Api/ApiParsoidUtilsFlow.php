@@ -17,46 +17,46 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		} catch ( WikitextException $e ) {
 			$code = $e->getErrorCode();
 			$this->dieWithError( $code, $code,
-				array( 'detail' => $e->getMessage() ), $e->getStatusCode()
+				[ 'detail' => $e->getMessage() ], $e->getStatusCode()
 			);
 			return; // helps static analysis know execution does not continue past self::dieUsage
 		}
 
-		$result = array(
+		$result = [
 			'format' => $params['to'],
 			'content' => $content,
-		);
+		];
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'from' => array(
+		return [
+			'from' => [
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
-			'to' => array(
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+			],
+			'to' => [
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
-			'content' => array(
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+			],
+			'content' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
+			],
 			'title' => null,
-			'pageid' => array(
+			'pageid' => [
 				ApiBase::PARAM_ISMULTI => false,
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			"action=flow-parsoid-utils&from=wikitext&to=html&content='''lorem'''+''blah''&title=Main_Page"
 				=> 'apihelp-flow-parsoid-utils-example-1',
-		);
+		];
 	}
 }

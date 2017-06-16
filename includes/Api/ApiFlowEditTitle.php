@@ -15,7 +15,7 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return [ 'topic' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -23,23 +23,23 @@ class ApiFlowEditTitle extends ApiFlowBasePost {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prev_revision' => array(
+		return [
+			'prev_revision' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'content' => array(
+			],
+			'content' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=edit-title&page=Topic:S2tycnas4hcucw8w&etprev_revision=???&ehtcontent=Nice%20to&20meet%20you'
 				=> 'apihelp-flow+edit-title-example-1',
-		);
+		];
 	}
 }

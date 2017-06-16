@@ -69,10 +69,10 @@ class BoardMover {
 		// the caching layer not getting updated.  After dropping Flow\Data\Index\*
 		// revisit this.
 		/** @var Workflow[] $found */
-		$found = $this->storage->find( 'Workflow', array(
+		$found = $this->storage->find( 'Workflow', [
 			'workflow_wiki' => wfWikiID(),
 			'workflow_page_id' => $oldPageId,
-		) );
+		] );
 		if ( !$found ) {
 			throw new FlowException( "Could not locate workflow for page ID $oldPageId" );
 		}
@@ -83,7 +83,7 @@ class BoardMover {
 				$discussionWorkflow = $workflow;
 			}
 			$workflow->updateFromPageId( $oldPageId, $newPage );
-			$this->storage->put( $workflow, array() );
+			$this->storage->put( $workflow, [] );
 		}
 		if ( $discussionWorkflow === null ) {
 			throw new FlowException( "Main discussion workflow for page ID $oldPageId not found" );
@@ -92,8 +92,8 @@ class BoardMover {
 		/** @var Header[] $found */
 		$found = $this->storage->find(
 			'Header',
-			array( 'rev_type_id' => $discussionWorkflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $discussionWorkflow->getId() ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		if ( $found ) {
@@ -106,9 +106,9 @@ class BoardMover {
 				$newPage
 			);
 			if ( $header !== $nextHeader ) {
-				$this->storage->put( $nextHeader, array(
+				$this->storage->put( $nextHeader, [
 					'workflow' => $discussionWorkflow,
-				) );
+				] );
 			}
 		}
 	}

@@ -61,7 +61,7 @@ class SubmissionHandler {
 		$this->dbFactory->forceMaster();
 
 		/** @var Block[] $interestedBlocks */
-		$interestedBlocks = array();
+		$interestedBlocks = [];
 		foreach ( $blocks as $block ) {
 			// This is just a check whether the block understands the action,
 			// Doesn't consider permissions
@@ -75,7 +75,7 @@ class SubmissionHandler {
 			if ( !$blocks ) {
 				throw new InvalidDataException( 'No Blocks?!?', 'fail-load-data' );
 			}
-			$type = array();
+			$type = [];
 			foreach ( $blocks as $block ) {
 				$type[] = get_class( $block );
 			}
@@ -100,17 +100,17 @@ class SubmissionHandler {
 				// since it's exposed to the API, but probably not.
 				reset( $interestedBlocks )->addError( 'block', $msg );
 			}
-			return array();
+			return [];
 		}
 
 		$success = true;
 		foreach ( $interestedBlocks as $block ) {
 			$name = $block->getName();
-			$data = isset( $parameters[$name] ) ? $parameters[$name] : array();
+			$data = isset( $parameters[$name] ) ? $parameters[$name] : [];
 			$success &= $block->onSubmit( $data );
 		}
 
-		return $success ? $interestedBlocks : array();
+		return $success ? $interestedBlocks : [];
 	}
 
 	/**
@@ -145,7 +145,7 @@ class SubmissionHandler {
 			// Create the occupation page/revision if needed
 			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
 			// Create/modify each Flow block as requested
-			$results = array();
+			$results = [];
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
 			}

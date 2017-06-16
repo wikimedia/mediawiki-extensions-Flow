@@ -10,12 +10,12 @@ use Flow\FlowActions;
 class FlowActionsTest extends \MediaWikiTestCase {
 
 	public function testAliasedTopLevelValues() {
-		$actions = new FlowActions( array(
+		$actions = new FlowActions( [
 			'something' => 'aliased',
-			'aliased' => array(
+			'aliased' => [
 				'real' => 'value',
-			),
-		) );
+			],
+		] );
 
 		$this->assertEquals( 'value', $actions->getValue( 'something', 'real' ) );
 	}

@@ -49,17 +49,17 @@ class SpecialEnableFlow extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		return array(
-			'page' => array(
+		return [
+			'page' => [
 				'type' => 'text',
 				'label-message' => 'flow-special-enableflow-page',
 				'default' => $this->page,
-			),
-			'header' => array(
+			],
+			'header' => [
 				'type' => 'textarea',
 				'label-message' => 'flow-special-enableflow-header'
-			),
-		);
+			],
+		];
 	}
 
 	protected function getDisplayFormat() {
@@ -111,7 +111,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 					new NullImportSourceStore(),
 					$logger,
 					$this->getUser(),
-					array(),
+					[],
 					$data['header']
 				)
 			);
@@ -133,12 +133,12 @@ class SpecialEnableFlow extends FormSpecialPage {
 			$blocks = $loader->getBlocks();
 
 			$action = 'edit-header';
-			$params = array(
-				'header' => array(
+			$params = [
+				'header' => [
 					'content' => $data['header'],
 					'format' => 'wikitext',
-				),
-			);
+				],
+			];
 
 			$blocksToCommit = $loader->handleSubmit(
 				$this->getContext(),

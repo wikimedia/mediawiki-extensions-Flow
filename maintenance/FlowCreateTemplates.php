@@ -22,7 +22,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	 * @return array [title i18n key => content callback]
 	 */
 	protected function getTemplates() {
-		return array(
+		return [
 			// Template:FlowMention, used to render mentions in Flow's Visual Editor
 			'flow-ve-mention-template-title' => function( Title $title ) {
 				// get "User:" namespace prefix in wiki language
@@ -54,7 +54,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 			'flow-importer-wt-converted-archive-template' => function( Title $title ) {
 				return wfMessage( 'flow-importer-wt-converted-archive-template-content' )->inContentLanguage()->plain();
 			},
-		);
+		];
 	}
 
 	public function __construct() {

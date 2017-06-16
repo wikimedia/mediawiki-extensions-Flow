@@ -9,10 +9,10 @@ use Iterator;
  * Abstract class to store ID-indexed cached data.
  */
 abstract class CachedData {
-	protected $data = array();
+	protected $data = [];
 
 	public function reset() {
-		$this->data = array();
+		$this->data = [];
 	}
 
 	/**
@@ -22,7 +22,7 @@ abstract class CachedData {
 	 * @return mixed The data returned by retrieve()
 	 */
 	public function get( $id ) {
-		$result = $this->getMulti( array( $id ) );
+		$result = $this->getMulti( [ $id ] );
 		return reset( $result );
 	}
 
@@ -43,7 +43,7 @@ abstract class CachedData {
 	public function getMulti( array $ids ) {
 		$this->ensureLoaded( $ids );
 
-		$output = array();
+		$output = [];
 		foreach ( $ids as $id ) {
 			$output[$id] = isset( $this->data[$id] ) ? $this->data[$id] : null;
 		}
@@ -104,7 +104,7 @@ abstract class CachedApiData extends CachedData {
  * Cached LiquidThreads thread data.
  */
 class CachedThreadData extends CachedApiData {
-	protected $topics = array();
+	protected $topics = [];
 
 	protected function addData( array $data ) {
 		parent::addData( $data );
@@ -144,19 +144,19 @@ class CachedThreadData extends CachedApiData {
 	 * @return array Associative result array
 	 */
 	public function getFromPage( $pageName, $startId = 0 ) {
-		$data = $this->backend->retrieveThreadData( array(
+		$data = $this->backend->retrieveThreadData( [
 			'thpage' => $pageName,
 			'thstartid' => $startId
-		) );
+		] );
 		$this->addData( $data );
 
 		return $data;
 	}
 
 	protected function retrieve( array $ids ) {
-		return $this->backend->retrieveThreadData( array(
+		return $this->backend->retrieveThreadData( [
 			'thid' => implode( '|', $ids ),
-		) );
+		] );
 	}
 
 	/**

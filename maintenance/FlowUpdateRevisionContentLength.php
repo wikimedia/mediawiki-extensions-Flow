@@ -19,11 +19,11 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	 *
 	 * @var string[]
 	 */
-	static private $revisionTypes = array(
+	static private $revisionTypes = [
 		'post' => 'Flow\Model\PostRevision',
 		'header' => 'Flow\Model\Header',
 		'post-summary' => 'Flow\Model\PostSummary',
-	);
+	];
 
 	/**
 	 * @var Flow\DbFactory
@@ -82,11 +82,11 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			$this->mBatchSize
 		);
 		// Only fetch rows created by users from the current wiki.
-		$it->addConditions( array(
+		$it->addConditions( [
 			'rev_user_wiki' => wfWikiID(),
-		) );
+		] );
 		// We only need the id and type field
-		$it->setFetchColumns( array( 'rev_id', 'rev_type' ) );
+		$it->setFetchColumns( [ 'rev_id', 'rev_type' ] );
 
 		$total = $fail = 0;
 		foreach ( $it as $batch ) {

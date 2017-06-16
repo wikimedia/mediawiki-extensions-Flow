@@ -123,7 +123,7 @@ class Templating {
 	 * @throws InvalidParameterException
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
-		if ( !in_array( $format, array( 'fixed-html', 'html', 'wikitext', 'topic-title-html', 'topic-title-wikitext', 'topic-title-plaintext' ) ) ) {
+		if ( !in_array( $format, [ 'fixed-html', 'html', 'wikitext', 'topic-title-html', 'topic-title-wikitext', 'topic-title-plaintext' ] ) ) {
 			throw new InvalidParameterException( 'Invalid format: ' . $format );
 		}
 
@@ -157,7 +157,7 @@ class Templating {
 			\MWExceptionHandler::logException( $e );
 
 			$content = wfMessage( 'flow-stub-post-content' )->parse();
-			if ( !in_array( $format, array( 'html', 'fixed-html' ) ) ) {
+			if ( !in_array( $format, [ 'html', 'fixed-html' ] ) ) {
 				$content = strip_tags( $content );
 			}
 		}

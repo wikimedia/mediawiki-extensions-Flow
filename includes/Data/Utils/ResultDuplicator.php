@@ -41,7 +41,7 @@ class ResultDuplicator {
 	/**
 	 * @var array
 	 */
-	protected $queries = array();
+	protected $queries = [];
 
 	/**
 	 * @param array $queryKeys
@@ -96,7 +96,7 @@ class ResultDuplicator {
 	// merge() wasn't necessarily called in the same order as add(),  this walks back through
 	// the results to put them in the desired order with the correct keys.
 	public static function sortResult( array $order, MultiDimArray $result, $dimensions ) {
-		$final = array();
+		$final = [];
 		foreach ( $order as $position => $query ) {
 			if ( $dimensions > 1 ) {
 				$final[$position] = self::sortResult( $query, $result, $dimensions - 1 );

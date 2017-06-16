@@ -43,7 +43,7 @@ abstract class Reference {
 	 */
 	protected $wikiId;
 
-	protected $validTypes = array( self::TYPE_LINK );
+	protected $validTypes = [ self::TYPE_LINK ];
 
 	/**
 	 * Standard constructor. Called from subclasses only
@@ -131,7 +131,7 @@ abstract class Reference {
 	 * @return array
 	 */
 	public function getStorageRow() {
-		return array(
+		return [
 			'ref_id' => $this->id->getAlphadecimal(),
 			'ref_src_wiki' => $this->wikiId,
 			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
@@ -140,7 +140,7 @@ abstract class Reference {
 			'ref_src_object_type' => $this->objectType,
 			'ref_src_object_id' => $this->objectId->getAlphadecimal(),
 			'ref_type' => $this->type,
-		);
+		];
 	}
 
 	/**

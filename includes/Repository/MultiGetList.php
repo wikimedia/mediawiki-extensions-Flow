@@ -28,7 +28,7 @@ class MultiGetList {
 	 * @throws InvalidParameterException
 	 */
 	public function get( $treeType, array $ids, $loadCallback ) {
-		$cacheKeys = array();
+		$cacheKeys = [];
 		foreach ( $ids as $id ) {
 			if ( $id instanceof UUID ) {
 				$cacheId = $id;
@@ -50,9 +50,9 @@ class MultiGetList {
 	 */
 	public function getByKey( array $cacheKeys, $loadCallback ) {
 		if ( !$cacheKeys ) {
-			return array();
+			return [];
 		}
-		$result = array();
+		$result = [];
 		$multiRes = $this->cache->getMulti( array_keys( $cacheKeys ) );
 		if ( $multiRes === false ) {
 			// Falls through to query only backend
@@ -83,7 +83,7 @@ class MultiGetList {
 			// storage failure of some sort
 			return $result;
 		}
-		$invCacheKeys = array();
+		$invCacheKeys = [];
 		foreach ( $cacheKeys as $cacheKey => $id ) {
 			if ( $id instanceof UUID ) {
 				$id = $id->getAlphadecimal();

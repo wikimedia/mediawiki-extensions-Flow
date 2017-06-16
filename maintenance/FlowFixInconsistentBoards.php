@@ -144,10 +144,10 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 					$inconsistentCount++;
 
 					// Sanity check, or this will fail in BoardMover
-					$workflowByPageId = $this->storage->find( 'Workflow', array(
+					$workflowByPageId = $this->storage->find( 'Workflow', [
 							'workflow_wiki' => wfWikiID(),
 							'workflow_page_id' => $pageId,
-						) );
+						] );
 
 					if ( !$workflowByPageId ) {
 						$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow is linked to this page ID" );

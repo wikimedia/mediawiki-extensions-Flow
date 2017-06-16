@@ -49,28 +49,28 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 			$this->mBatchSize
 		);
 
-		$rowIterator->setFetchColumns( array(
+		$rowIterator->setFetchColumns( [
 			'rev_id',
 			'rev_type',
-		) );
+		] );
 
 		// Fetch rows that are a moderation action
-		$rowIterator->addConditions( array(
+		$rowIterator->addConditions( [
 			'rev_change_type' => AbstractRevision::getModerationChangeTypes(),
 			'rev_user_wiki' => wfWikiID(),
-		) );
+		] );
 
 		$start = $this->getOption( 'start' );
 		$startId = UUID::create( $start );
-		$rowIterator->addConditions( array(
+		$rowIterator->addConditions( [
 			'rev_id > ' . $dbw->addQuotes( $startId->getBinary() ),
-		) );
+		] );
 
 		$stop = $this->getOption( 'stop' );
 		$stopId = UUID::create( $stop );
-		$rowIterator->addConditions( array(
+		$rowIterator->addConditions( [
 			'rev_id < ' . $dbw->addQuotes( $stopId->getBinary() ),
-		) );
+		] );
 
 		$total = $fail = 0;
 		foreach ( $rowIterator as $batch ) {
@@ -87,9 +87,9 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 				}
 
 				$workflow = $obj->getCollection()->getWorkflow();
-				$moderationLoggingListener->onAfterInsert( $obj, array(), array(
+				$moderationLoggingListener->onAfterInsert( $obj, [], [
 					'workflow' => $workflow,
-				) );
+				] );
 			}
 
 			$this->commitTransaction( $dbw, __METHOD__ );

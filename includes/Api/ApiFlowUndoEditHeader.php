@@ -14,7 +14,7 @@ class ApiFlowUndoEditHeader extends ApiFlowBaseGet {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'header' => $this->extractRequestParams() );
+		return [ 'header' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -22,23 +22,23 @@ class ApiFlowUndoEditHeader extends ApiFlowBaseGet {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'startId' => array(
+		return [
+			'startId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'endId' => array(
+			],
+			'endId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=undo-edit-header&page=Talk:Sandbox&uehstartId=???&uehendId=???'
 				=> 'apihelp-flow+undo-edit-header-example-1',
-		);
+		];
 	}
 }

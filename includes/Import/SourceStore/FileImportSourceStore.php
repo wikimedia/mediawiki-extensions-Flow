@@ -20,7 +20,7 @@ class FileImportSourceStore implements SourceStoreInterface {
 		if ( file_exists( $this->filename ) ) {
 			$this->data = json_decode( file_get_contents( $this->filename ), true );
 		} else {
-			$this->data = array();
+			$this->data = [];
 		}
 	}
 

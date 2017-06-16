@@ -133,7 +133,7 @@ class ReferenceRecorder extends AbstractListener {
 	 */
 	protected function calculateChangesFromTopic( Workflow $workflow, PostRevision $current ) {
 		if ( $current->isFirstRevision() ) {
-			return array( array(), array() );
+			return [ [], [] ];
 		}
 		$previous = $this->storage->get( 'PostRevision', $current->getPrevRevisionId() );
 		if ( !$previous ) {
@@ -144,20 +144,20 @@ class ReferenceRecorder extends AbstractListener {
 		$wasHidden = self::isHidden( $previous );
 
 		if ( $isHidden === $wasHidden ) {
-			return array( array(), array() );
+			return [ [], [] ];
 		}
 
 		// re-run
 		$revisions = $this->collectTopicRevisions( $workflow );
-		$added = array();
-		$removed = array();
+		$added = [];
+		$removed = [];
 		foreach ( $revisions as $revision ) {
 			list( $add, $remove ) = $this->calculateChangesFromExisting( $workflow, $revision, $current );
 			$added = array_merge( $added, $add );
 			$removed = array_merge( $removed, $remove );
 		};
 
-		return array( $added, $removed );
+		return [ $added, $removed ];
 	}
 
 	protected static function isHidden( AbstractRevision $revision ) {
@@ -173,23 +173,23 @@ class ReferenceRecorder extends AbstractListener {
 	 * @return AbstractRevision[]
 	 */
 	protected function collectTopicRevisions( Workflow $workflow ) {
-		$found = $this->treeRepository->fetchSubtreeNodeList( array( $workflow->getId() ) );
-		$queries = array();
+		$found = $this->treeRepository->fetchSubtreeNodeList( [ $workflow->getId() ] );
+		$queries = [];
 		foreach ( reset( $found ) as $uuid ) {
-			$queries[] = array( 'rev_type_id' => $uuid );
+			$queries[] = [ 'rev_type_id' => $uuid ];
 		}
 
 		$posts = $this->storage->findMulti(
 			'PostRevision',
 			$queries,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		// we also need the most recent topic summary if it exists
 		$summaries = $this->storage->find(
 			'PostSummary',
-			array( 'rev_type_id' => $workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $workflow->getId() ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		$result = $summaries;
@@ -216,12 +216,12 @@ class ReferenceRecorder extends AbstractListener {
 	) {
 		// Locked is the only moderated state we still collect references for.
 		if ( self::isHidden( $revision ) ) {
-			return array();
+			return [];
 		}
 
 		// We also do not track references in topic titles.
 		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-			return array();
+			return [];
 		}
 
 		// If this is attached to a topic we also need to check its permissions
@@ -239,7 +239,7 @@ class ReferenceRecorder extends AbstractListener {
 		}
 
 		if ( $root && ( self::isHidden( $root ) ) ) {
-			return array();
+			return [];
 		}
 
 		return $this->referenceExtractor->getReferences(
@@ -258,17 +258,17 @@ class ReferenceRecorder extends AbstractListener {
 	 * @return Reference[] Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
-		$prevWikiReferences = $this->storage->find( 'WikiReference', array(
+		$prevWikiReferences = $this->storage->find( 'WikiReference', [
 			'ref_src_wiki' => wfWikiID(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
-		) );
+		] );
 
-		$prevUrlReferences = $this->storage->find( 'URLReference', array(
+		$prevUrlReferences = $this->storage->find( 'URLReference', [
 			'ref_src_wiki' => wfWikiID(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
-		) );
+		] );
 
 		return array_merge( (array) $prevWikiReferences, (array) $prevUrlReferences );
 	}
@@ -283,19 +283,19 @@ class ReferenceRecorder extends AbstractListener {
 	 * @return array Array with two elements: added and removed references.
 	 */
 	public function referencesDifference( array $old, array $new ) {
-		$newReferences = array();
+		$newReferences = [];
 
 		foreach ( $new as $ref ) {
 			$newReferences[$ref->getIdentifier()] = $ref;
 		}
 
-		$oldReferences = array();
+		$oldReferences = [];
 
 		foreach ( $old as $ref ) {
 			$oldReferences[$ref->getIdentifier()] = $ref;
 		}
 
-		$addReferences = array();
+		$addReferences = [];
 
 		foreach ( $newReferences as $identifier => $ref ) {
 			if ( !isset( $oldReferences[$identifier] ) ) {
@@ -303,7 +303,7 @@ class ReferenceRecorder extends AbstractListener {
 			}
 		}
 
-		$removeReferences = array();
+		$removeReferences = [];
 
 		foreach ( $oldReferences as $identifier => $ref ) {
 			if ( !isset( $newReferences[$identifier] ) ) {
@@ -311,6 +311,6 @@ class ReferenceRecorder extends AbstractListener {
 			}
 		}
 
-		return array( $addReferences, $removeReferences );
+		return [ $addReferences, $removeReferences ];
 	}
 }

@@ -15,7 +15,7 @@ use User;
  * @group Flow
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
-	protected $tablesUsed = array(
+	protected $tablesUsed = [
 		'echo_event',
 		'echo_notification',
 		'flow_revision',
@@ -26,7 +26,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		'page',
 		'revision',
 		'text',
-	);
+	];
 
 	protected function setUp() {
 		parent::setUp();
@@ -49,14 +49,14 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$user->addWatch( $data['topicWorkflow']->getArticleTitle() );
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
-			array(
+			[
 				'topic-workflow' => $data['topicWorkflow'],
 				'title' => $data['boardWorkflow']->getOwnerTitle(),
 				'user' => $data['agent'],
 				'reply-to' => $data['topic'],
 				'topic-title' => $data['topic'],
 				'revision' => $data['post-2'],
-			) );
+			] );
 
 		$this->assertNotifiedUser( $events, $user, $data['agent'] );
 	}
@@ -72,19 +72,19 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$user = $data['user'];
 		$user->addWatch( $data['boardWorkflow']->getArticleTitle() );
 
-		$events = $data['notificationController']->notifyNewTopic( array(
+		$events = $data['notificationController']->notifyNewTopic( [
 			'board-workflow' => $data['boardWorkflow'],
 			'topic-workflow' => $data['topicWorkflow'],
 			'topic-title' => $data['topic'],
 			'first-post' => $data['post'],
 			'user' => $data['agent'],
-		) );
+		] );
 
 		$this->assertNotifiedUser( $events, $user, $data['agent'] );
 	}
 
 	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {
-		$users = array();
+		$users = [];
 		foreach ( $events as $event ) {
 			$iterator = EchoNotificationController::getUsersToNotifyForEvent( $event );
 			foreach ( $iterator as $user ) {
@@ -125,14 +125,14 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$agent->addToDatabase();
 
 		$tuple = UserTuple::newFromUser( $agent );
-		$topicTitle = $this->generateObject( array(
+		$topicTitle = $this->generateObject( [
 			'rev_user_wiki' => $tuple->wiki,
 			'rev_user_id' => $tuple->id,
 			'rev_user_ip' => $tuple->ip,
 
 			'rev_flags' => 'wikitext',
 			'rev_content' => 'some content',
-		) );
+		] );
 
 		/*
 		 * We don't really *have* to store everything for this test. We could
@@ -165,7 +165,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$reflection->setValue( $secondPost, $newId );
 		$this->store( $secondPost );
 
-		return array(
+		return [
 			'boardWorkflow' => $boardWorkflow,
 			'topicWorkflow' => $topicWorkflow,
 			'post' => $firstPost,
@@ -174,6 +174,6 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 			'user' => $user,
 			'agent' => $agent,
 			'notificationController' => Container::get( 'controller.notification' ),
-		);
+		];
 	}
 }

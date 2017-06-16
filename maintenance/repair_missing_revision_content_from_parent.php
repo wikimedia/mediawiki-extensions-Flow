@@ -8,7 +8,7 @@ if ( $IP === false ) {
 require_once "$IP/maintenance/commandLine.inc";
 require_once "$IP/extensions/Flow/FlowActions.php";
 
-$moderationChangeTypes = array(
+$moderationChangeTypes = [
 	'hide-post',
 	'hide-topic',
 	'delete-post',
@@ -18,23 +18,23 @@ $moderationChangeTypes = array(
 	'lock-topic',
 	'restore-post',
 	'restore-topic',
-);
+];
 
 $csvOutput = fopen( 'repair_results_from_parent_' . wfWikiID() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
-fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
+fputcsv( $csvOutput, [ "uuid", "esurl", "flags" ] );
 
 $dbr = Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE );
 $it = new BatchRowIterator(
 	$dbr,
 	'flow_revision',
-	array( 'rev_id' ),
+	[ 'rev_id' ],
 	10
 );
-$it->addConditions( array( 'rev_user_wiki' => wfWikiID() ) );
-$it->setFetchColumns( array( 'rev_change_type', 'rev_parent_id' ) );
+$it->addConditions( [ 'rev_user_wiki' => wfWikiID() ] );
+$it->setFetchColumns( [ 'rev_change_type', 'rev_parent_id' ] );
 
 $totalNullContentWithParent = 0;
 $totalNullParentContent = 0;
@@ -63,10 +63,10 @@ foreach ( $it as $batch ) {
 		++$totalNullContentWithParent;
 		$res = iterator_to_array( $dbr->select(
 			/* from */ 'flow_revision',
-			/* select */ array( 'rev_content', 'rev_flags' ),
-			/* where */ array(
+			/* select */ [ 'rev_content', 'rev_flags' ],
+			/* where */ [
 				'rev_id' => new \Flow\Model\UUIDBlob( $rev->rev_parent_id ),
-			),
+			],
 			__FILE__
 		) );
 		// not likely ... but lets be careful
@@ -84,7 +84,7 @@ foreach ( $it as $batch ) {
 		$parentItem = ExternalStore::fetchFromURL( $parent->rev_content );
 		if ( $parentItem ) {
 			echo "MATCHED\n";
-			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $parent->rev_content, $parent->rev_flags ) );
+			fputcsv( $csvOutput, [ $uuid->getAlphadecimal(), $parent->rev_content, $parent->rev_flags ] );
 			++$totalMatched;
 		} else {
 			echo "Parent item is null\n";

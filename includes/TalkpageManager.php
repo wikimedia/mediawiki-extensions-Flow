@@ -79,7 +79,7 @@ class TalkpageManager implements OccupationController {
 	/**
 	 * @var string[]
 	 */
-	protected $allowedPageNames = array();
+	protected $allowedPageNames = [];
 
 	/**
 	 * Cached talk page manager user
@@ -119,10 +119,10 @@ class TalkpageManager implements OccupationController {
 			$content = $revision->getContent();
 			if ( $content instanceof BoardContent && $content->getWorkflowId() ) {
 				// Revision is already a valid BoardContent
-				return Status::newGood( array(
+				return Status::newGood( [
 					'revision' => $revision,
 					'already-existed' => true,
-				) );
+				] );
 			}
 		}
 
@@ -259,7 +259,7 @@ class TalkpageManager implements OccupationController {
 		}
 
 		$groups = $user->getGroups();
-		foreach ( array( 'bot', 'flow-bot' ) as $group ) {
+		foreach ( [ 'bot', 'flow-bot' ] as $group ) {
 			if ( !in_array( $group, $groups ) ) {
 				$user->addGroup( $group );
 			}

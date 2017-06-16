@@ -14,30 +14,30 @@ class ApiFlowUndoEditTopicSummary extends ApiFlowBaseGet {
 	}
 
 	protected function getBlockParams() {
-		return array(
+		return [
 			'topicsummary' => $this->extractRequestParams(),
-			'topic' => array(),
-		);
+			'topic' => [],
+		];
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'startId' => array(
+		return [
+			'startId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'endId' => array(
+			],
+			'endId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=undo-edit-topic-summary&page=Topic:S2tycnas4hcucw8w&uetsstartId=???&uetsendId=???'
 				=> 'apihelp-flow+undo-edit-topic-summary-example-1',
-		);
+		];
 	}
 }

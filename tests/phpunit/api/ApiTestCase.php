@@ -13,7 +13,7 @@ use User;
  * @group medium
  */
 abstract class ApiTestCase extends BaseApiTestCase {
-	protected $tablesUsed = array(
+	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',
 		'flow_topic_list',
@@ -24,13 +24,13 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		'page',
 		'revision',
 		'text',
-	);
+	];
 
 	protected function setUp() {
-		$this->setMwGlobals( 'wgNamespaceContentModels', array(
+		$this->setMwGlobals( 'wgNamespaceContentModels', [
 			NS_TALK => CONTENT_MODEL_FLOW_BOARD,
 			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
-		) );
+		] );
 
 		parent::setUp();
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
@@ -68,14 +68,14 @@ abstract class ApiTestCase extends BaseApiTestCase {
 	 * Create a topic on a board using the default user
 	 */
 	protected function createTopic( $topicTitle = 'Hi there!' ) {
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow QA',
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'new-topic',
 			'nttopic' => $topicTitle,
 			'ntcontent' => '...',
-		) );
+		] );
 
 		$this->assertTrue(
 			isset( $data[0]['flow']['new-topic']['committed']['topiclist']['topic-id'] ),
@@ -99,7 +99,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		$mock = $this->getMockBuilder( 'Flow\Data\FlowObjectCache' )
-			->setConstructorArgs( array( $wanCache, $container['db.factory'], $wgFlowCacheTime ) )
+			->setConstructorArgs( [ $wanCache, $container['db.factory'], $wgFlowCacheTime ] )
 			->enableProxyingToOriginalMethods()
 			->getMock();
 

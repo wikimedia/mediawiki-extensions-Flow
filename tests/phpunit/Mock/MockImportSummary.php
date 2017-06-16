@@ -15,7 +15,7 @@ class MockImportSummary implements IImportSummary {
 	/**
 	 * @param IObjectRevision[] $revisions
 	 */
-	public function __construct( array $revisions = array() ) {
+	public function __construct( array $revisions = [] ) {
 		$this->revisions = $revisions;
 	}
 

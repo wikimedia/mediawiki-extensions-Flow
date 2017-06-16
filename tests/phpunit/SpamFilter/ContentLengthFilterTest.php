@@ -18,8 +18,8 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 	protected $spamFilter;
 
 	public function spamProvider() {
-		return array(
-			array(
+		return [
+			[
 				'With content shorter than max length allow through filter',
 				// expect
 				true,
@@ -27,9 +27,9 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 				'blah',
 				// max length
 				100
-			),
+			],
 
-			array(
+			[
 				'With content longer than max length dissalow through filter',
 				// expect
 				false,
@@ -37,8 +37,8 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 				'blah',
 				// max length
 				2
-			),
-		);
+			],
+		];
 	}
 
 	/**

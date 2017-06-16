@@ -170,7 +170,7 @@ $c['collection.cache'] = function( $c ) {
 // Individual workflow instances
 $c['storage.workflow.class'] = 'Flow\Model\Workflow';
 $c['storage.workflow.table'] = 'flow_workflow';
-$c['storage.workflow.primary_key'] = array( 'workflow_id' );
+$c['storage.workflow.primary_key'] = [ 'workflow_id' ];
 $c['storage.workflow.mapper'] = function( $c ) {
 	return CachingObjectMapper::model(
 		$c['storage.workflow.class'],
@@ -199,19 +199,19 @@ $c['storage.workflow.indexes.title_lookup'] = function( $c ) {
 		$c['storage.workflow.backend'],
 		$c['storage.workflow.mapper'],
 		'flow_workflow:title:v2:',
-		array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ),
-		array(
+		[ 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ],
+		[
 			'shallow' => $c['storage.workflow.indexes.primary'],
 			'limit' => 1,
 			'sort' => 'workflow_id'
-		)
+		]
 	);
 };
 $c['storage.workflow.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.workflow.indexes.primary'],
 		$c['storage.workflow.indexes.title_lookup']
-	);
+	];
 };
 $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 	return new Flow\Data\Listener\WorkflowTopicListListener(
@@ -220,10 +220,10 @@ $c['storage.workflow.listeners.topiclist'] = function( $c ) {
 	);
 };
 $c['storage.workflow.listeners'] = function( $c ) {
-	return array(
+	return [
 		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
 		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
-	);
+	];
 };
 $c['storage.workflow'] = function( $c ) {
 	return new ObjectManager(
@@ -277,19 +277,19 @@ $c['storage.post_board_history.indexes.primary'] = function( $c ) {
 		// key prefix
 		'flow_revision:topic_list_history:post:v2',
 		// primary key
-		array( 'topic_list_id' ),
+		[ 'topic_list_id' ],
 		// index options
-		array(
+		[
 			'limit' => $c['board_topic_history_post_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC'
-		),
+		],
 		$c['storage.topic_list']
 	);
 };
 
 $c['storage.post_board_history.indexes'] = function( $c ) {
-	return array( $c['storage.post_board_history.indexes.primary'] );
+	return [ $c['storage.post_board_history.indexes.primary'] ];
 };
 
 $c['storage.post_board_history'] = function( $c ) {
@@ -314,19 +314,19 @@ $c['storage.post_summary_board_history.indexes.primary'] = function( $c ) {
 		// key prefix
 		'flow_revision:topic_list_history:post_summary:v2',
 		// primary key
-		array( 'topic_list_id' ),
+		[ 'topic_list_id' ],
 		// index options
-		array(
+		[
 			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC'
-		),
+		],
 		$c['storage.topic_list']
 	);
 };
 
 $c['storage.post_summary_board_history.indexes'] = function( $c ) {
-	return array( $c['storage.post_summary_board_history.indexes.primary'] );
+	return [ $c['storage.post_summary_board_history.indexes.primary'] ];
 };
 
 $c['storage.post_summary_board_history'] = function( $c ) {
@@ -341,25 +341,25 @@ $c['storage.post_summary_board_history'] = function( $c ) {
 $c['storage.header.listeners.username'] = function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
-		array(
+		[
 			'rev_user_id' => 'rev_user_wiki',
 			'rev_mod_user_id' => 'rev_mod_user_wiki',
 			'rev_edit_user_id' => 'rev_edit_user_wiki'
-		)
+		]
 	);
 };
 $c['storage.header.listeners'] = function( $c ) {
-	return array(
+	return [
 		'reference.recorder' => $c['reference.recorder'],
 		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
 		'listeners.notification' => $c['listeners.notification'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
-	);
+	];
 };
-$c['storage.header.primary_key'] = array( 'rev_id' );
+$c['storage.header.primary_key'] = [ 'rev_id' ];
 $c['storage.header.mapper'] = function( $c ) {
-	return CachingObjectMapper::model( 'Flow\\Model\\Header', array( 'rev_id' ) );
+	return CachingObjectMapper::model( 'Flow\\Model\\Header', [ 'rev_id' ] );
 };
 $c['storage.header.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
@@ -384,8 +384,8 @@ $c['storage.header.indexes.header_lookup'] = function( $c ) {
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
 		'flow_header:workflow:v3',
-		array( 'rev_type_id' ),
-		array(
+		[ 'rev_type_id' ],
+		[
 			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
@@ -393,14 +393,14 @@ $c['storage.header.indexes.header_lookup'] = function( $c ) {
 			'create' => function( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
-		)
+		]
 	);
 };
 $c['storage.header.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.header.indexes.primary'],
 		$c['storage.header.indexes.header_lookup']
-	);
+	];
 };
 $c['storage.header'] = function( $c ) {
 	return new ObjectManager(
@@ -413,7 +413,7 @@ $c['storage.header'] = function( $c ) {
 };
 
 $c['storage.post_summary.class'] = 'Flow\Model\PostSummary';
-$c['storage.post_summary.primary_key'] = array( 'rev_id' );
+$c['storage.post_summary.primary_key'] = [ 'rev_id' ];
 $c['storage.post_summary.mapper'] = function( $c ) {
 	return CachingObjectMapper::model(
 		$c['storage.post_summary.class'],
@@ -423,22 +423,22 @@ $c['storage.post_summary.mapper'] = function( $c ) {
 $c['storage.post_summary.listeners.username'] = function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
-		array(
+		[
 			'rev_user_id' => 'rev_user_wiki',
 			'rev_mod_user_id' => 'rev_mod_user_wiki',
 			'rev_edit_user_id' => 'rev_edit_user_wiki'
-		)
+		]
 	);
 };
 $c['storage.post_summary.listeners'] = function( $c ) {
-	return array(
+	return [
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
 		'listeners.notification' => $c['listeners.notification'],
 		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
 		'listener.editcount' => $c['listener.editcount'],
 		'reference.recorder' => $c['reference.recorder'],
-	);
+	];
 };
 $c['storage.post_summary.backend'] = function( $c ) {
 	global $wgFlowExternalStore;
@@ -462,8 +462,8 @@ $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 		$c['storage.post_summary.backend'],
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:workflow:v3',
-		array( 'rev_type_id' ),
-		array(
+		[ 'rev_type_id' ],
+		[
 			'limit' => $c['history_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
@@ -471,14 +471,14 @@ $c['storage.post_summary.indexes.topic_lookup'] = function( $c ) {
 			'create' => function( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
-		)
+		]
 	);
 };
 $c['storage.post_summary.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.post_summary.indexes.primary'],
 		$c['storage.post_summary.indexes.topic_lookup'],
-	);
+	];
 };
 $c['storage.post_summary'] = function( $c ) {
 	return new ObjectManager(
@@ -492,7 +492,7 @@ $c['storage.post_summary'] = function( $c ) {
 
 $c['storage.topic_list.class'] = 'Flow\Model\TopicListEntry';
 $c['storage.topic_list.table'] = 'flow_topic_list';
-$c['storage.topic_list.primary_key'] = array( 'topic_list_id', 'topic_id' );
+$c['storage.topic_list.primary_key'] = [ 'topic_list_id', 'topic_id' ];
 $c['storage.topic_list.mapper'] = function( $c ) {
 	// Must be BasicObjectMapper, due to variance in when
 	// we have workflow_last_update_timestamp
@@ -516,7 +516,7 @@ $c['storage.topic_list.indexes.primary'] = function( $c ) {
 		$c['storage.topic_list.backend'],
 		$c['storage.topic_list.mapper'],
 		'flow_topic_list:topic',
-		array( 'topic_id' )
+		[ 'topic_id' ]
 	);
 };
 
@@ -528,8 +528,8 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function( $c ) {
 		$c['storage.topic_list.backend'],
 		$c['storage.topic_list.mapper'],
 		'flow_topic_list:list',
-		array( 'topic_list_id' ),
-		array( 'sort' => 'topic_id' )
+		[ 'topic_list_id' ],
+		[ 'sort' => 'topic_id' ]
 	);
 };
 /// In reverse order by topic last_updated
@@ -539,19 +539,19 @@ $c['storage.topic_list.indexes.last_updated'] = function( $c ) {
 		$c['storage.topic_list.backend'],
 		$c['storage.topic_list.mapper'],
 		'flow_topic_list_last_updated:list',
-		array( 'topic_list_id' ),
-		array(
+		[ 'topic_list_id' ],
+		[
 			'sort' => 'workflow_last_update_timestamp',
 			'order' => 'desc'
-		)
+		]
 	);
 };
 $c['storage.topic_list.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.topic_list.indexes.primary'],
 		$c['storage.topic_list.indexes.reverse_lookup'],
 		$c['storage.topic_list.indexes.last_updated'],
-	);
+	];
 };
 $c['storage.topic_list'] = function( $c ) {
 	return new ObjectManager(
@@ -562,7 +562,7 @@ $c['storage.topic_list'] = function( $c ) {
 	);
 };
 $c['storage.post.class'] = 'Flow\Model\PostRevision';
-$c['storage.post.primary_key'] = array( 'rev_id' );
+$c['storage.post.primary_key'] = [ 'rev_id' ];
 $c['storage.post.mapper'] = function( $c ) {
 	return CachingObjectMapper::model(
 		$c['storage.post.class'],
@@ -585,12 +585,12 @@ $c['storage.post.listeners.moderation_logging'] = function( $c ) {
 $c['storage.post.listeners.username'] = function( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
-		array(
+		[
 			'rev_user_id' => 'rev_user_wiki',
 			'rev_mod_user_id' => 'rev_mod_user_wiki',
 			'rev_edit_user_id' => 'rev_edit_user_wiki',
 			'tree_orig_user_id' => 'tree_orig_user_wiki'
-		)
+		]
 	);
 };
 $c['storage.post.listeners.watch_topic'] = function( $c ) {
@@ -600,7 +600,7 @@ $c['storage.post.listeners.watch_topic'] = function( $c ) {
 	);
 };
 $c['storage.post.listeners'] = function( $c ) {
-	return array(
+	return [
 		'reference.recorder' => $c['reference.recorder'],
 		'collection.cache' => $c['collection.cache'],
 		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
@@ -610,7 +610,7 @@ $c['storage.post.listeners'] = function( $c ) {
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
 		'storage.post_board_history.indexes.primary' => $c['storage.post_board_history.indexes.primary'],
-	);
+	];
 };
 $c['storage.post.indexes.primary'] = function( $c ) {
 	return new UniqueFeatureIndex(
@@ -628,8 +628,8 @@ $c['storage.post.indexes.post_lookup'] = function( $c ) {
 		$c['storage.post.backend'],
 		$c['storage.post.mapper'],
 		'flow_revision:descendant',
-		array( 'rev_type_id' ),
-		array(
+		[ 'rev_type_id' ],
+		[
 			'limit' => 100,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
@@ -638,15 +638,15 @@ $c['storage.post.indexes.post_lookup'] = function( $c ) {
 				// return true to create instead of merge index
 				return $row['rev_parent_id'] === null;
 			},
-		)
+		]
 	);
 };
 $c['storage.post.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.post.indexes.primary'],
 		$c['storage.post.indexes.post_lookup'],
 		$c['storage.post_topic_history.indexes.topic_lookup']
-	);
+	];
 };
 $c['storage.post'] = function( $c ) {
 	return new ObjectManager(
@@ -671,8 +671,8 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function( $c ) {
 		$c['storage.post_topic_history.backend'],
 		$c['storage.post.mapper'],
 		'flow_revision:topic_history:post:v2',
-		array( 'topic_root_id' ),
-		array(
+		[ 'topic_root_id' ],
+		[
 			'limit' => $c['board_topic_history_post_index_limit'],
 			'sort' => 'rev_id',
 			'order' => 'DESC',
@@ -686,14 +686,14 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function( $c ) {
 				}
 				return $row['tree_parent_id'] === null && $row['rev_parent_id'] === null;
 			},
-		)
+		]
 	);
 };
 
 $c['storage.post_topic_history.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.post_topic_history.indexes.topic_lookup'],
-	);
+	];
 };
 
 $c['storage.post_topic_history'] = function( $c ) {
@@ -706,7 +706,7 @@ $c['storage.post_topic_history'] = function( $c ) {
 };
 
 $c['storage.manager_list'] = function( $c ) {
-	return array(
+	return [
 		'Flow\\Model\\Workflow' => 'storage.workflow',
 		'Workflow' => 'storage.workflow',
 
@@ -736,7 +736,7 @@ $c['storage.manager_list'] = function( $c ) {
 
 		'Flow\\Model\\URLReference' => 'storage.url_reference',
 		'URLReference' => 'storage.url_reference',
-	);
+	];
 };
 $c['storage'] = function( $c ) {
 	return new \Flow\Data\ManagerGroup(
@@ -1033,10 +1033,10 @@ $c['search.index.iterators.topic'] = function( $c ) {
 $c['search.index.updaters'] = function( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
-	return array(
+	return [
 		'topic' => new \Flow\Search\Updaters\TopicUpdater( $c['search.index.iterators.topic'], $anonPermissions, $c['loader.root_post'] ),
 		'header' => new \Flow\Search\Updaters\HeaderUpdater( $c['search.index.iterators.header'], $anonPermissions )
-	);
+	];
 };
 
 $c['logger.moderation'] = function( $c ) {
@@ -1048,7 +1048,7 @@ $c['logger.moderation'] = function( $c ) {
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = function ( $c ) {
-	return array(
+	return [
 		'ref_src_wiki',
 		'ref_src_namespace',
 		'ref_src_title',
@@ -1056,7 +1056,7 @@ $c['storage.wiki_reference.primary_key'] = function ( $c ) {
 		'ref_type',
 		'ref_target_namespace',
 		'ref_target_title'
-	);
+	];
 };
 $c['storage.wiki_reference.mapper'] = function( $c ) {
 	return BasicObjectMapper::model(
@@ -1076,15 +1076,15 @@ $c['storage.wiki_reference.indexes.source_lookup'] = function( $c ) {
 		$c['storage.wiki_reference.backend'],
 		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-source:v3',
-		array(
+		[
 			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
-		),
-		array(
+		],
+		[
 			'order' => 'ASC',
 			'sort' => 'ref_src_object_id',
-		)
+		]
 	);
 };
 $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
@@ -1093,22 +1093,22 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 		$c['storage.wiki_reference.backend'],
 		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-revision:v3',
-		array(
+		[
 			'ref_src_wiki',
 			'ref_src_object_type',
 			'ref_src_object_id',
-		),
-		array(
+		],
+		[
 			'order' => 'ASC',
-			'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
-		)
+			'sort' => [ 'ref_target_namespace', 'ref_target_title' ],
+		]
 	);
 };
 $c['storage.wiki_reference.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.wiki_reference.indexes.source_lookup'],
 		$c['storage.wiki_reference.indexes.revision_lookup'],
-	);
+	];
 };
 $c['storage.wiki_reference'] = function( $c ) {
 	return new ObjectManager(
@@ -1116,20 +1116,20 @@ $c['storage.wiki_reference'] = function( $c ) {
 		$c['storage.wiki_reference.backend'],
 		$c['db.factory'],
 		$c['storage.wiki_reference.indexes'],
-		array()
+		[]
 	);
 };
 $c['storage.url_reference.class'] = 'Flow\Model\URLReference';
 $c['storage.url_reference.table'] = 'flow_ext_ref';
 $c['storage.url_reference.primary_key'] = function ( $c ) {
-	return array(
+	return [
 		'ref_src_wiki',
 		'ref_src_namespace',
 		'ref_src_title',
 		'ref_src_object_id',
 		'ref_type',
 		'ref_target',
-	);
+	];
 };
 
 $c['storage.url_reference.mapper'] = function( $c ) {
@@ -1152,15 +1152,15 @@ $c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
 		$c['storage.url_reference.backend'],
 		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-source:v3',
-		array(
+		[
 			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
-		),
-		array(
+		],
+		[
 			'order' => 'ASC',
 			'sort' => 'ref_src_object_id',
-		)
+		]
 	);
 };
 $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
@@ -1169,22 +1169,22 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 		$c['storage.url_reference.backend'],
 		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-revision:v3',
-		array(
+		[
 			'ref_src_wiki',
 			'ref_src_object_type',
 			'ref_src_object_id',
-		),
-		array(
+		],
+		[
 			'order' => 'ASC',
-			'sort' => array( 'ref_target' ),
-		)
+			'sort' => [ 'ref_target' ],
+		]
 	);
 };
 $c['storage.url_reference.indexes'] = function( $c ) {
-	return array(
+	return [
 		$c['storage.url_reference.indexes.source_lookup'],
 		$c['storage.url_reference.indexes.revision_lookup'],
-	);
+	];
 };
 $c['storage.url_reference'] = function( $c ) {
 	return new ObjectManager(
@@ -1192,7 +1192,7 @@ $c['storage.url_reference'] = function( $c ) {
 		$c['storage.url_reference.backend'],
 		$c['db.factory'],
 		$c['storage.url_reference.indexes'],
-		array()
+		[]
 	);
 };
 
@@ -1205,18 +1205,18 @@ $c['reference.clarifier'] = function( $c ) {
 };
 
 $c['reference.extractor'] = function( $c ) {
-	$default = array(
+	$default = [
 		new Flow\Parsoid\Extractor\ImageExtractor,
 		new Flow\Parsoid\Extractor\PlaceholderExtractor,
 		new Flow\Parsoid\Extractor\WikiLinkExtractor,
 		new Flow\Parsoid\Extractor\ExtLinkExtractor,
 		new Flow\Parsoid\Extractor\TransclusionExtractor,
-	);
-	$extractors = array(
+	];
+	$extractors = [
 		'header' => $default,
 		'post-summary' => $default,
 		'post' => $default,
-	);
+	];
 	// In addition to the defaults header and summaries collect
 	// the related categories.
 	$extractors['header'][] = $extractors['post-summary'][] = new Flow\Parsoid\Extractor\CategoryExtractor;

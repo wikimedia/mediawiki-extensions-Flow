@@ -47,11 +47,11 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 			'event_id',
 			$this->mBatchSize
 		);
-		$iterator->addConditions( array(
+		$iterator->addConditions( [
 			'event_type' => 'flow-topic-resolved',
 			'event_page_id IS NOT NULL',
-		) );
-		$iterator->setFetchColumns( array( 'event_page_id' ) );
+		] );
+		$iterator->setFetchColumns( [ 'event_page_id' ] );
 
 		$storage = Container::get( 'storage.workflow' );
 
@@ -76,8 +76,8 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 				if ( $boardTitle ) {
 					$dbw->update(
 						'echo_event',
-						array( 'event_page_id' => $boardTitle->getArticleId() ),
-						array( 'event_id' => $row->event_id )
+						[ 'event_page_id' => $boardTitle->getArticleId() ],
+						[ 'event_id' => $row->event_id ]
 					);
 					$processed += $dbw->affectedRows();
 				} else {

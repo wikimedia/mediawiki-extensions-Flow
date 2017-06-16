@@ -18,9 +18,9 @@ class BoardHistoryQuery extends HistoryQuery {
 	public function getResults( UUID $boardWorkflowId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		$options = $this->getOptions( $direction, $limit, $offset );
 
-		$headerHistory = $this->getHeaderResults( $boardWorkflowId, $options ) ?: array();
-		$topicListHistory = $this->getTopicListResults( $boardWorkflowId, $options ) ?: array();
-		$topicSummaryHistory = $this->getTopicSummaryResults( $boardWorkflowId, $options ) ?: array();
+		$headerHistory = $this->getHeaderResults( $boardWorkflowId, $options ) ?: [];
+		$topicListHistory = $this->getTopicListResults( $boardWorkflowId, $options ) ?: [];
+		$topicSummaryHistory = $this->getTopicSummaryResults( $boardWorkflowId, $options ) ?: [];
 
 		$history = array_merge( $headerHistory, $topicListHistory, $topicSummaryHistory );
 		usort( $history, new SortRevisionsByRevisionId( $options['order'] ) );
@@ -40,7 +40,7 @@ class BoardHistoryQuery extends HistoryQuery {
 		// fetch any necessary metadata
 		$this->loadMetadataBatch( $history );
 		// build rows with the extra metadata
-		$results = array();
+		$results = [];
 		foreach ( $history as $revision ) {
 			try {
 				$result = $this->buildResult( $revision, 'rev_id' );
@@ -59,9 +59,9 @@ class BoardHistoryQuery extends HistoryQuery {
 	protected function getHeaderResults( UUID $boardWorkflowId, $options ) {
 		return $this->storage->find(
 			'Header',
-			array(
+			[
 				'rev_type_id' => $boardWorkflowId,
-			),
+			],
 			$options
 		);
 	}
@@ -70,9 +70,9 @@ class BoardHistoryQuery extends HistoryQuery {
 		// Can't use 'PostRevision' because we need to get only the ones with the right board ID.
 		return $this->doInternalQueries(
 			'PostRevisionBoardHistoryEntry',
-			array(
+			[
 				'topic_list_id' => $boardWorkflowId,
-			),
+			],
 			$options,
 			self::POST_OVERFETCH_FACTOR
 		);
@@ -81,9 +81,9 @@ class BoardHistoryQuery extends HistoryQuery {
 	protected function getTopicSummaryResults( UUID $boardWorkflowId, $options ) {
 		return $this->storage->find(
 			'PostSummaryBoardHistoryEntry',
-			array(
+			[
 				'topic_list_id' => $boardWorkflowId,
-			),
+			],
 			$options
 		);
 	}

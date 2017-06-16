@@ -31,7 +31,7 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	protected function getPageInfo( Title $title ) {
-		$result = array( 'flow' => array() );
+		$result = [ 'flow' => [] ];
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$result['flow']['enabled'] = '';
 		}
@@ -43,10 +43,10 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=flowinfo&titles=Talk:Sandbox|Main_Page|Talk:Flow'
 				=> 'apihelp-query+flowinfo-example-1',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

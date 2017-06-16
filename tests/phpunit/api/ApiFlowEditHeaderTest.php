@@ -11,7 +11,7 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 	public function testCache() {
 		$this->expectCacheInvalidate();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -19,7 +19,7 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			'ehprev_revision' => '',
 			'ehcontent' => '(._.)',
 			'ehformat' => 'wikitext',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );
@@ -29,7 +29,7 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 	public function testEditHeader() {
 
 		// create header
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -37,19 +37,19 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			'ehprev_revision' => '',
 			'ehcontent' => '(._.)',
 			'ehformat' => 'wikitext',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['edit-header']['committed'], $debug );
 
 		// get header
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',
 			'action' => 'flow',
 			'submodule' => 'view-header',
 			'vhformat' => 'html',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$result = $data[0]['flow']['view-header']['result']['header'];
@@ -66,7 +66,7 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 		$this->assertEquals( 'html', $revision['content']['format'], $debug );
 
 		// update header (null edit)
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -74,19 +74,19 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 			'ehprev_revision' => $revisionId,
 			'ehcontent' => '(._.)',
 			'ehformat' => 'wikitext',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['edit-header']['committed'], $debug );
 
 		// get header again
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',
 			'action' => 'flow',
 			'submodule' => 'view-header',
 			'vhformat' => 'html',
-		) );
+		] );
 
 		$newRevisionId = $data[0]['flow']['view-header']['result']['header']['revision']['revisionId'];
 

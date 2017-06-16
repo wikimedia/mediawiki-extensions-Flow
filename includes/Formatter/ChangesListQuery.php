@@ -18,7 +18,7 @@ class ChangesListQuery extends AbstractQuery {
 	 *
 	 * @var array
 	 */
-	protected $displayStatus = array();
+	protected $displayStatus = [];
 
 	/**
 	 * @var FlowActions
@@ -47,7 +47,7 @@ class ChangesListQuery extends AbstractQuery {
 	 * @param bool $isWatchlist
 	 */
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
-		$needed = array();
+		$needed = [];
 		foreach ( $rows as $row ) {
 			if ( !isset( $row->rc_source ) || $row->rc_source !== RecentChangesListener::SRC_FLOW ) {
 				continue;
@@ -80,7 +80,7 @@ class ChangesListQuery extends AbstractQuery {
 			$needed[$revisionType][] = UUID::create( $changeData['revision'] );
 		}
 
-		$found = array();
+		$found = [];
 		foreach ( $needed as $type => $uids ) {
 			$found[] = $this->storage->getMulti( $type, $uids );
 		}
@@ -88,7 +88,7 @@ class ChangesListQuery extends AbstractQuery {
 		$found = array_filter( $found );
 		$count = count( $found );
 		if ( $count === 0 ) {
-			$results = array();
+			$results = [];
 		} elseif ( $count === 1 ) {
 			$results = reset( $found );
 		} else {
@@ -155,10 +155,10 @@ class ChangesListQuery extends AbstractQuery {
 		if ( !isset( $this->revisionCache[$alpha] ) ) {
 			LoggerFactory::getInstance( 'Flow' )->error(
 				'Revision not found in revisionCache: {alpha}',
-				array(
+				[
 					'alpha' => $alpha,
 					'rcParams' => $rcParams,
-				)
+				]
 			);
 			return false;
 		}

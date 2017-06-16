@@ -38,7 +38,7 @@ class WorkflowTopicListListener extends AbstractListener {
 	 * @return TopicListEntry|false
 	 */
 	protected function getTopicListEntry( $workflowId ) {
-		$list = $this->topicListStorage->find( array( 'topic_id' => $workflowId ) );
+		$list = $this->topicListStorage->find( [ 'topic_id' => $workflowId ] );
 
 		// One topic maps to only one topic list now
 		if ( $list ) {
@@ -54,9 +54,9 @@ class WorkflowTopicListListener extends AbstractListener {
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {
-			$row = array(
+			$row = [
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
-				) + TopicListEntry::toStorageRow( $entry );
+				] + TopicListEntry::toStorageRow( $entry );
 			$this->topicListLastUpdatedIndex->onAfterInsert( $entry, $row, $metadata );
 		}
 	}
@@ -67,12 +67,12 @@ class WorkflowTopicListListener extends AbstractListener {
 			$row = TopicListEntry::toStorageRow( $entry );
 			$this->topicListLastUpdatedIndex->onAfterUpdate(
 				$entry,
-				array(
+				[
 					'workflow_last_update_timestamp' => $old['workflow_last_update_timestamp']
-				) + $row,
-				array(
+				] + $row,
+				[
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
-				) + $row,
+				] + $row,
 				$metadata
 			);
 		}

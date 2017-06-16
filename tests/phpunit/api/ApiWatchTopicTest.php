@@ -12,8 +12,8 @@ use User;
 class ApiWatchTopicTest extends ApiTestCase {
 
 	public function watchTopicProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Watch a topic',
 				// expected key in api result
 				'watched',
@@ -22,9 +22,9 @@ class ApiWatchTopicTest extends ApiTestCase {
 					$user->removeWatch( $title, false );
 				},
 				// extra request parameters
-				array(),
-			),
-			array(
+				[],
+			],
+			[
 				'Unwatch a topic',
 				// expected key in api result
 				'unwatched',
@@ -33,9 +33,9 @@ class ApiWatchTopicTest extends ApiTestCase {
 					$user->addWatch( $title, false );
 				},
 				// extra request parameters
-				array( 'unwatch' => 1 ),
-			),
-		);
+				[ 'unwatch' => 1 ],
+			],
+		];
 	}
 
 	/**
@@ -48,12 +48,12 @@ class ApiWatchTopicTest extends ApiTestCase {
 		$init( self::$users['sysop']->getUser(), $title );
 
 		// issue a watch api request
-		$data = $this->doApiRequest( $request + array(
+		$data = $this->doApiRequest( $request + [
 				'action' => 'watch',
 				'format' => 'json',
 				'titles' => $topic['topic-page'],
 				'token' => $this->getEditToken( null, 'watchtoken' ),
-		) );
+		] );
 		$this->assertArrayHasKey( $expect, $data[0]['watch'][0], $message );
 	}
 }

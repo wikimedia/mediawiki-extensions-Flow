@@ -28,7 +28,7 @@ class LqtRedirector implements Postprocessor {
 
 	public function __construct( UrlGenerator $urlGenerator, User $user ) {
 		$this->urlGenerator = $urlGenerator;
-		$this->redirectsToDo = array();
+		$this->redirectsToDo = [];
 		$this->user = $user;
 	}
 
@@ -38,11 +38,11 @@ class LqtRedirector implements Postprocessor {
 
 	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost ) {
 		if ( $post instanceof ImportPost /* LQT */ ) {
-			$this->redirectsToDo[] = array(
+			$this->redirectsToDo[] = [
 				$post->getTitle(),
 				$state->topicWorkflow->getId(),
 				$newPost->getPostId()
-			);
+			];
 		}
 	}
 
@@ -55,14 +55,14 @@ class LqtRedirector implements Postprocessor {
 			$state->topicWorkflow->getId()
 		);
 		foreach ( $this->redirectsToDo as $args ) {
-			call_user_func_array( array( $this, 'doRedirect' ), $args );
+			call_user_func_array( [ $this, 'doRedirect' ], $args );
 		}
 
-		$this->redirectsToDo = array();
+		$this->redirectsToDo = [];
 	}
 
 	public function importAborted() {
-		$this->redirectsToDo = array();
+		$this->redirectsToDo = [];
 	}
 
 	protected function doRedirect( Title $fromTitle, UUID $toTopic, UUID $toPost = null ) {

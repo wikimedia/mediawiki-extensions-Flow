@@ -26,7 +26,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 		// if we have not yet loaded everything, just clear what we have and
 		// fetch from cache
 		if ( !$this->loaded() ) {
-			$this->revisions = array();
+			$this->revisions = [];
 		}
 
 		return parent::getAllRevisions();
@@ -101,8 +101,8 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			return reset( $this->revisions );
 		}
 
-		$attributes = array( 'rev_type_id' => $this->uuid );
-		$options = array( 'sort' => 'rev_id', 'limit' => 1, 'order' => 'DESC' );
+		$attributes = [ 'rev_type_id' => $this->uuid ];
+		$options = [ 'sort' => 'rev_id', 'limit' => 1, 'order' => 'DESC' ];
 
 		if ( self::getStorage()->found( $attributes, $options ) ) {
 			// if last revision is already known in local cache, fetch it

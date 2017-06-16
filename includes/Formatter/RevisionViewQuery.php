@@ -53,7 +53,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		if ( !$rev ) {
 			throw new InvalidInputException( 'Could not find revision: ' . $revId, 'missing-revision' );
 		}
-		$this->loadMetadataBatch( array( $rev ) );
+		$this->loadMetadataBatch( [ $rev ] );
 		return $this->buildResult( $rev, null );
 	}
 
@@ -101,12 +101,12 @@ abstract class RevisionViewQuery extends AbstractQuery {
 			throw new PermissionException( 'Insufficient permission to compare revisions', 'insufficient-permission' );
 		}
 
-		$this->loadMetadataBatch( array( $oldRev, $newRev ) );
+		$this->loadMetadataBatch( [ $oldRev, $newRev ] );
 
-		return array(
+		return [
 			$this->buildResult( $newRev, null ),
 			$this->buildResult( $oldRev, null ),
-		);
+		];
 	}
 
 	public function getUndoDiffResult( $startUndoId, $endUndoId ) {
@@ -134,13 +134,13 @@ abstract class RevisionViewQuery extends AbstractQuery {
 			throw new PermissionException( 'Insufficient permission to undo revisions', 'insufficient-permission' );
 		}
 
-		$this->loadMetadataBatch( array( $start, $end, $current ) );
+		$this->loadMetadataBatch( [ $start, $end, $current ] );
 
-		return array(
+		return [
 			$this->buildResult( $start, null ),
 			$this->buildResult( $end, null ),
 			$this->buildResult( $current, null ),
-		);
+		];
 	}
 
 	public function isComparable( AbstractRevision $cur, AbstractRevision $prev ) {

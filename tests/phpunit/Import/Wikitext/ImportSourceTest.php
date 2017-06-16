@@ -19,7 +19,7 @@ use WikitextContent;
  */
 class ImportSourceTest extends \MediaWikiTestCase {
 
-	protected $tablesUsed = array( 'page', 'revision' );
+	protected $tablesUsed = [ 'page', 'revision' ];
 
 	protected function setUp() {
 		parent::setUp();
@@ -71,45 +71,45 @@ class ImportSourceTest extends \MediaWikiTestCase {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$date = $now->format( 'Y-m-d' );
 
-		return array(
-			array(
+		return [
+			[
 				// original page content
 				"This is some content\n",
 				// content to be stored to header
 				"\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"{{tpl}}\n",
 				"{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"{{tpl}}\nNon-template text\n",
 				"{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"Non-template text\n{{tpl}}\n",
 				"{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"Non-template text\n{{tpl}}\nNon-template text\n",
 				"{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"{{tpl}}\nNon-template text\n{{tpl}}\nNon-template text\n{{tpl}}\n",
 				"{{tpl}}\n{{tpl}}\n{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"{{tpl\n|key=value}}\n",
 				"{{tpl\n|key=value}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
-			),
-			array(
+			],
+			[
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n",
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
-			),
-			array(
+			],
+			[
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\nNon-template text\n{{tpl}}\n",
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
-			),
-		);
+			],
+		];
 	}
 }

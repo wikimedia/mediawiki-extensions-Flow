@@ -13,7 +13,7 @@ class ContentFixer {
 	/**
 	 * @var Fixer[] Array of Fixer objects
 	 */
-	protected $contentFixers = array();
+	protected $contentFixers = [];
 
 	/**
 	 * Accepts multiple content fixers.

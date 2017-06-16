@@ -23,7 +23,7 @@ class NotificationsUserLocator extends EchoUserLocator {
 		$workflowId = $event->getExtraParam( 'topic-workflow' );
 		if ( !$workflowId instanceof UUID ) {
 			// something wrong; don't notify anyone
-			return array();
+			return [];
 		}
 
 		// topic title is just the workflow id, but in NS_TOPIC
@@ -64,10 +64,10 @@ class NotificationsUserLocator extends EchoUserLocator {
 
 		if ( !$postId instanceof UUID ) {
 			// something wrong; don't notify anyone
-			return array();
+			return [];
 		}
 
-		return self::getCreatorsFromPostIDs( array( $postId ) );
+		return self::getCreatorsFromPostIDs( [ $postId ] );
 	}
 
 	/**
@@ -75,8 +75,8 @@ class NotificationsUserLocator extends EchoUserLocator {
 	 * @return array
 	 */
 	public static function locateMentionedUsers( EchoEvent $event ) {
-		$userIds = $event->getExtraParam( 'mentioned-users', array() );
-		return array_map( array( 'User', 'newFromId' ), $userIds );
+		$userIds = $event->getExtraParam( 'mentioned-users', [] );
+		return array_map( [ 'User', 'newFromId' ], $userIds );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class NotificationsUserLocator extends EchoUserLocator {
 	 * @return User[] Associative array, of user ID => User object.
 	 */
 	protected static function getCreatorsFromPostIDs( array $posts ) {
-		$users = array();
+		$users = [];
 		/** @var ManagerGroup $storage */
 		$storage = Container::get( 'storage' );
 
@@ -96,14 +96,14 @@ class NotificationsUserLocator extends EchoUserLocator {
 		foreach ( $posts as $postId ) {
 			$post = $storage->find(
 				'PostRevision',
-				array(
+				[
 					'rev_type_id' => UUID::create( $postId )
-				),
-				array(
+				],
+				[
 					'sort' => 'rev_id',
 					'order' => 'DESC',
 					'limit' => 1
-				)
+				]
 			);
 
 			$post = reset( $post );

@@ -55,8 +55,8 @@ class CachingObjectMapper implements ObjectMapper {
 	 */
 	public static function model( $className, array $primaryKey ) {
 		return new self(
-			array( $className, 'toStorageRow' ),
-			array( $className, 'fromStorageRow' ),
+			[ $className, 'toStorageRow' ],
+			[ $className, 'fromStorageRow' ],
 			$primaryKey
 		);
 	}

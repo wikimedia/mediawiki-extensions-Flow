@@ -28,12 +28,12 @@ use User;
  * @group Database
  */
 class TalkpageImportOperationTest extends \MediaWikiTestCase {
-	protected $tablesUsed = array(
+	protected $tablesUsed = [
 		// importer will ensureFlowRevision(), which will insert into these core tables
 		'page',
 		'revision',
 		'text',
-	);
+	];
 
 	protected function setUp() {
 		parent::setUp();
@@ -58,7 +58,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		$storage = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
 			->disableOriginalConstructor()
 			->getMock();
-		$stored = array();
+		$stored = [];
 		$storage->expects( $this->any() )
 			->method( 'put' )
 			->will( $this->returnCallback( function( $obj ) use( &$stored ) {
@@ -72,45 +72,45 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 
 		$now = time();
 		$source = new MockImportSource(
-			new MockImportHeader( array(
+			new MockImportHeader( [
 				// header revisions
-				new MockImportRevision( array( 'createdTimestamp' => $now ) ),
-			) ),
-			array(
+				new MockImportRevision( [ 'createdTimestamp' => $now ] ),
+			] ),
+			[
 				new MockImportTopic(
-					new MockImportSummary( array(
-						new MockImportRevision( array( 'createdTimestamp' => $now - 250 ) ),
-					) ),
-					array(
+					new MockImportSummary( [
+						new MockImportRevision( [ 'createdTimestamp' => $now - 250 ] ),
+					] ),
+					[
 						// topic title revisions
-						new MockImportRevision( array( 'createdTimestamp' => $now - 1000 ) ),
-					),
-					array(
+						new MockImportRevision( [ 'createdTimestamp' => $now - 1000 ] ),
+					],
+					[
 						// replies
 						new MockImportPost(
-							array(
+							[
 								// revisions
-								new MockImportRevision( array( 'createdTimestmap' => $now - 1000 ) ),
-							),
-							array(
+								new MockImportRevision( [ 'createdTimestmap' => $now - 1000 ] ),
+							],
+							[
 								// replies
 								new MockImportPost(
-									array(
+									[
 										// revisions
-										new MockImportRevision( array(
+										new MockImportRevision( [
 											'createdTimestmap' => $now - 500,
 											'user' => User::newFromNAme( '10.0.0.2', false ),
-										) ),
-									),
-									array(
+										] ),
+									],
+									[
 										// replies
-									)
+									]
 								),
-							)
+							]
 						),
-					)
+					]
 				)
-			)
+			]
 		);
 
 		$occupationController = Container::get( 'occupation_controller' );

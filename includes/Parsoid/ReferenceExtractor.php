@@ -45,7 +45,7 @@ class ReferenceExtractor {
 			);
 		} else {
 			throw new \Exception( "No extractors available for $objectType" );
-			return array();
+			return [];
 		}
 	}
 
@@ -60,7 +60,7 @@ class ReferenceExtractor {
 	protected function extractReferences( ReferenceFactory $factory, array $extractors, $text ) {
 		$dom = Utils::createDOM( $text );
 
-		$output = array();
+		$output = [];
 
 		$xpath = new DOMXPath( $dom );
 

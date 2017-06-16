@@ -92,10 +92,10 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		$strategy = $this->createStrategy();
 
 		$lqtPagesName = 'Talk:Some ConversionStrategyTest LQT page';
-		$this->setMwGlobals( array(
-			'wgLqtNamespaces' => array( NS_HELP_TALK ),
-			'wgLqtPages' => array( $lqtPagesName ),
-		) );
+		$this->setMwGlobals( [
+			'wgLqtNamespaces' => [ NS_HELP_TALK ],
+			'wgLqtPages' => [ $lqtPagesName ],
+		] );
 
 		// Not subpage, not LQT
 		$nonLqtTitle = Title::newFromText( 'Talk:Some ConversionStrategyTest page' );
@@ -150,32 +150,32 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 	}
 
 	public function provideMeetsSubpageRequirements() {
-		return array(
-			array(
+		return [
+			[
 				'Talk:Some ConversionStrategyTest page',
 				true,
 				true, // Shouldn't matter
 				'Non-subpage talk page',
-			),
-			array(
+			],
+			[
 				'Talk:Some/ConversionStrategyTest subpage 1',
 				true,
 				true,
 				'Talk subpage where subject exists',
-			),
-			array(
+			],
+			[
 				'Talk:Some/ConversionStrategyTest subpage 2',
 				false,
 				false,
 				'Talk subpage where subject doesn\'t exist',
-			),
-			array(
+			],
+			[
 				'User:Some/ConversionStrategyTest subpage',
 				false,
 				true,
 				'Existing subpage in subject namespace'
-			),
-		);
+			],
+		];
 	}
 
 	protected function createStrategy(

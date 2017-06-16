@@ -15,7 +15,7 @@ interface ObjectStorage {
 	 * @param array $options Query options such as ORDER BY and LIMIT.
 	 * @return array
 	 */
-	function find( array $attributes, array $options = array() );
+	function find( array $attributes, array $options = [] );
 
 	/**
 	 * Perform the equivalent of array_map against self::find for multiple
@@ -25,7 +25,7 @@ interface ObjectStorage {
 	 * @param array $options Options to use for all queries
 	 * @return array[] Array of results for every query
 	 */
-	function findMulti( array $queries, array $options = array() );
+	function findMulti( array $queries, array $options = [] );
 
 	/**
 	 * @return array The list of columns that together uniquely identify a row

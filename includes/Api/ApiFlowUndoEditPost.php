@@ -14,27 +14,27 @@ class ApiFlowUndoEditPost extends ApiFlowBaseGet {
 	}
 
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return [ 'topic' => $this->extractRequestParams() ];
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'startId' => array(
+		return [
+			'startId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'endId' => array(
+			],
+			'endId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=undo-edit-post&page=Topic:S2tycnas4hcucw8w&uaepostId=???&uaestartId=???&uaeendId=???'
 				=> 'apihelp-flow+undo-edit-post-example-1',
-		);
+		];
 	}
 }

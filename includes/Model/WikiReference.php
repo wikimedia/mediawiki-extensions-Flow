@@ -26,11 +26,11 @@ class WikiReference extends Reference {
 		$this->target = $targetTitle;
 
 		$this->validTypes = array_merge( $this->validTypes,
-			array(
+			[
 				self::TYPE_FILE,
 				self::TYPE_TEMPLATE,
 				self::TYPE_CATEGORY,
-			)
+			]
 		);
 
 		parent::__construct( $id, $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
@@ -42,10 +42,10 @@ class WikiReference extends Reference {
 	 * @return array
 	 */
 	public function getStorageRow() {
-		return parent::getStorageRow() + array(
+		return parent::getStorageRow() + [
 			'ref_target_namespace' => $this->target->getNamespace(),
 			'ref_target_title' => $this->target->getDBkey(),
-		);
+		];
 	}
 
 	/**

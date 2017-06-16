@@ -51,12 +51,12 @@ class SpecialFlow extends FormSpecialPage {
 	 * @return array
 	 */
 	protected function getTypes() {
-		$mapping = array(
+		$mapping = [
 			'flow-special-type-post' => 'post',
 			'flow-special-type-workflow' => 'workflow',
-		);
+		];
 
-		$types = array();
+		$types = [];
 		foreach ( $mapping as $msgKey => $option ) {
 			$types[$this->msg( $msgKey )->escaped()] = $option;
 		}
@@ -64,23 +64,23 @@ class SpecialFlow extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		return array(
-			'type' => array(
+		return [
+			'type' => [
 				'id' => 'mw-flow-special-type',
 				'name' => 'type',
 				'type' => 'select',
 				'label-message' => 'flow-special-type',
 				'options' => $this->getTypes(),
 				'default' => empty( $this->type ) ? 'post' : $this->type,
-			),
-			'uuid' => array(
+			],
+			'uuid' => [
 				'id' => 'mw-flow-special-uuid',
 				'name' => 'uuid',
 				'type' => 'text',
 				'label-message' => 'flow-special-uuid',
 				'default' => $this->uuid,
-			),
-		);
+			],
+		];
 	}
 
 	/**

@@ -10,7 +10,7 @@ use Flow\Exception\InvalidInputException;
  * Fetches paginated results from the OM provided in constructor
  */
 class Pager {
-	private static $VALID_DIRECTIONS = array( 'fwd', 'rev' );
+	private static $VALID_DIRECTIONS = [ 'fwd', 'rev' ];
 	const DEFAULT_DIRECTION = 'fwd';
 	const DEFAULT_LIMIT = 1;
 	const MAX_LIMIT = 500;
@@ -55,12 +55,12 @@ class Pager {
 		// not sure i like this
 		$this->storage = $storage;
 		$this->query = $query;
-		$this->options = $options + array(
+		$this->options = $options + [
 			'pager-include-offset' => null,
 			'pager-offset' => null,
 			'pager-limit' => self::DEFAULT_LIMIT,
 			'pager-dir' => self::DEFAULT_DIRECTION,
-		);
+		];
 
 		$this->options['pager-limit'] = intval( $this->options['pager-limit'] );
 		if ( !( $this->options['pager-limit'] > 0 && $this->options['pager-limit'] < self::MAX_LIMIT ) ) {
@@ -71,14 +71,14 @@ class Pager {
 			$this->options['pager-dir'] = self::DEFAULT_DIRECTION;
 		}
 
-		$indexOptions = array(
+		$indexOptions = [
 			'limit' => $this->options['pager-limit']
-		);
+		];
 		if ( isset( $this->options['sort'], $this->options['order'] ) ) {
-			$indexOptions += array(
-				'sort' => array( $this->options['sort'] ),
+			$indexOptions += [
+				'sort' => [ $this->options['sort'] ],
 				'order' => $this->options['order'],
-			);
+			];
 		}
 		$this->sort = $storage->getIndexFor(
 			array_keys( $query ),
@@ -106,15 +106,15 @@ class Pager {
 		$numNeeded = $this->options['pager-limit'] + 1;
 		$storageOffsetKey = $this->useId ? 'offset-id' : 'offset-value';
 
-		$options = $this->options + array(
+		$options = $this->options + [
 			// We need one item of leeway to determine if there are more items
 			'limit' => $numNeeded,
 			'offset-dir' => $this->options['pager-dir'],
 			$storageOffsetKey => $this->options['pager-offset'],
 			'include-offset' => $this->options['pager-include-offset'],
-		);
+		];
 		$offset = $this->options['pager-offset'];
-		$results = array();
+		$results = [];
 		$queries = 0;
 
 		do {
@@ -124,9 +124,9 @@ class Pager {
 			}
 
 			// Retrieve results
-			$options = array(
+			$options = [
 				$storageOffsetKey => $offset,
-			) + $options;
+			] + $options;
 			$found = $this->storage->find( $this->query, $options );
 
 			if ( !$found ) {
@@ -167,7 +167,7 @@ class Pager {
 		if ( $results ) {
 			return $this->processPage( $results );
 		} else {
-			return new PagerPage( array(), array(), $this );
+			return new PagerPage( [], [], $this );
 		}
 	}
 
@@ -177,7 +177,7 @@ class Pager {
 	 * @throws InvalidInputException
 	 */
 	protected function processPage( $results ) {
-		$pagingLinks = array();
+		$pagingLinks = [];
 
 		// Retrieve paging links
 		if ( $this->options['pager-dir'] === 'fwd' ) {
@@ -230,11 +230,11 @@ class Pager {
 	 * @return array
 	 */
 	protected function makePagingLink( $direction, $object, $pageLimit ) {
-		$return = array(
+		$return = [
 			'offset-dir' => $direction,
 			'limit' => $pageLimit,
 			$this->offsetKey => $this->storage->serializeOffset( $object, $this->sort ),
-		);
+		];
 		if ( isset( $this->options['sortby'] ) ) {
 			$return['sortby'] = $this->options['sortby'];
 		}

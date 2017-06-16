@@ -56,7 +56,7 @@ class ShallowCompactor implements Compactor {
 	 * @return array
 	 */
 	public function compactRows( array $rows ) {
-		return array_map( array( $this, 'compactRow' ), $rows );
+		return array_map( [ $this, 'compactRow' ], $rows );
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ShallowCompactor implements Compactor {
 		$duplicator = new ResultDuplicator( $this->shallow->getPrimaryKeyColumns(), 2 );
 		foreach ( $results as $i => $rows ) {
 			foreach ( $rows as $j => $row ) {
-				$duplicator->add( $row, array( $i, $j ) );
+				$duplicator->add( $row, [ $i, $j ] );
 			}
 		}
 

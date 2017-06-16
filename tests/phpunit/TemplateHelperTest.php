@@ -13,9 +13,9 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 	public function provideTraversalAttackFilenames() {
 		return array_map(
 			function( $x ) {
-				return array( $x );
+				return [ $x ];
 			},
-			array(
+			[
 				'.',
 				'..',
 				'./foo',
@@ -24,7 +24,7 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 				'foo/../bar',
 				'foo/bar/.',
 				'foo/bar/..',
-			)
+			]
 		);
 	}
 
@@ -41,8 +41,8 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 		$code = TemplateHelper::compile( "{{#ifCond foo \"or\" bar}}Works{{/ifCond}}", '' );
 		$renderer = Lightncandy::prepare( $code );
 
-		$this->assertEquals( 'Works', $renderer( array( 'foo' => true, 'bar' => false ) ) );
-		$this->assertEquals( '', $renderer( array( 'foo' => false, 'bar' => false ) ) );
+		$this->assertEquals( 'Works', $renderer( [ 'foo' => true, 'bar' => false ] ) );
+		$this->assertEquals( '', $renderer( [ 'foo' => false, 'bar' => false ] ) );
 		/*
 		FIXME: Why won't this work!?
 		$code2 = TemplateHelper::compile( "{{#ifCond foo \"===\" bar}}Works{{/ifCond}}", '' );

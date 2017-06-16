@@ -37,7 +37,7 @@ class Anchor implements ApiSerializable {
 	/**
 	 * @var array
 	 */
-	public $query = array();
+	public $query = [];
 
 	/**
 	 * @var string
@@ -51,7 +51,7 @@ class Anchor implements ApiSerializable {
 	 * @param string|null $fragment URL fragment of the anchor
 	 * @param Message|string $htmlTitleMessage Title text of anchor
 	 */
-	public function __construct( $message, Title $title, array $query = array(), $fragment = null, $htmlTitleMessage = null ) {
+	public function __construct( $message, Title $title, array $query = [], $fragment = null, $htmlTitleMessage = null ) {
 		$this->title = $title;
 		$this->query = $query;
 		$this->fragment = $fragment;
@@ -106,20 +106,20 @@ class Anchor implements ApiSerializable {
 		// Should we instead use Linker?
 		return Html::element(
 			'a',
-			array(
+			[
 				'href' => $this->getLinkURL(),
 				'title' => $titleText,
-			),
+			],
 			$content === null ? $text : $content
 		);
 	}
 
 	public function toArray() {
-		return array(
+		return [
 			'url' => $this->getLinkURL(),
 			'title' => $this->getTitleMessage()->text(), // Title text
 			'text' => $this->message->text(), // Main text of link
-		);
+		];
 	}
 
 	/**

@@ -44,9 +44,9 @@ class SpecialLogTopic implements PostProcessor {
 		$logEntry = new ManualLogEntry( 'import', $topic->getLogType() );
 		$logEntry->setTarget( $state->topicWorkflow->getOwnerTitle() );
 		$logEntry->setPerformer( $this->user );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'topic' => $state->topicWorkflow->getArticleTitle()->getPrefixedText(),
-		) + $topic->getLogParameters() );
+		] + $topic->getLogParameters() );
 		$logEntry->insert();
 
 		$this->newPosts = false;

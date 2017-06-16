@@ -70,15 +70,15 @@ class ArchiveNameHelper {
 			return false;
 		}
 
-		$archivePages = array();
+		$archivePages = [];
 		for ( $n = 1; $n <= 20; ++$n ) {
 			$title = Title::newFromText( sprintf( $format, $text, $n ) );
 			if ( $title && $titleRepo->exists( $title ) ) {
-				$archivePages[] = array(
+				$archivePages[] = [
 					'title' => $title,
 					'format' => $format,
 					'counter' => $n
-				);
+				];
 			} else {
 				break;
 			}

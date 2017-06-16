@@ -14,7 +14,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'header' => $this->extractRequestParams() );
+		return [ 'header' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -24,23 +24,23 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	public function getAllowedParams() {
 		global $wgFlowContentFormat;
 
-		return array(
-			'format' => array(
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
+		return [
+			'format' => [
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
 				// never default to unfixed html, only serve that when specifically asked!
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
-			),
+			],
 			'revId' => null,
-		);
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=view-header&page=Talk:Sandbox&vhformat=wikitext&revId='
 				=> 'apihelp-flow+view-header-example-1',
-		);
+		];
 	}
 }

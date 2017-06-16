@@ -29,7 +29,7 @@ class Exporter extends WikiExporter {
 	 *
 	 * @var array
 	 */
-	public static $map = array(
+	public static $map = [
 		'rev_id' => 'id',
 		'rev_user_id' => 'userid',
 		'rev_user_ip' => 'userip',
@@ -60,7 +60,7 @@ class Exporter extends WikiExporter {
 		'tree_orig_user_id' => 'treeoriguserid',
 		'tree_orig_user_ip' => 'treeoriguserip',
 		'tree_orig_user_wiki' => 'treeoriguserwiki',
-	);
+	];
 
 	/**
 	   @var ReflectionProperty $prevRevisionProperty Previous revision property
@@ -110,13 +110,13 @@ class Exporter extends WikiExporter {
 
 		$output = Xml::openElement(
 			'mediawiki',
-			array(
+			[
 				'xmlns' => "http://www.mediawiki.org/xml/flow-$version/",
 				'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
 				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/flow-$version/ http://www.mediawiki.org/xml/flow-$version.xsd",
 				'version' => $version,
 				'xml:lang' => $wgLanguageCode
-			)
+			]
 		) . "\n";
 		$this->sink->write( $output );
 	}
@@ -132,30 +132,30 @@ class Exporter extends WikiExporter {
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );
-		$iterator->setFetchColumns( array( '*' ) );
-		$iterator->addConditions( array( 'workflow_wiki' => wfWikiID() ) );
-		$iterator->addConditions( array( 'workflow_type' => 'discussion' ) );
+		$iterator->setFetchColumns( [ '*' ] );
+		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
+		$iterator->addConditions( [ 'workflow_type' => 'discussion' ] );
 
 		if ( $pages ) {
-			$pageConds = array();
+			$pageConds = [];
 			foreach ( $pages as $page ) {
 				$title = \Title::newFromDBkey( $page );
 				$pageConds[] = $dbr->makeList(
-					array(
+					[
 						'workflow_namespace' => $title->getNamespace(),
 						'workflow_title_text' => $title->getDBkey()
-					),
+					],
 					LIST_AND
 				);
 			}
 
-			$iterator->addConditions( array( $dbr->makeList( $pageConds, LIST_OR ) ) );
+			$iterator->addConditions( [ $dbr->makeList( $pageConds, LIST_OR ) ] );
 		}
 		if ( $startId ) {
-			$iterator->addConditions( array( 'workflow_page_id >= ' . $dbr->addQuotes( $startId ) ) );
+			$iterator->addConditions( [ 'workflow_page_id >= ' . $dbr->addQuotes( $startId ) ] );
 		}
 		if ( $endId ) {
-			$iterator->addConditions( array( 'workflow_page_id < ' . $dbr->addQuotes( $endId ) ) );
+			$iterator->addConditions( [ 'workflow_page_id < ' . $dbr->addQuotes( $endId ) ] );
 		}
 
 		return $iterator;
@@ -175,7 +175,7 @@ class Exporter extends WikiExporter {
 				$headerIterator = Container::get( 'search.index.iterators.header' );
 				$topicIterator = Container::get( 'search.index.iterators.topic' );
 				/** @var AbstractIterator $iterator */
-				foreach ( array( $headerIterator, $topicIterator ) as $iterator ) {
+				foreach ( [ $headerIterator, $topicIterator ] as $iterator ) {
 					$iterator->setPage( $row->workflow_page_id );
 				}
 
@@ -189,10 +189,10 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$output = Xml::openElement( 'board', array(
+		$output = Xml::openElement( 'board', [
 			'id' => $workflow->getId()->getAlphadecimal(),
 			'title' => $workflow->getOwnerTitle()->getPrefixedDBkey(),
-		) ) . "\n";
+		] ) . "\n";
 		$this->sink->write( $output );
 
 		foreach ( $headerIterator as $revision ) {
@@ -213,9 +213,9 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$output = Xml::openElement( 'topic', array(
+		$output = Xml::openElement( 'topic', [
 			'id' => $revision->getCollectionId()->getAlphadecimal(),
-		) ) . "\n";
+		] ) . "\n";
 		$this->sink->write( $output );
 
 		$this->formatPost( $revision );
@@ -239,9 +239,9 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$output = Xml::openElement( 'description', array(
+		$output = Xml::openElement( 'description', [
 			'id' => $revision->getCollectionId()->getAlphadecimal()
-		) ) . "\n";
+		] ) . "\n";
 		$this->sink->write( $output );
 
 		$this->formatRevisions( $revision );
@@ -255,9 +255,9 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$output = Xml::openElement( 'post', array(
+		$output = Xml::openElement( 'post', [
 			'id' => $revision->getCollectionId()->getAlphadecimal()
-		) ) . "\n";
+		] ) . "\n";
 		$this->sink->write( $output );
 
 		$this->formatRevisions( $revision );
@@ -283,9 +283,9 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$output = Xml::openElement( 'summary', array(
+		$output = Xml::openElement( 'summary', [
 			'id' => $revision->getCollectionId()->getAlphadecimal()
-		) ) . "\n";
+		] ) . "\n";
 		$this->sink->write( $output );
 
 		$this->formatRevisions( $revision );

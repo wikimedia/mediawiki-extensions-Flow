@@ -46,13 +46,13 @@ class FlowRevisionsDb implements SourceStoreInterface {
 
 	public function getImportedId( IImportObject $object ) {
 		if ( $object instanceof IImportHeader ) {
-			$conds = array( 'rev_type' => 'header' );
+			$conds = [ 'rev_type' => 'header' ];
 		} elseif ( $object instanceof IImportSummary ) {
-			$conds = array( 'rev_type' => 'post-summary' );
+			$conds = [ 'rev_type' => 'post-summary' ];
 		} elseif ( $object instanceof IImportTopic ) {
-			$conds = array( 'rev_type' => 'post', 'tree_parent_id' => null );
+			$conds = [ 'rev_type' => 'post', 'tree_parent_id' => null ];
 		} elseif ( $object instanceof IImportPost ) {
-			$conds = array( 'rev_type' => 'post', 'tree_parent_id IS NOT NULL' );
+			$conds = [ 'rev_type' => 'post', 'tree_parent_id IS NOT NULL' ];
 		} else {
 			throw new Exception( 'Import object of type ' . get_class( $object ) . ' not supported.' );
 		}
@@ -77,7 +77,7 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 * @throws \Flow\Exception\FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
-	protected function getCollectionId( $timestamp, $author, array $conds = array() ) {
+	protected function getCollectionId( $timestamp, $author, array $conds = [] ) {
 		$range = $this->getUUIDRange( new MWTimestamp( $timestamp ) );
 		$tuple = $this->getUserTuple( $author );
 
@@ -85,24 +85,24 @@ class FlowRevisionsDb implements SourceStoreInterface {
 		// we'll also have info about the parent; or it can just be ignored if
 		// there is no parent
 		$rows = $this->dbr->select(
-			array( 'flow_revision', 'flow_tree_revision' ),
-			array( 'rev_type_id' ),
+			[ 'flow_revision', 'flow_tree_revision' ],
+			[ 'rev_type_id' ],
 			array_merge(
-				array(
+				[
 					'rev_type_id >= ' . $this->dbr->addQuotes( $range[0]->getBinary() ),
 					'rev_type_id < ' . $this->dbr->addQuotes( $range[1]->getBinary() ),
-				),
+				],
 				$tuple->toArray( 'rev_user_' ),
 				$conds
 			),
 			__METHOD__,
-			array( 'LIMIT' => 1 ),
-			array(
-				'flow_tree_revision' => array(
+			[ 'LIMIT' => 1 ],
+			[
+				'flow_tree_revision' => [
 					'LEFT OUTER JOIN',
-					array( 'tree_rev_descendant_id = rev_type_id' )
-				),
-			)
+					[ 'tree_rev_descendant_id = rev_type_id' ]
+				],
+			]
 		);
 
 		if ( $rows->numRows() === 0 ) {
@@ -156,9 +156,9 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 * @throws TimestampException
 	 */
 	protected function getUUIDRange( MWTimestamp $timestamp ) {
-		return array(
+		return [
 			UUID::getComparisonUUID( (int) $timestamp->getTimestamp( TS_UNIX ) ),
 			UUID::getComparisonUUID( (int) $timestamp->getTimestamp( TS_UNIX ) + 1 ),
-		);
+		];
 	}
 }

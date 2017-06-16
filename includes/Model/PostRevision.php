@@ -65,7 +65,7 @@ class PostRevision extends AbstractRevision {
 		$obj->changeType = 'new-post';
 		// A newly created post has no children, a depth of 0, and
 		// is the root of its tree.
-		$obj->setChildren( array() );
+		$obj->setChildren( [] );
 		$obj->setDepth( 0 );
 		$obj->rootPost = $obj;
 
@@ -147,7 +147,7 @@ class PostRevision extends AbstractRevision {
 	 * @return string[]
 	 */
 	public static function toStorageRow( $rev ) {
-		return parent::toStorageRow( $rev ) + array(
+		return parent::toStorageRow( $rev ) + [
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getAlphadecimal() : null,
 			'tree_rev_descendant_id' => $rev->postId->getAlphadecimal(),
 			'tree_rev_id' => $rev->revId->getAlphadecimal(),
@@ -155,7 +155,7 @@ class PostRevision extends AbstractRevision {
 			'tree_orig_user_id' => $rev->origUser->id,
 			'tree_orig_user_ip' => $rev->origUser->ip,
 			'tree_orig_user_wiki' => $rev->origUser->wiki,
-		);
+		];
 	}
 
 	/**
@@ -179,7 +179,7 @@ class PostRevision extends AbstractRevision {
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content, $format, $workflow->getArticleTitle() );
 		$reply->changeType = $changeType;
-		$reply->setChildren( array() );
+		$reply->setChildren( [] );
 		$reply->setDepth( $this->getDepth() + 1 );
 		$reply->rootPost = $this->rootPost;
 

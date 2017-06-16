@@ -40,7 +40,7 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	 * {@inheritDoc}
 	 */
 	public function getLogParameters() {
-		return array();
+		return [];
 	}
 
 	/**

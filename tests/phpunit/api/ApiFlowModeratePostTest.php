@@ -12,7 +12,7 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 	public function testModeratePost() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -20,7 +20,7 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 			'mpmoderationState' => AbstractRevision::MODERATED_HIDDEN,
 			'mppostId' => $topic['post-id'],
 			'mpreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-post']['status'], $debug );
@@ -29,13 +29,13 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 		$postId = $data[0]['flow']['moderate-post']['committed']['topic']['post-id'];
 		$revisionId = $data[0]['flow']['moderate-post']['committed']['topic']['post-revision-id'];
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'action' => 'flow',
 			'submodule' => 'view-post',
 			'vppostId' => $postId,
 			'vpformat' => 'html',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-post']['result']['topic']['revisions'][$revisionId];
@@ -57,20 +57,20 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 	public function testModeratePostInLockedTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => AbstractRevision::MODERATED_LOCKED,
 			'cotreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -78,7 +78,7 @@ class ApiFlowModeratePostTest extends ApiTestCase {
 			'mpmoderationState' => AbstractRevision::MODERATED_HIDDEN,
 			'mppostId' => $topic['post-id'],
 			'mpreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-post']['status'], $debug );

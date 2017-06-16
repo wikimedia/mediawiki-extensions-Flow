@@ -54,13 +54,13 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_workflow' ),
-				array( 'workflow_wiki', 'workflow_id', 'workflow_type' ),
-				array(
+				[ 'flow_workflow' ],
+				[ 'workflow_wiki', 'workflow_id', 'workflow_type' ],
+				[
 					'workflow_id > ' . $dbr->addQuotes( $id ),
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize )
+				[ 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 			if ( $res ) {
 				foreach ( $res as $row ) {
@@ -96,15 +96,15 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_header_revision', 'flow_revision' ),
-				array( 'rev_id', 'rev_type' ),
-				array(
+				[ 'flow_header_revision', 'flow_revision' ],
+				[ 'rev_id', 'rev_type' ],
+				[
 					'rev_id > ' . $dbr->addQuotes( $id ),
 					'header_rev_id = rev_id',
 					'header_workflow_id' => $workflow->getId()->getBinary()
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $this->mBatchSize )
+				[ 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 			if ( $res ) {
 				foreach ( $res as $row ) {
@@ -133,14 +133,14 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_topic_list' ),
-				array( 'topic_id' ),
-				array(
+				[ 'flow_topic_list' ],
+				[ 'topic_id' ],
+				[
 					'topic_list_id' => $workflow->getId()->getBinary(),
 					'topic_id > ' . $dbr->addQuotes( $id ),
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $this->mBatchSize )
+				[ 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 			if ( $res ) {
 				$index = 0;
@@ -195,14 +195,14 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
 		$res = $dbw->update(
 			'flow_revision',
-			array(
+			[
 				'rev_user_wiki' => $wiki,
 				'rev_mod_user_wiki' => $wiki,
 				'rev_edit_user_wiki' => $wiki,
-			),
-			array(
+			],
+			[
 				'rev_id' => $revision->getRevisionId()->getBinary(),
-			),
+			],
 			__METHOD__
 		);
 		if ( !$res ) {
@@ -213,12 +213,12 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		if ( $type === 'post' ) {
 			$res = $dbw->update(
 				'flow_tree_revision',
-				array(
+				[
 					'tree_orig_user_wiki' => $wiki,
-				),
-				array(
+				],
+				[
 					'tree_rev_id' => $revision->getRevisionId()->getBinary(),
-				),
+				],
 				__METHOD__
 			);
 			if ( !$res ) {

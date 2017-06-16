@@ -88,11 +88,11 @@ class UserTuple {
 	}
 
 	public function toArray( $prefix = '' ) {
-		return array(
+		return [
 			"{$prefix}wiki" => $this->wiki,
 			"{$prefix}id" => $this->id,
 			"{$prefix}ip" => $this->ip
-		);
+		];
 	}
 
 	public function createUser() {

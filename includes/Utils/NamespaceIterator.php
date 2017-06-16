@@ -40,14 +40,14 @@ class NamespaceIterator implements IteratorAggregate {
 	public function getIterator() {
 		$it = new BatchRowIterator(
 			$this->db,
-			/* tables */ array( 'page' ),
+			/* tables */ [ 'page' ],
 			/* pk */ 'page_id',
 			/* rows per batch */ 500
 		);
-		$it->addConditions( array(
+		$it->addConditions( [
 			'page_namespace' => $this->namespace,
-		) );
-		$it->setFetchColumns( array( 'page_title' ) );
+		] );
+		$it->setFetchColumns( [ 'page_title' ] );
 		$it = new RecursiveIteratorIterator( $it );
 
 		$namespace = $this->namespace;

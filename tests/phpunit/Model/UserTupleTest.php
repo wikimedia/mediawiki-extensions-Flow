@@ -10,15 +10,15 @@ use Flow\Model\UserTuple;
 class UserTupleTest extends \MediaWikiTestCase {
 
 	public function invalidInputProvider() {
-		return array(
-			array( 'foo', 0, '' ),
-			array( 'foo', 1234, '127.0.0.1' ),
-			array( '', 0, '127.0.0.1' ),
-			array( 'foo', -25, '' ),
-			array( 'foo', null, '127.0.0.1' ),
-			array( null, 55, '' ),
-			array( 'foo', 0, null ),
-		);
+		return [
+			[ 'foo', 0, '' ],
+			[ 'foo', 1234, '127.0.0.1' ],
+			[ '', 0, '127.0.0.1' ],
+			[ 'foo', -25, '' ],
+			[ 'foo', null, '127.0.0.1' ],
+			[ null, 55, '' ],
+			[ 'foo', 0, null ],
+		];
 	}
 
 	/**
@@ -30,12 +30,12 @@ class UserTupleTest extends \MediaWikiTestCase {
 	}
 
 	public function validInputProvider() {
-		return array(
-			array( 'foo', 42, null ),
-			array( 'foo', 42, '' ),
-			array( 'foo', 0, '127.0.0.1' ),
-			array( 'foo', '0', '10.1.2.3' ),
-		);
+		return [
+			[ 'foo', 42, null ],
+			[ 'foo', 42, '' ],
+			[ 'foo', 0, '127.0.0.1' ],
+			[ 'foo', '0', '10.1.2.3' ],
+		];
 	}
 
 	/**

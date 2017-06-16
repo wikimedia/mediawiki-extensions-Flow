@@ -11,43 +11,43 @@ use Flow\Import\ArchiveNameHelper;
 class ArchiveNameHelperTest extends \MediaWikiTestCase {
 
 	public function decideArchiveTitleProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Selects the first pattern if n=1 does exist',
 				// expect
 				'Talk:Flow/Archive 1',
 				// source title
 				Title::newFromText( 'Talk:Flow' ),
 				// formats
-				array( '%s/Archive %d', '%s/Archive%d' ),
+				[ '%s/Archive %d', '%s/Archive%d' ],
 				// existing titles
-				array(),
-			),
+				[],
+			],
 
-			array(
+			[
 				'Selects n=2 when n=1 exists',
 				// expect
 				'Talk:Flow/Archive 2',
 				// source title
 				Title::newFromText( 'Talk:Flow' ),
 				// formats
-				array( '%s/Archive %d' ),
+				[ '%s/Archive %d' ],
 				// existing titles
-				array( 'Talk:Flow/Archive 1' ),
-			),
+				[ 'Talk:Flow/Archive 1' ],
+			],
 
-			array(
+			[
 				'Selects the second pattern if n=1 exists',
 				// expect
 				'Talk:Flow/Archive2',
 				// source title
 				Title::newFromText( 'Talk:Flow' ),
 				// formats
-				array( '%s/Archive %d', '%s/Archive%d' ),
+				[ '%s/Archive %d', '%s/Archive%d' ],
 				// existing titles
-				array( 'Talk:Flow/Archive1' ),
-			),
-		);
+				[ 'Talk:Flow/Archive1' ],
+			],
+		];
 	}
 	/**
 	 * @dataProvider decideArchiveTitleProvider
@@ -69,32 +69,32 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 	}
 
 	public function findLatestArchiveTitleProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Returns false if no archive exist',
 				// expect
 				false,
 				// source title
 				Title::newFromText( 'Talk:Flow' ),
 				// formats
-				array( '%s/Archive %d', '%s/Archive%d' ),
+				[ '%s/Archive %d', '%s/Archive%d' ],
 				// existing titles
-				array(),
-			),
+				[],
+			],
 
-			array(
+			[
 				'Selects n=2 when n=2 exists',
 				// expect
 				'Talk:Flow/Archive 2',
 				// source title
 				Title::newFromText( 'Talk:Flow' ),
 				// formats
-				array( '%s/Archive %d' ),
+				[ '%s/Archive %d' ],
 				// existing titles
-				array( 'Talk:Flow/Archive 1', 'Talk:Flow/Archive 2' ),
-			),
+				[ 'Talk:Flow/Archive 1', 'Talk:Flow/Archive 2' ],
+			],
 
-		);
+		];
 	}
 	/**
 	 * @dataProvider findLatestArchiveTitleProvider

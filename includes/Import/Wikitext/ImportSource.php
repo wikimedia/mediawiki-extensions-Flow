@@ -73,10 +73,10 @@ class ImportSource implements IImportSource {
 		$content = TemplateHelper::extractTemplates( $content, $this->title );
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			'archive=' . $this->title->getPrefixedText(),
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
-		) );
+		] );
 		$content .= "\n\n{{{$template}|$arguments}}";
 
 		if ( $this->headerSuffix && !empty( $this->headerSuffix ) ) {
@@ -84,12 +84,12 @@ class ImportSource implements IImportSource {
 		}
 
 		return new ImportHeader(
-			array( new ObjectRevision(
+			[ new ObjectRevision(
 				$content,
 				wfTimestampNow(),
 				$this->user->getName(),
 				"wikitext-import:header-revision:{$revision->getId()}"
-			) ),
+			) ],
 			"wikitext-import:header:{$this->title->getPrefixedText()}"
 		);
 	}
@@ -98,6 +98,6 @@ class ImportSource implements IImportSource {
 	 * {@inheritDoc}
 	 */
 	public function getTopics() {
-		return new ArrayIterator( array() );
+		return new ArrayIterator( [] );
 	}
 }

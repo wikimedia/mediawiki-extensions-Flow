@@ -19,28 +19,28 @@ class UrlGeneratorTest extends FlowTestCase {
 	}
 
 	public function provideDataBoardLink() {
-		return array(
-			array(
+		return [
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				'updated',
 				true
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				'updated',
 				false
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				'created',
 				true
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				'created',
 				false
-			)
-		);
+			]
+		];
 	}
 
 	/**
@@ -64,24 +64,24 @@ class UrlGeneratorTest extends FlowTestCase {
 	}
 
 	public function provideDataWatchTopicLink() {
-		return array(
-			array(
+		return [
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				UUID::create()
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				UUID::create()
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				UUID::create()
-			),
-			array(
+			],
+			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
 				UUID::create()
-			)
-		);
+			]
+		];
 	}
 
 	/**

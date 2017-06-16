@@ -82,16 +82,16 @@ class Importer {
 	 * @param object $object
 	 * @param array $metadata
 	 */
-	protected function put( $object, array $metadata = array() ) {
+	protected function put( $object, array $metadata = [] ) {
 		if ( $this->storage ) {
-			$this->storage->put( $object, array( 'imported' => true ) + $metadata );
+			$this->storage->put( $object, [ 'imported' => true ] + $metadata );
 
 			// prevent memory from being filled up
 			$this->storage->clear();
 
 			// keep workflow objects around, so follow-up `put`s (e.g. to update
 			// last_update_timestamp) don't confuse it for a new object
-			foreach ( array( $this->boardWorkflow, $this->topicWorkflow ) as $object ) {
+			foreach ( [ $this->boardWorkflow, $this->topicWorkflow ] as $object ) {
 				if ( $object ) {
 					$this->storage->getStorage( get_class( $object ) )->merge( $object );
 				}
@@ -111,7 +111,7 @@ class Importer {
 		$uuid = UUID::create( $id );
 		$title = \Title::newFromDBkey( $this->importer->nodeAttribute( 'title' ) );
 
-		$this->boardWorkflow = Workflow::fromStorageRow( array(
+		$this->boardWorkflow = Workflow::fromStorageRow( [
 			'workflow_id' => $uuid->getAlphadecimal(),
 			'workflow_type' => 'discussion',
 			'workflow_wiki' => wfWikiID(),
@@ -119,7 +119,7 @@ class Importer {
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
 			'workflow_last_update_timestamp' => $uuid->getTimestamp( TS_MW ),
-		) );
+		] );
 
 		// create page if it does not yet exist
 		/** @var OccupationController $occupationController */
@@ -134,16 +134,16 @@ class Importer {
 			throw new MWException( $ensureStatus->getWikiText() );
 		}
 
-		$this->put( $this->boardWorkflow, array() );
+		$this->put( $this->boardWorkflow, [] );
 	}
 
 	public function handleHeader() {
 		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter description handler for ' . $id );
 
-		$metadata = array( 'workflow' => $this->boardWorkflow );
+		$metadata = [ 'workflow' => $this->boardWorkflow ];
 
-		$revisions = $this->getRevisions( array( 'Flow\\Model\\Header', 'fromStorageRow' ) );
+		$revisions = $this->getRevisions( [ 'Flow\\Model\\Header', 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}
@@ -151,7 +151,7 @@ class Importer {
 		/** @var Header $revision */
 		$revision = end( $revisions );
 		$this->boardWorkflow->updateLastUpdated( $revision->getRevisionId() );
-		$this->put( $this->boardWorkflow, array() );
+		$this->put( $this->boardWorkflow, [] );
 	}
 
 	public function handleTopic() {
@@ -161,7 +161,7 @@ class Importer {
 		$uuid = UUID::create( $id );
 		$title = $this->boardWorkflow->getArticleTitle();
 
-		$this->topicWorkflow = Workflow::fromStorageRow( array(
+		$this->topicWorkflow = Workflow::fromStorageRow( [
 			'workflow_id' => $uuid->getAlphadecimal(),
 			'workflow_type' => 'topic',
 			'workflow_wiki' => wfWikiID(),
@@ -169,14 +169,14 @@ class Importer {
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
 			'workflow_last_update_timestamp' => $uuid->getTimestamp( TS_MW ),
-		) );
+		] );
 		$topicListEntry = TopicListEntry::create( $this->boardWorkflow, $this->topicWorkflow );
 
-		$metadata = array(
+		$metadata = [
 			'board-workflow' => $this->boardWorkflow,
 			'workflow' => $this->topicWorkflow,
 			// @todo: topic-title & first-post? (used only in NotificationListener)
-		);
+		];
 
 		// create page if it does not yet exist
 		/** @var OccupationController $occupationController */
@@ -205,12 +205,12 @@ class Importer {
 		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter post handler for ' . $id );
 
-		$metadata = array(
+		$metadata = [
 			'workflow' => $this->topicWorkflow
 			// @todo: topic-title? (used only in NotificationListener)
-		);
+		];
 
-		$revisions = $this->getRevisions( array( 'Flow\\Model\\PostRevision', 'fromStorageRow' ) );
+		$revisions = $this->getRevisions( [ 'Flow\\Model\\PostRevision', 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}
@@ -225,9 +225,9 @@ class Importer {
 		$id = $this->mapId( $this->importer->nodeAttribute( 'id' ) );
 		$this->importer->debug( 'Enter summary handler for ' . $id );
 
-		$metadata = array( 'workflow' => $this->topicWorkflow );
+		$metadata = [ 'workflow' => $this->topicWorkflow ];
 
-		$revisions = $this->getRevisions( array( 'Flow\\Model\\PostSummary', 'fromStorageRow' ) );
+		$revisions = $this->getRevisions( [ 'Flow\\Model\\PostSummary', 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}
@@ -243,7 +243,7 @@ class Importer {
 	 * @return AbstractRevision[]
 	 */
 	protected function getRevisions( $callback ) {
-		$revisions = array();
+		$revisions = [];
 
 		// keep processing <revision> nodes until </revisions>
 		while ( $this->importer->getReader()->localName !== 'revisions' || $this->importer->getReader()->nodeType !== XMLReader::END_ELEMENT ) {
@@ -268,7 +268,7 @@ class Importer {
 		// the attributes
 		$empty = $this->importer->getReader()->isEmptyElement;
 
-		$attribs = array();
+		$attribs = [];
 
 		$this->importer->getReader()->moveToFirstAttribute();
 		do {

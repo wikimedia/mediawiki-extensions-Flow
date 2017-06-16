@@ -89,7 +89,7 @@ class UUID implements ApiSerializable {
 	 * @throws InvalidInputException
 	 */
 	protected function __construct( $value, $format ) {
-		if ( !in_array( $format, array( static::INPUT_BIN, static::INPUT_HEX, static::INPUT_ALNUM ) ) ) {
+		if ( !in_array( $format, [ static::INPUT_BIN, static::INPUT_HEX, static::INPUT_ALNUM ] ) ) {
 			throw new InvalidParameterException( 'Invalid UUID input format: ' . $format );
 		}
 
@@ -120,7 +120,7 @@ class UUID implements ApiSerializable {
 	public function __sleep() {
 		// ensure alphadecimal is populated
 		$this->getAlphadecimal();
-		return array( 'alphadecimalValue' );
+		return [ 'alphadecimalValue' ];
 	}
 
 	public function __wakeup() {

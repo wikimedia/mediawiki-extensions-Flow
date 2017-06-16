@@ -8,7 +8,7 @@ if ( $IP === false ) {
 require_once "$IP/maintenance/commandLine.inc";
 require_once "$IP/extensions/Flow/FlowActions.php";
 
-$moderationChangeTypes = array(
+$moderationChangeTypes = [
 	'hide-post',
 	'hide-topic',
 	'delete-post',
@@ -18,27 +18,27 @@ $moderationChangeTypes = array(
 	'lock-topic',
 	'restore-post',
 	'restore-topic',
-);
+];
 
-$plaintextChangeTypes = array(
+$plaintextChangeTypes = [
 	'edit-title',
 	'new-topic',
-);
+];
 
 $csvOutput = fopen( 'repair_results_' . wfWikiID() . '.csv', 'w' );
 if ( !$csvOutput ) {
 	die( "Could not open results file\n" );
 }
-fputcsv( $csvOutput, array( "uuid", "esurl", "flags" ) );
+fputcsv( $csvOutput, [ "uuid", "esurl", "flags" ] );
 
 $it = new BatchRowIterator(
 	Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE ),
 	'flow_revision',
-	array( 'rev_id' ),
+	[ 'rev_id' ],
 	10
 );
-$it->addConditions( array( 'rev_user_wiki' => wfWikiID() ) );
-$it->setFetchColumns( array( 'rev_content', 'rev_content_length', 'rev_change_type', 'rev_parent_id' ) );
+$it->addConditions( [ 'rev_user_wiki' => wfWikiID() ] );
+$it->setFetchColumns( [ 'rev_content', 'rev_content_length', 'rev_change_type', 'rev_parent_id' ] );
 
 $dbr = wfGetDB( DB_SLAVE );
 $totalMissingConsidered = 0;
@@ -78,8 +78,8 @@ foreach ( $it as $batch ) {
 		$last = end( $after );
 		echo "Considering core revisions from " . $first->rev_timestamp . " to " . $last->rev_timestamp . "\n";
 
-		$esIdsForCluster = array();
-		foreach ( array( $before, $after ) as $results ) {
+		$esIdsForCluster = [];
+		foreach ( [ $before, $after ] as $results ) {
 			foreach ( $results as $row ) {
 				$parts = explode( '/', $row->old_text );
 				if ( isset( $parts[4] ) ) {
@@ -94,7 +94,7 @@ foreach ( $it as $batch ) {
 		}
 
 		// find any gaps in ES within this area
-		$matches = $lengths = array();
+		$matches = $lengths = [];
 		$invalid = false;
 
 		$flags = 'utf-8,gzip,external';
@@ -156,7 +156,7 @@ foreach ( $it as $batch ) {
 							}
 						}
 						if ( $doAppend ) {
-							$matches[] = array( $url, $content, $flags );
+							$matches[] = [ $url, $content, $flags ];
 						}
 					} else {
 						$lengths[] = $len;
@@ -177,7 +177,7 @@ foreach ( $it as $batch ) {
 			list( $url, $content, $flags ) = reset( $matches );
 			echo "SINGLE DIRECT MATCH: $url : " . truncate( $content, 1024 ) . "\n";
 			++$totalCompleteMatch;
-			fputcsv( $csvOutput, array( $uuid->getAlphadecimal(), $url, $flags ) );
+			fputcsv( $csvOutput, [ $uuid->getAlphadecimal(), $url, $flags ] );
 		} else {
 			echo "MULTIPLE POTENTIAL MATCHES:\n";
 			++$totalMultipleMatches;
@@ -197,9 +197,9 @@ if ( $multipleMatches ) {
 		// Grab the first key/value pair from $multipleMatches as our
 		// first matching group
 		$current = reset( $multipleMatches );
-		$group = array(
+		$group = [
 			key( $multipleMatches ) => $current,
-		);
+		];
 		array_shift( $multipleMatches );
 		// Look for other revisions in $multipleMatches that matched at least
 		// one of the same pieces of ExternalStore data.
@@ -249,7 +249,7 @@ if ( $multipleMatches ) {
 			foreach ( array_keys( $group ) as $uuid ) {
 				$match = array_shift( $expectedMatches );
 				list( $url, $content, $flags ) = $match;
-				fputcsv( $csvOutput, array( $uuid, $url, $flags ) );
+				fputcsv( $csvOutput, [ $uuid, $url, $flags ] );
 				--$totalMultipleMatches;
 				++$totalResolvedMultipleMatches;
 			}
@@ -284,7 +284,7 @@ function query_revisions( $dbr, $op, $tsEscaped ) {
 }
 
 function parsoid_to_wikitext( $content, $retry = 3 ) {
-	static $cache = array();
+	static $cache = [];
 	$hash = md5( $content );
 	if ( isset( $cache[$hash] ) ) {
 		return $cache[$hash];

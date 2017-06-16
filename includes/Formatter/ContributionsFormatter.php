@@ -37,7 +37,7 @@ class ContributionsFormatter extends AbstractFormatter {
 
 		$separator = $this->changeSeparator();
 
-		$links = array();
+		$links = [];
 		$links[] = $this->getDiffAnchor( $data['links'], $ctx );
 		$links[] = $this->getHistAnchor( $data['links'], $ctx );
 
@@ -87,13 +87,13 @@ class ContributionsFormatter extends AbstractFormatter {
 		$anchor = $data['actions'][$key];
 		$message = ' ' . wfMessage( 'parentheses' )->rawParams( Html::rawElement(
 			'a',
-			array(
+			[
 				'href' => $anchor->getFullURL(),
 				'data-flow-interactive-handler' => 'moderationDialog',
 				'data-flow-template' => "flow_moderate_$type.partial",
 				'data-role' => $key,
 				'class' => 'flow-history-moderation-action flow-click-interactive',
-			),
+			],
 			$ctx->msg( $msg )->escaped()
 		) )->escaped();
 

@@ -58,7 +58,7 @@ abstract class AbstractUpdater {
 			$this->connection->setTimeout( $clientSideTimeout );
 		}
 
-		$documents = array();
+		$documents = [];
 		$count = 0;
 		foreach ( $this->iterator as $revision ) {
 			try {
@@ -73,7 +73,7 @@ abstract class AbstractUpdater {
 			// send documents in small batches
 			if ( count( $documents ) > $batchSize ) {
 				$this->sendDocuments( $documents, $shardTimeout );
-				$documents = array();
+				$documents = [];
 			}
 		}
 

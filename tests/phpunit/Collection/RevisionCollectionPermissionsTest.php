@@ -27,12 +27,12 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 *
 	 * @var array
 	 */
-	protected $moderation = array(
+	protected $moderation = [
 		'restore-post' => AbstractRevision::MODERATED_NONE,
 		'hide-post' => AbstractRevision::MODERATED_HIDDEN,
 		'delete-post' => AbstractRevision::MODERATED_DELETED,
 		'suppress-post' => AbstractRevision::MODERATED_SUPPRESSED,
-	);
+	];
 
 	/**
 	 * @var User
@@ -68,10 +68,10 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// block a user
 		$blockedUser = $this->blockedUser();
-		$this->block = new Block( array(
+		$this->block = new Block( [
 			'address' => $blockedUser->getName(),
 			'user' => $blockedUser->getID()
-		) );
+		] );
 		$this->block->insert();
 		// ensure that block made it into the database
 		wfGetDB( DB_MASTER )->commit( __METHOD__, 'flush' );
@@ -88,10 +88,10 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 * @return array
 	 */
 	public function permissionsProvider() {
-		return array(
+		return [
 			// irregardless of current status, if a user has no permissions for
 			// a specific revision, he can't see it
-			array( $this->confirmedUser(), 'view', array(
+			[ $this->confirmedUser(), 'view', [
 				// Key is the moderation action; value is the 'view' permission
 				// for that corresponding revision after all moderation is done.
 				// In this case, a post will be created with 3 revisions:
@@ -101,41 +101,41 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				// [1] should be visible (this + last rev not suppressed)
 				// [2] should not (was suppressed)
 				// [3] should be visible again (undid suppression)
-				array( 'new-post' => true ),
-				array( 'suppress-post' => false ),
-				array( 'restore-post' => true ),
-			) ),
-			array( $this->oversightUser(), 'view', array(
-				array( 'new-post' => true ),
-				array( 'suppress-post' => true ),
-				array( 'restore-post' => true ),
-			) ),
+				[ 'new-post' => true ],
+				[ 'suppress-post' => false ],
+				[ 'restore-post' => true ],
+			] ],
+			[ $this->oversightUser(), 'view', [
+				[ 'new-post' => true ],
+				[ 'suppress-post' => true ],
+				[ 'restore-post' => true ],
+			] ],
 
 			// last moderation status should always bubble down to previous revs
-			array( $this->confirmedUser(), 'view', array(
-				array( 'new-post' => false ),
-				array( 'suppress-post' => false ),
-				array( 'restore-post' => false ),
-				array( 'suppress-post' => false ),
-			) ),
-			array( $this->oversightUser(), 'view', array(
-				array( 'new-post' => true ),
-				array( 'suppress-post' => true ),
-				array( 'restore-post' => true ),
-				array( 'suppress-post' => true ),
-			) ),
+			[ $this->confirmedUser(), 'view', [
+				[ 'new-post' => false ],
+				[ 'suppress-post' => false ],
+				[ 'restore-post' => false ],
+				[ 'suppress-post' => false ],
+			] ],
+			[ $this->oversightUser(), 'view', [
+				[ 'new-post' => true ],
+				[ 'suppress-post' => true ],
+				[ 'restore-post' => true ],
+				[ 'suppress-post' => true ],
+			] ],
 
 			// bug 61715
-			array( $this->confirmedUser(), 'history', array(
-				array( 'new-post' => false ),
-				array( 'suppress-post' => false ),
-			) ),
-			array( $this->confirmedUser(), 'history', array(
-				array( 'new-post' => true ),
-				array( 'suppress-post' => false ),
-				array( 'restore-post' => false ),
-			) ),
-		);
+			[ $this->confirmedUser(), 'history', [
+				[ 'new-post' => false ],
+				[ 'suppress-post' => false ],
+			] ],
+			[ $this->confirmedUser(), 'history', [
+				[ 'new-post' => true ],
+				[ 'suppress-post' => false ],
+				[ 'restore-post' => false ],
+			] ],
+		];
 	}
 
 	/**
@@ -147,8 +147,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		// we'll have to process this in 2 steps: first do all of the actions,
 		// so we have a full tree of moderated revisions
 		$revision = null;
-		$revisions = array();
-		$debug = array();
+		$revisions = [];
+		$debug = [];
 		foreach ( $actions as $action ) {
 			$expect = current( $action );
 			$action = key( $action );
@@ -237,7 +237,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 * @param array $overrides
 	 * @return PostRevision
 	 */
-	public function generateRevision( $action, AbstractRevision $parent = null, array $overrides = array() ) {
+	public function generateRevision( $action, AbstractRevision $parent = null, array $overrides = [] ) {
 		$overrides['rev_change_type'] = $action;
 
 		if ( $parent ) {
@@ -248,25 +248,25 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		switch ( $action ) {
 			case 'restore-post':
-				$overrides += array(
+				$overrides += [
 					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_NONE
 					'rev_mod_user_id' => null,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => null,
 					'rev_mod_reason' => 'unit test',
-				);
+				];
 				break;
 
 			case 'hide-post':
 			case 'delete-post':
 			case 'suppress-post':
-				$overrides += array(
+				$overrides += [
 					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_(HIDDEN|DELETED|SUPPRESSED)
 					'rev_mod_user_id' => 1,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => wfTimestampNow(),
 					'rev_mod_reason' => 'unit test',
-				);
+				];
 				break;
 
 			default:

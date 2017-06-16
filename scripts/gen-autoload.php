@@ -16,7 +16,7 @@ class GenerateFlowAutoload extends Maintenance {
 	public function execute() {
 		$base = dirname( __DIR__ );
 		$generator = new AutoloadGenerator( $base );
-		foreach ( array( 'includes', 'tests/phpunit', 'vendor' ) as $dir ) {
+		foreach ( [ 'includes', 'tests/phpunit', 'vendor' ] as $dir ) {
 			$generator->readDir( $base . '/' . $dir );
 		}
 		foreach ( glob( $base . '/*.php' ) as $file ) {

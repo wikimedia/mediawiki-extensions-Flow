@@ -19,12 +19,12 @@ class UserNameBatchTest extends FlowTestCase {
 	}
 
 	public static function acceptsStringOrIntIdsProvider() {
-		return array(
-			array( 42, 42 ),
-			array( 42, '42' ),
-			array( '42', 42 ),
-			array( '42', '42' ),
-		);
+		return [
+			[ 42, 42 ],
+			[ 42, '42' ],
+			[ '42', 42 ],
+			[ '42', '42' ],
+		];
 	}
 
 	/**
@@ -40,7 +40,7 @@ class UserNameBatchTest extends FlowTestCase {
 		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
 		$query->expects( $this->once() )
 			->method( 'execute' )
-			->with( 'fakewiki', array( 12, 27, 18 ) );
+			->with( 'fakewiki', [ 12, 27, 18 ] );
 
 		$batch = new UserNameBatch( $query );
 		$batch->add( 'fakewiki', 12 );
@@ -53,7 +53,7 @@ class UserNameBatchTest extends FlowTestCase {
 		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
 		$query->expects( $this->once() )
 			->method( 'execute' )
-			->with( 'fakewiki', array( 42 ) );
+			->with( 'fakewiki', [ 42 ] );
 		$batch = new UserNameBatch( $query );
 
 		$this->assertEquals( false, $batch->get( 'fakewiki', 42 ) );
@@ -63,10 +63,10 @@ class UserNameBatchTest extends FlowTestCase {
 		$query = $this->getMock( 'Flow\Repository\UserName\\UserNameQuery' );
 		$query->expects( $this->once() )
 			->method( 'execute' )
-			->with( 'fakewiki', array( 610, 408 ) )
-			->will( $this->returnValue( array(
-				(object)array( 'user_id' => '408', 'user_name' => 'chuck' )
-			) ) );
+			->with( 'fakewiki', [ 610, 408 ] )
+			->will( $this->returnValue( [
+				(object)[ 'user_id' => '408', 'user_name' => 'chuck' ]
+			] ) );
 
 		$batch = new UserNameBatch( $query );
 		$batch->add( 'fakewiki', 610 );

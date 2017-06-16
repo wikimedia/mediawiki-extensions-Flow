@@ -13,13 +13,13 @@ class BaseTopicListFormatter {
 	 * @return array Associative array with the the result
 	 */
 	public function buildEmptyResult( Workflow $workflow ) {
-		return array(
+		return [
 			'type' => 'topiclist',
-			'roots' => array(),
-			'posts' => array(),
-			'revisions' => array(),
-			'links' => array( 'pagination' => array() ),
-		);
+			'roots' => [],
+			'posts' => [],
+			'revisions' => [],
+			'links' => [ 'pagination' => [] ],
+		];
 	}
 
 	/**
@@ -29,11 +29,11 @@ class BaseTopicListFormatter {
 	 * @return array link structure
 	 */
 	protected function buildPaginationLinks( Workflow $workflow, array $links ) {
-		$res = array();
+		$res = [];
 		$title = $workflow->getArticleTitle();
 		foreach ( $links as $key => $options ) {
 			// prefix all options with topiclist_
-			$realOptions = array();
+			$realOptions = [];
 			foreach ( $options as $k => $v ) {
 				$realOptions["topiclist_$k"] = $v;
 			}

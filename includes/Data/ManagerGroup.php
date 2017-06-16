@@ -24,7 +24,7 @@ class ManagerGroup {
 	/**
 	 * @var string[] List of container keys that have been used
 	 */
-	protected $used = array();
+	protected $used = [];
 
 	/**
 	 * @param Container $container
@@ -44,7 +44,7 @@ class ManagerGroup {
 		foreach ( array_keys( $this->used ) as $key ) {
 			$this->container[$key]->clear();
 		}
-		$this->used = array();
+		$this->used = [];
 	}
 
 	/**
@@ -87,7 +87,7 @@ class ManagerGroup {
 	 * @throws DataModelException
 	 */
 	protected function multiMethod( $method, $objects, array $metadata ) {
-		$itemsByClass = array();
+		$itemsByClass = [];
 
 		foreach ( $objects as $object ) {
 			$itemsByClass[ get_class( $object ) ][] = $object;
@@ -102,7 +102,7 @@ class ManagerGroup {
 	 * @param array $objects
 	 * @param array $metadata
 	 */
-	public function multiPut( array $objects, array $metadata = array() ) {
+	public function multiPut( array $objects, array $metadata = [] ) {
 		$this->multiMethod( 'multiPut', $objects, $metadata );
 	}
 
@@ -110,7 +110,7 @@ class ManagerGroup {
 	 * @param array $objects
 	 * @param array $metadata
 	 */
-	public function multiRemove( array $objects, array $metadata = array() ) {
+	public function multiRemove( array $objects, array $metadata = [] ) {
 		$this->multiMethod( 'multiRemove', $objects, $metadata );
 	}
 
@@ -124,7 +124,7 @@ class ManagerGroup {
 		$className = array_shift( $args );
 
 		return call_user_func_array(
-			array( $this->getStorage( $className ), $method ),
+			[ $this->getStorage( $className ), $method ],
 			$args
 		);
 	}

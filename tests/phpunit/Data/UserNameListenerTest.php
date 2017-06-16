@@ -15,17 +15,17 @@ use Flow\Tests\FlowTestCase;
 class UserNameListenerTest extends FlowTestCase {
 
 	public function onAfterLoadDataProvider() {
-		return array(
-			array( array( 'user_id' => '1', 'user_wiki' => 'frwiki' ), array( 'user_id' => 'user_wiki' ), 'frwiki', 'enwiki' ),
-			array( array( 'user_id' => '2' ), array( 'user_id' => null ), 'enwiki', 'enwiki' ),
-			array( array( 'user_id' => '3' ), array( 'user_id' => 'user_wiki' ), null ),
+		return [
+			[ [ 'user_id' => '1', 'user_wiki' => 'frwiki' ], [ 'user_id' => 'user_wiki' ], 'frwiki', 'enwiki' ],
+			[ [ 'user_id' => '2' ], [ 'user_id' => null ], 'enwiki', 'enwiki' ],
+			[ [ 'user_id' => '3' ], [ 'user_id' => 'user_wiki' ], null ],
 			// Use closure because wfWikiID() in testxxx() functions appends -unittest_ at the end
-			array( array( 'user_id' => '4' ), array( 'user_id' => null ),
+			[ [ 'user_id' => '4' ], [ 'user_id' => null ],
 				function() {
 					return wfWikiID();
 				}
-			),
-		);
+			],
+		];
 	}
 
 	/**

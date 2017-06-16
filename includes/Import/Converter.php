@@ -206,19 +206,19 @@ class Converter {
 	 */
 	protected function getPageMovedFrom( Title $title ) {
 		$row = $this->dbw->selectRow(
-			array( 'logging', 'page' ),
-			array( 'log_namespace', 'log_title', 'log_user' ),
-			array(
+			[ 'logging', 'page' ],
+			[ 'log_namespace', 'log_title', 'log_user' ],
+			[
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'log_page = page_id',
 				'log_type' => 'move',
-			),
+			],
 			__METHOD__,
-			array(
+			[
 				'LIMIT' => 1,
 				'ORDER BY' => 'log_timestamp DESC'
-			)
+			]
 		);
 
 		// The page has never been moved

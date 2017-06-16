@@ -39,7 +39,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @var array Map of data to be passed on as
 	 *  commit metadata for event handlers
 	 */
-	protected $extraCommitMetadata = array();
+	protected $extraCommitMetadata = [];
 
 	/**
 	 * @var PostRevision|null
@@ -49,19 +49,19 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary', 'undo-edit-topic-summary' );
+	protected $supportedPostActions = [ 'edit-topic-summary', 'undo-edit-topic-summary' ];
 
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary', 'undo-edit-topic-summary' );
+	protected $supportedGetActions = [ 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary', 'undo-edit-topic-summary' ];
 
-	protected $templates = array(
+	protected $templates = [
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
 		'undo-edit-topic-summary' => 'undo_edit',
-	);
+	];
 
 	/**
 	 * @param IContextSource $context
@@ -159,7 +159,7 @@ class TopicSummaryBlock extends AbstractBlock {
 						$this->topicSummary->getRevisionId()->getAlphadecimal(),
 						$this->context->getUser()->getName()
 					),
-					array( 'revision_id' => $this->topicSummary->getRevisionId()->getAlphadecimal() )
+					[ 'revision_id' => $this->topicSummary->getRevisionId()->getAlphadecimal() ]
 				);
 				return;
 			}
@@ -195,8 +195,8 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'rev_type_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $this->workflow->getId() ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 		if ( !$found ) {
 			throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
@@ -218,10 +218,10 @@ class TopicSummaryBlock extends AbstractBlock {
 		// is storing the same thing not only pointless, it can even be
 		// incorrect, since listeners will run & generate notifications etc)
 		if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
-			$this->storage->put( $this->nextRevision, $this->extraCommitMetadata + array(
+			$this->storage->put( $this->nextRevision, $this->extraCommitMetadata + [
 				'workflow' => $this->workflow,
 				'topic-title' => $this->findTopicTitle(),
-			) );
+			] );
 		}
 		// Reload the $this->formatterRow for renderApi() after save
 		$this->formatterRow = new FormatterRow();
@@ -231,9 +231,9 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->formatterRow->workflow = $this->workflow;
 		$this->topicSummary = $this->nextRevision;
 
-		return array(
+		return [
 			'summary-revision-id' => $this->nextRevision->getRevisionId(),
-		);
+		];
 	}
 
 	/**
@@ -261,7 +261,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidInputException
 	 */
 	public function renderApi( array $options ) {
-		$output = array( 'type' => $this->getName() );
+		$output = [ 'type' => $this->getName() ];
 
 		switch ( $this->action ) {
 			case 'view-topic-summary':
@@ -313,15 +313,15 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		if ( $this->wasSubmitted() ) {
-			$output += array(
+			$output += [
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
-			);
+			];
 		} else {
-			$output += array(
-				'submitted' => array(),
+			$output += [
+				'submitted' => [],
 				'errors' => $this->errors,
-			);
+			];
 		}
 
 		return $output;
@@ -341,10 +341,10 @@ class TopicSummaryBlock extends AbstractBlock {
 			!$this->permissions->isBoardAllowed( $boardWorkflow, 'view-topic-summary' )
 		) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-			return array();
+			return [];
 		}
 
-		$output = array();
+		$output = [];
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setContentFormat( $format );
 
@@ -357,20 +357,20 @@ class TopicSummaryBlock extends AbstractBlock {
 			$urlGenerator = Container::get( 'url_generator' );
 			$title = $this->workflow->getArticleTitle();
 			$workflowId = $this->workflow->getId();
-			$output['revision'] = array(
-				'actions' => array(
+			$output['revision'] = [
+				'actions' => [
 					'summarize' => $urlGenerator->editTopicSummaryAction(
 						$title,
 						$workflowId
 					)
-				),
-				'links' => array(
+				],
+				'links' => [
 					'topic' => $urlGenerator->topicLink(
 						$title,
 						$workflowId
 					)
-				)
-			);
+				]
+			];
 		}
 		return $output;
 	}
@@ -412,12 +412,12 @@ class TopicSummaryBlock extends AbstractBlock {
 			} else {
 				$key = 'flow-topic-html-title';
 			}
-			$out->setHtmlTitle( $out->msg( $key, array(
+			$out->setHtmlTitle( $out->msg( $key, [
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
 				Message::rawParam( $topic->getContent( 'topic-title-plaintext' ) ),
 				$title->getPrefixedText()
-			) ) );
+			] ) );
 		} else {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}

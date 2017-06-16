@@ -26,13 +26,13 @@ abstract class AbstractRevision {
 	 *
 	 * @var string[]
 	 */
-	static public $perms = array(
+	static public $perms = [
 		self::MODERATED_NONE,
 		self::MODERATED_HIDDEN,
 		self::MODERATED_DELETED,
 		self::MODERATED_SUPPRESSED,
 		self::MODERATED_LOCKED,
-	);
+	];
 
 	/**
 	 * List of moderation change types
@@ -57,7 +57,7 @@ abstract class AbstractRevision {
 	 *
 	 * @var string[]
 	 */
-	protected $flags = array();
+	protected $flags = [];
 
 	/**
 	 * Name of the action performed that generated this revision.
@@ -90,7 +90,7 @@ abstract class AbstractRevision {
 	/**
 	 * @var string[] Converted (wikitext|html) content, based off of $this->decompressedContent
 	 */
-	protected $convertedContent = array();
+	protected $convertedContent = [];
 
 	/**
 	 * html content has been allowed by the xss check.  When we find the next xss
@@ -185,10 +185,10 @@ abstract class AbstractRevision {
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) && $row['rev_mod_reason'] ? $row['rev_mod_reason'] : null;
 
 		// BC: 'suppress' used to be called 'censor' & 'lock' was 'close'
-		$bc = array(
+		$bc = [
 			'censor' => AbstractRevision::MODERATED_SUPPRESSED,
 			'close' => AbstractRevision::MODERATED_LOCKED,
-		);
+		];
 		$obj->moderationState = str_replace( array_keys( $bc ), array_values( $bc ), $obj->moderationState );
 
 		// isset required because there is a possible db migration, cached data will not have it
@@ -206,7 +206,7 @@ abstract class AbstractRevision {
 	 * @return string[]
 	 */
 	public static function toStorageRow( $obj ) {
-		return array(
+		return [
 			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->user->id,
 			'rev_user_ip' => $obj->user->ip,
@@ -234,7 +234,7 @@ abstract class AbstractRevision {
 
 			'rev_content_length' => $obj->contentLength,
 			'rev_previous_content_length' => $obj->previousContentLength,
-		);
+		];
 	}
 
 	/**
@@ -372,7 +372,7 @@ abstract class AbstractRevision {
 		$sourceFormat = $this->getContentFormat();
 		if ( $this->xssCheck === null && $sourceFormat === 'html' ) {
 			// returns true if no handler aborted the hook
-			$this->xssCheck = Hooks::run( 'FlowCheckHtmlContentXss', array( $raw ) );
+			$this->xssCheck = Hooks::run( 'FlowCheckHtmlContentXss', [ $raw ] );
 			if ( !$this->xssCheck ) {
 				wfDebugLog( 'Flow', __METHOD__ . ': XSS check prevented display of revision ' . $this->revId->getAlphadecimal() );
 				return '';
@@ -521,7 +521,7 @@ abstract class AbstractRevision {
 
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
-		$this->convertedContent = array( $format => $content );
+		$this->convertedContent = [ $format => $content ];
 
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
@@ -756,7 +756,7 @@ abstract class AbstractRevision {
 
 	public static function getModerationChangeTypes() {
 		if ( self::$moderationChangeTypes === null ) {
-			self::$moderationChangeTypes = array();
+			self::$moderationChangeTypes = [];
 			foreach ( self::$perms as $perm ) {
 				if ( $perm != '' ) {
 					self::$moderationChangeTypes[] = "{$perm}-topic";
@@ -819,12 +819,12 @@ abstract class AbstractRevision {
 		}
 		$namespace = $title->getNamespace();
 
-		$conditions = array(
+		$conditions = [
 			'rc_title' => $title->getDBkey(),
 			'rc_timestamp' => $timestamp,
 			'rc_namespace' => $namespace
-		);
-		$options = array( 'USE INDEX' => 'rc_timestamp' );
+		];
+		$options = [ 'USE INDEX' => 'rc_timestamp' ];
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$rows = $dbr->select( 'recentchanges', RecentChange::selectFields(), $conditions, __METHOD__, $options );

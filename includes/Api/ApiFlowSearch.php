@@ -63,10 +63,10 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		/** @var \Elastica\ResultSet|null $resultSet */
 		$resultSet = $status->getValue();
 		// $resultSet can be null, if nothing was found
-		$results = $resultSet === null ? array() : $resultSet->getResults();
+		$results = $resultSet === null ? [] : $resultSet->getResults();
 
 		// list of highlighted words
-		$highlights = array();
+		$highlights = [];
 		/** @var \Elastica\Result $result */
 		foreach ( $results as $result ) {
 			// there'll always be exactly 1 excerpt
@@ -86,7 +86,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		$ttf = $resultSet->getAggregation( 'ttf' );
 		$ttf = $ttf['value'];
 
-		$topicIds = array();
+		$topicIds = [];
 		foreach ( $results as $topic ) {
 			$topicIds[] = UUID::create( $topic->getId() );
 		}
@@ -126,7 +126,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 	 * @return int[]
 	 */
 	protected function getPageIds( $params ) {
-		$pageIds = array();
+		$pageIds = [];
 		// page is optional - if not provided, all pages will be searched
 		if ( $params['title'] || $params['pageid'] ) {
 			$page = $this->getTitleOrPageId( $params );
@@ -163,7 +163,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 	protected function getModerationState( $params ) {
 		$moderationState = $params['moderationState'];
 		if ( $moderationState !== null && count( $moderationState ) === 0 ) {
-			$moderationState = array( '' );
+			$moderationState = [ '' ];
 		}
 
 		return $moderationState;
@@ -174,49 +174,49 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 
 		$sorts = $this->searchEngine->getValidSorts();
 
-		return array(
-			'term' => array(
+		return [
+			'term' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => 'string',
-			),
+			],
 			'title' => null,
-			'pageid' => array(
+			'pageid' => [
 				ApiBase::PARAM_ISMULTI => false,
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'namespaces' => array(
+			],
+			'namespaces' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => MWNamespace::getValidNamespaces(),
-			),
-			'moderationState' => array(
+			],
+			'moderationState' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $this->getModerationStates( false ),
-			),
-			'sort' => array(
+			],
+			'sort' => [
 				ApiBase::PARAM_TYPE => $sorts,
 				ApiBase::PARAM_DFLT => reset( $sorts ),
-			),
-			'type' => array(
+			],
+			'type' => [
 				// false is allowed (means we'll search *all* types)
-				ApiBase::PARAM_TYPE => array_merge( Connection::getAllTypes(), array( false ) ),
+				ApiBase::PARAM_TYPE => array_merge( Connection::getAllTypes(), [ false ] ),
 				ApiBase::PARAM_DFLT => false,
-			),
-			'offset' => array(
+			],
+			'offset' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_DFLT => 0,
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
 				ApiBase::PARAM_MAX => $wgFlowDefaultLimit,
 				ApiBase::PARAM_MAX2 => $wgFlowDefaultLimit,
-			),
-		);
+			],
+		];
 	}
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		return array(
+		return [
 			'term' => 'Search term',
 			'title' => "Title of the boards to search in. Cannot be used together with {$p}pageid",
 			'pageid' => "ID of the boards to search in. Cannot be used together with {$p}title",
@@ -226,7 +226,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 			'type' => 'Desired type of results (' . implode( '|', Connection::getAllTypes() ) . ')',
 			'offset' => 'Offset value to start fetching results at',
 			'limit' => 'Amount of results to fetch',
-		);
+		];
 	}
 
 	public function getDescription() {
@@ -234,9 +234,9 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 	}
 
 	public function getExamples() {
-		return array(
+		return [
 			'api.php?action=flow&submodule=search&qterm=keyword&qtitle=Main_Page',
-		);
+		];
 	}
 
 	public function needsPage() {
@@ -246,7 +246,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 
 	protected function getBlockParams() {
 		// irrelevant for search API
-		return array();
+		return [];
 	}
 
 	protected function getAction() {

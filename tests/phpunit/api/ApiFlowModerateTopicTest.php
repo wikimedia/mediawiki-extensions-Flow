@@ -9,7 +9,7 @@ use Flow\Model\AbstractRevision;
  * @group medium
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
-	protected $tablesUsed = array(
+	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',
 		'flow_topic_list',
@@ -21,19 +21,19 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		'revision',
 		'text',
 		'logging',
-	);
+	];
 
 	public function testModerateTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
 			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
 			'mtreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );
@@ -43,12 +43,12 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 
 		// need to reset the container and set the current user here
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'action' => 'flow',
 			'submodule' => 'view-topic',
 			'vtformat' => 'html',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
@@ -67,11 +67,11 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$this->assertEquals( 'plaintext', $revision['moderateReason']['format'], $debug );
 
 		// make sure our moderated topic made it into Special:Log
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'query',
 			'list' => 'logevents',
 			'rawcontinue' => 1,
-		) );
+		] );
 		$debug = json_encode( $data );
 		$logEntry = $data[0]['query']['logevents'][0];
 		$logParams = isset( $logEntry['params'] ) ? $logEntry['params'] : $logEntry;
@@ -82,27 +82,27 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	public function testModerateLockedTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => AbstractRevision::MODERATED_LOCKED,
 			'cotreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
 			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
 			'mtreason' => '<>&{};'
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );

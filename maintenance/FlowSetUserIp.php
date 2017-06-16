@@ -43,17 +43,17 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 
 		// run updates only if we have the required source data
 		if ( $dbw->fieldExists( 'flow_workflow', 'workflow_user_text' ) ) {
-			$runUpdate( array( $this, 'updateWorkflow' ) );
+			$runUpdate( [ $this, 'updateWorkflow' ] );
 		}
 		if ( $dbw->fieldExists( 'flow_tree_revision', 'tree_orig_user_text' ) ) {
-			$runUpdate( array( $this, 'updateTreeRevision' ) );
+			$runUpdate( [ $this, 'updateTreeRevision' ] );
 		}
 		if (
 			$dbw->fieldExists( 'flow_revision', 'rev_user_text' ) &&
 			$dbw->fieldExists( 'flow_revision', 'rev_mod_user_text' ) &&
 			$dbw->fieldExists( 'flow_revision', 'rev_edit_user_text' )
 		) {
-			$runUpdate( array( $this, 'updateRevision' ) );
+			$runUpdate( [ $this, 'updateRevision' ] );
 		}
 
 		if ( $hasRun ) {
@@ -73,14 +73,14 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	public function updateWorkflow( DatabaseBase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_workflow',
-			/* select */array( 'workflow_id', 'workflow_user_text' ),
-			/* conds */array(
+			/* select */[ 'workflow_id', 'workflow_user_text' ],
+			/* conds */[
 				'workflow_id > ' . $dbw->addQuotes( $continue ),
 				'workflow_user_ip IS NULL',
 				'workflow_user_id = 0'
-			),
+			],
 			__METHOD__,
-			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'workflow_id' )
+			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'workflow_id' ]
 		);
 
 		$continue = null;
@@ -89,8 +89,8 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$continue = $row->workflow_id;
 			$dbw->update(
 				/* table */'flow_workflow',
-				/* update */array( 'workflow_user_ip' => $row->workflow_user_text ),
-				/* conditions */array( 'workflow_id' => $row->workflow_id ),
+				/* update */[ 'workflow_user_ip' => $row->workflow_user_text ],
+				/* conditions */[ 'workflow_id' => $row->workflow_id ],
 				__METHOD__
 			);
 
@@ -103,14 +103,14 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	public function updateTreeRevision( DatabaseBase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_tree_revision',
-			/* select */array( 'tree_rev_id', 'tree_orig_user_text' ),
-			array(
+			/* select */[ 'tree_rev_id', 'tree_orig_user_text' ],
+			[
 				'tree_rev_id > ' . $dbw->addQuotes( $continue ),
 				'tree_orig_user_ip IS NULL',
 				'tree_orig_user_id = 0',
-			),
+			],
 			__METHOD__,
-			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'tree_rev_id' )
+			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'tree_rev_id' ]
 		);
 
 		$continue = null;
@@ -118,8 +118,8 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$continue = $row->tree_rev_id;
 			$dbw->update(
 				/* table */'flow_tree_revision',
-				/* update */array( 'tree_orig_user_ip' => $row->tree_orig_user_text ),
-				/* conditions */array( 'tree_rev_id' => $row->tree_rev_id ),
+				/* update */[ 'tree_orig_user_ip' => $row->tree_orig_user_text ],
+				/* conditions */[ 'tree_rev_id' => $row->tree_rev_id ],
 				__METHOD__
 			);
 
@@ -132,26 +132,26 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	public function updateRevision( DatabaseBase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_revision',
-			/* select */array( 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ),
-			/* conditions */ array(
+			/* select */[ 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ],
+			/* conditions */ [
 				'rev_id > ' . $dbw->addQuotes( $continue ),
 				$dbw->makeList(
-					array(
+					[
 						'rev_user_id' => 0,
 						'rev_mod_user_id' => 0,
 						'rev_edit_user_id' => 0,
-					),
+					],
 					LIST_OR
 				),
-			),
+			],
 			__METHOD__,
-			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rev_id' )
+			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rev_id' ]
 		);
 
 		$continue = null;
 		foreach ( $rows as $row ) {
 			$continue = $row->rev_id;
-			$updates = array();
+			$updates = [];
 
 			if ( $row->rev_user_id == 0 ) {
 				$updates['rev_user_ip'] = $row->rev_user_text;
@@ -166,7 +166,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				$dbw->update(
 					/* table */ 'flow_revision',
 					/* update */ $updates,
-					/* conditions */ array( 'rev_id' => $row->rev_id ),
+					/* conditions */ [ 'rev_id' => $row->rev_id ],
 					__METHOD__
 				);
 			}

@@ -224,7 +224,7 @@ class FlowSearchConfig extends Maintenance {
 		$this->maintenanceTimeout = $wgFlowSearchMaintenanceTimeout;
 		$this->refreshInterval = $wgFlowSearchRefreshInterval;
 		$this->maxShardsPerNode = isset( $wgFlowSearchMaxShardsPerNode[$this->indexType] ) ? $wgFlowSearchMaxShardsPerNode[$this->indexType] : 'unlimited';
-		$this->cacheWarmers = isset( $wgFlowSearchCacheWarmers[$this->indexType] ) ? $wgFlowSearchCacheWarmers[$this->indexType] : array();
+		$this->cacheWarmers = isset( $wgFlowSearchCacheWarmers[$this->indexType] ) ? $wgFlowSearchCacheWarmers[$this->indexType] : [];
 
 		$this->indexIdentifier = $this->utils->pickIndexIdentifierFromOption( $this->getOption( 'indexIdentifier', 'current' ), $this->getIndexTypeName() );
 		$this->reindexAcceptableCountDeviation = Util::parsePotentialPercent( $this->getOption( 'reindexAcceptableCountDeviation', '5%' ) );
@@ -240,7 +240,7 @@ class FlowSearchConfig extends Maintenance {
 	 * @return Validator[]
 	 */
 	protected function getIndexSettingsValidators() {
-		$validators = array();
+		$validators = [];
 
 		$validators[] = new NumberOfShardsValidator( $this->getIndex(), $this->getShardCount(), $this );
 		$validators[] = new ReplicaRangeValidator( $this->getIndex(), $this->getReplicaCount(), $this );
@@ -254,7 +254,7 @@ class FlowSearchConfig extends Maintenance {
 	 * @return Validator[]
 	 */
 	protected function getValidators() {
-		$validators = array();
+		$validators = [];
 
 		if ( $this->getOption( 'justCacheWarmers', false ) ) {
 			$validators[] = new CacheWarmersValidator( $this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
@@ -275,7 +275,7 @@ class FlowSearchConfig extends Maintenance {
 		$validator->printDebugCheckConfig( $this->printDebugCheckConfig );
 		$validators[] = $validator;
 
-		$types = array( 'topic' => $this->getTopicType(), 'header' => $this->getHeaderType() );
+		$types = [ 'topic' => $this->getTopicType(), 'header' => $this->getHeaderType() ];
 		$validator = new MappingValidator( $this->getIndex(), $this->optimizeIndexForExperimentalHighlighter, $this->availablePlugins, $this->getMappingConfig(), $types, $this );
 		$validator->printDebugCheckConfig( $this->printDebugCheckConfig );
 		$validators[] = $validator;
@@ -283,10 +283,10 @@ class FlowSearchConfig extends Maintenance {
 		$validators[] = new CacheWarmersValidator( $this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
 		$validators[] = new CacheWarmersValidator( $this->indexType, $this->getHeaderType(), $this->cacheWarmers, $this );
 
-		$types = array( $this->getTopicType(), $this->getHeaderType() );
-		$oldTypes = array( $this->getOldTopicType(), $this->getOldHeaderType() );
+		$types = [ $this->getTopicType(), $this->getHeaderType() ];
+		$oldTypes = [ $this->getOldTopicType(), $this->getOldHeaderType() ];
 		$reindexer = new Reindexer( $this->getIndex(), Connection::getSingleton(), $types, $oldTypes, $this->getShardCount(), $this->getReplicaCount(), $this->maintenanceTimeout, $this->getMergeSettings(), $this->getMappingConfig(), $this );
-		$reindexParams = array( $this->reindexProcesses, $this->refreshInterval, $this->reindexRetryAttempts, $this->reindexChunkSize, $this->reindexAcceptableCountDeviation );
+		$reindexParams = [ $this->reindexProcesses, $this->refreshInterval, $this->reindexRetryAttempts, $this->reindexChunkSize, $this->reindexAcceptableCountDeviation ];
 		$reindexValidators = $this->getIndexSettingsValidators();
 		$validators[] = new SpecificAliasValidator( $this->getClient(), $this->getIndexTypeName(), $this->getSpecificIndexName(), $this->startOver, $reindexer, $reindexParams, $reindexValidators, $this->reindexAndRemoveOk, $this->tooFewReplicas, $this );
 
@@ -385,7 +385,7 @@ class FlowSearchConfig extends Maintenance {
 	 * @param array $availablePlugins
 	 * @return AnalysisConfigBuilder
 	 */
-	protected function pickAnalyzer( $langCode, array $availablePlugins = array() ) {
+	protected function pickAnalyzer( $langCode, array $availablePlugins = [] ) {
 		$analysisConfigBuilder = new AnalysisConfigBuilder( $langCode, $availablePlugins );
 		$this->outputIndented( 'Picking analyzer...' . $analysisConfigBuilder->getDefaultTextAnalyzerType() . "\n" );
 		return $analysisConfigBuilder;

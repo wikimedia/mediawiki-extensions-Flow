@@ -18,27 +18,27 @@ class TopKIndex extends FeatureIndex {
 	/**
 	 * @var array
 	 */
-	protected $options = array();
+	protected $options = [];
 
-	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = [] ) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidParameterException( 'TopKIndex must be sorted' );
 		}
 
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed );
 
-		$this->options = $options + array(
+		$this->options = $options + [
 			'limit' => 500,
 			'order' => 'DESC',
 			'create' => function() {
 				return false;
 			},
 			'shallow' => null,
-		);
+		];
 		$this->options['order'] = strtoupper( $this->options['order'] );
 
 		if ( !is_array( $this->options['sort'] ) ) {
-			$this->options['sort'] = array( $this->options['sort'] );
+			$this->options['sort'] = [ $this->options['sort'] ];
 		}
 		if ( $this->options['shallow'] ) {
 			// TODO: perhaps we shouldn't even get a shallow option, just receive a proper compactor in FeatureIndex::__construct
@@ -66,7 +66,7 @@ class TopKIndex extends FeatureIndex {
 		return $this->options['limit'];
 	}
 
-	protected function filterResults( array $results, array $options = array() ) {
+	protected function filterResults( array $results, array $options = [] ) {
 		foreach ( $results as $i => $result ) {
 			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
 			$results[$i] = array_slice( $result, $offset, $limit, true );
@@ -98,7 +98,7 @@ class TopKIndex extends FeatureIndex {
 
 		if ( $offsetValue === null ) {
 			$offset = $dir === 'fwd' ? 0 : count( $rows ) - $limit;
-			return array( $offset, $limit );
+			return [ $offset, $limit ];
 		}
 
 		$offset = $this->getOffsetFromOffsetValue( $rows, $offsetValue );
@@ -129,7 +129,7 @@ class TopKIndex extends FeatureIndex {
 			$startPos = 0;
 		}
 
-		return array( $startPos, $limit );
+		return [ $startPos, $limit ];
 	}
 
 	/**
@@ -238,9 +238,9 @@ class TopKIndex extends FeatureIndex {
 
 	// INTERNAL: in 5.4 it can be protected
 	public function queryOptions() {
-		$options = array( 'LIMIT' => $this->options['limit'] );
+		$options = [ 'LIMIT' => $this->options['limit'] ];
 
-		$orderBy = array();
+		$orderBy = [];
 		$order = $this->options['order'];
 		foreach ( $this->options['sort'] as $key ) {
 			$orderBy[] = "$key $order";

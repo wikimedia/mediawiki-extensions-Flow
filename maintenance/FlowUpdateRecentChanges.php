@@ -56,10 +56,10 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	public function refreshBatch( DatabaseBase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'recentchanges',
-			/* select */array( 'rc_id', 'rc_params' ),
-			/* conds */array( "rc_id > $continue", 'rc_source' => RecentChangesListener::SRC_FLOW ),
+			/* select */[ 'rc_id', 'rc_params' ],
+			/* conds */[ "rc_id > $continue", 'rc_source' => RecentChangesListener::SRC_FLOW ],
 			__METHOD__,
-			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rc_id' )
+			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rc_id' ]
 		);
 
 		$continue = null;
@@ -72,7 +72,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$params = unserialize( $row->rc_params );
 			MediaWiki\restoreWarnings();
 			if ( !$params ) {
-				$params = array();
+				$params = [];
 			}
 
 			// Don't fix entries that have been dealt with already
@@ -159,8 +159,8 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			// update log entry
 			$dbw->update(
 				'recentchanges',
-				array( 'rc_params' => serialize( $params ) ),
-				array( 'rc_id' => $row->rc_id )
+				[ 'rc_params' => serialize( $params ) ],
+				[ 'rc_id' => $row->rc_id ]
 			);
 
 			$this->completeCount++;

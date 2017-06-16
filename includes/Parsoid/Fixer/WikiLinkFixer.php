@@ -70,7 +70,7 @@ class WikiLinkFixer implements Fixer {
 		}
 
 		// gather existing link attributes
-		$attributes = array();
+		$attributes = [];
 		foreach ( $node->attributes as $attribute ) {
 			$attributes[$attribute->name] = $attribute->value;
 		}

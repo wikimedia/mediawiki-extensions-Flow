@@ -16,7 +16,7 @@ class ApiFlow extends ApiBase {
 	 */
 	private $moduleManager;
 
-	private static $alwaysEnabledModules = array(
+	private static $alwaysEnabledModules = [
 		// POST
 		'new-topic' => 'Flow\Api\ApiFlowNewTopic',
 		'edit-header' => 'Flow\Api\ApiFlowEditHeader',
@@ -42,11 +42,11 @@ class ApiFlow extends ApiBase {
 		'view-topic-history' => 'Flow\Api\ApiFlowViewTopicHistory',
 		'view-header' => 'Flow\Api\ApiFlowViewHeader',
 		'view-topic-summary' => 'Flow\Api\ApiFlowViewTopicSummary',
-	);
+	];
 
-	private static $searchModules = array(
+	private static $searchModules = [
 		'search' => 'Flow\Api\ApiFlowSearch',
-	);
+	];
 
 	public function __construct( $main, $action ) {
 		global $wgFlowSearchEnabled;
@@ -98,7 +98,7 @@ class ApiFlow extends ApiBase {
 			$module->setPage( $this->getPage( $params ) );
 		}
 		$module->execute();
-		Hooks::run( 'APIFlowAfterExecute', array( $module ) );
+		Hooks::run( 'APIFlowAfterExecute', [ $module ] );
 		$module->profileOut();
 	}
 
@@ -130,18 +130,18 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'submodule' => array(
+		return [
+			'submodule' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => 'submodule',
-			),
-			'page' => array(
+			],
+			'page' => [
 				ApiBase::PARAM_REQUIRED => true,
 				// supply bogus default - not every action may *need* ?page=
 				ApiBase::PARAM_DFLT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
-			),
+			],
 			'token' => '',
-		);
+		];
 	}
 
 	public function isWriteMode() {
@@ -153,19 +153,19 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return array(
+		return [
 			'https://www.mediawiki.org/wiki/Extension:Flow/API',
-		);
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you'
 				=> 'apihelp-flow-example-1',
-		);
+		];
 	}
 
 	public function mustBePosted() {

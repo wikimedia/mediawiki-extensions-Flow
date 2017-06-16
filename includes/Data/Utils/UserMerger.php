@@ -33,39 +33,39 @@ class UserMerger {
 	public function __construct( DbFactory $dbFactory, ManagerGroup $storage ) {
 		$this->dbFactory = $dbFactory;
 		$this->storage = $storage;
-		$this->config = array(
-			'flow_tree_revision' => array(
-				'pk' => array( 'tree_rev_id' ),
-				'userColumns' => array(
+		$this->config = [
+			'flow_tree_revision' => [
+				'pk' => [ 'tree_rev_id' ],
+				'userColumns' => [
 					'tree_orig_user_id' => 'getCreatorTuple',
-				),
-				'load' => array( $this, 'loadFromTreeRevision' ),
-			),
+				],
+				'load' => [ $this, 'loadFromTreeRevision' ],
+			],
 
-			'flow_revision' => array(
-				'pk' => array( 'rev_id' ),
-				'userColumns' => array(
+			'flow_revision' => [
+				'pk' => [ 'rev_id' ],
+				'userColumns' => [
 					'rev_user_id' => 'getUserTuple',
 					'rev_mod_user_id' => 'getModeratedByTuple',
 					'rev_edit_user_id' => 'getLastContentEditUserTuple',
-				),
-				'load' => array( $this, 'loadFromRevision' ),
-				'loadColumns' => array( 'rev_type' ),
-			),
-		);
+				],
+				'load' => [ $this, 'loadFromRevision' ],
+				'loadColumns' => [ 'rev_type' ],
+			],
+		];
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getAccountFields() {
-		$fields = array();
+		$fields = [];
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
 		foreach ( $this->config as $table => $config ) {
-			$row = array(
+			$row = [
 				'db' => $dbw,
 				$table,
-			);
+			];
 			foreach ( array_keys( $config['userColumns'] ) as $column ) {
 				$row[] = $column;
 			}
@@ -87,7 +87,7 @@ class UserMerger {
 			foreach ( $config['userColumns'] as $column => $userTupleGetter ) {
 				$it = new BatchRowIterator( $dbw, $table, $config['pk'], 500 );
 				// The database is migrated, so look for the new user id
-				$it->addConditions( array( $column => $newUserId ) );
+				$it->addConditions( [ $column => $newUserId ] );
 				if ( isset( $config['loadColumns'] ) ) {
 					$it->setFetchColumns( $config['loadColumns'] );
 				}
@@ -114,7 +114,7 @@ class UserMerger {
 				// the db with new user ids, or the cache with old user ids.
 				// We need to tweak this object to look like the old user ids and then
 				// purge caches so they get the old user id cache keys.
-				$tuple = call_user_func( array( $obj, $userTupleGetter ) );
+				$tuple = call_user_func( [ $obj, $userTupleGetter ] );
 				if ( !$tuple ) {
 					continue;
 				}
@@ -141,11 +141,11 @@ class UserMerger {
 	 * @return AbstractRevision|null
 	 */
 	protected function loadFromRevision( $row ) {
-		$revTypes = array(
+		$revTypes = [
 			'header' => 'Flow\Model\Header',
 			'post-summary' => 'Flow\Model\PostSummary',
 			'post' => 'Flow\Model\PostRevision',
-		);
+		];
 		if ( !isset( $revTypes[$row->rev_type] ) ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Unknown revision type ' . $row->rev_type . ' did not merge ' . UUID::create( $row->rev_id )->getAlphadecimal() );
 			return null;

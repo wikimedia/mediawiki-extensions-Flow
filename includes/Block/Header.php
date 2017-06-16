@@ -34,26 +34,26 @@ class HeaderBlock extends AbstractBlock {
 	 * @var array Map of data to be passed on as
 	 *  commit metadata for event handlers
 	 */
-	protected $extraCommitMetadata = array();
+	protected $extraCommitMetadata = [];
 
 	/**
 	 * @var string[]
 	 */
-	protected $supportedPostActions = array( 'edit-header', 'undo-edit-header' );
+	protected $supportedPostActions = [ 'edit-header', 'undo-edit-header' ];
 
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header', 'undo-edit-header' );
+	protected $supportedGetActions = [ 'view', 'compare-header-revisions', 'edit-header', 'view-header', 'undo-edit-header' ];
 
 	// @Todo - fill in the template names
-	protected $templates = array(
+	protected $templates = [
 		'view' => '',
 		'compare-header-revisions' => 'diff_view',
 		'edit-header' => 'edit',
 		'undo-edit-header' => 'undo_edit',
 		'view-header' => 'single_view',
-	);
+	];
 
 	/**
 	 * @var RevisionActionPermissions Allows or denies actions to be performed
@@ -71,8 +71,8 @@ class HeaderBlock extends AbstractBlock {
 		// Get the latest revision attached to this workflow
 		$found = $this->storage->find(
 			'Header',
-			array( 'rev_type_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $this->workflow->getId() ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		if ( $found ) {
@@ -115,7 +115,7 @@ class HeaderBlock extends AbstractBlock {
 					$this->header->getRevisionId()->getAlphadecimal(),
 					$this->context->getUser()->getName()
 				),
-				array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
+				[ 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ] // save current revision ID
 			);
 		}
 
@@ -178,16 +178,16 @@ class HeaderBlock extends AbstractBlock {
 				if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
 					$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 					$this->storage->put( $this->workflow, $metadata ); // 'discussion' workflow
-					$this->storage->put( $this->newRevision, $metadata + array(
+					$this->storage->put( $this->newRevision, $metadata + [
 						'workflow' => $this->workflow,
-					) );
+					] );
 				}
 
 				// Reload $this->header for renderApi() after save
 				$this->header = $this->newRevision;
-				return array(
+				return [
 					'header-revision-id' => $this->newRevision->getRevisionId(),
-				);
+				];
 
 			default:
 				throw new InvalidActionException( 'Unrecognized commit action', 'invalid-action' );
@@ -195,10 +195,10 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
-		$output = array(
+		$output = [
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
-		);
+		];
 
 		switch ( $this->action ) {
 			case 'view':
@@ -230,7 +230,7 @@ class HeaderBlock extends AbstractBlock {
 				break;
 		}
 
-		$output['submitted'] = $this->wasSubmitted() ? $this->submitted : array();
+		$output['submitted'] = $this->wasSubmitted() ? $this->submitted : [];
 		$output['errors'] = $this->errors;
 		return $output;
 	}
@@ -250,9 +250,9 @@ class HeaderBlock extends AbstractBlock {
 		/** @var RevisionDiffViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision.diff.view' );
 
-		return array(
+		return [
 			'revision' => $formatter->formatApi( $new, $old, $this->context )
-		);
+		];
 	}
 
 	// @Todo - duplicated logic in other single view block
@@ -265,12 +265,12 @@ class HeaderBlock extends AbstractBlock {
 
 		if ( !$this->permissions->isAllowed( $row->revision, 'view' ) ) {
 			$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-			return array();
+			return [];
 		}
 
-		return array(
+		return [
 			'revision' => $formatter->formatApi( $row, $this->context )
-		);
+		];
 	}
 
 	/**
@@ -278,14 +278,14 @@ class HeaderBlock extends AbstractBlock {
 	 * @return array
 	 */
 	protected function renderRevisionApi( $format ) {
-		$output = array();
+		$output = [];
 		if ( $this->header === null ) {
 			if (
 				!$this->permissions->isRevisionAllowed( null, 'view' ) ||
 				!$this->permissions->isBoardAllowed( $this->workflow, 'view' )
 			) {
 				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-				return array();
+				return [];
 			}
 
 			/** @var UrlGenerator $urlGenerator */
@@ -294,18 +294,18 @@ class HeaderBlock extends AbstractBlock {
 			$title = $this->workflow->getArticleTitle();
 			$user = $this->context->getUser();
 
-			$actions = array();
+			$actions = [];
 
 			if ( $this->workflow->userCan( 'edit', $user ) ) {
 				$actions['edit'] = $urlGenerator
 					->createHeaderAction( $this->workflow->getArticleTitle() );
 			}
 
-			$output['revision'] = array(
+			$output['revision'] = [
 				'actions' => $actions,
-				'links' => array(
-				),
-			);
+				'links' => [
+				],
+			];
 		} else {
 			$row = new FormatterRow;
 			$row->workflow = $this->workflow;
@@ -314,7 +314,7 @@ class HeaderBlock extends AbstractBlock {
 
 			if ( !$this->permissions->isAllowed( $row->revision, 'view' ) ) {
 				$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
-				return array();
+				return [];
 			}
 
 			$serializer = Container::get( 'formatter.revision' );

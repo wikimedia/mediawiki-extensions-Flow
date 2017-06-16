@@ -32,17 +32,17 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		ObjectMapper $mapper,
 		$prefix,
 		array $indexed,
-		array $options = array(),
+		array $options = [],
 		ObjectManager $om
 	) {
-		if ( $indexed !== array( 'topic_list_id' ) ) {
+		if ( $indexed !== [ 'topic_list_id' ] ) {
 			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
 		}
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 		$this->om = $om;
 	}
 
-	public function findMulti( array $queries, array $options = array() ) {
+	public function findMulti( array $queries, array $options = [] ) {
 		if ( count( $queries ) > 1 ) {
 			// why?
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
@@ -58,7 +58,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		return $this->storage->findMulti(
 			$queries,
 			$this->queryOptions()
-		) ?: array();
+		) ?: [];
 	}
 
 	/**
@@ -66,7 +66,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $row
 	 */
 	public function cachePurge( $object, array $row ) {
-		$row['topic_list_id'] = $this->findTopicListId( $object, $row, array() );
+		$row['topic_list_id'] = $this->findTopicListId( $object, $row, [] );
 		parent::cachePurge( $object, $row );
 	}
 
@@ -125,7 +125,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 			$topicId = $this->findTopicId( $object );
 		}
 
-		$found = $this->om->find( array( 'topic_id' => $topicId ) );
+		$found = $this->om->find( [ 'topic_id' => $topicId ] );
 		if ( !$found ) {
 			throw new DataModelException(
 				"No topic list contains topic " . $topicId->getAlphadecimal() .

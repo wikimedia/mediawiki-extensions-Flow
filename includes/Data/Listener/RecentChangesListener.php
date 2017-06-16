@@ -81,7 +81,7 @@ class RecentChangesListener extends AbstractListener {
 		}
 
 		$title = $this->getRcTitle( $workflow, $revision->getChangeType() );
-		$attribs = array(
+		$attribs = [
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
@@ -97,19 +97,19 @@ class RecentChangesListener extends AbstractListener {
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_log_type' => null,
-			'rc_params' => serialize( array(
-				'flow-workflow-change' => array(
+			'rc_params' => serialize( [
+				'flow-workflow-change' => [
 					'action' => $action,
 					'revision_type' => get_class( $revision ),
 					'revision' => $revisionId,
 					'workflow' => $workflow->getId()->getAlphadecimal(),
-				),
-			) ),
+				],
+			] ),
 			'rc_cur_id' => 0,
 			'rc_comment' => '',
 			'rc_timestamp' => $timestamp,
 			'rc_deleted' => 0,
-		);
+		];
 
 		$rc = $this->rcFactory->newFromRow( (object)$attribs );
 		$rc->save( /* $noudp = */ true );  // Insert into db
@@ -120,9 +120,9 @@ class RecentChangesListener extends AbstractListener {
 			$feeds[$name]['formatter'] = $this->ircFormatter;
 		}
 		// pre-load the irc formatter which will be triggered via hook
-		$this->ircFormatter->associate( $rc, array(
+		$this->ircFormatter->associate( $rc, [
 			'revision' => $revision
-		) + $metadata );
+		] + $metadata );
 		// run the feeds/irc/etc external notifications
 		$rc->notifyRCFeeds( $feeds );
 	}

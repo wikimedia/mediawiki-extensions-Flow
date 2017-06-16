@@ -11,7 +11,7 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	}
 
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return [ 'topic' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -19,27 +19,27 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'moderationState' => array(
+		return [
+			'moderationState' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => $this->getModerationStates(),
-			),
-			'reason' => array(
+			],
+			'reason' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'postId' => array(
+			],
+			'postId' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=moderate-post&page=Topic:S2tycnas4hcucw8w&mppostId=050f30e34c87beebcd54080027630f57&mpmoderationState=delete&mpreason=Ahhhh'
 				=> 'apihelp-flow+moderate-post-example-1',
-		);
+		];
 	}
 }

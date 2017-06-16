@@ -85,16 +85,16 @@ class TopicIterator extends AbstractIterator {
 	 */
 	protected function query() {
 		return $this->dbr->select(
-			array( 'flow_workflow' ),
+			[ 'flow_workflow' ],
 			// for root post (topic title), workflow_id is the same as its rev_type_id
-			array( 'workflow_id', 'workflow_last_update_timestamp' ),
-			array(
+			[ 'workflow_id', 'workflow_last_update_timestamp' ],
+			[
 				'workflow_type' => 'topic'
-			) + $this->conditions,
+			] + $this->conditions,
 			__METHOD__,
-			array(
+			[
 				'ORDER BY' => 'workflow_last_update_timestamp ASC',
-			)
+			]
 		);
 	}
 

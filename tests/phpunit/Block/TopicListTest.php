@@ -30,36 +30,36 @@ class TopicListTest extends \MediaWikiTestCase {
 		$block = new TopicListBlock( $workflow, Container::get( 'storage' ) );
 		$block->init( $ctx, 'view' );
 
-		$res = $block->renderApi( array(
-		) );
+		$res = $block->renderApi( [
+		] );
 		$this->assertEquals( 'newest', $res['sortby'], 'With no sortby defaults to newest' );
 
-		$res = $block->renderApi( array(
+		$res = $block->renderApi( [
 			'sortby' => 'foo',
-		) );
+		] );
 		$this->assertEquals( 'newest', $res['sortby'], 'With invalid sortby defaults to newest' );
 
-		$res = $block->renderApi( array(
+		$res = $block->renderApi( [
 			'sortby' => 'updated',
-		) );
+		] );
 		$this->assertEquals( 'updated', $res['sortby'], 'With sortby updated output changes to updated' );
-		$res = $block->renderApi( array(
-		) );
+		$res = $block->renderApi( [
+		] );
 		$this->assertEquals( 'newest', $res['sortby'], 'Sort still defaults to newest' );
 
-		$res = $block->renderApi( array(
+		$res = $block->renderApi( [
 			'sortby' => 'updated',
 			'savesortby' => '1',
-		) );
+		] );
 		$this->assertEquals( 'updated', $res['sortby'], 'Request saving sortby option' );
 
-		$res = $block->renderApi( array(
-		) );
+		$res = $block->renderApi( [
+		] );
 		$this->assertEquals( 'updated', $res['sortby'], 'Default sortby now changed to updated' );
 
-		$res = $block->renderApi( array(
+		$res = $block->renderApi( [
 			'sortby' => '',
-		) );
+		] );
 		$this->assertEquals( 'updated', $res['sortby'], 'Default sortby with blank sortby still uses user default' );
 	}
 }

@@ -15,8 +15,8 @@ use MWException;
  * TopKIndex that calculates the topic_root_id
  */
 class PostRevisionTopicHistoryIndex extends TopKIndex {
-	public function __construct( FlowObjectCache $cache, PostRevisionTopicHistoryStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = array() ) {
-		if ( $indexed !== array( 'topic_root_id' ) ) {
+	public function __construct( FlowObjectCache $cache, PostRevisionTopicHistoryStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = [] ) {
+		if ( $indexed !== [ 'topic_root_id' ] ) {
 			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );

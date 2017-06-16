@@ -60,10 +60,10 @@ class TopicListEntry {
 	 * @return array
 	 */
 	public static function toStorageRow( TopicListEntry $obj ) {
-		$row = array(
+		$row = [
 			'topic_list_id' => $obj->topicListId->getAlphadecimal(),
 			'topic_id' => $obj->topicId->getAlphadecimal(),
-		);
+		];
 		if ( $obj->topicWorkflowLastUpdated ) {
 			$row['workflow_last_update_timestamp'] = $obj->topicWorkflowLastUpdated;
 		}

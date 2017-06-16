@@ -10,10 +10,10 @@ use Flow\BlockFactory;
 class BlockFactoryTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {
-		return array(
-			array( 'discussion', array( 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ) ),
-			array( 'topic', array( 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ) ),
-		);
+		return [
+			[ 'discussion', [ 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ] ],
+			[ 'topic', [ 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ] ],
+		];
 	}
 
 	/**
@@ -26,7 +26,7 @@ class BlockFactoryTest extends FlowTestCase {
 		$blocks = $factory->createBlocks( $workflow );
 		$this->assertEquals( count( $blocks ), count( $expectedResults ) );
 
-		$results = array();
+		$results = [];
 		foreach ( $blocks as $obj ) {
 			$results[] = get_class( $obj );
 		}

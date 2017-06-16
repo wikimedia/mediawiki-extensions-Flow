@@ -23,7 +23,7 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 
 	public function __construct( Maintenance $maintenance ) {
 		$this->maintenance = $maintenance;
-		$this->logLevelPosition = array(
+		$this->logLevelPosition = [
 			LogLevel::EMERGENCY => 1,
 			LogLevel::ALERT => 2,
 			LogLevel::CRITICAL => 3,
@@ -32,7 +32,7 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 			LogLevel::NOTICE => 6,
 			LogLevel::INFO => 7,
 			LogLevel::DEBUG => 8
-		);
+		];
 	}
 
 	/**
@@ -49,7 +49,7 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function log( $level, $message, array $context = array() ) {
+	public function log( $level, $message, array $context = [] ) {
 		$position = $this->logLevelPosition[$level];
 		if ( $position > $this->maxLevel ) {
 			return;

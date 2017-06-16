@@ -14,7 +14,7 @@ class ApiFlowReply extends ApiFlowBasePost {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return [ 'topic' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -22,28 +22,28 @@ class ApiFlowReply extends ApiFlowBasePost {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'replyTo' => array(
+		return [
+			'replyTo' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'content' => array(
+			],
+			'content' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'format' => array(
+			],
+			'format' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_DFLT => 'wikitext',
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
-		) + parent::getAllowedParams();
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=reply&page=Topic:S2tycnas4hcucw8w&repreplyTo=050e554490c2b269143b080027630f57&repcontent=Nice%20to&20meet%20you&repformat=wikitext'
 				=> 'apihelp-flow+reply-example-1',
-		);
+		];
 	}
 }

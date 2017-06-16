@@ -33,18 +33,18 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 
 		$commitMetadata = $loader->commit( $blocksToCommit );
-		$savedBlocks = array();
+		$savedBlocks = [];
 		$result->setIndexedTagName( $savedBlocks, 'block' );
 
 		foreach ( $blocksToCommit as $block ) {
 			$savedBlocks[] = $block->getName();
 		}
 
-		$output = array( $action => array(
+		$output = [ $action => [
 			'status' => 'ok',
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'committed' => $commitMetadata,
-		) );
+		] ];
 
 		// required until php5.4 which has the JsonSerializable interface
 		array_walk_recursive( $output, function( &$value ) {

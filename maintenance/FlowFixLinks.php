@@ -37,7 +37,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		// disable Echo notifications for this script
 		global $wgEchoNotifications;
 
-		$wgEchoNotifications = array();
+		$wgEchoNotifications = [];
 
 		$this->removeVirtualPages();
 		$this->rebuildCoreTables();
@@ -50,12 +50,12 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	protected function removeVirtualPages() {
 		/** @var \Flow\Data\ObjectManager $storage */
 		$storage = Container::get( 'storage.wiki_reference' );
-		$links = $storage->find( array(
+		$links = $storage->find( [
 			'ref_src_wiki' => wfWikiID(),
-			'ref_target_namespace' => array( -1, -2 ),
-		) );
+			'ref_target_namespace' => [ -1, -2 ],
+		] );
 		if ( $links ) {
-			$storage->multiRemove( $links, array() );
+			$storage->multiRemove( $links, [] );
 		}
 
 		$this->output( "Removed " . count( $links ) . " links to special pages.\n" );
@@ -68,8 +68,8 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->mBatchSize );
-		$iterator->setFetchColumns( array( '*' ) );
-		$iterator->addConditions( array( 'workflow_wiki' => wfWikiID() ) );
+		$iterator->setFetchColumns( [ '*' ] );
+		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 
 		$count = 0;
 		foreach ( $iterator as $rows ) {
@@ -80,13 +80,13 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 				$id = $workflow->getArticleTitle()->getArticleID();
 
 				// delete existing links from DB
-				$dbw->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-				$dbw->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-				$dbw->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-				$dbw->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-				$dbw->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-				$dbw->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-				$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
+				$dbw->delete( 'pagelinks', [ 'pl_from' => $id ], __METHOD__ );
+				$dbw->delete( 'imagelinks', [ 'il_from' => $id ], __METHOD__ );
+				$dbw->delete( 'categorylinks', [ 'cl_from' => $id ], __METHOD__ );
+				$dbw->delete( 'templatelinks', [ 'tl_from' => $id ], __METHOD__ );
+				$dbw->delete( 'externallinks', [ 'el_from' => $id ], __METHOD__ );
+				$dbw->delete( 'langlinks', [ 'll_from' => $id ], __METHOD__ );
+				$dbw->delete( 'iwlinks', [ 'iwl_from' => $id ], __METHOD__ );
 
 				// regenerate & store those links
 				$linksTableUpdater->doUpdate( $workflow );

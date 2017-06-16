@@ -147,19 +147,19 @@ class HistoricalUIDGenerator extends UIDGenerator {
 			$counter = mt_rand( 0, $COUNTER_MAX );
 		}
 
-		$time = array(
+		$time = [
 			// seconds
 			wfTimestamp( TS_UNIX, $timestamp ),
 			// milliseconds
 			mt_rand( 0, 999 )
-		);
+		];
 
 		// The UIDGenerator is implemented very specifically to have
 		// a single instance, we have to reuse that instance.
 		$gen = self::singleton();
 		self::rotateNodeId( $gen );
 		$binaryUUID = $gen->getTimestampedID88(
-			array( $time, ++$counter % ( $COUNTER_MAX + 1 ) )
+			[ $time, ++$counter % ( $COUNTER_MAX + 1 ) ]
 		);
 
 		return \Wikimedia\base_convert( $binaryUUID, 2, $base );
@@ -315,8 +315,8 @@ class PageImportState {
 	public function getTopRevision( $type, UUID $id ) {
 		$result = $this->storage->find(
 			$type,
-			array( 'rev_type_id' => $id ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $id ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		if ( count( $result ) ) {
@@ -474,11 +474,11 @@ class TopicImportState {
 	}
 
 	public function getMetadata() {
-		return array(
+		return [
 			'workflow' => $this->topicWorkflow,
 			'board-workflow' => $this->parent->boardWorkflow,
 			'topic-title' => $this->topicTitle,
-		);
+		];
 	}
 
 	/**
@@ -574,7 +574,7 @@ class TalkpageImportOperation {
 				$pageId = $revision->getTitle()->getArticleId( Title::GAID_FOR_UPDATE );
 				$state->logger->debug( "ensureFlowRevision revision ID: $revisionId, page ID: $pageId" );
 
-				$state->put( $state->boardWorkflow, array() );
+				$state->put( $state->boardWorkflow, [] );
 			} else {
 				throw new ImportException( "ensureFlowRevision failed to create the Flow board" );
 			}
@@ -674,9 +674,9 @@ class TalkpageImportOperation {
 			$pageState->boardWorkflow->getArticleTitle()
 		);
 
-		$pageState->put( $revisions, array(
+		$pageState->put( $revisions, [
 			'workflow' => $pageState->boardWorkflow,
-		) );
+		] );
 		$pageState->recordAssociation(
 			reset( $revisions )->getCollectionId(),
 			$importHeader
@@ -830,9 +830,9 @@ class TalkpageImportOperation {
 			$state->topicWorkflow->getArticleTitle()
 		);
 
-		$metadata = array(
+		$metadata = [
 			'workflow' => $state->topicWorkflow,
-		);
+		];
 		$state->parent->put( $revisions, $metadata );
 		$state->parent->recordAssociation(
 			reset( $revisions )->getCollectionId(), // Summary ID
@@ -882,12 +882,12 @@ class TalkpageImportOperation {
 
 			$topRevision = end( $replyRevisions );
 
-			$metadata = array(
+			$metadata = [
 				'workflow' => $state->topicWorkflow,
 				'board-workflow' => $state->parent->boardWorkflow,
 				'topic-title' => $state->topicTitle,
 				'reply-to' => $replyTo,
-			);
+			];
 
 			$state->parent->put( $replyRevisions, $metadata );
 			$state->parent->recordAssociation(
@@ -923,7 +923,7 @@ class TalkpageImportOperation {
 		PageImportState $state,
 		Title $title
 	) {
-		$insertObjects = array();
+		$insertObjects = [];
 		$revisions = $object->getRevisions();
 		$revisions->rewind();
 

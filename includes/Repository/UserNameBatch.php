@@ -24,19 +24,19 @@ class UserNameBatch {
 	/**
 	 * @var array[] map from wikiid to list of userid's to request
 	 */
-	protected $queued = array();
+	protected $queued = [];
 
 	/**
 	 * @var array Map from wiki id to MapCacheLRU.  MapCacheLRU is a map of user ID (as
 	 *  string, though to PHP it's the same anyway...) to username.
 	 */
-	protected $usernames = array();
+	protected $usernames = [];
 
 	/**
 	 * @param UserName\UserNameQuery $query
 	 * @param array $queued map from wikiid to list of userid's to request
 	 */
-	public function __construct( UserName\UserNameQuery $query, array $queued = array() ) {
+	public function __construct( UserName\UserNameQuery $query, array $queued = [] ) {
 		$this->query = $query;
 		foreach ( $queued as $wiki => $userIds ) {
 			$this->queued[$wiki] = array_map( 'intval', $userIds );
@@ -55,8 +55,8 @@ class UserNameBatch {
 	}
 
 	public function clear() {
-		$this->queued = array();
-		$this->usernames = array();
+		$this->queued = [];
+		$this->usernames = [];
 	}
 
 	/**
@@ -133,7 +133,7 @@ class UserNameBatch {
 		$res = $this->query->execute( $wiki, $queued );
 		unset( $this->queued[$wiki] );
 		if ( $res ) {
-			$usernames = array();
+			$usernames = [];
 			foreach ( $res as $row ) {
 				$id = (int)$row->user_id;
 				$usernames[$id] = $row->user_name;

@@ -172,7 +172,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 			$originalRevisions = parent::getRevisions();
 			$iterator = new AppendIterator();
 			$iterator->append( $originalRevisions );
-			$iterator->append( new ArrayIterator( array( $signatureRevision ) ) );
+			$iterator->append( new ArrayIterator( [ $signatureRevision ] ) );
 			return $iterator;
 		} else {
 			return parent::getRevisions();
@@ -192,10 +192,10 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 		$newWikitext = $wikitextForLastRevision;
 
 		$templateName = wfMessage( 'flow-importer-lqt-different-author-signature-template' )->inContentLanguage()->plain();
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			"authorUser=$authorUsername",
 			"signatureUser=$signatureUsername",
-		) );
+		] );
 
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
 		$clarificationRevision = new ScriptedImportRevision(
@@ -229,12 +229,12 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 
 	public function getRevisions() {
 		// we only have access to a single revision of the topic
-		return new ArrayIterator( array( $this ) );
+		return new ArrayIterator( [ $this ] );
 	}
 
 	public function getReplies() {
 		$topPost = new ImportPost( $this->importSource, $this->apiResponse );
-		return new ArrayIterator( array( $topPost ) );
+		return new ArrayIterator( [ $topPost ] );
 	}
 
 	public function getTimestamp() {
@@ -278,11 +278,11 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	}
 
 	public function getLogParameters() {
-		return array(
+		return [
 			'lqt_thread_id' => $this->apiResponse['id'],
 			'lqt_orig_title' => $this->getTitle()->getPrefixedText(),
 			'lqt_subject' => $this->getText(),
-		);
+		];
 	}
 
 	public function getLqtThreadId() {
@@ -373,7 +373,7 @@ class ImportRevision implements IObjectRevision {
 class MovedImportTopic extends ImportTopic {
 	public function getReplies() {
 		$topPost = new MovedImportPost( $this->importSource, $this->apiResponse );
-		return new ArrayIterator( array( $topPost ) );
+		return new ArrayIterator( [ $topPost ] );
 	}
 }
 
@@ -407,11 +407,11 @@ class MovedImportRevision extends ImportRevision {
 		// To get the new talk page that this belongs to we would need to query the api
 		// for the new topic, for now not bothering.
 		$template = wfMessage( 'flow-importer-lqt-moved-thread-template' )->inContentLanguage()->plain();
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			'author=' . parent::getAuthor(),
 			'date=' . MWTimestamp::getInstance( $this->apiResponse['timestamp'] )->timestamp->format( 'Y-m-d' ),
 			'title=' . $target->getPrefixedText(),
-		) );
+		] );
 
 		return "{{{$template}|$arguments}}";
 	}
@@ -493,11 +493,11 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		if ( $this->pageData === null ) {
 			// Previous revisions of the header are preserved in the underlying wikitext
 			// page history. Only the top revision is imported.
-			$response = $this->api->retrieveTopRevisionByTitle( array( $this->title ) );
+			$response = $this->api->retrieveTopRevisionByTitle( [ $this->title ] );
 			$this->pageData = reset( $response );
 		}
 
-		$revisions = array();
+		$revisions = [];
 
 		if ( isset( $this->pageData['revisions'] ) && count( $this->pageData['revisions'] ) > 0 ) {
 			$lastLqtRevision = new ImportRevision(
@@ -509,7 +509,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 			$titleObject = Title::newFromText( $this->title );
 			$cleanupRevision = $this->createHeaderCleanupRevision( $lastLqtRevision, $titleObject );
 
-			$revisions = array( $lastLqtRevision, $cleanupRevision );
+			$revisions = [ $lastLqtRevision, $cleanupRevision ];
 		}
 
 		return new ArrayIterator( $revisions );
@@ -527,10 +527,10 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		// matter.
 		$newWikitext = ConversionStrategy::removeLqtMagicWord( $wikitextForLastRevision );
 		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			'archive=' . $archiveTitle->getPrefixedText(),
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
-		) );
+		] );
 
 		$newWikitext .= "\n\n{{{$templateName}|$arguments}}";
 

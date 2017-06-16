@@ -67,14 +67,14 @@ class RevisionDiffViewFormatter {
 			)->getLocalURL();
 		}
 
-		return array(
+		return [
 			'new' => $newRes,
 			'old' => $oldRes,
 			'diff_content' => $differenceEngine->getDiffBody(),
-			'links' => array(
+			'links' => [
 				'previous' => $prevLink,
 				'next' => $nextLink,
-			),
-		);
+			],
+		];
 	}
 }

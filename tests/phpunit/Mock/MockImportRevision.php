@@ -14,12 +14,12 @@ class MockImportRevision implements IObjectRevision {
 	/**
 	 * @param array $attribs
 	 */
-	public function __construct( array $attribs = array() ) {
-		$this->attribs = $attribs + array(
+	public function __construct( array $attribs = [] ) {
+		$this->attribs = $attribs + [
 			'text' => 'dvorak',
 			'timestamp' => time(),
 			'author' => User::newFromName( '127.0.0.1', false ),
-		);
+		];
 	}
 
 	/**

@@ -41,15 +41,15 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$rootPostLoader = Container::get( 'loader.root_post' );
 
 		$iterator = new BatchRowIterator( $dbFactory->getDB( DB_SLAVE ), 'flow_workflow', 'workflow_id', $this->mBatchSize );
-		$iterator->setFetchColumns( array( 'workflow_id', 'workflow_type', 'workflow_last_update_timestamp' ) );
-		$iterator->addConditions( array( 'workflow_wiki' => wfWikiID() ) );
+		$iterator->setFetchColumns( [ 'workflow_id', 'workflow_type', 'workflow_last_update_timestamp' ] );
+		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 
 		$updater = new BatchRowUpdate(
 			$iterator,
 			new UpdateWorkflowLastUpdateTimestampWriter( $storage, $wgFlowCluster ),
 			new UpdateWorkflowLastUpdateTimestampGenerator( $storage, $rootPostLoader )
 		);
-		$updater->setOutput( array( $this, 'output' ) );
+		$updater->setOutput( [ $this, 'output' ] );
 		$updater->execute();
 	}
 
@@ -112,16 +112,16 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 		}
 
 		if ( !$revision ) {
-			return array();
+			return [];
 		}
 
 		$timestamp = $this->getUpdateTimestamp( $revision )->getTimestamp( TS_MW );
 		if ( $timestamp === $row->workflow_last_update_timestamp ) {
 			// correct update timestamp already, nothing to update
-			return array();
+			return [];
 		}
 
-		return array( 'workflow_last_update_timestamp' => $timestamp );
+		return [ 'workflow_last_update_timestamp' => $timestamp ];
 	}
 
 	/**
@@ -192,7 +192,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 		);
 
 		/** @var UUID[] $uuids */
-		$uuids = array_map( array( 'Flow\\Model\\UUID', 'create' ), array_keys( $timestamps ) );
+		$uuids = array_map( [ 'Flow\\Model\\UUID', 'create' ], array_keys( $timestamps ) );
 
 		/** @var Workflow[] $workflows */
 		$workflows = $this->storage->getMulti( 'Workflow', $uuids );

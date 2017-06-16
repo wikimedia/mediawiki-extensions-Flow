@@ -81,23 +81,23 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$date = $now->format( 'Y-m-d' );
 
-		return array(
-			array(
+		return [
+			[
 				'Blank input page',
 				// expect
 				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n{{#useliquidthreads:0}}\n\n",
 				// input content
 				'',
-			),
-			array(
+			],
+			[
 				'Page containing lqt magic word',
 				// expect
 				"{{Archive for converted LQT page|from=Talk:Blue birds|date=$date}}\n\n{{#useliquidthreads:0}}\n\n",
 				// input content
 				'{{#useliquidthreads:1}}',
-			),
+			],
 
-			array(
+			[
 				'Page containing some stuff and the lqt magic word',
 				// expect
 				<<<EOD
@@ -120,8 +120,8 @@ dedicated to the proposition that all men are created equal.
 	1
 }}
 EOD
-			),
-		);
+			],
+		];
 	}
 
 	/**

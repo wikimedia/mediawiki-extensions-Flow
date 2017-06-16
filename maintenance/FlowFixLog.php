@@ -37,21 +37,21 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$iterator = new BatchRowIterator( wfGetDB( DB_SLAVE ), 'logging', 'log_id', $this->mBatchSize );
-		$iterator->setFetchColumns( array( 'log_id', 'log_params' ) );
-		$iterator->addConditions( array(
-			'log_type' => array( 'delete', 'suppress' ),
-			'log_action' => array(
+		$iterator->setFetchColumns( [ 'log_id', 'log_params' ] );
+		$iterator->addConditions( [
+			'log_type' => [ 'delete', 'suppress' ],
+			'log_action' => [
 				'flow-delete-post', 'flow-suppress-post', 'flow-restore-post',
 				'flow-delete-topic', 'flow-suppress-topic', 'flow-restore-topic',
-			),
-		) );
+			],
+		] );
 
 		$updater = new BatchRowUpdate(
 			$iterator,
 			new BatchRowWriter( wfGetDB( DB_MASTER ), 'logging' ),
 			new LogRowUpdateGenerator( $this )
 		);
-		$updater->setOutput( array( $this, 'output' ) );
+		$updater->setOutput( [ $this, 'output' ] );
 		$updater->execute();
 
 		return true;
@@ -95,12 +95,12 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 	}
 
 	public function update( $row ) {
-		$updates = array();
+		$updates = [];
 
 		$params = unserialize( $row->log_params );
 		if ( !$params ) {
 			$this->maintenance->error( "Failed to unserialize log_params for log_id {$row->log_id}" );
-			return array();
+			return [];
 		}
 
 		$topic = false;
@@ -115,7 +115,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 
 		if ( !$topic ) {
 			$this->maintenance->error( "Missing topicId & postId for log_id {$row->log_id}" );
-			return array();
+			return [];
 		}
 
 		try {
@@ -124,7 +124,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 			$updates['log_title'] = $topic->getTitle()->getDBkey();
 		} catch ( \Exception $e ) {
 			$this->maintenance->error( "Couldn't load Title for log_id {$row->log_id}" );
-			$updates = array();
+			$updates = [];
 		}
 
 		if ( isset( $params['postId'] ) && $post ) {
@@ -179,8 +179,8 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 			$storage = Container::get( 'storage' );
 			$result = $storage->find(
 				'PostRevision',
-				array( 'rev_id' => $postId ),
-				array( 'LIMIT' => 1 )
+				[ 'rev_id' => $postId ],
+				[ 'LIMIT' => 1 ]
 			);
 
 			if ( $result ) {

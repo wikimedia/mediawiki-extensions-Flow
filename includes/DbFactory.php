@@ -50,7 +50,7 @@ class DbFactory {
 	 * @return \Database
 	 */
 	public function getDB( $db ) {
-		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, array(), $this->wiki );
+		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, [], $this->wiki );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class DbFactory {
 	 * @return \DatabaseBase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
-		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, array(), $wiki );
+		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, [], $wiki );
 	}
 
 	/**

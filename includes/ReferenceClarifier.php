@@ -16,12 +16,12 @@ class ReferenceClarifier {
 	function __construct( ManagerGroup $storage, UrlGenerator $urlGenerator ) {
 		$this->storage = $storage;
 		$this->urlGenerator = $urlGenerator;
-		$this->referenceCache = array();
+		$this->referenceCache = [];
 	}
 
 	public function getWhatLinksHereProps( $row, Title $from, Title $to ) {
-		$ids = array();
-		$props = array();
+		$ids = [];
+		$props = [];
 		$references = $this->getWikiReferences( $from, $to );
 
 		// Collect referenced workflow ids and load them so we can generate
@@ -76,7 +76,7 @@ class ReferenceClarifier {
 
 		return isset( $this->referenceCache[$fromT][$toT] )
 			? $this->referenceCache[$fromT][$toT]
-			: array();
+			: [];
 	}
 
 	/**
@@ -100,17 +100,17 @@ class ReferenceClarifier {
 
 	protected function loadReferencesForPage( Title $from ) {
 		/** @var Reference[] $allReferences */
-		$allReferences = array();
+		$allReferences = [];
 
-		foreach ( array( 'WikiReference', 'URLReference' ) as $refType ) {
+		foreach ( [ 'WikiReference', 'URLReference' ] as $refType ) {
 			// find() returns null for error or empty result
 			$res = $this->storage->find(
 				$refType,
-				array(
+				[
 					'ref_src_wiki' => wfWikiID(),
 					'ref_src_namespace' => $from->getNamespace(),
 					'ref_src_title' => $from->getDBkey(),
-				)
+				]
 			);
 
 			if ( $res ) {
@@ -128,10 +128,10 @@ class ReferenceClarifier {
 			}
 		}
 
-		$cache = array();
+		$cache = [];
 		foreach ( $allReferences as $reference ) {
 			if ( !isset( $cache[$reference->getTargetIdentifier()] ) ) {
-				$cache[$reference->getTargetIdentifier()] = array();
+				$cache[$reference->getTargetIdentifier()] = [];
 			}
 
 			$cache[$reference->getTargetIdentifier()][] = $reference;

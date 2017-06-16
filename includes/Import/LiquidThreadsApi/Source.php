@@ -191,7 +191,7 @@ class ImportSource implements IImportSource {
 	 */
 	public function getObjectKey( /* $args */ ) {
 		$components = array_merge(
-			array( 'lqt-api', $this->getApiKey() ),
+			[ 'lqt-api', $this->getApiKey() ],
 			func_get_args()
 		);
 
@@ -225,14 +225,14 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 *  a bad request or lqt threw an exception trying to respond to a valid request.
 	 */
 	public function retrieveThreadData( array $conditions ) {
-		$params = array(
+		$params = [
 			'action' => 'query',
 			'list' => 'threads',
 			'thprop' => 'id|subject|page|parent|ancestor|created|modified|author|summaryid|type|rootid|replies|signature',
 			'rawcontinue' => 1, // We're doing continuation a different way, but this avoids a warning.
 			'format' => 'json',
 			'limit' => ApiBase::LIMIT_BIG1,
-		);
+		];
 		$data = $this->apiCall( $params + $conditions );
 
 		if ( !isset( $data['query']['threads'] ) ) {
@@ -266,9 +266,9 @@ abstract class ApiBackend implements LoggerAwareInterface {
 			throw new \MWException( 'At least one page id must be provided' );
 		}
 
-		return $this->retrievePageData( array(
+		return $this->retrievePageData( [
 			'pageids' => implode( '|', $pageIds ),
-		) );
+		] );
 	}
 
 	/**
@@ -285,11 +285,11 @@ abstract class ApiBackend implements LoggerAwareInterface {
 			throw new \MWException( 'At least one title must be provided' );
 		}
 
-		return $this->retrievePageData( array(
+		return $this->retrievePageData( [
 			'titles' => implode( '|', $titles ),
 			'rvlimit' => 1,
 			'rvdir' => 'older',
-		), true );
+		], true );
 	}
 
 	/**
@@ -307,7 +307,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 *  query and the calling code does not set $expectContinue to true.
 	 */
 	public function retrievePageData( array $conditions, $expectContinue = false ) {
-		$conditions += array(
+		$conditions += [
 			'action' => 'query',
 			'prop' => 'revisions',
 			'rvprop' => 'timestamp|user|content|ids',
@@ -315,7 +315,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 			'rvlimit' => 5000,
 			'rvdir' => 'newer',
 			'continue' => '',
-		);
+		];
 		$data = $this->apiCall( $conditions );
 
 		if ( !isset( $data['query'] ) ) {
@@ -431,7 +431,7 @@ class LocalApiBackend extends ApiBackend {
 
 			$api = new ApiMain( $context );
 			$api->execute();
-			return $api->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
+			return $api->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
 		} catch ( ApiUsageException $exception ) {
 			// Mimic the behaviour when called remotely
 			$errors = $exception->getStatusValue()->getErrorsByType( 'error' );
@@ -442,25 +442,25 @@ class LocalApiBackend extends ApiBackend {
 				$errors = [ [ 'message' => 'unknownerror-nocode', 'params' => [] ] ];
 			}
 			$msg = ApiMessage::create( $errors[0] );
-			return array(
-				'error' => array(
+			return [
+				'error' => [
 					'code' => $msg->getApiCode(),
 					'info' => ApiErrorFormatter::stripMarkup(
 						$msg->inLanguage( 'en' )->useDatabase( 'false' )->text()
 					),
-				) + $msg->getApiData()
-			);
+				] + $msg->getApiData()
+			];
 		} catch ( UsageException $exception ) {
 			// Mimic the behaviour when called remotely
-			return array( 'error' => $exception->getMessageArray() );
+			return [ 'error' => $exception->getMessageArray() ];
 		} catch ( Exception $exception ) {
 			// Mimic behaviour when called remotely
-			return array(
-				'error' => array(
+			return [
+				'error' => [
 					'code' => 'internal_api_error_' . get_class( $exception ),
 					'info' => 'Exception Caught: ' . $exception->getMessage(),
-				),
-			);
+				],
+			];
 		}
 	}
 }

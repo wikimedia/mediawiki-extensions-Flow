@@ -17,8 +17,8 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 	 * test runner/
 	 */
 	public static function imageRemovalProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Passes through allowed good images',
 				// expected html after filtering
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
@@ -28,9 +28,9 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				function() {
 					return false;
 				}
-			),
+			],
 
-			array(
+			[
 				'Keeps unknown images',
 				// expected html after filtering
 				'<meta typeof="mw:Placeholder" data-parsoid="...">',
@@ -40,9 +40,9 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				function() {
 					return true;
 				}
-			),
+			],
 
-			array(
+			[
 				'Strips declined images',
 				// expected html after filtering
 				'<p> and other stuff</p>',
@@ -52,8 +52,8 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				function() {
 					return true;
 				}
-			),
-		);
+			],
+		];
 	}
 	/**
 	 * @dataProvider imageRemovalProvider

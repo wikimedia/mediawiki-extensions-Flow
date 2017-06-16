@@ -35,31 +35,31 @@ abstract class AbstractQuery {
 	/**
 	 * @var UUID[] Associative array of post ID to root post's UUID object.
 	 */
-	protected $rootPostIdCache = array();
+	protected $rootPostIdCache = [];
 
 	/**
 	 * @var PostRevision[] Associative array of post ID to PostRevision object.
 	 */
-	protected $postCache = array();
+	protected $postCache = [];
 
 	/**
 	 * @var AbstractRevision[] Associative array of revision ID to AbstractRevision object
 	 */
-	protected $revisionCache = array();
+	protected $revisionCache = [];
 
 	/**
 	 * @var Workflow[] Associative array of workflow ID to Workflow object.
 	 */
-	protected $workflowCache = array();
+	protected $workflowCache = [];
 
 	/**
 	 * Array of collection ids mapping to their most recent revision ids.
 	 *
 	 * @var UUID[]
 	 */
-	protected $currentRevisionsCache = array();
+	protected $currentRevisionsCache = [];
 
-	protected $identityMap = array();
+	protected $identityMap = [];
 
 	/**
 	 * @param ManagerGroup $storage
@@ -78,11 +78,11 @@ abstract class AbstractQuery {
 	 */
 	protected function loadMetadataBatch( $results ) {
 		// Batch load data related to a list of revisions
-		$postIds = array();
-		$workflowIds = array();
-		$revisions = array();
-		$previousRevisionIds = array();
-		$collectionIds = array();
+		$postIds = [];
+		$workflowIds = [];
+		$revisions = [];
+		$previousRevisionIds = [];
+		$collectionIds = [];
 		foreach ( $results as $result ) {
 			if ( $result instanceof PostRevision ) {
 				// If top-level, then just get the workflow.
@@ -114,9 +114,9 @@ abstract class AbstractQuery {
 
 		// map from post Id to the related root post id
 		$rootPostIds = array_filter( $this->treeRepository->findRoots( $postIds ) );
-		$rootPostRequests = array();
+		$rootPostRequests = [];
 		foreach ( $rootPostIds as $postId ) {
-			$rootPostRequests[] = array( 'rev_type_id' => $postId );
+			$rootPostRequests[] = [ 'rev_type_id' => $postId ];
 		}
 
 		// these tree identity maps are required for determining where a reply goes when
@@ -128,14 +128,14 @@ abstract class AbstractQuery {
 		$rootPostResult = $this->storage->findMulti(
 			'PostRevision',
 			$rootPostRequests,
-			array(
+			[
 				'SORT' => 'rev_id',
 				'ORDER' => 'DESC',
 				'LIMIT' => 1,
-			)
+			]
 		);
 
-		$rootPosts = array();
+		$rootPosts = [];
 		if ( count( $rootPostResult ) > 0 ) {
 			foreach ( $rootPostResult as $found ) {
 				$root = reset( $found );
@@ -148,7 +148,7 @@ abstract class AbstractQuery {
 		// So any post IDs that *are* root posts + found root post IDs + header workflow IDs
 		// should cover the lot.
 		$workflows = $this->storage->getMulti( 'Workflow', array_merge( $rootPostIds, $workflowIds ) );
-		$workflows = $workflows ?: array();
+		$workflows = $workflows ?: [];
 
 		// preload all requested previous revisions
 		foreach ( $previousRevisionIds as $revisionType => $ids ) {
@@ -163,14 +163,14 @@ abstract class AbstractQuery {
 
 		// preload all current versions
 		foreach ( $collectionIds as $revisionType => $ids ) {
-			$queries = array();
+			$queries = [];
 			foreach ( $ids as $uuid ) {
-				$queries[] = array( 'rev_type_id' => $uuid );
+				$queries[] = [ 'rev_type_id' => $uuid ];
 			}
 
 			$found = $this->storage->findMulti( $revisionType,
 				$queries,
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+				[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 			);
 
 			/** @var AbstractRevision[] $result */

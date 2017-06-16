@@ -169,7 +169,7 @@ class OptInController {
 	 * @param array $args
 	 * @throws ImportException
 	 */
-	private function fatal( $msgKey, $args = array() ) {
+	private function fatal( $msgKey, $args = [] ) {
 		throw new ImportException( wfMessage( $msgKey, $args )->inContentLanguage()->text() );
 	}
 
@@ -271,12 +271,12 @@ class OptInController {
 		}
 
 		$action = 'edit-header';
-		$params = array(
-			'header' => array(
+		$params = [
+			'header' => [
 				'content' => $boardDescription,
 				'format' => 'wikitext',
-			),
-		);
+			],
+		];
 
 		$blocksToCommit = $loader->handleSubmit(
 			$this->context,
@@ -369,10 +369,10 @@ class OptInController {
 	 */
 	private function getFormattedCurrentTemplate( Title $archiveTitle ) {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
-		$arguments = array(
+		$arguments = [
 			'archive' => $archiveTitle->getPrefixedText(),
 			'date' => $now->format( 'Y-m-d' ),
-		);
+		];
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 		return $this->formatTemplate( $template, $arguments );
 	}
@@ -443,13 +443,13 @@ class OptInController {
 		$newDescription = call_user_func( $newDescriptionCallback, $content );
 
 		$action = 'edit-header';
-		$params = array(
-			'header' => array(
+		$params = [
+			'header' => [
 				'content' => $newDescription,
 				'format' => $format,
 				'prev_revision' => $revision->getRevisionId()->getAlphadecimal()
-			),
-		);
+			],
+		];
 
 		/** @var WorkflowLoaderFactory $factory */
 		$factory = Container::get( 'factory.loader.workflow' );
@@ -485,10 +485,10 @@ class OptInController {
 	private function getFormattedArchiveTemplate( Title $current ) {
 		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
-		return $this->formatTemplate( $templateName, array(
+		return $this->formatTemplate( $templateName, [
 			'from' => $current->getPrefixedText(),
 			'date' => $now->format( 'Y-m-d' ),
-		) );
+		] );
 	}
 
 	/**

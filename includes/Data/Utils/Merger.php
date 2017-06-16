@@ -22,7 +22,7 @@ class Merger {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
-		$ids = array();
+		$ids = [];
 		foreach ( $source as $row ) {
 			$id = $row[$fromKey];
 			if ( $id !== null ) {
@@ -61,7 +61,7 @@ class Merger {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
-		$ids = array();
+		$ids = [];
 		foreach ( $multiSource as $source ) {
 			if ( $source === null ) {
 				continue;

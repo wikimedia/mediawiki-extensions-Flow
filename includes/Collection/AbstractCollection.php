@@ -25,7 +25,7 @@ abstract class AbstractCollection {
 	 *
 	 * @var AbstractRevision[]
 	 */
-	protected $revisions = array();
+	protected $revisions = [];
 
 	/**
 	 * @var Workflow
@@ -138,8 +138,8 @@ abstract class AbstractCollection {
 		if ( !$this->revisions ) {
 			/** @var AbstractRevision[] $revisions */
 			$revisions = self::getStorage()->find(
-				array( 'rev_type_id' => $this->uuid ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC' )
+				[ 'rev_type_id' => $this->uuid ],
+				[ 'sort' => 'rev_id', 'order' => 'DESC' ]
 			);
 
 			if ( !$revisions ) {

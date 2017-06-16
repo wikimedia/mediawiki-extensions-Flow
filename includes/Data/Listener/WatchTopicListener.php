@@ -60,7 +60,7 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 	 *   an array of users to subscribe
 	 * @return User[]
 	 */
-	public static function getUsersToSubscribe( $changeType, $watchType, array $params = array() ) {
+	public static function getUsersToSubscribe( $changeType, $watchType, array $params = [] ) {
 		/** @var FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
 
@@ -68,12 +68,12 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 		try {
 			$users = $actions->getValue( $changeType, 'watch', $watchType );
 		} catch ( \Exception $e ) {
-			return array();
+			return [];
 		}
 
 		// Null will be returned if nothing is defined for this changeType
 		if ( !$users ) {
-			return array();
+			return [];
 		}
 
 		// Some actions may have more complex logic to determine watching users
@@ -107,7 +107,7 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 	 * @param Workflow $workflow
 	 */
 	public function onAfterInsertExpectedChange( $changeType, Workflow $workflow ) {
-		$users = static::getUsersToSubscribe( $changeType, 'immediate', array( $this->watchedTopicItems ) );
+		$users = static::getUsersToSubscribe( $changeType, 'immediate', [ $this->watchedTopicItems ] );
 
 		foreach ( $users as $user ) {
 			if ( !$user instanceof User ) {
@@ -125,6 +125,6 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 	 * @return User[]
 	 */
 	public static function getCurrentUser( WatchedTopicItems $watchedTopicItems ) {
-		return array( $watchedTopicItems->getUser() );
+		return [ $watchedTopicItems->getUser() ];
 	}
 }

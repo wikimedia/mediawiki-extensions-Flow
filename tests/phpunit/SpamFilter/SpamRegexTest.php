@@ -17,20 +17,20 @@ class SpamRegexTest extends PostRevisionTestCase {
 	protected $spamFilter;
 
 	public function spamProvider() {
-		return array(
-			array(
+		return [
+			[
 				// default new topic title revision - no spam
 				$this->generateObject(),
 				null,
 				true
-			),
-			array(
+			],
+			[
 				// revision with spam
-				$this->generateObject( array( 'rev_content' => 'http://spam', 'rev_flags' => 'html' ) ),
+				$this->generateObject( [ 'rev_content' => 'http://spam', 'rev_flags' => 'html' ] ),
 				null,
 				false
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -47,7 +47,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 		parent::setUp();
 
 		// create a dummy filter
-		$this->setMwGlobals( 'wgSpamRegex', array( '/http:\/\/spam/' ) );
+		$this->setMwGlobals( 'wgSpamRegex', [ '/http:\/\/spam/' ] );
 
 		// create spam filter
 		$this->spamFilter = new SpamRegex;

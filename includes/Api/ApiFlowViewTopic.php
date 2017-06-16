@@ -15,7 +15,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topic' => $this->extractRequestParams() );
+		return [ 'topic' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -25,22 +25,22 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	public function getAllowedParams() {
 		global $wgFlowContentFormat;
 
-		return array(
-			'format' => array(
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext', 'fixed-html' ),
+		return [
+			'format' => [
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
 				// never default to unfixed html, only serve that when specifically asked!
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=view-topic&page=Topic:S2tycnas4hcucw8w'
 				=> 'apihelp-flow+view-topic-example-1',
-		);
+		];
 	}
 }

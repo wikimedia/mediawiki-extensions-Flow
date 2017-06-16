@@ -12,8 +12,8 @@ class PostSummaryQuery extends AbstractQuery {
 	public function getResult( UUID $postId ) {
 		$found = $this->storage->find(
 			'PostSummary',
-			array( 'rev_type_id' => $postId ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $postId ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 		if ( !$found ) {
 			return null;

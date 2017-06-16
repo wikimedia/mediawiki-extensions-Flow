@@ -4,7 +4,7 @@
 // vendor manually
 require __DIR__ . '/../vendor/PHP-Parser/lib/bootstrap.php';
 
-$wgAutoloadClasses = array();
+$wgAutoloadClasses = [];
 require __DIR__ . '/../autoload.php';
 
 class OneClassPerFile {
@@ -36,7 +36,7 @@ class OneClassPerFile {
 	}
 
 	protected function getClasses( $stmt ) {
-		$classes = array();
+		$classes = [];
 		foreach ( $stmt->stmts as $stmt ) {
 			if (
 				$stmt instanceof PhpParser\Node\Stmt\Interface_
@@ -74,7 +74,7 @@ class OneClassPerFile {
 	}
 }
 
-$files = array();
+$files = [];
 foreach ( $wgAutoloadClasses as $class => $file ) {
 	$files[$file][] = $class;
 }

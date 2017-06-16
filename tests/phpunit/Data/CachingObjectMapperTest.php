@@ -12,12 +12,12 @@ class CachingObjectManagerTest extends FlowTestCase {
 
 	public function testReturnsSameObject() {
 		$mapper = $this->createMapper();
-		$object = $mapper->fromStorageRow( array( 'id' => 1 ) );
-		$this->assertSame( $object, $mapper->fromStorageRow( array( 'id' => 1 ) ) );
+		$object = $mapper->fromStorageRow( [ 'id' => 1 ] );
+		$this->assertSame( $object, $mapper->fromStorageRow( [ 'id' => 1 ] ) );
 	}
 
 	public function testAllowsNullPkOnPut() {
-		$this->createMapper()->toStorageRow( (object)array( 'id' => null ) );
+		$this->createMapper()->toStorageRow( (object)[ 'id' => null ] );
 		$this->assertTrue( true );
 	}
 
@@ -32,6 +32,6 @@ class CachingObjectManagerTest extends FlowTestCase {
 				return (object)( $row + (array)$object );
 			}
 		};
-		return new CachingObjectMapper( $toStorageRow, $fromStorageRow, array( 'id' ) );
+		return new CachingObjectMapper( $toStorageRow, $fromStorageRow, [ 'id' ] );
 	}
 }

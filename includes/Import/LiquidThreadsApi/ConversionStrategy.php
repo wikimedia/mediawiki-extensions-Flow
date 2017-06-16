@@ -110,9 +110,9 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	public function decideArchiveTitle( Title $source ) {
 		$archiveNameHelper = new ArchiveNameHelper();
-		return $archiveNameHelper->decideArchiveTitle( $source, array(
+		return $archiveNameHelper->decideArchiveTitle( $source, [
 			'%s/LQT Archive %d',
-		) );
+		] );
 	}
 
 	/**
@@ -175,10 +175,10 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return string
 	 */
 	protected function getPrefixText( WikitextContent $content, Title $title ) {
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			'from=' . $title->getPrefixedText(),
 			'date=' . MWTimestamp::getInstance()->timestamp->format( 'Y-m-d' ),
-		) );
+		] );
 
 		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
 
@@ -197,7 +197,7 @@ class ConversionStrategy implements IConversionStrategy {
 			function( $word ) {
 				return '/{{\\s*#' . preg_quote( $word ) . ':\\s*[01]*\\s*}}/i';
 			},
-			array( 'useliquidthreads' ) + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
+			[ 'useliquidthreads' ] + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
 
 		return preg_replace( $patterns, '', $content );
 	}

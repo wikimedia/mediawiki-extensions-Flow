@@ -33,10 +33,10 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$types = array(
+		$types = [
 			'flow_wiki_ref' => Container::get( 'storage.wiki_reference' ),
 			'flow_ext_ref' => Container::get( 'storage.url_reference' ),
-		);
+		];
 
 		foreach ( $types as $table => $storage ) {
 			$this->update( $storage );
@@ -56,12 +56,12 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 
 		$total = 0;
 		while ( true ) {
-			$references = (array) $storage->find( array( 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ), array( 'limit' => $this->mBatchSize ) );
+			$references = (array) $storage->find( [ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ], [ 'limit' => $this->mBatchSize ] );
 			if ( !$references ) {
 				break;
 			}
 
-			$storage->multiPut( $references, array() );
+			$storage->multiPut( $references, [] );
 			$total += count( $references );
 			$this->output( "Ensured ref_id for " . $total . " " . get_class( $references[0] ) . " references...\n" );
 			wfWaitForSlaves( false, false, $wgFlowCluster );

@@ -17,11 +17,11 @@ class PostHistoryQuery extends HistoryQuery {
 	public function getResults( UUID $postId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		$history = $this->storage->find(
 			'PostRevision',
-			array( 'rev_type_id' => $postId ),
+			[ 'rev_type_id' => $postId ],
 			$this->getOptions( $direction, $limit, $offset )
 		);
 		if ( !$history ) {
-			return array();
+			return [];
 		}
 
 		// See explanation in BoardHistoryQuery::getResults.
@@ -30,7 +30,7 @@ class PostHistoryQuery extends HistoryQuery {
 		}
 
 		$this->loadMetadataBatch( $history );
-		$results = array();
+		$results = [];
 		foreach ( $history as $revision ) {
 			try {
 				$results[] = $row = new FormatterRow;

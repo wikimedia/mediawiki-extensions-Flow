@@ -15,17 +15,17 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		$action = $this->getAction();
 		$passedParams = $this->getBlockParams();
 
-		$output = array( $action => array(
-			'result' => array(),
+		$output = [ $action => [
+			'result' => [],
 			'status' => 'ok',
-		) );
+		] ];
 
 		/** @var Block $block */
 		foreach ( $blocks as $block ) {
 			$block->init( $context, $action );
 
 			if ( $block->canRender( $action ) ) {
-				$blockParams = array();
+				$blockParams = [];
 				if ( isset( $passedParams[$block->getName()] ) ) {
 					$blockParams = $passedParams[$block->getName()];
 				}

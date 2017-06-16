@@ -12,19 +12,19 @@ class PostRevisionBoardHistoryStorage extends BoardHistoryStorage {
 	 * @return array
 	 * @throws DataModelException
 	 */
-	public function find( array $attributes, array $options = array() ) {
+	public function find( array $attributes, array $options = [] ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
-			array( 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ),
-			array( '*' ),
-			array_merge( array(
+			[ 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ],
+			[ '*' ],
+			array_merge( [
 				'rev_type' => 'post',
 				'topic_id = tree_ancestor_id',
 				'tree_descendant_id = tree_rev_descendant_id',
 				'tree_rev_id = rev_id',
-			), $attributes ),
+			], $attributes ),
 			__METHOD__,
 			$options
 		);
@@ -33,7 +33,7 @@ class PostRevisionBoardHistoryStorage extends BoardHistoryStorage {
 			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
 
-		$retval = array();
+		$retval = [];
 		foreach ( $res as $row ) {
 			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
 			$retval[$row['rev_id']] = $row;

@@ -37,9 +37,9 @@ class URLReference extends Reference {
 	 * @return array
 	 */
 	public function getStorageRow() {
-		return parent::getStorageRow() + array(
+		return parent::getStorageRow() + [
 			'ref_target' => $this->url,
-		);
+		];
 	}
 
 	/**

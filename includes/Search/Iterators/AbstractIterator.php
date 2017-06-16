@@ -21,7 +21,7 @@ abstract class AbstractIterator implements Iterator {
 	/**
 	 * @var array
 	 */
-	protected $conditions = array();
+	protected $conditions = [];
 
 	/**
 	 * @var ResultWrapper|null
@@ -50,7 +50,7 @@ abstract class AbstractIterator implements Iterator {
 	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbr = $dbFactory->getDB( DB_SLAVE );
-		$this->conditions = array( 'workflow_wiki' => wfWikiID() );
+		$this->conditions = [ 'workflow_wiki' => wfWikiID() ];
 	}
 
 	/**

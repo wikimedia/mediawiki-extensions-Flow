@@ -32,12 +32,12 @@ class UUIDTest extends FlowTestCase {
 	public function invalidInputProvider() {
 		$valid = UUID::create()->getAlphadecimal();
 
-		return array(
-			array( '' ),
-			array( strtoupper( $valid ) ),
-			array( strtoupper( UUID::alnum2hex( $valid ) ) ),
-			array( ucfirst( $valid ) ),
-		);
+		return [
+			[ '' ],
+			[ strtoupper( $valid ) ],
+			[ strtoupper( UUID::alnum2hex( $valid ) ) ],
+			[ ucfirst( $valid ) ],
+		];
 	}
 
 	/**
@@ -61,8 +61,8 @@ class UUIDTest extends FlowTestCase {
 		$bin_88 = new UUIDBlob( pack( 'H*', $hex_88 ) );
 		$pretty_88 = \Wikimedia\base_convert( $numeric_88, 10, 36 );
 
-		return array(
-			array(
+		return [
+			[
 				'128 bit hex input must be truncated to 88bit output',
 				// input
 				$hex_128,
@@ -72,9 +72,9 @@ class UUIDTest extends FlowTestCase {
 				$hex_88,
 				// base36 output
 				$pretty_88,
-			),
+			],
 
-			array(
+			[
 				'88 bit binary input',
 				// input
 				$bin_88,
@@ -84,9 +84,9 @@ class UUIDTest extends FlowTestCase {
 				$hex_88,
 				// pretty
 				$pretty_88,
-			),
+			],
 
-			array(
+			[
 				'88 bit numeric input',
 				// input
 				$numeric_88,
@@ -96,9 +96,9 @@ class UUIDTest extends FlowTestCase {
 				$hex_88,
 				// pretty
 				$pretty_88,
-			),
+			],
 
-			array(
+			[
 				'88 bit hex input',
 				// input
 				$hex_88,
@@ -108,9 +108,9 @@ class UUIDTest extends FlowTestCase {
 				$hex_88,
 				// pretty
 				$pretty_88,
-			),
+			],
 
-			array(
+			[
 				'88 bit pretty input',
 				// input
 				$pretty_88,
@@ -120,9 +120,9 @@ class UUIDTest extends FlowTestCase {
 				$hex_88,
 				// pretty
 				$pretty_88,
-			),
+			],
 
-		);
+		];
 	}
 
 	/**
@@ -137,12 +137,12 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public static function prettyProvider() {
-		return array(
+		return [
 			// maximal base 36 value ( 2^88 )
-			array( '12vwzoefjlykjgcnwf' ),
+			[ '12vwzoefjlykjgcnwf' ],
 			// current unpadded values from uidgenerator
-			array( 'rlnn1941hqtdtn8a' ),
-		);
+			[ 'rlnn1941hqtdtn8a' ],
+		];
 	}
 
 	/**
@@ -161,10 +161,10 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public static function uuidProvider() {
-		return array(
-			array( UUID::create() ),
-			array( UUID::getComparisonUUID( 1 ) ),
-		);
+		return [
+			[ UUID::create() ],
+			[ UUID::getComparisonUUID( 1 ) ],
+		];
 	}
 
 	/**

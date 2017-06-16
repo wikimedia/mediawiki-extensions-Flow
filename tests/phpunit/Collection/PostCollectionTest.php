@@ -13,7 +13,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
+	protected $tablesUsed = [ 'flow_revision', 'flow_tree_revision' ];
 
 	protected function setUp() {
 		parent::setUp();
@@ -22,27 +22,27 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$this->clearExtraLifecycleHandlers();
 
 		// generate a post with multiple revisions
-		$revision = $this->generateObject( array(
+		$revision = $this->generateObject( [
 			'rev_content' => 'first revision',
-		) );
+		] );
 		$this->store( $revision );
 
-		$revision = $this->generateObject( array(
+		$revision = $this->generateObject( [
 			'rev_content' => 'second revision',
 			'rev_change_type' => 'edit-post',
 			'rev_parent_id' => $revision->getRevisionId()->getBinary(),
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 			'rev_type_id' => $revision->getPostId()->getBinary(),
-		) );
+		] );
 		$this->store( $revision );
 
-		$revision = $this->generateObject( array(
+		$revision = $this->generateObject( [
 			'rev_content' => 'third revision',
 			'rev_change_type' => 'edit-post',
 			'rev_parent_id' => $revision->getRevisionId()->getBinary(),
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 			'rev_type_id' => $revision->getPostId()->getBinary(),
-		) );
+		] );
 		$this->store( $revision );
 	}
 

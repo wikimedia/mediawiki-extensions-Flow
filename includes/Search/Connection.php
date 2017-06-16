@@ -66,7 +66,7 @@ class Connection extends \ElasticaConnection {
 	 * @return string[]
 	 */
 	public static function getAllIndices() {
-		return array( static::FLOW_INDEX_TYPE );
+		return [ static::FLOW_INDEX_TYPE ];
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Connection extends \ElasticaConnection {
 	 * @return string[]
 	 */
 	public static function getAllTypes() {
-		return array( static::TOPIC_TYPE_NAME, static::HEADER_TYPE_NAME );
+		return [ static::TOPIC_TYPE_NAME, static::HEADER_TYPE_NAME ];
 	}
 
 	/**

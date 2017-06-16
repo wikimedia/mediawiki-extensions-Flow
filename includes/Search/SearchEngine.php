@@ -23,17 +23,17 @@ class SearchEngine extends \SearchEngine {
 	 *
 	 * @var int[]
 	 */
-	public $namespaces = array();
+	public $namespaces = [];
 
 	/**
 	 * @var int[]
 	 */
-	protected $pageIds = array();
+	protected $pageIds = [];
 
 	/**
 	 * @var string[]
 	 */
-	protected $moderationStates = array();
+	protected $moderationStates = [];
 
 	/**
 	 * @var string
@@ -98,7 +98,7 @@ class SearchEngine extends \SearchEngine {
 	 * @throws InvalidParameterException
 	 */
 	public function setType( $type ) {
-		$allowedTypes = array_merge( Connection::getAllTypes(), array( false ) );
+		$allowedTypes = array_merge( Connection::getAllTypes(), [ false ] );
 		if ( !in_array( $type, $allowedTypes ) ) {
 			throw new InvalidParameterException( 'Invalid search index requested' );
 		}
@@ -120,7 +120,7 @@ class SearchEngine extends \SearchEngine {
 	 *
 	 * @param string[] $moderationStates
 	 */
-	public function setModerationStates( array $moderationStates = array() ) {
+	public function setModerationStates( array $moderationStates = [] ) {
 		$this->moderationStates = $moderationStates;
 	}
 
@@ -160,13 +160,13 @@ class SearchEngine extends \SearchEngine {
 	 * @return array [description => [sort field => order]]
 	 */
 	public function getSortArgs() {
-		return array(
-			'relevance' => array( /* default */ ),
-			'timestamp_asc' => array( 'timestamp' => 'asc' ),
-			'timestamp_desc' => array( 'timestamp' => 'desc' ),
-			'update_timestamp_asc' => array( 'update_timestamp' => 'asc' ),
-			'update_timestamp_desc' => array( 'update_timestamp' => 'desc' ),
-		);
+		return [
+			'relevance' => [ /* default */ ],
+			'timestamp_asc' => [ 'timestamp' => 'asc' ],
+			'timestamp_desc' => [ 'timestamp' => 'desc' ],
+			'update_timestamp_asc' => [ 'update_timestamp' => 'asc' ],
+			'update_timestamp_desc' => [ 'update_timestamp' => 'desc' ],
+		];
 	}
 
 	/**

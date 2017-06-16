@@ -47,11 +47,11 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 				if ( $revId !== 0 ) {
 					$dbw->update(
 						'revision',
-						array(
+						[
 							'rev_content_model' =>
 							CONTENT_MODEL_FLOW_BOARD
-						),
-						array( 'rev_id' => $revId ),
+						],
+						[ 'rev_id' => $revId ],
 						__METHOD__
 					);
 					$updatedCount++;

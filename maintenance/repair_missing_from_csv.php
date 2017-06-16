@@ -15,7 +15,7 @@ if ( !is_file( $argv[1] ) ) {
 	die( 'Provided CSV file does not exist' );
 }
 $csv = fopen( $argv[1], "r" );
-if ( fgetcsv( $csv ) !== array( 'uuid', 'esurl', 'flags' ) ) {
+if ( fgetcsv( $csv ) !== [ 'uuid', 'esurl', 'flags' ] ) {
 	die( 'Provided CSV file does not have the expected header' );
 }
 
@@ -34,13 +34,13 @@ while ( $row = fgetcsv( $csv ) ) {
 	$uuid = Flow\Model\UUID::create( $uuid );
 	$dbw->update(
 		/* table */'flow_revision',
-		/* set */ array(
+		/* set */ [
 			'rev_content' => $esUrl,
 			'rev_flags' => $flags,
-		),
-		/* where */ array(
+		],
+		/* where */ [
 			'rev_id' => $uuid->getBinary()
-		)
+		]
 	);
 	++$fixed;
 }

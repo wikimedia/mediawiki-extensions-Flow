@@ -27,27 +27,27 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	 * @var array
 	 */
 	protected
-		$blacklist = array( '\b01bags\.com\b', 'sytes\.net' ),
-		$whitelist = array( 'a5b\.sytes\.net' );
+		$blacklist = [ '\b01bags\.com\b', 'sytes\.net' ],
+		$whitelist = [ 'a5b\.sytes\.net' ];
 
 	public function spamProvider() {
-		return array(
-			'default new topic title revision - no spam' => array(
+		return [
+			'default new topic title revision - no spam' => [
 				$this->generateObject(),
 				null,
 				true
-			),
-			'revision with spam' => array(
-				$this->generateObject( array( 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ) ),
+			],
+			'revision with spam' => [
+				$this->generateObject( [ 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ] ),
 				null,
 				false
-			),
-			'revision with domain blacklisted as spam, but subdomain whitelisted' => array(
-				$this->generateObject( array( 'rev_content' => 'http://a5b.sytes.net', 'rev_flags' => 'html' ) ),
+			],
+			'revision with domain blacklisted as spam, but subdomain whitelisted' => [
+				$this->generateObject( [ 'rev_content' => 'http://a5b.sytes.net', 'rev_flags' => 'html' ] ),
 				null,
 				true
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -69,9 +69,9 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			$this->markTestSkipped( 'SpamBlacklist not enabled' );
 		}
 
-		$this->setMwGlobals( 'wgBlacklistSettings', array(
-			'files' => array(),
-		) );
+		$this->setMwGlobals( 'wgBlacklistSettings', [
+			'files' => [],
+		] );
 
 		\MessageCache::singleton()->enable();
 		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", $this->blacklist ) );

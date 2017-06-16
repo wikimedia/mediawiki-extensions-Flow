@@ -20,11 +20,11 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
+		return [
 			$this->getAgentLink(),
 			$this->getDiffLink(),
 			$this->getFlowUnwatchDynamicActionLink()
-		);
+		];
 	}
 
 	protected function getHeaderMessageKey() {
@@ -66,12 +66,12 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 			$this->event->getExtraParam( 'revision-id' )
 		);
 
-		return array(
+		return [
 			'url' => $anchor->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => true,
-		);
+		];
 	}
 }

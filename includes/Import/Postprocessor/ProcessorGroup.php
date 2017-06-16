@@ -14,7 +14,7 @@ class ProcessorGroup implements Postprocessor {
 	protected $processors;
 
 	public function __construct() {
-		$this->processors = array();
+		$this->processors = [];
 	}
 
 	public function add( Postprocessor $proc ) {
@@ -39,7 +39,7 @@ class ProcessorGroup implements Postprocessor {
 
 	protected function call( $name, $args ) {
 		foreach ( $this->processors as $proc ) {
-			call_user_func_array( array( $proc, $name ), $args );
+			call_user_func_array( [ $proc, $name ], $args );
 		}
 	}
 }

@@ -93,7 +93,7 @@ abstract class AbstractBlock implements Block {
 	/** @var array|null */
 	protected $submitted = null;
 	/** @var array */
-	protected $errors = array();
+	protected $errors = [];
 
 	/**
 	 * @var string|null The commitable action being submitted, or null
@@ -108,19 +108,19 @@ abstract class AbstractBlock implements Block {
 	 * A list of supported post actions
 	 * @var array
 	 */
-	protected $supportedPostActions = array();
+	protected $supportedPostActions = [];
 
 	/**
 	 * A list of supported get actions
 	 * @var array
 	 */
-	protected $supportedGetActions = array();
+	protected $supportedGetActions = [];
 
 	/**
 	 * Templates for each view actions
 	 * @var array
 	 */
-	protected $templates = array();
+	protected $templates = [];
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage ) {
 		$this->workflow = $workflow;
@@ -269,10 +269,10 @@ abstract class AbstractBlock implements Block {
 	 * @param mixed[optional] $extra
 	 */
 	public function addError( $type, \Message $message, $extra = null ) {
-		$this->errors[$type] = array(
+		$this->errors[$type] = [
 			'message' => $message,
 			'extra' => $extra,
-		);
+		];
 	}
 
 	public function getWorkflow() {
@@ -328,10 +328,10 @@ abstract class AbstractBlock implements Block {
 
 		$details = $status->getValue();
 
-		$this->addError( 'spamfilter', $message, array(
+		$this->addError( 'spamfilter', $message, [
 			'messageKey' => $message->getKey(),
 			'details' => $details,
-		) );
+		] );
 		return false;
 	}
 

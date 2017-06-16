@@ -17,7 +17,7 @@ class BoardContentHandler extends \ContentHandler {
 			throw new MWException( __CLASS__." initialised for invalid content model" );
 		}
 
-		parent::__construct( CONTENT_MODEL_FLOW_BOARD, array( CONTENT_FORMAT_JSON ) );
+		parent::__construct( CONTENT_MODEL_FLOW_BOARD, [ CONTENT_FORMAT_JSON ] );
 	}
 
 	public function isSupportedFormat( $format ) {
@@ -45,7 +45,7 @@ class BoardContentHandler extends \ContentHandler {
 			throw new MWException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}
 
-		$info = array();
+		$info = [];
 
 		if ( $content->getWorkflowId() ) {
 			$info['flow-workflow'] = $content->getWorkflowId()->getAlphaDecimal();
@@ -121,7 +121,7 @@ class BoardContentHandler extends \ContentHandler {
 	public function getActionOverrides() {
 		/** @var FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
-		$output = array();
+		$output = [];
 
 		foreach ( $actions->getActions() as $action ) {
 			$actionData = $actions->getValue( $action );

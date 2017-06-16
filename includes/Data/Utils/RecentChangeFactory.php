@@ -9,7 +9,7 @@ namespace Flow\Data\Utils;
 class RecentChangeFactory {
 	public function newFromRow( $obj ) {
 		$rc = \RecentChange::newFromRow( $obj );
-		$rc->setExtra( array( 'pageStatus' => 'update' ) );
+		$rc->setExtra( [ 'pageStatus' => 'update' ] );
 		return $rc;
 	}
 }

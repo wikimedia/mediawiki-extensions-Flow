@@ -13,10 +13,10 @@ class MentionPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
-		$link = array(
+		$link = [
 			'url' => $this->event->getTitle()->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-mention' )->text()
-		);
+		];
 
 		// override url, link straight to that specific post/topic
 		if ( $this->getRevisionType() === 'post' ) {
@@ -29,10 +29,10 @@ class MentionPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
+		return [
 			$this->getAgentLink(),
 			$this->getBoardByNewestLink(),
-		);
+		];
 	}
 
 	public function getHeaderMessageKey() {
@@ -44,7 +44,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
 		$msg->params( $this->getViewingUserForGender() );
 
-		if ( in_array( $this->getRevisionType(), array( 'post', 'post-summary' ) ) ) {
+		if ( in_array( $this->getRevisionType(), [ 'post', 'post-summary' ] ) ) {
 			$msg->plaintextParams( $this->getTopicTitle() );
 		}
 

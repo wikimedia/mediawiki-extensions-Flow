@@ -20,8 +20,8 @@ class FormatterTest extends FlowTestCase {
 		$revId = UUID::create();
 		$postId = UUID::create();
 
-		return array(
-			array(
+		return [
+			[
 				'With only a topicId reply should not fail',
 				// result must contain
 				function( $test, $message, $result ) {
@@ -30,17 +30,17 @@ class FormatterTest extends FlowTestCase {
 				},
 				// cuc_comment parameters
 				'reply', $topicId, $revId, null
-			),
+			],
 
-			array(
+			[
 				'With topicId and postId should not fail',
 				function( $test, $message, $result ) {
 					$test->assertNotNull( $result );
 					$test->assertArrayHasKey( 'links', $result, $message );
 				},
 				'reply', $topicId, $revId, $postId,
-			),
-		);
+			],
+		];
 	}
 
 	/**

@@ -77,7 +77,7 @@ class ConversionStrategy implements IConversionStrategy {
 		ImportSourceStore $sourceStore,
 		LoggerInterface $logger,
 		User $user,
-		array $noConvertTemplates = array(),
+		array $noConvertTemplates = [],
 		$headerSuffix = null
 	) {
 		$this->parser = $parser;
@@ -89,7 +89,7 @@ class ConversionStrategy implements IConversionStrategy {
 
 		$archiveFormat = wfMessage( 'flow-conversion-archive-page-name-format' )->inContentLanguage()->plain();
 		if ( strpos( $archiveFormat, "\n" ) === false ) {
-			$this->archiveTitleSuggestions = array( $archiveFormat );
+			$this->archiveTitleSuggestions = [ $archiveFormat ];
 		} else {
 			$this->archiveTitleSuggestions = explode( "\n", $archiveFormat );
 		}
@@ -158,10 +158,10 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title ) {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
-		$arguments = implode( '|', array(
+		$arguments = implode( '|', [
 			'from=' . $title->getPrefixedText(),
 			'date=' . $now->format( 'Y-m-d' ),
-		) );
+		] );
 
 		$template = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 		$newWikitext = "{{{$template}|$arguments}}" . "\n\n" . $content->getNativeData();
@@ -205,12 +205,12 @@ class ConversionStrategy implements IConversionStrategy {
 		$result = $dbr->select(
 			'templatelinks',
 			'tl_from',
-			array(
+			[
 				'tl_from' => $sourceTitle->getArticleID(),
 				$batch->constructSet( 'tl', $dbr )
-			),
+			],
 			__METHOD__,
-			array( 'LIMIT' => 1 )
+			[ 'LIMIT' => 1 ]
 		);
 		return $dbr->numRows( $result ) > 0;
 	}

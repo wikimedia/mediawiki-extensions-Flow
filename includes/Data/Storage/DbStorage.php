@@ -37,7 +37,7 @@ abstract class DbStorage implements ObjectStorage {
 	 *
 	 * @var string[] Array of columns to ignore
 	 */
-	protected $obsoleteUpdateColumns = array();
+	protected $obsoleteUpdateColumns = [];
 
 	/**
 	 * @param DbFactory $dbFactory
@@ -137,10 +137,10 @@ abstract class DbStorage implements ObjectStorage {
 	 * @return boolean
 	 */
 	protected function validateOptions( $options ) {
-		static $validUnaryOptions = array(
+		static $validUnaryOptions = [
 			'UNIQUE',
 			'EXPLAIN',
-		);
+		];
 
 		$fieldRegex = $this->getFieldRegexFragment();
 

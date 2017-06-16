@@ -15,7 +15,7 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	 * @return array
 	 */
 	protected function getBlockParams() {
-		return array( 'topiclist' => $this->extractRequestParams() );
+		return [ 'topiclist' => $this->extractRequestParams() ];
 	}
 
 	protected function getAction() {
@@ -23,28 +23,28 @@ class ApiFlowNewTopic extends ApiFlowBasePost {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'topic' => array(
+		return [
+			'topic' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'content' => array(
+			],
+			'content' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'format' => array(
+			],
+			'format' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_DFLT => 'wikitext',
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
-		) + parent::getAllowedParams();
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=new-topic&page=Talk:Sandbox&nttopic=Hi&ntcontent=Nice%20to&20meet%20you&ntformat=wikitext'
 				=> 'apihelp-flow+new-topic-example-1',
-		);
+		];
 	}
 }

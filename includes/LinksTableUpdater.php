@@ -31,7 +31,7 @@ class LinksTableUpdater {
 		$page = WikiPage::factory( $title );
 		$content = $page->getContent();
 		if ( $content === null ) {
-			$updates = array();
+			$updates = [];
 		} else {
 			$updates = $content->getSecondaryDataUpdates( $title );
 		}
@@ -53,9 +53,9 @@ class LinksTableUpdater {
 
 		$linkBatch = new LinkBatch();
 		/** @var Title[] $internalLinks */
-		$internalLinks = array();
+		$internalLinks = [];
 		/** @var Title[] $templates */
-		$templates = array();
+		$templates = [];
 
 		foreach ( $references as $reference ) {
 			if ( $reference->getType() === 'link' ) {
@@ -94,7 +94,7 @@ class LinksTableUpdater {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
 			if ( !isset( $parserOutput->mLinks[$ns] ) ) {
-				$parserOutput->mLinks[$ns] = array();
+				$parserOutput->mLinks[$ns] = [];
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
@@ -105,7 +105,7 @@ class LinksTableUpdater {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
 			if ( !isset( $parserOutput->mTemplates[$ns] ) ) {
-				$parserOutput->mTemplates[$ns] = array();
+				$parserOutput->mTemplates[$ns] = [];
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
@@ -116,25 +116,25 @@ class LinksTableUpdater {
 	public function getReferencesForTitle( Title $title ) {
 		$wikiReferences = $this->storage->find(
 			'WikiReference',
-			array(
+			[
 				'ref_src_wiki' => wfWikiID(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
-			)
+			]
 		);
 
 		$urlReferences = $this->storage->find(
 			'URLReference',
-			array(
+			[
 				'ref_src_wiki' => wfWikiID(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
-			)
+			]
 		);
 
 		// let's make sure the merge doesn't fail when nothing was found
-		$wikiReferences = $wikiReferences ?: array();
-		$urlReferences = $urlReferences ?: array();
+		$wikiReferences = $wikiReferences ?: [];
+		$urlReferences = $urlReferences ?: [];
 
 		return array_merge( $wikiReferences, $urlReferences );
 	}

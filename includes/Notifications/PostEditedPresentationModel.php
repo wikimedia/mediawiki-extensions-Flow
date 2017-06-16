@@ -17,27 +17,27 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
-		return array(
+		return [
 			'url' => $this->getPostLinkUrl(),
 			'label' => $this->msg( 'flow-notification-link-text-view-post' )->text()
-		);
+		];
 	}
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			$links = array( $this->getBoardLink() );
+			$links = [ $this->getBoardLink() ];
 		} else {
 			if ( $this->isUserTalkPage() ) {
-				$links = array(
+				$links = [
 					$this->getAgentLink(),
 					$this->getDiffLink(),
-				);
+				];
 			} else {
-				$links = array(
+				$links = [
 					$this->getAgentLink(),
 					$this->getBoardLink(),
 					$this->getDiffLink( false ),
-				);
+				];
 			}
 		}
 
@@ -89,12 +89,12 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 			$this->event->getExtraParam( 'revision-id' )
 		);
 
-		return array(
+		return [
 			'url' => $anchor->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => $prioritized,
-		);
+		];
 	}
 }

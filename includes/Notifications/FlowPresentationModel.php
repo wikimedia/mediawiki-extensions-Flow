@@ -23,7 +23,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array( $this->getAgentLink() );
+		return [ $this->getAgentLink() ];
 	}
 
 	/**
@@ -50,10 +50,10 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		);
 
 		$url = $title->getFullURL(
-			array(
+			[
 				'topic_showPostId' => $firstChronologicallyPostId->getAlphadecimal(),
 				'fromnotif' => 1,
-			)
+			]
 		);
 
 		return $url;
@@ -68,7 +68,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
 
-		$url = $this->getTopicTitleObj()->getFullURL( array( 'fromnotif' => 1 ) );
+		$url = $this->getTopicTitleObj()->getFullURL( [ 'fromnotif' => 1 ] );
 
 		return $url;
 	}
@@ -95,10 +95,10 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 * @return string
 	 */
 	protected function getBoardLinkByNewestTopic() {
-		return array(
+		return [
 			'url' => $this->getBoardByNewestTopicUrl(),
 			'label' => $this->msg( 'flow-notification-link-text-view-topics' )->text()
-		);
+		];
 	}
 
 	protected function getBoardByNewestTopicUrl() {
@@ -110,10 +110,10 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
 	protected function getViewTopicLink() {
 		$title = Title::newFromText( $this->event->getExtraParam( 'topic-workflow' )->getAlphadecimal(), NS_TOPIC );
-		return array(
+		return [
 			'url' => $title->getFullURL(),
 			'label' => $this->msg( 'flow-notification-link-text-view-topic' )->text(),
-		);
+		];
 	}
 
 	protected function getBoardByNewestLink() {
@@ -121,7 +121,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function getBoardLink( $sortBy = null ) {
-		$query = $sortBy ? array( 'topiclist_sortby' => $sortBy ) : array();
+		$query = $sortBy ? [ 'topiclist_sortby' => $sortBy ] : [];
 		return $this->getPageLink(
 			$this->event->getTitle(), '', true, $query
 		);
@@ -168,7 +168,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getFlowUnwatchDynamicActionLink( $isTopic = false ) {
 		$title = $isTopic ? $this->getTopicTitleObj() : $this->event->getTitle();
-		$query = array( 'action' => 'unwatch' );
+		$query = [ 'action' => 'unwatch' ];
 		$link = $this->getWatchActionLink( $title );
 		$type = $isTopic ? 'topic' : 'board';
 		$stringPageTitle = $isTopic ? $this->getTopicTitle() : $this->getTruncatedTitleText( $title );
@@ -177,8 +177,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			return null;
 		}
 
-		$messageKeys = array(
-			'confirmation' => array(
+		$messageKeys = [
+			'confirmation' => [
 				// notification-dynamic-actions-flow-board-unwatch-confirmation
 				// notification-dynamic-actions-flow-topic-unwatch-confirmation
 				'title' => $this
@@ -199,8 +199,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 						$this->getUser()->getName()
 					)
 					->parse(),
-			),
-		);
+			],
+		];
 
 		// Override messages with flow-specific messages
 		$link[ 'data' ][ 'messages' ] = array_replace( $link[ 'data' ][ 'messages' ], $messageKeys );

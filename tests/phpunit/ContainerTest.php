@@ -19,9 +19,9 @@ class ContainerTest extends FlowTestCase {
 	}
 
 	public function objectManagerKeyProvider() {
-		$tests = array();
+		$tests = [];
 		foreach ( array_unique( Container::get( 'storage.manager_list' ) ) as $key ) {
-			$tests[] = array( $key );
+			$tests[] = [ $key ];
 		}
 		return $tests;
 	}

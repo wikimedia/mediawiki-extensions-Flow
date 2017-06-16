@@ -66,10 +66,10 @@ class TemplateHelper {
 			throw new FlowException( "Malformed \$templateName: $templateName" );
 		}
 
-		return array(
+		return [
 			'template' => "{$this->templateDir}/{$templateName}.handlebars",
 			'compiled' => "{$this->templateDir}/compiled/{$templateName}.handlebars.php",
-		);
+		];
 	}
 
 	/**
@@ -109,7 +109,7 @@ class TemplateHelper {
 
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
-		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
+		return $this->renderers[$templateName] = function( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
 			return $renderer( $args, $scopes );
 		};
 	}
@@ -123,15 +123,15 @@ class TemplateHelper {
 	public static function compile( $code, $templateDir ) {
 		return LightnCandy::compile(
 			$code,
-			array(
+			[
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
 					| LightnCandy::FLAG_EXTHELPER
 					| LightnCandy::FLAG_SPVARS
 					| LightnCandy::FLAG_HANDLEBARS
 					| LightnCandy::FLAG_RUNTIMEPARTIAL,
-				'basedir' => array( $templateDir ),
-				'fileext' => array( '.partial.handlebars' ),
-				'helpers' => array(
+				'basedir' => [ $templateDir ],
+				'fileext' => [ '.partial.handlebars' ],
+				'helpers' => [
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
 					'timestamp' => 'Flow\TemplateHelper::timestampHelper',
@@ -152,15 +152,15 @@ class TemplateHelper {
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
-				),
-				'hbhelpers' => array(
+				],
+				'hbhelpers' => [
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
 					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
-				),
-			)
+				],
+			]
 		);
 	}
 
@@ -173,7 +173,7 @@ class TemplateHelper {
 	 *
 	 * @return string
 	 */
-	public static function processTemplate( $templateName, $args, array $scopes = array() ) {
+	public static function processTemplate( $templateName, $args, array $scopes = [] ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		/** @var TemplateHelper $lightncandy */
 		$lightncandy = Container::get( 'lightncandy' );
@@ -248,12 +248,12 @@ class TemplateHelper {
 
 		return self::html( self::processTemplate(
 			'timestamp',
-			array(
+			[
 				'time_iso' => $timestamp,
 				'time_ago' => $ts->getHumanTimestamp(),
 				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
 				'guid' => null, // generated client-side
-			)
+			]
 		) );
 	}
 
@@ -267,7 +267,7 @@ class TemplateHelper {
 	 * @return string[] array(html, 'raw')
 	 */
 	protected static function html( $string ) {
-		return array( $string, 'raw' );
+		return [ $string, 'raw' ];
 	}
 
 	/**
@@ -317,7 +317,7 @@ class TemplateHelper {
 		$fn = $options['fn'];
 
 		if ( $postIds && !is_array( $postIds ) ) {
-			$postIds = array( $postIds );
+			$postIds = [ $postIds ];
 		} elseif ( count( $postIds ) === 0 ) {
 			// Failure callback, if any
 			if ( !$inverse ) {
@@ -326,7 +326,7 @@ class TemplateHelper {
 			if ( !$inverse instanceof Closure ) {
 				throw new FlowException( 'Invalid inverse callback, expected Closure' );
 			}
-			return $inverse( $options['cx'], array() );
+			return $inverse( $options['cx'], [] );
 		} else {
 			return null;
 		}
@@ -334,7 +334,7 @@ class TemplateHelper {
 		if ( !$fn instanceof Closure ) {
 			throw new FlowException( 'Invalid callback, expected Closure' );
 		}
-		$html = array();
+		$html = [];
 		foreach ( $postIds as $id ) {
 			$revId = $context['posts'][$id][0];
 
@@ -364,10 +364,10 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
 		list( $rootBlock, $revision ) = $args;
-		return self::html( self::processTemplate( 'flow_post', array(
+		return self::html( self::processTemplate( 'flow_post', [
 			'revision' => $revision,
 			'rootBlock' => $rootBlock,
-		) ) );
+		] ) );
 	}
 
 	/**
@@ -384,16 +384,16 @@ class TemplateHelper {
 		$revision = $args[0];
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
-		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' );
+		$linkKeys = [ 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' ];
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $revision['links'][$linkKey] ) ) {
 				$link = $revision['links'][$linkKey];
 				$formattedTime = Html::element(
 					'a',
-					array(
+					[
 						'href' => $link['url'],
 						'title' => $link['title'],
-					),
+					],
 					$formattedTime
 				);
 				$raw = true;
@@ -405,14 +405,14 @@ class TemplateHelper {
 			$formattedTime = htmlspecialchars( $formattedTime );
 		}
 
-		$class = array( 'mw-changeslist-date' );
+		$class = [ 'mw-changeslist-date' ];
 		if ( $revision['isModeratedNotLocked'] ) {
 			$class[] = 'history-deleted';
 		}
 
 		return self::html(
 			'<span class="plainlinks">'
-			. Html::rawElement( 'span', array( 'class' => $class ), $formattedTime )
+			. Html::rawElement( 'span', [ 'class' => $class ], $formattedTime )
 			. '</span>'
 		);
 	}
@@ -498,34 +498,34 @@ class TemplateHelper {
 	 */
 	public static function oouify( array $args, array $named ) {
 		$widgetType = $named[ 'type' ];
-		$data = array();
+		$data = [];
 
-		$classes = array();
+		$classes = [];
 		if ( isset( $named['classes'] ) ) {
 			$classes = explode( ' ', $named[ 'classes' ] );
 		}
 
 		// Push raw arguments
 		$data['args'] = $args;
-		$baseConfig = array(
+		$baseConfig = [
 			// 'infusable' => true,
 			'id' => isset( $named[ 'name' ] ) ? isset( $named[ 'name' ] ) : null,
 			'classes' => $classes,
 			'data' => $data
-		);
+		];
 		switch ( $widgetType ) {
 			case 'BoardDescriptionWidget':
-				$dataArgs = array(
+				$dataArgs = [
 					'infusable' => false,
 					'description' => $args[0],
 					'editLink' => $args[1]
-				);
+				];
 				$widget = new OOUI\BoardDescriptionWidget( $baseConfig + $dataArgs );
 				break;
 			case 'IconWidget':
-				$dataArgs = array(
+				$dataArgs = [
 					'icon' => $args[0],
-				);
+				];
 				$widget = new IconWidget( $baseConfig + $dataArgs );
 				break;
 		}
@@ -585,16 +585,16 @@ class TemplateHelper {
 
 		return self::html( $differenceEngine->addHeader(
 			$data['diff_content'],
-			$renderer( array(
+			$renderer( [
 				'old' => true,
 				'revision' => $data['old'],
 				'links' => $data['links'],
-			) ),
-			$renderer( array(
+			] ),
+			$renderer( [
 				'new' => true,
 				'revision' => $data['new'],
 				'links' => $data['links'],
-			) ),
+			] ),
 			$multi,
 			$notice
 		) );
@@ -661,10 +661,10 @@ class TemplateHelper {
 	public static function user( array $args, array $named ) {
 		$feature = isset( $args[0] ) ? $args[0] : 'name';
 		$user = RequestContext::getMain()->getUser();
-		$userInfo = array(
+		$userInfo = [
 			'id' => $user->getId(),
 			'name' => $user->getName(),
-		);
+		];
 
 		return $userInfo[$feature];
 	}
@@ -713,9 +713,9 @@ class TemplateHelper {
 
 		unset( $returnToQuery['title'] );
 
-		$args = array(
+		$args = [
 			'returnto' => $returnTo->getPrefixedUrl(),
-		);
+		];
 		if ( $returnToQuery ) {
 			$args['returntoquery'] = wfArrayToCgi( $returnToQuery );
 		}
@@ -764,7 +764,7 @@ class TemplateHelper {
 			throw new WrongNumberArgumentsException( $args, 'two' );
 		}
 		list( $contentType, $content ) = $args;
-		return in_array( $contentType, array( 'html', 'fixed-html', 'topic-title-html' ) ) ? self::html( $content ) : $content;
+		return in_array( $contentType, [ 'html', 'fixed-html', 'topic-title-html' ] ) ? self::html( $content ) : $content;
 	}
 
 	/**
@@ -826,13 +826,13 @@ class TemplateHelper {
 		$params = $options['hash'];
 
 		return (
-			self::processTemplate( 'flow_tooltip', array(
+			self::processTemplate( 'flow_tooltip', [
 				'positionClass' => $params['positionClass'] ? 'flow-ui-tooltip-' . $params['positionClass'] : null,
 				'contextClass' => $params['contextClass'] ? 'mw-ui-' . $params['contextClass'] : null,
 				'extraClass' => $params['extraClass'] ?: '',
 				'blockClass' => $params['isBlock'] ? 'flow-ui-tooltip-block' : null,
 				'content' => $fn(),
-			) )
+			] )
 		);
 	}
 

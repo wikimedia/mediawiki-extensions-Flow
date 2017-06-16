@@ -47,74 +47,74 @@ use Flow\Data\Listener\RecentChangesListener;
  * *   modules are known to work.  You can specify an empty array, or a custom set of modules.
  * * moduleStyles: Style modules to insert with RL to html page for this action instead of the defaults
  */
-$wgFlowActions = array(
-	'create-header' => array(
+$wgFlowActions = [
+	'create-header' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			Header::MODERATED_NONE => '',
-		),
-		'links' => array( 'board-history', 'workflow', 'header-revision' ),
-		'actions' => array( 'edit-header' ),
-		'history' => array(
+		],
+		'links' => [ 'board-history', 'workflow', 'header-revision' ],
+		'actions' => [ 'edit-header' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-create-header',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
-			),
+			],
 			'class' => 'flow-history-create-header',
-		),
+		],
 		'editcount' => true,
-	),
+	],
 
-	'edit-header' => array(
+	'edit-header' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			Header::MODERATED_NONE => '',
-		),
-		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
-		'actions' => array( 'edit-header', 'undo-edit-header' ),
-		'history' => array(
+		],
+		'links' => [ 'board-history', 'diff-header', 'workflow', 'header-revision' ],
+		'actions' => [ 'edit-header', 'undo-edit-header' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-header',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
-			),
+			],
 			'class' => 'flow-history-edit-header',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
+		'modules' => [],
 		'editcount' => true,
-	),
+	],
 
 	// @todo this is almost copy/paste from edit-header except the handler-class. find
 	// a way to share.
-	'undo-edit-header' => array(
+	'undo-edit-header' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			Header::MODERATED_NONE => '',
-		),
-		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
-		'actions' => array( 'edit-header', 'undo-edit-header' ),
-		'history' => array(
+		],
+		'links' => [ 'board-history', 'diff-header', 'workflow', 'header-revision' ],
+		'actions' => [ 'edit-header', 'undo-edit-header' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-header',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
-			),
+			],
 			'class' => 'flow-history-edit-header',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
+		'modules' => [],
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
-		'modules' => array( 'ext.flow.undo' ),
-		'moduleStyles' => array(
+		'modules' => [ 'ext.flow.undo' ],
+		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
@@ -122,101 +122,101 @@ $wgFlowActions = array(
 			'ext.flow.board.topic.styles',
 			// Needed for pending texture while switching editors
 			'oojs-ui.styles.textures'
-		),
-	),
+		],
+	],
 
-	'create-topic-summary' => array(
+	'create-topic-summary' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
-		),
-		'root-permissions' => array(
+			PostSummary::MODERATED_LOCKED => [ 'flow-lock', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_HIDDEN => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_SUPPRESSED => [ 'flow-suppress' ],
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
-		),
-		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
-		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ],
+		'actions' => [ 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-of-summary',
-			),
+			],
 			'class' => 'flow-history-create-topic-summary',
-		),
+		],
 		'editcount' => true,
-	),
+	],
 
-	'edit-topic-summary' => array(
+	'edit-topic-summary' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
-		),
-		'root-permissions' => array(
+			PostSummary::MODERATED_LOCKED => [ 'flow-lock', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_HIDDEN => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_SUPPRESSED => [ 'flow-suppress' ],
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
-		),
-		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ),
-		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ],
+		'actions' => [ 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-of-summary',
-			),
+			],
 			'class' => 'flow-history-edit-topic-summary',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
+		'modules' => [],
 		'editcount' => true,
-	),
+	],
 
 	// @todo this is almost copy/paste from edit-topic-summary except the handler class. find a
 	// way to share
-	'undo-edit-topic-summary' => array(
+	'undo-edit-topic-summary' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostSummary::MODERATED_NONE => '',
-			PostSummary::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
-			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
-		),
-		'root-permissions' => array(
+			PostSummary::MODERATED_LOCKED => [ 'flow-lock', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_HIDDEN => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
+			PostSummary::MODERATED_SUPPRESSED => [ 'flow-suppress' ],
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-of-summary',
-			),
+			],
 			'class' => 'flow-history-edit-topic-summary',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
+		'modules' => [],
 		'editcount' => true,
-		'modules' => array( 'ext.flow.undo' ),
-		'moduleStyles' => array(
+		'modules' => [ 'ext.flow.undo' ],
+		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
@@ -224,38 +224,38 @@ $wgFlowActions = array(
 			'ext.flow.board.topic.styles',
 			// Needed for pending texture while switching editors
 			'oojs-ui.styles.textures'
-		),
-	),
+		],
+	],
 
-	'edit-title' => array(
+	'edit-title' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-title',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'workflow-url',
 				'plaintext',
 				'prev-plaintext',
-			),
+			],
 			'class' => 'flow-history-edit-title',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-		),
+		'modules' => [],
+		'watch' => [
+			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+		],
 		'editcount' => true,
-	),
+	],
 
-	'new-topic' => array(
+	'new-topic' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_title' => 'owner',
@@ -269,96 +269,96 @@ $wgFlowActions = array(
 
 		// exclude_from_recentchanges only refers to the actual Special:RecentChanges.  It does not affect Special:Watchlist.
 		'exclude_from_recentchanges' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-new-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'workflow-url',
 				'wikitext',
-			),
+			],
 			'class' => 'flow-history-new-post',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-		),
+		'modules' => [],
+		'watch' => [
+			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+		],
 		'editcount' => true,
-	),
+	],
 
-	'edit-post' => array(
+	'edit-post' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			// no permissions needed for own posts
 			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
 			}
-		),
-		'root-permissions' => array(
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ),
-		'history' => array(
+		],
+		'links' => [ 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-url',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-edit-post',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-		),
+		'modules' => [],
+		'watch' => [
+			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+		],
 		'editcount' => true,
-	),
+	],
 
 	// @todo this is almost (but not quite) copy/paste from 'edit-post'. find a way to share?
-	'undo-edit-post' => array(
+	'undo-edit-post' => [
 		'performs-writes' => true,
 		'log_type' => false, // maybe?
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			// no permissions needed for own posts
 			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
 			}
-		),
-		'root-permissions' => array(
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ),
-		'history' => array(
+		],
+		'links' => [ 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-url',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-edit-post',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-		),
+		'modules' => [],
+		'watch' => [
+			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+		],
 		'editcount' => true,
-		'modules' => array( 'ext.flow.undo' ),
-		'moduleStyles' => array(
+		'modules' => [ 'ext.flow.undo' ],
+		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
@@ -366,192 +366,192 @@ $wgFlowActions = array(
 			'ext.flow.board.topic.styles',
 			// Needed for pending texture while switching editors
 			'oojs-ui.styles.textures'
-		),
-	),
+		],
+	],
 
-	'hide-post' => array(
+	'hide-post' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			// Permissions required to perform action. The key is the moderation state
 			// of the post to perform the action against. The value is a string or array
 			// of user rights that can allow this action.
-			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-		),
-		'root-permissions' => array(
+			PostRevision::MODERATED_NONE => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+		],
+		'root-permissions' => [
 			// Can only hide within an unmoderated or hidden topic. This doesn't check for a specific
 			// permissions because thats already done above in 'permissions', this just ensures the
 			// topic is in an appropriate state.
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
-		),
-		'links' => array( 'topic', 'post', 'post-history', 'topic-history', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'post', 'post-history', 'topic-history', 'post-revision' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-hid-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'post-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-hide-post',
-		),
-	),
+		],
+	],
 
-	'hide-topic' => array(
+	'hide-topic' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-		),
-		'links' => array( 'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
-		'history' => array(
+		'permissions' => [
+			PostRevision::MODERATED_NONE => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+		],
+		'links' => [ 'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-hid-topic',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'workflow-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-hide-topic',
-		),
-	),
+		],
+	],
 
-	'delete-post' => array(
+	'delete-post' => [
 		'performs-writes' => true,
 		'log_type' => 'delete',
 		'rc_insert' => true,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
-		),
-		'links' => array( 'topic', 'post', 'post-history', 'topic-history', 'post-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
-		'history' => array(
+		'permissions' => [
+			PostRevision::MODERATED_NONE => [ 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_HIDDEN => [ 'flow-delete', 'flow-suppress' ],
+		],
+		'links' => [ 'topic', 'post', 'post-history', 'topic-history', 'post-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-deleted-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'post-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-delete-post',
-		),
-	),
+		],
+	],
 
-	'delete-topic' => array(
+	'delete-topic' => [
 		'performs-writes' => true,
 		'log_type' => 'delete',
 		'rc_insert' => true,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_LOCKED => array( 'flow-delete', 'flow-suppress' ),
-		),
-		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		'permissions' => [
+			PostRevision::MODERATED_NONE => [ 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_HIDDEN => [ 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_LOCKED => [ 'flow-delete', 'flow-suppress' ],
+		],
+		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-deleted-topic',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'workflow-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-delete-topic',
-		),
-	),
+		],
+	],
 
-	'suppress-post' => array(
+	'suppress-post' => [
 		'performs-writes' => true,
 		'log_type' => 'suppress',
 		'rc_insert' => false,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => 'flow-suppress',
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
-		),
-		'links' => array( 'topic', 'post', 'topic-history', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'post', 'topic-history', 'post-revision' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-suppressed-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'post-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-suppress-post',
-		),
-	),
+		],
+	],
 
-	'suppress-topic' => array(
+	'suppress-topic' => [
 		'performs-writes' => true,
 		'log_type' => 'suppress',
 		'rc_insert' => false,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => 'flow-suppress',
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 			PostRevision::MODERATED_LOCKED => 'flow-suppress',
-		),
-		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'workflow-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-suppress-topic',
-		),
-	),
+		],
+	],
 
-	'lock-topic' => array(
+	'lock-topic' => [
 		'performs-writes' => true,
 		'log_type' => 'lock',
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			// Only non-moderated topic can be locked
-			PostRevision::MODERATED_NONE => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
-		),
-		'links' => array( 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'topic-revision' ),
-		'actions' => array( 'edit-topic-summary', 'restore-topic', 'delete-topic', 'suppress-topic' ),
-		'history' => array(
+			PostRevision::MODERATED_NONE => [ 'flow-lock', 'flow-delete', 'flow-suppress' ],
+		],
+		'links' => [ 'topic', 'topic-history', 'watch-topic', 'unwatch-topic', 'topic-revision' ],
+		'actions' => [ 'edit-topic-summary', 'restore-topic', 'delete-topic', 'suppress-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-locked-topic',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'workflow-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => 'flow-history-locked-topic',
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 
-	'restore-post' => array(
+	'restore-post' => [
 		'performs-writes' => true,
 		'log_type' => function( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
@@ -578,34 +578,34 @@ $wgFlowActions = array(
 
 			return true;
 		},
-		'permissions' => array(
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+		'permissions' => [
+			PostRevision::MODERATED_HIDDEN => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'post', 'post-history', 'post-revision' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-restored-post',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'post-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => function( PostRevision $revision ) {
 				$previous = $revision->getCollection()->getPrevRevision( $revision );
 				$state = $previous->getModerationState();
 				return "flow-history-un$state-post";
 			}
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 
-	'restore-topic' => array(
+	'restore-topic' => [
 		'performs-writes' => true,
 		'log_type' => function( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
@@ -632,96 +632,96 @@ $wgFlowActions = array(
 
 			return true;
 		},
-		'permissions' => array(
-			PostRevision::MODERATED_LOCKED => array( 'flow-lock', 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+		'permissions' => [
+			PostRevision::MODERATED_LOCKED => [ 'flow-lock', 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_HIDDEN => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
+			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'links' => array( 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-restored-topic',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'creator-text',
 				'workflow-url',
 				'moderated-reason',
 				'topic-of-post-text-from-html',
-			),
+			],
 			'class' => function( PostRevision $revision ) {
 				$previous = $revision->getCollection()->getPrevRevision( $revision );
 				$state = $previous->getModerationState();
 				return "flow-history-un$state-topic";
 			}
-		),
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 
-	'view' => array(
+	'view' => [
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'core-delete-permissions' => array( 'deletedtext' ),
-		'links' => array(), // @todo
-		'actions' => array(), // view is not a recorded change type, no actions will be requested
-		'history' => array(), // views don't generate history
+		],
+		'core-delete-permissions' => [ 'deletedtext' ],
+		'links' => [], // @todo
+		'actions' => [], // view is not a recorded change type, no actions will be requested
+		'history' => [], // views don't generate history
 		'handler-class' => 'Flow\Actions\ViewAction',
-	),
+	],
 
-	'reply' => array(
+	'reply' => [
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'root-permissions' => array(
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
-		),
-		'links' => array( 'topic-history', 'topic', 'post', 'post-revision', 'watch-topic', 'unwatch-topic' ),
-		'actions' => array( 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'lock-topic', 'restore-topic' ),
-		'history' => array(
+		],
+		'links' => [ 'topic-history', 'topic', 'post', 'post-revision', 'watch-topic', 'unwatch-topic' ],
+		'actions' => [ 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'history' => [
 			'i18n-message' => 'flow-rev-message-reply',
-			'i18n-params' => array(
+			'i18n-params' => [
 				'user-links',
 				'user-text',
 				'post-url',
 				'topic-of-post-text-from-html',
 				'summary',
-			),
+			],
 			'class' => 'flow-history-reply',
-			'bundle' => array(
+			'bundle' => [
 				'i18n-message' => 'flow-rev-message-reply-bundle',
-				'i18n-params' => array(
+				'i18n-params' => [
 					'bundle-count'
-				),
+				],
 				'class' => 'flow-history-bundle',
-			),
-		),
+			],
+		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-		'watch' => array(
-			'immediate' => array( 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ),
-		),
+		'modules' => [],
+		'watch' => [
+			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+		],
 		'editcount' => true,
-	),
+	],
 
-	'history' => array(
+	'history' => [
 		'performs-writes' => false,
 		'log_type' => false,
 		'rc_insert' => false, // won't even be called, actually; only for writes
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
 				static $previousCollectionId;
 
@@ -780,8 +780,8 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'root-permissions' => array(
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_HIDDEN => '',
@@ -791,61 +791,61 @@ $wgFlowActions = array(
 			// All we want is the "topic has been deleted", which will still be
 			// displayed (root-permissions won't be tested for the topic, since
 			// it is the root)
-		),
-		'core-delete-permissions' => array( 'deletedhistory' ),
-		'history' => array(), // views don't generate history
+		],
+		'core-delete-permissions' => [ 'deletedhistory' ],
+		'history' => [], // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
-	),
+	],
 
 	// Pseudo-action to determine when to show thank links,
 	// currently no limitation. if you can see revision you
 	// can thank.
-	'thank' => array(
+	'thank' => [
 		'performs-writes' => false,
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => '',
-		),
-	),
+		],
+	],
 
-	'view-topic-summary' => array(
+	'view-topic-summary' => [
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
-		'permissions' => array(
+		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'root-permissions' => array(
+		],
+		'root-permissions' => [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
-		),
-		'core-delete-permissions' => array( 'deletedtext' ),
-		'links' => array(), // @todo
-		'actions' => array(), // view is not a recorded change type, no actions will be requested
-		'history' => array(), // views don't generate history
+		],
+		'core-delete-permissions' => [ 'deletedtext' ],
+		'links' => [], // @todo
+		'actions' => [], // view is not a recorded change type, no actions will be requested
+		'history' => [], // views don't generate history
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 
 	// This is only used when we specifically want to see the topic title.  If we're
 	// cascading from a post (to view a post we need to be able to view the topic),
 	// we'll use 'view' for both the post and topic root.  Unprivileged users shouldn't
 	// be able to view a post in a deleted topic, but should be able to view the topic
 	// title.
-	'view-topic-title' => array(
+	'view-topic-title' => [
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
-		'permissions' => array(
+		'permissions' => [
 			// Everyone can see topic titles on existent boards, unless the
 			// version you're viewing is suppressed, or the most recent version
 			// is
@@ -854,50 +854,50 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'core-delete-permissions' => array( 'deletedtext' ),
-		'links' => array(), // @todo
-		'actions' => array(), // view is not a recorded change type, no actions will be requested
-		'history' => array(), // views don't generate history
-		'modules' => array(),
-	),
+		],
+		'core-delete-permissions' => [ 'deletedtext' ],
+		'links' => [], // @todo
+		'actions' => [], // view is not a recorded change type, no actions will be requested
+		'history' => [], // views don't generate history
+		'modules' => [],
+	],
 
 	// Actions not tied to a particular revision change_type
 	// or just move these to a different file
 	// @todo: we should probably at least add 'permissions' in these below
-	'compare-header-revisions' => array(
+	'compare-header-revisions' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'view-header' => array(
+		'modules' => [],
+	],
+	'view-header' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'compare-post-revisions' => array(
+		'modules' => [],
+	],
+	'compare-post-revisions' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 	// @todo - This is a very bad action name, consolidate with view-post action
-	'single-view' => array(
+	'single-view' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'compare-postsummary-revisions' => array(
+		'modules' => [],
+	],
+	'compare-postsummary-revisions' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'moderate-topic' => array(
+		'modules' => [],
+	],
+	'moderate-topic' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'moderate-post' => array(
+		'modules' => [],
+	],
+	'moderate-post' => [
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => array(),
-	),
-	'purge' => array(
+		'modules' => [],
+	],
+	'purge' => [
 		'handler-class' => 'Flow\Actions\PurgeAction',
-		'modules' => array(),
-	),
+		'modules' => [],
+	],
 
 	// Other formatters have the same config as history
 	'recentchanges' => 'history',
@@ -951,4 +951,4 @@ $wgFlowActions = array(
 	// BC for lock-topic, which used to be called differently
 	'close-topic' => 'lock-topic',
 	'close-open-topic' => 'lock-topic',
-);
+];

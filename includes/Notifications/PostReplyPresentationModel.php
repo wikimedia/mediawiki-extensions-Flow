@@ -24,7 +24,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			$notificationController = Container::get( 'controller.notification' );
 			$firstChronologicallyEvent = end( $bundledEvents );
 			$firstChronologicallyPostId = $firstChronologicallyEvent->getExtraParam( 'post-id' );
-			$bundledEventsIncludingThis = array_merge( array( $this->event ), $bundledEvents );
+			$bundledEventsIncludingThis = array_merge( [ $this->event ], $bundledEvents );
 			$topmostPostID = $notificationController->getTopmostPostId( $bundledEventsIncludingThis ) ?:
 				$firstChronologicallyPostId;
 
@@ -32,17 +32,17 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			$event = $this->event;
 			$firstChronologicallyPostId = $event->getExtraParam( 'post-id' );
 		}
-		return array(
+		return [
 			'url' => $this->getPostLinkUrl( $firstChronologicallyPostId, $topmostPostID ),
 			'label' => $this->msg( 'flow-notification-link-text-view-post' )->text(),
-		);
+		];
 	}
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			$links = array( $this->getBoardLink() );
+			$links = [ $this->getBoardLink() ];
 		} else {
-			$links = array( $this->getAgentLink(), $this->getBoardLink() );
+			$links = [ $this->getAgentLink(), $this->getBoardLink() ];
 		}
 
 		$links[] = $this->getFlowUnwatchDynamicActionLink( true );

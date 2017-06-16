@@ -10,7 +10,7 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 	public function testLockTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
@@ -18,7 +18,7 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 			'cotmoderationState' => 'lock',
 			'cotreason' => 'fiddle faddle',
 			'cotprev_revision' => null,
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
@@ -26,12 +26,12 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 
 		$revisionId = $data[0]['flow']['lock-topic']['committed']['topic']['post-revision-id'];
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'action' => 'flow',
 			'submodule' => 'view-topic',
 			'vpformat' => 'html',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
@@ -51,27 +51,27 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 	public function testUnlockTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'lock',
 			'cotreason' => 'fiddle faddle',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => 'unlock',
 			'cotreason' => 'Ether',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
@@ -79,12 +79,12 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 
 		$revisionId = $data[0]['flow']['lock-topic']['committed']['topic']['post-revision-id'];
 
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'action' => 'flow',
 			'submodule' => 'view-topic',
 			'vpformat' => 'html',
-		) );
+		] );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];

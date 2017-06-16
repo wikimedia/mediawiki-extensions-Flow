@@ -14,7 +14,7 @@ class WatchedTopicItems {
 
 	protected $user;
 	protected $watchListDb;
-	protected $overrides = array();
+	protected $overrides = [];
 
 	public function __construct( User $user, DatabaseBase $watchListDb ) {
 		$this->user = $user;
@@ -43,7 +43,7 @@ class WatchedTopicItems {
 			return $result;
 		}
 
-		$queryTitles = array();
+		$queryTitles = [];
 		foreach ( $titles as $id ) {
 			$obj = Title::makeTitleSafe( NS_TOPIC, $id );
 			if ( $obj ) {
@@ -61,13 +61,13 @@ class WatchedTopicItems {
 		}
 
 		$res = $this->watchListDb->select(
-			array( 'watchlist' ),
-			array( 'wl_title' ),
-			array(
+			[ 'watchlist' ],
+			[ 'wl_title' ],
+			[
 				'wl_user' => $this->user->getId(),
 				'wl_namespace' => NS_TOPIC,
 				'wl_title' => $queryTitles
-			),
+			],
 			__METHOD__
 		);
 		if ( !$res ) {

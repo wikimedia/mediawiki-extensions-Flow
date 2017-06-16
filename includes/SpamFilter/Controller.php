@@ -12,7 +12,7 @@ class Controller {
 	/**
 	 * @var SpamFilter[] Array of SpamFilter objects
 	 */
-	protected $spamfilters = array();
+	protected $spamfilters = [];
 
 	/**
 	 * Accepts multiple spamfilters.

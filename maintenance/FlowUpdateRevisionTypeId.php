@@ -39,15 +39,15 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ),
-				array( 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ),
-				array( 'rev_id > ' . $dbr->addQuotes( $revId ) ),
+				[ 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ],
+				[ 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ],
+				[ 'rev_id > ' . $dbr->addQuotes( $revId ) ],
 				__METHOD__,
-				array( 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ),
-				array(
-					'flow_tree_revision' => array( 'LEFT JOIN', 'rev_id=tree_rev_id' ),
-					'flow_header_revision' => array( 'LEFT JOIN', 'rev_id=header_rev_id' )
-				)
+				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ],
+				[
+					'flow_tree_revision' => [ 'LEFT JOIN', 'rev_id=tree_rev_id' ],
+					'flow_header_revision' => [ 'LEFT JOIN', 'rev_id=header_rev_id' ]
+				]
 			);
 
 			if ( $res ) {
@@ -83,8 +83,8 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 
 		$res = $dbw->update(
 			'flow_revision',
-			array( 'rev_type_id' => $revTypeId ),
-			array( 'rev_id' => $revId ),
+			[ 'rev_type_id' => $revTypeId ],
+			[ 'rev_id' => $revId ],
 			__METHOD__
 		);
 		if ( !$res ) {

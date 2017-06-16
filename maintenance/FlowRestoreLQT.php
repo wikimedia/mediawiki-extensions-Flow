@@ -71,34 +71,34 @@ class FlowRestoreLQT extends Maintenance {
 			// fetch all LQT boards that have been moved out of the way,
 			// with their original title & their current title
 			$rows = $dbr->select(
-				array( 'logging', 'page', 'revision' ),
+				[ 'logging', 'page', 'revision' ],
 				// log_namespace & log_title will be the original location
 				// page_namespace & page_title will be the current location
 				// rev_id is the first Flow talk page manager edit id
 				// log_id is the log entry for when importer moved LQT page
-				array( 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title', 'rev_id' => 'MIN(rev_id)', 'log_id' ),
-				array(
+				[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title', 'rev_id' => 'MIN(rev_id)', 'log_id' ],
+				[
 					'log_user' => $this->talkpageManagerUser->getId(),
 					'log_type' => 'move',
 					'page_content_model' => 'wikitext',
 					'page_id > ' . $dbr->addQuotes( $startId ),
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'GROUP BY' => 'rev_page',
 					'LIMIT' => $this->mBatchSize,
 					'ORDER BY' => 'log_id ASC',
-				),
-				array(
-					'page' => array(
+				],
+				[
+					'page' => [
 						'INNER JOIN',
-						array( 'page_id = log_page' ),
-					),
-					'revision' => array(
+						[ 'page_id = log_page' ],
+					],
+					'revision' => [
 						'INNER JOIN',
-						array( 'rev_page = log_page', 'rev_user = log_user' ),
-					),
-				)
+						[ 'rev_page = log_page', 'rev_user = log_user' ],
+					],
+				]
 			);
 
 			foreach ( $rows as $row ) {
@@ -130,25 +130,25 @@ class FlowRestoreLQT extends Maintenance {
 			// for every LQT post, find the first edit by Flow talk page manager
 			// (to redirect to the new Flow copy)
 			$rows = $dbr->select(
-				array( 'page', 'revision' ),
-				array( 'rev_page', 'rev_id' => ' MIN(rev_id)' ),
-				array(
-					'page_namespace' => array( NS_LQT_THREAD, NS_LQT_SUMMARY ),
+				[ 'page', 'revision' ],
+				[ 'rev_page', 'rev_id' => ' MIN(rev_id)' ],
+				[
+					'page_namespace' => [ NS_LQT_THREAD, NS_LQT_SUMMARY ],
 					'rev_user' => $this->talkpageManagerUser->getId(),
 					'page_id > ' . $dbr->addQuotes( $startId ),
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'GROUP BY' => 'page_id',
 					'LIMIT' => $this->mBatchSize,
 					'ORDER BY' => 'page_id ASC',
-				),
-				array(
-					'revision' => array(
+				],
+				[
+					'revision' => [
 						'INNER JOIN',
-						array( 'rev_page = page_id' ),
-					),
-				)
+						[ 'rev_page = page_id' ],
+					],
+				]
 			);
 
 			foreach ( $rows as $row ) {
@@ -199,13 +199,13 @@ class FlowRestoreLQT extends Maintenance {
 				 */
 				$dbr = $this->dbFactory->getWikiDB( DB_SLAVE );
 				$count = $dbr->selectRowCount(
-					array( 'logging' ),
+					[ 'logging' ],
 					'*',
-					array(
+					[
 						'log_page' => $lqt->getArticleID(),
 						'log_type' => 'move',
 						'log_id > ' . $dbr->addQuotes( $logId ),
-					),
+					],
 					__METHOD__
 				);
 
@@ -214,7 +214,7 @@ class FlowRestoreLQT extends Maintenance {
 
 					// 1: move Flow board out of the way so we can restore LQT to
 					// its original location
-					$archive = $archiveNameHelper->decideArchiveTitle( $flow, array( '%s/Flow Archive %d' ) );
+					$archive = $archiveNameHelper->decideArchiveTitle( $flow, [ '%s/Flow Archive %d' ] );
 					$this->movePage( $flow, $archive, '/* Make place to restore LQT board */' );
 
 					// 2: move LQT board to the original location

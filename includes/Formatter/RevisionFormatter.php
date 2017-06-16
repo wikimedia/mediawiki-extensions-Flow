@@ -71,8 +71,8 @@ class RevisionFormatter {
 	 *
 	 *  See setContentFormat.
 	 */
-	protected $allowedContentFormats = array( 'html', 'wikitext', 'fixed-html',
-		'topic-title-html', 'topic-title-wikitext' );
+	protected $allowedContentFormats = [ 'html', 'wikitext', 'fixed-html',
+		'topic-title-html', 'topic-title-wikitext' ];
 
 	/**
 	 * @var string Default content format for revision output
@@ -82,7 +82,7 @@ class RevisionFormatter {
 	/**
 	 * @var array Map from alphadecimal revision id to content format override
 	 */
-	protected $revisionContentFormat = array();
+	protected $revisionContentFormat = [];
 
 	/**
 	 * @var int
@@ -92,12 +92,12 @@ class RevisionFormatter {
 	/**
 	 * @var Message[]
 	 */
-	protected $messages = array();
+	protected $messages = [];
 
 	/**
 	 * @var array
 	 */
-	protected $userLinks = array();
+	protected $userLinks = [];
 
 	/**
 	 * @var UserNameBatch
@@ -203,13 +203,13 @@ class RevisionFormatter {
 
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$ts = $row->revision->getRevisionId()->getTimestampObj();
-		$res = array(
-			ApiResult::META_BC_BOOLS => array(
+		$res = [
+			ApiResult::META_BC_BOOLS => [
 				'isOriginalContent',
 				'isModerated',
 				'isLocked',
 				'isModeratedNotLocked',
-			),
+			],
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'articleTitle' => $row->workflow->getArticleTitle()->getPrefixedText(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
@@ -224,10 +224,10 @@ class RevisionFormatter {
 			'links' => $this->buildLinks( $row ),
 			// These are write urls
 			'actions' => $this->buildActions( $row ),
-			'size' => array(
+			'size' => [
 				'old' => $row->revision->getPreviousContentLength(),
 				'new' => $row->revision->getContentLength(),
-			),
+			],
 			'author' => $this->serializeUser(
 				$row->revision->getUserWiki(),
 				$row->revision->getUserId(),
@@ -242,7 +242,7 @@ class RevisionFormatter {
 			'previousRevisionId' => $row->revision->isFirstRevision()
 				? null
 				: $row->revision->getPrevRevisionId()->getAlphadecimal(),
-		);
+		];
 
 		if ( $res['isModerated'] ) {
 			$res['moderator'] = $this->serializeUser(
@@ -252,10 +252,10 @@ class RevisionFormatter {
 			);
 			// @todo why moderate instead of moderated or something else?
 			$res['moderateState'] = $moderatedRevision->getModerationState();
-			$res['moderateReason'] = array(
+			$res['moderateReason'] = [
 				'content' => $moderatedRevision->getModeratedReason(),
 				'format' => 'plaintext',
-			);
+			];
 			$res['isLocked'] = $moderatedRevision->isLocked();
 		} else {
 			$res['isLocked'] = false;
@@ -267,26 +267,26 @@ class RevisionFormatter {
 			$contentFormat = $this->decideContentFormat( $row->revision );
 
 			// @todo better name?
-			$res['content'] = array(
+			$res['content'] = [
 				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
 				'format' => $contentFormat
-			);
+			];
 		}
 
 		if ( $row instanceof TopicRow ) {
 			$res[ApiResult::META_BC_BOOLS] = array_merge(
 				$res[ApiResult::META_BC_BOOLS],
-				array(
+				[
 					'isWatched',
 					'watchable',
-				)
+				]
 			);
 			if ( $row->summary ) {
 				$summary = $this->formatApi( $row->summary, $ctx, $action );
 				if ( $summary ) {
-					$res['summary'] = array(
+					$res['summary'] = [
 						'revision' =>  $summary,
-					);
+					];
 				}
 			}
 
@@ -305,10 +305,10 @@ class RevisionFormatter {
 		if ( $row->revision instanceof PostRevision ) {
 			$res[ApiResult::META_BC_BOOLS] = array_merge(
 				$res[ApiResult::META_BC_BOOLS],
-				array(
+				[
 					'isMaxThreadingDepth',
 					'isNewPage',
-				)
+				]
 			);
 
 			$replyTo = $row->revision->getReplyToId();
@@ -379,56 +379,56 @@ class RevisionFormatter {
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
 
 		$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
-		$userLinksBCBools = array(
-			'_BC_bools' => array(
+		$userLinksBCBools = [
+			'_BC_bools' => [
 				'exists',
-			),
-		);
-		$links = array(
-			'contribs' => array(
+			],
+		];
+		$links = [
+			'contribs' => [
 				'url' => $userContribsTitle->getLinkURL(),
 				'title' => $userContribsTitle->getText(),
 				'exists' => true,
-			) + $userLinksBCBools,
-			'userpage' => array(
+			] + $userLinksBCBools,
+			'userpage' => [
 				'url' => $userTitle->getLinkURL(),
 				'title' => $userTitle->getText(),
 				'exists' => $userTitle->isKnown(),
-			) + $userLinksBCBools,
-		);
+			] + $userLinksBCBools,
+		];
 
 		if ( $talkPageTitle ) {
-			$links['talk'] = array(
+			$links['talk'] = [
 				'url' => $talkPageTitle->getLinkURL(),
 				'title' => $talkPageTitle->getPrefixedText(),
 				'exists' => $talkPageTitle->isKnown()
-			) + $userLinksBCBools;
+			] + $userLinksBCBools;
 		}
 		// is this right permissions? typically this would
 		// be sourced from Linker::userToolLinks, but that
 		// only undertands html strings.
 		if ( $this->permissions->getUser()->isAllowed( 'block' ) ) {
 			// only is the user has blocking rights
-			$links += array(
-				"block" => array(
+			$links += [
+				"block" => [
 					'url' => $blockTitle->getLinkURL(),
 					'title' => wfMessage( 'blocklink' ),
 					'exists' => true
-				) + $userLinksBCBools,
-			);
+				] + $userLinksBCBools,
+			];
 		}
 
 		return $this->userLinks[$name] = $links;
 	}
 
 	public function serializeUser( $userWiki, $userId, $userIp ) {
-		$res = array(
+		$res = [
 			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
 			'wiki' => $userWiki,
 			'gender' => 'unknown',
-			'links' => array(),
+			'links' => [],
 			'id' => $userId
-		);
+		];
 		// Only works for the local wiki
 		if ( wfWikiID() === $userWiki ) {
 			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
@@ -448,18 +448,18 @@ class RevisionFormatter {
 	public function getDateFormats( AbstractRevision $revision, IContextSource $ctx ) {
 		// also restricted to history
 		if ( $this->includeProperties === false ) {
-			return array();
+			return [];
 		}
 
 		$timestamp = $revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW );
 		$user = $ctx->getUser();
 		$lang = $ctx->getLanguage();
 
-		return array(
+		return [
 			'timeAndDate' => $lang->userTimeAndDate( $timestamp, $user ),
 			'date' => $lang->userDate( $timestamp, $user ),
 			'time' => $lang->userTime( $timestamp, $user ),
-		);
+		];
 	}
 
 	/**
@@ -475,7 +475,7 @@ class RevisionFormatter {
 		// If a user does not have rights to perform actions on this page return
 		// an empty array of actions.
 		if ( !$workflow->userCan( 'edit', $user ) ) {
-			return array();
+			return [];
 		}
 
 		$revision = $row->revision;
@@ -486,11 +486,11 @@ class RevisionFormatter {
 		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
 		if ( $actionTypes === null ) {
 			wfDebugLog( 'Flow', __METHOD__ . ": No actions defined for action: $action" );
-			return array();
+			return [];
 		}
 
 		// actions primarily vary by revision type...
-		$links = array();
+		$links = [];
 		foreach ( $actionTypes as $type ) {
 			if ( !$this->permissions->isAllowed( $revision, $type ) ) {
 				continue;
@@ -659,7 +659,7 @@ class RevisionFormatter {
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
 				// summarize link is only available to topic workflow
-				if ( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
+				if ( !in_array( $workflow->getType(), [ 'topic', 'topicsummary' ] ) ) {
 					continue;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
@@ -691,10 +691,10 @@ class RevisionFormatter {
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
 			wfDebugLog( 'Flow', __METHOD__ . ": No links defined for action: $action" );
-			return array();
+			return [];
 		}
 
-		$links = array();
+		$links = [];
 		foreach ( $linkTypes as $type ) {
 			switch ( $type ) {
 			case 'watch-topic':
@@ -765,14 +765,14 @@ class RevisionFormatter {
 
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-header':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffHeaderLink' );
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffHeaderLink' ];
 				// don't break, diff links are rendered below
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-post':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffPostLink' );
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffPostLink' ];
 				// don't break, diff links are rendered below
 			case 'diff-post-summary':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffSummaryLink' );
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffSummaryLink' ];
 
 				/*
 				 * To diff against previous revision, we don't really need that
@@ -846,7 +846,7 @@ class RevisionFormatter {
 		FormatterRow $row = null
 	) {
 		if ( $this->includeProperties === false ) {
-			return array();
+			return [];
 		}
 
 		$changeType = $revision->getChangeType();
@@ -855,10 +855,10 @@ class RevisionFormatter {
 		if ( !$params ) {
 			// should we have a sigil for i18n with no parameters?
 			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeType $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
-			return array();
+			return [];
 		}
 
-		$res = array( '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) );
+		$res = [ '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) ];
 		foreach ( $params as $param ) {
 			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx, $row );
 		}

@@ -51,9 +51,9 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		}
 
 		$noConvertTemplates = explode( ',', $this->getOption( 'no-convert-templates', '' ) );
-		if ( $noConvertTemplates === array( '' ) ) {
+		if ( $noConvertTemplates === [ '' ] ) {
 			// explode( ',', '' ) returns array( '' )
-			$noConvertTemplates = array();
+			$noConvertTemplates = [];
 		}
 		// Convert to Title objects
 		foreach ( $noConvertTemplates as &$template ) {

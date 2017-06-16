@@ -21,9 +21,9 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
-			$links = array( $this->getBoardLink() );
+			$links = [ $this->getBoardLink() ];
 		} else {
-			$links = array( $this->getAgentLink(), $this->getBoardLink() );
+			$links = [ $this->getAgentLink(), $this->getBoardLink() ];
 			if ( !$this->isFirstRevision() ) {
 				$links[] = $this->getDiffLink( false );
 			}
@@ -79,12 +79,12 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 			$this->event->getExtraParam( 'revision-id' )
 		);
 
-		return array(
+		return [
 			'url' => $anchor->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => $prioritized,
-		);
+		];
 	}
 }

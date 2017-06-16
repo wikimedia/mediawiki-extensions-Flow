@@ -103,24 +103,24 @@ abstract class Utils {
 		}
 
 		$prefixedDbTitle = $title->getPrefixedDBkey();
-		$params = array(
+		$params = [
 			$from => $content,
 			'body_only' => 'true',
-		);
+		];
 		if ( $from === 'html' ) {
 			$params['scrub_wikitext'] = 'true';
 		}
 		$url = '/restbase/local/v1/transform/' . $from . '/to/' . $to . '/' .
 			urlencode( $prefixedDbTitle );
-		$request = array(
+		$request = [
 			'method' => 'POST',
 			'url' => $url,
 			'body' => $params,
-			'headers' => array(
+			'headers' => [
 				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/1.2.1"',
 				'User-Agent' => "Flow-MediaWiki/$wgVersion",
-			),
-		);
+			],
+		];
 		$response = $serviceClient->run( $request );
 		if ( $response['code'] !== 200 ) {
 			if ( $response['error'] !== '' ) {
@@ -133,7 +133,7 @@ abstract class Utils {
 			$msg = "Request to " . $serviceName . " for \"$from\" to \"$to\" conversion of content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
 			Container::get( 'default_logger' )->error(
 				'Request to {service} for "{sourceFormat}" to "{targetFormat}" conversion of content connected to title "{title}" failed.  Code: {code}, Reason: "{reason}", Body: "{body}", Error: "{error}"',
-				array(
+				[
 					'service' => $serviceName,
 					'sourceFormat' => $from,
 					'targetFormat' => $to,
@@ -144,7 +144,7 @@ abstract class Utils {
 					'headers' => $response['headers'],
 					'body' => $response['body'],
 					'response' => $response,
-				)
+				]
 			);
 			throw new NoParserException( $msg, 'process-wikitext' );
 		}
@@ -239,7 +239,7 @@ abstract class Utils {
 	protected static function getServiceClient() {
 
 		if ( self::$serviceClient === null ) {
-			$sc = new VirtualRESTServiceClient( new MultiHttpClient( array() ) );
+			$sc = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
 			$sc->mount( '/restbase/', self::getVRSObject() );
 			self::$serviceClient = $sc;
 		}
@@ -265,7 +265,7 @@ abstract class Utils {
 			$wgFlowParsoidHTTPProxy;
 
 		// the params array to create the service object with
-		$params = array();
+		$params = [];
 		// the VRS class to use; defaults to Parsoid
 		$class = 'ParsoidVirtualRESTService';
 		// the global virtual rest service config object, if any
@@ -287,13 +287,13 @@ abstract class Utils {
 			if ( !$wgFlowParsoidURL ) {
 				throw new NoParserException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
 			}
-			$params = array(
+			$params = [
 				'URL' => $wgFlowParsoidURL,
 				'prefix' => $wgFlowParsoidPrefix,
 				'timeout' => $wgFlowParsoidTimeout,
 				'HTTPProxy' => $wgFlowParsoidHTTPProxy,
 				'forwardCookies' => $wgFlowParsoidForwardCookies
-			);
+			];
 		}
 		// merge the global and service-specific params
 		if ( isset( $vrs['global'] ) ) {
@@ -340,7 +340,7 @@ abstract class Utils {
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $utf8Fragment = true, $ignoreErrorCodes = array( 9, 76, 513, 801 ) ) {
+	public static function createDOM( $content, $utf8Fragment = true, $ignoreErrorCodes = [ 9, 76, 513, 801 ] ) {
 		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
@@ -402,10 +402,10 @@ abstract class Utils {
 			// The module is only necessary when we are using parsoid.
 			// XXX We only need the Parsoid CSS if some content being
 			// rendered has getContentFormat() === 'html'.
-			$out->addModuleStyles( array(
+			$out->addModuleStyles( [
 				'mediawiki.skinning.content.parsoid',
 				'ext.cite.style',
-			) );
+			] );
 		}
 
 		return true;
@@ -418,7 +418,7 @@ abstract class Utils {
 	 * @return string html of the nodes children
 	 */
 	public static function getInnerHtml( DOMNode $node = null ) {
-		$html = array();
+		$html = [];
 		if ( $node ) {
 			$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;
 			foreach ( $node->childNodes as $child ) {
@@ -466,7 +466,7 @@ abstract class Utils {
 
 		// now we need to convert the array into the cookie format of
 		// foo=bar; baz=bang
-		$output = array();
+		$output = [];
 		foreach ( $cookies as $key => $value ) {
 			$output[] = "$wgCookiePrefix$key={$value['value']}";
 		}

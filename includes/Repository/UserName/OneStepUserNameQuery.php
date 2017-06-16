@@ -32,22 +32,22 @@ class OneStepUserNameQuery implements UserNameQuery {
 	public function execute( $wiki, array $userIds ) {
 		$dbr = $this->dbFactory->getWikiDb( DB_SLAVE, $wiki );
 		return $dbr->select(
-			/* table */ array( 'user', 'ipblocks' ),
-			/* select */ array( 'user_id', 'user_name' ),
-			/* conds */ array(
+			/* table */ [ 'user', 'ipblocks' ],
+			/* select */ [ 'user_id', 'user_name' ],
+			/* conds */ [
 				'user_id' => $userIds,
 				// only accept records that did not match ipblocks
 				'ipb_deleted is null'
-			),
+			],
 			__METHOD__,
-			/* options */ array(),
-			/* join_conds */ array(
-				'ipblocks' => array( 'LEFT OUTER', array(
+			/* options */ [],
+			/* join_conds */ [
+				'ipblocks' => [ 'LEFT OUTER', [
 					'ipb_user' => 'user_id',
 					// match only deleted users
 					'ipb_deleted' => 1,
-				) )
-			)
+				] ]
+			]
 		);
 	}
 }

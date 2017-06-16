@@ -80,10 +80,10 @@ class RevisionViewFormatter {
 
 		$boardTitle = $row->workflow->getOwnerTitle();
 		$title = $row->workflow->getArticleTitle();
-		$links = array(
+		$links = [
 			'hist' => $this->urlGenerator->boardHistoryLink( $title ),
 			'board' => $this->urlGenerator->boardLink( $boardTitle ),
-		);
+		];
 
 		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
 			$links['root'] = $this->urlGenerator->topicLink( $row->workflow->getArticleTitle(), $workflowId );
@@ -124,10 +124,10 @@ class RevisionViewFormatter {
 			);
 			$links['diff']->setMessage( wfMessage( 'diff' ) );
 		} else {
-			$links['diff'] = array(
+			$links['diff'] = [
 				'url' => '',
 				'title' => ''
-			);
+			];
 		}
 
 		$recentChange = $row->revision->getRecentChange();

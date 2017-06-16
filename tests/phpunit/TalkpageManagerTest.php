@@ -74,7 +74,7 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
 
 		$adminUser = $this->getMockBuilder( 'User' )
-			->setMethods( array( 'isAllowed' ) )
+			->setMethods( [ 'isAllowed' ] )
 			->getMock();
 
 		// Set up the expectation for the update() method

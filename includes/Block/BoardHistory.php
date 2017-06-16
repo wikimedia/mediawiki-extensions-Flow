@@ -9,12 +9,12 @@ use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
 
 class BoardHistoryBlock extends AbstractBlock {
-	protected $supportedGetActions = array( 'history' );
+	protected $supportedGetActions = [ 'history' ];
 
 	// @Todo - fill in the template names
-	protected $templates = array(
+	protected $templates = [
 		'history' => '',
-	);
+	];
 
 	/**
 	 * Board history is read-only block which should not invoke write action
@@ -34,12 +34,12 @@ class BoardHistoryBlock extends AbstractBlock {
 		global $wgRequest;
 
 		if ( $this->workflow->isNew() ) {
-			return array(
+			return [
 				'type' => $this->getName(),
-				'revisions' => array(),
-				'links' => array(
-				),
-			);
+				'revisions' => [],
+				'links' => [
+				],
+			];
 		}
 
 		/** @var BoardHistoryQuery $query */
@@ -60,7 +60,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		$pager->doQuery();
 		$history = $pager->getResult();
 
-		$revisions = array();
+		$revisions = [];
 		foreach ( $history as $row ) {
 			$serialized = $formatter->formatApi( $row, $this->context, 'history' );
 			if ( $serialized ) {
@@ -68,13 +68,13 @@ class BoardHistoryBlock extends AbstractBlock {
 			}
 		}
 
-		return array(
+		return [
 			'type' => $this->getName(),
 			'revisions' => $revisions,
 			'navbar' => $pager->getNavigationBar(),
-			'links' => array(
-			),
-		);
+			'links' => [
+			],
+		];
 	}
 
 	public function getName() {

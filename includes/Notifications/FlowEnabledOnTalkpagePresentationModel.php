@@ -13,10 +13,10 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 	}
 
 	public function getPrimaryLink() {
-		return array(
+		return [
 			'url' => $this->event->getTitle()->getFullURL(),
 			'label' => $this->msg( 'flow-notification-link-text-enabled-on-talkpage' )->text()
-		);
+		];
 	}
 
 	/**
@@ -28,7 +28,7 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 		$userTalkLink = $this->getPageLink(
 			$this->event->getTitle(), '', true
 		);
-		return array( $userTalkLink );
+		return [ $userTalkLink ];
 	}
 
 	public function getHeaderMessage() {

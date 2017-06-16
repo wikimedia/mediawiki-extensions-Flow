@@ -81,7 +81,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 
 		if ( $this->mIsBackwards ) {
 			// swap values if we're going backwards
-			list( $this->mIsFirst, $this->mIsLast ) = array( $this->mIsLast, $this->mIsFirst );
+			list( $this->mIsFirst, $this->mIsLast ) = [ $this->mIsLast, $this->mIsFirst ];
 
 			// id of the overfetched entry, used to build new links starting at
 			// this offset
@@ -108,7 +108,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
-		return array();
+		return [];
 	}
 
 	public function getIndexField() {

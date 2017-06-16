@@ -28,8 +28,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 	}
 
 	public static function referenceExtractorProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Normal link',
 				// source wiki text
 				'[[My page]]',
@@ -39,8 +39,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'link',
 				// expected target
 				'title:My_page',
-			),
-			array(
+			],
+			[
 				'Link with URL encoding issues',
 				// source wiki text
 				'[[User talk:Werdna?]]',
@@ -50,8 +50,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'link',
 				// expected target
 				'title:User_talk:Werdna?',
-			),
-			array(
+			],
+			[
 				'Subpage link',
 				// source wiki text
 				'[[/Subpage]]',
@@ -63,8 +63,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'title:Talk:UTPage/Subpage',
 				// ???
 				'Talk:UTPage',
-			),
-			array(
+			],
+			[
 				'External link',
 				// source wiki text
 				'[http://www.google.com Google]',
@@ -74,8 +74,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'link',
 				// expected target
 				'url:http://www.google.com',
-			),
-			array(
+			],
+			[
 				'File',
 				// source wiki text
 				'[[File:Image.png]]',
@@ -85,8 +85,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'file',
 				// expected target
 				'title:File:Image.png',
-			),
-			array(
+			],
+			[
 				'File with parameters',
 				// source wiki text
 				'[[File:Image.png|25px]]',
@@ -96,8 +96,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'file',
 				// expected target
 				'title:File:Image.png',
-			),
-			array(
+			],
+			[
 				'File with encoding issues',
 				// source wiki text
 				'[[File:Image?.png]]',
@@ -107,8 +107,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'file',
 				// expected target
 				'title:File:Image?.png',
-			),
-			array(
+			],
+			[
 				'Template',
 				// source wiki text
 				'{{Foo}}',
@@ -118,9 +118,9 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'template',
 				// expected target
 				'title:Template:Foo',
-			),
+			],
 
-			array(
+			[
 				'Non-existent File',
 				// source wiki text
 				'[[File:Some/Files/Really/Should_Not_Ex/ist.png]]',
@@ -130,8 +130,8 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				'file',
 				// expected target
 				'title:File:Some/Files/Really/Should_Not_Ex/ist.png',
-			)
-		);
+			]
+		];
 	}
 
 	/**

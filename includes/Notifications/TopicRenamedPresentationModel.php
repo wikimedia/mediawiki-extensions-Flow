@@ -21,16 +21,16 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 
 	public function getSecondaryLinks() {
 		if ( $this->isUserTalkPage() ) {
-			$links = array(
+			$links = [
 				$this->getAgentLink(),
 				$this->getDiffLink(),
-			);
+			];
 		} else {
-			$links = array(
+			$links = [
 				$this->getAgentLink(),
 				$this->getBoardByNewestLink(),
 				$this->getDiffLink( false ),
-			);
+			];
 		}
 
 		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
@@ -64,12 +64,12 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 			$this->event->getExtraParam( 'revision-id' )
 		);
 
-		return array(
+		return [
 			'url' => $anchor->getFullURL(),
 			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => $prioritized,
-		);
+		];
 	}
 }

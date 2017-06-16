@@ -39,7 +39,7 @@ class PostCollection extends LocalCacheAbstractCollection {
 	public function getBoardWorkflowId() {
 		$found = self::getStorage( 'Flow\\Model\\TopicListEntry' )->find(
 			// uses flow_topic_list:topic index, for topic->board lookups
-			array( 'topic_id' => $this->getWorkflowId() )
+			[ 'topic_id' => $this->getWorkflowId() ]
 		);
 		if ( !$found ) {
 			throw new InvalidDataException( 'No TopicListEntry founds for topic id ' . $this->getWorkflowId()->getAlphadecimal(), 'invalid-workflow' );

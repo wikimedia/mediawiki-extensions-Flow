@@ -47,14 +47,14 @@ class ConvertToText extends Maintenance {
 		$headerContent = $this->processHeader();
 
 		$continue = true;
-		$pagerParams = array( 'vtllimit' => 1 );
-		$topics = array();
+		$pagerParams = [ 'vtllimit' => 1 ];
+		$topics = [];
 		while ( $continue ) {
 			$continue = false;
 			$flowData = $this->flowApi(
 				$this->pageTitle,
 				'view-topiclist',
-				$pagerParams + array( 'vtlformat' => 'wikitext', 'vtlsortby' => 'newest' ),
+				$pagerParams + [ 'vtlformat' => 'wikitext', 'vtlsortby' => 'newest' ],
 				'topiclist'
 			);
 
@@ -73,11 +73,11 @@ class ConvertToText extends Maintenance {
 					list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
 					$queryParams = wfCgiToArray( $query );
 
-					$pagerParams = array(
+					$pagerParams = [
 						'vtloffset-id' => $queryParams['topiclist_offset-id'],
 						'vtloffset-dir' => 'fwd',
 						'vtloffset-limit' => '1',
-					);
+					];
 					$continue = true;
 				}
 			}
@@ -94,11 +94,11 @@ class ConvertToText extends Maintenance {
 	 * @throws MWException
 	 */
 	protected function flowApi( Title $title, $submodule, array $request ) {
-		$result = $this->api->apiCall( $request + array(
+		$result = $this->api->apiCall( $request + [
 			'action' => 'flow',
 			'submodule' => $submodule,
 			'page' => $title->getPrefixedText(),
-		) );
+		] );
 
 		return $result['flow'][$submodule]['result'];
 	}
@@ -227,17 +227,17 @@ class ConvertToText extends Maintenance {
 	}
 
 	protected function pageExists( $pageName ) {
-		static $pages = array();
+		static $pages = [];
 		if ( !isset( $pages[$pageName] ) ) {
-			$result = $this->api->apiCall( array( 'action' => 'query', 'titles' => $pageName ) );
+			$result = $this->api->apiCall( [ 'action' => 'query', 'titles' => $pageName ] );
 			$pages[$pageName] = !isset( $result['query']['pages'][-1] );
 		}
 
 		return $pages[$pageName];
 	}
 
-	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot, $params = array() ) {
-		$headerRevisions = array();
+	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot, $params = [] ) {
+		$headerRevisions = [];
 		$revId = false;
 		do {
 			$params[ $prefix . 'format' ] = 'wikitext';
@@ -299,7 +299,7 @@ class ConvertToText extends Maintenance {
 				count( $otherContributors ) > 0 &&
 				( count( $otherContributors ) > 1 || !isset( $otherContributors[ $firstContributor['name'] ] ) )
 			) {
-				$signatures = array_map( array( $this, 'getSignature' ), $otherContributors );
+				$signatures = array_map( [ $this, 'getSignature' ], $otherContributors );
 				$formattedAuthors .= ( $sigForFirstAuthor ? ' ' : '' ) . '(' .
 					wfMessage( $msg )->inContentLanguage()->params(
 						$wgContLang->commaList( $signatures )
@@ -313,7 +313,7 @@ class ConvertToText extends Maintenance {
 
 	private function getAllPostRevisions( $revision ) {
 		$topicTitle = Title::newFromText( $revision[ 'articleTitle' ] );
-		$response = $this->flowApi( $topicTitle, 'view-post-history', array( 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ) );
+		$response = $this->flowApi( $topicTitle, 'view-post-history', [ 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ] );
 		return $response['topic']['revisions'];
 	}
 

@@ -25,7 +25,7 @@ class AbuseFilter implements SpamFilter {
 	 *
 	 * @param array $emergencyDisable optional AbuseFilter emergency disable values
 	 */
-	public function setup( array $emergencyDisable = array() ) {
+	public function setup( array $emergencyDisable = [] ) {
 		global
 		$wgAbuseFilterValidGroups,
 		$wgAbuseFilterEmergencyDisableThreshold,
@@ -37,11 +37,11 @@ class AbuseFilter implements SpamFilter {
 		}
 
 		// if no Flow-specific emergency disable threshold given, use defaults
-		$emergencyDisable += array(
+		$emergencyDisable += [
 			'threshold' => $wgAbuseFilterEmergencyDisableThreshold['default'],
 			'count' => $wgAbuseFilterEmergencyDisableCount['default'],
 			'age' => $wgAbuseFilterEmergencyDisableAge['default'],
-		);
+		];
 
 		// register Flow's AbuseFilter filter group
 		if ( !in_array( $this->group, $wgAbuseFilterValidGroups ) ) {
@@ -78,16 +78,16 @@ class AbuseFilter implements SpamFilter {
 		 * submitted in wikitext. It will only be transformed once it's being
 		 * saved to DB.
 		 */
-		$vars->setLazyLoadVar( 'new_wikitext', 'FlowRevisionContent', array( 'revision' => $newRevision ) );
-		$vars->setLazyLoadVar( 'new_size', 'length', array( 'length-var' => 'new_wikitext' ) );
+		$vars->setLazyLoadVar( 'new_wikitext', 'FlowRevisionContent', [ 'revision' => $newRevision ] );
+		$vars->setLazyLoadVar( 'new_size', 'length', [ 'length-var' => 'new_wikitext' ] );
 
 		/*
 		 * This may roundtrip to Parsoid if content is stored in HTML.
 		 * Since the variable is lazy-loaded, it will not roundtrip unless the
 		 * variable is actually used.
 		 */
-		$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', array( 'revision' => $oldRevision ) );
-		$vars->setLazyLoadVar( 'old_size', 'length', array( 'length-var' => 'old_wikitext' ) );
+		$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', [ 'revision' => $oldRevision ] );
+		$vars->setLazyLoadVar( 'old_size', 'length', [ 'length-var' => 'old_wikitext' ] );
 
 		return \AbuseFilter::filterAction( $vars, $title, $this->group );
 	}
@@ -108,7 +108,7 @@ class AbuseFilter implements SpamFilter {
 	 * @return array
 	 */
 	public function lazyLoadMethods() {
-		return array(
+		return [
 			/**
 			 * @param string $method: Method to generate the variable
 			 * @param \AbuseFilterVariableHolder $vars
@@ -126,6 +126,6 @@ class AbuseFilter implements SpamFilter {
 					return '';
 				}
 			}
-		);
+		];
 	}
 }

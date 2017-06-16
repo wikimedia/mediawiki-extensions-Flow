@@ -24,12 +24,12 @@ class FeedItemFormatter extends AbstractFormatter {
 			return false;
 		}
 
-		$preferredLinks = array(
+		$preferredLinks = [
 			'header-revision',
 			'post-revision', 'post',
 			'topic-revision', 'topic',
 			'board'
-		);
+		];
 		$url = '';
 		foreach ( $preferredLinks as $link ) {
 			if ( isset( $data['links'][$link] ) ) {

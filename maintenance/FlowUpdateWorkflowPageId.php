@@ -41,10 +41,10 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 			'workflow_id',
 			$this->mBatchSize
 		);
-		$it->setFetchColumns( array( '*' ) );
-		$it->addConditions( array(
+		$it->setFetchColumns( [ '*' ] );
+		$it->addConditions( [
 			'workflow_wiki' => wfWikiID(),
-		) );
+		] );
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
 		$writer = new BatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
@@ -72,8 +72,8 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	 */
 	protected $lang;
 	protected $fixedCount = 0;
-	protected $failures = array();
-	protected $warnings = array();
+	protected $failures = [];
+	protected $warnings = [];
 
 	/**
 	 * @param Language|StubUserLang $lang
@@ -111,15 +111,15 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		if ( $title->getArticleID() !== 0 && $title->getArticleID() !== (int) $row->workflow_page_id ) {
 			// This makes the assumption the page has not moved or been deleted?
 			++$this->fixedCount;
-			return array(
+			return [
 				'workflow_page_id' => $title->getArticleID(),
-			);
+			];
 		} elseif ( !$row->workflow_page_id ) {
 			// No id exists for this workflow? (reason should likely show up in $this->warnings)
 			$this->failures[] = $row;
 		}
 
-		return array();
+		return [];
 	}
 
 	/**

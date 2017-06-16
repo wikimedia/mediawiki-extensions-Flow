@@ -47,10 +47,10 @@
 if ( function_exists( 'wfLoadExtension' ) ) {
 	wfLoadExtension( 'Flow' );
 	// Keep i18n globals so mergeMessageFileList.php doesn't break
-	$wgMessagesDirs['Flow'] = array(
+	$wgMessagesDirs['Flow'] = [
 		__DIR__ . '/i18n',
 		__DIR__ . '/i18n/api',
-	);
+	];
 	$wgExtensionMessagesFiles['FlowAlias'] = __DIR__ . '/Flow.alias.php';
 	$wgExtensionMessagesFiles['FlowNamespaces'] = __DIR__ . '/Flow.namespaces.php';
 	/* wfWarn(

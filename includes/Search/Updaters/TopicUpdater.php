@@ -67,7 +67,7 @@ class TopicUpdater extends AbstractUpdater {
 
 		$doc = new \Elastica\Document(
 			$revision->getCollectionId()->getAlphadecimal(),
-			array(
+			[
 				'namespace' => $title->getNamespace(),
 				'namespace_text' => $title->getPageLanguage()->getFormattedNsText( $title->getNamespace() ),
 				'pageid' => $title->getArticleID(),
@@ -75,7 +75,7 @@ class TopicUpdater extends AbstractUpdater {
 				'timestamp' => $creationTimestamp->getTimestamp( TS_ISO_8601 ),
 				'update_timestamp' => $updateTimestamp->getTimestamp( TS_ISO_8601 ),
 				'revisions' => $revisions,
-			)
+			]
 		);
 
 		return $doc;
@@ -100,10 +100,10 @@ class TopicUpdater extends AbstractUpdater {
 			$type = 'title';
 		}
 
-		$data = array();
+		$data = [];
 
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
-			$data[] = array(
+			$data[] = [
 				'id' => $revision->getCollectionId()->getAlphadecimal(),
 				'text' => trim( Sanitizer::stripAllTags( $revision->getContentInHtml() ) ),
 				'source_text' => $revision->getContentInWikitext(),
@@ -111,7 +111,7 @@ class TopicUpdater extends AbstractUpdater {
 				'timestamp' => $revision->getCollectionId()->getTimestamp( TS_ISO_8601 ),
 				'update_timestamp' => $revision->getRevisionId()->getTimestamp( TS_ISO_8601 ),
 				'type' => $type,
-			);
+			];
 		}
 
 		if ( $revision instanceof PostRevision ) {

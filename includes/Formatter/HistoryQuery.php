@@ -57,14 +57,14 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @return array Associative array of options for query
 	 */
 	protected function getOptions( $direction, $limit, UUID $offset = null ) {
-		return array(
+		return [
 			'sort' => 'rev_id',
 			'order' => $direction === 'fwd' ? 'DESC' : 'ASC',
 			'limit' => $limit,
 			'offset-id' => $offset,
 			'offset-dir' => $direction,
 			'offset-include' => false,
-		);
+		];
 	}
 
 	/**
@@ -83,7 +83,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @return array() Array of history rows
 	 */
 	protected function doInternalQueries( $storageClass, $attributes, $options, $overfetchFactor ) {
-		$result = array();
+		$result = [];
 
 		$limit = $options['limit'];
 		$internalOffset = $options['offset-id'];
@@ -111,7 +111,7 @@ abstract class HistoryQuery extends AbstractQuery {
 				$internalOverfetched = array_pop( $resultBeforeFiltering );
 			}
 
-			$resultAfterFiltering = array_filter( $resultBeforeFiltering, array( $this, 'includeInHistory' ) );
+			$resultAfterFiltering = array_filter( $resultBeforeFiltering, [ $this, 'includeInHistory' ] );
 
 			if ( count( $resultBeforeFiltering ) >= 1 ) {
 				$internalOffset = end( $resultBeforeFiltering )->getRevisionId();

@@ -87,7 +87,7 @@ class FlowActions {
 				array_shift( $arguments );
 				array_unshift( $arguments, $referencedAction );
 
-				return call_user_func_array( array( $this, 'getValue' ), $arguments );
+				return call_user_func_array( [ $this, 'getValue' ], $arguments );
 			}
 		} catch ( \OutOfBoundsException $e ) {
 			// Do nothing; the whole remainder of this method is fail-case.

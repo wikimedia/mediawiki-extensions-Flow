@@ -19,7 +19,7 @@ class RevisionActionPermissions {
 	/**
 	 * @var FlowActions
 	 */
-	protected $actions = array();
+	protected $actions = [];
 
 	/**
 	 * @var User
@@ -42,7 +42,7 @@ class RevisionActionPermissions {
 	 * @return array Array of action names that are allowed
 	 */
 	public function getAllowedActions( AbstractRevision $revision = null ) {
-		$allowed = array();
+		$allowed = [];
 		foreach ( array_keys( $this->actions->getActions() ) as $action ) {
 			if ( $this->isAllowedAny( $revision, $action ) ) {
 				$allowed[] = $action;
@@ -65,9 +65,9 @@ class RevisionActionPermissions {
 		}
 
 		/** @var AbstractRevision[] $roots */
-		static $roots = array();
+		static $roots = [];
 		/** @var Workflow[] $workflows */
-		static $workflows = array();
+		static $workflows = [];
 
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 
@@ -148,7 +148,7 @@ class RevisionActionPermissions {
 		}
 
 		return call_user_func_array(
-			array( $this->user, 'isAllowedAny' ),
+			[ $this->user, 'isAllowedAny' ],
 			(array) $permission
 		);
 	}
@@ -167,7 +167,7 @@ class RevisionActionPermissions {
 		// If user is allowed to see deleted page content, there's no need to
 		// even check if it's been deleted (additional storage lookup)
 		$allowed = call_user_func_array(
-			array( $this->user, 'isAllowedAny' ),
+			[ $this->user, 'isAllowedAny' ],
 			(array) $permissions
 		);
 		if ( $allowed ) {
@@ -203,7 +203,7 @@ class RevisionActionPermissions {
 
 		// Check if user is allowed to perform action against this revision
 		return call_user_func_array(
-			array( $this->user, 'isAllowedAny' ),
+			[ $this->user, 'isAllowedAny' ],
 			(array) $permission
 		);
 	}

@@ -86,18 +86,18 @@ abstract class ApiFlowBase extends ApiBase {
 	 * @return string[]
 	 */
 	protected function getModerationStates( $addAliases = true ) {
-		$states = array(
+		$states = [
 			AbstractRevision::MODERATED_NONE,
 			AbstractRevision::MODERATED_DELETED,
 			AbstractRevision::MODERATED_HIDDEN,
 			AbstractRevision::MODERATED_SUPPRESSED,
-		);
+		];
 
 		if ( $addAliases ) {
 			// aliases for AbstractRevision::MODERATED_NONE
-			$states = array_merge( $states, array(
+			$states = array_merge( $states, [
 				'restore', 'unhide', 'undelete', 'unsuppress',
-			) );
+			] );
 		}
 
 		return $states;
@@ -142,9 +142,9 @@ abstract class ApiFlowBase extends ApiBase {
 	 * {@inheritDoc}
 	 */
 	public function getHelpUrls() {
-		return array(
+		return [
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
-		);
+		];
 	}
 
 	/**

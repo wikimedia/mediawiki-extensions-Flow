@@ -14,8 +14,8 @@ class SinglePostQuery extends AbstractQuery {
 	public function getResult( UUID $postId ) {
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'rev_type_id' => $postId ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $postId ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 		if ( !$found ) {
 			throw new FlowException( '@todo' );
@@ -28,8 +28,8 @@ class SinglePostQuery extends AbstractQuery {
 		if ( $post->isTopicTitle() ) {
 			$summary = $this->storage->find(
 				'PostSummary',
-				array( 'rev_type_id' => $postId ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+				[ 'rev_type_id' => $postId ],
+				[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 			);
 			if ( $summary ) {
 				$formatterRow = new TopicRow();

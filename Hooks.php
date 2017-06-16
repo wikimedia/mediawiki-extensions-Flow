@@ -56,35 +56,35 @@ class FlowHooks {
 
 		// Only if EventLogging in Flow is enabled & EventLogging exists
 		if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
-			$resourceLoader->register( 'schema.FlowReplies', array(
+			$resourceLoader->register( 'schema.FlowReplies', [
 				'class' => 'ResourceLoaderSchemaModule',
 				'schema' => 'FlowReplies',
 				// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
 				'revision' => 10561344,
-			) );
+			] );
 		}
 
 		// Register a dummy supportCheck module in case VE isn't loaded, as we attempt
 		// to load this module unconditionally on load.
 		if ( !$resourceLoader->isModuleRegistered( 'ext.visualEditor.supportCheck' ) ) {
-			$resourceLoader->register( 'ext.visualEditor.supportCheck', array() );
+			$resourceLoader->register( 'ext.visualEditor.supportCheck', [] );
 		}
 
 		if ( class_exists( 'GuidedTourHooks' ) ) {
-			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', array(
+			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', [
 				'localBasePath' => __DIR__ . '/modules',
 				'remoteExtPath' => 'Flow/modules',
 					'scripts' => 'tours/flowOptIn.js',
 					'styles' => 'tours/flowOptIn.less',
-					'messages' => array(
+					'messages' => [
 						"flow-guidedtour-optin-welcome",
 						"flow-guidedtour-optin-welcome-description",
 						"flow-guidedtour-optin-find-old-conversations",
 						"flow-guidedtour-optin-find-old-conversations-description",
 						"flow-guidedtour-optin-feedback",
 						"flow-guidedtour-optin-feedback-description"
-					)
-			) );
+					]
+			] );
 		}
 
 		return true;
@@ -139,11 +139,11 @@ class FlowHooks {
 				$wgFlowAbuseFilterEmergencyDisableAge;
 
 			self::$abuseFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
-			self::$abuseFilter->setup( array(
+			self::$abuseFilter->setup( [
 				'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
 				'count' => $wgFlowAbuseFilterEmergencyDisableCount,
 				'age' => $wgFlowAbuseFilterEmergencyDisableAge,
-			) );
+			] );
 		}
 		return self::$abuseFilter;
 	}
@@ -391,7 +391,7 @@ class FlowHooks {
 		ChangesList &$changesList,
 		&$s,
 		RecentChange $rc,
-		&$classes = array()
+		&$classes = []
 	) {
 		return self::processRecentChangesLine( $changesList, $s, $rc, $classes );
 	}
@@ -591,7 +591,7 @@ class FlowHooks {
 			/** @var CheckUserQuery $query */
 			$query = Container::get( 'query.checkuser' );
 			// @todo: create hook to allow batch-loading this data, instead of doing piecemeal like this
-			$query->loadMetadataBatch( array( $row ) );
+			$query->loadMetadataBatch( [ $row ] );
 			$row = $query->getResult( $checkUser, $row );
 			if ( $row !== false ) {
 				/** @var Flow\Formatter\CheckUserFormatter $formatter */
@@ -634,7 +634,7 @@ class FlowHooks {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// Turn off page actions in MobileFrontend.
 			// FIXME: Find more elegant standard way of doing this.
-			$wgMFPageActions = array();
+			$wgMFPageActions = [];
 
 			// watch star & delete links are inside the topic itself
 			if ( $title->getNamespace() === NS_TOPIC ) {
@@ -681,14 +681,14 @@ class FlowHooks {
 		// Disable toggling on occupied talk pages in mobile
 		$title = $skin->getTitle();
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			$modules['toggling'] = array();
+			$modules['toggling'] = [];
 		}
 		// Turn off default mobile talk overlay for these pages
 		if ( $title->canTalk() ) {
 			$talkPage = $title->getTalkPage();
 			if ( $talkPage->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 				// TODO: Insert lightweight JavaScript that opens flow via ajax
-				$modules['talk'] = array();
+				$modules['talk'] = [];
 			}
 		}
 
@@ -817,8 +817,8 @@ class FlowHooks {
 		if ( !$javascriptIncluded ) {
 			$javascriptIncluded = true;
 			$wgHooks['SpecialPageAfterExecute'][] = function( $specialPage, $subPage ) {
-				$specialPage->getOutput()->addModules( array( 'ext.flow.contributions' ) );
-				$specialPage->getOutput()->addModuleStyles( array( 'ext.flow.contributions.styles' ) );
+				$specialPage->getOutput()->addModules( [ 'ext.flow.contributions' ] );
+				$specialPage->getOutput()->addModuleStyles( [ 'ext.flow.contributions.styles' ] );
 			};
 		}
 
@@ -933,12 +933,12 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onAbuseFilterBuilder( &$realValues ) {
-		$realValues['vars'] += array(
+		$realValues['vars'] += [
 			'board_articleid' => 'board-articleid',
 			'board_namespace' => 'board-namespace',
 			'board_text' => 'board-text',
 			'board_prefixedtext' => 'board-prefixedtext',
-		);
+		];
 		return true;
 	}
 
@@ -1087,7 +1087,7 @@ class FlowHooks {
 		unset( $pageinfo['header-edits'] );
 
 		// These keys are wrong on Flow pages, so we'll remove them
-		static $badMessageKeys = array( 'pageinfo-length' );
+		static $badMessageKeys = [ 'pageinfo-length' ];
 
 		foreach ( $pageinfo['header-basic'] as $num => $val ) {
 			if ( $val[0] instanceof Message && in_array( $val[0]->getKey(), $badMessageKeys ) ) {
@@ -1180,17 +1180,17 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
-		$preferences['flow-topiclist-sortby'] = array(
+		$preferences['flow-topiclist-sortby'] = [
 			'type' => 'api',
-		);
+		];
 
-		$preferences['flow-editor'] = array(
+		$preferences['flow-editor'] = [
 			'type' => 'api'
-		);
+		];
 
-		$preferences['flow-side-rail-state'] = array(
+		$preferences['flow-side-rail-state'] = [
 			'type' => 'api'
-		);
+		];
 
 		return true;
 	}
@@ -1211,7 +1211,7 @@ class FlowHooks {
 		// find test files for every RL module
 		foreach ( $wgResourceModules as $key => $module ) {
 			if ( preg_match( '/ext.flow(?:\.|$)/', $key ) && isset( $module['scripts'] ) ) {
-				$testFiles = array();
+				$testFiles = [];
 
 				$scripts = (array) $module['scripts'];
 				foreach ( $scripts as $script ) {
@@ -1223,12 +1223,12 @@ class FlowHooks {
 				}
 				// if test files exist for given module, create a corresponding test module
 				if ( count( $testFiles ) > 0 ) {
-					$module = array(
+					$module = [
 						'remoteExtPath' => 'Flow',
-						'dependencies' => array( $key ),
+						'dependencies' => [ $key ],
 						'localBasePath' => __DIR__,
 						'scripts' => $testFiles,
-					);
+					];
 					$testModules['qunit']["$key.tests"] = $module;
 				}
 			}
@@ -1252,8 +1252,8 @@ class FlowHooks {
 			$storage = Container::get( 'storage' );
 			$found = $storage->find(
 				'PostRevision',
-				array( 'rev_type_id' => strtolower( $title->getDBkey() ) ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+				[ 'rev_type_id' => strtolower( $title->getDBkey() ) ],
+				[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 			);
 			if ( !$found ) {
 				return false;
@@ -1420,11 +1420,11 @@ class FlowHooks {
 		$ids = array_keys( $watchlistInfo[NS_TOPIC] );
 
 		// build array of queries to be executed all at once
-		$queries = array();
+		$queries = [];
 		foreach ( $ids as $id ) {
 			try {
 				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
-				$queries[] = array( 'rev_type_id' => $uuid );
+				$queries[] = [ 'rev_type_id' => $uuid ];
 			} catch ( Exception $e ) {
 				// invalid id
 				unset( $watchlistInfo[NS_TOPIC][$id] );
@@ -1443,7 +1443,7 @@ class FlowHooks {
 		$storage->findMulti(
 			'PostRevision',
 			$queries,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		return true;
@@ -1542,9 +1542,9 @@ class FlowHooks {
 	 */
 	protected static function getTopicDeletionError( Title $title ) {
 		$error = wfMessage( 'flow-error-core-topic-deletion', $title->getFullURL() )->parse();
-		$wrappedError = Html::rawElement( 'span', array(
+		$wrappedError = Html::rawElement( 'span', [
 			'class' => 'plainlinks',
-		), $error );
+		], $error );
 		return $wrappedError;
 	}
 
@@ -1615,10 +1615,10 @@ class FlowHooks {
 
 			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
 				/** @var \Flow\Model\Workflow[] $workflows */
-				$workflows = $storage->find( 'Workflow', array(
+				$workflows = $storage->find( 'Workflow', [
 					'workflow_wiki' => wfWikiID(),
 					'workflow_page_id' => $articleId,
-				) );
+				] );
 				if ( !$workflows ) {
 					return;
 				}
@@ -1759,18 +1759,18 @@ class FlowHooks {
 			return true;
 		}
 
-		$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = array(
+		$prefs[BETA_FEATURE_FLOW_USER_TALK_PAGE] = [
 			// The first two are message keys
 			'label-message' => 'flow-talk-page-beta-feature-message',
 			'desc-message' => 'flow-talk-page-beta-feature-description',
-			'screenshot' => array(
+			'screenshot' => [
 				'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
 				'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
-			),
+			],
 			'info-link' => 'https://www.mediawiki.org/wiki/Flow',
 			'discussion-link' => 'https://www.mediawiki.org/wiki/Talk:Flow',
 			'exempt-from-auto-enrollment' => true,
-		);
+		];
 
 		return true;
 	}
@@ -1909,13 +1909,13 @@ class FlowHooks {
 		$dbr = $dbFactory->getDB( DB_SLAVE );
 
 		// if a username is specified, search only for that user
-		$userWhere = array();
+		$userWhere = [];
 		if ( $username ) {
 			$user = User::newFromName( $username );
 			if ( $user && $user->isLoggedIn() ) {
-				$userWhere = array( 'tree_orig_user_id' => $user->getId() );
+				$userWhere = [ 'tree_orig_user_id' => $user->getId() ];
 			} else {
-				$userWhere = array( 'tree_orig_user_ip' => $username );
+				$userWhere = [ 'tree_orig_user_ip' => $username ];
 			}
 		}
 
@@ -1925,57 +1925,57 @@ class FlowHooks {
 
 		// get latest revision id for each topic
 		$result = $dbr->select(
-			array(
+			[
 				'r' => 'flow_revision',
 				'flow_tree_revision',
 				'flow_workflow',
-			),
-			array(
+			],
+			[
 				'revId' => 'MAX(r.rev_id)',
 				'userIp' => "tree_orig_user_ip",
 				'userId' => "tree_orig_user_id",
-			),
-			array_merge( array(
+			],
+			array_merge( [
 				'tree_parent_id' => null,
 				'r.rev_type' => 'post',
 				'workflow_wiki' => wfWikiID(),
 				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
-			), $userWhere ),
+			], $userWhere ),
 			__METHOD__,
-			array(
+			[
 				'GROUP BY' => 'r.rev_type_id'
-			),
-			array(
-				'flow_tree_revision' => array( 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ),
-				'flow_workflow' => array( 'INNER JOIN', 'r.rev_type_id=workflow_id' ),
-			)
+			],
+			[
+				'flow_tree_revision' => [ 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ],
+				'flow_workflow' => [ 'INNER JOIN', 'r.rev_type_id=workflow_id' ],
+			]
 		);
 
 		if ( $result->numRows() < 1 ) {
 			return true;
 		}
 
-		$revIds = array();
+		$revIds = [];
 		foreach ( $result as $r ) {
-			$revIds[$r->revId] = array( 'userIp' => $r->userIp, 'userId' => $r->userId, 'name' => false );
+			$revIds[$r->revId] = [ 'userIp' => $r->userIp, 'userId' => $r->userId, 'name' => false ];
 		}
 
 		// get non-moderated revisions
 		$result = $dbr->select(
 			'flow_revision',
-			array(
+			[
 				'topicId' => 'rev_type_id',
 				'revId' => 'rev_id'
-			),
-			array(
+			],
+			[
 				'rev_mod_state' => '',
 				'rev_id' => array_keys( $revIds )
-			),
+			],
 			__METHOD__,
-			array(
+			[
 				'LIMIT' => $newLimit,
 				'ORDER BY' => 'rev_type_id DESC'
-			)
+			]
 		);
 
 		// all topics previously found appear to be moderated
@@ -1984,7 +1984,7 @@ class FlowHooks {
 		}
 
 		// keep only the relevant topics in [topicId => userInfo] format
-		$limitedRevIds = array();
+		$limitedRevIds = [];
 		foreach ( $result as $r ) {
 			$limitedRevIds[$r->topicId] = $revIds[$r->revId];
 		}
@@ -1999,13 +1999,13 @@ class FlowHooks {
 			);
 			$userIds = array_filter( $userIds );
 
-			$userMap = array();
+			$userMap = [];
 			if ( $userIds ) {
 				$wikiDbr = $dbFactory->getWikiDB( DB_SLAVE );
 				$result = $wikiDbr->select(
 					'user',
-					array( 'user_id', 'user_name' ),
-					array( 'user_id' => array_values( $userIds ) )
+					[ 'user_id', 'user_name' ],
+					[ 'user_id' => array_values( $userIds ) ]
 				);
 				foreach ( $result as $r ) {
 					$userMap[$r->user_id] = $r->user_name;
@@ -2028,10 +2028,10 @@ class FlowHooks {
 
 		// add results to the list of pages to nuke
 		foreach ( $limitedRevIds as $topicId => $userInfo ) {
-			$pages[] = array(
+			$pages[] = [
 				Title::makeTitle( NS_TOPIC, UUID::create( $topicId )->getAlphadecimal() ),
 				$userInfo['name']
-			);
+			];
 		}
 
 		return true;
@@ -2044,13 +2044,13 @@ class FlowHooks {
 		}
 
 		$action = 'moderate-topic';
-		$params = array(
-			'topic' => array(
+		$params = [
+			'topic' => [
 				'moderationState' => 'delete',
 				'reason' => $reason,
 				'page' => $title->getPrefixedText()
-			),
-		);
+			],
+		];
 
 		/** @var WorkflowLoaderFactory $factory */
 		$factory = Container::get( 'factory.loader.workflow' );
@@ -2068,7 +2068,7 @@ class FlowHooks {
 		);
 
 		$result = true;
-		$errors = array();
+		$errors = [];
 		foreach ( $blocks as $block ) {
 			if ( $block->hasErrors() ) {
 				$result = false;

@@ -13,10 +13,10 @@ class HistoricalUIDGeneratorTest extends \MediaWikiTestCase {
 	public function roundTripProvider() {
 		$now = time();
 
-		return array(
-			array( $now - 86400 ),
-			array( $now - ( 365 * 86400 ) ),
-		);
+		return [
+			[ $now - 86400 ],
+			[ $now - ( 365 * 86400 ) ],
+		];
 	}
 
 	/**

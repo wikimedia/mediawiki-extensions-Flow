@@ -15,33 +15,33 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 	}
 
 	protected function getBlockParams() {
-		return array(
+		return [
 			'topicsummary' => $this->extractRequestParams(),
-			'topic' => array(),
-		);
+			'topic' => [],
+		];
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'prev_revision' => null,
-			'summary' => array(
+			'summary' => [
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'format' => array(
+			],
+			'format' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_DFLT => 'wikitext',
-				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
-			),
-		) + parent::getAllowedParams();
+				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you&etsformat=wikitext'
 				=> 'apihelp-flow+edit-topic-summary-example-1',
-		);
+		];
 	}
 }

@@ -13,7 +13,7 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()
-			&& in_array( $type, array( 'flow-topic-resolved', 'flow-topic-reopened' ) );
+			&& in_array( $type, [ 'flow-topic-resolved', 'flow-topic-reopened' ] );
 	}
 
 	public function getPrimaryLink() {
@@ -21,11 +21,11 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 	}
 
 	public function getSecondaryLinks() {
-		return array(
+		return [
 			$this->getAgentLink(),
 			$this->getBoardLink(),
 			$this->getFlowUnwatchDynamicActionLink( true ),
-		);
+		];
 	}
 
 	protected function getHeaderMessageKey() {

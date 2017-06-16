@@ -20,18 +20,18 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
-	protected $supportedPostActions = array( 'new-topic' );
+	protected $supportedPostActions = [ 'new-topic' ];
 
 	/**
 	 * @var array
 	 */
-	protected $supportedGetActions = array( 'view', 'view-topiclist' );
+	protected $supportedGetActions = [ 'view', 'view-topiclist' ];
 
 	// @Todo - fill in the template names
-	protected $templates = array(
+	protected $templates = [
 		'view' => '',
 		'new-topic' => 'newtopic',
-	);
+	];
 
 	/**
 	 * @var Workflow|null
@@ -58,7 +58,7 @@ class TopicListBlock extends AbstractBlock {
 	 *
 	 * Associative array mapping topic ID (in alphadecimal form) to PostRevision for the topic root.
 	 */
-	protected $topicRootRevisionCache = array();
+	protected $topicRootRevisionCache = [];
 
 	/**
 	 * @constant(TOCLIMIT)
@@ -137,10 +137,10 @@ class TopicListBlock extends AbstractBlock {
 				// default to wikitext when not specified, for old API requests
 				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext'
 			);
-			$topicTitle->setChildren( array( $firstPost ) );
+			$topicTitle->setChildren( [ $firstPost ] );
 		}
 
-		return array( $topicWorkflow, $topicListEntry, $topicTitle, $firstPost );
+		return [ $topicWorkflow, $topicListEntry, $topicTitle, $firstPost ];
 	}
 
 	public function commit() {
@@ -148,12 +148,12 @@ class TopicListBlock extends AbstractBlock {
 			throw new FailCommitException( 'Unknown commit action', 'fail-commit' );
 		}
 
-		$metadata = array(
+		$metadata = [
 			'workflow' => $this->topicWorkflow,
 			'board-workflow' => $this->workflow,
 			'topic-title' => $this->topicTitle,
 			'first-post' => $this->firstPost,
-		);
+		];
 
 		/*
 		 * Order of storage is important! We've been changing when we stored
@@ -168,23 +168,23 @@ class TopicListBlock extends AbstractBlock {
 		 * If you even feel the need to change the order, make sure you come
 		 * up with a fix for the above things ;)
 		 */
-		$this->storage->put( $this->workflow, array() ); // 'discussion' workflow
+		$this->storage->put( $this->workflow, [] ); // 'discussion' workflow
 		$this->storage->put( $this->topicWorkflow, $metadata ); // 'topic' workflow
 		$this->storage->put( $this->topicListEntry, $metadata );
 		$this->storage->put( $this->topicTitle, $metadata );
 		if ( $this->firstPost !== null ) {
-			$this->storage->put( $this->firstPost, $metadata + array(
+			$this->storage->put( $this->firstPost, $metadata + [
 				'reply-to' => $this->topicTitle
-			) );
+			] );
 		}
 
-		$output = array(
+		$output = [
 			'topic-page' => $this->topicWorkflow->getArticleTitle()->getPrefixedText(),
 			'topic-id' => $this->topicTitle->getPostId(),
 			'topic-revision-id' => $this->topicTitle->getRevisionId(),
 			'post-id' => $this->firstPost ? $this->firstPost->getPostId() : null,
 			'post-revision-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
-		);
+		];
 
 		return $output;
 	}
@@ -194,10 +194,10 @@ class TopicListBlock extends AbstractBlock {
 
 		$tocApiParams = array_merge(
 			$options,
-			array(
+			[
 				'toconly' => true,
 				'limit' => self::TOCLIMIT
-			)
+			]
 		);
 
 		$findOptions = $this->getFindOptions( $options );
@@ -217,7 +217,7 @@ class TopicListBlock extends AbstractBlock {
 			// Make sure we found topiclist block
 			// and that it actually has roots in it
 			$existingRoots = isset( $topicList['roots'] ) && is_array( $topicList['roots'] ) ?
-				$topicList['roots'] : array();
+				$topicList['roots'] : [];
 
 			if ( count( $existingRoots ) > 0 ) {
 				// Add new offset-id and limit to the api parameters and change the limit
@@ -232,10 +232,10 @@ class TopicListBlock extends AbstractBlock {
 	public function renderApi( array $options ) {
 		$options = $this->preloadTexts( $options );
 
-		$response = array(
+		$response = [
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
-		);
+		];
 
 		// Repeating the default until we use the API for everything (bug 72659)
 		// Also, if this is removed other APIs (i.e. ApiFlowNewTopic) may need
@@ -253,7 +253,7 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		// @todo remove the 'api' => true, its always api
-		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+		$findOptions = $this->getFindOptions( $options + [ 'api' => true ] );
 
 		// include the current sortby option.  Note that when 'user' is either
 		// submitted or defaulted to this is the resulting sort. ex: newest
@@ -264,7 +264,7 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$page = $this->getPage( $findOptions );
-		$workflowIds = array();
+		$workflowIds = [];
 		/** @var TopicListEntry $topicListEntry */
 		foreach ( $page->getResults() as $topicListEntry ) {
 			$workflowIds[] = $topicListEntry->getId();
@@ -275,8 +275,8 @@ class TopicListBlock extends AbstractBlock {
 		if ( $isTocOnly ) {
 			// We don't need any further data, so we skip the TopicListQuery.
 
-			$topicRootRevisionsByWorkflowId = array();
-			$workflowsByWorkflowId = array();
+			$topicRootRevisionsByWorkflowId = [];
+			$workflowsByWorkflowId = [];
 
 			foreach ( $workflows as $workflow ) {
 				$alphaWorkflowId = $workflow->getId()->getAlphadecimal();
@@ -344,14 +344,14 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	protected function getFindOptions( array $requestOptions ) {
-		$findOptions = array();
+		$findOptions = [];
 
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
 
 		// @todo Once we migrate View.php to use the API directly
 		// all defaults will be handled by API and not here.
-		$requestOptions += array(
+		$requestOptions += [
 			'include-offset' => false,
 			'offset-id' => false,
 			'offset-dir' => 'fwd',
@@ -359,7 +359,7 @@ class TopicListBlock extends AbstractBlock {
 			'api' => true,
 			'sortby' => 'user',
 			'savesortby' => false,
-		);
+		];
 
 		$user = $this->context->getUser();
 		if ( strlen( $requestOptions['sortby'] ) === 0 ) {
@@ -372,11 +372,11 @@ class TopicListBlock extends AbstractBlock {
 		}
 		switch ( $requestOptions['sortby'] ) {
 		case 'updated':
-			$findOptions = array(
+			$findOptions = [
 				'sortby' => 'updated',
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
-			) + $findOptions;
+			] + $findOptions;
 
 			if ( $requestOptions['offset-id'] ) {
 				throw new FlowException( 'The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.' );
@@ -385,11 +385,11 @@ class TopicListBlock extends AbstractBlock {
 
 		case 'newest':
 		default:
-			$findOptions = array(
+			$findOptions = [
 				'sortby' => 'newest',
 				'sort' => 'topic_id',
 				'order' => 'desc',
-			) + $findOptions;
+			] + $findOptions;
 
 			if ( $requestOptions['offset'] ) {
 				throw new FlowException( 'The `newest` sort order does not allow the `offset` parameter.  Please use `offset-id`.' );
@@ -440,7 +440,7 @@ class TopicListBlock extends AbstractBlock {
 	protected function getPage( array $findOptions ) {
 		$pager = new Pager(
 			$this->storage->getStorage( 'TopicListEntry' ),
-			array( 'topic_list_id' => $this->workflow->getId() ),
+			[ 'topic_list_id' => $this->workflow->getId() ],
 			$findOptions
 		);
 
@@ -450,17 +450,17 @@ class TopicListBlock extends AbstractBlock {
 		$topicRootRevisionCache =& $this->topicRootRevisionCache;
 
 		return $pager->getPage( function( array $found ) use ( $postStorage, &$topicRootRevisionCache ) {
-			$queries = array();
+			$queries = [];
 			/** @var TopicListEntry[] $found */
 			foreach ( $found as $entry ) {
-				$queries[] = array( 'rev_type_id' => $entry->getId() );
+				$queries[] = [ 'rev_type_id' => $entry->getId() ];
 			}
-			$posts = $postStorage->findMulti( $queries, array(
+			$posts = $postStorage->findMulti( $queries, [
 				'sort' => 'rev_id',
 				'order' => 'DESC',
 				'limit' => 1,
-			) );
-			$allowed = array();
+			] );
+			$allowed = [];
 			foreach ( $posts as $queryResult ) {
 				$post = reset( $queryResult );
 				if ( !$post->isModerated() || $post->isLocked() ) {

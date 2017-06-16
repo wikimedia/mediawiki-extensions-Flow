@@ -8,10 +8,10 @@ use Title;
 class LqtImportFormatter extends \LogFormatter {
 
 	public function getPreloadTitles() {
-		$titles = array( $this->entry->getTarget() );
-		$params = $this->entry->getParameters() + array(
+		$titles = [ $this->entry->getTarget() ];
+		$params = $this->entry->getParameters() + [
 			'topic' => '',
-		);
+		];
 		$topic = Title::newFromText( $params['topic'] );
 		if ( $topic ) {
 			$titles[] = $topic;
@@ -27,10 +27,10 @@ class LqtImportFormatter extends \LogFormatter {
 	 */
 	protected function getActionMessage() {
 		$board = $this->entry->getTarget();
-		$params = $this->entry->getParameters() + array(
+		$params = $this->entry->getParameters() + [
 			'topic' => '',
 			'lqt_subject' => '',
-		);
+		];
 		$topic = Title::newFromText( $params['topic'] );
 
 		$message = $this->msg( "logentry-import-lqt-to-flow-topic" )

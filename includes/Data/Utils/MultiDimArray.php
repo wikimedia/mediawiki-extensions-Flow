@@ -29,7 +29,7 @@ use RecursiveIteratorIterator;
  *   )
  */
 class MultiDimArray implements \ArrayAccess {
-	protected $data = array();
+	protected $data = [];
 
 	public function all() {
 		return $this->data;
@@ -46,7 +46,7 @@ class MultiDimArray implements \ArrayAccess {
 		$data =& $this->data;
 		foreach ( (array) $offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
-				$data[$key] = array();
+				$data[$key] = [];
 			}
 			$data =& $data[$key];
 		}

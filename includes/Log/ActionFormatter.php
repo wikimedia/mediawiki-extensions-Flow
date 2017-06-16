@@ -20,7 +20,7 @@ class ActionFormatter extends LogFormatter {
 	/**
 	 * @var UUID[]
 	 */
-	private static $uuids = array();
+	private static $uuids = [];
 
 	/**
 	 * @var RevisionActionPermissions
@@ -124,16 +124,16 @@ class ActionFormatter extends LogFormatter {
 		}
 
 		$message = $this->msg( $messageKey )
-			->params( array(
+			->params( [
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getName(),
-			) );
+			] );
 
 		if ( $isTopicTitleVisible ) {
-			$message->params( array(
+			$message->params( [
 				$title, // Title of topic
 				$title->getFullUrl(), // Full URL of topic, with highlighted post if applicable
-			) );
+			] );
 
 			$message->plaintextParams( $this->templating->getContent( $rootLastRevision, 'topic-title-plaintext' ) );
 		}
@@ -144,7 +144,7 @@ class ActionFormatter extends LogFormatter {
 
 		return \Html::rawElement(
 			'span',
-			array( 'class' => 'plainlinks' ),
+			[ 'class' => 'plainlinks' ],
 			$message
 		);
 	}

@@ -56,7 +56,7 @@ class Searcher {
 	public function searchText( $term ) {
 		// full-text search
 		$queryString = new QueryString( $term );
-		$queryString->setFields( array( 'revisions.text' ) );
+		$queryString->setFields( [ 'revisions.text' ] );
 		$this->query->setQuery( $queryString );
 
 		// add aggregation to determine exact amount of matching search terms
@@ -64,20 +64,20 @@ class Searcher {
 		$this->query->addAggregation( $this->termsAggregation( $terms ) );
 
 		// @todo: abstract-away this config? (core/cirrus also has this - share it somehow?)
-		$this->query->setHighlight( array(
-			'fields' => array(
-				static::HIGHLIGHT_FIELD => array(
+		$this->query->setHighlight( [
+			'fields' => [
+				static::HIGHLIGHT_FIELD => [
 					'type' => 'plain',
 					'order' => 'score',
 
 					// we want just 1 excerpt of result text, which includes all highlights
 					'number_of_fragments' => 1,
 					'fragment_size' => 10000, // We want the whole value but more than this is crazy
-				),
-			),
-			'pre_tags' => array( static::HIGHLIGHT_PRE ),
-			'post_tags' => array( static::HIGHLIGHT_POST ),
-		) );
+				],
+			],
+			'pre_tags' => [ static::HIGHLIGHT_PRE ],
+			'post_tags' => [ static::HIGHLIGHT_POST ],
+		] );
 
 		// @todo: support insource: queries (and perhaps others)
 
@@ -91,7 +91,7 @@ class Searcher {
 		// @todo: do we want this class to extend from ElasticsearchIntermediary and use its success & failure methods (like CirrusSearch/Searcher does)?
 
 		// Perform the search
-		$work = new PoolCounterWorkViaCallback( 'Flow-Search', "_elasticsearch", array(
+		$work = new PoolCounterWorkViaCallback( 'Flow-Search', "_elasticsearch", [
 			'doWork' => function() use ( $search ) {
 				try {
 					$result = $search->search();
@@ -113,7 +113,7 @@ class Searcher {
 				wfLogWarning( 'Pool error searching Elasticsearch: ' . $status[0][0] );
 				return Status::newFatal( 'flow-error-search' );
 			}
-		) );
+		] );
 
 		$result = $work->execute();
 
@@ -153,15 +153,15 @@ class Searcher {
 		$searchable = $this->connection->getFlowIndex( $this->indexBaseName );
 		$searchable = $searchable->getType( array_pop( $types ) );
 
-		$query = array(
+		$query = [
 			// bogus document that contains the current search term
-			'doc' => array(
-				'revisions' => array(
+			'doc' => [
+				'revisions' => [
 					'text' => $terms,
-				),
-			),
-			"fields" => array( "revisions.text" ),
-		);
+				],
+			],
+			"fields" => [ "revisions.text" ],
+		];
 
 		// Elastica has no abstraction over _termvector like it has
 		// for _query, so just do the request ourselves
@@ -169,7 +169,7 @@ class Searcher {
 			'_termvector',
 			Request::POST,
 			$query,
-			array()
+			[]
 		);
 
 		$data = $response->getData();
@@ -200,7 +200,7 @@ return total';
 		// $aggregation->setScript() doesn't seem to properly set 'lang': 'groovy'
 		// see https://github.com/ruflin/Elastica/pull/748
 		// $aggregation->setScript( $script );
-		$aggregation->setParams( array( 'lang' => 'groovy' ) );
+		$aggregation->setParams( [ 'lang' => 'groovy' ] );
 		$aggregation->setParam( 'script', $script->getScript() );
 
 		return $aggregation;

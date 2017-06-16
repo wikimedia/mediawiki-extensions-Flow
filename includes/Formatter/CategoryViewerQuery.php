@@ -17,12 +17,12 @@ class CategoryViewerQuery {
 	/**
 	 * @var PostRevision[]
 	 */
-	protected $posts = array();
+	protected $posts = [];
 
 	/**
 	 * @var Workflow[]
 	 */
-	protected $workflows = array();
+	protected $workflows = [];
 
 	/**
 	 * @var ManagerGroup
@@ -40,8 +40,8 @@ class CategoryViewerQuery {
 	 * @param ResultWrapper|array $rows
 	 */
 	public function loadMetadataBatch( $rows ) {
-		$neededPosts = array();
-		$neededWorkflows = array();
+		$neededPosts = [];
+		$neededWorkflows = [];
 		foreach ( $rows as $row ) {
 			if ( $row->page_namespace != NS_TOPIC ) {
 				continue;
@@ -49,7 +49,7 @@ class CategoryViewerQuery {
 			$uuid = UUID::create( strtolower( $row->page_title ) );
 			if ( $uuid ) {
 				$alpha = $uuid->getAlphadecimal();
-				$neededPosts[$alpha] = array( 'rev_type_id' => $uuid );
+				$neededPosts[$alpha] = [ 'rev_type_id' => $uuid ];
 				$neededWorkflows[$alpha] = $uuid;
 			}
 		}
@@ -60,7 +60,7 @@ class CategoryViewerQuery {
 		$this->posts = $this->storage->findMulti(
 			'PostRevision',
 			$neededPosts,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 		$workflows = $this->storage->getMulti(
 			'Workflow',

@@ -7,14 +7,14 @@ namespace Flow\Data\Storage;
  */
 class TopicListStorage extends BasicDbStorage {
 
-	protected function doFindQuery( array $preprocessedAttributes, array $options = array() ) {
+	protected function doFindQuery( array $preprocessedAttributes, array $options = [] ) {
 		return $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( $this->table, 'flow_workflow' ),
-			array( 'topic_list_id', 'topic_id', 'workflow_last_update_timestamp' ),
+			[ $this->table, 'flow_workflow' ],
+			[ 'topic_list_id', 'topic_id', 'workflow_last_update_timestamp' ],
 			$preprocessedAttributes,
 			__METHOD__ . " ({$this->table})",
 			$options,
-			array( 'flow_workflow' => array( 'INNER JOIN', 'workflow_id = topic_id' ) )
+			[ 'flow_workflow' => [ 'INNER JOIN', 'workflow_id = topic_id' ] ]
 		);
 	}
 
@@ -23,7 +23,7 @@ class TopicListStorage extends BasicDbStorage {
 	 * the ordering in cache
 	 */
 	public function insert( array $rows ) {
-		$updateRows = array();
+		$updateRows = [];
 		foreach ( $rows as $i => $row ) {
 			// Note, entries added directly to the index (rather than from DB
 			// fill) do have this key, but obviously it can't be used.

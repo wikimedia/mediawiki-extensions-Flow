@@ -18,8 +18,8 @@ class TopicHistoryQuery extends HistoryQuery {
 	public function getResults( UUID $topicRootId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
 		$options = $this->getOptions( $direction, $limit, $offset );
 
-		$topicPostHistory = $this->getTopicPostResults( $topicRootId, $options ) ?: array();
-		$topicSummaryHistory = $this->getTopicSummaryResults( $topicRootId, $options ) ?: array();
+		$topicPostHistory = $this->getTopicPostResults( $topicRootId, $options ) ?: [];
+		$topicSummaryHistory = $this->getTopicSummaryResults( $topicRootId, $options ) ?: [];
 
 		$history = array_merge( $topicPostHistory, $topicSummaryHistory );
 		usort( $history, new SortRevisionsByRevisionId( $options['order'] ) );
@@ -34,7 +34,7 @@ class TopicHistoryQuery extends HistoryQuery {
 		}
 
 		$this->loadMetadataBatch( $history );
-		$results = $replies = array();
+		$results = $replies = [];
 		foreach ( $history as $revision ) {
 			try {
 				$results[] = $row = new TopicRow;
@@ -55,7 +55,7 @@ class TopicHistoryQuery extends HistoryQuery {
 		foreach ( $results as $result ) {
 			if ( $result->revision instanceof PostRevision ) {
 				$alpha = $result->revision->getPostId()->getAlphadecimal();
-				$result->replies = isset( $replies[$alpha] ) ? array_keys( $replies[$alpha] ) : array();
+				$result->replies = isset( $replies[$alpha] ) ? array_keys( $replies[$alpha] ) : [];
 			}
 		}
 
@@ -66,9 +66,9 @@ class TopicHistoryQuery extends HistoryQuery {
 		// Can't use 'PostRevision' because we need to get only the ones with the right topic ID.
 		return $this->doInternalQueries(
 			'PostRevisionTopicHistoryEntry',
-			array(
+			[
 				'topic_root_id' => $topicRootId,
-			),
+			],
 			$options,
 			self::POST_OVERFETCH_FACTOR
 		);
@@ -77,9 +77,9 @@ class TopicHistoryQuery extends HistoryQuery {
 	protected function getTopicSummaryResults( UUID $topicRootId, $options ) {
 		return $this->storage->find(
 			'PostSummary',
-			array(
+			[
 				'rev_type_id' => $topicRootId,
-			),
+			],
 			$options
 		);
 	}

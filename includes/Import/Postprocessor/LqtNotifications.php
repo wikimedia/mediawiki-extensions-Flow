@@ -36,7 +36,7 @@ class LqtNotifications implements Postprocessor {
 	/**
 	 * @var PostRevision[] Array of imported replies
 	 */
-	protected $postsImported = array();
+	protected $postsImported = [];
 
 	public function __construct( NotificationController $controller, DatabaseBase $dbw ) {
 		$this->controller = $controller;
@@ -68,11 +68,11 @@ class LqtNotifications implements Postprocessor {
 		// Overrides existing user-locators, because we don't want unintended
 		// notifications to go out here.
 		$self = $this;
-		$wgEchoNotifications['flow-post-reply']['user-locators'] = array(
+		$wgEchoNotifications['flow-post-reply']['user-locators'] = [
 			function( EchoEvent $event ) use ( $self ) {
 				return $self->locateUsersWithPendingLqtNotifications( $event );
 			}
-		);
+		];
 	}
 
 	/**
@@ -90,13 +90,13 @@ class LqtNotifications implements Postprocessor {
 		$it = new BatchRowIterator(
 			$this->dbw,
 			/* table = */ 'user_message_state',
-			/* primary keys */ array( 'ums_user' ),
+			/* primary keys */ [ 'ums_user' ],
 			$batchSize
 		);
-		$it->addConditions( array(
+		$it->addConditions( [
 			'ums_conversation' => $activeThreadId,
 			'ums_read_timestamp' => null,
-		) );
+		] );
 
 		// flatten result into a stream of rows
 		$it = new RecursiveIteratorIterator( $it );
@@ -118,24 +118,24 @@ class LqtNotifications implements Postprocessor {
 			return;
 		}
 
-		$this->controller->notifyPostChange( 'flow-post-reply', array(
+		$this->controller->notifyPostChange( 'flow-post-reply', [
 			'revision' => $this->postsImported[0],
 			'topic-title' => $state->topicTitle,
 			'topic-workflow' => $state->topicWorkflow,
 			'title' => $state->topicWorkflow->getOwnerTitle(),
 			'reply-to' => $state->topicTitle,
-			'extra-data' => array(
+			'extra-data' => [
 				'lqtThreadId' => $topic->getLqtThreadId(),
 				'notifyAgent' => true,
-			),
+			],
 			'timestamp' => $topic->getTimestamp(),
-		) );
+		] );
 
-		$this->postsImported = array();
+		$this->postsImported = [];
 	}
 
 	public function importAborted() {
-		$this->postsImported = array();
+		$this->postsImported = [];
 	}
 
 	public function afterHeaderImported( PageImportState $state, IImportHeader $header ) {

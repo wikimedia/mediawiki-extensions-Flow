@@ -48,7 +48,7 @@ class PurgeAction extends \PurgeAction {
 		$this->hashBag = $container['memcache'];
 		$this->realMemcache = $container['memcache.purge_backup'];
 
-		if ( !parent::onSubmit( array() ) ) {
+		if ( !parent::onSubmit( [] ) ) {
 			return false;
 		}
 
@@ -64,7 +64,7 @@ class PurgeAction extends \PurgeAction {
 			break;
 
 		case 'topic':
-			$this->fetchTopics( array( $workflow->getId()->getAlphadecimal() => $workflow->getId() ) );
+			$this->fetchTopics( [ $workflow->getId()->getAlphadecimal() => $workflow->getId() ] );
 			break;
 
 		default:
@@ -84,34 +84,34 @@ class PurgeAction extends \PurgeAction {
 	 * @param Workflow $workflow
 	 */
 	protected function fetchDiscussion( Workflow $workflow ) {
-		$results = array();
-		$pagers = array();
+		$results = [];
+		$pagers = [];
 		/** @var ManagerGroup $storage */
 		$storage = Container::get( 'storage' );
 
 		// 'newest' sort order
 		$pagers[] = new Pager(
 			$storage->getStorage( 'TopicListEntry' ),
-			array( 'topic_list_id' => $workflow->getId() ),
-			array( 'pager-limit' => 499 )
+			[ 'topic_list_id' => $workflow->getId() ],
+			[ 'pager-limit' => 499 ]
 		);
 
 		// 'updated' sort order
 		$pagers[] = new Pager(
 			$storage->getStorage( 'TopicListEntry' ),
-			array( 'topic_list_id' => $workflow->getId() ),
-			array(
+			[ 'topic_list_id' => $workflow->getId() ],
+			[
 				'pager-limit' => 499,
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
-			)
+			]
 		);
 
 		// Based on Header::init.
 		$storage->find(
 			'Header',
-			array( 'rev_type_id' => $workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			[ 'rev_type_id' => $workflow->getId() ],
+			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
 		foreach ( $pagers as $pager ) {

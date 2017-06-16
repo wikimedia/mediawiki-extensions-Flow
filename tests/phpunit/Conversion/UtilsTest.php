@@ -13,16 +13,16 @@ use Title;
 class ConversionUtilsTest extends FlowTestCase {
 
 	public static function createDomProvider() {
-		return array(
-			array(
+		return [
+			[
 				'A document with multiple matching ids is valid parser output',
 				'<body><a id="foo">foo</a><a id="foo">bar</a></body>'
-			),
-			array(
+			],
+			[
 				'HTML5 tags, such as figcaption, are valid html',
 				'<body><figcaption /></body>'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -33,8 +33,8 @@ class ConversionUtilsTest extends FlowTestCase {
 	}
 
 	public static function createRelativeTitleProvider() {
-		return array(
-			array(
+		return [
+			[
 				'strips leading ./ and treats as non-relative',
 				// expect
 				Title::newFromText( 'File:Foo.jpg' ),
@@ -42,9 +42,9 @@ class ConversionUtilsTest extends FlowTestCase {
 				'./File:Foo.jpg',
 				// relative to title
 				Title::newMainPage()
-			),
+			],
 
-			array(
+			[
 				'two level upwards traversal',
 				// expect
 				Title::newFromText( 'File:Bar.jpg' ),
@@ -52,8 +52,8 @@ class ConversionUtilsTest extends FlowTestCase {
 				'../../File:Bar.jpg',
 				// relative to title
 				Title::newFromText( 'Main_Page/And/Subpage' ),
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -73,22 +73,22 @@ class ConversionUtilsTest extends FlowTestCase {
 	}
 
 	public static function wikitextRoundtripProvider() {
-		return array(
-			array(
+		return [
+			[
 				'italic text',
 				// text & expect
 				"''italic text''",
 				// title
 				Title::newMainPage(),
-			),
-			array(
+			],
+			[
 				'bold text',
 				// text & expect
 				"'''bold text'''",
 				// title
 				Title::newMainPage(),
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -127,43 +127,43 @@ class ConversionUtilsTest extends FlowTestCase {
 	}
 
 	public static function topicTitleProvider() {
-		return array(
-			array(
+		return [
+			[
 				'External links not processed',
 				'[http://example.com Example]',
 				'[http://example.com Example]',
 				'[http://example.com Example]',
-			),
-			array(
+			],
+			[
 				'Bold and italics not processed',
 				"'''Bold''' and ''italics''",
 				"&#039;&#039;&#039;Bold&#039;&#039;&#039; and &#039;&#039;italics&#039;&#039;",
 				"'''Bold''' and ''italics''",
-			),
-			array(
+			],
+			[
 				'Script tags are treated as text',
 				'<script>alert(\'Test\');</script>',
 				'&lt;script&gt;alert(&#039;Test&#039;);&lt;/script&gt;',
 				'<script>alert(\'Test\');</script>',
-			),
-			array(
+			],
+			[
 				'Entities processed',
 				'&amp;&#x27;',
 				'&amp;&#039;',
 				'&\'',
-			),
-			array(
+			],
+			[
 				'Internal links are converted to plaintext',
 				'[[asdfasdferqwer389]] is a place',
 				'<a href="/w/index.php?title=Asdfasdferqwer389&amp;action=edit&amp;redlink=1" class="new" title="Asdfasdferqwer389 (page does not exist)">asdfasdferqwer389</a> is a place',
 				'asdfasdferqwer389 is a place',
-			),
-			array(
+			],
+			[
 				'Quotes are preserved',
 				'\'Single quotes\' "Double quotes"',
 				'&#039;Single quotes&#039; &quot;Double quotes&quot;',
 				'\'Single quotes\' "Double quotes"',
-			),
-		);
+			],
+		];
 	}
 }

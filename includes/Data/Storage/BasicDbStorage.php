@@ -131,7 +131,7 @@ class BasicDbStorage extends DbStorage {
 	 * @throws DataModelException On query failure
 	 * @throws \MWException
 	 */
-	public function find( array $attributes, array $options = array() ) {
+	public function find( array $attributes, array $options = [] ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( !$this->validateOptions( $options ) ) {
@@ -144,14 +144,14 @@ class BasicDbStorage extends DbStorage {
 			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
 		}
 
-		$result = array();
+		$result = [];
 		foreach ( $res as $row ) {
 			$result[] = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
 		}
 		return $result;
 	}
 
-	protected function doFindQuery( array $preprocessedAttributes, array $options = array() ) {
+	protected function doFindQuery( array $preprocessedAttributes, array $options = [] ) {
 		return $this->dbFactory->getDB( DB_SLAVE )->select(
 			$this->table,
 			'*',
@@ -162,7 +162,7 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
-		$result = array();
+		$result = [];
 		foreach ( $queries as $key => $query ) {
 			$result[$key] = $this->find( $query, $options );
 		}
@@ -177,13 +177,13 @@ class BasicDbStorage extends DbStorage {
 	 * @throws \DBUnexpectedError
 	 * @throws \MWException
 	 */
-	public function findMulti( array $queries, array $options = array() ) {
+	public function findMulti( array $queries, array $options = [] ) {
 		$keys = array_keys( reset( $queries ) );
 		$pks = $this->getPrimaryKeyColumns();
 		if ( count( $keys ) !== count( $pks ) || array_diff( $keys, $pks ) ) {
 			return $this->fallbackFindMulti( $queries, $options );
 		}
-		$conds = array();
+		$conds = [];
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		foreach ( $queries as $query ) {
 			$conds[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
@@ -193,7 +193,7 @@ class BasicDbStorage extends DbStorage {
 		$conds = $dbr->makeList( $conds, LIST_OR );
 
 		// options can be ignored for primary key search
-		$res = $this->find( array( new RawSql( $conds ) ) );
+		$res = $this->find( [ new RawSql( $conds ) ] );
 
 		// create temp array with pk value (usually uuid) as key and full db row
 		// as value
@@ -205,7 +205,7 @@ class BasicDbStorage extends DbStorage {
 
 		// build return value by mapping the database rows to the matching array
 		// index in $queries
-		$result = array();
+		$result = [];
 		foreach ( $queries as $i => $val ) {
 			$val = UUID::convertUUIDs( $val, 'alphadecimal' );
 			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );

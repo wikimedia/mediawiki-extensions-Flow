@@ -23,52 +23,52 @@ class BenchUuidConversions extends \Benchmarker {
 		// benchmarker requires we pass an object
 		$id = UUID::create();
 
-		$this->bench( array(
-			array(
-				'function' => array( $id, 'bin2hex' ),
-				'args' => array( $binary ),
-			),
-			array(
-				'function' => array( $id, 'alnum2hex' ),
-				'args' => array( $alpha ),
-			),
-			array(
-				'function' => array( $id, 'hex2bin' ),
-				'args' => array( $hex ),
-			),
-			array(
-				'function' => array( $id, 'hex2alnum' ),
-				'args' => array( $hex ),
-			),
-			array(
-				'function' => array( $id, 'hex2timestamp' ),
-				'args' => array( $hex ),
-			),
-			array(
-				'function' => array( $this, 'oldhex2timestamp' ),
-				'args' => array( $hex ),
-			),
-			array(
-				'function' => array( $this, 'oldalphadecimal2timestamp' ),
-				'args' => array( $alpha ),
-			),
-			array(
-				'function' => array( $this, 'case1' ),
-				'args' => array( $binary ),
-			),
-			array(
-				'function' => array( $this, 'case2' ),
-				'args' => array( $binary ),
-			),
-			array(
-				'function' => array( $this, 'case3' ),
-				'args' => array( $alpha ),
-			),
-			array(
-				'function' => array( $this, 'case4' ),
-				'args' => array( $alpha ),
-			),
-		) );
+		$this->bench( [
+			[
+				'function' => [ $id, 'bin2hex' ],
+				'args' => [ $binary ],
+			],
+			[
+				'function' => [ $id, 'alnum2hex' ],
+				'args' => [ $alpha ],
+			],
+			[
+				'function' => [ $id, 'hex2bin' ],
+				'args' => [ $hex ],
+			],
+			[
+				'function' => [ $id, 'hex2alnum' ],
+				'args' => [ $hex ],
+			],
+			[
+				'function' => [ $id, 'hex2timestamp' ],
+				'args' => [ $hex ],
+			],
+			[
+				'function' => [ $this, 'oldhex2timestamp' ],
+				'args' => [ $hex ],
+			],
+			[
+				'function' => [ $this, 'oldalphadecimal2timestamp' ],
+				'args' => [ $alpha ],
+			],
+			[
+				'function' => [ $this, 'case1' ],
+				'args' => [ $binary ],
+			],
+			[
+				'function' => [ $this, 'case2' ],
+				'args' => [ $binary ],
+			],
+			[
+				'function' => [ $this, 'case3' ],
+				'args' => [ $alpha ],
+			],
+			[
+				'function' => [ $this, 'case4' ],
+				'args' => [ $alpha ],
+			],
+		] );
 
 		$this->output( $this->getFormattedResults() );
 	}

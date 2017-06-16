@@ -32,18 +32,18 @@ class ViewAction extends FlowAction {
 	protected function getCategories( Title $title ) {
 		$id = $title->getArticleId();
 		if ( !$id ) {
-			return array();
+			return [];
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			/* from */ 'categorylinks',
-			/* select */ array( 'cl_to', 'cl_sortkey' ),
-			/* conditions */ array( 'cl_from' => $id ),
+			/* select */ [ 'cl_to', 'cl_sortkey' ],
+			/* conditions */ [ 'cl_from' => $id ],
 			__METHOD__
 		);
 
-		$categories = array();
+		$categories = [];
 		foreach ( $res as $row ) {
 			$categories[$row->cl_to] = $row->cl_sortkey;
 		}

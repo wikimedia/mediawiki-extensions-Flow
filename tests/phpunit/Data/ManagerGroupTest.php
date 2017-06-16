@@ -17,15 +17,15 @@ class ManagerGroupTest extends \MediaWikiTestCase {
 				->getMock();
 		}
 
-		$storage = new ManagerGroup( $container, array(
+		$storage = new ManagerGroup( $container, [
 			'A' => 'A',
 			'B' => 'B',
 			'C' => 'C',
 			'D' => 'D',
 			'stdClass' => 'D',
-		) );
+		] );
 
-		return array( $storage, $container );
+		return [ $storage, $container ];
 	}
 
 	public function testClearOnlyCallsRequestedManagers() {

@@ -41,12 +41,12 @@ class NotificationListener extends AbstractListener {
 				throw new InvalidDataException( 'Invalid metadata for revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
 			}
 
-			$this->notificationController->notifyNewTopic( array(
+			$this->notificationController->notifyNewTopic( [
 				'board-workflow' => $metadata['board-workflow'],
 				'topic-workflow' => $metadata['workflow'],
 				'topic-title' => $metadata['topic-title'],
 				'first-post' => $metadata['first-post'],
-			) );
+			] );
 			break;
 
 		case 'edit-title':
@@ -62,11 +62,11 @@ class NotificationListener extends AbstractListener {
 			break;
 
 		case 'lock-topic':
-			$this->notificationController->notifyTopicLocked( 'flow-topic-resolved', array(
+			$this->notificationController->notifyTopicLocked( 'flow-topic-resolved', [
 				'revision' => $object,
 				'topic-workflow' => $metadata['workflow'],
 				'topic-title' => $metadata['topic-title'],
-			) );
+			] );
 			break;
 
 		// "restore" can be a lot of different things
@@ -77,28 +77,28 @@ class NotificationListener extends AbstractListener {
 			$post = $object->getCollection();
 			$previousRevision = $post->getPrevRevision( $object );
 			if ( $previousRevision->isLocked() ) {
-				$this->notificationController->notifyTopicLocked( 'flow-topic-reopened', array(
+				$this->notificationController->notifyTopicLocked( 'flow-topic-reopened', [
 					'revision' => $object,
 					'topic-workflow' => $metadata['workflow'],
 					'topic-title' => $metadata['topic-title'],
-				) );
+				] );
 			}
 			break;
 
 		case 'edit-header':
-			$this->notificationController->notifyHeaderChange( array(
+			$this->notificationController->notifyHeaderChange( [
 				'revision' => $object,
 				'board-workflow' => $metadata['workflow'],
-			) );
+			] );
 			break;
 
 		case 'create-topic-summary':
 		case 'edit-topic-summary':
-			$this->notificationController->notifySummaryChange( array(
+			$this->notificationController->notifySummaryChange( [
 				'revision' => $object,
 				'topic-workflow' => $metadata['workflow'],
 				'topic-title' => $metadata['topic-title'],
-			) );
+			] );
 			break;
 		}
 	}
@@ -110,7 +110,7 @@ class NotificationListener extends AbstractListener {
 	 * @param array $params
 	 * @throws InvalidDataException
 	 */
-	protected function notifyPostChange( $type, PostRevision $object, $metadata, array $params = array() ) {
+	protected function notifyPostChange( $type, PostRevision $object, $metadata, array $params = [] ) {
 		if ( !isset(
 			$metadata['workflow'],
 			$metadata['topic-title']
@@ -123,10 +123,10 @@ class NotificationListener extends AbstractListener {
 			throw new InvalidDataException( 'Workflow metadata is not a Workflow', 'missing-metadata' );
 		}
 
-		$this->notificationController->notifyPostChange( $type, $params + array(
+		$this->notificationController->notifyPostChange( $type, $params + [
 			'revision' => $object,
 			'topic-workflow' => $workflow,
 			'topic-title' => $metadata['topic-title'],
-		) );
+		] );
 	}
 }

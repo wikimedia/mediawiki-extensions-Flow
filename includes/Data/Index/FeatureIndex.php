@@ -243,17 +243,17 @@ abstract class FeatureIndex implements Index {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function find( array $attributes, array $options = array() ) {
-		$results = $this->findMulti( array( $attributes ), $options );
+	public function find( array $attributes, array $options = [] ) {
+		$results = $this->findMulti( [ $attributes ], $options );
 		return reset( $results );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function findMulti( array $queries, array $options = array() ) {
+	public function findMulti( array $queries, array $options = [] ) {
 		if ( !$queries ) {
-			return array();
+			return [];
 		}
 
 		// get cache keys for all queries
@@ -275,7 +275,7 @@ abstract class FeatureIndex implements Index {
 		// $fromStorage will be an array containing (expanded) results as value
 		// and indexes matching $query as key
 		$storageQueries = array_diff_key( $queries, $keysFromCache );
-		$fromStorage = array();
+		$fromStorage = [];
 		if ( $storageQueries ) {
 			$fromStorage = $this->backingStoreFindMulti( $storageQueries );
 			foreach ( $fromStorage as $idx => $resultFromStorage ) {
@@ -310,7 +310,7 @@ abstract class FeatureIndex implements Index {
 		$order = array_intersect_key( $queries, $results );
 		$results = array_replace( $order, $results );
 
-		$keyToQuery = array();
+		$keyToQuery = [];
 		foreach ( $keysFromCache as $index => $key ) {
 			// all redundant data has been stripped, now expand all cache values
 			// (we're only doing this now to avoid expanding redundant data)
@@ -345,7 +345,7 @@ abstract class FeatureIndex implements Index {
 	 * @param array[optional] $options
 	 * @return array
 	 */
-	protected function filterResults( array $results, array $options = array() ) {
+	protected function filterResults( array $results, array $options = [] ) {
 		// Overriden in TopKIndex
 		return $results;
 	}
@@ -361,8 +361,8 @@ abstract class FeatureIndex implements Index {
 	 * @param array[optional] $options Options to find()
 	 * @return bool
 	 */
-	public function found( array $attributes, array $options = array() ) {
-		return $this->foundMulti( array( $attributes ), $options );
+	public function found( array $attributes, array $options = [] ) {
+		return $this->foundMulti( [ $attributes ], $options );
 	}
 
 	/**
@@ -376,7 +376,7 @@ abstract class FeatureIndex implements Index {
 	 * @param array[optional] $options Options to findMulti()
 	 * @return bool
 	 */
-	public function foundMulti( array $queries, array $options = array() ) {
+	public function foundMulti( array $queries, array $options = [] ) {
 		if ( !$queries ) {
 			return true;
 		}
@@ -396,7 +396,7 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		$keyToQuery = array();
+		$keyToQuery = [];
 		foreach ( $cacheKeys as $i => $key ) {
 			// These results will be merged into the query results, and as such need binary
 			// uuid's as would be received from storage
@@ -434,7 +434,7 @@ abstract class FeatureIndex implements Index {
 	 * @throws DataModelException
 	 */
 	protected function getCacheKeys( $queries ) {
-		$idxToKey = array();
+		$idxToKey = [];
 		foreach ( $queries as $idx => $query ) {
 			ksort( $query );
 			if ( array_keys( $query ) !== $this->indexedOrdered ) {
@@ -463,7 +463,7 @@ abstract class FeatureIndex implements Index {
 		// query backing store
 		$options = $this->queryOptions();
 		$stored = $this->storage->findMulti( $queries, $options );
-		$results = array();
+		$results = [];
 
 		// map store results to cache key
 		foreach ( $stored as $idx => $rows ) {

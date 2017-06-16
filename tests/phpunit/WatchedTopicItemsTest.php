@@ -14,19 +14,19 @@ class WatchedTopicItemTest extends FlowTestCase {
 	public function provideDataGetWatchStatus() {
 		// number of test cases
 		$testCount = 10;
-		$tests = array();
+		$tests = [];
 		while ( $testCount > 0 ) {
 			$testCount--;
 			// number of uuid per test case
 			$uuidCount = 10;
-			$uuids = $dbResult = $result = array();
+			$uuids = $dbResult = $result = [];
 			while ( $uuidCount > 0 ) {
 				$uuidCount--;
 				$uuid = UUID::create()->getAlphadecimal();
 				$rand = rand( 0, 1 );
 				// put in the query result
 				if ( $rand ) {
-					$dbResult[] = (object)array( 'wl_title' => $uuid );
+					$dbResult[] = (object)[ 'wl_title' => $uuid ];
 					$result[$uuid] = true;
 				} else {
 					$result[$uuid] = false;
@@ -34,19 +34,19 @@ class WatchedTopicItemTest extends FlowTestCase {
 				$uuids[] = $uuid;
 			}
 			$dbResult = new \ArrayObject( $dbResult );
-			$tests[] = array( $uuids, $dbResult->getIterator(), $result );
+			$tests[] = [ $uuids, $dbResult->getIterator(), $result ];
 		}
 
 		// attach empty uuids array to query
-		$uuids = $dbResult = $result = array();
+		$uuids = $dbResult = $result = [];
 		$emptyCount = 10;
 		while ( $emptyCount > 0 ) {
 			$emptyCount--;
 			$uuid = UUID::create()->getAlphadecimal();
-			$dbResult[] = (object)array( 'wl_title' => $uuid );
+			$dbResult[] = (object)[ 'wl_title' => $uuid ];
 		}
 		$dbResult = new \ArrayObject( $dbResult );
-		$tests[] = array( $uuids, $dbResult->getIterator(), $result );
+		$tests[] = [ $uuids, $dbResult->getIterator(), $result ];
 		return $tests;
 	}
 

@@ -56,12 +56,12 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	public function getIterator() {
 		$it = new BatchRowIterator(
 			$this->db,
-			/* tables */ array( 'page_props', 'page' ),
+			/* tables */ [ 'page_props', 'page' ],
 			/* pk */ 'pp_page',
 			/* rows per batch */ 500
 		);
 
-		$conditions = array( 'pp_propname' => $this->propName );
+		$conditions = [ 'pp_propname' => $this->propName ];
 		if ( $this->startId !== null ) {
 			$conditions[] = 'pp_page >= ' . $this->db->addQuotes( $this->startId );
 		}
@@ -70,10 +70,10 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 		}
 		$it->addConditions( $conditions );
 
-		$it->addJoinConditions( array(
-			'page' => array( 'JOIN', 'pp_page=page_id' ),
-		) );
-		$it->setFetchColumns( array( 'page_namespace', 'page_title' ) );
+		$it->addJoinConditions( [
+			'page' => [ 'JOIN', 'pp_page=page_id' ],
+		] );
+		$it->setFetchColumns( [ 'page_namespace', 'page_title' ] );
 		$it = new RecursiveIteratorIterator( $it );
 
 		return new EchoCallbackIterator( $it, function( $row ) {

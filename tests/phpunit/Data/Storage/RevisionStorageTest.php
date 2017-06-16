@@ -12,53 +12,53 @@ use Flow\Tests\FlowTestCase;
  * @group Flow
  */
 class RevisionStorageTest extends FlowTestCase {
-	protected $BEFORE_WITHOUT_CONTENT_CHANGE = array(
+	protected $BEFORE_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
-	);
+	];
 
-	protected $AFTER_WITHOUT_CONTENT_CHANGE = array(
+	protected $AFTER_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'testwiki',
-	);
+	];
 
-	protected $WITHOUT_CONTENT_CHANGE_DIFF = array(
+	protected $WITHOUT_CONTENT_CHANGE_DIFF = [
 		'rev_mod_user_wiki' => 'testwiki',
-	);
+	];
 
-	protected $BEFORE_WITH_CONTENT_CHANGE = array(
+	protected $BEFORE_WITH_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://249',
 		'rev_content' => 'Hello, world!<span onclick="alert(\'Hacked\');">Test</span>',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
-	);
+	];
 
-	protected $AFTER_WITH_CONTENT_CHANGE = array(
+	protected $AFTER_WITH_CONTENT_CHANGE = [
 		// URL is deliberately stale here; since the column diff shows a content
 		// change, processExternalContent is in charge of updating the URL.
 		'rev_content_url' => 'FlowMock://249',
 		'rev_content' => 'Hello, world!<span>Test</span>',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
-	);
+	];
 
-	protected $WITH_CONTENT_CHANGE_DIFF = array(
+	protected $WITH_CONTENT_CHANGE_DIFF = [
 		'rev_content' => 'FlowMock://1',
 		'rev_flags' => 'external',
-	);
+	];
 
-	protected $MOCK_EXTERNAL_STORE_CONFIG = array(
+	protected $MOCK_EXTERNAL_STORE_CONFIG = [
 		'FlowMock://',
-	);
+	];
 
 	protected function setUp() {
-		$this->setMwGlobals( array(
-			'wgExternalStores' => array( 'FlowMock' ),
-		) );
+		$this->setMwGlobals( [
+			'wgExternalStores' => [ 'FlowMock' ],
+		] );
 
 		\ExternalStoreFlowMock::$isUsed = false;
 
@@ -176,9 +176,9 @@ class RevisionStorageTest extends FlowTestCase {
 			->with(
 				$this->equalTo( 'flow_revision' ),
 				$this->equalTo( $expectedUpdateValues ),
-				$this->equalTo( array(
+				$this->equalTo( [
 					'rev_id' => $id->getBinary(),
-				) )
+				] )
 			)
 			->will( $this->returnValue( true ) );
 		$dbw->expects( $this->any() )
@@ -201,10 +201,10 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	public function isUpdatingExistingRevisionContentAllowedProvider() {
-		return array(
-			array( true ),
-			array( false )
-		);
+		return [
+			[ true ],
+			[ false ]
+		];
 	}
 
 	/**
@@ -241,12 +241,12 @@ class RevisionStorageTest extends FlowTestCase {
 
 		$allowedUpdateColumns = $allowedUpdateColumnsProp->getValue( $revisionStorage );
 
-		$requiredContentColumns = array(
+		$requiredContentColumns = [
 			'rev_content',
 			'rev_content_length',
 			'rev_flags',
 			'rev_previous_content_length',
-		);
+		];
 
 		if ( $allowContentUpdates ) {
 			$allowedUpdateColumns = array_merge(
@@ -264,65 +264,65 @@ class RevisionStorageTest extends FlowTestCase {
 
 	public function testUpdateConvertsPrimaryKeyToBinary() {
 		$this->helperToTestUpdating(
-			array(
+			[
 				'rev_mod_user_id' => 0,
-			),
-			array(
+			],
+			[
 				'rev_mod_user_id' => 42,
-			),
-			array(
+			],
+			[
 				'rev_mod_user_id' => 42,
-			),
+			],
 			false
 		);
 	}
 
 	public static function issuesQueryCountProvider() {
-		return array(
-			array(
+		return [
+			[
 				'Query by rev_id issues one query',
 				// db queries issued
 				1,
 				// queries
-				array(
-					array( 'rev_id' => 1 ),
-					array( 'rev_id' => 8 ),
-					array( 'rev_id' => 3 ),
-				),
+				[
+					[ 'rev_id' => 1 ],
+					[ 'rev_id' => 8 ],
+					[ 'rev_id' => 3 ],
+				],
 				// query options
-				array( 'LIMIT' => 1 )
-			),
+				[ 'LIMIT' => 1 ]
+			],
 
-			array(
+			[
 				'Query by rev_id issues one query with string limit',
 				// db queries issued
 				1,
 				// queries
-				array(
-					array( 'rev_id' => 1 ),
-					array( 'rev_id' => 8 ),
-					array( 'rev_id' => 3 ),
-				),
+				[
+					[ 'rev_id' => 1 ],
+					[ 'rev_id' => 8 ],
+					[ 'rev_id' => 3 ],
+				],
 				// query options
-				array( 'LIMIT' => '1' )
-			),
+				[ 'LIMIT' => '1' ]
+			],
 
-			array(
+			[
 				'Query for most recent revision issues two queries',
 				// db queries issued
 				2,
 				// queries
-				array(
-					array( 'rev_type_id' => 19 ),
-					array( 'rev_type_id' => 22 ),
-					array( 'rev_type_id' => 4 ),
-					array( 'rev_type_id' => 44 ),
-				),
+				[
+					[ 'rev_type_id' => 19 ],
+					[ 'rev_type_id' => 22 ],
+					[ 'rev_type_id' => 4 ],
+					[ 'rev_type_id' => 44 ],
+				],
 				// query options
-				array( 'LIMIT' => 1, 'ORDER BY' => array( 'rev_id DESC' ) ),
-			),
+				[ 'LIMIT' => 1, 'ORDER BY' => [ 'rev_id DESC' ] ],
+			],
 
-		);
+		];
 	}
 
 	/**
@@ -336,11 +336,11 @@ class RevisionStorageTest extends FlowTestCase {
 			$this->fail( '<= 2 queries always issues the same number of queries' );
 		}
 
-		$result = array();
+		$result = [];
 		foreach ( $queries as $query ) {
 			// this is not in any way a real result, but enough to get through
 			// the result processing
-			$result[] = (object)( $query + array( 'rev_id' => 42, 'tree_rev_id' => 42, 'rev_flags' => '' ) );
+			$result[] = (object)( $query + [ 'rev_id' => 42, 'tree_rev_id' => 42, 'rev_flags' => '' ] );
 		}
 
 		$treeRepo = $this->getMockBuilder( 'Flow\Repository\TreeRepository' )
@@ -364,27 +364,27 @@ class RevisionStorageTest extends FlowTestCase {
 		$factory = $this->mockDbFactory();
 		$factory->getDB( null )->expects( $this->once() )
 			->method( 'select' )
-			->will( $this->returnValue( array(
-				(object)array( 'rev_id' => 42, 'rev_flags' => '' )
-			) ) );
+			->will( $this->returnValue( [
+				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]
+			] ) );
 
 		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
 
 		$res = $storage->findMulti(
-			array(
-				array( 'rev_id' => 12 ),
-				array( 'rev_id' => 42 ),
-				array( 'rev_id' => 17 ),
-			),
-			array( 'LIMIT' => 1 )
+			[
+				[ 'rev_id' => 12 ],
+				[ 'rev_id' => 42 ],
+				[ 'rev_id' => 17 ],
+			],
+			[ 'LIMIT' => 1 ]
 		);
 
 		$this->assertSame(
-			array(
+			[
 				null,
-				array( array( 'rev_id' => 42, 'rev_flags' => '', 'rev_content_url' => null ) ),
+				[ [ 'rev_id' => 42, 'rev_flags' => '', 'rev_content_url' => null ] ],
 				null,
-			),
+			],
 			$res,
 			'Unfound items must be represented with null in the result array'
 		);

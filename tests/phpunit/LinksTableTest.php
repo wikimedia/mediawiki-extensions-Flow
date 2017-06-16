@@ -25,7 +25,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array(
+	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',
 		'flow_topic_list',
@@ -36,7 +36,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		'page',
 		'revision',
 		'text',
-	);
+	];
 
 	/**
 	 * @var ManagerGroup
@@ -99,7 +99,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	protected function generatePost( $overrides ) {
 		$uuid = UUID::create();
-		return $this->generateObject( $overrides + array(
+		return $this->generateObject( $overrides + [
 			'rev_change_type' => 'reply',
 
 			// generate new post id
@@ -108,7 +108,7 @@ class LinksTableTest extends PostRevisionTestCase {
 
 			// make sure it's a reply to $this->revision
 			'tree_parent_id' => $this->revision->getPostId(),
-		) );
+		] );
 	}
 
 	protected static function getTestTitle() {
@@ -116,73 +116,73 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	public static function provideGetReferencesFromRevisionContent() {
-		return array(
-			array(
+		return [
+			[
 				'[[Foo]]',
-				array(
-					array(
+				[
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
-					),
-				),
-			),
-			array(
+					],
+				],
+			],
+			[
 				'[http://www.google.com Foo]',
-				array(
-					array(
+				[
+					[
 						'factoryMethod' => 'createUrlReference',
 						'refType' => 'link',
 						'value' => 'http://www.google.com',
-					),
-				),
-			),
-			array(
+					],
+				],
+			],
+			[
 				'[[File:Foo.jpg]]',
-				array(
-					array(
+				[
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
-					),
-				),
-			),
-			array(
+					],
+				],
+			],
+			[
 				'{{Foo}}',
-				array(
-					array(
+				[
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
-					),
-				),
-			),
-			array(
+					],
+				],
+			],
+			[
 				'{{Foo}} [[Foo]] [[File:Foo.jpg]] {{Foo}} [[Bar]]',
-				array(
-					array(
+				[
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Bar',
-					),
-				),
-			)
-		);
+					],
+				],
+			]
+		];
 	}
 
 	/**
@@ -190,7 +190,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array( 'rev_content' => $content ) );
+		$revision = $this->generatePost( [ 'rev_content' => $content ] );
 
 		$expectedReferences = $this->expandReferences( $this->workflow, $revision, $expectedReferences );
 
@@ -204,7 +204,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	public function testGetReferencesAfterRevisionInsert( $content, $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
-		$revision = $this->generatePost( array( 'rev_content' => $content ) );
+		$revision = $this->generatePost( [ 'rev_content' => $content ] );
 
 		// Save to storage to test if ReferenceRecorder listener picks this up
 		$this->store( $this->revision );
@@ -222,32 +222,32 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	public static function provideGetExistingReferences() {
-		return array( /* list of test runs */
-			array( /* list of arguments */
-				array( /* list of references */
-					array( /* list of parameters */
+		return [ /* list of test runs */
+			[ /* list of arguments */
+				[ /* list of references */
+					[ /* list of parameters */
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'template',
 						'value' => 'Template:Foo',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Foo',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'file',
 						'value' => 'File:Foo.jpg',
-					),
-					array(
+					],
+					[
 						'factoryMethod' => 'createWikiReference',
 						'refType' => 'link',
 						'value' => 'Bar',
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -269,79 +269,79 @@ class LinksTableTest extends PostRevisionTestCase {
 	public static function provideReferenceDiff() {
 		$references = self::getSampleReferences();
 
-		return array(
+		return [
 			// Just adding a few
-			array(
-				array(),
-				array(
+			[
+				[],
+				[
 					$references['fooLink'],
 					$references['barLink']
-				),
-				array(
+				],
+				[
 					$references['fooLink'],
 					$references['barLink'],
-				),
-				array(),
-			),
+				],
+				[],
+			],
 			// Removing one
-			array(
-				array(
+			[
+				[
 					$references['fooLink'],
 					$references['barLink']
-				),
-				array(
+				],
+				[
 					$references['fooLink'],
-				),
-				array(
-				),
-				array(
+				],
+				[
+				],
+				[
 					$references['barLink'],
-				),
-			),
+				],
+			],
 			// Equality robustness
-			array(
-				array(
+			[
+				[
 					$references['fooLink'],
-				),
-				array(
+				],
+				[
 					$references['FooLink'],
-				),
-				array(
-				),
-				array(
-				),
-				array( // test is only valid if Foo and foo are same page
+				],
+				[
+				],
+				[
+				],
+				[ // test is only valid if Foo and foo are same page
 					'wgCapitalLinks' => true,
-				)
-			),
+				]
+			],
 			// Inequality robustness
-			array(
-				array(
+			[
+				[
 					$references['fooLink'],
-				),
-				array(
+				],
+				[
 					$references['barLink'],
-				),
-				array(
+				],
+				[
 					$references['barLink'],
-				),
-				array(
+				],
+				[
 					$references['fooLink'],
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 
 	/**
 	 * @dataProvider provideReferenceDiff
 	 */
-	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved, $globals = array() ) {
+	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved, $globals = [] ) {
 		if ( $globals ) {
 			$this->setMwGlobals( $globals );
 		}
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
-		foreach ( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
+		foreach ( [ 'old', 'new', 'expectedAdded', 'expectedRemoved' ] as $varName ) {
 			$$varName = $this->expandReferences( $workflow, $revision, $$varName );
 		}
 
@@ -354,41 +354,41 @@ class LinksTableTest extends PostRevisionTestCase {
 	public static function provideMutateParserOutput() {
 		$references = self::getSampleReferences();
 
-		return array(
-			array(
-				array( // references
+		return [
+			[
+				[ // references
 					$references['fooLink'],
 					$references['fooTemplate'],
 					$references['googleLink'],
 					$references['fooImage'],
-				),
-				array(
-					'getLinks' => array(
-						NS_MAIN => array( 'Foo' => 0, ),
-					),
-					'getTemplates' => array(
-						NS_TEMPLATE => array( 'Foo' => 0, ),
-					),
-					'getImages' => array(
+				],
+				[
+					'getLinks' => [
+						NS_MAIN => [ 'Foo' => 0, ],
+					],
+					'getTemplates' => [
+						NS_TEMPLATE => [ 'Foo' => 0, ],
+					],
+					'getImages' => [
 						'Foo.jpg' => true,
-					),
-					'getExternalLinks' => array(
+					],
+					'getExternalLinks' => [
 						'http://www.google.com' => true,
-					),
-				),
-			),
-			array(
-				array(
+					],
+				],
+			],
+			[
+				[
 					$references['subpageLink'],
-				),
-				array(
-					'getLinks' => array(
+				],
+				[
+					'getLinks' => [
 						// NS_MAIN is the namespace of static::getTestTitle()
-						NS_MAIN => array( static::getTestTitle()->getDBkey() . '/Subpage' => 0, )
-					),
-				),
-			),
-		);
+						NS_MAIN => [ static::getTestTitle()->getDBkey() . '/Subpage' => 0, ]
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -418,7 +418,7 @@ class LinksTableTest extends PostRevisionTestCase {
 
 		// Clear the LinksUpdate to allow clean testing
 		foreach ( array_keys( $expectedItems ) as $fieldName ) {
-			$parserOutput->$fieldName = array();
+			$parserOutput->$fieldName = [];
 		}
 
 		$this->updater->mutateParserOutput( $title, $parserOutput, $references );
@@ -429,15 +429,15 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	protected function getBlandTestObjects() {
-		return array(
+		return [
 			/* workflow = */ $this->workflow,
 			/* revision = */ $this->revision,
 			/* title = */ $this->workflow->getArticleTitle(),
-		);
+		];
 	}
 
 	protected function expandReferences( Workflow $workflow, AbstractRevision $revision, array $references ) {
-		$referenceObjs = array();
+		$referenceObjs = [];
 		$factory = new ReferenceFactory( $workflow, $revision->getRevisionType(), $revision->getCollectionId() );
 
 		foreach ( $references as $ref ) {
@@ -448,52 +448,52 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	protected static function getSampleReferences() {
-		return array(
-			'fooLink' => array(
+		return [
+			'fooLink' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Foo',
-			),
-			'subpageLink' => array(
+			],
+			'subpageLink' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => '/Subpage',
-			),
-			'FooLink' => array(
+			],
+			'FooLink' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'foo',
-			),
-			'barLink' => array(
+			],
+			'barLink' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Bar',
-			),
-			'fooTemplate' => array(
+			],
+			'fooTemplate' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'template',
 				'value' => 'Template:Foo',
-			),
-			'googleLink' => array(
+			],
+			'googleLink' => [
 				'factoryMethod' => 'createUrlReference',
 				'refType' => 'link',
 				'value' => 'http://www.google.com'
-			),
-			'fooImage' => array(
+			],
+			'fooImage' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'file',
 				'value' => 'File:Foo.jpg',
-			),
-			'foreignFoo' => array(
+			],
+			'foreignFoo' => [
 				'factoryMethod' => 'createWikiReference',
 				'refType' => 'link',
 				'value' => 'Foo',
-			),
-		);
+			],
+		];
 	}
 
 	protected function flattenReferenceList( $input ) {
-		$list = array();
+		$list = [];
 
 		foreach ( $input as $reference ) {
 			$list[$reference->getUniqueIdentifier()] = $reference;

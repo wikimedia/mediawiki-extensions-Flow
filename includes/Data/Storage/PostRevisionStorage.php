@@ -40,10 +40,10 @@ class PostRevisionStorage extends RevisionStorage {
 
 	protected function insertRelated( array $rows ) {
 		if ( !is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
+			$rows = [ $rows ];
 		}
 
-		$trees = array();
+		$trees = [];
 		foreach ( $rows as $key => $row ) {
 			$trees[$key] = $this->splitUpdate( $row, 'tree' );
 		}
@@ -69,7 +69,7 @@ class PostRevisionStorage extends RevisionStorage {
 		}
 
 		if ( !$res ) {
-			return array();
+			return [];
 		}
 
 		return $rows;
@@ -90,12 +90,12 @@ class PostRevisionStorage extends RevisionStorage {
 		$res = $dbw->update(
 			$this->joinTable(),
 			$this->preprocessSqlArray( $treeChanges ),
-			array( 'tree_rev_id' => $old['tree_rev_id'] ),
+			[ 'tree_rev_id' => $old['tree_rev_id'] ],
 			__METHOD__
 		);
 
 		if ( !$res ) {
-			return array();
+			return [];
 		}
 
 		return $changes;
@@ -107,7 +107,7 @@ class PostRevisionStorage extends RevisionStorage {
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),
-			$this->preprocessSqlArray( array( $this->joinField() => $row['rev_id'] ) )
+			$this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] )
 		);
 	}
 }

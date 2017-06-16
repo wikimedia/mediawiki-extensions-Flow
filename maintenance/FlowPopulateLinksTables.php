@@ -43,11 +43,11 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		while ( $count === $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_revision' ),
-				array( 'rev_type_id' ),
-				array( 'rev_type' => 'header', 'rev_type_id > ' . $dbr->addQuotes( $id ) ),
+				[ 'flow_revision' ],
+				[ 'rev_type_id' ],
+				[ 'rev_type' => 'header', 'rev_type_id > ' . $dbr->addQuotes( $id ) ],
 				__METHOD__,
-				array( 'ORDER BY' => 'rev_type_id ASC', 'LIMIT' => $this->mBatchSize )
+				[ 'ORDER BY' => 'rev_type_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
@@ -61,10 +61,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				if ( $header ) {
 					echo "Processing header $alpha\n";
 					$recorder->onAfterInsert(
-						$header, array(),
-						array(
+						$header, [],
+						[
 							'workflow' => $header->getCollection()->getWorkflow()
-						)
+						]
 					);
 				}
 			}
@@ -80,14 +80,14 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		while ( $count === $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_tree_revision' ),
-				array( 'tree_rev_id' ),
-				array(
+				[ 'flow_tree_revision' ],
+				[ 'tree_rev_id' ],
+				[
 					'tree_parent_id IS NOT NULL',
 					'tree_rev_id > ' . $dbr->addQuotes( $id ),
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize )
+				[ 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
@@ -101,10 +101,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				if ( $post ) {
 					echo "Processing post $alpha\n";
 					$recorder->onAfterInsert(
-						$post, array(),
-						array(
+						$post, [],
+						[
 							'workflow' => $post->getCollection()->getWorkflow()
-						)
+						]
 					);
 				}
 			}

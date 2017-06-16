@@ -28,19 +28,19 @@ class TopicFormatter {
 	}
 
 	public function getEmptyResult( Workflow $workflow ) {
-		return array(
+		return [
 			'workflowId' => $workflow->getId()->getAlphadecimal(),
 			'type' => 'topic',
-			'roots' => array(),
-			'posts' => array(),
-			'revisions' => array(),
-			'links' => array(),
+			'roots' => [],
+			'posts' => [],
+			'revisions' => [],
+			'links' => [],
 			'actions' => $this->buildApiActions( $workflow ),
-		);
+		];
 	}
 
 	public function formatApi( Workflow $listWorkflow, array $found, IContextSource $ctx ) {
-		$roots = $revisions = $posts = $replies = array();
+		$roots = $revisions = $posts = $replies = [];
 		foreach ( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
 			if ( !$serialized ) {
@@ -57,11 +57,11 @@ class TopicFormatter {
 
 		foreach ( $revisions as $i => $serialized ) {
 			$alpha = $serialized['postId'];
-			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
+			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : [];
 		}
 
 		$alpha = $listWorkflow->getId()->getAlphadecimal();
-		$workflows = array( $alpha => $listWorkflow );
+		$workflows = [ $alpha => $listWorkflow ];
 		if ( isset( $posts[$alpha] ) ) {
 			// Metadata that requires everything to be serialized first
 			$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
@@ -70,20 +70,20 @@ class TopicFormatter {
 			}
 		}
 
-		return array(
+		return [
 			'roots' => $roots,
 			'posts' => $posts,
 			'revisions' => $revisions,
-		) + $this->getEmptyResult( $listWorkflow );
+		] + $this->getEmptyResult( $listWorkflow );
 	}
 
 	protected function buildApiActions( Workflow $workflow ) {
-		return array(
-			'newtopic' => array(
+		return [
+			'newtopic' => [
 				'url' => $this->urlGenerator
 					->newTopicAction( $workflow->getArticleTitle(), $workflow->getId() )
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -97,7 +97,7 @@ class TopicFormatter {
 	 */
 	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId ) {
 		$replies = -1;
-		$authors = array();
+		$authors = [];
 		$stack = new \SplStack;
 		$stack->push( $revisions[$posts[$postAlphaId][0]] );
 		do {
@@ -111,10 +111,10 @@ class TopicFormatter {
 
 		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
 
-		return array(
+		return [
 			'reply_count' => $replies,
 			// ms timestamp
 			'last_updated' => $workflow ? $workflow->getLastUpdatedObj()->getTimestamp() * 1000 : null,
-		);
+		];
 	}
 }

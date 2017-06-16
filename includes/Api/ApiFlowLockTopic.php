@@ -13,9 +13,9 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 
 	protected function getBlockParams() {
 		$params = $this->extractRequestParams();
-		return array(
+		return [
 			'topic' => $params,
-		);
+		];
 	}
 
 	protected function getAction() {
@@ -27,28 +27,28 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'moderationState' => array(
+		return [
+			'moderationState' => [
 				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					AbstractRevision::MODERATED_LOCKED, 'unlock',
 					'close', 'reopen' // BC: now replaced by lock & unlock
-				),
-			),
-			'reason' => array(
+				],
+			],
+			'reason' => [
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_TYPE => 'string',
-			),
-		) + parent::getAllowedParams();
+			],
+		] + parent::getAllowedParams();
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=flow&submodule=lock-topic&page=Topic:S2tycnas4hcucw8w&cotmoderationState=lock&cotreason=Ahhhh'
 				=> 'apihelp-flow+lock-topic-example-1',
-		);
+		];
 	}
 }

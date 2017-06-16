@@ -39,7 +39,7 @@ class PageImportStateTest extends \MediaWikiTestCase {
 			new SplQueue
 		);
 		if ( $returnAll ) {
-			return array( $state, $workflow, $storage );
+			return [ $state, $workflow, $storage ];
 		} else {
 			return $state;
 		}
