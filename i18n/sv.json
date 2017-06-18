@@ -511,7 +511,7 @@
 	"flow-mark-diff-patrolled-link-text": "Märk som patrullerad",
 	"flow-mark-diff-patrolled-link-title": "Märk som patrullerad",
 	"flow-talk-page-beta-feature-message": "Flow på användardiskussioner",
-	"flow-talk-page-beta-feature-description": "Möjliggör ett nytt strukturerat diskussionssystem på {{GENUS:|din}} användardiskussionssida. Flow förenklar diskussioner genom tydliga platser för att skriva och svara, och tillåter notifieringar på konversationsnivå. Befintliga wikitext-diskussioner flyttas till ett arkiv. Den här funktionen är inte automatiskt aktiverad, användare måste aktivera den separat. Inaktivering av den här funktionen kommer att flytta Flow-diskussionerna till en undersida och oarkivera föregående diskussionssida.",
+	"flow-talk-page-beta-feature-description": "Möjliggör ett nytt strukturerat diskussionssystem på {{GENUS:|din}} användardiskussionssida. Flow förenklar diskussioner genom tydliga platser för att skriva och svara, och tillåter notifieringar på konversationsnivå. Befintliga wikitext-diskussioner flyttas till ett arkiv. Den här funktionen är inte automatiskt aktiverad, användare måste aktivera den separat. Inaktivering av den här funktionen kommer att flytta Flow-diskussionerna till en undersida och oarkivera föregående diskussionssida. [[mw:Special:MyLanguage/Help:Flow/Activation#Activate|Läs mer om aktivering]].",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Visa}} användardiskussionssida",
 	"flow-notification-enabled-on-talkpage-title": "Nytt diskussionssystem aktiverat för {{GENDER:$1|din}} användardiksussionssida<br /><small>Finns på [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Nytt diskussionssystem på $2",

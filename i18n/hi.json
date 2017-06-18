@@ -7,7 +7,8 @@
 			"NehalDaveND",
 			"Sfic",
 			"चक्रपाणी",
-			"हिंदुस्थान वासी"
+			"हिंदुस्थान वासी",
+			"Jayprakash12345"
 		]
 	},
 	"enableflow": "प्रवाह को सक्षम करें",
@@ -191,6 +192,7 @@
 	"flow-rev-message-edit-header": "$1 ने विवरण {{GENDER:$2|संपादित}} किया",
 	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|हटाया हुआ}} एक [ $4  टिप्पणी] पर  $6  (<em> $5 </em>)।",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|हटाया हुआ}} [ $4  विषय]  $6  (<em> $5 </em>)।",
+	"flow-rev-message-lock-topic-reason": "हल हुआ चिन्हित करें",
 	"flow-rev-message-restore-topic-reason": "फिर खोला गया",
 	"flow-rc-topic-of-board": "$2 पर $1",
 	"flow-board-history": "\"$1\" इतिहास",
@@ -252,6 +254,7 @@
 	"flow-moderation-confirm-unsuppress-topic": "असप्रेस",
 	"flow-moderation-confirm-undelete-topic": "हटाना वापस लें",
 	"flow-moderation-confirm-unhide-topic": "दिखाएँ",
+	"flow-moderation-confirmation-suppress-topic": "इस विषय को हटा दिया गया है।",
 	"flow-moderation-confirmation-delete-topic": "यह विषय हटाया गया है।",
 	"flow-moderation-confirmation-hide-topic": "यह विषय छुपाया गया है।",
 	"flow-moderation-title-suppress-topic": "विषय दबाएँ ?",
@@ -273,6 +276,8 @@
 	"flow-no-more-fwd": "यहाँ कोई पुराना विषय नहीं है।",
 	"flow-newest-topics": "नए विषय",
 	"flow-recent-topics": "हाल में सक्रिय विषय",
+	"flow-toggle-small-topics": "छोटे विषय दृश्य पर स्विच करें",
+	"flow-toggle-topics": "विषय केवल दृश्य में स्विच करें",
 	"flow": "फ्लो",
 	"flow-special-type": "प्रकार",
 	"flow-special-type-post": "पोस्ट",
