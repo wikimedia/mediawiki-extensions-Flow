@@ -4,7 +4,8 @@
 			"Ainali",
 			"Bittin",
 			"Lokal Profil",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Josve05a"
 		]
 	},
 	"apihelp-flow-description": "GÖr det möjligt att utföra åtgärder på Flow-sidor.",
@@ -54,6 +55,7 @@
 	"apihelp-flow+new-topic-param-format": "Format på det nya ämnets första svar (wikitext|html)",
 	"apihelp-flow+new-topic-example-1": "Skapa ett nytt ämne på [[Talk:Sandbox]]",
 	"apihelp-flow+reply-description": "Svar på ett inlägg.",
+	"apihelp-flow+reply-summary": "Svar på ett inlägg.",
 	"apihelp-flow+reply-param-replyTo": "Inläggs-ID att svara på.",
 	"apihelp-flow+reply-param-content": "Innehåll för nytt inlägg.",
 	"apihelp-flow+reply-param-format": "Formatet för det nya inlägget (wikitext|html)",
@@ -63,6 +65,7 @@
 	"apihelp-flow+view-header-param-revId": "Ladda denna version, istället för den senaste.",
 	"apihelp-flow+view-header-example-1": "Hämta beskrivningen för [[Talk:Sandbox]] som wikitext",
 	"apihelp-flow+view-post-description": "Visa ett inlägg",
+	"apihelp-flow+view-post-summary": "Visa ett inlägg.",
 	"apihelp-flow+view-post-param-postId": "ID för inlägget som ska visas.",
 	"apihelp-flow+view-post-param-format": "Format att returnera innehållet i.",
 	"apihelp-flow+view-post-example-1": "Hämta innehållet för ett inlägg i [[Topic:S2tycnas4hcucw8w]] som wikitext",
@@ -71,6 +74,7 @@
 	"apihelp-flow+view-post-history-param-format": "Format att returnera innehållet i.",
 	"apihelp-flow+view-post-history-example-1": "Hämta sidversionen för ett inlägg i [[Topic:S2tycnas4hcucw8w]] as wikitext",
 	"apihelp-flow+view-topic-description": "Visa ett ämne.",
+	"apihelp-flow+view-topic-summary": "Visa ett ämne.",
 	"apihelp-flow+view-topic-param-format": "Format att returnera innehållet i.",
 	"apihelp-flow+view-topic-example-1": "Visa [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-topic-history-description": "Se ändringshistorik för ett ämne.",
