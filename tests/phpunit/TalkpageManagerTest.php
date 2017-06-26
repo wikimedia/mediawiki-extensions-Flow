@@ -20,6 +20,7 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 	protected $talkpageManager;
 
 	public function __construct() {
+		parent::__construct();
 		$this->talkpageManager = Container::get( 'occupation_controller' );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
