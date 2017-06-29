@@ -27,25 +27,67 @@ class PermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var PostRevision
 	 */
-	protected
-		$topic,
-		$hiddenTopic,
-		$deletedTopic,
-		$suppressedTopic,
-		$post,
-		$hiddenPost,
-		$deletedPost,
-		$suppressedPost;
+	protected $topic;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $hiddenTopic;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $deletedTopic;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $suppressedTopic;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $post;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $hiddenPost;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $deletedPost;
+
+	/**
+	 * @var PostRevision
+	 */
+	protected $suppressedPost;
 
 	/**
 	 * @var User
 	 */
-	protected
-		$anonUser,
-		$unconfirmedUser,
-		$confirmedUser,
-		$sysopUser,
-		$oversightUser;
+	protected $anonUser;
+
+	/**
+	 * @var User
+	 */
+	protected $unconfirmedUser;
+
+	/**
+	 * @var User
+	 */
+	protected $confirmedUser;
+
+	/**
+	 * @var User
+	 */
+	protected $sysopUser;
+
+	/**
+	 * @var User
+	 */
+	protected $oversightUser;
 
 	protected function setUp() {
 		parent::setUp();
