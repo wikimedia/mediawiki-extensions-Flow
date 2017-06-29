@@ -26,6 +26,7 @@ class TopicIterator extends AbstractIterator {
 	public function __construct( DbFactory $dbFactory, RootPostLoader $rootPostLoader ) {
 		parent::__construct( $dbFactory );
 		$this->rootPostLoader = $rootPostLoader;
+		$this->orderByUUID = false;
 	}
 
 	/**
@@ -84,6 +85,11 @@ class TopicIterator extends AbstractIterator {
 	 * {@inheritDoc}
 	 */
 	protected function query() {
+		if ( $this->orderByUUID ) {
+			$order = 'workflow_id ASC';
+		} else {
+			$order = 'workflow_last_update_timestamp ASC';
+		}
 		return $this->dbr->select(
 			[ 'flow_workflow' ],
 			// for root post (topic title), workflow_id is the same as its rev_type_id
@@ -93,7 +99,7 @@ class TopicIterator extends AbstractIterator {
 			] + $this->conditions,
 			__METHOD__,
 			[
-				'ORDER BY' => 'workflow_last_update_timestamp ASC',
+				'ORDER BY' => $order,
 			]
 		);
 	}
