@@ -37,13 +37,32 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var User
 	 */
-	protected
-		$blockedUser,
-		$anonUser,
-		$unconfirmedUser,
-		$confirmedUser,
-		$sysopUser,
-		$oversightUser;
+	protected $blockedUser;
+
+	/**
+	 * @var User
+	 */
+	protected $anonUser;
+
+	/**
+	 * @var User
+	 */
+	protected $unconfirmedUser;
+
+	/**
+	 * @var User
+	 */
+	protected $confirmedUser;
+
+	/**
+	 * @var User
+	 */
+	protected $sysopUser;
+
+	/**
+	 * @var User
+	 */
+	protected $oversightUser;
 
 	/**
 	 * @var Block
