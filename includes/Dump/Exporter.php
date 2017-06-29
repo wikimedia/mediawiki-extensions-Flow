@@ -174,6 +174,7 @@ class Exporter extends WikiExporter {
 
 				$headerIterator = Container::get( 'search.index.iterators.header' );
 				$topicIterator = Container::get( 'search.index.iterators.topic' );
+				$topicIterator->orderByUUID = true;
 				/** @var AbstractIterator $iterator */
 				foreach ( [ $headerIterator, $topicIterator ] as $iterator ) {
 					$iterator->setPage( $row->workflow_page_id );
