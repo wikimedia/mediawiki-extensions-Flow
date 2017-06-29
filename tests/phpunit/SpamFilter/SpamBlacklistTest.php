@@ -18,17 +18,23 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	protected $spamFilter;
 
 	/**
-	 * Spam blacklist & whitelist regexes. Examples taken from:
+	 * Spam blacklist regexes. Examples taken from:
 	 *
 	 * @see http://meta.wikimedia.org/wiki/Spam_blacklist
 	 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-blacklist
+	 *
+	 * @var array
+	 */
+	protected $blacklist = [ '\b01bags\.com\b', 'sytes\.net' ];
+
+	/**
+	 * Spam whitelist regexes. Examples taken from:
+	 *
 	 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-whitelist
 	 *
 	 * @var array
 	 */
-	protected
-		$blacklist = [ '\b01bags\.com\b', 'sytes\.net' ],
-		$whitelist = [ 'a5b\.sytes\.net' ];
+	protected $whitelist = [ 'a5b\.sytes\.net' ];
 
 	public function spamProvider() {
 		return [
