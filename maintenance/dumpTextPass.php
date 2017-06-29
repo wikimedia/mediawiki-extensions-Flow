@@ -207,6 +207,8 @@ TEXT
 					$tryIsPrefetch = false;
 					$text = $revision->getContent( $format );
 					if ( $text !== false ) {
+						// filter out any illegal characters that might have been in revision text in database
+						$text =  preg_replace( '/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $text );
 						return $text;
 					}
 				}
