@@ -5,7 +5,7 @@
 		]
 	},
 	"enableflow": "Abbilite Flow",
-	"flow-desc": "Sisteme de Gestione de le Flusse de fatìe",
+	"flow-desc": "Sisteme de le 'ngazzaminde",
 	"log-name-flow": "Arcihvije de le attività d'u flusse",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|repristinate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",
@@ -32,6 +32,7 @@
 	"flow-post-actions": "Aziune",
 	"flow-topic-actions": "Aziune",
 	"flow-cancel": "Annulle",
+	"flow-skip-summary": "Zumbe",
 	"flow-show-change": "Fa vedè le cangiaminde",
 	"flow-last-modified-by": "Urteme {{GENDER:$1|cangiate}} da $1",
 	"flow-newtopic-title-placeholder": "Argomende nuève",

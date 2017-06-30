@@ -29,7 +29,8 @@
 			"Matiia",
 			"Lemondoge",
 			"Rubentl134",
-			"Dgstranz"
+			"Dgstranz",
+			"MarcoAurelio"
 		]
 	},
 	"enableflow": "Activar Flow",
@@ -496,7 +497,7 @@
 	"flow-mark-diff-patrolled-link-text": "Marcar como verificada",
 	"flow-mark-diff-patrolled-link-title": "Marcar como verificada",
 	"flow-talk-page-beta-feature-message": "Flow en la página de discusión",
-	"flow-talk-page-beta-feature-description": "Habilita un sistema de discusión estructurado nuevo en {{GENDER:|tu}} página de discusión. Flow simplifica las discusiones con sitios claros para escribir y responder, y permite notificaciones por cada tema. Las discusiones existentes en wikitexto se archivarán. Esta característica no está habilitada predeterminadamente; los usuarios la tendrán que habilitar por separado. Si se desactivada esta característica, el tablero de Flow se trasladará a una subpágina y se desarchivará la página de discusión previa.",
+	"flow-talk-page-beta-feature-description": "Habilita un sistema de discusión estructurado nuevo en {{GENDER:|tu}} página de discusión. Flow simplifica las discusiones con sitios claros para escribir y responder, y permite notificaciones por cada tema. Esta característica no está habilitada predeterminadamente; los usuarios la tendrán que habilitar por separado.<br /><br />Las discusiones existentes en wikitexto se archivarán. Si se desactivada esta característica, el tablero de Flow se trasladará a una subpágina y se desarchivará la página de discusión previa.\n[[mw:Special:MyLanguage/Help:Flow/Activation#Activate|Aprende más sobre su activación]].",
 	"flow-notification-link-text-enabled-on-talkpage": "Ver la página de discusión {{GENDER:|del usuario|de la usuaria}}",
 	"flow-notification-enabled-on-talkpage-title": "Sistema de discusión nuevo activado para {{GENDER:$1|tu}} página de discusión<br /><small>Disponible en [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Nuevo sistema de discusión en $2",
