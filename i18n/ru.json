@@ -285,6 +285,7 @@
 	"notification-email-batch-bundle-body-flow-summary-edited": "$1 {{PLURAL:$3|ещё один участник|$3 других участников|100=99+ других участников}} {{PLURAL:$3|обновил{{GENDER:$2||а}}|и}} резюме в $2",
 	"notification-header-flow-mention-post": "$1 упомянул{{GENDER:$2||а}} {{GENDER:$4|вас}} в «<strong>$5</strong>».",
 	"notification-header-flow-mention-header": "$1 упомянул{{GENDER:$2||а}} {{GENDER:$4|вас}} в описании «<strong>$3</strong>».",
+	"notification-header-flow-mention-post-summary": "$1 упомянул{{GENDER:$2||а}} {{GENDER:$4|вас}} в «<strong>$5</strong>».",
 	"notification-header-flow-enabled-on-talkpage": "Новая система обсуждений подключена для <strong>{{GENDER:$2|вашей}} страницы обсуждений</strong>.",
 	"notification-header-flow-description-edited": "Описание <strong>$1</strong> было отредактировано.",
 	"notification-header-flow-description-edited-user-talk": "Описание на <strong>{{GENDER:$2|вашей}} странице обсуждения</strong> было отредактировано.",
