@@ -675,7 +675,6 @@ class FlowHooks {
 	 *
 	 * @param Skin $skin
 	 * @param array $modules
-	 * @return bool
 	 */
 	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
@@ -683,16 +682,6 @@ class FlowHooks {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$modules['toggling'] = [];
 		}
-		// Turn off default mobile talk overlay for these pages
-		if ( $title->canTalk() ) {
-			$talkPage = $title->getTalkPage();
-			if ( $talkPage->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-				// TODO: Insert lightweight JavaScript that opens flow via ajax
-				$modules['talk'] = [];
-			}
-		}
-
-		return true;
 	}
 
 	/**
