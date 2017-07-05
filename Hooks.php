@@ -554,7 +554,10 @@ class FlowHooks {
 		$formatter = Container::get( 'formatter.changeslist' );
 		try {
 			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
-			$data['recentChangesFlags'] = $formatter->getFlags( $row, $changesList );
+			$data['recentChangesFlags'] = array_merge(
+				$data['recentChangesFlags'],
+				$formatter->getFlags( $row, $changesList )
+			);
 			if ( $classes ) {
 				$classes[] = 'mw-changeslist-src-mw-edit';
 			}
