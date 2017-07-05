@@ -67,6 +67,7 @@
 	"apihelp-flow+moderate-topic-param-reason": "Raison de la modération.",
 	"apihelp-flow+moderate-topic-example-1": "Supprimer le sujet [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+new-topic-description": "Crée un nouveau sujet Flow sur un flux de travail.",
+	"apihelp-flow+new-topic-summary": "Crée un nouveau sujet de Flow sur le flux de travail donné.",
 	"apihelp-flow+new-topic-param-topic": "Texte du titre du nouveau sujet.",
 	"apihelp-flow+new-topic-param-content": "Contenu pour la réponse initiale du sujet.",
 	"apihelp-flow+new-topic-param-format": "Format de la nouvelle réponse initiale au sujet (wikitext|html)",

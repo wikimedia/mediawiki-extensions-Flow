@@ -278,7 +278,7 @@
 	"flow-notification-rename-email-batch-body": "$1님이 $4에서 당신의 주제의 이름을 \"$2\"에서 \"$3\"(으)로 {{GENDER:$1|바꾸었습니다}}",
 	"flow-notification-newtopic-email-subject": "$1님이 $2의 새 주제를 {{GENDER:$1|만들었습니다}}",
 	"flow-notification-newtopic-email-batch-body": "$1님이 $3의 \"$2\" 제목으로 된 새 주제를 {{GENDER:$1|만들었습니다}}",
-	"echo-category-title-flow-discussion": "플로우",
+	"echo-category-title-flow-discussion": "플로우 토론",
 	"echo-pref-tooltip-flow-discussion": "플로우에 나와 관련된 명령을 알립니다.",
 	"flow-link-post": "게시물",
 	"flow-link-topic": "주제",
