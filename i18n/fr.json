@@ -248,7 +248,7 @@
 	"flow-error-unknown-workflow-id-title": "Sujet inconnu",
 	"flow-error-unknown-workflow-id": "Le sujet demandé n’existe pas.",
 	"flow-error-search": "Nous n’avons pas pu terminer votre recherche à cause d’un problème temporaire. Veuillez réessayer plus tard.",
-	"flow-error-invalid-undelete": "Cet article n’a pas pu être restauré car il contient actuellement un flux de discussion.",
+	"flow-error-invalid-undelete": "La page n’a pas pu être restaurée car elle contient actuellement un flux de discussion.",
 	"flow-edit-header-placeholder": "Décrire ce flux de discussion",
 	"flow-edit-header-submit": "Enregistrer la description",
 	"flow-edit-header-submit-anonymously": "Enregistrer la description de manière anonyme",

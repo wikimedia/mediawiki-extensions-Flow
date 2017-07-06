@@ -217,7 +217,7 @@
 	"flow-error-unknown-workflow-id-title": "Unbekanntes Thema",
 	"flow-error-unknown-workflow-id": "Das angeforderte Thema ist nicht vorhanden.",
 	"flow-error-search": "Aufgrund eines vorübergehenden Problems konnten wir deine Suche nicht abschließen. Bitte versuche es später erneut.",
-	"flow-error-invalid-undelete": "Der Artikel konnte nicht wiederhergestellt werden, da derzeit ein Diskussionsboard vorhanden ist.",
+	"flow-error-invalid-undelete": "Die Seite konnte nicht wiederhergestellt werden, da derzeit ein Diskussionsboard vorhanden ist.",
 	"flow-edit-header-placeholder": "Dieses Diskussions-Board beschreiben",
 	"flow-edit-header-submit": "Beschreibung speichern",
 	"flow-edit-header-submit-anonymously": "Beschreibung anonym speichern",
