@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Tests\Api;
+use Sanitizer;
 
 /**
  * @group Flow
@@ -60,7 +61,7 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 		$this->assertEquals( 'create-header', $revision['changeType'], $debug );
 		$this->assertEquals(
 			'(._.)',
-			trim( strip_tags( $revision['content']['content'] ) ),
+			trim( Sanitizer::stripAllTags( $revision['content']['content'] ) ),
 			$debug
 		);
 		$this->assertEquals( 'html', $revision['content']['format'], $debug );

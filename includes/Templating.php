@@ -158,7 +158,7 @@ class Templating {
 
 			$content = wfMessage( 'flow-stub-post-content' )->parse();
 			if ( !in_array( $format, [ 'html', 'fixed-html' ] ) ) {
-				$content = strip_tags( $content );
+				$content = Santiizer::stripAllTags( $content );
 			}
 		}
 

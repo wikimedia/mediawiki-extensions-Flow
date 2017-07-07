@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Tests\Api;
+use Sanitizer;
 
 /**
  * @group Flow
@@ -39,7 +40,7 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 		$this->assertEquals( 'create-topic-summary', $revision['changeType'], $debug );
 		$this->assertEquals(
 			$summaryText,
-			trim( strip_tags( $revision['content']['content'] ) ),
+			trim( Sanitizer::stripAllTags( $revision['content']['content'] ) ),
 			$debug
 		);
 		$this->assertEquals( 'html', $revision['content']['format'], $debug );
@@ -57,7 +58,7 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 
 		$this->assertEquals(
 			$summaryText,
-			trim( strip_tags( $topicRevision['summary']['revision']['content']['content'] ) ),
+			trim( Sanitizer::stripAllTags( $topicRevision['summary']['revision']['content']['content'] ) ),
 			'Summary content present with correct structure in view-topic response'
 		);
 	}
