@@ -214,7 +214,7 @@
 	"flow-error-unknown-workflow-id-title": "נושא לא יודע",
 	"flow-error-unknown-workflow-id": "הנושא המבוקש לא נמצא.",
 	"flow-error-search": "לא הצלחנו להשלים את החיפוש שלך בשל בעיה זמנית. נא לנסות שוב מאוחר יותר.",
-	"flow-error-invalid-undelete": "לא היה אפשר לשחזר את הערך, כי יש עכשיו לוח דיונים במקומו.",
+	"flow-error-invalid-undelete": "לא היה אפשר לשחזר את הדף, כי יש עכשיו לוח דיונים במקומו.",
 	"flow-edit-header-placeholder": "נא לתאר את לוח הדיונים הזה",
 	"flow-edit-header-submit": "שמירת התיאור",
 	"flow-edit-header-submit-anonymously": "שמירת תיאור כאלמוני",

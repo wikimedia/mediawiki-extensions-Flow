@@ -221,7 +221,7 @@
 	"flow-error-unknown-workflow-id-title": "Argomento sconosciuto",
 	"flow-error-unknown-workflow-id": "L'argomento richiesto non esiste.",
 	"flow-error-search": "Non si è riuscito a completare la tua ricerca a causa di un problema temporaneo. Riprova più tardi.",
-	"flow-error-invalid-undelete": "La voce non può essere ripristinata poiché attualmente c'è una bacheca di discussione al suo posto.",
+	"flow-error-invalid-undelete": "La pagina non può essere ripristinata poiché attualmente c'è una bacheca di discussione al suo posto.",
 	"flow-edit-header-placeholder": "Descrivi questa bacheca di discussione",
 	"flow-edit-header-submit": "Salva descrizione",
 	"flow-edit-header-submit-anonymously": "Salva descrizione anonimamente",

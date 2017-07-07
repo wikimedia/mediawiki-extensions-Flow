@@ -219,7 +219,7 @@
 	"flow-error-unknown-workflow-id-title": "Okänt ämne",
 	"flow-error-unknown-workflow-id": "Det begärda ämnet finns inte.",
 	"flow-error-search": "Vi kunde inte slutföra din sökning på grund av ett tillfälligt problem. Försök igen senare.",
-	"flow-error-invalid-undelete": "Artikeln kunde inte återställas eftersom det finns för tillfället ett diskussionsforum där.",
+	"flow-error-invalid-undelete": "Sidan kunde inte återställas eftersom det finns för tillfället ett diskussionsforum där.",
 	"flow-edit-header-placeholder": "Beskriva detta diskussionsforum",
 	"flow-edit-header-submit": "Spara beskrivning",
 	"flow-edit-header-submit-anonymously": "Spara beskrivning anonymt",

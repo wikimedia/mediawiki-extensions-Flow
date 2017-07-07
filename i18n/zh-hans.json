@@ -231,7 +231,7 @@
 	"flow-error-unknown-workflow-id-title": "未知话题",
 	"flow-error-unknown-workflow-id": "请求的话题不存在。",
 	"flow-error-search": "由于出现暂时性的问题，我们未能完成您的搜索。请稍后再试。",
-	"flow-error-invalid-undelete": "条目不能被恢复，因为目前在此有讨论版块。",
+	"flow-error-invalid-undelete": "页面不能恢复，因为目前在此有讨论版块。",
 	"flow-edit-header-placeholder": "描述此讨论板块",
 	"flow-edit-header-submit": "保存描述",
 	"flow-edit-header-submit-anonymously": "匿名保存描述",
