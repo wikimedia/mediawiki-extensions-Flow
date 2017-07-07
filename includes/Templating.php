@@ -10,6 +10,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
 use OutputPage;
+use Sanitizer;
 // These don't really belong here
 use Linker;
 
@@ -158,7 +159,7 @@ class Templating {
 
 			$content = wfMessage( 'flow-stub-post-content' )->parse();
 			if ( !in_array( $format, [ 'html', 'fixed-html' ] ) ) {
-				$content = strip_tags( $content );
+				$content = Sanitizer::stripAllTags( $content );
 			}
 		}
 
