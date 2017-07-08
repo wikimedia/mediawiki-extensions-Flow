@@ -63,4 +63,3 @@ class ManagerGroupTest extends \MediaWikiTestCase {
 		$storage->cachePurge( $object );
 	}
 }
-

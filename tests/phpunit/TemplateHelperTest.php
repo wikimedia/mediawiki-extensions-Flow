@@ -12,7 +12,7 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 
 	public function provideTraversalAttackFilenames() {
 		return array_map(
-			function( $x ) {
+			function ( $x ) {
 				return [ $x ];
 			},
 			[

@@ -44,7 +44,7 @@ class MultiDimArray implements \ArrayAccess {
 
 	public function offsetSet( $offset, $value ) {
 		$data =& $this->data;
-		foreach ( (array) $offset as $key ) {
+		foreach ( (array)$offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
 				$data[$key] = [];
 			}
@@ -55,7 +55,7 @@ class MultiDimArray implements \ArrayAccess {
 
 	public function offsetGet( $offset ) {
 		$data =& $this->data;
-		foreach ( (array) $offset as $key ) {
+		foreach ( (array)$offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
 				throw new \OutOfBoundsException( 'Does not exist' );
 			} elseif ( !is_array( $data ) ) {
@@ -67,7 +67,7 @@ class MultiDimArray implements \ArrayAccess {
 	}
 
 	public function offsetUnset( $offset ) {
-		$offset = (array) $offset;
+		$offset = (array)$offset;
 		// while loop is required to not leave behind empty arrays
 		$first = true;
 		while ( $offset ) {
@@ -88,7 +88,7 @@ class MultiDimArray implements \ArrayAccess {
 
 	public function offsetExists( $offset ) {
 		$data =& $this->data;
-		foreach ( (array) $offset as $key ) {
+		foreach ( (array)$offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
 				return false;
 			} elseif ( !is_array( $data ) ) {

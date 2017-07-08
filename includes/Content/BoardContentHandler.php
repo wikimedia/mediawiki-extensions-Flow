@@ -134,7 +134,7 @@ class BoardContentHandler extends \ContentHandler {
 			}
 
 			if ( $actionData['handler-class'] === 'Flow\Actions\FlowAction' ) {
-				$output[$action] = function( Page $page, IContextSource $source ) use ( $action ) {
+				$output[$action] = function ( Page $page, IContextSource $source ) use ( $action ) {
 					return new FlowAction( $page, $source, $action );
 				};
 			} else {

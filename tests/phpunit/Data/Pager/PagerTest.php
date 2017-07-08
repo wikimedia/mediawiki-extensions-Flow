@@ -54,8 +54,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// query options
 				[ 'pager-limit' => 10 ],
 				// filter
-				function( $found ) {
-					return array_filter( $found, function( $obj ) {
+				function ( $found ) {
+					return array_filter( $found, function ( $obj ) {
 						return $obj->foo !== 'B';
 					} );
 				},
@@ -67,14 +67,14 @@ class PagerTest extends \MediaWikiTestCase {
 				[ $objs['A'], $objs['D'] ],
 				// find results
 				[
-					 [ $objs['A'], $objs['B'], $objs['C'] ],
-					 [ $objs['D'], $objs['E'] ],
+					[ $objs['A'], $objs['B'], $objs['C'] ],
+					[ $objs['D'], $objs['E'] ],
 				],
 				// query options
 				[ 'pager-limit' => 2 ],
 				// query filter
-				function( $found ) {
-					return array_filter( $found, function( $obj ) {
+				function ( $found ) {
+					return array_filter( $found, function ( $obj ) {
 						return $obj->foo !== 'B' && $obj->foo !== 'C';
 					} );
 				},
@@ -97,8 +97,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// query options
 				[ 'pager-limit' => 3, 'pager-dir' => 'rev', 'pager-offset' => 'K' ],
 				// query filter
-				function( $found ) {
-					return array_filter( $found, function( $obj ) {
+				function ( $found ) {
+					return array_filter( $found, function ( $obj ) {
 						return in_array( $obj->foo, [ 'I', 'F', 'B', 'A' ] );
 					} );
 				},
@@ -191,8 +191,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// pager options
 				[ 'pager-limit' => 2 ],
 				// filter
-				function( $found ) {
-					return array_filter( $found, function( $obj ) {
+				function ( $found ) {
+					return array_filter( $found, function ( $obj ) {
 						return $obj->foo > 'B';
 					} );
 				},
@@ -214,8 +214,8 @@ class PagerTest extends \MediaWikiTestCase {
 				],
 				[ 'pager-limit' => 2 ],
 				// filter
-				function( $found ) {
-					return array_filter( $found, function( $obj ) {
+				function ( $found ) {
+					return array_filter( $found, function ( $obj ) {
 						return $obj->foo !== 'A';
 					} );
 				},
@@ -376,7 +376,7 @@ class PagerTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( $index ) );
 		$om->expects( $this->any() )
 			->method( 'serializeOffset' )
-			->will( $this->returnCallback( function( $obj, $sort ) {
+			->will( $this->returnCallback( function ( $obj, $sort ) {
 				return 'serialized-' . $obj->foo;
 			} ) );
 

@@ -226,7 +226,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			}
 			$this->checkForSlave();
 		}
-
 	}
 
 	private function checkForSlave() {

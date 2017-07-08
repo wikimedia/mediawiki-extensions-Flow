@@ -26,7 +26,6 @@ class ViewAction extends FlowAction {
 			$output = $this->context->getOutput();
 		}
 		$output->addCategoryLinks( $this->getCategories( $title ) );
-
 	}
 
 	protected function getCategories( Title $title ) {

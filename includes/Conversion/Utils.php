@@ -38,7 +38,7 @@ abstract class Utils {
 			return $content;
 		}
 
-		if ( $from === 'wt' ){
+		if ( $from === 'wt' ) {
 			$from = 'wikitext';
 		}
 
@@ -237,7 +237,6 @@ abstract class Utils {
 	 * @throws NoParserException When Parsoid/RESTBase is unconfigured
 	 */
 	protected static function getServiceClient() {
-
 		if ( self::$serviceClient === null ) {
 			$sc = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
 			$sc->mount( '/restbase/', self::getVRSObject() );
@@ -362,7 +361,7 @@ abstract class Utils {
 		// throw an exception
 		$errors = array_filter(
 			libxml_get_errors(),
-			function( $error ) use( $ignoreErrorCodes ) {
+			function ( $error ) use( $ignoreErrorCodes ) {
 				return !in_array( $error->code, $ignoreErrorCodes );
 			}
 		);
@@ -376,7 +375,7 @@ abstract class Utils {
 				implode(
 					"\n",
 					array_map(
-						function( $error ) {
+						function ( $error ) {
 							return $error->message;
 						},
 						$errors
@@ -397,7 +396,6 @@ abstract class Utils {
 	 * @return bool
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {
-
 		if ( self::isParsoidConfigured() ) {
 			// The module is only necessary when we are using parsoid.
 			// XXX We only need the Parsoid CSS if some content being

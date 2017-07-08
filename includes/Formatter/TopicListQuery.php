@@ -137,7 +137,7 @@ class TopicListQuery extends AbstractQuery {
 		// re-index by alphadecimal id
 		return array_combine(
 			array_map(
-				function( UUID $x ) {
+				function ( UUID $x ) {
 					return $x->getAlphadecimal();
 				},
 				$postIds

@@ -63,13 +63,13 @@ class Exporter extends WikiExporter {
 	];
 
 	/**
-	   @var ReflectionProperty $prevRevisionProperty Previous revision property
-	*/
+	 * @var ReflectionProperty $prevRevisionProperty Previous revision property
+	 */
 	protected $prevRevisionProperty;
 
 	/**
-	   @var ReflectionProperty $changeTypeProperty Change type property
-	*/
+	 * @var ReflectionProperty $changeTypeProperty Change type property
+	 */
 	protected $changeTypeProperty;
 
 	/**
@@ -84,7 +84,6 @@ class Exporter extends WikiExporter {
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
 		$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
-
 		parent::__construct( $db, $history, $buffer, $text );
 		$this->prevRevisionProperty = new ReflectionProperty( 'Flow\Model\AbstractRevision', 'prevRevision' );
 		$this->prevRevisionProperty->setAccessible( true );
@@ -170,7 +169,7 @@ class Exporter extends WikiExporter {
 	public function dump( BatchRowIterator $workflowIterator ) {
 		foreach ( $workflowIterator as $rows ) {
 			foreach ( $rows as $row ) {
-				$workflow = Workflow::fromStorageRow( (array) $row );
+				$workflow = Workflow::fromStorageRow( (array)$row );
 
 				$headerIterator = Container::get( 'search.index.iterators.header' );
 				$topicIterator = Container::get( 'search.index.iterators.topic' );

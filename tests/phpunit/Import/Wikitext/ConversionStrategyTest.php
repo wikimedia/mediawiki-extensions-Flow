@@ -121,8 +121,8 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 			$strategy->shouldConvert( $lqtPagesTitle ),
 			'LQT wgLqtPages talk page should not be converted'
 		);
-
 	}
+
 	/**
 	 * @dataProvider provideMeetsSubpageRequirements
 	 */

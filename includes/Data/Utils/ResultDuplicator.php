@@ -57,7 +57,7 @@ class ResultDuplicator {
 
 	// Add a query and its position.  Positions must be unique.
 	public function add( $query, $position ) {
-		$dim = count( (array) $position );
+		$dim = count( (array)$position );
 		if ( $dim !== $this->dimensions ) {
 			throw new InvalidParameterException( "Expected position with {$this->dimensions} dimensions, received $dim" );
 		}

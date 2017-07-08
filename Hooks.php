@@ -418,7 +418,7 @@ class FlowHooks {
 	) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
-			$rcType = (int) $rc->getAttribute( 'rc_type' );
+			$rcType = (int)$rc->getAttribute( 'rc_type' );
 			if ( $rcType !== RC_FLOW ) {
 				return true;
 			}
@@ -576,7 +576,7 @@ class FlowHooks {
 	private static function isFlow( $rc ) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
-			$rcType = (int) $rc->getAttribute( 'rc_type' );
+			$rcType = (int)$rc->getAttribute( 'rc_type' );
 			return $rcType === RC_FLOW;
 		} else {
 			return $source === RecentChangesListener::SRC_FLOW;
@@ -808,7 +808,7 @@ class FlowHooks {
 		// @todo not a huge fan of this static variable, what else though?
 		if ( !$javascriptIncluded ) {
 			$javascriptIncluded = true;
-			$wgHooks['SpecialPageAfterExecute'][] = function( $specialPage, $subPage ) {
+			$wgHooks['SpecialPageAfterExecute'][] = function ( $specialPage, $subPage ) {
 				$specialPage->getOutput()->addModules( [ 'ext.flow.contributions' ] );
 				$specialPage->getOutput()->addModuleStyles( [ 'ext.flow.contributions.styles' ] );
 			};
@@ -1205,7 +1205,7 @@ class FlowHooks {
 			if ( preg_match( '/ext.flow(?:\.|$)/', $key ) && isset( $module['scripts'] ) ) {
 				$testFiles = [];
 
-				$scripts = (array) $module['scripts'];
+				$scripts = (array)$module['scripts'];
 				foreach ( $scripts as $script ) {
 					$testFile = 'tests/qunit/' . dirname( $script ) . '/test_' . basename( $script );
 					// if a test file exists for a given JS file, add it
@@ -1602,7 +1602,6 @@ class FlowHooks {
 		if ( $content !== null &&
 			$title->getNamespace() !== NS_TOPIC &&
 			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-
 			$storage = Container::get( 'storage' );
 
 			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
@@ -1872,7 +1871,7 @@ class FlowHooks {
 		// Remove any pre-existing Topic pages.
 		// They are coming from the recentchanges table.
 		// Most likely the filters were not applied correctly.
-		$pages = array_filter( $pages, function( $entry ) {
+		$pages = array_filter( $pages, function ( $entry ) {
 			/** @var Title $title */
 			$title = $entry[0];
 			return $title->getNamespace() !== NS_TOPIC;

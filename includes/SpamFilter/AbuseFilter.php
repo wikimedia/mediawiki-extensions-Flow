@@ -98,7 +98,7 @@ class AbuseFilter implements SpamFilter {
 	 * @return bool
 	 */
 	public function enabled() {
-		return class_exists( 'AbuseFilter' ) && (bool) $this->group;
+		return class_exists( 'AbuseFilter' ) && (bool)$this->group;
 	}
 
 	/**

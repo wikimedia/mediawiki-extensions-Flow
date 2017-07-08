@@ -88,8 +88,8 @@ class Workflow {
 		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
-		$obj->pageId = (int) $row['workflow_page_id'];
-		$obj->namespace = (int) $row['workflow_namespace'];
+		$obj->pageId = (int)$row['workflow_page_id'];
+		$obj->namespace = (int)$row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->lastUpdated = $row['workflow_last_update_timestamp'];
 

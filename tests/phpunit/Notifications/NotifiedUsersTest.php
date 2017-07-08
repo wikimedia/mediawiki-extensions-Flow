@@ -94,7 +94,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		// convert user objects back into user ids to simplify assertion
 		$users = array_map(
-			function( $user ) {
+			function ( $user ) {
 				return $user->getId();
 			},
 			$users
@@ -159,7 +159,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		 * in the future) in there.
 		 */
 		$secondPost = $topicTitle->reply( $topicWorkflow, $agent, 'lorem ipsum', 'wikitext' );
-		$newId = UUID::getComparisonUUID( (int) $secondPost->getPostId()->getTimestamp( TS_UNIX ) + 2 );
+		$newId = UUID::getComparisonUUID( (int)$secondPost->getPostId()->getTimestamp( TS_UNIX ) + 2 );
 		$reflection = new \ReflectionProperty( $secondPost, 'postId' );
 		$reflection->setAccessible( true );
 		$reflection->setValue( $secondPost, $newId );

@@ -37,7 +37,7 @@ class TopicPageCreationListener extends AbstractListener {
 
 		// make sure this Topic:xyz page exists
 		$controller = $this->occupationController;
-		$this->deferredQueue->push( function() use ( $controller, $object ) {
+		$this->deferredQueue->push( function () use ( $controller, $object ) {
 			$controller->ensureFlowRevision(
 				new Article( $object->getArticleTitle() ),
 				$object

@@ -79,7 +79,7 @@ foreach ( $wgAutoloadClasses as $class => $file ) {
 	$files[$file][] = $class;
 }
 
-$files = array_filter( $files, function( $classes ) {
+$files = array_filter( $files, function ( $classes ) {
 	return count( $classes ) > 1;
 } );
 

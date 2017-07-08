@@ -30,7 +30,7 @@ class TopKIndex extends FeatureIndex {
 		$this->options = $options + [
 			'limit' => 500,
 			'order' => 'DESC',
-			'create' => function() {
+			'create' => function () {
 				return false;
 			},
 			'shallow' => null,

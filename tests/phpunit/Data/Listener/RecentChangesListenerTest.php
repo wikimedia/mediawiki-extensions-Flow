@@ -19,7 +19,7 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 			[
 				'Reply recent change goes to the topic',
 				NS_TOPIC,
-				function( $workflow, $user ) {
+				function ( $workflow, $user ) {
 					$first = PostRevision::createTopicPost( $workflow, $user, 'blah blah' );
 					return $first->reply( $workflow, $user, 'fofofo', 'wikitext' );
 				},
@@ -46,7 +46,7 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 		$change = $this->getMock( 'RecentChange' );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
-			->will( $this->returnCallback( function( $obj ) use ( &$ref, $change ) {
+			->will( $this->returnCallback( function ( $obj ) use ( &$ref, $change ) {
 				$ref = $obj;
 				return $change;
 			} ) );

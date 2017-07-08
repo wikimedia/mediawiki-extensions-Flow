@@ -56,7 +56,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 
 		$total = 0;
 		while ( true ) {
-			$references = (array) $storage->find( [ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ], [ 'limit' => $this->mBatchSize ] );
+			$references = (array)$storage->find( [ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ], [ 'limit' => $this->mBatchSize ] );
 			if ( !$references ) {
 				break;
 			}
@@ -66,7 +66,6 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 			$this->output( "Ensured ref_id for " . $total . " " . get_class( $references[0] ) . " references...\n" );
 			wfWaitForSlaves( false, false, $wgFlowCluster );
 		}
-
 	}
 }
 

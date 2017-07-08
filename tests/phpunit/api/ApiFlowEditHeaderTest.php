@@ -27,7 +27,6 @@ class ApiFlowEditHeaderTest extends ApiTestCase {
 	}
 
 	public function testEditHeader() {
-
 		// create header
 		$data = $this->doApiRequest( [
 			'page' => 'Talk:Flow_QA',

@@ -56,4 +56,3 @@ class OptInUpdate implements DeferrableUpdate {
 		}
 	}
 }
-

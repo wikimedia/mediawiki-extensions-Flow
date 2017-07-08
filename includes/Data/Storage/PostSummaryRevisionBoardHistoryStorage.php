@@ -34,7 +34,7 @@ class PostSummaryRevisionBoardHistoryStorage extends BoardHistoryStorage {
 
 		$retval = [];
 		foreach ( $res as $row ) {
-			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
+			$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
 			$retval[$row['rev_id']] = $row;
 		}
 

@@ -111,7 +111,7 @@ class NotificationController {
 		];
 
 		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ){
+		if ( isset( $data['timestamp'] ) ) {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
@@ -242,7 +242,7 @@ class NotificationController {
 		];
 
 		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ){
+		if ( isset( $data['timestamp'] ) ) {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
@@ -314,7 +314,7 @@ class NotificationController {
 		];
 
 		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ){
+		if ( isset( $data['timestamp'] ) ) {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
@@ -459,7 +459,7 @@ class NotificationController {
 		];
 
 		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ){
+		if ( isset( $data['timestamp'] ) ) {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
@@ -570,8 +570,8 @@ class NotificationController {
 	 */
 	protected function getMentionedUsersAndSkipState( AbstractRevision $revision ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
-		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
-		//  to convert wikitext to HTML) does not currently use Parsoid.
+		// unless that HTML comes from Parsoid. But VisualEditor (what is currently used
+		// to convert wikitext to HTML) does not currently use Parsoid.
 		$wikitext = $revision->getContentInWikitext();
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
 

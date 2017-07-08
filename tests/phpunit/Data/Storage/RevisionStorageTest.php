@@ -99,7 +99,6 @@ class RevisionStorageTest extends FlowTestCase {
 			$diff,
 			'When content changes are allowed, and there is a content change, the diff shows the updated URL'
 		);
-
 	}
 
 	public function testCalcUpdatesWithoutContentChangeWhenNotAllowed() {
@@ -197,7 +196,6 @@ class RevisionStorageTest extends FlowTestCase {
 			$old,
 			$new
 		);
-
 	}
 
 	public function isUpdatingExistingRevisionContentAllowedProvider() {

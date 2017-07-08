@@ -173,7 +173,7 @@ abstract class AbstractRevision {
 		}
 		$obj->prevRevision = $row['rev_parent_id'] ? UUID::create( $row['rev_parent_id'] ) : null;
 		$obj->changeType = $row['rev_change_type'];
-	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
+		$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
 		$obj->contentUrl = isset( $row['rev_content_url'] ) ? $row['rev_content_url'] : null;
@@ -656,7 +656,7 @@ abstract class AbstractRevision {
 	 * @return boolean True when at least one flag in $flags is set
 	 */
 	public function isFlaggedAny( $flags ) {
-		foreach ( (array) $flags as $flag ) {
+		foreach ( (array)$flags as $flag ) {
 			if ( false !== array_search( $flag, $this->flags ) ) {
 				return true;
 			}
@@ -669,7 +669,7 @@ abstract class AbstractRevision {
 	 * @return boolean
 	 */
 	public function isFlaggedAll( $flags ) {
-		foreach ( (array) $flags as $flag ) {
+		foreach ( (array)$flags as $flag ) {
 			if ( false === array_search( $flag, $this->flags ) ) {
 				return false;
 			}
@@ -772,7 +772,7 @@ abstract class AbstractRevision {
 	}
 
 	public function isModerationChange() {
-		 return in_array( $this->getChangeType(), self::getModerationChangeTypes() );
+		return in_array( $this->getChangeType(), self::getModerationChangeTypes() );
 	}
 
 	/**

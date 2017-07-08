@@ -121,7 +121,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @return bool
 	 */
 	private function excludeFromContributions( AbstractRevision $revision ) {
-		return (bool) $this->actions->getValue( $revision->getChangeType(), 'exclude_from_contributions' );
+		return (bool)$this->actions->getValue( $revision->getChangeType(), 'exclude_from_contributions' );
 	}
 
 	/**
@@ -285,7 +285,7 @@ class ContributionsQuery extends AbstractQuery {
 	protected function loadRevisions( ResultWrapper $rows, $revisionClass ) {
 		$revisions = [];
 		foreach ( $rows as $row ) {
-			$revisions[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
+			$revisions[UUID::create( $row->rev_id )->getAlphadecimal()] = (array)$row;
 		}
 
 		// get content in external storage
@@ -313,10 +313,10 @@ class ContributionsQuery extends AbstractQuery {
 		$max = $this->cache->get( $key );
 		if ( $max === false ) {
 			// max user id not present in cache; fetch from db & save to cache for 1h
-			$max = (int) $pager->getDatabase()->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
+			$max = (int)$pager->getDatabase()->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 			$this->cache->set( $key, $max, 60 * 60 );
 		}
-		$minUserId = (int) ( $max - $max / 100 );
+		$minUserId = (int)( $max - $max / 100 );
 
 		// exclude all users within groups with bot permission
 		$excludeUserIds = [];

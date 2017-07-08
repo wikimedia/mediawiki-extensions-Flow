@@ -179,7 +179,6 @@ class TalkpageManager implements OccupationController {
 		} else {
 			return Status::newFatal( 'flow-error-allowcreation-flow-create-board' );
 		}
-
 	}
 
 	/**

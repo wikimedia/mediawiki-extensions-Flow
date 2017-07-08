@@ -343,7 +343,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 			->will( $this->returnArgument( 0 ) );
 		$templating->expects( $this->any() )
 			->method( 'getContent' )
-			->will( $this->returnCallback( function( $revision, $contentFormat ) {
+			->will( $this->returnCallback( function ( $revision, $contentFormat ) {
 				return $revision->getContent( $contentFormat );
 			} ) );
 

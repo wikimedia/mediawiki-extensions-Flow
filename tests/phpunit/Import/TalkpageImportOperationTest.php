@@ -61,12 +61,12 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		$stored = [];
 		$storage->expects( $this->any() )
 			->method( 'put' )
-			->will( $this->returnCallback( function( $obj ) use( &$stored ) {
+			->will( $this->returnCallback( function ( $obj ) use( &$stored ) {
 				$stored[] = $obj;
 			} ) );
 		$storage->expects( $this->any() )
 			->method( 'multiPut' )
-			->will( $this->returnCallback( function( $objs ) use( &$stored ) {
+			->will( $this->returnCallback( function ( $objs ) use( &$stored ) {
 				$stored = array_merge( $stored, $objs );
 			} ) );
 

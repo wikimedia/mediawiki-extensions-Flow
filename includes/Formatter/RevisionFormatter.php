@@ -295,7 +295,7 @@ class RevisionFormatter {
 			// watchable - the user could watch the topic, eg, anon-user can't watch a topic
 			if ( !$ctx->getUser()->isAnon() ) {
 				// default topic is not watched and topic is not always watched
-				$res['isWatched'] = (bool) $row->isWatched;
+				$res['isWatched'] = (bool)$row->isWatched;
 				$res['watchable'] = true;
 			} else {
 				$res['watchable'] = false;
@@ -1114,8 +1114,8 @@ class RevisionFormatter {
 	protected function decideTopicTitleContentFormat( PostRevision $topicTitle, $requestedRevFormat, $requestedDefaultFormat ) {
 		if ( $requestedRevFormat !== null ) {
 			if ( $requestedRevFormat !== 'topic-title-html' &&
-				$requestedRevFormat !== 'topic-title-wikitext' ) {
-
+				$requestedRevFormat !== 'topic-title-wikitext'
+			) {
 				throw new FlowException( 'Per-revision format for a topic title must be \'topic-title-html\' or \'topic-title-wikitext\'' );
 			}
 			return $requestedRevFormat;
@@ -1145,15 +1145,15 @@ class RevisionFormatter {
 	protected function decideNonTopicTitleContentFormat( AbstractRevision $revision, $requestedRevFormat, $requestedDefaultFormat ) {
 		if ( $requestedRevFormat !== null ) {
 			if ( $requestedRevFormat === 'topic-title-html' ||
-				$requestedRevFormat === 'topic-title-wikitext' ) {
-
+				$requestedRevFormat === 'topic-title-wikitext'
+			) {
 				throw new FlowException( 'Invalid per-revision format.  Only topic titles can use  \'topic-title-html\' and \'topic-title-wikitext\'' );
 			}
 			return $requestedRevFormat;
 		} else {
 			if ( $requestedDefaultFormat === 'topic-title-html' ||
-				$requestedDefaultFormat === 'topic-title-wikitext' ) {
-
+				$requestedDefaultFormat === 'topic-title-wikitext'
+			) {
 				throw new FlowException( 'Default format of \'topic-title-html\' or \'topic-title-wikitext\' can only be used to format topic titles.' );
 			}
 

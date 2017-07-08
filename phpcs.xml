@@ -2,7 +2,11 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.Files.LineLength.TooLong"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures"/>
+		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound"/>
+		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage"/>
+		<exclude name="MediaWiki.Commenting.FunctionComment"/>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>

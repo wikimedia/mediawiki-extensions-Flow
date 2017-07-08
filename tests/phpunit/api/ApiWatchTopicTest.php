@@ -18,7 +18,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'watched',
 				// initialization
-				function( User $user, Title $title ) {
+				function ( User $user, Title $title ) {
 					$user->removeWatch( $title, false );
 				},
 				// extra request parameters
@@ -29,7 +29,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'unwatched',
 				// initialization
-				function( User $user, Title $title ) {
+				function ( User $user, Title $title ) {
 					$user->addWatch( $title, false );
 				},
 				// extra request parameters

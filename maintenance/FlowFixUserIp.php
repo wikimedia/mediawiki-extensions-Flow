@@ -4,9 +4,9 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Sets *_user_ip to null when *_user_id is > 0
@@ -44,7 +44,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		/** @var IDatabase $dbw */
 		$dbw = $dbf->getDB( DB_MASTER );
 
-		$runUpdate = function( $callback ) use ( $dbf, $dbw, $storage ) {
+		$runUpdate = function ( $callback ) use ( $dbf, $dbw, $storage ) {
 			$continue = "\0";
 			do {
 				$dbw->begin( __METHOD__ );
@@ -57,8 +57,8 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 
 		$runUpdate( [ $this, 'updateTreeRevision' ] );
 		$self = $this;
-		foreach ( [ 'rev_user', 'rev_mod_user', 'rev_edit_user' ] as $prefix ){
-			$runUpdate( function( $dbw, $continue ) use ( $self, $prefix ) {
+		foreach ( [ 'rev_user', 'rev_mod_user', 'rev_edit_user' ] as $prefix ) {
+			$runUpdate( function ( $dbw, $continue ) use ( $self, $prefix ) {
 				return $self->updateRevision( $prefix, $dbw, $continue );
 			} );
 		}

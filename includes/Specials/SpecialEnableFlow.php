@@ -94,7 +94,6 @@ class SpecialEnableFlow extends FormSpecialPage {
 		$status = Status::newGood();
 
 		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
-
 			if ( class_exists( 'LqtDispatch' ) && \LqtDispatch::isLqtPage( $title ) ) {
 				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
 			}

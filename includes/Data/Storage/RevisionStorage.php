@@ -144,7 +144,7 @@ abstract class RevisionStorage extends DbStorage {
 
 		$retval = [];
 		foreach ( $res as $row ) {
-			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
+			$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
 			$retval[$row['rev_id']] = $row;
 		}
 		return $retval;
@@ -222,7 +222,7 @@ abstract class RevisionStorage extends DbStorage {
 		$duplicator = new ResultDuplicator( [ 'rev_id' ], 1 );
 		$pks = [];
 		foreach ( $queries as $idx => $query ) {
-			$query = UUID::convertUUIDs( (array) $query, 'alphadecimal' );
+			$query = UUID::convertUUIDs( (array)$query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 			$id = $query['rev_id'];
 			$pks[$id] = UUID::create( $id )->getBinary();
@@ -238,7 +238,7 @@ abstract class RevisionStorage extends DbStorage {
 		// GROUP BY rev_type_id
 		$duplicator = new ResultDuplicator( [ 'rev_type_id' ], 1 );
 		foreach ( $queries as $idx => $query ) {
-			$query = UUID::convertUUIDs( (array) $query, 'alphadecimal' );
+			$query = UUID::convertUUIDs( (array)$query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 		}
 
@@ -273,9 +273,9 @@ abstract class RevisionStorage extends DbStorage {
 	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
-			//  SELECT * from flow_revision
-			//    JOIN flow_tree_revision ON tree_rev_id = rev_id
-			//   WHERE rev_id IN (...)
+			// SELECT * from flow_revision
+			// JOIN flow_tree_revision ON tree_rev_id = rev_id
+			// WHERE rev_id IN (...)
 			$dbr = $this->dbFactory->getDB( DB_SLAVE );
 
 			$tables = [ 'flow_revision' ];
@@ -402,10 +402,10 @@ abstract class RevisionStorage extends DbStorage {
 	public function isUpdatingExistingRevisionContentAllowed() {
 		// All of these are required to do a consistent mechanical update.
 		$requiredColumnNames = [
-			 'rev_content',
-			 'rev_content_length',
-			 'rev_flags',
-			 'rev_previous_content_length',
+			'rev_content',
+			'rev_content_length',
+			'rev_flags',
+			'rev_previous_content_length',
 		];
 
 		// compare required column names against allowedUpdateColumns
@@ -516,7 +516,7 @@ abstract class RevisionStorage extends DbStorage {
 				return false;
 			}
 		}
-		return (bool) $this->updateRelated( $changeSet, $old );
+		return (bool)$this->updateRelated( $changeSet, $old );
 	}
 
 	// Revisions can only be removed for LIMITED circumstances,  in almost all cases

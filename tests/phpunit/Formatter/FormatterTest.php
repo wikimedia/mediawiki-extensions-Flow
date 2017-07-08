@@ -24,7 +24,7 @@ class FormatterTest extends FlowTestCase {
 			[
 				'With only a topicId reply should not fail',
 				// result must contain
-				function( $test, $message, $result ) {
+				function ( $test, $message, $result ) {
 					$test->assertNotNull( $result );
 					$test->assertArrayHasKey( 'links', $result, $message );
 				},
@@ -34,7 +34,7 @@ class FormatterTest extends FlowTestCase {
 
 			[
 				'With topicId and postId should not fail',
-				function( $test, $message, $result ) {
+				function ( $test, $message, $result ) {
 					$test->assertNotNull( $result );
 					$test->assertArrayHasKey( 'links', $result, $message );
 				},

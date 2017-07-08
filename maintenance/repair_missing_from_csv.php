@@ -46,4 +46,3 @@ while ( $row = fgetcsv( $csv ) ) {
 }
 
 echo "Updated $fixed revisions\n\n";
-

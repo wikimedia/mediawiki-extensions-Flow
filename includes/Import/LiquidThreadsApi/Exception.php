@@ -10,4 +10,3 @@ use Flow\Import\ImportException;
  */
 class ApiNotFoundException extends ImportException {
 }
-

@@ -151,6 +151,6 @@ class RecentChangesListener extends AbstractListener {
 			$allowed = $allowed( $revision, $this );
 		}
 
-		return (bool) $allowed;
+		return (bool)$allowed;
 	}
 }

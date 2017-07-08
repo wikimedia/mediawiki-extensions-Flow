@@ -290,7 +290,7 @@ class TopicListBlock extends AbstractBlock {
 		/** @var TopicListQuery $query */
 		$query = Container::get( 'query.topiclist' );
 		$found = $query->getResults( $page->getResults() );
-		wfDebugLog( 'FlowDebug', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function( UUID $id ) {
+		wfDebugLog( 'FlowDebug', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function ( UUID $id ) {
 			return $id->getAlphadecimal();
 		}, $workflowIds ) ) );
 
@@ -419,7 +419,7 @@ class TopicListBlock extends AbstractBlock {
 		) {
 			$user->setOption( 'flow-topiclist-sortby', $findOptions['sortby'] );
 			// Save the user preferences post-send
-			\DeferredUpdates::addCallableUpdate( function() use ( $user ) {
+			\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 				$user->saveSettings();
 			} );
 		}
@@ -449,7 +449,7 @@ class TopicListBlock extends AbstractBlock {
 		// Work around lack of $this in closures until we can use PHP 5.4+ features.
 		$topicRootRevisionCache =& $this->topicRootRevisionCache;
 
-		return $pager->getPage( function( array $found ) use ( $postStorage, &$topicRootRevisionCache ) {
+		return $pager->getPage( function ( array $found ) use ( $postStorage, &$topicRootRevisionCache ) {
 			$queries = [];
 			/** @var TopicListEntry[] $found */
 			foreach ( $found as $entry ) {

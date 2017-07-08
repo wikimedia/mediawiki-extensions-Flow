@@ -56,9 +56,9 @@ class ChangesListFormatter extends AbstractFormatter {
 			$this->formatTimestamp( $data, 'time' ) .
 			$separator .
 			ChangesList::showCharacterDifference(
-			  $data['size']['old'],
-			  $data['size']['new'],
-			  $ctx
+				$data['size']['old'],
+				$data['size']['new'],
+				$ctx
 			) .
 			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
 			$this->getEditSummary( $row, $ctx, $data );

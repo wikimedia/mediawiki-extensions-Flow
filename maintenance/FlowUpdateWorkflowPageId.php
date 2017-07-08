@@ -96,8 +96,8 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		// at some point, we failed to create page entries for new workflows: only
 		// create that page if the workflow was stored with a 0 page id (otherwise,
 		// we could mistake the $title for a deleted page)
-		if ( (int) $row->workflow_page_id === 0 && $title->getArticleID() === 0 ) {
-			$workflow = Workflow::fromStorageRow( (array) $row );
+		if ( (int)$row->workflow_page_id === 0 && $title->getArticleID() === 0 ) {
+			$workflow = Workflow::fromStorageRow( (array)$row );
 			$status = $this->createPage( $title, $workflow );
 			if ( !$status->isGood() ) {
 				// just warn when we failed to create the page, but keep this code
@@ -108,7 +108,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		}
 
 		// re-associate the workflow with the correct page; only if a page exists
-		if ( $title->getArticleID() !== 0 && $title->getArticleID() !== (int) $row->workflow_page_id ) {
+		if ( $title->getArticleID() !== 0 && $title->getArticleID() !== (int)$row->workflow_page_id ) {
 			// This makes the assumption the page has not moved or been deleted?
 			++$this->fixedCount;
 			return [

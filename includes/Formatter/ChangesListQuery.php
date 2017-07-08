@@ -110,7 +110,7 @@ class ChangesListQuery extends AbstractQuery {
 		if ( $isWatchlist ) {
 			return false;
 		} else {
-			return (bool) $this->actions->getValue( $action, 'exclude_from_recentchanges' );
+			return (bool)$this->actions->getValue( $action, 'exclude_from_recentchanges' );
 		}
 	}
 

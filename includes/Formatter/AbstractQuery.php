@@ -440,4 +440,3 @@ class FormatterRow {
 		throw new \MWException( "Accessing non-existent parameter: $attribute" );
 	}
 }
-

@@ -350,7 +350,6 @@ class ObjectLocator {
 				}
 
 				if ( $options['order'] === 'ASC' ) {
-
 					$operator = '>';
 				} else {
 					$operator = '<';

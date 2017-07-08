@@ -36,7 +36,6 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		$links[] = $this->getFlowUnwatchDynamicActionLink( true );
 
 		return $links;
-
 	}
 
 	protected function getHeaderMessageKey() {

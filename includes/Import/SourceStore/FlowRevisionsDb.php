@@ -157,8 +157,8 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 */
 	protected function getUUIDRange( MWTimestamp $timestamp ) {
 		return [
-			UUID::getComparisonUUID( (int) $timestamp->getTimestamp( TS_UNIX ) ),
-			UUID::getComparisonUUID( (int) $timestamp->getTimestamp( TS_UNIX ) + 1 ),
+			UUID::getComparisonUUID( (int)$timestamp->getTimestamp( TS_UNIX ) ),
+			UUID::getComparisonUUID( (int)$timestamp->getTimestamp( TS_UNIX ) + 1 ),
 		];
 	}
 }

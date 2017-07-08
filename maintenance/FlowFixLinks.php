@@ -76,7 +76,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 			$this->beginTransaction( $dbw, __METHOD__ );
 
 			foreach ( $rows as $row ) {
-				$workflow = Workflow::fromStorageRow( (array) $row );
+				$workflow = Workflow::fromStorageRow( (array)$row );
 				$id = $workflow->getArticleTitle()->getArticleID();
 
 				// delete existing links from DB

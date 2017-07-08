@@ -69,8 +69,8 @@ class UserNameBatch {
 
 		$this->ensureLRU( $wiki );
 		if ( $userName !== null ) {
-			$this->usernames[$wiki]->set( (string) $userId, $userName );
-		} elseif ( !$this->usernames[$wiki]->has( (string) $userId ) ) {
+			$this->usernames[$wiki]->set( (string)$userId, $userName );
+		} elseif ( !$this->usernames[$wiki]->has( (string)$userId ) ) {
 			$this->queued[$wiki][] = $userId;
 		}
 	}
@@ -99,11 +99,11 @@ class UserNameBatch {
 		}
 
 		$this->ensureLRU( $wiki );
-		if ( !$this->usernames[$wiki]->has( (string) $userId ) ) {
+		if ( !$this->usernames[$wiki]->has( (string)$userId ) ) {
 			$this->queued[$wiki][] = $userId;
 			$this->resolve( $wiki );
 		}
-		return $this->usernames[$wiki]->get( (string) $userId );
+		return $this->usernames[$wiki]->get( (string)$userId );
 	}
 
 	/**
@@ -137,7 +137,7 @@ class UserNameBatch {
 			foreach ( $res as $row ) {
 				$id = (int)$row->user_id;
 				$usernames[$id] = $row->user_name;
-				$this->usernames[$wiki]->set( (string) $id, $row->user_name );
+				$this->usernames[$wiki]->set( (string)$id, $row->user_name );
 			}
 			$this->resolveUserPages( $wiki, $usernames );
 			$missing = array_diff( $queued, array_keys( $usernames ) );
@@ -145,7 +145,7 @@ class UserNameBatch {
 			$missing = $queued;
 		}
 		foreach ( $missing as $id ) {
-			$this->usernames[$wiki]->set( (string) $id, false );
+			$this->usernames[$wiki]->set( (string)$id, false );
 		}
 	}
 

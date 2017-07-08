@@ -88,7 +88,7 @@ class ReferenceRecorder extends AbstractListener {
 		// Data has not yet been committed at this point, so let's delay
 		// updating `categorylinks`, `externallinks`, etc.
 		$linksTableUpdater = $this->linksTableUpdater;
-		$this->deferredQueue->push( function() use ( $linksTableUpdater, $workflow ) {
+		$this->deferredQueue->push( function () use ( $linksTableUpdater, $workflow ) {
 			$linksTableUpdater->doUpdate( $workflow );
 		} );
 	}
@@ -270,7 +270,7 @@ class ReferenceRecorder extends AbstractListener {
 			'ref_src_object_id' => $objectId,
 		] );
 
-		return array_merge( (array) $prevWikiReferences, (array) $prevUrlReferences );
+		return array_merge( (array)$prevWikiReferences, (array)$prevUrlReferences );
 	}
 
 	/**

@@ -69,7 +69,7 @@ class LqtNotifications implements Postprocessor {
 		// notifications to go out here.
 		$self = $this;
 		$wgEchoNotifications['flow-post-reply']['user-locators'] = [
-			function( EchoEvent $event ) use ( $self ) {
+			function ( EchoEvent $event ) use ( $self ) {
 				return $self->locateUsersWithPendingLqtNotifications( $event );
 			}
 		];
@@ -102,7 +102,7 @@ class LqtNotifications implements Postprocessor {
 		$it = new RecursiveIteratorIterator( $it );
 
 		// add callback to convert user id to user objects
-		$it = new EchoCallbackIterator( $it, function( $row ) {
+		$it = new EchoCallbackIterator( $it, function ( $row ) {
 			return User::newFromId( $row->ums_user );
 		} );
 

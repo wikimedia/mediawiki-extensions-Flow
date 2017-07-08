@@ -138,7 +138,7 @@ abstract class AbstractIterator implements Iterator {
 	 * @return bool True when the iterator is in a valid state
 	 */
 	public function valid() {
-		return (bool) $this->current;
+		return (bool)$this->current;
 	}
 
 	/**

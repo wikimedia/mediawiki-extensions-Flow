@@ -360,7 +360,7 @@ class ObjectManager extends ObjectLocator {
 			 * (different between them doesn't matter here, both are for the same database
 			 * column), so I'm casting them to string before performing comparison.
 			 */
-			if ( !array_key_exists( $key, $old ) || (string) $old[$key] !== (string) $new[$key] ) {
+			if ( !array_key_exists( $key, $old ) || (string)$old[$key] !== (string)$new[$key] ) {
 				$updates[$key] = $new[$key];
 			}
 			unset( $old[$key] );

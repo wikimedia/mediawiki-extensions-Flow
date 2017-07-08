@@ -29,7 +29,7 @@ class SpamRegex implements SpamFilter {
 		$text = $newRevision->getContentInWikitext();
 
 		// back compat, $wgSpamRegex may be a single string or an array of regexes
-		$regexes = (array) $wgSpamRegex;
+		$regexes = (array)$wgSpamRegex;
 
 		foreach ( $regexes as $regex ) {
 			if ( preg_match( $regex, $text, $matches ) ) {
@@ -47,6 +47,6 @@ class SpamRegex implements SpamFilter {
 	 */
 	public function enabled() {
 		global $wgSpamRegex;
-		return (bool) $wgSpamRegex;
+		return (bool)$wgSpamRegex;
 	}
 }

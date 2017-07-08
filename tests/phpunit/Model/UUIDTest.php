@@ -15,10 +15,10 @@ class UUIDTest extends FlowTestCase {
 		$uuid = UUID::create();
 		$serialized = serialize( $uuid );
 		// We are targeting this portion of the serialized string:
-		//   s:16:"s3xyjucl93jtq2ci"
+		// s:16:"s3xyjucl93jtq2ci"
 		$broken = preg_replace_callback(
 			'/(s:16:")([a-z0-9])/',
-			function( $matches ) {
+			function ( $matches ) {
 				return $matches[1] . strtoupper( $matches[2] );
 			},
 			$serialized

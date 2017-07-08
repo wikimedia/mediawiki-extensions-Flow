@@ -32,7 +32,7 @@ class ModerationLogger {
 	 * @return bool
 	 */
 	public function canLog( PostRevision $post, $action ) {
-		return (bool) $this->getLogType( $post, $action );
+		return (bool)$this->getLogType( $post, $action );
 	}
 
 	/**

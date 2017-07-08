@@ -220,7 +220,7 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action", 'invalid-action' );
 		}
 
-		array_walk_recursive( $apiResponse, function( &$value ) {
+		array_walk_recursive( $apiResponse, function ( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$anchor = $value;
 				$value = $value->toArray();
@@ -286,8 +286,8 @@ class View extends ContextSource {
 			if ( isset( $block['errors'] ) ) {
 				foreach ( $block['errors'] as $error ) {
 					if ( isset( $error['extra']['details'] ) &&
-						$error['extra']['details'] instanceof HtmlRenderingInformation ) {
-
+						$error['extra']['details'] instanceof HtmlRenderingInformation
+					) {
 						$renderingInfo = $error['extra']['details'];
 
 						$out->addHeadItems( $renderingInfo->getHeadItems() );

@@ -146,7 +146,7 @@ class BasicDbStorage extends DbStorage {
 
 		$result = [];
 		foreach ( $res as $row ) {
-			$result[] = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
+			$result[] = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
 		}
 		return $result;
 	}

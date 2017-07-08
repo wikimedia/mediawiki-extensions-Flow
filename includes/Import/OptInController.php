@@ -328,7 +328,7 @@ class OptInController {
 	private function restoreExistingFlowBoard( Title $archivedFlowPage, Title $title, $currentTemplate = null ) {
 		$this->editBoardDescription(
 			$archivedFlowPage,
-			function( $content ) use ( $currentTemplate, $archivedFlowPage ) {
+			function ( $content ) use ( $currentTemplate, $archivedFlowPage ) {
 				$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 				$content = TemplateHelper::removeFromHtml( $content, $templateName );
 				if ( $currentTemplate ) {
@@ -341,7 +341,6 @@ class OptInController {
 
 		$restoreReason = wfMessage( 'flow-optin-restore-flow-board' )->inContentLanguage()->text();
 		$this->movePage( $archivedFlowPage, $title, $restoreReason );
-
 	}
 
 	/**
@@ -385,7 +384,7 @@ class OptInController {
 	private function formatTemplate( $name, $args ) {
 		$arguments = implode( '|',
 			array_map(
-				function( $key, $value ) {
+				function ( $key, $value ) {
 					return "$key=$value";
 				},
 				array_keys( $args ),
@@ -573,7 +572,7 @@ class OptInController {
 		$this->editWikitextContent(
 			$currentTalkpageTitle,
 			null,
-			function( $content ) use ( $template ) {
+			function ( $content ) use ( $template ) {
 				return $template . "\n\n" . $content;
 			},
 			'wikitext'
@@ -595,7 +594,7 @@ class OptInController {
 
 		$this->editBoardDescription(
 			$flowArchiveTitle,
-			function( $content ) use ( $template ) {
+			function ( $content ) use ( $template ) {
 				$templateName = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 				$content = TemplateHelper::removeFromHtml( $content, $templateName );
 				return $template . "<br/><br/>" . $content;

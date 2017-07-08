@@ -269,7 +269,7 @@ class PostRevisionTestCase extends FlowTestCase {
 				continue;
 			}
 
-			$container->extend( "$storage.listeners", function( $listeners ) {
+			$container->extend( "$storage.listeners", function ( $listeners ) {
 				unset(
 					// putting together the right metadata for a commit is beyond the
 					// scope of these tests

@@ -2,9 +2,9 @@
 
 use Flow\Container;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Populate the *_user_ip fields within flow.  This only updates
@@ -32,7 +32,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		$dbw = $dbf->getDB( DB_MASTER );
 		$hasRun = false;
 
-		$runUpdate = function( $callback ) use ( $dbf, $dbw, &$hasRun ) {
+		$runUpdate = function ( $callback ) use ( $dbf, $dbw, &$hasRun ) {
 			$hasRun = true;
 			$continue = "\0";
 			do {

@@ -4,9 +4,9 @@ use Flow\Content\BoardContent;
 use Flow\Container;
 use Flow\Exception\UnknownWorkflowIdException;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Changes Flow boards and their topics to be associated with their current title, based on the JSON content

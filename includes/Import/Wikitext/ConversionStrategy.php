@@ -60,7 +60,7 @@ class ConversionStrategy implements IConversionStrategy {
 	 *    possible (e.g. the user who did the original LQT reply)
 	 *
 	 */
-	 protected $user;
+	protected $user;
 
 	/**
 	 * @param Parser|StubObject $parser

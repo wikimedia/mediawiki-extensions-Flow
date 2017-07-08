@@ -230,7 +230,7 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function hasErrors( $type = null ) {
 		if ( $type === null ) {
-			return (bool) $this->errors;
+			return (bool)$this->errors;
 		}
 		return isset( $this->errors[$type] );
 	}

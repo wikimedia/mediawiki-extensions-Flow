@@ -149,7 +149,7 @@ class RevisionActionPermissions {
 
 		return call_user_func_array(
 			[ $this->user, 'isAllowedAny' ],
-			(array) $permission
+			(array)$permission
 		);
 	}
 
@@ -168,7 +168,7 @@ class RevisionActionPermissions {
 		// even check if it's been deleted (additional storage lookup)
 		$allowed = call_user_func_array(
 			[ $this->user, 'isAllowedAny' ],
-			(array) $permissions
+			(array)$permissions
 		);
 		if ( $allowed ) {
 			return true;
@@ -204,7 +204,7 @@ class RevisionActionPermissions {
 		// Check if user is allowed to perform action against this revision
 		return call_user_func_array(
 			[ $this->user, 'isAllowedAny' ],
-			(array) $permission
+			(array)$permission
 		);
 	}
 

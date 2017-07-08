@@ -107,7 +107,7 @@ abstract class AbstractUpdater {
 			$bulk->addDocuments( $documents );
 			$bulk->send();
 		} catch ( \Exception $e ) {
-			$documentIds = array_map( function( $doc ) {
+			$documentIds = array_map( function ( $doc ) {
 				return $doc->getId();
 			}, $documents );
 			wfWarn( __METHOD__ . ': Failed updating documents (' . implode( ',', $documentIds ) . '): ' . $e->getMessage() );

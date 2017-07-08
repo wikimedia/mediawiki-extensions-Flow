@@ -21,7 +21,7 @@ class UserNameListenerTest extends FlowTestCase {
 			[ [ 'user_id' => '3' ], [ 'user_id' => 'user_wiki' ], null ],
 			// Use closure because wfWikiID() in testxxx() functions appends -unittest_ at the end
 			[ [ 'user_id' => '4' ], [ 'user_id' => null ],
-				function() {
+				function () {
 					return wfWikiID();
 				}
 			],

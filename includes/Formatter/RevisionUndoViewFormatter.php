@@ -53,7 +53,6 @@ class RevisionUndoViewFormatter {
 	}
 
 	protected function getUndoContent( $startContent, $stopContent, $currentContent ) {
-
 		if ( $currentContent === $stopContent ) {
 			return $startContent;
 		} else {

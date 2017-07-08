@@ -41,7 +41,7 @@ class PurgeAction extends \PurgeAction {
 		// will initialize memcache before this is run when UseSquid is enabled.
 		Container::reset();
 		$container = Container::getContainer();
-		$container->extend( 'memcache', function( $memcache, $c ) {
+		$container->extend( 'memcache', function ( $memcache, $c ) {
 			$c['memcache.purge_backup'] = $memcache;
 			return new HashBagOStuff;
 		} );
@@ -159,7 +159,7 @@ class PurgeAction extends \PurgeAction {
 		// that contain our prefix.
 		$keys = array_filter(
 			array_keys( $reflProp->getValue( $this->hashBag ) ),
-			function( $key ) use( $prefix ) {
+			function ( $key ) use( $prefix ) {
 				if ( strpos( $key, $prefix ) === 0 ) {
 					return true;
 				} else {

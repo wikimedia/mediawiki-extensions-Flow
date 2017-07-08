@@ -400,7 +400,6 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function commit() {
-
 		switch ( $this->action ) {
 		case 'edit-topic-summary':
 			// pseudo-action does not do anything, only includes data in api response
@@ -856,12 +855,12 @@ class TopicBlock extends AbstractBlock {
 
 		// display simple message
 		// i18n messages:
-		//  flow-error-not-allowed-hide,
-		//  flow-error-not-allowed-reply-to-hide-topic
-		//  flow-error-not-allowed-delete
-		//  flow-error-not-allowed-reply-to-delete-topic
-		//  flow-error-not-allowed-suppress
-		//  flow-error-not-allowed-reply-to-suppress-topic
+		// flow-error-not-allowed-hide,
+		// flow-error-not-allowed-reply-to-hide-topic
+		// flow-error-not-allowed-delete
+		// flow-error-not-allowed-reply-to-delete-topic
+		// flow-error-not-allowed-suppress
+		// flow-error-not-allowed-reply-to-suppress-topic
 		if ( $revision instanceof PostRevision ) {
 			$type = $revision->isTopicTitle() ? 'topic' : 'post';
 		} else {
@@ -889,12 +888,12 @@ class TopicBlock extends AbstractBlock {
 						'lim' => 10,
 						'showIfEmpty' => false,
 						// i18n messages:
-						//  flow-error-not-allowed-hide-extract
-						//  flow-error-not-allowed-reply-to-hide-topic-extract
-						//  flow-error-not-allowed-delete-extract
-						//  flow-error-not-allowed-reply-to-delete-topic-extract
-						//  flow-error-not-allowed-suppress-extract
-						//  flow-error-not-allowed-reply-to-suppress-topic-extract
+						// flow-error-not-allowed-hide-extract
+						// flow-error-not-allowed-reply-to-hide-topic-extract
+						// flow-error-not-allowed-delete-extract
+						// flow-error-not-allowed-reply-to-delete-topic-extract
+						// flow-error-not-allowed-suppress-extract
+						// flow-error-not-allowed-reply-to-suppress-topic-extract
 						'msgKey' => [
 							[
 								"flow-error-not-allowed-{$this->action}-to-$state-$type",

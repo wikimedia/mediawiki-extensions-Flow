@@ -32,7 +32,7 @@ class DeferredInsertLifecycleHandler implements LifecycleHandler {
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$nested = $this->nested;
-		$this->queue->enqueue( function() use ( $nested, $object, $new, $metadata ) {
+		$this->queue->enqueue( function () use ( $nested, $object, $new, $metadata ) {
 			$nested->onAfterInsert( $object, $new, $metadata );
 		} );
 	}

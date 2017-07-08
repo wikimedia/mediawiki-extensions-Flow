@@ -6,9 +6,9 @@ use Flow\Import\LiquidThreadsApi\ConversionStrategy as LiquidThreadsApiConversio
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Psr\Log\LogLevel;
 
-require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php' );
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * This is intended for use both in testing and in production.  It converts a single LQT
@@ -28,7 +28,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$container = Container::getContainer();
 		// Workaround to try to help with memory problems (T108601).  The extend is
 		// so all uses of memcache.local_buffered pick up the same alternative.
-		$container->extend( 'memcache.local_buffered', function( $mlb, $c ) {
+		$container->extend( 'memcache.local_buffered', function ( $mlb, $c ) {
 			return $c['memcache.non_local_buffered'];
 		} );
 

@@ -28,4 +28,3 @@ class ExtLinkExtractor implements Extractor {
 		);
 	}
 }
-
