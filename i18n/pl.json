@@ -226,7 +226,7 @@
 	"flow-error-unknown-workflow-id-title": "Nieznany wątek",
 	"flow-error-unknown-workflow-id": "Szukany wątek nie istnieje.",
 	"flow-error-search": "Nie udało nam się zakończyć wyszukiwania z powodu przejściowego problemu. Proszę spróbować później.",
-	"flow-error-invalid-undelete": "Ten artykuł nie może zostać odtworzony, ponieważ aktualnie w jego miejscu znajduje się forum dyskusyjne.",
+	"flow-error-invalid-undelete": "Ta strona nie może zostać odtworzona, ponieważ aktualnie w jej miejscu znajduje się forum dyskusyjne.",
 	"flow-edit-header-placeholder": "Opisz tę stronę dyskusji",
 	"flow-edit-header-submit": "Zapisz opis",
 	"flow-edit-header-submit-anonymously": "Zapisz opis (anonimowo)",

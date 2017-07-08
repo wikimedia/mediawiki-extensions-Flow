@@ -112,6 +112,7 @@
 	"flow-error-invalid-topic-uuid-title": "Schlechten Titel",
 	"flow-error-unknown-workflow-id-title": "Onbekannt Thema",
 	"flow-error-search": "Mir konnten Är Sich wéint engem temporäre Problem net maachen. Probéiert w.e.g. méi spéit nach eng Kéier.",
+	"flow-error-invalid-undelete": "D'Säit konnt net restauréiert gi well elo eng Diskussioun doriwwer am Gaang ass.",
 	"flow-edit-header-placeholder": "Dësen Diskussiouns-Board beschreiwen",
 	"flow-edit-header-submit": "Beschreiwung späicheren",
 	"flow-edit-header-submit-anonymously": "Beschreiwung anonym späicheren",
