@@ -785,9 +785,6 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onDeletedContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
-		global $wgHooks;
-		static $javascriptIncluded = false;
-
 		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
 			return true;
 		}
@@ -814,13 +811,8 @@ class FlowHooks {
 		// If we output one or more lines of contributions entries we also need to include
 		// the javascript that hooks into moderation actions.
 		// @todo not a huge fan of this static variable, what else though?
-		if ( !$javascriptIncluded ) {
-			$javascriptIncluded = true;
-			$wgHooks['SpecialPageAfterExecute'][] = function( $specialPage, $subPage ) {
-				$specialPage->getOutput()->addModules( [ 'ext.flow.contributions' ] );
-				$specialPage->getOutput()->addModuleStyles( [ 'ext.flow.contributions.styles' ] );
-			};
-		}
+		$pager->getOutput()->addModules( [ 'ext.flow.contributions' ] );
+		$pager->getOutput()->addModuleStyles( [ 'ext.flow.contributions.styles' ] );
 
 		return true;
 	}
