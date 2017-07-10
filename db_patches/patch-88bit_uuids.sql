@@ -3,7 +3,7 @@ ALTER TABLE /*_*/flow_workflow
 
 ALTER TABLE /*_*/flow_topic_list
 	CHANGE topic_list_id topic_list_id binary(11) not null,
-	CHANGE topic_id topic_id binary(11) default null;
+	CHANGE topic_id topic_id binary(11) not null;
 
 ALTER TABLE /*_*/flow_tree_revision
 	CHANGE tree_rev_descendant_id tree_rev_descendant_id binary(11) not null,
