@@ -33,6 +33,24 @@
       "revId": "2de6e035e4c96201f952de5f14216a7ade6defcb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e742343_452665ca",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-07-10T19:08:38Z",
+      "side": 1,
+      "message": "Well that would be why I failed to add use Sanitizer; , because my search didn\u0027t find this one. Good catch.",
+      "parentUuid": "8e742343_c58a556e",
+      "revId": "2de6e035e4c96201f952de5f14216a7ade6defcb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
