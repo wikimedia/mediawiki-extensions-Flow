@@ -22,7 +22,7 @@ CREATE INDEX /*i*/flow_workflow_update_timestamp ON /*_*/flow_workflow (workflow
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
 	topic_list_id binary(11) not null,
-	topic_id binary(11),
+	topic_id binary(11) not null,
 	PRIMARY KEY (topic_list_id, topic_id)
 ) /*$wgDBTableOptions*/;
 
