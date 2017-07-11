@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="Generic.Files.LineLength.TooLong"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures"/>
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound"/>
@@ -11,6 +10,11 @@
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<property name="ignoreList" type="array" value="query_revisions,parsoid_to_wikitext,truncate" />
+		</properties>
+	</rule>
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="200" />
 		</properties>
 	</rule>
 	<file>.</file>

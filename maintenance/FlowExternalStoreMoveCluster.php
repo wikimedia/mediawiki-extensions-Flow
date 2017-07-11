@@ -49,11 +49,16 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Moves ExternalStore content from (a) particular cluster(s) to (an)other(s). Just make sure all clusters are valid $wgExternalServers.';
+		$this->mDescription = 'Moves ExternalStore content from (a) particular cluster(s) to ' .
+			'(an)other(s). Just make sure all clusters are valid $wgExternalServers.';
 
-		$this->addOption( 'from', 'ExternalStore cluster to move from (comma-separated). E.g.: --from=cluster24,cluster25', true, true );
-		$this->addOption( 'to', 'ExternalStore cluster to move to (comma-separated). E.g.: --to=cluster26', true, true );
-		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new External Store, gives hypothetical new column values for flow_revision (but does not actually change flow_revision), and checks that old and new ES are the same.' );
+		$this->addOption( 'from', 'ExternalStore cluster to move from (comma-separated). ' .
+			'E.g.: --from=cluster24,cluster25', true, true );
+		$this->addOption( 'to', 'ExternalStore cluster to move to (comma-separated). ' .
+			'E.g.: --to=cluster26', true, true );
+		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new External ' .
+			'Store, gives hypothetical new column values for flow_revision (but does not ' .
+			'actually change flow_revision), and checks that old and new ES are the same.' );
 
 		$this->setBatchSize( 300 );
 
@@ -70,16 +75,20 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		/** @var DatabaseBase $dbw */
 		$dbw = $schema['dbw'];
 
-		$iterator = new BatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->mBatchSize );
+		$iterator = new BatchRowIterator(
+			$dbr, $schema['table'], $schema['pk'], $this->mBatchSize
+		);
 		$iterator->setFetchColumns( [ $schema['content'], $schema['flags'] ] );
 
 		$clusterConditions = [];
 		foreach ( $from as $cluster ) {
-			$clusterConditions[] = $schema['content'] . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
+			$clusterConditions[] = $schema['content'] .
+				$dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
 		}
 		$iterator->addConditions( [
 				$schema['wiki'] => wfWikiID(),
-				$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+				$schema['flags'] .
+					$dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 				$dbr->makeList( $clusterConditions, LIST_OR ),
 		] );
 
@@ -109,10 +118,14 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 					}
 
 					if ( $newContent === $oldContent ) {
-						$this->output( "New external store content matches old external store content\n" );
+						$this->output(
+							"New external store content matches old external store content\n"
+						);
 					} else {
 						$revIdStr = UUID::create( $row->rev_id )->getAlphadecimal();
-						$this->error( "New content for ID $revIdStr does not match prior content.\nNew content: $newContent\nOld content: $oldContent\n\nTerminating dry run.\n", 1 );
+						$this->error( "New content for ID $revIdStr does not match prior content." .
+							"\nNew content: $newContent\nOld content: $oldContent\n\nTerminating " .
+							"dry run.\n", 1 );
 					}
 				}
 
@@ -228,7 +241,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	/**
 	 * @param string $content
 	 * @param array $flags
-	 * @return array New ExternalStore data in the form of ['content' => ..., 'flags' => array( ... )]
+	 * @return array New ExternalStore data in the form of [ 'content' => ..., 'flags' => [ ... ] ]
 	 * @throws MWException
 	 */
 	protected function write( $content, array $flags = [] ) {
