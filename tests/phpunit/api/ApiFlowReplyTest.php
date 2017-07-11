@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Tests\Api;
+use Sanitizer;
 
 /**
  * @group Flow
@@ -41,7 +42,7 @@ class ApiFlowReplyTest extends ApiTestCase {
 		$this->assertEquals( 'reply', $revision['changeType'], $debug );
 		$this->assertEquals(
 			'⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
-			trim( strip_tags( $revision['content']['content'] ) ),
+			trim( Sanitizer::stripAllTags( $revision['content']['content'] ) ),
 			$debug
 		);
 		$this->assertEquals( 'html', $revision['content']['format'], $debug );

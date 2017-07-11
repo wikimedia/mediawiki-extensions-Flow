@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Tests\Api;
+use Sanitizer;
 
 /**
  * @group Flow
@@ -60,7 +61,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'content', $revision['content'], $debug );
 		$this->assertEquals(
 			'swimmingly',
-			trim( strip_tags( $revision['content']['content'] ) ),
+			trim( Sanitizer::stripAllTags( $revision['content']['content'] ) ),
 			$debug
 		);
 		$this->assertArrayHasKey( 'format', $revision['content'], $debug );
