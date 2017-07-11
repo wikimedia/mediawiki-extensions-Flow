@@ -63,7 +63,9 @@ class Pager {
 		];
 
 		$this->options['pager-limit'] = intval( $this->options['pager-limit'] );
-		if ( !( $this->options['pager-limit'] > 0 && $this->options['pager-limit'] < self::MAX_LIMIT ) ) {
+		if ( !( $this->options['pager-limit'] > 0 &&
+			$this->options['pager-limit'] < self::MAX_LIMIT )
+		) {
 			$this->options['pager-limit'] = self::DEFAULT_LIMIT;
 		}
 
@@ -161,7 +163,9 @@ class Pager {
 		if ( $queries >= self::MAX_QUERIES ) {
 			$count = count( $results );
 			$limit = $this->options['pager-limit'];
-			wfDebugLog( 'Flow', __METHOD__ . "Reached maximum of $queries queries with $count results of $limit requested with query of " . json_encode( $this->query ) . ' and options ' . json_encode( $options ) );
+			wfDebugLog( 'Flow', __METHOD__ . "Reached maximum of $queries queries with $count " .
+				"results of $limit requested with query of " . json_encode( $this->query ) .
+				' and options ' . json_encode( $options ) );
 		}
 
 		if ( $results ) {
@@ -217,7 +221,9 @@ class Pager {
 				);
 			}
 		} else {
-			throw new InvalidInputException( "Unrecognised direction " . $this->options['pager-dir'], 'invalid-input' );
+			throw new InvalidInputException(
+				"Unrecognised direction " . $this->options['pager-dir'], 'invalid-input'
+			);
 		}
 
 		return new PagerPage( $results, $pagingLinks, $this );

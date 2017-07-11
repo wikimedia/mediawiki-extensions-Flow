@@ -186,7 +186,9 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->assertEquals(
 				$expected,
 				$permissions->isAllowed( $revision, $permissionAction ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
+				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) .
+				'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) .
+				' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
 			);
 		}
 	}
@@ -256,7 +258,9 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 * @param array $overrides
 	 * @return PostRevision
 	 */
-	public function generateRevision( $action, AbstractRevision $parent = null, array $overrides = [] ) {
+	public function generateRevision(
+		$action, AbstractRevision $parent = null, array $overrides = []
+	) {
 		$overrides['rev_change_type'] = $action;
 
 		if ( $parent ) {
@@ -268,7 +272,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		switch ( $action ) {
 			case 'restore-post':
 				$overrides += [
-					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_NONE
+					// AbstractRevision::MODERATED_NONE
+					'rev_mod_state' => $this->moderation[$action],
 					'rev_mod_user_id' => null,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => null,
@@ -280,7 +285,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			case 'delete-post':
 			case 'suppress-post':
 				$overrides += [
-					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_(HIDDEN|DELETED|SUPPRESSED)
+					// AbstractRevision::MODERATED_(HIDDEN|DELETED|SUPPRESSED)
+					'rev_mod_state' => $this->moderation[$action],
 					'rev_mod_user_id' => 1,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => wfTimestampNow(),
