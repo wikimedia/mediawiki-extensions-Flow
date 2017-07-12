@@ -65,7 +65,6 @@
 
 		if ( this.expandable ) {
 			this.triggerInput = new OO.ui.TextInputWidget( {
-				multiline: false,
 				classes: [ 'flow-ui-replyWidget-trigger-input' ],
 				placeholder: config.placeholder
 			} );

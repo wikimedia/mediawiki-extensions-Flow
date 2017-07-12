@@ -19,9 +19,8 @@
 		// node the editor is associated with.
 		this.$node = $node;
 
-		this.widget = new OO.ui.TextInputWidget( {
+		this.widget = new OO.ui.MultilineTextInputWidget( {
 			value: content || '',
-			multiline: true,
 			autosize: true,
 			maxRows: 999,
 			placeholder: this.$node.attr( 'placeholder' )

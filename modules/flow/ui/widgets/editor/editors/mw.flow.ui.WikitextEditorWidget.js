@@ -18,8 +18,7 @@
 		mw.flow.ui.WikitextEditorWidget.parent.call( this, config );
 
 		// Main textarea
-		this.input = new OO.ui.TextInputWidget( {
-			multiline: true,
+		this.input = new OO.ui.MultilineTextInputWidget( {
 			autosize: true,
 			maxRows: 999,
 			placeholder: config.placeholder,

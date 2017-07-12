@@ -50,8 +50,7 @@
 		this.switchingPromise = null;
 		this.settingPromise = null;
 
-		this.placeholderInput = new OO.ui.TextInputWidget( {
-			multiline: true,
+		this.placeholderInput = new OO.ui.MultilineTextInputWidget( {
 			placeholder: this.placeholder,
 			classes: [ 'flow-ui-editorSwitcherWidget-placeholder-input' ]
 		} );

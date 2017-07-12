@@ -47,7 +47,6 @@
 
 		this.title = new OO.ui.TextInputWidget( {
 			placeholder: mw.msg( 'flow-newtopic-start-placeholder' ),
-			multiline: false,
 			classes: [ 'flow-ui-newTopicWidget-title' ]
 		} );
 
