@@ -210,7 +210,7 @@
 	"flow-error-unknown-workflow-id-title": "Tema desconocido",
 	"flow-error-unknown-workflow-id": "El tema solicitado no existe.",
 	"flow-error-search": "No pudimos completar tu búsqueda debido a un problema temporal. Intenta de nuevo más tarde.",
-	"flow-error-invalid-undelete": "El artículo no se pudo restaurar debido a que actualmente hay una junta de discusión.",
+	"flow-error-invalid-undelete": "La página no se pudo restaurar debido a que actualmente hay una junta de discusión.",
 	"flow-edit-header-placeholder": "Describir este panel de discusión",
 	"flow-edit-header-submit": "Guardar descripción",
 	"flow-edit-header-submit-anonymously": "Guardar la descripción anónimamente",
