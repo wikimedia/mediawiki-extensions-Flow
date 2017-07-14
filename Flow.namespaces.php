@@ -54,6 +54,11 @@ $namespaceNames['de'] = [
 	NS_TOPIC =>  'Thema',
 ];
 
+/** Dinka */
+$namespaceNames['din'] = [
+	NS_TOPIC =>  'Këjamic',
+];
+
 /** Zazaki */
 $namespaceNames['diq'] = [
 	NS_TOPIC =>  'Mewzu',
