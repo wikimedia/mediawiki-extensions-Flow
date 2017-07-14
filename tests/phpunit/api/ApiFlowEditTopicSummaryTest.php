@@ -1,6 +1,7 @@
 <?php
 
 namespace Flow\Tests\Api;
+
 use Sanitizer;
 
 /**
