@@ -11,7 +11,7 @@ $namespaceNames = [];
 
 /** English */
 $namespaceNames['en'] = [
-	NS_TOPIC =>  'Topic',
+	NS_TOPIC => 'Topic',
 ];
 
 /** Arabic */
@@ -21,72 +21,72 @@ $namespaceNames['ar'] = [
 
 /** Asturian */
 $namespaceNames['ast'] = [
-	NS_TOPIC =>  'Asuntu',
+	NS_TOPIC => 'Asuntu',
 ];
 
 /** South Azerbaijani */
 $namespaceNames['azb'] = [
-	NS_TOPIC =>  'مبحث',
+	NS_TOPIC => 'مبحث',
 ];
 
 /** Western Balochi */
 $namespaceNames['bgn'] = [
-	NS_TOPIC =>  'سر_ئو_بُن',
+	NS_TOPIC => 'سر_ئو_بُن',
 ];
 
 /** Bengali */
 $namespaceNames['bn'] = [
-	NS_TOPIC =>  'প্রসঙ্গ',
+	NS_TOPIC => 'প্রসঙ্গ',
 ];
 
 /** Catalan */
 $namespaceNames['ca'] = [
-	NS_TOPIC =>  'Tema',
+	NS_TOPIC => 'Tema',
 ];
 
 /** Central Kurdish */
 $namespaceNames['ckb'] = [
-	NS_TOPIC =>  'بابه‌ت',
+	NS_TOPIC => 'بابه‌ت',
 ];
 
 /** German */
 $namespaceNames['de'] = [
-	NS_TOPIC =>  'Thema',
+	NS_TOPIC => 'Thema',
 ];
 
 /** Dinka */
 $namespaceNames['din'] = [
-	NS_TOPIC =>  'Këjamic',
+	NS_TOPIC => 'Këjamic',
 ];
 
 /** Zazaki */
 $namespaceNames['diq'] = [
-	NS_TOPIC =>  'Mewzu',
+	NS_TOPIC => 'Mewzu',
 ];
 
 /** Spanish */
 $namespaceNames['es'] = [
-	NS_TOPIC =>  'Tema',
+	NS_TOPIC => 'Tema',
 ];
 
 /** Estonian */
 $namespaceNames['et'] = [
-	NS_TOPIC =>  'Teema',
+	NS_TOPIC => 'Teema',
 ];
 
 /** Persian */
 $namespaceNames['fa'] = [
-	NS_TOPIC =>  'مبحث',
+	NS_TOPIC => 'مبحث',
 ];
 
 /** Finnish */
 $namespaceNames['fi'] = [
-	NS_TOPIC =>  'Aihe',
+	NS_TOPIC => 'Aihe',
 ];
 
 /** French */
 $namespaceNames['fr'] = [
-	NS_TOPIC =>  'Sujet',
+	NS_TOPIC => 'Sujet',
 ];
 
 $namespaceNames['gom'] = [
@@ -95,12 +95,12 @@ $namespaceNames['gom'] = [
 
 /** Hebrew */
 $namespaceNames['he'] = [
-	NS_TOPIC =>  'נושא',
+	NS_TOPIC => 'נושא',
 ];
 
 /** Hungarian */
 $namespaceNames['hu'] = [
-	NS_TOPIC =>  'Téma',
+	NS_TOPIC => 'Téma',
 ];
 
 /** Indonesian */
@@ -110,7 +110,7 @@ $namespaceNames['id'] = [
 
 /** Italian */
 $namespaceNames['it'] = [
-	NS_TOPIC =>  'Argomento',
+	NS_TOPIC => 'Argomento',
 ];
 
 /** Korean */
@@ -120,95 +120,95 @@ $namespaceNames['ko'] = [
 
 /** Luxembourgish */
 $namespaceNames['lb'] = [
-	NS_TOPIC =>  'Thema',
+	NS_TOPIC => 'Thema',
 ];
 
 /** Northern Luri */
 $namespaceNames['lrc'] = [
-	NS_TOPIC =>  'گأپئسئن',
+	NS_TOPIC => 'گأپئسئن',
 ];
 
 /** Latvian */
 $namespaceNames['lv'] = [
-	NS_TOPIC =>  'Tēma',
+	NS_TOPIC => 'Tēma',
 ];
 
 /** Macedonian */
 $namespaceNames['mk'] = [
-	NS_TOPIC =>  'Тема',
+	NS_TOPIC => 'Тема',
 ];
 
 /** Mazandarani */
 $namespaceNames['mzn'] = [
-	NS_TOPIC =>  'تاپیک',
+	NS_TOPIC => 'تاپیک',
 ];
 
 /** Norwegian Bokmål (norsk bokmål) */
 $namespaceNames['nb'] = [
-	NS_TOPIC =>  'Sak',
+	NS_TOPIC => 'Sak',
 ];
 
 /** Dutch */
 $namespaceNames['nl'] = [
-	NS_TOPIC =>  'Onderwerp',
+	NS_TOPIC => 'Onderwerp',
 ];
 
 /** Occitan */
 $namespaceNames['oc'] = [
-	NS_TOPIC =>  'Subjècte',
+	NS_TOPIC => 'Subjècte',
 ];
 
 /** Orya */
 $namespaceNames['or'] = [
-	NS_TOPIC =>  'ବିଷୟ',
+	NS_TOPIC => 'ବିଷୟ',
 ];
 
 /** Polish */
 $namespaceNames['pl'] = [
-	NS_TOPIC =>  'Wątek',
+	NS_TOPIC => 'Wątek',
 ];
 
 /** Western Punjabi */
 $namespaceNames['pnb'] = [
-	NS_TOPIC =>  'موضوع',
+	NS_TOPIC => 'موضوع',
 ];
 
 /** Portuguese */
 $namespaceNames['pt'] = [
-	NS_TOPIC =>  'Tópico',
+	NS_TOPIC => 'Tópico',
 ];
 
 /** Russian */
 $namespaceNames['ru'] = [
-	NS_TOPIC =>  'Тема',
+	NS_TOPIC => 'Тема',
 ];
 
 /** Slovenian */
 $namespaceNames['sl'] = [
-	NS_TOPIC =>  'Tema',
+	NS_TOPIC => 'Tema',
 ];
 
 /** Swedish */
 $namespaceNames['sv'] = [
-	NS_TOPIC =>  'Ämne',
+	NS_TOPIC => 'Ämne',
 ];
 
 /** Ukrainian */
 $namespaceNames['uk'] = [
-	NS_TOPIC =>  'Тема',
+	NS_TOPIC => 'Тема',
 ];
 
 /** Urdu */
 $namespaceNames['ur'] = [
-	NS_TOPIC =>  'موضوع',
+	NS_TOPIC => 'موضوع',
 ];
 
 /** Vietnamese */
 $namespaceNames['vi'] = [
-	NS_TOPIC =>  'Đề_tài',
+	NS_TOPIC => 'Đề_tài',
 ];
 
 /** Yiddish */
 $namespaceNames['yi'] = [
-	NS_TOPIC =>  'טעמע',
+	NS_TOPIC => 'טעמע',
 ];
