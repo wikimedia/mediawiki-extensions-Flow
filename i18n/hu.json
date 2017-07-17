@@ -5,7 +5,8 @@
 			"Tacsipacsi",
 			"Tgr",
 			"Wolf Rex",
-			"Dj"
+			"Dj",
+			"Bencemac"
 		]
 	},
 	"enableflow": "Flow engedélyezése",
@@ -291,7 +292,7 @@
 	"flow-notification-newtopic-email-subject": "$1 új témát indított a(z) $2 lapon",
 	"flow-notification-newtopic-email-batch-body": "$1 „$2” címmel új témát indított a(z) $3 lapon",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Egy|$1|100=99+}} új téma a(z) $2 lapon",
-	"echo-category-title-flow-discussion": "Flow",
+	"echo-category-title-flow-discussion": "Flow beszélgetés",
 	"echo-pref-tooltip-flow-discussion": "Értesítést kérek a Flow-ban történt engem érintő változtatásokról.",
 	"flow-link-post": "hozzászólás",
 	"flow-link-topic": "téma",
