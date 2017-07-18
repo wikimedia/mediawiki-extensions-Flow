@@ -262,7 +262,7 @@
 	"flow-post-history": "Histórico de \"Comentário por {{GENDER:$2|$2}}\"",
 	"flow-history-last4": "Últimas 4 horas",
 	"flow-history-day": "Hoje",
-	"flow-history-week": "Semana passada",
+	"flow-history-week": "Última semana",
 	"flow-history-pages-topic": "Aparece no [$1 espaço \"$2\"]",
 	"flow-history-pages-post": "Aparece em [$1 $2]",
 	"flow-topic-comments": "{{PLURAL:$1|Um comentário|$1 comentários|0=Seja {{GENDER:$2|o primeiro|a primeira}} a comentar!}}",
