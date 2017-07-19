@@ -3,7 +3,8 @@
 		"authors": [
 			"Subi",
 			"Sator",
-			"An13sa"
+			"An13sa",
+			"Mikel Ibaiba"
 		]
 	},
 	"flow-desc": "Eztabaida-sistema",
@@ -44,6 +45,7 @@
 	"flow-topic-action-unhide-topic": "Erakutsi gaia",
 	"flow-topic-action-undo-moderation": "Desegin",
 	"flow-topic-action-watchlist-remove": "Harpidetza kendu",
+	"flow-error-invalid-undelete": "Orrialdea ezin izan da berrezarri orain eztabaida bat dagoelako.",
 	"flow-edit-header-submit": "Gorde deskribapena",
 	"flow-edit-header-submit-anonymously": "Gorde deskribapena anonimoki",
 	"flow-edit-title-submit": "Aldatu izenburua",
