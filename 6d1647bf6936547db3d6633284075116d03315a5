@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e71af52_81190a2a",
+        "filename": "includes/OOUI/BoardDescriptionWidget.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2017-07-20T15:55:04Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem right, this is the \"edit\" link rather than the content of the header.\n\nLine 36 looks like the actual content div at first glance.",
+      "revId": "6d1647bf6936547db3d6633284075116d03315a5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
