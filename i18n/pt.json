@@ -220,7 +220,7 @@
 	"flow-error-unknown-workflow-id-title": "Tópico desconhecido",
 	"flow-error-unknown-workflow-id": "O tópico solicitado não existe.",
 	"flow-error-search": "Não foi possível concluir a pesquisa devido a um problema temporário. Tente novamente mais tarde, por favor.",
-	"flow-error-invalid-undelete": "Este artigo não pode ser restaurado porque contém neste momento um espaço de discussão.",
+	"flow-error-invalid-undelete": "Esta página não pode ser restaurada porque contém neste momento um espaço de discussão.",
 	"flow-edit-header-placeholder": "Descreva este espaço de discussão",
 	"flow-edit-header-submit": "Gravar descrição",
 	"flow-edit-header-submit-anonymously": "Gravar descrição anonimamente",
