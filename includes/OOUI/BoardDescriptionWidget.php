@@ -33,7 +33,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 		// Content
 		$this->contentWrapper = $this->wrapInDiv(
 			$this->description,
-			[ 'flow-ui-boardDescriptionWidget-content' ]
+			[ 'flow-ui-boardDescriptionWidget-content', 'mw-parser-output' ]
 		);
 
 		// Initialize
