@@ -34,7 +34,7 @@
 		}
 
 		this.$content = $( '<div>' )
-			.addClass( 'flow-ui-boardDescriptionWidget-content' )
+			.addClass( 'flow-ui-boardDescriptionWidget-content mw-parser-output' )
 			.append( $content );
 
 		this.api = new mw.flow.dm.APIHandler(

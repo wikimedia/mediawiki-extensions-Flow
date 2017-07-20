@@ -119,7 +119,7 @@
 '.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-summary-edited',((isset($in['revision']['author']['name']) && is_array($in['revision']['author'])) ? $in['revision']['author']['name'] : null)),array()), 'encq').'
 '.$sp.'					<a href="'.htmlentities((string)((isset($in['revision']['links']['diff-prev']['url']) && is_array($in['revision']['links']['diff-prev'])) ? $in['revision']['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['revision']['lastEditId']) && is_array($in['revision'])) ? $in['revision']['lastEditId'] : null)),array()), 'encq').'</a>
 '.$sp.'';}).'			</div>
-'.$sp.'			<div class="flow-topic-summary-content">
+'.$sp.'			<div class="flow-topic-summary-content mw-parser-output">
 '.$sp.'				'.LCRun3::ch($cx, 'escapeContent', array(array(((isset($in['revision']['content']['format']) && is_array($in['revision']['content'])) ? $in['revision']['content']['format'] : null),((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null)),array()), 'encq').'
 '.$sp.'			</div>
 '.$sp.'			<div style="clear: both;"></div>

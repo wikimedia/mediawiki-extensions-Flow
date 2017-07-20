@@ -27,7 +27,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 			'label' => wfMessage( 'flow-edit-header-link' )->text(),
 			'icon' => 'edit',
 			'flags' => 'progressive',
-			'classes' => [ 'flow-ui-boardDescriptionWidget-editButton' ]
+			'classes' => [ 'flow-ui-boardDescriptionWidget-editButton', 'mw-parser-output' ]
 		] );
 
 		// Content
