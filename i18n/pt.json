@@ -453,7 +453,7 @@
 	"flow-spam-confirmedit-form": "Confirme que é um ser humano, por favor, resolvendo o código CAPTHA abaixo: $1",
 	"flow-spam-confirmedit-using-failure": "Ocorreu um erro técnico com o CAPTCHA. Se não consegue enviar a alteração, faça uma cópia do seu texto, recarregue a página e tente novamente.",
 	"flow-embedding-unsupported": "As discussões ainda não podem ser incorporadas.",
-	"mw-ui-unsubmitted-confirm": "Esta página tem alterações que ainda não foram gravadas. Tem a certeza que pretende continuar a navegar e perder todo o seu trabalho?",
+	"mw-ui-unsubmitted-confirm": "Esta página tem alterações que ainda não foram gravadas. Tem a certeza de que pretende continuar a navegar e perder todo o seu trabalho?",
 	"flow-post-undo-hide": "desfazer ocultação",
 	"flow-post-undo-delete": "desfazer eliminação",
 	"flow-post-undo-suppress": "desfazer supressão",
