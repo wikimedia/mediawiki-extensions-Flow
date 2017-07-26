@@ -349,7 +349,7 @@ class UUID implements ApiSerializable {
 			if ( $value instanceof UUIDBlob ) {
 				// database encoded binary value
 				if ( $format === 'alphadecimal' ) {
-					$array[$key] = UUID::create( $value->fetch() )->getAlphadecimal();
+					$array[$key] = self::create( $value->fetch() )->getAlphadecimal();
 				}
 			} elseif ( $value instanceof UUID ) {
 				if ( $format === 'binary' ) {
@@ -361,13 +361,13 @@ class UUID implements ApiSerializable {
 				// things that look like uuids
 				$len = strlen( $value );
 				if ( $format === 'alphadecimal' && $len === self::BIN_LEN ) {
-					$array[$key] = UUID::create( $value )->getAlphadecimal();
+					$array[$key] = self::create( $value )->getAlphadecimal();
 				} elseif ( $format === 'binary' && (
 					( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN )
 					||
 					$len === self::HEX_LEN
 				) ) {
-					$array[$key] = UUID::create( $value )->getBinary();
+					$array[$key] = self::create( $value )->getBinary();
 				}
 			}
 		}

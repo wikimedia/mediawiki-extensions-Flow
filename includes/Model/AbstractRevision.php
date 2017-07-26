@@ -186,8 +186,8 @@ abstract class AbstractRevision {
 
 		// BC: 'suppress' used to be called 'censor' & 'lock' was 'close'
 		$bc = [
-			'censor' => AbstractRevision::MODERATED_SUPPRESSED,
-			'close' => AbstractRevision::MODERATED_LOCKED,
+			'censor' => self::MODERATED_SUPPRESSED,
+			'close' => self::MODERATED_LOCKED,
 		];
 		$obj->moderationState = str_replace( array_keys( $bc ), array_values( $bc ), $obj->moderationState );
 

@@ -481,7 +481,7 @@ class FlowHooks {
 		$rc = $block[0];
 
 		// quit if non-flow
-		if ( !FlowHooks::isFlow( $rc ) ) {
+		if ( !self::isFlow( $rc ) ) {
 			return true;
 		}
 
@@ -540,7 +540,7 @@ class FlowHooks {
 
 	private static function modifyChangesListLine( $changesList, &$data, $rc, &$classes ) {
 		// quit if non-flow
-		if ( !FlowHooks::isFlow( $rc ) ) {
+		if ( !self::isFlow( $rc ) ) {
 			return true;
 		}
 
@@ -1546,7 +1546,7 @@ class FlowHooks {
 	public static function onArticleConfirmDelete( $article, $output, &$reason ) {
 		$title = $article->getTitle();
 		if ( $title->inNamespace( NS_TOPIC ) ) {
-			$output->addHTML( FlowHooks::getTopicDeletionError( $title ) );
+			$output->addHTML( self::getTopicDeletionError( $title ) );
 			return false;
 		}
 
@@ -1566,7 +1566,7 @@ class FlowHooks {
 	public static function onArticleDelete( WikiPage &$article, User &$user, &$reason, &$error ) {
 		$title = $article->getTitle();
 		if ( $title->inNamespace( NS_TOPIC ) ) {
-			$error = FlowHooks::getTopicDeletionError( $title );
+			$error = self::getTopicDeletionError( $title );
 			return false;
 		}
 
