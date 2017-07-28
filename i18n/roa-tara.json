@@ -87,6 +87,7 @@
 	"flow-topic-action-undo-moderation": "Annulle",
 	"flow-error-http": "Ha assute 'n'errore condattanne 'u server.",
 	"flow-error-missing-summary": "Tu a confermà 'nu riepiloghe.",
+	"flow-error-protected-unknown-reason": "Scanusciute",
 	"flow-error-missing-header-content": "Tu a confermà 'na descrizione.",
 	"flow-edit-title-submit": "Cange 'u titole",
 	"flow-moderation-confirmation-suppress-topic": "St'argomende ha state luate.",
