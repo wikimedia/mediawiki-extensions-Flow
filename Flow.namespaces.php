@@ -98,6 +98,11 @@ $namespaceNames['he'] = [
 	NS_TOPIC => 'נושא',
 ];
 
+/** Hindi */
+$namespaceNames['hi'] = [
+	NS_TOPIC => 'प्रकरण',
+];
+
 /** Hungarian */
 $namespaceNames['hu'] = [
 	NS_TOPIC => 'Téma',
