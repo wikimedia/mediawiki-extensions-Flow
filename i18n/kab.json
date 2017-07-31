@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Trizek (WMF)",
-			"SalemB"
+			"SalemB",
+			"Belkacem77"
 		]
 	},
 	"enableflow": "Ssermed Flow",
@@ -12,5 +13,5 @@
 	"log-name-flow": "Aɣmis n wurmud n Flow",
 	"flow-conversion-archive-page-name-format": "%s/Aɣbar %d \n%s/Aɣbar%d \n%s/aɣbar %d \n%s/aɣbar%d",
 	"flow-importer-wt-converted-template": "Asebtar n umyannan s Wikitexte yetturren ɣer Flow",
-	"flow-importer-wt-converted-template-content": "Amyannan aqdim yettuɣber di <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> ass n {{#time: Y-m-d|{{{date}}} }}"
+	"flow-importer-wt-converted-template-content": "Asqerdec yezrin yettuɣber di <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> ass n {{#time: Y-m-d|{{{date}}} }}"
 }
