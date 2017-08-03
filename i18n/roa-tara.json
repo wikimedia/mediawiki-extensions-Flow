@@ -94,7 +94,7 @@
 	"flow-moderation-confirmation-delete-topic": "St'argomende ha state scangellate.",
 	"flow-moderation-confirmation-hide-topic": "St'argomende ha state scunnute.",
 	"flow-topic-html-title": "$1 sus a $2",
-	"flow-dialog-cancelconfirm-title": "Sì secure?",
+	"flow-dialog-cancelconfirm-title": "{{GENDER:|Sì}} secure?",
 	"flow-dialog-cancelconfirm-keep": "Condinue a cangià",
 	"flow-dialog-cancelconfirm-discard": "Scitte le cangiaminde"
 }
