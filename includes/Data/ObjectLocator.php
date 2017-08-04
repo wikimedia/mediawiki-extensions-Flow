@@ -170,15 +170,15 @@ class ObjectLocator {
 		return $this->storage->getPrimaryKeyColumns();
 	}
 
-	public function get( $id ) {
-		$result = $this->getMulti( [ $id ] );
+	public function get( $id, array $options = [] ) {
+		$result = $this->getMulti( [ $id ], $options );
 		return $result ? reset( $result ) : null;
 	}
 
 	// Just a helper to find by primary key
 	// Be careful with regards to order on composite primary keys,
 	// must be in same order as provided to the storage implementation.
-	public function getMulti( array $objectIds ) {
+	public function getMulti( array $objectIds, array $options = [] ) {
 		if ( !$objectIds ) {
 			return [];
 		}
@@ -196,7 +196,7 @@ class ObjectLocator {
 			}
 		}
 		if ( $queries ) {
-			$res = $this->findMulti( $queries );
+			$res = $this->findMulti( $queries, $options );
 			if ( $res ) {
 				foreach ( $res as $row ) {
 					// primary key is unique, but indexes still return their results as array
@@ -325,6 +325,10 @@ class ObjectLocator {
 			foreach ( $options['sort'] as $val ) {
 				$orderBy[] = $val . $order;
 			}
+		}
+
+		if ( isset( $options['loadcontentnow'] ) ) {
+			$dbOptions['LOADCONTENTNOW'] = $options['loadcontentnow'];
 		}
 
 		if ( $orderBy ) {
