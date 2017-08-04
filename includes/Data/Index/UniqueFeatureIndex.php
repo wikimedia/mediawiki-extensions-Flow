@@ -15,7 +15,13 @@ class UniqueFeatureIndex extends FeatureIndex {
 	}
 
 	public function queryOptions() {
-		return [ 'LIMIT' => $this->getLimit() ];
+		$options = [ 'LIMIT' => $this->getLimit() ];
+
+		if ( isset( $this->options['loadcontentnow'] ) ) {
+			$options['LOADCONTENTNOW'] = $this->options['loadcontentnow'];
+		}
+
+		return $options;
 	}
 
 	public function limitIndexSize( array $values ) {

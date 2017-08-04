@@ -139,7 +139,11 @@ abstract class AbstractCollection {
 			/** @var AbstractRevision[] $revisions */
 			$revisions = self::getStorage()->find(
 				[ 'rev_type_id' => $this->uuid ],
-				[ 'sort' => 'rev_id', 'order' => 'DESC' ]
+				[
+					'sort' => 'rev_id',
+					'order' => 'DESC',
+					'loadcontentnow' => false,
+				]
 			);
 
 			if ( !$revisions ) {

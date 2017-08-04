@@ -112,6 +112,6 @@ class TopicIterator extends AbstractIterator {
 
 		// we need to fetch all data via rootloader because we'll want children
 		// to be populated
-		return $this->rootPostLoader->get( $root );
+		return $this->rootPostLoader->get( $root, [ 'loadcontentnow' => false ] );
 	}
 }

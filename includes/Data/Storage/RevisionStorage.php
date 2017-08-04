@@ -9,6 +9,7 @@ use Flow\Data\Utils\ResultDuplicator;
 use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use MWException;
 
@@ -106,6 +107,9 @@ abstract class RevisionStorage extends DbStorage {
 
 	// Find one by specific attributes
 	// @todo: this method can probably be generalized in parent class?
+	/**
+	 * See RevisionStorage->findMulti for specific options
+	 */
 	public function find( array $attributes, array $options = [] ) {
 		$multi = $this->findMulti( [ $attributes ], $options );
 		return $multi ? reset( $multi ) : [];
@@ -157,6 +161,20 @@ abstract class RevisionStorage extends DbStorage {
 		return $query;
 	}
 
+	/**
+	 * @param array $queries List of queries to perform
+	 * @param array $options Options to use for all queries (see also parent class for
+	 *   more options)
+	 *
+	 *   $options['LOADCONTENTNOW'] If true, revision content from
+	 *   ExternalStore will be loaded into rev_content immediately.  If false,
+	 *   it will only be loaded when actually needed.  The drawback to false is that
+	 *   batching multiple ExternalStore reads is not possible (optional, defaults
+	 *   true).
+	 *
+	 *   There is no difference if the content is stored directly in rev_content.
+	 * @return array[] Array of results for every query
+	 */
 	public function findMulti( array $queries, array $options = [] ) {
 		if ( count( $queries ) < 3 ) {
 			$res = $this->fallbackFindMulti( $queries, $options );
@@ -164,7 +182,15 @@ abstract class RevisionStorage extends DbStorage {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
 
-		return self::mergeExternalContent( $res );
+		if ( !isset( $options['LOADCONTENTNOW'] ) ) {
+			$options['LOADCONTENTNOW'] = true;
+		}
+
+		if ( $options['LOADCONTENTNOW'] ) {
+			return self::mergeExternalContent( $res );
+		} else {
+			return $res;
+		}
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
@@ -338,6 +364,27 @@ abstract class RevisionStorage extends DbStorage {
 			/* callable = */ [ 'ExternalStore', 'batchFetchFromURLs' ],
 			/* name = */ 'rev_content',
 			/* default = */ ''
+		);
+	}
+
+	/**
+	 * Updates the given revision with the actual content, from
+	 * External Store.
+	 *
+	 * @param AbstractRevision $revision Revision to update
+	 * @param string $externalStoreUrl External Store URL
+	 */
+	public static function loadExternalContentIntoRevision(
+		AbstractRevision $revision,
+		$externalStoreUrl
+	) {
+		$fetched = ExternalStore::fetchFromURL( $externalStoreUrl );
+		if ( $fetched === false ) {
+			throw new DataModelException( "Unable to load text from external storage", 'process-data' );
+		}
+
+		$revision->setContentFromExternalStore(
+			$fetched
 		);
 	}
 
@@ -552,6 +599,19 @@ abstract class RevisionStorage extends DbStorage {
 	 */
 	public function validate( array $row ) {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
+	}
+
+	protected function validateOptions( $options ) {
+		if ( isset( $options['LOADCONTENTNOW'] ) ) {
+			if ( !is_bool( $options['LOADCONTENTNOW'] ) ) {
+				wfDebug( __METHOD__ . ": invalid valid for LOADCONTENTNOW; not a boolean" );
+				return false;
+			}
+
+			unset( $options['LOADCONTENTNOW'] );
+		}
+
+		return parent::validateOptions( $options );
 	}
 
 	/**

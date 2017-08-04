@@ -80,20 +80,22 @@ class RootPostLoader {
 
 	/**
 	 * @param UUID $topicId
+	 * @param array $options
 	 * @return PostRevision
 	 * @throws InvalidDataException
 	 */
-	public function get( $topicId ) {
-		$result = $this->getMulti( [ $topicId ] );
+	public function get( $topicId, array $options = [] ) {
+		$result = $this->getMulti( [ $topicId ], $options );
 		return reset( $result );
 	}
 
 	/**
 	 * @param UUID[] $topicIds
+	 * @param array $options
 	 * @return PostRevision[]
 	 * @throws InvalidDataException
 	 */
-	public function getMulti( array $topicIds ) {
+	public function getMulti( array $topicIds, array $options = [] ) {
 		if ( !$topicIds ) {
 			return [];
 		}
@@ -107,7 +109,7 @@ class RootPostLoader {
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'limit' => 1,
-		] );
+		] + $options );
 		/** @var PostRevision[] $posts */
 		$posts = $children = [];
 		foreach ( $found as $indexResult ) {

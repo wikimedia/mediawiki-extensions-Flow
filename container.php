@@ -368,6 +368,7 @@ $c['storage.header.backend'] = function ( $c ) {
 		$wgFlowExternalStore
 	);
 };
+
 $c['storage.header.indexes.primary'] = function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
@@ -377,6 +378,32 @@ $c['storage.header.indexes.primary'] = function ( $c ) {
 		$c['storage.header.primary_key']
 	);
 };
+
+$c['storage.header.indexes.primary_unloaded_content'] = function ( $c ) {
+	return new UniqueFeatureIndex(
+		$c['flowcache'],
+		$c['storage.header.backend'],
+		$c['storage.header.mapper'],
+		'flow_header:v2:pk_unloaded_content',
+		$c['storage.header.primary_key'],
+		[
+			'loadcontentnow' => false,
+		]
+	);
+};
+
+$c['storage.header.indexes.header_lookup.options'] = function ( $c ) {
+	return [
+		'limit' => $c['history_index_limit'],
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		'shallow' => $c['storage.header.indexes.primary'],
+		'create' => function ( array $row ) {
+			return $row['rev_parent_id'] === null;
+		},
+	];
+};
+
 $c['storage.header.indexes.header_lookup'] = function ( $c ) {
 	return new TopKIndex(
 		$c['flowcache'],
@@ -384,21 +411,30 @@ $c['storage.header.indexes.header_lookup'] = function ( $c ) {
 		$c['storage.header.mapper'],
 		'flow_header:workflow:v3',
 		[ 'rev_type_id' ],
-		[
-			'limit' => $c['history_index_limit'],
-			'sort' => 'rev_id',
-			'order' => 'DESC',
-			'shallow' => $c['storage.header.indexes.primary'],
-			'create' => function ( array $row ) {
-				return $row['rev_parent_id'] === null;
-			},
-		]
+		$c['storage.header.indexes.header_lookup.options']
 	);
 };
+
+$c['storage.header.indexes.header_lookup_unloaded_content'] = function ( $c ) {
+	return new TopKIndex(
+		$c['flowcache'],
+		$c['storage.header.backend'],
+		$c['storage.header.mapper'],
+		'flow_header:workflow:v3_unloaded_content',
+		[ 'rev_type_id' ],
+		[
+			'loadcontentnow' => false,
+			'shallow' => $c['storage.header.indexes.primary_unloaded_content'],
+		] + $c['storage.header.indexes.header_lookup.options']
+	);
+};
+
 $c['storage.header.indexes'] = function ( $c ) {
 	return [
 		$c['storage.header.indexes.primary'],
-		$c['storage.header.indexes.header_lookup']
+		$c['storage.header.indexes.primary_unloaded_content'],
+		$c['storage.header.indexes.header_lookup'],
+		$c['storage.header.indexes.header_lookup_unloaded_content'],
 	];
 };
 $c['storage.header'] = function ( $c ) {
@@ -446,6 +482,7 @@ $c['storage.post_summary.backend'] = function ( $c ) {
 		$wgFlowExternalStore
 	);
 };
+
 $c['storage.post_summary.indexes.primary'] = function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
@@ -455,6 +492,32 @@ $c['storage.post_summary.indexes.primary'] = function ( $c ) {
 		$c['storage.post_summary.primary_key']
 	);
 };
+
+$c['storage.post_summary.indexes.primary_unloaded_content'] = function ( $c ) {
+	return new UniqueFeatureIndex(
+		$c['flowcache'],
+		$c['storage.post_summary.backend'],
+		$c['storage.post_summary.mapper'],
+		'flow_post_summary:v2:pk_unloaded_content',
+		$c['storage.post_summary.primary_key'],
+		[
+			'loadcontentnow' => false,
+		]
+	);
+};
+
+$c['storage.post_summary.indexes.topic_lookup.options'] = function ( $c ) {
+	return [
+		'limit' => $c['history_index_limit'],
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		'shallow' => $c['storage.post_summary.indexes.primary'],
+		'create' => function ( array $row ) {
+			return $row['rev_parent_id'] === null;
+		},
+	];
+};
+
 $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
 	return new TopKIndex(
 		$c['flowcache'],
@@ -462,21 +525,30 @@ $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:workflow:v3',
 		[ 'rev_type_id' ],
-		[
-			'limit' => $c['history_index_limit'],
-			'sort' => 'rev_id',
-			'order' => 'DESC',
-			'shallow' => $c['storage.post_summary.indexes.primary'],
-			'create' => function ( array $row ) {
-				return $row['rev_parent_id'] === null;
-			},
-		]
+		$c['storage.post_summary.indexes.topic_lookup.options']
 	);
 };
+
+$c['storage.post_summary.indexes.topic_lookup_unloaded_content'] = function ( $c ) {
+	return new TopKIndex(
+		$c['flowcache'],
+		$c['storage.post_summary.backend'],
+		$c['storage.post_summary.mapper'],
+		'flow_post_summary:workflow:v3_unloaded_content',
+		[ 'rev_type_id' ],
+		[
+			'loadcontentnow' => false,
+			'shallow' => $c['storage.post_summary.indexes.primary_unloaded_content'],
+		] + $c['storage.post_summary.indexes.topic_lookup.options']
+	);
+};
+
 $c['storage.post_summary.indexes'] = function ( $c ) {
 	return [
 		$c['storage.post_summary.indexes.primary'],
+		$c['storage.post_summary.indexes.primary_unloaded_content'],
 		$c['storage.post_summary.indexes.topic_lookup'],
+		$c['storage.post_summary.indexes.topic_lookup_unloaded_content'],
 	];
 };
 $c['storage.post_summary'] = function ( $c ) {
@@ -620,6 +692,33 @@ $c['storage.post.indexes.primary'] = function ( $c ) {
 		$c['storage.post.primary_key']
 	);
 };
+
+$c['storage.post.indexes.primary_unloaded_content'] = function ( $c ) {
+	return new UniqueFeatureIndex(
+		$c['flowcache'],
+		$c['storage.post.backend'],
+		$c['storage.post.mapper'],
+		'flow_revision:v4:pk_unloaded_content',
+		$c['storage.post.primary_key'],
+		[
+			'loadcontentnow' => false,
+		]
+	);
+};
+
+$c['storage.post.indexes.post_lookup.options'] = function ( $c ) {
+	return [
+		'limit' => 100,
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		'shallow' => $c['storage.post.indexes.primary'],
+		'create' => function ( array $row ) {
+			// return true to create instead of merge index
+			return $row['rev_parent_id'] === null;
+		},
+	];
+};
+
 // Each bucket holds a list of revisions in a single post
 $c['storage.post.indexes.post_lookup'] = function ( $c ) {
 	return new TopKIndex(
@@ -628,22 +727,35 @@ $c['storage.post.indexes.post_lookup'] = function ( $c ) {
 		$c['storage.post.mapper'],
 		'flow_revision:descendant',
 		[ 'rev_type_id' ],
-		[
-			'limit' => 100,
-			'sort' => 'rev_id',
-			'order' => 'DESC',
-			'shallow' => $c['storage.post.indexes.primary'],
-			'create' => function ( array $row ) {
-				// return true to create instead of merge index
-				return $row['rev_parent_id'] === null;
-			},
-		]
+		$c['storage.post.indexes.post_lookup.options']
 	);
 };
+
+// Each bucket holds a list of revisions in a single post.
+
+// It is the same as 'storage.post.indexes.post_lookup', but with different options
+// for the backing DB query and the compactor.  Both of these variations are
+// to avoid loading the content up front (if it's in External Store).
+$c['storage.post.indexes.post_lookup_unloaded_content'] = function ( $c ) {
+	return new TopKIndex(
+		$c['flowcache'],
+		$c['storage.post.backend'],
+		$c['storage.post.mapper'],
+		'flow_revision:descendant_unloaded_content',
+		[ 'rev_type_id' ],
+		[
+			'loadcontentnow' => false,
+			'shallow' => $c['storage.post.indexes.primary_unloaded_content'],
+		] + $c['storage.post.indexes.post_lookup.options']
+	);
+};
+
 $c['storage.post.indexes'] = function ( $c ) {
 	return [
 		$c['storage.post.indexes.primary'],
+		$c['storage.post.indexes.primary_unloaded_content'],
 		$c['storage.post.indexes.post_lookup'],
+		$c['storage.post.indexes.post_lookup_unloaded_content'],
 		$c['storage.post_topic_history.indexes.topic_lookup']
 	];
 };

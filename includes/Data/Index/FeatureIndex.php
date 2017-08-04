@@ -91,14 +91,18 @@ abstract class FeatureIndex implements Index {
 	 * @param ObjectMapper $mapper
 	 * @param string $prefix Prefix to utilize for all cache keys
 	 * @param array $indexedColumns List of columns to index,
+	 * @param array $options Index options, to control index behavior (e.g. sort or
+	 *   what parts of the row value are loaded)
 	 */
-	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns ) {
+	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns, array $options = [] ) {
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->mapper = $mapper;
 		$this->prefix = $prefix;
 		$this->rowCompactor = new FeatureCompactor( $indexedColumns );
 		$this->indexed = $indexedColumns;
+		$this->options = $options;
+
 		// sort this and ksort in self::cacheKey to always have cache key
 		// fields in same order
 		sort( $indexedColumns );
@@ -116,23 +120,39 @@ abstract class FeatureIndex implements Index {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function canAnswer( array $featureColumns, array $options ) {
+	public function canAnswer( array $featureColumns, array $requestedOptions ) {
 		sort( $featureColumns );
+
+		$requestedOptions = $requestedOptions + [
+			'loadcontentnow' => true,
+		];
+
+		// Canonicalized version of the index's actual options
+		// We do this here, rather than the constructor, to avoid storing cruft.
+		$indexOptions = $this->options + [
+			'loadcontentnow' => true,
+		];
+
 		if ( $featureColumns !== $this->indexedOrdered ) {
 			return false;
 		}
 
 		// This can probably be moved to TopKIndex if it's not used
 		// by anything else.
-		if ( isset( $options['limit'] ) ) {
-			$max = $options['limit'];
-			if ( isset( $options['offset'] ) ) {
-				$max += $options['offset'];
+		if ( isset( $requestedOptions['limit'] ) ) {
+			$max = $requestedOptions['limit'];
+			if ( isset( $requestedOptions['offset'] ) ) {
+				$max += $requestedOptions['offset'];
 			}
 			if ( $max > $this->getLimit() ) {
 				return false;
 			}
 		}
+
+		if ( $requestedOptions['loadcontentnow'] !== $indexOptions['loadcontentnow'] ) {
+			return false;
+		}
+
 		return true;
 	}
 
@@ -450,11 +470,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * Query persistent storage for data not found in cache.  Note that this
-	 * does not use the query options because an individual bucket contents is
-	 * based on constructor options, and not query options.  Query options merely
-	 * change what part of the bucket is returned(or if the query has to fail over
-	 * to direct from storage due to being beyond the set of cached values).
+	 * Query persistent storage for data not found in cache.
 	 *
 	 * @param array $queries
 	 * @return array
