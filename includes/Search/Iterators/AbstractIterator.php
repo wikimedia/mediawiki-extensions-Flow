@@ -184,6 +184,6 @@ abstract class AbstractIterator implements Iterator {
 		// prevent memory from being filled up
 		$storage->clear();
 
-		return $storage->getStorage( $row->rev_type )->get( $uuid );
+		return $storage->getStorage( $row->rev_type )->get( $uuid, [ 'loadcontentnow' => false ] );
 	}
 }
