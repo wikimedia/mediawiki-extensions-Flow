@@ -450,11 +450,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * Query persistent storage for data not found in cache.  Note that this
-	 * does not use the query options because an individual bucket contents is
-	 * based on constructor options, and not query options.  Query options merely
-	 * change what part of the bucket is returned(or if the query has to fail over
-	 * to direct from storage due to being beyond the set of cached values).
+	 * Query persistent storage for data not found in cache.
 	 *
 	 * @param array $queries
 	 * @return array
