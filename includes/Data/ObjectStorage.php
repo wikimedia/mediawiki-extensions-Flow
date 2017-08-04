@@ -11,7 +11,8 @@ interface ObjectStorage {
 	/**
 	 * Perform a single equality query.
 	 *
-	 * @param array $attributes Map of attributes the model must contain
+	 * @param array $attributes Map of attributes the model must contain;
+	 *   Maps from key (e.g. column name) to expected value.
 	 * @param array $options Query options such as ORDER BY and LIMIT.
 	 * @return array
 	 */
@@ -21,7 +22,8 @@ interface ObjectStorage {
 	 * Perform the equivalent of array_map against self::find for multiple
 	 * equality queries with the minimum of network round trips.
 	 *
-	 * @param array $queries list of queries to perform
+	 * @param array $queries List of queries to perform; each query
+	 *   is equivalent to the $attributes array of ObjectStorage->find.
 	 * @param array $options Options to use for all queries
 	 * @return array[] Array of results for every query
 	 */
