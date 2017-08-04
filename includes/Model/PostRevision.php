@@ -144,10 +144,11 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * @param PostRevision $rev
+	 * @param bool $includeContent
 	 * @return string[]
 	 */
-	public static function toStorageRow( $rev ) {
-		return parent::toStorageRow( $rev ) + [
+	public static function toStorageRow( $rev, $includeContent = true ) {
+		return parent::toStorageRow( $rev, $includeContent ) + [
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getAlphadecimal() : null,
 			'tree_rev_descendant_id' => $rev->postId->getAlphadecimal(),
 			'tree_rev_id' => $rev->revId->getAlphadecimal(),

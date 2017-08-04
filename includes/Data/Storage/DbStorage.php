@@ -47,6 +47,14 @@ abstract class DbStorage implements ObjectStorage {
 	}
 
 	/**
+	 * Supported $options are UNIQUE, EXPLAIN, LIMIT, ORDER BY, OFFSET, GROUP BY
+	 * See ObjectStorage->findMulti for other documentation.
+	 * @param array $queries
+	 * @param array $options
+	 */
+	abstract public function findMulti( array $queries, array $options = [] );
+
+	/**
 	 * Runs preprocessSqlArray on each element of an array.
 	 *
 	 * @param array $outer The array to check
@@ -129,10 +137,10 @@ abstract class DbStorage implements ObjectStorage {
 		return '\s*[A-Za-z0-9\._]+\s*';
 	}
 
+	// Update findMulti documentation if the available options are updated.
 	/**
 	 * Internal security function to check an options array for
 	 * SQL injection and other funkiness
-	 * @todo Currently only supports LIMIT, OFFSET and ORDER BY
 	 * @param array $options An options array passed to a query.
 	 * @return bool
 	 */
