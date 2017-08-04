@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Collection\AbstractCollection;
+use Flow\Data\Storage\RevisionStorage;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
@@ -74,17 +75,28 @@ abstract class AbstractRevision {
 	protected $prevRevision;
 
 	/**
-	 * @var string Raw content of revision
+	 * @var string|null The unprocessed content, as stored in rev_content in the DB.  This
+	 * may be an External Store URL, a compressed string, an External Store URL
+	 * pointing to a compressed string, etc.
+	 */
+	protected $unprocessedContent;
+
+	/**
+	 * @var string|null Actual loaded user content, possibly compressed, or null if it has not
+	 *   been loaded yet.  Generally, you will not access this directly.  Instead, use
+	 *   Templating->getContent (a higher-level method) or getLoadedContent (latter is
+	 *   equivalent to this, but makes sure it's loaded).
 	 */
 	protected $content;
 
 	/**
-	 * @var string|null Only populated when external store is in use
+	 * @var string|null Only populated when External Store is in use and the content
+	 *   has already been loaded.
 	 */
 	protected $contentUrl;
 
 	/**
-	 * @var string|null This is decompressed on-demand from $this->content in self::getContent()
+	 * @var string|null This is decompressed on-demand from $this->content in self::getContentRaw()
 	 */
 	protected $decompressedContent;
 
@@ -175,9 +187,26 @@ abstract class AbstractRevision {
 		$obj->prevRevision = $row['rev_parent_id'] ? UUID::create( $row['rev_parent_id'] ) : null;
 		$obj->changeType = $row['rev_change_type'];
 		$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
-		$obj->content = $row['rev_content'];
-		// null if external store is not being used
+
+		// Null if External Store is not being used, or it is, but we have not
+		// loaded this revision's content from External Store (yet).
 		$obj->contentUrl = isset( $row['rev_content_url'] ) ? $row['rev_content_url'] : null;
+
+		// If this row uses External Store, unprocessedContent is always immediately set to the
+		// content URL, regardless of whether the real content has been loaded.
+
+		// If the row does not use External Store, it is always immediately set to
+		// the actual user content.
+		$obj->unprocessedContent = isset( $row['rev_content_url'] ) ? $row['rev_content_url'] : $row['rev_content'];
+
+		if ( $obj->isExternalStore() ) {
+			// If rev_content_url is set, that signifies that mergeExternalContenet
+			// already loaded the content to rev_content.
+			$obj->content = isset( $row['rev_content_url'] ) ? $row['rev_content'] : null;
+		} else {
+			$obj->content = $obj->unprocessedContent;
+		}
+
 		$obj->decompressedContent = null;
 
 		$obj->moderationState = $row['rev_mod_state'];
@@ -217,7 +246,7 @@ abstract class AbstractRevision {
 			'rev_type' => $obj->getRevisionType(),
 			'rev_type_id' => $obj->getCollectionId()->getAlphadecimal(),
 
-			'rev_content' => $obj->content,
+			'rev_content' => $obj->getLoadedContent(),
 			'rev_content_url' => $obj->contentUrl,
 			'rev_flags' => implode( ',', $obj->flags ),
 
@@ -347,7 +376,10 @@ abstract class AbstractRevision {
 	 */
 	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
-			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
+			$this->decompressedContent = \Revision::decompressRevisionText(
+				$this->getLoadedContent(),
+				$this->flags
+			);
 		}
 
 		return $this->decompressedContent;
@@ -365,6 +397,67 @@ abstract class AbstractRevision {
 	 */
 	public function isContentCurrentlyRetrievable() {
 		return $this->content !== false;
+	}
+
+	/**
+	 * Gets the loaded content
+	 *
+	 * This means to download the content from External Store if needed and return that
+	 * version.  This may still be compressed.
+	 *
+	 * @return string Get actual content, possibly compressed
+	 */
+	protected function getLoadedContent() {
+		if ( !$this->isContentLoaded() ) {
+			RevisionStorage::loadExternalContentIntoRevision( $this, $this->unprocessedContent );
+		}
+
+		return $this->content;
+	}
+
+	/**
+	 * Checks whether content is loaded (from External Store)
+	 * If External Store is not used by this revision, it is always loaded.
+	 *
+	 * @return bool
+	 */
+	protected function isContentLoaded() {
+		return $this->content !== null;
+	}
+
+	/**
+	 * Checks whether this row uses External Store
+	 *
+	 * @return bool
+	 */
+	protected function isExternalStore() {
+		return in_array( 'external', $this->flags, true );
+	}
+
+	// Manipulations of contentUrl and content need to be logically equivalent to
+	// RevisionStorage::mergeExternalContent.
+	/**
+	 * Sets the actual content (but possibly still-compressed), loaded from External
+	 * Store, in case of lazy-loading.  To be called only from RevisionStorage.
+	 *
+	 * @param string $content loaded from External Store
+	 */
+	public function setContentFromExternalStore( $content ) {
+		if ( $this->isContentLoaded() ) {
+			throw new FlowException( 'Tried to set content from' .
+				' External Store, but it\'s already loaded' );
+		}
+
+		// Sanity check to avoid error or loading wrong content if real post
+		// content is an External Store URL placed by user.
+		// This includes verifying the post is actually using External Store
+		if ( !$this->isExternalStore() ) {
+			throw new FlowException( 'Tried to set content from External' .
+				' Store, but this is not an External Store revision.' );
+		}
+
+		$this->contentUrl = $this->unprocessedContent;
+		$this->content = $content;
 	}
 
 	/**
@@ -392,6 +485,7 @@ abstract class AbstractRevision {
 			return '';
 		}
 		$raw = $this->getContentRaw();
+
 		$sourceFormat = $this->getContentFormat();
 		if ( $this->xssCheck === null && $sourceFormat === 'html' ) {
 			// returns true if no handler aborted the hook
@@ -513,7 +607,7 @@ abstract class AbstractRevision {
 			throw new DataModelException( 'TODO: Cannot change content of restricted revision', 'process-data' );
 		}
 
-		if ( $this->content !== null ) {
+		if ( $this->unprocessedContent !== null ) {
 			throw new DataModelException( 'Updating content must use setNextContent method', 'process-data' );
 		}
 
@@ -552,7 +646,8 @@ abstract class AbstractRevision {
 			$this->convertedContent[$storageFormat] = Utils::convert( $format, $storageFormat, $content, $title );
 		}
 
-		$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
+		$this->unprocessedContent = $this->decompressedContent = $this->convertedContent[$storageFormat];
+		$this->content = $this->unprocessedContent;
 		$this->contentUrl = null;
 
 		// should this only remove a subset of flags?
@@ -578,7 +673,7 @@ abstract class AbstractRevision {
 
 		// Do we need this if check, or just the one in newNextRevision against the prior revision?
 		if ( $content !== $this->getContent( $format ) ) {
-			$this->content = null;
+			$this->unprocessedContent = null;
 			$this->setContent( $content, $format, $title );
 			$this->lastEditId = $this->getRevisionId();
 			$this->lastEditUser = UserTuple::newFromUser( $user );
