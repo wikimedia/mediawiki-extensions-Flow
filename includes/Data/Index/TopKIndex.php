@@ -15,19 +15,12 @@ use Flow\Exception\InvalidParameterException;
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
  */
 class TopKIndex extends FeatureIndex {
-	/**
-	 * @var array
-	 */
-	protected $options = [];
-
 	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = [] ) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidParameterException( 'TopKIndex must be sorted' );
 		}
 
-		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed );
-
-		$this->options = $options + [
+		$options = $options + [
 			'limit' => 500,
 			'order' => 'DESC',
 			'create' => function () {
@@ -35,11 +28,14 @@ class TopKIndex extends FeatureIndex {
 			},
 			'shallow' => null,
 		];
-		$this->options['order'] = strtoupper( $this->options['order'] );
+		$options['order'] = strtoupper( $options['order'] );
 
-		if ( !is_array( $this->options['sort'] ) ) {
-			$this->options['sort'] = [ $this->options['sort'] ];
+		if ( !is_array( $options['sort'] ) ) {
+			$options['sort'] = [ $options['sort'] ];
 		}
+
+		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
+
 		if ( $this->options['shallow'] ) {
 			// TODO: perhaps we shouldn't even get a shallow option, just receive a proper compactor in FeatureIndex::__construct
 			$this->rowCompactor = new ShallowCompactor( $this->rowCompactor, $this->options['shallow'], $this->options['sort'] );
@@ -246,6 +242,10 @@ class TopKIndex extends FeatureIndex {
 			$orderBy[] = "$key $order";
 		}
 		$options['ORDER BY'] = $orderBy;
+
+		if ( isset( $this->options['loadcontentnow'] ) ) {
+			$options['LOADCONTENTNOW'] = $this->options['loadcontentnow'];
+		}
 
 		return $options;
 	}
