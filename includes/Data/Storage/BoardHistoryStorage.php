@@ -14,6 +14,10 @@ abstract class BoardHistoryStorage extends DbStorage {
 	abstract public function find( array $attributes, array $options = [] );
 
 	public function findMulti( array $queries, array $options = [] ) {
+		if ( !isset( $options['LOADCONTENTNOW'] ) ) {
+			$options['LOADCONTENTNOW'] = true;
+		}
+
 		if ( count( $queries ) !== 1 ) {
 			throw new DataModelException( __METHOD__ . ' expects exactly one value in $queries', 'process-data' );
 		}
@@ -23,9 +27,11 @@ abstract class BoardHistoryStorage extends DbStorage {
 			$result[$i] = $this->find( $attributes, $options );
 		}
 
-		$result = RevisionStorage::mergeExternalContent( $result );
-
-		return $result;
+		if ( $options['LOADCONTENTNOW'] ) {
+			return RevisionStorage::mergeExternalContent( $result );
+		} else {
+			return $result;
+		}
 	}
 
 	/**
