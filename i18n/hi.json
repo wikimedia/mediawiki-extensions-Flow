@@ -8,7 +8,8 @@
 			"Sfic",
 			"चक्रपाणी",
 			"हिंदुस्थान वासी",
-			"Jayprakash12345"
+			"Jayprakash12345",
+			"Anamdas"
 		]
 	},
 	"enableflow": "प्रवाह को सक्षम करें",
@@ -328,7 +329,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "सदस्य वार्ता पृष्ठ {{GENDER:|देखें}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "पूरालेख साँचा जोड़ें",
 	"flow-beta-feature-remove-archive-template-edit-summary": "पूरालेख साँचा निकालें",
-	"flow-dialog-cancelconfirm-title": "क्या आपको यकीन है?",
+	"flow-dialog-cancelconfirm-title": "क्या आप आश्वस्त हैं?",
 	"flow-dialog-cancelconfirm-keep": "संपादन जारी रखें",
 	"flow-dialog-cancelconfirm-discard": "परिवर्तनों को त्यागें",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|अपनी}} प्रतिक्रिया दें!",

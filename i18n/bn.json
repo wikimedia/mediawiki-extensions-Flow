@@ -185,7 +185,7 @@
 	"flow-ve-mention-template-title": "প্রবাহউল্লেখ",
 	"flow-ve-mention-inspector-invalid-user": "ব্যবহারকারী নাম \"$1\" নিবন্ধিত নয়।",
 	"flow-wikitext-editor-help": "উইকিলেখা $1।",
-	"flow-dialog-cancelconfirm-title": "আপনি কি নিশ্চিত?",
+	"flow-dialog-cancelconfirm-title": "{{GENDER:|আপনি}} কি নিশ্চিত?",
 	"flow-dialog-cancelconfirm-keep": "সম্পাদনা অব্যাহত রাখুন",
 	"flow-dialog-cancelconfirm-discard": "পরিবর্তন বাতিল করুন",
 	"flow-guidedtour-optin-feedback": "আমাদের {{GENDER:$1|আপনার}} প্রতিক্রিয়া জানান!"

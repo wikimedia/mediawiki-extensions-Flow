@@ -20,7 +20,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Slutt}} å overvåke dette emnet",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Du}} overvåker ikke lenger «$1»",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Du}} kan overvåke [$2 dette emnet] når som helst.",
-	"flow-desc": "Styringssystem for arbeidsflyt",
+	"flow-desc": "Diskusjonssystem",
 	"flow-talk-taken-over-comment": "/* Denne siden har blitt konvertert til en Flow-tavle */",
 	"log-name-flow": "Aktivitetslogg for Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|slettet}} et [$4 innlegg] på «[[$3|$5]]» på [[$6]]",

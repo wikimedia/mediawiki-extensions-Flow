@@ -32,7 +32,7 @@
 		]
 	},
 	"enableflow": "启用Flow",
-	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}监视“$1”上新的活跃",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}关注“$1”上新活动",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|您}}已不再监视页面“$1”",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "这将不会影响{{GENDER:$3|您}}监视的单个话题。您可以随时监视[$2 此页面]。",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|停止}}监视此话题",

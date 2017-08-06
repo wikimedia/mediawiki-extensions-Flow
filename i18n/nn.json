@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Njardarlogar"
+		]
+	},
+	"flow-board-header": "Om tavla",
+	"flow-board-collapse-description": "Gøym skildring",
+	"flow-edit-header-link": "Endra skildring",
+	"flow-newtopic-header": "Legg til eit nytt emne",
+	"flow-history-action-hide-post": "løyn",
+	"flow-post-action-view": "Fast lenkje",
+	"flow-post-action-edit-post": "Endra",
+	"flow-topic-action-edit-title": "Endra overskrift",
+	"flow-topic-action-hide-topic": "Løyn emne",
+	"flow-topic-action-lock-topic": "Merk som løyst",
+	"flow-topic-action-summarize-topic": "Lag samandrag",
+	"flow-topic-action-resummarize-topic": "Endra samandraget av emnet",
+	"flow-newest-topics": "Nyaste emna",
+	"flow-recent-topics": "Nyleg aktive emne"
+}
