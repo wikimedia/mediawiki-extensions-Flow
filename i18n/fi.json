@@ -14,7 +14,8 @@
 			"Quiddity",
 			"Macofe",
 			"Mikahama",
-			"01miki10"
+			"01miki10",
+			"Alluk."
 		]
 	},
 	"enableflow": "Ota Flow käyttöön",
@@ -164,7 +165,7 @@
 	"flow-error-not-allowed-reply-to-delete-topic-extract": "Et voi vastata, koska tämä aihe on poistettu. Aiheen poistoloki on tarkistettavissa alta.",
 	"flow-error-not-allowed-suppress-extract": "Tämä aihe on poistettu. Alla näkyy poistoloki, jossa on lisätietoja.",
 	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Et voi vastata, koska tämä aihe on poistettu häivyttämällä. Häivytysloki koskien tätä aihetta on alla.",
-	"flow-error-title-too-long": "Aiheen otsikon koko ei voi olla suurempi kuin $1 {{PLURAL:$1|tavu|tavua}}.",
+	"flow-error-title-too-long": "Otsikossa voi olla enintään $1 {{PLURAL:$1|merkki|merkkiä}}.",
 	"flow-error-no-existing-workflow": "Tätä aihetta ei vielä ole olemassa.",
 	"flow-error-not-a-post": "Aiheen otsikkoa ei voida tallentaa ikään kuin se olisi viesti.",
 	"flow-error-missing-header-content": "Sinun on annettava kuvaus.",
@@ -189,7 +190,7 @@
 	"flow-error-no-index": "Ei löydetty hakemistoa tietojen haun suorittamiseksi.",
 	"flow-error-no-render": "Määriteltyä toimintoa ei tunnistettu.",
 	"flow-error-no-commit": "Määriteltyä toimintoa ei voitu tallentaa.",
-	"flow-error-content-too-long": "Sisältö on liian suuri. Laajentamisen jälkeinen sisältö on rajoitettu $1 {{PLURAL:$1|tavuun}}.",
+	"flow-error-content-too-long": "Sisältö on liian suuri. Laajentamisen jälkeinen sisältö on rajoitettu $1 {{PLURAL:$1|merkkiin}}.",
 	"flow-error-move-topic": "Aihesivun siirtämistä ei nykyisessä järjestelmässä ole mahdollista tehdä lainkaan.",
 	"flow-error-invalid-topic-uuid-title": "Sopimaton otsikko",
 	"flow-error-invalid-topic-uuid": "Sivun otsikko oli virheellinen. Flow luo automaattisesti sivut aiheen nimiavaruudessa.",
