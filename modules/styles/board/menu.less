@@ -111,11 +111,11 @@ div > .flow-menu {
 		font-size: 1em;
 		box-shadow: 0 1px 2px @colorGray12;
 		background: #fff;
-		border-radius: 2px;
+		border-radius: @borderRadius;
 
 		> section:not( :first-of-type ) > li:first-of-type,
 		li.flow-menu-section:not( :first-of-type ) {
-			border-top: 1px solid @colorGray13;
+			border-top: 1px solid @colorGray12;
 		}
 
 		li {
@@ -136,7 +136,7 @@ div > .flow-menu {
 		a {
 			display: inline-block;
 			padding: 0 0.5em;
-			border-radius: 3px;
+			border-radius: @borderRadius;
 			border-width: 0;
 			color: @colorTextLight;
 		}
