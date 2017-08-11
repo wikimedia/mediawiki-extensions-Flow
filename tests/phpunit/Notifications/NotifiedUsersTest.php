@@ -25,6 +25,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 

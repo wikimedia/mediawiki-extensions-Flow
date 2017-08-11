@@ -19,7 +19,7 @@ use WikitextContent;
  */
 class ImportSourceTest extends \MediaWikiTestCase {
 
-	protected $tablesUsed = [ 'page', 'revision' ];
+	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];
 
 	protected function setUp() {
 		parent::setUp();

@@ -26,6 +26,7 @@ class HookTest extends \MediaWikiTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 

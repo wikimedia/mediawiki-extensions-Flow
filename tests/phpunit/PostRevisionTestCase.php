@@ -30,6 +30,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 

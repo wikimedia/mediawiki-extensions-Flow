@@ -19,6 +19,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 		'logging',
 	];
