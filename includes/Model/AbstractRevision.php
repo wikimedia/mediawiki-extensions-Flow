@@ -321,7 +321,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * @param string $state
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isValidModerationState( $state ) {
 		return in_array( $state, self::$perms );
@@ -335,7 +335,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasHiddenContent() {
 		return $this->moderationState === self::MODERATED_HIDDEN;
@@ -449,7 +449,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function getUserId() {
 		return $this->user->id;
@@ -610,35 +610,35 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isModerated() {
 		return $this->moderationState !== self::MODERATED_NONE;
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isHidden() {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isDeleted() {
 		return $this->moderationState === self::MODERATED_DELETED;
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isSuppressed() {
 		return $this->moderationState === self::MODERATED_SUPPRESSED;
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isLocked() {
 		return $this->moderationState === self::MODERATED_LOCKED;
@@ -653,7 +653,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * @param string|array $flags
-	 * @return boolean True when at least one flag in $flags is set
+	 * @return bool True when at least one flag in $flags is set
 	 */
 	public function isFlaggedAny( $flags ) {
 		foreach ( (array)$flags as $flag ) {
@@ -666,7 +666,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * @param string|array $flags
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isFlaggedAll( $flags ) {
 		foreach ( (array)$flags as $flag ) {
@@ -678,14 +678,14 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isFirstRevision() {
 		return $this->prevRevision === null;
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isOriginalContent() {
 		return $this->lastEditId === null;
@@ -706,7 +706,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function getLastContentEditUserId() {
 		return $this->lastEditUser ? $this->lastEditUser->id : null;
@@ -776,7 +776,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function getContentLength() {
 		return $this->contentLength;
@@ -786,14 +786,14 @@ abstract class AbstractRevision {
 	/**
 	 * Determines the content length by measuring the actual content.
 	 *
-	 * @return integer
+	 * @return int
 	 */
 	public function calculateContentLength() {
 		return mb_strlen( $this->getContentInWikitext() );
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function getPreviousContentLength() {
 		return $this->previousContentLength;
@@ -871,7 +871,7 @@ abstract class AbstractRevision {
 	/**
 	 * Get the user ID of the user who created this summary.
 	 *
-	 * @return integer The user ID
+	 * @return int The user ID
 	 */
 	public function getCreatorId() {
 		return $this->getCreatorTuple()->id;

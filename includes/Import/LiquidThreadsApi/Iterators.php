@@ -44,9 +44,9 @@ class TopicIterator implements Iterator {
 	protected $maxId;
 
 	/**
-	 * @param ImportSource     $source
+	 * @param ImportSource $source
 	 * @param CachedThreadData $threadData
-	 * @param string           $pageName
+	 * @param string $pageName
 	 */
 	public function __construct( ImportSource $source, CachedThreadData $threadData, $pageName ) {
 		$this->importSource = $source;
@@ -67,7 +67,7 @@ class TopicIterator implements Iterator {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function key() {
 		return $this->current;
@@ -165,7 +165,7 @@ class ReplyIterator implements Iterator {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function key() {
 		return $this->replyIndex;

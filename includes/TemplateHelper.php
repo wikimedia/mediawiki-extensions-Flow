@@ -32,7 +32,7 @@ class TemplateHelper {
 
 	/**
 	 * @param string $templateDir
-	 * @param boolean $forceRecompile
+	 * @param bool $forceRecompile
 	 */
 	public function __construct( $templateDir, $forceRecompile = false ) {
 		$this->templateDir = $templateDir;
@@ -231,7 +231,7 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param integer $timestamp milliseconds since the unix epoch
+	 * @param int $timestamp milliseconds since the unix epoch
 	 *
 	 * @return string|false
 	 */

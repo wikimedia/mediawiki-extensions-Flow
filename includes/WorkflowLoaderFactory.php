@@ -143,7 +143,7 @@ class WorkflowLoaderFactory {
 	/**
 	 * Create a UUID for a ns/dbkey title pair
 	 *
-	 * @param integer $ns
+	 * @param int $ns
 	 * @param string $dbKey
 	 * @return UUID
 	 * @throws InvalidInputException When the pair does not represent a valid uuid

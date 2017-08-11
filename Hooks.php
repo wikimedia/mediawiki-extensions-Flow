@@ -328,7 +328,7 @@ class FlowHooks {
 	 * Loads RecentChanges list metadata into a temporary cache for later use.
 	 *
 	 * @param ChangesList $changesList
-	 * @param array       $rows
+	 * @param array $rows
 	 */
 	public static function onChangesListInitRows( ChangesList $changesList, $rows ) {
 		if ( !( $changesList instanceof OldChangesList || $changesList instanceof EnhancedChangesList ) ) {
@@ -352,12 +352,12 @@ class FlowHooks {
 	/**
 	 * Updates the given Flow topic line in an enhanced changes list (grouped RecentChanges).
 	 *
-	 * @param ChangesList    $changesList
-	 * @param string         $articlelink
-	 * @param string         $s
-	 * @param RecentChange   $rc
-	 * @param bool           $unpatrolled
-	 * @param bool           $isWatchlist
+	 * @param ChangesList $changesList
+	 * @param string $articlelink
+	 * @param string $s
+	 * @param RecentChange $rc
+	 * @param bool $unpatrolled
+	 * @param bool $isWatchlist
 	 * @return bool
 	 */
 	public static function onChangesListInsertArticleLink(
@@ -381,10 +381,10 @@ class FlowHooks {
 	/**
 	 * Updates a Flow line in the old changes list (standard RecentChanges).
 	 *
-	 * @param ChangesList  $changesList
-	 * @param string       $s
+	 * @param ChangesList $changesList
+	 * @param string $s
 	 * @param RecentChange $rc
-	 * @param array        $classes
+	 * @param array $classes
 	 * @return bool
 	 */
 	public static function onOldChangesListRecentChangesLine(
@@ -402,11 +402,11 @@ class FlowHooks {
 	 * line with meta info (old changes), or simply updates the link to
 	 * the topic (enhanced).
 	 *
-	 * @param ChangesList    $changesList
-	 * @param string         $s
-	 * @param RecentChange   $rc
-	 * @param array|null     $classes
-	 * @param bool           $topicOnly
+	 * @param ChangesList $changesList
+	 * @param string $s
+	 * @param RecentChange $rc
+	 * @param array|null $classes
+	 * @param bool $topicOnly
 	 * @return bool
 	 */
 	protected static function processRecentChangesLine(
@@ -726,7 +726,7 @@ class FlowHooks {
 	 * Adds Flow entries to watchlists
 	 *
 	 * @param array &$types Type array to modify
-	 * @return boolean true
+	 * @return bool true
 	 */
 	public static function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
 		$types[] = RC_FLOW;
@@ -1676,7 +1676,7 @@ class FlowHooks {
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move, but
 			// don't commit yet. That is done below in self::onTitleMoveCompleting
-			$boardMover =Container::get( 'board_mover' );
+			$boardMover = Container::get( 'board_mover' );
 			$boardMover->move( $oldTitle->getArticleID(), $bogusTitle );
 		}
 

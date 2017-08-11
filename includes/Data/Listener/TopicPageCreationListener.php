@@ -16,7 +16,7 @@ class TopicPageCreationListener extends AbstractListener {
 
 	/**
 	 * @param OccupationController $occupationController The OccupationController to create the page with.
-	 * @param SplQueue             $deferredQueue        Queue of callbacks to run only if commit succeeds
+	 * @param SplQueue $deferredQueue Queue of callbacks to run only if commit succeeds
 	 */
 	public function __construct(
 		OccupationController $occupationController,

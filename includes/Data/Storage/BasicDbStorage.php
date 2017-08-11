@@ -46,7 +46,7 @@ class BasicDbStorage extends DbStorage {
 	/**
 	 * Inserts a set of rows into the database
 	 *
-	 * @param  array  $rows The rows to insert. Also accepts a single row.
+	 * @param  array $rows The rows to insert. Also accepts a single row.
 	 * @return array|false  An array of the rows that now exist
 	 * in the database. Integrity of keys is guaranteed.
 	 * False if we failed.
@@ -76,9 +76,9 @@ class BasicDbStorage extends DbStorage {
 	/**
 	 * Update a single row in the database.
 	 *
-	 * @param  array  $old The current state of the row.
-	 * @param  array  $new The desired new state of the row.
-	 * @return boolean     Whether or not the operation was successful.
+	 * @param  array $old The current state of the row.
+	 * @param  array $new The desired new state of the row.
+	 * @return bool     Whether or not the operation was successful.
 	 * @throws DataPersistenceException
 	 */
 	public function update( array $old, array $new ) {
@@ -107,7 +107,7 @@ class BasicDbStorage extends DbStorage {
 
 	/**
 	 * @param array $row
-	 * @return boolean success
+	 * @return bool success
 	 * @throws DataPersistenceException
 	 */
 	public function remove( array $row ) {

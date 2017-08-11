@@ -118,7 +118,7 @@ abstract class AbstractIterator implements Iterator {
 	}
 
 	/**
-	 * @return integer 0-indexed count of the page number fetched
+	 * @return int 0-indexed count of the page number fetched
 	 */
 	public function key() {
 		return $this->key;

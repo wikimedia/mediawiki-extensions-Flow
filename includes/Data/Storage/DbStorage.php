@@ -49,7 +49,7 @@ abstract class DbStorage implements ObjectStorage {
 	/**
 	 * Runs preprocessSqlArray on each element of an array.
 	 *
-	 * @param  array  $outer The array to check
+	 * @param  array $outer The array to check
 	 * @return array         Preprocessed SQL array.
 	 * @throws DataModelException
 	 */
@@ -99,7 +99,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * potentially unsafe characters.
 	 *
 	 * @param array $row The row to check.
-	 * @return boolean True if raw SQL is found
+	 * @return bool True if raw SQL is found
 	 */
 	protected function hasUnescapedSQL( array $row ) {
 		foreach ( $row as $key => $value ) {
@@ -134,7 +134,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * SQL injection and other funkiness
 	 * @todo Currently only supports LIMIT, OFFSET and ORDER BY
 	 * @param  array $options An options array passed to a query.
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function validateOptions( $options ) {
 		static $validUnaryOptions = [

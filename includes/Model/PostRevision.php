@@ -201,7 +201,7 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isTopicTitle() {
 		return $this->replyToId === null;
@@ -293,14 +293,14 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @param integer $depth
+	 * @param int $depth
 	 */
 	public function setDepth( $depth ) {
 		$this->depth = (int)$depth;
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 * @throws DataModelException
 	 */
 	public function getDepth() {
@@ -386,7 +386,7 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * @param User $user
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isCreator( User $user ) {
 		if ( $user->isAnon() ) {

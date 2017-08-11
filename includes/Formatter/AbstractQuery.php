@@ -292,7 +292,7 @@ abstract class AbstractQuery {
 	/**
 	 * Decides if the given abstract revision needs its prior revision for formatting
 	 * @param AbstractRevision $revision
-	 * @return boolean true when the previous revision to this should be loaded
+	 * @return bool true when the previous revision to this should be loaded
 	 */
 	protected function needsPreviousRevision( AbstractRevision $revision ) {
 		// crappy special case needs the previous object so it can show the title
@@ -386,7 +386,7 @@ abstract class AbstractQuery {
 
 	/**
 	 * Gets a Workflow object given its ID
-	 * @param  UUID   $workflowId The Workflow ID to retrieve.
+	 * @param  UUID $workflowId The Workflow ID to retrieve.
 	 * @return Workflow           The Workflow.
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {

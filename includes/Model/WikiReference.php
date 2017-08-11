@@ -13,14 +13,14 @@ class WikiReference extends Reference {
 	protected $target;
 
 	/**
-	 * @param UUID   $id          Id of the reference
-	 * @param string $wiki        Wiki ID of the reference source
-	 * @param UUID   $srcWorkflow ID of the source Workflow
-	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
-	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
-	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
-	 * @param string $type        Type of reference
-	 * @param Title  $targetTitle Title of the reference's target.
+	 * @param UUID $id Id of the reference
+	 * @param string $wiki Wiki ID of the reference source
+	 * @param UUID $srcWorkflow ID of the source Workflow
+	 * @param Title $srcTitle Title of the Workflow from which this reference comes.
+	 * @param string $objectType Output of getRevisionType for the AbstractRevision that this reference comes from.
+	 * @param UUID $objectId Unique identifier for the revisioned object containing the reference.
+	 * @param string $type Type of reference
+	 * @param Title $targetTitle Title of the reference's target.
 	 */
 	public function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
 		$this->target = $targetTitle;

@@ -101,8 +101,8 @@ class Importer {
 	/**
 	 * Imports topics from a data source to a given page.
 	 *
-	 * @param IImportSource     $source
-	 * @param Title             $targetPage
+	 * @param IImportSource $source
+	 * @param Title $targetPage
 	 * @param User User doing the conversion actions (e.g. initial description,
 	 *    wikitext archive edit).  However, actions will be attributed to the original
 	 *    user when possible (e.g. the user who did the original LQT reply)
@@ -266,7 +266,7 @@ class PageImportState {
 
 	/**
 	 * @param object|object[] $object
-	 * @param array           $metadata
+	 * @param array $metadata
 	 */
 	public function put( $object, array $metadata ) {
 		$metadata['imported'] = true;
@@ -284,7 +284,7 @@ class PageImportState {
 	 * given in clearManagerGroup.
 	 *
 	 * @param  string $type Class name to retrieve
-	 * @param  UUID   $id   ID of the object to retrieve
+	 * @param  UUID $id ID of the object to retrieve
 	 * @return Object|false
 	 */
 	public function get( $type, UUID $id ) {
@@ -309,7 +309,7 @@ class PageImportState {
 	 * Gets the top revision of an item by ID
 	 *
 	 * @param  string $type The type of the object to return (e.g. PostRevision).
-	 * @param  UUID   $id   The ID (e.g. post ID, topic ID, etc)
+	 * @param  UUID $id The ID (e.g. post ID, topic ID, etc)
 	 * @return object|false The top revision of the requested object, or false if not found.
 	 */
 	public function getTopRevision( $type, UUID $id ) {
@@ -340,7 +340,7 @@ class PageImportState {
 	 * Update the id of the workflow to match the provided timestamp
 	 *
 	 * @param Workflow $workflow
-	 * @param string   $timestamp
+	 * @param string $timestamp
 	 */
 	public function setWorkflowTimestamp( Workflow $workflow, $timestamp ) {
 		$uid = $this->getTimestampId( $timestamp );
@@ -370,8 +370,8 @@ class PageImportState {
 	/**
 	 * Records an association between a created object and its source.
 	 *
-	 * @param  UUID          $objectId UUID representing the object that was created.
-	 * @param  IImportObject $object   Output from getObjectKey
+	 * @param  UUID $objectId UUID representing the object that was created.
+	 * @param  IImportObject $object Output from getObjectKey
 	 */
 	public function recordAssociation( UUID $objectId, IImportObject $object ) {
 		$this->sourceStore->setAssociation( $objectId, $object->getObjectKey() );
@@ -634,7 +634,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $pageState
-	 * @param IImportHeader   $importHeader
+	 * @param IImportHeader $importHeader
 	 */
 	public function importHeader( PageImportState $pageState, IImportHeader $importHeader ) {
 		$pageState->logger->info( 'Importing header' );
@@ -687,7 +687,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param TopicImportState $topicState
-	 * @param IImportTopic    $importTopic
+	 * @param IImportTopic $importTopic
 	 */
 	public function importTopic( TopicImportState $topicState, IImportTopic $importTopic ) {
 		$summary = $importTopic->getTopicSummary();
@@ -705,7 +705,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $state
-	 * @param IImportTopic    $importTopic
+	 * @param IImportTopic $importTopic
 	 * @return TopicImportState
 	 */
 	protected function getTopicState( PageImportState $state, IImportTopic $importTopic ) {
@@ -727,7 +727,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $state
-	 * @param IImportTopic    $importTopic
+	 * @param IImportTopic $importTopic
 	 * @return TopicImportState
 	 */
 	protected function createTopicState( PageImportState $state, IImportTopic $importTopic ) {
@@ -781,7 +781,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param PageImportState $state
-	 * @param IImportTopic    $importTopic
+	 * @param IImportTopic $importTopic
 	 * @return TopicImportState|null
 	 */
 	protected function getExistingTopicState( PageImportState $state, IImportTopic $importTopic ) {
@@ -799,7 +799,7 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param TopicImportState $state
-	 * @param IImportSummary   $importSummary
+	 * @param IImportSummary $importSummary
 	 */
 	public function importSummary( TopicImportState $state, IImportSummary $importSummary ) {
 		$state->parent->logger->info( "Importing summary" );
@@ -845,9 +845,9 @@ class TalkpageImportOperation {
 
 	/**
 	 * @param TopicImportState $state
-	 * @param IImportPost      $post
-	 * @param PostRevision     $replyTo
-	 * @param string           $logPrefix
+	 * @param IImportPost $post
+	 * @param PostRevision $replyTo
+	 * @param string $logPrefix
 	 */
 	public function importPost(
 		TopicImportState $state,
@@ -908,11 +908,11 @@ class TalkpageImportOperation {
 	/**
 	 * Imports an object with all its revisions
 	 *
-	 * @param IRevisionableObject $object              Object to import.
-	 * @param callable            $importFirstRevision Function which, given the appropriate import revision, creates the Flow revision.
-	 * @param string              $editChangeType      The Flow change type (from FlowActions.php) for each new operation.
-	 * @param PageImportState     $state               State of the import operation.
-	 * @param Title               $title               Title content is rendered against
+	 * @param IRevisionableObject $object Object to import.
+	 * @param callable $importFirstRevision Function which, given the appropriate import revision, creates the Flow revision.
+	 * @param string $editChangeType The Flow change type (from FlowActions.php) for each new operation.
+	 * @param PageImportState $state State of the import operation.
+	 * @param Title $title Title content is rendered against
 	 * @return AbstractRevision[] Objects to insert into the database.
 	 * @throws ImportException
 	 */

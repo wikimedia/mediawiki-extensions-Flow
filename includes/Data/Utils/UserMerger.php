@@ -78,8 +78,8 @@ class UserMerger {
 	 * Called after all databases have been updated. Needs to purge any
 	 * cache that contained data about $oldUser
 	 *
-	 * @param integer $oldUserId
-	 * @param integer $newUserId
+	 * @param int $oldUserId
+	 * @param int $newUserId
 	 */
 	public function finalizeMerge( $oldUserId, $newUserId ) {
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
@@ -98,7 +98,7 @@ class UserMerger {
 
 	/**
 	 * @param Iterator $it
-	 * @param integer $oldUserId
+	 * @param int $oldUserId
 	 * @param callable $callback Receives a single row, returns domain object or null
 	 * @param string $userTupleGetter Method to call on domain object that will return
 	 *  a UserTuple instance.

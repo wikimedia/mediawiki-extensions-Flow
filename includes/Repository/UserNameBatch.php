@@ -61,7 +61,7 @@ class UserNameBatch {
 
 	/**
 	 * @param string $wiki
-	 * @param integer $userId
+	 * @param int $userId
 	 * @param string $userName Non null to set known usernames like $wgUser
 	 */
 	public function add( $wiki, $userId, $userName = null ) {
@@ -86,7 +86,7 @@ class UserNameBatch {
 	 * Get the displayable username
 	 *
 	 * @param string $wiki
-	 * @param integer $userId
+	 * @param int $userId
 	 * @param string|boolean $userIp
 	 * @return string|boolean false if username is not found or display is suppressed
 	 * @todo Return something better for not found / suppressed, but what? Making

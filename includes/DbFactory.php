@@ -46,7 +46,7 @@ class DbFactory {
 	/**
 	 * Gets a database connection for the Flow-specific database.
 	 *
-	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
+	 * @param int $db index of the connection to get.  DB_MASTER|DB_SLAVE.
 	 * @return \Database
 	 */
 	public function getDB( $db ) {
@@ -69,7 +69,7 @@ class DbFactory {
 	/**
 	 * Gets a database connection for the main wiki database.  Mockable version of wfGetDB.
 	 *
-	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
+	 * @param int $db index of the connection to get.  DB_MASTER|DB_SLAVE.
 	 * @param string|boolean $wiki The wiki ID, or false for the current wiki
 	 * @return \DatabaseBase
 	 */

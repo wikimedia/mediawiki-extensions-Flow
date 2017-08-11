@@ -282,7 +282,7 @@ class TreeRepository {
 
 	/**
 	 * Finds the root path for a single post ID.
-	 * @param  UUID   $descendant Post ID
+	 * @param  UUID $descendant Post ID
 	 * @return UUID[]|null Path to the root of that node.
 	 */
 	public function findRootPath( UUID $descendant ) {
@@ -293,7 +293,7 @@ class TreeRepository {
 
 	/**
 	 * Finds the root posts of a list of posts.
-	 * @param  UUID[]  $descendants Array of PostRevision objects to find roots for.
+	 * @param  UUID[] $descendants Array of PostRevision objects to find roots for.
 	 * @return UUID[] Associative array of post ID (as hex) to UUID object representing its root.
 	 */
 	public function findRoots( array $descendants ) {

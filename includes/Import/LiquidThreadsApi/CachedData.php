@@ -139,8 +139,8 @@ class CachedThreadData extends CachedApiData {
 	 * Retrieve data for threads from the given page starting with the provided
 	 * offset.
 	 *
-	 * @param string  $pageName
-	 * @param integer $startId
+	 * @param string $pageName
+	 * @param int $startId
 	 * @return array Associative result array
 	 */
 	public function getFromPage( $pageName, $startId = 0 ) {

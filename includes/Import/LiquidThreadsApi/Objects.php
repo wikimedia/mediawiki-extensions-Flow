@@ -29,7 +29,7 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 
 	/**
 	 * @param ImportSource $source
-	 * @param int          $pageId ID of the remote page
+	 * @param int $pageId ID of the remote page
 	 */
 	function __construct( $source, $pageId ) {
 		$this->importSource = $source;
@@ -73,7 +73,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 
 	/**
 	 * @param ImportSource $source
-	 * @param array        $apiResponse
+	 * @param array $apiResponse
 	 */
 	public function __construct( ImportSource $source, array $apiResponse ) {
 		parent::__construct( $source, $apiResponse['rootid'] );
@@ -259,7 +259,7 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	protected function getSummaryId() {
 		return $this->apiResponse['summaryid'];
@@ -295,7 +295,7 @@ class ImportSummary extends PageRevisionedObject implements IImportSummary {
 	protected $source;
 
 	/**
-	 * @param array        $apiResponse
+	 * @param array $apiResponse
 	 * @param ImportSource $source
 	 * @throws ImportException
 	 */
@@ -323,9 +323,9 @@ class ImportRevision implements IObjectRevision {
 	/**
 	 * Creates an ImportRevision based on a MW page revision
 	 *
-	 * @param array         $apiResponse  An element from api.query.revisions
+	 * @param array $apiResponse An element from api.query.revisions
 	 * @param IImportObject $parentObject
-	 * @param User          $scriptUser Account used when the imported revision is by a suppressed user
+	 * @param User $scriptUser Account used when the imported revision is by a suppressed user
 	 */
 	function __construct( array $apiResponse, IImportObject $parentObject, User $scriptUser ) {
 		$this->apiResponse = $apiResponse;

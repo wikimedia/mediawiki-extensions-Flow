@@ -212,7 +212,7 @@ abstract class Utils {
 	/**
 	 * Check to see whether a Parsoid or RESTBase service is configured.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function isParsoidConfigured() {
 		try {

@@ -294,7 +294,7 @@ class Workflow {
 	/**
 	 * Returns true if the workflow is new as of this request.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isNew() {
 		return $this->pageId === 0;
@@ -344,7 +344,7 @@ class Workflow {
 	 * it should return false later on to allow wider use.
 	 *
 	 * @param Title $title
-	 * @return boolean
+	 * @return bool
 	 * @throws InvalidInputException
 	 * @throws InvalidInputException
 	 */

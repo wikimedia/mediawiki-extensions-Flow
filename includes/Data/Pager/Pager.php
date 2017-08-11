@@ -226,7 +226,7 @@ class Pager {
 	/**
 	 * @param string $direction
 	 * @param object $object
-	 * @param integer $pageLimit
+	 * @param int $pageLimit
 	 * @return array
 	 */
 	protected function makePagingLink( $direction, $object, $pageLimit ) {

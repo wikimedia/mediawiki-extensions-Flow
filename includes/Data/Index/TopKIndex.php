@@ -162,7 +162,7 @@ class TopKIndex extends FeatureIndex {
 	 *  want all rows before/after that timestamp.  This consists of values for each field
 	 *  we sort by, delimited by |.
 	 *
-	 * @return integer An integer less than, equal to, or greater than zero
+	 * @return int An integer less than, equal to, or greater than zero
 	 *  if $row is considered to be respectively less than, equal to, or
 	 *  greater than $offsetValue
 	 *

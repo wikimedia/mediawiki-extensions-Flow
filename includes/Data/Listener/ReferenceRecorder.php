@@ -254,7 +254,7 @@ class ReferenceRecorder extends AbstractListener {
 	 * Retrieves references that are already stored in the database for a given revision
 	 *
 	 * @param  string $revType The value returned from Revision::getRevisionType() for the revision.
-	 * @param  UUID $objectId   The revision's Object ID.
+	 * @param  UUID $objectId The revision's Object ID.
 	 * @return Reference[] Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {

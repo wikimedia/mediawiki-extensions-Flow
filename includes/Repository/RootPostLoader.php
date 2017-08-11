@@ -98,7 +98,7 @@ class RootPostLoader {
 			return [];
 		}
 		// load posts for all located post ids
-		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
+		$allPostIds = $this->fetchRelatedPostIds( $topicIds );
 		$queries = [];
 		foreach ( $allPostIds as $postId ) {
 			$queries[] = [ 'rev_type_id' => $postId ];

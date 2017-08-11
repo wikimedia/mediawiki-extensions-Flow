@@ -95,7 +95,7 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * @param integer $id
+	 * @param int $id
 	 * @return ImportTopic|null
 	 */
 	public function getTopic( $id ) {
@@ -134,7 +134,7 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * @param integer $id
+	 * @param int $id
 	 * @return ImportPost
 	 */
 	public function getPost( $id ) {
@@ -142,7 +142,7 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * @param integer $id
+	 * @param int $id
 	 * @return array
 	 */
 	public function getThreadData( $id ) {
@@ -167,7 +167,7 @@ class ImportSource implements IImportSource {
 
 	/**
 	 * @param string $pageName
-	 * @param integer $startId
+	 * @param int $startId
 	 * @return array
 	 */
 	public function getFromPage( $pageName, $startId = 0 ) {
@@ -217,7 +217,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
-	 * @param  array  $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
+	 * @param  array $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
 	 * @return array Data as returned under query.threads by the API
 	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
 	 *  have no matching records.
@@ -257,7 +257,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves data about a set of pages from the API
 	 *
-	 * @param  array  $pageIds Page IDs to return data for.
+	 * @param  array $pageIds Page IDs to return data for.
 	 * @return array The query.pages part of the API response.
 	 * @throws \MWException
 	 */
@@ -295,8 +295,8 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves data about a set of pages from the API
 	 *
-	 * @param array $conditions     Conditions to retrieve pages by; to be sent to the API.
-	 * @param bool  $expectContinue Pass true here when caller expects more revisions to exist than
+	 * @param array $conditions Conditions to retrieve pages by; to be sent to the API.
+	 * @param bool $expectContinue Pass true here when caller expects more revisions to exist than they are requesting information about.
 	 *  they are requesting information about.
 	 * @return array The query.pages part of the API response.
 	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
@@ -338,7 +338,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 * Calls the remote API
 	 *
 	 * @param array $params The API request to send
-	 * @param int   $retry  Retry the request on failure this many times
+	 * @param int $retry Retry the request on failure this many times
 	 * @return array API return value, decoded from JSON into an array.
 	 */
 	abstract function apiCall( array $params, $retry = 1 );

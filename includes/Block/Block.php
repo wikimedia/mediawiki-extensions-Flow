@@ -314,7 +314,7 @@ abstract class AbstractBlock implements Block {
 	 *
 	 * @param AbstractRevision|null $old null when $new is first revision
 	 * @param AbstractRevision $new
-	 * @return boolean True when content is allowed by spam filter
+	 * @return bool True when content is allowed by spam filter
 	 */
 	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
 		/** @var SpamFilterController $spamFilter */

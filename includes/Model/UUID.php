@@ -377,7 +377,7 @@ class UUID implements ApiSerializable {
 
 	/**
 	 * @param UUID|null $other
-	 * @return boolean
+	 * @return bool
 	 */
 	public function equals( UUID $other = null ) {
 		return $other && $other->getAlphadecimal() === $this->getAlphadecimal();
@@ -449,7 +449,7 @@ class UUID implements ApiSerializable {
 	 * been generated with \UIDGenerator::newTimestampedUID88.
 	 *
 	 * @param string $hex
-	 * @return integer Number of seconds since epoch
+	 * @return int Number of seconds since epoch
 	 */
 	public static function hex2timestamp( $hex ) {
 		$msTimestamp = hexdec( substr( $hex, 0, 12 ) ) >> 2;

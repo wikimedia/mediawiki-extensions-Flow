@@ -83,7 +83,7 @@ class Templating {
 	 *
 	 * Moderation-aware.
 	 *
-	 * @param  AbstractRevision $revision        Revision to display
+	 * @param  AbstractRevision $revision Revision to display
 	 * @return string                            HTML
 	 * @throws PermissionException
 	 */

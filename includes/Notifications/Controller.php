@@ -65,7 +65,7 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Header-related event.
-	 * @param  array  $data Associative array of parameters.
+	 * @param  array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * board-workflow: The Workflow object for the board. Always required. * timestamp: Original event timestamp, for imports. Optional. * extra-data: Additional data to pass along to Event extra.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * board-workflow: The Workflow object for the board. Always required.
 	 * * timestamp: Original event timestamp, for imports. Optional.
@@ -140,7 +140,7 @@ class NotificationController {
 	 * * flow-post-reply
 	 * * flow-topic-renamed
 	 * * flow-post-edited
-	 * @param  array  $data Associative array of parameters.
+	 * @param  array $data Associative array of parameters. * user: The user who made the change. Always required. * revision: The PostRevision created by the action. Always required. * title: The Title on which this Topic sits. Always required. * topic-workflow: The Workflow object for the topic. Always required. * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames. * old-subject: The old subject of a Topic. Required for topic renames. * new-subject: The new subject of a Topic. Required for topic renames.
 	 * * user: The user who made the change. Always required.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * title: The Title on which this Topic sits. Always required.
@@ -268,7 +268,7 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Summary-related event.
-	 * @param  array  $data Associative array of parameters.
+	 * @param  array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * topic-title: The PostRevision object for the topic title. Always required. * topic-workflow: The Workflow object for the board. Always required. * extra-data: Additional data to pass along to Event extra.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * topic-title: The PostRevision object for the topic title. Always required.
 	 * * topic-workflow: The Workflow object for the board. Always required.
@@ -669,7 +669,7 @@ class NotificationController {
 	 *
 	 * @param $event EchoEvent
 	 * @param $bundleString string Determines how the notification should be bundled
-	 * @return boolean True for success
+	 * @return bool True for success
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
 		switch ( $event->getType() ) {
