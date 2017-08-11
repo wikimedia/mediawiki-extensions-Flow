@@ -35,6 +35,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 
