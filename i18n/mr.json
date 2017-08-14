@@ -369,7 +369,7 @@
 	"flow-mark-diff-patrolled-link-title": "टेहळणी केल्याची खूण करा",
 	"flow-talk-page-beta-feature-message": "सदस्य चर्चापानावर प्रवाह",
 	"flow-notification-link-text-enabled-on-talkpage": "सदस्य चर्चा पान{{GENDER:|बघा}}",
-	"flow-dialog-cancelconfirm-title": "नक्की आहात?",
+	"flow-dialog-cancelconfirm-title": "{{GENDER:|आपण}}खात्री करता?",
 	"flow-dialog-cancelconfirm-message": "जतन करण्याआधीच आपणास वगळावयाचे आहे काय?",
 	"flow-dialog-cancelconfirm-keep": "संपादन सुरु ठेवा",
 	"flow-dialog-cancelconfirm-discard": "बदल हटवा",
