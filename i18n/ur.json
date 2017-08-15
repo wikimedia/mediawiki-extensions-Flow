@@ -211,6 +211,7 @@
 	"flow-notification-edit-bundle": "$1 اور {{PLURAL:$5|دیگر|دیگر افراد}} نے $3 پر \"$2\" میں موجود ایک <span class=\"plainlinks\">[$4 مراسلہ]</span> میں {{GENDER:$1|ترمیم کی}}۔",
 	"notification-header-flow-new-topic-v2": "<strong>$3</strong> پر نیا موضوع  <bdi> \"<strong>$4</strong>\"</bdi> تخلیق کیا گیا۔",
 	"notification-bundle-header-flow-new-topic": "<strong>$3</strong> پر $1 {{PLURAL:$1|نیا موضوع|نئے موضوعات}}",
+	"notification-header-flow-new-topic-user-talk": "<strong>آپ کے تبادلہ خیال صفحہ</strong> پر نیا موضوع شروع کیا گیا ہے: \"<strong>$4</strong>\"۔",
 	"notification-header-flow-post-reply": "$1 نے \"<strong>$4</strong>\" میں {{GENDER:$2|جواب دیا}}۔",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|ایک تازہ جواب|$1 نئے جواب|100=99+ نئے جواب}} \"<strong>$3</strong>\" میں۔",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|ایک تازہ جواب|$1 نئے جواب|100=99+ نئے جواب}} موضوع \"<strong>$3</strong>\" <strong> میں آپ کے تبادلۂ خیال صفحہ پر</strong>۔",
