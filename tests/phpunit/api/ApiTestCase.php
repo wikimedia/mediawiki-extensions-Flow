@@ -23,6 +23,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		'flow_workflow',
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 

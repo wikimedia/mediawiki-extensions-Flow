@@ -32,6 +32,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		// importer will ensureFlowRevision(), which will insert into these core tables
 		'page',
 		'revision',
+		'ip_changes',
 		'text',
 	];
 

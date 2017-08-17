@@ -26,6 +26,7 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'page',
 			'revision',
+			'ip_changes',
 		] );
 	}
 
