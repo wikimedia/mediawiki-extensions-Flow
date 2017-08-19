@@ -24,6 +24,7 @@
 	"flow-hide-title-content": "આ વિષય $1 દ્વારા છુપાવાયેલ છે",
 	"flow-hide-header-content": "$2 દ્વારા {{$1|છુપાવાયેલ}}",
 	"flow-cancel": "રદ કરો",
+	"flow-show-change": "ફેરફારો દર્શાવો",
 	"flow-newtopic-title-placeholder": "નવો વિષય",
 	"flow-newtopic-header": "નવો વિષય ઉમેરો",
 	"flow-newtopic-save": "વિષય ઉમેરો",
