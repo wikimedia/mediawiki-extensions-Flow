@@ -29,6 +29,11 @@ $namespaceNames['azb'] = [
 	NS_TOPIC => 'مبحث',
 ];
 
+/** Bashkir **/
+$namespaceNames['ba'] = [
+	NS_TOPIC => 'Тема',
+];
+
 /** Western Balochi */
 $namespaceNames['bgn'] = [
 	NS_TOPIC => 'سر_ئو_بُن',
