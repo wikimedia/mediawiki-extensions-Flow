@@ -202,6 +202,7 @@
 	"flow-error-process-data": "당신의 요청 데이터를 처리하는 도중 오류가 발생했습니다.",
 	"flow-error-process-wikitext": "HTML/위키텍스트 대화를 처리하는 도중 오류가 발생했습니다.",
 	"flow-error-no-index": "데이터 검색을 수행하기 위한 인덱스를 찾는 데 실패했습니다.",
+	"flow-error-content-too-long": "내용이 너무 큽니다. 확장 후의 내용은 $1 {{PLURAL:$1|바이트}}로 제한됩니다.",
 	"flow-error-move-topic": "주제 문서 이동은 현재 지원되지 않습니다.",
 	"flow-error-invalid-topic-uuid-title": "잘못된 제목",
 	"flow-error-invalid-topic-uuid": "요청된 문서의 제목은 유효하지 않습니다. 주제 이름공간은 자동적으로 플로가 생성합니다.",
@@ -462,5 +463,8 @@
 	"flow-dialog-cancelconfirm-discard": "바뀜 버리기",
 	"flow-optin-restore-wikitext": "보존된 위키텍스트 문서를 복구합니다.",
 	"flow-optin-restore-flow-board": "보존된 토론 게시판을 복구합니다.",
-	"flow-guidedtour-optin-welcome": "{{GENDER:$1|당신의}} 새 사용자토론 문서에 오신 것을 {{GENDER:$1|환영합니다}}"
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|당신의}} 새 사용자토론 문서에 오신 것을 {{GENDER:$1|환영합니다}}",
+	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|나의}} 오래된 대화 찾기",
+	"flow-guidedtour-optin-find-old-conversations-description": "이전 대화는 보존 문서로 이동되었습니다.",
+	"flow-guidedtour-optin-feedback": "{{GENDER:$1|여러분의}} 의견을 주세요!"
 }
