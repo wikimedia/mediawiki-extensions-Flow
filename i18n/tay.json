@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Akamycoco"
+			"Akamycoco",
+			"Translatealcd"
 		]
 	},
-	"flow-post-action-edit-post": "smr’zyut miru’"
+	"flow-history-action-delete-post": "’muyut",
+	"flow-post-action-delete-post": "’muyut",
+	"flow-post-action-edit-post": "smr’zyut miru’",
+	"flow-moderation-confirm-delete-post": "’muyut",
+	"flow-moderation-confirm-delete-topic": "’muyut"
 }
