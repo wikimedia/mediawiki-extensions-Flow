@@ -420,7 +420,7 @@
 	 * @param {jQuery} $calculationContainer Container to do scroll calculations on (height, scrollTop, offset, etc.)
 	 */
 	function _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck( $searchContainer, $calculationContainer ) {
-		var calculationContainerHeight, calculationContainerScroll, calculationContainerThreshold;
+		var calculationContainerHeight, calculationContainerScroll;
 		if ( this.infiniteScrollDisabled ) {
 			// This happens when the topic navigation is used to jump to a topic
 			// We should not infinite-load anything when we are scrolling to a topic
@@ -429,7 +429,6 @@
 
 		calculationContainerHeight = $calculationContainer.height();
 		calculationContainerScroll = $calculationContainer.scrollTop();
-		calculationContainerThreshold = ( $calculationContainer.offset() || { top: calculationContainerScroll } ).top;
 
 		// Find load more buttons within our search container, and they must be visible
 		$searchContainer.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
@@ -438,7 +437,7 @@
 				nodeHeight = $this.outerHeight( true );
 
 			// First, is this element above or below us?
-			if ( nodeOffset <= calculationContainerThreshold ) {
+			if ( nodeOffset <= calculationContainerScroll ) {
 				// Top of element is above the viewport; don't use it.
 				return;
 			}
@@ -447,7 +446,7 @@
 			// also shouldn't be triggered if it's still behind TOC!
 
 			// Is this element in the viewport?
-			if ( nodeOffset - nodeHeight <= calculationContainerThreshold + calculationContainerHeight ) {
+			if ( nodeOffset - nodeHeight <= calculationContainerScroll + calculationContainerHeight ) {
 				// Element is almost in viewport, click it.
 				$( this ).trigger( 'click' );
 			}
