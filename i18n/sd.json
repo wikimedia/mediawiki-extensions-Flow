@@ -6,6 +6,8 @@
 			"Aursani"
 		]
 	},
+	"flow-topic-collapse-siderail": "پوري ويڪر تي پڙھو",
+	"flow-topic-expand-siderail": "مقرر ويڪر تي پڙھو",
 	"flow-last-modified-by": "$1 پاران آخري ڀيرو {{GENDER:$1|سنواريل}}",
 	"flow-topic-action-watchlist-add": "هن موضوع کي سبسڪرائب ڪريو",
 	"flow-topic-action-watchlist-remove": "اڻ سبسڪرائب ڪريو",
