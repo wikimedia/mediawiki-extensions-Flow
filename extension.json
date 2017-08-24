@@ -1366,6 +1366,18 @@
 		"Flow\\WatchedTopicItems": "includes/WatchedTopicItems.php",
 		"Flow\\WorkflowLoader": "includes/WorkflowLoader.php",
 		"Flow\\WorkflowLoaderFactory": "includes/WorkflowLoaderFactory.php",
-		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php"
+		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php",
+		"FlowUpdateRecentChanges": "maintenance/FlowUpdateRecentChanges.php",
+		"FlowSetUserIp": "maintenance/FlowSetUserIp.php",
+		"FlowUpdateUserWiki": "maintenance/FlowUpdateUserWiki.php",
+		"FlowUpdateRevisionTypeId": "maintenance/FlowUpdateRevisionTypeId.php",
+		"FlowPopulateLinksTables": "maintenance/FlowPopulateLinksTables.php",
+		"FlowFixLog": "maintenance/FlowFixLog.php",
+		"FlowUpdateWorkflowPageId": "maintenance/FlowUpdateWorkflowPageId.php",
+		"FlowCreateTemplates": "maintenance/FlowCreateTemplates.php",
+		"FlowFixLinks": "maintenance/FlowFixLinks.php",
+		"FlowUpdateBetaFeaturePreference": "maintenance/FlowUpdateBetaFeaturePreference.php",
+		"FlowPopulateRefId": "maintenance/FlowPopulateRefId.php",
+		"FlowFixInconsistentBoards": "maintenance/FlowFixInconsistentBoards.php"
 	}
 }
