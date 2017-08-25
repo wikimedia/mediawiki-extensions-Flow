@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bunukwiki"
+		]
+	},
+	"flow-history-action-hide-post": "midimut",
+	"flow-post-action-hide-post": "midimut",
+	"flow-moderation-confirm-hide-post": "midimut",
+	"flow-moderation-confirm-hide-topic": "midimut"
+}
