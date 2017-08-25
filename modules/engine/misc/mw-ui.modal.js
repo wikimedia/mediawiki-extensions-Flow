@@ -78,11 +78,11 @@
 		'<div class="flow-ui-modal-heading">' +
 		'<a href="#" class="mw-ui-anchor mw-ui-quiet mw-ui-destructive flow-ui-modal-heading-prev" data-flow-interactive-handler="modalPrevOrClose"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-close"></span></a>' +
 		'<a href="#" class="mw-ui-anchor mw-ui-quiet mw-ui-progressive flow-ui-modal-heading-next" data-flow-interactive-handler="modalNextOrSubmit"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-check"></span></a>' +
-			// title
+		// title
 		'</div>' +
 
 		'<div class="flow-ui-modal-content">' +
-			// content
+		// content
 		'</div>' +
 		'</div>' +
 		'</div>';
