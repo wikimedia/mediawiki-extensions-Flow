@@ -77,12 +77,13 @@
 	 * @inheritdoc
 	 */
 	mw.flow.dm.Board.prototype.getHashObject = function () {
-		return $.extend( {
-			isDeleted: this.isDeleted(),
-			pagePrefixedDb: this.getPageTitle().getPrefixedDb(),
-			topicCount: this.getItemCount(),
-			description: this.getDescription() && this.getDescription().getHashObject()
-		},
+		return $.extend(
+			{
+				isDeleted: this.isDeleted(),
+				pagePrefixedDb: this.getPageTitle().getPrefixedDb(),
+				topicCount: this.getItemCount(),
+				description: this.getDescription() && this.getDescription().getHashObject()
+			},
 			// Parent
 			mw.flow.dm.Board.parent.prototype.getHashObject.call( this )
 		);
