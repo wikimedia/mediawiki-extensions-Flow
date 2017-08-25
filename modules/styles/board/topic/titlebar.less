@@ -14,6 +14,28 @@
 	.flow-menu {
 		top: 2em;
 	}
+
+	@media all and ( min-width: @small ) {
+		.flow-topic-titlebar-container,
+		.flow-edit-title-form,
+		.flow-topic-summary,
+		.flow-ui-editTopicSummaryWidget {
+
+			.mw-content-ltr & {
+				/* @noflip */
+				padding-right: @topicIndent + 1;
+				/* @noflip */
+				padding-left: @topicIndent;
+			}
+
+			.mw-content-rtl & {
+				/* @noflip */
+				padding-right: @topicIndent;
+				/* @noflip */
+				padding-left: @topicIndent + 1;
+			}
+		}
+	}
 }
 
 // needs extra specificity to override `div#content h2` from vector
@@ -92,33 +114,5 @@ div#content h2.flow-topic-title { /* stylelint-disable-line selector-no-id */
 .flow-topic-title-activate-edit {
 	.flow-topic-title {
 		display: none;
-	}
-}
-
-// MEDIA QUERIES
-@media all and ( min-width: @small ) {
-	.flow-topic-titlebar {
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
-
-		.flow-topic-titlebar-container,
-		.flow-edit-title-form,
-		.flow-topic-summary,
-		.flow-ui-editTopicSummaryWidget {
-
-			.mw-content-ltr & {
-				/* @noflip */
-				padding-right: @topicIndent + 1;
-				/* @noflip */
-				padding-left: @topicIndent;
-			}
-
-			.mw-content-rtl & {
-				/* @noflip */
-				padding-right: @topicIndent;
-				/* @noflip */
-				padding-left: @topicIndent + 1;
-			}
-		}
 	}
 }

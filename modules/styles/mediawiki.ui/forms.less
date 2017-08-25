@@ -6,9 +6,10 @@
 //
 // Styleguide 4.
 
-.flow-ui-input-replacement-anchor {
+.flow-ui-input-replacement-anchor.mw-ui-input {
+	color: @colorGray7;
 	display: block;
-	margin: 1em 0 0 0.9em;
+	margin: 1em 0 0 @topicIndent;
 }
 
 // FIXME: It's a shame we have to duplicate css in mw-ui-input. Need saner way going forward. mw-ui-textarea ?
@@ -19,7 +20,6 @@
 	font-size: 1.5em;
 	padding: 0.429em 0.381em 0.381em;
 	line-height: 1.25;
-	color: @colorTextLight;
 }
 
 .client-nojs {
