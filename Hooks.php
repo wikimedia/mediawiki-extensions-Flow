@@ -1337,7 +1337,7 @@ class FlowHooks {
 		}
 		$urls = array_merge(
 			$urls,
-			$workflow->getOwnerTitle()->getSquidURLs()
+			$workflow->getOwnerTitle()->getCdnUrls()
 		);
 
 		return true;
