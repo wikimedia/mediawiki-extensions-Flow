@@ -1,10 +1,25 @@
 .flow-ui-reorderTopicsWidget {
+
+	&-button {
+		margin-right: 0;
+	}
+
 	.oo-ui-menuOptionWidget {
 		/* HACK: Override menuOptionWidget styles for T101560 */
 		.oo-ui-iconElement-icon {
 			display: block;
 		}
 		padding: 0.5em 2em 0.5em 3em;
+	}
+
+	.skin-vector &,
+	.skin-minerva & {
+		.oo-ui-buttonElement.oo-ui-indicatorElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
+			padding-right: 1.8em;
+			> .oo-ui-indicatorElement-indicator {
+				right: 0.23em;
+			}
+		}
 	}
 
 	.oo-ui-icon-beta {
