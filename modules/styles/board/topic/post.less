@@ -78,7 +78,7 @@ form.flow-post {
 		// Nested comments (replies & reply forms)
 		.flow-replies {
 			/* @noflip */
-			margin-left: @topicIndent;
+			margin-left: @replyIndent;
 			/* @noflip */
 			padding-left: 0.5em;
 			/* @noflip */
@@ -233,10 +233,18 @@ form.flow-post {
 			/* @noflip */
 			margin: 1em 0 0 @topicIndent;
 		}
+		.mw-content-ltr .flow-replies & {
+			/* @noflip */
+			margin-left: @replyIndent;
+		}
 
 		.mw-content-rtl & {
 			/* @noflip */
 			margin: 1em @topicIndent 0 0;
+		}
+		.mw-content-rtl .flow-replies & {
+			/* @noflip */
+			margin-right: @replyIndent;
 		}
 
 		padding: 0;

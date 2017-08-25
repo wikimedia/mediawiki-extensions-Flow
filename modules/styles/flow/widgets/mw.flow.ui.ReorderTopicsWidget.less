@@ -1,4 +1,20 @@
 .flow-ui-reorderTopicsWidget {
+
+	&-button {
+		margin-right: 0;
+	}
+
+	.skin-vector &,
+	.skin-minerva & {
+		.oo-ui-buttonElement.oo-ui-indicatorElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
+			padding-right: 1.8em;
+
+			> .oo-ui-indicatorElement-indicator {
+				right: 0.23em;
+			}
+		}
+	}
+
 	.oo-ui-icon-beta {
 		/* @embed */
 		background-image: url( ../images/newest-topics.svg );
