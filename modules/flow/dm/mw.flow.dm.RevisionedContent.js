@@ -123,11 +123,11 @@
 
 		this.toggleOriginalContent(
 			data.isOriginalContent !== undefined ?
-			data.isOriginalContent :
-			// If 'isOriginalContent' isn't at all defined, we will
-			// define it by whether there is a previous revision id
-			// present
-			!this.getPreviousRevisionId()
+				data.isOriginalContent :
+				// If 'isOriginalContent' isn't at all defined, we will
+				// define it by whether there is a previous revision id
+				// present
+				!this.getPreviousRevisionId()
 		);
 
 		this.setLastEditId( data.lastEditId );

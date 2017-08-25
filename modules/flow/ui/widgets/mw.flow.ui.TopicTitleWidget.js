@@ -132,7 +132,7 @@
 	mw.flow.ui.TopicTitleWidget.prototype.isDisabled = function () {
 		// Auto-disable when pending
 		return ( this.input && this.input.isPending() ) ||
-				// Parent method
+			// Parent method
 			mw.flow.ui.TopicTitleWidget.parent.prototype.isDisabled.apply( this, arguments );
 	};
 

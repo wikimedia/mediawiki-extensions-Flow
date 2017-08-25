@@ -261,8 +261,8 @@ mw.flow.ui.enhance = {};
 			$tooltip
 				// Add the content to it
 				.find( '.flow-ui-tooltip-content' )
-					.empty()[ insertFn ]( content )
-					.end()
+				.empty()[ insertFn ]( content );
+			$tooltip
 				// Move this off-page before rendering it, so that we can calculate its real dimensions
 				// @todo use .parent() loop to check for z-index and + that to this if needed
 				.css( { position: 'absolute', zIndex: 1000, top: 0, left: '-999em' } )
