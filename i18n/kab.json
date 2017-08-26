@@ -8,7 +8,7 @@
 	},
 	"enableflow": "Rmed Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Ḥbes}} ẓer armud amaynu ɣef \"$1\"",
-	"flow-desc": "Anagraw n ussefrek n wanɣal n wuxeddim",
+	"flow-desc": "Anagraw n useqerdec",
 	"flow-talk-taken-over-comment": "/* Asebtar agi yettwasselket ar wanɣal n umyannan Flow */",
 	"log-name-flow": "Aɣmis n wurmud n Flow",
 	"flow-post-action-edit-post-submit": "Sekles ibeddilen",
