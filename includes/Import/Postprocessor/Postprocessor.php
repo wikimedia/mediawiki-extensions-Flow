@@ -39,7 +39,7 @@ interface Postprocessor {
 	 * called on all topics run through the process regardless.
 	 *
 	 * @param TopicImportState $state
-	 * @param IImportPost $post
+	 * @param IImportPost $topic
 	 */
 	function afterTopicImported( TopicImportState $state, IImportTopic $topic );
 

@@ -62,7 +62,7 @@ abstract class ApiFlowBase extends ApiBase {
 		$this->page = $page;
 	}
 
-	/*
+	/**
 	 * Return the name of the flow action
 	 * @return string
 	 */

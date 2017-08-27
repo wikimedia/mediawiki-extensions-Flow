@@ -49,8 +49,8 @@ abstract class DbStorage implements ObjectStorage {
 	/**
 	 * Runs preprocessSqlArray on each element of an array.
 	 *
-	 * @param  array $outer The array to check
-	 * @return array         Preprocessed SQL array.
+	 * @param array $outer The array to check
+	 * @return array Preprocessed SQL array.
 	 * @throws DataModelException
 	 */
 	protected function preprocessNestedSqlArray( array $outer ) {
@@ -133,7 +133,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * Internal security function to check an options array for
 	 * SQL injection and other funkiness
 	 * @todo Currently only supports LIMIT, OFFSET and ORDER BY
-	 * @param  array $options An options array passed to a query.
+	 * @param array $options An options array passed to a query.
 	 * @return bool
 	 */
 	protected function validateOptions( $options ) {

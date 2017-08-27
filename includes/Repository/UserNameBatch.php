@@ -43,7 +43,7 @@ class UserNameBatch {
 		}
 	}
 
-	/*
+	/**
 	 * Make sure the LRU for the given wiki is in place.
 	 *
 	 * @param string $wiki Wiki identifier
@@ -87,8 +87,8 @@ class UserNameBatch {
 	 *
 	 * @param string $wiki
 	 * @param int $userId
-	 * @param string|boolean $userIp
-	 * @return string|boolean false if username is not found or display is suppressed
+	 * @param string|bool $userIp
+	 * @return string|bool false if username is not found or display is suppressed
 	 * @todo Return something better for not found / suppressed, but what? Making
 	 *   return type string|Message would suck.
 	 */
@@ -108,7 +108,7 @@ class UserNameBatch {
 
 	/**
 	 * @param UserTuple $tuple
-	 * @return string|boolean false if username is not found or display is suppressed
+	 * @return string|bool false if username is not found or display is suppressed
 	 */
 	public function getFromTuple( UserTuple $tuple ) {
 		return $this->get( $tuple->wiki, $tuple->id, $tuple->ip );

@@ -39,12 +39,12 @@ class Workflow {
 	protected $wiki;
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	protected $pageId = 0;
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	protected $namespace;
 

@@ -206,7 +206,7 @@ class FlowHooks {
 	/**
 	 * Hook: LoadExtensionSchemaUpdates
 	 *
-	 * @param $updater DatabaseUpdater object
+	 * @param DatabaseUpdater $updater DatabaseUpdater object
 	 * @return bool true in all cases
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
@@ -352,10 +352,10 @@ class FlowHooks {
 	/**
 	 * Updates the given Flow topic line in an enhanced changes list (grouped RecentChanges).
 	 *
-	 * @param ChangesList $changesList
-	 * @param string $articlelink
-	 * @param string $s
-	 * @param RecentChange $rc
+	 * @param ChangesList &$changesList
+	 * @param string &$articlelink
+	 * @param string &$s
+	 * @param RecentChange &$rc
 	 * @param bool $unpatrolled
 	 * @param bool $isWatchlist
 	 * @return bool
@@ -381,10 +381,10 @@ class FlowHooks {
 	/**
 	 * Updates a Flow line in the old changes list (standard RecentChanges).
 	 *
-	 * @param ChangesList $changesList
-	 * @param string $s
+	 * @param ChangesList &$changesList
+	 * @param string &$s
 	 * @param RecentChange $rc
-	 * @param array $classes
+	 * @param array &$classes
 	 * @return bool
 	 */
 	public static function onOldChangesListRecentChangesLine(
@@ -402,10 +402,10 @@ class FlowHooks {
 	 * line with meta info (old changes), or simply updates the link to
 	 * the topic (enhanced).
 	 *
-	 * @param ChangesList $changesList
-	 * @param string $s
+	 * @param ChangesList &$changesList
+	 * @param string &$s
 	 * @param RecentChange $rc
-	 * @param array|null $classes
+	 * @param array|null &$classes
 	 * @param bool $topicOnly
 	 * @return bool
 	 */
@@ -473,7 +473,7 @@ class FlowHooks {
 	 * The default diff links are incorrect!
 	 *
 	 * @param EnhancedChangesList $changesList
-	 * @param array $links
+	 * @param array &$links
 	 * @param RecentChange[] $block
 	 * @return bool
 	 */
@@ -517,10 +517,10 @@ class FlowHooks {
 
 	/**
 	 * @param EnhancedChangesList $changesList
-	 * @param array $data
+	 * @param array &$data
 	 * @param RecentChange[] $block
 	 * @param RecentChange $rc
-	 * @param array $classes
+	 * @param array &$classes
 	 * @return bool
 	 */
 	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc, &$classes ) {
@@ -529,7 +529,7 @@ class FlowHooks {
 
 	/**
 	 * @param EnhancedChangesList $changesList
-	 * @param array $data
+	 * @param array &$data
 	 * @param RecentChange $rc
 	 * @return bool
 	 */
@@ -623,8 +623,8 @@ class FlowHooks {
 	 * Regular talk page "Create source" and "Add topic" links are quite useless
 	 * in the context of Flow boards. Let's get rid of them.
 	 *
-	 * @param SkinTemplate $template
-	 * @param array $links
+	 * @param SkinTemplate &$template
+	 * @param array &$links
 	 * @return bool
 	 */
 	public static function onSkinTemplateNavigation( SkinTemplate &$template, &$links ) {
@@ -677,7 +677,7 @@ class FlowHooks {
 	 * Interact with the mobile skin's default modules on Flow enabled pages
 	 *
 	 * @param Skin $skin
-	 * @param array $modules
+	 * @param array &$modules
 	 */
 	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
@@ -701,7 +701,7 @@ class FlowHooks {
 	 * related to that talk page (rather: they were actions on the board)
 	 *
 	 * @param array &$conds Array of conditions
-	 * @param array &$logTypes Array of log types
+	 * @param array $logTypes Array of log types
 	 * @return bool
 	 */
 	public static function onMissingArticleConditions( array &$conds, array $logTypes ) {
@@ -739,7 +739,7 @@ class FlowHooks {
 	 * username. Additionally reserve the username used to add a revision on
 	 * taking over a page.
 	 *
-	 * @param array $names
+	 * @param array &$names
 	 * @return bool
 	 */
 	public static function onUserGetReservedNames( &$names ) {
@@ -860,7 +860,7 @@ class FlowHooks {
 	/**
 	 * Adds Flow contributions to the DeletedContributions special page
 	 *
-	 * @param $data array an array of results of all contribs queries, to be
+	 * @param array $data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
@@ -893,7 +893,7 @@ class FlowHooks {
 	/**
 	 * Adds Flow contributions to the Contributions special page
 	 *
-	 * @param $data array an array of results of all contribs queries, to be
+	 * @param array $data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
@@ -912,7 +912,7 @@ class FlowHooks {
 
 	/**
 	 * Define and add descriptions for board-related variables
-	 * @param $realValues array
+	 * @param array $realValues
 	 * @return bool
 	 */
 	public static function onAbuseFilterBuilder( &$realValues ) {
@@ -928,7 +928,7 @@ class FlowHooks {
 	/**
 	 * Adds lazy-load methods for AbstractRevision objects.
 	 *
-	 * @param string $method: Method to generate the variable
+	 * @param string $method Method to generate the variable
 	 * @param AbuseFilterVariableHolder $vars
 	 * @param array $parameters Parameters with data to compute the value
 	 * @param mixed &$result Result of the computation
@@ -1158,8 +1158,8 @@ class FlowHooks {
 	/**
 	 * Add topiclist sortby to preferences.
 	 *
-	 * @param $user User object
-	 * @param &$preferences array Preferences object
+	 * @param User $user User object
+	 * @param array &$preferences Preferences object
 	 * @return bool
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
@@ -1182,8 +1182,8 @@ class FlowHooks {
 	 * ResourceLoaderTestModules hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
-	 * @param array $testModules
-	 * @param ResourceLoader $resourceLoader
+	 * @param array &$testModules
+	 * @param ResourceLoader &$resourceLoader
 	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( array &$testModules,
@@ -1223,9 +1223,9 @@ class FlowHooks {
 	/**
 	 * Don't (un)watch a non-existing flow topic
 	 *
-	 * @param User $user
-	 * @param WikiPage $page
-	 * $param Status $status
+	 * @param User &$user
+	 * @param WikiPage &$page
+	 * $param Status &$status
 	 */
 	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
@@ -1314,7 +1314,7 @@ class FlowHooks {
 
 	/**
 	 * @param Title $title
-	 * @param string[] $urls
+	 * @param string[] &$urls
 	 * @return bool
 	 */
 	public static function onTitleSquidURLs( Title $title, array &$urls ) {
@@ -1344,11 +1344,11 @@ class FlowHooks {
 	}
 
 	/**
-	 * @param array $tools Extra links
+	 * @param array &$tools Extra links
 	 * @param Title $title
 	 * @param bool $redirect Whether the page is a redirect
 	 * @param Skin $skin
-	 * @param string $link
+	 * @param string &$link
 	 * @return bool
 	 */
 	public static function onWatchlistEditorBuildRemoveLine( &$tools, $title, $redirect, $skin, &$link = '' ) {
@@ -1391,7 +1391,7 @@ class FlowHooks {
 	}
 
 	/**
-	 * @param array $watchlistInfo Watchlisted pages
+	 * @param array &$watchlistInfo Watchlisted pages
 	 * @return bool
 	 */
 	public static function onWatchlistEditorBeforeFormRender( &$watchlistInfo ) {
@@ -1436,7 +1436,7 @@ class FlowHooks {
 	 * For integration with the UserMerge extension. Provides the database and
 	 * sets of table/column pairs to update user id's within.
 	 *
-	 * @param array $updateFields
+	 * @param array &$updateFields
 	 * @return bool
 	 */
 	public static function onUserMergeAccountFields( &$updateFields ) {
@@ -1473,7 +1473,7 @@ class FlowHooks {
 
 	/**
 	 * @param int $namespace
-	 * @param bool $movable
+	 * @param bool &$movable
 	 * @return bool
 	 */
 	public static function onNamespaceIsMovable( $namespace, &$movable ) {
@@ -1538,7 +1538,7 @@ class FlowHooks {
 	 * the Topic namespace.
 	 *
 	 * @param WikiPage $article Page the user requested to delete
-	 * @param OutputPage $out Output page
+	 * @param OutputPage $output Output page
 	 * @param string &$reason Pre-filled reason given for deletion (note, this could
 	 *   be used to customize this for boards and/or topics later)
 	 * @return bool False if it is a Topic; otherwise, true
@@ -1642,7 +1642,7 @@ class FlowHooks {
 
 	/**
 	 * @param Title $title Title corresponding to the article restored
-	 * @param bool $created Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
+	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
 	 * @param int $oldPageId ID of page previously deleted (from archive table)
 	 * @throws InvalidUndeleteException
@@ -1711,7 +1711,7 @@ class FlowHooks {
 	/**
 	 * Excludes NS_TOPIC from the list of searchable namespaces
 	 *
-	 * @param array $namespaces Associative array mapping namespace index
+	 * @param array &$namespaces Associative array mapping namespace index
 	 *  to name
 	 * @return bool
 	 */
@@ -1731,7 +1731,7 @@ class FlowHooks {
 
 	/**
 	 * @param User $user
-	 * @param array $prefs
+	 * @param array &$prefs
 	 * @return bool
 	 */
 	public static function onGetBetaFeaturePreferences( $user, &$prefs ) {
@@ -1759,7 +1759,7 @@ class FlowHooks {
 
 	/**
 	 * @param User $user
-	 * @param array $options
+	 * @param array &$options
 	 * @return bool
 	 */
 	public static function onUserSaveOptions( $user, &$options ) {
@@ -2078,11 +2078,11 @@ class FlowHooks {
 	 * Filter out all Flow changes when hidepageedits=1
 	 *
 	 * @param string $name
-	 * @param array $tables
-	 * @param array $fields
-	 * @param array $conds
-	 * @param array $query_options
-	 * @param array $join_conds
+	 * @param array &$tables
+	 * @param array &$fields
+	 * @param array &$conds
+	 * @param array &$query_options
+	 * @param array &$join_conds
 	 * @param FormOptions $opts
 	 */
 	public static function onChangesListSpecialPageQuery(

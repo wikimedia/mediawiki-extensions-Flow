@@ -17,7 +17,7 @@ class Controller {
 	/**
 	 * Accepts multiple spamfilters.
 	 *
-	 * @param SpamFilter $spamfilter...
+	 * @param SpamFilter $spamfilter,...
 	 * @throws FlowException When provided arguments are not an instance of SpamFilter
 	 */
 	public function __construct( SpamFilter $spamfilter /* [, SpamFilter $spamfilter2 [, ...]] */ ) {

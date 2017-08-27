@@ -65,7 +65,7 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Header-related event.
-	 * @param  array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * board-workflow: The Workflow object for the board. Always required. * timestamp: Original event timestamp, for imports. Optional. * extra-data: Additional data to pass along to Event extra.
+	 * @param array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * board-workflow: The Workflow object for the board. Always required. * timestamp: Original event timestamp, for imports. Optional. * extra-data: Additional data to pass along to Event extra.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * board-workflow: The Workflow object for the board. Always required.
 	 * * timestamp: Original event timestamp, for imports. Optional.
@@ -136,11 +136,11 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Flow event.
-	 * @param  String $eventName The event that occurred. Choice of:
+	 * @param String $eventName The event that occurred. Choice of:
 	 * * flow-post-reply
 	 * * flow-topic-renamed
 	 * * flow-post-edited
-	 * @param  array $data Associative array of parameters. * user: The user who made the change. Always required. * revision: The PostRevision created by the action. Always required. * title: The Title on which this Topic sits. Always required. * topic-workflow: The Workflow object for the topic. Always required. * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames. * old-subject: The old subject of a Topic. Required for topic renames. * new-subject: The new subject of a Topic. Required for topic renames.
+	 * @param array $data Associative array of parameters. * user: The user who made the change. Always required. * revision: The PostRevision created by the action. Always required. * title: The Title on which this Topic sits. Always required. * topic-workflow: The Workflow object for the topic. Always required. * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames. * old-subject: The old subject of a Topic. Required for topic renames. * new-subject: The new subject of a Topic. Required for topic renames.
 	 * * user: The user who made the change. Always required.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * title: The Title on which this Topic sits. Always required.
@@ -268,7 +268,7 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Summary-related event.
-	 * @param  array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * topic-title: The PostRevision object for the topic title. Always required. * topic-workflow: The Workflow object for the board. Always required. * extra-data: Additional data to pass along to Event extra.
+	 * @param array $data Associative array of parameters. * revision: The PostRevision created by the action. Always required. * topic-title: The PostRevision object for the topic title. Always required. * topic-workflow: The Workflow object for the board. Always required. * extra-data: Additional data to pass along to Event extra.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * topic-title: The PostRevision object for the topic title. Always required.
 	 * * topic-workflow: The Workflow object for the board. Always required.
@@ -339,7 +339,7 @@ class NotificationController {
 
 	/**
 	 * Triggers notifications for a new topic.
-	 * @param  array $params Associative array of parameters, all required:
+	 * @param array $params Associative array of parameters, all required:
 	 * * board-workflow: Workflow object for the Flow board.
 	 * * topic-workflow: Workflow object for the new Topic.
 	 * * topic-title: PostRevision object for the "topic post", containing the
@@ -594,8 +594,8 @@ class NotificationController {
 	 *
 	 * Removes duplicates, anonymous users, self-mentions, and mentions of the
 	 * owner of the talk page
-	 * @param  User[] $mentions Array of User objects
-	 * @param  AbstractRevision $revision The Post that is being examined.
+	 * @param User[] $mentions Array of User objects
+	 * @param AbstractRevision $revision The Post that is being examined.
 	 * @return array
 	 *          0 => int[] Array of user IDs
 	 *          1 => bool Were some mentions ignored due to $wgFlowMaxMentionCount?
@@ -630,7 +630,7 @@ class NotificationController {
 
 	/**
 	 * Examines a wikitext string and finds users that were mentioned
-	 * @param  string $wikitext
+	 * @param string $wikitext
 	 * @return User[] Array of User objects
 	 */
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
@@ -667,8 +667,8 @@ class NotificationController {
 	/**
 	 * Handler for EchoGetBundleRule hook, which defines the bundle rules for each notification
 	 *
-	 * @param $event EchoEvent
-	 * @param $bundleString string Determines how the notification should be bundled
+	 * @param EchoEvent $event
+	 * @param string $bundleString Determines how the notification should be bundled
 	 * @return bool True for success
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {

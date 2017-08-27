@@ -18,7 +18,7 @@ class ContentFixer {
 	/**
 	 * Accepts multiple content fixers.
 	 *
-	 * @param Fixer $contentFixer...
+	 * @param Fixer $contentFixer,...
 	 * @throws FlowException When provided arguments are not an instance of Fixer
 	 */
 	public function __construct( Fixer $contentFixer /* [, Fixer $contentFixer2 [, ...]] */ ) {

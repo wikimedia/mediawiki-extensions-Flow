@@ -72,6 +72,7 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * @param ObjectMapper $mapper Convert to/from database rows/domain objects.
 	 * @param ObjectStorage $storage Implements persistence(typically sql)
+	 * @param DbFactory $dbFactory
 	 * @param Index[] $indexes Specialized listeners that cache rows and can respond
 	 *  to queries
 	 * @param LifecycleHandler[] $lifecycleHandlers Listeners for insert, update,

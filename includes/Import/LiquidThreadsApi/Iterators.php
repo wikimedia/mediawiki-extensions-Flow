@@ -18,7 +18,7 @@ class TopicIterator implements Iterator {
 	protected $threadData;
 
 	/**
-	 * @var integer|false|null Lqt id of the current topic, false if no current topic, null if unknown.
+	 * @var int|false|null Lqt id of the current topic, false if no current topic, null if unknown.
 	 */
 	protected $current = false;
 
@@ -39,7 +39,7 @@ class TopicIterator implements Iterator {
 	protected $topicIdIterator;
 
 	/**
-	 * @var integer The maximum id received by self::loadMore
+	 * @var int The maximum id received by self::loadMore
 	 */
 	protected $maxId;
 

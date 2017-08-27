@@ -83,8 +83,8 @@ class Templating {
 	 *
 	 * Moderation-aware.
 	 *
-	 * @param  AbstractRevision $revision Revision to display
-	 * @return string                            HTML
+	 * @param AbstractRevision $revision Revision to display
+	 * @return string HTML
 	 * @throws PermissionException
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {

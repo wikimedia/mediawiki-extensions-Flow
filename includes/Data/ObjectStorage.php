@@ -47,7 +47,7 @@ interface ObjectStorage {
 	 *
 	 * @param array $old Map of columns to values that was initially loaded.
 	 * @param array $new Map of columns to values that the row should become.
-	 * @return boolean true when the row is successfully updated
+	 * @return bool true when the row is successfully updated
 	 */
 	function update( array $old, array $new );
 
@@ -55,7 +55,7 @@ interface ObjectStorage {
 	 * Remove the specified row from the data store.
 	 *
 	 * @param array $row Map of columns to values.  Must contain the primary key columns.
-	 * @return boolean true when the row is successfully removed
+	 * @return bool true when the row is successfully removed
 	 */
 	function remove( array $row );
 

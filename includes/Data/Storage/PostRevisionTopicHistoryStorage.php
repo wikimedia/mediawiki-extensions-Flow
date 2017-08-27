@@ -65,7 +65,7 @@ class PostRevisionTopicHistoryStorage implements ObjectStorage {
 	 * This isn't a hot path (should be pre-populated into index) but we still don't want
 	 * horrible performance
 	 *
-	 * @param array $queries
+	 * @param array $query
 	 * @return array
 	 * @throws \Flow\Exception\InvalidInputException
 	 */

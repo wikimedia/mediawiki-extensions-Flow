@@ -97,7 +97,7 @@ abstract class AbstractRevision {
 	 * in the parser this hook allows preventing any display of hostile html. True
 	 * means the content is allowed. False means not allowed. Null means unchecked
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $xssCheck;
 
@@ -137,12 +137,12 @@ abstract class AbstractRevision {
 	protected $lastEditUser;
 
 	/**
-	 * @var integer Size of previous revision wikitext
+	 * @var int Size of previous revision wikitext
 	 */
 	protected $previousContentLength = 0;
 
 	/**
-	 * @var integer Size of current revision wikitext
+	 * @var int Size of current revision wikitext
 	 */
 	protected $contentLength = 0;
 
@@ -734,7 +734,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return integer|null
+	 * @return int|null
 	 */
 	public function getModeratedByUserId() {
 		return $this->moderatedBy ? $this->moderatedBy->id : null;

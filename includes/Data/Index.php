@@ -52,7 +52,7 @@ interface Index extends LifecycleHandler {
 	public function foundMulti( array $attributes, array $options = [] );
 
 	/**
-	 * @return integer Maximum number of items in a single index value
+	 * @return int Maximum number of items in a single index value
 	 */
 	function getLimit();
 
@@ -73,7 +73,7 @@ interface Index extends LifecycleHandler {
 	 *
 	 * @param array $keys
 	 * @param array $options
-	 * @return boolean Can the index locate a result for this keys and options pair
+	 * @return bool Can the index locate a result for this keys and options pair
 	 */
 	function canAnswer( array $keys, array $options );
 
