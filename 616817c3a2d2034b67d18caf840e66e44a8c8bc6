@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e7eab26_f7a01234",
+        "filename": "maintenance/dumpTextPass.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2017-08-28T10:25:57Z",
+      "side": 1,
+      "message": "It will be simpler (and eliminate the need for the special handling for Post) if you use:\n\n\t$revision \u003d $storage-\u003eget(\n\t\t\u0027PostRevision\u0027, // or PostSummary or Header\n\t\t[ \u0027rev_id\u0027 \u003d\u003e $uuid ],\n\t\t[ \u0027loadcontentnow\u0027 \u003d\u003e false ]\n\t);\n\nWith that option (from https://gerrit.wikimedia.org/r/#/c/370154/ ), it will not load the content unless/until you explicitly call getContent.",
+      "revId": "616817c3a2d2034b67d18caf840e66e44a8c8bc6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
