@@ -303,8 +303,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Retrieves the previous revision for a given AbstractRevision
-	 * @param  AbstractRevision $revision The revision to retrieve the previous revision for.
-	 * @return AbstractRevision|null      AbstractRevision of the previous revision or null if no previous revision.
+	 * @param AbstractRevision $revision The revision to retrieve the previous revision for.
+	 * @return AbstractRevision|null AbstractRevision of the previous revision or null if no previous revision.
 	 */
 	protected function getPreviousRevision( AbstractRevision $revision ) {
 		$previousRevisionId = $revision->getPrevRevisionId();
@@ -324,8 +324,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Retrieves the current revision for a given AbstractRevision
-	 * @param  AbstractRevision $revision The revision to retrieve the current revision for.
-	 * @return AbstractRevision|null      AbstractRevision of the current revision.
+	 * @param AbstractRevision $revision The revision to retrieve the current revision for.
+	 * @return AbstractRevision|null AbstractRevision of the current revision.
 	 */
 	protected function getCurrentRevision( AbstractRevision $revision ) {
 		$cacheKey = $this->getCurrentRevisionCacheKey( $revision );
@@ -342,8 +342,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Retrieves the root post for a given PostRevision
-	 * @param  PostRevision $revision The revision to retrieve the root post for.
-	 * @return PostRevision           PostRevision of the root post.
+	 * @param PostRevision $revision The revision to retrieve the root post for.
+	 * @return PostRevision PostRevision of the root post.
 	 * @throws \MWException
 	 */
 	protected function getRootPost( PostRevision $revision ) {
@@ -369,8 +369,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Gets the root post ID for a given PostRevision
-	 * @param  PostRevision $revision The revision to get the root post ID for.
-	 * @return UUID                   The UUID for the root post.
+	 * @param PostRevision $revision The revision to get the root post ID for.
+	 * @return UUID The UUID for the root post.
 	 * @throws \MWException
 	 */
 	protected function getRootPostId( PostRevision $revision ) {
@@ -386,8 +386,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Gets a Workflow object given its ID
-	 * @param  UUID $workflowId The Workflow ID to retrieve.
-	 * @return Workflow           The Workflow.
+	 * @param UUID $workflowId The Workflow ID to retrieve.
+	 * @return Workflow The Workflow.
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {
 		$alpha = $workflowId->getAlphadecimal();

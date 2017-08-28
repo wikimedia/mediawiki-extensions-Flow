@@ -36,8 +36,8 @@ class ContributionsQuery extends AbstractQuery {
 
 	/**
 	 * @param ManagerGroup $storage
-	 * @param BagOStuff $cache
 	 * @param TreeRepository $treeRepo
+	 * @param BagOStuff $cache
 	 * @param DbFactory $dbFactory
 	 * @param FlowActions $actions
 	 */

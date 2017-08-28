@@ -283,8 +283,8 @@ class PageImportState {
 	 * WARNING: Before calling this method, ensure that you follow the rule
 	 * given in clearManagerGroup.
 	 *
-	 * @param  string $type Class name to retrieve
-	 * @param  UUID $id ID of the object to retrieve
+	 * @param string $type Class name to retrieve
+	 * @param UUID $id ID of the object to retrieve
 	 * @return Object|false
 	 */
 	public function get( $type, UUID $id ) {
@@ -308,8 +308,8 @@ class PageImportState {
 	/**
 	 * Gets the top revision of an item by ID
 	 *
-	 * @param  string $type The type of the object to return (e.g. PostRevision).
-	 * @param  UUID $id The ID (e.g. post ID, topic ID, etc)
+	 * @param string $type The type of the object to return (e.g. PostRevision).
+	 * @param UUID $id The ID (e.g. post ID, topic ID, etc)
 	 * @return object|false The top revision of the requested object, or false if not found.
 	 */
 	public function getTopRevision( $type, UUID $id ) {
@@ -370,8 +370,8 @@ class PageImportState {
 	/**
 	 * Records an association between a created object and its source.
 	 *
-	 * @param  UUID $objectId UUID representing the object that was created.
-	 * @param  IImportObject $object Output from getObjectKey
+	 * @param UUID $objectId UUID representing the object that was created.
+	 * @param IImportObject $object Output from getObjectKey
 	 */
 	public function recordAssociation( UUID $objectId, IImportObject $object ) {
 		$this->sourceStore->setAssociation( $objectId, $object->getObjectKey() );

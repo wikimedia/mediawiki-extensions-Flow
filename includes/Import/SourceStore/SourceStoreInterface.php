@@ -16,7 +16,7 @@ interface SourceStoreInterface {
 
 	/**
 	 * @param IImportObject $importObject
-	 * @return UUID|boolean UUID of the imported object if appropriate; otherwise, false.
+	 * @return UUID|bool UUID of the imported object if appropriate; otherwise, false.
 	 */
 	function getImportedId( IImportObject $importObject );
 

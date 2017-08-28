@@ -204,9 +204,9 @@ class ReferenceRecorder extends AbstractListener {
 	/**
 	 * Pulls references from a revision's content
 	 *
-	 * @param  Workflow $workflow The Workflow that the revision is attached to.
-	 * @param  AbstractRevision $revision The Revision to pull references from.
-	 * @param  PostRevision|null $root
+	 * @param Workflow $workflow The Workflow that the revision is attached to.
+	 * @param AbstractRevision $revision The Revision to pull references from.
+	 * @param PostRevision|null $root
 	 * @return Reference[] Array of References.
 	 */
 	public function getReferencesFromRevisionContent(
@@ -253,8 +253,8 @@ class ReferenceRecorder extends AbstractListener {
 	/**
 	 * Retrieves references that are already stored in the database for a given revision
 	 *
-	 * @param  string $revType The value returned from Revision::getRevisionType() for the revision.
-	 * @param  UUID $objectId The revision's Object ID.
+	 * @param string $revType The value returned from Revision::getRevisionType() for the revision.
+	 * @param UUID $objectId The revision's Object ID.
 	 * @return Reference[] Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
@@ -278,8 +278,8 @@ class ReferenceRecorder extends AbstractListener {
 	 *
 	 * Would be protected if not for testing.
 	 *
-	 * @param  Reference[] $old The old references.
-	 * @param  Reference[] $new The new references.
+	 * @param Reference[] $old The old references.
+	 * @param Reference[] $new The new references.
 	 * @return array Array with two elements: added and removed references.
 	 */
 	public function referencesDifference( array $old, array $new ) {

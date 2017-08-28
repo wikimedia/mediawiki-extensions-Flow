@@ -386,7 +386,7 @@ class UUID implements ApiSerializable {
 	/**
 	 * Generates a fake UUID for a given timestamp that will have comparison
 	 * results equivalent to a real UUID generated at that time
-	 * @param  mixed $ts Something accepted by wfTimestamp()
+	 * @param mixed $ts Something accepted by wfTimestamp()
 	 * @return UUID object.
 	 */
 	public static function getComparisonUUID( $ts ) {

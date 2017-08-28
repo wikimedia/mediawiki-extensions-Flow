@@ -24,7 +24,7 @@ interface Block {
 	 * Perform validation of data model
 	 *
 	 * @param array $data
-	 * @return boolean True if data model is valid
+	 * @return bool True if data model is valid
 	 */
 	function onSubmit( array $data );
 
@@ -248,7 +248,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * @param $type
+	 * @param string $type
 	 * @return \Message
 	 */
 	public function getErrorMessage( $type ) {
@@ -256,7 +256,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * @param $type
+	 * @param string $type
 	 * @return mixed
 	 */
 	public function getErrorExtra( $type ) {

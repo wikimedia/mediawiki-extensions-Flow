@@ -51,7 +51,7 @@ class WikiReference extends Reference {
 	/**
 	 * Instantiates a WikiReference object from a storage row.
 	 *
-	 * @param  array $row
+	 * @param array $row
 	 * @return WikiReference
 	 */
 	public static function fromStorageRow( $row ) {

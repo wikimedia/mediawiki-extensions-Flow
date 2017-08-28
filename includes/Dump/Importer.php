@@ -368,7 +368,7 @@ class Importer {
 	/**
 	 * Create a local user corresponding to a global id
 	 *
-	 * @param integer $globalUserId
+	 * @param int $globalUserId
 	 * @return \User Local user
 	 * @throws ImportException
 	 */

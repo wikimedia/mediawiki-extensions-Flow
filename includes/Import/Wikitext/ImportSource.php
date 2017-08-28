@@ -31,8 +31,8 @@ class ImportSource implements IImportSource {
 	/**
 	 * @param Title $title
 	 * @param Parser|StubObject $parser
-	 * @param string $headerSuffix
 	 * @param User $user User to take actions as
+	 * @param string $headerSuffix
 	 * @throws ImportException When $title is an external title
 	 */
 	public function __construct( Title $title, $parser, User $user, $headerSuffix = null ) {

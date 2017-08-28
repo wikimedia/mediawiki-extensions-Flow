@@ -18,7 +18,7 @@ class UserTuple {
 	public $wiki;
 
 	/**
-	 * @var integer The id of the user, or 0 for anonymous
+	 * @var int The id of the user, or 0 for anonymous
 	 */
 	public $id;
 
@@ -29,7 +29,7 @@ class UserTuple {
 
 	/**
 	 * @param string $wiki The wiki the user belongs to
-	 * @param integer|string $id The id of the user, or 0 for anonymous
+	 * @param int|string $id The id of the user, or 0 for anonymous
 	 * @param string|null $ip The ip of the user, blank string for no ip.
 	 *  null special case pass-through to be removed.
 	 * @throws InvalidDataException

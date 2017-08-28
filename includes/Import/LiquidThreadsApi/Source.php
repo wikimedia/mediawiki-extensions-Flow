@@ -154,7 +154,7 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * @param integer[]|integer $pageIds
+	 * @param int[]|int $pageIds
 	 * @return array
 	 */
 	public function getPageData( $pageIds ) {
@@ -217,7 +217,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
-	 * @param  array $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
+	 * @param array $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
 	 * @return array Data as returned under query.threads by the API
 	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
 	 *  have no matching records.
@@ -257,7 +257,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves data about a set of pages from the API
 	 *
-	 * @param  array $pageIds Page IDs to return data for.
+	 * @param array $pageIds Page IDs to return data for.
 	 * @return array The query.pages part of the API response.
 	 * @throws \MWException
 	 */

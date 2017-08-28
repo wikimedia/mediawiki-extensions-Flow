@@ -138,7 +138,7 @@ class Anchor implements ApiSerializable {
 	/**
 	 * Canonicalizes and returns a message, or null if null was provided
 	 *
-	 * @param Message|string $message Message object, or text content, or null
+	 * @param Message|string $rawMessage Message object, or text content, or null
 	 * @return Message|null
 	 */
 	protected function buildMessage( $rawMessage ) {

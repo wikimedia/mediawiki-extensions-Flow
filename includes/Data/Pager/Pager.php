@@ -47,7 +47,7 @@ class Pager {
 	protected $offsetKey;
 
 	/**
-	 * @var boolean Whether this pager uses ID fields
+	 * @var bool Whether this pager uses ID fields
 	 */
 	protected $useId;
 

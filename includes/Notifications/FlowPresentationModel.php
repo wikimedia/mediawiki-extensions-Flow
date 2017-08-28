@@ -30,7 +30,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 * Return a full url of following format:
 	 *   https://<site>/wiki/Topic:<topicId>?topic_showPostId=<$firstChronologicallyPostId>&fromnotif=1#flow-post-<$anchorPostID>
 	 * @param UUID|null $firstChronologicallyPostId First unread post ID
-	 * @param UUID|null $anchorPostID Post ID for anchor (i.e. to scroll to)
+	 * @param UUID|null $anchorPostId Post ID for anchor (i.e. to scroll to)
 	 * @return string
 	 */
 	protected function getPostLinkUrl( $firstChronologicallyPostId = null, $anchorPostId = null ) {
@@ -158,7 +158,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	/**
 	 * Get a flow-specific watch/unwatch dynamic action link
 	 *
-	 * @param  bool $isTopic Unwatching a topic. If set to false, the
+	 * @param bool $isTopic Unwatching a topic. If set to false, the
 	 *  action is unwatching a board
 	 * @return array|null Array representing the dynamic action secondary link.
 	 *  Returns null if either

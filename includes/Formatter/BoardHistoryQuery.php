@@ -9,7 +9,7 @@ use MWExceptionHandler;
 
 class BoardHistoryQuery extends HistoryQuery {
 	/**
-	 * @param UUID $workflowId
+	 * @param UUID $boardWorkflowId
 	 * @param int $limit
 	 * @param UUID|null $offset
 	 * @param string $direction 'rev' or 'fwd'

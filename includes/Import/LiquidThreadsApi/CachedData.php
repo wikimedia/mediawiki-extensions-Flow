@@ -129,7 +129,7 @@ class CachedThreadData extends CachedApiData {
 	/**
 	 * Create an iterator for the contained topic ids in ascending order
 	 *
-	 * @return Iterator<integer>
+	 * @return Iterator<int>
 	 */
 	public function getTopicIdIterator() {
 		return new ArrayIterator( $this->getTopics() );

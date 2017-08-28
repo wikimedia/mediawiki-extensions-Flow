@@ -216,7 +216,7 @@ class ObjectLocator {
 	 * Determining if a find() has not yet been resolved may be useful so that
 	 * additional data may be loaded at once.
 	 *
-	 * @param string|integer $id Id to get()
+	 * @param string|int $id Id to get()
 	 * @return bool
 	 */
 	public function got( $id ) {

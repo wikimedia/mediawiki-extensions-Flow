@@ -45,7 +45,7 @@ class URLReference extends Reference {
 	/**
 	 * Instantiates a URLReference object from a storage row.
 	 *
-	 * @param  array $row
+	 * @param array $row
 	 * @return URLReference
 	 */
 	public static function fromStorageRow( $row ) {

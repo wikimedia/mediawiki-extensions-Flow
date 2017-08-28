@@ -31,8 +31,8 @@ class DbFactory {
 	protected $forceMaster = false;
 
 	/**
-	 * @param string|boolean $wiki Wiki ID, or false for the current wiki
-	 * @param string|boolean $cluster External storage cluster, or false for core
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
+	 * @param string|bool $cluster External storage cluster, or false for core
 	 */
 	public function __construct( $wiki = false, $cluster = false ) {
 		$this->wiki = $wiki;
@@ -70,7 +70,7 @@ class DbFactory {
 	 * Gets a database connection for the main wiki database.  Mockable version of wfGetDB.
 	 *
 	 * @param int $db index of the connection to get.  DB_MASTER|DB_SLAVE.
-	 * @param string|boolean $wiki The wiki ID, or false for the current wiki
+	 * @param string|bool $wiki The wiki ID, or false for the current wiki
 	 * @return \DatabaseBase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
@@ -80,7 +80,7 @@ class DbFactory {
 	/**
 	 * Gets a load balancer for the main wiki database. Mockable version of wfGetLB.
 	 *
-	 * @param string|boolean $wiki wiki ID, or false for the current wiki
+	 * @param string|bool $wiki wiki ID, or false for the current wiki
 	 * @return \LoadBalancer
 	 */
 	public function getWikiLB( $wiki = false ) {

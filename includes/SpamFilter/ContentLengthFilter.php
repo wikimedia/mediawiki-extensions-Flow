@@ -10,7 +10,7 @@ use Title;
 class ContentLengthFilter implements SpamFilter {
 
 	/**
-	 * @var integer The maximum number of characters of wikitext to allow through filter
+	 * @var int The maximum number of characters of wikitext to allow through filter
 	 */
 	protected $maxLength;
 
