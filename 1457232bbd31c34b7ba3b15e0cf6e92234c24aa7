@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e7eab26_323c4b8d",
+        "filename": "includes/Data/Storage/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-08-31T15:49:47Z",
+      "side": 1,
+      "message": "invalid *value* for LOADCONTENTNOW",
+      "revId": "1457232bbd31c34b7ba3b15e0cf6e92234c24aa7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e7eab26_12f4afc8",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-08-31T15:49:47Z",
+      "side": 1,
+      "message": "Why put the content url in up to 3 different fields?",
+      "range": {
+        "startLine": 192,
+        "startChar": 2,
+        "endLine": 207,
+        "endChar": 3
+      },
+      "revId": "1457232bbd31c34b7ba3b15e0cf6e92234c24aa7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
