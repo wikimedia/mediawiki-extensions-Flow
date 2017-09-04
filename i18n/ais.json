@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bunukwiki"
+			"Bunukwiki",
+			"Tokoabibi"
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "mahicaay:",
@@ -9,12 +10,12 @@
 	"flow-cancel": "palawpes",
 	"flow-skip-summary": "sekipo",
 	"flow-history-action-suppress-post": "malangat",
-	"flow-history-action-delete-post": "masipu",
+	"flow-history-action-delete-post": "misipu",
 	"flow-history-action-hide-post": "midimut",
 	"flow-history-action-restore-post": "patiku",
 	"flow-history-action-lock-topic": "hulak",
 	"flow-post-action-suppress-post": "malangat",
-	"flow-post-action-delete-post": "masipu",
+	"flow-post-action-delete-post": "misipu",
 	"flow-post-action-hide-post": "midimut",
 	"flow-post-action-restore-post": "patiku",
 	"flow-post-action-undo-moderation": "patiku",
@@ -27,7 +28,7 @@
 	"flow-link-post": "patiyak",
 	"flow-link-history": "nazipa’an",
 	"flow-moderation-confirm-suppress-post": "malangat",
-	"flow-moderation-confirm-delete-post": "masipu",
+	"flow-moderation-confirm-delete-post": "misipu",
 	"flow-moderation-confirm-hide-post": "midimut",
 	"flow-moderation-confirm-suppress-topic": "malangat",
 	"flow-moderation-confirm-delete-topic": "masipu",
