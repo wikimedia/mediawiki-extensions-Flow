@@ -2,13 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Bunukwiki",
-			"Tokoabibi"
+			"Tokoabibi",
+			"Benel"
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "mahicaay:",
 	"flow-post-actions": "saungay",
 	"flow-cancel": "palawpes",
 	"flow-skip-summary": "sekipo",
+	"flow-newtopic-title-placeholder": "baluhay a sasakamuen",
 	"flow-history-action-suppress-post": "malangat",
 	"flow-history-action-delete-post": "misipu",
 	"flow-history-action-hide-post": "midimut",
