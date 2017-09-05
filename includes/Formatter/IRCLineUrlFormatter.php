@@ -49,7 +49,10 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			return null;
 		}
 
+		// @todo Public access to $rc->mAttribs should be deprecated in core.
 		$rc->mAttribs['rc_comment'] = $this->formatDescription( $serialized, $ctx );
+		$rc->mAttribs['rc_comment_text'] = $rc->mAttribs['rc_comment'];
+		$rc->mAttribs['rc_comment_data'] = null;
 
 		/** @var RCFeedFormatter $formatter */
 		$formatter = new $feed['original_formatter']();

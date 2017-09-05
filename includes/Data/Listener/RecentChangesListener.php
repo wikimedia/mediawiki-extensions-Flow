@@ -107,6 +107,8 @@ class RecentChangesListener extends AbstractListener {
 			] ),
 			'rc_cur_id' => 0,
 			'rc_comment' => '',
+			'rc_comment_text' => '',
+			'rc_comment_data' => null,
 			'rc_timestamp' => $timestamp,
 			'rc_deleted' => 0,
 		];
