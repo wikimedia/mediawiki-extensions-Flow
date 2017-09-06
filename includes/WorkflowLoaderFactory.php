@@ -62,8 +62,12 @@ class WorkflowLoaderFactory {
 	 * @throws CrossWikiException
 	 */
 	public function createWorkflowLoader( Title $pageTitle, $workflowId = null ) {
-		if ( $pageTitle && $pageTitle->isExternal() ) {
+		if ( $pageTitle->isExternal() ) {
 			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
+		}
+
+		if ( $pageTitle->getNamespace() < 0 ) {
+			throw new InvalidDataException( 'Can not load workflow for special (< 0) namespace', 'invalid-title' );
 		}
 
 		// @todo: ideally, workflowId is always set and this stuff is done in the places that call this
