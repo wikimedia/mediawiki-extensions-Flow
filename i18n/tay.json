@@ -2,12 +2,32 @@
 	"@metadata": {
 		"authors": [
 			"Akamycoco",
-			"Translatealcd"
+			"Translatealcd",
+			"Hitaypayan"
 		]
 	},
+	"flow-newtopic-save": "Misan tnwang kkayal",
 	"flow-history-action-delete-post": "’muyut",
 	"flow-post-action-delete-post": "’muyut",
 	"flow-post-action-edit-post": "smr’zyut miru’",
+	"flow-topic-action-unlock-topic": "Gyahiy lawziy kkayal",
+	"flow-topic-action-resummarize-topic": "Sr’zyut miru’ quw pinsr’tung sa kkayal",
+	"flow-topic-action-unhide-topic": "Lzxiy quw lnqing na kkayal",
+	"flow-topic-action-undelete-topic": "Laxiy quw aki’ llaxan na kkayal",
+	"flow-topic-action-unsuppress-topic": "Laxiy lquw qnihut sa kkayal",
+	"flow-topic-action-watchlist-add": "Pcyumung sa spzyang balay kktan qaniy",
+	"flow-rev-message-lock-topic-reason": "sinbbaq sa wayal sblazyun",
+	"flow-comment-restored": "Wal pbaynahun sa knayal sraral",
+	"flow-comment-deleted": "Inzyutan na knayal kay’",
+	"flow-comment-moderated": "Klhangan sa iyat niya’ kkhmut na knayal",
 	"flow-moderation-confirm-delete-post": "’muyut",
-	"flow-moderation-confirm-delete-topic": "’muyut"
+	"flow-moderation-confirm-delete-topic": "’muyut",
+	"flow-moderation-title-unsuppress-topic": "Laxiy lquw qnihut sa kkayal?",
+	"flow-moderation-title-undelete-topic": "Laxiy quw aki’ llaxan na kkayal?",
+	"flow-moderation-title-unhide-topic": "Lzxiy quw lnqing na kkayal?",
+	"flow-previous-diff": "← Smural sinr’zyut miru’",
+	"flow-next-diff": "Giqas hazi’ na sinr’zyut miru’→",
+	"flow-undo-edit-header": "Cyuw tmrang smr’zyut miru’ sa pinqzyuwan na’",
+	"flow-undo-edit-post": "Cyuw tmrang smr’zyut miru’ sa biru’ qnlah",
+	"flow-mark-diff-patrolled-link-text": "Sinbbaq sa wayal gawzyagan mita’"
 }
