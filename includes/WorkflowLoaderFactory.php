@@ -71,7 +71,7 @@ class WorkflowLoaderFactory {
 			if ( $pageTitle->getNamespace() === NS_TOPIC ) {
 				// topic page: workflow UUID is page title
 				$workflowId = self::uuidFromTitle( $pageTitle );
-			} else {
+			} else if ( $pageTitle->getNamespace() >= 0 ) {
 				// board page: workflow UUID is inside content model
 				$page = \WikiPage::factory( $pageTitle );
 				$content = $page->getContent();
