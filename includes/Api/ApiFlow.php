@@ -113,6 +113,13 @@ class ApiFlow extends ApiBase {
 				[ 'apierror-invalidtitle', wfEscapeWikiText( $params['page'] ) ], 'invalid-page'
 			);
 		}
+
+		if ( $page->getNamespace() < 0 ) {
+			$this->dieWithError(
+				[ 'apierror-invalidtitle', wfEscapeWikiText( $params['page'] ) ], 'invalid-page-negative-namespace'
+			);
+		}
+
 		/** @var \Flow\TalkpageManager $controller */
 		$controller = Container::get( 'occupation_controller' );
 		if ( $page->getContentModel() !== CONTENT_MODEL_FLOW_BOARD ) {
