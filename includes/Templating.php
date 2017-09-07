@@ -10,7 +10,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
 use OutputPage;
-use Sanitizer;
 // These don't really belong here
 use Linker;
 
@@ -146,21 +145,11 @@ class Templating {
 			return '';
 		}
 
-		try {
-			if ( $format === 'fixed-html' ) {
-				// Parsoid doesn't render redlinks & doesn't strip bad images
-				$content = $this->contentFixer->getContent( $revision );
-			} else {
-				$content = $revision->getContent( $format );
-			}
-		} catch ( \Exception $e ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failed to get content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
-			\MWExceptionHandler::logException( $e );
-
-			$content = wfMessage( 'flow-stub-post-content' )->parse();
-			if ( !in_array( $format, [ 'html', 'fixed-html' ] ) ) {
-				$content = Sanitizer::stripAllTags( $content );
-			}
+		if ( $format === 'fixed-html' ) {
+			// Parsoid doesn't render redlinks & doesn't strip bad images
+			$content = $this->contentFixer->getContent( $revision );
+		} else {
+			$content = $revision->getContent( $format );
 		}
 
 		return $content;

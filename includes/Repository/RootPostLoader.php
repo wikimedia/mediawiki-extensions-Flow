@@ -146,7 +146,7 @@ class RootPostLoader {
 				$post->setReplyToId( $parents[$postId->getAlphadecimal()] );
 				$posts[$postId->getAlphadecimal()] = $post;
 
-				wfWarn( 'Missing Posts: ' . FormatJson::encode( $missing ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Missing posts: ' . FormatJson::encode( $missing ) );
 			}
 		}
 		// another helper to catch bugs in dev
