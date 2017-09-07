@@ -9,6 +9,7 @@ use Flow\Exception\PermissionException;
 use Flow\Conversion\Utils;
 use ContentHandler;
 use Hooks;
+use Sanitizer;
 use Title;
 use User;
 use RecentChange;
@@ -353,6 +354,20 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * Checks whether the content is retrievable.
+	 *
+	 * False is an error state, used when the content is unretrievable, e.g. due to data loss (T95580)
+	 * or a temporary database error.
+	 *
+	 * This is unrelated to whether the content is loaded on-demand.
+	 *
+	 * @return bool
+	 */
+	public function isContentCurrentlyRetrievable() {
+		return $this->content !== false;
+	}
+
+	/**
 	 * DO NOT USE THIS METHOD to output the content; use
 	 * Templating::getContent, which will do additional (permissions-based)
 	 * checks to make sure it outputs something the user can see.
@@ -362,9 +377,17 @@ abstract class AbstractRevision {
 	 * @throws InvalidDataException
 	 */
 	public function getContent( $format = 'html' ) {
-		if ( $this->content === false ) {
-			throw new InvalidDataException( 'Failed to load the content' );
+		if ( !$this->isContentCurrentlyRetrievable() ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed to load the content of revision with rev_id ' . $this->revId->getAlphadecimal() );
+
+			$stubContent = wfMessage( 'flow-stub-post-content' )->parse();
+			if ( !in_array( $format, [ 'html', 'fixed-html' ] ) ) {
+				$stubContent = Sanitizer::stripAllTags( $stubContent );
+			}
+
+			return $stubContent;
 		}
+
 		if ( $this->xssCheck === false ) {
 			return '';
 		}
