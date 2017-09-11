@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e7eab26_3a9ffa07",
+        "filename": "modules/styles/mediawiki.ui/forms.less",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2017-09-11T23:27:40Z",
+      "side": 1,
+      "message": "`color` is a good addition, but should be the same like `.flow-newtopic-form .mw-ui-input-large` below…",
+      "revId": "04170c587cceac17451fb676f222bb73b4f58a58",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
