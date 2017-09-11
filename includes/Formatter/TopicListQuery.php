@@ -49,6 +49,8 @@ class TopicListQuery extends AbstractQuery {
 		if ( $missing ) {
 			$needed = [];
 			foreach ( $missing as $alpha ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Failed to load latest revision for post ID ' . $alpha );
+
 				// convert alpha back into UUID object
 				$needed[] = $allPostIds[$alpha];
 			}
