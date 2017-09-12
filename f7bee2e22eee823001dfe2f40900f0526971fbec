@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e7eab26_82ab206d",
+        "filename": "modules/styles/board/navigation.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-09-12T17:59:01Z",
+      "side": 1,
+      "message": "2.55? Not 2.5?",
+      "revId": "f7bee2e22eee823001dfe2f40900f0526971fbec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
