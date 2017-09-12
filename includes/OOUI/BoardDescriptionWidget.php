@@ -40,7 +40,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 		$this->addClasses( [ 'flow-ui-boardDescriptionWidget', 'flow-ui-boardDescriptionWidget-nojs' ] );
 
 		if ( $editLink ) {
-			$this->appendContent( $this->editButton );
+			$this->appendContent( $this->wrapInDiv( (string)$this->editButton ) );
 		}
 		$this->appendContent( $this->contentWrapper );
 	}
@@ -52,7 +52,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 	 * @param string $classes Classes to add to the div
 	 * @return OOUI\Tag New div with content
 	 */
-	private function wrapInDiv( $content, $classes ) {
+	private function wrapInDiv( $content, $classes = [] ) {
 		$tag = new \OOUI\Tag( 'div' );
 		$tag->addClasses( $classes );
 		$tag->appendContent( new \OOUI\HtmlSnippet( $content ) );

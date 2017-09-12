@@ -109,7 +109,8 @@
 					this.error.$element,
 					this.captchaWidget.$element,
 					this.anonWarning.$element,
-					this.button.$element,
+					// Ensure inline button is on its own line, and is :first-child, T175683
+					$( '<div>' ).append( this.button.$element ),
 					this.$content
 				),
 				this.editor.$element,
