@@ -117,7 +117,7 @@
 	"flow-summary-edited": "Résumé modifié en dernier par $1",
 	"flow-show-change": "Voir les modifications",
 	"flow-last-modified-by": "{{GENDER:$1|Modifié}} en dernier par $1",
-	"flow-stub-post-content": "<em>En raison d’une erreur technique, ce message n’a pas pu être chargé.</em>",
+	"flow-stub-post-content": "<em>En raison d’une erreur technique, ce contenu n’a pas pu être chargé.</em>",
 	"flow-newtopic-title-placeholder": "Nouveau sujet",
 	"flow-newtopic-content-placeholder": "Rédigez ici votre message sur « $1 »",
 	"flow-newtopic-header": "Ajouter un nouveau sujet",

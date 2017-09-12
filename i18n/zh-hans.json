@@ -101,7 +101,7 @@
 	"flow-summary-edited": "摘要最近由$1{{GENDER:$1|编辑}}",
 	"flow-show-change": "显示更改",
 	"flow-last-modified-by": "$1最后{{GENDER:$1|修改}}",
-	"flow-stub-post-content": "<em>由于一个技术错误，此帖子无法被恢复。</em>",
+	"flow-stub-post-content": "<em>由于一个技术错误，此内容无法被恢复。</em>",
 	"flow-newtopic-title-placeholder": "新话题",
 	"flow-newtopic-content-placeholder": "发布新消息至“$1”",
 	"flow-newtopic-header": "添加新话题",

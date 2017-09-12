@@ -87,7 +87,7 @@
 	"flow-summary-edited": "Zusammenfassung zuletzt {{GENDER:$1|bearbeitet}} von $1",
 	"flow-show-change": "Änderungen anzeigen",
 	"flow-last-modified-by": "Zuletzt {{GENDER:$1|geändert}} von $1",
-	"flow-stub-post-content": "<em>Aufgrund eines technischen Fehlers konnte dieser Beitrag nicht abgerufen werden.</em>",
+	"flow-stub-post-content": "<em>Aufgrund eines technischen Fehlers konnte dieser Inhalt nicht abgerufen werden.</em>",
 	"flow-newtopic-title-placeholder": "Neues Thema",
 	"flow-newtopic-content-placeholder": "Eine neue Nachricht zu „$1“ posten",
 	"flow-newtopic-header": "Ein neues Thema hinzufügen",
