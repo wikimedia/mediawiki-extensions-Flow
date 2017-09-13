@@ -81,8 +81,8 @@
 		"import/lqt-to-flow-topic": "Flow\\Log\\LqtImportFormatter"
 	},
 	"SpecialPages": {
-		"Flow": "Flow\\Specials\\SpecialFlow",
-		"EnableFlow": "Flow\\Specials\\SpecialEnableFlow"
+		"StructuredDiscussions": "Flow\\Specials\\SpecialStructuredDiscussions",
+		"EnableStructuredDiscussions": "Flow\\Specials\\SpecialEnableStructuredDiscussions"
 	},
 	"MessagesDirs": {
 		"Flow": [
