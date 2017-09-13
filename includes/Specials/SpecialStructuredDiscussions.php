@@ -16,7 +16,7 @@ use FormSpecialPage;
 use HTMLForm;
 use Status;
 
-class SpecialFlow extends FormSpecialPage {
+class SpecialStructuredDiscussions extends FormSpecialPage {
 
 	/**
 	 * The type of content, e.g. 'post', 'workflow'
@@ -31,7 +31,7 @@ class SpecialFlow extends FormSpecialPage {
 	protected $uuid;
 
 	function __construct() {
-		parent::__construct( 'Flow' );
+		parent::__construct( 'StructuredDiscussions' );
 	}
 
 	/**
