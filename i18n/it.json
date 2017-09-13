@@ -91,7 +91,7 @@
 	"flow-summary-edited": "Sintesi modificata per l'ultima volta da $1",
 	"flow-show-change": "Mostra modifiche",
 	"flow-last-modified-by": "Ultima {{GENDER:$1|modifica}} di $1",
-	"flow-stub-post-content": "<em>A causa di un errore tecnico, questo messaggio non può essere recuperato.</em>",
+	"flow-stub-post-content": "<em>A causa di un errore tecnico, questo contenuto non può essere recuperato.</em>",
 	"flow-newtopic-title-placeholder": "Nuovo argomento",
 	"flow-newtopic-content-placeholder": "Scrivi un nuovo messaggio su \"$1\"",
 	"flow-newtopic-header": "Aggiungi un nuovo argomento",

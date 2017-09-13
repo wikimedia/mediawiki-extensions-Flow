@@ -89,7 +89,7 @@
 	"flow-summary-edited": "$1이 마지막으로 {{GENDER:$1|편집한}} 요약",
 	"flow-show-change": "차이 보기",
 	"flow-last-modified-by": "$1님이 마지막으로 {{GENDER:$1|수정함}}",
-	"flow-stub-post-content": "<em>기술적인 오류로 인하여 이 게시물을 가져오지 못했습니다.</em>",
+	"flow-stub-post-content": "<em>기술적인 오류로 인하여 이 내용을 가져오지 못했습니다.</em>",
 	"flow-newtopic-title-placeholder": "새 주제",
 	"flow-newtopic-content-placeholder": "\"$1\"에 새 메시지 남기기",
 	"flow-newtopic-header": "새 항목 추가",
