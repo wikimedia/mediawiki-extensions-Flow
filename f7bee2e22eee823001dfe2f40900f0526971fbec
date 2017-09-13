@@ -16,6 +16,24 @@
       "revId": "f7bee2e22eee823001dfe2f40900f0526971fbec",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e7eab26_ac4dea9f",
+        "filename": "modules/styles/board/navigation.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-09-13T15:55:10Z",
+      "side": 1,
+      "message": "No, the button height is a weird combination of text height and padding. This is the nearest 2dp number than it larger than it.",
+      "parentUuid": "4e7eab26_82ab206d",
+      "revId": "f7bee2e22eee823001dfe2f40900f0526971fbec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
