@@ -1,6 +1,6 @@
 <?php
 /**
- * Translations of the namespaces introduced by Flow.
+ * Translations of the namespaces introduced by StructuredDiscussions.
  *
  * @file
  */

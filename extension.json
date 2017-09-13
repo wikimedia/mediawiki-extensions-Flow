@@ -1,5 +1,5 @@
 {
-	"name": "Flow",
+	"name": "StructuredDiscussions",
 	"version": "1.1",
 	"author": [
 		"Erik Bernhardson",
@@ -17,7 +17,7 @@
 		"Moriel Schottlender",
 		"Benny Situ"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:Flow",
+	"url": "https://www.mediawiki.org/wiki/Extension:StructuredDiscussions",
 	"descriptionmsg": "flow-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
@@ -85,14 +85,14 @@
 		"EnableStructuredDiscussions": "Flow\\Specials\\SpecialEnableStructuredDiscussions"
 	},
 	"MessagesDirs": {
-		"Flow": [
+		"StructuredDiscussions": [
 			"i18n",
 			"i18n/api"
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"FlowNamespaces": "Flow.namespaces.php",
-		"FlowAlias": "Flow.alias.php"
+		"FlowNamespaces": "StructuredDiscussions.namespaces.php",
+		"FlowAlias": "StructuredDiscussions.alias.php"
 	},
 	"ResourceModules": {
 		"ext.flow.contributions": {
