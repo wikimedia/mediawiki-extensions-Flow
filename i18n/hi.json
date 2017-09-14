@@ -13,7 +13,7 @@
 			"Sachinkatiyar"
 		]
 	},
-	"enableflow": "प्रवाह को सक्षम करें",
+	"enablestructureddiscussions": "प्रवाह को सक्षम करें",
 	"notification-dynamic-actions-flow-board-unwatch": "\"$1\" में नई गतिविधि देखना {{GENDER:$3|बंद}} करें",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|आप}} अब \"$1\" पन्ने को ध्यानसूची से हटा चुके हैं।",
 	"notification-dynamic-actions-flow-topic-unwatch": "इस विषय को देखना {{GENDER:$3|बंद}} करें",
@@ -280,7 +280,7 @@
 	"flow-recent-topics": "हाल में सक्रिय विषय",
 	"flow-toggle-small-topics": "छोटे विषय दृश्य पर स्विच करें",
 	"flow-toggle-topics": "विषय केवल दृश्य में स्विच करें",
-	"flow": "फ्लो",
+	"structureddiscussions": "फ्लो",
 	"flow-special-type": "प्रकार",
 	"flow-special-type-post": "पोस्ट",
 	"flow-special-type-workflow": "वर्कफ्लो",

@@ -8,7 +8,7 @@
 			"Tow"
 		]
 	},
-	"enableflow": "ਫਲੋ ਲਾਗੂ ਕਰੋ",
+	"enablestructureddiscussions": "ਫਲੋ ਲਾਗੂ ਕਰੋ",
 	"flow-board-description-can-not-edit": "ਸੰਪਾਦਤ ਹੋਣ ਯੋਗ ਨਹੀਂ",
 	"flow-board-collapse-description": "ਵੇਰਵਾ ਲੁਕਾਓ",
 	"flow-board-expand-description": "ਵੇਰਵਾ ਵਿਖਾਓ",
@@ -42,7 +42,7 @@
 	"flow-topic-html-title": "$2 'ਤੇ $1",
 	"flow-topic-count": "ਵਿਸ਼ਾ ($1)",
 	"flow-newest-topics": "ਸਭ ਤੋਂ ਨਵੇਂ ਵਿਸ਼ੇ",
-	"flow": "ਫਲੋ",
+	"structureddiscussions": "ਫਲੋ",
 	"flow-special-type": "ਕਿਸਮ",
 	"flow-undo-your-text": "ਤੁਹਾਡੀ ਲਿਖਤ",
 	"group-flow-bot": "ਫਲੋ ਬੌਟਸ",

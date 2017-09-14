@@ -14,7 +14,7 @@
 			"Rotemliss"
 		]
 	},
-	"enableflow": "הפעלת זרימה",
+	"enablestructureddiscussions": "הפעלת זרימה",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|הפסקת}} המעקב אחרי פעילות חדשה בלוח \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|אתה כבר לא עוקב|את כבר לא עוקבת|אתם כבר לא עוקבים}} יותר אחרי הלוח \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "זה לא ישפיע על נושאים נפרדים {{GENDER:$3|שאתה עוקב|שאת עוקבת|שאתם עוקבים}} אחריהם. {{GENDER:$3|באפשרותך|באפשרותך|באפשרותכם}} לעקוב אחרי [$2 הלוח הזה] בכל עת.",
@@ -427,7 +427,7 @@
 	"flow-whatlinkshere-post": "מתוך [$1 רשומה]",
 	"flow-whatlinkshere-header": "מתוך [$1 התיאור]",
 	"flow-whatlinkshere-post-summary": "מה[$1 סיכום]",
-	"flow": "זרימה",
+	"structureddiscussions": "זרימה",
 	"flow-special-desc": "הדף המיוחד הזה מפנה לזרימת עבודה של זרימה או לרשומה של זרימה דרך UUID.",
 	"flow-special-type": "סוג",
 	"flow-special-type-post": "רשומה",

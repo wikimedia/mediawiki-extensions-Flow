@@ -18,7 +18,7 @@
 			"Syum90"
 		]
 	},
-	"enableflow": "Habilita el Flow",
+	"enablestructureddiscussions": "Habilita el Flow",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Deixeu}} de seguir el tema",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Ja}} no seguiu «$1»",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Podeu}} seguir [$2 aquest tema] en qualsevol moment.",
@@ -398,7 +398,7 @@
 	"flow-whatlinkshere-post": "de partir d'un [$1 apunt]",
 	"flow-whatlinkshere-header": "a partir de la [$1 descripció]",
 	"flow-whatlinkshere-post-summary": "des del [$1 resum]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-type": "Tipus",
 	"flow-special-type-post": "Apunt",
 	"flow-special-type-workflow": "Flux de treball",

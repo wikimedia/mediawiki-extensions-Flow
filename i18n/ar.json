@@ -18,7 +18,7 @@
 			"Mido"
 		]
 	},
-	"enableflow": "فعّل النقاشات الهيكلية",
+	"enablestructureddiscussions": "فعّل النقاشات الهيكلية",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|توقف|توقفي}} عن مراقبة النشاط الجديد على \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|أنت}} لم تعد تراقب الصفحة \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "هذا لن يؤثر على الموضوعات الفردية التي {{GENDER:$3|تراقبها|تراقبينها}} . يمكنك مراقبة [$2 هذه الصفحة] في أي وقت.",
@@ -431,7 +431,7 @@
 	"flow-whatlinkshere-post": "من [$1 منشور]",
 	"flow-whatlinkshere-header": "من [$1 الوصف]",
 	"flow-whatlinkshere-post-summary": "من [ملخص $1]",
-	"flow": "نقاشات هيكلية",
+	"structureddiscussions": "نقاشات هيكلية",
 	"flow-special-desc": "هذه الصفحة تحول إلى workflow للنقاشات الهيكليةأو post للنقاشات الهيكلية مع إعطاء UUID.",
 	"flow-special-type": "نوع",
 	"flow-special-type-post": "نشر",

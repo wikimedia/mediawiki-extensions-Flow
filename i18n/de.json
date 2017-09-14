@@ -17,7 +17,7 @@
 			"Umherirrender"
 		]
 	},
-	"enableflow": "Strukturierte Diskussionen aktivieren",
+	"enablestructureddiscussions": "Strukturierte Diskussionen aktivieren",
 	"notification-dynamic-actions-flow-board-unwatch": "Mit dem Beobachten neuer Aktivitäten zu „$1“ {{GENDER:$3|aufhören}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} beobachtest nicht mehr die Seite „$1“",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dies betrifft nicht einzelne Themen, die {{GENDER:$3|du}} beobachtest. Du kannst jederzeit [$2 diese Seite] beobachten.",
@@ -430,7 +430,7 @@
 	"flow-whatlinkshere-post": "von einem [$1 Beitrag]",
 	"flow-whatlinkshere-header": "von der [$1 Beschreibung]",
 	"flow-whatlinkshere-post-summary": "aus der [$1 Zusammenfassung]",
-	"flow": "Strukturierte Diskussionen",
+	"structureddiscussions": "Strukturierte Diskussionen",
 	"flow-special-desc": "Diese Spezialseite leitet mithilfe einer UUID auf ein Strukturierte-Diskussionen-Workflow oder einen Strukturierte-Diskussionen-Beitrag weiter.",
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Beitrag",

@@ -20,7 +20,7 @@
 			"Hamilton Abreu"
 		]
 	},
-	"enableflow": "Ativar Flow",
+	"enablestructureddiscussions": "Ativar Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vigiar nova atividade em \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Já não {{GENDER:$3|está}} a vigiar a página \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isto não afeta os tópicos que {{GENDER:$3|está}} a vigiar. Pode vigiar [$2 esta página] em qualquer altura.",
@@ -433,7 +433,7 @@
 	"flow-whatlinkshere-post": "de uma [$1 mensagem]",
 	"flow-whatlinkshere-header": "da [$1 descrição]",
 	"flow-whatlinkshere-post-summary": "do [$1 resumo]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Esta página especial redireciona para um fluxo de trabalho Flow, ou para uma mensagem Flow, dado um Identificador Global Único.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Mensagem",

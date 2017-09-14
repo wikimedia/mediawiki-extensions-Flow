@@ -12,7 +12,7 @@
 			"Martin Urbanec"
 		]
 	},
-	"enableflow": "Aktivovat Flow",
+	"enablestructureddiscussions": "Aktivovat Flow",
 	"flow-desc": "Diskusní systém",
 	"flow-talk-taken-over-comment": "/* Tato stránka byla převedena na nástěnku Flow */",
 	"log-name-flow": "Kniha aktivity Flow",

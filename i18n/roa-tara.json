@@ -4,7 +4,7 @@
 			"Joetaras"
 		]
 	},
-	"enableflow": "Abbilite 'Ngazzainde strutturate",
+	"enablestructureddiscussions": "Abbilite 'Ngazzainde strutturate",
 	"flow-desc": "Sisteme de le 'ngazzaminde",
 	"log-name-flow": "Arcihvije de le attività sus a le 'ngazzaminde strutturate",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",

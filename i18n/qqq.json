@@ -25,7 +25,7 @@
 			"Thibaut120094"
 		]
 	},
-	"enableflow": "{{doc-special|EnableFlow}}",
+	"enablestructureddiscussions": "{{doc-special|EnableFlow}}",
 	"notification-dynamic-actions-flow-board-unwatch": "Text for the action offering the user to unwatch a board from within a notification.\n\nParameters:\n* $1 - Board name\n* $2 - Board URL\n\n{{related|Notification-dynamic}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Title for the confirmation text for unwatching a board from within a notification.\n\nParameters:\n* $1 - Board name\n* $2 - Board URL\n\n{{related|Notification-dynamic}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Description for the confirmation text for unwatching a board from within a notification.\n\nParameters:\n* $1 - Board name\n* $2 - Board URL\n\n{{related|Notification-dynamic}}",
@@ -480,7 +480,7 @@
 	"flow-whatlinkshere-post": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Structured Discussions post.\n\nParameters:\n* $1 - a URL to the post\nSee also:\n* {{msg-mw|Flow-whatlinkshere-header}}",
 	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Structured Discussions Board description.\n\nParameters:\n* $1 - a URL to the description\n\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
 	"flow-whatlinkshere-post-summary": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a topic summary.\n\nParameters:\n* $1 - a URL to the topic that has the summary\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
-	"flow": "{{doc-special|Flow}}\n{{Identical|Structured Discussion}}",
+	"structureddiscussions": "{{doc-special|Flow}}\n{{Identical|Structured Discussion}}",
 	"flow-special-desc": "Description at the top of the redirector special page",
 	"flow-special-type": "Label for the type (Workflow or PostRevision) dropdown on the redirector special page.\n{{Identical|Type}}",
 	"flow-special-type-post": "Label for PostRevision in the type dropdown.\n{{Identical|Post}}",

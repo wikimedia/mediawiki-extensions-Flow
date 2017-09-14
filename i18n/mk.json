@@ -9,7 +9,7 @@
 			"Matiia"
 		]
 	},
-	"enableflow": "Вклучи го Тек",
+	"enablestructureddiscussions": "Вклучи го Тек",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Престанете}} со набљудување на новите активности на „$1“",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Повеќе не ја {{GENDER:$3|набљудувате}} страницата „$1“",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Ова нема да се однесува на поединечните теми што ги {{GENDER:$3|набљудувате}}. Можете да ја набљудувате [$2 страницава] во во секое време.",
@@ -424,7 +424,7 @@
 	"flow-whatlinkshere-post": "од [$1 објава]",
 	"flow-whatlinkshere-header": "од [$1 описот]",
 	"flow-whatlinkshere-post-summary": "пд [$1 описот]",
-	"flow": "Тек",
+	"structureddiscussions": "Тек",
 	"flow-special-desc": "Оваа службена страница пренасочува кон работниот тек или објава на „Тек“ со зададен UUID.",
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Објава",

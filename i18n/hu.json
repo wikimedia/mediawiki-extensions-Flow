@@ -9,7 +9,7 @@
 			"Bencemac"
 		]
 	},
-	"enableflow": "Flow engedélyezése",
+	"enablestructureddiscussions": "Flow engedélyezése",
 	"flow-desc": "Megbeszélésrendszer",
 	"flow-talk-taken-over-comment": "/* Ez a lap át lett alakítva egy Flow-megbeszéléssé */",
 	"log-name-flow": "Flow-aktivitás naplója",
@@ -359,7 +359,7 @@
 	"flow-whatlinkshere-post": "[$1 hozzászólásból]",
 	"flow-whatlinkshere-header": "[$1 a leírásból]",
 	"flow-whatlinkshere-post-summary": "[$1 az összefoglalóból]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-type": "Típus",
 	"flow-special-type-post": "Hozzászólás",
 	"flow-special-enableflow-legend": "Flow engedélyezése egy új lapon",

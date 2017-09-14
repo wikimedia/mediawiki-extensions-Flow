@@ -31,7 +31,7 @@
 			"Redredsonia"
 		]
 	},
-	"enableflow": "Включить структурированные обсуждения",
+	"enablestructureddiscussions": "Включить структурированные обсуждения",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Прекратить}} отслеживание новых изменений страницы «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Вы}} больше не искать страницу с именем «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Это не будет затрагивать отдельные темы {{пол:$3|вы}} для поиска. Вы можете смотреть [$2 страница] в любое время.",
@@ -416,7 +416,7 @@
 	"flow-terms-of-use-unlock-topic": "Нажимая «{{int:flow-topic-action-unlock-topic}}», вы соглашаетесь с условиями использования этой вики.",
 	"flow-whatlinkshere-post": "из [$1 сообщения]",
 	"flow-whatlinkshere-header": "из [$1 описания]",
-	"flow": "Структурированные обсуждения",
+	"structureddiscussions": "Структурированные обсуждения",
 	"flow-special-desc": "Эта специальная страница перенаправляет на поток Flow или на сообщение Flow по UUID.",
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Сообщение",

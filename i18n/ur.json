@@ -8,7 +8,7 @@
 			"Macofe"
 		]
 	},
-	"enableflow": "فلو فعال کریں",
+	"enablestructureddiscussions": "فلو فعال کریں",
 	"flow-desc": "ورک فلو مینیجمنٹ سسٹم",
 	"flow-talk-taken-over-comment": "/* پیش نظر صفحہ کو فلو تبادلۂ خیال نظام کی جانب منتقل کر دیا گیا ہے */",
 	"log-name-flow": "نوشتہ فعالیت فلو",
@@ -309,7 +309,7 @@
 	"flow-whatlinkshere-post": "از [$1 مراسلہ]",
 	"flow-whatlinkshere-header": "از [$1 وضاحت]",
 	"flow-whatlinkshere-post-summary": "از [$1 وضاحت]",
-	"flow": "فلو",
+	"structureddiscussions": "فلو",
 	"flow-special-type": "طرز",
 	"flow-special-type-post": "مراسلہ",
 	"flow-special-type-workflow": "ورک فلو",

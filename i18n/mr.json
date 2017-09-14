@@ -8,7 +8,7 @@
 			"Macofe"
 		]
 	},
-	"enableflow": "प्रवाहास(फ्लो) सक्षम करा",
+	"enablestructureddiscussions": "प्रवाहास(फ्लो) सक्षम करा",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "आपण [$2 हा विषय] कधीही बघु शकता.",
 	"flow-desc": "कार्यप्रवाह व्यवस्थापन प्रणाली",
 	"flow-talk-taken-over-comment": "/* हे पान प्रवाह चर्चा फलकात रुपांतरित केल्या गेले आहे*/",
@@ -316,7 +316,7 @@
 	"flow-terms-of-use-unlock-topic": "\"{{int:flow-topic-action-unlock-topic}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
 	"flow-whatlinkshere-header": "[$1 वर्णना] मधून",
 	"flow-whatlinkshere-post-summary": "[$1 सारांशा] मधून",
-	"flow": "प्रवाह",
+	"structureddiscussions": "प्रवाह",
 	"flow-special-desc": "हे विशेष पान, प्रवाहाच्या कार्यप्रवाहास किंवा, जर यूयूआयडी (UUID) दिली असल्यास, प्रवाह टपालनास पुनर्निर्देशित करते.",
 	"flow-special-type": "प्रकार",
 	"flow-special-type-post": "टपालन",

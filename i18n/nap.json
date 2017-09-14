@@ -5,7 +5,7 @@
 			"C.R."
 		]
 	},
-	"enableflow": "Appiccia 'o Flow",
+	"enablestructureddiscussions": "Appiccia 'o Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Fernisce}} 'e cuntrullà attività nuova nocpp'a \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Vedite ca}} nun state cchiù a cuntrullà 'a paggena \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Chisto nun cagnasse ogne argomento ca {{GENDER:$3|state}} a secutà. {{GENDER:$3|Putite}} miettere [$2 sta paggena] dint'a ll'elenco 'e paggen cuntrullate int'a ogne mumento.",

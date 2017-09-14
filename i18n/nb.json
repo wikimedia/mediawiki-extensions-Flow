@@ -13,7 +13,7 @@
 			"Jon Harald Søby"
 		]
 	},
-	"enableflow": "Aktiver Flow",
+	"enablestructureddiscussions": "Aktiver Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Slutt}} å følge med på ny aktivitet på «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} følger ikke lenger siden «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dette vil ikke påvirke individuelle saker {{GENDER:$3|du}} følger. Du kan overvåke [$2 denne siden] når som helst.",
@@ -425,7 +425,7 @@
 	"flow-whatlinkshere-post": "fra et [$1 innlegg]",
 	"flow-whatlinkshere-header": "fra [$1 beskrivelsen]",
 	"flow-whatlinkshere-post-summary": "fra [$1 sammendraget]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Denne spesialsiden omdirigerer til en Flow-arbeidsflyt eller et Flow-innlegg gitt en UUID.",
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Innlegg",

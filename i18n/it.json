@@ -21,7 +21,7 @@
 			"Fringio"
 		]
 	},
-	"enableflow": "Attiva discussioni strutturate",
+	"enablestructureddiscussions": "Attiva discussioni strutturate",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Rimuovi}} le nuove attività su \"$1\" dagli osservati speciali",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Non {{GENDER:$3|stai}} più osservando la pagina \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Questo non influenzerà i singoli argomenti che {{GENDER:$3|stai}} seguendo. {{GENDER:$3|Puoi}} inserire [$2 questa pagina] negli osservati speciali in qualsiasi momento.",
@@ -434,7 +434,7 @@
 	"flow-whatlinkshere-post": "da un [$1 messaggio]",
 	"flow-whatlinkshere-header": "dalla [$1 descrizione]",
 	"flow-whatlinkshere-post-summary": "dal [$1 riassunto]",
-	"flow": "Discussioni strutturate",
+	"structureddiscussions": "Discussioni strutturate",
 	"flow-special-desc": "Questa pagina speciale reindirizza a un messaggio o a un flusso di lavoro di discussioni strutturate dato un UUID.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Messaggio",

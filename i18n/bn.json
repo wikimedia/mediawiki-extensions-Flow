@@ -11,7 +11,7 @@
 			"Bodhisattwa"
 		]
 	},
-	"enableflow": "কাঠামোবদ্ধ আলোচনা সক্রিয় করুন",
+	"enablestructureddiscussions": "কাঠামোবদ্ধ আলোচনা সক্রিয় করুন",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|আপনি}} আর \"$1\" পাতাটির নজর রাখছেন না",
 	"notification-dynamic-actions-flow-topic-unwatch": "নজরতালিকা থেকে এই প্রসঙ্গ দেখা {{GENDER:$3|বাদ দিন}}",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|আপনি}} আর \"$1\"-এর নজর রাখছেন না",
@@ -163,7 +163,7 @@
 	"flow-terms-of-use-summarize": "\"{{int:flow-topic-action-update-topic-summary}}\" ক্লিক করার দ্বারা, আপনি এই উইকি ব্যবহারের শর্তাবলীর সাথে সম্মত হন।",
 	"flow-terms-of-use-lock-topic": "\"{{int:flow-topic-action-lock-topic}}\" ক্লিক করার দ্বারা, আপনি এই উইকি ব্যবহারের শর্তাবলীর সাথে সম্মত হন।",
 	"flow-terms-of-use-unlock-topic": "\"{{int:flow-topic-action-unlock-topic}}\" ক্লিক করার দ্বারা, আপনি এই উইকি ব্যবহারের শর্তাবলীর সাথে সম্মত হন।",
-	"flow": "কাঠামোবদ্ধ আলোচনা",
+	"structureddiscussions": "কাঠামোবদ্ধ আলোচনা",
 	"flow-special-enableflow-legend": "একটি নতুন পাতায় কাঠামোবদ্ধ আলোচনা সক্রিয় করুন",
 	"flow-importer-lqt-converted-template": "LQT পাতা কাঠামোবদ্ধ আলোচনায় রূপান্তরিত হয়েছে",
 	"flow-edited": "সম্পাদিত",

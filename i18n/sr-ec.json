@@ -9,7 +9,7 @@
 			"Obsuser"
 		]
 	},
-	"enableflow": "Омогући Flow",
+	"enablestructureddiscussions": "Омогући Flow",
 	"abusefilter-edit-builder-vars-board-articleid": "ID странице Форума за дискусију",
 	"abusefilter-edit-builder-vars-board-namespace": "Именски простор Форума за дискусију",
 	"abusefilter-edit-builder-vars-board-text": "Назив Форума за дискусију",

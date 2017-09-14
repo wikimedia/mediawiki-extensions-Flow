@@ -31,7 +31,7 @@
 			"Arthur2e5"
 		]
 	},
-	"enableflow": "启用结构化讨论",
+	"enablestructureddiscussions": "启用结构化讨论",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}关注“$1”上新活动",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|您}}已不再监视页面“$1”",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "这将不会影响{{GENDER:$3|您}}监视的单个话题。您可以随时监视[$2 此页面]。",
@@ -444,7 +444,7 @@
 	"flow-whatlinkshere-post": "来自一个[$1 帖子]",
 	"flow-whatlinkshere-header": "来自[$1 描述]",
 	"flow-whatlinkshere-post-summary": "来自[$1 摘要]",
-	"flow": "结构化讨论",
+	"structureddiscussions": "结构化讨论",
 	"flow-special-desc": "此特殊页面重定向至结构化讨论工作流或指定UUID的结构化讨论帖子。",
 	"flow-special-type": "类型",
 	"flow-special-type-post": "帖子",

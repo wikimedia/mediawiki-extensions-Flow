@@ -18,7 +18,7 @@
 			"Alluk."
 		]
 	},
-	"enableflow": "Ota Flow käyttöön",
+	"enablestructureddiscussions": "Ota Flow käyttöön",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Lopeta}} sivun \"$1\" tarkkailu",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Sivu \"$1\" on poistettu tarkkailulistaltasi",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Tämä ei vaikuta yksittäisiin aiheisiin, joita tarkkailet. Voit tarkkailla [$2 tätä sivua] milloin tahansa.",
@@ -381,7 +381,7 @@
 	"flow-whatlinkshere-post": "[$1 viestistä]",
 	"flow-whatlinkshere-header": "[$1 kuvauksesta]",
 	"flow-whatlinkshere-post-summary": "[$1 yhteenvedosta]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Tämä erikoissivu ohjaa Flow-workflow'hun tai Flow-viestiin, jolle on annettu UUID.",
 	"flow-special-type": "Tyyppi",
 	"flow-special-type-post": "Viesti",

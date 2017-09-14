@@ -8,7 +8,7 @@
 			"Glavkos"
 		]
 	},
-	"enableflow": "Ενεργοποίηση Flow",
+	"enablestructureddiscussions": "Ενεργοποίηση Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Σταματήστε}} την παρακολούθηση νέας δραστηριότητας στο «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Δεν}} παρακολουθείτε πλέον τη σελίδα «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Αυτό δεν θα επηρεάσει επιμέρους θέματα {{GENDER:$3|που}} παρακολουθείτε. Μπορείτε να παρακολουθήσετε [$2 αυτή τη σελίδα] ανά πάσα στιγμή.",

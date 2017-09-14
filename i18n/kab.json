@@ -6,7 +6,7 @@
 			"Belkacem77"
 		]
 	},
-	"enableflow": "Rmed Flow",
+	"enablestructureddiscussions": "Rmed Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Ḥbes}} ẓer armud amaynu ɣef \"$1\"",
 	"flow-desc": "Anagraw n useqerdec",
 	"flow-talk-taken-over-comment": "/* Asebtar agi yettwasselket ar wanɣal n umyannan Flow */",

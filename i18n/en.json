@@ -13,7 +13,7 @@
 			"Amir E. Aharoni"
 		]
 	},
-	"enableflow": "Enable Structured Discussions",
+	"enablestructureddiscussions": "Enable Structured Discussions",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} watching new activity on \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|You}} are no longer watching the page \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "This will not affect individual topics {{GENDER:$3|you}} are watching. You can watch [$2 this page] anytime.",
@@ -468,7 +468,7 @@
 	"flow-whatlinkshere-post": "from a [$1 post]",
 	"flow-whatlinkshere-header": "from the [$1 description]",
 	"flow-whatlinkshere-post-summary": "from the [$1 summary]",
-	"flow": "Structured Discussions",
+	"structureddiscussions": "Structured Discussions",
 	"flow-special-desc": "This special page redirects to a Structured Discussions workflow or a Structured Discussions post given a UUID.",
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Post",

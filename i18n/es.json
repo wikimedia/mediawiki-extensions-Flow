@@ -33,7 +33,7 @@
 			"MarcoAurelio"
 		]
 	},
-	"enableflow": "Activar Flow",
+	"enablestructureddiscussions": "Activar Flow",
 	"flow-desc": "Sistema de discusión",
 	"flow-talk-taken-over-comment": "/* Esta página se ha convertido en un tablero de discusión Flow */",
 	"log-name-flow": "Registro de actividad de Flow",
@@ -424,7 +424,7 @@
 	"flow-whatlinkshere-post": "de una [$1 publicación]",
 	"flow-whatlinkshere-header": "de la [$1 descripción]",
 	"flow-whatlinkshere-post-summary": "del [$1 resumen]",
-	"flow": "Flujo",
+	"structureddiscussions": "Flujo",
 	"flow-special-desc": "Indicando un UUID, esta página especial redirige a un flujo de trabajo o publicación Flow.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicación",

@@ -47,7 +47,7 @@
 			"Pols12"
 		]
 	},
-	"enableflow": "Activer les discussions structurées",
+	"enablestructureddiscussions": "Activer les discussions structurées",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Arrêter}} de suivre la nouvelle activité sur « $1 »",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Vous}} ne suivez plus la page «&nbsp;$1&nbsp;»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Cela n'affectera pas les différentes rubriques que {{GENDER:$3|vous}} suivez. Vous pouvez suivre [$2 cette page] à tout moment.",
@@ -461,7 +461,7 @@
 	"flow-whatlinkshere-post": "à partir d’un [$1 message]",
 	"flow-whatlinkshere-header": "à partir de la [$1 description]",
 	"flow-whatlinkshere-post-summary": "à partir du [$1 sommaire]",
-	"flow": "Discussions structurées",
+	"structureddiscussions": "Discussions structurées",
 	"flow-special-desc": "Cette page spéciale redirige vers un flux de travail Flow ou une note Flow d’après un UUID.",
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Message",

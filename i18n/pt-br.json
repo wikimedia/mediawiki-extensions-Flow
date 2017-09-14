@@ -24,7 +24,7 @@
 			"Felipe L. Ewald"
 		]
 	},
-	"enableflow": "Ativar o Flow",
+	"enablestructureddiscussions": "Ativar o Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vigiar nova atividade em \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Você}} não está mais vigiando a página \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isso não afetará tópicos individuais que {{GENDER:$3|você}} está vigiando. Você pode vigiar [$2 esta página] a qualquer momento.",
@@ -440,7 +440,7 @@
 	"flow-whatlinkshere-post": "de uma [$1 publicação]",
 	"flow-whatlinkshere-header": "de uma [$1 descrição]",
 	"flow-whatlinkshere-post-summary": "do [$1 resumo]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Esta página especial redireciona para um fluxo de trabalho do Flow ou para uma publicação de Flow dado um UUID.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicação",

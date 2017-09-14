@@ -10,7 +10,7 @@
 			"Matiia"
 		]
 	},
-	"enableflow": "Activar as conversas estruturadas",
+	"enablestructureddiscussions": "Activar as conversas estruturadas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vixiar nova actividade en \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Xa}} non está a vixiar a páxina \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isto non afectará ós temas individuais que {{GENDER:$3|está}} a vixiar. Pode vixiar [$2 esta páxina] en calquera momento.",
@@ -423,7 +423,7 @@
 	"flow-whatlinkshere-post": "desde unha [$1 mensaxe]",
 	"flow-whatlinkshere-header": "desde a [$1 descrición]",
 	"flow-whatlinkshere-post-summary": "do [$1 resumo]",
-	"flow": "Conversas estruturadas",
+	"structureddiscussions": "Conversas estruturadas",
 	"flow-special-desc": "Esta páxina especial redirecciona a un fluxo de traballo de conversas estruturadas ou a unha mensaxe de conversas estruturadas dado un UUID.",
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicar",

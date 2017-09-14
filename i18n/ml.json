@@ -8,7 +8,7 @@
 			"Nnemo"
 		]
 	},
-	"enableflow": "ഫ്ലോ സജ്ജമാക്കുക",
+	"enablestructureddiscussions": "ഫ്ലോ സജ്ജമാക്കുക",
 	"flow-desc": "പ്രവൃത്തി കൈകാര്യ സൗകര്യം",
 	"log-name-flow": "ഫ്ലോ പ്രവർത്തനരേഖ",
 	"logentry-delete-flow-delete-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള ഒരു [$4 കുറിപ്പ്]  $1 {{GENDER:$2|മായ്ച്ചു}}",
@@ -199,7 +199,7 @@
 	"flow-no-more-fwd": "പഴയ വിഷയങ്ങൾ ഒന്നുമില്ല",
 	"flow-newest-topics": "ഏറ്റവും പുതിയ വിഷയങ്ങൾ",
 	"flow-recent-topics": "സമീപകാലത്ത് സജീവമായ വിഷയങ്ങൾ",
-	"flow": "പ്രവാഹം",
+	"structureddiscussions": "പ്രവാഹം",
 	"flow-special-type": "തരം",
 	"flow-special-type-post": "കുറിപ്പ്",
 	"flow-previous-diff": "← പഴയ തിരുത്ത്",

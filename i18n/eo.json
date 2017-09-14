@@ -10,7 +10,7 @@
 			"Yekrats"
 		]
 	},
-	"enableflow": "Ŝalti Flow",
+	"enablestructureddiscussions": "Ŝalti Flow",
 	"flow-topic-moderated-reason-prefix": "Kialo:",
 	"flow-post-actions": "Agoj",
 	"flow-topic-actions": "Agoj",

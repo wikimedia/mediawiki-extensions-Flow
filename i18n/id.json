@@ -11,7 +11,7 @@
 			"Hidayatsrf"
 		]
 	},
-	"enableflow": "Aktifkan Flow",
+	"enablestructureddiscussions": "Aktifkan Flow",
 	"flow-desc": "Sistem manajemen alur kerja",
 	"flow-talk-taken-over-comment": "/* Halaman ini telah diubah menjadi forum diskusi Flow */",
 	"log-name-flow": "Catatan aktivitas Flow",
@@ -394,7 +394,7 @@
 	"flow-whatlinkshere-post": "dari sebuah [$1 kiriman]",
 	"flow-whatlinkshere-header": "dari [$1 deskripsi]",
 	"flow-whatlinkshere-post-summary": "dari [$1 ringkasan]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Halaman istimewa ini mengalihkan ke sebuah alur kerja Flow atau kiriman Flow jika diberikan sebuah UUID.",
 	"flow-special-type": "Jenis",
 	"flow-special-type-post": "Kiriman",

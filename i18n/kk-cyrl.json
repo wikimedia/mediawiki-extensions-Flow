@@ -7,7 +7,7 @@
 			"Matiia"
 		]
 	},
-	"enableflow": "Flow кеңейтілімін іске қосу",
+	"enablestructureddiscussions": "Flow кеңейтілімін іске қосу",
 	"flow-desc": "Лекті жұмыстайтын басқару жүйесі",
 	"flow-talk-taken-over-comment": "/* Бұл бет Flow талқылау тақтасына ауыстырылған */",
 	"log-name-flow": "Flow белсенділік журналы",
@@ -384,7 +384,7 @@
 	"flow-whatlinkshere-post": "[$1 хабарламасынан]",
 	"flow-whatlinkshere-header": "[$1 сипаттамасынан]",
 	"flow-whatlinkshere-post-summary": "[$1 түйіндемесінен]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Бұл арнайы бет UUID берілген Flow хабарламасы немесе Flow   жұмыс легіне бағыттайды",
 	"flow-special-type": "Түрі",
 	"flow-special-type-post": "Хабарлама",

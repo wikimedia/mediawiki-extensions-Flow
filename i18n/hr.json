@@ -7,7 +7,7 @@
 			"Bugoslav"
 		]
 	},
-	"enableflow": "Omogući Protočne rasprave",
+	"enablestructureddiscussions": "Omogući Protočne rasprave",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Zahvali}}}} na poruci",
 	"notification-header-flow-new-topic-v2": "Nova tema stvorena na '''$3''': <bdi>\"'''$4'''\"</bdi>.",
 	"notification-header-flow-new-topic-user-talk": "Nova tema otvorena je na <strong>Vašoj razgovornoj stranici</strong>: »<strong>$4</strong>«.",
@@ -19,7 +19,7 @@
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2",
 	"flow-notification-mention-email-batch-body": "$1 Vas je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} poruci pod naslovom \"$2\" na stranici $3.",
 	"echo-category-title-flow-discussion": "Protočne rasprave",
-	"flow": "Protočne rasprave",
+	"structureddiscussions": "Protočne rasprave",
 	"group-flow-bot": "Botovi za Protočne rasprave",
 	"group-flow-bot-member": "bot za Protočne rasprave",
 	"grouppage-flow-bot": "Project:Botovi za Protočne rasprave",

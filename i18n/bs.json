@@ -11,7 +11,7 @@
 			"KWiki"
 		]
 	},
-	"enableflow": "Uključi Flow",
+	"enablestructureddiscussions": "Uključi Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Prestani}} pratiti novu aktivnost na \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Više {{GENDER:$3|ne pratite}} stranicu \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Ovo neće utjecati na pojedinačne teme koje {{GENDER:$3|pratite}}. Možete pratiti [$2 ovu stranicu] u bilo kom trenutku.",
@@ -414,7 +414,7 @@
 	"flow-whatlinkshere-post": "sa sljedeće [$1 objave]",
 	"flow-whatlinkshere-header": "sa sljedećeg [$1 opisa]",
 	"flow-whatlinkshere-post-summary": "sa sljedećeg [$1 sažetka]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Ova posebna stranica preusmjerava na Flow raspravu ili na objavu na Flowu ako posjeduje odgovarajući UUID.",
 	"flow-special-type": "Vrsta",
 	"flow-special-type-post": "Objava",

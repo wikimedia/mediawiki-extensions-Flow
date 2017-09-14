@@ -18,7 +18,7 @@
 			"Macofe"
 		]
 	},
-	"enableflow": "Увімкнути Flow",
+	"enablestructureddiscussions": "Увімкнути Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Припинити}} спостерігати за новою діяльністю на «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Ви}} більше не спостерігаєте за сторінкою «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Це не вплине на окремі теми, за якими {{GENDER:$3|Ви}} спостерігаєте. Ви можете додати [$2 цю сторінку] до списку спостереження будь-коли.",
@@ -431,7 +431,7 @@
 	"flow-whatlinkshere-post": "із [$1 допису]",
 	"flow-whatlinkshere-header": "із [$1 опису]",
 	"flow-whatlinkshere-post-summary": "з [$1 підсумку]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Ця спеціальна сторінка перенаправляє на робочий процес Flow або допис Flow, згідно з UUID.",
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Допис",

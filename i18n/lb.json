@@ -6,7 +6,7 @@
 			"Nnemo"
 		]
 	},
-	"enableflow": "Flow aktivéieren",
+	"enablestructureddiscussions": "Flow aktivéieren",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Ophalen}} nei Aktivitéiten iwwer \"$1\" z'iwwerwaachen",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Dir}} iwwerwaacht d'Säit \"$1\" net méi",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Ophalen}} dëse Sujet z'iwwerwaachen",

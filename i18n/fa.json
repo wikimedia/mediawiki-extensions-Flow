@@ -26,7 +26,7 @@
 			"Alifakoor"
 		]
 	},
-	"enableflow": "فعال‌سازی فلو",
+	"enablestructureddiscussions": "فعال‌سازی فلو",
 	"notification-dynamic-actions-flow-board-unwatch": "پی‌گیری فعالیت‌ها در «$1» را {{GENDER:$3|متوقف کن}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "شما دیگر صفحهٔ «$1» را پی‌گیری {{GENDER:$3|نمی‌کنید}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "این روی تک تک مبحث‌هایی که پی‌گیری {{GENDER:$3|می‌کنید}} تأثیر نمی‌گذارد. شما می‌توانید هر زمان خواستید این صفحه را [$2 پی‌گیری کنید].",
@@ -435,7 +435,7 @@
 	"flow-whatlinkshere-post": "از یک [$1 ارسال]",
 	"flow-whatlinkshere-header": "از [$1 توضیحات]",
 	"flow-whatlinkshere-post-summary": "از [$1 جمع‌بندی]",
-	"flow": "فلو",
+	"structureddiscussions": "فلو",
 	"flow-special-desc": "این صفحهٔ ویژه، به جریان کاری فلو یا ارسال فلویی که شناسهٔ UUID آن داده شود تغییر مسیر می‌یابد.",
 	"flow-special-type": "نوع",
 	"flow-special-type-post": "ارسال",

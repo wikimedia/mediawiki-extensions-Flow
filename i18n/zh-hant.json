@@ -16,7 +16,7 @@
 			"Arthur2e5"
 		]
 	},
-	"enableflow": "開啟 Flow",
+	"enablestructureddiscussions": "開啟 Flow",
 	"flow-desc": "工作流程管理系統",
 	"flow-talk-taken-over-comment": "/* 此頁面已被轉換為 Flow 討論板 */",
 	"log-name-flow": "Flow 活躍日誌",
@@ -374,7 +374,7 @@
 	"flow-whatlinkshere-post": "來自一筆 [$1 貼文]",
 	"flow-whatlinkshere-header": "來自 [$1 描述]",
 	"flow-whatlinkshere-post-summary": "來自 [$1 摘要]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "此特殊頁面會重新導向至指定 UUID 的 Flow 工作流程或 Flow 貼文。",
 	"flow-special-type": "類型",
 	"flow-special-type-post": "發佈",

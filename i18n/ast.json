@@ -8,7 +8,7 @@
 			"Matiia"
 		]
 	},
-	"enableflow": "Activar Flow",
+	"enablestructureddiscussions": "Activar Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Dexar}} de siguir l'actividá nueva en «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Yá nun {{GENDER:$3|tas}} siguiendo la páxina «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Esto nun afeutará a temes individuales que {{GENDER:$3|teas}} siguiendo. Puedes siguir [$2 esta páxina] en cualquier momentu.",
@@ -421,7 +421,7 @@
 	"flow-whatlinkshere-post": "d'una [$1 publicación]",
 	"flow-whatlinkshere-header": "de la [$1 descripción]",
 	"flow-whatlinkshere-post-summary": "del [$1 resume]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Indicando un UUID, esta páxina especial redirixe a un fluxu de trabayu o publicación de Flow.",
 	"flow-special-type": "Triba",
 	"flow-special-type-post": "Publicación",

@@ -9,7 +9,7 @@
 			"Matiia"
 		]
 	},
-	"enableflow": "Aktivizēt Flow",
+	"enablestructureddiscussions": "Aktivizēt Flow",
 	"notification-dynamic-actions-flow-topic-unwatch": "Pārtraukt šīs tēmas vērošanu",
 	"log-name-flow": "Flow darbību reģistrs",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|izdzēsa}} [$4 ierakstu] lapas [[$6]] tēmā \"[[$3|$5]]\"",
@@ -228,7 +228,7 @@
 	"flow-whatlinkshere-post": "no [$1 ieraksta]",
 	"flow-whatlinkshere-header": "no [$1 apraksta]",
 	"flow-whatlinkshere-post-summary": "no [$1 kopsavilkuma]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-type": "Veids",
 	"flow-special-type-post": "Ieraksts",
 	"flow-special-type-workflow": "Darbplūsma",

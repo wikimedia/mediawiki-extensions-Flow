@@ -14,7 +14,7 @@
 			"Macofe"
 		]
 	},
-	"enableflow": "Kích hoạt Flow",
+	"enablestructureddiscussions": "Kích hoạt Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3}}Ngừng theo dõi hoạt động mới tại “$1”",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3}}Bạn không còn theo dõi trang “$1”",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Điều này sẽ không ảnh hưởng đến các đề tài riêng mà {{GENDER:$3}}bạn đang theo dõi. Bạn có thể theo dõi [$2 trang này] bất cứ lúc nào.",
@@ -429,7 +429,7 @@
 	"flow-whatlinkshere-post": "từ một [$1 bài đăng]",
 	"flow-whatlinkshere-header": "từ [$1 miêu tả]",
 	"flow-whatlinkshere-post-summary": "từ [$1 tóm lược]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Trang đặc biệt này đổi hướng đến luồng làm việc hoặc bài đăng Flow ứng với UUID.",
 	"flow-special-type": "Kiểu",
 	"flow-special-type-post": "Bài đăng",

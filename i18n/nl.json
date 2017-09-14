@@ -30,7 +30,7 @@
 			"Huhbakker"
 		]
 	},
-	"enableflow": "Flow inschakelen",
+	"enablestructureddiscussions": "Flow inschakelen",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} met het volgen van nieuwe gebeurtenissen op \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|U}} volgt de pagina \"$1\" niet meer",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dit heeft geen invloed op individuele onderwerpen die {{GENDER:$3|u}} volgt. U kunt [$2 deze pagina] op elk moment volgen.",
@@ -433,7 +433,7 @@
 	"flow-whatlinkshere-post": "van een [$1 bericht]",
 	"flow-whatlinkshere-header": "van de [$1 beschrijving]",
 	"flow-whatlinkshere-post-summary": "van de [$1 samenvatting]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Deze speciale pagina verwijst door naar een workflow van Flow of een bericht van Flow op basis van een UUID.",
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Bericht",

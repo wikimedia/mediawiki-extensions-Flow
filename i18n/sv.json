@@ -19,7 +19,7 @@
 			"Rockyfelle"
 		]
 	},
-	"enableflow": "Aktivera Flow",
+	"enablestructureddiscussions": "Aktivera Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Sluta}} bevaka ny aktivitet på \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} bevakar inte längre sidan \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Detta kommer inte att påverka de individuella ämnen {{GENDER:$3|du}} bevakar. Du kan bevaka [$2 denna sida] när som helst.",
@@ -432,7 +432,7 @@
 	"flow-whatlinkshere-post": "från ett [$1 inlägg]",
 	"flow-whatlinkshere-header": "från [$1 beskrivningen]",
 	"flow-whatlinkshere-post-summary": "från [$1 sammanfattningen]",
-	"flow": "Flow",
+	"structureddiscussions": "Flow",
 	"flow-special-desc": "Denna specialsida omdirigerar till ett Flow-arbetsflöde eller ett Flow-inlägg för ett angivet UUID.",
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Inlägg",
