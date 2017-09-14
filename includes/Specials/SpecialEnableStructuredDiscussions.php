@@ -14,7 +14,7 @@ use Flow\Import\SourceStore\NullImportSourceStore;
  * A special page that allows users with the flow-create-board right to create
  * boards where there no page exists
  */
-class SpecialEnableFlow extends FormSpecialPage {
+class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 	/**
 	 * @var \Flow\WorkflowLoaderFactory
 	 */
@@ -31,7 +31,7 @@ class SpecialEnableFlow extends FormSpecialPage {
 	protected $page = '';
 
 	public function __construct() {
-		parent::__construct( 'EnableFlow', 'flow-create-board' );
+		parent::__construct( 'EnableStructuredDiscussions', 'flow-create-board' );
 
 		$this->loaderFactory = Container::get( 'factory.loader.workflow' );
 		$this->occupationController = Container::get( 'occupation_controller' );

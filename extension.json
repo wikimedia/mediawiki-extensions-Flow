@@ -81,8 +81,8 @@
 		"import/lqt-to-flow-topic": "Flow\\Log\\LqtImportFormatter"
 	},
 	"SpecialPages": {
-		"Flow": "Flow\\Specials\\SpecialFlow",
-		"EnableFlow": "Flow\\Specials\\SpecialEnableFlow"
+		"StructuredDiscussions": "Flow\\Specials\\SpecialStructuredDiscussions",
+		"EnableStructuredDiscussions": "Flow\\Specials\\SpecialEnableStructuredDiscussions"
 	},
 	"MessagesDirs": {
 		"Flow": [
@@ -1275,8 +1275,8 @@
 		"Flow\\SpamFilter\\SpamBlacklist": "includes/SpamFilter/SpamBlacklist.php",
 		"Flow\\SpamFilter\\SpamFilter": "includes/SpamFilter/SpamFilter.php",
 		"Flow\\SpamFilter\\SpamRegex": "includes/SpamFilter/SpamRegex.php",
-		"Flow\\Specials\\SpecialEnableFlow": "includes/Specials/SpecialEnableFlow.php",
-		"Flow\\Specials\\SpecialFlow": "includes/Specials/SpecialFlow.php",
+		"Flow\\Specials\\SpecialEnableStructuredDiscussions": "includes/Specials/SpecialEnableStructuredDiscussions.php",
+		"Flow\\Specials\\SpecialStructuredDiscussions": "includes/Specials/SpecialStructuredDiscussions.php",
 		"Flow\\SubmissionHandler": "includes/SubmissionHandler.php",
 		"Flow\\SummaryEditedPresentationModel": "includes/Notifications/SummaryEditedPresentationModel.php",
 		"Flow\\TalkpageManager": "includes/TalkpageManager.php",
