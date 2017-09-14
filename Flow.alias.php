@@ -1,6 +1,6 @@
 <?php
 /**
- * Aliases for Special:Flow
+ * Aliases for Special:Flow and Special:EnableFlow
  * @file
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
