@@ -24,7 +24,7 @@
 	"flow-notification-reply-email-batch-body": "$1 se je {{GENDER:$1|odzval|odzvala}} na »$2« na strani $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 in {{PLURAL:$4|en drug|dva druga|$4 drugi|$4 drugih|100=99+ drugih}} {{PLURAL:$4|sta se {{GENDER:$1|odzvala}}|so se odzvali|so se odzvali|se je odzvalo}} na »$2« na strani $3",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|te}} je {{GENDER:$1|omenil|omenila}} na $2",
-	"echo-category-title-flow-discussion": "Pretočna razprava",
+	"echo-category-title-flow-discussion": "Strukturirana razprava",
 	"echo-pref-tooltip-flow-discussion": "Obvesti me o dejavnostih v temah ali na straneh, ki jim sledim.",
 	"flow-link-post": "objava",
 	"flow-link-topic": "tema",
@@ -32,6 +32,6 @@
 	"flow-moderation-title-suppress-post": "Cenzoriraj objavo",
 	"flow-moderation-title-delete-post": "Izbriši objavo",
 	"flow-moderation-title-hide-post": "Skrij objavo",
-	"group-flow-bot": "Boti Toka",
-	"group-flow-bot-member": "Bot Toka"
+	"group-flow-bot": "Boti Strukturiranih razprav",
+	"group-flow-bot-member": "Bot Strukturiranih razprav"
 }

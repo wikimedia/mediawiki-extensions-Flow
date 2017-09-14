@@ -31,7 +31,7 @@
 			"Redredsonia"
 		]
 	},
-	"enableflow": "Включить Flow",
+	"enableflow": "Включить структурированные обсуждения",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Прекратить}} отслеживание новых изменений страницы «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Вы}} больше не искать страницу с именем «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Это не будет затрагивать отдельные темы {{пол:$3|вы}} для поиска. Вы можете смотреть [$2 страница] в любое время.",
@@ -318,7 +318,7 @@
 	"flow-notification-newtopic-email-subject": "$1 создал{{GENDER:$1||а}} новую тему на странице $2",
 	"flow-notification-newtopic-email-batch-body": "$1 создал{{GENDER:$1||а}} новую тему с названием «$2» на странице $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 новая тема|$1 новых тем|$1 новых темы|100=99+ новых тем}} на $2",
-	"echo-category-title-flow-discussion": "Обсуждение Flow",
+	"echo-category-title-flow-discussion": "Структурированное обсуждение",
 	"echo-pref-tooltip-flow-discussion": "Уведомить меня об активности в темах или на страницах, которые я отслеживаю.",
 	"flow-link-post": "сообщение",
 	"flow-link-topic": "тема",
@@ -416,7 +416,7 @@
 	"flow-terms-of-use-unlock-topic": "Нажимая «{{int:flow-topic-action-unlock-topic}}», вы соглашаетесь с условиями использования этой вики.",
 	"flow-whatlinkshere-post": "из [$1 сообщения]",
 	"flow-whatlinkshere-header": "из [$1 описания]",
-	"flow": "Flow",
+	"flow": "Структурированные обсуждения",
 	"flow-special-desc": "Эта специальная страница перенаправляет на поток Flow или на сообщение Flow по UUID.",
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Сообщение",

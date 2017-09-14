@@ -4,9 +4,9 @@
 			"Joetaras"
 		]
 	},
-	"enableflow": "Abbilite Flow",
+	"enableflow": "Abbilite 'Ngazzainde strutturate",
 	"flow-desc": "Sisteme de le 'ngazzaminde",
-	"log-name-flow": "Arcihvije de le attività d'u flusse",
+	"log-name-flow": "Arcihvije de le attività sus a le 'ngazzaminde strutturate",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|repristinate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|luate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",
@@ -94,6 +94,7 @@
 	"flow-moderation-confirmation-delete-topic": "St'argomende ha state scangellate.",
 	"flow-moderation-confirmation-hide-topic": "St'argomende ha state scunnute.",
 	"flow-topic-html-title": "$1 sus a $2",
+	"group-flow-bot": "Bot de le 'ngazzaminde strutturate",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|Sì}} secure?",
 	"flow-dialog-cancelconfirm-keep": "Condinue a cangià",
 	"flow-dialog-cancelconfirm-discard": "Scitte le cangiaminde"
