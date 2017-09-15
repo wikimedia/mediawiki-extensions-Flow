@@ -17,7 +17,7 @@
 		]
 	},
 	"enablestructureddiscussions": "開啟 Flow",
-	"flow-desc": "工作流程管理系統",
+	"flow-desc": "對話系統",
 	"flow-talk-taken-over-comment": "/* 此頁面已被轉換為 Flow 討論板 */",
 	"log-name-flow": "Flow 活躍日誌",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|已刪除}}位於 [[$6]] 中 「[[$3|$5]]」 的一篇 [$4 貼文]",

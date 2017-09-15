@@ -33,7 +33,7 @@
 			"MarcoAurelio"
 		]
 	},
-	"enablestructureddiscussions": "Activar Flow",
+	"enablestructureddiscussions": "Activar discusiones estructuradas",
 	"flow-desc": "Sistema de discusión",
 	"flow-talk-taken-over-comment": "/* Esta página se ha convertido en un tablero de discusión Flow */",
 	"log-name-flow": "Registro de actividad de Flow",
