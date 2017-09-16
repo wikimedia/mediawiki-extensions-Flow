@@ -7,7 +7,7 @@
 			"Matiia"
 		]
 	},
-	"enablestructureddiscussions": "Латаде эхар",
+	"enablestructureddiscussions": "Латаде структурйина дийцаре",
 	"flow-desc": "Эхаран белхан урхаллин система",
 	"flow-talk-taken-over-comment": "ХӀокху агӀонах эхаран дийцарийн у дина */",
 	"log-name-flow": "Эхаран жигараллин тептар",
@@ -166,7 +166,7 @@
 	"flow-newest-topics": "Керла хьедарш",
 	"flow-recent-topics": "Дукху хан йоцуш жигара хьедарш",
 	"flow-whatlinkshere-header": "[$1 хьехар] чура",
-	"structureddiscussions": "Эхар",
+	"structureddiscussions": "Структурйина дийцаре",
 	"flow-special-desc": "ХӀокху леррина агӀоно workflow тӀе хьажо Эхар я хаамаш тӀе UUID тӀехула.",
 	"flow-special-type": "Тайпа",
 	"flow-special-type-post": "Хаам",
