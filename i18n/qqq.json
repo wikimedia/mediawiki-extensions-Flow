@@ -160,7 +160,7 @@
 	"flow-board-notification-subscribe-description": "Description text for the overlay when a board is added to watchlist.",
 	"flow-topic-action-watchlist-add": "Title text for the hover state when a individual topic can be added to a watchlist.",
 	"flow-topic-action-watchlist-remove": "Title text for the hover state when a individual topic can be removed from a watchlist\n{{Identical|Unsubscribe}}",
-	"flow-error-allowcreation-no-usedb": "Internal error when attempting to enable Structured Discussion board on a specific page, and <var>$wgContentHandlerUseDB</var> is not set to <code>true</code>. Do not translate <code>true</code> as it a boolean value.",
+	"flow-error-allowcreation-no-usedb": "Internal error when attempting to enable Structured Discussion board on a specific page, and <var>$wgContentHandlerUseDB</var> is not set to <code>true</code>. Do not translate <code>true</code> as it’s a boolean value.",
 	"flow-error-allowcreation-already-exists": "Internal error when attempting to enable Structured Discussions on a specific page, and $mustNotExist was set true, but the page does already exist",
 	"flow-error-allowcreation-flow-create-board": "Internal error when attempting to enable Structured Discussions on a specific page, and user does not have flow-create-board",
 	"flow-error-can-not-edit-logged-out": "Used as error message when a logged out user can not edit a Structured Discussions board for a reason other than normal protection.  Parameters:\n* $1 - User, for GENDER",
