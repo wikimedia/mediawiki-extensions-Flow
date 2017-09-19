@@ -44,7 +44,7 @@
 	"flow-summary-edited": "Resumé fir d'lescht {{GENDER:$1|geännert}} vum $1",
 	"flow-show-change": "Ännerunge weisen",
 	"flow-last-modified-by": "Fir d'lescht {{GENDER:$1|geännert}} vum $1",
-	"flow-stub-post-content": "<em>Duerch en technesche Feeler konnt dës Matdeelung net ofgeruff gin</em>",
+	"flow-stub-post-content": "<em>Duerch en technesche Feeler konnt dësen Inhalt net ofgeruff ginn</em>",
 	"flow-newtopic-title-placeholder": "Neit Thema",
 	"flow-newtopic-content-placeholder": "En neie Message iwwer \"$1\" schécken",
 	"flow-newtopic-header": "En neit Thema derbäisetzen",

@@ -6,15 +6,19 @@
 			"Hitaypayan"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "’ringan:",
 	"flow-post-actions": "Mmtzyuwaw",
+	"flow-topic-actions": "Mtzyuwaw",
 	"flow-cancel": "Laxan",
 	"flow-skip-summary": "Siy laxiy kya",
+	"flow-newtopic-title-placeholder": "Qiqas na kkayal",
 	"flow-newtopic-save": "Misan tnwang kkayal",
 	"flow-history-action-suppress-post": "qmhut",
 	"flow-history-action-delete-post": "’muyut",
 	"flow-history-action-hide-post": "smbbaq",
 	"flow-history-action-unhide-post": "laxiy lqingiy",
 	"flow-history-action-restore-post": "psbzih",
+	"flow-history-action-lock-topic": "kbalay",
 	"flow-post-action-suppress-post": "Qmhut",
 	"flow-post-action-delete-post": "’muyut",
 	"flow-post-action-hide-post": "Smbbaq",
@@ -56,6 +60,7 @@
 	"flow-undo": "Psbzih",
 	"flow-undo-edit-header": "Cyuw tmrang smr’zyut miru’ sa pinqzyuwan na’",
 	"flow-undo-edit-post": "Cyuw tmrang smr’zyut miru’ sa biru’ qnlah",
+	"flow-ve-mention-context-item-label": "Skayal",
 	"flow-ve-mention-inspector-remove-label": "Laxan",
 	"flow-mark-diff-patrolled-link-text": "Sinbbaq sa wayal gawzyagan mita’"
 }
