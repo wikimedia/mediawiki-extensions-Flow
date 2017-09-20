@@ -497,7 +497,7 @@
 	"flow-ve-mention-inspector-remove-label": "Прибрати",
 	"flow-ve-mention-placeholder": "Ім'я користувача",
 	"flow-ve-mention-tool-title": "Згадати користувача",
-	"flow-ve-mention-template-title": "Structured DiscussionsMention",
+	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "Користувач «$1» не зареєстрований.",
 	"flow-wikitext-editor-help": "Вікірозмітка $1.",
 	"flow-wikitext-editor-help-and-preview": "Цей редактор $1 і Ви можете $2 в будь-який момент.",
