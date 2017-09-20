@@ -498,7 +498,7 @@
 	"flow-ve-mention-inspector-remove-label": "Ta bort",
 	"flow-ve-mention-placeholder": "Användarnamn",
 	"flow-ve-mention-tool-title": "Nämn en användare",
-	"flow-ve-mention-template-title": "Strukturerad diskussionOmnämnande",
+	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "Användarnamnet \"$1\" är inte registrerat.",
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitexten $1 och du kan $2 när som helst.",

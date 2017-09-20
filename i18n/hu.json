@@ -407,7 +407,7 @@
 	"flow-ve-mention-inspector-remove-label": "Törlés",
 	"flow-ve-mention-placeholder": "Felhasználónév",
 	"flow-ve-mention-tool-title": "Egy felhasználó megemlítése",
-	"flow-ve-mention-template-title": "Rendezett beszélgetés-említés",
+	"flow-ve-mention-template-title": "Flow-említés",
 	"flow-ve-mention-inspector-invalid-user": "„$1” felhasználó nincs regisztrálva.",
 	"flow-wikitext-editor-help": "Wikiszöveg $1.",
 	"flow-wikitext-editor-help-and-preview": "A wikiszöveg $1 és bármikor $2.",

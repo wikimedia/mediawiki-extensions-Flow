@@ -496,7 +496,7 @@
 	"flow-ve-mention-inspector-remove-label": "Entfernen",
 	"flow-ve-mention-placeholder": "Benutzername",
 	"flow-ve-mention-tool-title": "Einen Benutzer erwähnen",
-	"flow-ve-mention-template-title": "StrukturierteDiskussionenErwähnung",
+	"flow-ve-mention-template-title": "FlowErwähnung",
 	"flow-ve-mention-inspector-invalid-user": "Der Benutzername „$1“ ist nicht registriert.",
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1 und du kannst jederzeit $2.",

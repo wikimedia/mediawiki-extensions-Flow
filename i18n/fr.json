@@ -527,7 +527,7 @@
 	"flow-ve-mention-inspector-remove-label": "Supprimer",
 	"flow-ve-mention-placeholder": "Nom d’utilisateur",
 	"flow-ve-mention-tool-title": "Mentionner un utilisateur",
-	"flow-ve-mention-template-title": "Mention de Discussions Structurées",
+	"flow-ve-mention-template-title": "Mention",
 	"flow-ve-mention-inspector-invalid-user": "Le nom d’utilisateur « $1 » n’est pas enregistré.",
 	"flow-wikitext-editor-help": "$1 wikicode.",
 	"flow-wikitext-editor-help-and-preview": "Votre modification $1 wikicode et vous pouvez avoir un $2 à tout moment.",
