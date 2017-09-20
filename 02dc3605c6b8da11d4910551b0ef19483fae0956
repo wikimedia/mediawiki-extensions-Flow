@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e7b3738_03e67413",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-09-20T17:10:26Z",
+      "side": 1,
+      "message": "FIXME: you can\u0027t make this change without moving templates on the wikis",
+      "revId": "02dc3605c6b8da11d4910551b0ef19483fae0956",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
