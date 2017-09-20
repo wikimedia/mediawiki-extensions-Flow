@@ -16,16 +16,16 @@ This is intended to be used with JavaScript, but does not have to be. With JS, y
 Styleguide 4.0.
  */
 .flow-ui-tooltip {
+	background-color: #fff;
+	color: @colorText;
 	position: relative;
 	top: 1px;
 	display: inline-block;
-	padding: 0.5em;
-	background: #fff;
-	color: @colorText;
-	word-wrap: break-word;
 	border-radius: @borderRadius;
-	.box-shadow( ~'0 2px 0 0 @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
-	opacity: 0.9;
+	padding: 0.571em 0.857em; // equals to ~8px ~12px with base `font-size`
+	.box-shadow( ~'0 2px 2px 0 rgba(0, 0, 0, 0.25)' );
+	font-size: 0.875em; // not inherited from div#bodyContent, as we insert at body
+	word-wrap: break-word;
 	z-index: 99;
 
 	a {
@@ -34,8 +34,6 @@ Styleguide 4.0.
 		color: #fff !important; /* stylelint-disable-line declaration-no-important */
 		font-weight: bold;
 	}
-
-	font-size: 0.875em; // not inherited from div#bodyContent, as we insert at body
 
 	#bodyContent & { /* stylelint-disable-line selector-no-id */
 		font-size: 1em;

@@ -94,17 +94,25 @@ div#content h2.flow-topic-title { /* stylelint-disable-line selector-no-id */
 .flow-notification-tooltip-topicsub {
 	width: 15em;
 }
-.flow-notification-tooltip-icon {
-	font-size: 2.5em;
-	text-align: center;
 
+.flow-notification-tooltip-icon {
 	.mw-ui-icon {
-		display: inline-block;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+
+		&.mw-ui-icon-star { // Overwrite default `.mw-ui-icon` properties
+			min-width: 32px;
+			width: 32px;
+			max-width: 32px;
+			min-height: 32px;
+			font-size: 32px;
+			line-height: 1;
+		}
 	}
 }
 .flow-notification-tooltip-title {
 	font-size: 1em;
-	font-weight: bold;
 }
 
 .flow-undo {
