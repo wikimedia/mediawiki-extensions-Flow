@@ -44,7 +44,8 @@
 			"PifyZ",
 			"Zebulon84",
 			"Quiddity",
-			"Pols12"
+			"Pols12",
+			"DePlusJean"
 		]
 	},
 	"enablestructureddiscussions": "Activer les discussions structurées",
@@ -117,7 +118,7 @@
 	"flow-summary-edited": "Résumé modifié en dernier par $1",
 	"flow-show-change": "Voir les modifications",
 	"flow-last-modified-by": "{{GENDER:$1|Modifié}} en dernier par $1",
-	"flow-stub-post-content": "<em>En raison d’une erreur technique, ce contenu n’a pas pu être chargé.</em>",
+	"flow-stub-post-content": "<em>En raison d’une erreur technique, ce contenu n’a pu être chargé.</em>",
 	"flow-newtopic-title-placeholder": "Nouveau sujet",
 	"flow-newtopic-content-placeholder": "Rédigez ici votre message sur « $1 »",
 	"flow-newtopic-header": "Ajouter un nouveau sujet",
@@ -244,7 +245,7 @@
 	"flow-error-content-too-long": "Le contenu est trop grand. Après expansion, la taille du contenu est limitée à $1 {{PLURAL:$1|octet|octets}}.",
 	"flow-error-move-topic": "Renommer une page de sujet n’est pas géré pour le moment.",
 	"flow-error-invalid-topic-uuid-title": "Mauvais titre",
-	"flow-error-invalid-topic-uuid": "Le titre de la page demandée n’est pas valide. Les pages de l’espace Sujet sont créées automatiquement par Discussions Structurées.",
+	"flow-error-invalid-topic-uuid": "Le titre de la page demandée n’est pas valide. Les pages de l’espace de noms Sujet sont créées automatiquement par Discussions Structurées.",
 	"flow-error-unknown-workflow-id-title": "Sujet inconnu",
 	"flow-error-unknown-workflow-id": "Le sujet demandé n’existe pas.",
 	"flow-error-search": "Nous n’avons pas pu terminer votre recherche à cause d’un problème temporaire. Veuillez réessayer plus tard.",
@@ -507,7 +508,7 @@
 	"flow-edited-by-header": "Description de la carte éditée par $1",
 	"flow-edited-by-topic-title": "Le titre de la rubrique édité par $1",
 	"flow-lqt-redirect-reason": "Redirection de message LiquidThreads retiré vers son message converti en Discussions Structurées",
-	"flow-talk-conversion-move-reason": "Conversion de la discussion en wikitexte de $1 vers Discussions Structurées",
+	"flow-talk-conversion-move-reason": "Conversion de la discussion wikitexte de $1 vers Discussions Structurées",
 	"flow-talk-conversion-archive-edit-reason": "Conversion d’une discussion en wikitexte vers Discussions Structurées",
 	"flow-previous-diff": "← Modification plus ancienne",
 	"flow-next-diff": "Modification plus récente →",
