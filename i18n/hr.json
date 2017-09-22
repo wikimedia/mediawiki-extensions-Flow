@@ -8,6 +8,7 @@
 		]
 	},
 	"enablestructureddiscussions": "Omogući Protočne rasprave",
+	"log-name-flow": "Evidencija Strukturiranih rasprava",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Zahvali}}}} na poruci",
 	"notification-header-flow-new-topic-v2": "Nova tema stvorena na '''$3''': <bdi>\"'''$4'''\"</bdi>.",
 	"notification-header-flow-new-topic-user-talk": "Nova tema otvorena je na <strong>Vašoj razgovornoj stranici</strong>: »<strong>$4</strong>«.",
