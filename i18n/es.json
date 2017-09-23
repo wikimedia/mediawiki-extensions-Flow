@@ -84,7 +84,7 @@
 	"flow-summary-edited": "Resumen {{GENDER:$1|editado}} por última vez por $1",
 	"flow-show-change": "Mostrar cambios",
 	"flow-last-modified-by": "Última modificación por $1",
-	"flow-stub-post-content": "''No se pudo recuperar esta publicación a causa de un error técnico.''",
+	"flow-stub-post-content": "<em>No se pudo recuperar este contenido a causa de un error técnico.</em>",
 	"flow-newtopic-title-placeholder": "Tema nuevo",
 	"flow-newtopic-content-placeholder": "Publicar un mensaje nuevo en «$1»",
 	"flow-newtopic-header": "Añadir un nuevo tema",
