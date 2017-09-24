@@ -40,7 +40,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		/** @var DatabaseBase $dbr */
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		$countableActions = $this->getCountableActions();
 
 		// defaults = date of first Flow commit up until now

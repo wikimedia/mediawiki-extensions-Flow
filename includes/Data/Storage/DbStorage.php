@@ -75,7 +75,7 @@ abstract class DbStorage implements ObjectStorage {
 	 */
 	protected function preprocessSqlArray( array $data ) {
 		// Assuming that all databases have the same escaping settings.
-		$db = $this->dbFactory->getDB( DB_SLAVE );
+		$db = $this->dbFactory->getDB( DB_REPLICA );
 
 		$data = UUID::convertUUIDs( $data, 'binary' );
 

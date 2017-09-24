@@ -73,7 +73,7 @@ TEXT
 			ini_set( 'display_errors', 'stderr' );
 		}
 
-		$db = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$db = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		$exporter = new Exporter( $db, $history, Exporter::STREAM, Exporter::TEXT );
 		$exporter->setOutputSink( $this->sink );
 

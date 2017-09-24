@@ -69,7 +69,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	}
 
 	protected function removeHeader( $timestamp ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 		// we don't store a timestamp with revisions - the id also holds date
 		// info, so that's what we should compare against
@@ -173,7 +173,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 * @throws \Flow\Exception\FlowException
 	 */
 	protected function removeTopics( $timestamp ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 		// start from around unix epoch - there can be no Flow data before that
 		$startId = UUID::getComparisonUUID( '1' );
@@ -212,7 +212,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 * @throws \Flow\Exception\FlowException
 	 */
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$talkpageManager = FlowHooks::getOccupationController()->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that

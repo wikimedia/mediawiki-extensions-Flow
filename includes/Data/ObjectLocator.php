@@ -359,7 +359,7 @@ class ObjectLocator {
 					$operator .= '=';
 				}
 
-				$dbr = $this->dbFactory->getDB( DB_SLAVE );
+				$dbr = $this->dbFactory->getDB( DB_REPLICA );
 				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' . $dbr->addQuotes( $options['offset-id']->getBinary() ) );
 
 				foreach ( $queries as &$query ) {

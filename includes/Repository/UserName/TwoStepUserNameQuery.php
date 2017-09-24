@@ -42,7 +42,7 @@ class TwoStepUserNameQuery implements UserNameQuery {
 			throw new FlowException( 'No wiki provided with user ids' );
 		}
 
-		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE, $wiki );
+		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA, $wiki );
 		$res = $dbr->select(
 			'ipblocks',
 			'ipb_user',

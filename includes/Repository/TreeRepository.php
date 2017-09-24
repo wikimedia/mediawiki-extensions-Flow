@@ -244,7 +244,7 @@ class TreeRepository {
 			return $cacheValues;
 		}
 
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$res = $dbr->select(
 			$this->tableName,
 			[ 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ],
@@ -412,7 +412,7 @@ class TreeRepository {
 	}
 
 	public function fetchSubtreeNodeListFromDb( array $roots ) {
-		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
+		$res = $this->dbFactory->getDB( DB_REPLICA )->select(
 			$this->tableName,
 			[ 'tree_ancestor_id', 'tree_descendant_id' ],
 			[
@@ -457,7 +457,7 @@ class TreeRepository {
 	 */
 	public function fetchParentMapFromDb( array $nodes ) {
 		// Find out who the parent is for those nodes
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$res = $dbr->select(
 			$this->tableName,
 			[ 'tree_ancestor_id', 'tree_descendant_id' ],

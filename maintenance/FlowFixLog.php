@@ -36,7 +36,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$iterator = new BatchRowIterator( wfGetDB( DB_SLAVE ), 'logging', 'log_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( wfGetDB( DB_REPLICA ), 'logging', 'log_id', $this->mBatchSize );
 		$iterator->setFetchColumns( [ 'log_id', 'log_params' ] );
 		$iterator->addConditions( [
 			'log_type' => [ 'delete', 'suppress' ],

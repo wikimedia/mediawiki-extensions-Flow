@@ -15,7 +15,7 @@ class PostSummaryRevisionBoardHistoryStorage extends BoardHistoryStorage {
 	public function find( array $attributes, array $options = [] ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$res = $dbr->select(
 			[ 'flow_revision', 'flow_topic_list', 'flow_tree_node' ],
 			[ '*' ],

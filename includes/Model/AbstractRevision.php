@@ -849,7 +849,7 @@ abstract class AbstractRevision {
 		];
 		$options = [ 'USE INDEX' => 'rc_timestamp' ];
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$rows = $dbr->select( 'recentchanges', RecentChange::selectFields(), $conditions, __METHOD__, $options );
 
 		if ( $rows === false ) {

@@ -2,7 +2,6 @@
 
 namespace Flow\Tests\Formatter;
 
-use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;

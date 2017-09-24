@@ -714,7 +714,7 @@ class FlowHooks {
 				// Check if Flow actions are defined for the requested log types
 				// and make sure they're ignored.
 				if ( isset( $wgLogActionsHandlers["$logType/flow-$action"] ) ) {
-					$conds[] = "log_action != " . wfGetDB( DB_SLAVE )->addQuotes( "flow-$action" );
+					$conds[] = "log_action != " . wfGetDB( DB_REPLICA )->addQuotes( "flow-$action" );
 				}
 			}
 		}
@@ -1888,7 +1888,7 @@ class FlowHooks {
 
 		$dbFactory = Container::get( 'db.factory' );
 		/** @var Database $dbr */
-		$dbr = $dbFactory->getDB( DB_SLAVE );
+		$dbr = $dbFactory->getDB( DB_REPLICA );
 
 		// if a username is specified, search only for that user
 		$userWhere = [];
@@ -1983,7 +1983,7 @@ class FlowHooks {
 
 			$userMap = [];
 			if ( $userIds ) {
-				$wikiDbr = $dbFactory->getWikiDB( DB_SLAVE );
+				$wikiDbr = $dbFactory->getWikiDB( DB_REPLICA );
 				$result = $wikiDbr->select(
 					'user',
 					[ 'user_id', 'user_name' ],

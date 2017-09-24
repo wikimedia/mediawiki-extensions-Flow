@@ -35,7 +35,7 @@ class ConvertAllLqtPages extends Maintenance {
 		} elseif ( $this->getOption( 'force-recovery-conversion' ) ) {
 			// fallback: if we don't have a sourcestore to go on, at least look
 			// at DB to figure out what's already imported...
-			$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+			$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 			$sourceStore = new FlowRevisionsDBImportSourceStore( $dbr );
 		} else {
 			$this->error( 'Param logfile or force-recovery-conversion required!' );

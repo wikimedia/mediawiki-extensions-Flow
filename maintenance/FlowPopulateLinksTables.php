@@ -39,7 +39,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$count = $this->mBatchSize;
 		$id = '';
 		$dbf = Container::get( 'db.factory' );
-		$dbr = $dbf->getDB( DB_SLAVE );
+		$dbr = $dbf->getDB( DB_REPLICA );
 		while ( $count === $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
@@ -76,7 +76,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$storage = Container::get( 'storage.post' );
 		$count = $this->mBatchSize;
 		$id = '';
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		while ( $count === $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(

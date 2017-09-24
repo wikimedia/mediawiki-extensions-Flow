@@ -8,7 +8,7 @@ namespace Flow\Data\Storage;
 class TopicListStorage extends BasicDbStorage {
 
 	protected function doFindQuery( array $preprocessedAttributes, array $options = [] ) {
-		return $this->dbFactory->getDB( DB_SLAVE )->select(
+		return $this->dbFactory->getDB( DB_REPLICA )->select(
 			[ $this->table, 'flow_workflow' ],
 			[ 'topic_list_id', 'topic_id', 'workflow_last_update_timestamp' ],
 			$preprocessedAttributes,

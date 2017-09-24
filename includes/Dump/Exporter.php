@@ -128,7 +128,7 @@ class Exporter extends WikiExporter {
 	 */
 	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null ) {
 		/** @var DatabaseBase $dbr */
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );
 		$iterator->setFetchColumns( [ '*' ] );

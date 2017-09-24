@@ -64,7 +64,7 @@ class FlowRestoreLQT extends Maintenance {
 	 * want to go back to the original content with this script...
 	 */
 	protected function restoreLQTBoards() {
-		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
 		$startId = 0;
 
 		do {
@@ -123,7 +123,7 @@ class FlowRestoreLQT extends Maintenance {
 	 * This finds all last original revisions & restores them.
 	 */
 	protected function restoreLQTThreads() {
-		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
 		$startId = 0;
 
 		do {
@@ -197,7 +197,7 @@ class FlowRestoreLQT extends Maintenance {
 				 * them, it's very likely that they haven't. In that case, we
 				 * won't have to do the complex moves.
 				 */
-				$dbr = $this->dbFactory->getWikiDB( DB_SLAVE );
+				$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
 				$count = $dbr->selectRowCount(
 					[ 'logging' ],
 					'*',

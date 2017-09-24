@@ -7,7 +7,6 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\Pager;
 use Flow\Formatter\TopicListQuery;
-use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\WorkflowLoaderFactory;

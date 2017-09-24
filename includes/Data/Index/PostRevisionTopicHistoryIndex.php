@@ -9,7 +9,6 @@ use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\Exception\DataModelException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use MWException;
 
 /**
  * TopKIndex that calculates the topic_root_id
