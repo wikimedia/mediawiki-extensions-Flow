@@ -146,6 +146,7 @@
 	"flow-moderation-title-unsuppress-topic": "palawpes milangatay a sasakamuen?",
 	"flow-moderation-title-undelete-topic": "palawpes masipuay sasakamuen?",
 	"flow-moderation-title-unhide-topic": "palawpes midimutay sasakamuen?",
+	"flow-topic-permalink-warning": "tina sasakamuen patahkal i [$2 $1]",
 	"flow-topic-first-heading": "itiza i $1 a sasakamuen",
 	"flow-topic-html-title": "i $2 a $1",
 	"flow-load-more": "kayadahan miasip",
