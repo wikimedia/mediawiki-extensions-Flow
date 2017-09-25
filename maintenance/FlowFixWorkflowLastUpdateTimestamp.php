@@ -40,7 +40,7 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$storage = Container::get( 'storage' );
 		$rootPostLoader = Container::get( 'loader.root_post' );
 
-		$iterator = new BatchRowIterator( $dbFactory->getDB( DB_SLAVE ), 'flow_workflow', 'workflow_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( $dbFactory->getDB( DB_REPLICA ), 'flow_workflow', 'workflow_id', $this->mBatchSize );
 		$iterator->setFetchColumns( [ 'workflow_id', 'workflow_type', 'workflow_last_update_timestamp' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 

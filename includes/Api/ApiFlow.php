@@ -3,7 +3,6 @@
 namespace Flow\Api;
 
 use ApiBase;
-use ApiMain;
 use ApiModuleManager;
 use Flow\Container;
 use Hooks;

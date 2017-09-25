@@ -60,7 +60,7 @@ $c['url_generator'] = function ( $c ) {
 $c['watched_items'] = function ( $c ) {
 	return new Flow\WatchedTopicItems(
 		$c['user'],
-		wfGetDB( DB_SLAVE, 'watchlist' )
+		wfGetDB( DB_REPLICA, 'watchlist' )
 	);
 };
 

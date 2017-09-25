@@ -138,7 +138,7 @@ class BasicDbStorage extends DbStorage {
 			throw new \MWException( "Validation error in database options" );
 		}
 
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$res = $this->doFindQuery( $attributes, $options );
 		if ( $res === false ) {
 			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
@@ -152,7 +152,7 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	protected function doFindQuery( array $preprocessedAttributes, array $options = [] ) {
-		return $this->dbFactory->getDB( DB_SLAVE )->select(
+		return $this->dbFactory->getDB( DB_REPLICA )->select(
 			$this->table,
 			'*',
 			$preprocessedAttributes,
@@ -184,7 +184,7 @@ class BasicDbStorage extends DbStorage {
 			return $this->fallbackFindMulti( $queries, $options );
 		}
 		$conds = [];
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		foreach ( $queries as $query ) {
 			$conds[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
 		}

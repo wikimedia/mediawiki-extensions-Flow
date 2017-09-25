@@ -5,7 +5,6 @@ namespace Flow\Utils;
 use DatabaseBase;
 use BatchRowIterator;
 use EchoCallbackIterator;
-use Iterator;
 use IteratorAggregate;
 use RecursiveIteratorIterator;
 use Title;

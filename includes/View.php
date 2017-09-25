@@ -15,7 +15,6 @@ use IContextSource;
 use Message;
 use OutputPage;
 use Title;
-use WebRequest;
 
 class View extends ContextSource {
 	/**

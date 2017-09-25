@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 
 $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
@@ -63,7 +62,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 	protected function rebuildCoreTables() {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		/** @var \Flow\LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
 

@@ -42,7 +42,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$id = '';
 		$count = $this->mBatchSize;
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		// If table flow_header_revision does not exist, that means the wiki
 		// has run the data migration before or the wiki starts from scratch,
@@ -91,7 +91,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	private function updateHeader( $workflow, $wiki ) {
 		$id = '';
 		$count = $this->mBatchSize;
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
@@ -128,7 +128,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	private function updateTopicList( $workflow, $wiki ) {
 		$id = '';
 		$count = $this->mBatchSize;
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;

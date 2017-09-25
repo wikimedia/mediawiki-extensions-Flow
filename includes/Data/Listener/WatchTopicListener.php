@@ -8,7 +8,6 @@ use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
-use Title;
 use User;
 
 /**

@@ -26,7 +26,7 @@ if ( !$csvOutput ) {
 }
 fputcsv( $csvOutput, [ "uuid", "esurl", "flags" ] );
 
-$dbr = Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE );
+$dbr = Flow\Container::get( 'db.factory' )->getDB( DB_REPLICA );
 $it = new BatchRowIterator(
 	$dbr,
 	'flow_revision',

@@ -165,7 +165,7 @@ class ContributionsQuery extends AbstractQuery {
 
 		// Make offset parameter.
 		if ( $offset ) {
-			$dbr = $this->dbFactory->getDB( DB_SLAVE );
+			$dbr = $this->dbFactory->getDB( DB_REPLICA );
 			$offsetUUID = UUID::getComparisonUUID( $offset );
 			$direction = $descending ? '>' : '<';
 			$conditions[] = "rev_id $direction " . $dbr->addQuotes( $offsetUUID->getBinary() );
@@ -188,7 +188,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @throws \MWException
 	 */
 	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 		switch ( $revisionClass ) {
 			case 'PostRevision':

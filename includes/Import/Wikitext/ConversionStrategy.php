@@ -200,7 +200,7 @@ class ConversionStrategy implements IConversionStrategy {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$batch = new LinkBatch( $this->noConvertTemplates );
 		$result = $dbr->select(
 			'templatelinks',

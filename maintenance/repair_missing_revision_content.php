@@ -32,7 +32,7 @@ if ( !$csvOutput ) {
 fputcsv( $csvOutput, [ "uuid", "esurl", "flags" ] );
 
 $it = new BatchRowIterator(
-	Flow\Container::get( 'db.factory' )->getDB( DB_SLAVE ),
+	Flow\Container::get( 'db.factory' )->getDB( DB_REPLICA ),
 	'flow_revision',
 	[ 'rev_id' ],
 	10
@@ -40,7 +40,7 @@ $it = new BatchRowIterator(
 $it->addConditions( [ 'rev_user_wiki' => wfWikiID() ] );
 $it->setFetchColumns( [ 'rev_content', 'rev_content_length', 'rev_change_type', 'rev_parent_id' ] );
 
-$dbr = wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_REPLICA );
 $totalMissingConsidered = 0;
 $totalCompleteMatch = 0;
 $totalMultipleMatches = 0;

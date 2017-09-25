@@ -119,7 +119,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @throws MWException
 	 */
 	protected function findInternal( array $attributes, array $options = [] ) {
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 		if ( !$this->validateOptions( $options ) ) {
 			throw new MWException( "Validation error in database options" );
@@ -242,7 +242,7 @@ abstract class RevisionStorage extends DbStorage {
 			$duplicator->add( $query, $idx );
 		}
 
-		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$res = $dbr->select(
 			[ 'flow_revision' ],
 			[ 'rev_id' => "MAX( 'rev_id' )" ],
@@ -276,7 +276,7 @@ abstract class RevisionStorage extends DbStorage {
 			// SELECT * from flow_revision
 			// JOIN flow_tree_revision ON tree_rev_id = rev_id
 			// WHERE rev_id IN (...)
-			$dbr = $this->dbFactory->getDB( DB_SLAVE );
+			$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 			$tables = [ 'flow_revision' ];
 			$joins  = [];

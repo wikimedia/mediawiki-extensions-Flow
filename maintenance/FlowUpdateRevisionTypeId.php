@@ -26,7 +26,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 		$revId = '';
 		$count = $this->mBatchSize;
 		$dbFactory = Container::get( 'db.factory' );
-		$dbr = $dbFactory->getDB( DB_SLAVE );
+		$dbr = $dbFactory->getDB( DB_REPLICA );
 		$dbw = $dbFactory->getDB( DB_MASTER );
 
 		// If table flow_header_revision does not exist, that means the wiki

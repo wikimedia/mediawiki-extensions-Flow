@@ -34,7 +34,7 @@ class ViewAction extends FlowAction {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select(
 			/* from */ 'categorylinks',
 			/* select */ [ 'cl_to', 'cl_sortkey' ],

@@ -3,7 +3,6 @@
 namespace Flow\Tests\Repository;
 
 use Flow\Container;
-use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 

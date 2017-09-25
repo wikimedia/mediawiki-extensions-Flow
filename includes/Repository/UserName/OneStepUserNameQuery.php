@@ -30,7 +30,7 @@ class OneStepUserNameQuery implements UserNameQuery {
 	 * @return \ResultWrapper|null
 	 */
 	public function execute( $wiki, array $userIds ) {
-		$dbr = $this->dbFactory->getWikiDb( DB_SLAVE, $wiki );
+		$dbr = $this->dbFactory->getWikiDb( DB_REPLICA, $wiki );
 		return $dbr->select(
 			/* table */ [ 'user', 'ipblocks' ],
 			/* select */ [ 'user_id', 'user_name' ],

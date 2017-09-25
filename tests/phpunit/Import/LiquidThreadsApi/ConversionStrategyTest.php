@@ -156,7 +156,7 @@ EOD
 		ApiBackend $api = null
 	) {
 		return new ConversionStrategy(
-			$dbr ?: wfGetDB( DB_SLAVE ),
+			$dbr ?: wfGetDB( DB_REPLICA ),
 			$sourceStore ?: new NullImportSourceStore,
 			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\ApiBackend' )
 				->disableOriginalConstructor()
