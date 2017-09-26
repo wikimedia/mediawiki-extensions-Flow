@@ -21,6 +21,18 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			[
 				'Passes through allowed good images',
 				// expected html after filtering
+				'<p><inline-image class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></inline-image> and other stuff</p>',
+				// input html
+				'<p><inline-image class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></inline-image> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return false;
+				}
+			],
+
+			[
+				'Passes through allowed good images (with legacy span markup)',
+				// expected html after filtering
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
@@ -44,6 +56,18 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 
 			[
 				'Strips declined images',
+				// expected html after filtering
+				'<p> and other stuff</p>',
+				// input html
+				'<p><inline-image class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></inline-image> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return true;
+				}
+			],
+
+			[
+				'Strips declined images (with legacy span markup)',
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html

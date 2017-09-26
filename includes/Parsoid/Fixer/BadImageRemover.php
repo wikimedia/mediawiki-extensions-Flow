@@ -41,7 +41,7 @@ class BadImageRemover implements Fixer {
 	 * @return string
 	 */
 	public function getXPath() {
-		return '//span[@typeof="mw:Image"]//img[@resource]';
+		return '//inline-image[@typeof="mw:Image"]//img[@resource] | //span[@typeof="mw:Image"]//img[@resource]';
 	}
 
 	/**
