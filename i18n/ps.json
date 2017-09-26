@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"Baloch Khan"
 		]
 	},
 	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",
@@ -10,6 +11,7 @@
 	"flow-delete-header-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
 	"flow-cancel": "ناگارل",
 	"flow-history-action-delete-post": "ړنگول",
+	"flow-history-action-hide-post": "پټول",
 	"flow-history-action-unlock-topic": "بيا پرانيستل",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",
 	"flow-post-action-edit-post": "سمول",
@@ -17,6 +19,7 @@
 	"flow-topic-action-watchlist-remove": "همدا سرليک خپل کتنلړ څخه لرې کول",
 	"flow-error-protected-unknown-reason": "ناجوت",
 	"flow-board-history": "\"$1\" پېښليک",
+	"flow-history-day": "نن",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 پر '''$4''' {{GENDER:$1|ځواب ورکړ}}.",
 	"flow-notification-link-text-view-topics": "موضوعگانې کتل",
 	"flow-notification-reply-email-subject": "$2 پر $3",
