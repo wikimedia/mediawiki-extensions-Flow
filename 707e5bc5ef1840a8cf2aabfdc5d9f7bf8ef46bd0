@@ -22,6 +22,75 @@
       "revId": "707e5bc5ef1840a8cf2aabfdc5d9f7bf8ef46bd0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6af365_8af60bf5",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 910
+      },
+      "writtenOn": "2017-09-26T22:57:44Z",
+      "side": 1,
+      "message": "figure-inline",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "707e5bc5ef1840a8cf2aabfdc5d9f7bf8ef46bd0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6af365_4ae1f328",
+        "filename": "tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 910
+      },
+      "writtenOn": "2017-09-26T22:57:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 21
+      },
+      "revId": "707e5bc5ef1840a8cf2aabfdc5d9f7bf8ef46bd0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6af365_6ade3772",
+        "filename": "tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 910
+      },
+      "writtenOn": "2017-09-26T22:57:44Z",
+      "side": 1,
+      "message": "you get the point",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "707e5bc5ef1840a8cf2aabfdc5d9f7bf8ef46bd0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
