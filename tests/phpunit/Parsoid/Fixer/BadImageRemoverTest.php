@@ -19,7 +19,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 	public static function imageRemovalProvider() {
 		return [
 			[
-				'Passes through allowed good images',
+				'Passes through allowed good inline images',
 				// expected html after filtering
 				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// input html
@@ -31,11 +31,23 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 
 			[
-				'Passes through allowed good images (with legacy span markup)',
+				'Passes through allowed good inline images (with legacy span markup)',
 				// expected html after filtering
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return false;
+				}
+			],
+
+			[
+				'Passes through allowed good block images',
+				// expected html after filtering
+				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
+				// input html
+				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
 				function () {
 					return false;
@@ -55,7 +67,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 
 			[
-				'Strips declined images',
+				'Strips declined inline images',
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
@@ -67,11 +79,23 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 
 			[
-				'Strips declined images (with legacy span markup)',
+				'Strips declined inline images (with legacy span markup)',
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return true;
+				}
+			],
+
+			[
+				'Strips declined block images',
+				// expected html after filtering
+				'',
+				// input html
+				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
 				function () {
 					return true;
