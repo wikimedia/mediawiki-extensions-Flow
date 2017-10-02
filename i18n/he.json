@@ -446,7 +446,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/ארכיון דיונים מבניים %d",
 	"flow-spam-confirmedit-form": "אנא אשרו שאתם אנושיים באמצעות הקלדת האותיות שלהלן: $1",
 	"flow-spam-confirmedit-using-failure": "חלה שגיאה טכנית בפתרון ה־CAPTCHA. אם {{GENDER:|אינך מצליח|אינך מצליחה|אינכם מצליחים}} לבצע את השינוי, אנא {{GENDER:|העתק|העתיקי|העתיקו}} את הטקסט {{GENDER:|שלך|שלך|שלכם}}, {{GENDER:|טען|טעני|טענו}} את הדף מחדש, ולאחר מכן {{GENDER:|נסה|נסי|נסו}} שוב.",
-	"flow-embedding-unsupported": "בינתיים אין אפשרות להטמיע דיונים.",
+	"flow-embedding-unsupported": "בינתיים אין אפשרות להטביע דיונים.",
 	"mw-ui-unsubmitted-confirm": "עשית בדף הזה שינויים ולא שלחת אותם. האם ברצונך לצאת מכאן ולעבד את עבודתך?",
 	"flow-post-undo-hide": "ביטול הסתרה",
 	"flow-post-undo-delete": "ביטול מחיקה",

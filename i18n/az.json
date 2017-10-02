@@ -10,5 +10,6 @@
 	"flow-error-missing-header-content": "Siz mütləq izah əlavə etməlisiniz.",
 	"flow-notification-mention-email-subject": "$1 $2 səhifəsində sizdən {{GENDER:$1|bəhs etdi}}.",
 	"flow-moderation-confirm-undelete-post": "Bərpa et",
-	"flow-moderation-confirm-undelete-topic": "Bərpa et"
+	"flow-moderation-confirm-undelete-topic": "Bərpa et",
+	"flow-undo-edit-content": "Bu dəyişiklik geri qaytarıla bilər. Lütfən aşağıdakı müqayisəni yoxlayın və bu dəyişikliyi həqiqətən də etmək istədiyinizə əmin olduqdan sonra \"Səhifəni qeyd et\" düyməsini basaraq dəyişikliyi geri qaytarın."
 }

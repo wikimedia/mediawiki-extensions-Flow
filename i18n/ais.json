@@ -25,6 +25,7 @@
 	"flow-newtopic-first-heading": "mililid baluhay sasakamuen i $1",
 	"flow-summarize-topic-placeholder": "pimatatengil tina pecu’ nu lacul buhci tu kamu",
 	"flow-reply-topic-title-placeholder": "patubeli i \"$1\"",
+	"flow-reply-link": "{{GENDER:$1|patubeli}}",
 	"flow-history-action-suppress-post": "milangat",
 	"flow-history-action-delete-post": "misipu",
 	"flow-history-action-hide-post": "midimut",
@@ -65,6 +66,7 @@
 	"flow-topic-action-undo-moderation": "patiku",
 	"flow-topic-action-watchlist-add": "miaca aazihan wini a satangahan nu kamu",
 	"flow-topic-action-watchlist-remove": "palawpes miaca aazihan",
+	"flow-error-lock-moderated-post": "la’cus misilusi kisu malaheci tuway nu mapakelecay pazepit tu nisulitan.",
 	"flow-error-missing-summary": "kanca misulit pecu’ nu lacul kisu.",
 	"flow-error-protected-unknown-reason": "caay kapulita",
 	"flow-error-invalid-moderation-reason": "pibuhci tu kamu mikelec mahicaay nu saungay.",
@@ -78,9 +80,11 @@
 	"flow-error-default": "mungangaw.",
 	"flow-error-invalid-title": "nipabeli kasabelih satangahan la’cus.",
 	"flow-error-fail-load-history": "pacumud nazipa’an a lacul mungangaw.",
+	"flow-error-missing-topic-title": "ayzaay a laylay nu kawaw inayi’ tina sasakamuen a satangahan.",
 	"flow-error-fail-load-data": "milungucay a kalunasulitan pacumud mungangaw.",
 	"flow-error-invalid-workflow": "cay katepa milunguc a laylay nu kawaw",
 	"flow-error-process-data": "imahini saugnay lunguc nu misu a kalunasulitan sa mungangaw.",
+	"flow-error-no-index": "palalitemuh tu kawaw sapaungay kalunasulitan kilim a kapah pikiliman tu nisulitan miasip mungangaw.",
 	"flow-error-no-render": "la’cus taazihan matuzu’ay a saungay.",
 	"flow-error-no-commit": "la’cus misuped matuzu’ay a saungay.",
 	"flow-error-invalid-topic-uuid-title": "la’cusay a pyawti",
@@ -180,6 +184,7 @@
 	"flow-ve-mention-context-item-label": "sakamu sa",
 	"flow-ve-mention-placeholder": "misaungayay a kalungangan",
 	"flow-ve-mention-template-title": "FlowMention",
+	"flow-ve-mention-inspector-invalid-user": "misaungayay a kalungangan \"$1\" caay henay pangangan.",
 	"flow-wikitext-editor-help": "Wikitext $1.",
 	"flow-wikitext-editor-help-preview-the-result": "heci nu pataayaway miazih",
 	"flow-wikitext-switch-editor-tooltip": "ketun mibalic ta palakuliten ku aazihen sakawaw-kalumyiti",
@@ -190,5 +195,6 @@
 	"flow-beta-feature-remove-archive-template-edit-summary": "imahini misipu misinga’ taazihan-mitudung",
 	"flow-dialog-cancelconfirm-keep": "palalid mikawaway-kalumyiti",
 	"flow-dialog-cancelconfirm-discard": "miales tu masumaday",
-	"flow-optin-restore-flow-board": "masasa misinga’ay tangan a matatengil subal."
+	"flow-optin-restore-flow-board": "masasa misinga’ay tangan a matatengil subal.",
+	"flow-guidedtour-optin-find-old-conversations-description": "nasawniay a sasukamu mamilimad tayza i masinga’ay a kasabelih."
 }
