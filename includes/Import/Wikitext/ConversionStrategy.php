@@ -10,7 +10,6 @@ use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use LinkBatch;
 use Parser;
 use Psr\Log\LoggerInterface;
-use StubObject;
 use Title;
 use User;
 use WikitextContent;
@@ -41,7 +40,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $sourceStore;
 
 	/**
-	 * @var Parser|StubObject
+	 * @var Parser
 	 */
 	protected $parser;
 
@@ -63,7 +62,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $user;
 
 	/**
-	 * @param Parser|StubObject $parser
+	 * @param Parser $parser
 	 * @param ImportSourceStore $sourceStore
 	 * @param LoggerInterface $logger
 	 * @param User $user User to take conversion actions are (applicable for actions
