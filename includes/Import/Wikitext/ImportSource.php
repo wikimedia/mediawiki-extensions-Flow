@@ -12,6 +12,7 @@ use MWTimestamp;
 use Parser;
 use ParserOptions;
 use Revision;
+use StubObject;
 use Title;
 use User;
 
@@ -29,7 +30,7 @@ class ImportSource implements IImportSource {
 
 	/**
 	 * @param Title $title
-	 * @param Parser $parser
+	 * @param Parser|StubObject $parser
 	 * @param User $user User to take actions as
 	 * @param string $headerSuffix
 	 * @throws ImportException When $title is an external title
