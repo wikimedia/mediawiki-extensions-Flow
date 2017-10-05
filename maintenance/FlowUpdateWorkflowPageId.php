@@ -68,7 +68,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
  */
 class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	/**
-	 * @var Language
+	 * @var Language|StubUserLang
 	 */
 	protected $lang;
 	protected $fixedCount = 0;
@@ -76,7 +76,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	protected $warnings = [];
 
 	/**
-	 * @param Language $lang
+	 * @param Language|StubUserLang $lang
 	 */
 	public function __construct( $lang ) {
 		$this->lang = $lang;
