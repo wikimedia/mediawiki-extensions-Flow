@@ -213,7 +213,7 @@
 	"flow-error-no-commit": "لا يمكن حفظ الإجراء المحدد.",
 	"flow-error-content-too-long": "المحتوى كبير جدا. فبعد توسيع المحتوى أصبح محدود ب $1 {{PLURAL:$1|بايت|بايتات}}.",
 	"flow-error-move-topic": "من غير الممكن نقل عنوان الصفحة في الوقت الحالي.",
-	"flow-error-invalid-topic-uuid-title": "عنوان سيئ",
+	"flow-error-invalid-topic-uuid-title": "عنوان سيء",
 	"flow-error-invalid-topic-uuid": "عنوان الصفحة المطلوب كان غير صحيح. الصفحات في النطاق Topic يتم إنشاؤها تلقائيا بواسطة النقاشات الهيكلية.",
 	"flow-error-unknown-workflow-id-title": "موضوع غير معروف",
 	"flow-error-unknown-workflow-id": "الموضوع المطلوب غير موجود.",
