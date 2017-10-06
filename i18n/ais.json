@@ -6,6 +6,7 @@
 			"Benel"
 		]
 	},
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|kisu}}caay tu paazih \"$1\"",
 	"flow-board-header-browse-topics-link": "azih sasakamuen",
 	"flow-board-header": "mahizaay tina matatengil a kakitizaan",
 	"flow-board-collapse-description": "midimut sapuelac",
@@ -21,6 +22,7 @@
 	"flow-skip-summary": "sekipo",
 	"flow-edit-summary-placeholder": "madayumay sapuelac tina matatengil a heci",
 	"flow-show-change": "paazih ku masumaday",
+	"flow-last-modified-by": "sazikuz nay $1 {{GENDER:$1|misumad}}",
 	"flow-newtopic-title-placeholder": "baluhay a sasakamuen",
 	"flow-newtopic-content-placeholder": "patiyak cacay baluhay palatuh i \"$1\"",
 	"flow-newtopic-header": "baluhay micunus baluhay sasakamuen",
@@ -29,6 +31,7 @@
 	"flow-newtopic-start-placeholder": "mililid baluhay sasakamuen",
 	"flow-newtopic-first-heading": "mililid baluhay sasakamuen i $1",
 	"flow-summarize-topic-placeholder": "pimatatengil tina pecu’ nu lacul buhci tu kamu",
+	"flow-reply-topic-placeholder": "i \"$2\" a{{GENDER:$1|buhci tu kamu}}",
 	"flow-reply-topic-title-placeholder": "patubeli i \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|patubeli}}",
 	"flow-history-action-suppress-post": "milangat",
@@ -69,6 +72,7 @@
 	"flow-topic-action-unsuppress-topic": "palawpes milangatay a sasakamuen",
 	"flow-topic-action-restore-topic": "patiku sasakamuen",
 	"flow-topic-action-undo-moderation": "patiku",
+	"flow-board-notification-subscribe-title": "{{GENDER:$1|kisu}} miaca aazihan tu tina matatengil-sapat!",
 	"flow-topic-action-watchlist-add": "miaca aazihan wini a satangahan nu kamu",
 	"flow-topic-action-watchlist-remove": "palawpes miaca aazihan",
 	"flow-error-http": "imahini sefu-kikay misiket tu calay-zazan(wanglu) mungangaw.",
@@ -93,6 +97,7 @@
 	"flow-error-invalid-title": "nipabeli kasabelih satangahan la’cus.",
 	"flow-error-fail-load-history": "pacumud nazipa’an a lacul mungangaw.",
 	"flow-error-insufficient-permission": "mangadis tungus, la’cus misuped-miala lacul.",
+	"flow-error-revision-comparison": "sasutili’ay sasizuma a saungay kapah a cacay i malecaday a pazepit tu nisulitan tusa masumad nu ayaway pisaungay.",
 	"flow-error-missing-topic-title": "ayzaay a laylay nu kawaw inayi’ tina sasakamuen a satangahan.",
 	"flow-error-fail-load-data": "milungucay a kalunasulitan pacumud mungangaw.",
 	"flow-error-invalid-workflow": "cay katepa milunguc a laylay nu kawaw",
@@ -119,6 +124,7 @@
 	"flow-board-history": "\"$1\" nasulitan nu nazipa’an",
 	"flow-board-history-empty": "tina matatengil-sapat inayi’ nazipa’an nasulitan ayza.",
 	"flow-topic-history": "$1 sasakamuen nazipa’an",
+	"flow-post-history": "{{GENDER:$2|$2}} a buhci tu kamu pazepit tu nisulitan nazipa’an",
 	"flow-history-day": "ayza a demiad",
 	"flow-history-week": "naayaway cacay a lipay",
 	"flow-history-pages-topic": "i [$1 \"$2\" matatengil-sapat] paazih",
@@ -135,6 +141,7 @@
 	"flow-notification-link-text-view-post": "ciwsace tu pazepit tu nisulitan",
 	"flow-notification-link-text-view-topic": "ciwsace tu sasakamuen",
 	"flow-notification-reply-email-subject": "$2 i $3",
+	"flow-notification-edit-email-subject": "$1 {{GENDER:$1|mikawaway-kalumyiti tuway}} cacay nisubelidan kamu",
 	"flow-link-post": "patiyak",
 	"flow-link-topic": "sasakamuen",
 	"flow-link-history": "nazipa’an",
@@ -230,5 +237,6 @@
 	"flow-optin-restore-wikitext": "masasa masupetay a wikitext kasabelih.",
 	"flow-optin-restore-flow-board": "masasa misinga’ay tangan a matatengil subal.",
 	"flow-guidedtour-optin-find-old-conversations": "mikilim {{GENDER:$1|nu misu}} maluman a sasukamu",
-	"flow-guidedtour-optin-find-old-conversations-description": "nasawniay a sasukamu mamilimad tayza i masinga’ay a kasabelih."
+	"flow-guidedtour-optin-find-old-conversations-description": "nasawniay a sasukamu mamilimad tayza i masinga’ay a kasabelih.",
+	"flow-guidedtour-optin-feedback": "nipabeli {{GENDER:$1|kisu}}a hwidubaku tu tamiyan!"
 }
