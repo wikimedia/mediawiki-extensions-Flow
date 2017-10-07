@@ -34,14 +34,14 @@ abstract class RevisionViewQuery extends AbstractQuery {
 
 	/**
 	 * Create a revision based on revisionId
-	 * @param UUID|string
+	 * @param UUID|string $revId
 	 * @return AbstractRevision
 	 */
 	abstract protected function createRevision( $revId );
 
 	/**
 	 * Get the data for rendering single revision view
-	 * @param string
+	 * @param string $revId
 	 * @return FormatterRow
 	 * @throws InvalidInputException
 	 */

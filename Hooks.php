@@ -860,7 +860,7 @@ class FlowHooks {
 	/**
 	 * Adds Flow contributions to the DeletedContributions special page
 	 *
-	 * @param array $data an array of results of all contribs queries, to be
+	 * @param array &$data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
@@ -893,7 +893,7 @@ class FlowHooks {
 	/**
 	 * Adds Flow contributions to the Contributions special page
 	 *
-	 * @param array $data an array of results of all contribs queries, to be
+	 * @param array &$data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
@@ -912,7 +912,7 @@ class FlowHooks {
 
 	/**
 	 * Define and add descriptions for board-related variables
-	 * @param array $realValues
+	 * @param array &$realValues
 	 * @return bool
 	 */
 	public static function onAbuseFilterBuilder( &$realValues ) {

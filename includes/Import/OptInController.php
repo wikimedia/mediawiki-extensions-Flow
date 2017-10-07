@@ -165,7 +165,7 @@ class OptInController {
 	}
 
 	/**
-	 * @param $msgKey
+	 * @param string $msgKey
 	 * @param array $args
 	 * @throws ImportException
 	 */
@@ -248,7 +248,7 @@ class OptInController {
 
 	/**
 	 * @param Title $title
-	 * @param $boardDescription
+	 * @param string $boardDescription
 	 * @throws ImportException
 	 * @throws \Flow\Exception\CrossWikiException
 	 * @throws \Flow\Exception\InvalidInputException
@@ -544,7 +544,7 @@ class OptInController {
 
 	/**
 	 * @param Title $title
-	 * @param $reason
+	 * @param string $reason
 	 * @param callable $newDescriptionCallback
 	 * @param string $format
 	 * @throws ImportException

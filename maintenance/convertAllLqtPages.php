@@ -79,8 +79,8 @@ class ConvertAllLqtPages extends Maintenance {
 	}
 
 	/**
-	 * @param $logger
-	 * @param $dbw
+	 * @param AbstractLogger $logger
+	 * @param IDatabase $dbw
 	 * @return AppendIterator
 	 */
 	private function buildIterator( $logger, $dbw ) {

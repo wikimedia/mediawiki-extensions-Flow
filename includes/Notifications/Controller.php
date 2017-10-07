@@ -668,7 +668,7 @@ class NotificationController {
 	 * Handler for EchoGetBundleRule hook, which defines the bundle rules for each notification
 	 *
 	 * @param EchoEvent $event
-	 * @param string $bundleString Determines how the notification should be bundled
+	 * @param string &$bundleString Determines how the notification should be bundled
 	 * @return bool True for success
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
@@ -764,7 +764,7 @@ class NotificationController {
 	 * This is the lowest-number post, numbering them using a pre-order depth-first
 	 *  search
 	 *
-	 * @param array Array of EchoEvents
+	 * @param array $bundledEvents Array of EchoEvents
 	 * @return UUID|null Post ID, or null on failure
 	 */
 	public function getTopmostPostId( array $bundledEvents ) {
