@@ -103,7 +103,7 @@ class Importer {
 	 *
 	 * @param IImportSource $source
 	 * @param Title $targetPage
-	 * @param User User doing the conversion actions (e.g. initial description,
+	 * @param User $user User doing the conversion actions (e.g. initial description,
 	 *    wikitext archive edit).  However, actions will be attributed to the original
 	 *    user when possible (e.g. the user who did the original LQT reply)
 	 * @param ImportSourceStore $sourceStore

@@ -19,7 +19,7 @@ class MockImportSource implements IImportSource {
 
 	/**
 	 * @param IImportHeader|null $header
-	 * @param IImportTopic[]
+	 * @param IImportTopic[] $topics
 	 */
 	public function __construct( MockImportHeader $header = null, array $topics = [] ) {
 		$this->topics = $topics;

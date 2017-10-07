@@ -187,7 +187,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the template name for a specific action or an array of template
 	 * for all possible view actions in this block
 	 *
-	 * @param string|null
+	 * @param string|null $action
 	 * @return string|array
 	 * @throws InvalidInputException
 	 */
