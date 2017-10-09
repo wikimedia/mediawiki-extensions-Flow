@@ -16,7 +16,8 @@
 			"Arthur2e5"
 		]
 	},
-	"enablestructureddiscussions": "開啟 Flow",
+	"enablestructureddiscussions": "開啟結構化討論",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}關注「$1」上新活動",
 	"flow-desc": "對話系統",
 	"flow-talk-taken-over-comment": "/* 此頁面已被轉換為 Flow 討論板 */",
 	"log-name-flow": "Flow 活躍日誌",
@@ -345,7 +346,7 @@
 	"flow-compare-revisions-header-postsummary": "此頁面顯示於 [$3 $1] 的文章 \"[$4 $2]\" 中文章摘要兩個版本之間的變更。\n您可以於 [$5 歷史頁面] 查看此文章的其他版本。",
 	"flow-compare-revisions-header-header": "此頁面顯示於 [$3 $1] 中描述兩個版本之間的{{GENDER:$2|變更}}。\n您可以於 [$4 歷史頁面] 查看該描述的其他版本。",
 	"action-flow-create-board": "在任何位置建立 Flow 討論板",
-	"right-flow-create-board": "在任何位置建立 Flow 討論板",
+	"right-flow-create-board": "在任何位置建立結構化討論板",
 	"right-flow-hide": "隱藏 Flow 話題與貼文",
 	"right-flow-lock": "標記 Flow 話題為已解決",
 	"right-flow-delete": "刪除 Flow 話題與貼文",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Pirehelokan",
-			"Sarchia"
+			"Sarchia",
+			"Lost Whispers"
 		]
 	},
 	"flow-cancel": "ھەڵوەشاندنەوە",
@@ -10,6 +11,7 @@
 	"flow-history-action-delete-post": "سڕینەوە",
 	"flow-post-action-delete-post": "سڕینەوە",
 	"flow-comment-hidden": "بۆچوونی شاردراوە",
+	"flow-notification-mention-email-subject": "$1 ئاماژەی پێدایت لە $2",
 	"flow-moderation-confirm-delete-post": "سڕینەوە",
 	"flow-moderation-confirm-delete-topic": "سڕینەوە"
 }
