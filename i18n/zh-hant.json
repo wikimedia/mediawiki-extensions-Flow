@@ -13,7 +13,8 @@
 			"Bowleerin",
 			"Shizhao",
 			"飞舞回堂前",
-			"Arthur2e5"
+			"Arthur2e5",
+			"A2093064"
 		]
 	},
 	"enablestructureddiscussions": "開啟結構化討論",
@@ -339,7 +340,7 @@
 	"flow-revision-permalink-warning-post-first": "此頁為此貼文第一個版本的靜態連結。\n您可以於 [$4 貼文歷史頁面] 檢視之後的版本。",
 	"flow-revision-permalink-warning-postsummary": "此頁為此貼文摘要單一版本的靜態連結。\n此版本來自 $1。\n您可以查閱 [與先前版本的 $5 個差異]，或於 [$4 貼文歷史頁面] 檢視其他的版本。",
 	"flow-revision-permalink-warning-postsummary-first": "此頁為此貼文摘要第一個版本的靜態連結。\n您可以於 [$4 貼文歷史頁面] 檢視之後的版本。",
-	"flow-revision-permalink-warning-header": "此頁為描述單一版本的靜態連結。\n此版本來自 $1。\n您可以查看 [與先前版本的 $3 個差異]，或於 [$2 討論板歷史頁面] 檢視其他的版本。",
+	"flow-revision-permalink-warning-header": "此頁為描述單一版本的靜態連結。此版本來自$1。您可以查看[$3 與先前版本的差異]，或於[$2 討論板歷史頁面]檢視其他的版本。",
 	"flow-revision-permalink-warning-header-first": "此頁為描述第一個版本的靜態連結。\n您可以於 [$2 留言板歷史頁面] 檢視之後的版本。",
 	"flow-compare-revisions-revision-header": "版本由 {{GENDER:$2|$2}} 完成於 $1",
 	"flow-compare-revisions-header-post": "此頁面顯示由 $3 於 [$4 $1] 發表的 \"[$5 $2]\" 話題兩個版本之間的變更。\n您可以於 [$6 歷史頁面] 查閱此貼文的其他版本。",
