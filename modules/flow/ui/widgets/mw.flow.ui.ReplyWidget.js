@@ -144,6 +144,10 @@
 					widget.canNotEdit.toggle( false );
 					widget.expanded = false;
 				}
+
+				// Make sure the widget is no longer pending when we emit the event,
+				// otherwise destroying it breaks (T166634)
+				widget.editor.popPending();
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
 			.then( null, function ( errorCode, errorObj ) {
@@ -152,9 +156,6 @@
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
-
-			} )
-			.always( function () {
 				widget.editor.popPending();
 			} );
 	};
