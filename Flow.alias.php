@@ -94,6 +94,12 @@ $specialPageAliases['sv'] = [
 	'StructuredDiscussions' => [ 'Flöde' ],
 ];
 
+/** Urdu (اردو) */
+$specialPageAliases['ur'] = [
+	'StructuredDiscussions' => [ 'مرتب_گفتگو', 'فلو' ],
+	'EnableStructuredDiscussions' => [ 'مرتب_گفتگو_فعال_کریں', 'فلو_فعال_کریں' ],
+];
+
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = [
 	'StructuredDiscussions' => [ 'Flow' ],
