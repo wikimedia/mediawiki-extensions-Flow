@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0e6af365_7541d30d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReplyWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-10-12T17:13:04Z",
+      "side": 1,
+      "message": "lol good catch",
+      "parentUuid": "0e6af365_284ea33c",
+      "revId": "36e7a1941121f8151b7d7f7a8cc556c4fb57ae94",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e6af365_4870b76f",
         "filename": "modules/flow/ui/widgets/mw.flow.ui.ReplyWidget.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-12T12:18:12Z",
       "side": 1,
       "message": "Why are there two `then`s, with the second one only handling errors? Seems like there should be a comment for this weirdness.",
+      "revId": "36e7a1941121f8151b7d7f7a8cc556c4fb57ae94",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e6af365_15497736",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.ReplyWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-10-12T17:13:04Z",
+      "side": 1,
+      "message": "That might have made sense in the past but it doesn\u0027t seem to make sense now. Will clean up.",
+      "parentUuid": "0e6af365_4870b76f",
       "revId": "36e7a1941121f8151b7d7f7a8cc556c4fb57ae94",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
