@@ -490,7 +490,7 @@
 	"flow-undo-edit-content": "Редагування може бути скасовано. Будь ласка, перевірте порівняння нижче, щоб впевнитись, що це те, що Ви хочете зробити, а потім збережіть зміни нижче, щоб закінчити скасування редагування.",
 	"flow-undo-edit-failure": "Редагування не може бути скасовано через конфліктні проміжні редагування.",
 	"group-flow-bot": "Боти для структурованих обговорень",
-	"group-flow-bot-member": "Бот для структурованих обговорень",
+	"group-flow-bot-member": "бот для Структурованих обговорень",
 	"grouppage-flow-bot": "Project:Structured Discussions bots",
 	"flow-ve-mention-context-item-label": "Згадування",
 	"flow-ve-mention-inspector-title": "Згадка",
