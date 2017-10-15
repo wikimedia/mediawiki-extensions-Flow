@@ -518,11 +518,11 @@
 	"flow-mark-diff-patrolled-link-text": "برچسب گشت بزن",
 	"flow-mark-diff-patrolled-link-title": "برچسب گشت بزن",
 	"flow-talk-page-beta-feature-message": "بحث ساختارمند در صفحهٔ بحث کاربری",
-	"flow-talk-page-beta-feature-description": "یک سامانهٔ گفتگوی ساختارمند در صفحهٔ بحث {{GENDER:|شما}} فعال می‌کند. فلو گفتگو در صفحه‌های بحث را ساده می‌کند، مکان‌های روشنی برای نوشتن و پاسخ دادن دارد، و امکان آگاه‌سازی در سطح گفتگو را فراهم می‌کند. بحث‌های ویکی‌متنی موجود به یک بایگانی انتقال خواهند یافت. این ویژگی به طور خودکار فعال نمی‌شود؛ کاربران باید آن را به طور مجزا فعال کنند. غیر فعال کردن فلو، تالار گفتگو را به یک زیر صفحه می‌برد و صفحهٔ بحث قدیمی را از بایگانی در می‌آورد.",
+	"flow-talk-page-beta-feature-description": "یک سامانهٔ گفتگوی ساختارمند در صفحهٔ بحث {{GENDER:|شما}} فعال می‌کند. گفتگوی ساختارمند، گفتگو در صفحه‌های بحث را ساده می‌کند، مکان‌های روشنی برای نوشتن و پاسخ دادن دارد، و امکان آگاه‌سازی در سطح گفتگو را فراهم می‌کند. بحث‌های ویکی‌متنی موجود به یک بایگانی انتقال خواهند یافت. این ویژگی به طور خودکار فعال نمی‌شود؛ کاربران باید آن را به طور مجزا فعال کنند. غیرفعال کردن گفتگوی ساختارمند، تالار گفتگو را به یک زیر صفحه می‌برد و صفحهٔ بحث قدیمی را از بایگانی در می‌آورد. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|در مورد فعال‌سازی بیشتر بدانید]].",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|نمایش}} صفحهٔ بحث کاربر",
 	"flow-notification-enabled-on-talkpage-title": "سامانهٔ گفتگوی جدید برای صفحهٔ بحث {{GENDER:$1|شما}} فعال شده<br /><small>آن را در [[$2]] بیابید</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "سامانهٔ گفتگوی جدید در $2",
-	"flow-notification-enabled-on-talkpage-email-batch-body": "فلو، سامانهٔ جدید گفتگو در ویکی، در صفحهٔ بحث {{GENDER:$1|شما}} در {{SITENAME}} فعال شده‌است. برای اطلاعات بیشتر، بازخورد دادن و یا غیر فعال کردن سامانهٔ جدید در هر زمان، به قسمت ویژگی‌های آزمایشی در ترجیحات {{GENDER:$1|خود}} بروید.",
+	"flow-notification-enabled-on-talkpage-email-batch-body": "گفتگوی ساختارمند، سامانهٔ جدید گفتگو در ویکی، در صفحهٔ بحث {{GENDER:$1|شما}} در {{SITENAME}} فعال شده‌است. برای اطلاعات بیشتر، بازخورد دادن و یا غیرفعال کردن سامانهٔ جدید در هر زمان، به قسمت ویژگی‌های آزمایشی در ترجیحات {{GENDER:$1|خود}} بروید.",
 	"flow-beta-feature-add-archive-template-edit-summary": "افزودن الگوی بایگانی",
 	"flow-beta-feature-remove-archive-template-edit-summary": "حذف الگوی بایگانی",
 	"flow-dialog-cancelconfirm-title": "اطمینان دارید؟",
@@ -538,6 +538,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "یافتن بحث‌های قدیمی {{GENDER:$1|شما}}",
 	"flow-guidedtour-optin-find-old-conversations-description": "بحث‌های قدیمی به یک صفحه بایگانی منتقل شدند.",
 	"flow-guidedtour-optin-feedback": "به ما بازخورد {{GENDER:$1|دهید}}!",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|شما}} می‌توانید برای اطلاعات بیشتر، ارائهٔ بازخورد، یا غیر فعال کردن سامانه در هر زمان به بخش ویژگی‌های آزمایشی مراجعه کنید.",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|شما}} می‌توانید برای اطلاعات بیشتر، ارائهٔ بازخورد، یا غیرفعال کردن سامانه در هر زمان به بخش ویژگی‌های آزمایشی مراجعه کنید.",
 	"flow-action-not-page": "شیء صفحه نمونه‌ای از کلاس اشتباه است"
 }
