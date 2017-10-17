@@ -130,8 +130,7 @@
 		captchaResponse = this.captchaWidget.getResponse();
 
 		this.error.setLabel( '' );
-		this.error.toggle( false )
-		;
+		this.error.toggle( false );
 		this.editor.pushPending();
 		this.api.saveReply( this.topicId, this.replyTo, content, format, captchaResponse )
 			.then( function ( workflow ) {
@@ -144,17 +143,17 @@
 					widget.canNotEdit.toggle( false );
 					widget.expanded = false;
 				}
+
+				// Make sure the widget is no longer pending when we emit the event,
+				// otherwise destroying it breaks (T166634)
+				widget.editor.popPending();
 				widget.emit( 'saveContent', workflow, content, format );
-			} )
-			.then( null, function ( errorCode, errorObj ) {
+			}, function ( errorCode, errorObj ) {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
-
-			} )
-			.always( function () {
 				widget.editor.popPending();
 			} );
 	};
