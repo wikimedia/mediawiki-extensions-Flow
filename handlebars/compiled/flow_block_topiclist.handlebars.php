@@ -65,21 +65,20 @@
 '.$sp.'			placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-start-placeholder'),array()), 'encq').'"
 '.$sp.'			data-role="title"
 '.$sp.'		/>
-'.$sp.'		<div class="flow-editor">
-'.$sp.'			<textarea name="topiclist_content"
-'.$sp.'			          class="mw-ui-input flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'"
-'.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
-'.$sp.'			          data-role="content"
-'.$sp.'			          required
-'.$sp.'			>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
-'.$sp.'		</div>
-'.$sp.'
-'.$sp.'		<div class="flow-form-actions flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'">
-'.$sp.'			<button data-role="submit"
-'.$sp.'				class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
-'.$sp.'		</div>
-'.$sp.'	</form>
+'.$sp.''.((!LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? '			<div class="flow-editor">
+'.$sp.'				<textarea name="topiclist_content"
+'.$sp.'				          class="mw-ui-input flow-form-collapsible"
+'.$sp.'				          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
+'.$sp.'				          data-role="content"
+'.$sp.'				          required
+'.$sp.'				>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+'.$sp.'			</div>
+'.$sp.'			<div class="flow-form-actions flow-form-collapsible">
+'.$sp.'				<button data-role="submit"
+'.$sp.'					class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
+'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
+'.$sp.'			</div>
+'.$sp.'' : '').'	</form>
 '.$sp.'' : '').'';},'flow_topic_moderation_flag' => function ($cx, $in, $sp) {return ''.$sp.'<span class="mw-ui-icon mw-ui-icon-before'.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','lock'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-check';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','hide'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-flag';}).''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'===','delete'),array()), $in, false, function($cx, $in)use($sp){return ' mw-ui-icon-trash';}).'"></span>
 ';},'flow_post_moderation_state' => function ($cx, $in, $sp) {return ''.$sp.'<span class="plainlinks">'.((LCRun3::ifvar($cx, ((isset($in['replyToId']) && is_array($in)) ? $in['replyToId'] : null))) ? ''.LCRun3::ch($cx, 'l10nParse', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-post-content'),array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null),((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null)),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10nParse', array(array(LCRun3::ch($cx, 'concat', array(array('flow-',((isset($in['moderateState']) && is_array($in)) ? $in['moderateState'] : null),'-title-content'),array()), 'raw'),((isset($in['moderator']['name']) && is_array($in['moderator'])) ? $in['moderator']['name'] : null),((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null)),array()), 'encq').'').'</span>
 ';},'flow_topic_titlebar_content' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-topic-titlebar-container">
