@@ -187,7 +187,7 @@
 '.$sp.'	<input type="hidden" name="topic_prev_revision" value="'.htmlentities((string)((isset($in['revisionId']) && is_array($in)) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 '.$sp.''.LCRun3::hbch($cx, 'ifAnonymous', array(array(),array()), $in, false, function($cx, $in)use($sp){return ''.LCRun3::p($cx, 'flow_anon_warning', array(array($in),array()), '		').'';}).'
 '.$sp.'	<div class="flow-editor">
-'.$sp.'		<textarea name="topic_content" class="mw-ui-input flow-form-collapsible" data-role="content">'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['rootBlock']['submitted']['content']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['submitted']['content']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
+'.$sp.'		<textarea name="topic_content" class="mw-ui-input flow-form-collapsible mw-editfont-'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editFont']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editFont'] : null), ENT_QUOTES, 'UTF-8').'" data-role="content">'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['rootBlock']['submitted']['content']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['submitted']['content']) && is_array($cx['sp_vars']['root']['rootBlock']['submitted'])) ? $cx['sp_vars']['root']['rootBlock']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['content']['content']) && is_array($in['content'])) ? $in['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 '.$sp.'	</div>
 '.$sp.'
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
@@ -212,7 +212,7 @@
 '.$sp.'		          name="topic_content"
 '.$sp.'		          required
 '.$sp.'		          data-flow-expandable="true"
-'.$sp.'		          class="mw-ui-input flow-click-interactive"
+'.$sp.'		          class="mw-ui-input flow-click-interactive mw-editfont-'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editFont']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editFont'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'		          type="text"
 '.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'"
 '.$sp.'		          data-role="content"

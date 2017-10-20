@@ -47,7 +47,7 @@
 '.((LCRun3::ifvar($cx, ((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null))) ? '				<input type="hidden" name="'.htmlentities((string)((isset($in['type']) && is_array($in)) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_prev_revision" value="'.htmlentities((string)((isset($in['revision']['revisionId']) && is_array($in['revision'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 ' : '').'
 			<div class="flow-editor">
-				<textarea class="mw-ui-input"
+				<textarea class="mw-ui-input mw-editfont-'.htmlentities((string)((isset($in['editFont']) && is_array($in)) ? $in['editFont'] : null), ENT_QUOTES, 'UTF-8').'"
 				          name="'.htmlentities((string)((isset($in['type']) && is_array($in)) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_summary"
 				          type="text"
 				          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-summary-placeholder'),array()), 'encq').'"

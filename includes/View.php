@@ -181,6 +181,7 @@ class View extends ContextSource {
 		];
 
 		$editToken = $user->getEditToken();
+		$editFont = $user->getOption( 'editfont' );
 		$wasPosted = $this->getRequest()->wasPosted();
 		$topicListBlock = null;
 		foreach ( $blocks as $block ) {
@@ -190,6 +191,7 @@ class View extends ContextSource {
 									'title' => $apiResponse['title'],
 									'block-action-template' => $block->getTemplate( $action ),
 									'editToken' => $editToken,
+									'editFont' => $editFont,
 								];
 				if ( $block->getName() == 'topiclist' ) {
 					$topicListBlock = $block;
