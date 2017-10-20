@@ -5,19 +5,13 @@
 .flow-ui-editorSwitcherWidget {
 	display: block;
 	background-color: #fff;
+	// The placeholder should be the same height as the editor: minHeight + toolbarHeight
+	// Also prevents height flicker when switching (T95207)
+	min-height: calc( @editorMinHeight ~'+' @editorToolbarHeight );
 
 	&-placeholder-input {
 		max-width: none;
 		background-color: transparent;
-		// Provide fallback for browsers that don't have calc function
-		// (Currently IE8, Opera Mini, Android 4.3)
-		min-height: @editorMinHeight;
-		// The placeholder should be the same height as the editor: minHeight + toolbarHeight.
-		// However, each of those is in different
-		// units (minHeight in em and toolbarHeight in px) which means we must
-		// use CSS's native calc() method.
-		// This escapes the calc() method while using LESS variables:
-		min-height: ~'calc( @{editorMinHeight} + @{editorToolbarHeight} )';
 
 		& textarea {
 			border: 0;
