@@ -39,9 +39,6 @@
 			nttopic: subject,
 			ntcontent: body,
 			ntformat: 'wikitext'
-		}, {
-			// IE 8 seems to have cached some POST requests without this
-			cache: false
 		} ).then(
 			null, // Preserve parameters from postWithToken promise
 			function ( code, details ) {

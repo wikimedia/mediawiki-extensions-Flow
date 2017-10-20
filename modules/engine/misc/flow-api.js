@@ -47,14 +47,6 @@
 				apiConstructorParams.ajax.timeout = ajaxTimeoutSec * 1000;
 			}
 
-			// IE8 caches POST under some conditions, prevent that here.
-			// IE8 is most likely the only browser we support that doesn't
-			// have addEventListener, and anything else that gets caught
-			// up isn't that bad off.
-			if ( !document.addEventListener ) {
-				apiConstructorParams.ajax.cache = false;
-			}
-
 			mwApi = new mw.Api( apiConstructorParams );
 
 			params = params || {};
