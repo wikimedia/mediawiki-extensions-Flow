@@ -15,8 +15,7 @@
 	.flow-ui-wikitextEditorWidget .oo-ui-textInputWidget {
 		// This creates a space for the toolbar, a matching negative margin-top
 		// shifts the toolbar into this location.
-		// @todo This value is specific to MW theme, is different in Apex.
-		padding-bottom: @editorToolbarHeight + 1px;
+		padding-bottom: @editorToolbarHeight;
 	}
 
 	// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
@@ -32,7 +31,7 @@
 			font-size: @uiFontSize;
 			// The 1px of positive margin gives room for the blue border
 			// of the TextInputWidget
-			margin: ( -@editorToolbarHeight - 1px ) 1px 1px 1px;
+			margin: -@editorToolbarHeight 1px 1px 1px;
 		}
 	}
 
