@@ -822,9 +822,7 @@
 
 		// Prepare the editor
 		editor.pushPending();
-		editor.activate();
-
-		editor.setContent( content, 'wikitext' )
+		editor.activate( { content: content || '', format: 'wikitext' } )
 			.then( function () {
 				editor.popPending();
 			} );
