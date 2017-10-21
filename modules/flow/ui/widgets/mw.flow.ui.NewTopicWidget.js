@@ -124,7 +124,7 @@
 		var isDisabled = this.isExpanded() && !this.isProbablyEditable;
 
 		this.title.setDisabled( isDisabled );
-		this.editor.editorSwitcherWidget.setDisabled( isDisabled );
+		this.editor.setDisabled( isDisabled );
 
 		this.editor.editorControlsWidget.toggleSaveable(
 			this.isProbablyEditable &&
@@ -143,14 +143,17 @@
 
 	/**
 	 * Expand the widget and make it ready to create a new topic
+	 * @param {Object} content Content to preload into the editor
+	 * @param {string} content.content Content
+	 * @param {string} content.format Format of content ('html' or 'wikitext')
 	 */
-	mw.flow.ui.NewTopicWidget.prototype.activate = function () {
+	mw.flow.ui.NewTopicWidget.prototype.activate = function ( content ) {
 		var widget = this;
 		if ( !this.isExpanded() ) {
 			// Expand the editor
 			this.toggleExpanded( true );
 			this.editor.toggleAutoFocus( false );
-			this.editor.activate().then( function () {
+			this.editor.activate( content ).then( function () {
 				widget.updateFormState();
 				widget.title.focus();
 				widget.editor.toggleAutoFocus( true );
@@ -166,12 +169,12 @@
 	 * @param {string} format
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.preload = function ( title, content, format ) {
-		this.activate();
-		this.title.setValue( title );
-
 		if ( content && format ) {
-			this.editor.setContent( content, format ).then( this.updateFormState.bind( this ) );
+			this.activate( { content: content, format: format } );
+		} else {
+			this.activate();
 		}
+		this.title.setValue( title );
 	};
 
 	/**

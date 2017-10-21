@@ -7,8 +7,6 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [content] An initial content for the textarea
-	 * @cfg {string} [contentFormat] Format of config.content
 	 * @cfg {string} [placeholder] Placeholder text to use for the editor when empty
 	 * @cfg {string} [termsMsgKey='flow-terms-of-use-edit'] i18n message key for the footer message
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
@@ -34,11 +32,23 @@
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
 
+		this.useVE = this.constructor.static.isVisualEditorSupported();
+
+		this.placeholder = config.placeholder || '';
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
 		this.leaveCallback = config.leaveCallback;
 
-		this.saveable = config.saveable !== undefined ? config.saveable : true;
+		this.loadPromise = null;
+
+		this.error = new OO.ui.LabelWidget( {
+			classes: [ 'flow-ui-editorWidget-error flow-errors errorbox' ]
+		} );
+		this.error.toggle( false );
+
+		this.$element
+			.on( 'focusin', this.onEditorFocusIn.bind( this ) )
+			.on( 'focusout', this.onEditorFocusOut.bind( this ) );
 
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
@@ -47,21 +57,55 @@
 			saveable: this.saveable
 		} );
 
-		this.editorSwitcherWidget = new mw.flow.ui.EditorSwitcherWidget( {
-			autoFocus: config.autoFocus,
-			content: config.content,
-			contentFormat: config.contentFormat,
-			placeholder: config.placeholder,
-			saveable: this.saveable
+		this.wikitextHelpLabel = new OO.ui.LabelWidget( {
+			classes: [ 'flow-ui-editorWidget-wikitextHelpLabel' ],
+			label: $( '<span>' ).append(
+				mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
+					// Link to help page
+					$( '<div>' )
+						.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
+						.find( 'a' )
+						.attr( 'target', '_blank' )
+						.end()
+						.html(),
+					// Preview link
+					$( '<a>' )
+						.attr( 'href', '#' )
+						.addClass( 'flow-ui-editorWidget-label-preview' )
+						.text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() )
+						.get( 0 ).outerHTML
+				] ).parse() )
+				.find( '.flow-ui-editorWidget-label-preview' )
+				.click( this.onPreviewLinkClick.bind( this ) )
+				.end()
 		} );
+		this.wikitextHelpLabel.toggle( false );
 
-		this.setPendingElement( this.editorSwitcherWidget.$element );
+		this.$editorWrapper = $( '<div>' )
+			.addClass( 'flow-ui-editorWidget-editor' )
+			.append( this.wikitextHelpLabel.$element );
+		this.setPendingElement( this.$editorWrapper );
+		if ( !this.useVE ) {
+			this.input = new OO.ui.MultilineTextInputWidget( {
+				autosize: true,
+				maxRows: 999,
+				placeholder: this.placeholder,
+				// The following classes can be used here:
+				// * mw-editfont-default
+				// * mw-editfont-monospace
+				// * mw-editfont-sans-serif
+				// * mw-editfont-serif
+				classes: [ 'flow-ui-editorWidget-input', 'mw-editfont-' + mw.user.options.get( 'editfont' ) ]
+			} );
+			this.input.toggle( false );
+			this.input.connect( this, { change: [ 'emit', 'change' ] } );
+			this.$editorWrapper.append( this.input.$element );
+		}
+
+		this.toggleAutoFocus( config.autoFocus === undefined ? true : !!config.autoFocus );
+		this.toggleSaveable( config.saveable !== undefined ? config.saveable : true );
 
 		// Events
-		this.editorSwitcherWidget.connect( this, {
-			'switch': 'onEditorSwitcherSwitch',
-			change: [ 'emit', 'change' ]
-		} );
 		this.editorControlsWidget.connect( this, {
 			cancel: 'onEditorControlsWidgetCancel',
 			save: 'onEditorControlsWidgetSave'
@@ -79,7 +123,8 @@
 
 		this.$element
 			.append(
-				this.editorSwitcherWidget.$element,
+				this.$editorWrapper,
+				this.error.$element,
 				this.editorControlsWidget.$element
 			)
 			.addClass( 'flow-ui-editorWidget' );
@@ -90,7 +135,7 @@
 	/**
 	 * @event saveContent
 	 * @param {string} content Content to save
-	 * @param {string} contentFormat Format of content
+	 * @param {string} format Format of content ('html' or 'wikitext')
 	 */
 
 	/**
@@ -103,38 +148,239 @@
 	 * The contents of the editor changed.
 	 */
 
-	/**
-	 * @event switch
-	 *
-	 * A `switch` event is emitted when the widget switches between different editors.
-	 *
-	 * @param {jQuery.Promise} switched Promise that is resolved when the switch is complete,
-	 *   or rejected if the switch was aborted with an error.
-	 * @param {string} newEditorName Name of the editor the widget is switching to
-	 * @param {mw.flow.ui.AbstractEditorWidget|null} oldEditor Editor instance we're switching away from
-	 */
-
 	/* Initialization */
 
 	OO.inheritClass( mw.flow.ui.EditorWidget, OO.ui.Widget );
 	OO.mixinClass( mw.flow.ui.EditorWidget, OO.ui.mixin.PendingElement );
 
-	// TODO figure out a way not to have to wrap so many things in EditorSwitcherWidget; maybe
-	// merge EditorSwitcherWidget into EditorWidget?
+	/* Static methods */
+
+	mw.flow.ui.EditorWidget.static.isVisualEditorSupported = function () {
+		/* global VisualEditorSupportCheck:false */
+		return !!(
+			!OO.ui.isMobile() &&
+			mw.loader.getState( 'ext.visualEditor.core' ) &&
+			mw.user.options.get( 'flow-visualeditor' ) &&
+			window.VisualEditorSupportCheck && VisualEditorSupportCheck()
+		);
+	};
+
+	/**
+	 * Load the VisualEditor code and create this.target.
+	 *
+	 * Calling this method externally can be useful to preload VisualEditor, but is not functionally
+	 * necessary. #activate calls this method as well.
+	 *
+	 * It's safe to call this method multiple times, or to call it when loading is already
+	 * complete: the same promise will be returned every time.
+	 *
+	 * @return {jQuery.Promise} Promise resolved when this.target has been created.
+	 */
+	mw.flow.ui.EditorWidget.prototype.load = function () {
+		var modules, widget = this;
+		if ( !this.useVE ) {
+			return $.Deferred().resolve().promise();
+		}
+		if ( !this.loadPromise ) {
+			modules = [ 'ext.flow.visualEditor' ].concat(
+				mw.config.get( 'wgVisualEditorConfig' ).pluginModules.filter( mw.loader.getState )
+			);
+			this.loadPromise = mw.loader.using( modules )
+				.then( function () {
+					widget.target = ve.init.mw.targetFactory.create( 'flow' );
+					widget.target.connect( widget, {
+						surfaceReady: 'onTargetSurfaceReady',
+						switchMode: 'onTargetSwitchMode'
+					} );
+					widget.$editorWrapper.prepend( widget.target.$element );
+				} );
+		}
+		return this.loadPromise;
+	};
+
+	/**
+	 * Activate the editor.
+	 *
+	 * @param {Object} [content] Content to preload into the editor
+	 * @param {string} content.content Content
+	 * @param {string} content.format Format of content ('html' or 'wikitext')
+	 * @return {jQuery.Promise}
+	 */
+	mw.flow.ui.EditorWidget.prototype.activate = function ( content ) {
+		var widget = this;
+		if ( !this.useVE ) {
+			// FIXME doesn't work with HTML, figure out if that can even ever be passed in
+			this.originalContent = content && content.content || '';
+			this.input.setValue( this.originalContent );
+			this.input.toggle( true );
+			this.maybeAutoFocus();
+			return $.Deferred().resolve().promise();
+		}
+
+		this.pushPending();
+		this.error.toggle( false );
+		return this.load()
+			.then( this.createSurface.bind( this, content ) )
+			.then( function () {
+				widget.bindBeforeUnloadHandler();
+				widget.maybeAutoFocus();
+				widget.wikitextHelpLabel.toggle( widget.target.getDefaultMode() === 'source' );
+			}, function ( error ) {
+				widget.error.setLabel( $( '<span>' ).text( error || mw.msg( 'flow-error-default' ) ) );
+				widget.error.toggle( true );
+			} )
+			.always( function () {
+				widget.popPending();
+			} );
+	};
+
+	/**
+	 * Create a VE surface with the provided content in it.
+	 *
+	 * @private
+	 * @param {Object} content Content to put into the surface
+	 * @param {string} content.content Content
+	 * @param {string} content.format Format of content ('html' or 'wikitext')
+	 * @return {jQuery.Promise} Promise which resolves when the surface is ready
+	 */
+	mw.flow.ui.EditorWidget.prototype.createSurface = function ( content ) {
+		var contentToLoad,
+			contentFormat,
+			deferred = $.Deferred();
+
+		if ( content ) {
+			contentToLoad = content.content;
+			if ( content.format === 'html' ) {
+				// loadContent expects a full document, but we were only given the body content
+				contentToLoad = '<body>' + contentToLoad + '</body>';
+			}
+			contentFormat = content.format;
+		} else {
+			contentToLoad = '';
+			contentFormat = this.getPreferredFormat();
+		}
+		this.target.setDefaultMode( contentFormat === 'html' ? 'visual' : 'source' );
+		this.target.loadContent( contentToLoad );
+		this.target.once( 'surfaceReady', function () {
+			deferred.resolve();
+		} );
+		return deferred.promise();
+	};
+
+	/**
+	 * If autofocus is enabled, focus the editor and move the cursor to the end.
+	 * @private
+	 */
+	mw.flow.ui.EditorWidget.prototype.maybeAutoFocus = function () {
+		if ( this.autoFocus ) {
+			this.focus();
+			this.moveCursorToEnd();
+		}
+	};
+
+	/**
+	 * Toggle whether the editor is automatically focused after activating and switching.
+	 * @param {boolean} [autoFocus] Whether to focus automatically; if unset, flips current value
+	 */
+	mw.flow.ui.EditorWidget.prototype.toggleAutoFocus = function ( autoFocus ) {
+		this.autoFocus = autoFocus === undefined ? !this.autoFocus : !!autoFocus;
+	};
+
+	/**
+	 * Toggle whether the editor is saveable,
+	 *
+	 * @param {boolean} [saveable] Whether the editor is saveable
+	 */
+	mw.flow.ui.EditorWidget.prototype.toggleSaveable = function ( saveable ) {
+		this.saveable = saveable === undefined ? !this.saveable : !!saveable;
+
+		// Disabled state depends on saveable state
+		this.updateDisabled();
+		// Update controls widget
+		this.editorControlsWidget.toggleSaveable( this.saveable );
+	};
+
+	/**
+	 * Check whether the editor is saveable.
+	 *
+	 * @return {boolean} Whether the user can save their content
+	 */
+	mw.flow.ui.EditorWidget.prototype.isSaveable = function () {
+		return this.saveable;
+	};
+
+	/**
+	 * Respond to focusin event.
+	 *
+	 * @private
+	 */
+	mw.flow.ui.EditorWidget.prototype.onEditorFocusIn = function () {
+		this.$element.addClass( 'flow-ui-editorWidget-focused' );
+	};
+
+	/**
+	 * Respond to focusout event.
+	 *
+	 * @private
+	 */
+	mw.flow.ui.EditorWidget.prototype.onEditorFocusOut = function () {
+		this.$element.removeClass( 'flow-ui-editorWidget-focused' );
+	};
+
+	mw.flow.ui.EditorWidget.prototype.onPreviewLinkClick = function () {
+		this.target.switchMode();
+		return false;
+	};
+
+	/**
+	 * Set up event listeners when a new surface is created. This happens every time we
+	 * switch modes.
+	 *
+	 * @private
+	 */
+	mw.flow.ui.EditorWidget.prototype.onTargetSurfaceReady = function () {
+		var surface = this.target.getSurface();
+
+		surface.setPlaceholder( this.placeholder );
+		surface.getModel().connect( this, { documentUpdate: [ 'onSurfaceDocumentUpdate' ] } );
+	};
+
+	/**
+	 * Every time the editor content changes, update the user's mode preference if necessary,
+	 * and emit 'change'.
+	 *
+	 * @private
+	 * @fires change
+	 */
+	mw.flow.ui.EditorWidget.prototype.onSurfaceDocumentUpdate = function () {
+		// Update the user's preferred editor
+		var currentEditor = this.target.getDefaultMode() === 'source' ? 'wikitext' : 'visualeditor';
+		if ( mw.user.options.get( 'flow-editor' ) !== currentEditor ) {
+			if ( !mw.user.isAnon() ) {
+				new mw.Api().saveOption( 'flow-editor', currentEditor );
+			}
+			// Ensure we also see that preference in the current page
+			mw.user.options.set( 'flow-editor', currentEditor );
+		}
+
+		this.emit( 'change' );
+	};
 
 	/**
 	 * Respond to cancel event. Verify with the user that they want to cancel if
 	 * there is changed data in the editor.
+	 *
+	 * @private
 	 * @fires cancel
 	 */
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetCancel = function () {
 		var widget = this;
 
-		if ( this.confirmCancel && this.editorSwitcherWidget.hasBeenChanged() ) {
+		if ( this.confirmCancel && this.hasBeenChanged() ) {
 			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' ).closed.then( function ( data ) {
 				if ( data && data.action === 'discard' ) {
 					// Remove content
-					widget.setContent( '', 'wikitext' );
+					widget.clearContent();
 					widget.unbindBeforeUnloadHandler();
 					widget.emit( 'cancel' );
 				}
@@ -146,109 +392,128 @@
 	};
 
 	/**
-	 * Check whether an editor is currently active. This returns false before the first editor
-	 * is loaded, and true after that. It also returns true if and editor switch is in progress.
-	 * @return {boolean} Editor is active
-	 */
-	mw.flow.ui.EditorWidget.prototype.isActive = function () {
-		return this.editorSwitcherWidget.isActive();
-	};
-
-	/**
 	 * Get the content of the editor.
-	 * @return {string|null} Content of the editor, or null if no editor is active.
+	 *
+	 * @return {Object}
+	 * @return {string} return.content Content of the editor
+	 * @return {string} return.format 'html' or 'wikitext'
 	 */
 	mw.flow.ui.EditorWidget.prototype.getContent = function () {
-		return this.editorSwitcherWidget.getContent();
+		var dom, content, format;
+
+		if ( !this.useVE ) {
+			return {
+				content: this.input.getValue(),
+				format: 'wikitext'
+			};
+		}
+
+		// If we haven't fully loaded yet, just return nothing.
+		if ( !this.target || !this.target.getSurface() ) {
+			return '';
+		}
+
+		dom = this.target.getSurface().getDom();
+		if ( typeof dom === 'string' ) {
+			content = dom;
+			format = 'wikitext';
+		} else {
+			// Document content will include html, head & body nodes; get only content inside body node
+			content = ve.properInnerHtml( dom.body );
+			format = 'html';
+		}
+		return { content: content, format: format };
 	};
 
 	/**
-	 * Get the format of the content returned by #getContent.
-	 * @return {string|null} Content format, or null if no editor is active.
-	 */
-	mw.flow.ui.EditorWidget.prototype.getContentFormat = function () {
-		return this.editorSwitcherWidget.getContentFormat();
-	};
-
-	/**
-	 * Check whether the editor is empty. If no editor is active, that is also considered empty.
+	 * Check whether the editor is empty. Also returns true if the editor hasn't been loaded yet.
+	 *
 	 * @return {boolean} Editor is empty
 	 */
 	mw.flow.ui.EditorWidget.prototype.isEmpty = function () {
-		return this.editorSwitcherWidget.isEmpty();
+		if ( !this.useVE ) {
+			return this.input.getValue().length === 0;
+		}
+
+		if ( !this.target || !this.target.getSurface() ) {
+			return true;
+		}
+		return !this.target.getSurface().getModel().getDocument().data.hasContent();
 	};
 
 	/**
-	 * Get the name of the editor that would be loaded if this widget were to be
-	 * activated right now.
+	 * Check if there are any changes made to the data in the editor.
 	 *
-	 * Note that the return value of this function can change over time as the user switches
-	 * editors in different EditorWidgets. The editor that is actually loaded when activating
-	 * is determined by calling this function at activation time, no earlier.
-	 *
-	 * @return {string} Name of initial editor that will be used
+	 * @return {boolean} The original content has changed
 	 */
-	mw.flow.ui.EditorWidget.prototype.getPreferredEditorName = function () {
-		return mw.user.options.get( 'flow-editor' );
+	mw.flow.ui.EditorWidget.prototype.hasBeenChanged = function () {
+		if ( !this.hasVE ) {
+			return this.input.getValue() === this.originalContent;
+		}
+
+		return this.target && this.target.getSurface().getModel().hasBeenModified();
 	};
 
 	/**
-	 * Get the format of the editor that would be loaded if this widget were to be
-	 * activated right now.
-	 * @return {string|null} Format used by initial editor, or null if no editor is active
-	 * @see #getPreferredEditorName
+	 * Get the format the user prefers.
+	 *
+	 * @return {string} 'html' or 'wikitext'
 	 */
 	mw.flow.ui.EditorWidget.prototype.getPreferredFormat = function () {
-		return this.editorSwitcherWidget.getEditorFormat( this.getPreferredEditorName() );
+		// If VE isn't available, we don't have much of a choice
+		if ( !this.hasVE ) {
+			return 'wikitext';
+		}
+		return mw.user.options.get( 'flow-editor' ) === 'visualeditor' ? 'html' : 'wikitext';
 	};
 
 	/**
-	 * Toggle whether the editor is automatically focused after switching.
-	 * @param {boolean} [autoFocus] Whether to focus automatically; if unset, flips current value
-	 */
-	mw.flow.ui.EditorWidget.prototype.toggleAutoFocus = function ( autoFocus ) {
-		this.editorSwitcherWidget.toggleAutoFocus( autoFocus );
-	};
-
-	/**
-	 * Change the content in the editor
-	 * @param {string} content New content to set
-	 * @param {string} contentFormat Format of new content
-	 * @return {jQuery.Promise} Promise resolved when new content has been set
-	 * @see mw.flow.ui.EditorSwitcherWidget#setContent
-	 */
-	mw.flow.ui.EditorWidget.prototype.setContent = function ( content, contentFormat ) {
-		return this.editorSwitcherWidget.setContent( content, contentFormat );
-	};
-
-	/**
-	 * Make this widget pending while switching editors.
+	 * Make this widget pending while switching editor modes, and refocus the editor when
+	 * the switch is complete.
+	 *
 	 * @private
 	 * @param {jQuery.Promise} promise Promise resolved/rejected when switch is completed/aborted
+	 * @param {string} newMode 'visual' or 'source'
 	 * @fires switch
 	 */
-	mw.flow.ui.EditorWidget.prototype.onEditorSwitcherSwitch = function ( promise ) {
+	mw.flow.ui.EditorWidget.prototype.onTargetSwitchMode = function ( promise, newMode ) {
+		var widget = this;
 		this.pushPending();
-		promise.always( this.popPending.bind( this ) );
-		this.emit.apply( this, [ 'switch' ].concat( Array.prototype.slice.apply( arguments ) ) );
+		this.error.toggle( false );
+		promise
+			.done( function () {
+				widget.maybeAutoFocus();
+				widget.wikitextHelpLabel.toggle( newMode === 'source' );
+			} )
+			.fail( function ( error ) {
+				widget.error.setLabel( $( '<span>' ).text( error || mw.msg( 'flow-error-default' ) ) );
+				widget.error.toggle( true );
+			} )
+			.always( function () {
+				widget.popPending();
+			} );
 	};
 
 	/**
-	 * Relay save event
+	 * Relay the save event, adding the content.
+	 *
 	 * @private
 	 * @fires saveContent
 	 */
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetSave = function () {
+		var content = this.getContent();
 		this.unbindBeforeUnloadHandler();
 		this.emit(
 			'saveContent',
-			this.editorSwitcherWidget.getActiveEditor().getContent(),
-			this.editorSwitcherWidget.getActiveEditor().getFormat()
+			content.content,
+			content.format
 		);
 	};
 
 	/**
 	 * Bind the beforeunload handler, if needed and if not already bound.
+	 *
+	 * @private
 	 */
 	mw.flow.ui.EditorWidget.prototype.bindBeforeUnloadHandler = function () {
 		if ( !this.beforeUnloadHandler && ( this.confirmLeave || this.leaveCallback ) ) {
@@ -259,6 +524,8 @@
 
 	/**
 	 * Unbind the beforeunload handler if it is bound.
+	 *
+	 * @private
 	 */
 	mw.flow.ui.EditorWidget.prototype.unbindBeforeUnloadHandler = function () {
 		if ( this.beforeUnloadHandler ) {
@@ -282,33 +549,10 @@
 		}
 	};
 
-	/**
-	 * Activate the first editor, if not already active.
-	 * @return {jQuery.Promise} Promise resolved when editor switch is done
-	 */
-	mw.flow.ui.EditorWidget.prototype.activate = function () {
-		var switchPromise,
-			editor = this.getPreferredEditorName(),
-			widget = this;
-
-		if ( editor === 'none' ) {
-			editor = 'wikitext';
-		}
-
-		if ( this.editorSwitcherWidget.isEditorAvailable( editor ) ) {
-			switchPromise = this.editorSwitcherWidget.switchEditor( editor );
-		} else {
-			// If the editor we want isn't available, let EditorSwitcherWidget decide which editor to use
-			switchPromise = this.editorSwitcherWidget.activate();
-		}
-		return switchPromise.then( function () {
-			widget.bindBeforeUnloadHandler();
-		} );
-	};
-
 	mw.flow.ui.EditorWidget.prototype.isDisabled = function () {
-		// Auto-disable when pending
+		// Auto-disable when pending or not saveable
 		return this.isPending() ||
+			!this.isSaveable() ||
 			// Parent method
 			mw.flow.ui.EditorWidget.parent.prototype.isDisabled.apply( this, arguments );
 	};
@@ -317,26 +561,13 @@
 		// Parent method
 		mw.flow.ui.EditorWidget.parent.prototype.setDisabled.call( this, disabled );
 
-		if ( this.editorSwitcherWidget && this.editorControlsWidget ) {
-			this.editorSwitcherWidget.setDisabled( this.isDisabled() );
+		if ( this.editorControlsWidget ) {
 			this.editorControlsWidget.setDisabled( this.isDisabled() );
 		}
-	};
 
-	/**
-	 * Toggle whether the editor is saveable
-	 *
-	 * This is different from setDisabled because that will also disable the cancel button.
-	 * We want to allow them to click 'cancel' so they can collapse the editor again after
-	 * seeing that editing is disabled.
-	 *
-	 * @param {boolean} [saveable] Whether the editor is saveable
-	 */
-	mw.flow.ui.EditorWidget.prototype.toggleSaveable = function ( saveable ) {
-		this.saveable = saveable === undefined ? !this.saveable : !!saveable;
-
-		this.editorSwitcherWidget.toggleSaveable( this.saveable );
-		this.editorControlsWidget.toggleSaveable( this.saveable );
+		if ( this.target ) {
+			this.target.setDisabled( this.isDisabled() );
+		}
 	};
 
 	mw.flow.ui.EditorWidget.prototype.pushPending = function () {
@@ -356,20 +587,44 @@
 	};
 
 	/**
-	 * Focus the current editor
+	 * Focus the editor
 	 */
 	mw.flow.ui.EditorWidget.prototype.focus = function () {
-		this.editorSwitcherWidget.focus();
+		if ( this.target && this.target.getSurface() ) {
+			this.target.getSurface().getView().focus();
+		}
+	};
+
+	/**
+	 * Move the cursor to the end of the editor.
+	 */
+	mw.flow.ui.EditorWidget.prototype.moveCursorToEnd = function () {
+		if ( this.target && this.target.getSurface() ) {
+			this.target.getSurface().getModel().selectLastContentOffset();
+		}
+	};
+
+	/**
+	 * Remove all content from the editor.
+	 *
+	 */
+	mw.flow.ui.EditorWidget.prototype.clearContent = function () {
+		if ( !this.useVE ) {
+			this.input.setValue( '' );
+			return;
+		}
+
+		if ( this.target ) {
+			this.target.clearSurfaces();
+		}
 	};
 
 	/**
 	 * Destroy the widget.
 	 */
 	mw.flow.ui.EditorWidget.prototype.destroy = function () {
-		this.editorSwitcherWidget.destroy();
-	};
-
-	mw.flow.ui.EditorWidget.prototype.clearContent = function () {
-		this.editorSwitcherWidget.clearContent();
+		if ( this.target ) {
+			this.target.destroy();
+		}
 	};
 }( jQuery ) );

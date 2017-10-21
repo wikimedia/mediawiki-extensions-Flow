@@ -581,5 +581,6 @@
 	"flow-guidedtour-optin-feedback": "Title of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Structured Discussions board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Structured Discussions developers feedback on their experience.",
 	"flow-guidedtour-optin-feedback-description": "Description of the 'feedback' step in the flow opt-in guided tour that launches after the user chose to convert their talk page to a Structured Discussions board. It appears under the 'beta' personal tool link, suggesting to the users that they can send the Structured Discussions developers feedback on their experience.",
 	"flow-action-not-page": "Error displayed in the main page area if a bug or misconfiguration causes an inconsistent state.",
-	"flow-action-wrong-title-content-model": "Error displayed if the page has the wrong content model.  Parameters:\n* $1 - The actual content model as reported by the Title class"
+	"flow-action-wrong-title-content-model": "Error displayed if the page has the wrong content model.  Parameters:\n* $1 - The actual content model as reported by the Title class",
+	"flow-preference-visualeditor": "Used in [[Special:Preferences]].\n\nUsed as label for the checkbox to enable the visual editor and the new wikitext mode for writing and editing Flow comments."
 }
