@@ -151,7 +151,7 @@
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditButtonClick = function () {
 		var widget = this,
-			contentFormat = this.editor.getPreferredFormat() || 'wikitext';
+			contentFormat = this.editor.getPreferredFormat();
 
 		// Hide the edit button, any errors, and the content
 		this.button.toggle( false );
@@ -160,11 +160,9 @@
 		this.$content.addClass( 'oo-ui-element-hidden' );
 
 		this.editor.toggle( true );
-
-		// Load the editor
 		this.editor.pushPending();
 		this.anonWarning.toggle( true );
-		this.editor.activate();
+		this.editor.load();
 
 		// Get the description from the API
 		this.api.getDescription( contentFormat )
@@ -174,11 +172,11 @@
 						format = OO.getProp( desc, 'content', 'format' );
 
 					if ( content !== undefined && format !== undefined ) {
-						// Give it to the editor
-						widget.editor.setContent( content, format );
-
 						// Update revisionId in the API
 						widget.api.setCurrentRevision( widget.model.getRevisionId() );
+
+						// Load the editor
+						return widget.editor.activate( { content: content, format: format } );
 					}
 				},
 				// Error fetching description
