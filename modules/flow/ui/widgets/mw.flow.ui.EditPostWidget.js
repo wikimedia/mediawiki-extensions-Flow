@@ -85,11 +85,11 @@
 		var widget, contentFormat;
 
 		this.editor.pushPending();
-		this.editor.activate();
+		this.editor.load();
 
 		// Get the post from the API
 		widget = this;
-		contentFormat = this.editor.getContentFormat();
+		contentFormat = this.editor.getPreferredFormat();
 
 		this.api.getPost( this.topicId, this.postId, contentFormat ).then(
 			function ( post ) {
@@ -97,11 +97,11 @@
 					format = OO.getProp( post, 'content', 'format' );
 
 				if ( content !== undefined && format !== undefined ) {
-					// Give it to the editor
-					widget.editor.setContent( content, format );
-
 					// Update revisionId in the API
 					widget.api.setCurrentRevision( post.revisionId );
+
+					// Activate the editor
+					return widget.editor.activate( { content: content, format: format } );
 				}
 
 			},
