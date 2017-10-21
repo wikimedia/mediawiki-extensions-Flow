@@ -71,5 +71,8 @@
 
 		// Show the board
 		initializer.finishLoading();
+
+		// Preload VisualEditor
+		mw.flow.ui.EditorWidget.static.preload();
 	} );
 }( jQuery ) );
