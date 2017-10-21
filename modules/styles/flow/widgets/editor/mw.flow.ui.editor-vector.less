@@ -26,8 +26,7 @@
 		font-size: @uiFontSize;
 	}
 
-	.flow-ui-wikitextEditorWidget,
-	.flow-ui-visualEditorWidget {
+	.flow-ui-editorWidget-editor {
 		> .oo-ui-toolbar {
 			font-size: @uiFontSize;
 			// The 1px of positive margin gives room for the blue border
@@ -70,7 +69,7 @@
 }
 
 .flow-editor,
-.flow-ui-editorSwitcherWidget {
+.flow-ui-editorWidget-editor {
 	// because we're attaching switcher controls below the textarea & we
 	// want them to look unified with the textarea, we'll have to take away
 	// it's border and re-apply on the parent node that contains both
@@ -83,7 +82,7 @@
 }
 
 .flow-editor.flow-ui-focused,
-.flow-ui-editorSwitcherWidget-focused {
+.flow-ui-editorWidget-focused .flow-ui-editorWidget-editor {
 	// Undo border & box-shadow on textarea and re-apply it on the
 	// div that contains textarea + legal text + switch button
 	border-color: @colorProgressive;
