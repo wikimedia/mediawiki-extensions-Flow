@@ -2,7 +2,7 @@
 @import 'mediawiki.ui/variables';
 @import '../../../styles/flow.variables';
 
-// TODO most of this should move to VisualEditorWidget.less once the old editor system
+// TODO most of this should move to EditorWidget.less once the old editor system
 // has been removed
 .flow-component {
 	.ve-init-target {
@@ -12,6 +12,15 @@
 	.ve-ce-documentNode,
 	.ve-ui-surface-placeholder {
 		padding: 1px 0.625em;
+	}
+
+	.ve-ui-surface-source {
+		.ve-ce-documentNode,
+		.ve-ui-surface-placeholder {
+			// Extra top margin, because source mode paragraphs have no margin
+			// Extra bottom margin for wikitext notice
+			padding: 0.4em 0.625em 1.6em 0.625em;
+		}
 	}
 
 	.ve-ce-documentNode {
