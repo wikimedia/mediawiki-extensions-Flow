@@ -24,23 +24,10 @@
 		font-size: @uiFontSize;
 	}
 
-	.flow-ui-wikitextEditorWidget,
-	.flow-ui-visualEditorWidget {
+	.flow-ui-editorWidget-editor {
 		> .oo-ui-toolbar {
 			font-size: @uiFontSize;
 			margin-top: -44px;
-		}
-	}
-
-	.flow-ui-wikitextEditorWidget {
-		> .oo-ui-toolbar > .oo-ui-toolbar-bar {
-			/* Floating mini toolbar doesn't need drop shadow */
-			box-shadow: none;
-		}
-
-		.oo-ui-textInputWidget textarea {
-			/* Adjust min-height to new font size */
-			min-height: 10em * 12.7/13.3333;
 		}
 	}
 
@@ -67,7 +54,7 @@
 }
 
 .flow-editor,
-.flow-ui-editorSwitcherWidget {
+.flow-ui-editorWidget-editor {
 	// Undo border & box-shadow on textarea and re-apply it on the
 	// div that contains textarea + legal text + switch button
 	border: 1px solid #c8ccd1;
@@ -75,7 +62,7 @@
 }
 
 .flow-editor.flow-ui-focused,
-.flow-ui-editorSwitcherWidget-focused {
+.flow-ui-editorWidget-focused .flow-ui-editorWidget-editor {
 	outline: 0;
 	border-color: #a7dcff;
 	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
