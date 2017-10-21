@@ -18,12 +18,12 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	/**
 	 * Must return an array in the form:
 	 * array(
-	 *	'dbr' => DatabaseBase object,
-	 *	'dbw' => DatabaseBase object,
-	 *	'table' => 'flow_revision',
-	 *	'pk' => 'rev_id',
-	 *	'content' => 'rev_content',
-	 *	'flags' => 'rev_flags',
+	 * 	'dbr' => DatabaseBase object,
+	 * 	'dbw' => DatabaseBase object,
+	 * 	'table' => 'flow_revision',
+	 * 	'pk' => 'rev_id',
+	 * 	'content' => 'rev_content',
+	 * 	'flags' => 'rev_flags',
 	 * )
 	 *
 	 * It will roughly translate into these queries, where PK is the
@@ -35,7 +35,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	 * SELECT <pk>, <content>, <flags>
 	 * FROM <table>
 	 * WHERE <flags> LIKE "%external%"
-	 *	AND <content> LIKE "DB://cluster/%";
+	 * 	AND <content> LIKE "DB://cluster/%";
 	 *
 	 * Against dbw:
 	 * UPDATE <table>

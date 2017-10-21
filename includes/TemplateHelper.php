@@ -558,7 +558,7 @@ class TemplateHelper {
 
 	/**
 	 * @param array $args Expects 1 argument:
-	 *	   array $data RevisionDiffViewFormatter::formatApi return value
+	 * 	   array $data RevisionDiffViewFormatter::formatApi return value
 	 * @param array $named No named arguments expected
 	 *
 	 * @return string[] HTML wrapped in array to prevent lightncandy from escaping
