@@ -1148,6 +1148,14 @@ class FlowHooks {
 			'type' => 'api'
 		];
 
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ) {
+			$preferences['flow-visualeditor'] = [
+				'type' => 'toggle',
+				'label-message' => 'flow-preference-visualeditor',
+				'section' => 'editing/editor',
+			];
+		}
+
 		return true;
 	}
 
