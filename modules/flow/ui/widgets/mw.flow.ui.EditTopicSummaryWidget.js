@@ -84,11 +84,11 @@
 
 		// Load the editor
 		this.editor.pushPending();
-		this.editor.activate();
+		this.editor.load();
 
 		// Get the post from the API
 		widget = this;
-		contentFormat = this.editor.getContentFormat();
+		contentFormat = this.editor.getPreferredFormat();
 
 		this.api.getTopicSummary( this.topicId, contentFormat ).then(
 			function ( topicSummary ) {
@@ -96,11 +96,11 @@
 					format = OO.getProp( topicSummary, 'content', 'format' );
 
 				if ( content !== undefined && format !== undefined ) {
-					// Give it to the editor
-					widget.editor.setContent( content, format );
-
 					// Update revisionId in the API
 					widget.api.setCurrentRevision( topicSummary.revisionId );
+
+					// Load the editor
+					return widget.editor.activate( { content: content, format: format } );
 				}
 
 			},
