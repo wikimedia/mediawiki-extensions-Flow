@@ -5,6 +5,7 @@
 		]
 	},
 	"flow-newtopic-save": "Poner un nuobo cacho",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Agradecer}}}}",
 	"flow-post-action-unhide-post": "Amostrar",
 	"flow-topic-action-watchlist": "Páiginas begiadas",
 	"echo-category-title-flow-discussion": "Cumbersa de l Flow",
