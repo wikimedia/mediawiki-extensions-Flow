@@ -2,7 +2,8 @@
 @import '../../flow.colors';
 @import '../../flow.variables';
 
-@highlightedIndent: 0.2em;
+/* Use value that results in exact pixels to avoid scrollbar flicker. T178685 */
+@highlightedIndent: (3em/14);
 
 // Helpers
 .minimalPostHighlight( @negativeMargin ) {
