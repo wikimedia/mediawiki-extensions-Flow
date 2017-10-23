@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
-	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function ( assert ) {
+	QUnit.test( 'Forms with required fields have certain buttons disabled by default', function ( assert ) {
 		var $forms = [
 			$( '<form><input class="mw-ui-input" required><button data-role="action" class="mw-ui-button">go</button></form>' ),
 			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' ),
@@ -29,7 +29,7 @@
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
-	QUnit.test( 'mw-ui-tooltip', 4, function ( assert ) {
+	QUnit.test( 'mw-ui-tooltip', function ( assert ) {
 		assert.ok( mw.tooltip, 'mw.tooltip exists' );
 
 		// Create a tooltip using body
@@ -43,7 +43,7 @@
 		$( 'body' ).attr( 'title', '' );
 	} );
 
-	QUnit.test( 'mw-ui-modal', 15, function ( assert ) {
+	QUnit.test( 'mw-ui-modal', function ( assert ) {
 		var modal, $node;
 
 		assert.ok( mw.tooltip, 'mw.Modal exists' );

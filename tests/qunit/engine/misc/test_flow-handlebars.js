@@ -29,28 +29,28 @@
 		}
 	} );
 
-	QUnit.test( 'Handlebars.prototype.processTemplate', 1, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.processTemplate', function ( assert ) {
 		assert.strictEqual( this.handlebarsProto.processTemplate( 'foo', { val: 'Hello' } ),
 			'<div>Magic.</div>', 'Getting a template works.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', 1, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', function ( assert ) {
 		assert.strictEqual( this.handlebarsProto.processTemplateGetFragment( 'foo', { val: 'Hello' } ).childNodes.length,
 			1, 'Return a fragment with the div child node' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.getTemplate', 2, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.getTemplate', function ( assert ) {
 		assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template works.' );
 		assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template from cache works.' );
 	} );
 
 	// Helpers
-	QUnit.test( 'Handlebars.prototype.callHelper', 1, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.callHelper', function ( assert ) {
 		assert.strictEqual( this.handlebarsProto.callHelper( '_qunit_helper_test', 1, 2 ),
 			3, 'Check the helper was called.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.eachPost', 3, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.eachPost', function ( assert ) {
 		var ctx = {
 			posts: {
 				1: [ 300 ],
@@ -67,7 +67,7 @@
 		assert.deepEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: null }, 'Missing revision id.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.ifCond', 8, function ( assert ) {
+	QUnit.test( 'Handlebars.prototype.ifCond', function ( assert ) {
 		assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '===', 'bar', this.opts ), 'nope', 'not equal' );
 		assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '===', 'foo', this.opts ), 'ok', 'equal' );
 		assert.strictEqual( this.handlebarsProto.ifCond( true, 'or', false, this.opts ), 'ok', 'true || false' );
@@ -78,17 +78,17 @@
 		assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '!==', 'bar', this.opts ), 'ok' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function () {
+	QUnit.test( 'Handlebars.prototype.ifAnonymous', function () {
 		strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'ok', 'User should be anonymous first time.' );
 		strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.concat', 2, function () {
+	QUnit.test( 'Handlebars.prototype.concat', function () {
 		strictEqual( this.handlebarsProto.concat( 'a', 'b', 'c', this.opts ), 'abc', 'Check concat working fine.' );
 		strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 5, function () {
+	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', function () {
 		var opts = $.extend( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
 			$div = $( document.createElement( 'div' ) );
 
