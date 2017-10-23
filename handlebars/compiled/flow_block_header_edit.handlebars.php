@@ -50,7 +50,7 @@
 ' : '').'
 			<div class="flow-editor">
 				<textarea name="header_content"
-				          class="mw-ui-input"
+				          class="mw-ui-input mw-editfont-'.htmlentities((string)((isset($cx['sp_vars']['root']['editFont']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['editFont'] : null), ENT_QUOTES, 'UTF-8').'"
 				          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-edit-header-placeholder'),array()), 'encq').'"
 				          data-role="content"
 				>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities((string)((isset($in['revision']['content']['content']) && is_array($in['revision']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>

@@ -176,7 +176,7 @@
 '.$sp.'		          name="topic_content"
 '.$sp.'		          required
 '.$sp.'		          data-flow-expandable="true"
-'.$sp.'		          class="mw-ui-input flow-click-interactive"
+'.$sp.'		          class="mw-ui-input flow-click-interactive mw-editfont-'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editFont']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editFont'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'		          type="text"
 '.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'"
 '.$sp.'		          data-role="content"

@@ -61,6 +61,22 @@
 	opacity: 0.66;
 }
 
+/* Increase specificity for editfonts on inputs */
+
+.mw-ui-input {
+	&.mw-editfont-monospace {
+		font-family: monospace, monospace;
+	}
+
+	&.mw-editfont-sans-serif {
+		font-family: sans-serif;
+	}
+
+	&.mw-editfont-serif {
+		font-family: serif;
+	}
+}
+
 /*
 == MediaWiki UI Text Field Validation ==
 
