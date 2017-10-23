@@ -54,21 +54,20 @@
 '.$sp.'			placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-start-placeholder'),array()), 'encq').'"
 '.$sp.'			data-role="title"
 '.$sp.'		/>
-'.$sp.'		<div class="flow-editor">
-'.$sp.'			<textarea name="topiclist_content"
-'.$sp.'			          class="mw-ui-input flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'"
-'.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
-'.$sp.'			          data-role="content"
-'.$sp.'			          required
-'.$sp.'			>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
-'.$sp.'		</div>
-'.$sp.'
-'.$sp.'		<div class="flow-form-actions flow-form-collapsible'.((LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? ' flow-form-collapsible-collapsed' : '').'">
-'.$sp.'			<button data-role="submit"
-'.$sp.'				class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '			').'			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
-'.$sp.'		</div>
-'.$sp.'	</form>
+'.$sp.''.((!LCRun3::ifvar($cx, ((isset($in['isOnFlowBoard']) && is_array($in)) ? $in['isOnFlowBoard'] : null))) ? '			<div class="flow-editor">
+'.$sp.'				<textarea name="topiclist_content"
+'.$sp.'				          class="mw-ui-input flow-form-collapsible"
+'.$sp.'				          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-content-placeholder',((isset($cx['sp_vars']['root']['title']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['title'] : null)),array()), 'encq').'"
+'.$sp.'				          data-role="content"
+'.$sp.'				          required
+'.$sp.'				>'.((LCRun3::ifvar($cx, ((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities((string)((isset($in['submitted']['content']) && is_array($in['submitted'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
+'.$sp.'			</div>
+'.$sp.'			<div class="flow-form-actions flow-form-collapsible">
+'.$sp.'				<button data-role="submit"
+'.$sp.'					class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LCRun3::ch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq').'</button>
+'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '				').'				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq').'</small>
+'.$sp.'			</div>
+'.$sp.'' : '').'	</form>
 '.$sp.'' : '').'';},),
         'scopes' => array(),
         'sp_vars' => array('root' => $in),
@@ -76,7 +75,7 @@
 
     );
     
-    return '<div class="flow-board">
+    return '<div class="flow-board flow-board-newtopic">
 '.LCRun3::p($cx, 'flow_newtopic_form', array(array($in),array()), '	').'</div>
 ';
 }
