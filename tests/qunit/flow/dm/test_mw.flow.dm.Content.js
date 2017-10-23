@@ -16,7 +16,7 @@ QUnit.test( 'Stores different content representations (formats)', function ( ass
 	assert.equal( content.get(), 'content in default format (wikitext, for instance)' );
 	assert.equal( content.get( 'unknown format' ), null );
 
-	QUnit.expect( 4 );
+	assert.expect( 4 );
 } );
 
 QUnit.test( 'Behaves when empty', function ( assert ) {
@@ -25,5 +25,5 @@ QUnit.test( 'Behaves when empty', function ( assert ) {
 	assert.equal( content.get(), null );
 	assert.equal( content.get( 'whatever format' ), null );
 
-	QUnit.expect( 2 );
+	assert.expect( 2 );
 } );

@@ -344,5 +344,5 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 		expectCounter++;
 	}
 
-	QUnit.expect( expectCounter );
+	assert.expect( expectCounter );
 } );

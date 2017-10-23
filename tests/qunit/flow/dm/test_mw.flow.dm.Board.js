@@ -173,5 +173,5 @@ QUnit.test( 'Create board', function ( assert ) {
 		}
 	}
 
-	QUnit.expect( expectCount );
+	assert.expect( expectCount );
 } );

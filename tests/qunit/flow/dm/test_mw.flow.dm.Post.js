@@ -508,5 +508,5 @@ QUnit.test( 'Hierarchical post structure', function ( assert ) {
 	assert.equal( replies[ 0 ].getWorkflowId(), topic.getId(), 'Replies: WorkflowId is topic Id' );
 	assert.equal( subreplies[ 0 ].getWorkflowId(), topic.getId(), 'Sub replies: WorkflowId is topic Id' );
 
-	QUnit.expect( 12 );
+	assert.expect( 12 );
 } );

@@ -252,5 +252,5 @@ QUnit.test( 'Load topics', function ( assert ) {
 		}
 	}
 
-	QUnit.expect( expectCount );
+	assert.expect( expectCount );
 } );
