@@ -16,6 +16,24 @@
       "revId": "d19fbacc3ec9c364b14aa6bce05a5bdd2cbfa7fe",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e5d03d5_cfd8952b",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-10-25T11:37:24Z",
+      "side": 1,
+      "message": "For non-JS users.",
+      "parentUuid": "8e5d03d5_ac268761",
+      "revId": "d19fbacc3ec9c364b14aa6bce05a5bdd2cbfa7fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
