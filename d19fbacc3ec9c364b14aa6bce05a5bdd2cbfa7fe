@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e5d03d5_ac268761",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-10-25T05:59:46Z",
+      "side": 1,
+      "message": "Why is editfont.styles needed before JS loads?",
+      "revId": "d19fbacc3ec9c364b14aa6bce05a5bdd2cbfa7fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
