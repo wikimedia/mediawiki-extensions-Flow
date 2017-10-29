@@ -11,6 +11,9 @@
 		]
 	},
 	"enablestructureddiscussions": "Flow engedélyezése",
+	"notification-dynamic-actions-flow-board-unwatch": "Új tevékenységek figyelésének {{GENDER:$3|leállítása}} a(z) „$1” lapon",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Már nem {{GENDER:$3|figyeled}} a(z) „$1” lapot",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Ez nem érinti az {{GENDER:$3|általad}} figyelt egyes témákat. Bármikor újra figyelheted [$2 ezt az oldalt].",
 	"flow-desc": "Megbeszélésrendszer",
 	"flow-talk-taken-over-comment": "/* Ez a lap át lett alakítva egy strukturált beszélgetőoldallá */",
 	"log-name-flow": "Strukturált Beszélgetések naplója",

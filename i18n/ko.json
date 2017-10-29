@@ -427,7 +427,7 @@
 	"flow-previous-diff": "← 이전 편집",
 	"flow-next-diff": "다음 편집 →",
 	"flow-undo": "취소",
-	"flow-undo-latest-revision": "최근 개정",
+	"flow-undo-latest-revision": "최신판",
 	"flow-undo-your-text": "당신의 텍스트",
 	"flow-undo-edit-header": "설명 편집",
 	"flow-undo-edit-topic-summary": "주제 요약 편집",
