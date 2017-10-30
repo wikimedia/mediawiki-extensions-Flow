@@ -850,7 +850,15 @@ abstract class AbstractRevision {
 		$options = [ 'USE INDEX' => 'rc_timestamp' ];
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$rows = $dbr->select( 'recentchanges', RecentChange::selectFields(), $conditions, __METHOD__, $options );
+		$rcQuery = RecentChange::getQueryInfo();
+		$rows = $dbr->select(
+			$rcQuery['tables'],
+			$rcQuery['fields'],
+			$conditions,
+			__METHOD__,
+			$options,
+			$rcQuery['joins']
+		);
 
 		if ( $rows === false ) {
 			return null;
