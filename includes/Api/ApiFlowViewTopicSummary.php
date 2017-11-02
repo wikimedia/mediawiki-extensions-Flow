@@ -22,13 +22,10 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	}
 
 	public function getAllowedParams() {
-		global $wgFlowContentFormat;
-
 		return [
 			'format' => [
 				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
-				// never default to unfixed html, only serve that when specifically asked!
-				ApiBase::PARAM_DFLT => $wgFlowContentFormat === 'html' ? 'fixed-html' : $wgFlowContentFormat,
+				ApiBase::PARAM_DFLT => 'fixed-html',
 			],
 			'revId' => null,
 		];
