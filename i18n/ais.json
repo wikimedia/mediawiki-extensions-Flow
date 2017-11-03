@@ -92,6 +92,7 @@
 	"flow-topic-action-unsuppress-topic": "palawpes malangatay a sasakamuen",
 	"flow-topic-action-restore-topic": "patiku sasakamuen",
 	"flow-topic-action-undo-moderation": "patiku",
+	"flow-topic-notification-subscribe-title": "tina sasakamuen mamicunus tu {{GENDER:$1|misuay}} miazihay a piazihan-tu-sulit.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|kisu}} miaca aazihan tu tina matatengil-sapat!",
 	"flow-topic-action-watchlist-add": "miaca aazihan wini a satangahan nu kamu",
 	"flow-topic-action-watchlist-remove": "palawpes miaca aazihan",
