@@ -72,6 +72,22 @@
 			"flow-create-board": true
 		}
 	},
+	"GrantPermissions": {
+		"editpage": {
+			"flow-hide": true,
+			"flow-edit-post": true
+		},
+		"editprotected": {
+			"flow-create-board": true
+		},
+		"protect": {
+			"flow-lock": true
+		},
+		"delete": {
+			"flow-delete": true,
+			"flow-suppress": true
+		}
+	},
 	"LogActionsHandlers": {
 		"delete/flow-restore-post": "Flow\\Log\\ActionFormatter",
 		"suppress/flow-restore-post": "Flow\\Log\\ActionFormatter",
