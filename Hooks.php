@@ -168,25 +168,6 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Warning: $wgFlowContentFormat was set to \'html\', but you do not have Parsoid enabled.  Changing $wgFlowContentFormat to \'wikitext\'' );
 			$wgFlowContentFormat = 'wikitext';
 		}
-
-		global $wgGrantPermissions;
-
-		// This is semantically equivalent to editing a talk page and
-		// blanking an offending post or topic.
-		$wgGrantPermissions['editpage']['flow-hide'] = true;
-
-		// We might want to make a separate grant for this, so it can be
-		// given out without giving out core 'protect'.
-		$wgGrantPermissions['protect']['flow-lock'] = true;
-
-		$wgGrantPermissions['delete']['flow-delete'] = true;
-		$wgGrantPermissions['delete']['flow-suppress'] = true;
-		$wgGrantPermissions['editpage']['flow-edit-post'] = true;
-
-		// Creating a board somewhere it normally can't be created is sort
-		// of like creating a page that can't normally be edited.  But
-		// maybe make a grant.
-		$wgGrantPermissions['editprotected']['flow-create-board'] = true;
 	}
 
 	/**
