@@ -169,11 +169,6 @@ class FlowHooks {
 			$wgFlowContentFormat = 'wikitext';
 		}
 
-		// development dependencies to simplify testing
-		if ( defined( 'MW_PHPUNIT_TEST' ) && file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-			require_once __DIR__ . '/vendor/autoload.php';
-		}
-
 		global $wgGrantPermissions;
 
 		// This is semantically equivalent to editing a talk page and
