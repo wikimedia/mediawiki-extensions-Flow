@@ -113,8 +113,8 @@ class FlowHooks {
 	}
 
 	/**
-	 * Initialized during extension initialization rather than
-	 * in container so that non-flow pages don't load the container.
+	 * Constructed outside of the container so that non-flow pages
+	 * don't load the container
 	 *
 	 * @return OccupationController
 	 */
@@ -154,9 +154,6 @@ class FlowHooks {
 	 */
 	public static function initFlowExtension() {
 		global $wgFlowContentFormat;
-
-		// needed to determine if a page is occupied by flow
-		self::getOccupationController();
 
 		// necessary to provide flow options in abuse filter on-wiki pages
 		global $wgFlowAbuseFilterGroup;
