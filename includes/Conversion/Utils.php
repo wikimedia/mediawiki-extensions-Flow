@@ -20,6 +20,9 @@ use User;
 use VirtualRESTServiceClient;
 
 abstract class Utils {
+	protected static $serviceClient;
+	protected static $vrsObject;
+
 	/**
 	 * Convert from/to wikitext <=> html or topic-title-wikitext => topic-title-html.
 	 * Only these pairs are supported.  html => wikitext requires Parsoid, and
@@ -216,7 +219,7 @@ abstract class Utils {
 	 */
 	public static function isParsoidConfigured() {
 		try {
-			self::getServiceClient();
+			self::getVRSObject();
 			return true;
 		} catch ( NoParserException $e ) {
 			return false;
@@ -246,6 +249,17 @@ abstract class Utils {
 	}
 
 	/**
+	 * @return \VirtualRESTService
+	 * @throws NoParserException
+	 */
+	private static function getVRSObject() {
+		if ( !self::$vrsObject ) {
+			self::$vrsObject = self::makeVRSObject();;
+		}
+		return self::$vrsObject;
+	}
+
+	/**
 	 * Creates the Virtual REST Service object to be used in Flow's
 	 * API calls.  The method determines whether to instantiate a
 	 * ParsoidVirtualRESTService or a RestbaseVirtualRESTService
@@ -258,7 +272,7 @@ abstract class Utils {
 	 * @return \VirtualRESTService the VirtualRESTService object to use
 	 * @throws NoParserException When Parsoid/RESTBase is not configured
 	 */
-	private static function getVRSObject() {
+	private static function makeVRSObject() {
 		global $wgVirtualRestConfig, $wgFlowParsoidURL, $wgFlowParsoidPrefix,
 			$wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
 			$wgFlowParsoidHTTPProxy;
