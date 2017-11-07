@@ -555,6 +555,7 @@
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.util",
+				"mediawiki.editfont.styles",
 				"ext.visualEditor.supportCheck"
 			],
 			"targets": [
