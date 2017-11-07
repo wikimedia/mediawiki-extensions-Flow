@@ -44,16 +44,17 @@ module.exports = function ( grunt ) {
 		banana: conf.MessagesDirs,
 		watch: {
 			files: [
-				'.{stylelintlintrc,eslintrc.json}',
+				'.{stylelintrc,eslintrc}.json',
 				'<%= eslint.all %>',
-				'<%= stylelintlint.all %>'
+				'<%= stylelint.all %>'
 			],
 			tasks: 'test'
 		},
 		jsonlint: {
 			all: [
 				'**/*.json',
-				'!node_modules/**'
+				'!node_modules/**',
+				'!vendor/**'
 			]
 		}
 	} );
