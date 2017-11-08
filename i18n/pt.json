@@ -153,7 +153,7 @@
 	"flow-topic-action-watchlist-remove": "Deixar de vigiar",
 	"flow-error-allowcreation-no-usedb": "Ativar as conversas estruturadas numa página específica requer que <var>$wgContentHandlerUseDB</var> seja <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "A página já existe no destino, por isso não pode ser movido para lá um espaço de conversas estruturadas.",
-	"flow-error-allowcreation-flow-create-board": "O utilizador não possui o privilégio \"{{int:right-flow-create-board}}\"",
+	"flow-error-allowcreation-flow-create-board": "O utilizador não tem o privilégio \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Neste momento não pode participar. Tente autenticar-se.",
 	"flow-error-can-not-edit-logged-in": "Neste momento não pode participar, porque não tem os privilégios necessários.",
 	"flow-error-http": "Ocorreu um erro ao contactar o servidor.",
