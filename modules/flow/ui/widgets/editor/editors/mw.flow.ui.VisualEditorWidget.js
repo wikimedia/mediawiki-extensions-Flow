@@ -40,11 +40,9 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ui.VisualEditorWidget.static.isSupported = function () {
-		var isMobileTarget = ( mw.config.get( 'skin' ) === 'minerva' );
-
 		/* global VisualEditorSupportCheck */
 		return !!(
-			!isMobileTarget &&
+			!OO.ui.isMobile() &&
 			mw.loader.getState( 'ext.visualEditor.core' ) &&
 			mw.config.get( 'wgFlowEditorList' ).indexOf( 'visualeditor' ) !== -1 &&
 			window.VisualEditorSupportCheck && VisualEditorSupportCheck()
