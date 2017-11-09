@@ -15,25 +15,23 @@
 		top: 2em;
 	}
 
-	@media all and ( min-width: @small ) {
-		.flow-topic-titlebar-container,
-		.flow-edit-title-form,
-		.flow-topic-summary,
-		.flow-ui-editTopicSummaryWidget {
+	.flow-topic-titlebar-container,
+	.flow-edit-title-form,
+	.flow-topic-summary,
+	.flow-ui-editTopicSummaryWidget {
 
-			.mw-content-ltr & {
-				/* @noflip */
-				padding-right: @topicIndent + 1;
-				/* @noflip */
-				padding-left: @topicIndent;
-			}
+		.mw-content-ltr & {
+			/* @noflip */
+			padding-right: @topicIndent + 1;
+			/* @noflip */
+			padding-left: @topicIndent;
+		}
 
-			.mw-content-rtl & {
-				/* @noflip */
-				padding-right: @topicIndent;
-				/* @noflip */
-				padding-left: @topicIndent + 1;
-			}
+		.mw-content-rtl & {
+			/* @noflip */
+			padding-right: @topicIndent;
+			/* @noflip */
+			padding-left: @topicIndent + 1;
 		}
 	}
 }
