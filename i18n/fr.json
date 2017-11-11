@@ -45,7 +45,8 @@
 			"Zebulon84",
 			"Quiddity",
 			"Pols12",
-			"DePlusJean"
+			"DePlusJean",
+			"Epok"
 		]
 	},
 	"enablestructureddiscussions": "Activer les discussions structurées",
@@ -540,7 +541,7 @@
 	"flow-mark-revision-patrolled-link-title": "Marquer cette page comme relue",
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",
 	"flow-mark-diff-patrolled-link-title": "Marquer comme relue",
-	"flow-talk-page-beta-feature-message": "Les discussions structurées sur la page de discussion de l’utilisateur",
+	"flow-talk-page-beta-feature-message": "Discussions structurées sur la page de discussion de l’utilisateur",
 	"flow-talk-page-beta-feature-description": "Active un nouveau système de discussion structurée sur {{GENDER:|votre}} page de discussion utilisateur. Discussions Structurées simplifie les discussions de la page avec des emplacements clairs pour écrire et répondre, et permet des notifications au niveau de la conversation. Cette fonctionnalité n’est pas activée automatiquement ; les utilisateurs devront l’activer séparément.<br /><br />Les discussions existantes en wikitexte sont déplacées dans une archive. Désactiver cette fonctionnalité déplacera le flux de discussion Discussions Structurées dans une sous-page et désarchivera la page de discussion précédente. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|En savoir plus sur l’activation]].",
 	"flow-notification-link-text-enabled-on-talkpage": "Afficher ma page de discussion",
 	"flow-notification-enabled-on-talkpage-title": "Nouveau système de discussion activé pour {{GENDER:$1|votre}} page de discussion utilisateur<br /><small>Disponible sur [[$2]]</small>",

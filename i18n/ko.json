@@ -304,7 +304,7 @@
 	"flow-notification-newtopic-email-subject": "$1님이 $2의 새 주제를 {{GENDER:$1|만들었습니다}}",
 	"flow-notification-newtopic-email-batch-body": "$1님이 $3의 \"$2\" 제목으로 된 새 주제를 {{GENDER:$1|만들었습니다}}",
 	"echo-category-title-flow-discussion": "플로우 토론",
-	"echo-pref-tooltip-flow-discussion": "플로우에 나와 관련된 명령을 알립니다.",
+	"echo-pref-tooltip-flow-discussion": "내가 팔로우하는 주제나 문서의 활동을 내게 알립니다.",
 	"flow-link-post": "게시물",
 	"flow-link-topic": "주제",
 	"flow-link-history": "역사",
