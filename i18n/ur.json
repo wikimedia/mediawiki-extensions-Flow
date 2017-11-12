@@ -214,6 +214,7 @@
 	"notification-header-flow-new-topic-user-talk": "<strong>آپ کے تبادلہ خیال صفحہ</strong> پر نیا موضوع شروع کیا گیا ہے: \"<strong>$4</strong>\"۔",
 	"notification-header-flow-post-reply": "$1 نے \"<strong>$4</strong>\" میں {{GENDER:$2|جواب دیا}}۔",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|ایک تازہ جواب|$1 نئے جواب|100=99+ نئے جواب}} \"<strong>$3</strong>\" میں۔",
+	"notification-header-flow-post-reply-user-talk": "<strong>آپ کے تبادلہ خیال صفحے</strong> پر \"<strong>$4</strong>\" کے تحت $1 نے جواب {{GENDER:$2|درج کیا ہے}}۔",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|ایک تازہ جواب|$1 نئے جواب|100=99+ نئے جواب}} موضوع \"<strong>$3</strong>\" <strong> میں آپ کے تبادلۂ خیال صفحہ پر</strong>۔",
 	"notification-header-flow-post-edited-v2": "موضوع \"<strong>$1</strong>\" میں {{GENDER:$2|آپ }} کے تبصرے میں ترمیم کی گئی ہے۔",
 	"notification-header-flow-description-edited": "<strong>$1</strong> کی تفصیل میں ترمیم کی گئی ہے۔",
