@@ -16,6 +16,24 @@
       "revId": "53eb1e0faf0f7e7412e4faf616a82049a1ca1aba",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e5a8fde_f8ab5d18",
+        "filename": "images/betafeature-flow-rtl.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2017-11-13T20:56:12Z",
+      "side": 1,
+      "message": "I agree, but I don\u0027t want to change this right now. It markups a group (the search bar) where no single-path is possible in the detail rich betafeature images. \nAll the betafeature images need to be amended as they are still featuring wrong colors. My plan is to first get the general optimization through and then care in a patch sequence for all the betafeature icons across products where we should discuss this.",
+      "parentUuid": "6e5a8fde_9c95828b",
+      "revId": "53eb1e0faf0f7e7412e4faf616a82049a1ca1aba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
