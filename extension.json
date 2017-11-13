@@ -534,11 +534,14 @@
 				"styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less"
 			],
 			"skinStyles": {
-				"vector": [
-					"styles/flow/widgets/editor/mw.flow.ui.editor-vector.less"
+				"default": [
+					"styles/flow/widgets/editor/mw.flow.ui.editor-wikimediauitheme.less"
 				],
 				"monobook": [
-					"styles/flow/widgets/editor/mw.flow.ui.editor-monobook.less"
+					"styles/flow/widgets/editor/mw.flow.ui.editor-apextheme.less"
+				],
+				"apex": [
+					"styles/flow/widgets/editor/mw.flow.ui.editor-apextheme.less"
 				]
 			},
 			"messages": [
