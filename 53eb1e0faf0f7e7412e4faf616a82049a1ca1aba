@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e5a8fde_9c95828b",
+        "filename": "images/betafeature-flow-rtl.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1434
+      },
+      "writtenOn": "2017-11-13T07:18:14Z",
+      "side": 1,
+      "message": "This group seems a bit weird, its only being used for the #e5e5e5 fill and doesn\u0027t even include all the paths that have that fill. Do we want to get rid of it, or move the other e5\u0027s into it?",
+      "revId": "53eb1e0faf0f7e7412e4faf616a82049a1ca1aba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
