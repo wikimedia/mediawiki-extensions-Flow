@@ -11,6 +11,7 @@ use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
+use Hooks;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;
@@ -164,6 +165,7 @@ class BoardContent extends \AbstractContent {
 		ParserOptions $options = null,
 		$generateHtml = true
 	) {
+		// TODO: This should also call the "ContentGetParserOutput" hook
 		if ( $generateHtml ) {
 			try {
 				global $wgUser;
@@ -191,6 +193,8 @@ class BoardContent extends \AbstractContent {
 		/** @var LinksTableUpdater $updater */
 		$updater = Container::get( 'reference.updater.links-tables' );
 		$updater->mutateParserOutput( $title, $parserOutput );
+
+		Hooks::run( 'ContentAlterParserOutput', [ $this, $title, $parserOutput ] );
 
 		return $parserOutput;
 	}
