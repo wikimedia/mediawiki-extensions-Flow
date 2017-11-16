@@ -89,6 +89,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		$blockedUser = $this->blockedUser();
 		$this->block = new Block( [
 			'address' => $blockedUser->getName(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
 			'user' => $blockedUser->getID()
 		] );
 		$this->block->insert();
