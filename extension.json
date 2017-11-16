@@ -531,7 +531,8 @@
 				"styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less",
 				"styles/flow/widgets/mw.flow.ui.CategoryItemWidget.less",
 				"styles/flow/widgets/mw.flow.ui.CategoriesWidget.less",
-				"styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less"
+				"styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less",
+				"styles/flow/widgets/mw.flow.ui.SimpleMenuWidget.less"
 			],
 			"skinStyles": {
 				"default": [
@@ -580,6 +581,14 @@
 			"targets": [
 				"desktop",
 				"mobile"
+			]
+		},
+		"ext.flow.ooui.experimental.styles": {
+			"styles": [
+				"styles/flow/widgets/experimental/mw.flow.ui.less",
+				"styles/flow/widgets/experimental/mw.flow.ui.SimpleMenuWidget.less",
+				"styles/flow/widgets/experimental/mw.flow.ui.TopicWidget.less",
+				"styles/flow/widgets/experimental/mw.flow.ui.PostWidget.less"
 			]
 		},
 		"ext.flow": {
@@ -1247,6 +1256,9 @@
 		"Flow\\NotificationController": "includes/Notifications/Controller.php",
 		"Flow\\NotificationsUserLocator": "includes/Notifications/UserLocator.php",
 		"Flow\\OOUI\\BoardDescriptionWidget": "includes/OOUI/BoardDescriptionWidget.php",
+		"Flow\\OOUI\\SimpleMenuWidget": "includes/OOUI/SimpleMenuWidget.php",
+		"Flow\\OOUI\\TopicWidget": "includes/OOUI/TopicWidget.php",
+		"Flow\\OOUI\\PostWidget": "includes/OOUI/PostWidget.php",
 		"Flow\\OccupationController": "includes/TalkpageManager.php",
 		"Flow\\Parsoid\\ContentFixer": "includes/Parsoid/ContentFixer.php",
 		"Flow\\Parsoid\\Extractor": "includes/Parsoid/Extractor.php",
