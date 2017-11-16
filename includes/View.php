@@ -263,6 +263,8 @@ class View extends ContextSource {
 		// Add JSON blob for OOUI widgets
 		$out->addJsConfigVars( 'wgFlowData', $jsonBlobResponse );
 
+$testWidget = '';
+
 		$renderedBlocks = [];
 		foreach ( $apiResponse['blocks'] as $block ) {
 			// @todo find a better way to do this; potentially make all blocks their own components
@@ -276,6 +278,10 @@ class View extends ContextSource {
 						$page = 'history';
 						$flowComponent = 'boardHistory';
 					} else {
+
+
+$testWidget = new OOUI\TopicWidget( $apiResponse );
+
 						$page = 'topic';
 						$flowComponent = 'board';
 					}
@@ -316,6 +322,14 @@ class View extends ContextSource {
 
 			$action = $this->getRequest()->getVal( 'action', 'view' );
 			$classes[] = "flow-action-$action";
+
+// var_dump( $apiResponse );
+
+$out->addModuleStyles( [ 'ext.flow.ooui.experimental.styles' ] );
+
+$out->addHTML( Html::rawElement( 'hr' ) );
+$out->addHTML( $testWidget );
+$out->addHTML( Html::rawElement( 'hr' ) );
 
 			// Output the component, with the rendered blocks inside it
 			$out->addHTML( Html::rawElement(

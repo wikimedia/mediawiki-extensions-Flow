@@ -1,0 +1,44 @@
+.mw-flow-ui-simpleMenuWidget {
+	position: relative;
+	display: inline-block;
+
+	&-menu {
+		display: none;
+		position: absolute;
+		background-color: white;
+		border: 1px solid #a2a9b1;
+		border-radius: 2px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+		padding: 0.2em;
+
+		.oo-ui-buttonWidget {
+			display: block;
+			width: 100%;
+
+			a {
+				width: 100%;
+			}
+		}
+	}
+
+	&-align {
+		&-backwards .mw-flow-ui-simpleMenuWidget-menu {
+			right: 0;
+		}
+		&-forwards .mw-flow-ui-simpleMenuWidget-menu {
+			left: 0;
+		}
+	}
+
+	&:active,
+	&:hover,
+	&:focus {
+		.mw-flow-ui-simpleMenuWidget-menu {
+			display: block;
+		}
+	}
+
+	&-separator {
+		border-top: 1px solid #ccc;
+	}
+}

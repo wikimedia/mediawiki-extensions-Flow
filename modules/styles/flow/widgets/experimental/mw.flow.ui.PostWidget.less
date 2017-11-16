@@ -1,0 +1,79 @@
+.mw-flow-ui-postWidget {
+	margin: 1em 0 0 1em;
+	width: 100%;
+
+	&-head {
+		width: 100%;
+
+		&-user {
+			width: 100%;
+		}
+
+		&-menu {
+			width: 2em;
+		}
+	}
+
+	&-user {
+		label&-links {
+			display: none;
+			margin-left: 1em;
+		}
+
+		&-name {
+			font-weight: bold;
+		}
+
+		&:hover {
+			label.mw-flow-ui-postWidget-user-links {
+				display: inline-block;
+			}
+		}
+	}
+
+	&-content {
+		word-break: break-word;
+		overflow: auto;
+		max-height: 2000px;
+	}
+
+	&-bottomMenu {
+		width: 100%;
+
+		&-actions {
+			width: 100%;
+
+			.oo-ui-buttonWidget.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+				font-weight: normal;
+				font-size: 0.875em;
+			}
+		}
+		&-timestamp {
+			width: 1em;
+			white-space: nowrap;
+			font-size: 0.875em;
+
+			.oo-ui-labelWidget&-full {
+				display: none;
+			}
+			.oo-ui-labelWidget&-ago {
+				display: inline-block;
+			}
+
+			&:hover {
+				.oo-ui-labelWidget.mw-flow-ui-postWidget-bottomMenu-timestamp-full {
+					display: inline-block;
+				}
+				.oo-ui-labelWidget.mw-flow-ui-postWidget-bottomMenu-timestamp-ago {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&-replies {
+		border-left: 1px solid #c8ccd1;
+		padding-left: 0.5em;
+		margin-left: 1.5em;
+	}
+}
