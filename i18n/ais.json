@@ -303,6 +303,7 @@
 	"flow-toggle-small-topics": "ketun mibalic miciwsace adidi’ay a sasakamuen",
 	"flow-toggle-topics": "ketun mibalic miciwsace  sasakamuen a cacay",
 	"flow-toggle-topics-posts": "ketun mibalic tu ciwsace sasakamuen atu pazepit tu nisulitan",
+	"flow-terms-of-use-lock-topic": "sapecec \"{{int:flow-topic-action-lock-topic}}\", dayhiw kisu patubeli tina Wiki a misaungay a cedang.",
 	"flow-whatlinkshere-post": "namakay cacay [$1 pazepit tu nisulitan]",
 	"flow-whatlinkshere-header": "namakay [$1 sapuelac]",
 	"flow-whatlinkshere-post-summary": "namakay [$1 pecu’ nu lacul]",
