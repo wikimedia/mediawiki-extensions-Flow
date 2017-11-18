@@ -309,7 +309,7 @@
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Un nouveau sujet|$1 nouveaux sujets|100=Plus de 100 nouveaux sujets}} sur <strong>votre page de discussion</strong>.",
 	"notification-header-flow-post-reply": "{{GENDER:$2|$1}} a répondu sur « <strong><bdi>$4</bdi></strong> ».",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Une nouvelle réponse|$1 nouvelles réponses|100=Plus de 100 nouvelles réponses}} sur « <strong><bdi>$3</bdi></strong> ».",
-	"notification-header-flow-post-reply-user-talk": "{{GENDER:$2|$1}} a posté une réponse sur <strong>votre page de discussion</strong> dans « <strong><bdi>$4</bdi></strong> ».",
+	"notification-header-flow-post-reply-user-talk": "{{GENDER:$2|$1}} a publié une réponse sur <strong>votre page de discussion</strong> dans « <strong><bdi>$4</bdi></strong> ».",
 	"notification-bundle-header-flow-post-reply-user-talk": "{{PLURAL:$1|Une nouvelle réponse|$1 nouvelles réponses|100=Plus de 100 nouvelles réponses}} sur <strong>votre page de discussion</strong> sur « <strong><bdi>$3</bdi></strong> ».",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Votre}} billet sur « <strong><bdi>$1</bdi></strong> » a été modifié.",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|Votre}} billet sur « <strong><bdi>$1</bdi></strong> » a été modifié à plusieurs reprises.",
