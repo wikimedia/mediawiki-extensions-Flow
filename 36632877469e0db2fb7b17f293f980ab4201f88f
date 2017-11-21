@@ -16,6 +16,24 @@
       "revId": "36632877469e0db2fb7b17f293f980ab4201f88f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e5417b0_f03d12b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-11-21T16:49:42Z",
+      "side": 1,
+      "message": "Yeah that was my thought upon reading your comment on the task: we should add a way to let the user choose to get the textarea.",
+      "parentUuid": "2e5417b0_ad198580",
+      "revId": "36632877469e0db2fb7b17f293f980ab4201f88f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
