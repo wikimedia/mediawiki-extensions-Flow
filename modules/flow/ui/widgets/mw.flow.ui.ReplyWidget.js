@@ -23,20 +23,22 @@
 		this.placeholder = config.placeholder;
 		this.editorOptions = config.editor;
 
+		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
+
 		// Parent constructor
 		mw.flow.ui.ReplyWidget.parent.call( this, config );
 
 		this.api = new mw.flow.dm.APIHandler();
 
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget( {
-			isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' )
+			isProbablyEditable: this.isProbablyEditable
 		} );
 		this.anonWarning.toggle( !this.expandable );
 
 		this.canNotEdit = new mw.flow.ui.CanNotEditWidget( this.api, {
 			userGroups: mw.config.get( 'wgUserGroups' ),
 			restrictionEdit: mw.config.get( 'wgRestrictionEdit' ),
-			isProbablyEditable: mw.config.get( 'wgIsProbablyEditable' )
+			isProbablyEditable: this.isProbablyEditable
 		} );
 		this.canNotEdit.toggle( !this.expandable );
 
@@ -99,6 +101,13 @@
 	 */
 	mw.flow.ui.ReplyWidget.prototype.onTriggerFocusIn = function () {
 		this.activateEditor();
+	};
+
+	/**
+	 * Repond to editor content change
+	 */
+	mw.flow.ui.ReplyWidget.prototype.onEditorChange = function () {
+		this.editor.editorControlsWidget.toggleSaveable( !this.editor.isEmpty() );
 	};
 
 	/**
@@ -167,13 +176,16 @@
 				placeholder: this.placeholder,
 				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
 				classes: [ 'flow-ui-replyWidget-editor' ],
-				saveable: mw.config.get( 'wgIsProbablyEditable' )
+				saveable: this.isProbablyEditable
 			}, this.editorOptions ) );
+
+			this.onEditorChange();
 
 			this.$editorContainer.append( this.editor.$element );
 
 			// Events
 			this.editor.connect( this, {
+				change: 'onEditorChange',
 				saveContent: 'onEditorSaveContent',
 				cancel: 'onEditorCancel'
 			} );

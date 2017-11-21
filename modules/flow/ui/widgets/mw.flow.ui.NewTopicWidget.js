@@ -55,7 +55,7 @@
 			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,
 			classes: [ 'flow-ui-newTopicWidget-editor' ],
-			saveable: mw.config.get( 'wgIsProbablyEditable' ),
+			saveable: this.isProbablyEditable,
 			leaveCallback: function () {
 				if ( widget.title.getValue() !== '' ) {
 					return false;
