@@ -17,7 +17,8 @@
 				$component: $component,
 				$board: $board
 			} );
-
+initializer.finishLoading();
+return;
 		// Set component
 		if ( !initializer.setComponentDom( $component ) ) {
 			initializer.finishLoading();

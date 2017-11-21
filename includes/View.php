@@ -323,13 +323,14 @@ $testWidget = new OOUI\TopicWidget( $apiResponse );
 			$action = $this->getRequest()->getVal( 'action', 'view' );
 			$classes[] = "flow-action-$action";
 
-// var_dump( $apiResponse );
+if ( $testWidget ) {
+	$out->addModules( [ 'ext.flow.ooui.experimental.initial' ] );
+	$out->addModuleStyles( [ 'ext.flow.ooui.experimental.styles' ] );
 
-$out->addModuleStyles( [ 'ext.flow.ooui.experimental.styles' ] );
-
-$out->addHTML( Html::rawElement( 'hr' ) );
-$out->addHTML( $testWidget );
-$out->addHTML( Html::rawElement( 'hr' ) );
+	$out->addHTML( Html::rawElement( 'hr' ) );
+	$out->addHTML( $testWidget );
+	$out->addHTML( Html::rawElement( 'hr' ) );
+}
 
 			// Output the component, with the rendered blocks inside it
 			$out->addHTML( Html::rawElement(

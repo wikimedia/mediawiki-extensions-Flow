@@ -97,15 +97,17 @@ class PostWidget extends BaseUiWidget {
 					// the Thank extension. However, this doesn't seem to be the
 					// way it's done right now, so we will hard-code "thanks" here
 					// too for now
-					new \OOUI\ButtonWidget( [
+					new FlowButtonWidget( [
 						'framed' => false,
 						'label' => 'Reply', // TODO: i18n
 						'url' => '',
+						'addOnClick' => true,
 					] ),
-					new \OOUI\ButtonWidget( [
+					new FlowButtonWidget( [
 						'framed' => false,
 						'label' => 'Thank', // TODO: i18n
 						'url' => '',
+						'addOnClick' => true,
 					] ),
 				],
 				'classes' => [ 'mw-flow-ui-postWidget-bottomMenu-actions' ]
