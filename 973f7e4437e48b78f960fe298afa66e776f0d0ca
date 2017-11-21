@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e5417b0_01f662d4",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-11-21T23:55:03Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure this hasn\u0027t been necessary for while. ve.init.platform.getMessage just maps straight through to mw.messages.",
+      "revId": "973f7e4437e48b78f960fe298afa66e776f0d0ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
