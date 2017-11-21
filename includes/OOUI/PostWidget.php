@@ -8,11 +8,13 @@ namespace Flow\OOUI;
 class PostWidget extends BaseUiWidget {
 	use \OOUI\GroupElement;
 
+	const WIDGET_NAME = 'PostWidget';
+
 	/**
 	 * @param array $revisionData Post revision data from the API
 	 * @param array $config Configuration options
 	 */
-	public function __construct( $revisionData, $allTopicPosts, $allTopicRevisions, array $config = [] ) {
+	public function __construct( $postID, $revisionData, $allTopicPosts, $allTopicRevisions, array $config = [] ) {
 		global $wgLang;
 
 		// Parent constructor
@@ -41,26 +43,40 @@ class PostWidget extends BaseUiWidget {
 		$actionMenu = new SimpleMenuWidget( [
 			'menuItems' => [
 				[
-					'name' => 'edit',
+					'definition' => [
+						'action' => 'edit',
+						'id' => $postID,
+					],
 					'label' => 'Edit',
 					'icon' => 'edit',
 					'url' => ''
 				],
 				[
-					'name' => 'permalink',
+					// 'definition' => [
+					// 	'action' => 'permalink', // We actually don't want to prevent click on permalink
+					// 	'id' => $postID,
+					// ],
+					'action' => 'permalink',
 					'label' => 'Permalink',
 					'icon' => 'link',
-					'url' => ''
+					'url' => '',
+					'addOnClick' => false,
 				],
 				'separator',
 				[
-					'name' => 'hide',
+					'definition' => [
+						'action' => 'hide',
+						'id' => $postID,
+					],
 					'label' => 'Hide',
 					'icon' => '',
 					'url' => ''
 				],
 				[
-					'name' => 'delete',
+					'definition' => [
+						'action' => 'delete',
+						'id' => $postID,
+					],
 					'label' => 'Delete',
 					'icon' => '',
 					'url' => ''
@@ -97,15 +113,29 @@ class PostWidget extends BaseUiWidget {
 					// the Thank extension. However, this doesn't seem to be the
 					// way it's done right now, so we will hard-code "thanks" here
 					// too for now
-					new \OOUI\ButtonWidget( [
+					new FlowButtonWidget( [
 						'framed' => false,
 						'label' => 'Reply', // TODO: i18n
+						'definition' => [
+							'widget' => 'post',
+							'action' => 'reply',
+							'id' => $postID,
+						],
 						'url' => '',
+						'addOnClick' => true,
+						'classes' => [ 'mw-flow-ui-postWidget-actions-reply' ],
 					] ),
-					new \OOUI\ButtonWidget( [
+					new FlowButtonWidget( [
 						'framed' => false,
 						'label' => 'Thank', // TODO: i18n
+						'definition' => [
+							'widget' => 'post',
+							'action' => 'thank',
+							'id' => $postID,
+						],
 						'url' => '',
+						'addOnClick' => true,
+						'classes' => [ 'mw-flow-ui-postWidget-actions-thank' ],
 					] ),
 				],
 				'classes' => [ 'mw-flow-ui-postWidget-bottomMenu-actions' ]
@@ -129,7 +159,7 @@ class PostWidget extends BaseUiWidget {
 		foreach ( $revisionData['replies'] as $replyPostID ) {
 			$replyRevisionID = $allTopicPosts[$replyPostID][ 0 ];
 			$replyRevisionData = $allTopicRevisions[$replyRevisionID];
-			$replies[] = new PostWidget( $replyRevisionData );
+			$replies[] = new PostWidget( $replyPostID, $replyRevisionData );
 		}
 		$this->addItems( $replies );
 

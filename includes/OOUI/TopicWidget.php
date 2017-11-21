@@ -8,6 +8,7 @@ namespace Flow\OOUI;
 class TopicWidget extends BaseUiWidget {
 	use \OOUI\GroupElement;
 
+	const WIDGET_NAME = 'TopicWidget';
 	/**
 	 * @param array $topicAPIData Topic data from the API
 	 * @param array $config Configuration options
@@ -55,6 +56,10 @@ class TopicWidget extends BaseUiWidget {
 			[
 				'content' => [
 					new \OOUI\ButtonWidget( [
+						'definition' => [
+							'action' => 'watch',
+							'id' => $topicPostID,
+						],
 						'framed' => false,
 						'title' => $topicRevisionData['isWatched'] ? $topicRevisionData['links']['unwatch-topic']['title'] : $topicRevisionData['links']['watch-topic']['title'],
 						'icon' => $topicRevisionData['isWatched'] ? 'unStar' : 'star',
@@ -64,6 +69,10 @@ class TopicWidget extends BaseUiWidget {
 					new SimpleMenuWidget( [
 						'menuItems' => [
 							[
+								'definition' => [
+									'action' => 'edit',
+									'id' => $topicRevisionID,
+								],
 								'label' => $topicRevisionData['actions']['edit']['text'],
 								'icon' => 'edit',
 								'href' => $topicRevisionData['actions']['edit']['url']
@@ -71,14 +80,23 @@ class TopicWidget extends BaseUiWidget {
 							[
 								'label' => 'Permalink', // TODO: i18n
 								'icon' => 'link',
-								'href' => $topicRevisionData['links']['topic']['url']
+								'href' => $topicRevisionData['links']['topic']['url'],
+								'addOnClick' => false, // Do not prevent click on permalink
 							],
 							'separator',
 							[
+								'definition' => [
+									'action' => 'hide',
+									'id' => $topicRevisionID,
+								],
 								'label' => $topicRevisionData['actions']['hide']['text'],
 								'href' => $topicRevisionData['actions']['hide']['url']
 							],
 							[
+								'definition' => [
+									'action' => 'delete',
+									'id' => $topicRevisionID,
+								],
 								'label' => $topicRevisionData['actions']['delete']['text'],
 								'href' => $topicRevisionData['actions']['delete']['url']
 							]
@@ -100,6 +118,7 @@ class TopicWidget extends BaseUiWidget {
 			$revisionData = $APIData['blocks']['topic']['revisions'][ $revisionID ];
 
 			$postWidgets[] = new PostWidget(
+				$postID,
 				$revisionData,
 				// TODO: The structure here is really messy, which is why
 				// we have to send the post widgets the full structure

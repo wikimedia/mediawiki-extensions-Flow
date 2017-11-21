@@ -6,6 +6,7 @@ namespace Flow\OOUI;
  * A widget representing a simple post
  */
 class BaseUiWidget extends \OOUI\Widget {
+	const WIDGET_NAME = 'Widget';
 
 	protected function makeTable( $cells ) {
 		$table = new \OOUI\Tag( 'div' );
@@ -35,16 +36,16 @@ class BaseUiWidget extends \OOUI\Widget {
 	protected function makeSection( $name, $class = '' ) {
 		$tag = new \OOUI\Tag( 'div' );
 
-		$class = $class ? $class : 'flow-ui-topicWidget-' . $name;
+		$class = $class ? $class : 'flow-ui-' . lcfirst( self::WIDGET_NAME ) . '-' . $name;
 		$tag->addClasses( [ $class ] );
 		return $tag;
 	}
 
-	protected function getOnClickDeferredAction( $action ) {
+	protected function getOnClickDeferredAction( $name, $action ) {
 		$outputAction = json_encode( $action );
-		return 'function () {' .
-			'window.mwSDInitActions = window.mwSDInitActions || [];' .
+		return 'window.mwSDInitActions = window.mwSDInitActions || [];' .
 			'window.mwSDInitActions.push( [this,' . $outputAction . ']);' .
-			'}';
+			'this.className+="mw-flow-ui-pending";' .
+			'return false;';
 	}
 }
