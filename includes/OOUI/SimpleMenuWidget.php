@@ -63,19 +63,16 @@ class SimpleMenuWidget extends BaseUiWidget {
 					$itemClasses[] = $sepClass;
 				}
 
-				$button = new \OOUI\ButtonWidget( array_merge(
+				// Note: We're using the extended Flow\OOUI\ButtonWidget
+				// so we can have access to adding an 'onClick' method
+				$items[] = new FlowButtonWidget( array_merge(
 					[
 						'framed' => false,
 						'classes' => $itemClasses,
+						'addOnClick' => true,
 					],
 					$itemData
 				) );
-				$button->setAttributes( [
-					'data-name' => !empty( $itemData[ 'name' ] ) ? $itemData[ 'name' ] : strtolower( str_replace( ' ', '_', $itemData[ 'label' ] ) )
-					'onClick' => $this->getOnClickDeferredAction( 'click' ),
-				] );
-
-				$items[] = $button;
 
 				$sepClass = '';
 			}

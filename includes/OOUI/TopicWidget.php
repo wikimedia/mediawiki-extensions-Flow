@@ -100,6 +100,7 @@ class TopicWidget extends BaseUiWidget {
 			$revisionData = $APIData['blocks']['topic']['revisions'][ $revisionID ];
 
 			$postWidgets[] = new PostWidget(
+				$postID,
 				$revisionData,
 				// TODO: The structure here is really messy, which is why
 				// we have to send the post widgets the full structure

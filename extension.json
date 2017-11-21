@@ -591,6 +591,11 @@
 				"styles/flow/widgets/experimental/mw.flow.ui.PostWidget.less"
 			]
 		},
+		"ext.flow.ooui.experimental.initial": {
+			"scripts": [
+				"flow/experimental/initialization.js"
+			]
+		},
 		"ext.flow": {
 			"position": "top",
 			"styles": [
@@ -1256,6 +1261,7 @@
 		"Flow\\NotificationController": "includes/Notifications/Controller.php",
 		"Flow\\NotificationsUserLocator": "includes/Notifications/UserLocator.php",
 		"Flow\\OOUI\\BoardDescriptionWidget": "includes/OOUI/BoardDescriptionWidget.php",
+		"Flow\\OOUI\\FlowButtonWidget": "includes/OOUI/FlowButtonWidget.php",
 		"Flow\\OOUI\\BaseUiWidget": "includes/OOUI/BaseUiWidget.php",
 		"Flow\\OOUI\\SimpleMenuWidget": "includes/OOUI/SimpleMenuWidget.php",
 		"Flow\\OOUI\\TopicWidget": "includes/OOUI/TopicWidget.php",

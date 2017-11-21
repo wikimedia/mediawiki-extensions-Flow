@@ -40,11 +40,11 @@ class BaseUiWidget extends \OOUI\Widget {
 		return $tag;
 	}
 
-	protected function getOnClickDeferredAction( $action ) {
+	protected function getOnClickDeferredAction( $name, $action ) {
 		$outputAction = json_encode( $action );
-		return 'function () {' .
-			'window.mwSDInitActions = window.mwSDInitActions || [];' .
+		return 'window.mwSDInitActions = window.mwSDInitActions || [];' .
 			'window.mwSDInitActions.push( [this,' . $outputAction . ']);' .
-			'}';
+			'console.log("clicked", mwSDInitActions);' .
+			'return false;';
 	}
 }
