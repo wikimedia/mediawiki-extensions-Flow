@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e5417b0_ad198580",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2017-11-21T15:02:16Z",
+      "side": 1,
+      "message": "It\u0027d be nice for a textarea fallback to be available in general, since VE\u0027s source editor mode does not work with browser add-ons like It\u0027s All Text.",
+      "revId": "36632877469e0db2fb7b17f293f980ab4201f88f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
