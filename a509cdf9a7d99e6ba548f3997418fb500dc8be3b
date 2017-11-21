@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e5417b0_7bb82375",
+        "filename": "modules/styles/flow/widgets/mw.flow.ui.NewTopicWidget.less",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-11-21T20:24:33Z",
+      "side": 1,
+      "message": ".flow-ui-editorWidget-editor",
+      "revId": "a509cdf9a7d99e6ba548f3997418fb500dc8be3b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
