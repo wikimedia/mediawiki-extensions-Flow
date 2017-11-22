@@ -213,10 +213,9 @@ abstract class Utils {
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
-		$options->setEditSection( false );
 
 		$output = $wgParser->parse( $content, $title, $options );
-		return $output->getText();
+		return $output->getText( [ 'enableSectionEditLinks' => false ] );
 	}
 
 	/**
