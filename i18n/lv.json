@@ -23,6 +23,7 @@
 	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|izdzēsa}} tēmu \"[[$3|$5]]\" lapā [[$6]]",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|izdzēsa}} tēmu [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$3]] esošai [[$1|$2]] tika pārveidots no LiquidThreads uz Flow",
+	"flow-user-moderated": "Moderēts dalībnieks",
 	"flow-board-header-browse-topics-link": "Pārlūkot tēmas",
 	"flow-board-header": "Par šo lapu",
 	"flow-board-description-can-not-edit": "Nav labojams",
