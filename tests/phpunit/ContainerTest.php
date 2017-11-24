@@ -14,7 +14,7 @@ class ContainerTest extends FlowTestCase {
 		$container = Container::getContainer();
 
 		foreach ( $container->keys() as $key ) {
-			$this->assertNotNull( $container[$key], $key );
+			$this->assertArrayHasKey( $key, $container );
 		}
 	}
 
