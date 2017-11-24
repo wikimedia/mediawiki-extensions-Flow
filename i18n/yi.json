@@ -4,6 +4,7 @@
 			"פוילישער"
 		]
 	},
+	"flow-desc": "דיסקוסיע־סיסטעם",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|האט אויסגעמעקט}} א [$4 פאסט] אויף \"[[$3|$5]]\" אויף [[$6]]",
 	"flow-user-moderated": "מאדערירטער באניצער",
 	"flow-edit-header-link": "רעדאקטירט באשרייבונג",
@@ -54,6 +55,8 @@
 	"flow-link-history": "היסטאריע",
 	"flow-moderation-confirm-undelete-post": "מבטל זיין אויסמעקן",
 	"flow-moderation-confirm-undelete-topic": "מבטל זיין אויסמעקן",
+	"flow-importer-lqt-converted-template-content": "פֿריערדיקע בלאט היסטאריע ארכיווט פאר ווידערשטעלונג־צוועק ביי <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> אום {{#time: Y-m-d|{{{date}}}}}.",
+	"flow-importer-wt-converted-template-content": "פריערדיקע דיסקוסיע ארכיווירט ביי <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> אום {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-wt-converted-archive-template": "ארכיוו פאר פארוואנדלטע וויקיטעקסט רעדן־בלאט",
 	"flow-undo-your-text": "אייער טעקסט",
 	"flow-ve-mention-placeholder": "באניצער־נאמען"
