@@ -19,7 +19,6 @@ class LinksTableUpdater {
 	protected $storage;
 
 	/**
-	 * Constructor
 	 * @param ManagerGroup $storage A ManagerGroup
 	 */
 	public function __construct( ManagerGroup $storage ) {
