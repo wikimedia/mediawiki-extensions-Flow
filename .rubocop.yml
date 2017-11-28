@@ -1,37 +1,18 @@
 inherit_from: .rubocop_todo.yml
 
-# See discussion of rules at
-# https://www.mediawiki.org/wiki/Manual:Coding_conventions/Ruby
-
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/ClassLength:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Style/Alias:
-  Enabled: false
-
-# rubocop fix lifted from CirrusSearch/.rubocop.yml
-Style/LeadingCommentSpace:
+AllCops:
+  Include:
+    - 'Gemfile'
+    - 'Rakefile'
+    - '.jsduck/CustomTags.rb'
   Exclude:
-    - Gemfile  # RVM doesn't recognise spaces after the #s
+      - 'node_modules/**/*'
+      - 'vendor/**/*'
+      - 'rebaser/**/*'
 
-Style/SignalException:
-  Enabled: false
+Metrics/LineLength:
+  Max: 100
 
-Style/SpaceInsideStringInterpolation:
+Layout/SpaceInsideStringInterpolation:
   Exclude:
     - jsduck_custom_tags.rb
