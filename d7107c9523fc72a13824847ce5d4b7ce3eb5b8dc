@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0edf5380_b9448c1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2017-11-29T16:53:04Z",
+      "side": 1,
+      "message": "Test are running daily targeting beta cluster:\n\nhttps://integration.wikimedia.org/ci/view/Selenium/job/selenium-Flow/",
+      "revId": "d7107c9523fc72a13824847ce5d4b7ce3eb5b8dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
