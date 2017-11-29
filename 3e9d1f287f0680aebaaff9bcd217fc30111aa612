@@ -16,6 +16,24 @@
       "revId": "3e9d1f287f0680aebaaff9bcd217fc30111aa612",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0edf5380_8fa976df",
+        "filename": ".rubocop.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2017-11-29T19:25:59Z",
+      "side": 1,
+      "message": "Standardising this to be the same as the other three repos I touched. (And if they all mostly pass now, excluding them is unnecessary.)",
+      "parentUuid": "0edf5380_6f587236",
+      "revId": "3e9d1f287f0680aebaaff9bcd217fc30111aa612",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
