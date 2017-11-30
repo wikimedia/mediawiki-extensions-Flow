@@ -397,6 +397,15 @@
 	 * @return {string} 'html' or 'wikitext'
 	 */
 	mw.flow.ui.EditorWidget.prototype.getPreferredFormat = function () {
+		// If the user has their editor preference set to "always VE" or "always source", respect that
+		var vePref = mw.user.options.get( 'visualeditor-tabs' );
+		if ( vePref === 'prefer-wt' ) {
+			return 'wikitext';
+		}
+		if ( vePref === 'prefer-ve' ) {
+			return 'html';
+		}
+		// Otherwise, use the last-used editor
 		return mw.user.options.get( 'flow-editor' ) === 'visualeditor' ? 'html' : 'wikitext';
 	};
 
