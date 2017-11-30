@@ -1915,7 +1915,7 @@ class FlowHooks {
 			$revIds[$r->revId] = [ 'userIp' => $r->userIp, 'userId' => $r->userId, 'name' => false ];
 		}
 
-		// get non-moderated revisions
+		// get non-moderated revisions (but include hidden ones for T180607)
 		$result = $dbr->select(
 			'flow_revision',
 			[
@@ -1923,7 +1923,7 @@ class FlowHooks {
 				'revId' => 'rev_id'
 			],
 			[
-				'rev_mod_state' => '',
+				'rev_mod_state' => [ '', 'hide' ],
 				'rev_id' => array_keys( $revIds )
 			],
 			__METHOD__,
