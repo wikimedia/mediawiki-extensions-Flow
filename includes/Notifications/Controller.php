@@ -640,7 +640,6 @@ class NotificationController {
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
-		$options->setEditSection( false );
 
 		$output = $wgParser->parse( $wikitext, $title, $options );
 
