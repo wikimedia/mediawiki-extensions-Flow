@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use Closure;
 use HTML;
 use OOUI\IconWidget;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use MWTimestamp;
 use RequestContext;
 use Title;
