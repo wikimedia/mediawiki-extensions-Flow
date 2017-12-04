@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use Closure;
 use HTML;
 use OOUI\IconWidget;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use MWTimestamp;
 use RequestContext;
 use Title;
@@ -93,7 +93,7 @@ class TemplateHelper {
 				throw new FlowException( "Could not locate template: {$filenames['template']}" );
 			}
 
-			$code = self::compile( file_get_contents( $filenames['template'] ), $this->templateDir );
+			$code = $this->compile( file_get_contents( $filenames['template'] ), $this->templateDir );
 
 			if ( !$code ) {
 				throw new FlowException( "Failed to compile template '$templateName'." );
@@ -120,8 +120,8 @@ class TemplateHelper {
 	 *
 	 * @return string PHP code
 	 */
-	public static function compile( $code, $templateDir ) {
-		return LightnCandy::compile(
+	public function compile( $code, $templateDir ) {
+		return LightnCandy::compilePartial(
 			$code,
 			[
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
@@ -152,14 +152,26 @@ class TemplateHelper {
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
-				],
-				'hbhelpers' => [
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
 					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 				],
+				'partialresolver' => function ( $cx, $name ) {
+					$filePath = "{$this->templateDir}/{$name}.partial.handlebars";
+					if ( !file_exists( $filePath ) ) {
+						throw new \RuntimeException( "Failed to find partial `{$name}`" );
+					}
+
+					$fileContents = file_get_contents( $filePath );
+
+					if ( $fileContents === false ) {
+						throw new \RuntimeException( "Failed to read partial `{$name}`" );
+					}
+
+					return $fileContents;
+				}
 			]
 		);
 	}

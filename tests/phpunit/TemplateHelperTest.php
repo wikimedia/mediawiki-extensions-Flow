@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Lightncandy;
+use LightnCandy\LightnCandy;
 use Flow\TemplateHelper;
 
 /**
@@ -38,8 +38,9 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 	}
 
 	public function testIfCond() {
-		$code = TemplateHelper::compile( "{{#ifCond foo \"or\" bar}}Works{{/ifCond}}", '' );
-		$renderer = Lightncandy::prepare( $code );
+		$helper = new TemplateHelper( '/does/not/exist' );
+		$code = $helper->compile( "{{#ifCond foo \"or\" bar}}Works{{/ifCond}}", '' );
+		$renderer = LightnCandy::prepare( $code );
 
 		$this->assertEquals( 'Works', $renderer( [ 'foo' => true, 'bar' => false ] ) );
 		$this->assertEquals( '', $renderer( [ 'foo' => false, 'bar' => false ] ) );
