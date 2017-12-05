@@ -596,6 +596,17 @@
 				"flow/experimental/initialization.js"
 			]
 		},
+		"ext.flow.ooui.experimental.lazy": {
+			"scripts": [
+				"flow/experimental/ui.SimpleMenuWidget.js",
+				"flow/experimental/ui.PostWidget.js",
+				"flow/experimental/ui.ReplyWidget.js"
+			],
+			"dependencies": [
+				"oojs-ui",
+				"mediawiki.api"
+			]
+		},
 		"ext.flow": {
 			"position": "top",
 			"styles": [
