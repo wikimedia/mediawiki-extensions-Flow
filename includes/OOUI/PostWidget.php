@@ -14,7 +14,7 @@ class PostWidget extends BaseUiWidget {
 	 * @param array $revisionData Post revision data from the API
 	 * @param array $config Configuration options
 	 */
-	public function __construct( $postID, $revisionData, $allTopicPosts, $allTopicRevisions, array $config = [] ) {
+	public function __construct( $postID, $topicId, $revisionData, $allTopicPosts, $allTopicRevisions, array $config = [] ) {
 		global $wgLang;
 
 		// Parent constructor
@@ -25,9 +25,14 @@ class PostWidget extends BaseUiWidget {
 		// Traits
 		$this->initializeGroupElement( array_merge( $config, [ 'group' => $this->replies ] ) );
 
+		$this->topicID = $topicId;
 		// Author info
 		$userID = $revisionData['author']['id'];
 		$userName = $revisionData['author']['name'];
+		// var_dump( $userID );
+		// var_dump( \Linker::userLink( $userID, $userName ) );
+		// var_dump( \Linker::userToolLinks( $userID, $userName ) );
+		// die();
 		$authorName = new \OOUI\LabelWidget( [
 			'label' => new \OOUI\HtmlSnippet( \Linker::userLink( $userID, $userName ) ),
 			'classes' => [ 'mw-flow-ui-postWidget-user-name' ]
@@ -100,7 +105,9 @@ class PostWidget extends BaseUiWidget {
 
 		// Post content
 		$content = $this->makeSection( 'content' );
-		$content->appendContent( new \OOUI\HtmlSnippet( $revisionData['content']['content'] ) );
+		if ( $revisionData['content']['content'] ) {
+			$content->appendContent( new \OOUI\HtmlSnippet( $revisionData['content']['content'] ) );
+		}
 
 		// Bottom menu
 		$formatter = \Flow\Container::get( 'formatter.revisionview' );
@@ -138,7 +145,9 @@ class PostWidget extends BaseUiWidget {
 						'classes' => [ 'mw-flow-ui-postWidget-actions-thank' ],
 					] ),
 				],
-				'classes' => [ 'mw-flow-ui-postWidget-bottomMenu-actions' ]
+				'classes' => [
+					'mw-flow-ui-postWidget-bottomMenu-actions', 'mw-flow-identifier-post-' . $postID
+				]
 			], [
 				'content' => [
 					new \OOUI\LabelWidget( [
@@ -154,18 +163,21 @@ class PostWidget extends BaseUiWidget {
 			]
 		] );
 
+		$bottomMenu->addClasses( [ 'mw-flow-ui-postWidget-bottomMenu' ] );
+
 		// Replies
 		$replies = [];
 		foreach ( $revisionData['replies'] as $replyPostID ) {
 			$replyRevisionID = $allTopicPosts[$replyPostID][ 0 ];
 			$replyRevisionData = $allTopicRevisions[$replyRevisionID];
-			$replies[] = new PostWidget( $replyPostID, $replyRevisionData );
+			$replies[] = new PostWidget( $replyPostID, $this->topicID, $replyRevisionData );
 		}
 		$this->addItems( $replies );
 
 		// Initialization
 		$this
-			->addClasses( [ 'mw-flow-ui-postWidget' ] )
+			->addClasses( [ 'mw-flow-ui-postWidget', 'mw-flow-identifier-post-' . $postID ] )
+			->setAttributes( [ 'data-postID' => $postID, 'data-topicID' => $this->topicID ] )
 			->appendContent(
 				$postHeader,
 				$content,
@@ -173,7 +185,7 @@ class PostWidget extends BaseUiWidget {
 				$this->replies
 			);
 
-		// TODO: Add replies
+		// TODO: Add existing replies
 
 		// if ( isset( $config['items'] ) ) {
 		// 	$this->addItems( $config['items'] );

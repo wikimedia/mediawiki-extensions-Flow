@@ -36,7 +36,7 @@ class BaseUiWidget extends \OOUI\Widget {
 	protected function makeSection( $name, $class = '' ) {
 		$tag = new \OOUI\Tag( 'div' );
 
-		$class = $class ? $class : 'flow-ui-' . lcfirst( self::WIDGET_NAME ) . '-' . $name;
+		$class = $class ? $class : 'mw-flow-ui-' . lcfirst( static::WIDGET_NAME ) . '-' . $name;
 		$tag->addClasses( [ $class ] );
 		return $tag;
 	}

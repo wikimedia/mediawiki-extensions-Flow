@@ -119,6 +119,7 @@ class TopicWidget extends BaseUiWidget {
 
 			$postWidgets[] = new PostWidget(
 				$postID,
+				$topicId,
 				$revisionData,
 				// TODO: The structure here is really messy, which is why
 				// we have to send the post widgets the full structure
@@ -132,7 +133,8 @@ class TopicWidget extends BaseUiWidget {
 
 		// Initialization
 		$this
-			->addClasses( [ 'mw-flow-ui-topicWidget' ] )
+			->addClasses( [ 'mw-flow-ui-topicWidget', 'mw-flow-identifier-topic-' . $topicId ] )
+			->setAttributes( [ 'data-topicID' => $topicID ] )
 			->appendContent(
 				$header,
 				$content,

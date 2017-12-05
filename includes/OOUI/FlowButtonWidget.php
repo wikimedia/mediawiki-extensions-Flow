@@ -8,7 +8,7 @@ namespace Flow\OOUI;
 class FlowButtonWidget extends \OOUI\ButtonWidget {
 	protected $name;
 
-	public function __construct( array $config = [] ) {
+	public function __construct( array $config = [ 'infusable' => true ] ) {
 
 		parent::__construct( $config );
 
@@ -31,8 +31,9 @@ class FlowButtonWidget extends \OOUI\ButtonWidget {
 
 	protected function getOnClickDeferredAction( $definition ) {
 		return 'window.mwSDInitActions = window.mwSDInitActions || [];' .
+			'this.className+=" flow-ui-pending";' .
 			'window.mwSDInitActions.push( [this, ' . $definition . ']);' .
-			'console.log("clicked",window.mwSDInitActions);' .
+			'console.log("onClick intercepted",window.mwSDInitActions);' .
 			'return false;';
 	}
 }
