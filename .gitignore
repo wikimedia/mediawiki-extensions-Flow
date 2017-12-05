@@ -4,8 +4,6 @@
 scripts/hhvm-wrapper.phar
 scripts/remotes
 node_modules/
-tests/browser/.gem
-tests/browser/screenshots
 vendor/
 \#*#
 /composer.lock
