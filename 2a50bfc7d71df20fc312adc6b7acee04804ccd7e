@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eee3df47_3be85277",
+        "filename": "modules/flow/experimental/initialization.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-08T19:31:39Z",
+      "side": 1,
+      "message": "This doesn\u0027t have to be and shouldn\u0027t be an each loop:\n\n    $( \u0027.mw-flow-container a\u0027 ).click( function () {\n        var data \u003d $( this ).data( \u0027widget\u0027 );\n        if ( !data ) {\n            return;\n        }\n        lazyLoad( data.widget, ... );\n        return false;\n    } );",
+      "revId": "2a50bfc7d71df20fc312adc6b7acee04804ccd7e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
