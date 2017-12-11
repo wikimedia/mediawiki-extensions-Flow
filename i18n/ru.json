@@ -480,7 +480,7 @@
 	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "Участник «$1» не зарегистрирован.",
 	"flow-wikitext-editor-help": "Вики-текст $1.",
-	"flow-wikitext-editor-help-and-preview": "Вики-текст $1 и вы можете $2 в любое время.",
+	"flow-wikitext-editor-help-and-preview": "Вики-текст $1, и вы можете $2 в любое время.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|использует разметку]]",
 	"flow-wikitext-editor-help-preview-the-result": "предварительно просмотреть результат",
 	"flow-wikitext-switch-editor-tooltip": "Переключить на визуальный редактор",
