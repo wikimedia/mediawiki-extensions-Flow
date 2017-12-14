@@ -4,7 +4,6 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use CheckUser;
 
 class CheckUserQuery extends AbstractQuery {
 	/**
@@ -66,12 +65,11 @@ class CheckUserQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param CheckUser $checkUser
 	 * @param \StdClass $row
-	 * @return CheckUserRow|null
+	 * @return FormatterRow|bool
 	 * @throws FlowException
 	 */
-	public function getResult( CheckUser $checkUser, $row ) {
+	public function getResult( $row ) {
 		if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
 			return false;
 		}
@@ -88,9 +86,8 @@ class CheckUserQuery extends AbstractQuery {
 		}
 		$revision = $this->revisionCache[$alpha];
 
-		$res = new CheckUserRow;
+		$res = new FormatterRow();
 		$this->buildResult( $revision, 'cuc_timestamp', $res );
-		$res->checkUser = $checkUser;
 
 		return $res;
 	}
@@ -133,11 +130,4 @@ class CheckUserQuery extends AbstractQuery {
 
 		return [ $workflowId, $revisionId, $postId ];
 	}
-}
-
-class CheckUserRow extends FormatterRow {
-	/**
-	 * @var CheckUser
-	 */
-	public $checkUser;
 }
