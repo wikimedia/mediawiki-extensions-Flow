@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eee3df47_4f68c2f2",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2017-12-14T10:02:36Z",
+      "side": 1,
+      "message": "This method also expects a CheckUser object (which it does not need, see Ibe81499 for an alternative patch).",
+      "range": {
+        "startLine": 571,
+        "startChar": 18,
+        "endLine": 571,
+        "endChar": 27
+      },
+      "revId": "dbe81559b32cd4a3e72efc86739ffbe397deba4f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
