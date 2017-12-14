@@ -557,7 +557,7 @@ class FlowHooks {
 		}
 	}
 
-	public static function onSpecialCheckUserGetLinksFromRow( SpecialCheckUser $checkUser, $row, &$links ) {
+	public static function onSpecialCheckUserGetLinksFromRow( SpecialPage $specialCheckUser, $row, &$links ) {
 		if ( !$row->cuc_type == RC_FLOW ) {
 			return true;
 		}
@@ -569,11 +569,11 @@ class FlowHooks {
 			$query = Container::get( 'query.checkuser' );
 			// @todo: create hook to allow batch-loading this data, instead of doing piecemeal like this
 			$query->loadMetadataBatch( [ $row ] );
-			$row = $query->getResult( $checkUser, $row );
+			$row = $query->getResult( $row );
 			if ( $row !== false ) {
 				/** @var Flow\Formatter\CheckUserFormatter $formatter */
 				$formatter = Container::get( 'formatter.checkuser' );
-				$replacement = $formatter->format( $row, $checkUser->getContext() );
+				$replacement = $formatter->format( $row, $specialCheckUser->getContext() );
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . json_encode( $row ) . ' ' . $e );
