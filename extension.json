@@ -1134,7 +1134,6 @@
 		"Flow\\Formatter\\ChangesListQuery": "includes/Formatter/ChangesListQuery.php",
 		"Flow\\Formatter\\CheckUserFormatter": "includes/Formatter/CheckUserFormatter.php",
 		"Flow\\Formatter\\CheckUserQuery": "includes/Formatter/CheckUserQuery.php",
-		"Flow\\Formatter\\CheckUserRow": "includes/Formatter/CheckUserQuery.php",
 		"Flow\\Formatter\\ContributionsFormatter": "includes/Formatter/ContributionsFormatter.php",
 		"Flow\\Formatter\\ContributionsQuery": "includes/Formatter/ContributionsQuery.php",
 		"Flow\\Formatter\\ContributionsRow": "includes/Formatter/ContributionsQuery.php",
