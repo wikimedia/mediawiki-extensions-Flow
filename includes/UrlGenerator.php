@@ -433,10 +433,15 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function workflowLink( Title $title = null, UUID $workflowId ) {
+	public function workflowLink( Title $title = null, UUID $workflowId, $version = null ) {
+		$query = [];
+		if ( $version ) {
+			$query[ 'version' ] = $version;
+		}
 		return new Anchor(
 			wfMessage( 'flow-workflow' ),
-			$this->resolveTitle( $title, $workflowId )
+			$this->resolveTitle( $title, $workflowId ),
+			[ 'version' => $version ]
 		);
 	}
 
