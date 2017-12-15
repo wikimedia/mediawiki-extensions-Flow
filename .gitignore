@@ -8,3 +8,5 @@ vendor/
 \#*#
 /composer.lock
 /docs
+modules/fleact-client.js
+modules/fleact-server.js

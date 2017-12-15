@@ -9,11 +9,14 @@ use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use FormatJson;
 use Html;
 use Hooks;
 use IContextSource;
 use Message;
 use OutputPage;
+use ResourceLoader;
+use ResourceLoaderContext;
 use Title;
 
 class View extends ContextSource {
@@ -67,15 +70,14 @@ class View extends ContextSource {
 		$apiResponse = $this->buildApiResponse( $loader, $blocks, $action, $parameters );
 
 		$output = $this->getOutput();
-		$output->enableOOUI();
-		$this->addModules( $output, $action );
+
 		// Please note that all blocks can set page title, which may cause them
 		// to override one another's titles
 		foreach ( $blocks as $block ) {
 			$block->setPageTitle( $output );
 		}
 
-		$this->renderApiResponse( $apiResponse );
+		$this->renderApiResponse( $apiResponse, $action );
 	}
 
 	protected function addModules( OutputPage $out, $action ) {
@@ -227,6 +229,9 @@ class View extends ContextSource {
 				$anchor = $value;
 				$value = $value->toArray();
 
+				// trying to preserve version of the app in URLs
+				$anchor->query[ 'version' ] = $this->getRequest()->getVal( 'version' );
+
 				// TODO: We're looking into another approach for this
 				// using a parser function, so the URL doesn't have to be
 				// fully qualified.
@@ -243,13 +248,51 @@ class View extends ContextSource {
 		return $apiResponse;
 	}
 
-	protected function renderApiResponse( array $apiResponse ) {
+	protected function renderApiResponse( array $apiResponse, $action ) {
+		if ( $this->getRequest()->getVal( 'version' ) === '2' ) {
+			$this->renderWithReactjs( $apiResponse, $action );
+		} else {
+			$this->renderWithHandlebar( $apiResponse, $action );
+		}
+	}
+
+	private function renderWithReactjs( array $apiResponse, $action ) {
+		$out = $this->getOutput();
+		$result = $this->preRenderWithReactjs( $apiResponse, $action );
+		$state = $result ? $result['state'] : $apiResponse;
+		$markup = $result ? $result['markup'] : '';
+		$out->addHTML( Html::rawElement(
+			'div',
+			[ 'id' => 'fleact-root' ],
+			$markup
+		) );
+
+		$out->addJsConfigVars( 'wgFlowData', $state );
+		$out->addModules( 'fleact-client' );
+	}
+
+	private function preRenderWithReactjs( array $apiResponse, $action ) {
+		if ( class_exists( 'V8Js' ) ) {
+			$js = "var global = {};";
+			$r = new ResourceLoader();
+			$js .= $r->getModule( 'fleact-server' )->getScript( ResourceLoaderContext::newDummyContext() );
+			$js .= "\nglobal.renderFleactServer( " . FormatJson::encode( $apiResponse ) . ", '" . $action . "' );\n";
+			$v8 = new \V8Js();
+			$this->getOutput()->addJsConfigVars( 'wgFlowPreRendered', true );
+			$result = $v8->executeString( $js );
+			return [ 'state' => FormatJson::decode( $result->state ), 'markup' => $result->markup ];
+		}
+	}
+
+	private function renderWithHandlebar( array $apiResponse, $action ) {
+		$out = $this->getOutput();
+		$out->enableOOUI();
+		$this->addModules( $out, $action );
+
 		// Render the flow-component wrapper
 		if ( empty( $apiResponse['blocks'] ) ) {
 			return [];
 		}
-
-		$out = $this->getOutput();
 
 		$jsonBlobResponse = $apiResponse;
 
@@ -333,7 +376,8 @@ class View extends ContextSource {
 	protected function redirect( Workflow $workflow ) {
 		$link = $this->urlGenerator->workflowLink(
 			$workflow->getArticleTitle(),
-			$workflow->getId()
+			$workflow->getId(),
+			$this->getRequest()->getVal( 'version' )
 		);
 		$this->getOutput()->redirect( $link->getFullURL() );
 	}
