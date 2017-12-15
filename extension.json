@@ -760,6 +760,16 @@
 				"desktop",
 				"mobile"
 			]
+		},
+		"fleact-server": {
+			"scripts": [
+				"fleact/dist/server.js"
+			]
+		},
+		"fleact-client": {
+			"scripts": [
+				"fleact/dist/client.js"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
