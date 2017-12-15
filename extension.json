@@ -669,6 +669,32 @@
 				"desktop",
 				"mobile"
 			]
+		},
+		"fleact-server": {
+			"scripts": [
+				"fleact/dist/server.js"
+			],
+			"messages": [
+				"flow-board-header"
+			]
+		},
+		"just-flow": {
+			"scripts": [
+				"flow/mw.flow.js"
+			]
+		},
+		"fleact-client": {
+			"scripts": [
+				"fleact/dist/client.js"
+			],
+			"dependencies": [
+				"just-flow",
+				"ext.flow.editor",
+				"ext.flow.visualEditor"
+			],
+			"messages": [
+				"flow-board-header"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {

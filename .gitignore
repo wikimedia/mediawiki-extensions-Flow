@@ -8,3 +8,4 @@ vendor/
 \#*#
 /composer.lock
 /docs
+modules/fleact/dist

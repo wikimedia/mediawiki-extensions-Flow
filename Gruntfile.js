@@ -14,6 +14,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-tyops' );
+	grunt.loadNpmTasks( 'grunt-browserify' );
 
 	grunt.initConfig( {
 		tyops: {
@@ -56,10 +57,31 @@ module.exports = function ( grunt ) {
 				'!node_modules/**',
 				'!vendor/**'
 			]
+		},
+		browserify: {
+			client: {
+				src: [
+					'modules/fleact/src/client.js'
+				],
+				dest: 'modules/fleact/dist/client.js',
+				options: {
+					transform: [ [ 'babelify', { presets: [ "es2015", "react" ] } ] ]
+				}
+			},
+			server: {
+				src: [
+					'modules/fleact/src/server.js'
+				],
+				dest: 'modules/fleact/dist/server.js',
+				options: {
+					transform: [ [ 'babelify', { presets: [ "es2015", "react" ] } ] ]
+				}
+			}
 		}
 	} );
 
 	grunt.registerTask( 'lint', [ 'tyops', 'eslint', 'stylelint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'test', 'lint' );
+	grunt.registerTask( 'fleact', [ 'browserify:client', 'browserify:server' ] );
 	grunt.registerTask( 'default', 'test' );
 };

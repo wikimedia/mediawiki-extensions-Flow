@@ -1,6 +1,7 @@
 ( function ( mw, OO, ve ) {
 	'use strict';
 
+	mw.flow = mw.flow || {};
 	mw.flow.ve = {
 		ui: {}
 	};
