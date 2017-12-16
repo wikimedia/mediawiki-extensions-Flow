@@ -48,16 +48,7 @@ OO.inheritClass( mw.flow.ui.MWEditModeSourceTool, mw.libs.ve.MWEditModeSourceToo
 OO.mixinClass( mw.flow.ui.MWEditModeSourceTool, mw.flow.ui.MWEditModeTool );
 
 mw.flow.ui.MWEditModeSourceTool.prototype.switch = function () {
-	var $editor = this.toolbar.getSurface().$element.closest( '.flow-editor' );
-	if ( this.getMode() === 'visual' ) {
-		if ( $editor.length ) {
-			// Old editor (FIXME kill the old editor and remove this)
-			mw.flow.editor.switchEditor( $editor.find( 'textarea' ), 'none' );
-		} else {
-			// New editor
-			this.toolbar.getTarget().switchMode();
-		}
-	}
+	this.toolbar.getTarget().switchMode();
 };
 
 ve.ui.toolFactory.register( mw.flow.ui.MWEditModeSourceTool );
