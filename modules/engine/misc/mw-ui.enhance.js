@@ -100,12 +100,7 @@ mw.flow.ui.enhance = {};
 			ready = true;
 
 		$fields.each( function () {
-			var $this = $( this );
-			if ( mw.flow.editor.exists( $this ) ) {
-				if ( mw.flow.editor.getEditor( $this ).isEmpty() ) {
-					ready = false;
-				}
-			} else if ( this.value === '' ) {
+			if ( this.value === '' ) {
 				ready = false;
 			}
 		} );
