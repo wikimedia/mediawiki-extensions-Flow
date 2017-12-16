@@ -149,13 +149,6 @@
 '.$sp.''.LCRun3::hbch($cx, 'progressiveEnhancement', array(array(),array()), $in, false, function($cx, $in)use($sp){return '		<div class="flow-anon-warning-desktop">
 '.$sp.''.LCRun3::hbch($cx, 'tooltip', array(array(),array('positionClass'=>'left','contextClass'=>'progressive','extraClass'=>'flow-form-collapsible','isBlock'=>true)), $in, false, function($cx, $in)use($sp){return ''.LCRun3::ch($cx, 'l10nParse', array(array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin'),array()), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', array(array('Special:UserLogin/signup'),array()), 'raw')),array()), 'encq').'';}).'		</div>
 '.$sp.'';}).'</div>
-';},'flow_form_cancel_button' => function ($cx, $in, $sp) {return ''.$sp.'<button data-flow-interactive-handler="cancelForm"
-'.$sp.'        data-role="cancel"
-'.$sp.'        type="reset"
-'.$sp.'        class="mw-ui-button mw-ui-destructive mw-ui-quiet mw-ui-flush-right flow-js"
-'.$sp.'
-'.$sp.'>
-'.$sp.''.((LCRun3::ifvar($cx, ((isset($in['msg']) && is_array($in)) ? $in['msg'] : null))) ? ''.LCRun3::ch($cx, 'l10n', array(array(((isset($in['msg']) && is_array($in)) ? $in['msg'] : null)),array()), 'encq').'' : ''.LCRun3::ch($cx, 'l10n', array(array('flow-cancel'),array()), 'encq').'').'</button>
 ';},'flow_edit_post' => function ($cx, $in, $sp) {return ''.$sp.'<form class="flow-edit-post-form"
 '.$sp.'      method="POST"
 '.$sp.'      action="'.htmlentities((string)((isset($in['actions']['edit']['url']) && is_array($in['actions']['edit'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -168,9 +161,8 @@
 '.$sp.'	</div>
 '.$sp.'
 '.$sp.'	<div class="flow-form-actions flow-form-collapsible">
-'.$sp.'		<button class="mw-ui-button mw-ui-progressive"
-'.$sp.'		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', array(array('flow-post-action-edit-post-submit'),array()), 'encq').'</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
+'.$sp.'		<button class="mw-ui-button mw-ui-progressive">'.LCRun3::ch($cx, 'l10n', array(array('flow-post-action-edit-post-submit'),array()), 'encq').'</button>
+'.$sp.'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq').'</small>
 '.$sp.'	</div>
 '.$sp.'</form>
 ';},'flow_reply_form' => function ($cx, $in, $sp) {return ''.$sp.''.((!LCRun3::ifvar($cx, ((isset($in['actions']['unlock']) && is_array($in['actions'])) ? $in['actions']['unlock'] : null))) ? '
@@ -178,7 +170,6 @@
 '.$sp.'      method="POST"
 '.$sp.'      action="'.htmlentities((string)((isset($in['actions']['reply']['url']) && is_array($in['actions']['reply'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'      id="flow-reply-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-'.$sp.'      data-flow-initial-state="collapsed"
 '.$sp.'>
 '.$sp.'	<input type="hidden" name="wpEditToken" value="'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editToken']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 '.$sp.'	<input type="hidden" name="topic_replyTo" value="'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
@@ -188,10 +179,9 @@
 '.$sp.'		<textarea id="flow-post-'.htmlentities((string)((isset($in['postId']) && is_array($in)) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
 '.$sp.'		          name="topic_content"
 '.$sp.'		          required
-'.$sp.'		          data-flow-expandable="true"
 '.$sp.'		          class="mw-ui-input flow-click-interactive mw-editfont-'.htmlentities((string)((isset($cx['sp_vars']['root']['rootBlock']['editFont']) && is_array($cx['sp_vars']['root']['rootBlock'])) ? $cx['sp_vars']['root']['rootBlock']['editFont'] : null), ENT_QUOTES, 'UTF-8').'"
 '.$sp.'		          type="text"
-'.$sp.'			          placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'"
+'.$sp.'			      placeholder="'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']['topic-of-post-text-from-html']) && is_array($in['properties'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq').'"
 '.$sp.'		          data-role="content"
 '.$sp.'
 '.$sp.'		>'.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['submitted']) && is_array($cx['sp_vars']['root'])) ? $cx['sp_vars']['root']['submitted'] : null))) ? ''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($cx['sp_vars']['root']['submitted']['postId']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['postId'] : null),'===',((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){return ''.htmlentities((string)((isset($cx['sp_vars']['root']['submitted']['content']) && is_array($cx['sp_vars']['root']['submitted'])) ? $cx['sp_vars']['root']['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'' : '').'</textarea>
@@ -201,7 +191,7 @@
 '.$sp.'		<button data-role="submit"
 '.$sp.'		        class="mw-ui-button mw-ui-progressive"
 '.$sp.'		>'.LCRun3::ch($cx, 'l10n', array(array('flow-reply-link'),array()), 'encq').'</button>
-'.$sp.''.LCRun3::p($cx, 'flow_form_cancel_button', array(array($in),array()), '		').'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
+'.$sp.'		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', array(array('flow-terms-of-use-reply'),array()), 'encq').'</small>
 '.$sp.'	</div>
 '.$sp.'</form>
 '.$sp.'' : '').'';},'flow_post_replies' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-replies">

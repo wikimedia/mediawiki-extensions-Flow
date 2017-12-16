@@ -158,7 +158,6 @@
 				"handlebars/flow_edit_post.partial.handlebars",
 				"handlebars/flow_edit_topic_title.partial.handlebars",
 				"handlebars/flow_errors.partial.handlebars",
-				"handlebars/flow_form_cancel_button.partial.handlebars",
 				"handlebars/flow_header_title.partial.handlebars",
 				"handlebars/flow_header_detail.partial.handlebars",
 				"handlebars/flow_header_categories.partial.handlebars",

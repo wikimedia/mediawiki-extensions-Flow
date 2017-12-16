@@ -456,31 +456,9 @@
 			component.emitWithReturn( 'loadHandler', handlerName, $this );
 		} );
 
-		// Find all the forms
+		// Trigger for flow-actions-disabler
 		// @todo move this into a flow-load-handler
-		$container.find( 'form' ).add( $container.filter( 'form' ) ).each( function () {
-			var $this = $( this ),
-				initialState = $this.data( 'flow-initial-state' );
-
-			// Trigger for flow-actions-disabler
-			$this.find( 'input, textarea' ).trigger( 'keyup' );
-
-			// Find this form's inputs
-			$this.find( 'textarea' ).filter( '[data-flow-expandable]' ).each( function () {
-				// Compress textarea if:
-				// the textarea isn't already focused
-				// and the textarea doesn't have text typed into it
-				if ( !$( this ).is( ':focus' ) && this.value === this.defaultValue ) {
-					component.emitWithReturn( 'compressTextarea', $( this ) );
-				}
-			} );
-
-			if ( initialState === 'collapsed' ) {
-				component.emitWithReturn( 'hideForm', $this );
-			} else if ( initialState === 'expanded' ) {
-				component.emitWithReturn( 'showForm', $this );
-			}
-		} );
+		$container.find( 'input, textarea' ).trigger( 'keyup' );
 	}
 	FlowComponentEventsMixin.eventHandlers.makeContentInteractive = flowMakeContentInteractiveCallback;
 
@@ -656,19 +634,6 @@
 	 * @todo Move this to a separate file
 	 */
 	function flowEventsMixinHideForm( $form ) {
-		var component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $form );
-
-		$form.find( 'textarea' ).each( function () {
-			var $editor = $( this );
-
-			// Drop the new input in place if:
-			// the textarea isn't already focused
-			// and the textarea doesn't have text typed into it
-			if ( !$editor.is( ':focus' ) && this.value === this.defaultValue ) {
-				component.emitWithReturn( 'compressTextarea', $editor );
-			}
-		} );
-
 		// Hide its actions
 		// @todo Use TemplateEngine to find and hide actions?
 		$form.find( '.flow-form-collapsible' ).toggleClass( 'flow-form-collapsible-collapsed', true );
@@ -676,19 +641,7 @@
 	FlowComponentEventsMixin.eventHandlers.hideForm = flowEventsMixinHideForm;
 
 	/**
-	 * "Compresses" a textarea by adding a class to it, which CSS will pick up
-	 * to force a smaller display size.
-	 * @param {jQuery} $textarea
-	 * @todo Move this to a separate file
-	 */
-	function flowEventsMixinCompressTextarea( $textarea ) {
-		$textarea.addClass( 'flow-input-compressed' );
-	}
-	FlowComponentEventsMixin.eventHandlers.compressTextarea = flowEventsMixinCompressTextarea;
-
-	/**
-	 * If input is focused, expand it if compressed (into textarea).
-	 * Otherwise, trigger the form to unhide.
+	 * Show form when input is focused.
 	 * @param {Event} event
 	 * @todo Move this to a separate file
 	 */
@@ -696,7 +649,7 @@
 		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
-		// Show the form (and swap it for textarea if needed)
+		// Show the form
 		component.emitWithReturn( 'showForm', $context.closest( 'form' ) );
 	}
 	FlowComponentEventsMixin.eventHandlers.focusField = flowEventsMixinFocusField;
@@ -706,27 +659,10 @@
 	 * @param {jQuery} $form
 	 */
 	function flowEventsMixinShowForm( $form ) {
-		var self = this;
-
 		// Show its actions
 		$form.find( '.flow-form-collapsible' ).toggleClass( 'flow-form-collapsible-collapsed', false );
-
-		// Expand all textareas if needed
-		$form.find( '.flow-input-compressed' ).each( function () {
-			self.emitWithReturn( 'expandTextarea', $( this ) );
-		} );
 	}
 	FlowComponentEventsMixin.eventHandlers.showForm = flowEventsMixinShowForm;
-
-	/**
-	 * Expand the textarea by removing the CSS class that will make it appear
-	 * smaller.
-	 * @param {jQuery} $textarea
-	 */
-	function flowEventsMixinExpandTextarea( $textarea ) {
-		$textarea.removeClass( 'flow-input-compressed' );
-	}
-	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinExpandTextarea;
 
 	/**
 	 * Adds a flow-cancel-callback to a given form, to be triggered on click of the "cancel" button.
