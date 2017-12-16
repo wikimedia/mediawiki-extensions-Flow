@@ -110,10 +110,8 @@ $wgFlowActions = [
 			'class' => 'flow-history-edit-header',
 		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => [],
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
-		'modules' => [ 'ext.flow.undo' ],
 		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
@@ -213,9 +211,7 @@ $wgFlowActions = [
 			'class' => 'flow-history-edit-topic-summary',
 		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => [],
 		'editcount' => true,
-		'modules' => [ 'ext.flow.undo' ],
 		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
@@ -352,12 +348,10 @@ $wgFlowActions = [
 			'class' => 'flow-history-edit-post',
 		],
 		'handler-class' => 'Flow\Actions\FlowAction',
-		'modules' => [],
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
 		],
 		'editcount' => true,
-		'modules' => [ 'ext.flow.undo' ],
 		'moduleStyles' => [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
