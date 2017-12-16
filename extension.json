@@ -157,7 +157,6 @@
 				"handlebars/flow_board_navigation.partial.handlebars",
 				"handlebars/flow_edit_post.partial.handlebars",
 				"handlebars/flow_edit_topic_title.partial.handlebars",
-				"handlebars/flow_editor_switcher.partial.handlebars",
 				"handlebars/flow_errors.partial.handlebars",
 				"handlebars/flow_form_cancel_button.partial.handlebars",
 				"handlebars/flow_header_title.partial.handlebars",
@@ -397,8 +396,7 @@
 				"styles/nojs.less",
 				"styles/js.less",
 				"styles/board/form-actions.less",
-				"styles/board/terms-of-use.less",
-				"styles/board/editor-switcher.less"
+				"styles/board/terms-of-use.less"
 			],
 			"targets": [
 				"desktop",
@@ -554,7 +552,6 @@
 				"flow-dialog-cancelconfirm-keep",
 				"flow-dialog-cancelconfirm-discard",
 				"flow-spam-confirmedit-using-failure",
-				"flow-wikitext-switch-editor-tooltip",
 				"flow-cancel-warning",
 				"red-link-title",
 				"pagecategories",
@@ -595,14 +592,12 @@
 				"engine/components/board/features/flow-board-navigation.js",
 				"engine/components/board/features/flow-board-side-rail.js",
 				"engine/components/board/features/flow-board-visualeditor.js",
-				"engine/components/board/features/flow-board-switcheditor.js",
 				"engine/components/board/flow-boardhistory.js",
 				"mw.flow.Initializer.js",
 				"flow-initialize.js"
 			],
 			"dependencies": [
 				"ext.flow.components",
-				"ext.flow.editor",
 				"jquery.throttle-debounce",
 				"mediawiki.jqueryMsg",
 				"ext.flow.jquery.conditionalScroll",
@@ -618,50 +613,6 @@
 				"mw-ui-unsubmitted-confirm",
 				"flow-reply-link",
 				"flow-reply-link-anonymously"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.undo": {
-			"position": "bottom",
-			"scripts": [
-				"engine/components/flow-undo-page.js"
-			],
-			"dependencies": [
-				"ext.flow"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.editor": {
-			"scripts": [
-				"editor/editors/ext.flow.editors.AbstractEditor.js",
-				"editor/ext.flow.editor.js"
-			],
-			"dependencies": [
-				"oojs",
-				"mediawiki.api",
-				"mediawiki.api.options",
-				"mediawiki.user"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.editors.none": {
-			"scripts": [
-				"editor/editors/ext.flow.editors.none.js"
-			],
-			"messages": [
-				"flow-wikitext-switch-editor-tooltip"
-			],
-			"dependencies": [
-				"oojs-ui"
 			],
 			"targets": [
 				"desktop",
@@ -696,8 +647,7 @@
 				"site",
 				"user",
 				"mediawiki.api",
-				"mediawiki.util",
-				"ext.flow.editors.none"
+				"mediawiki.util"
 			],
 			"messages": [
 				"flow-ve-mention-context-item-label",
@@ -707,14 +657,6 @@
 				"flow-ve-mention-placeholder",
 				"flow-ve-mention-tool-title",
 				"flow-ve-switch-editor-tool-title"
-			]
-		},
-		"ext.flow.editors.visualeditor": {
-			"scripts": "editor/editors/visualeditor/ext.flow.editors.visualeditor.js",
-			"dependencies": [],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"mediawiki.messagePoster.flow-board": {
