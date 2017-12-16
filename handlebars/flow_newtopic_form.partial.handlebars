@@ -1,5 +1,5 @@
 {{#if actions.newtopic}}
-	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="{{#if submitted.content}}expanded{{else}}collapsed{{/if}}">
+	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form">
 		{{> flow_errors}}
 
 		{{#ifAnonymous}}
@@ -29,7 +29,6 @@
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 					class="mw-ui-button mw-ui-progressive mw-ui-flush-right">{{l10n "flow-newtopic-save"}}</button>
-				{{> flow_form_cancel_button }}
 				<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-new-topic"}}</small>
 			</div>
 		{{/unless}}
