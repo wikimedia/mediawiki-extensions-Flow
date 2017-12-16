@@ -32,42 +32,6 @@
 	/** @class FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers */
 
 	/**
-	 * Textareas are turned into editor objects, so we can't rely on
-	 * textareas to properly return the real content we're looking for (the
-	 * real editor can be anything, depending on the type of editor)
-	 *
-	 * @param {Event} event
-	 * @param {Object} info
-	 * @param {Object} queryMap
-	 * @return {Object}
-	 */
-	FlowBoardComponentApiEventsMixin.UI.events.globalApiPreHandlers.prepareEditor = function ( event, info, queryMap ) {
-		var $textareas = $( this ).closest( 'form' ).find( 'textarea' ),
-			override = {};
-
-		$textareas.each( function () {
-			var $editor = $( this );
-
-			// Doublecheck that this textarea is actually an editor instance
-			// (the editor may have added a textarea itself...)
-			if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
-				override[ $editor.attr( 'name' ) ] = mw.flow.editor.getRawContent( $editor );
-				override.flow_format = mw.flow.editor.getFormat( $editor );
-			}
-
-			// @todo: we have to make sure we get rid of all unwanted data
-			// in the form (whatever "editor instance" may have added)
-			// because we'll $form.serializeArray() to get the content.
-			// This is currently not an issue since we only have "none"
-			// editor type, which just uses the existing textarea. Someday,
-			// however, we may have VE (or wikieditor or ...) which could
-			// add its own nodes, which may be picked up by serializeArray()
-		} );
-
-		return $.extend( {}, queryMap, override );
-	};
-
-	/**
 	 * When presented with an error conflict, the conflicting content can
 	 * subsequently be re-submitted (to overwrite the conflicting content)
 	 * This will prepare the data-to-be-submitted so that the override is

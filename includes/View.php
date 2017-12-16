@@ -110,8 +110,6 @@ class View extends ContextSource {
 				'oojs-ui.styles.icons-interactions',
 				'oojs-ui.styles.icons-editing-core',
 				'oojs-ui.styles.icons-moderation',
-				// Needed for pending texture while switching editors
-				'oojs-ui.styles.textures'
 			] );
 		}
 
