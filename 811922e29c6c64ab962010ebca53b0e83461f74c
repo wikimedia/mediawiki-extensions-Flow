@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eee3df47_eb9edd64",
+        "filename": "modules/new/styles/board/menu.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3683
+      },
+      "writtenOn": "2017-12-16T11:21:49Z",
+      "side": 1,
+      "message": "Apologies for pinging in after a longgg time. What was the rationale of keeping this \u0027static\u0027 for smaller screens? I guess would \u0027absolute\u0027 would work equally well.\n\nNote: I\u0027m asking this because of the unintended(intended ?) consequence it might have on desktop browsers when the width is low. https://phabricator.wikimedia.org/T183056",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 16,
+        "endChar": 17
+      },
+      "revId": "811922e29c6c64ab962010ebca53b0e83461f74c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
