@@ -859,7 +859,8 @@
 	 */
 	mw.flow.Initializer.prototype.isUndoForm = function () {
 		return !!( $( 'form[data-module="topic"]' ).length ||
-			$( 'form[data-module="header"]' ).length );
+			$( 'form[data-module="header"]' ).length ) ||
+			$( 'form[data-module="topicsummary"]' ).length;
 	};
 
 	/**
@@ -869,7 +870,9 @@
 		if ( $( 'form[data-module="topic"]' ).length ) {
 			this.replaceEditorInUndoEditPost( $( 'form[data-module="topic"]' ) );
 		} else if ( $( 'form[data-module="header"]' ).length ) {
-			this.replaceEditorInUndoHeaderPost( $( 'form[data-module="header"]' ) );
+			this.replaceEditorInUndoHeader( $( 'form[data-module="header"]' ) );
+		} else if ( $( 'form[data-module="topicsummary"]' ).length ) {
+			this.replaceEditorInUndoSummary( $( 'form[data-module="topicsummary"]' ) );
 		}
 	};
 
@@ -930,7 +933,7 @@
 	 *
 	 * @param {jQuery} $form The form where the no-js editor exists to be replaced
 	 */
-	mw.flow.Initializer.prototype.replaceEditorInUndoHeaderPost = function ( $form ) {
+	mw.flow.Initializer.prototype.replaceEditorInUndoHeader = function ( $form ) {
 		var prevRevId, editor, content,
 			apiHandler,
 			pageName = mw.config.get( 'wgPageName' ),
@@ -974,6 +977,59 @@
 			} )
 			.on( 'afterCancel', function () {
 				returnToBoard();
+			} );
+	};
+
+	/**
+	 * Replace the editor in undo edit topic summary pages
+	 *
+	 * @param {jQuery} $form The form where the no-js editor exists to be replaced
+	 */
+	mw.flow.Initializer.prototype.replaceEditorInUndoSummary = function ( $form ) {
+		var prevRevId, editor, content,
+			apiHandler,
+			pageName = mw.config.get( 'wgPageName' ),
+			title = mw.Title.newFromText( pageName ),
+			topicId = title.getNameText(),
+			returnToTitle = function () {
+				window.location.href = title.getUrl();
+			};
+
+		if ( !$form.length ) {
+			return;
+		}
+
+		prevRevId = $form.find( 'input[name="topicsummary_prev_revision"]' ).val();
+		content = $form.find( 'textarea' ).val();
+
+		apiHandler = new mw.flow.dm.APIHandler(
+			'Topic:' + topicId,
+			{
+				currentRevision: prevRevId
+			}
+		);
+
+		// Create the editor
+		editor = this.createEditorWidget(
+			$form,
+			content,
+			'flow-topic-action-update-topic-summary'
+		);
+
+		// Events
+		editor
+			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
+				apiHandler.saveTopicSummary( topicId, content, contentFormat, captcha )
+					.then(
+						// Success
+						returnToTitle,
+
+						// Failure
+						handleFailure
+					);
+			} )
+			.on( 'afterCancel', function () {
+				returnToTitle();
 			} );
 	};
 
