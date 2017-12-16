@@ -10,7 +10,7 @@ use Flow\Tests\FlowTestCase;
  * @group Flow
  * @group Database
  */
-class TreeRepositorydbTest extends FlowTestCase {
+class TreeRepositoryDbTest extends FlowTestCase {
 	protected $tablesUsed = [ 'flow_tree_node' ];
 
 	public function testSomething() {

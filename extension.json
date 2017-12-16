@@ -1366,7 +1366,7 @@
 		"Flow\\Tests\\PermissionsTest": "tests/phpunit/PermissionsTest.php",
 		"Flow\\Tests\\PostRevisionTestCase": "tests/phpunit/PostRevisionTestCase.php",
 		"Flow\\Tests\\Repository\\TreeRepositoryTest": "tests/phpunit/Repository/TreeRepositoryTest.php",
-		"Flow\\Tests\\Repository\\TreeRepositorydbTest": "tests/phpunit/Repository/TreeRepositoryDbTest.php",
+		"Flow\\Tests\\Repository\\TreeRepositoryDbTest": "tests/phpunit/Repository/TreeRepositoryDbTest.php",
 		"Flow\\Tests\\SpamFilter\\AbuseFilterTest": "tests/phpunit/SpamFilter/AbuseFilterTest.php",
 		"Flow\\Tests\\SpamFilter\\ConfirmEditTest": "tests/phpunit/SpamFilter/ConfirmEditTest.php",
 		"Flow\\Tests\\SpamFilter\\ContentLengthFilterTest": "tests/phpunit/SpamFilter/ContentLengthFilterTest.php",
