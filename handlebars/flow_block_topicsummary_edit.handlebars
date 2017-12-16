@@ -1,6 +1,6 @@
 <div class="flow-topic-summary-container">
 	<div class="flow-topic-summary">
-		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.summarize.url}}">
+		<form class="flow-edit-form" method="POST" action="{{revision.actions.summarize.url}}">
 			{{> flow_errors }}
 			<input type="hidden" name="wpEditToken" value="{{editToken}}" />
 
@@ -28,20 +28,9 @@
 			<div class="flow-form-actions flow-form-collapsible">
 				<button
 					data-role="submit"
-					class="mw-ui-button mw-ui-progressive"
-					data-flow-api-target="< .flow-topic-summary-container">
+					class="mw-ui-button mw-ui-progressive">
 						{{l10n "flow-topic-action-update-topic-summary"}}
 				</button>
-
-				{{#ifCond action '===' 'summarize'}}
-					{{> flow_form_cancel_button }}
-				{{else}}
-					{{#unless submitted.summary}}
-						{{#unless revision.content.content}}
-							{{> flow_form_cancel_button msg='flow-skip-summary' }}
-						{{/unless}}
-					{{/unless}}
-				{{/ifCond}}
 				<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-summarize"}}</small>
 			</div>
 		</form>
