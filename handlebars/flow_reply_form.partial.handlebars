@@ -3,7 +3,6 @@
       method="POST"
       action="{{actions.reply.url}}"
       id="flow-reply-{{postId}}"
-      data-flow-initial-state="collapsed"
 >
 	<input type="hidden" name="wpEditToken" value="{{@root.rootBlock.editToken}}" />
 	<input type="hidden" name="topic_replyTo" value="{{postId}}" />
@@ -17,10 +16,9 @@
 		<textarea id="flow-post-{{postId}}-form-content"
 		          name="topic_content"
 		          required
-		          data-flow-expandable="true"
 		          class="mw-ui-input flow-click-interactive mw-editfont-{{@root.rootBlock.editFont}}"
 		          type="text"
-			          placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post-text-from-html}}"
+			      placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post-text-from-html}}"
 		          data-role="content"
 
 		          {{!--
@@ -49,7 +47,6 @@
 		>
 			{{~l10n "flow-reply-link"~}}
 		</button>
-		{{> flow_form_cancel_button }}
 		<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-reply"}}</small>
 	</div>
 </form>
