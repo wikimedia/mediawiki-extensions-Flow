@@ -661,11 +661,6 @@
 		$form.find( 'textarea' ).each( function () {
 			var $editor = $( this );
 
-			// Kill editor instances
-			if ( mw.flow.editor && mw.flow.editor.exists( $editor ) ) {
-				mw.flow.editor.destroy( $editor );
-			}
-
 			// Drop the new input in place if:
 			// the textarea isn't already focused
 			// and the textarea doesn't have text typed into it
@@ -688,9 +683,6 @@
 	 */
 	function flowEventsMixinCompressTextarea( $textarea ) {
 		$textarea.addClass( 'flow-input-compressed' );
-		if ( mw.flow.editor && mw.flow.editor.exists( $textarea ) ) {
-			mw.flow.editor.destroy( $textarea );
-		}
 	}
 	FlowComponentEventsMixin.eventHandlers.compressTextarea = flowEventsMixinCompressTextarea;
 
@@ -723,9 +715,6 @@
 		$form.find( '.flow-input-compressed' ).each( function () {
 			self.emitWithReturn( 'expandTextarea', $( this ) );
 		} );
-
-		// Initialize editors, turning them from textareas into editor objects
-		self.emitWithReturn( 'initializeEditors', $form );
 	}
 	FlowComponentEventsMixin.eventHandlers.showForm = flowEventsMixinShowForm;
 
@@ -738,42 +727,6 @@
 		$textarea.removeClass( 'flow-input-compressed' );
 	}
 	FlowComponentEventsMixin.eventHandlers.expandTextarea = flowEventsMixinExpandTextarea;
-
-	/**
-	 * Initialize all editors, turning them from textareas into editor objects.
-	 *
-	 * @param {jQuery} $container
-	 */
-	function flowEventsMixinInitializeEditors( $container ) {
-		var flowComponent = this;
-
-		$container
-			.find( '.flow-editor:not(:has(.flow-editor-initialized)) textarea:not(.flow-input-compressed)' )
-			.each( function () {
-				var $textarea = $( this ),
-					$form = $textarea.closest( 'form' ),
-					content = $textarea.val();
-
-				// Mark the editor as initialized so we don't try to init it again
-				$textarea.addClass( 'flow-editor-initialized' );
-
-				// Blank editor while loading
-				$textarea.val( '' );
-
-				mw.loader.using( 'ext.flow.editor', function () {
-					mw.flow.editor.load( $textarea, content );
-
-					// Kill editor instance when the form it's in is cancelled
-					flowComponent.emitWithReturn( 'addFormCancelCallback', $form, function () {
-						$textarea.removeClass( 'flow-editor-initialized' );
-						if ( mw.flow.editor.exists( $textarea ) ) {
-							mw.flow.editor.destroy( $textarea );
-						}
-					} );
-				} );
-			} );
-	}
-	FlowComponentEventsMixin.eventHandlers.initializeEditors = flowEventsMixinInitializeEditors;
 
 	/**
 	 * Adds a flow-cancel-callback to a given form, to be triggered on click of the "cancel" button.
