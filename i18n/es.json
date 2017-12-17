@@ -402,7 +402,7 @@
 	"right-flow-create-board": "Crear paneles de Flow en cualquier ubicación",
 	"right-flow-hide": "Ocultar temas y publicaciones de Discusiones estructuradas",
 	"right-flow-lock": "Marcar temas de Discusiones estructuradas como resueltos",
-	"right-flow-delete": "Borrar temas y publicaciones de Flow",
+	"right-flow-delete": "Borrar temas y publicaciones de Discusiones estructuradas",
 	"right-flow-edit-post": "Editar publicaciones de Flow de otros usuarios",
 	"right-flow-suppress": "Suprimir revisiones de Discusiones estructuradas",
 	"flow-terms-of-use-new-topic": "Al pulsar en «{{int:flow-newtopic-save}}» aceptas los términos de uso de este wiki.",
