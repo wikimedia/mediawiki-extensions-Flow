@@ -6,7 +6,10 @@
 	padding-right: 0.5em;
 
 	span {
+		// Prevent the user name from appearing in the middle of the timestamp if it has a different directionality (T94403)
 		unicode-bidi: embed;
+		// Force the interface direction to prevent the month name from appearing in the wrong place (T177455)
+		direction: ltr;
 	}
 
 	.flow-timestamp-user-formatted {
@@ -26,6 +29,12 @@
 			display: none;
 		}
 	}
+}
+
+.flow-post-timestamp {
+	// Prevent the user name from displaying on the wrong side of "Edited by" (T177455)
+	unicode-bidi: embed;
+	direction: ltr;
 }
 
 .flow-timestamp-ago,
