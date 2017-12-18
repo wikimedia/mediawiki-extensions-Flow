@@ -74,5 +74,5 @@
 	"flow-wikitext-switch-editor-tooltip": "Aldatu editore bisualera",
 	"flow-ve-switch-editor-tool-title": "Aldatu wikitestu-editorera",
 	"flow-mark-diff-patrolled-link-title": "Patruilatutzat markatu",
-	"flow-dialog-cancelconfirm-title": "Ziur zaude?"
+	"flow-dialog-cancelconfirm-title": "Ziur {{GENDER:|zaude}}?"
 }
