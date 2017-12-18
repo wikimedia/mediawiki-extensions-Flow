@@ -16,6 +16,24 @@
       "revId": "a31c5d3b66dcd7d6173502985648f9eb1e734f92",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_0ff751f3",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-18T11:53:51Z",
+      "side": 1,
+      "message": "Are you talking about \u0027prefer-ve\u0027, or about \u0027html\u0027? The former is a preference value defined by the VE extension. The latter is the name of the format that we need to get from the API in order to initialize the editor. When starting in source mode, we need to fetch wikitext from the API, when starting in visual mode we need to fetch HTML. The value isn\u0027t in the database, but this function doesn\u0027t return the name of the editor, it returns the name of the format to fetch (although these two things are admittedly kind of intertwined in my code)",
+      "parentUuid": "cee8db29_66e8ca0c",
+      "revId": "a31c5d3b66dcd7d6173502985648f9eb1e734f92",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
