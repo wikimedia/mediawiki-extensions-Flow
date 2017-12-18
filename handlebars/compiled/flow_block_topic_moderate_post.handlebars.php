@@ -20,6 +20,7 @@
             'concat' => 'Flow\TemplateHelper::concat',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+            'bidi' => 'Flow\TemplateHelper::bidi',
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -88,13 +89,13 @@
 '.$sp.'			   title="'.htmlentities((string)((isset($in['actions']['thank']['title']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities((string)((isset($in['actions']['thank']['text']) && is_array($in['actions']['thank'])) ? $in['actions']['thank']['text'] : null), ENT_QUOTES, 'UTF-8').'</a>
 '.$sp.'' : '').'	</span>
 '.$sp.'
-'.$sp.'	<span class="flow-post-timestamp">
+'.$sp.'	<span class="flow-post-timestamp" dir="auto">
 '.$sp.''.((LCRun3::ifvar($cx, ((isset($in['isOriginalContent']) && is_array($in)) ? $in['isOriginalContent'] : null))) ? '			<a href="'.htmlentities((string)((isset($in['links']['topic-history']['url']) && is_array($in['links']['topic-history'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">
 '.$sp.'				'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['postId']) && is_array($in)) ? $in['postId'] : null)),array()), 'encq').'
 '.$sp.'			</a>
 '.$sp.'' : '			<span>
 '.$sp.''.LCRun3::hbch($cx, 'ifCond', array(array(((isset($in['creator']['name']) && is_array($in['creator'])) ? $in['creator']['name'] : null),'===',((isset($in['lastEditUser']['name']) && is_array($in['lastEditUser'])) ? $in['lastEditUser']['name'] : null)),array()), $in, false, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-edited'),array()), 'encq').'
-'.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-edited-by',((isset($in['lastEditUser']['name']) && is_array($in['lastEditUser'])) ? $in['lastEditUser']['name'] : null)),array()), 'encq').'
+'.$sp.'';}, function($cx, $in)use($sp){return '					'.LCRun3::ch($cx, 'l10n', array(array('flow-edited-by',LCRun3::ch($cx, 'bidi', array(array(((isset($in['lastEditUser']['name']) && is_array($in['lastEditUser'])) ? $in['lastEditUser']['name'] : null)),array()), 'raw')),array()), 'encq').'
 '.$sp.'';}).'			</span>
 '.$sp.'			<a href="'.htmlentities((string)((isset($in['links']['diff-prev']['url']) && is_array($in['links']['diff-prev'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-anchor">'.LCRun3::ch($cx, 'uuidTimestamp', array(array(((isset($in['lastEditId']) && is_array($in)) ? $in['lastEditId'] : null)),array()), 'encq').'</a>
 '.$sp.'').'	</span>

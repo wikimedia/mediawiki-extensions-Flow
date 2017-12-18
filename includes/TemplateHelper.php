@@ -152,6 +152,7 @@ class TemplateHelper {
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
+					'bidi' => 'Flow\TemplateHelper::bidi',
 				],
 				'hbhelpers' => [
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -554,6 +555,11 @@ class TemplateHelper {
 	public static function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );
 		return self::html( wfMessage( $str, $args )->parse() );
+	}
+
+	public static function bidi( array $args, array $named ) {
+		$str = array_shift( $args );
+		return RequestContext::getMain()->getLanguage()->embedBidi( $str );
 	}
 
 	/**
