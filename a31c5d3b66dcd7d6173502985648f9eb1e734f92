@@ -34,6 +34,24 @@
       "revId": "a31c5d3b66dcd7d6173502985648f9eb1e734f92",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_8cba441d",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T12:00:32Z",
+      "side": 1,
+      "message": "That makes sense (format vs editor).",
+      "parentUuid": "cee8db29_0ff751f3",
+      "revId": "a31c5d3b66dcd7d6173502985648f9eb1e734f92",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
