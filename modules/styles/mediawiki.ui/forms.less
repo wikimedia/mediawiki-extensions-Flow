@@ -2,7 +2,7 @@
 @import '../flow.colors';
 @import '../flow.variables';
 
-// Form elements [Draft]
+// Form elements [ Draft ]
 //
 // Styleguide 4.
 
@@ -128,27 +128,27 @@ Does not support IE7 nor IE8.
 
 	.mw-ui-input {
 		// Hide the ULS icon because these elements have HTML5 controls
-		&[type='date'],
-		&[type='number'],
-		&[type='search'],
-		&[type='time'] {
+		&[ type='date' ],
+		&[ type='number' ],
+		&[ type='search' ],
+		&[ type='time' ] {
 			~ .mw-ui-uls-icon {
 				visibility: hidden;
 			}
 		}
 
 		&:valid {
-			&[required],
-			&[min],
-			&[max],
-			&[pattern],
-			&[type='color'],
-			&[type='date'],
-			&[type='email'],
-			&[type='number'],
-			&[type='url'],
-			&[type='range'],
-			&[type='time'] {
+			&[ required ],
+			&[ min ],
+			&[ max ],
+			&[ pattern ],
+			&[ type='color' ],
+			&[ type='date' ],
+			&[ type='email' ],
+			&[ type='number' ],
+			&[ type='url' ],
+			&[ type='range' ],
+			&[ type='time' ] {
 				border-right-width: 2em;
 
 				~ .mw-ui-validation-icon {
@@ -168,13 +168,13 @@ Does not support IE7 nor IE8.
 			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
 				right: 2em;
 			}
-			&[type='date'] {
+			&[ type='date' ] {
 				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
 					right: 4em;
 				}
 			}
-			&[type='number'],
-			&[type='time'] {
+			&[ type='number' ],
+			&[ type='time' ] {
 				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
 					right: 3em;
 				}
@@ -182,17 +182,17 @@ Does not support IE7 nor IE8.
 		}
 
 		&:invalid {
-			&[required],
-			&[min],
-			&[max],
-			&[pattern],
-			&[type='color'],
-			&[type='date'],
-			&[type='email'],
-			&[type='number'],
-			&[type='url'],
-			&[type='range'],
-			&[type='time'] {
+			&[ required ],
+			&[ min ],
+			&[ max ],
+			&[ pattern ],
+			&[ type='color' ],
+			&[ type='date' ],
+			&[ type='email' ],
+			&[ type='number' ],
+			&[ type='url' ],
+			&[ type='range' ],
+			&[ type='time' ] {
 				border-right-width: 2em;
 
 				~ .mw-ui-validation-icon {
@@ -244,12 +244,12 @@ Does not support IE7 nor IE8.
 		line-height: inherit;
 	}
 
-	input[type='radio'],
-	input[type='checkbox'] {
+	input[ type='radio' ],
+	input[ type='checkbox' ] {
 		display: none;
 	}
 
-	input[type='radio'] {
+	input[ type='radio' ] {
 		+ .mw-ui-radio:before {
 			//.glyphicon-dashboard
 			content: '\e141';
@@ -260,7 +260,7 @@ Does not support IE7 nor IE8.
 			content: '\e165';
 		}
 	}
-	input[type='checkbox'] {
+	input[ type='checkbox' ] {
 		+ .mw-ui-checkbox:before {
 			//.glyphicon-unchecked
 			content: '\e157';

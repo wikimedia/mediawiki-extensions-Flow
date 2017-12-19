@@ -37,7 +37,7 @@
 }
 
 // needs extra specificity to override `div#content h2` from vector
-div#content .flow-topic-title { /* stylelint-disable-line selector-no-id */
+div#content .flow-topic-title { /* stylelint-disable-line selector-max-id */
 	padding: 0;
 	border-bottom: 0;
 	font-family: sans-serif;
@@ -48,7 +48,8 @@ div#content .flow-topic-title { /* stylelint-disable-line selector-no-id */
 }
 
 // Correct positioning for ltr/rtl content direction
-div#content .mw-content-ltr .flow-topic-title { /* stylelint-disable-line selector-no-id */
+/* stylelint-disable selector-max-id */
+div#content .mw-content-ltr .flow-topic-title {
 	/* @noflip */
 	margin: 0 2.5em 0.15em 0;
 
@@ -63,7 +64,7 @@ div#content .mw-content-ltr .flow-topic-title { /* stylelint-disable-line select
 }
 
 // Correct positioning for ltr/rtl content direction
-div#content .mw-content-rtl .flow-topic-title { /* stylelint-disable-line selector-no-id */
+div#content .mw-content-rtl .flow-topic-title {
 	/* @noflip */
 	margin: 0 0 0.15em 2.5em;
 
@@ -76,6 +77,7 @@ div#content .mw-content-rtl .flow-topic-title { /* stylelint-disable-line select
 		margin-right: -0.25em;
 	}
 }
+/* stylelint-enable selector-max-id */
 
 .flow-moderated-topic-title {
 	margin-bottom: 0.33em;
@@ -84,7 +86,7 @@ div#content .mw-content-rtl .flow-topic-title { /* stylelint-disable-line select
 }
 
 // Override default Vector heading styles
-div#content h2.flow-topic-title { /* stylelint-disable-line selector-no-id */
+div#content h2.flow-topic-title { /* stylelint-disable-line selector-max-id */
 	font-size: 1.5em;
 }
 

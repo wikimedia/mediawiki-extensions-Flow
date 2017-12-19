@@ -35,7 +35,7 @@ Styleguide 4.0.
 		font-weight: bold;
 	}
 
-	#bodyContent & { /* stylelint-disable-line selector-no-id */
+	#bodyContent & { /* stylelint-disable-line selector-max-id */
 		font-size: 1em;
 	}
 
@@ -201,7 +201,7 @@ Styleguide 4.0.
 	}
 
 	// Don't apply these classes on IE6
-	&[class] {
+	&[ class ] {
 		&.mw-ui-progressive {
 			.flow-ui-tooltip-color( @colorProgressive );
 			.mw-ui-icon {
