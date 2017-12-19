@@ -48,7 +48,8 @@
 		"echo-subscriptions-email-flow-discussion": false,
 		"flow-topiclist-sortby": "updated",
 		"flow-editor": "wikitext",
-		"flow-side-rail-state": "expanded"
+		"flow-side-rail-state": "expanded",
+		"flow-visualeditor": 1
 	},
 	"ExtensionFunctions": [
 		"FlowHooks::initFlowExtension"
@@ -503,12 +504,8 @@
 				"flow/ui/widgets/mw.flow.ui.SidebarExpandWidget.js",
 				"flow/ui/widgets/mw.flow.ui.NewTopicWidget.js",
 				"flow/ui/widgets/mw.flow.ui.TopicTitleWidget.js",
-				"flow/ui/widgets/editor/editors/mw.flow.ui.AbstractEditorWidget.js",
-				"flow/ui/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.js",
-				"flow/ui/widgets/editor/editors/mw.flow.ui.VisualEditorWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.AnonWarningWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.CanNotEditWidget.js",
-				"flow/ui/widgets/editor/mw.flow.ui.EditorSwitcherWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.EditorControlsWidget.js",
 				"flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
 				"flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
@@ -526,9 +523,7 @@
 				"styles/flow/widgets/editor/mw.flow.ui.AnonWarningWidget.less",
 				"styles/flow/widgets/editor/mw.flow.ui.CanNotEditWidget.less",
 				"styles/flow/widgets/editor/mw.flow.ui.EditorControlsWidget.less",
-				"styles/flow/widgets/editor/mw.flow.ui.EditorSwitcherWidget.less",
 				"styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
-				"styles/flow/widgets/editor/editors/mw.flow.ui.WikitextEditorWidget.less",
 				"styles/flow/widgets/mw.flow.ui.CategoryItemWidget.less",
 				"styles/flow/widgets/mw.flow.ui.CategoriesWidget.less",
 				"styles/flow/widgets/mw.flow.ui.TopicTitleWidget.less"
@@ -673,14 +668,6 @@
 				"mobile"
 			]
 		},
-		"ext.flow.switching": {
-			"scripts": [
-				"flow/ui/tools/mw.flow.ui.MWEditModeTool.js"
-			],
-			"dependencies": [
-				"ext.visualEditor.switching"
-			]
-		},
 		"ext.flow.visualEditor": {
 			"scripts": [
 				"editor/editors/visualeditor/mw.flow.ve.Target.js",
@@ -689,9 +676,9 @@
 				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js",
 				"editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
 				"editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
-				"editor/editors/visualeditor/ui/actions/mw.flow.ve.ui.SwitchEditorAction.js",
 				"editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js",
-				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js"
+				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js",
+				"flow/ui/tools/mw.flow.ui.MWEditModeTool.js"
 			],
 			"styles": [
 				"editor/editors/visualeditor/mw.flow.ve.Target.less",
@@ -703,7 +690,8 @@
 				"ext.visualEditor.mediawiki",
 				"ext.visualEditor.desktopTarget",
 				"ext.visualEditor.mwextensions.desktop",
-				"ext.flow.switching",
+				"ext.visualEditor.mwwikitext",
+				"mediawiki.editfont.styles",
 				"oojs-ui.styles.icons-editing-advanced",
 				"site",
 				"user",
