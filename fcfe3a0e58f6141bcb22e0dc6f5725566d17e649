@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_410bded9",
+        "filename": "modules/styles/mediawiki.ui/forms.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2017-12-19T23:02:01Z",
+      "side": 1,
+      "message": "wow, ridiculous",
+      "revId": "fcfe3a0e58f6141bcb22e0dc6f5725566d17e649",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
