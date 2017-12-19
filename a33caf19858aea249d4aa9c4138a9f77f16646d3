@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_784057a9",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:20:14Z",
+      "side": 1,
+      "message": "I think you mean \u0027!\u003d\u003d\u0027\n\n:)",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
