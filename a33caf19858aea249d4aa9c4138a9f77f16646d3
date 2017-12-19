@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cee8db29_bba659a5",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-19T20:08:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cee8db29_589bd31b",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_784057a9",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
         "patchSetId": 19
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-19T17:20:14Z",
       "side": 1,
       "message": "I think you mean \u0027!\u003d\u003d\u0027\n\n:)",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_3bb1a9dd",
+        "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-19T20:08:36Z",
+      "side": 1,
+      "message": "Yes I do, good catch.",
+      "parentUuid": "cee8db29_784057a9",
       "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2017-12-19T17:38:31Z",
       "side": 1,
       "message": "e.g. MathInspector (quick editor) contains a MultiLineTextInputWidget",
+      "parentUuid": "cee8db29_58cd9333",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_7bc3313e",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-19T20:08:36Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "cee8db29_58cd9333",
       "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
@@ -106,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "cee8db29_9bc6f54c",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-19T20:08:36Z",
+      "side": 1,
+      "message": "Yeah, not needed because there\u0027s a child selector on textInputWidget already.",
+      "parentUuid": "cee8db29_58b2b393",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_788217ab",
         "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.editor-wikimediauitheme.less",
         "patchSetId": 19
@@ -117,6 +189,24 @@
       "writtenOn": "2017-12-19T17:38:31Z",
       "side": 1,
       "message": "again, we should use stricter selectors here to avoid issues with nested surfaces, but not urgent",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_bbbdb9af",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.editor-wikimediauitheme.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-19T20:08:36Z",
+      "side": 1,
+      "message": "Easy enough to move this into the \u003e .oo-ui-toolbar block right above",
+      "parentUuid": "cee8db29_788217ab",
       "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
