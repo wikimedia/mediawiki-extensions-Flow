@@ -16,6 +16,40 @@
       "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_58cd9333",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:27:10Z",
+      "side": 1,
+      "message": "Use a child selector here otherwise it applies to textInputWidget\u0027s in inspectors",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_38d24fd6",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:27:10Z",
+      "side": 1,
+      "message": "child selector here too",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
