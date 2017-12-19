@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cee8db29_589bd31b",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:38:31Z",
+      "side": 1,
+      "message": "Ideally we would use .ve-init-mw-target-surface.ve-ui-surface-source in case we ever have a nested surface (e.g. in an inspector) (also the ve.ce.documentNode selectors), but this is an existing issue you don\u0027t have to fix here.",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_784057a9",
         "filename": "modules/flow/ui/widgets/editor/mw.flow.ui.EditorWidget.js",
         "patchSetId": 19
@@ -36,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "cee8db29_38b7ef82",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:38:31Z",
+      "side": 1,
+      "message": "e.g. MathInspector (quick editor) contains a MultiLineTextInputWidget",
+      "parentUuid": "cee8db29_58cd9333",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_38d24fd6",
         "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
         "patchSetId": 19
@@ -47,6 +82,41 @@
       "writtenOn": "2017-12-19T17:27:10Z",
       "side": 1,
       "message": "child selector here too",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_58b2b393",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.EditorWidget.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:38:31Z",
+      "side": 1,
+      "message": "actually not needed here",
+      "parentUuid": "cee8db29_38d24fd6",
+      "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_788217ab",
+        "filename": "modules/styles/flow/widgets/editor/mw.flow.ui.editor-wikimediauitheme.less",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-19T17:38:31Z",
+      "side": 1,
+      "message": "again, we should use stricter selectors here to avoid issues with nested surfaces, but not urgent",
       "revId": "a33caf19858aea249d4aa9c4138a9f77f16646d3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
