@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_19914a53",
+        "filename": "modules/flow/ui/tools/mw.flow.ui.MWEditModeTool.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-20T13:04:49Z",
+      "side": 1,
+      "message": "This inheritance shouldn\u0027t have been changed. The ve.ui. implementation of the edit mode tool is for ArticleTargets only.",
+      "revId": "fecdfacabd89421806748371da88fdb8a169b22e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
