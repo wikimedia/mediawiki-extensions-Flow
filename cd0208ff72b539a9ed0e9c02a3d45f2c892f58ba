@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_f9d746f0",
+        "filename": "includes/View.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-20T14:00:15Z",
+      "side": 1,
+      "message": "Use Xml::encodeJsCall()",
+      "revId": "cd0208ff72b539a9ed0e9c02a3d45f2c892f58ba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
