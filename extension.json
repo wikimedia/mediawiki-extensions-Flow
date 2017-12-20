@@ -691,6 +691,7 @@
 				"ext.visualEditor.desktopTarget",
 				"ext.visualEditor.mwextensions.desktop",
 				"ext.visualEditor.mwwikitext",
+				"ext.visualEditor.switching",
 				"mediawiki.editfont.styles",
 				"oojs-ui.styles.icons-editing-advanced",
 				"site",
