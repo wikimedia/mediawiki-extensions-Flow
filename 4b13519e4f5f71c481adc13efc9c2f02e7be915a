@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_39640e45",
+        "filename": "modules/flow/ui/tools/mw.flow.ui.MWEditModeTool.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-20T14:22:20Z",
+      "side": 1,
+      "message": "Hah, I never corrected these, so they were wrong in my commit",
+      "revId": "4b13519e4f5f71c481adc13efc9c2f02e7be915a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
