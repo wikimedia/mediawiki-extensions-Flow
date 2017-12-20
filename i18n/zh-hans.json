@@ -545,5 +545,6 @@
 	"flow-guidedtour-optin-feedback": "向我们提供{{GENDER:$1|您}}的反馈！",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以随时从测试功能选项中获取更多信息、提供反馈、或禁用新系统。",
 	"flow-action-not-page": "页面对象是错误类的实例",
-	"flow-action-wrong-title-content-model": "页面正在由结构式讨论处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在结构式讨论名字空间中的非结构式讨论页面，而<code>rev_content_model</code>未被填充。"
+	"flow-action-wrong-title-content-model": "页面正在由结构式讨论处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在结构式讨论名字空间中的非结构式讨论页面，而<code>rev_content_model</code>未被填充。",
+	"flow-preference-visualeditor": "在Flow中启用可视化编辑器及新wiki文本模式"
 }

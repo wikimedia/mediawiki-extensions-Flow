@@ -531,5 +531,6 @@
 	"flow-guidedtour-optin-feedback": "Gib uns {{GENDER:$1|deine}} Rückmeldung!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kannst weitere Informationen im Betafunktionen-Abschnitt erhalten. Dort kannst du auch Rückmeldungen geben oder das neue System jederzeit deaktivieren.",
 	"flow-action-not-page": "Das Seitenobjekt ist eine Instanz der falschen Klasse",
-	"flow-action-wrong-title-content-model": "Die Seite wird von Strukturierte Diskussionen verwaltet, aber die Titelklasse zeigt an, dass das Inhaltsmodell „$1“ ist. Dies ist eine Falschkonfiguration oder widersprüchlicher Status. Zum Beispiel könnte dies tatsächlich eine Nicht-Strukturierte-Diskussionen-Seite in einem Strukturierte-Diskussionen-Namensraum sein und <code>rev_content_model</code> ist nicht eingetragen."
+	"flow-action-wrong-title-content-model": "Die Seite wird von Strukturierte Diskussionen verwaltet, aber die Titelklasse zeigt an, dass das Inhaltsmodell „$1“ ist. Dies ist eine Falschkonfiguration oder widersprüchlicher Status. Zum Beispiel könnte dies tatsächlich eine Nicht-Strukturierte-Diskussionen-Seite in einem Strukturierte-Diskussionen-Namensraum sein und <code>rev_content_model</code> ist nicht eingetragen.",
+	"flow-preference-visualeditor": "Den visuellen Editor und den neuen Wikitextmodus in Flow aktivieren"
 }
