@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cee8db29_4282b2ce",
+        "filename": "i18n/en.json",
+        "patchSetId": 20
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-21T17:54:13Z",
+      "side": 1,
+      "message": "https://gerrit.wikimedia.org/r/399666",
+      "parentUuid": "cee8db29_e22ae6d6",
+      "range": {
+        "startLine": 573,
+        "startChar": 88,
+        "endLine": 573,
+        "endChar": 92
+      },
+      "revId": "fecdfacabd89421806748371da88fdb8a169b22e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_19914a53",
         "filename": "modules/flow/ui/tools/mw.flow.ui.MWEditModeTool.js",
         "patchSetId": 20
