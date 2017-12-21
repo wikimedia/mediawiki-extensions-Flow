@@ -570,5 +570,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section.",
 	"flow-action-not-page": "Page object is an instance of the wrong class",
 	"flow-action-wrong-title-content-model": "The page is being handled by Structured Discussions, but the Title class indicates that the content model is '$1'.  This is a misconfiguration or inconsistent state.  For example, this may actually be a non-Structured Discussions page in a Structured Discussions namespace, with <code>rev_content_model</code> not populated.",
-	"flow-preference-visualeditor": "Enable the visual editor and the new wikitext mode in Flow"
+	"flow-preference-visualeditor": "Enable the visual editor and the new wikitext mode in Structured Discussions"
 }
