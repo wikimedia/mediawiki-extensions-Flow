@@ -2,7 +2,7 @@
 
 namespace Flow\Search\Iterators;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
@@ -14,7 +14,7 @@ use stdClass;
 
 abstract class AbstractIterator implements Iterator {
 	/**
-	 * @var DatabaseBase
+	 * @var IDatabase
 	 */
 	protected $dbr;
 

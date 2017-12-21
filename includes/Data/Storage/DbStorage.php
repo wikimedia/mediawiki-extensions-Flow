@@ -69,7 +69,7 @@ abstract class DbStorage implements ObjectStorage {
 	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
 	 * 3. Finds armoured raw SQL and expands it out.
 	 *
-	 * @param array $data Query conditions for DatabaseBase::select
+	 * @param array $data Query conditions for IDatabase::select
 	 * @return array query conditions escaped for use
 	 * @throws DataModelException
 	 */

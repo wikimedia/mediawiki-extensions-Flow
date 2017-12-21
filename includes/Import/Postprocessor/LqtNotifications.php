@@ -2,7 +2,7 @@
 
 namespace Flow\Import\Postprocessor;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use BatchRowIterator;
 use EchoCallbackIterator;
 use EchoEvent;
@@ -29,7 +29,7 @@ class LqtNotifications implements Postprocessor {
 	protected $controller;
 
 	/**
-	 * @var DatabaseBase
+	 * @var IDatabase
 	 */
 	protected $dbw;
 
@@ -38,7 +38,7 @@ class LqtNotifications implements Postprocessor {
 	 */
 	protected $postsImported = [];
 
-	public function __construct( NotificationController $controller, DatabaseBase $dbw ) {
+	public function __construct( NotificationController $controller, IDatabase $dbw ) {
 		$this->controller = $controller;
 		$this->dbw = $dbw;
 		$this->overrideUsersToNotify();

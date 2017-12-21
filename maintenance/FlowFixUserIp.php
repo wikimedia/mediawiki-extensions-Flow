@@ -66,7 +66,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	public function updateTreeRevision( DatabaseBase $dbw, $continue = null ) {
+	public function updateTreeRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_tree_revision',
 			/* select */[ 'tree_rev_id' ],
@@ -109,7 +109,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		return end( $ids );
 	}
 
-	public function updateRevision( $columnPrefix, DatabaseBase $dbw, $continue = null ) {
+	public function updateRevision( $columnPrefix, IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_revision',
 			/* select */[ 'rev_id', 'rev_type' ],

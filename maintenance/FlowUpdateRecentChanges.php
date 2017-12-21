@@ -49,11 +49,11 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	/**
 	 * Refreshes a batch of recentchanges entries
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param int[optional] $continue The next batch starting at rc_id
 	 * @return int Start id for the next batch
 	 */
-	public function refreshBatch( DatabaseBase $dbw, $continue = null ) {
+	public function refreshBatch( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'recentchanges',
 			/* select */[ 'rc_id', 'rc_params' ],

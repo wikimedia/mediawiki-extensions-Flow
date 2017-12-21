@@ -66,11 +66,11 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	/**
 	 * Refreshes a batch of recentchanges entries
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param int[optional] $continue The next batch starting at rc_id
 	 * @return int Start id for the next batch
 	 */
-	public function updateWorkflow( DatabaseBase $dbw, $continue = null ) {
+	public function updateWorkflow( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_workflow',
 			/* select */[ 'workflow_id', 'workflow_user_text' ],
@@ -100,7 +100,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		return $continue;
 	}
 
-	public function updateTreeRevision( DatabaseBase $dbw, $continue = null ) {
+	public function updateTreeRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_tree_revision',
 			/* select */[ 'tree_rev_id', 'tree_orig_user_text' ],
@@ -129,7 +129,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		return $continue;
 	}
 
-	public function updateRevision( DatabaseBase $dbw, $continue = null ) {
+	public function updateRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_revision',
 			/* select */[ 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ],

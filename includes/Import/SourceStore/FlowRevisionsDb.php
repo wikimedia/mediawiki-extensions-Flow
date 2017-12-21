@@ -2,7 +2,7 @@
 
 namespace Flow\Import\SourceStore;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use IP;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
@@ -29,14 +29,14 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class FlowRevisionsDb implements SourceStoreInterface {
 	/**
-	 * @var DatabaseBase
+	 * @var IDatabase
 	 */
 	protected $dbr;
 
 	/**
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 */
-	public function __construct( DatabaseBase $dbr ) {
+	public function __construct( IDatabase $dbr ) {
 		$this->dbr = $dbr;
 	}
 

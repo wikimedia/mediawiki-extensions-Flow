@@ -3,7 +3,7 @@
 namespace Flow\Dump;
 
 use BatchRowIterator;
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Exception;
 use Flow\Collection\PostSummaryCollection;
 use Flow\Container;
@@ -127,7 +127,7 @@ class Exporter extends WikiExporter {
 	 * @return BatchRowIterator
 	 */
 	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null ) {
-		/** @var DatabaseBase $dbr */
+		/** @var IDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );

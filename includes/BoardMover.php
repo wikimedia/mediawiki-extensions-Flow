@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\Header;
@@ -27,7 +27,7 @@ class BoardMover {
 	protected $nullEditUser;
 
 	/**
-	 * @var DatabaseBase|null
+	 * @var IDatabase|null
 	 */
 	protected $dbw;
 
