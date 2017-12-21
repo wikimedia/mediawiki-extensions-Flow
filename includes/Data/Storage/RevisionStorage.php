@@ -2,7 +2,7 @@
 
 namespace Flow\Data\Storage;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use ExternalStore;
 use Flow\Data\Utils\Merger;
 use Flow\Data\Utils\ResultDuplicator;
@@ -341,7 +341,7 @@ abstract class RevisionStorage extends DbStorage {
 		);
 	}
 
-	protected function buildCompositeInCondition( DatabaseBase $dbr, array $queries ) {
+	protected function buildCompositeInCondition( IDatabase $dbr, array $queries ) {
 		$keys = array_keys( reset( $queries ) );
 		$conditions = [];
 		if ( count( $keys ) === 1 ) {

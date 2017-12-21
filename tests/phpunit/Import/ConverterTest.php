@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Import;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\Importer;
@@ -22,7 +22,7 @@ class ConverterTest extends \MediaWikiTestCase {
 	}
 
 	protected function createConverter(
-		DatabaseBase $dbw = null,
+		IDatabase $dbw = null,
 		Importer $importer = null,
 		LoggerInterface $logger = null,
 		User $user = null,

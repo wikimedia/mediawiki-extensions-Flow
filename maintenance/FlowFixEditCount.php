@@ -39,7 +39,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		/** @var DatabaseBase $dbr */
+		/** @var IDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		$countableActions = $this->getCountableActions();
 
@@ -62,7 +62,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	public function refreshBatch( DatabaseBase $dbr, UUID $continue, $countableActions, UUID $stop ) {
+	public function refreshBatch( IDatabase $dbr, UUID $continue, $countableActions, UUID $stop ) {
 		$rows = $dbr->select(
 			'flow_revision',
 			[ 'rev_id', 'rev_user_id' ],

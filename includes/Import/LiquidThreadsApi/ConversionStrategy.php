@@ -2,7 +2,7 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
@@ -30,7 +30,7 @@ use WikitextContent;
  */
 class ConversionStrategy implements IConversionStrategy {
 	/**
-	 * @var DatabaseBase Master database for the current wiki
+	 * @var IDatabase Master database for the current wiki
 	 */
 	protected $dbw;
 
@@ -60,7 +60,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $notificationController;
 
 	public function __construct(
-		DatabaseBase $dbw,
+		IDatabase $dbw,
 		ImportSourceStore $sourceStore,
 		ApiBackend $api,
 		UrlGenerator $urlGenerator,

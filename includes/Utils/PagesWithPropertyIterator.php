@@ -2,7 +2,7 @@
 
 namespace Flow\Utils;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use BatchRowIterator;
 use EchoCallbackIterator;
 use IteratorAggregate;
@@ -14,7 +14,7 @@ use Title;
  */
 class PagesWithPropertyIterator implements IteratorAggregate {
 	/**
-	 * @var DatabaseBase
+	 * @var IDatabase
 	 */
 	protected $db;
 
@@ -38,12 +38,12 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	protected $stopId = null;
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param string $propName
 	 * @param int|null $startId Page id to start at (inclusive)
 	 * @param int|null $stopId Page id to stop at (exclusive)
 	 */
-	public function __construct( DatabaseBase $db, $propName, $startId = null, $stopId = null ) {
+	public function __construct( IDatabase $db, $propName, $startId = null, $stopId = null ) {
 		$this->db = $db;
 		$this->propName = $propName;
 		$this->startId = $startId;

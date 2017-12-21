@@ -71,7 +71,7 @@ class DbFactory {
 	 *
 	 * @param int $db index of the connection to get.  DB_MASTER|DB_REPLICA.
 	 * @param string|bool $wiki The wiki ID, or false for the current wiki
-	 * @return \DatabaseBase
+	 * @return \IDatabase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
 		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, [], $wiki );

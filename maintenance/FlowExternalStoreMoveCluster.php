@@ -18,8 +18,8 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	/**
 	 * Must return an array in the form:
 	 * array(
-	 * 	'dbr' => DatabaseBase object,
-	 * 	'dbw' => DatabaseBase object,
+	 * 	'dbr' => IDatabase object,
+	 * 	'dbw' => IDatabase object,
 	 * 	'table' => 'flow_revision',
 	 * 	'pk' => 'rev_id',
 	 * 	'content' => 'rev_content',
@@ -65,9 +65,9 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$to = explode( ',', $this->getOption( 'to' ) );
 
 		$schema = $this->schema();
-		/** @var DatabaseBase $dbr */
+		/** @var IDatabase $dbr */
 		$dbr = $schema['dbr'];
-		/** @var DatabaseBase $dbw */
+		/** @var IDatabase $dbw */
 		$dbw = $schema['dbw'];
 
 		$iterator = new BatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->mBatchSize );

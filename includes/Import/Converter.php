@@ -2,7 +2,7 @@
 
 namespace Flow\Import;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\FlowException;
 use MovePage;
 use MWExceptionHandler;
@@ -31,7 +31,7 @@ use WikitextContent;
  */
 class Converter {
 	/**
-	 * @var DatabaseBase Master database of the current wiki. Required
+	 * @var IDatabase Master database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
 	protected $dbw;
@@ -61,7 +61,7 @@ class Converter {
 	protected $strategy;
 
 	/**
-	 * @param DatabaseBase $dbw Master wiki database to read from
+	 * @param IDatabase $dbw Master wiki database to read from
 	 * @param Importer $importer
 	 * @param LoggerInterface $logger
 	 * @param User $user User for moves and edits related to the conversion process
@@ -69,7 +69,7 @@ class Converter {
 	 * @throws ImportException When $user does not have an Id
 	 */
 	public function __construct(
-		DatabaseBase $dbw,
+		IDatabase $dbw,
 		Importer $importer,
 		LoggerInterface $logger,
 		User $user,

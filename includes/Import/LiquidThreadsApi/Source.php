@@ -355,7 +355,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	protected function isNotFoundError( $apiResponse ) {
 		// LQT has some bugs where not finding the requested item in the database throws
 		// returns this exception.
-		$expect = 'Exception Caught: DatabaseBase::makeList: empty input for field thread_parent';
+		$expect = 'Exception Caught: IDatabase::makeList: empty input for field thread_parent';
 		return false !== strpos( $apiResponse['error']['info'], $expect );
 	}
 }

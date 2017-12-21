@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Import\LiquidThreadsApi;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use DateTime;
 use DateTimeZone;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
@@ -151,7 +151,7 @@ EOD
 	}
 
 	protected function createStrategy(
-		DatabaseBase $dbr = null,
+		IDatabase $dbr = null,
 		ImportSourceStore $sourceStore = null,
 		ApiBackend $api = null
 	) {

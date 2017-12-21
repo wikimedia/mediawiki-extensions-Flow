@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use DatabaseBase;
+use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\DataModelException;
 use Title;
 use User;
@@ -16,7 +16,7 @@ class WatchedTopicItems {
 	protected $watchListDb;
 	protected $overrides = [];
 
-	public function __construct( User $user, DatabaseBase $watchListDb ) {
+	public function __construct( User $user, IDatabase $watchListDb ) {
 		$this->user = $user;
 		$this->watchListDb = $watchListDb;
 	}
@@ -87,7 +87,7 @@ class WatchedTopicItems {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	public function getWatchlistDb() {
 		return $this->watchListDb;
