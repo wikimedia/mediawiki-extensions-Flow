@@ -466,5 +466,6 @@
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|당신의}} 새 사용자토론 문서에 오신 것을 {{GENDER:$1|환영합니다}}",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|나의}} 오래된 대화 찾기",
 	"flow-guidedtour-optin-find-old-conversations-description": "이전 대화는 보존 문서로 이동되었습니다.",
-	"flow-guidedtour-optin-feedback": "{{GENDER:$1|여러분의}} 의견을 주세요!"
+	"flow-guidedtour-optin-feedback": "{{GENDER:$1|여러분의}} 의견을 주세요!",
+	"flow-preference-visualeditor": "Flow에 시각 편집기와 새로운 위키텍스트 모드를 활성화합니다"
 }

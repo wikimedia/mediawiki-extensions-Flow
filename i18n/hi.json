@@ -10,7 +10,8 @@
 			"हिंदुस्थान वासी",
 			"Jayprakash12345",
 			"Anamdas",
-			"Sachinkatiyar"
+			"Sachinkatiyar",
+			"Rajatkatiyar10"
 		]
 	},
 	"enablestructureddiscussions": "प्रवाह को सक्षम करें",
@@ -334,5 +335,6 @@
 	"flow-dialog-cancelconfirm-keep": "संपादन जारी रखें",
 	"flow-dialog-cancelconfirm-discard": "परिवर्तनों को त्यागें",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|अपनी}} प्रतिक्रिया दें!",
-	"flow-action-not-page": "पन्ने पर दिखाया गया वस्तु किसी समस्या के कारण है।"
+	"flow-action-not-page": "पन्ने पर दिखाया गया वस्तु किसी समस्या के कारण है।",
+	"flow-preference-visualeditor": "संरचित चर्चाओं में विज़ुअल संपादक और नए विकीटेक्स्ट मोड को सक्षम करें"
 }

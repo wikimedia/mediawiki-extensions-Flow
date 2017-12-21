@@ -536,5 +536,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Pode}} obter mais informação, dar a sua opinião ou desativar o novo sistema a qualquer altura a partir da secção de funcionalidades Beta.",
 	"flow-action-not-page": "O objeto página é uma instância da classe errada",
 	"flow-action-wrong-title-content-model": "A página está a ser tratada pelo sistema de conversas estruturadas, mas a classe \"Title\" indica que o modelo de conteúdo é '$1'. Isto significa que há uma configuração incorreta ou um estado inconsistente. Por exemplo, pode resultar de uma página que não é de conversas estruturadas, criada num espaço nominal de conversas estruturadas sem a propriedade <code>rev_content_model</code> preenchida.",
-	"flow-preference-visualeditor": "Ativar o editor visual e o novo modo do texto wiki no Flow"
+	"flow-preference-visualeditor": "Ativar o editor visual e o novo modo de texto wiki no Flow"
 }

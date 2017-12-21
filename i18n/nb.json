@@ -530,5 +530,6 @@
 	"flow-guidedtour-optin-feedback": "Gi oss {{GENDER:$1|din}} tilbakemelding!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kan finne mer informasjon, gi tilbakemelding, eller deaktivere det nye systemet når som helst fra siden for betafunksjoner.",
 	"flow-action-not-page": "Sideobjektet er en instans av feil klasse",
-	"flow-action-wrong-title-content-model": "Denne siden er håndtert av strukturerte diskusjoner, men Tittel-klassen indikerer at innholdsmodellen er «$1». Dette er en feilkonfigurasjon eller inkonsistent tilstand. For eksempel så kan dette være en side som ikke er en strukturert diskusjon i et navnerom merket for strukturerte diskusjoner, hvor <code>rev_content_model</code> ikke er angitt."
+	"flow-action-wrong-title-content-model": "Denne siden er håndtert av strukturerte diskusjoner, men Tittel-klassen indikerer at innholdsmodellen er «$1». Dette er en feilkonfigurasjon eller inkonsistent tilstand. For eksempel så kan dette være en side som ikke er en strukturert diskusjon i et navnerom merket for strukturerte diskusjoner, hvor <code>rev_content_model</code> ikke er angitt.",
+	"flow-preference-visualeditor": "Slå på visuell redigering og den nye wikitekstmodusen i Flow"
 }
