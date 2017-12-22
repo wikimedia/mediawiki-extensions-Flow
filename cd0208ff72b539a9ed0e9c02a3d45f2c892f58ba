@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cee8db29_b1b2e690",
+        "filename": "Gruntfile.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-22T13:57:26Z",
+      "side": 1,
+      "message": "You probably don\u0027t need to transpile the server code to ES5 (although you do still need to transpile the react/JSX stuff)",
+      "revId": "cd0208ff72b539a9ed0e9c02a3d45f2c892f58ba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cee8db29_f9d746f0",
         "filename": "includes/View.php",
         "patchSetId": 4
