@@ -524,5 +524,6 @@
 	"flow-guidedtour-optin-feedback": "Bríndanos {{GENDER:$1|tus}} comentarios.",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Puedes}} obtener más información, realizar comentarios o desactivar el nuevo sistema en cualquier momento desde la sección de características beta en tus preferencias.",
 	"flow-action-not-page": "El objeto de la página es una instancia de una clase equivocada",
-	"flow-action-wrong-title-content-model": "La página está siendo manejado por el Flujo, pero el Título de la clase indica que el modelo de contenido es '$1'. Este es un error de configuración o estado incoherente. Por ejemplo, esto puede ser en realidad un no-Flujo de la página en un Flujo de espacio de nombres, con <code>rev_content_model</code> no se llena."
+	"flow-action-wrong-title-content-model": "La página está siendo manejado por el Flujo, pero el Título de la clase indica que el modelo de contenido es '$1'. Este es un error de configuración o estado incoherente. Por ejemplo, esto puede ser en realidad un no-Flujo de la página en un Flujo de espacio de nombres, con <code>rev_content_model</code> no se llena.",
+	"flow-preference-visualeditor": "Activar el editor visual y el modo de código nuevo en Discusiones estructuradas"
 }

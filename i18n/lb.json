@@ -263,5 +263,6 @@
 	"flow-dialog-cancelconfirm-discard": "Ännerungen annuléieren",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Wëllkomm}} op {{GENDER:$1|Ärer}} neier Benotzerdiskussiounssäit",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Är}} al Diskussioune fannt Dir",
-	"flow-guidedtour-optin-feedback": "Gitt eis {{GENDER:$1|Äre}} Feedback!"
+	"flow-guidedtour-optin-feedback": "Gitt eis {{GENDER:$1|Äre}} Feedback!",
+	"flow-preference-visualeditor": "De visuellen Editeur an den neie Wikitext Modus a strukturéierten Diskussiounen aktivéieren"
 }
