@@ -92,16 +92,19 @@
 
 		this.api.getTopicSummary( this.topicId, contentFormat ).then(
 			function ( topicSummary ) {
-				var content = OO.getProp( topicSummary, 'content', 'content' ),
+				var contentToLoad,
+					content = OO.getProp( topicSummary, 'content', 'content' ),
 					format = OO.getProp( topicSummary, 'content', 'format' );
 
 				if ( content !== undefined && format !== undefined ) {
 					// Update revisionId in the API
 					widget.api.setCurrentRevision( topicSummary.revisionId );
 
-					// Load the editor
-					return widget.editor.activate( { content: content, format: format } );
+					contentToLoad = { content: content, format: format };
 				}
+
+				// Load the editor
+				return widget.editor.activate( contentToLoad );
 
 			},
 			// Error fetching description
