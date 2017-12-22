@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_10cab070",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2017-12-22T11:48:26Z",
+      "side": 1,
+      "message": "What exactly is hacky about this?",
+      "revId": "1a5c1ff3e6cdb3220af8765d5804a3cd0f1bc1c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
