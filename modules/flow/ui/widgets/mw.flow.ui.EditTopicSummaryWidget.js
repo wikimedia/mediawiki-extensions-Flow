@@ -103,6 +103,9 @@
 					return widget.editor.activate( { content: content, format: format } );
 				}
 
+				// Load the editor with no content
+				return widget.editor.activate();
+
 			},
 			// Error fetching description
 			function ( error ) {
