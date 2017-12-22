@@ -22,6 +22,30 @@
       "revId": "1d293e093591df71189fe7ed98b929d686a998e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_b13f86d2",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditTopicSummaryWidget.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-22T14:09:16Z",
+      "side": 1,
+      "message": "Good point, I\u0027ll do that.",
+      "parentUuid": "cee8db29_d1404aab",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 74
+      },
+      "revId": "1d293e093591df71189fe7ed98b929d686a998e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
