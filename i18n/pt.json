@@ -21,7 +21,7 @@
 			"Athena in Wonderland"
 		]
 	},
-	"enablestructureddiscussions": "Ativar Flow",
+	"enablestructureddiscussions": "Ativar as conversas estruturadas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vigiar nova atividade em \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Já não {{GENDER:$3|está}} a vigiar a página \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isto não afeta os tópicos que {{GENDER:$3|está}} a vigiar. Pode vigiar [$2 esta página] em qualquer altura.",
@@ -116,7 +116,7 @@
 	"flow-history-action-lock-topic": "resolver",
 	"flow-history-action-unlock-topic": "reabrir",
 	"flow-post-edited": "Mensagem {{GENDER:$1|editada}} por $1, $2",
-	"flow-post-action-view": "Ligação permanente",
+	"flow-post-action-view": "Hiperligação permanente",
 	"flow-post-action-post-history": "Histórico",
 	"flow-post-action-suppress-post": "Suprimir",
 	"flow-post-action-delete-post": "Eliminar",
@@ -129,7 +129,7 @@
 	"flow-post-action-unhide-post": "Mostrar",
 	"flow-post-action-restore-post": "Restaurar",
 	"flow-post-action-undo-moderation": "Desfazer",
-	"flow-topic-action-view": "Ligação permanente",
+	"flow-topic-action-view": "Hiperligação permanente",
 	"flow-topic-action-watchlist": "Páginas vigiadas",
 	"flow-topic-action-edit-title": "Editar título",
 	"flow-topic-action-history": "Histórico",
@@ -536,5 +536,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Pode}} obter mais informação, dar a sua opinião ou desativar o novo sistema a qualquer altura a partir da secção de funcionalidades Beta.",
 	"flow-action-not-page": "O objeto página é uma instância da classe errada",
 	"flow-action-wrong-title-content-model": "A página está a ser tratada pelo sistema de conversas estruturadas, mas a classe \"Title\" indica que o modelo de conteúdo é '$1'. Isto significa que há uma configuração incorreta ou um estado inconsistente. Por exemplo, pode resultar de uma página que não é de conversas estruturadas, criada num espaço nominal de conversas estruturadas sem a propriedade <code>rev_content_model</code> preenchida.",
-	"flow-preference-visualeditor": "Ativar o editor visual e o novo modo de texto wiki no Flow"
+	"flow-preference-visualeditor": "Ativar o editor visual e o novo modo de texto wiki nas conversas estruturadas"
 }
