@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee8db29_ce63813a",
+        "filename": "handlebars/flow_editor_switcher.partial.handlebars",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2017-12-24T14:36:05Z",
+      "side": 0,
+      "message": "Does this not have a corresponding change in handlebars/compiled/?",
+      "revId": "53c27f4966cb75050f8d139e538ae7a20475c8a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
