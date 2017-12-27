@@ -535,5 +535,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Du}} kan skaffa mer information, ge återkoppling eller inaktivera det nya systemet när som helst från avsnittet Betafunktioner.",
 	"flow-action-not-page": "Sidobjektet är en instans av fel klass",
 	"flow-action-wrong-title-content-model": "Sidan hanteras av strukturerade diskussioner, men Titelklassen indikerar att innehållsmodellen är '$1'. Detta är en felkonfiguration eller ett inkonsistent tillstånd. Detta kan t.ex. vara en sida som inte är strukturerade diskussioner i en namnrymd av typen strukturerad diskussion där <code>rev_content_model</code> inte har specificerats.",
-	"flow-preference-visualeditor": "Aktivera den visuella redigeraren och det nya wikitextläget i Flow"
+	"flow-preference-visualeditor": "Aktivera den visuella redigeraren och det nya wikitextläget i Strukturerade diskussioner"
 }

@@ -565,5 +565,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Vous}} pouvez obtenir plus d’information, donner votre avis, ou désactiver le nouveau système n’importe quand depuis la section Fonctionnalités bêta.",
 	"flow-action-not-page": "L’objet associé à la page est une instance de la mauvaise classe",
 	"flow-action-wrong-title-content-model": "La page est gérée par les Discussions Structurées, mais la classe du titre  indique que le modèle de contenu est '$1'. C'est un problème de configuration ou un état incohérent. Par exemple, il pourrait s'agir d'une page qui ne soit pas une Discussion Structurée dans l'espace de noms des Discussions Structurées, avec <code>rev_content_model</code> non renseigné.",
-	"flow-preference-visualeditor": "Activer l’éditeur visuel et le nouveau mode wikitexte dans Flow"
+	"flow-preference-visualeditor": "Activer l’éditeur visuel et le nouveau mode wikitexte dans les Discussions structurées"
 }
