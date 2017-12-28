@@ -133,7 +133,7 @@
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.initializeLookupMenuSelection = function () {
 		var item;
 		if ( this.username ) {
-			this.lookupMenu.selectItem( this.lookupMenu.getItemFromData( this.username ) );
+			this.lookupMenu.selectItem( this.lookupMenu.findItemFromData( this.username ) );
 		}
 
 		item = this.lookupMenu.getSelectedItem();
