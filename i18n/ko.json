@@ -190,7 +190,7 @@
 	"flow-error-prev-revision-mismatch": "다른 사용자가 이 게시물을 조금 전에 편집했습니다. {{GENDER:$3}}최근 바뀜을 덮어쓰시겠습니까?",
 	"flow-error-prev-revision-does-not-exist": "이전 판을 찾을 수 없습니다.",
 	"flow-error-default": "오류가 발생했습니다.",
-	"flow-error-invalid-input": "플로우 콘텐츠를 불러오기 위해 입력된 값이 유효하지 않습니다.",
+	"flow-error-invalid-input": "Structured Discussions 콘텐츠를 불러오기 위해 입력된 값이 유효하지 않습니다.",
 	"flow-error-invalid-title": "유효하지 않은 문서 제목을 입력했습니다.",
 	"flow-error-fail-load-history": "역사 내용을 불러오는 데 실패했습니다.",
 	"flow-error-missing-revision": "플로우 내용을 불러오기 위한 판을 찾을 수 없습니다.",

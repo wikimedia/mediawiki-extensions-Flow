@@ -46,7 +46,8 @@
 			"Quiddity",
 			"Pols12",
 			"DePlusJean",
-			"Epok"
+			"Epok",
+			"Jules78120"
 		]
 	},
 	"enablestructureddiscussions": "Activer les discussions structurées",
@@ -169,7 +170,7 @@
 	"flow-topic-action-summarize-topic": "Résumer",
 	"flow-topic-action-resummarize-topic": "Modifier le résumé du sujet",
 	"flow-topic-action-update-topic-summary": "Mettre à jour le résumé",
-	"flow-topic-action-suppress-topic": "Masquer le sujet",
+	"flow-topic-action-suppress-topic": "Masquer le sujet (OS)",
 	"flow-topic-action-unhide-topic": "Afficher le sujet",
 	"flow-topic-action-undelete-topic": "Restaurer le sujet",
 	"flow-topic-action-unsuppress-topic": "Annuler le masquage du sujet",
