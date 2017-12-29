@@ -16,6 +16,24 @@
       "revId": "53c27f4966cb75050f8d139e538ae7a20475c8a2",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cee8db29_3ecfa9b6",
+        "filename": "handlebars/flow_editor_switcher.partial.handlebars",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2017-12-29T15:42:43Z",
+      "side": 0,
+      "message": "I thought there would be, but no. This template is only used client-side, never server-side. So it makes some sense that a PHP version isn\u0027t needed, but that doesn\u0027t explain why one isn\u0027t compiled.\n\nThe reason for that is that this template abuses the system by being declared as a \"partial\" (a helper template that is embedded into other templates) rather than a real template that is used by code. The Handlebars-\u003ePHP compiler only compiles real templates (and inlines the partials they use), but the JS Handlebars parser can parse partials just fine because they\u0027re not syntactically different from real templates. So this template pretends to be a partial and is ignored by PHP, but is still shipped to the client and used in JS. (Shipping a partial to the client is not something that stands out, because the JS Handlebars parser doesn\u0027t use precompilation or inlining, so when shipping a normal template to the client you need to ship the partials that it uses along with it. What\u0027s weird here is that something that calls itself a partial is being used as an entry point.)",
+      "parentUuid": "cee8db29_ce63813a",
+      "revId": "53c27f4966cb75050f8d139e538ae7a20475c8a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
