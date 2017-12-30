@@ -522,5 +522,6 @@
 	"flow-guidedtour-optin-feedback": "Unvianos {{GENDER:$1|los tos}} comentarios.",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Puedes}} llograr más información, facer comentarios o desactivar el nuevu sistema en cualquier momentu dende la sección de carauterístiques beta.",
 	"flow-action-not-page": "L'oxetu de la páxina ye una instancia d'una clase incorreuta",
-	"flow-action-wrong-title-content-model": "La páxina ta xestionándose con Alderiques estructuraos, pero la clase Títulu indica que'l modelu de conteníu ye '$1'. Esti ye un fallu de configuración o un estáu inconsistente. Por casu, esto podría ser en realidá una páxina que nun ye d'Alderiques estructuraos nun espaciu de nomes d'Alderiques estructuraos, con <code>rev_content_model</code> sin rellenar."
+	"flow-action-wrong-title-content-model": "La páxina ta xestionándose con Alderiques estructuraos, pero la clase Títulu indica que'l modelu de conteníu ye '$1'. Esti ye un fallu de configuración o un estáu inconsistente. Por casu, esto podría ser en realidá una páxina que nun ye d'Alderiques estructuraos nun espaciu de nomes d'Alderiques estructuraos, con <code>rev_content_model</code> sin rellenar.",
+	"flow-preference-visualeditor": "Activar l'editor visual ya'l nuevu mou de testu wiki nos Alderiques estructuraos"
 }
