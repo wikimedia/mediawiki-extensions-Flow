@@ -35,7 +35,7 @@ class UserTuple {
 	 * @throws InvalidDataException
 	 */
 	public function __construct( $wiki, $id, $ip ) {
-		if ( !is_integer( $id ) ) {
+		if ( !is_int( $id ) ) {
 			if ( ctype_digit( $id ) ) {
 				$id = (int)$id;
 			} else {

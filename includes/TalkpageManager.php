@@ -229,8 +229,7 @@ class TalkpageManager implements OccupationController {
 		// For MovePage
 		$this->safeAllowCreation( $title, $wgUser, /* $mustNotExist = */ true );
 
-		return
-			// default content model already
+		return // default content model already
 			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
 			// explicitly allowed via safeAllowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowedPageNames );

@@ -49,8 +49,7 @@ class ContributionsFormatter extends AbstractFormatter {
 		}
 
 		// Put it all together
-		return
-			$this->formatTimestamp( $data ) . ' ' .
+		return $this->formatTimestamp( $data ) . ' ' .
 			$this->formatAnchorsAsPipeList( $links, $ctx ) .
 			$separator .
 			$charDiff .

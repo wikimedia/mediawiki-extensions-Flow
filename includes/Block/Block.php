@@ -174,8 +174,7 @@ abstract class AbstractBlock implements Block {
 	 * @return bool
 	 */
 	public function canRender( $action ) {
-		return
-			// GET actions can be rendered
+		return // GET actions can be rendered
 			in_array( $this->getActionName( $action ), $this->supportedGetActions ) ||
 			// POST actions are usually redirected to 'view' after successfully
 			// completing the request, but can also be rendered (e.g. to show
