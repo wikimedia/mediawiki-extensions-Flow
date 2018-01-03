@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeed6739_696a42b3",
+        "filename": "includes/OOUI/BaseUiWidget.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-01-03T17:57:03Z",
+      "side": 1,
+      "message": "You\u0027ll probably want to append with a leading space to ensure it won\u0027t break if there\u0027s a class already.",
+      "range": {
+        "startLine": 48,
+        "startChar": 19,
+        "endLine": 48,
+        "endChar": 21
+      },
+      "revId": "05ce716bc2ea1da7de2eec00c4dd2bb20195d274",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
