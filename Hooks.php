@@ -83,7 +83,8 @@ class FlowHooks {
 						"flow-guidedtour-optin-find-old-conversations-description",
 						"flow-guidedtour-optin-feedback",
 						"flow-guidedtour-optin-feedback-description"
-					]
+					],
+					'dependencies' => 'ext.guidedTour',
 			] );
 		}
 
