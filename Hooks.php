@@ -557,7 +557,7 @@ class FlowHooks {
 		}
 	}
 
-	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
+	public static function onSpecialCheckUserGetLinksFromRow( SpecialCheckUser $checkUser, $row, &$links ) {
 		if ( !$row->cuc_type == RC_FLOW ) {
 			return true;
 		}
