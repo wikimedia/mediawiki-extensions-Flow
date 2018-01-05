@@ -208,7 +208,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	/**
 	 * @param string $timestamp Timestamp in TS_MW format
-	 * @throws DBUnexpectedError
+	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
 	 * @throws \Flow\Exception\FlowException
 	 */
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
@@ -268,7 +268,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	/**
 	 * @param Workflow[] $workflows
-	 * @throws DBUnexpectedError
+	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
 	 */
 	protected function removeWorkflows( array $workflows ) {
 		$this->dbFactory->getDB( DB_MASTER )->begin();

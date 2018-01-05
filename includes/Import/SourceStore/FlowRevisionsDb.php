@@ -73,7 +73,7 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 * @param array $conds
 	 * @return bool|UUID
 	 * @throws Exception
-	 * @throws \DBUnexpectedError
+	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
 	 * @throws \Flow\Exception\FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */

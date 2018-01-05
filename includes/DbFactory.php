@@ -2,6 +2,9 @@
 
 namespace Flow;
 
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * All classes within Flow that need to access the Flow db will go through
  * this class.  Having it separated into an object greatly simplifies testing
@@ -47,7 +50,7 @@ class DbFactory {
 	 * Gets a database connection for the Flow-specific database.
 	 *
 	 * @param int $db index of the connection to get.  DB_MASTER|DB_REPLICA.
-	 * @return \Database
+	 * @return IMaintainableDatabase
 	 */
 	public function getDB( $db ) {
 		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, [], $this->wiki );
@@ -71,7 +74,7 @@ class DbFactory {
 	 *
 	 * @param int $db index of the connection to get.  DB_MASTER|DB_REPLICA.
 	 * @param string|bool $wiki The wiki ID, or false for the current wiki
-	 * @return \IDatabase
+	 * @return IDatabase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
 		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, [], $wiki );
@@ -81,7 +84,7 @@ class DbFactory {
 	 * Gets a load balancer for the main wiki database. Mockable version of wfGetLB.
 	 *
 	 * @param string|bool $wiki wiki ID, or false for the current wiki
-	 * @return \LoadBalancer
+	 * @return \Wikimedia\Rdbms\LoadBalancer
 	 */
 	public function getWikiLB( $wiki = false ) {
 		return wfGetLB( $wiki );
