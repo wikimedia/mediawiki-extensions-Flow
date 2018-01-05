@@ -1,4 +1,4 @@
-QUnit.module( 'ext.flow.dm mw.flow.dm.System' );
+QUnit.module( 'ext.flow.dm mw.flow.dm.ViewModel' );
 
 /* Tests */
 
@@ -310,7 +310,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 			}
 		];
 
-	system = new mw.flow.dm.System( {
+	system = new mw.flow.dm.ViewModel( {
 		pageTitle: mw.Title.newFromText( 'Main_Page' ),
 		tocPostsLimit: 20,
 		boardId: 'sfykaxy3moyu18iz'

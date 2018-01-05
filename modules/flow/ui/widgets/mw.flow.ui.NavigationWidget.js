@@ -5,20 +5,20 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
-	 * @param {mw.flow.dm.System} system System model
+	 * @param {mw.flow.dm.ViewModel} viewModel View model
 	 * @param {Object} [config]
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 * @cfg {string} [defaultSort='newest'] The current default topic sort order
 	 */
-	mw.flow.ui.NavigationWidget = function mwFlowUiNavigationWidget( system, config ) {
+	mw.flow.ui.NavigationWidget = function mwFlowUiNavigationWidget( viewModel, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.NavigationWidget.parent.call( this, config );
 
-		this.board = system.getBoard();
+		this.board = viewModel.getBoard();
 
-		this.tocWidget = new mw.flow.ui.ToCWidget( system, {
+		this.tocWidget = new mw.flow.ui.ToCWidget( viewModel, {
 			classes: [ 'flow-ui-navigationWidget-tocWidget' ],
 			tocPostLimit: config.tocPostLimit
 		} );

@@ -1,6 +1,6 @@
 ( function ( $ ) {
 	/**
-	 * Flow initialization system
+	 * Flow frontend view model
 	 *
 	 * @class
 	 * @mixins OO.EventEmitter
@@ -16,7 +16,7 @@
 	 *  the page. Defaults to the tocPostsLimit
 	 * @cfg {string} [defaultSort] The current default sort order for topic list
 	 */
-	mw.flow.dm.System = function mwFlowDmSystem( config ) {
+	mw.flow.dm.ViewModel = function mwFlowDmViewModel( config ) {
 
 		config = config || {};
 
@@ -37,17 +37,18 @@
 			isDeleted: mw.config.get( 'wgArticleId' ) === 0,
 			defaultSort: config.defaultSort
 		} );
-		this.api = new mw.flow.dm.APIHandler( this.board.getPageTitle().getPrefixedDb() );
-		this.moreTopicsExistInApi = true;
-		this.fetchPromise = null;
-
 		this.board.connect( this, { reset: 'resetBoard' } );
+
+		this.moreTopicsExistInApi = false;
+		// This should be in the controller
+		// this.api = new mw.flow.dm.APIHandler( this.board.getPageTitle().getPrefixedDb() );
+		// this.fetchPromise = null;
 	};
 
 	/* Setup */
 
-	OO.initClass( mw.flow.dm.System );
-	OO.mixinClass( mw.flow.dm.System, OO.EventEmitter );
+	OO.initClass( mw.flow.dm.ViewModel );
+	OO.mixinClass( mw.flow.dm.ViewModel, OO.EventEmitter );
 
 	/* Events */
 
@@ -84,8 +85,8 @@
 	 * @return {jQuery.Promise} Promise that is resolved with whether
 	 *  more topics exist or not.
 	 */
-	mw.flow.dm.System.prototype.fetchMoreTopics = function () {
-		var system = this,
+	mw.flow.dm.ViewModel.prototype.fetchMoreTopics = function () {
+		var viewModel = this,
 			sortOrder = this.board.getSortOrder();
 
 		if ( this.fetchPromise ) {
@@ -105,12 +106,12 @@
 				toconly: true
 			} )
 			.then( function ( topicList ) {
-				var topics = mw.flow.dm.Topic.static.extractTopicsFromAPI( topicList );
-				// Add the topics to the data model
-				system.board.addItems( topics );
-				system.moreTopicsExistInApi = length === system.tocPostLimit;
-				system.fetchPromise = null;
-				return system.moreTopicsExistInApi;
+				// var topics = mw.flow.dm.Topic.static.extractTopicsFromAPI( topicList );
+				// system.moreTopicsExistInApi = topics.length === system.tocPostLimit;
+				// // Add the topics to the data model
+				// system.board.addItems( topics );
+				// system.fetchPromise = null;
+				// return system.moreTopicsExistInApi;
 			} );
 		return this.fetchPromise;
 	};
@@ -121,7 +122,7 @@
 	 *
 	 * @return {boolean} There are more topics in the API
 	 */
-	mw.flow.dm.System.prototype.hasMoreTopicsInApi = function () {
+	mw.flow.dm.ViewModel.prototype.hasMoreTopicsInApi = function () {
 		return this.moreTopicsExistInApi;
 	};
 
@@ -133,8 +134,8 @@
 	 * @return {jQuery.Promise} Promise that is resolved when the
 	 *  board is populated
 	 */
-	mw.flow.dm.System.prototype.populateBoardFromApi = function ( sortBy ) {
-		var system = this,
+	mw.flow.dm.ViewModel.prototype.populateBoardFromApi = function ( sortBy ) {
+		var viewModel = this,
 			apiParams = {
 				action: 'flow',
 				submodule: 'view-topiclist',
@@ -184,7 +185,7 @@
 	 *
 	 * @param {Object} headerData API object for the board header
 	 */
-	mw.flow.dm.System.prototype.populateBoardDescriptionFromJson = function ( headerData ) {
+	mw.flow.dm.ViewModel.prototype.populateBoardDescriptionFromJson = function ( headerData ) {
 		if ( headerData.revision ) {
 			this.getBoard().updateDescription( headerData.revision );
 		}
@@ -199,8 +200,8 @@
 	 * @param {number} [index] The position to enter the items in.
 	 * @fires populate
 	 */
-	mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist, index ) {
-		var i, len, topicId, revisionData, topic, posts,
+	mw.flow.dm.ViewModel.prototype.populateBoardTopicsFromJson = function ( topiclist, index ) {
+		var i, len, topicId, revisionData, topic, posts, type,
 			topicTitlesById = {},
 			updateTimestampsByTopicId = {},
 			topics = [];
@@ -209,6 +210,7 @@
 			return;
 		}
 		topiclist.roots = topiclist.roots || [];
+		type = topiclist.type;
 
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
 			// The content of the topic is its first post
@@ -235,16 +237,19 @@
 			topicTitlesById[ topicId ] = topic.getContent();
 			updateTimestampsByTopicId[ topicId ] = topic.getLastUpdate();
 		}
-		// Add to board
-		this.getBoard().addItems( topics, index );
 
 		// FIXME: checking against two different values can result in a false positive
 		// We have to remember how many topics we requested and check against that number,
 		// or use a query-continue-like thing
 		this.moreTopicsExistInApi = (
-			topics.length !== this.renderedTopics &&
-			topics.length !== this.tocPostLimit
+			(
+				topiclist.type === 'topiclist' &&
+				topiclist.roots.length !== this.renderedTopics &&
+				topiclist.roots.length !== this.tocPostLimit
+			)
 		);
+		// Add to board
+		this.getBoard().addItems( topics, index );
 
 		// Both of these should be safe to update with extend, since only the latest data should be needed.
 		this.emit( 'populate', {
@@ -261,8 +266,8 @@
 	 * @fires resetBoardStart
 	 * @fires resetBoardEnd
 	 */
-	mw.flow.dm.System.prototype.resetBoard = function ( sortBy ) {
-		var system = this;
+	mw.flow.dm.ViewModel.prototype.resetBoard = function ( sortBy ) {
+		var viewModel = this;
 
 		this.emit( 'resetBoardStart' );
 
@@ -271,7 +276,7 @@
 				// HACK: This parameter should go away. It is only
 				// here so that we can initialize the board with
 				// handlebars while we migrate things to ooui
-				system.emit( 'resetBoardEnd', result );
+				viewModel.emit( 'resetBoardEnd', result );
 				return result;
 			} );
 	};
@@ -281,7 +286,7 @@
 	 *
 	 * @return {mw.Title} Page title
 	 */
-	mw.flow.dm.System.prototype.getPageTitle = function () {
+	mw.flow.dm.ViewModel.prototype.getPageTitle = function () {
 		return this.pageTitle;
 	};
 
@@ -290,7 +295,7 @@
 	 *
 	 * @return {number} ToC post limit
 	 */
-	mw.flow.dm.System.prototype.getToCPostsLimit = function () {
+	mw.flow.dm.ViewModel.prototype.getToCPostsLimit = function () {
 		return this.tocPostsLimit;
 	};
 
@@ -299,7 +304,7 @@
 	 *
 	 * @return {mw.flow.dm.Board} Associated board
 	 */
-	mw.flow.dm.System.prototype.getBoard = function () {
+	mw.flow.dm.ViewModel.prototype.getBoard = function () {
 		return this.board;
 	};
 
@@ -312,7 +317,7 @@
 	 *
 	 * @return {number} Rendered topics
 	 */
-	mw.flow.dm.System.prototype.getRenderedTopics = function () {
+	mw.flow.dm.ViewModel.prototype.getRenderedTopics = function () {
 		return this.renderedTopics;
 	};
 }( jQuery ) );

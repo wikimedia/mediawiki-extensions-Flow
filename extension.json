@@ -440,6 +440,7 @@
 		"ext.flow.dm": {
 			"scripts": [
 				"flow/mw.flow.js",
+				"flow/mw.flow.Controller.js",
 				"flow/dm/mw.flow.dm.js",
 				"flow/dm/mw.flow.dm.Content.js",
 				"flow/dm/mw.flow.dm.Item.js",
@@ -449,7 +450,7 @@
 				"flow/dm/mw.flow.dm.RevisionedContent.js",
 				"flow/dm/mw.flow.dm.ModeratedRevisionedContent.js",
 				"flow/dm/mw.flow.dm.BoardDescription.js",
-				"flow/dm/mw.flow.dm.System.js",
+				"flow/dm/mw.flow.dm.ViewModel.js",
 				"flow/dm/mw.flow.dm.Post.js",
 				"flow/dm/mw.flow.dm.Topic.js",
 				"flow/dm/mw.flow.dm.Board.js",

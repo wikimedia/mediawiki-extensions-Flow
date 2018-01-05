@@ -42,7 +42,7 @@
 			} );
 
 			// For reference and debugging
-			mw.flow.system = initializer.getDataModelSystem();
+			mw.flow.viewModel = initializer.getViewModel();
 
 			if ( initializer.isUndoForm() ) {
 				// Setup undo pages

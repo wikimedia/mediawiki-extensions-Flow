@@ -6,19 +6,19 @@
 	 * @extends OO.ui.MenuSelectWidget
 	 *
 	 * @constructor
-	 * @param {mw.flow.dm.System} system System model
+	 * @param {mw.flow.dm.ViewModel} viewModel View model
 	 * @param {Object} [config]
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 */
-	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( system, config ) {
+	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( viewModel, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.TopicMenuSelectWidget.parent.call( this, config );
 
 		// Properties
-		this.system = system;
-		this.board = this.system.getBoard();
+		this.viewModel = viewModel;
+		this.board = this.viewModel.getBoard();
 		this.tocPostLimit = config.tocPostLimit || 50;
 		// Keep a reference to the topic option widgets by the topic Id
 		// so we can call them directly
@@ -124,7 +124,7 @@
 		var widget = this;
 
 		this.loadingMoreTopics = true;
-		return this.system.fetchMoreTopics()
+		return this.viewModel.fetchMoreTopics()
 			.then( function ( hasMoreTopicsInApi ) {
 				widget.noMoreTopics = !hasMoreTopicsInApi;
 				if ( widget.noMoreTopics ) {

@@ -14,7 +14,7 @@
 		this.siderailCollapsed = mw.user.options.get( 'flow-side-rail-state' ) === 'collapsed';
 		this.pageTitle = config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 
-		this.system = null;
+		this.viewModel = null;
 		this.board = null;
 		this.navWidget = null;
 	};
@@ -64,8 +64,8 @@
 		this.flowBoard.connect( this, {
 			loadmore: function ( topiclist ) {
 				// Add to dm board
-				if ( self.system ) {
-					self.system.populateBoardTopicsFromJson( topiclist );
+				if ( self.viewModel ) {
+					self.viewModel.populateBoardTopicsFromJson( topiclist );
 				}
 
 				// Replace reply forms
@@ -79,7 +79,7 @@
 
 				if ( !topic ) {
 					// New topic
-					mw.flow.system.populateBoardTopicsFromJson( data, 0 );
+					mw.flow.viewModel.populateBoardTopicsFromJson( data, 0 );
 				} else {
 					// Topic already exists. Repopulate
 					revisionId = data.posts[ workflowId ];
@@ -171,13 +171,13 @@
 
 	/**
 	 * Initialize the data model objects
-	 * @param {Object} config Configuration options for the mw.flow.dm.System
+	 * @param {Object} config Configuration options for the mw.flow.dm.ViewModel
 	 */
 	mw.flow.Initializer.prototype.initDataModel = function ( config ) {
 		var self = this;
 
-		this.system = new mw.flow.dm.System( config );
-		this.board = this.system.getBoard();
+		this.viewModel = new mw.flow.dm.ViewModel( config );
+		this.board = this.viewModel.getBoard();
 		// Initialize the old system to accept the default
 		// order for the topic order widget
 		this.flowBoard.topicIdSort = this.board.getSortOrder();
@@ -211,12 +211,12 @@
 	};
 
 	/**
-	 * Get the data model system
+	 * Get the view model
 	 *
-	 * @return {mw.flow.dm.System} DM system
+	 * @return {mw.flow.dm.ViewModel} DM view model
 	 */
-	mw.flow.Initializer.prototype.getDataModelSystem = function () {
-		return this.system;
+	mw.flow.Initializer.prototype.getViewModel = function () {
+		return this.viewModel;
 	};
 
 	/**
@@ -231,15 +231,15 @@
 
 		if ( dataBlob && dataBlob.blocks ) {
 			// Populate the rendered topics or topic (if we are in a single-topic view)
-			this.system.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
+			this.viewModel.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
 			// Populate header
-			this.system.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
+			this.viewModel.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
 			// Populate the ToC topics
 			if ( dataBlob.toc ) {
-				this.system.populateBoardTopicsFromJson( dataBlob.toc );
+				this.viewModel.populateBoardTopicsFromJson( dataBlob.toc );
 			}
 		} else {
-			this.system.populateBoardFromApi();
+			this.viewModel.populateBoardFromApi();
 		}
 		if ( preloadTopic || preloadContent ) {
 			this.newTopicWidget.preload( preloadTopic, preloadContent, preloadFormat );
@@ -258,7 +258,7 @@
 			return;
 		}
 
-		this.navWidget = new mw.flow.ui.NavigationWidget( this.system, {
+		this.navWidget = new mw.flow.ui.NavigationWidget( this.viewModel, {
 			defaultSort: this.flowBoard.topicIdSort
 		} );
 		$navDom.append( this.navWidget.$element );
@@ -280,7 +280,7 @@
 
 		// HACK: These event handlers should be in the prospective widgets
 		// they will move once we have Board UI and Topic UI widgets
-		this.system.connect( this, {
+		this.viewModel.connect( this, {
 			resetBoardStart: function () {
 				self.$component.addClass( 'flow-api-inprogress' );
 				// Before we reinitialize the board we have to detach
