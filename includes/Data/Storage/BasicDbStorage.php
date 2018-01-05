@@ -174,7 +174,7 @@ class BasicDbStorage extends DbStorage {
 	 * @param array $options
 	 * @return array
 	 * @throws DataModelException
-	 * @throws \DBUnexpectedError
+	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
 	 * @throws \MWException
 	 */
 	public function findMulti( array $queries, array $options = [] ) {

@@ -3,13 +3,13 @@
 namespace Flow\Search\Iterators;
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ResultWrapper;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;
-use ResultWrapper;
 use stdClass;
 
 abstract class AbstractIterator implements Iterator {

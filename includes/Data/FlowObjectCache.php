@@ -4,6 +4,7 @@ namespace Flow\Data;
 
 use Flow\DbFactory;
 use WANObjectCache;
+use Wikimedia\Rdbms\Database;
 
 class FlowObjectCache {
 	/**
@@ -29,7 +30,7 @@ class FlowObjectCache {
 	public function __construct( WANObjectCache $cache, DbFactory $dbFactory, $ttl = 0 ) {
 		$this->ttl = $ttl;
 		$this->cache = $cache;
-		$this->setOptions = \Database::getCacheSetOptions( $dbFactory->getDB( DB_REPLICA ) );
+		$this->setOptions = Database::getCacheSetOptions( $dbFactory->getDB( DB_REPLICA ) );
 	}
 
 	/**

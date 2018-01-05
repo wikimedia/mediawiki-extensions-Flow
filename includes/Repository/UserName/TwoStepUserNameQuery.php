@@ -7,6 +7,7 @@ namespace Flow\Repository\UserName;
 
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Helper query for UserNameBatch fetches requested userIds
@@ -34,7 +35,7 @@ class TwoStepUserNameQuery implements UserNameQuery {
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
-	 * @return \ResultWrapper|bool
+	 * @return ResultWrapper|bool
 	 * @throws FlowException
 	 */
 	public function execute( $wiki, array $userIds ) {

@@ -7,6 +7,8 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
+use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 
 /*
  *
@@ -97,14 +99,14 @@ class TreeRepository {
 
 		if ( $res && $ancestor !== null ) {
 			try {
-				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw instanceof \DatabaseMysqlBase ) {
+				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw instanceof DatabaseMysqlBase ) {
 					/*
 					 * Combination of MW unit tests + MySQL DB is known to cause
 					 * query failures of code 1137, so instead of executing a
 					 * known bad query, let's just consider it failed right away
 					 * (and let catch statement deal with it)
 					 */
-					throw new \DBQueryError( $dbw, 'Prevented execution of known bad query', 1137, '', __METHOD__ );
+					throw new DBQueryError( $dbw, 'Prevented execution of known bad query', 1137, '', __METHOD__ );
 				}
 
 				$res = $dbw->insertSelect(
@@ -120,7 +122,7 @@ class TreeRepository {
 					],
 					__METHOD__
 				);
-			} catch ( \DBQueryError $e ) {
+			} catch ( DBQueryError $e ) {
 				$res = false;
 
 				/*

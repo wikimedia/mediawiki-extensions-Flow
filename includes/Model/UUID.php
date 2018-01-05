@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use ApiSerializable;
-use Blob;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidParameterException;
@@ -11,6 +10,7 @@ use Flow\Exception\InvalidInputException;
 use Language;
 use MWTimestamp;
 use User;
+use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -460,7 +460,7 @@ class UUID implements ApiSerializable {
 /**
  * Extend Blob so we can identify UUID specific blobs
  */
-class UUIDBlob extends \Blob {
+class UUIDBlob extends Blob {
 	/**
 	 * We'll want to be able to compare the (string) value of 2 blobs.
 	 *

@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
+use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
