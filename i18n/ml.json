@@ -216,7 +216,5 @@
 	"flow-ve-mention-tool-title": "ഒരു ഉപയോക്താവിനെ പരാമർശിക്കുക",
 	"flow-ve-mention-inspector-invalid-user": "\"$1\" എന്ന ഉപയോക്തൃനാമം എടുക്കപ്പെട്ടിട്ടില്ല.",
 	"flow-wikitext-editor-help": "വിക്കിഎഴുത്ത് $1.",
-	"flow-wikitext-editor-help-preview-the-result": "ഫലം എങ്ങനെയുണ്ടെന്ന് കാണുക",
-	"flow-wikitext-switch-editor-tooltip": "കണ്ടുതിരുത്തൽ ഉപകരണത്തിലേക്ക് മാറുക",
-	"flow-ve-switch-editor-tool-title": "വിക്കി എഴുത്തിലേക്ക് മാറുക"
+	"flow-wikitext-editor-help-preview-the-result": "ഫലം എങ്ങനെയുണ്ടെന്ന് കാണുക"
 }

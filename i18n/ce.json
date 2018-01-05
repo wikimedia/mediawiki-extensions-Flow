@@ -188,7 +188,5 @@
 	"flow-ve-mention-placeholder": "Декъашхочун цӀе",
 	"flow-ve-mention-tool-title": "Декъашхо хьахо",
 	"flow-ve-mention-inspector-invalid-user": "Декъашхочун «$1» дӀаяздар дац.",
-	"flow-wikitext-editor-help": "Вики-йоза $1.",
-	"flow-wikitext-switch-editor-tooltip": "Тае бӀаьран тадар чохь",
-	"flow-ve-switch-editor-tool-title": "Тае вики-йозан тадар чохь"
+	"flow-wikitext-editor-help": "Вики-йоза $1."
 }

@@ -100,8 +100,6 @@
 	"flow-next-diff": "Novija izmena →",
 	"flow-ve-mention-placeholder": "Korisničko ime",
 	"flow-ve-mention-tool-title": "Spomeni korisnika",
-	"flow-wikitext-switch-editor-tooltip": "Prebaci me na Vizuelni uređivač",
-	"flow-ve-switch-editor-tool-title": "Prebaci me na uređivač vikiteksta",
 	"flow-dialog-cancelconfirm-title": "Jeste li sigurni?",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Dobro došli}} na {{GENDER:$1|Vašu}} novu stranicu za razgovor",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Vaša}} stranica za razgovor je mesto gde vas drugi urednici kontaktiraju. Sa Flow-om, jednostavnije je napraviti novu temu i pratiti diskusiju.",

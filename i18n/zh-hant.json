@@ -447,8 +447,6 @@
 	"flow-wikitext-editor-help-and-preview": "Wikitext $1；您可以隨時 $2。",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|標籤用法]]",
 	"flow-wikitext-editor-help-preview-the-result": "預覽結果",
-	"flow-wikitext-switch-editor-tooltip": "切換至視覺化編輯器",
-	"flow-ve-switch-editor-tool-title": "切換至 Wikitext 編輯器",
 	"flow-mark-revision-patrolled-link-text": "標記此頁面為已巡查",
 	"flow-mark-revision-patrolled-link-title": "標記此頁面為已巡查",
 	"flow-mark-diff-patrolled-link-text": "標記為已巡查",

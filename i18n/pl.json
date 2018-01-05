@@ -511,8 +511,6 @@
 	"flow-wikitext-editor-help-and-preview": "Wikitekst $1. W każdej chwili możesz zobaczyć $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|używa znaczników]]",
 	"flow-wikitext-editor-help-preview-the-result": "podgląd wyniku",
-	"flow-wikitext-switch-editor-tooltip": "Przełącz do edytora wizualnego",
-	"flow-ve-switch-editor-tool-title": "Przełącz do edytora kodu źródłowego",
 	"flow-mark-revision-patrolled-link-text": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-revision-patrolled-link-title": "Oznacz tę stronę jako „sprawdzoną”",
 	"flow-mark-diff-patrolled-link-text": "Oznacz edycję jako „sprawdzoną”",

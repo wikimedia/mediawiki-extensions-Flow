@@ -511,8 +511,6 @@
 	"flow-wikitext-editor-help-and-preview": "ویکی‌متن $1 و می‌توانید هرگاه خواستید $2 را ببینید.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|از نشانه‌گذاری استفاده می‌کند]]",
 	"flow-wikitext-editor-help-preview-the-result": "پیش‌نمایش نتیجه",
-	"flow-wikitext-switch-editor-tooltip": "رفتن به ویرایشگر دیداری",
-	"flow-ve-switch-editor-tool-title": "رفتن به ویرایشگر ویکی‌متن",
 	"flow-mark-revision-patrolled-link-text": "به این صفحه برچسب گشت بزن",
 	"flow-mark-revision-patrolled-link-title": "به این صفحه برچسب گشت بزن",
 	"flow-mark-diff-patrolled-link-text": "برچسب گشت بزن",

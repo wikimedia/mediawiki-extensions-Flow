@@ -63,8 +63,6 @@
 	"flow-importer-wt-converted-archive-template-content": "Bu sayfa arşivlenmiş bir sayfadır. <strong>Bu sayfanın içeriğini düzenlemeyiniz</strong>. Lütfen başka bir yorumunuz varsa [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|güncel tartışma sayfası]] ile iletişime geçiniz.",
 	"group-flow-bot-member": "Flow botu",
 	"flow-ve-mention-placeholder": "Kullanıcı adı",
-	"flow-wikitext-switch-editor-tooltip": "Görsel düzenleyiciye geç",
-	"flow-ve-switch-editor-tool-title": "Wikimetin editörüne geç",
 	"flow-notification-link-text-enabled-on-talkpage": "Kullanıcı mesaj sayfasını {{GENDER:|görüntüle}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "Arşiv şablonu ekleme",
 	"flow-dialog-cancelconfirm-message": "Kaydetmeden iptal etmek istediğinizden emin misiniz?"

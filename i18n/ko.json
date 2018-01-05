@@ -446,8 +446,6 @@
 	"flow-ve-mention-inspector-invalid-user": "\"$1\" 계정명은 등록되어 있지 않습니다.",
 	"flow-wikitext-editor-help": "위키텍스트 $1",
 	"flow-wikitext-editor-help-preview-the-result": "결과 미리 보기",
-	"flow-wikitext-switch-editor-tooltip": "시각편집기로 전환",
-	"flow-ve-switch-editor-tool-title": "위키텍스트 편집기로 전환",
 	"flow-mark-revision-patrolled-link-text": "이 문서를 점검한 것으로 표시",
 	"flow-mark-revision-patrolled-link-title": "이 문서를 점검한 것으로 표시",
 	"flow-mark-diff-patrolled-link-text": "점검한 문서로 표시",

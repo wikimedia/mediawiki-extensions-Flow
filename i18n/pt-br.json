@@ -512,8 +512,6 @@
 	"flow-wikitext-editor-help-and-preview": "O texto wiki $1 e você pode $2 a qualquer momento.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|usa marcação]]",
 	"flow-wikitext-editor-help-preview-the-result": "visualizar resultado",
-	"flow-wikitext-switch-editor-tooltip": "Alternar para o Editor Visual",
-	"flow-ve-switch-editor-tool-title": "Alternar para o editor de texto wiki",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como patrulhada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta página como patrulhada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como patrulhada",

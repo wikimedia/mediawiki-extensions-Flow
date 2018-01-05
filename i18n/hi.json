@@ -321,8 +321,6 @@
 	"flow-ve-mention-inspector-invalid-user": "सदस्य नाम \"$1\" पंजीकृत नहीं है।",
 	"flow-wikitext-editor-help": "विकिपाठ $1",
 	"flow-wikitext-editor-help-preview-the-result": "परिमाण की झलक",
-	"flow-wikitext-switch-editor-tooltip": "यथादृश्य संपादिका में जाएँ",
-	"flow-ve-switch-editor-tool-title": "स्रोत संपादक में जाएँ",
 	"flow-mark-revision-patrolled-link-text": "इस पृष्ठ को जाँचा हुआ चिन्हित करें",
 	"flow-mark-revision-patrolled-link-title": "इस पृष्ठ को जाँचा हुआ चिन्हित करें",
 	"flow-mark-diff-patrolled-link-text": "जाँचा हुआ चिन्हित करें",

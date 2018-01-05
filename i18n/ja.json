@@ -373,8 +373,6 @@
 	"flow-wikitext-editor-help-and-preview": "ウィキテキストは$1、また、いつでも$2できます。",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|マークアップを使用]]",
 	"flow-wikitext-editor-help-preview-the-result": "結果をプレビュー",
-	"flow-wikitext-switch-editor-tooltip": "ビジュアルエディターに切り替え",
-	"flow-ve-switch-editor-tool-title": "ウィキテキストエディターに切り替え",
 	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
 	"flow-talk-page-beta-feature-description": "あなたの利用者トークページで、新しくシステム化された議論システムを有効化します。フローによって、トークページの議論の管理が簡単化され、書くべき場所と返信すべき場所とが明瞭になり、また通知が会話レベルになるでしょう。既存のウィキテキスト形式の議論は、アーカイブに移動します。この機能は、けっして自動では有効化されません。利用者が区別して有効化する必要があります。一方、機能を無効化すれば、フローボードはサブページおよび非アーカイブの以前のトークページに移動します。",

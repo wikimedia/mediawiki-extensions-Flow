@@ -42,8 +42,6 @@
 	"flow-ve-mention-placeholder": "Suradničko ime",
 	"flow-ve-mention-tool-title": "Spomeni suradnika",
 	"flow-ve-mention-template-title": "Spominjanje u Ustrojnim raspravicama",
-	"flow-wikitext-switch-editor-tooltip": "Prebaci na vizualno uređivanje",
-	"flow-ve-switch-editor-tool-title": "Prebaci na uređivanje wikiteksta",
 	"flow-talk-page-beta-feature-message": "Ustrojne raspravice na suradničkim razgovornim stranicama",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Ustrojne raspravice, novi raspravljački sustav, omogućene su na {{GENDER:$1|Vašoj}} suradničkoj razgovornoj stranici na projektu {{SITENAME}}. Možete dobiti više obavijesti, dati povratne informacije ili onemogućiti novi sustav u bilo kojem trenutku, a u odjeljku s Beta-mogućnostima u {{GENDER:$1|Vašim}} postavkama.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Dodavanje predloška za arhiv",

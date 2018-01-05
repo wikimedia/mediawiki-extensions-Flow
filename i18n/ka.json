@@ -151,7 +151,5 @@
 	"flow-ve-mention-inspector-invalid-user": "მოხმარებელი „$1“ არ არის რეგისტრირებული.",
 	"flow-wikitext-editor-help": "ვიკიტექსტი $1.",
 	"flow-wikitext-editor-help-and-preview": "ვიკი-ტექსტი $1 და თქვენ შეგიძლიათ $2 ნებისმიერ დროს.",
-	"flow-wikitext-editor-help-preview-the-result": "შედეგის წინასწარი გადახედვა",
-	"flow-wikitext-switch-editor-tooltip": "ვიზუალურ რედაქტორზე გადართვა",
-	"flow-ve-switch-editor-tool-title": "ვიკი-ტექსტის რედაქტორზე გადართვა"
+	"flow-wikitext-editor-help-preview-the-result": "შედეგის წინასწარი გადახედვა"
 }

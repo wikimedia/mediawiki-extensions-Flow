@@ -536,8 +536,6 @@
 	"flow-wikitext-editor-help-and-preview": "Votre modification $1 wikicode et vous pouvez avoir un $2 à tout moment.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|utilise le balisage]]",
 	"flow-wikitext-editor-help-preview-the-result": "aperçu du résultat",
-	"flow-wikitext-switch-editor-tooltip": "Basculer vers l’éditeur visuel",
-	"flow-ve-switch-editor-tool-title": "Basculer vers l’éditeur de wikicode",
 	"flow-mark-revision-patrolled-link-text": "Marquer cette page comme relue",
 	"flow-mark-revision-patrolled-link-title": "Marquer cette page comme relue",
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",

@@ -212,7 +212,5 @@
 	"flow-wikitext-editor-help": "Vikitekst $1.",
 	"flow-wikitext-editor-help-and-preview": "Vikitekst $1. Saad $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|kasutab märgistuskeelt]]",
-	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda",
-	"flow-wikitext-switch-editor-tooltip": "Vaheta visuaaltoimeti vastu",
-	"flow-ve-switch-editor-tool-title": "Vaheta vikiteksti redaktori vastu"
+	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda"
 }

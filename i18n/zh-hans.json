@@ -516,8 +516,6 @@
 	"flow-wikitext-editor-help-and-preview": "Wiki文本$1，当然您也可以随时$2。",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|使用标记语法]]",
 	"flow-wikitext-editor-help-preview-the-result": "预览结果",
-	"flow-wikitext-switch-editor-tooltip": "切换为可视化编辑器",
-	"flow-ve-switch-editor-tool-title": "切换为Wiki文本编辑器",
 	"flow-mark-revision-patrolled-link-text": "标记此页面为已巡查",
 	"flow-mark-revision-patrolled-link-title": "标记此页面为已巡查",
 	"flow-mark-diff-patrolled-link-text": "标记为已巡查",

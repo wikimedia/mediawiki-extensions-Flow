@@ -483,8 +483,6 @@
 	"flow-wikitext-editor-help-and-preview": "Вики-текст $1, и вы можете $2 в любое время.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|использует разметку]]",
 	"flow-wikitext-editor-help-preview-the-result": "предварительно просмотреть результат",
-	"flow-wikitext-switch-editor-tooltip": "Переключить на визуальный редактор",
-	"flow-ve-switch-editor-tool-title": "Переключить на редактор вики-текста",
 	"flow-mark-revision-patrolled-link-text": "Отметить эту страницу как проверенную",
 	"flow-mark-revision-patrolled-link-title": "Отметить эту страницу как проверенную",
 	"flow-mark-diff-patrolled-link-text": "Отметить как проверенную",

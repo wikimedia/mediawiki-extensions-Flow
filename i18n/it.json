@@ -506,8 +506,6 @@
 	"flow-wikitext-editor-help-and-preview": "Il wikitesto $1 e puoi guardare l'$2 in qualsiasi momento.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|uso del markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
-	"flow-wikitext-switch-editor-tooltip": "Passa all'editor visuale",
-	"flow-ve-switch-editor-tool-title": "Passa all'editor wikitesto",
 	"flow-mark-revision-patrolled-link-text": "Segna questa pagina come verificata",
 	"flow-mark-revision-patrolled-link-title": "Segna questa pagina come verificata",
 	"flow-mark-diff-patrolled-link-text": "Segna come verificata",

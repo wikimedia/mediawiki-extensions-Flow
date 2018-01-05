@@ -495,8 +495,6 @@
 	"flow-wikitext-editor-help-and-preview": "O texto wiki $1 e vostede pode $2 en calquera momento.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|usa un formato específico]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualizar o resultado",
-	"flow-wikitext-switch-editor-tooltip": "Cambiar ao editor visual",
-	"flow-ve-switch-editor-tool-title": "Cambiar ao editor de texto wiki",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta páxina como revisada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta páxina como revisada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como revisada",
@@ -524,5 +522,6 @@
 	"flow-guidedtour-optin-feedback": "Envíanos {{GENDER:$1|os teus}} comentarios!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Pode}} obter máis información, realizar comentarios ou desactivar o novo sistema en calquera momento desde a sección de características beta nas súas preferencias.",
 	"flow-action-not-page": "O obxecto de páxina é unha instancia da clase incorrecta",
-	"flow-action-wrong-title-content-model": "A páxina está a ser controlada polas conversas estruturadas, pero a clase Título indica que o modelo de contido é '$1'. Isto é un fallo de configuración ou un estado inconsistente. Por exemplo, isto pode ser realmente unha páxina non-conversa estruturada nun nome de espazos de conversas estruturadas, con <code>rev_content_model</code> non definido."
+	"flow-action-wrong-title-content-model": "A páxina está a ser controlada polas conversas estruturadas, pero a clase Título indica que o modelo de contido é '$1'. Isto é un fallo de configuración ou un estado inconsistente. Por exemplo, isto pode ser realmente unha páxina non-conversa estruturada nun nome de espazos de conversas estruturadas, con <code>rev_content_model</code> non definido.",
+	"flow-preference-visualeditor": "Activar o editor visual e o novo modo de wikitexto nas Conversas estruturadas"
 }

@@ -390,8 +390,6 @@
 	"flow-wikitext-editor-help-and-preview": "ویکی متن میں $1 ہے اور آپ کسی بھی وقت $2 دیکھ سکتے ہیں۔",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|مارک اپ زیر استعمال]]",
 	"flow-wikitext-editor-help-preview-the-result": "نتیجہ کی نمائش",
-	"flow-wikitext-switch-editor-tooltip": "بصری خانہ ترمیم شروع کریں",
-	"flow-ve-switch-editor-tool-title": "ویکی متن خانہ ترمیم شروع کریں",
 	"flow-mark-revision-patrolled-link-text": "اس صفحہ کو بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-revision-patrolled-link-title": "اس صفحہ کو بطور مراجعت شدہ نشان زد کریں",
 	"flow-mark-diff-patrolled-link-text": "بطور مراجعت شدہ نشان زد کریں",

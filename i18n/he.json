@@ -499,8 +499,6 @@
 	"flow-wikitext-editor-help-and-preview": "קוד ויקי $1 ובאפשרותך $2 בכל זמן.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|משתמש בשפת עיצוב]]",
 	"flow-wikitext-editor-help-preview-the-result": "לראות תצוגה מקדימה של התוצאה",
-	"flow-wikitext-switch-editor-tooltip": "מעבר לעורך החזותי",
-	"flow-ve-switch-editor-tool-title": "מעבר לעורך קוד ויקי",
 	"flow-mark-revision-patrolled-link-text": "סימון דף זה כבדוק",
 	"flow-mark-revision-patrolled-link-title": "סימון דף זה כבדוק",
 	"flow-mark-diff-patrolled-link-text": "סימון השינוי כבדוק",

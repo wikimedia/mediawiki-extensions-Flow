@@ -495,8 +495,6 @@
 	"flow-wikitext-editor-help-and-preview": "El wikitexto $1 y en cualquier momento puedes $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|usa un lenguaje de marcado]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualizar el resultado",
-	"flow-wikitext-switch-editor-tooltip": "Cambiar al editor visual",
-	"flow-ve-switch-editor-tool-title": "Cambiar al editor de wikitexto",
 	"flow-mark-revision-patrolled-link-text": "Marcar esta página como verificada",
 	"flow-mark-revision-patrolled-link-title": "Marcar esta página como verificada",
 	"flow-mark-diff-patrolled-link-text": "Marcar como verificada",

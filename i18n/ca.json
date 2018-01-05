@@ -452,8 +452,6 @@
 	"flow-wikitext-editor-help-and-preview": "El text wiki $1 i podeu $2 en qualsevol moment.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|utilitza marcatge]]",
 	"flow-wikitext-editor-help-preview-the-result": "previsualitzar el resultat",
-	"flow-wikitext-switch-editor-tooltip": "Canvia a l'editor visual",
-	"flow-ve-switch-editor-tool-title": "Canvia a l'editor de text wiki",
 	"flow-mark-revision-patrolled-link-text": "Marca la pàgina com a supervisada",
 	"flow-mark-revision-patrolled-link-title": "Marca la pàgina com a supervisada",
 	"flow-mark-diff-patrolled-link-text": "Marca com a supervisat",

@@ -503,8 +503,6 @@
 	"flow-wikitext-editor-help-and-preview": "نص الويكي $1 ويمكنك $2 في أي وقت.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|يستخدم تنسيق]]",
 	"flow-wikitext-editor-help-preview-the-result": "عرض النتيجة",
-	"flow-wikitext-switch-editor-tooltip": "الانتقال إلى المحرر المرئي",
-	"flow-ve-switch-editor-tool-title": "الانتقال إلى محرر نص الويكي",
 	"flow-mark-revision-patrolled-link-text": "علم هذه الصفحة كمراجعة",
 	"flow-mark-revision-patrolled-link-title": "علم هذه الصفحة كمراجعة",
 	"flow-mark-diff-patrolled-link-text": "علم كمراجعة",
