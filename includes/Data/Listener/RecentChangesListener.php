@@ -41,7 +41,7 @@ class RecentChangesListener extends AbstractListener {
 	/**
 	 * @param FlowActions $actions
 	 * @param UserNameBatch $usernames
-	 * @param RecentChangeFactory $rcFactory Creates mw RecentChange instances
+	 * @param RecentChangeFactory $rcFactory
 	 * @param IRCLineUrlFormatter $ircFormatter
 	 */
 	public function __construct(
@@ -57,7 +57,7 @@ class RecentChangesListener extends AbstractListener {
 	}
 
 	/**
-	 * @param AbstractRevision $revision Revision object
+	 * @param AbstractRevision $revision
 	 * @param array $row Revision row
 	 * @param array $metadata
 	 */

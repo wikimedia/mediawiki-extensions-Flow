@@ -407,7 +407,7 @@ abstract class Utils {
 	 * Handler for FlowAddModules, avoids rest of Flow having to be aware if
 	 * Parsoid is in use.
 	 *
-	 * @param OutputPage $out OutputPage object
+	 * @param OutputPage $out
 	 * @return bool
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {

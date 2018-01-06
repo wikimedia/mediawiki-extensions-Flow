@@ -76,8 +76,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	/**
 	 * Get the topic title Title
 	 *
-	 * @param string $fragment Optional fragment
-	 * @return Title Topic title
+	 * @param string $fragment
+	 * @return Title
 	 */
 	protected function getTopicTitleObj( $fragment = '' ) {
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );

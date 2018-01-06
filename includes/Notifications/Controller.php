@@ -492,7 +492,7 @@ class NotificationController {
 	/**
 	 * @param AbstractRevision $content The (post|topic|header) revision that contains the content of the mention
 	 * @param PostRevision|null $topic Topic PostRevision object, if relevant (e.g. not for Header)
-	 * @param Workflow $workflow Workflow object
+	 * @param Workflow $workflow
 	 * @param User $user User who created the new post
 	 * @param array $mentionedUsers
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?

@@ -9,7 +9,6 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 	protected $description = '';
 
 	public function __construct( array $config = [] ) {
-		// Parent constructor
 		parent::__construct( $config );
 
 		if ( isset( $config['description'] ) ) {
@@ -20,7 +19,6 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 			$editLink = $config['editLink'];
 		}
 
-		// Edit button
 		$this->editButton = new \OOUI\ButtonWidget( [
 			'framed' => false,
 			'href' => $editLink,

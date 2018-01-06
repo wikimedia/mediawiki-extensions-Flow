@@ -180,7 +180,7 @@ class FlowHooks {
 	/**
 	 * Hook: LoadExtensionSchemaUpdates
 	 *
-	 * @param DatabaseUpdater $updater DatabaseUpdater object
+	 * @param DatabaseUpdater $updater
 	 * @return bool true in all cases
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
@@ -1132,7 +1132,7 @@ class FlowHooks {
 	/**
 	 * Add topiclist sortby to preferences.
 	 *
-	 * @param User $user User object
+	 * @param User $user
 	 * @param array &$preferences Preferences object
 	 * @return bool
 	 */
