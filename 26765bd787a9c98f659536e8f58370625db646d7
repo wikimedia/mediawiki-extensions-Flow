@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeed6739_7c6ca705",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1872,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-01-06T15:58:15Z",
+      "side": 1,
+      "message": "This should be type-hinted as DbFactory. The type hint below becomes obsolete then.\n\nI will upload a follow up.",
+      "range": {
+        "startLine": 1872,
+        "startChar": 2,
+        "endLine": 1872,
+        "endChar": 12
+      },
+      "revId": "26765bd787a9c98f659536e8f58370625db646d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeed6739_3c833f9d",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-01-06T15:58:15Z",
+      "side": 1,
+      "message": "There are some calls that assume this returns a Database object, and not just the interface. I found at least two instances:\n* FlowSetUserIp::doDBUpdates calls sourceFile.\n* FlowUpdateRevisionTypeId::doDBUpdates calls dropTable.\n\nI think if you revert this particular change, the rest of this patch is fine.",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "26765bd787a9c98f659536e8f58370625db646d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeed6739_fc78b7c1",
+        "filename": "maintenance/FlowSetUserIp.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-01-06T15:58:15Z",
+      "side": 1,
+      "message": "This method is not in the interface but only in the Database implementation. But $dbw is type hinted as IDatabase because of the change in Container.",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "26765bd787a9c98f659536e8f58370625db646d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
