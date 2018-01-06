@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "aeed6739_a7229ca0",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-01-06T18:35:48Z",
+      "side": 1,
+      "message": "I changed to IMaintainableDatabase",
+      "parentUuid": "aeed6739_3c833f9d",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "26765bd787a9c98f659536e8f58370625db646d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aeed6739_fc78b7c1",
         "filename": "maintenance/FlowSetUserIp.php",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2018-01-06T15:58:15Z",
       "side": 1,
       "message": "This method is not in the interface but only in the Database implementation. But $dbw is type hinted as IDatabase because of the change in Container.",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 61,
+        "endChar": 19
+      },
+      "revId": "26765bd787a9c98f659536e8f58370625db646d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aeed6739_671a5475",
+        "filename": "maintenance/FlowSetUserIp.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-01-06T18:35:48Z",
+      "side": 1,
+      "message": "It is part of IMaintainableDatabase",
+      "parentUuid": "aeed6739_fc78b7c1",
       "range": {
         "startLine": 61,
         "startChar": 3,
