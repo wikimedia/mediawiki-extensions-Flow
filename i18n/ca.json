@@ -15,7 +15,8 @@
 			"Eduardo Martinez",
 			"Nnemo",
 			"Matiia",
-			"Syum90"
+			"Syum90",
+			"Ssola"
 		]
 	},
 	"enablestructureddiscussions": "Habilita el Flow",
@@ -239,7 +240,7 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 ha {{GENDER:$1|modificat}} el vostre <span class=\"plainlinks\">[$5 apunt]</span> a [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 i {{PLURAL:$5|un altre|$5 més|100=més d'un centenar}} han {{GENDER:$1|modificat}} un <span class=\"plainlinks\">[$4 apunt]</span> sobre «$2» a «$3».",
 	"notification-header-flow-new-topic-v2": "Nou tema creat a <strong>$3</strong>: <bdi>«<strong>$4</strong>»</bdi>.",
-	"notification-bundle-header-flow-new-topic": "$1 {{PLURAL:$1|tema nou|temes nous}} a <strong>$3</strong>.",
+	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Un tema nou|$1 temes nous|100=99+ temes nous}} a <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "Nou tema creat a la <strong>vostra pàgina de discussió</strong>: «<strong>$4</strong>».",
 	"notification-bundle-header-flow-new-topic-user-talk": "$1 {{PLURAL:$1|nou tema|nous temes}} a la <strong>vostra pàgina de discussió</strong>.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|ha respost}} a «<strong>$4</strong>».",
@@ -248,7 +249,7 @@
 	"notification-bundle-header-flow-post-reply-user-talk": "$1 {{PLURAL:$1|nova resposta|noves respostes}} a la <strong>vostra pàgina de discussió</strong> sobre «<strong>$3</strong>».",
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|El vostre}} apunt sobre «<strong>$1</strong>» ha estat modificat.",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|El vostre}} apunt sobre «<strong>$1</strong>» ha estat modificat diverses vegades.",
-	"notification-header-flow-post-edited-user-talk": "Un apunt sobre «<strong>$1<strong>» ha estat modificat en la <strong>{{GENDER:$2|vostra}} pàgina de discussió<strong>.",
+	"notification-header-flow-post-edited-user-talk": "Un apunt sobre «<strong>$1</strong>» ha estat modificat en la <strong>{{GENDER:$2|vostra}} pàgina de discussió</strong>.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Un apunt sobre «<strong>$1</strong>» ha estat modificat diverses vegades a la <strong>{{GENDER:$2|vostra}} pàgina de discussió</strong>.",
 	"notification-header-flow-topic-renamed-v2": "El tema «<strong>$1</strong>» ha estat reanomenat a «<strong>$2</strong>».",
 	"notification-header-flow-topic-renamed-user-talk": "El tema «<strong>$1</strong>» ha estat reanomenat a «<strong>$2</strong>» en la <strong>vostra pàgina de discussió</strong>.",
