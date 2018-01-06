@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\DbFactory;
 use Flow\Model\UUID;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -38,6 +39,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$storage = Container::get( 'storage.header' );
 		$count = $this->mBatchSize;
 		$id = '';
+		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
 		$dbr = $dbf->getDB( DB_REPLICA );
 		while ( $count === $this->mBatchSize ) {

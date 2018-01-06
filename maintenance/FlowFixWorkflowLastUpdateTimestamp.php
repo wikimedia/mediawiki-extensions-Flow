@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -36,6 +37,7 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 	public function execute() {
 		global $wgFlowCluster;
 
+		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
 		$storage = Container::get( 'storage' );
 		$rootPostLoader = Container::get( 'loader.root_post' );

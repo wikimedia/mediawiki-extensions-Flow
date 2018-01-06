@@ -3,6 +3,7 @@
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Conversion\Utils;
+use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Data\Listener\RecentChangesListener;
@@ -14,7 +15,6 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
-use Wikimedia\Rdbms\IDatabase;
 
 class FlowHooks {
 	/**
@@ -1869,8 +1869,8 @@ class FlowHooks {
 			return true;
 		}
 
+		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
-		/** @var IDatabase $dbr */
 		$dbr = $dbFactory->getDB( DB_REPLICA );
 
 		// if a username is specified, search only for that user

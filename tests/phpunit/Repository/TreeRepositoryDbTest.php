@@ -26,6 +26,7 @@ class TreeRepositoryDbTest extends FlowTestCase {
 		$cache[] = $this->getCache();
 		$cache[] = $this->getCache();
 		$dbf = Container::get( 'db.factory' );
+		/** @var TreeRepository[] $repo */
 		$repo[] = new TreeRepository( $dbf, $cache[0] );
 		$repo[] = new TreeRepository( $dbf, $cache[1] );
 

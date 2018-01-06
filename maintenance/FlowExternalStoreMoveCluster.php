@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\DbFactory;
 use Flow\Model\UUID;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -271,6 +272,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 class FlowExternalStoreMoveCluster extends ExternalStoreMoveCluster {
 	protected function schema() {
 		$container = Container::getContainer();
+		/** @var DbFactory $dbFactory */
 		$dbFactory = $container['db.factory'];
 
 		return [

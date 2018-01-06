@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
 use Flow\Model\UUID;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -41,8 +42,8 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$this->storage = $storage = Container::get( 'storage' );
+		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
-		/** @var IDatabase $dbw */
 		$dbw = $dbf->getDB( DB_MASTER );
 
 		$runUpdate = function ( $callback ) use ( $dbf, $dbw, $storage ) {

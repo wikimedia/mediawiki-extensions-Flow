@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\DbFactory;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -29,6 +30,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
 		$dbw = $dbf->getDB( DB_MASTER );
 		$hasRun = false;
