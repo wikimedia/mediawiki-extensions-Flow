@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Container;
+use Flow\DbFactory;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -25,6 +26,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$revId = '';
 		$count = $this->mBatchSize;
+		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
 		$dbr = $dbFactory->getDB( DB_REPLICA );
 		$dbw = $dbFactory->getDB( DB_MASTER );
