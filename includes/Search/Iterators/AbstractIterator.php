@@ -9,8 +9,8 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;
-use ResultWrapper;
 use stdClass;
+use Wikimedia\Rdbms\ResultWrapper;
 
 abstract class AbstractIterator implements Iterator {
 	/**
