@@ -5,7 +5,8 @@
 			"Mitzev",
 			"Borislav",
 			"V111P",
-			"StanProg"
+			"StanProg",
+			"ShockD"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Преглед на темите",
@@ -38,5 +39,6 @@
 	"flow-importer-wt-converted-template-content": "Предишната дискусия е архивирана в <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-ve-mention-placeholder": "Потребителско име",
 	"flow-optin-archive-wikitext": "Преместване на страницата с уики текст за да се освободи място за дискусионно табло.",
-	"flow-optin-restore-flow-board": "Възстановяване на архивирано дискусионно табло."
+	"flow-optin-restore-flow-board": "Възстановяване на архивирано дискусионно табло.",
+	"flow-preference-visualeditor": "Включване на визуалния редактор и новия уикитекстов режим в Структурирани дискусии"
 }

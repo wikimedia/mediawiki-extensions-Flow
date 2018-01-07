@@ -470,5 +470,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "尋找{{GENDER:$1|您}}的舊談話",
 	"flow-guidedtour-optin-find-old-conversations-description": "先前的對話已被移動至存檔頁面。",
 	"flow-guidedtour-optin-feedback": "提供{{GENDER:$1|您}}的回饋給我們！",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以隨時於試用版功能區取得更多資訊，提供意見回饋或者關閉新的系統。"
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以隨時於試用版功能區取得更多資訊，提供意見回饋或者關閉新的系統。",
+	"flow-preference-visualeditor": "在結構式討論中啟用視覺化編輯器及新wikitext模式"
 }

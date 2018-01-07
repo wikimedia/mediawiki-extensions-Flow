@@ -10,7 +10,7 @@
 			"Rodrigo"
 		]
 	},
-	"enablestructureddiscussions": "Flow engedélyezése",
+	"enablestructureddiscussions": "Strukturált Beszélgetés engedélyezése",
 	"notification-dynamic-actions-flow-board-unwatch": "Új tevékenységek figyelésének {{GENDER:$3|leállítása}} a(z) „$1” lapon",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Már nem {{GENDER:$3|figyeled}} a(z) „$1” lapot",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Ez nem érinti az {{GENDER:$3|általad}} figyelt egyes témákat. Bármikor újra figyelheted [$2 ezt az oldalt].",
@@ -41,6 +41,8 @@
 	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|újranyitotta}} a(z) „[[$3|$5]]” témát a(z) [[$6]] lapon",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|újranyitott}} egy témát a(z) [[$3]] lapon",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] a(z) [[$3]] lapon importálva lett LiquidThreadsből strukturált beszélgetésbe",
+	"abusefilter-edit-builder-vars-board-namespace": "strukturált beszélgetőoldal névtere",
+	"abusefilter-edit-builder-vars-board-prefixedtext": "strukturált beszélgetőoldal teljes címe",
 	"flow-user-moderated": "Moderált felhasználó",
 	"flow-board-header-browse-topics-link": "Témák böngészése",
 	"flow-board-header": "Erről a megbeszélésről",

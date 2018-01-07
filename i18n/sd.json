@@ -11,8 +11,11 @@
 	"flow-topic-expand-siderail": "مقرر ڪيل ويڪر تي پڙھو",
 	"flow-show-change": "تبديليون ڏيکاريو",
 	"flow-last-modified-by": "$1 پاران آخري ڀيرو {{GENDER:$1|سنواريل}}",
+	"flow-post-action-edit-post-submit": "تبديليون سانڍيو",
 	"flow-topic-action-watchlist-add": "هن موضوع کي سبسڪرائب ڪريو",
 	"flow-topic-action-watchlist-remove": "اڻ سبسڪرائب ڪريو",
+	"flow-edit-post-submit": "ترمرميمون اماڻيو",
 	"group-flow-bot-member": "منظم بحث بوٽ",
-	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 تي نئون مباحثي سرشتو"
+	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 تي نئون مباحثي سرشتو",
+	"flow-dialog-cancelconfirm-discard": "تبديليون ڦٽو ڪريو"
 }
