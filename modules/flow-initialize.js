@@ -17,7 +17,7 @@
 				$component: $component,
 				$board: $board
 			} );
-
+debugger;
 		// Set component
 		if ( !initializer.setComponentDom( $component ) ) {
 			initializer.finishLoading();
@@ -32,34 +32,45 @@
 			flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
 			initializer.setBoardObject( flowBoard );
 
-			// Initialize DM system and board
-			initializer.initDataModel( {
+			// Initialize controller, which initializes the data model
+			initializer.initializeFullBoard( {
 				pageTitle: pageTitle,
 				tocPostsLimit: 50,
 				renderedTopics: $( '.flow-topic' ).length,
 				boardId: $component.data( 'flow-id' ),
 				defaultSort: $board.data( 'flow-sortby' )
+			} )
+			// HACK: Temporarily go by this promise. This entire process, though.
+			// should be done through initializing widgets and then initializing
+			// the controller, without having to wait on promises.
+			.then( function () {
+				// mw.flow.viewModel = initializer.getViewModel();
+
+				if ( initializer.isUndoForm() ) {
+					// Setup undo pages
+					initializer.setupUndoPage();
+				} else {
+					// Replace the no-js editor if we are editing in a
+					// new page
+					initializer.replaceNoJSEditor( $( '.flow-edit-post-form' ) );
+
+					// Create and replace UI widgets
+					initializer.initializeWidgets();
+
+					// Fall back to mw.flow.data, which was used until September 2015
+					// NOTICE: This block must be after the initialization of the ui widgets so
+					// they can populate themselves according to the events.
+					// initializer.populateDataModel( mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data ) );
+				}
+			} )
+			.then( function () {
+				// Show the board
+				initializer.finishLoading();
+
+				// Preload VisualEditor
+				mw.flow.ui.EditorWidget.static.preload();
 			} );
-
 			// For reference and debugging
-			mw.flow.viewModel = initializer.getViewModel();
-
-			if ( initializer.isUndoForm() ) {
-				// Setup undo pages
-				initializer.setupUndoPage();
-			} else {
-				// Replace the no-js editor if we are editing in a
-				// new page
-				initializer.replaceNoJSEditor( $( '.flow-edit-post-form' ) );
-
-				// Create and replace UI widgets
-				initializer.initializeWidgets();
-
-				// Fall back to mw.flow.data, which was used until September 2015
-				// NOTICE: This block must be after the initialization of the ui widgets so
-				// they can populate themselves according to the events.
-				initializer.populateDataModel( mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data ) );
-			}
 		} else {
 			// Editing summary in a separate window. That has no
 			// flow-board, but we should still replace the widget
@@ -67,12 +78,12 @@
 				false,
 				$component.data( 'flow-id' )
 			);
+
+			// Show the board
+			initializer.finishLoading();
+
+			// Preload VisualEditor
+			mw.flow.ui.EditorWidget.static.preload();
 		}
-
-		// Show the board
-		initializer.finishLoading();
-
-		// Preload VisualEditor
-		mw.flow.ui.EditorWidget.static.preload();
 	} );
 }( jQuery ) );

@@ -441,6 +441,7 @@
 			"scripts": [
 				"flow/mw.flow.js",
 				"flow/mw.flow.Controller.js",
+				"flow/mw.flow.OldSystemController.js",
 				"flow/dm/mw.flow.dm.js",
 				"flow/dm/mw.flow.dm.Content.js",
 				"flow/dm/mw.flow.dm.Item.js",

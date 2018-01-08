@@ -15,7 +15,7 @@
 		this.pageTitle = config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 
 		this.viewModel = null;
-		this.board = null;
+		this.controller = null;
 		this.navWidget = null;
 	};
 
@@ -61,37 +61,39 @@
 
 		this.flowBoard = board;
 
-		this.flowBoard.connect( this, {
-			loadmore: function ( topiclist ) {
-				// Add to dm board
-				if ( self.viewModel ) {
-					self.viewModel.populateBoardTopicsFromJson( topiclist );
-				}
-
-				// Replace reply forms
-				self.replaceReplyForms( self.$board );
-			},
-			// HACK: Update the DM when topic is refreshed
-			refreshTopic: function ( workflowId, topicData ) {
-				var revisionId, revision,
-					topic = self.board.getItemById( workflowId ),
-					data = topicData.flow[ 'view-topic' ].result.topic;
-
-				if ( !topic ) {
-					// New topic
-					mw.flow.viewModel.populateBoardTopicsFromJson( data, 0 );
-				} else {
-					// Topic already exists. Repopulate
-					revisionId = data.posts[ workflowId ];
-					revision = data.revisions[ revisionId ];
-
-					topic.populate( revision );
-				}
-
-				// Replace reply forms
-				self.replaceReplyForms( topicData.$topic );
-			}
-		} );
+		// TODO: Ideally these shouldn't be event listeners, but either way
+		// this should be done in the OldSystemController
+		// this.flowBoard.connect( this, {
+		// 	loadmore: function ( topiclist ) {
+		// 		// Add to dm board
+		// 		if ( self.viewModel ) {
+		// 			self.viewModel.populateBoardTopicsFromJson( topiclist );
+		// 		}
+        //
+		// 		// Replace reply forms
+		// 		self.replaceReplyForms( self.$board );
+		// 	},
+		// 	// HACK: Update the DM when topic is refreshed
+		// 	refreshTopic: function ( workflowId, topicData ) {
+		// 		var revisionId, revision,
+		// 			topic = self.board.getItemById( workflowId ),
+		// 			data = topicData.flow[ 'view-topic' ].result.topic;
+        //
+		// 		if ( !topic ) {
+		// 			// New topic
+		// 			mw.flow.viewModel.populateBoardTopicsFromJson( data, 0 );
+		// 		} else {
+		// 			// Topic already exists. Repopulate
+		// 			revisionId = data.posts[ workflowId ];
+		// 			revision = data.revisions[ revisionId ];
+        //
+		// 			topic.populate( revision );
+		// 		}
+        //
+		// 		// Replace reply forms
+		// 		self.replaceReplyForms( topicData.$topic );
+		// 	}
+		// } );
 	};
 
 	/**
@@ -170,80 +172,20 @@
 	};
 
 	/**
-	 * Initialize the data model objects
+	 * Initialize the controller and data model objects
 	 * @param {Object} config Configuration options for the mw.flow.dm.ViewModel
 	 */
-	mw.flow.Initializer.prototype.initDataModel = function ( config ) {
+	mw.flow.Initializer.prototype.initializeFullBoard = function ( config ) {
 		var self = this;
-
 		this.viewModel = new mw.flow.dm.ViewModel( config );
-		this.board = this.viewModel.getBoard();
-		// Initialize the old system to accept the default
-		// order for the topic order widget
-		this.flowBoard.topicIdSort = this.board.getSortOrder();
+		this.controller = new mw.flow.Controller( this.viewModel );
 
-		// Events
-		this.board.connect( this, {
-			add: function ( newItems ) {
-				var i, len, item, itemId;
+		// Initialize the controller
+		return this.controller.initializeBoard(
+			mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data )
+		);
 
-				for ( i = 0, len = newItems.length; i < len; i++ ) {
-					item = newItems[ i ];
-					itemId = item.getId();
-
-					if ( $.inArray( itemId, self.flowBoard.orderedTopicIds ) === -1 ) {
-						self.flowBoard.orderedTopicIds.push( itemId );
-					}
-
-					self.flowBoard.topicTitlesById[ itemId ] = item.getContent();
-					self.flowBoard.updateTimestampsByTopicId[ itemId ] = item.getLastUpdate();
-				}
-				self.flowBoard.sortTopicIds( self.flowBoard );
-			},
-			// E.g. on topic re-order, before re-population.
-			clear: function () {
-				self.flowBoard.orderedTopicIds = [];
-				self.flowBoard.topicTitlesById = {};
-			}
-			// We shouldn't have to worry about 'remove', since by the time we have filtering,
-			// orderedTopicIds should be gone.
-		} );
-	};
-
-	/**
-	 * Get the view model
-	 *
-	 * @return {mw.flow.dm.ViewModel} DM view model
-	 */
-	mw.flow.Initializer.prototype.getViewModel = function () {
-		return this.viewModel;
-	};
-
-	/**
-	 * Populate the data model
-	 *
-	 * @param {Object} dataBlob Data blob to populate the system with
-	 */
-	mw.flow.Initializer.prototype.populateDataModel = function ( dataBlob ) {
-		var preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
-			preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' ),
-			preloadFormat = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'format' );
-
-		if ( dataBlob && dataBlob.blocks ) {
-			// Populate the rendered topics or topic (if we are in a single-topic view)
-			this.viewModel.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
-			// Populate header
-			this.viewModel.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
-			// Populate the ToC topics
-			if ( dataBlob.toc ) {
-				this.viewModel.populateBoardTopicsFromJson( dataBlob.toc );
-			}
-		} else {
-			this.viewModel.populateBoardFromApi();
-		}
-		if ( preloadTopic || preloadContent ) {
-			this.newTopicWidget.preload( preloadTopic, preloadContent, preloadFormat );
-		}
+		// TODO: Create initialization for editing summary in a separate window
 	};
 
 	/**
@@ -258,9 +200,11 @@
 			return;
 		}
 
-		this.navWidget = new mw.flow.ui.NavigationWidget( this.viewModel, {
-			defaultSort: this.flowBoard.topicIdSort
-		} );
+		this.navWidget = new mw.flow.ui.NavigationWidget(
+			this.controller,
+			this.viewModel,
+			{ defaultSort: this.flowBoard.topicIdSort }
+		);
 		$navDom.append( this.navWidget.$element );
 
 		// Events
@@ -273,65 +217,6 @@
 			},
 			reorderTopics: function ( newOrder ) {
 				self.flowBoard.topicIdSort = newOrder;
-			}
-		} );
-
-		// Connect to system events
-
-		// HACK: These event handlers should be in the prospective widgets
-		// they will move once we have Board UI and Topic UI widgets
-		this.viewModel.connect( this, {
-			resetBoardStart: function () {
-				self.$component.addClass( 'flow-api-inprogress' );
-				// Before we reinitialize the board we have to detach
-				// the navigation widget. This should not be necessary when
-				// the board and topics are OOUI widgets
-				self.navWidget.$element.detach();
-			},
-			resetBoardEnd: function ( data ) {
-				var $rendered;
-
-				// populateBoardFromApi uses the larger TOC limit so the TOC can
-				// be fully populated on re-sort.  To avoid two requests
-				// (TOC and full topics) with different limits, we do a single
-				// full-topic request with that limit.
-				//
-				// However, this is inconsistent with the number of topics
-				// we show at page load.
-				//
-				// This could be addressed by either showing the larger number of
-				// topics on page load, doing two separate requests (might still be
-				// faster considering the backend doesn't have to get full data for
-				// many topics), or filtering the topic list on render.
-				//
-				// The latter (filter on render) could be done when the topic- and
-				// board-widget are operational using some sort of computed subset
-				// data model.
-				$rendered = $(
-					mw.flow.TemplateEngine.processTemplateGetFragment(
-						'flow_block_loop',
-						{ blocks: data }
-					)
-				).children();
-				// Run this on a short timeout so that the other board handler in FlowBoardComponentLoadMoreFeatureMixin can run
-				// TODO: Using a timeout doesn't seem like the right way to do this.
-				setTimeout( function () {
-					var boardEl = $rendered[ 1 ];
-
-					// Since we've replaced the entire board, we need to reinitialize
-					// it. This also takes away the original navWidget, so we need to
-					// make sure it's reinitialized too
-					self.flowBoard.reinitializeContainer( $rendered );
-					$( '.flow-board-navigation' ).append( self.navWidget.$element );
-
-					self.setBoardDom( $( boardEl ) );
-
-					self.replaceReplyForms( self.$board );
-
-					self.setupNewTopicWidget( $( 'form.flow-newtopic-form' ) );
-
-					self.$component.removeClass( 'flow-api-inprogress' );
-				}, 50 );
 			}
 		} );
 	};
@@ -374,7 +259,7 @@
 			return;
 		}
 
-		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
+		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.viewModel.getBoard(), {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents(),
 			editor: {

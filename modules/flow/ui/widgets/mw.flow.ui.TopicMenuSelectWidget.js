@@ -10,13 +10,14 @@
 	 * @param {Object} [config]
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 */
-	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( viewModel, config ) {
+	mw.flow.ui.TopicMenuSelectWidget = function mwFlowUiTopicMenuSelectWidget( controller, viewModel, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.TopicMenuSelectWidget.parent.call( this, config );
 
 		// Properties
+		this.controller = controller;
 		this.viewModel = viewModel;
 		this.board = this.viewModel.getBoard();
 		this.tocPostLimit = config.tocPostLimit || 50;
@@ -124,7 +125,7 @@
 		var widget = this;
 
 		this.loadingMoreTopics = true;
-		return this.viewModel.fetchMoreTopics()
+		return this.controller.fetchMoreTopics()
 			.then( function ( hasMoreTopicsInApi ) {
 				widget.noMoreTopics = !hasMoreTopicsInApi;
 				if ( widget.noMoreTopics ) {

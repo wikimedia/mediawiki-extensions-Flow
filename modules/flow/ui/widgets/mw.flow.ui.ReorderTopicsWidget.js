@@ -8,12 +8,13 @@
  * @param {Object} [config] Configuration object
  * @cfg {string} [defaultSort='newest'] The current default topic sort order
  */
-mw.flow.ui.ReorderTopicsWidget = function mwFlowUiReorderTopicsWidget( board, config ) {
+mw.flow.ui.ReorderTopicsWidget = function mwFlowUiReorderTopicsWidget( controller, board, config ) {
 	config = config || {};
 
 	// Parent constructor
 	mw.flow.ui.ReorderTopicsWidget.parent.call( this, config );
 
+	this.controller = controller;
 	this.board = board;
 
 	this.messages = {
@@ -79,7 +80,8 @@ mw.flow.ui.ReorderTopicsWidget.prototype.onButtonClick = function () {
  */
 mw.flow.ui.ReorderTopicsWidget.prototype.onReorderMenuChoose = function () {
 	this.toggleOrderType();
-	this.board.reset( this.getOrderType() );
+debugger;
+	this.controller.resortBoard( this.getOrderType() );
 };
 
 /**
@@ -108,7 +110,7 @@ mw.flow.ui.ReorderTopicsWidget.prototype.toggleOrderType = function ( type ) {
 			this.messages[ { newest: 'updated', updated: 'newest' }[ this.orderType ] ]
 		);
 
-		this.board.setSortOrder( type );
+		this.controller.setSortOrder( type );
 
 		// Change the icon
 		this.reorderMenuOptionWidget.setIcon( this.orderType === 'newest' ? 'clock' : 'beta' );

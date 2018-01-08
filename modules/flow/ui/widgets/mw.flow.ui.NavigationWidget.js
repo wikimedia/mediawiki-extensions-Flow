@@ -10,20 +10,22 @@
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 * @cfg {string} [defaultSort='newest'] The current default topic sort order
 	 */
-	mw.flow.ui.NavigationWidget = function mwFlowUiNavigationWidget( viewModel, config ) {
+	mw.flow.ui.NavigationWidget = function mwFlowUiNavigationWidget( controller, viewModel, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.NavigationWidget.parent.call( this, config );
 
+		this.controller = controller;
+		this.viewModel = viewModel;
 		this.board = viewModel.getBoard();
 
-		this.tocWidget = new mw.flow.ui.ToCWidget( viewModel, {
+		this.tocWidget = new mw.flow.ui.ToCWidget( this.controller, viewModel, {
 			classes: [ 'flow-ui-navigationWidget-tocWidget' ],
 			tocPostLimit: config.tocPostLimit
 		} );
 
-		this.reorderTopicsWidget = new mw.flow.ui.ReorderTopicsWidget( this.board, config );
+		this.reorderTopicsWidget = new mw.flow.ui.ReorderTopicsWidget( this.controller, this.board, config );
 
 		// Events
 		$( window ).on( 'scroll resize', this.onWindowScroll.bind( this ) );
