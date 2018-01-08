@@ -14,7 +14,8 @@
 			"Shizhao",
 			"飞舞回堂前",
 			"Arthur2e5",
-			"A2093064"
+			"A2093064",
+			"Kly"
 		]
 	},
 	"enablestructureddiscussions": "開啟結構式討論",
@@ -176,7 +177,7 @@
 	"flow-error-insufficient-permission": "權限不足，無法存取內容。",
 	"flow-error-revision-comparison": "比較差異的操作僅可於相同貼文中的兩個修訂間使用。",
 	"flow-error-missing-topic-title": "目前的工作流程中查無此話題標題。",
-	"flow-error-missing-metadata": "查無此修訂必要的 Metadata 。",
+	"flow-error-missing-metadata": "查無此修訂所需要的詮釋資料 。",
 	"flow-error-different-page": "結構式討論工作流程並未與該頁面關聯。",
 	"flow-error-fail-load-data": "請求的資料載入失敗。",
 	"flow-error-invalid-workflow": "查無請求的工作流程。",
