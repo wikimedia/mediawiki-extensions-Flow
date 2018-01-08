@@ -10,12 +10,13 @@
 	 * @param {Object} [config]
 	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
 	 */
-	mw.flow.ui.ToCWidget = function mwFlowUiToCWidget( viewModel, config ) {
+	mw.flow.ui.ToCWidget = function mwFlowUiToCWidget( controller, viewModel, config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.flow.ui.ToCWidget.parent.call( this, config );
 
+		this.controller = controller;
 		this.viewModel = viewModel;
 		this.board = this.viewModel.getBoard();
 		this.originalButtonLabel = mw.msg( 'flow-board-header-browse-topics-link' );
@@ -26,7 +27,7 @@
 			label: this.originalButtonLabel,
 			classes: [ 'flow-ui-tocWidget-button' ]
 		} );
-		this.topicSelect = new mw.flow.ui.TopicMenuSelectWidget( this.viewModel, {
+		this.topicSelect = new mw.flow.ui.TopicMenuSelectWidget( this.controller, this.viewModel, {
 			classes: [ 'flow-ui-tocWidget-menu' ],
 			tocPostLimit: config.tocPostLimit,
 			widget: this.button

@@ -11,7 +11,6 @@
 	 * @param {string} data.id Board Id
 	 * @param {mw.Title} data.pageTitle Current page title
 	 * @param {boolean} [data.isDeleted] Board is deleted
-	 * @param {string} [data.defaultSort='newest'] The initial default topic sorting
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.flow.dm.Board = function mwFlowDmBoard( data, config ) {
@@ -29,7 +28,6 @@
 		this.setId( data.id );
 		this.pageTitle = data.pageTitle;
 		this.deleted = !!data.isDeleted;
-		this.sort = data.defaultSort || 'newest';
 		this.description = new mw.flow.dm.BoardDescription();
 
 		// Events
@@ -198,28 +196,6 @@
 			this.setDescription(
 				new mw.flow.dm.BoardDescription( headerRevision )
 			);
-		}
-	};
-
-	/**
-	 * Get board sort order, 'newest' or 'updated'
-	 *
-	 * @return {string} Board sort order
-	 */
-	mw.flow.dm.Board.prototype.getSortOrder = function () {
-		return this.sort;
-	};
-
-	/**
-	 * Set board sort order, 'newest' or 'updated'
-	 *
-	 * @param {string} order Board sort order
-	 * @fires sortOrderChange
-	 */
-	mw.flow.dm.Board.prototype.setSortOrder = function ( order ) {
-		if ( this.sort !== order ) {
-			this.sort = order;
-			this.emit( 'sortOrderChange', order );
 		}
 	};
 

@@ -47,45 +47,45 @@
 
 	/* Static methods */
 
-	/**
-	 * Get the topic revision connected to the topic id from the
-	 * topiclist api response. This connects the topic id to the
-	 * post id and then returns the specific available revision.
-	 *
-	 * @param {Object} topiclist API data for topiclist
-	 * @param {string} topicId Topic id
-	 * @return {Object} Revision data
-	 */
-	mw.flow.dm.Topic.static.getTopicRevisionFromApi = function ( topiclist, topicId ) {
-		var revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
-
-		return topiclist.revisions[ revisionId ];
-	};
-
-	/**
-	 * Get an array of topic objects from a topiclist api response.
-	 *
-	 * @param {Object} topiclist API data for topiclist
-	 * @param {string} topicId Topic id
-	 * @return {mw.flow.dm.Topic[]} Array of topic models
-	 */
-	mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
-		var i, len, topicId,
-			topics = [];
-
-		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
-			topicId = topiclist.roots[ i ];
-			topics.push(
-				new mw.flow.dm.Topic(
-					topicId,
-					this.getTopicRevisionFromApi( topiclist, topicId )
-				)
-			);
-		}
-
-		return topics;
-	};
-
+	// /**
+	//  * Get the topic revision connected to the topic id from the
+	//  * topiclist api response. This connects the topic id to the
+	//  * post id and then returns the specific available revision.
+	//  *
+	//  * @param {Object} topiclist API data for topiclist
+	//  * @param {string} topicId Topic id
+	//  * @return {Object} Revision data
+	//  */
+	// mw.flow.dm.Topic.static.getTopicRevisionFromApi = function ( topiclist, topicId ) {
+	// 	var revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
+    //
+	// 	return topiclist.revisions[ revisionId ];
+	// };
+    //
+	// /**
+	//  * Get an array of topic objects from a topiclist api response.
+	//  *
+	//  * @param {Object} topiclist API data for topiclist
+	//  * @param {string} topicId Topic id
+	//  * @return {mw.flow.dm.Topic[]} Array of topic models
+	//  */
+	// mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
+	// 	var i, len, topicId,
+	// 		topics = [];
+    //
+	// 	for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {
+	// 		topicId = topiclist.roots[ i ];
+	// 		topics.push(
+	// 			new mw.flow.dm.Topic(
+	// 				topicId,
+	// 				this.getTopicRevisionFromApi( topiclist, topicId )
+	// 			)
+	// 		);
+	// 	}
+    //
+	// 	return topics;
+	// };
+    //
 	/* Methods */
 
 	/**

@@ -15,6 +15,7 @@
 		this.pageTitle = config.pageTitle || mw.Title.newFromText( mw.config.get( 'wgPageName' ) );
 
 		this.viewModel = null;
+		this.controller = null;
 		this.board = null;
 		this.navWidget = null;
 	};
@@ -176,38 +177,39 @@
 	mw.flow.Initializer.prototype.initDataModel = function ( config ) {
 		var self = this;
 
-		this.viewModel = new mw.flow.dm.ViewModel( config );
-		this.board = this.viewModel.getBoard();
+		this.controller = new mw.flow.Controller( new mw.flow.dm.ViewModel( config ) );
+
 		// Initialize the old system to accept the default
 		// order for the topic order widget
-		this.flowBoard.topicIdSort = this.board.getSortOrder();
+		this.controller.setSortOrder();
 
 		// Events
-		this.board.connect( this, {
-			add: function ( newItems ) {
-				var i, len, item, itemId;
-
-				for ( i = 0, len = newItems.length; i < len; i++ ) {
-					item = newItems[ i ];
-					itemId = item.getId();
-
-					if ( $.inArray( itemId, self.flowBoard.orderedTopicIds ) === -1 ) {
-						self.flowBoard.orderedTopicIds.push( itemId );
-					}
-
-					self.flowBoard.topicTitlesById[ itemId ] = item.getContent();
-					self.flowBoard.updateTimestampsByTopicId[ itemId ] = item.getLastUpdate();
-				}
-				self.flowBoard.sortTopicIds( self.flowBoard );
-			},
-			// E.g. on topic re-order, before re-population.
-			clear: function () {
-				self.flowBoard.orderedTopicIds = [];
-				self.flowBoard.topicTitlesById = {};
-			}
-			// We shouldn't have to worry about 'remove', since by the time we have filtering,
-			// orderedTopicIds should be gone.
-		} );
+		// This should be in the viewmodel
+		// this.board.connect( this, {
+		// 	add: function ( newItems ) {
+		// 		var i, len, item, itemId;
+        //
+		// 		for ( i = 0, len = newItems.length; i < len; i++ ) {
+		// 			item = newItems[ i ];
+		// 			itemId = item.getId();
+        //
+		// 			if ( $.inArray( itemId, self.flowBoard.orderedTopicIds ) === -1 ) {
+		// 				self.flowBoard.orderedTopicIds.push( itemId );
+		// 			}
+        //
+		// 			self.flowBoard.topicTitlesById[ itemId ] = item.getContent();
+		// 			self.flowBoard.updateTimestampsByTopicId[ itemId ] = item.getLastUpdate();
+		// 		}
+		// 		self.flowBoard.sortTopicIds( self.flowBoard );
+		// 	},
+		// 	// E.g. on topic re-order, before re-population.
+		// 	clear: function () {
+		// 		self.flowBoard.orderedTopicIds = [];
+		// 		self.flowBoard.topicTitlesById = {};
+		// 	}
+		// 	// We shouldn't have to worry about 'remove', since by the time we have filtering,
+		// 	// orderedTopicIds should be gone.
+		// } );
 	};
 
 	/**
@@ -225,25 +227,19 @@
 	 * @param {Object} dataBlob Data blob to populate the system with
 	 */
 	mw.flow.Initializer.prototype.populateDataModel = function ( dataBlob ) {
-		var preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
+		var promise,
+			preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
 			preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' ),
 			preloadFormat = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'format' );
 
-		if ( dataBlob && dataBlob.blocks ) {
-			// Populate the rendered topics or topic (if we are in a single-topic view)
-			this.viewModel.populateBoardTopicsFromJson( dataBlob.blocks.topiclist || dataBlob.blocks.topic );
-			// Populate header
-			this.viewModel.populateBoardDescriptionFromJson( dataBlob.blocks.header || {} );
-			// Populate the ToC topics
-			if ( dataBlob.toc ) {
-				this.viewModel.populateBoardTopicsFromJson( dataBlob.toc );
-			}
-		} else {
-			this.viewModel.populateBoardFromApi();
-		}
+
+		this.controller.initialize( dataBlob );
+
 		if ( preloadTopic || preloadContent ) {
 			this.newTopicWidget.preload( preloadTopic, preloadContent, preloadFormat );
 		}
+
+		return promise;
 	};
 
 	/**
@@ -258,9 +254,11 @@
 			return;
 		}
 
-		this.navWidget = new mw.flow.ui.NavigationWidget( this.viewModel, {
-			defaultSort: this.flowBoard.topicIdSort
-		} );
+		this.navWidget = new mw.flow.ui.NavigationWidget(
+			this.controller,
+			this.viewModel,
+			{ defaultSort: this.flowBoard.topicIdSort }
+		);
 		$navDom.append( this.navWidget.$element );
 
 		// Events
@@ -282,7 +280,7 @@
 		// they will move once we have Board UI and Topic UI widgets
 		this.viewModel.connect( this, {
 			resetBoardStart: function () {
-				self.$component.addClass( 'flow-api-inprogress' );
+				// TODO: This should move to the controller
 				// Before we reinitialize the board we have to detach
 				// the navigation widget. This should not be necessary when
 				// the board and topics are OOUI widgets
