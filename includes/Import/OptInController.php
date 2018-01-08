@@ -571,7 +571,7 @@ class OptInController {
 		$template = $this->getFormattedCurrentTemplate( $archivedTalkpageTitle );
 		$this->editWikitextContent(
 			$currentTalkpageTitle,
-			null,
+			wfMessage( 'flow-beta-feature-add-current-template-edit-summary' )->inContentLanguage()->plain(),
 			function ( $content ) use ( $template ) {
 				return $template . "\n\n" . $content;
 			},
