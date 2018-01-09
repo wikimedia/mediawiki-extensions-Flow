@@ -737,7 +737,7 @@
 		"BeforeCreateEchoEvent": "Flow\\NotificationController::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "Flow\\NotificationController::onEchoGetBundleRules",
 		"GetBetaFeaturePreferences": "FlowHooks::onGetBetaFeaturePreferences",
-		"UserSaveOptions": "FlowHooks::onUserSaveOptions",
+		"UserSaveSettings": "FlowHooks::onUserSaveSettings",
 		"NukeGetNewPages": "FlowHooks::onNukeGetNewPages",
 		"NukeDeletePage": "FlowHooks::onNukeDeletePage"
 	},

@@ -566,6 +566,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Email body for notification when Structured Discussions was enabled on your talk page.\n Parameters:\n* $1 - the username. Can be used for GENDER.\n* $2 - Title where Structured Discussions was enabled.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Edit summary message for the revision adding the archive template to an archived talk page.",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Edit summary message for the revision removing the archive template to an archived talk page.",
+	"flow-beta-feature-add-current-template-edit-summary": "Edit summary message for the revision adding the template that indicates the page is current (not archived).",
 	"flow-dialog-cancelconfirm-title": "Title of the dialog that appears when the user cancels an edit and verifies whether the user wants to discard their edits or continue editing.\n{{Identical|Are you sure?}}",
 	"flow-dialog-cancelconfirm-message": "Title of the dialog that appears when the user cancels an edit, asking the user if they are sure they wants to discard their edits or continue editing.",
 	"flow-dialog-cancelconfirm-keep": "Title for the keep option in the dialog that appears when the user cancels an edit.",

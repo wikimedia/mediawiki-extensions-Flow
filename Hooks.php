@@ -1742,21 +1742,16 @@ class FlowHooks {
 
 	/**
 	 * @param User $user
-	 * @param array &$options
 	 * @return bool
 	 */
-	public static function onUserSaveOptions( $user, &$options ) {
+	public static function onUserSaveSettings( $user ) {
 		if ( !self::isBetaFeatureAvailable() ) {
-			return true;
-		}
-
-		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $options ) ) {
 			return true;
 		}
 
 		$userClone = User::newFromId( $user->getId() );
 		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
-		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$after = $user->getBoolOption( BETA_FEATURE_FLOW_USER_TALK_PAGE );
 		$action = null;
 
 		if ( !$before && $after ) {
