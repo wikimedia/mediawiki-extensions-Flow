@@ -27,21 +27,21 @@ class MockImportPost implements IImportPost {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getRevisions() {
 		return new ArrayIterator( $this->revisions );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getReplies() {
 		return new ArrayIterator( $this->replies );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getObjectKey() {
 		return 'mock-post:1';

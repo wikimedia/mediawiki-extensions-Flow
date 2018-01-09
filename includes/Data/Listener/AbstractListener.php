@@ -10,31 +10,31 @@ use Flow\Data\LifecycleHandler;
 class AbstractListener implements LifecycleHandler {
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterLoad( $object, array $row ) {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterInsert( $revision, array $row, array $metadata ) {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterClear() {
 	}

@@ -21,6 +21,8 @@ class TopicListStorage extends BasicDbStorage {
 	/**
 	 * We need workflow_last_update_timestamp for updating
 	 * the ordering in cache
+	 * @param array $rows
+	 * @return array|false
 	 */
 	public function insert( array $rows ) {
 		$updateRows = [];

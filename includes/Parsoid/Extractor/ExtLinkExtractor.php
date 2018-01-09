@@ -12,14 +12,14 @@ use Flow\Parsoid\ReferenceFactory;
  */
 class ExtLinkExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//a[@rel="mw:ExtLink"]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		return $factory->createUrlReference(

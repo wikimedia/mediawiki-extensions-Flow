@@ -43,7 +43,7 @@ class BasicObjectMapper implements ObjectMapper {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function normalizeRow( array $row ) {
 		$object = $this->fromStorageRow( $row );

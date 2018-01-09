@@ -175,9 +175,13 @@ class ObjectLocator {
 		return $result ? reset( $result ) : null;
 	}
 
-	// Just a helper to find by primary key
-	// Be careful with regards to order on composite primary keys,
-	// must be in same order as provided to the storage implementation.
+	/**
+	 * Just a helper to find by primary key
+	 * Be careful with regards to order on composite primary keys,
+	 * must be in same order as provided to the storage implementation.
+	 * @param array $objectIds
+	 * @return array
+	 */
 	public function getMulti( array $objectIds ) {
 		if ( !$objectIds ) {
 			return [];
@@ -308,6 +312,8 @@ class ObjectLocator {
 
 	/**
 	 * Convert index options to db equivalent options
+	 * @param array $options
+	 * @return array
 	 */
 	protected function convertToDbOptions( $options ) {
 		$dbOptions = $orderBy = [];

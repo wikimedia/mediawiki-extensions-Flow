@@ -31,7 +31,7 @@ class ApiFlowModerateTopic extends ApiFlowBasePost {
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [

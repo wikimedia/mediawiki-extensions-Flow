@@ -62,7 +62,7 @@ abstract class FeatureIndex implements Index {
 	protected $options;
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	abstract public function getLimit();
 
@@ -114,7 +114,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function canAnswer( array $featureColumns, array $options ) {
 		sort( $featureColumns );
@@ -147,7 +147,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getOrder() {
 		if ( isset( $this->options['order'] ) && strtoupper( $this->options['order'] ) === 'ASC' ) {
@@ -175,7 +175,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $new, $this->indexed );
@@ -188,7 +188,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
@@ -215,7 +215,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
@@ -227,21 +227,21 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterLoad( $object, array $old ) {
 		// nothing to do
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onAfterClear() {
 		// nothing to do
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function find( array $attributes, array $options = [] ) {
 		$results = $this->findMulti( [ $attributes ], $options );
@@ -249,7 +249,7 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function findMulti( array $queries, array $options = [] ) {
 		if ( !$queries ) {

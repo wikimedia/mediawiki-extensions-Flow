@@ -17,7 +17,7 @@ use MWException;
  */
 abstract class RevisionStorage extends DbStorage {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected $allowedUpdateColumns = [
 		'rev_mod_state',
@@ -29,7 +29,7 @@ abstract class RevisionStorage extends DbStorage {
 	];
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @Todo - This may not be necessary anymore since we don't update historical
 	 * revisions ( flow_revision ) during moderation
@@ -104,8 +104,13 @@ abstract class RevisionStorage extends DbStorage {
 		$this->externalStore = $externalStore;
 	}
 
-	// Find one by specific attributes
-	// @todo: this method can probably be generalized in parent class?
+	/**
+	 * Find one by specific attributes
+	 * @todo: this method can probably be generalized in parent class?
+	 * @param array $attributes
+	 * @param array $options
+	 * @return mixed
+	 */
 	public function find( array $attributes, array $options = [] ) {
 		$multi = $this->findMulti( [ $attributes ], $options );
 		return $multi ? reset( $multi ) : [];
@@ -425,8 +430,12 @@ abstract class RevisionStorage extends DbStorage {
 		return false;
 	}
 
-	// If this is a new row (new rows should always have content) or part of an update
-	// involving a content change, inserts into external store.
+	/**
+	 * If this is a new row (new rows should always have content) or part of an update
+	 * involving a content change, inserts into external store.
+	 * @param array $row
+	 * @return array
+	 */
 	protected function processExternalStore( array $row ) {
 		// Check if we need to insert new content
 		if (
@@ -492,13 +501,18 @@ abstract class RevisionStorage extends DbStorage {
 		return $validatedChangeset;
 	}
 
-	// This is to *UPDATE* a revision.  It should hardly ever be used.
-	// For the most part should insert a new revision.  This should only be called
-	// by maintenance scripts and (future) suppression features.
-	// It supports updating content, which is only intended for required mechanical
-	// transformations, such as XSS fixes.  However, since this is only intended for
-	// maintenance scripts, these columns must first be temporarily added to
-	// allowedUpdateColumns.
+	/**
+	 * This is to *UPDATE* a revision.  It should hardly ever be used.
+	 * For the most part should insert a new revision.  This should only be called
+	 * by maintenance scripts and (future) suppression features.
+	 * It supports updating content, which is only intended for required mechanical
+	 * transformations, such as XSS fixes.  However, since this is only intended for
+	 * maintenance scripts, these columns must first be temporarily added to
+	 * allowedUpdateColumns.
+	 * @param array $old
+	 * @param array $new
+	 * @return bool
+	 */
 	public function update( array $old, array $new ) {
 		$changeSet = $this->calcUpdates( $old, $new );
 
@@ -519,11 +533,15 @@ abstract class RevisionStorage extends DbStorage {
 		return (bool)$this->updateRelated( $changeSet, $old );
 	}
 
-	// Revisions can only be removed for LIMITED circumstances,  in almost all cases
-	// the offending revision should be updated with appropriate suppression.
-	// Also note this doesnt delete the whole post, it just deletes the revision.
-	// The post will *always* exist in the tree structure, it will just show up as
-	// [deleted] or something
+	/**
+	 * Revisions can only be removed for LIMITED circumstances,  in almost all cases
+	 * the offending revision should be updated with appropriate suppression.
+	 * Also note this doesnt delete the whole post, it just deletes the revision.
+	 * The post will *always* exist in the tree structure, it will just show up as
+	 * [deleted] or something
+	 * @param array $row
+	 * @return bool
+	 */
 	public function remove( array $row ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
 			'flow_revision',
@@ -538,6 +556,7 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * Used to locate the index for a query by ObjectLocator::get()
+	 * @return string[]
 	 */
 	public function getPrimaryKeyColumns() {
 		return [ 'rev_id' ];
@@ -548,7 +567,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * called to fetch the content. This could fail, resulting in the content
 	 * being a 'false' value.
 	 *
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function validate( array $row ) {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
