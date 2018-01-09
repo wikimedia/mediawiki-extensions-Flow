@@ -14,8 +14,8 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
-use ResultWrapper;
 use User;
+use Wikimedia\Rdbms\ResultWrapper;
 
 class ContributionsQuery extends AbstractQuery {
 

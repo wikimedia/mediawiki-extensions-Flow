@@ -14,6 +14,7 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use Wikimedia\Rdbms\IDatabase;
 
 class FlowHooks {
 	/**
@@ -1869,7 +1870,7 @@ class FlowHooks {
 		}
 
 		$dbFactory = Container::get( 'db.factory' );
-		/** @var Database $dbr */
+		/** @var IDatabase $dbr */
 		$dbr = $dbFactory->getDB( DB_REPLICA );
 
 		// if a username is specified, search only for that user

@@ -8,6 +8,7 @@ use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use Psr\Log\LogLevel;
+use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

@@ -5,6 +5,7 @@ namespace Flow\Formatter;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * This class is necessary so we can inject the name of

@@ -3,6 +3,7 @@
 namespace Flow\Repository\UserName;
 
 use Flow\DbFactory;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Provide usernames filtered by per-wiki ipblocks. Batches together
@@ -27,7 +28,7 @@ class OneStepUserNameQuery implements UserNameQuery {
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
-	 * @return \ResultWrapper|null
+	 * @return ResultWrapper|null
 	 */
 	public function execute( $wiki, array $userIds ) {
 		$dbr = $this->dbFactory->getWikiDb( DB_REPLICA, $wiki );

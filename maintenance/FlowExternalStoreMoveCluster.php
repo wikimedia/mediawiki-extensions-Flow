@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Model\UUID;
+use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
