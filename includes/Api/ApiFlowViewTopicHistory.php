@@ -30,7 +30,7 @@ class ApiFlowViewTopicHistory extends ApiFlowBaseGet {
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [

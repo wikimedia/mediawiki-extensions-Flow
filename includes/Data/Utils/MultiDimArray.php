@@ -35,8 +35,11 @@ class MultiDimArray implements \ArrayAccess {
 		return $this->data;
 	}
 
-	// Probably not what you want.  primary key value is lost, you only
-	// receive the final key in a composite key set.
+	/**
+	 * Probably not what you want.  primary key value is lost, you only
+	 * receive the final key in a composite key set.
+	 * @return RecursiveIteratorIterator
+	 */
 	public function getIterator() {
 		$it = new RecursiveArrayIterator( $this->data );
 		return new RecursiveIteratorIterator( $it );

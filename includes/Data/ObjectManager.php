@@ -301,7 +301,7 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function load( $row ) {
 		$object = parent::load( $row );

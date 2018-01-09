@@ -80,7 +80,7 @@ class Exporter extends WikiExporter {
 	protected $lookup;
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
 		$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {

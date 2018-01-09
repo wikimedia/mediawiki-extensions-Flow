@@ -20,14 +20,14 @@ use Flow\Parsoid\Extractor;
  */
 class CategoryExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//link[starts-with( @rel, "mw:PageProp/Category" )]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		// our provided xpath guarantees there is a rel attribute

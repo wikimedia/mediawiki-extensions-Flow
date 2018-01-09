@@ -62,14 +62,14 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function mustBePosted() {
 		return false;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function needsToken() {
 		return false;

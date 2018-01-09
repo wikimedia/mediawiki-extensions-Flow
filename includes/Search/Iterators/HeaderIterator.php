@@ -4,7 +4,7 @@ namespace Flow\Search\Iterators;
 
 class HeaderIterator extends AbstractIterator {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function query() {
 		// get the current (=most recent, =max) revision id for all headers

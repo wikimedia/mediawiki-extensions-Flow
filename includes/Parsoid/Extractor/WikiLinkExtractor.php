@@ -12,14 +12,14 @@ use Flow\Parsoid\ReferenceFactory;
  */
 class WikiLinkExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//a[@rel="mw:WikiLink"][not(@typeof)]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		$href = $element->getAttribute( 'href' );

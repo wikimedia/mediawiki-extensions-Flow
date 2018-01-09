@@ -67,6 +67,8 @@ abstract class ApiTestCase extends BaseApiTestCase {
 
 	/**
 	 * Create a topic on a board using the default user
+	 * @param string $topicTitle
+	 * @return array
 	 */
 	protected function createTopic( $topicTitle = 'Hi there!' ) {
 		$data = $this->doApiRequest( [

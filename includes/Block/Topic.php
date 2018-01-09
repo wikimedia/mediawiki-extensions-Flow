@@ -646,6 +646,10 @@ class TopicBlock extends AbstractBlock {
 	 * @todo Any failed action performed against a single revisions ends up here.
 	 * To generate forms with validation errors in the non-javascript renders we
 	 * need to add something to this output, but not sure what yet
+	 * @param array $options
+	 * @param string $postId
+	 * @return null|array[]
+	 * @throws FlowException
 	 */
 	protected function renderPostApi( array $options, $postId = '' ) {
 		if ( $this->workflow->isNew() ) {
@@ -971,7 +975,10 @@ class TopicBlock extends AbstractBlock {
 		return null;
 	}
 
-	// The prefix used for form data$pos
+	/**
+	 * The prefix used for form data$pos
+	 * @return string
+	 */
 	public function getName() {
 		return 'topic';
 	}

@@ -75,9 +75,14 @@ class PostRevisionStorage extends RevisionStorage {
 		return $rows;
 	}
 
-	// Topic split will primarily be done through the TreeRepository directly,  but
-	// we will need to accept updates to the denormalized tree_parent_id field for
-	// the new root post
+	/**
+	 * Topic split will primarily be done through the TreeRepository directly,  but
+	 * we will need to accept updates to the denormalized tree_parent_id field for
+	 * the new root post
+	 * @param array $changes
+	 * @param array $old
+	 * @return array
+	 */
 	protected function updateRelated( array $changes, array $old ) {
 		$treeChanges = $this->splitUpdate( $changes, 'tree' );
 
@@ -101,9 +106,13 @@ class PostRevisionStorage extends RevisionStorage {
 		return $changes;
 	}
 
-	// this doesn't delete the whole post, it just deletes the revision.
-	// The post will *always* exist in the tree structure, its just a tree
-	// and we aren't going to re-parent its children;
+	/**
+	 * this doesn't delete the whole post, it just deletes the revision.
+	 * The post will *always* exist in the tree structure, its just a tree
+	 * and we aren't going to re-parent its children;
+	 * @param array $row
+	 * @return bool|\Wikimedia\Rdbms\IResultWrapper
+	 */
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),

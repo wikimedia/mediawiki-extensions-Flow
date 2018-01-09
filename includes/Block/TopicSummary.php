@@ -208,6 +208,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * Save topic summary
 	 *
 	 * @throws FailCommitException
+	 * @return array
 	 */
 	protected function saveTopicSummary() {
 		if ( !$this->nextRevision ) {
@@ -240,6 +241,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * Save change for any valid committed action
 	 *
 	 * @throws InvalidActionException
+	 * @return array
 	 */
 	public function commit() {
 		switch ( $this->action ) {

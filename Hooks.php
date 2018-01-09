@@ -730,7 +730,11 @@ class FlowHooks {
 		return true;
 	}
 
-	// Static variables that do not vary by request; delivered through startup module
+	/**
+	 * Static variables that do not vary by request; delivered through startup module
+	 * @param array &$vars
+	 * @return true
+	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
 		global $wgFlowEditorList, $wgFlowAjaxTimeout;
 
@@ -1003,6 +1007,9 @@ class FlowHooks {
 	 * still be in their web notifications (if enabled), but they will never be
 	 * notified via email (regardless of batching settings) for this particular
 	 * notification.
+	 * @param User $user
+	 * @param EchoEvent $event
+	 * @return bool
 	 */
 	public static function onEchoAbortEmailNotification( User $user, EchoEvent $event ) {
 		$extra = $event->getExtra();
@@ -1208,7 +1215,8 @@ class FlowHooks {
 	 *
 	 * @param User &$user
 	 * @param WikiPage &$page
-	 * $param Status &$status
+	 * @param Status &$status
+	 * @return bool
 	 */
 	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
@@ -1434,6 +1442,9 @@ class FlowHooks {
 
 	/**
 	 * Finalize the merge by purging any cached value that contained $oldUser
+	 * @param User &$oldUser
+	 * @param User &$newUser
+	 * @return true
 	 */
 	public static function onMergeAccountFromTo( User &$oldUser, User &$newUser ) {
 		/** @var Flow\Data\Utils\UserMerger $merger */
@@ -1445,6 +1456,9 @@ class FlowHooks {
 
 	/**
 	 * Gives precedence to Flow over LQT.
+	 * @param Title $title
+	 * @param bool &$isLqtPage
+	 * @return true
 	 */
 	public static function onIsLiquidThreadsPage( Title $title, &$isLqtPage ) {
 		if ( $isLqtPage && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
@@ -1567,6 +1581,7 @@ class FlowHooks {
 	 * @param int $articleId Article ID of deleted article
 	 * @param Content $content Content that was deleted, or null on error
 	 * @param LogEntry $logEntry Log entry for deletion
+	 * @return true
 	 */
 	public static function onArticleDeleteComplete( WikiPage &$article, User &$user, $reason, $articleId, Content $content = null, LogEntry $logEntry ) {
 		$title = $article->getTitle();
@@ -1640,6 +1655,10 @@ class FlowHooks {
 	 * Occurs at the beginning of the MovePage process (just after the startAtomic).
 	 *
 	 * Perhaps ContentModel should be extended to be notified about moves explicitly.
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param User $user
+	 * @return true
 	 */
 	public static function onTitleMoveStarting( Title $oldTitle, Title $newTitle, User $user ) {
 		if ( $oldTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {

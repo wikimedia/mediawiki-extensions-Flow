@@ -29,14 +29,14 @@ class TopicUpdater extends AbstractUpdater {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTypeName() {
 		return Connection::TOPIC_TYPE_NAME;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function buildDocument( AbstractRevision /* PostRevision */ $revision ) {
 		/** @var PostRevision $revision */

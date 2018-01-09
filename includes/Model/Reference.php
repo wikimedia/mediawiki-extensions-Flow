@@ -101,6 +101,7 @@ abstract class Reference {
 
 	/**
 	 * Gives the object type of the source object.
+	 * @return string
 	 */
 	public function getObjectType() {
 		return $this->objectType;

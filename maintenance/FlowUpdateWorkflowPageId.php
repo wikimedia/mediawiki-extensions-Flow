@@ -29,6 +29,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 	/**
 	 * Assembles the update components, runs them, and reports
 	 * on what they did
+	 * @return true
 	 */
 	public function doDbUpdates() {
 		global $wgFlowCluster, $wgLang;
