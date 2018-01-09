@@ -72,6 +72,10 @@ class TreeRepository {
 	 * Insert a new tree node.  If ancestor === null then this node is a root.
 	 *
 	 * Also delete cache entries related to this tree.
+	 * @param UUID $descendant
+	 * @param UUID|null $ancestor
+	 * @return true
+	 * @throws DataModelException
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
 		$this->cache->delete( $this->cacheKey( 'subtree', $descendant ) );
@@ -442,6 +446,8 @@ class TreeRepository {
 	/**
 	 * Fetch the id of the immediate parent node of all ids in $nodes.  Non-existent
 	 * nodes are not represented in the result set.
+	 * @param array $nodes
+	 * @return array
 	 */
 	public function fetchParentMap( array $nodes ) {
 		$list = new MultiGetList( $this->cache );

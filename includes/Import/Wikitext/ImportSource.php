@@ -95,7 +95,7 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTopics() {
 		return new ArrayIterator( [] );

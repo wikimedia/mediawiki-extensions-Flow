@@ -87,6 +87,7 @@ class BenchUuidConversions extends \Benchmarker {
 
 	/**
 	 * Common case 1: binary from database to alpha and timestamp.
+	 * @param string $binary
 	 */
 	public function case1( $binary ) {
 		// clone to avoid internal object caching
@@ -98,6 +99,7 @@ class BenchUuidConversions extends \Benchmarker {
 	/**
 	 * Common case 2: binary from database to timestamp and alpha.
 	 * Probably same as case 1, but who knows.
+	 * @param string $binary
 	 */
 	public function case2( $binary ) {
 		// clone to avoid internal object caching
@@ -108,6 +110,7 @@ class BenchUuidConversions extends \Benchmarker {
 
 	/**
 	 * Common case 3: alphadecimal from cache to timestamp and binary.
+	 * @param string $alpha
 	 */
 	public function case3( $alpha ) {
 		// clone to avoid internal object caching
@@ -118,6 +121,7 @@ class BenchUuidConversions extends \Benchmarker {
 
 	/**
 	 * Common case 4: alphadecimal from cache to bianry and timestamp.
+	 * @param string $alpha
 	 */
 	public function case4( $alpha ) {
 		// clone to avoid internal object caching

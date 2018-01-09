@@ -139,7 +139,7 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getHelpUrls() {
 		return [
@@ -148,14 +148,14 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function needsToken() {
 		return 'csrf';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getParent() {
 		return $this->apiFlow;

@@ -213,6 +213,8 @@ class TopicListQuery extends AbstractQuery {
 	/**
 	 * Override parent, we only load the most recent version, so just
 	 * return self.
+	 * @param AbstractRevision $revision
+	 * @return AbstractRevision
 	 */
 	protected function getCurrentRevision( AbstractRevision $revision ) {
 		return $revision;

@@ -28,7 +28,7 @@ class PurgeAction extends \PurgeAction {
 	protected $hashBag;
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function onSubmit( $data ) {
 		// Replace $c['memcache'] with a hash bag o stuff.  This will look to the
@@ -149,6 +149,7 @@ class PurgeAction extends \PurgeAction {
 
 	/**
 	 * Purge all keys written to $this->hashBag that match our cache prefix key.
+	 * @return true
 	 */
 	protected function purgeCache() {
 		$prefix = $this->cacheKeyPrefix();

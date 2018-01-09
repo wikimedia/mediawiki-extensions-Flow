@@ -33,6 +33,7 @@ class SortRevisionsByRevisionId {
 	 *
 	 * @param AbstractRevision $a
 	 * @param AbstractRevision $b
+	 * @return int
 	 */
 	public function __invoke( AbstractRevision $a, AbstractRevision $b ) {
 		$aId = $a->getRevisionId()->getAlphadecimal();

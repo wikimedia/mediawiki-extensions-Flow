@@ -355,7 +355,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * called to fetch the content. This could fail, resulting in the content
 	 * being a 'false' value.
 	 *
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function validate( array $row ) {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
