@@ -170,7 +170,7 @@ class SearchEngine extends \SearchEngine {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function supports( $feature ) {
 		// we're not really an alternative search engine for MW ;)

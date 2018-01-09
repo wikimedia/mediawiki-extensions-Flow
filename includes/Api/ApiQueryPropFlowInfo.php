@@ -11,7 +11,10 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'fli' );
 	}
 
-	// Use action=query&prop=info instead; check for 'contentmodel' 'flow-board'.
+	/**
+	 * Use action=query&prop=info instead; check for 'contentmodel' 'flow-board'.
+	 * @return bool
+	 */
 	public function isDeprecated() {
 		return true;
 	}
@@ -40,7 +43,7 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [

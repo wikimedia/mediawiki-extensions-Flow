@@ -99,6 +99,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	/**
 	 * Gets the username (or IP) from the provided signature.
 	 *
+	 * @param string $signatureText
 	 * @return string|null Returns username, IP, or null if none could be detected
 	 */
 	public static function extractUserFromSignature( $signatureText ) {
@@ -266,6 +267,7 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 	/**
 	 * This needs to have a different value than the same apiResponse in an ImportPost.
 	 * The ImportPost version refers to the first response to the topic.
+	 * @return string
 	 */
 	public function getObjectKey() {
 		return 'topic' . $this->importSource->getObjectKey( 'thread_id', $this->apiResponse['id'] );
@@ -393,6 +395,8 @@ class MovedImportRevision extends ImportRevision {
 	 * here, after importing the referenced thread LqtRedirector will
 	 * make that Thread page a redirect to the Flow topic, essentially
 	 * making these links still work.
+	 * @return string
+	 * @throws ImportException
 	 */
 	public function getText() {
 		$text = parent::getText();

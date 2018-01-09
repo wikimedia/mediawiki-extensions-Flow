@@ -358,6 +358,7 @@ class Workflow {
 	 *
 	 * @param string $permission Permission to check; for 'edit', 'create' will also be
 	 *  checked if the title does not exist
+	 * @param User $user
 	 * @return bool Whether the user can take the action, based on a quick check
 	 */
 	public function userCan( $permission, $user ) {

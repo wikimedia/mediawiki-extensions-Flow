@@ -23,28 +23,28 @@ class MockImportRevision implements IObjectRevision {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getText() {
 		return $this->attribs['text'];
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTimestamp() {
 		return $this->attribs['timestamp'];
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getAuthor() {
 		return $this->attribs['author'];
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getObjectKey() {
 		return 'mock-revision:1';

@@ -31,6 +31,7 @@ class NotificationController {
 
 	/**
 	 * @param Language $language
+	 * @param TreeRepository $treeRepository
 	 */
 	public function __construct( Language $language, TreeRepository $treeRepository ) {
 		$this->language = $language;

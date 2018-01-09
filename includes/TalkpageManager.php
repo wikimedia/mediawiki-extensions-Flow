@@ -141,7 +141,7 @@ class TalkpageManager implements OccupationController {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true, $forWrite = true ) {
 		global $wgContentHandlerUseDB;
@@ -163,7 +163,7 @@ class TalkpageManager implements OccupationController {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function checkIfUserHasPermission( Title $title, User $user ) {
 		if (
@@ -182,7 +182,7 @@ class TalkpageManager implements OccupationController {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function safeAllowCreation( Title $title, User $user, $mustNotExist = true, $forWrite = true ) {
 		$status = Status::newGood();
@@ -202,7 +202,7 @@ class TalkpageManager implements OccupationController {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function forceAllowCreation( Title $title ) {
 		/*

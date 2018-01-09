@@ -27,14 +27,14 @@ class MockImportSource implements IImportSource {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTopics() {
 		return new ArrayIterator( $this->topics );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getHeader() {
 		return $this->header;

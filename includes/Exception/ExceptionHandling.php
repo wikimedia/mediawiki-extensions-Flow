@@ -37,6 +37,7 @@ class FlowException extends MWException {
 
 	/**
 	 * Set the output object
+	 * @param OutputPage $output
 	 */
 	public function setOutput( OutputPage $output ) {
 		$this->output = $output;
@@ -44,6 +45,7 @@ class FlowException extends MWException {
 
 	/**
 	 * Get the message key for the localized error message
+	 * @return string
 	 */
 	public function getErrorCode() {
 		$list = $this->getErrorCodeList();
@@ -55,6 +57,7 @@ class FlowException extends MWException {
 
 	/**
 	 * Error code list for this exception
+	 * @return string[]
 	 */
 	protected function getErrorCodeList() {
 		// flow-error-default
@@ -102,6 +105,7 @@ class FlowException extends MWException {
 
 	/**
 	 * Error page title
+	 * @return string
 	 */
 	public function getPageTitle() {
 		return $this->parsePageTitle( 'errorpagetitle' );
@@ -130,6 +134,7 @@ class FlowException extends MWException {
 
 	/**
 	 * Default status code is 500, which is server error
+	 * @return int
 	 */
 	public function getStatusCode() {
 		return 500;
@@ -158,6 +163,7 @@ class InvalidInputException extends FlowException {
 
 	/**
 	 * Bad request
+	 * @return int
 	 */
 	public function getStatusCode() {
 		return 400;
@@ -165,6 +171,7 @@ class InvalidInputException extends FlowException {
 
 	/**
 	 * Do not log exception resulting from input error
+	 * @return bool
 	 */
 	function isLoggable() {
 		return false;
@@ -188,7 +195,7 @@ class InvalidActionException extends FlowException {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getPageTitle() {
 		return $this->parsePageTitle( 'nosuchaction' );
@@ -196,13 +203,14 @@ class InvalidActionException extends FlowException {
 
 	/**
 	 * Bad request
+	 * @return int
 	 */
 	public function getStatusCode() {
 		return 400;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getHTML() {
 		// we only want a nice error message here, no stack trace
@@ -214,6 +222,7 @@ class InvalidActionException extends FlowException {
 
 	/**
 	 * Do not log exception resulting from input error
+	 * @return bool
 	 */
 	function isLoggable() {
 		return false;
@@ -242,6 +251,7 @@ class PermissionException extends FlowException {
 	/**
 	 * Do not log exception resulting from user requesting
 	 * disallowed content.
+	 * @return bool
 	 */
 	function isLoggable() {
 		return false;

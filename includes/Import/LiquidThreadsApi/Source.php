@@ -81,14 +81,14 @@ class ImportSource implements IImportSource {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getHeader() {
 		return new ImportHeader( $this->api, $this, $this->pageName );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTopics() {
 		return new TopicIterator( $this, $this->threadData, $this->pageName );

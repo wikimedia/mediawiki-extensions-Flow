@@ -39,6 +39,8 @@ class UserNameListener extends AbstractListener {
 
 	/**
 	 * Load any user ids in $row into the username batch
+	 * @param array $object
+	 * @param array $row
 	 */
 	public function onAfterLoad( $object, array $row ) {
 		foreach ( $this->keys as $userKey => $wikiKey ) {

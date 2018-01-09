@@ -33,7 +33,7 @@ class ApiFlowUndoEditHeader extends ApiFlowBaseGet {
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [

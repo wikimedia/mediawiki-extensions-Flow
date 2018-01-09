@@ -96,28 +96,28 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getSourceStore() {
 		return $this->sourceStore;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getMoveComment( Title $from, Title $to ) {
 		return wfMessage( 'flow-talk-conversion-move-reason', $from->getPrefixedText() )->plain();
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getCleanupComment( Title $from, Title $to ) {
 		return wfMessage( 'flow-talk-conversion-archive-edit-reason' )->plain();
 	}
 
 	/**
-	 * @{inheritDoc}
+	 * @inheritDoc
 	 */
 	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
@@ -132,14 +132,14 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function createImportSource( Title $title ) {
 		return new ImportSource( $title, $this->parser, $this->user, $this->headerSuffix );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function decideArchiveTitle( Title $source ) {
 		$archiveNameHelper = new ArchiveNameHelper();
@@ -147,14 +147,14 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getPostprocessor() {
 		return null;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title ) {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
@@ -216,7 +216,7 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function shouldConvert( Title $sourceTitle ) {
 		// If we have LiquidThreads filter out any pages with that enabled.  They should

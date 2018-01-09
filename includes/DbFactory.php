@@ -100,6 +100,7 @@ class DbFactory {
 	/**
 	 * Roll back changes on all databases.
 	 * @see LBFactory::rollbackMasterChanges
+	 * @param string $fname
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		wfGetLBFactory()->rollbackMasterChanges( $fname );

@@ -19,14 +19,14 @@ class MockImportHeader implements IImportHeader {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getRevisions() {
 		return new ArrayIterator( $this->revisions );
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getObjectKey() {
 		return 'mock-header:1';
