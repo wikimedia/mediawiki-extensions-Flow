@@ -858,65 +858,59 @@
 	 * @return {boolean} The page is an in-progress undo form
 	 */
 	mw.flow.Initializer.prototype.isUndoForm = function () {
-		return !!( $( 'form[data-module="topic"]' ).length ||
-			$( 'form[data-module="header"]' ).length ) ||
-			$( 'form[data-module="topicsummary"]' ).length;
+		return !!$( 'form[data-module="topic"], form[data-module="header"], form[data-module="topicsummary"]' ).length;
 	};
 
-	/**
-	 * Set up editors in undo pages
-	 */
 	mw.flow.Initializer.prototype.setupUndoPage = function () {
-		if ( $( 'form[data-module="topic"]' ).length ) {
-			this.replaceEditorInUndoEditPost( $( 'form[data-module="topic"]' ) );
-		} else if ( $( 'form[data-module="header"]' ).length ) {
-			this.replaceEditorInUndoHeader( $( 'form[data-module="header"]' ) );
-		} else if ( $( 'form[data-module="topicsummary"]' ).length ) {
-			this.replaceEditorInUndoSummary( $( 'form[data-module="topicsummary"]' ) );
-		}
-	};
-
-	/**
-	 * Replace the editor in undo edit post pages
-	 *
-	 * @param {jQuery} $form The form where the no-js editor exists to be replaced
-	 */
-	mw.flow.Initializer.prototype.replaceEditorInUndoEditPost = function ( $form ) {
-		var apiHandler, content, postId, editor, prevRevId,
+		var $undoForm = $( 'form[data-module="topic"], form[data-module="header"], form[data-module="topicsummary"]' ),
+			undoType = $undoForm.attr( 'data-module' ),
 			pageName = mw.config.get( 'wgPageName' ),
 			title = mw.Title.newFromText( pageName ),
 			topicId = title.getNameText(),
+			postId = $undoForm.find( 'input[name="topic_postId"]' ).val(),
+			prevRevId = $undoForm.find( 'input[name="' + undoType + '_prev_revision"]' ).val(),
+			content = $undoForm.find( 'textarea' ).val(),
 			returnToTitle = function () {
-				// HACK: redirect to topic view
-				window.location.href = title.getUrl();
-			};
+				var url;
+				if ( undoType === 'topic' ) {
+					// If we're undoing a post edit, redirect to the topic page with the right parameter
+					// and fragment to highlight the post
+					url = title.getUrl( { topic_showPostId: postId } ) + '#flow-post-' + postId;
+				} else {
+					// When undoing a topic summary edit, redirect to the topic;
+					// when undoing a board description edit, redirect to the board
+					url = title.getUrl();
+				}
+				window.location.href = url;
+			},
+			apiHandler = new mw.flow.dm.APIHandler(
+				title.getPrefixedDb(),
+				{ currentRevision: prevRevId }
+			),
+			save = ( {
+				topic: apiHandler.savePost.bind( apiHandler, topicId, postId ),
+				header: apiHandler.saveDescription.bind( apiHandler ),
+				topicsummary: apiHandler.saveTopicSummary.bind( apiHandler, topicId )
+			} )[ undoType ],
+			saveMsgKey = ( {
+				topic: [
+					'flow-post-action-edit-post-submit-anonymously',
+					'flow-post-action-edit-post-submit'
+				],
+				header: [
+					'flow-edit-header-submit-anonymously',
+					'flow-edit-header-submit'
+				],
+				topicsummary: [
+					'flow-topic-action-update-topic-summary',
+					'flow-topic-action-update-topic-summary'
+				]
+			} )[ undoType ][ mw.user.isAnon() ? 0 : 1 ],
+			editor = this.createEditorWidget( $undoForm, content, saveMsgKey );
 
-		if ( !$form.length ) {
-			return;
-		}
-
-		postId = $form.find( 'input[name="topic_postId"]' ).val();
-		prevRevId = $form.find( 'input[name="topic_prev_revision"]' ).val();
-		content = $form.find( 'textarea' ).val();
-
-		apiHandler = new mw.flow.dm.APIHandler(
-			'Topic:' + topicId,
-			{
-				currentRevision: prevRevId
-			}
-		);
-
-		// Create the editor
-		editor = this.createEditorWidget(
-			$form,
-			content,
-			mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit'
-		);
-
-		// Events
 		editor
 			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
-				apiHandler.savePost( topicId, postId, content, contentFormat, captcha )
+				save( content, contentFormat, captcha )
 					.then(
 						// Success
 						returnToTitle,
@@ -926,111 +920,6 @@
 					);
 			} )
 			.on( 'afterCancel', returnToTitle );
-	};
-
-	/**
-	 * Replace the editor in undo edit header pages
-	 *
-	 * @param {jQuery} $form The form where the no-js editor exists to be replaced
-	 */
-	mw.flow.Initializer.prototype.replaceEditorInUndoHeader = function ( $form ) {
-		var prevRevId, editor, content,
-			apiHandler,
-			pageName = mw.config.get( 'wgPageName' ),
-			title = mw.Title.newFromText( pageName ),
-			returnToBoard = function () {
-				window.location.href = title.getUrl();
-			};
-
-		if ( !$form.length ) {
-			return;
-		}
-
-		prevRevId = $form.find( 'input[name="header_prev_revision"]' ).val();
-		content = $form.find( 'textarea[name="header_content"]' ).val();
-
-		apiHandler = new mw.flow.dm.APIHandler(
-			title.getPrefixedDb(),
-			{
-				currentRevision: prevRevId
-			}
-		);
-
-		// Create the editor
-		editor = this.createEditorWidget(
-			$form,
-			content,
-			mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit'
-		);
-
-		// Events
-		editor
-			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
-				apiHandler.saveDescription( content, contentFormat, captcha )
-					.then(
-						// Success
-						returnToBoard,
-
-						// Failure
-						handleFailure
-					);
-			} )
-			.on( 'afterCancel', function () {
-				returnToBoard();
-			} );
-	};
-
-	/**
-	 * Replace the editor in undo edit topic summary pages
-	 *
-	 * @param {jQuery} $form The form where the no-js editor exists to be replaced
-	 */
-	mw.flow.Initializer.prototype.replaceEditorInUndoSummary = function ( $form ) {
-		var prevRevId, editor, content,
-			apiHandler,
-			pageName = mw.config.get( 'wgPageName' ),
-			title = mw.Title.newFromText( pageName ),
-			topicId = title.getNameText(),
-			returnToTitle = function () {
-				window.location.href = title.getUrl();
-			};
-
-		if ( !$form.length ) {
-			return;
-		}
-
-		prevRevId = $form.find( 'input[name="topicsummary_prev_revision"]' ).val();
-		content = $form.find( 'textarea' ).val();
-
-		apiHandler = new mw.flow.dm.APIHandler(
-			'Topic:' + topicId,
-			{
-				currentRevision: prevRevId
-			}
-		);
-
-		// Create the editor
-		editor = this.createEditorWidget(
-			$form,
-			content,
-			'flow-topic-action-update-topic-summary'
-		);
-
-		// Events
-		editor
-			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
-				apiHandler.saveTopicSummary( topicId, content, contentFormat, captcha )
-					.then(
-						// Success
-						returnToTitle,
-
-						// Failure
-						handleFailure
-					);
-			} )
-			.on( 'afterCancel', function () {
-				returnToTitle();
-			} );
 	};
 
 	/**
