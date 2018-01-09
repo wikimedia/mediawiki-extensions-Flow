@@ -517,6 +517,7 @@
 	"flow-notification-link-text-enabled-on-talkpage": "Overlegpagina van gebruiker {{GENDER:|bekijken}}",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Nieuw overlegsysteem op $2",
 	"flow-beta-feature-add-archive-template-edit-summary": "Archiefsjabloon toevoegen",
+	"flow-beta-feature-remove-archive-template-edit-summary": "Archiefsjabloon verwijderen",
 	"flow-dialog-cancelconfirm-title": "Weet {{GENDER:|u}} het zeker?",
 	"flow-dialog-cancelconfirm-message": "Weet u zeker dat {{GENDER:|u}} wilt annuleren zonder eerst op te slaan?",
 	"flow-dialog-cancelconfirm-keep": "Doorgaan met bewerken",

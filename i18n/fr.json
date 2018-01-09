@@ -548,6 +548,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Discussions Structurées, le nouveau système de discussion de wiki, a été activé sur {{GENDER:$1|votre}} page de discussion sur {{SITENAME}}. Vous pouvez obtenir plus d’information, donner votre avis ou désactiver le nouveau système n’importe quand depuis la section Fonctionnalités bêta dans {{GENDER:$1|vos}} préférences.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Ajouter le modèle d’archive",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Supprimer le modèle d’archive",
+	"flow-beta-feature-add-current-template-edit-summary": "Ajouter le modèle courant",
 	"flow-dialog-cancelconfirm-title": "Êtes-vous {{GENDER:|sûr|sûre}} ?",
 	"flow-dialog-cancelconfirm-message": "Êtes-vous {{GENDER:|sûr|sûre}} de vouloir annuler sans enregistrer d’abord ?",
 	"flow-dialog-cancelconfirm-keep": "Continuer à modifier",

@@ -514,6 +514,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Strukturierte Diskussionen, das neue Wikidiskussionssystem, wurde auf {{GENDER:$1|deiner}} {{SITENAME}}-Benutzerdiskussionsseite aktiviert. Du erhältst weitere Informationen im Betafunktionen-Abschnitt in {{GENDER:$1|deinen}} Einstellungen. Dort kannst du auch Rückmeldungen geben oder das neue System jederzeit wieder deaktivieren.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Archivvorlage hinzugefügt",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Archivvorlage entfernt",
+	"flow-beta-feature-add-current-template-edit-summary": "Aktuelle Vorlage hinzugefügt",
 	"flow-dialog-cancelconfirm-title": "Bist {{GENDER:|du}} dir sicher?",
 	"flow-dialog-cancelconfirm-message": "Bist {{GENDER:|du}} dir sicher, dass du ohne zuerst zu speichern abbrechen möchtest?",
 	"flow-dialog-cancelconfirm-keep": "Mit dem Bearbeiten fortfahren",
