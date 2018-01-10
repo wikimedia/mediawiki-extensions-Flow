@@ -87,7 +87,7 @@
 			widgets = [];
 
 		for ( i = 0, len = categories.length; i < len; i++ ) {
-			widgets.push( this.getItemFromData( categories[ i ].getId() ) );
+			widgets.push( this.findItemFromData( categories[ i ].getId() ) );
 		}
 
 		this.removeItems( widgets );
