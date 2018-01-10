@@ -39,8 +39,7 @@
 			nttopic: subject,
 			ntcontent: body,
 			ntformat: 'wikitext'
-		} ).then(
-			null, // Preserve parameters from postWithToken promise
+		} ).catch(
 			function ( code, details ) {
 				return $.Deferred().reject( 'api-fail', code, details );
 			}
