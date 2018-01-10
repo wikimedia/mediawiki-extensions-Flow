@@ -2,8 +2,10 @@
 
 namespace Flow;
 
+use Article;
 use ContextSource;
 use Flow\Block\AbstractBlock;
+use Flow\Block\TopicBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
@@ -75,7 +77,33 @@ class View extends ContextSource {
 			$block->setPageTitle( $output );
 		}
 
-		$this->renderApiResponse( $apiResponse );
+		$robotPolicy = $this->getRobotPolicy( $action, $loader->getWorkflow(), $blocks );
+		$this->renderApiResponse( $apiResponse, $robotPolicy );
+	}
+
+	private function getRobotPolicy( $action, $workflow, $blocks ) {
+		if ( $action !== 'view' ) {
+			// consistent with 'edit' and other action pages in Core
+			return [
+				'index' => 'noindex',
+				'follow' => 'nofollow',
+			];
+		}
+
+		if ( $workflow->getType() === 'topic' ) {
+			/** @var TopicBlock $topic */
+			$topic = $blocks[ 'topic' ];
+			if ( $topic->loadTopicTitle()->isHidden() ) {
+				return [
+					'index' => 'noindex',
+					'follow' => 'nofollow',
+				];
+			}
+		}
+
+		$boardTitle = $workflow->getOwnerTitle();
+		$article = Article::newFromTitle( $boardTitle, $this->getContext() );
+		return $article->getRobotPolicy( /* unused $action parameter */ null );
 	}
 
 	protected function addModules( OutputPage $out, $action ) {
@@ -241,7 +269,7 @@ class View extends ContextSource {
 		return $apiResponse;
 	}
 
-	protected function renderApiResponse( array $apiResponse ) {
+	protected function renderApiResponse( array $apiResponse, array $robotPolicy ) {
 		// Render the flow-component wrapper
 		if ( empty( $apiResponse['blocks'] ) ) {
 			return [];
@@ -325,6 +353,9 @@ class View extends ContextSource {
 				],
 				$template( $apiResponse )
 			) );
+
+			$out->setIndexPolicy( $robotPolicy[ 'index' ] );
+			$out->setFollowPolicy( $robotPolicy[ 'follow' ] );
 		}
 	}
 
