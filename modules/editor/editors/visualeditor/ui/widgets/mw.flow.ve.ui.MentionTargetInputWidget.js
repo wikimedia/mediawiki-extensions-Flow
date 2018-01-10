@@ -136,12 +136,12 @@
 			this.lookupMenu.selectItem( this.lookupMenu.getItemFromData( this.username ) );
 		}
 
-		item = this.lookupMenu.getSelectedItem();
+		item = this.lookupMenu.findSelectedItem();
 		if ( !item ) {
 			OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection.call( this );
 		}
 
-		item = this.lookupMenu.getSelectedItem();
+		item = this.lookupMenu.findSelectedItem();
 		if ( item ) {
 			this.username = item.getData();
 		}
