@@ -245,7 +245,7 @@
 				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
 				widget.emit( 'saveContent' );
 			} )
-			.then( null, function ( errorCode, errorObj ) {
+			.catch( function ( errorCode, errorObj ) {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
