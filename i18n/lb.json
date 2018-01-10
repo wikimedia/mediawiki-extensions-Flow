@@ -255,6 +255,7 @@
 	"flow-notification-enabled-on-talkpage-title": "Neien Diskussiounssystem aktivéiert fir {{GENDER:$1|Är}} Benotzerdiskussiounssäit<br /><small>Disponibel op [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Neien Diskussiounssystem op $2",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Archiv-Schabloun gëtt ewechgeholl",
+	"flow-beta-feature-add-current-template-edit-summary": "Aktuell Schabloun dobäisetzen",
 	"flow-dialog-cancelconfirm-title": "Sidd {{GENDER:|Dir}} sécher?",
 	"flow-dialog-cancelconfirm-message": "Sidd {{GENDER:|Dir}} sécher datt Dir ofbrieche wëllt ouni fir d'éischt ze späicheren?",
 	"flow-dialog-cancelconfirm-keep": "Virufuere mat Änneren",

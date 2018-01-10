@@ -211,7 +211,7 @@
 	"flow-error-invalid-action": "Error message when invalid action is provided.\n\nRefers to:\n* {{msg-mw|Nosuchactiontext}}.",
 	"flow-error-invalid-parameter": "Error method when an internal method is called incorrectly.",
 	"flow-error-fail-load-history": "Error message when load history content is failed to load.",
-	"flow-error-missing-revision": "Error message when a revision is missing.\n{{related|Flow-error-missing-revision}}",
+	"flow-error-missing-revision": "Error message when a revision is missing.\n{{related|Flow-error-missing}}",
 	"flow-error-fail-commit": "Error message when a commit action fails.",
 	"flow-error-insufficient-permission": "Error message when user does not have sufficient permission to perform an action.",
 	"flow-error-revision-comparison": "Error message when revision comparison fails.",

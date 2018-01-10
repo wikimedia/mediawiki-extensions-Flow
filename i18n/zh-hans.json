@@ -528,6 +528,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "结构式讨论，新的wiki讨论系统，已在{{GENDER:$1|您}}{{SITENAME}}上的用户讨论页上启用。您可以随时从{{GENDER:$1|您}}的参数设置的测试功能选项中获取更多信息、提供反馈或禁用新系统。",
 	"flow-beta-feature-add-archive-template-edit-summary": "正在添加存档模板",
 	"flow-beta-feature-remove-archive-template-edit-summary": "正在移除存档模板",
+	"flow-beta-feature-add-current-template-edit-summary": "添加当前模板",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|您}}确定吗？",
 	"flow-dialog-cancelconfirm-message": "{{GENDER:|您}}确定要取消而不先保存吗？",
 	"flow-dialog-cancelconfirm-keep": "继续编辑",
