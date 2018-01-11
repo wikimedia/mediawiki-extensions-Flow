@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef26315_b4e14d9a",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-01-11T13:01:56Z",
+      "side": 1,
+      "message": "This should fix T184691, but it seems completely unrelated to the rest of this patch. Should probably be separate.",
+      "revId": "0a197c325dcbab1fc2978ffc65678060a1d0b110",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
