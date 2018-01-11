@@ -82,7 +82,8 @@ class View extends ContextSource {
 		if ( $this->actions->hasValue( $action, 'modules' ) ) {
 			$out->addModules( $this->actions->getValue( $action, 'modules' ) );
 		} else {
-			$out->addModules( [ 'ext.flow' ] );
+			// $out->addModules( [ 'ext.flow' ] );
+			$out->addModules( [ 'ext.StructuredDiscussion' ] );
 		}
 
 		if ( $this->actions->hasValue( $action, 'moduleStyles' ) ) {

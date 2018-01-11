@@ -93,15 +93,15 @@
 			}
 		} );
 	};
-
-	/**
-	 * Set up the window overlay
-	 */
-	mw.flow.Initializer.prototype.setupWindowOverlay = function () {
-		// Set up window overlay
-		$( 'body' ).append( mw.flow.ui.windowOverlay.$element );
-		mw.flow.ui.windowOverlay.$element.append( mw.flow.ui.windowManager.$element );
-	};
+    //
+	// /**
+	//  * Set up the window overlay
+	//  */
+	// mw.flow.Initializer.prototype.setupWindowOverlay = function () {
+	// 	// Set up window overlay
+	// 	$( 'body' ).append( mw.flow.ui.windowOverlay.$element );
+	// 	mw.flow.ui.windowOverlay.$element.append( mw.flow.ui.windowManager.$element );
+	// };
 
 	/**
 	 * Set up the sidebar widget if needed
@@ -159,15 +159,15 @@
 		this.setupEditTopicSummaryAction();
 		this.setupEditTopicTitleAction();
 	};
-
-	/**
-	 * Initialize the 'old' Flow ui component
-	 */
-	mw.flow.Initializer.prototype.initOldComponent = function () {
-		if ( this.$component ) {
-			mw.flow.initComponent( this.$component );
-		}
-	};
+    //
+	// /**
+	//  * Initialize the 'old' Flow ui component
+	//  */
+	// mw.flow.Initializer.prototype.initOldComponent = function () {
+	// 	if ( this.$component ) {
+	// 		mw.flow.initComponent( this.$component );
+	// 	}
+	// };
 
 	/**
 	 * Initialize the data model objects
@@ -290,7 +290,7 @@
 			},
 			resetBoardEnd: function ( data ) {
 				var $rendered;
-
+debugger;
 				// populateBoardFromApi uses the larger TOC limit so the TOC can
 				// be fully populated on re-sort.  To avoid two requests
 				// (TOC and full topics) with different limits, we do a single
@@ -317,7 +317,6 @@
 				// TODO: Using a timeout doesn't seem like the right way to do this.
 				setTimeout( function () {
 					var boardEl = $rendered[ 1 ];
-
 					// Since we've replaced the entire board, we need to reinitialize
 					// it. This also takes away the original navWidget, so we need to
 					// make sure it's reinitialized too

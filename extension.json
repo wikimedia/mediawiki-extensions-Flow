@@ -553,6 +553,36 @@
 				"mobile"
 			]
 		},
+		"ext.StructuredDiscussion.dm": {
+			"scripts": [
+				"sd/mw.sd.js",
+				"sd/mw.sd.Controller.js",
+				"sd/mw.sd.dm.ViewModel.js"
+			],
+			"dependencies": [
+				"mediawiki.api",
+				"oojs"
+			],
+		},
+		"ext.StructuredDiscussion.ui": {
+			"scripts": [
+				"sd/ui/mw.sd.ComponentWrapperWidget.js",
+				"sd/ui/mw.sd.OldSystemBridgeWidget.js"
+			],
+			"styles": [
+				"styles/sd/mw.sd.ui.less"
+			],
+			"dependencies": [
+				"ext.flow.components",
+				"ext.StructuredDiscussion.dm",
+				"oojs-ui"
+			],
+		},
+		"ext.StructuredDiscussion": {
+			"dependencies": [
+				"ext.StructuredDiscussion.ui"
+			]
+		},
 		"ext.flow": {
 			"position": "top",
 			"styles": [

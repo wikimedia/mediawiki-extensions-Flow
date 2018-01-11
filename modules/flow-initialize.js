@@ -10,27 +10,44 @@
 	$( function () {
 		var flowBoard,
 			$component = $( '.flow-component' ),
-			$board = $( '.flow-board' ),
-			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
-			initializer = new mw.flow.Initializer( {
-				pageTitle: pageTitle,
-				$component: $component,
-				$board: $board
-			} );
+			// $board = $( '.flow-board' ),
+			$overlay = $( '<div>' )
+				.addClass( 'mw-sd-ui-overlay' )
+				.append(  ),
+			viewModel = new mw.sd.dm.ViewModel( {
+				pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
+				// Initialization data
+				flowData: mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data )
+				// ...
+			} ),
+			controller = new mw.sd.Controller( viewModel ),
+			// TODO: This widget should be initialized after the controller
+			// and model are fully initialized and the data is in place
+			wrapperWidget = new mw.sd.ui.ComponentWrapperWidget(
+				viewModel,
+				controller,
+				{
+					$element: $component,
+					$overlay: $overlay
+				}
+			);
+
+		$( 'body' ).append( $overlay );
+return;
 
 		// Set component
-		if ( !initializer.setComponentDom( $component ) ) {
-			initializer.finishLoading();
-			return;
-		}
+		// if ( !initializer.setComponentDom( $component ) ) {
+		// 	initializer.finishLoading();
+		// 	return;
+		// }
 
 		// Initialize old system
-		initializer.initOldComponent();
+		// initializer.initOldComponent();
 		// Initialize board
 		if ( initializer.setBoardDom( $board ) ) {
 			// Set up flowBoard
-			flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
-			initializer.setBoardObject( flowBoard );
+			// flowBoard = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $board );
+			// initializer.setBoardObject( flowBoard );
 
 			// Initialize DM system and board
 			initializer.initDataModel( {
@@ -58,7 +75,7 @@
 				// Fall back to mw.flow.data, which was used until September 2015
 				// NOTICE: This block must be after the initialization of the ui widgets so
 				// they can populate themselves according to the events.
-				initializer.populateDataModel( mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data ) );
+				// initializer.populateDataModel( mw.config.get( 'wgFlowData' ) || ( mw.flow && mw.flow.data ) );
 			}
 		} else {
 			// Editing summary in a separate window. That has no
