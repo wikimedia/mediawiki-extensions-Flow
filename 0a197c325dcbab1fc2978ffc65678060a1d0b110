@@ -16,6 +16,24 @@
       "revId": "0a197c325dcbab1fc2978ffc65678060a1d0b110",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef26315_caf1d000",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2018-01-11T14:53:15Z",
+      "side": 1,
+      "message": "Looks like this patch is not in .16, so I will cherry pick this line into a backport.",
+      "parentUuid": "8ef26315_b4e14d9a",
+      "revId": "0a197c325dcbab1fc2978ffc65678060a1d0b110",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
