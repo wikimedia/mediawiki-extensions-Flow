@@ -465,6 +465,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Flow, el nou sistema de discussió wiki, ha estat activat en la {{GENDER:$1|vostra}} pàgina de discussió del projecte {{SITENAME}}. Podeu obtenir més informació, fer comentaris o desactivar-lo en qualsevol moment en la secció de funcionalitats beta de les {{GENDER:$1|vostres}} preferències.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Afegint la plantilla d'arxiu",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Traient la plantilla d'arxiu",
+	"flow-beta-feature-add-current-template-edit-summary": "Addició de la plantilla Actual",
 	"flow-dialog-cancelconfirm-title": "N'esteu segur?",
 	"flow-dialog-cancelconfirm-message": "Esteu segurs que voleu cancel·lar sense desar abans?",
 	"flow-dialog-cancelconfirm-keep": "Continua editant",

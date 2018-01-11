@@ -508,6 +508,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Новиот систем за викиразговори „Структурирани дискусии“ е вклучен на {{GENDER:$1|вашата}} корисничка разговорна страница на {{SITENAME}}. Можете да дознаете повеќе, да ни дадете ваше мислење, или пак да го исклучите новиот систем во секое време во делот за бета-можности во {{GENDER:$1|вашите}} нагодувања.",
 	"flow-beta-feature-add-archive-template-edit-summary": "ДОдаден архивен шаблон",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Отстранет архивен шаблон",
+	"flow-beta-feature-add-current-template-edit-summary": "Додавање на тековен шаблон",
 	"flow-dialog-cancelconfirm-title": "Дали {{GENDER:|сте}} сигурни?",
 	"flow-dialog-cancelconfirm-message": "Дали {{GENDER:|сте}} сигурни дека сакате да откажете без претходно да зачувате?",
 	"flow-dialog-cancelconfirm-keep": "Продолжи со уредување",

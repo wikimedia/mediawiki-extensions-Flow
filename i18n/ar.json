@@ -515,6 +515,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "النقاشات الهيكلية، نظام النقاش الجديد في صفحة نقاش المستخدم الخاص {{GENDER:$1|بك}} تم تفعيلها في في {{SITENAME}}، ويمكنك الحصول على أي معلومات إضافية، أو تزويدنا بأي تغذية راجعة، أو تعطيل النظام الجديد في أي وقت، وكل هذا من خلال قسم مميزات الإصدار التجريبي في {{GENDER:$1|تفضيلاتك}}.",
 	"flow-beta-feature-add-archive-template-edit-summary": "إضافة قالب أرشيف",
 	"flow-beta-feature-remove-archive-template-edit-summary": "إزالة قالب الأرشيف",
+	"flow-beta-feature-add-current-template-edit-summary": "إضافة القالب الحالي",
 	"flow-dialog-cancelconfirm-title": "هل {{GENDER:|أنت}} متأكد؟",
 	"flow-dialog-cancelconfirm-message": "هل {{GENDER:|أنت}} متأكد أنك تريد الإلغاء بدون الحفظ أولا؟",
 	"flow-dialog-cancelconfirm-keep": "مواصلة التعديل",

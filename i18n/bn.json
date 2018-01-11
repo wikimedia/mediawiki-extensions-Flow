@@ -190,6 +190,7 @@
 	"flow-ve-mention-inspector-invalid-user": "ব্যবহারকারী নাম \"$1\" নিবন্ধিত নয়।",
 	"flow-wikitext-editor-help": "উইকিলেখা $1।",
 	"flow-talk-page-beta-feature-message": "ব্যবহারকারীর আলাপে কাঠামোবদ্ধ আলোচনা",
+	"flow-beta-feature-add-current-template-edit-summary": "বর্তমান টেমপ্লেট যোগ",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|আপনি}} কি নিশ্চিত?",
 	"flow-dialog-cancelconfirm-keep": "সম্পাদনা অব্যাহত রাখুন",
 	"flow-dialog-cancelconfirm-discard": "পরিবর্তন বাতিল করুন",
