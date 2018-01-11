@@ -600,6 +600,8 @@
 		},
 		"ext.flow.visualEditor": {
 			"scripts": [
+				"flow/mw.flow.js",
+				"flow/ui/mw.flow.ui.js",
 				"editor/editors/visualeditor/mw.flow.ve.Target.js",
 				"editor/editors/visualeditor/mw.flow.ve.UserCache.js",
 				"editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
@@ -668,6 +670,28 @@
 			"targets": [
 				"desktop",
 				"mobile"
+			]
+		},
+		"just-flow": {
+			"scripts": [
+				"flow/mw.flow.js"
+			]
+		},
+		"fleact-client": {
+			"scripts": [
+				"fleact/dist/client.js"
+			],
+			"messages": [
+				"flow-board-header"
+			],
+			"dependencies": [
+				"ext.flow.visualEditor"
+			]
+		},
+		"fleact-initial-styles": {
+			"position": "top",
+			"styles": [
+				"fleact/styles/initial.less"
 			]
 		}
 	},
