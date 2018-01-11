@@ -665,6 +665,8 @@ $wgFlowActions = [
 		'actions' => [], // view is not a recorded change type, no actions will be requested
 		'history' => [], // views don't generate history
 		'handler-class' => 'Flow\Actions\ViewAction',
+		'modules' => [ 'fleact-client' ],
+		'moduleStyles' => [ 'fleact-initial-styles' ],
 	],
 
 	'reply' => [
