@@ -507,6 +507,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "As conversas estruturadas, o novo sistema de conversa da wiki, foi activado na {{GENDER:$1|súa}} páxina de conversa de {{SITENAME}}. Podes obter máis información, realizar comentarios ou desactivar o novo sistema en calquera momento desde a sección de funcións beta nas {{GENDER:$1|súas}} preferencias.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Engadindo modelo de ficheiro",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Eliminación modelo de ficheiro",
+	"flow-beta-feature-add-current-template-edit-summary": "Enadindo o modelo actual",
 	"flow-dialog-cancelconfirm-title": "Está {{GENDER:|seguro|segura}}?",
 	"flow-dialog-cancelconfirm-message": "Está {{GENDER:|seguro|segura}} de que quere cancelar sen gardar primeiro?",
 	"flow-dialog-cancelconfirm-keep": "Continuar editando",
