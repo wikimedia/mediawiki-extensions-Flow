@@ -456,6 +456,7 @@
 	"flow-notification-enabled-on-talkpage-email-subject-message": "$2의 새 토론 시스템",
 	"flow-beta-feature-add-archive-template-edit-summary": "보존 틀 추가",
 	"flow-beta-feature-remove-archive-template-edit-summary": "보존 틀 제거",
+	"flow-beta-feature-add-current-template-edit-summary": "현존하는 틀을 추가함",
 	"flow-dialog-cancelconfirm-title": "확실합니까?",
 	"flow-dialog-cancelconfirm-message": "우선 저장을 하지 않고 취소하시겠습니까?",
 	"flow-dialog-cancelconfirm-keep": "편집 계속",
