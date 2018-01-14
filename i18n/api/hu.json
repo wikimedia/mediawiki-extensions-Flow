@@ -32,6 +32,7 @@
 	"apihelp-flow+moderate-topic-summary": "Egy Flow téma moderálása",
 	"apihelp-flow+moderate-topic-param-reason": "Moderálás oka.",
 	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] téma törlése",
+	"apihelp-flow+new-topic-example-1": "Új téma indítása a(z) [[Talk:Sandbox]] oldalon",
 	"apihelp-flow+reply-param-format": "Az új hozzászólás formátuma (wikitext|html)",
 	"apihelp-flow+reply-example-1": "Válasz [[Topic:S2tycnas4hcucw8w]] egy hozzászólására",
 	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] megtekintése",
