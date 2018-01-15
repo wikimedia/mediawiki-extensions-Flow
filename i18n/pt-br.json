@@ -525,6 +525,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Conversas estruturadas, o novo sistema de discussões wiki, foi ativado na {{GENDER:$1|sua}} página de discussão da wiki {{SITENAME}}. Pode obter mais informação, dar a sua opinião ou desativar o novo sistema a qualquer altura a partir da secção de funcionalidades Beta nas {{GENDER:$1|suas}} preferências.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Adicionando predefinição arquivo",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Removendo predefinição de arquivo",
+	"flow-beta-feature-add-current-template-edit-summary": "Adição da predefinição atual",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|Tem}} certeza?",
 	"flow-dialog-cancelconfirm-message": "{{GENDER:|Tem}} tem certeza de que pretende cancelar sem gravar antes?",
 	"flow-dialog-cancelconfirm-keep": "Continuar editando",
@@ -540,5 +541,6 @@
 	"flow-guidedtour-optin-feedback": "Dê-nos o {{GENDER:$1|seu}} feedback!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Você}} pode obter mais informações, fornecer feedback ou desativar o novo sistema a qualquer momento na seção Recursos Beta.",
 	"flow-action-not-page": "O objeto da página é uma instância da classe errada",
-	"flow-action-wrong-title-content-model": "A página está a ser tratada pelo sistema de conversas estruturadas, mas a classe \"Title\" indica que o modelo de conteúdo é '$1'. Isto significa que há uma configuração incorreta ou um estado inconsistente. Por exemplo, pode resultar de uma página que não é de conversas estruturadas, criada num espaço nominal de conversas estruturadas sem a propriedade <code>rev_content_model</code> preenchida."
+	"flow-action-wrong-title-content-model": "A página está a ser tratada pelo sistema de conversas estruturadas, mas a classe \"Title\" indica que o modelo de conteúdo é '$1'. Isto significa que há uma configuração incorreta ou um estado inconsistente. Por exemplo, pode resultar de uma página que não é de conversas estruturadas, criada num espaço nominal de conversas estruturadas sem a propriedade <code>rev_content_model</code> preenchida.",
+	"flow-preference-visualeditor": "Ativar o editor visual e o novo modo de texto wiki nas conversas estruturadas"
 }
