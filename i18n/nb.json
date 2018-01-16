@@ -513,6 +513,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Strukturerte diskusjoner, det nye diskusjonssystemet, har blitt aktivert på brukerdiskusjonssiden {{GENDER:$1|din}} på {{SITENAME}}. Du kan finne ut mer, gi tilbakemelding eller deaktivere det nye systemet når som helst fra seksjonen Betafunksjoner i innstillingene {{GENDER:$1|dine}}.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Legger til arkivmal",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Fjerner arkivmal",
+	"flow-beta-feature-add-current-template-edit-summary": "Legger til mal for aktiv side",
 	"flow-dialog-cancelconfirm-title": "Er {{GENDER:|du}} sikker?",
 	"flow-dialog-cancelconfirm-message": "Er {{GENDER:|du}} sikker på at du ønsker å avbryte uten å lagre først?",
 	"flow-dialog-cancelconfirm-keep": "Fortsett å redigere",

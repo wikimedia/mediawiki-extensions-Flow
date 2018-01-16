@@ -14,7 +14,7 @@
 			"Rotemliss"
 		]
 	},
-	"enablestructureddiscussions": "הפעלת זרימה",
+	"enablestructureddiscussions": "הפעלת דיונים מבניים",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|הפסקת}} המעקב אחרי פעילות חדשה בלוח \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|אתה כבר לא עוקב|את כבר לא עוקבת|אתם כבר לא עוקבים}} יותר אחרי הלוח \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "זה לא ישפיע על נושאים נפרדים {{GENDER:$3|שאתה עוקב|שאת עוקבת|שאתם עוקבים}} אחריהם. {{GENDER:$3|באפשרותך|באפשרותך|באפשרותכם}} לעקוב אחרי [$2 הלוח הזה] בכל עת.",
@@ -427,7 +427,7 @@
 	"flow-whatlinkshere-post": "מתוך [$1 רשומה]",
 	"flow-whatlinkshere-header": "מתוך [$1 התיאור]",
 	"flow-whatlinkshere-post-summary": "מה[$1 סיכום]",
-	"structureddiscussions": "זרימה",
+	"structureddiscussions": "דיונים מבניים",
 	"flow-special-desc": "הדף המיוחד הזה מפנה לזרימת עבודה של דיונים מבניים או לרשומה של דיונים מבניים דרך UUID.",
 	"flow-special-type": "סוג",
 	"flow-special-type-post": "רשומה",
@@ -511,6 +511,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "דיונים מבניים, מערכת הדיונים החדשה לוויקי, הופעלה בדף השיחה {{GENDER:$1|שלך}} ב{{GRAMMAR:תחילית{{SITENAME}}}}. באפשרותך לקבל יותר מידע, לשלוח משוב או לכבות את מערכת דפי השיחה החדשה בכל זמן דרך לשונית בטא בהעדפות {{GENDER:$1|שלך}}.",
 	"flow-beta-feature-add-archive-template-edit-summary": "הוספת תבנית ארכיון",
 	"flow-beta-feature-remove-archive-template-edit-summary": "הסרת תבנית ארכיון",
+	"flow-beta-feature-add-current-template-edit-summary": "הוספת התבנית הנוכחית",
 	"flow-dialog-cancelconfirm-title": "האם {{GENDER:|אתה בטוח|את בטוחה}}?",
 	"flow-dialog-cancelconfirm-message": "האם {{GENDER:|אתה בטוח שאתה|את בטוחה שאת}} לבטל בלי לשמור תחילה?",
 	"flow-dialog-cancelconfirm-keep": "להמשיך לערוך",
@@ -526,5 +527,6 @@
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|תן|תני}} לנו את המשוב שלך!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|אתה יכול|את יכולה}} לקבל יותר מידע, לשלוח משוב, או לכבות את המערכת החדשה באזור אפשרויות הבטא שלך.",
 	"flow-action-not-page": "עצם הדף הוא מופע של המחלקה הלא־נכונה",
-	"flow-action-wrong-title-content-model": "הדף הזה מטופל על־ידי דיונים מבניים, אבל מהשימוש במחלקה Title משתמע שמודל התוכן הוא \"$1\". זוהי הגדרה שגויה או מצב בלתי־עקבי. למשל, ייתכן שזה דף שאינו דף דיונים מבניים במרחב שם שכן משתמש בדיונים מבניים, וב־<code>rev_content_model</code> אין תוכן."
+	"flow-action-wrong-title-content-model": "הדף הזה מטופל על־ידי דיונים מבניים, אבל מהשימוש במחלקה Title משתמע שמודל התוכן הוא \"$1\". זוהי הגדרה שגויה או מצב בלתי־עקבי. למשל, ייתכן שזה דף שאינו דף דיונים מבניים במרחב שם שכן משתמש בדיונים מבניים, וב־<code>rev_content_model</code> אין תוכן.",
+	"flow-preference-visualeditor": "הפעלת העורך החזותי ומצב קוד המקור החדש בדיונים מבניים"
 }

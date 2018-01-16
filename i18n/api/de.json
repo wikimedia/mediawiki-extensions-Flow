@@ -69,6 +69,7 @@
 	"apihelp-flow+view-header-param-revId": "Lädt diese anstelle der aktuellsten Version.",
 	"apihelp-flow+view-header-example-1": "Ruft die Beschreibung von [[Talk:Sandbox]] als Wikitext ab",
 	"apihelp-flow+view-post-description": "Betrachtet einen Beitrag.",
+	"apihelp-flow+view-post-summary": "Betrachtet einen Beitrag.",
 	"apihelp-flow+view-post-param-postId": "Kennung des anzuzeigenden Beitrags.",
 	"apihelp-flow+view-post-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-post-example-1": "Ruft den Inhalt in [[Topic:S2tycnas4hcucw8w]] als Wikitext ab",
