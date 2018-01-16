@@ -156,7 +156,7 @@ class RevisionStorageTest extends FlowTestCase {
 
 	// A rev ID will be added to $old and $new automatically.
 	protected function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
-		$dbw = $this->getMockBuilder( 'DatabaseMysql' )
+		$dbw = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 		$factory = $this->getMockBuilder( 'Flow\DbFactory' )
@@ -389,7 +389,7 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	protected function mockDbFactory() {
-		$dbw = $this->getMockBuilder( 'DatabaseMysql' )
+		$dbw = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 

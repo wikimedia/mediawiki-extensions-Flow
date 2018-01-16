@@ -5,7 +5,7 @@ namespace Flow\Tests\Repository;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
-use Wikimedia\Rdbms\DatabaseMysql;
+use Wikimedia\Rdbms\DatabaseMysqli;
 
 /**
  * @group Flow
@@ -46,7 +46,7 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	protected function mockDb( $dbResult ) {
-		$db = $this->getMockBuilder( DatabaseMysql::class )
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$db->expects( $this->any() )
