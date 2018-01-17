@@ -14,7 +14,7 @@ You can find the Collaboration team, which maintains Flow, in
 #wikimedia-collaboration on Freenode.
 
 ## Libraries
-Flow primarily uses two libraries, OOjs UI/OO UI PHP and Handlebars.  Handlebars
+Flow primarily uses two libraries, OOUI/OOUI PHP and Handlebars.  Handlebars
 is a templating language used on both the client and server.
 
 When developing, it is recommended to set:

@@ -79,7 +79,7 @@
 
 	/**
 	 * Aggregate the events emitted by the group.
-	 * Taken from oojs-ui's OO.ui.GroupElement#aggregate
+	 * Taken from OOUI's OO.ui.GroupElement#aggregate
 	 *
 	 * When events are aggregated, the group will listen to all contained items for the event,
 	 * and then emit the event under a new name. The new event will contain an additional leading

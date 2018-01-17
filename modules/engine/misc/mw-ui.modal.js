@@ -34,7 +34,7 @@
 	 *
 	 * @todo Implement multi-step
 	 * @todo Implement data-mwui handlers
-	 * @todo Implement OOJS & events
+	 * @todo Implement OOjs & events
 	 * @class
 	 * @constructor
 	 * @param {string} [name] Name of modal (may be omitted)
