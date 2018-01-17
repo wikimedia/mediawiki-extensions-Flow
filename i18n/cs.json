@@ -12,7 +12,7 @@
 			"Martin Urbanec"
 		]
 	},
-	"enablestructureddiscussions": "Aktivovat Flow",
+	"enablestructureddiscussions": "Aktivovat strukturované diskuse",
 	"flow-desc": "Diskusní systém",
 	"flow-talk-taken-over-comment": "/* Tato stránka byla převedena na Strukturovanou diskusi */",
 	"log-name-flow": "Kniha aktivity Strukturovaných diskusí",
@@ -277,5 +277,6 @@
 	"flow-talk-page-beta-feature-message": "Strukturované diskuse na uživatelské diskusní stránce",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Zobrazit}} uživatelskou diskusní stránku",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Vítejte}} na své nové uživatelské diskusní stránce",
-	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Vaše}} diskusní stránka je místo, kde vás mohou kontaktovat ostatní editoři. Pomocí Strukturovaných diskusí se snáze začínají nová témata a sledují diskuse."
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Vaše}} diskusní stránka je místo, kde vás mohou kontaktovat ostatní editoři. Pomocí Strukturovaných diskusí se snáze začínají nová témata a sledují diskuse.",
+	"flow-preference-visualeditor": "Zapnout vizuální editor a nový režim wikitextu ve strukturovaných diskusích"
 }

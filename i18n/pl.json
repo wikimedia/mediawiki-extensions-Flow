@@ -538,5 +538,6 @@
 	"flow-guidedtour-optin-feedback": "Przekaż nam {{GENDER:$1|swoją}} opinię!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Możesz}} uzyskać więcej informacji, podzielić się opinią lub wyłączyć nowy system w dowolnym czasie w sekcji Funkcje eksperymentalne.",
 	"flow-action-not-page": "Obiekt strony jest instancją niewłaściwej klasy",
-	"flow-action-wrong-title-content-model": "Ta strona jest obsługiwana przez Flow, ale klasa Title wskazuje, że modelem jej zawartości jest '$1'. Jest to skutkiem niewłaściwej konfiguracji lub niespójnego stanu.  Na przykład może to być aktualnie strona nie będąca Flow, ale w przestrzeni nazw obsługiwanej przez Flow, gdzie nie jest określana wartość <code>rev_content_model</code>."
+	"flow-action-wrong-title-content-model": "Ta strona jest obsługiwana przez Flow, ale klasa Title wskazuje, że modelem jej zawartości jest '$1'. Jest to skutkiem niewłaściwej konfiguracji lub niespójnego stanu.  Na przykład może to być aktualnie strona nie będąca Flow, ale w przestrzeni nazw obsługiwanej przez Flow, gdzie nie jest określana wartość <code>rev_content_model</code>.",
+	"flow-preference-visualeditor": "Włącz edytor wizualny i nowy tryb wikitekstowy w Dyskusjach Strukturalnych"
 }

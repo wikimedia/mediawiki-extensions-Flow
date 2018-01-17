@@ -517,6 +517,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Strukturerade diskussioner, det nya diskussionssystemet, har aktiverats på {{GENDER:$1|din}} användardiskussionssida på {{SITENAME}}. Du kan hitta mer information, ge återkoppling eller avaktivera det nya systemet när som helst från sektionen Beta-funktioner i {{GENDER:$1|dina}} inställningar.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Lägger till arkivmall",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Tar bort arkivmall",
+	"flow-beta-feature-add-current-template-edit-summary": "Lägger till nuvarande mall",
 	"flow-dialog-cancelconfirm-title": "Är {{GENDER:|du}} säker?",
 	"flow-dialog-cancelconfirm-message": "Är {{GENDER:|du}} säker på att du vill avbryta utan att spara först?",
 	"flow-dialog-cancelconfirm-keep": "Fortsätt redigera",
