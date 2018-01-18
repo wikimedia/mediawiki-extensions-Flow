@@ -1752,22 +1752,32 @@ class FlowHooks {
 		$userClone = User::newFromId( $user->getId() );
 		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
 		$after = $user->getBoolOption( BETA_FEATURE_FLOW_USER_TALK_PAGE );
+		$controller = new Flow\Import\OptInController();
 		$action = null;
 
 		if ( !$before && $after ) {
-			$action = OptInUpdate::$ENABLE;
+			$action = 'enable';
 			// Check if the user had a flow board
-			$c = new Flow\Import\OptInController();
-			if ( !$c->hasFlowBoardArchive( $user ) ) {
+			if ( !$controller->hasFlowBoardArchive( $user ) ) {
 				// Enable the guided tour by setting the cookie
 				RequestContext::getMain()->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '1' );
 			}
 		} elseif ( $before && !$after ) {
-			$action = OptInUpdate::$DISABLE;
+			$action = 'disable';
 		}
 
 		if ( $action ) {
-			DeferredUpdates::addUpdate( new OptInUpdate( $action, $user->getTalkPage(), $user ) );
+			DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+				wfGetDB( DB_MASTER ),
+				__METHOD__,
+				function () use ( $controller, $action, $user ) {
+					if ( $action === 'enable' ) {
+						$controller->enable( $user->getTalkPage(), $user );
+					} elseif ( $action === 'disable' ) {
+						$controller->disable( $user->getTalkPage() );
+					}
+				}
+			) );
 		}
 
 		return true;
