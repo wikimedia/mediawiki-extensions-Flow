@@ -170,10 +170,10 @@
 			$overlay: overlay ? overlay.$element : this.$frame,
 			topicPosters: flowBoard.getTopicPosters( this.$element )
 		} );
-		indicatorWidget = new OO.ui.IndicatorWidget( {
-			indicator: 'alert'
+		iconWidget = new OO.ui.IconWidget( {
+			icon: 'notice'
 		} );
-		this.errorWidget = new OO.ui.FieldLayout( indicatorWidget, {
+		this.errorWidget = new OO.ui.FieldLayout( iconWidget, {
 			align: 'inline'
 		} );
 		this.errorFieldsetLayout = new OO.ui.FieldsetLayout( {
