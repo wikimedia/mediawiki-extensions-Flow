@@ -168,16 +168,19 @@
 		this.api.getDescription( contentFormat )
 			.then(
 				function ( desc ) {
-					var content = OO.getProp( desc, 'content', 'content' ),
+					var contentToLoad,
+						content = OO.getProp( desc, 'content', 'content' ),
 						format = OO.getProp( desc, 'content', 'format' );
 
 					if ( content !== undefined && format !== undefined ) {
 						// Update revisionId in the API
 						widget.api.setCurrentRevision( widget.model.getRevisionId() );
 
-						// Load the editor
-						return widget.editor.activate( { content: content, format: format } );
+						contentToLoad = { content: content, format: format };
 					}
+
+					// Load the editor
+					return widget.editor.activate( contentToLoad );
 				},
 				// Error fetching description
 				function ( error ) {
