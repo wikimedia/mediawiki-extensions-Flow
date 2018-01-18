@@ -222,6 +222,8 @@
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
+				// Prevent the promise from becoming resolved after this step
+				return $.Deferred().reject().promise();
 			} )
 			.always( function () {
 				widget.editor.popPending();
