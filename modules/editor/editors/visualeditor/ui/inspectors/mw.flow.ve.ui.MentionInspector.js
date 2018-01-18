@@ -152,7 +152,7 @@
 	 * Initialize UI of inspector
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.initialize = function () {
-		var flowBoard, overlay, indicatorWidget;
+		var flowBoard, overlay, iconWidget;
 
 		mw.flow.ve.ui.MentionInspector.parent.prototype.initialize.call( this );
 
@@ -170,10 +170,10 @@
 			$overlay: overlay ? overlay.$element : this.$frame,
 			topicPosters: flowBoard.getTopicPosters( this.$element )
 		} );
-		indicatorWidget = new OO.ui.IndicatorWidget( {
-			indicator: 'alert'
+		iconWidget = new OO.ui.IconWidget( {
+			icon: 'notice'
 		} );
-		this.errorWidget = new OO.ui.FieldLayout( indicatorWidget, {
+		this.errorWidget = new OO.ui.FieldLayout( iconWidget, {
 			align: 'inline'
 		} );
 		this.errorFieldsetLayout = new OO.ui.FieldsetLayout( {
