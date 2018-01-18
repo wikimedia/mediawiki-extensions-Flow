@@ -530,5 +530,6 @@
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Uw}} overlegpagina is de plaats waar andere bewerkers contact met {{GENDER:$1|u}} kunnen zoeken. Met Gestructureerde Discussies is het eenvoudiger om nieuwe onderwerpen te starten en om de gesprekken bij te houden.",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Uw}} oude discussies terugvinden",
 	"flow-guidedtour-optin-find-old-conversations-description": "Eerdere discussies zijn verplaatst naar het archief.",
-	"flow-guidedtour-optin-feedback": "Geef ons {{GENDER:$1|uw}} terugkoppeling!"
+	"flow-guidedtour-optin-feedback": "Geef ons {{GENDER:$1|uw}} terugkoppeling!",
+	"flow-preference-visualeditor": "De visuele editor en de nieuwe wikitekstmodus in gestructureerde discussies inschakelen"
 }

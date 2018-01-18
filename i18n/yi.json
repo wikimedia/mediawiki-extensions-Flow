@@ -50,7 +50,7 @@
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|האט דערמאנט}} {{GENDER:$4|אייך}} אויף <strong>$5</strong>.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|האט געשאפן}} א   נײַע טעמע </span> אויף <strong>$3</strong>.",
 	"flow-notification-link-text-view-topics": "באקוקן טעמעס",
-	"echo-category-title-flow-discussion": "פֿלוס־שמועס",
+	"echo-category-title-flow-discussion": "סטרוקטורירטער שמועס",
 	"flow-link-topic": "טעמע",
 	"flow-link-history": "היסטאריע",
 	"flow-moderation-confirm-undelete-post": "מבטל זיין אויסמעקן",
