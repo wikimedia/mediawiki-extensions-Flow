@@ -93,7 +93,8 @@ class View extends ContextSource {
 		if ( $workflow->getType() === 'topic' ) {
 			/** @var TopicBlock $topic */
 			$topic = $blocks[ 'topic' ];
-			if ( $topic->loadTopicTitle()->isHidden() ) {
+			$topicRev = $topic->loadTopicTitle();
+			if ( !$topicRev || $topicRev->isHidden() ) {
 				return [
 					'index' => 'noindex',
 					'follow' => 'nofollow',
