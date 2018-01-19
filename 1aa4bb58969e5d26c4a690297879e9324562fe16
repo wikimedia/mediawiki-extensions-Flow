@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef26315_e0aab36c",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-01-19T23:40:37Z",
+      "side": 1,
+      "message": "Is there a case where only one of $flowDbw and $wikiDbw would rollback? That would seem broken already if that was the case (not even counting the deferred part). If it\u0027s not, then just using one of the DBs should be enough.",
+      "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
