@@ -16,6 +16,24 @@
       "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef26315_00b6bfd6",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-01-19T23:47:51Z",
+      "side": 1,
+      "message": "I\u0027m not the author but I believe this function was written specifically because only one of the DBs was being rolled back during normal error handling.",
+      "parentUuid": "8ef26315_e0aab36c",
+      "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
