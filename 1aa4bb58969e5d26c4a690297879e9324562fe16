@@ -70,6 +70,24 @@
       "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef26315_a0f54b81",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-01-20T00:40:36Z",
+      "side": 1,
+      "message": "The \"sometimes\" case is basically going to be always. If you\u0027re writing to DB A and B, then you\u0027re going to write to one of them first (say, A first then B). The write to A might fail, and if that happens you have only written to A and not to B.\n\nBut if I understand you correctly, you\u0027re saying we should patch MWCallableUpdate so that we can write the following?\n\n    DeferredUpdates::addCallableUpdate(\n        function () use ( $flowDbw, $wikiDbw, ... ) {\n            code\n        },\n        __METHOD__,\n        [ $flowDbw, $wikiDbw ]\n    );",
+      "parentUuid": "8ef26315_e0d8f324",
+      "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
