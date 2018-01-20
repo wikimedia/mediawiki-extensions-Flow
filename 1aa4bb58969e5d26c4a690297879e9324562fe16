@@ -88,6 +88,24 @@
       "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef26315_c0ddf7e2",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-01-20T01:20:32Z",
+      "side": 1,
+      "message": "I was thinking of taking IDatabase[] or IDatabase for the $dbw parameter.",
+      "parentUuid": "8ef26315_a0f54b81",
+      "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
