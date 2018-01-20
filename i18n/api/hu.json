@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bencemac"
+			"Bencemac",
+			"Misibacsi"
 		]
 	},
 	"apihelp-flow-example-1": "„[[Talk:Sandbox]]” leírásának szerkesztése",
@@ -32,6 +33,7 @@
 	"apihelp-flow+moderate-topic-summary": "Egy Flow téma moderálása",
 	"apihelp-flow+moderate-topic-param-reason": "Moderálás oka.",
 	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] téma törlése",
+	"apihelp-flow+new-topic-param-topic": "Új téma címe",
 	"apihelp-flow+new-topic-example-1": "Új téma indítása a(z) [[Talk:Sandbox]] oldalon",
 	"apihelp-flow+reply-param-format": "Az új hozzászólás formátuma (wikitext|html)",
 	"apihelp-flow+reply-example-1": "Válasz [[Topic:S2tycnas4hcucw8w]] egy hozzászólására",

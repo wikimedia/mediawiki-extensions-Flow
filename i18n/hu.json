@@ -7,7 +7,8 @@
 			"Wolf Rex",
 			"Dj",
 			"Bencemac",
-			"Rodrigo"
+			"Rodrigo",
+			"Misibacsi"
 		]
 	},
 	"enablestructureddiscussions": "Strukturált Beszélgetés engedélyezése",
@@ -371,6 +372,7 @@
 	"flow-moderation-placeholder-unsuppress-topic": "{{GENDER:$3|Magyarázd meg}}, miért feded fel ezt a témát.",
 	"flow-moderation-placeholder-undelete-topic": "{{GENDER:$3|Magyarázd meg}}, miért állítod helyre ezt a témát.",
 	"flow-moderation-placeholder-unhide-topic": "{{GENDER:$3|Magyarázd meg}}, miért jeleníted meg ezt a témát.",
+	"flow-topic-permalink-warning": "A téma kezdete $2 $1",
 	"flow-revision-permalink-warning-post": "Ez egy állandó hivatkozás a hozzászólás ezen verziójára.\nEzen verzió utolsó módosítása: $1.\nMegtekintheted az [$5 eltéréseket az előző verziótól] és az egyéb változatokat a [$4 hozzászólás előzményeiben].",
 	"flow-revision-permalink-warning-post-first": "Ez egy állandó link a hozzászólás első verziójára.\nA későbbi változatokat a [$4 hozzászólás laptörténetében] nézheted meg.",
 	"flow-revision-permalink-warning-postsummary-first": "Ez egy állandó link a hozzászólás-összefoglaló első verziójára.\nA későbbi változatokat a [$4 hozzászólás laptörténetében] nézheted meg.",
@@ -401,11 +403,12 @@
 	"structureddiscussions": "Flow",
 	"flow-special-type": "Típus",
 	"flow-special-type-post": "Hozzászólás",
+	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-legend": "Rendezett beszélgetés engedélyezése egy új lapon",
 	"flow-special-enableflow-invalid-title": "Érvénytelen lapcím megadva",
-	"flow-special-enableflow-board-creation-not-allowed": "Számodra nem engedélyezett strukturált beszélgetőoldal létrehozása a következő lapon: $1.",
+	"flow-special-enableflow-board-creation-not-allowed": "Számodra nem engedélyezett strukturált beszélgetőoldal létrehozása a következő lapon: [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "Már van egy LiquidThreads- (Folyékony beszélgetések-) oldal a(z) [[:$1]] címen.",
-	"flow-special-enableflow-confirmation": "Strukturált beszélgetőoldal létrehozva a következő lapon: $1.",
+	"flow-special-enableflow-confirmation": "Strukturált beszélgetőoldal létrehozva a következő lapon: [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archív %d\n%s/Archív%d\n%s/archív %d\n%s/archív%d",
 	"flow-spam-confirmedit-form": "Erősítsd meg az alábbi CAPTCHA megoldásával, hogy ember vagy: $1",
 	"flow-spam-confirmedit-using-failure": "Technikai probléma volt a CAPTCHA-val. Ha nem tudod közzétenni a változtatásodat, másold ki a szöveget, töltsd újra a lapot és próbáld újra.",

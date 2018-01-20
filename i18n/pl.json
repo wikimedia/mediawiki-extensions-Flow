@@ -523,6 +523,7 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Dyskusje Strukturalne, nowy system dyskusji na wiki, został włączony na {{GENDER:$1|Twojej}} stronie dyskusji użytkownika na {{SITENAME}}. Możesz uzyskać więcej informacji, podzielić się opinią lub wyłączyć nowy system w dowolnym czasie w sekcji Funkcje eksperymentalne w {{GENDER:$1|Twoich}} preferencjach.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Dodanie szablonu archiwum",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Usunięcie szablonu archiwum",
+	"flow-beta-feature-add-current-template-edit-summary": "Dodawanie bieżącego szablonu",
 	"flow-dialog-cancelconfirm-title": "Jesteś {{GENDER:|pewny|pewna}}?",
 	"flow-dialog-cancelconfirm-message": "Czy na pewno chcesz przerwać edycję bez jej zapisywania?",
 	"flow-dialog-cancelconfirm-keep": "Kontynuuj edycję",
