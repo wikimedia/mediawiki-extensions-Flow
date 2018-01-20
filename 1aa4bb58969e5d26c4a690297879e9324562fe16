@@ -52,6 +52,24 @@
       "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ef26315_e0d8f324",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-01-20T00:24:24Z",
+      "side": 1,
+      "message": "I\u0027m not asking about the \"catch\" block, which I understand, but rather the the DB parameter to MWCallableUpdate.\n\nIf several DBs are used, then a patch should be made to let MWCallableUpdate take an array of IDatabase. I suppose one use case would be when action X updates DBs A and B, sometimes only writing to one of A/B when there happen to be no table changes needed in of the the DBs. Attaching the callback to only one handle could be insufficient.",
+      "parentUuid": "8ef26315_80c2cf37",
+      "revId": "1aa4bb58969e5d26c4a690297879e9324562fe16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
