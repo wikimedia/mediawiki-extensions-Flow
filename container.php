@@ -781,22 +781,6 @@ $c['factory.loader.workflow'] = function ( $c ) {
 // must always happen before calling flow code.
 $c['occupation_controller'] = FlowHooks::getOccupationController();
 
-$c['helper.archive_name'] = function ( $c ) {
-	return new Flow\Import\ArchiveNameHelper();
-};
-
-$c['controller.opt_in'] = function ( $c ) {
-	return new Flow\Import\OptInController(
-		$c['occupation_controller'],
-		$c['controller.notification'],
-		$c['helper.archive_name'],
-		$c['db.factory'],
-		$c['default_logger'],
-		$c['occupation_controller']->getTalkpageManager()
-
-	);
-};
-
 $c['controller.notification'] = function ( $c ) {
 	global $wgContLang;
 	return new Flow\NotificationController( $wgContLang, $c['repository.tree'] );

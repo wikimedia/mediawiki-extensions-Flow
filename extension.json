@@ -1109,6 +1109,7 @@
 		"Flow\\Import\\LiquidThreadsApi\\ScriptedImportRevision": "includes/Import/LiquidThreadsApi/Objects.php",
 		"Flow\\Import\\LiquidThreadsApi\\TopicIterator": "includes/Import/LiquidThreadsApi/Iterators.php",
 		"Flow\\Import\\OptInController": "includes/Import/OptInController.php",
+		"Flow\\Import\\OptInUpdate": "includes/Import/OptInUpdate.php",
 		"Flow\\Import\\PageImportState": "includes/Import/Importer.php",
 		"Flow\\Import\\Plain\\ImportHeader": "includes/Import/Plain/ImportHeader.php",
 		"Flow\\Import\\Plain\\ObjectRevision": "includes/Import/Plain/ObjectRevision.php",

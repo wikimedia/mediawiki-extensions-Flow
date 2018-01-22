@@ -4,10 +4,7 @@ namespace Flow\Import;
 
 use DateTime;
 use DateTimeZone;
-use DeferredUpdates;
 use DerivativeContext;
-use Exception;
-use Flow\DbFactory;
 use Flow\Collection\HeaderCollection;
 use Flow\Content\BoardContent;
 use Flow\Exception\InvalidDataException;
@@ -17,9 +14,7 @@ use Flow\Conversion\Utils;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
-use Psr\Log\LoggerInterface;
 use MovePage;
-use MWExceptionHandler;
 use Parser;
 use ParserOptions;
 use RequestContext;
@@ -34,8 +29,6 @@ use WikitextContent;
  * Entry point for enabling Flow on a page.
  */
 class OptInController {
-	public static $ENABLE = 'enable';
-	public static $DISABLE = 'disable';
 
 	/**
 	 * @var OccupationController
@@ -53,16 +46,6 @@ class OptInController {
 	private $archiveNameHelper;
 
 	/**
-	 * @var DbFactory
-	 */
-	private $dbFactory;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/**
 	 * @var IContextSource
 	 */
 	private $context;
@@ -72,80 +55,13 @@ class OptInController {
 	 */
 	private $user;
 
-	/**
-	 * @param OccupationController $occupationController
-	 * @param NotificationController $notificationController
-	 * @param ArchiveNameHelper $archiveNameHelper
-	 * @param DbFactory $dbFactory
-	 * @param LoggerInterface $logger Logger for errors and exceptions
-	 * @param User $scriptUser User that takes actions, such as creating the board or
-	 *   editing descriptions
-	 */
-	public function __construct(
-		OccupationController $occupationController,
-		NotificationController $notificationController,
-		ArchiveNameHelper $archiveNameHelper,
-		DbFactory $dbFactory,
-		LoggerInterface $logger,
-		User $scriptUser
-	) {
-		$this->occupationController = $occupationController;
-		$this->notificationController = $notificationController;
-		$this->archiveNameHelper = $archiveNameHelper;
-		$this->dbFactory = $dbFactory;
-		$this->logger = $logger;
-		$this->user = $scriptUser;
+	public function __construct() {
+		$this->occupationController = Container::get( 'occupation_controller' );
+		$this->notificationController = Container::get( 'controller.notification' );
+		$this->archiveNameHelper = new ArchiveNameHelper();
+		$this->user = $this->occupationController->getTalkpageManager();
 		$this->context = new DerivativeContext( RequestContext::getMain() );
 		$this->context->setUser( $this->user );
-	}
-
-	/**
-	 * @param string $action Action to take, self::ENABLE or self::DISABLE
-	 * @param Title $talkpage Title of user's talk page
-	 * @param User $user User that owns the talk page
-	 */
-	public function initiateChange( $action, Title $talkpage, User $user ) {
-		$flowDbw = $this->dbFactory->getDB( DB_MASTER );
-		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
-
-		$outerMethod = __METHOD__;
-		$logger = $this->logger;
-
-		// We need both since we use both databases.
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $logger, $outerMethod, $wikiDbw, $action, $talkpage, $user ) {
-				DeferredUpdates::addCallableUpdate(
-					function () use ( $logger, $outerMethod, $action, $talkpage, $user ) {
-						try {
-							if ( $action === self::$ENABLE ) {
-								$this->enable( $talkpage, $user );
-							} elseif ( $action === self::$DISABLE ) {
-								$this->disable( $talkpage );
-							} else {
-								$logger->error( $outerMethod . ': unrecognized action: ' . $action );
-							}
-						} catch ( Exception $e ) {
-							$logger->error(
-								$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'.  Exception: {exception}',
-								[
-									'action' => $action,
-									'talkpage' => $talkpage,
-									'user' => $user,
-									'exception' => $e,
-								]
-							);
-							// rollback both Flow and Core DBs
-							MWExceptionHandler::rollbackMasterChangesAndLog( $e );
-							$this->dbFactory->getDB( DB_MASTER )->rollback( $outerMethod );
-						}
-					},
-					$outerMethod,
-					$wikiDbw
-				);
-			},
-			__METHOD__,
-			$flowDbw
-		);
 	}
 
 	/**
