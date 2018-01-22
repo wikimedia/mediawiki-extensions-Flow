@@ -233,7 +233,7 @@
 	"flow-edit-title-submit-anonymously": "Anoniem titel wijzigen",
 	"flow-edit-post-submit": "Wijzigingen opslaan",
 	"flow-edit-post-submit-anonymously": "Wijzigingen anoniem opslaan",
-	"flow-rev-message-edit-post": "[$1|$2] {{GENDER:$2|heeft}} een [$3 reactie] bewerkt op \"$4\"",
+	"flow-rev-message-edit-post": "$1 {{GENDER:$2|heeft}} een [$3 reactie] bewerkt op \"$4\"",
 	"flow-rev-message-edit-post-recentchanges-summary": "Bericht {{GENDER:$2|bewerkt}}",
 	"flow-rev-message-reply": "$1 {{GENDER:$2|heeft}} een [$3 reactie] toegevoegd op \"$4\" (<em>$5</em>)",
 	"flow-rev-message-reply-bundle": "Er {{PLURAL:$1|is|zijn}} <strong>$1 {{PLURAL:$1|reactie|reacties}}</strong> toegevoegd.",
