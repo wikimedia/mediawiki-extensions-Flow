@@ -450,7 +450,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Há uma página LiquidThreads em [[:$1]].",
 	"flow-special-enableflow-confirmation": "Criou um espaço de conversas estruturadas em [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Arquivo %d\n%s/Arquivo%d\n%s/arquivo %d\n%s/arquivo%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Arquivo de conversas estruturadas %d\n%s/Arquivo de conversas estruturadas%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Arquivo de conversas estruturadas %d\n%s/Arquivo de conversas estruturadas%d\n%s/Arquivo do Flow %d\n%s/ArquivoFlow%d",
 	"flow-spam-confirmedit-form": "Confirme que é um ser humano, por favor, resolvendo o código CAPTHA abaixo: $1",
 	"flow-spam-confirmedit-using-failure": "Ocorreu um erro técnico com o CAPTCHA. Se não consegue enviar a alteração, faça uma cópia do seu texto, recarregue a página e tente novamente.",
 	"flow-embedding-unsupported": "As discussões ainda não podem ser incorporadas.",

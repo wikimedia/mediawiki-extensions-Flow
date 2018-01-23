@@ -480,7 +480,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Il existe une page LiquidThreads sur [[:$1]].",
 	"flow-special-enableflow-confirmation": "Vous avez créé un flux de Discussions Structurées sur [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Structured Discussions Archive %d\n%s/Structured DiscussionsArchive%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Structured Discussions Archive %d\n%s/Structured DiscussionsArchive%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Veuillez confirmer que vous êtes un humain en résolvant le CAPTCHA ci-dessous : $1",
 	"flow-spam-confirmedit-using-failure": "Il y a eu une erreur technique avec le CAPTCHA. Si vous ne pouvez pas soumettre vos modifications, veuillez copier votre texte, recharger, et réessayer.",
 	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées.",

@@ -444,7 +444,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Hay una página con LiquidThreads en [[:$1]].",
 	"flow-special-enableflow-confirmation": "Has creado un nuevo panel de discusión en [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archivo %d\n%s/Archivo%d\n%s/archivo %d\n%s/archivo%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Archivo Flow %d\n%s/ArchivoFlow%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Archivo de Discusiones estructuradas %d\n%s/ArchivoDiscusionesEstructuradas%d\n%s/Archivo Flow %d\n%s/ArchivoFlow%d",
 	"flow-spam-confirmedit-form": "Confirma que eres un humano resolviendo el siguiente CAPTCHA: $1",
 	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas.",
 	"mw-ui-unsubmitted-confirm": "Tienes cambios no enviados en esta página. ¿Estás seguro que deseas salir y perder tu trabajo?",

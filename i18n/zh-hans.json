@@ -460,7 +460,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "在[[:$1]]有一个LiquidThreads页面。",
 	"flow-special-enableflow-confirmation": "您已在[[$1]]创建一个结构式讨论版块。",
 	"flow-conversion-archive-page-name-format": "%s/存档 %d\n%s/存档%d\n%s/存档 %d\n%s/存档%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/结构式讨论 存档 %d\n%s/结构式讨论存档%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/结构式讨论 存档 %d\n%s/结构式讨论存档%d\n%s/Flow 存档 %d\n%s/Flow存档%d",
 	"flow-spam-confirmedit-form": "请输入下面的验证码以确认您是真人：$1",
 	"flow-spam-confirmedit-using-failure": "存在与验证码相关的技术错误。如果您无法提交您的更改，请复制您的文本、重新加载并重试。",
 	"flow-embedding-unsupported": "讨论尚不能嵌入。",
