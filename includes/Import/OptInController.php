@@ -6,7 +6,6 @@ use DateTime;
 use DateTimeZone;
 use DeferredUpdates;
 use DerivativeContext;
-use Exception;
 use Flow\DbFactory;
 use Flow\Collection\HeaderCollection;
 use Flow\Content\BoardContent;
@@ -124,18 +123,19 @@ class OptInController {
 							} else {
 								$logger->error( $outerMethod . ': unrecognized action: ' . $action );
 							}
-						} catch ( Exception $e ) {
+						} catch ( \Throwable $t ) {
 							$logger->error(
-								$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'.  Exception: {exception}',
+								$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
 								[
 									'action' => $action,
 									'talkpage' => $talkpage,
 									'user' => $user,
-									'exception' => $e,
+									'message' => $t->getMessage(),
+									'trace' => $t->getTraceAsString(),
 								]
 							);
 							// rollback both Flow and Core DBs
-							MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+							MWExceptionHandler::rollbackMasterChangesAndLog( $t );
 							$this->dbFactory->getDB( DB_MASTER )->rollback( $outerMethod );
 						}
 					},
