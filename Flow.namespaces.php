@@ -222,3 +222,8 @@ $namespaceNames['vi'] = [
 $namespaceNames['yi'] = [
 	NS_TOPIC => 'טעמע',
 ];
+
+/** Chinese */
+$namespaceNames['zh'] = [
+	NS_TOPIC => '话题',
+];
