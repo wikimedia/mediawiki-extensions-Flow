@@ -48,5 +48,6 @@
 	"flow-beta-feature-remove-archive-template-edit-summary": "Uklanjanje predloška za arhiv",
 	"flow-dialog-cancelconfirm-title": "Jeste li {{GENDER:|Vi}} sigurni?",
 	"flow-dialog-cancelconfirm-message": "Jeste li {{GENDER:|Vi}} sigurni da želite otkazati radnju bez prethodnoga spremanja?",
-	"flow-dialog-cancelconfirm-keep": "Nastavi s uređivanjem"
+	"flow-dialog-cancelconfirm-keep": "Nastavi s uređivanjem",
+	"flow-preference-visualeditor": "Omogući vizualni uređivač i novi način uređivanja wikiteksta u Ustrojnim raspravicama"
 }
