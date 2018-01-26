@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4efcebec_5cde3ddf",
+        "filename": "Flow.namespaces.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 839
+      },
+      "writtenOn": "2018-01-26T08:17:51Z",
+      "side": 1,
+      "message": "\"话题\" in Traditional Chinese is \"話題\". Would that need any special support? (I\u0027m not familiar with how this feature works)",
+      "revId": "daedd7575986a46fd06b601ed3724299a51e7b4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
