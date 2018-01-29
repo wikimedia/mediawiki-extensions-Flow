@@ -15,7 +15,8 @@
 			"Quiddity",
 			"Green Zero",
 			"Visem",
-			"Macofe"
+			"Macofe",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Увімкнути Flow",
@@ -447,7 +448,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Існує сторінка LiquidThreads на [[:$1]].",
 	"flow-special-enableflow-confirmation": "Ви створили стіну структурованого обговорення на [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Архів %d\n%s/Архів%d\n%s/архів %d\n%s/архів%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Архів структурованих обговорень %d\n%s/АрхівСтруктурованихОбговорень%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Архів структурованих обговорень %d\n%s/АрхівСтруктурованихОбговорень%d\n%s/Архів Flow %d\n%s/АрхівFlow%d",
 	"flow-spam-confirmedit-form": "Будь ласка, підтвердіть, що Ви людина, ввівши CAPTCHA нижче: $1",
 	"flow-spam-confirmedit-using-failure": "Сталася технічна помилка з CAPTCHA. Якщо Ви не можете зберегти своє редагування, будь ласка, скопіюйте текст, перезавантажте сторінку і спробуйте ще раз.",
 	"flow-embedding-unsupported": "Обговорення іще не можна вставити.",

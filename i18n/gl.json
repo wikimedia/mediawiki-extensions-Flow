@@ -7,7 +7,8 @@
 			"Nnemo",
 			"Quiddity",
 			"Macofe",
-			"Matiia"
+			"Matiia",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Activar as conversas estruturadas",
@@ -439,7 +440,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Hai unha páxina LiquidThreads en [[:$1]].",
 	"flow-special-enableflow-confirmation": "Creou un taboleiro conversas estruturadas en [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Arquivo %d\n%s/Arquivo%d\n%s/arquivo %d\n%s/arquivo%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Ficheiro conversas estruturadas %d\n%s/Ficheiroconversas estruturadas%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Ficheiro conversas estruturadas %d\n%s/Ficheiroconversas estruturadas%d\n%s/Ficheiro Flow %d\n%s/FicheiroFlow%d",
 	"flow-spam-confirmedit-form": "Por favor, confirme que é un humano resolvendo o seguinte CAPTCHA: $1",
 	"flow-spam-confirmedit-using-failure": "Houbo un problema técnico co CAPTCHA. Se non puideches enviar os teus cambios, por favor copia o teu texto, recarga a páxina e téntao de novo.",
 	"flow-embedding-unsupported": "As conversas aínda non poden ser incorporadas.",

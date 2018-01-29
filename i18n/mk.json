@@ -6,7 +6,8 @@
 			"Macofe",
 			"Nnemo",
 			"Quiddity",
-			"Matiia"
+			"Matiia",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Вклучи го Тек",
@@ -440,7 +441,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Страницата [[:$1]] има LiquidThreads.",
 	"flow-special-enableflow-confirmation": "Создадовте разговорница на Структурираните дискусии на [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Архив %d\n%s/Архив%d\n%s/архив %d\n%s/архив%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Архив на Структурирани дискусии %d\n%s/Архив на Структурираните дискусии%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Архив на Структурирани дискусии %d\n%s/Архив на Структурираните дискусии%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Поврдете дека не сте робот, внесувајќи го прикажаното во полето: $1",
 	"flow-spam-confirmedit-using-failure": "Се појави техничка грешка во CAPTCHA. Ако не можете да ја поднесете промената, ископирајте го текстот, превчитајте и обидете се повторно.",
 	"flow-embedding-unsupported": "Дискусиите засега не може да се вметнуваат.",

@@ -23,7 +23,8 @@
 			"Peter Bowman",
 			"Quiddity",
 			"Macofe",
-			"Sethakill"
+			"Sethakill",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Włącz Flow",
@@ -455,7 +456,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Na [[:$1]] jest już strona LiquidThreads.",
 	"flow-special-enableflow-confirmation": "Stworzono stronę Dyskusji Strukturalnych na [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archiwum %d\n%s/Archiwum%d\n%s/archiwum %d\n%s/archiwum%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Archiwum Dyskusji Strukturalnych %d\n%s/ArchiwumDyskusjiStrukturalnych%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Archiwum Dyskusji Strukturalnych %d\n%s/ArchiwumDyskusjiStrukturalnych%d\n%s/Archiwum Flow %d\n%s/ArchiwumFlow%d",
 	"flow-spam-confirmedit-form": "Potwierdź że nie jesteś programem, rozwiązując poniższą CAPTCHA: $1",
 	"flow-spam-confirmedit-using-failure": "Wystąpił techniczny błąd związany z CAPTCHĄ. Jeżeli nie możesz wysłać swojej zmiany, skopiuj tekst, przeładuj stronę i spróbuj ponownie.",
 	"flow-embedding-unsupported": "W Flow na razie nie działa transkluzja.",

@@ -10,7 +10,8 @@
 			"Macofe",
 			"Cocu",
 			"Kjetil r",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Aktiver Flow",
@@ -445,7 +446,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Det finnes en LiquidThreads-side på [[:$1]].",
 	"flow-special-enableflow-confirmation": "Du har opprettet en strukturert diskusjonstavle på [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Arkiv %d\n%s/Arkiv%d\n%s/arkiv %d\n%s/arkiv%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Strukturert diskusjonsarkiv %d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Strukturert diskusjonsarkiv %d\n%s/Flow-arkiv %d\n%s/FlowArkiv%d",
 	"flow-spam-confirmedit-form": "Vennligst bekreft at du er et menneske ved å løse CAPTCHA-en: $1",
 	"flow-spam-confirmedit-using-failure": "Det oppsto en teknisk feil med CAPTCHA-en. Om du ikke får til å lagre endringen din, kopier teksten, last siden på nytt og prøv igjen.",
 	"flow-embedding-unsupported": "Diskusjoner kan ikke bygges inn enda.",

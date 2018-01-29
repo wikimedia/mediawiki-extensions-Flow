@@ -5,7 +5,8 @@
 			"Nnemo",
 			"Quiddity",
 			"Macofe",
-			"Matiia"
+			"Matiia",
+			"Stephanecbisson"
 		]
 	},
 	"enablestructureddiscussions": "Activar Flow",
@@ -437,7 +438,7 @@
 	"flow-special-enableflow-page-is-liquidthreads": "Hai una páxina con LiquidThreads en [[:$1]].",
 	"flow-special-enableflow-confirmation": "Creasti un tableru d'Alderiques estructuraos en [[$1]].",
 	"flow-conversion-archive-page-name-format": "%s/Archivu %d\n%s/Archivu%d\n%s/archivu %d\n%s/archivu%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/Archivu d'Alderiques estructuraos %d\n%s/ArchivuAlderiquesEstructuraos%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/Archivu d'Alderiques estructuraos %d\n%s/ArchivuAlderiquesEstructuraos%d\n%s/Archivu de Flow %d\n%s/ArchivuFlow%d",
 	"flow-spam-confirmedit-form": "Confirma que yes un humanu resolviendo'l siguiente CAPTCHA: $1",
 	"flow-spam-confirmedit-using-failure": "Hebo un fallu téunicu col CAPTCHA. Si nun puedes unviar el cambiu, copia'l testu, recarga la páxina y tenta otra vuelta.",
 	"flow-embedding-unsupported": "Los alderiques inda nun pueden encuallase.",
