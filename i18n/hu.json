@@ -226,7 +226,7 @@
 	"flow-rev-message-hid-post": "$1 {{GENDER:$2|elrejtette}} a(z) „$6” téma egy [$4 hozzászólását] (<em>$5</em>)",
 	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|törölte}} a(z) „$6” téma egy [$4 hozzászólását] (<em>$5</em>)",
 	"flow-rev-message-suppressed-post": "$1 {{GENDER:$2|elrejtett}} egy [$4 hozzászólást] a következő témánál: „$6” (<em>$5</em>)",
-	"flow-rev-message-restored-post": "$1 {{GENDER:$2|hejreállította}} a(z) „$6” téma egy [$4 hozzászólását] (<em>$5</em>)",
+	"flow-rev-message-restored-post": "$1 {{GENDER:$2|helyreállította}} a(z) „$6” téma egy [$4 hozzászólását] (<em>$5</em>)",
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|elrejtette}} a(z) „[$4 $6]” témát (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|törölte}} a(z) „[$4 $6]” témát (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|elrejtett}} a [$4 témát] a következő témánál: „$6” (<em>$5</em>)",
