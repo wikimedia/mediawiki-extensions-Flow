@@ -46,7 +46,6 @@ use Flow\Data\Listener\RecentChangesListener;
  * *   All actions other than view should have an array here, unless the default
  * *   modules are known to work.  You can specify an empty array, or a custom set of modules.
  * * moduleStyles: Style modules to insert with RL to html page for this action instead of the defaults
- * * showsArticleContent: Whether this action renders a page consisting of user-generated content
  */
 $wgFlowActions = [
 	'create-header' => [
@@ -651,7 +650,6 @@ $wgFlowActions = [
 
 	'view' => [
 		'performs-writes' => false,
-		'showsArticleContent' => true,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
@@ -803,7 +801,6 @@ $wgFlowActions = [
 
 	'view-topic-summary' => [
 		'performs-writes' => false,
-		'showsArticleContent' => true,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
@@ -834,7 +831,6 @@ $wgFlowActions = [
 	// title.
 	'view-topic-title' => [
 		'performs-writes' => false,
-		'showsArticleContent' => true,
 		'log_type' => false, // don't log views
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
@@ -858,28 +854,23 @@ $wgFlowActions = [
 	// or just move these to a different file
 	// @todo: we should probably at least add 'permissions' in these below
 	'compare-header-revisions' => [
-		'showsArticleContent' => true,
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'modules' => [],
 	],
 	'view-header' => [
-		'showsArticleContent' => true,
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'modules' => [],
 	],
 	'compare-post-revisions' => [
-		'showsArticleContent' => true,
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'modules' => [],
 	],
 	// @todo - This is a very bad action name, consolidate with view-post action
 	'single-view' => [
-		'showsArticleContent' => true,
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'modules' => [],
 	],
 	'compare-postsummary-revisions' => [
-		'showsArticleContent' => true,
 		'handler-class' => 'Flow\Actions\FlowAction',
 		'modules' => [],
 	],
