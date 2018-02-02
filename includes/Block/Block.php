@@ -134,7 +134,7 @@ abstract class AbstractBlock implements Block {
 	abstract protected function validate();
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	abstract public function commit();
 

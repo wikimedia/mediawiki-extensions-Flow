@@ -82,7 +82,7 @@ class TopicIterator extends AbstractIterator {
 	 * collection id, so we can pass that to the root post loader and *poof*, we
 	 * have our revisions!
 	 *
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function query() {
 		if ( $this->orderByUUID ) {
@@ -105,7 +105,7 @@ class TopicIterator extends AbstractIterator {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function transform( stdClass $row ) {
 		$root = UUID::create( $row->workflow_id );

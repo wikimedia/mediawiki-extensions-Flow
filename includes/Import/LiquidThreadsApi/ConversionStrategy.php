@@ -147,7 +147,7 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function shouldConvert( Title $sourceTitle ) {
 		// The expensive part of this (user-override checking) is cached by LQT.

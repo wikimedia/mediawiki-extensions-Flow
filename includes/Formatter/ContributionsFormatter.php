@@ -62,6 +62,10 @@ class ContributionsFormatter extends AbstractFormatter {
 
 	/**
 	 * @todo can be generic?
+	 * @param array $data
+	 * @param FormatterRow $row
+	 * @param IContextSource $ctx
+	 * @return string
 	 */
 	protected function getHideUnhide( array $data, FormatterRow $row, IContextSource $ctx ) {
 		if ( !$row->revision instanceof PostRevision ) {

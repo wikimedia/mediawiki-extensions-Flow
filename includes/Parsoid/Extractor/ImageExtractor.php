@@ -12,14 +12,14 @@ use Flow\Parsoid\ReferenceFactory;
  */
 class ImageExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//*[contains(concat(" ", @typeof, " "), " mw:Image " )]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		foreach ( $element->getElementsByTagName( 'img' ) as $item ) {

@@ -9,14 +9,14 @@ use Sanitizer;
 
 class HeaderUpdater extends AbstractUpdater {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getTypeName() {
 		return Connection::HEADER_TYPE_NAME;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function buildDocument( AbstractRevision /* Header */ $revision ) {
 		/** @var Header $revision */

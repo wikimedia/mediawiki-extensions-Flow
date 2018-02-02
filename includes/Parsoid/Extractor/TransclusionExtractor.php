@@ -14,14 +14,14 @@ use Title;
  */
 class TransclusionExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//*[@typeof="mw:Transclusion"]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		$orig = $element->getAttribute( 'data-mw' );

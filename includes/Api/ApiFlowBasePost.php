@@ -61,21 +61,21 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function mustBePosted() {
 		return true;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function isWriteMode() {
 		return true;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function needsToken() {
 		return 'csrf';

@@ -155,7 +155,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 class HeaderViewQuery extends RevisionViewQuery {
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function createRevision( $revId ) {
 		if ( !$revId instanceof UUID ) {
@@ -171,7 +171,7 @@ class HeaderViewQuery extends RevisionViewQuery {
 class PostViewQuery extends RevisionViewQuery {
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function createRevision( $revId ) {
 		if ( !$revId instanceof UUID ) {
@@ -187,7 +187,7 @@ class PostViewQuery extends RevisionViewQuery {
 class PostSummaryViewQuery extends RevisionViewQuery {
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function createRevision( $revId ) {
 		if ( !$revId instanceof UUID ) {

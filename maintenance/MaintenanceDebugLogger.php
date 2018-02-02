@@ -47,7 +47,7 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function log( $level, $message, array $context = [] ) {
 		$position = $this->logLevelPosition[$level];

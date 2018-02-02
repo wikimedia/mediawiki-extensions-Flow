@@ -21,14 +21,14 @@ use Title;
  */
 class PlaceholderExtractor implements Extractor {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getXPath() {
 		return '//*[contains(concat(" ", @typeof, " "), " mw:Placeholder" )]';
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function perform( ReferenceFactory $factory, DOMElement $element ) {
 		$data = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );

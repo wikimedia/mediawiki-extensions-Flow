@@ -7,7 +7,7 @@ use Title;
 
 class EnableFlowWikitextConversionStrategy extends ConversionStrategy {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function meetsSubpageRequirements( Title $sourceTitle ) {
 		// If they're using Special:EnableFlow, they're choosing a specific page

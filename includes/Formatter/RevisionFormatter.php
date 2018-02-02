@@ -144,6 +144,7 @@ class RevisionFormatter {
 	 * Outputing content can be somehwat expensive, as most of the content is loaded
 	 * into DOMDocuemnts for processing of relidlinks and badimages.  Set this to false
 	 * if the content will not be used such as for recent changes.
+	 * @param bool $shouldInclude
 	 */
 	public function setIncludeContent( $shouldInclude ) {
 		$this->includeContent = (bool)$shouldInclude;
