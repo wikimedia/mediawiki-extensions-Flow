@@ -9,7 +9,8 @@
 			"Matěj Suchánek",
 			"Urbanecm",
 			"Dvorapa",
-			"Martin Urbanec"
+			"Martin Urbanec",
+			"Ilimanaq29"
 		]
 	},
 	"enablestructureddiscussions": "Aktivovat strukturované diskuse",
@@ -260,6 +261,7 @@
 	"flow-special-type-post": "Příspěvek",
 	"flow-special-type-workflow": "Workflow",
 	"flow-special-uuid": "UUID",
+	"flow-conversion-archive-flow-page-name-format": "%s/Strukturovaný Archiv Diskusí %d\n%s/Strukturovaný ArchivDiskusí%d\n%s/Archiv toku %d\n%s/ArchivToku%d",
 	"flow-edited": "Upraveno",
 	"flow-edited-by": "{{GENDER:$1|Upravil|Upravila|Upravil(a)}} $1",
 	"flow-undo": "zrušit editaci",
