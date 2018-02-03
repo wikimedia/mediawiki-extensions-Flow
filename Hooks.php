@@ -15,6 +15,7 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use MediaWiki\MediaWikiServices;
 
 class FlowHooks {
 	/**
@@ -940,8 +941,14 @@ class FlowHooks {
 	public static function onAbortEmailNotification( $editor, $title ) {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// Since we are aborting the notification we need to manually update the watchlist
-			EmailNotification::updateWatchlistTimestamp( $editor, $title, wfTimestampNow() );
-
+			$config = RequestContext::getMain()->getConfig();
+			if ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) ) {
+				MediaWikiServices::getInstance()->getWatchedItemStore()->updateNotificationTimestamp(
+					$editor,
+					$title,
+					wfTimestampNow()
+				);
+			}
 			return false;
 		}
 
