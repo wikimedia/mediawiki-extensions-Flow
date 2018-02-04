@@ -3,6 +3,7 @@
 namespace Flow\SpamFilter;
 
 use BaseBlacklist;
+use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
 use Status;
@@ -61,6 +62,6 @@ class SpamBlacklist implements SpamFilter {
 	 * @return bool
 	 */
 	public function enabled() {
-		return class_exists( 'BaseBlacklist' );
+		return ExtensionRegistry::getInstance()->isLoaded( 'SpamBlacklist' );
 	}
 }

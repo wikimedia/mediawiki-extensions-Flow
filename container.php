@@ -1023,7 +1023,7 @@ $c['formatter.topic'] = function ( $c ) {
 	);
 };
 $c['search.connection'] = function ( $c ) {
-	if ( defined( 'MW_PHPUNIT_TEST' ) && !class_exists( 'ElasticaConnection' ) ) {
+	if ( defined( 'MW_PHPUNIT_TEST' ) && !ExtensionRegistry::getInstance()->isLoaded( 'Elastica' ) ) {
 		/*
 		 * ContainerTest::testInstantiateAll instantiates everything
 		 * in container and doublechecks it's not null.

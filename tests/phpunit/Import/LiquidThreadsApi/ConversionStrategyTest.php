@@ -129,7 +129,7 @@ EOD
 	 * @param string $content
 	 */
 	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
-		if ( !class_exists( 'LqtDispatch' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			$this->markTestSkipped( 'LiquidThreads not enabled' );
 		}
 

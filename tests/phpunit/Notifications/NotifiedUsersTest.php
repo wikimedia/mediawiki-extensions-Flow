@@ -32,7 +32,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$this->markTestSkipped();
 			return;
 		}
