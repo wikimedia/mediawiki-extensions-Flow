@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Robin van der Vliet",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Mainframe98"
 		]
 	},
+	"apihelp-flow-example-1": "Bewerk de beschrijving van \"[[Talk:Sandbox]]\"",
 	"apihelp-flow+edit-header-example-1": "De beschrijving van [[Talk:Sandbox]] bewerken",
 	"apihelp-flow+edit-post-param-postId": "Berichtnummer.",
 	"apihelp-flow+edit-post-param-content": "Inhoud voor bericht",
