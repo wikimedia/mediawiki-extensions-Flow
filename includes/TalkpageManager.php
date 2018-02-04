@@ -8,6 +8,7 @@ use Flow\Model\Workflow;
 use Article;
 use CentralAuthUser;
 use ContentHandler;
+use ExtensionRegistry;
 use Status;
 use Title;
 use User;
@@ -247,7 +248,7 @@ class TalkpageManager implements OccupationController {
 
 		$user = User::newSystemUser( FLOW_TALK_PAGE_MANAGER_USER, [ 'steal' => true ] );
 
-		if ( class_exists( 'CentralAuthUser' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			// Attach to CentralAuth if a global account already
 			// exists
 			$ca = CentralAuthUser::getMasterInstance( $user );

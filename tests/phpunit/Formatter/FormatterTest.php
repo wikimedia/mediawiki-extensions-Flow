@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Formatter;
 
+use ExtensionRegistry;
 use Flow\Container;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
@@ -49,7 +50,7 @@ class FormatterTest extends FlowTestCase {
 	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
 		global $wgLang;
 
-		if ( !class_exists( 'CheckUser' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'CheckUser' ) ) {
 			$this->markTestSkipped( 'CheckUser is not available' );
 			return;
 		}

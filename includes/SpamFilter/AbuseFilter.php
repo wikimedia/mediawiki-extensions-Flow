@@ -3,6 +3,7 @@
 namespace Flow\SpamFilter;
 
 use Flow\Model\AbstractRevision;
+use ExtensionRegistry;
 use IContextSource;
 use Status;
 use Title;
@@ -98,7 +99,7 @@ class AbuseFilter implements SpamFilter {
 	 * @return bool
 	 */
 	public function enabled() {
-		return class_exists( 'AbuseFilter' ) && (bool)$this->group;
+		return ExtensionRegistry::getInstance()->isLoaded( 'Abuse Filter' ) && (bool)$this->group;
 	}
 
 	/**

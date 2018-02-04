@@ -16,6 +16,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
 use ApiResult;
+use ExtensionRegistry;
 use GenderCache;
 use IContextSource;
 use Message;
@@ -500,7 +501,7 @@ class RevisionFormatter {
 			case 'thank':
 				if (
 					// thanks extension must be available
-					class_exists( 'ThanksHooks' ) &&
+					ExtensionRegistry::getInstance()->isLoaded( 'Thanks' ) &&
 					// anons can't give a thank
 					!$user->isAnon() &&
 					// can only thank for PostRevisions

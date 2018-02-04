@@ -9,6 +9,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use EchoNotificationController;
+use ExtensionRegistry;
 use User;
 
 /**
@@ -32,7 +33,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			$this->markTestSkipped();
 			return;
 		}

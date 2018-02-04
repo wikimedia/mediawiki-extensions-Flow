@@ -3,6 +3,7 @@
 namespace Flow\SpamFilter;
 
 use ConfirmEditHooks;
+use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use IContextSource;
@@ -57,6 +58,6 @@ class ConfirmEdit implements SpamFilter {
 	 * @return bool
 	 */
 	public function enabled() {
-		return class_exists( 'ConfirmEditHooks' );
+		return ExtensionRegistry::getInstance()->isLoaded( 'ConfirmEdit' );
 	}
 }
