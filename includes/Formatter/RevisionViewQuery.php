@@ -93,7 +93,6 @@ abstract class RevisionViewQuery extends AbstractQuery {
 			$newRev = $prev;
 		}
 
-		/** @var RevisionActionPermissions $permission */
 		if (
 			!$this->permissions->isAllowed( $oldRev, 'view' ) ||
 			!$this->permissions->isAllowed( $newRev, 'view' )

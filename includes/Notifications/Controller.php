@@ -902,7 +902,6 @@ class NotificationController {
 
 			$events = $eventMapper->fetchByPage( $pageId );
 
-			/** @var EchoEvent $event */
 			foreach ( $events as $event ) {
 				/** @var UUID|string $eventPostId */
 				$eventPostId = $event->getExtraParam( 'post-id' );
