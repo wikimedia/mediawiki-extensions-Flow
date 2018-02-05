@@ -53,7 +53,7 @@ class RevisionFormatter {
 	protected $templating;
 
 	/**
-	 * @var UrlGenerator;
+	 * @var UrlGenerator
 	 */
 	protected $urlGenerator;
 
