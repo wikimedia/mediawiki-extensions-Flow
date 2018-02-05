@@ -82,7 +82,7 @@
 	"flow-delete-post-content": "Этот комментарий был удалён {{GENDER:$1|участником|участницей}} $1 ([$2 история])",
 	"flow-delete-title-content": "Эта тема была удалена {{GENDER:$1|участником|участницей}} $1",
 	"flow-delete-header-content": "Удалено {{GENDER:$1|участником|участницей}} $2",
-	"flow-suppress-post-content": "Этот комментарий был подавлен {{GENDER:$1|участником|участницей}} $1 ([$2 история])",
+	"flow-suppress-post-content": "Эта статья была удалена{{GENDER:$1|участником|участницей}} $1 ([$2 история])",
 	"flow-suppress-title-content": "Эта тема была подавлена {{GENDER:$1|участником|участницей}} $1",
 	"flow-suppress-header-content": "Подавлено {{GENDER:$1|участником|участницей}} $2",
 	"flow-suppress-usertext": "<em>Имя участника подавлено</em>",

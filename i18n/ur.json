@@ -411,5 +411,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|اپنی}} پرانی گفتگو تلاش کریں",
 	"flow-guidedtour-optin-find-old-conversations-description": "گزشتہ گفتگو کو صفحۂ وثق میں منتقل کر دیا گیا ہے۔",
 	"flow-guidedtour-optin-feedback": "ہمیں {{GENDER:$1|اپنا}} تبصرہ ارسال کریں!",
-	"flow-guidedtour-optin-feedback-description": "تجرباتی خصوصیات کے خانہ سے {{GENDER:$1|آپ}} کسی بھی وقت نئے نظام کو غیر فعال کر سکتے ہیں۔"
+	"flow-guidedtour-optin-feedback-description": "تجرباتی خصوصیات کے خانہ سے {{GENDER:$1|آپ}} کسی بھی وقت نئے نظام کو غیر فعال کر سکتے ہیں۔",
+	"flow-preference-visualeditor": "مرتب گفتگو میں ویکی متن کا نیا انداز اور بصری خانہ ترمیم فعال کریں"
 }
