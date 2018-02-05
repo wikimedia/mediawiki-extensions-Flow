@@ -420,7 +420,8 @@ class RevisionFormatter {
 			];
 		}
 
-		return $this->userLinks[$name] = $links;
+		$this->userLinks[$name] = $links;
+		return $this->userLinks[$name];
 	}
 
 	public function serializeUser( $userWiki, $userId, $userIp ) {

@@ -210,7 +210,8 @@ class Workflow {
 			$namespace = $this->namespace;
 			$titleText = $this->titleText;
 		}
-		return $this->title = self::getFromTitleCache( $this->wiki, $namespace, $titleText );
+		$this->title = self::getFromTitleCache( $this->wiki, $namespace, $titleText );
+		return $this->title;
 	}
 
 	/**
@@ -223,7 +224,8 @@ class Workflow {
 		if ( $this->ownerTitle ) {
 			return $this->ownerTitle;
 		}
-		return $this->ownerTitle = self::getFromTitleCache( $this->wiki, $this->namespace, $this->titleText );
+		$this->ownerTitle = self::getFromTitleCache( $this->wiki, $this->namespace, $this->titleText );
+		return $this->ownerTitle;
 	}
 
 	/**

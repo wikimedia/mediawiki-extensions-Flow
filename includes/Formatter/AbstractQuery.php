@@ -394,7 +394,8 @@ abstract class AbstractQuery {
 		if ( isset( $this->workflowCache[$alpha] ) ) {
 			return $this->workflowCache[$alpha];
 		} else {
-			return $this->workflowCache[$alpha] = $this->storage->get( 'Workflow', $workflowId );
+			$this->workflowCache[$alpha] = $this->storage->get( 'Workflow', $workflowId );
+			return $this->workflowCache[$alpha];
 		}
 	}
 
