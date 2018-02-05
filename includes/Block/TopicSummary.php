@@ -201,7 +201,8 @@ class TopicSummaryBlock extends AbstractBlock {
 		if ( !$found ) {
 			throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
 		}
-		return $this->topicTitle = reset( $found );
+		$this->topicTitle = reset( $found );
+		return $this->topicTitle;
 	}
 
 	/**

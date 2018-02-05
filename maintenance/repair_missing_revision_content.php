@@ -291,10 +291,12 @@ function parsoid_to_wikitext( $content, $retry = 3 ) {
 	}
 	try {
 		$wikitext = Flow\Conversion\Utils::convert( 'html', 'wt', $content, Title::newMainPage() );
-		return $cache[$hash] = $wikitext;
+		$cache[$hash] = $wikitext;
+		return $cache[$hash];
 	} catch ( Flow\Exception\NoParserException $e ) {
 		echo "failed to convert to wikitext: " . truncate( $content, 1024 ) . "\n";
-		return $cache[$hash] = $content;
+		$cache[$hash] = $content;
+		return $cache[$hash];
 	}
 }
 

@@ -86,7 +86,8 @@ class CachingObjectMapper implements ObjectMapper {
 			throw new \InvalidArgumentException( 'Storage row has no pk' );
 		} elseif ( !isset( $this->loaded[$pk] ) ) {
 			// unserialize the object
-			return $this->loaded[$pk] = call_user_func( $this->fromStorageRow, $row, $object );
+			$this->loaded[$pk] = call_user_func( $this->fromStorageRow, $row, $object );
+			return $this->loaded[$pk];
 		} elseif ( $object === null ) {
 			// provide previously loaded object
 			return $this->loaded[$pk];

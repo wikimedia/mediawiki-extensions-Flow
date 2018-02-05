@@ -795,7 +795,9 @@ class TopicBlock extends AbstractBlock {
 
 		if ( $this->permissions->isAllowed( $rootPost, 'view' ) ) {
 			// topicTitle is same as root, difference is root has children populated to full depth
-			return $this->topicTitle = $this->root = $rootPost;
+			$this->topicTitle = $rootPost;
+			$this->root = $rootPost;
+			return $rootPost;
 		}
 
 		$this->addError( 'moderation', $this->context->msg( 'flow-error-not-allowed' ) );

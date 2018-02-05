@@ -109,9 +109,10 @@ class TemplateHelper {
 
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
-		return $this->renderers[$templateName] = function ( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
+		$this->renderers[$templateName] = function ( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
 			return $renderer( $args, $scopes );
 		};
+		return $this->renderers[$templateName];
 	}
 
 	/**
