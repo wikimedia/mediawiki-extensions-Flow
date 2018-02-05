@@ -4,6 +4,7 @@ namespace Flow\Import\Wikitext;
 
 use DateTime;
 use DateTimeZone;
+use ExtensionRegistry;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
@@ -221,7 +222,7 @@ class ConversionStrategy implements IConversionStrategy {
 	public function shouldConvert( Title $sourceTitle ) {
 		// If we have LiquidThreads filter out any pages with that enabled.  They should
 		// be converted separately.
-		if ( class_exists( 'LqtDispatch' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			if ( \LqtDispatch::isLqtPage( $sourceTitle ) ) {
 				$this->logger->info( "Skipping LQT enabled page, conversion must be done with convertLqtPagesWithProp.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
 				return false;

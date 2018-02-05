@@ -14,6 +14,7 @@ use Flow\Model\Workflow;
 use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
 use EchoEvent;
+use ExtensionRegistry;
 use Language;
 use Title;
 use User;
@@ -75,7 +76,7 @@ class NotificationController {
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifyHeaderChange( $data = [] ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
 
@@ -153,7 +154,7 @@ class NotificationController {
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifyPostChange( $eventName, $data = [] ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
 
@@ -278,7 +279,7 @@ class NotificationController {
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifySummaryChange( $data = [] ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
 
@@ -351,7 +352,7 @@ class NotificationController {
 	 * @throws FlowException When $params contains unexpected types/values
 	 */
 	public function notifyNewTopic( $params ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			// Nothing to do here.
 			return [];
 		}
@@ -432,7 +433,7 @@ class NotificationController {
 	 * @throws \MWException
 	 */
 	public function notifyTopicLocked( $type, $data = [] ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
 
@@ -472,7 +473,7 @@ class NotificationController {
 	}
 
 	public function notifyFlowEnabledOnTalkpage( User $user ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			// Nothing to do here.
 			return [];
 		}
@@ -863,7 +864,7 @@ class NotificationController {
 	 * @throws FlowException
 	 */
 	public function moderateTopicNotifications( UUID $topicId, $moderated ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			// Nothing to do here.
 			return;
 		}
@@ -887,7 +888,7 @@ class NotificationController {
 	 * @throws FlowException
 	 */
 	public function moderatePostNotifications( UUID $topicId, UUID $postId, $moderated ) {
-		if ( !class_exists( 'EchoEvent' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			// Nothing to do here.
 			return;
 		}

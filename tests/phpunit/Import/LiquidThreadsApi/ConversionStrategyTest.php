@@ -5,6 +5,7 @@ namespace Flow\Tests\Import\LiquidThreadsApi;
 use Wikimedia\Rdbms\IDatabase;
 use DateTime;
 use DateTimeZone;
+use ExtensionRegistry;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
@@ -129,7 +130,7 @@ EOD
 	 * @param string $content
 	 */
 	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
-		if ( !class_exists( 'LqtDispatch' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			$this->markTestSkipped( 'LiquidThreads not enabled' );
 		}
 

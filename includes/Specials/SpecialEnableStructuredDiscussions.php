@@ -2,6 +2,7 @@
 
 namespace Flow\Specials;
 
+use ExtensionRegistry;
 use FormSpecialPage;
 use Status;
 use Title;
@@ -94,7 +95,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 		$status = Status::newGood();
 
 		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
-			if ( class_exists( 'LqtDispatch' ) && \LqtDispatch::isLqtPage( $title ) ) {
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) && \LqtDispatch::isLqtPage( $title ) ) {
 				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
 			}
 

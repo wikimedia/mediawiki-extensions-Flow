@@ -5,6 +5,7 @@ namespace Flow\Tests\Import\Wikitext;
 use Flow\Container;
 use DateTime;
 use DateTimeZone;
+use ExtensionRegistry;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\Wikitext\ConversionStrategy;
@@ -85,7 +86,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 	}
 
 	public function testShouldConvertLqt() {
-		if ( !class_exists( 'LqtDispatch' ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			$this->markTestSkipped( 'LiquidThreads not enabled' );
 		}
 

@@ -57,7 +57,7 @@ class FlowHooks {
 		global $wgFlowEventLogging;
 
 		// Only if EventLogging in Flow is enabled & EventLogging exists
-		if ( $wgFlowEventLogging && class_exists( 'ResourceLoaderSchemaModule' ) ) {
+		if ( $wgFlowEventLogging && ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' ) ) {
 			$resourceLoader->register( 'schema.FlowReplies', [
 				'class' => 'ResourceLoaderSchemaModule',
 				'schema' => 'FlowReplies',
@@ -72,7 +72,7 @@ class FlowHooks {
 			$resourceLoader->register( 'ext.visualEditor.supportCheck', [] );
 		}
 
-		if ( class_exists( 'GuidedTourHooks' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' ) ) {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', [
 				'localBasePath' => __DIR__ . '/modules',
 				'remoteExtPath' => 'Flow/modules',
@@ -105,7 +105,7 @@ class FlowHooks {
 			// Check that we are on a flow board
 			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
 			// Check that guided tour exists
-			class_exists( 'GuidedTourHooks' )
+			ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' )
 		) {
 			// Activate tour
 			GuidedTourLauncher::launchTourByCookie( 'flowOptIn', 'newTopic' );
@@ -1734,7 +1734,7 @@ class FlowHooks {
 	 */
 	private static function isBetaFeatureAvailable() {
 		global $wgBetaFeaturesWhitelist, $wgFlowEnableOptInBetaFeature;
-		return $wgFlowEnableOptInBetaFeature && class_exists( BetaFeatures::class ) &&
+		return $wgFlowEnableOptInBetaFeature && ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) &&
 			( !is_array( $wgBetaFeaturesWhitelist ) || in_array( BETA_FEATURE_FLOW_USER_TALK_PAGE, $wgBetaFeaturesWhitelist ) );
 	}
 
