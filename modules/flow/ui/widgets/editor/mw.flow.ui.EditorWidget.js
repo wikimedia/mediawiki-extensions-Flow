@@ -98,16 +98,9 @@
 				classes: [ 'flow-ui-editorWidget-input', 'mw-editfont-' + mw.user.options.get( 'editfont' ) ]
 			} );
 			this.input.toggle( false );
-			this.input.connect( this, { change: [ 'emit', 'change' ] } );
-			// TODO: Upstream this to OOUI so that MultilineTextInputWidgets emit 'submit' on Ctrl+Enter
-			this.input.$input.on( 'keypress', function ( e ) {
-				if (
-					( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) ||
-					// Some platforms emit keycode 10 for ctrl+enter in a textarea
-					e.which === 10
-				) {
-					widget.onTargetSubmit();
-				}
+			this.input.connect( this, {
+				change: [ 'emit', 'change' ],
+				enter: 'onTargetSubmit'
 			} );
 			this.$editorWrapper.append( this.input.$element );
 		}
