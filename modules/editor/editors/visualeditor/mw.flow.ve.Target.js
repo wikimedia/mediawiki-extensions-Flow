@@ -30,6 +30,10 @@
 	 * @param {string} newMode Mode being switched to ('visual' or 'source')
 	 */
 
+	/**
+	 * @event submit
+	 */
+
 	// Static
 
 	mw.flow.ve.Target.static.name = 'flow';
@@ -132,6 +136,9 @@
 			this.switchingDeferred = null;
 			deferred.resolve();
 		}
+
+		// Re-emit main surface 'submit' as target 'submit'
+		this.getSurface().on( 'submit', this.emit.bind( this, 'submit' ) );
 	};
 
 	/**

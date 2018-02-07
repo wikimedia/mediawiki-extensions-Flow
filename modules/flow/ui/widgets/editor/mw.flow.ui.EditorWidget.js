@@ -99,6 +99,16 @@
 			} );
 			this.input.toggle( false );
 			this.input.connect( this, { change: [ 'emit', 'change' ] } );
+			// TODO: Upstream this to OOUI so that MultilineTextInputWidgets emit 'submit' on Ctrl+Enter
+			this.input.$input.on( 'keypress', function ( e ) {
+				if (
+					( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) ||
+					// Some platforms emit keycode 10 for ctrl+enter in a textarea
+					e.which === 10
+				) {
+					widget.onTargetSubmit();
+				}
+			} );
 			this.$editorWrapper.append( this.input.$element );
 		}
 
@@ -206,7 +216,8 @@
 					widget.target = ve.init.mw.targetFactory.create( 'flow' );
 					widget.target.connect( widget, {
 						surfaceReady: 'onTargetSurfaceReady',
-						switchMode: 'onTargetSwitchMode'
+						switchMode: 'onTargetSwitchMode',
+						submit: 'onTargetSubmit'
 					} );
 					widget.$editorWrapper.prepend( widget.target.$element );
 				} );
@@ -517,6 +528,15 @@
 			.always( function () {
 				widget.popPending();
 			} );
+	};
+
+	/**
+	 * Handle submit events from the editor
+	 */
+	mw.flow.ui.EditorWidget.prototype.onTargetSubmit = function () {
+		if ( !this.editorControlsWidget.saveButton.isDisabled() ) {
+			this.onEditorControlsWidgetSave();
+		}
 	};
 
 	/**
