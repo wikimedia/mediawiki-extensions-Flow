@@ -36,6 +36,7 @@
 	"flow-revision-permalink-warning-header-first": "Това е постоянна препратка към първата версия на описанието.\nМожете да видите по-нови версии от [$2 историята на страницата].",
 	"flow-compare-revisions-header-header": "Тази страница показва {{GENDER:$2|промените}} между две версии на описанието на [$3 $1].\nМожете да видите други версии на [$4 историята на страницата].",
 	"flow-recent-topics": "Наскоро активни теми",
+	"structureddiscussions": "Структурирани дискусии",
 	"flow-importer-wt-converted-template-content": "Предишната дискусия е архивирана в <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-ve-mention-placeholder": "Потребителско име",
 	"flow-optin-archive-wikitext": "Преместване на страницата с уики текст за да се освободи място за дискусионно табло.",
