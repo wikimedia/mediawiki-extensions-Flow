@@ -478,6 +478,7 @@
 			// FIXME reverse pagination is broken in the backend, don't use it
 			return;
 
+			/*
 			// eslint-disable-next-line no-unreachable
 			if ( !topicsData.links.pagination.fwd && !topicsData.links.pagination.rev ) {
 				return;
@@ -503,6 +504,7 @@
 				) ).children()
 					.insertBefore( $target.first() )
 			);
+			*/
 		}
 
 		function _createFwdPagination( $target ) {
