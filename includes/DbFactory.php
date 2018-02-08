@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -62,10 +63,11 @@ class DbFactory {
 	 * @return \Wikimedia\Rdbms\LoadBalancer
 	 */
 	public function getLB() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		if ( $this->cluster !== false ) {
-			return wfGetLBFactory()->getExternalLB( $this->cluster, $this->wiki );
+			return $lbFactory->getExternalLB( $this->cluster, $this->wiki );
 		} else {
-			return wfGetLB( $this->wiki );
+			return $lbFactory->getMainLB( $this->wiki );
 		}
 	}
 
@@ -77,24 +79,34 @@ class DbFactory {
 	 * @return IDatabase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
-		return wfGetDB( $this->forceMaster ? DB_MASTER : $db, [], $wiki );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forceMaster ? DB_MASTER : $db, [], $wiki );
 	}
 
 	/**
-	 * Gets a load balancer for the main wiki database. Mockable version of wfGetLB.
+	 * Gets a load balancer for the main wiki database.
 	 *
 	 * @param string|bool $wiki wiki ID, or false for the current wiki
 	 * @return \Wikimedia\Rdbms\LoadBalancer
 	 */
 	public function getWikiLB( $wiki = false ) {
-		return wfGetLB( $wiki );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		return $lbFactory->getMainLB( $wiki );
 	}
 
 	/**
 	 * Wait for the slaves of the Flow database
 	 */
 	public function waitForSlaves() {
-		wfWaitForSlaves( false, $this->wiki, $this->cluster );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		try {
+			$lbFactory->waitForReplication( [
+				'wiki' => $this->wiki,
+				'cluster' => $this->cluster,
+				'ifWritesSince' => false
+			] );
+		} catch ( DBReplicationWaitError $e ) {
+		}
 	}
 
 	/**
@@ -103,6 +115,7 @@ class DbFactory {
 	 * @param string $fname
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		wfGetLBFactory()->rollbackMasterChanges( $fname );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->rollbackMasterChanges( $fname );
 	}
 }
