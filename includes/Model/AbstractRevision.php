@@ -847,7 +847,7 @@ abstract class AbstractRevision {
 			'rc_timestamp' => $timestamp,
 			'rc_namespace' => $namespace
 		];
-		$options = [ 'USE INDEX' => 'rc_timestamp' ];
+		$options = [ 'USE INDEX' => [ 'recentchanges' => 'rc_timestamp' ] ];
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$rcQuery = RecentChange::getQueryInfo();
