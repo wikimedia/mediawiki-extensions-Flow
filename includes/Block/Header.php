@@ -237,8 +237,8 @@ class HeaderBlock extends AbstractBlock {
 
 	// @Todo - duplicated logic in other diff view block
 	protected function renderDiffviewApi( array $options ) {
-		if ( !isset( $options['newRevision'] ) ) {
-			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+		if ( !isset( $options['newRevision'] ) || !is_string( $options['newRevision'] ) ) {
+			throw new InvalidInputException( 'A valid revision must be provided for comparison', 'revision-comparison' );
 		}
 		$oldRevision = null;
 		if ( isset( $options['oldRevision'] ) ) {
