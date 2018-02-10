@@ -201,7 +201,7 @@
 	"flow-rev-message-hid-topic": "$1 نے \"$6\" پر [$4 موضوع] کو {{GENDER:$2|پوشیدہ کیا}} (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 نے \"$6\" پر [$4 موضوع] {{GENDER:$2|حذف کیا}} (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "بطور برطرف شدہ نشان زد کیا",
-	"flow-rev-message-restore-topic-reason": "دوبارہ کھولیں",
+	"flow-rev-message-restore-topic-reason": "دوبارہ کھولا",
 	"flow-rev-message-restored-topic": "$1 نے \"$6\" پر [$4 موضوع] {{GENDER:$2|بحال کیا}} (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 $2 پر",
 	"flow-board-history": "\"$1\" تاریخچہ",
