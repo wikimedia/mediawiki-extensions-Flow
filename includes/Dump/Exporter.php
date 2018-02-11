@@ -347,8 +347,9 @@ class Exporter extends WikiExporter {
 			// storing only last revision won't work (it'll reference non-existing
 			// parents): we'll construct a bogus revision with most of the original
 			// metadata, but with the current content & id (= timestamp)
-			$first = $first->toStorageRow( $first );
-			$last = $revision->toStorageRow( $revision );
+			$stubMode = $this->text === WikiExporter::STUB;
+			$first = $first->toStorageRow( $first, !$stubMode );
+			$last = $revision->toStorageRow( $revision, !$stubMode );
 			$first['rev_id'] = $last['rev_id'];
 			$first['rev_content'] = $last['rev_content'];
 			$first['rev_flags'] = $last['rev_flags'];
@@ -377,7 +378,8 @@ class Exporter extends WikiExporter {
 			return;
 		}
 
-		$attribs = $revision->toStorageRow( $revision );
+		$stubMode = $this->text === WikiExporter::STUB;
+		$attribs = $revision->toStorageRow( $revision, !$stubMode );
 
 		// make sure there are no leftover key columns (unknown to $attribs)
 		$keys = array_intersect_key( static::$map, $attribs );
@@ -413,13 +415,22 @@ class Exporter extends WikiExporter {
 			}
 		}
 
-		$output = Xml::element(
-			'revision',
-			$attribs,
-			$revision->getContent( $format )
-		) . "\n";
-		// filter out bad characters that may have crept into old revisions
-		$output = preg_replace( '/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $output );
+		if ( $stubMode ) {
+			// no text, only the metadata, for two-pass dumps
+			$output = Xml::element(
+				'revision',
+				$attribs
+			) . "\n";
+		} else {
+			// we dump the text
+			$output = Xml::element(
+				'revision',
+				$attribs,
+				$revision->getContent( $format )
+			) . "\n";
+			// filter out bad characters that may have crept into old revisions
+			$output = preg_replace( '/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $output );
+		}
 		$this->sink->write( $output );
 	}
 
