@@ -32,6 +32,7 @@ TEXT
 		$this->addOption( 'pagelist', 'Dump only pages of which the title is included in the file', false, true );
 
 		$this->addOption( 'start', 'Start from page_id n', false, true );
+		$this->addOption( 'stub', 'Don\'t perform old_text lookups; for 2-pass dump' );
 		$this->addOption( 'end', 'Stop before page_id n (exclusive)', false, true );
 		$this->addOption( 'skip-header', 'Don\'t output the <mediawiki> header' );
 		$this->addOption( 'skip-footer', 'Don\'t output the </mediawiki> footer' );
@@ -53,10 +54,12 @@ TEXT
 
 		$this->processOptions();
 
+		$textMode = $this->hasOption( 'stub' ) ? WikiExporter::STUB : WikiExporter::TEXT;
+
 		if ( $this->hasOption( 'full' ) ) {
-			$this->dump( WikiExporter::FULL );
+			$this->dump( WikiExporter::FULL, $textMode );
 		} elseif ( $this->hasOption( 'current' ) ) {
-			$this->dump( WikiExporter::CURRENT );
+			$this->dump( WikiExporter::CURRENT, $textMode );
 		} else {
 			$this->error( 'No valid action specified.', 1 );
 		}
@@ -64,7 +67,7 @@ TEXT
 
 	/**
 	 * @param int $history WikiExporter::FULL or WikiExporter::CURRENT
-	 * @param int $text Unused, but exists for compat with parent
+	 * @param int $text WikiExporter::STUB or WikiExporter::TEXT
 	 */
 	public function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
@@ -74,7 +77,7 @@ TEXT
 		}
 
 		$db = Container::get( 'db.factory' )->getDB( DB_REPLICA );
-		$exporter = new Exporter( $db, $history, Exporter::STREAM, Exporter::TEXT );
+		$exporter = new Exporter( $db, $history, Exporter::STREAM, $text );
 		$exporter->setOutputSink( $this->sink );
 
 		if ( !$this->skipHeader ) {
