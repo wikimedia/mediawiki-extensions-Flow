@@ -413,13 +413,22 @@ class Exporter extends WikiExporter {
 			}
 		}
 
-		$output = Xml::element(
-			'revision',
-			$attribs,
-			$revision->getContent( $format )
-		) . "\n";
-		// filter out bad characters that may have crept into old revisions
-		$output = preg_replace( '/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $output );
+		if ( $this->text == WikiExporter::STUB ) {
+			// no text, only the metadata, for two-pass dumps
+			$output = Xml::element(
+				'revision',
+				$attribs
+			) . "\n";
+		} else {
+			// we dump the text
+			$output = Xml::element(
+				'revision',
+				$attribs,
+				$revision->getContent( $format )
+			) . "\n";
+			// filter out bad characters that may have crept into old revisions
+			$output = preg_replace( '/[^\x{0009}\x{000a}\x{000d}\x{0020}-\x{D7FF}\x{E000}-\x{FFFD}]+/u', ' ', $output );
+		}
 		$this->sink->write( $output );
 	}
 
