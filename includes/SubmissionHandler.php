@@ -4,7 +4,7 @@ namespace Flow;
 
 use DeferredUpdates;
 use Flow\Block\AbstractBlock;
-use Flow\Block\Block;
+use Flow\Block\Blocker;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidDataException;

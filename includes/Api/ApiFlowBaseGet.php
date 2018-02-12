@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use Flow\Block\Block;
+use Flow\Block\Blocker;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Message;
@@ -29,11 +29,9 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 				if ( isset( $passedParams[$block->getName()] ) ) {
 					$blockParams = $passedParams[$block->getName()];
 				}
-
 				$output[$action]['result'][$block->getName()] = $block->renderApi( $blockParams );
 			}
 		}
-
 		// See if any of the blocks generated an error (in which case the
 		// request will terminate with an the error message)
 		$this->processError( $blocks );
