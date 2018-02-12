@@ -187,6 +187,9 @@ class UUID implements ApiSerializable {
 					return new static( $value, $type );
 				}
 			}
+		} elseif ( is_array( $input ) ) {
+			// array syntax in the url (?foo[]=bar) will make $input an array
+			throw new InvalidInputException( 'Invalid input to UUID class', 'invalid-input' );
 		} elseif ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
 				return $input;
