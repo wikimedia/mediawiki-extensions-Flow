@@ -69,9 +69,9 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$continue = $row->rc_id;
 
 			// build params
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$params = unserialize( $row->rc_params );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$params ) {
 				$params = [];
 			}

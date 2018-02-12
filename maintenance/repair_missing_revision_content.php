@@ -124,16 +124,16 @@ foreach ( $it as $batch ) {
 				foreach ( $range as $possible ) {
 					$url = "DB://$cluster/$possible";
 					$content = gzinflate( ExternalStore::fetchFromURL( $url ) );
-					MediaWiki\suppressWarnings();
+					Wikimedia\suppressWarnings();
 					$unserializedContent = unserialize( $content );
-					MediaWiki\restoreWarnings();
+					Wikimedia\restoreWarnings();
 					if ( false !== $unserializedContent ) {
 						// if it unserializes, its not our content
 						continue;
 					}
-					MediaWiki\suppressWarnings();
+					Wikimedia\suppressWarnings();
 					$json = json_decode( $content, true );
-					MediaWiki\restoreWarnings();
+					Wikimedia\restoreWarnings();
 					if ( $json && count( $json ) === 1 && isset( $json['flow-workflow'] ) ) {
 						// while technically possible to be a topic title, i'm almost
 						// certain this is a core revisions inserted by flow in the form
