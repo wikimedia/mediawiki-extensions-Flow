@@ -77,6 +77,7 @@ class TopicListBlock extends AbstractBlock {
 			return;
 		}
 		if ( !isset( $this->submitted['topic'] ) || !is_string( $this->submitted['topic'] ) ) {
+			unset( $this->submitted['topic'] );
 			$this->addError( 'topic', $this->context->msg( 'flow-error-missing-title' ) );
 			return;
 		}
