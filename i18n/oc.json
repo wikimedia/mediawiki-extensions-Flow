@@ -147,7 +147,7 @@
 	"flow-moderation-confirmation-delete-topic": "Aqueste subjècte es estat suprimit.",
 	"flow-moderation-confirmation-hide-topic": "Aqueste subjècte es estat amagat.",
 	"right-flow-lock": "Marcar de subjèctes de Flow coma resolguts",
-	"structureddiscussions": "Flow",
+	"structureddiscussions": "Discussions estructuradas",
 	"flow-special-enableflow-confirmation": "Avètz creat un tablèu Flow sus [[$1]].",
 	"flow-previous-diff": "← Cambiament precedent",
 	"flow-next-diff": "Cambiament seguent →",
