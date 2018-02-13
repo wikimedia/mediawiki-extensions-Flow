@@ -26,6 +26,7 @@ use Revision;
 use Title;
 use Flow\Container;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
 use WikitextContent;
 
@@ -112,39 +113,34 @@ class OptInController {
 
 		// We need both since we use both databases.
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $logger, $outerMethod, $wikiDbw, $action, $talkpage, $user ) {
-				DeferredUpdates::addCallableUpdate(
-					function () use ( $logger, $outerMethod, $action, $talkpage, $user ) {
-						try {
-							if ( $action === self::$ENABLE ) {
-								$this->enable( $talkpage, $user );
-							} elseif ( $action === self::$DISABLE ) {
-								$this->disable( $talkpage );
-							} else {
-								$logger->error( $outerMethod . ': unrecognized action: ' . $action );
-							}
-						} catch ( \Throwable $t ) {
-							$logger->error(
-								$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
-								[
-									'action' => $action,
-									'talkpage' => $talkpage,
-									'user' => $user,
-									'message' => $t->getMessage(),
-									'trace' => $t->getTraceAsString(),
-								]
-							);
-							// rollback both Flow and Core DBs
-							MWExceptionHandler::rollbackMasterChangesAndLog( $t );
-							$this->dbFactory->getDB( DB_MASTER )->rollback( $outerMethod );
-						}
-					},
-					$outerMethod,
-					$wikiDbw
-				);
+			function () use ( $logger, $outerMethod, $action, $talkpage, $user, $wikiDbw, $flowDbw ) {
+				try {
+					if ( $action === self::$ENABLE ) {
+						$this->enable( $talkpage, $user );
+					} elseif ( $action === self::$DISABLE ) {
+						$this->disable( $talkpage );
+					} else {
+						$logger->error( $outerMethod . ': unrecognized action: ' . $action );
+					}
+				} catch ( \Throwable $t ) {
+					$logger->error(
+						$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
+						[
+							'action' => $action,
+							'talkpage' => $talkpage->getPrefixedText(),
+							'user' => $user->getName(),
+							'message' => $t->getMessage(),
+							'trace' => $t->getTraceAsString(),
+						]
+					);
+
+					// rollback both Flow and Core DBs
+					$flowDbw->rollback( $outerMethod );
+					$wikiDbw->rollback( $outerMethod );
+				}
 			},
-			__METHOD__,
-			$flowDbw
+			DeferredUpdates::POSTSEND,
+			[ $wikiDbw, $flowDbw ]
 		);
 	}
 
