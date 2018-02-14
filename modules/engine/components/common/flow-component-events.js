@@ -187,7 +187,7 @@
 				if ( !self.UI.events[ type ][ name ] ) {
 					self.UI.events[ type ][ name ] = [];
 				}
-				if ( $.isArray( fn ) ) {
+				if ( Array.isArray( fn ) ) {
 					// eg. UI.events.interactiveHandlers.foo concat [Function, Function];
 					self.UI.events[ type ][ name ] = self.UI.events[ type ][ name ].concat( fn );
 				} else {
@@ -464,7 +464,7 @@
 
 	// Triggers load handlers
 	function flowLoadHandlerCallback( handlerName, args, context ) {
-		args = $.isArray( args ) ? args : ( args ? [ args ] : [] );
+		args = Array.isArray( args ) ? args : ( args ? [ args ] : [] );
 		context = context || this;
 
 		if ( this.UI.events.loadHandlers[ handlerName ] ) {
