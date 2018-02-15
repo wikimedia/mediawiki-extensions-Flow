@@ -46,7 +46,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] on [[$3]] was imported from LiquidThreads to Structured Discussions",
 	"abusefilter-edit-builder-vars-board-articleid": "Page ID of Structured Discussions board",
 	"abusefilter-edit-builder-vars-board-namespace": "Namespace of Structured Discussions board",
-	"abusefilter-edit-builder-vars-board-text": "Title of Structured Discussions board",
+	"abusefilter-edit-builder-vars-board-text": "Title (without namespace) of Structured Discussions board",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Full title of Structured Discussions board",
 	"flow-user-moderated": "Moderated user",
 	"flow-board-header-browse-topics-link": "Browse topics",
