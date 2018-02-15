@@ -6,7 +6,8 @@
 			"Macofe",
 			"Сербијана",
 			"Zoranzoki21",
-			"Obsuser"
+			"Obsuser",
+			"Acamicamacaraca"
 		]
 	},
 	"enablestructureddiscussions": "Омогући Flow",
@@ -130,5 +131,6 @@
 	"flow-dialog-cancelconfirm-title": "Јесте ли сигурни?",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро дошли}} на {{GENDER:$1|Вашу}} нову страницу за разговор",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вас други уредници контактирају. Са Flow-ом, једноставније је направити нову тему и пратити дискусију.",
-	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!"
+	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
+	"flow-preference-visualeditor": "Омогући визуелни уређивач и нови начин уређивања викитекста у Flow-у."
 }

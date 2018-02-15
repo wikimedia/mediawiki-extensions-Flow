@@ -50,7 +50,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] auf [[$3]] wurde von LiquidThreads zu Strukturierte Diskussionen importiert",
 	"abusefilter-edit-builder-vars-board-articleid": "Seitenkennung des Strukturierte-Diskussionen-Boards",
 	"abusefilter-edit-builder-vars-board-namespace": "Namensraum des Strukturierte-Diskussionen-Boards",
-	"abusefilter-edit-builder-vars-board-text": "Titel des Strukturierte-Diskussionen-Boards",
+	"abusefilter-edit-builder-vars-board-text": "Titel (ohne Namensraum) des Strukturierte-Diskussionen-Boards",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Vollständiger Titel des Strukturierte-Diskussionen-Boards",
 	"flow-user-moderated": "Moderierter Benutzer",
 	"flow-board-header-browse-topics-link": "Themen durchsuchen",
