@@ -58,7 +58,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] em [[$3]] foi importado do LiquidThreads para as conversas estruturadas",
 	"abusefilter-edit-builder-vars-board-articleid": "Identificador de página do espaço de conversas estruturadas",
 	"abusefilter-edit-builder-vars-board-namespace": "Espaço nominal das conversas estruturadas",
-	"abusefilter-edit-builder-vars-board-text": "Título do espaço de conversas estruturadas",
+	"abusefilter-edit-builder-vars-board-text": "Título (sem o espaço nominal) do espaço de conversas estruturadas",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Título completo do Espaço de Discussão",
 	"flow-user-moderated": "Usuário Moderado",
 	"flow-board-header-browse-topics-link": "Navegar pelos tópicos",

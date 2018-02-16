@@ -51,7 +51,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] على [[$3]] تم استيرادها من LiquidThreads إلى النقاشات الهيكلية",
 	"abusefilter-edit-builder-vars-board-articleid": "رقم الصفحة للوحة النقاشات الهيكلية",
 	"abusefilter-edit-builder-vars-board-namespace": "نطاق لوحة النقاشات الهيكلية",
-	"abusefilter-edit-builder-vars-board-text": "عنوان لوحة النقاشات الهيكلية",
+	"abusefilter-edit-builder-vars-board-text": "عنوان (بدون النطاق) لوحة النقاشات الهيكلية",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "العنوان الكامل للوحة النقاشات الهيكلية",
 	"flow-user-moderated": "مستخدم مقيد",
 	"flow-board-header-browse-topics-link": "تصفح المواضيع",

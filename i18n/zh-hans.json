@@ -64,7 +64,7 @@
 	"logentry-import-lqt-to-flow-topic": "在[[$3]]上的[[$1|$2]]已从LiquidThreads导入至结构式讨论",
 	"abusefilter-edit-builder-vars-board-articleid": "结构式讨论版块的页面ID",
 	"abusefilter-edit-builder-vars-board-namespace": "结构式讨论版块的名字空间",
-	"abusefilter-edit-builder-vars-board-text": "结构式讨论版块的标题",
+	"abusefilter-edit-builder-vars-board-text": "结构式讨论版块的标题（没有名字空间）",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "结构式讨论版块的完整标题",
 	"flow-user-moderated": "限制用户",
 	"flow-board-header-browse-topics-link": "浏览话题",

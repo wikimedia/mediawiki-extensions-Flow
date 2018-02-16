@@ -83,7 +83,7 @@
 	"logentry-import-lqt-to-flow-topic": "Le sujet [[$1|$2]] de [[$3]] a été importé depuis LiquidThreads vers les discussions structurées.",
 	"abusefilter-edit-builder-vars-board-articleid": "ID de la page du tableau des discussions structurées",
 	"abusefilter-edit-builder-vars-board-namespace": "Espace de noms du tableau des discussions structurées",
-	"abusefilter-edit-builder-vars-board-text": "Titre du tableau des discussions structurées",
+	"abusefilter-edit-builder-vars-board-text": "Titre (sans l’espace de noms) du tableau des discussions structurées",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Titre complet du tableau des discussions structurées",
 	"flow-user-moderated": "Utilisateur modéré",
 	"flow-board-header-browse-topics-link": "Parcourir les sujets",
