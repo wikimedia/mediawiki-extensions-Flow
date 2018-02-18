@@ -5,7 +5,8 @@
 			"Pofka",
 			"Zygimantus",
 			"Nnemo",
-			"Eitvys200"
+			"Eitvys200",
+			"Manvydasz"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",
@@ -276,7 +277,7 @@
 	"flow-ve-mention-tool-title": "Paminėti vartotoją",
 	"flow-wikitext-editor-help-preview-the-result": "peržiūrėti rezultatą",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Nauja diskusijų sistema $2",
-	"flow-dialog-cancelconfirm-title": "Ar esate tikri?",
+	"flow-dialog-cancelconfirm-title": "Ar {{GENDER:|esate}} tikri?",
 	"flow-dialog-cancelconfirm-message": "Ar esate tikri, kad norite atšaukti neišsaugoję?",
 	"flow-dialog-cancelconfirm-keep": "Tęsti redagavimą",
 	"flow-dialog-cancelconfirm-discard": "Atsisakyti pakeitimų",

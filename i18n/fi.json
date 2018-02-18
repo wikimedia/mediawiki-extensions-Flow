@@ -15,7 +15,8 @@
 			"Macofe",
 			"Mikahama",
 			"01miki10",
-			"Alluk."
+			"Alluk.",
+			"Pyscowicz"
 		]
 	},
 	"enablestructureddiscussions": "Ota Flow käyttöön",
@@ -464,5 +465,6 @@
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Tervetuloa}} uudelle keskustelusivullesi",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|Sinun}} vanhat keskustelusi",
 	"flow-guidedtour-optin-find-old-conversations-description": "Aikaisemmat keskustelut on siirretty arkistosivulle.",
-	"flow-guidedtour-optin-feedback": "Kaipaamme {{GENDER:$1|sinun}} palautettasi!"
+	"flow-guidedtour-optin-feedback": "Kaipaamme {{GENDER:$1|sinun}} palautettasi!",
+	"flow-preference-visualeditor": "Ota käyttöön visuaalinen muokkaus ja uusi wikitekstitila strukturoiduissa keskusteluissa"
 }

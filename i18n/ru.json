@@ -29,7 +29,8 @@
 			"Kareyac",
 			"Alex Great",
 			"Redredsonia",
-			"Putnik"
+			"Putnik",
+			"Smigles"
 		]
 	},
 	"enablestructureddiscussions": "Включить структурированные обсуждения",
@@ -427,7 +428,7 @@
 	"flow-special-invalid-uuid": "Не удалось найти содержимое, соответствующее типу и UUID.",
 	"flow-special-enableflow-legend": "Включить Flow на новой странице",
 	"flow-special-enableflow-page": "Страница для включения Flow",
-	"flow-special-enableflow-header": "Начальное описание стены Flow (викитекст)",
+	"flow-special-enableflow-header": "Начальное описание стены Structured Discussions (вики-текст)",
 	"flow-special-enableflow-board-already-exists": "Стена Flow уже существует на странице [[$1]].",
 	"flow-special-enableflow-invalid-title": "Было предоставлено недопустимое название страницы",
 	"flow-special-enableflow-board-creation-not-allowed": "Вам не разрешено создание стены Flow на [[:$1]].",

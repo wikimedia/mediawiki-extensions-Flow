@@ -5,7 +5,8 @@
 			"Sunpriat",
 			"Kaganer",
 			"Mailman",
-			"Facenapalm"
+			"Facenapalm",
+			"Smigles"
 		]
 	},
 	"apihelp-flow-description": "Позволяет применять действия к страницам Flow.",
@@ -29,7 +30,7 @@
 	"apihelp-flow+edit-post-example-1": "Править сообщение в [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Правка заголовка темы.",
 	"apihelp-flow+edit-title-param-prev_revision": "Идентификатор текущей версии заголовка, для проверки на конфликты редактирования.",
-	"apihelp-flow+edit-title-param-content": "Содержимое заголовка, в том же формате, что разрешён для описания правок (тема-заголовок-викитекст).",
+	"apihelp-flow+edit-title-param-content": "Содержимое заголовка, в том же формате, что разрешён для описания правок (тема — заголовок — вики-текст).",
 	"apihelp-flow+edit-title-example-1": "Править заголовок у [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-topic-summary-description": "Правка содержимого краткого содержания темы.",
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "Идентификатор текущей версии краткого содержания темы, для проверки на конфликты редактирования.",

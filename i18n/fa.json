@@ -59,7 +59,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] در [[$3]] از ال‌کیوتی به بحث ساختارمند درون‌ریزی شد",
 	"abusefilter-edit-builder-vars-board-articleid": "شناسه صفحه بحث ساختارمند",
 	"abusefilter-edit-builder-vars-board-namespace": "فضای نام صفحه بحث ساختارمند",
-	"abusefilter-edit-builder-vars-board-text": "عنوان صفحه بحث ساختارمند",
+	"abusefilter-edit-builder-vars-board-text": "عنوان صفحه (بدون فضای نام) در بحث ساختارمند",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "نام کامل صفحه بحث ساختارمند",
 	"flow-user-moderated": "کاربر تعدیل‌شده",
 	"flow-board-header-browse-topics-link": "مرور مبحث‌ها",

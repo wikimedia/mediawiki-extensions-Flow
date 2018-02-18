@@ -38,6 +38,7 @@
 	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|obnovil|obnovila}} téma „[[$3|$5]]“ na stránce [[$6]]",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 znovu {{GENDER:$2|otevřel|otevřela|otevřel(a)}} téma na stránce [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "Téma [[$1|$2]] na nástěnce [[$3]] bylo naimportováno z LiquidThreads do Strukturovaných diskusí",
+	"abusefilter-edit-builder-vars-board-text": "Název (bez jmenného prostoru) strukturovaného diskusního fóra",
 	"flow-user-moderated": "Moderovaný uživatel",
 	"flow-board-header-browse-topics-link": "Procházet témata",
 	"flow-board-header": "O této stránce",
