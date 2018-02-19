@@ -47,7 +47,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] på [[$3]] ble importert fra LiquidThreads til strukturerte diskusjoner",
 	"abusefilter-edit-builder-vars-board-articleid": "Side-ID for strukturert diskusjonstavle",
 	"abusefilter-edit-builder-vars-board-namespace": "Navnerom for strukturerte diskusjonstavler",
-	"abusefilter-edit-builder-vars-board-text": "Tittel på strukturert diskusjonstavle",
+	"abusefilter-edit-builder-vars-board-text": "Tittel (uten navnerom) på strukturert diskusjonstavle",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Hele tittelen på strukturert diskusjonstavle",
 	"flow-user-moderated": "Moderert bruker",
 	"flow-board-header-browse-topics-link": "Bla gjennom saker",

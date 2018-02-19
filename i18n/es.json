@@ -50,7 +50,7 @@
 	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|reabrió}} el tema \"[[$3|$5]]\" en [[$6]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] en [[$3]] se ha importado a Flow desde LiquidThreads",
 	"abusefilter-edit-builder-vars-board-namespace": "Espacio de nombres del panel de Discusiones estructuradas",
-	"abusefilter-edit-builder-vars-board-text": "Título del panel de Discusiones estructuradas",
+	"abusefilter-edit-builder-vars-board-text": "Título (sin el espacio de nombres) del panel de Discusiones estructuradas",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Título completo del panel de Discusiones estructuradas",
 	"flow-user-moderated": "Usuario moderado",
 	"flow-board-header-browse-topics-link": "Explorar temas",

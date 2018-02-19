@@ -47,7 +47,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] בלוח [[$3]] יובא מ־LiquidThreads לדיונים מבניים",
 	"abusefilter-edit-builder-vars-board-articleid": "מזהה דף או לוח דיונים מבניים",
 	"abusefilter-edit-builder-vars-board-namespace": "מרחב שם של לוח דיונים מבניים",
-	"abusefilter-edit-builder-vars-board-text": "כותרת של לוח דיונים מבניים",
+	"abusefilter-edit-builder-vars-board-text": "כותרת (ללא מרחב שם) של לוח דיונים מבניים",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "כותרת שלמה של לוח דיונים מבניים",
 	"flow-user-moderated": "משתמש בפיקוח",
 	"flow-board-header-browse-topics-link": "עיון בנושאים",
