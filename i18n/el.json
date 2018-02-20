@@ -5,7 +5,8 @@
 			"Evropi",
 			"Geraki",
 			"Nikosguard",
-			"Glavkos"
+			"Glavkos",
+			"Nikosgranturismogt"
 		]
 	},
 	"enablestructureddiscussions": "Ενεργοποίηση Flow",
@@ -292,6 +293,7 @@
 	"flow-importer-wt-converted-template": "Wikitext σελίδας συζήτησης που μετατράπηκε σε Δομημένες Συζητήσεις",
 	"flow-importer-wt-converted-template-content": "Προηγούμενη συζήτηση αρχειοθετήθηκε στην <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> στις {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-edited-by": "Υπέστη επεξεργασία από $1",
+	"group-flow-bot": "Ρομπότ Δομημένων Συζητήσεων",
 	"flow-ve-mention-context-item-label": "Αναφορά",
 	"flow-ve-mention-inspector-title": "Αναφορά",
 	"flow-ve-mention-inspector-remove-label": "Αφαίρεση",
