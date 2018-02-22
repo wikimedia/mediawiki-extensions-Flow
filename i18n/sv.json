@@ -53,7 +53,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] på [[$3]] importerades från LiquidThreads till strukturerade diskussioner",
 	"abusefilter-edit-builder-vars-board-articleid": "Sid-ID för strukturerat diskussionsforum",
 	"abusefilter-edit-builder-vars-board-namespace": "Namnrymd för strukturerat diskussionsforum",
-	"abusefilter-edit-builder-vars-board-text": "Titel för strukturerat diskussionsforum",
+	"abusefilter-edit-builder-vars-board-text": "Titel (utan namnrymd) för strukturerat diskussionsforum",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Fullständig titel för strukturerat diskussionsforum",
 	"flow-user-moderated": "Modererad användare",
 	"flow-board-header-browse-topics-link": "Bläddra bland ämnen",

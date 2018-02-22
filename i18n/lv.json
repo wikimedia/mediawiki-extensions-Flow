@@ -12,7 +12,7 @@
 	"enablestructureddiscussions": "Aktivizēt Flow",
 	"notification-dynamic-actions-flow-topic-unwatch": "Pārtraukt šīs tēmas vērošanu",
 	"flow-desc": "Diskusiju sistēma",
-	"log-name-flow": "Flow darbību reģistrs",
+	"log-name-flow": "Strukturēto diskusiju darbību reģistrs",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|izdzēsa}} [$4 ierakstu] lapas [[$6]] tēmā \"[[$3|$5]]\"",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|atjaunoja}} [$4 ierakstu] lapas [[$6]] tēmā \"[[$3|$5]]\"",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|cenzēja}} [$4 ierakstu] par \"[[$3|$5]]\" lapā [[$6]]",
