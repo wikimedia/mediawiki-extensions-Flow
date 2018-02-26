@@ -8,7 +8,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\AbstractRevision;
 use Flow\RevisionActionPermissions;
 use Flow\Tests\PostRevisionTestCase;
-use Block;
+use Blocker;
 use User;
 
 /**
@@ -65,7 +65,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	protected $oversightUser;
 
 	/**
-	 * @var Block
+	 * @var Blocker
 	 */
 	protected $block;
 
@@ -87,7 +87,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// block a user
 		$blockedUser = $this->blockedUser();
-		$this->block = new Block( [
+		$this->block = new Blocker( [
 			'address' => $blockedUser->getName(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'user' => $blockedUser->getID()
