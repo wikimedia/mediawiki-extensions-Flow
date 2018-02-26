@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Block;
+namespace Flow\Blocker;
 
 use Flow\Container;
 use Flow\Data\Pager\Pager;
