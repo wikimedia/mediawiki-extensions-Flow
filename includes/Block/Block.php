@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Block;
+namespace Flow\Blocker;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
@@ -13,7 +13,7 @@ use Flow\RevisionActionPermissions;
 use Flow\SpamFilter\Controller as SpamFilterController;
 use IContextSource;
 
-interface Block {
+interface Blocker {
 	/**
 	 * @param IContextSource $context
 	 * @param string $action
@@ -34,7 +34,7 @@ interface Block {
 	function commit();
 
 	/**
-	 * Render the API output of this Block.
+	 * Render the API output of this Blocker.
 	 * Templating is provided for convenience
 	 *
 	 * @param array $options
@@ -81,7 +81,7 @@ interface Block {
 	public function canRender( $action );
 }
 
-abstract class AbstractBlock implements Block {
+abstract class AbstractBlock implements Blocker {
 
 	/** @var Workflow */
 	protected $workflow;
