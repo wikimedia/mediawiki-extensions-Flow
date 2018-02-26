@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Tests\Block;
+namespace Flow\Tests\Blocker;
 
 use Flow\Block\TopicListBlock;
 use Flow\Container;
