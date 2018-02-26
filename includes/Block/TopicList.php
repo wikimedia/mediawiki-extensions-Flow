@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Block;
+namespace Flow\Blocker;
 
 use Flow\Container;
 use Flow\Data\Pager\Pager;
@@ -15,7 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\FailCommitException;
 
-class TopicListBlock extends AbstractBlock {
+extends AbstractBlock {
 
 	/**
 	 * @var array
