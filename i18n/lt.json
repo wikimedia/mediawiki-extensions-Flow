@@ -6,7 +6,8 @@
 			"Zygimantus",
 			"Nnemo",
 			"Eitvys200",
-			"Manvydasz"
+			"Manvydasz",
+			"Hugo.arg"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",
@@ -196,9 +197,9 @@
 	"flow-show-comments-title": "{{PLURAL:$1|Žiūrėti komentarą|Žiūrėti komentarus}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|Slėpti komentarą|Slėpti komentarus}}",
 	"flow-comment-restored": "Komentaras atkurtas",
-	"flow-comment-deleted": "Komentaras ištrintas",
+	"flow-comment-deleted": "Pastabos ištrintos",
 	"flow-comment-hidden": "Komentaras paslėptas",
-	"flow-comment-moderated": "Komentaras moderuotas",
+	"flow-comment-moderated": "Pastabos pakeistos",
 	"flow-last-modified": "Paskutinį kartą keista prieš $1",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|atsakė}} <strong>$4</strong>.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ir {{PLURAL:$5|dar vienas|$5 kitų|100=99+ kitų}} {{GENDER:$1|atsakė}} į <strong>$3</strong>.",
