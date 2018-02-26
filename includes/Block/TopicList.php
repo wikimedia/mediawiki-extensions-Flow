@@ -15,7 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\FailCommitException;
 
-class TopicListBlock extends AbstractBlock {
+class TopicListBlocker extends AbstractBlock {
 
 	/**
 	 * @var array
