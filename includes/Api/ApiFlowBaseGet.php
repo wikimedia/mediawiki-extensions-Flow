@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use Flow\Block\Block;
+use Flow\Block\Blocker;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Message;
@@ -20,7 +20,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 			'status' => 'ok',
 		] ];
 
-		/** @var Block $block */
+		/** @var Blocker $block */
 		foreach ( $blocks as $block ) {
 			$block->init( $context, $action );
 
