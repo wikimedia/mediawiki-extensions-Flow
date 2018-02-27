@@ -42,7 +42,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] en [[$3]] importóse de LiquidThreads a Alderiques estructuraos",
 	"abusefilter-edit-builder-vars-board-articleid": "ID de páxina del tableru d'Alderiques estructuraos",
 	"abusefilter-edit-builder-vars-board-namespace": "Espaciu de nomes del tableru d'Alderiques estructuraos",
-	"abusefilter-edit-builder-vars-board-text": "Títulu del tableru d'Alderiques estructuraos",
+	"abusefilter-edit-builder-vars-board-text": "Títulu (ensin l'espaciu de nomes) del tableru d'Alderiques estructuraos",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Títulu completu del tableru d'Alderiques estructuraos",
 	"flow-user-moderated": "Usuariu moderáu",
 	"flow-board-header-browse-topics-link": "Navegar polos temes",
