@@ -13,14 +13,14 @@ use Flow\Tests\FlowTestCase;
  */
 class RevisionStorageTest extends FlowTestCase {
 	protected $BEFORE_WITHOUT_CONTENT_CHANGE = [
-		'rev_content_url' => 'FlowMock://345',
+		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
 	protected $AFTER_WITHOUT_CONTENT_CHANGE = [
-		'rev_content_url' => 'FlowMock://345',
+		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'testwiki',
@@ -31,7 +31,7 @@ class RevisionStorageTest extends FlowTestCase {
 	];
 
 	protected $BEFORE_WITH_CONTENT_CHANGE = [
-		'rev_content_url' => 'FlowMock://249',
+		'rev_content_url' => 'FlowMock://location1/249',
 		'rev_content' => 'Hello, world!<span onclick="alert(\'Hacked\');">Test</span>',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
@@ -40,19 +40,19 @@ class RevisionStorageTest extends FlowTestCase {
 	protected $AFTER_WITH_CONTENT_CHANGE = [
 		// URL is deliberately stale here; since the column diff shows a content
 		// change, processExternalContent is in charge of updating the URL.
-		'rev_content_url' => 'FlowMock://249',
+		'rev_content_url' => 'FlowMock://location1/249',
 		'rev_content' => 'Hello, world!<span>Test</span>',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
 	protected $WITH_CONTENT_CHANGE_DIFF = [
-		'rev_content' => 'FlowMock://1',
+		'rev_content' => 'FlowMock://location1/1',
 		'rev_flags' => 'external',
 	];
 
 	protected $MOCK_EXTERNAL_STORE_CONFIG = [
-		'FlowMock://',
+		'FlowMock://location1',
 	];
 
 	protected function setUp() {
