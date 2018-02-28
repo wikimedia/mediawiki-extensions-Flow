@@ -8,6 +8,7 @@
 		]
 	},
 	"enablestructureddiscussions": "Omogući Ustrojne raspravice",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Prestani}} pratiti nove aktivnosti na \"$1\"",
 	"log-name-flow": "Evidencija ustrojnih raspravica",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Zahvali}}}} na poruci",
 	"notification-header-flow-new-topic-v2": "Nova tema stvorena na '''$3''': <bdi>\"'''$4'''\"</bdi>.",

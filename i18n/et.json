@@ -18,7 +18,7 @@
 	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|taasavas}} leheküljel \"[[$6]]\" teema \"[[$3|$5]]\"",
 	"abusefilter-edit-builder-vars-board-articleid": "Struktuurarutelu tahvli lehekülje identifikaator",
 	"abusefilter-edit-builder-vars-board-namespace": "Struktuurarutelu tahvli nimeruum",
-	"abusefilter-edit-builder-vars-board-text": "Struktuurarutelu tahvli pealkiri",
+	"abusefilter-edit-builder-vars-board-text": "Struktuurarutelu tahvli pealkiri ilma nimeruumita",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "Struktuurarutelu tahvli täispealkiri",
 	"flow-board-header-browse-topics-link": "Sirvi teemasid",
 	"flow-board-header": "Sellest arutelutahvlist",
@@ -213,5 +213,6 @@
 	"flow-wikitext-editor-help": "Vikitekst $1.",
 	"flow-wikitext-editor-help-and-preview": "Vikitekst $1. Saad $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|kasutab märgistuskeelt]]",
-	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda"
+	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda",
+	"flow-preference-visualeditor": "Kasuta struktuuraruteludes visuaaltoimetit ja uut vikiteksti režiimi"
 }
