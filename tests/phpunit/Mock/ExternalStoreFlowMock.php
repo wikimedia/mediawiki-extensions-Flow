@@ -15,6 +15,6 @@ class ExternalStoreFlowMock extends ExternalStoreMedium {
 	}
 
 	public function store( $location, $data ) {
-		return 'FlowMock://1';
+		return "FlowMock://$location/1";
 	}
 }
