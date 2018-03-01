@@ -174,7 +174,7 @@ class TalkpageManager implements OccupationController {
 			// Gate this on the flow-create-board right, essentially giving
 			// wiki communities control over if Flow board creation is allowed
 			// to everyone or just a select few.
-			$user->isAllowedAll( 'flow-create-board' )
+			$title->userCan( 'flow-create-board', $user )
 		) {
 			return Status::newGood();
 		} else {

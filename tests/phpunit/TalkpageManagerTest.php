@@ -66,7 +66,10 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 
 		$unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 
-		$this->setMwGlobals( 'wgNamespaceContentModels', $tempModels );
+		$this->setMwGlobals( [
+			'wgNamespaceContentModels' => $tempModels,
+			'wgFlowReadOnly' => false,
+		] );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User talk:Test123' ), $unconfirmedUser );
 		$this->assertTrue( $permissionStatus->isOK(), 'No error if user checks permissions for enabling Flow board in default-Flow namespace' );
@@ -75,17 +78,7 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 		$this->assertFalse( $permissionStatus->isOK(), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
 		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
 
-		$adminUser = $this->getMockBuilder( 'User' )
-			->setMethods( [ 'isAllowed' ] )
-			->getMock();
-
-		// Set up the expectation for the update() method
-		// to be called only once and with the string 'something'
-		// as its parameter.
-		$adminUser->expects( $this->once() )
-			->method( 'isAllowed' )
-			->with( $this->equalTo( 'flow-create-board' ) )
-			->will( $this->returnValue( true ) );
+		$adminUser = User::newFromName( 'UTSysop' );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User:Test123' ), $adminUser );
 		$this->assertTrue( $permissionStatus->isOK(), 'No if user without flow-create-board enabling Flow board in default-Flow namespace' );
