@@ -58,6 +58,7 @@ class RevisionStorageTest extends FlowTestCase {
 	protected function setUp() {
 		$this->setMwGlobals( [
 			'wgExternalStores' => [ 'FlowMock' ],
+			'wgDefaultExternalStore' => [ 'FlowMock://location1' ]
 		] );
 
 		\ExternalStoreFlowMock::$isUsed = false;

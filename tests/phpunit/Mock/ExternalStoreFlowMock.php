@@ -6,7 +6,8 @@
 class ExternalStoreFlowMock extends ExternalStoreMedium {
 	public static $isUsed = false;
 
-	public function __construct() {
+	public function __construct( $params ) {
+		parent::__construct( $params );
 		self::$isUsed = true;
 	}
 
