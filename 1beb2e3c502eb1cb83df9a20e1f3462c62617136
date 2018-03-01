@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f8abd00a_ec8aace5",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 2104,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-03-01T21:15:03Z",
+      "side": 1,
+      "message": "Ah, right. The infamous boolean return for hooks. I suppose a `return;` without value will also work in that case, given that void/null is treated the same as true for hooks.. Only \u0027false\u0027 is special, and even then only if the hook supports aborting (which this one does).",
+      "parentUuid": "bb366156_26f84639",
+      "range": {
+        "startLine": 2104,
+        "startChar": 3,
+        "endLine": 2104,
+        "endChar": 15
+      },
+      "revId": "1beb2e3c502eb1cb83df9a20e1f3462c62617136",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24c99c91_397373d2",
         "filename": "handlebars/compiled/flow_post.handlebars.php",
         "patchSetId": 1
