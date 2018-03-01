@@ -163,6 +163,7 @@
 	"flow-error-parsoid-failure": "Unable to transfer content: Error contacting the server for conversion between wikitext and HTML. Please check your Internet connection or try again later if the problem persists. If you still get this error please file a bug",
 	"flow-error-protected-autoconfirmed-logged-in": "This board is protected. Only autoconfirmed users can participate. Reason: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "This board is protected. Only logged in users who are autoconfirmed can participate. Reason: $1",
+	"flow-error-protected-readonly": "Structured Discussions has been disabled on this wiki. No boards, topics or posts can be created or edited.",
 	"flow-error-protected-sysop-logged-in": "This board is protected. Only users with administrator privileges can participate. Reason: $1",
 	"flow-error-protected-sysop-logged-out": "This board is protected. Only logged in users with administrator privileges can participate. Reason: $1",
 	"flow-error-protected-unknown-reason": "Unknown",

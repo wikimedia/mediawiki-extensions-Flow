@@ -739,7 +739,8 @@
 		"GetBetaFeaturePreferences": "FlowHooks::onGetBetaFeaturePreferences",
 		"UserSaveOptions": "FlowHooks::onUserSaveOptions",
 		"NukeGetNewPages": "FlowHooks::onNukeGetNewPages",
-		"NukeDeletePage": "FlowHooks::onNukeDeletePage"
+		"NukeDeletePage": "FlowHooks::onNukeDeletePage",
+		"getUserPermissionsErrors": "FlowHooks::onGetUserPermissionsErrors"
 	},
 	"namespaces": [
 		{
@@ -898,6 +899,9 @@
 			"value": false
 		},
 		"FlowEnableOptInBetaFeature": {
+			"value": false
+		},
+		"FlowReadOnly": {
 			"value": false
 		}
 	},

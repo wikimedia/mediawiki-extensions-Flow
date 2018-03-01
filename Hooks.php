@@ -2102,4 +2102,25 @@ class FlowHooks {
 			$conds[] = 'rc_type != ' . RC_FLOW;
 		}
 	}
+
+	public static function onGetUserPermissionsErrors( Title $title, User $user, $action, &$result ) {
+		global $wgFlowReadOnly;
+		if ( !$wgFlowReadOnly ) {
+			return;
+		}
+
+		// Deny all actions related to Flow pages, and deny all flow-create-board actions,
+		// but allow read and delete/undelete
+		$allowedActions = [ 'read', 'delete', 'undelete' ];
+		if (
+			$action === 'flow-create-board' ||
+			(
+				$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
+				!in_array( $action, $allowedActions )
+			)
+		) {
+			$result = 'flow-error-protected-readonly';
+			return false;
+		}
+	}
 }
