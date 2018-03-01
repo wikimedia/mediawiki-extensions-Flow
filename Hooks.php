@@ -2097,4 +2097,20 @@ class FlowHooks {
 			$conds[] = 'rc_type != ' . RC_FLOW;
 		}
 	}
+
+	public static function onGetUserPermissionsErrors( Title $title, User $user, $action, &$result ) {
+		global $wgFlowReadOnly;
+		if ( !$wgFlowReadOnly ) {
+			return;
+		}
+
+		// Deny all non-read actions related to Flow pages, and deny flow-create-board actions
+		if (
+			( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD && $action !== 'read' ) ||
+			$action === 'flow-create-board'
+		) {
+			$result = 'flow-error-protected-readonly';
+			return false;
+		}
+	}
 }
