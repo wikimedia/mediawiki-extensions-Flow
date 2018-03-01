@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60abb1f5_39982650",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 4879
+      },
+      "writtenOn": "2018-03-01T18:48:08Z",
+      "side": 1,
+      "message": "18:46:08 .....................................[Thu Mar  1 18:46:08 2018] [hphp] [4044:7ff1780c2200:0:000002] [] \n18:46:08 Fatal error: Undefined interface: Flow\\Blocker\\Block in /home/jenkins/workspace/mediawiki-extensions-hhvm-jessie/src/extensions/Flow/includes/Block/Block.php on line 84",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 47
+      },
+      "revId": "cd59a062e07fd614c94c8791bdce690162c27efc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
