@@ -66,28 +66,22 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 
 		$unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 
-		$this->setMwGlobals( 'wgNamespaceContentModels', $tempModels );
+		$this->setMwGlobals( [
+			'wgNamespaceContentModels' => $tempModels,
+			'wgFlowReadOnly' => false,
+		] );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User talk:Test123' ), $unconfirmedUser );
-		$this->assertTrue( $permissionStatus->isOK(), 'No error if user checks permissions for enabling Flow board in default-Flow namespace' );
+		$this->assertTrue( $permissionStatus->isOK(), 'No error when enabling Flow board in default-Flow namespace' );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User:Test123' ), $unconfirmedUser );
-		$this->assertFalse( $permissionStatus->isOK(), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
-		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ), 'Error if user without flow-create-board enabling Flow board in default-Flow namespace' );
+		$this->assertFalse( $permissionStatus->isOK(), 'Error when user without flow-create-board enables Flow board in non-default-Flow namespace' );
+		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ), 'Correct error thrown when user does not have flow-create-board right' );
 
-		$adminUser = $this->getMockBuilder( 'User' )
-			->setMethods( [ 'isAllowed' ] )
-			->getMock();
-
-		// Set up the expectation for the update() method
-		// to be called only once and with the string 'something'
-		// as its parameter.
-		$adminUser->expects( $this->once() )
-			->method( 'isAllowed' )
-			->with( $this->equalTo( 'flow-create-board' ) )
-			->will( $this->returnValue( true ) );
+		$adminUser = User::newFromName( 'UTSysop' );
+		$adminUser->addGroup( 'flow-bot' );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission( Title::newFromText( 'User:Test123' ), $adminUser );
-		$this->assertTrue( $permissionStatus->isOK(), 'No if user without flow-create-board enabling Flow board in default-Flow namespace' );
+		$this->assertTrue( $permissionStatus->isOK(), 'No error when user with flow-create-board enables Flow board in non-default-Flow namespace' );
 	}
 }
