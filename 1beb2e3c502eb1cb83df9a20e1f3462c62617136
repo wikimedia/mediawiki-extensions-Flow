@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f4dd6d7d_40cd79c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-03-01T17:22:16Z",
+      "side": 1,
+      "message": "I will test that. If oversighting is possible after deletion, then the answer is yes, because of the next bullet point. If the board has to be not-deleted for oversighting to work, then it would be prevented.\n\nI did check that oversighting log entries related to Flow boards, whether deleted or not, is not prevented.",
+      "parentUuid": "609e3667_10008f51",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 54
+      },
+      "revId": "1beb2e3c502eb1cb83df9a20e1f3462c62617136",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04726fd7_5ae2d756",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -89,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "29cfc831_36964987",
+        "filename": "handlebars/compiled/flow_post.handlebars.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-03-01T17:22:16Z",
+      "side": 1,
+      "message": "Great question. I had no idea this was there. Will remove.",
+      "parentUuid": "24c99c91_397373d2",
+      "revId": "1beb2e3c502eb1cb83df9a20e1f3462c62617136",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fdc6302_7612e9eb",
         "filename": "i18n/en.json",
         "patchSetId": 1
@@ -100,6 +142,24 @@
       "writtenOn": "2018-03-01T11:51:59Z",
       "side": 1,
       "message": "qqq?",
+      "revId": "1beb2e3c502eb1cb83df9a20e1f3462c62617136",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c7168f3_3c74544d",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-03-01T17:22:16Z",
+      "side": 1,
+      "message": "Good point. Jenkins also V-1ed over this.",
+      "parentUuid": "7fdc6302_7612e9eb",
       "revId": "1beb2e3c502eb1cb83df9a20e1f3462c62617136",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
