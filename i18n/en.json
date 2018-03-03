@@ -552,7 +552,6 @@
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Structured Discussions, the new wiki discussion system, has been enabled on {{GENDER:$1|your}} user talk page on {{SITENAME}}. You can get more information, provide feedback or disable the new system any time from the Beta features section in {{GENDER:$1|your}} preferences.",
 	"flow-beta-feature-add-archive-template-edit-summary": "Adding archive template",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Removing archive template",
-	"flow-beta-feature-add-current-template-edit-summary": "Adding current template",
 	"flow-dialog-cancelconfirm-title": "Are {{GENDER:|you}} sure?",
 	"flow-dialog-cancelconfirm-message": "Are {{GENDER:|you}} sure you want to cancel without saving first?",
 	"flow-dialog-cancelconfirm-keep": "Continue editing",
