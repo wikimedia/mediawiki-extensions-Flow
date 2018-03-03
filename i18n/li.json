@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes"
+		]
+	},
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Bedank}}}}"
+}
