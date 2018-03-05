@@ -182,7 +182,7 @@
 	"flow-error-not-a-post": "O título do tema non puido ser gardado como unha mensaxe.",
 	"flow-error-missing-header-content": "Debe indicar unha descrición.",
 	"flow-error-missing-prev-revision-identifier": "O identificador da revisión anterior non se atopa.",
-	"flow-error-prev-revision-mismatch": "Outro usuario acaba de editar esta publicación fai algúns segundos. Está {{GENDER:$3|seguro|segura}} que desexa sobrescribir o cambio recente?",
+	"flow-error-prev-revision-mismatch": "Outro usuario acaba de editar esta publicación hai algúns segundos. Está {{GENDER:$3|seguro|segura}} que desexa sobrescribir o cambio recente?",
 	"flow-error-prev-revision-does-not-exist": "A revisión anterior non puido ser atopada.",
 	"flow-error-core-topic-deletion": "Para borrar un tema, use ...menu no taboleiro de conversas estruturadas ou [$1 páxina do tema]. Non visite directamente action=delete para o tema.",
 	"flow-error-default": "Houbo un erro.",
