@@ -1,19 +1,19 @@
 [dashboard]
   title = Global Collaboration Team code review
   description = Custom CR dashboard for the Global Collaboration Team
+[section "Kartographer"]
+    query = status:open project:mediawiki/extensions/Kartographer limit:10
+[section "Kartotherian/Tilerator"]
+    query = status:open (project:maps/kartotherian OR project:maps/kartotherian/deploy OR project:maps/kartotherian/package OR project:maps/maps-deploy OR project:maps/tilerator OR project:maps/tilerator/deploy OR project:maps/tilerator/package) limit:10
 [section "Team MW core"]
   query = status:open project:mediawiki/core (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:20
+[section "Team config"]
+    query = status:open project:operations/mediawiki-config (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:10
 [section "Flow"]
   query = status:open project:mediawiki/extensions/Flow limit:20
-[section "Team config"]
-  query = status:open project:operations/mediawiki-config (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:10
 [section "Echo"]
   query = status:open project:mediawiki/extensions/Echo limit:10
-[section "ORES"]
-  query = status:open project:mediawiki/extensions/ORES limit:10
 [section "Thanks, WikiLove, etc"]
   query = status:open (project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/extensions/Thanks) limit:10
-[section "Translate, ULS, etc"]
-  query = status:open (project:mediawiki/extensions/Translate OR project:mediawiki/extensions/UniversalLanguageSelector OR project:mediawiki/extensions/Babel) limit:10
 [section "Other stuff"]
-  query = status:open NOT (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR project:mediawiki/extensions/ORES OR project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/core OR project:operations/mediawiki-config) AND (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:20
+  query = status:open NOT (project:mediawiki/extensions/Kartographer OR project:maps/kartotherian OR project:maps/kartotherian/deploy OR project:maps/kartotherian/package OR project:maps/maps-deploy OR project:maps/tilerator OR project:maps/tilerator/deploy OR project:maps/tilerator/package OR project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/core OR project:operations/mediawiki-config) AND (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:20
