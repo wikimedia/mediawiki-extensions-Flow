@@ -2,13 +2,11 @@
   title = Global Collaboration Team code review
   description = Custom CR dashboard for the Global Collaboration Team
 [section "Team MW core"]
-  query = status:open project:mediawiki/core (owner:catrope OR owner:mattflaschen OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova OR owner:nikerabbit OR owner:santhosh OR owner:kartikmistry OR owner:amire80 OR owner:arrbee OR owner:petar.petkovic) limit:20
+  query = status:open project:mediawiki/core (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:20
 [section "Flow"]
   query = status:open project:mediawiki/extensions/Flow limit:20
-[section "ContentTranslation"]
-  query = status:open (project:mediawiki/extensions/ContentTranslation OR project:mediawiki/services/cxserver OR project:mediawiki/services/cxserver/deploy) limit:20
 [section "Team config"]
-  query = status:open project:operations/mediawiki-config (owner:catrope OR owner:mattflaschen OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova OR owner:nikerabbit OR owner:santhosh OR owner:kartikmistry OR owner:amire80 OR owner:arrbee OR owner:petar.petkovic) limit:10
+  query = status:open project:operations/mediawiki-config (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:10
 [section "Echo"]
   query = status:open project:mediawiki/extensions/Echo limit:10
 [section "ORES"]
@@ -18,5 +16,4 @@
 [section "Translate, ULS, etc"]
   query = status:open (project:mediawiki/extensions/Translate OR project:mediawiki/extensions/UniversalLanguageSelector OR project:mediawiki/extensions/Babel) limit:10
 [section "Other stuff"]
-  query = status:open NOT (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR project:mediawiki/extensions/ORES OR project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/extensions/MoodBar OR project:mediawiki/core OR project:operations/mediawiki-config OR project:mediawiki/extensions/ContentTranslation OR project:mediawiki/services/cxserver OR project:mediawiki/services/cxserver/deploy OR project:mediawiki/extensions/Translate OR project:mediawiki/extensions/UniversalLanguageSelector OR project:mediawiki/extensions/Babel) AND (owner:catrope OR owner:mattflaschen OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova OR owner:nikerabbit OR owner:santhosh OR owner:kartikmistry OR owner:amire80 OR owner:arrbee OR owner:petar.petkovic) limit:20
-
+  query = status:open NOT (project:mediawiki/extensions/Flow OR project:mediawiki/extensions/Echo OR project:mediawiki/extensions/ORES OR project:mediawiki/extensions/Thanks OR project:mediawiki/extensions/LiquidThreads OR project:mediawiki/extensions/WikiLove OR project:mediawiki/extensions/MassMessage OR project:mediawiki/core OR project:operations/mediawiki-config) AND (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:20
