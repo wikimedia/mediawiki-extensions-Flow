@@ -512,7 +512,7 @@
 	"flow-mark-diff-patrolled-link-title": "Marcar como patrulhada",
 	"flow-talk-page-beta-feature-message": "Conversas estruturadas na página de discussão do utilizador",
 	"flow-talk-page-beta-feature-description": "Ativa um novo sistema de conversas estruturadas na {{GENDER:|sua}} página de discussão. As conversas estruturadas simplificam os diálogos dos utilizadores, fornecendo campos claros onde escrever e responder, e permite notificações para cada tópico. Esta funcionalidade não é ativada automaticamente; os utilizadores terão de ativá-la em separado.<br /><br />As discussões existentes em texto wiki serão movidas para um arquivo. Desativar esta funcionalidade move o espaço de conversas estruturadas para uma subpágina e restaura a página de discussão anterior. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Mais informação sobre a ativação]].",
-	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Ver}} página de discussão de utilizador",
+	"flow-notification-link-text-enabled-on-talkpage": "Ver página de discussão {{GENDER:|do utilizador|da utilizadora}}",
 	"flow-notification-enabled-on-talkpage-title": "Novo sistema de discussão ativado na {{GENDER:$1|sua}} página de discussão<br /><small>Disponível em [[$2]]</small>",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "Novo sistema de discussão em $2",
 	"flow-notification-enabled-on-talkpage-email-batch-body": "Conversas estruturadas, o novo sistema de discussões wiki, foi ativado na {{GENDER:$1|sua}} página de discussão da wiki {{SITENAME}}. Pode obter mais informação, dar a sua opinião ou desativar o novo sistema a qualquer altura a partir da secção de funcionalidades Beta nas {{GENDER:$1|suas}} preferências.",

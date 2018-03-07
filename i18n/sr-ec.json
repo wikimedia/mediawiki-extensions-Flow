@@ -99,7 +99,7 @@
 	"notification-header-flow-mention-post": "$1 Вас је {{GENDER:$2|поменуо|поменула}} {{GENDER:$4|у}} „<strong>$5</strong>“.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 је {{GENDER:$1|направио|направила}} нову тему на <strong>$3</strong>.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Једна нова тема|$1 нове теме|$1 нових тема|100=99+ нових тема}} на <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
-	"echo-category-title-flow-discussion": "Flow дискусије",
+	"echo-category-title-flow-discussion": "Структурна расправа",
 	"echo-pref-tooltip-flow-discussion": "Обавештава вас о активностима у темама или на страницама које пратите.",
 	"flow-link-topic": "тема",
 	"flow-link-history": "историја",
@@ -135,5 +135,5 @@
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро дошли}} на {{GENDER:$1|Вашу}} нову страницу за разговор",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вас други уредници контактирају. Са Flow-ом, једноставније је направити нову тему и пратити дискусију.",
 	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
-	"flow-preference-visualeditor": "Омогући визуелни уређивач и нови начин уређивања викитекста у Flow-у."
+	"flow-preference-visualeditor": "Омогући визуелни уређивач и нови начин уређивања викитекста у структурним расправама."
 }
