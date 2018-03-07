@@ -10,7 +10,7 @@
 [section "Team config"]
     query = status:open project:operations/mediawiki-config (owner:catrope OR owner:sbisson OR owner:mooeypoo OR owner:etonkovidova) limit:10
 [section "Flow"]
-  query = status:open project:mediawiki/extensions/Flow limit:20
+  query = status:open project:mediawiki/extensions/Flow limit:10
 [section "Echo"]
   query = status:open project:mediawiki/extensions/Echo limit:10
 [section "Thanks, WikiLove, etc"]
