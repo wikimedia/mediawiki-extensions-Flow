@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33cb51da_9df46b7b",
+        "filename": "i18n/en.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-03-08T15:15:56Z",
+      "side": 1,
+      "message": "\"Discusissions\"",
+      "range": {
+        "startLine": 166,
+        "startChar": 46,
+        "endLine": 166,
+        "endChar": 59
+      },
+      "revId": "9ded3fe46a5215b4db8d50d477b016b8a0ae196d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
