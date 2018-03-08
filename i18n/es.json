@@ -455,7 +455,7 @@
 	"flow-topic-undo-delete": "deshacer borrar",
 	"flow-topic-undo-suppress": "deshacer suprimir",
 	"flow-importer-lqt-moved-thread-template-content": "Esta publicación de {{{author}}} se trasladó el {{{date}}}. Puedes encontrarla en [[{{{title}}}]].",
-	"flow-importer-lqt-converted-template": "Página LQT convertida en Discusiones estructuradas",
+	"flow-importer-lqt-converted-template": "Página con formato LQT convertida a Flow",
 	"flow-importer-lqt-converted-template-content": "El historial de página anterior se archivó como respaldo en <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> el {{#time: Y-m-d|{{{date}}} }}.",
 	"flow-importer-lqt-converted-archive-template": "Archivo para páginas LQT convertidas",
 	"flow-importer-lqt-converted-archive-template-content": "Esta página es un página LiquidThreads archivada. '''No edites los contenidos de esta página'''. Dirige cualquier comentario adicional a la [[{{{from}}}|página de discusión actual]].",

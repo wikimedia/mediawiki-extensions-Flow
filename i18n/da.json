@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Jens Jensen",
-			"Sarrus"
+			"Sarrus",
+			"Joedalton"
 		]
 	},
 	"flow-board-expand-description": "Vis beskrivelse",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|nævnte}} {{GENDER:$4|dig}} i \"<strong>$5</strong>\".",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|nævnte}} {{GENDER:$4|dig}} i \"<strong>$5</strong>\".",
 	"flow-notification-link-text-view-topics": "Se emner",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nævnte}} {{GENDER:$3|dig}} på $2"
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nævnte}} {{GENDER:$3|dig}} på $2",
+	"flow-importer-wt-converted-template": "Wikitext-diskussionsside konverteret til Flow"
 }
