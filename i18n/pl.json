@@ -499,7 +499,7 @@
 	"flow-undo-edit-content": "Edycja może zostać anulowana. Sprawdź porównanie wersji, aby upewnić się, czy to jest to, czego chcesz, a następnie zapisz zmiany.",
 	"flow-undo-edit-failure": "Edycja nie mogła zostać anulowana z powodu konfliktu z nowszymi edycjami.",
 	"group-flow-bot": "Boty Dyskusji Strukturalnych",
-	"group-flow-bot-member": "Bot Dyskusji Strukturalnych",
+	"group-flow-bot-member": "bot Dyskusji Strukturalnych",
 	"grouppage-flow-bot": "Project:Boty Dyskusji Strukturalnych",
 	"flow-ve-mention-context-item-label": "Ping",
 	"flow-ve-mention-inspector-title": "Oznacz",
