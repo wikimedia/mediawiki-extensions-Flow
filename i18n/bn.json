@@ -169,7 +169,7 @@
 	"structureddiscussions": "কাঠামোবদ্ধ আলোচনা",
 	"flow-special-enableflow-legend": "একটি নতুন পাতায় কাঠামোবদ্ধ আলোচনা সক্রিয় করুন",
 	"flow-conversion-archive-flow-page-name-format": "%s/কাঠামোবদ্ধ আলোচনার সংগ্রহশালা %d\n%s/কাঠামোবদ্ধ আলোচনারসংগ্রহশালা%d\n%s/ফ্লো সংগ্রহশালা %d\n%s/ফ্লোসংগ্রহশালা%d",
-	"flow-importer-lqt-converted-template": "LQT পাতা কাঠামোবদ্ধ আলোচনায় রূপান্তরিত হয়েছে",
+	"flow-importer-lqt-converted-template": "LQT পাতা ফ্লোতে রূপান্তরিত হয়েছে",
 	"flow-edited": "সম্পাদিত",
 	"flow-edited-by": "$1 দ্বারা সম্পাদিত",
 	"flow-previous-diff": "← পুরনো সম্পাদনা",

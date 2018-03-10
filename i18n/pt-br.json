@@ -172,6 +172,7 @@
 	"flow-error-parsoid-failure": "Não é possível transferir conteúdo: Erro ao entrar em contato com o servidor para conversão entre texto wiki e HTML. Por favor, verifique a sua conexão com a internet ou tente novamente mais tarde, se o problema persistir. Se você ainda receber esse erro, por favor, informe o bug",
 	"flow-error-protected-autoconfirmed-logged-in": "Este espaço de discussão está protegido. Somente usuários auto-confirmados podem participar. Razão: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Este espaço de discussão está protegido. Somente usuários logados que são auto-confirmados podem participar. Razão: $1",
+	"flow-error-protected-readonly": "Discussões estruturadas foram desativadas nesta wiki. Nenhuma placa, tópico ou postagem pode ser criada ou editada.",
 	"flow-error-protected-sysop-logged-in": "Este espaço de discussão está protegido. Somente usuários logados com privilégios administrativos podem participar. Razão: $1",
 	"flow-error-protected-sysop-logged-out": "Este espaço de discussão está protegido. Somente usuários logados com privilégios administrativos podem participar. Razão: $1",
 	"flow-error-protected-unknown-reason": "Desconhecida",

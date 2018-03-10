@@ -163,6 +163,7 @@
 	"flow-error-parsoid-failure": "Inhalt konnte nicht transferiert werden: Fehler beim Kontaktieren des Servers zur Konvertierung zwischen Wikitext und HTML. Bitte Internetverbindung überprüfen. Falls das Problem weiterhin bestehen bleibt, später erneut versuchen oder einen Fehlerbericht einreichen.",
 	"flow-error-protected-autoconfirmed-logged-in": "Dieses Board ist geschützt. Nur automatisch bestätigte Benutzer können an der Diskussion teilnehmen. Grund: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Dieses Board ist geschützt. Nur angemeldete Benutzer, die automatisch bestätigt sind, können an der Diskussion teilnehmen. Grund: $1",
+	"flow-error-protected-readonly": "Strukturierte Diskussionen wurden auf diesem Wiki deaktiviert. Es können keine Boards, Themen oder Beiträge erstellt oder bearbeitet werden.",
 	"flow-error-protected-sysop-logged-in": "Dieses Board ist geschützt. Nur Benutzer mit Administratorrechten können an der Diskussion teilnehmen. Grund: $1",
 	"flow-error-protected-sysop-logged-out": "Dieses Board ist geschützt. Nur angemeldete Benutzer mit Administratorrechten können an der Diskussion teilnehmen. Grund: $1",
 	"flow-error-protected-unknown-reason": "Unbekannt",

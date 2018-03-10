@@ -177,6 +177,7 @@
 	"flow-error-parsoid-failure": "无法转移内容：连接用于wiki文本与HTML之间转换的服务器时出错。请检查您的互联网连接，或如果问题持续，请稍后尝试。如果您仍然看到该错误，请提交错误报告",
 	"flow-error-protected-autoconfirmed-logged-in": "此版块已被保护。只有自动确认用户可以参与讨论。原因：$1",
 	"flow-error-protected-autoconfirmed-logged-out": "此版块已被保护。只有已自动确认的登录用户可以参与讨论。原因：$1",
+	"flow-error-protected-readonly": "结构式讨论已在此wiki禁用。没有可以创建或编辑的版块、话题或帖子。",
 	"flow-error-protected-sysop-logged-in": "此版块已被保护。只有拥有管理员特权的用户可以参与讨论。原因：$1",
 	"flow-error-protected-sysop-logged-out": "此版块已被保护。只有拥有管理员特权的登录用户可以参与讨论。原因：$1",
 	"flow-error-protected-unknown-reason": "未知",
