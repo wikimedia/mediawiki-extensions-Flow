@@ -197,6 +197,7 @@
 	"flow-error-parsoid-failure": "Impossible de transférer le contenu : Erreur en contactant le serveur pour la conversion de wikitexte en HTML. Veuillez vérifier votre connexion Internet ou réessayer ultérieurement si le problème persiste. Si vous obtenez toujours cette erreur, veuillez signaler un bogue.",
 	"flow-error-protected-autoconfirmed-logged-in": "Ce tableau est protégé. Seuls les utilisateurs auto-confirmés peuvent participer. Motif : $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Ce tableau est protégé. Seuls les utilisateurs connectés qui sont auto-confirmés peuvent participer. Motif : $1",
+	"flow-error-protected-readonly": "Les discussions structurées ont été désactivées sur ce wiki. Aucun forum, sujet ou message ne peut être créé ou modifié.",
 	"flow-error-protected-sysop-logged-in": "Ce tableau est protégé. Seuls les utilisateurs avec des droits administrateur peuvent participer. Motif : $1",
 	"flow-error-protected-sysop-logged-out": "Ce tableau est protégé. Seuls les utilisateurs connectés avec des droits administrateur peuvent participer. Motif : $1",
 	"flow-error-protected-unknown-reason": "Inconnu",

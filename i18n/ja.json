@@ -13,7 +13,8 @@
 			"Macofe",
 			"Omotecho",
 			"Mirinano",
-			"Suchichi02"
+			"Suchichi02",
+			"Yusuke1109"
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "いつもで[$2 話題]を閲覧できます。",
@@ -63,7 +64,7 @@
 	"flow-post-actions": "操作",
 	"flow-topic-actions": "操作",
 	"flow-cancel": "キャンセル",
-	"flow-skip-summary": "要約をスキップ",
+	"flow-skip-summary": "スキップ",
 	"flow-edit-summary-placeholder": "この議論の結果を簡単に説明してください",
 	"flow-show-change": "差分を表示",
 	"flow-last-modified-by": "最終{{GENDER:$1|更新}}者: $1",
@@ -130,7 +131,7 @@
 	"flow-error-missing-content": "投稿の本文がありません。投稿を保存するには本文が必要です。",
 	"flow-error-missing-summary": "要約を提出する必要があります。",
 	"flow-error-missing-title": "話題の題名がありません。話題を保存するには題名が必要です。",
-	"flow-error-parsoid-failure": "Parsoid の変換サーバーへの接続にエラーが発生したため、本文を構文解析できませんでした。インターネット接続を確認してください。",
+	"flow-error-parsoid-failure": "コンテンツを転送できません: ウィキテキストとHTMLの間の変換のためにサーバに接続中にエラーが発生しました。インターネット接続を確認するか、問題が解決しない場合はもう一度お試しください。それでもこのエラーが出たら、バグを報告してください",
 	"flow-error-protected-unknown-reason": "不明",
 	"flow-error-missing-replyto": "「返信先」のパラメーターを指定していません。「返信」するには、このパラメーターが必要です。",
 	"flow-error-missing-postId": "「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。",
