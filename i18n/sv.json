@@ -166,6 +166,7 @@
 	"flow-error-parsoid-failure": "Det gick inte att överföra innehållet: Ett fel uppstod när servern kontaktas för att konvertera mellan wikitext och HTML. Kontrollera din Internetanslutning eller försök igen senare om problemet kvarstår. Rapportera detta om du fortfarande får detta fel",
 	"flow-error-protected-autoconfirmed-logged-in": "Detta forum är skyddat. Endast automatiskt bekräftade användare får delta. Anledning: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Detta forum är skyddat. Endast inloggade användare får delta. Anledning: $1",
+	"flow-error-protected-readonly": "Strukturerade diskussioner har inaktiverats på denna wiki. Inga forum, ämnen eller inlägg kan skapas eller redigeras.",
 	"flow-error-protected-sysop-logged-in": "Detta forum är skyddat. Endast användare med administratörsrättigheter får delta. Anledning: $1",
 	"flow-error-protected-sysop-logged-out": "Detta forum är skyddat. Endast inloggade användare med administratörsrättigheter får delta. Anledning: $1",
 	"flow-error-protected-unknown-reason": "Okänd",
