@@ -2,6 +2,7 @@
 
 namespace Flow\Import;
 
+use ActorMigration;
 use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\FlowException;
 use MovePage;
@@ -205,20 +206,21 @@ class Converter {
 	 * @return Title|null
 	 */
 	protected function getPageMovedFrom( Title $title ) {
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$row = $this->dbw->selectRow(
-			[ 'logging', 'page' ],
-			[ 'log_namespace', 'log_title', 'log_user' ],
+			[ 'logging', 'page' ] + $actorQuery['tables'],
+			[ 'log_namespace', 'log_title', 'log_user' => $actorQuery['fields']['log_user'] ],
 			[
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
-				'log_page = page_id',
 				'log_type' => 'move',
 			],
 			__METHOD__,
 			[
 				'LIMIT' => 1,
 				'ORDER BY' => 'log_timestamp DESC'
-			]
+			],
+			[ 'page' => [ 'JOIN', 'log_page = page_id' ] ] + $actorQuery['joins']
 		);
 
 		// The page has never been moved

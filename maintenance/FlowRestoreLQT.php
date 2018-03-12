@@ -65,56 +65,65 @@ class FlowRestoreLQT extends Maintenance {
 	 */
 	protected function restoreLQTBoards() {
 		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
-		$startId = 0;
 
-		do {
-			// fetch all LQT boards that have been moved out of the way,
-			// with their original title & their current title
-			$rows = $dbr->select(
-				[ 'logging', 'page', 'revision' ],
-				// log_namespace & log_title will be the original location
-				// page_namespace & page_title will be the current location
-				// rev_id is the first Flow talk page manager edit id
-				// log_id is the log entry for when importer moved LQT page
-				[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title', 'rev_id' => 'MIN(rev_id)', 'log_id' ],
-				[
-					'log_user' => $this->talkpageManagerUser->getId(),
-					'log_type' => 'move',
-					'page_content_model' => 'wikitext',
-					'page_id > ' . $dbr->addQuotes( $startId ),
-				],
-				__METHOD__,
-				[
-					'GROUP BY' => 'rev_page',
-					'LIMIT' => $this->mBatchSize,
-					'ORDER BY' => 'log_id ASC',
-				],
-				[
-					'page' => [
-						'INNER JOIN',
-						[ 'page_id = log_page' ],
-					],
-					'revision' => [
-						'INNER JOIN',
-						[ 'rev_page = log_page', 'rev_user = log_user' ],
-					],
-				]
-			);
+		$revWhere = ActorMigration::newMigration()
+			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
+		$logWhere = ActorMigration::newMigration()
+			->getWhere( $dbr, 'log_user', $this->talkpageManagerUser );
 
-			foreach ( $rows as $row ) {
-				$from = Title::newFromText( $row->page_title, $row->page_namespace );
-				$to = Title::newFromText( $row->log_title, $row->log_namespace );
+		foreach ( $revWhere['orconds'] as $revCond ) {
+			foreach ( $logWhere['orconds'] as $logCond ) {
+				$startId = 0;
+				do {
+					// fetch all LQT boards that have been moved out of the way,
+					// with their original title & their current title
+					$rows = $dbr->select(
+						[ 'logging', 'page', 'revision' ] + $revWhere['tables'] + $logWhere['tables'],
+						// log_namespace & log_title will be the original location
+						// page_namespace & page_title will be the current location
+						// rev_id is the first Flow talk page manager edit id
+						// log_id is the log entry for when importer moved LQT page
+						[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title', 'rev_id' => 'MIN(rev_id)', 'log_id' ],
+						[
+							$logCond,
+							'log_type' => 'move',
+							'page_content_model' => 'wikitext',
+							'page_id > ' . $dbr->addQuotes( $startId ),
+						],
+						__METHOD__,
+						[
+							'GROUP BY' => 'rev_page',
+							'LIMIT' => $this->mBatchSize,
+							'ORDER BY' => 'log_id ASC',
+						],
+						[
+							'page' => [
+								'INNER JOIN',
+								[ 'page_id = log_page' ],
+							],
+							'revision' => [
+								'INNER JOIN',
+								[ 'rev_page = log_page', $revCond ],
+							],
+						] + $revWhere['joins'] + $logWhere['joins']
+					);
 
-				// undo {{#useliquidthreads:0}}
-				$this->restorePageRevision( $row->page_id, $row->rev_id );
-				// undo page move to archive location
-				$this->restoreLQTPage( $from, $to, $row->log_id );
+					foreach ( $rows as $row ) {
+						$from = Title::newFromText( $row->page_title, $row->page_namespace );
+						$to = Title::newFromText( $row->log_title, $row->log_namespace );
 
-				$startId = $row->page_id;
+						// undo {{#useliquidthreads:0}}
+						$this->restorePageRevision( $row->page_id, $row->rev_id );
+						// undo page move to archive location
+						$this->restoreLQTPage( $from, $to, $row->log_id );
+
+						$startId = $row->page_id;
+					}
+
+					wfWaitForSlaves();
+				} while ( $rows->numRows() >= $this->mBatchSize );
 			}
-
-			wfWaitForSlaves();
-		} while ( $rows->numRows() >= $this->mBatchSize );
+		}
 	}
 
 	/**
@@ -124,41 +133,46 @@ class FlowRestoreLQT extends Maintenance {
 	 */
 	protected function restoreLQTThreads() {
 		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
-		$startId = 0;
 
-		do {
-			// for every LQT post, find the first edit by Flow talk page manager
-			// (to redirect to the new Flow copy)
-			$rows = $dbr->select(
-				[ 'page', 'revision' ],
-				[ 'rev_page', 'rev_id' => ' MIN(rev_id)' ],
-				[
-					'page_namespace' => [ NS_LQT_THREAD, NS_LQT_SUMMARY ],
-					'rev_user' => $this->talkpageManagerUser->getId(),
-					'page_id > ' . $dbr->addQuotes( $startId ),
-				],
-				__METHOD__,
-				[
-					'GROUP BY' => 'page_id',
-					'LIMIT' => $this->mBatchSize,
-					'ORDER BY' => 'page_id ASC',
-				],
-				[
-					'revision' => [
-						'INNER JOIN',
-						[ 'rev_page = page_id' ],
+		$revWhere = ActorMigration::newMigration()
+			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
+
+		foreach ( $revWhere['orconds'] as $revCond ) {
+			$startId = 0;
+			do {
+				// for every LQT post, find the first edit by Flow talk page manager
+				// (to redirect to the new Flow copy)
+				$rows = $dbr->select(
+					[ 'page', 'revision' ] + $revWhere['tables'],
+					[ 'rev_page', 'rev_id' => ' MIN(rev_id)' ],
+					[
+						'page_namespace' => [ NS_LQT_THREAD, NS_LQT_SUMMARY ],
+						$revCond,
+						'page_id > ' . $dbr->addQuotes( $startId ),
 					],
-				]
-			);
+					__METHOD__,
+					[
+						'GROUP BY' => 'page_id',
+						'LIMIT' => $this->mBatchSize,
+						'ORDER BY' => 'page_id ASC',
+					],
+					[
+						'revision' => [
+							'INNER JOIN',
+							[ 'rev_page = page_id' ],
+						],
+					] + $revWhere['joins']
+				);
 
-			foreach ( $rows as $row ) {
-				// undo #REDIRECT edit
-				$this->restorePageRevision( $row->rev_page, $row->rev_id );
-				$startId = $row->rev_page;
-			}
+				foreach ( $rows as $row ) {
+					// undo #REDIRECT edit
+					$this->restorePageRevision( $row->rev_page, $row->rev_id );
+					$startId = $row->rev_page;
+				}
 
-			wfWaitForSlaves();
-		} while ( $rows->numRows() >= $this->mBatchSize );
+				wfWaitForSlaves();
+			} while ( $rows->numRows() >= $this->mBatchSize );
+		}
 	}
 
 	/**
