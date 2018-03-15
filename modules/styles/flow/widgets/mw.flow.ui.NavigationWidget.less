@@ -11,35 +11,13 @@
 	position: relative;
 	border-bottom: 1px solid #c8ccd1;
 
-	&-affixed {
-		background: #fff;
-		position: fixed;
-		z-index: 2;
-		top: 0;
-
-		.flow-ui-tocWidget {
-			width: 100%;
-		}
-	}
-
-	&-clear {
-		clear: both;
-	}
-
 	.flow-ui-tocWidget {
 		float: left;
 
 		&-button {
-			width: 100%;
-			.oo-ui-buttonElement-button {
-				width: 100%;
-				.oo-ui-labelElement-label {
-					display: block;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					width: 100%;
-				}
-			}
+			// stylelint-disable-next-line declaration-no-important
+			margin-left: 0 !important;
+			margin-right: 0;
 		}
 
 		.flow-ui-topicMenuSelectWidget {
@@ -50,6 +28,33 @@
 			/* Workaround for flicker and https://code.google.com/p/chromium/issues/detail?id=343244 */
 			-webkit-transform: translateZ( 0 );
 		}
+	}
+
+	&-affixed {
+		background: #fff;
+		position: fixed;
+		z-index: 2;
+		top: 0;
+
+		.flow-ui-tocWidget {
+			float: none;
+
+			&-button {
+				display: block;
+				> .oo-ui-buttonElement-button {
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+
+	// Clearfix
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
 	}
 
 	.flow-ui-reorderTopicsWidget {

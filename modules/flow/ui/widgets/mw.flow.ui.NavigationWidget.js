@@ -34,8 +34,7 @@
 		this.$element
 			.append(
 				this.tocWidget.$element,
-				this.reorderTopicsWidget.$element,
-				$( '<div>' ).addClass( 'flow-ui-navigationWidget-clear' )
+				this.reorderTopicsWidget.$element
 			)
 			.addClass( 'flow-ui-navigationWidget' );
 	};
