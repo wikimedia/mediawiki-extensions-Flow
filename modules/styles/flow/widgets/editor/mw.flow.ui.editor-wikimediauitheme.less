@@ -17,16 +17,8 @@
 		padding-bottom: @editorToolbarHeight;
 	}
 
-	// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
-	@uiFontSize: 0.8/0.875em;
-
-	.ve-ui-overlay {
-		font-size: @uiFontSize;
-	}
-
 	.flow-ui-editorWidget-editor {
 		> .oo-ui-toolbar {
-			font-size: @uiFontSize;
 			// The 1px of positive margin gives room for the blue border
 			// of the TextInputWidget
 			margin: -@editorToolbarHeight 1px 1px 1px;
@@ -52,7 +44,6 @@
 	}
 
 	.ve-ui-debugBar {
-		font-size: @uiFontSize;
 		&-selectionLabel {
 			min-width: 10em;
 		}
