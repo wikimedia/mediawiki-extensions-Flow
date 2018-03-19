@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Njardarlogar"
+			"Njardarlogar",
+			"Ranveig"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Bla gjennom emne",
@@ -31,6 +32,12 @@
 	"flow-history-last4": "Siste 4 timane",
 	"flow-history-week": "Siste veka",
 	"flow-last-modified": "Sist endra kring $1",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$2|nemnde}} {{GENDER:$4|deg}} på «<strong>$5</strong>».",
+	"notification-header-flow-mention-header": "$1 {{GENDER:$2|nevnte}} {{GENDER:$4|deg}} i ei skildring av <strong>$3</strong>.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|nemnde}} {{GENDER:$4|deg}} i «<strong>$5</strong>».",
+	"flow-notification-mention": "$1 {{GENDER:$1|nemnde}} {{GENDER:$5|deg}} i <span class=\"plainlinks\">[$2 innlegget]</span>  {{GENDER:$1|sitt}} under «$3» på «$4»",
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nemnde}} {{GENDER:$3|deg}} på $2",
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|nemnd}} {{GENDER:$4|deg}} i innlegget {{GENDER:$1|sitt}} i «$2» på $3",
 	"flow-moderation-placeholder-hide-post": "{{GENDER:$3|Forklår}} kvifor du løyner dette innlegget.",
 	"flow-moderation-placeholder-hide-topic": "{{GENDER:$3|Forklår}} kvifor du løyner dette emnet.",
 	"flow-topic-first-heading": "Emne på «$1»",

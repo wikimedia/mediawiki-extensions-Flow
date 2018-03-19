@@ -32,7 +32,8 @@
 			"Putnik",
 			"Smigles",
 			"Mouse21",
-			"Movses"
+			"Movses",
+			"Patrick Star"
 		]
 	},
 	"enablestructureddiscussions": "Включить структурированные обсуждения",
@@ -449,8 +450,8 @@
 	"flow-topic-undo-hide": "отмена скрытия",
 	"flow-topic-undo-delete": "отменить удаление",
 	"flow-topic-undo-suppress": "отмена подавления",
-	"flow-importer-lqt-moved-thread-template": "LQT Moved thread stub преобразован в Структурированные обсуждения",
-	"flow-importer-lqt-converted-template": "LQT-страница преобразована в Структурированные обсуждения",
+	"flow-importer-lqt-moved-thread-template": "LQT Moved thread stub преобразован в Flow",
+	"flow-importer-lqt-converted-template": "LQT-страница преобразована в Flow",
 	"flow-importer-lqt-converted-template-content": "Предыдущая страница истории была архивирования в целях резервного копирования в <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-lqt-converted-archive-template": "Архив преобразованной LQT-страницы",
 	"flow-importer-wt-converted-template": "Вики-текст страницы обсуждения преобразован во Flow",

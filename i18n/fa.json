@@ -23,7 +23,8 @@
 			"Rtemis",
 			"Dalba",
 			"AzorAhai",
-			"Alifakoor"
+			"Alifakoor",
+			"Arash"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -538,5 +539,6 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "بحث‌های قدیمی به یک صفحه بایگانی منتقل شدند.",
 	"flow-guidedtour-optin-feedback": "به ما بازخورد {{GENDER:$1|دهید}}!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|شما}} می‌توانید برای اطلاعات بیشتر، ارائهٔ بازخورد، یا غیرفعال کردن سامانه در هر زمان به بخش ویژگی‌های آزمایشی مراجعه کنید.",
-	"flow-action-not-page": "شیء صفحه نمونه‌ای از کلاس اشتباه است"
+	"flow-action-not-page": "شیء صفحه نمونه‌ای از کلاس اشتباه است",
+	"flow-preference-visualeditor": "ویرایشگر دیداری و سبک جدید ویکی‌متن در بحث‌های ساخت‌یافته را فعال کنید"
 }

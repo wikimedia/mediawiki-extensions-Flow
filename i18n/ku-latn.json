@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bikarhêner",
-			"George Animal"
+			"George Animal",
+			"Ghybu"
 		]
 	},
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1 mijareka li ser [[$3]] {{GENDER:$2|jê bir}}",
@@ -30,6 +31,7 @@
 	"flow-post-action-hide-post": "Veşêre",
 	"flow-post-action-edit-post": "Biguherîne",
 	"flow-post-action-edit-post-submit": "Guherandinan tomar bike",
+	"flow-post-action-undo-moderation": "Betal bike",
 	"flow-topic-action-view": "Girêdana herdemî",
 	"flow-topic-action-edit-title": "Sernav biguherîne",
 	"flow-topic-action-history": "Dîrok",
@@ -39,6 +41,7 @@
 	"flow-topic-action-summarize-topic": "Kurt bike",
 	"flow-topic-action-resummarize-topic": "Kurteya mijarê biguherîne",
 	"flow-topic-action-update-topic-summary": "Kurteyê rojane bike",
+	"flow-topic-action-undo-moderation": "Betal bike",
 	"flow-topic-action-watchlist-add": "Vê mijarê abone bike",
 	"flow-error-not-allowed-reply-to-suppress-topic": "Tu nikarî bersivê bidî ji ber ku mijar hatiye jêbirin.",
 	"flow-error-missing-header-content": "Tu divê danasînekê tomar bikî.",
@@ -53,12 +56,14 @@
 	"flow-link-history": "dîrok",
 	"flow-moderation-confirm-delete-post": "Jê bibe",
 	"flow-moderation-confirm-hide-post": "Veşêre",
+	"flow-moderation-confirm-delete-topic": "Jê bibe",
 	"flow-topic-first-heading": "Mijara lis er $1",
 	"flow-topic-html-title": "$1 li ser $2",
 	"flow-topic-count": "Mijar($1)",
 	"flow-no-more-fwd": "Mijarên kevintir tune ne",
 	"flow-newest-topics": "Mijarên herî nû",
 	"flow-recent-topics": "Mijarên dawî yên çalak",
+	"flow-undo": "betal bike",
 	"flow-undo-your-text": "Nivîsara te",
 	"flow-undo-edit-header": "Danasîn tê guherandin",
 	"flow-ve-mention-context-item-label": "Qalkirin",

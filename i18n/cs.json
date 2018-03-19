@@ -130,7 +130,7 @@
 	"flow-error-missing-summary": "Musíte vložit shrnutí.",
 	"flow-error-missing-title": "Název sekce nemůže být prázdný.",
 	"flow-error-parsoid-failure": "Kvůli chybě softwaru Parsoid se nepodařilo analyzovat obsah.",
-	"flow-error-protected-readonly": "Structured Discussions bylo povoleno na této stránce. Žádné diskuse, témata nebo příspěvky nemohou být založeny či editovány",
+	"flow-error-protected-readonly": "Strukturované diskuse byly na této wiki vypnuty. Žádné diskuse, témata nebo příspěvky nemohou být založeny či editovány.",
 	"flow-error-invalid-moderation-reason": "Uveďte, prosím, důvod pro moderování.",
 	"flow-error-not-allowed": "Nedostatečná oprávnění k provedení této akce.",
 	"flow-error-not-allowed-hide": "Toto téma bylo skryto.",
