@@ -12,7 +12,7 @@ use Flow\Tests\FlowTestCase;
 class UUIDTest extends FlowTestCase {
 
 	public function testFixesCapitalizedDataWhenUnserializing() {
-		$uuid = UUID::create();
+		$uuid = UUID::create( 'u9pdp74asmm1qa81' );
 		$serialized = serialize( $uuid );
 		// We are targeting this portion of the serialized string:
 		// s:16:"s3xyjucl93jtq2ci"
@@ -30,7 +30,7 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public function invalidInputProvider() {
-		$valid = UUID::create()->getAlphadecimal();
+		$valid = 'u9pdkbdvsgz206kh';
 
 		return [
 			[ '' ],
