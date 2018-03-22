@@ -23,6 +23,7 @@
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|Vas}} je {{GENDER:$1|spomenuo|spomenula}} na projektu $2",
 	"flow-notification-mention-email-batch-body": "$1 Vas je {{GENDER:$1|spomenuo|spomenula}} u {{GENDER:$1|njegovoj|njenoj}} poruci pod naslovom \"$2\" na stranici $3.",
 	"echo-category-title-flow-discussion": "Ustrojne raspravice",
+	"echo-pref-tooltip-flow-discussion": "Obavijesti me o aktivnostima u temema ili stranicama na popisu praćenja.",
 	"flow-topic-first-heading": "Tema na $1",
 	"structureddiscussions": "Ustrojne raspravice",
 	"flow-special-enableflow-legend": "Omogući Ustrojne raspravice na novoj stranici",
