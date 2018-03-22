@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da551c80_2d500cba",
+        "filename": "modules/editor/editors/visualeditor/ui/images/icons/flow-mention.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-03-22T21:10:03Z",
+      "side": 1,
+      "message": "…",
+      "range": {
+        "startLine": 1,
+        "startChar": 37,
+        "endLine": 1,
+        "endChar": 51
+      },
+      "revId": "4cdbb75ab27404a8b600d13fea49a997abb6796a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
