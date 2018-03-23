@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3001fed2_80cecba8",
+        "filename": "maintenance/dumpTextPass.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-03-23T23:15:34Z",
+      "side": 1,
+      "message": "I\u0027m guessing this is for debugging and should be removed before merging?",
+      "revId": "4803142c23b8b46db8d7a4f78d5b7e1ec3f4ceee",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
