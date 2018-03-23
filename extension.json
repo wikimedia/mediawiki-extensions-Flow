@@ -118,7 +118,6 @@
 			]
 		},
 		"ext.flow.contributions.styles": {
-			"position": "top",
 			"styles": [
 				"styles/history/history-line.less"
 			]
@@ -332,7 +331,6 @@
 			]
 		},
 		"ext.flow.mediawiki.ui.text": {
-			"position": "top",
 			"styles": [
 				"styles/mediawiki.ui/text.less"
 			],
@@ -342,7 +340,6 @@
 			]
 		},
 		"ext.flow.mediawiki.ui.form": {
-			"position": "top",
 			"styles": [
 				"styles/mediawiki.ui/forms.less"
 			],
@@ -352,7 +349,6 @@
 			]
 		},
 		"ext.flow.styles.base": {
-			"position": "top",
 			"styles": [
 				"styles/common.less",
 				"styles/errors.less",
@@ -364,7 +360,6 @@
 			]
 		},
 		"ext.flow.board.styles": {
-			"position": "top",
 			"styles": [
 				"styles/board/header.less",
 				"styles/board/menu.less",
@@ -383,7 +378,6 @@
 			]
 		},
 		"ext.flow.board.topic.styles": {
-			"position": "top",
 			"styles": [
 				"styles/board/topic/titlebar.less",
 				"styles/board/topic/meta.less",
@@ -554,7 +548,6 @@
 			]
 		},
 		"ext.flow": {
-			"position": "top",
 			"styles": [
 				"styles/mediawiki.ui/modal.less",
 				"styles/mediawiki.ui/tooltips.less",
