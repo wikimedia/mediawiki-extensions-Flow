@@ -25,7 +25,8 @@
 			"Thibaut120094",
 			"Urhixidur",
 			"Mormegil",
-			"Mar(c)"
+			"Mar(c)",
+			"Omotecho"
 		]
 	},
 	"enablestructureddiscussions": "{{doc-special|EnableFlow}}",
@@ -36,7 +37,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Title for the confirmation text for unwatching a topic from within a notification.\n\nParameters:\n* $1 - Topic name\n* $2 - Topic URL\n\n{{related|Notification-dynamic}}",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Description for the confirmation text for unwatching a topic from within a notification.\n\nParameters:\n* $1 - Topic name\n* $2 - Topic URL\n\n{{related|Notification-dynamic}}",
 	"flow-desc": "{{desc|name=Flow|url=https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:StructuredDiscussions}}",
-	"flow-talk-taken-over-comment": "Comment of the new revision that is created when a page turns into a Structured Discussions board.",
+	"flow-talk-taken-over-comment": "*Comment of the new revision that is created when a page turns into a Structured Discussions board.\n*in ja: 新しいリビジョンのお知らせ。（注：Flow は Structured Discussions に改名されました。）",
 	"log-name-flow": "{{doc-logpage}}\nName of the Structured Discussions log filter on the [[Special:Log]] page.",
 	"logentry-delete-flow-delete-post": "Text for a deletion log entry when a post was deleted. Parameters:\n* $1 - the user: link to the user page\n* $2 - the username. Can be used for GENDER.\n* $3 - the page where the post was moderated\n* $4 - permalink URL to the moderated post\n* $5 - The topic title text\n* $6 - The board page\n{{Related|Logentry-flow}}",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "Text for a deletion log entry when a post was deleted, and the topic title is not visible to the current user. Parameters:\n* $1 - the user: link to the user page\n* $2 - the username. Can be used for GENDER.\n* $3 - The board page\n{{Related|Logentry-flow}}",
