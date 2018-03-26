@@ -22,8 +22,6 @@
 
 	mw.flow.ui.CancelConfirmDialog.static.name = 'cancelconfirm';
 
-	mw.flow.ui.CancelConfirmDialog.static.verbose = true;
-
 	mw.flow.ui.CancelConfirmDialog.static.size = 'small';
 
 	mw.flow.ui.CancelConfirmDialog.static.icon = 'help';
