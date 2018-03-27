@@ -142,7 +142,6 @@ class ApiFlow extends ApiBase {
 				ApiBase::PARAM_TYPE => 'submodule',
 			],
 			'page' => [
-				ApiBase::PARAM_REQUIRED => true,
 				// supply bogus default - not every action may *need* ?page=
 				ApiBase::PARAM_DFLT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
 			],

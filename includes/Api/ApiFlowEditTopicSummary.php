@@ -28,7 +28,6 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 				ApiBase::PARAM_REQUIRED => true,
 			],
 			'format' => [
-				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_DFLT => 'wikitext',
 				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
 			],
