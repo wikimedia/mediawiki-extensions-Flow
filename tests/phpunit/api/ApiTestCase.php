@@ -90,7 +90,10 @@ abstract class ApiTestCase extends BaseApiTestCase {
 
 	protected function expectCacheInvalidate() {
 		$mock = $this->mockCache();
-		$mock->expects( $this->never() )->method( 'set' );
+		$mock->method( 'set' )->will( $this->throwException(
+			new \Exception( 'Unexpected call to #set' )
+		) );
+//		$mock->expects( $this->never() )->method( 'set' );
 		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
 		return $mock;
 	}
