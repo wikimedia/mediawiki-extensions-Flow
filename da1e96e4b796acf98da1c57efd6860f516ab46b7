@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbb06f8a_3891c492",
+        "filename": "includes/Conversion/Utils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 257
+      },
+      "writtenOn": "2018-04-04T03:07:59Z",
+      "side": 1,
+      "message": "Can you change that to 1.6.1? I should have pointed you to the latest version.\n\nhttps://www.mediawiki.org/wiki/Specs/HTML",
+      "revId": "da1e96e4b796acf98da1c57efd6860f516ab46b7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
