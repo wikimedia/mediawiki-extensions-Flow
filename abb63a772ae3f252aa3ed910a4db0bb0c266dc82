@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7f761b7_b1ed9d12",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-04-04T23:32:18Z",
+      "side": 1,
+      "message": "Can\u0027t have double space.",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "abb63a772ae3f252aa3ed910a4db0bb0c266dc82",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "928eb0f2_ab262eec",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-04-04T23:32:18Z",
+      "side": 1,
+      "message": "Idem.",
+      "range": {
+        "startLine": 52,
+        "startChar": 11,
+        "endLine": 52,
+        "endChar": 13
+      },
+      "revId": "abb63a772ae3f252aa3ed910a4db0bb0c266dc82",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8853602e_96901876",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.BoardDescriptionWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-04-04T23:32:18Z",
+      "side": 1,
+      "message": "Can\u0027t have double blank line.",
+      "revId": "abb63a772ae3f252aa3ed910a4db0bb0c266dc82",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb84ab09_e6dc2e6d",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-04-04T23:32:18Z",
+      "side": 1,
+      "message": "Can\u0027t have double space.",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "abb63a772ae3f252aa3ed910a4db0bb0c266dc82",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71ff3b2c_a41b667c",
+        "filename": "modules/flow/ui/widgets/mw.flow.ui.EditPostWidget.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-04-04T23:32:18Z",
+      "side": 1,
+      "message": "Idem.",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "abb63a772ae3f252aa3ed910a4db0bb0c266dc82",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
