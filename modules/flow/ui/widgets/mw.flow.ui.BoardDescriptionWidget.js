@@ -14,7 +14,8 @@
 	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
-		var $content = $();
+		var msgKey,
+			$content = $();
 
 		config = config || {};
 
@@ -43,9 +44,18 @@
 				currentRevision: this.model.getRevisionId()
 			}
 		);
+		if ( mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ) {
+			msgKey = mw.user.isAnon() ?
+				'flow-edit-header-submit-anonymously-publish' :
+				'flow-edit-header-submit-publish';
+		} else {
+			msgKey = mw.user.isAnon() ?
+			'flow-edit-header-submit-anonymously' :
+			'flow-edit-header-submit';
+		}
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
-			saveMsgKey: mw.user.isAnon() ? 'flow-edit-header-submit-anonymously' : 'flow-edit-header-submit',
+			saveMsgKey: msgKey,
 			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
 		}, config.editor ) );
 		this.editor.toggle( false );

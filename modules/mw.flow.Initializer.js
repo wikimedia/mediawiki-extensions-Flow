@@ -908,6 +908,17 @@
 			} )[ undoType ][ mw.user.isAnon() ? 0 : 1 ],
 			editor = this.createEditorWidget( $undoForm, content, saveMsgKey );
 
+		if (
+			mw.config.get( 'wgEditSubmitButtonLabelPublish' ) &&
+			undoType !== 'topicsummary'
+		) {
+			// i18n messages:
+			// 'flow-post-action-edit-post-submit-anonymously-publish',
+			// 'flow-post-action-edit-post-submit-publish'
+			// 'flow-edit-header-submit-anonymously-publish',
+			// 'flow-edit-header-submit-publish'
+			saveMsgKey += '-publish';
+		}
 		editor
 			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
 				save( content, contentFormat, captcha )
