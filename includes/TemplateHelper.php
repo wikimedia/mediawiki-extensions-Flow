@@ -153,6 +153,7 @@ class TemplateHelper {
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
+					'i18nPublishWiki' => 'Flow\TemplateHelper::i18nPublishWiki',
 				],
 				'hbhelpers' => [
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -555,6 +556,26 @@ class TemplateHelper {
 	public static function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );
 		return self::html( wfMessage( $str, $args )->parse() );
+	}
+
+	/**
+	 * A helper to output whether a wiki is publish wiki or not
+	 *
+	 * @param array $args one or more arguments, i18n key and parameters
+	 * @param array $named named object for arguments given by handlebars
+	 * @return string Representation of an ooui widget dom
+	 */
+	public static function i18nPublishWiki( array $args, array $named ) {
+		global $wgEditSubmitButtonLabelPublish;
+
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		// First argument = non publish wikis
+		// Second argument = publish wikis
+		$msg = $wgEditSubmitButtonLabelPublish ? $args[1] : $args[0];
+
+		return wfMessage( $msg )->text();
 	}
 
 	/**
