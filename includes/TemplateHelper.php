@@ -153,6 +153,7 @@ class TemplateHelper {
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 					'oouify' => 'Flow\TemplateHelper::oouify',
+					'getSaveOrPublishMessage' => 'Flow\TemplateHelper::getSaveOrPublishMessage',
 				],
 				'hbhelpers' => [
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -555,6 +556,28 @@ class TemplateHelper {
 	public static function l10nParse( array $args, array $named ) {
 		$str = array_shift( $args );
 		return self::html( wfMessage( $str, $args )->parse() );
+	}
+
+	/**
+	 * A helper to output whether a wiki is publish wiki or not
+	 *
+	 * @param array $args unused
+	 * @param array $named Mandatory named object for arguments given by handlebars:
+	 *  save: Message key for the 'save' version
+	 *  publish: Message key for the 'publish' version
+	 * @return string Translated message string for either 'save' or 'publish'
+	 *  version
+	 */
+	public static function getSaveOrPublishMessage( array $args, array $named ) {
+		global $wgEditSubmitButtonLabelPublish;
+
+		if ( !$named['save'] || !$named['publish'] ) {
+			throw new FlowException( "Missing an argument. Expected two message keys for 'save' and 'post'" );
+		}
+
+		$msg = $wgEditSubmitButtonLabelPublish ? $named['publish'] : $named['save'];
+
+		return wfMessage( $msg )->text();
 	}
 
 	/**
