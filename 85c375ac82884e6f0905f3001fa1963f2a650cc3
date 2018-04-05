@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae3e18d1_119eb5f0",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2018-04-05T11:02:55Z",
+      "side": 1,
+      "message": "we strictly enforce two arguments, so document that here, and what each one is",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b9804ac_db7c2cba",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2018-04-05T11:02:55Z",
+      "side": 1,
+      "message": "\"No named arguments expected\"\n\nUnless, of course, you do use named arguments (save/publish) as the arguments otherwise have no natural order.",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4e39c06_79ce3746",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2018-04-05T11:02:55Z",
+      "side": 1,
+      "message": "This should have better name, preferably one with a verb.\n\nMaybe getSaveOrPublishMessage?",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
