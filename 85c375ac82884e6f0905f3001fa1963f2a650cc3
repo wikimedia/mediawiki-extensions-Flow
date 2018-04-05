@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa676fee_f386573d",
+        "filename": "handlebars/flow_edit_post.partial.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-04-05T17:19:51Z",
+      "side": 1,
+      "message": "Why the 3-tab indentation here?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 32
+      },
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5546b253_268d5269",
+        "filename": "handlebars/flow_edit_post.partial.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-04-05T17:19:51Z",
+      "side": 1,
+      "message": "Maybe keep the ~ around this so there isn\u0027t excessive whitespace in the compiled output.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 3
+      },
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae3e18d1_119eb5f0",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 3
