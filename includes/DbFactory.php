@@ -5,6 +5,7 @@ namespace Flow;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * All classes within Flow that need to access the Flow db will go through
