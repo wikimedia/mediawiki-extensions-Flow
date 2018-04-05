@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e29650a_b5a15fa6",
+        "filename": "handlebars/flow_edit_post.partial.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2018-04-05T18:33:26Z",
+      "side": 1,
+      "message": "I\u0027m actually not sure what happened here...",
+      "parentUuid": "fa676fee_f386573d",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 32
+      },
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5546b253_268d5269",
         "filename": "handlebars/flow_edit_post.partial.handlebars",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-05T17:19:51Z",
       "side": 1,
       "message": "Maybe keep the ~ around this so there isn\u0027t excessive whitespace in the compiled output.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 3
+      },
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14d4c933_7734482c",
+        "filename": "handlebars/flow_edit_post.partial.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2018-04-05T18:33:26Z",
+      "side": 1,
+      "message": "Ah, good point! I missed that",
+      "parentUuid": "5546b253_268d5269",
       "range": {
         "startLine": 24,
         "startChar": 5,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "e4c866fc_c865a794",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2018-04-05T18:33:26Z",
+      "side": 1,
+      "message": "Good point",
+      "parentUuid": "ae3e18d1_119eb5f0",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b9804ac_db7c2cba",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 3
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "ba79b77f_ae79302d",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2018-04-05T18:33:26Z",
+      "side": 1,
+      "message": "Yeah I\u0027ll switch to named arguments",
+      "parentUuid": "5b9804ac_db7c2cba",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4e39c06_79ce3746",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 3
@@ -93,6 +177,24 @@
       "writtenOn": "2018-04-05T11:02:55Z",
       "side": 1,
       "message": "This should have better name, preferably one with a verb.\n\nMaybe getSaveOrPublishMessage?",
+      "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0673ee2_6cfd35fe",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 798
+      },
+      "writtenOn": "2018-04-05T18:33:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4e39c06_79ce3746",
       "revId": "85c375ac82884e6f0905f3001fa1963f2a650cc3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
