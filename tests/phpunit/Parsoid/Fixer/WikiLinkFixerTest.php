@@ -69,22 +69,3 @@ class WikiLinkFixerTest extends PostRevisionTestCase {
 		$this->assertContains( $expect, $result, $message );
 	}
 }
-
-class MethodReturnsConstraint extends \PHPUnit_Framework_Constraint {
-	public function __construct( $method, \PHPUnit_Framework_Constraint $constraint ) {
-		$this->method = $method;
-		$this->constraint = $constraint;
-	}
-
-	protected function matches( $other ) {
-		return $this->constraint->matches( call_user_func( [ $other, $this->method ] ) );
-	}
-
-	public function toString() {
-		return $this->constraint->toString();
-	}
-
-	protected function failureDescription( $other ) {
-		return $this->constraint->failureDescription( $other ) . " from {$this->method} method";
-	}
-}
