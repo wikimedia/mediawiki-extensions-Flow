@@ -604,8 +604,7 @@
 				"flow/ui/tools/mw.flow.ui.MWEditModeTool.js"
 			],
 			"styles": [
-				"editor/editors/visualeditor/mw.flow.ve.Target.less",
-				"editor/editors/visualeditor/ui/mw.flow.ve.ui.Icons.less"
+				"editor/editors/visualeditor/mw.flow.ve.Target.less"
 			],
 			"dependencies": [
 				"ext.visualEditor.core",
@@ -617,6 +616,7 @@
 				"ext.visualEditor.switching",
 				"mediawiki.editfont.styles",
 				"oojs-ui.styles.icons-editing-advanced",
+				"ext.flow.visualEditor.icons",
 				"site",
 				"user",
 				"mediawiki.api",
@@ -630,6 +630,22 @@
 				"flow-ve-mention-placeholder",
 				"flow-ve-mention-tool-title"
 			]
+		},
+		"ext.flow.visualEditor.icons": {
+			"class": "ResourceLoaderImageModule",
+			"selectorWithoutVariant": ".oo-ui-icon-{name}",
+			"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
+			"variants": {
+				"progressive": {
+					"color": "#36c"
+				}
+			},
+			"images": {
+				"userAdd": {
+					"file": "editor/editors/visualeditor/ui/images/icons/userAdd.svg",
+					"variants": [ "progressive" ]
+				}
+			}
 		},
 		"mediawiki.messagePoster.flow-board": {
 			"scripts": [
