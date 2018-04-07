@@ -24,15 +24,22 @@
 			margin: -@editorToolbarHeight 1px 1px 1px;
 
 			.oo-ui-toolbar-bar {
-				// The default border is only appropriate in the default ve, with
-				// the toolbar above the editing surface.
-				border: 0;
-				box-shadow: none;
 				// When we apply a pending texture to the editor, we don't want the toolbar to display
 				// in solid white on top of that.
 				background: transparent;
 			}
+
+			// Expand toolbar into focus inset when not focused.
+			> .oo-ui-toolbar-bar {
+				margin: 0 -1px;
+				padding: 0 1px;
+			}
 		}
+	}
+
+	.flow-ui-editorWidget-focused > .flow-ui-editorWidget-editor > .oo-ui-toolbar > .oo-ui-toolbar-bar {
+		margin: 0;
+		padding: 0;
 	}
 
 	.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-enabled.oo-ui-tool-active {
