@@ -216,6 +216,8 @@
 	"notification-header-flow-post-edited-v2": "{{GENDER:$2|Jūsų}} įrašas „<strong>$1</strong>“ buvo pakeistas.",
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|Jūsų}} įrašas „<strong>$1</strong>“ buvo pakeistas kelis kartus.",
 	"notification-header-flow-topic-renamed-v2": "Tema „<strong>$1</strong>“ buvo pervadinta į „<strong>$2</strong>“.",
+	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|pridėjo}} naują <strong>$3</strong> temą.",
+	"flow-notification-rename": "$1 {{GENDER:$1|pakeitė}} pavadinimą iš <span class=\"plainlinks\">[$2 $3]</span> į „$4“ [[$5|$6]].",
 	"flow-notification-link-text-view-post": "Žiūrėti įrašą",
 	"flow-notification-link-text-view-topic": "Žiūrėti temą",
 	"flow-notification-link-text-view-topics": "Žiūrėti temas",
