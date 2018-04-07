@@ -111,7 +111,7 @@ mw.flow.ui.ReorderTopicsWidget.prototype.toggleOrderType = function ( type ) {
 		this.board.setSortOrder( type );
 
 		// Change the icon
-		this.reorderMenuOptionWidget.setIcon( this.orderType === 'newest' ? 'clock' : 'beta' );
+		this.reorderMenuOptionWidget.setIcon( this.orderType === 'newest' ? 'clock' : 'newestTopics' );
 
 		// Unselect the select item
 		this.reorderMenu.selectItem( null );
