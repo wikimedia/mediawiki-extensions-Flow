@@ -22,7 +22,7 @@
 	// Static
 	mw.flow.ve.ui.MentionContextItem.static.name = 'flowMention';
 
-	mw.flow.ve.ui.MentionContextItem.static.icon = 'flow-mention';
+	mw.flow.ve.ui.MentionContextItem.static.icon = 'userAdd';
 
 	mw.flow.ve.ui.MentionContextItem.static.label = OO.ui.deferMsg( 'flow-ve-mention-context-item-label' );
 
