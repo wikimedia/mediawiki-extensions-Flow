@@ -13,7 +13,7 @@
 	 */
 	mw.flow.ve.Target = function FlowVeTarget() {
 		mw.flow.ve.Target.parent.call( this, {
-			toolbarConfig: { actions: true, position: 'bottom' }
+			toolbarConfig: { actions: true, $overlay: true, position: 'bottom' }
 		} );
 
 		this.switchingPromise = null;
@@ -45,8 +45,9 @@
 			type: 'list',
 			icon: 'textStyle',
 			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
-			include: [ 'bold', 'italic' ],
-			forceExpand: [ 'bold', 'italic' ]
+			include: [ { group: 'textStyle' }, 'language', 'clear' ],
+			forceExpand: [ 'bold', 'italic' ],
+			demote: [ 'strikethrough', 'code', 'underline', 'language', 'big', 'small', 'clear' ]
 		},
 
 		{ include: [ 'link' ] },
