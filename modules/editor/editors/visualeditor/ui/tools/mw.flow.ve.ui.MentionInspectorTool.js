@@ -21,7 +21,7 @@
 	// Static
 	mw.flow.ve.ui.MentionInspectorTool.static.commandName = 'flowMention';
 	mw.flow.ve.ui.MentionInspectorTool.static.name = 'flowMention';
-	mw.flow.ve.ui.MentionInspectorTool.static.icon = 'flow-mention';
+	mw.flow.ve.ui.MentionInspectorTool.static.icon = 'userAdd';
 	mw.flow.ve.ui.MentionInspectorTool.static.title = OO.ui.deferMsg( 'flow-ve-mention-tool-title' );
 
 	mw.flow.ve.ui.MentionInspectorTool.static.template = mw.flow.ve.ui.MentionInspector.static.template;
