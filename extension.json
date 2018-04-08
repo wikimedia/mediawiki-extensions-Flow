@@ -1294,7 +1294,6 @@
 		"Flow\\Tests\\NotifiedUsersTest": "tests/phpunit/Notifications/NotifiedUsersTest.php",
 		"Flow\\Tests\\Parsoid\\BadImageRemoverTest": "tests/phpunit/Parsoid/Fixer/BadImageRemoverTest.php",
 		"Flow\\Tests\\Parsoid\\BaseHrefFixerTest": "tests/phpunit/Parsoid/Fixer/BaseHrefFixerTest.php",
-		"Flow\\Tests\\Parsoid\\Fixer\\MethodReturnsConstraint": "tests/phpunit/Parsoid/Fixer/WikiLinkFixerTest.php",
 		"Flow\\Tests\\Parsoid\\Fixer\\WikiLinkFixerTest": "tests/phpunit/Parsoid/Fixer/WikiLinkFixerTest.php",
 		"Flow\\Tests\\Parsoid\\ReferenceExtractorTestCase": "tests/phpunit/Parsoid/ReferenceExtractorTest.php",
 		"Flow\\Tests\\Parsoid\\ReferenceFactoryTest": "tests/phpunit/Parsoid/ReferenceFactoryTest.php",
