@@ -55,7 +55,7 @@ class NotificationController {
 			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
 		];
 		$icons['flow-topic-renamed'] = $icons['flowusertalk-topic-renamed'] = [
-			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
+			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
 		];
 		$icons['flow-topic-resolved'] = $icons['flowusertalk-topic-resolved'] = [
 			'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
