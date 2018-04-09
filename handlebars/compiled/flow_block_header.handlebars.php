@@ -37,9 +37,9 @@
 '.$sp.'<a href="javascript:void(0);"
 '.$sp.'	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
 '.$sp.'	data-flow-interactive-handler="toggleSideRail">
-'.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-close pull-right collapse-button"
+'.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-close pull-right collapse-button"
 '.$sp.'		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-collapse-description'),array()), 'encq').'"></span>
-'.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles pull-right expand-button"
+'.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-speechBubbles pull-right expand-button"
 '.$sp.'		  title="'.LCRun3::ch($cx, 'l10n', array(array('flow-board-expand-description'),array()), 'encq').'"></span>
 '.$sp.'</a>
 ';},'flow_header_categories' => function ($cx, $in, $sp) {return ''.$sp.''.((LCRun3::ifvar($cx, ((isset($cx['sp_vars']['root']['categories']['items']) && is_array($cx['sp_vars']['root']['categories'])) ? $cx['sp_vars']['root']['categories']['items'] : null))) ? '<div id="catlinks" class="catlinks flow-board-header-category-view-nojs">
