@@ -3,25 +3,25 @@
 	display: none;
 
 	&-active {
-		background-color: #36c;
-		/* @embed */
-		background-image: url( ../../images/anon-user.svg );
-		background-position: 0.6em center;
-		background-repeat: no-repeat;
+		background: #36c;
+		padding: 0.6em;
+
 		color: #fff;
 		display: block;
-		padding: 0.6em;
-		padding-left: ~'calc( 0.6em + 24px + 0.6em )';
-		line-height: 1.2em;
+		line-height: 1.42857em;
 		margin-bottom: 0.5em;
+
+		> .oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
+			position: absolute;
+		}
+
+		> .oo-ui-labelWidget {
+			padding-left: 2em;
+		}
 
 		a {
 			color: #fff;
 			font-weight: bold;
-		}
-
-		body.rtl & {
-			background-position: ~'calc( 100% - 0.6em ) center';
 		}
 	}
 }
