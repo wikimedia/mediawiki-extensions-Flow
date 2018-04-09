@@ -312,14 +312,22 @@ body.ns-3 {
 }
 /* stylelint-enable selector-max-id */
 
-span.mw-ui-icon {
+.flow-component .mw-ui-icon {
 	opacity: 0.87; // equals `#222` on background-color `#fff`
-}
 
-span.mw-ui-icon.mw-ui-icon-before:before {
-	margin-right: 0.1em;
-}
+	&.mw-ui-icon-before:before {
+		margin-right: 0.5em;
+	}
 
-span.mw-ui-icon.mw-ui-icon-before:after {
-	margin-left: 0.1em;
+	&.mw-ui-icon-before:after {
+		margin-left: 0.5em;
+	}
+
+	&.mw-ui-icon-before.mw-ui-icon-only:before {
+		margin-right: 0;
+	}
+
+	&.mw-ui-icon-before.mw-ui-icon-only:after {
+		margin-left: 0;
+	}
 }
