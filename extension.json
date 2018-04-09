@@ -534,6 +534,7 @@
 				"oojs-ui",
 				"ext.flow.dm",
 				"oojs-ui.styles.icons-editing-advanced",
+				"oojs-ui.styles.icons-user",
 				"mediawiki.api",
 				"mediawiki.api.options",
 				"mediawiki.Title",
