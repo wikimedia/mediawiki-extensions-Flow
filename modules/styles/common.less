@@ -312,10 +312,16 @@ body.ns-3 {
 }
 /* stylelint-enable selector-max-id */
 
+@mw-ui-icon-size-flow: ( 20em / 14 );
+
 .flow-component .mw-ui-icon {
 	opacity: 0.87; // equals `#222` on background-color `#fff`
+	min-width: @mw-ui-icon-size-flow;
+	min-height: @mw-ui-icon-size-flow;
 
 	&.mw-ui-icon-before:before {
+		width: @mw-ui-icon-size-flow;
+		min-height: @mw-ui-icon-size-flow;
 		margin-right: 0.5em;
 	}
 
