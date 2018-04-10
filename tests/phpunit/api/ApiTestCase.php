@@ -58,7 +58,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		array $params,
 		array $session = null,
 		$appendModule = false,
-		User $user = null
+		User $user = null, $tokenType = null
 	) {
 		// reset flow state before each request
 		FlowHooks::resetFlowExtension();
