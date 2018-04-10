@@ -35,15 +35,17 @@
 		// error.
 		this.restrictionEdit = config.restrictionEdit || [];
 
+		this.icon = new OO.ui.IconWidget( { icon: 'lock' } );
 		this.label = new OO.ui.LabelWidget();
 
 		// Parent constructor
-		mw.flow.ui.CanNotEditWidget.parent.call( widget, config );
+		mw.flow.ui.CanNotEditWidget.parent.call( this, config );
 
 		// Initialize
-		widget.$element
+		this.$element
 			.append(
-				widget.label.$element
+				this.icon.$element,
+				this.label.$element
 			)
 			.addClass( 'flow-ui-canNotEditWidget' )
 			.toggleClass( 'flow-ui-canNotEditWidget-active', !this.isProbablyEditable );
