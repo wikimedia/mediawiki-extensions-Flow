@@ -29,7 +29,8 @@
 }
 
 // need to be specific to override this h2
-div#content h2.flow-board-header-title { /* stylelint-disable-line selector-max-id */
+/* stylelint-disable selector-max-id */
+div#content h2.flow-board-header-title {
 	margin-right: 10px;
 
 	margin-top: 0;
@@ -38,7 +39,12 @@ div#content h2.flow-board-header-title { /* stylelint-disable-line selector-max-
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 1.15em;
+
+	> .mw-ui-icon {
+		font-size: 1 / 1.15em;
+	}
 }
+/* stylelint-enable selector-max-id */
 
 .flow-board-header-title {
 	display: none;
