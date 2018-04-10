@@ -463,7 +463,6 @@
 			"scripts": [
 				"flow/ui/mw.flow.ui.js",
 				"flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
-				"flow/ui/mw.flow.ui.Overlay.js",
 				"flow/ui/mw.flow.ui.CancelConfirmDialog.js",
 				"flow/ui/widgets/mw.flow.ui.TopicMenuSelectWidget.js",
 				"flow/ui/widgets/mw.flow.ui.ToCWidget.js",
@@ -484,7 +483,6 @@
 				"flow/ui/widgets/mw.flow.ui.CategoriesWidget.js"
 			],
 			"styles": [
-				"styles/flow/mw.flow.ui.Overlay.less",
 				"styles/flow/widgets/mw.flow.ui.NavigationWidget.less",
 				"styles/flow/widgets/mw.flow.ui.TopicMenuSelectWidget.less",
 				"styles/flow/widgets/mw.flow.ui.ReorderTopicsWidget.less",

@@ -95,12 +95,10 @@
 	};
 
 	/**
-	 * Set up the window overlay
+	 * Set up the window manager
 	 */
-	mw.flow.Initializer.prototype.setupWindowOverlay = function () {
-		// Set up window overlay
-		$( 'body' ).append( mw.flow.ui.windowOverlay.$element );
-		mw.flow.ui.windowOverlay.$element.append( mw.flow.ui.windowManager.$element );
+	mw.flow.Initializer.prototype.setupWindowManager = function () {
+		$( 'body' ).append( mw.flow.ui.windowManager.$element );
 	};
 
 	/**
@@ -135,8 +133,8 @@
 	 * Initialize the UI widgets
 	 */
 	mw.flow.Initializer.prototype.initializeWidgets = function () {
-		// Set up window overlay
-		this.setupWindowOverlay();
+		// Set up window manager
+		this.setupWindowManager();
 
 		// Set up sidebar widget if it needs to be there
 		this.setupSidebarWidget();
