@@ -245,7 +245,7 @@
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|أخفى}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|حذف|حذفت}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|طمس|طمست}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
-	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|علّم|علّمت}} [$4 الموضوع] \"$6\" كمحلول(<em>$5</em>)",
+	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|علَّم|علَّمت}} [$4 الموضوع] \"$6\" كمحلول (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "عُلم كمبتوت فيه",
 	"flow-rev-message-restore-topic-reason": "إعادة فتح",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|استعاد|استعادت}} [$4 الموضوع] \"$6\" (<em>$5</em>)",

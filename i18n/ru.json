@@ -33,7 +33,8 @@
 			"Smigles",
 			"Mouse21",
 			"Movses",
-			"Patrick Star"
+			"Patrick Star",
+			"Ole Yves"
 		]
 	},
 	"enablestructureddiscussions": "Включить структурированные обсуждения",
@@ -80,7 +81,7 @@
 	"flow-post-moderated-toggle-delete-hide": "Скрыть после, удалённый {{GENDER:$1|участником|участницей}} $2",
 	"flow-post-moderated-toggle-suppress-hide": "Скрыть после, подавленный {{GENDER:$1|участником|участницей}} $2",
 	"flow-topic-moderated-reason-prefix": "Причина:",
-	"flow-hide-post-content": "Этот после был скрыт {{GENDER:$1|участником|участницей}} $1 ([$2 история])",
+	"flow-hide-post-content": "Этот комментарий был скрыт {{GENDER:$1|участником|участницей}} $1 ([$2 история])",
 	"flow-hide-title-content": "Эта тема была скрыта {{GENDER:$1|участником|участницей}} $1",
 	"flow-hide-header-content": "Скрыто {{GENDER:$1|участником|участницей}} $2",
 	"flow-delete-post-content": "Этот после был удалён {{GENDER:$1|участником|участницей}} $1 ([$2 история])",
