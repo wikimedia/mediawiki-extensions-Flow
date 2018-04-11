@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31ed529a_caf2bed9",
+        "filename": "tests/phpunit/api/ApiTestCase.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 4699
+      },
+      "writtenOn": "2018-04-11T10:54:53Z",
+      "side": 1,
+      "message": "Shouldn’t the $tokenType be passed to the parent method here?",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 72
+      },
+      "revId": "d4aff5aaaa28b741d96d6fbf9ced1d24486d162b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
