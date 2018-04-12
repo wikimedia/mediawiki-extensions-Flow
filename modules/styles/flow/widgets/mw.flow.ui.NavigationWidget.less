@@ -11,6 +11,13 @@
 	position: relative;
 	border-bottom: 1px solid #c8ccd1;
 
+	.oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+		> .oo-ui-iconElement-icon,
+		> .oo-ui-indicatorElement-indicator {
+			font-size: 14px; // HACK: As `.flow-board-navigation` is setting `font-size` higher, we care only about icon/indicator representation
+		}
+	}
+
 	.flow-ui-tocWidget {
 		float: left;
 
