@@ -9,6 +9,7 @@ use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
+use RecentChange;
 
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.
@@ -91,7 +92,7 @@ class RecentChangesListener extends AbstractListener {
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_new' => 0,
-			'rc_patrolled' => $user->isAllowed( 'autopatrol' ) ? 2 : 0,
+			'rc_patrolled' => $user->isAllowed( 'autopatrol' ) ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
 			'rc_old_len' => $revision->getPreviousContentLength(),
 			'rc_new_len' => $revision->getContentLength(),
 			'rc_this_oldid' => 0,
