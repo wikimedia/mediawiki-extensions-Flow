@@ -180,6 +180,7 @@
 	"flow-notification-reply": "$1 {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$5 $2]</span> lapā \"$4\".",
 	"flow-notification-reply-bundle": "$1 un $5 {{PLURAL:$6|citi|cits|citi}} {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$4 $2]</span> lapā \"$3\".",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|atbildēja}} tēmā \"<strong>$4</strong>\".",
+	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Skatīt}} lapu",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|izveidoja}} jaunu tēmu lapā \"'''$3'''\".",
 	"flow-notification-link-text-view-post": "Skatīt ierakstu",
 	"flow-notification-link-text-view-topic": "Skatīt tēmu",
