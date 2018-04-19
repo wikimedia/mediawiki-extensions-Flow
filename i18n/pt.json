@@ -401,7 +401,7 @@
 	"flow-revision-permalink-warning-postsummary-first": "Esta é uma hiperligação permanente para a primeira versão do resumo desta mensagem.\nPode ver as versões posteriores na [$4 página de histórico da mensagem].",
 	"flow-revision-permalink-warning-header": "Esta é uma hiperligação permanente para uma versão da descrição. \nEsta versão é de $1. Pode ver as [$3 diferenças para a versão anterior], ou ver outras versões na [$2 página de histórico do espaço de discussão].",
 	"flow-revision-permalink-warning-header-first": "Esta é uma hiperligação permanente para a primeira versão da descrição.\nPode ver as versões posteriores na [$2 página de histórico do espaço de discussão].",
-	"flow-compare-revisions-revision-header": "Versão por {{GENDER:$2|$2}}, a $1",
+	"flow-compare-revisions-revision-header": "Versão de {{GENDER:$2|$2}}, $1",
 	"flow-compare-revisions-header-post": "Esta página mostra as {{GENDER:$3|alterações}} entre duas versões de uma mensagem de $3, no tópico \"[$5 $2]\" em [$4 $1]. Pode ver outras versões desta mensagem na [$6 página de histórico].",
 	"flow-compare-revisions-header-postsummary": "Esta página mostra as alterações entre duas versões do resumo do tópico \"[$4 $2]\" em [$3 $1]. \nPode ver outras versões deste resumo na [$5 página de histórico] do tópico.",
 	"flow-compare-revisions-header-header": "Esta página mostra as {{GENDER:$2|alterações}} entre duas versões da descrição em [$3 $1].\nPode ver outras versões da descrição na [$4 página de histórico].",
