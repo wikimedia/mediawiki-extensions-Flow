@@ -356,7 +356,7 @@
 	"right-flow-hide": "隱藏結構式討論話題與貼文",
 	"right-flow-lock": "標記結構式討論話題為已解決",
 	"right-flow-delete": "刪除結構式討論話題與貼文",
-	"right-flow-edit-post": "由其他使用者編輯結構式討論貼文",
+	"right-flow-edit-post": "編輯其他使用者的結構式討論貼文",
 	"right-flow-suppress": "監督隱藏結構式討論修訂",
 	"flow-terms-of-use-new-topic": "點選 \"{{int:flow-newtopic-save}}\"，代表您同意此 Wiki 的使用條款。",
 	"flow-terms-of-use-reply": "點選 \"{{int:flow-reply-link}}\"，代表您同意此 Wiki 的使用條款。",
