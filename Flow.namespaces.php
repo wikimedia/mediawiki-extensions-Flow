@@ -133,6 +133,11 @@ $namespaceNames['lb'] = [
 	NS_TOPIC => 'Thema',
 ];
 
+/** Lingua Franca Nova */
+$namespaceNames['lfn'] = [
+	NS_TOPIC => 'Tema',
+];
+
 /** Northern Luri */
 $namespaceNames['lrc'] = [
 	NS_TOPIC => 'گأپئسئن',
