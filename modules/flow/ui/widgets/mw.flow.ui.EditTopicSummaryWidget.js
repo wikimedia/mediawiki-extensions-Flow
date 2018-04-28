@@ -16,7 +16,7 @@
 		this.topicId = topicId;
 
 		// Parent constructor
-		mw.flow.ui.EditTopicSummaryWidget.parent.call( this, config );
+		mw.flow.ui.EditTopicSummaryWidget.super.call( this, config );
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: 'flow-topic-action-update-topic-summary',

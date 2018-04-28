@@ -20,7 +20,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.BoardDescriptionWidget.parent.call( this, config );
+		mw.flow.ui.BoardDescriptionWidget.super.call( this, config );
 
 		this.board = boardModel;
 		this.attachModel( this.board.getDescription() );
