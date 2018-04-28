@@ -17,7 +17,6 @@
 	 * @cfg {string} [defaultSort] The current default sort order for topic list
 	 */
 	mw.flow.dm.System = function mwFlowDmSystem( config ) {
-
 		config = config || {};
 
 		// Mixin constructor

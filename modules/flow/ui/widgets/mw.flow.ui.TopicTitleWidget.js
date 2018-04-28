@@ -11,8 +11,9 @@
 	 */
 	mw.flow.ui.TopicTitleWidget = function mwFlowUiTopicTitleWidget( topicId, config ) {
 		var widget = this;
-		config = config || {};
-		mw.flow.ui.TopicTitleWidget.parent.call( this, config );
+
+		// Parent constructor
+		mw.flow.ui.TopicTitleWidget.super.call( this, config );
 
 		this.topicId = topicId;
 		this.api = new mw.flow.dm.APIHandler(
@@ -133,12 +134,12 @@
 		// Auto-disable when pending
 		return ( this.input && this.input.isPending() ) ||
 			// Parent method
-			mw.flow.ui.TopicTitleWidget.parent.prototype.isDisabled.apply( this, arguments );
+			mw.flow.ui.TopicTitleWidget.super.prototype.isDisabled.apply( this, arguments );
 	};
 
-	mw.flow.ui.TopicTitleWidget.prototype.setDisabled = function ( disabled ) {
+	mw.flow.ui.TopicTitleWidget.prototype.setDisabled = function () {
 		// Parent method
-		mw.flow.ui.TopicTitleWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.flow.ui.TopicTitleWidget.super.prototype.setDisabled.apply( this, arguments );
 
 		if ( this.input && this.saveButton && this.cancelButton ) {
 			this.input.setDisabled( this.isDisabled() );

@@ -9,12 +9,9 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.dm.ModeratedRevisionedContent = function mwFlowRevisionedContent( config ) {
-		// Configuration initialization
-		config = config || {};
-
+	mw.flow.dm.ModeratedRevisionedContent = function mwFlowRevisionedContent() {
 		// Parent constructor
-		mw.flow.dm.ModeratedRevisionedContent.parent.call( this, config );
+		mw.flow.dm.ModeratedRevisionedContent.super.apply( this, arguments );
 	};
 
 	/* Inheritance */
@@ -45,7 +42,7 @@
 			moderationReason: this.getModerationReason(),
 			moderationState: this.getModerationState(),
 			moderator: this.getModerator()
-		}, mw.flow.dm.ModeratedRevisionedContent.parent.prototype.getHashObject.call( this ) );
+		}, mw.flow.dm.ModeratedRevisionedContent.super.prototype.getHashObject.apply( this, arguments ) );
 	};
 
 	/**
@@ -55,7 +52,7 @@
 		this.setModerated( !!data.isModerated, data.moderateState, data.moderateReason && data.moderateReason.content, data.moderator );
 
 		// Parent method
-		mw.flow.dm.ModeratedRevisionedContent.parent.prototype.populate.call( this, data );
+		mw.flow.dm.ModeratedRevisionedContent.super.prototype.populate.apply( this, arguments );
 	};
 
 	/**
