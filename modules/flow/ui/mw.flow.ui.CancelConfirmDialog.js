@@ -9,9 +9,9 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.ui.CancelConfirmDialog = function MwFlowUICancelConfirmDialog( config ) {
+	mw.flow.ui.CancelConfirmDialog = function MwFlowUICancelConfirmDialog() {
 		// Parent constructor
-		mw.flow.ui.CancelConfirmDialog.parent.call( this, config );
+		mw.flow.ui.CancelConfirmDialog.super.apply( this, arguments );
 	};
 
 	/* Inheritance */

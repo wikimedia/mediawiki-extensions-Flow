@@ -9,12 +9,9 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.dm.RevisionedContent = function mwFlowRevisionedContent( config ) {
-		// Configuration initialization
-		config = config || {};
-
+	mw.flow.dm.RevisionedContent = function mwFlowRevisionedContent() {
 		// Parent constructor
-		mw.flow.dm.RevisionedContent.parent.call( this, config );
+		mw.flow.dm.RevisionedContent.super.apply( this, arguments );
 
 		// Initialize properties
 		this.content = new mw.flow.dm.Content();
@@ -98,7 +95,7 @@
 			watched: this.isWatched(),
 			watchable: this.isWatchable(),
 			editable: this.isEditable()
-		}, mw.flow.dm.RevisionedContent.parent.prototype.getHashObject.call( this ) );
+		}, mw.flow.dm.RevisionedContent.super.prototype.getHashObject.apply( this, arguments ) );
 	};
 
 	/**
