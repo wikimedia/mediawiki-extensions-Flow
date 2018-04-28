@@ -12,8 +12,9 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.flow.ve.ui.MentionInspector = function FlowVeMentionInspector( config ) {
-		mw.flow.ve.ui.MentionInspector.parent.call( this, config );
+	mw.flow.ve.ui.MentionInspector = function FlowVeMentionInspector() {
+		// Parent constructor
+		mw.flow.ve.ui.MentionInspector.super.apply( this, arguments );
 
 		// this.selectedNode is the ve.dm.MWTransclusionNode, which we inherit
 		// from ve.ui.NodeInspector.
@@ -50,7 +51,7 @@
 			flags: [ 'destructive' ],
 			modes: 'edit'
 		}
-	].concat( mw.flow.ve.ui.MentionInspector.parent.static.actions );
+	].concat( mw.flow.ve.ui.MentionInspector.super.static.actions );
 
 	// Instance Methods
 
@@ -154,7 +155,8 @@
 	mw.flow.ve.ui.MentionInspector.prototype.initialize = function () {
 		var flowBoard, overlay, iconWidget;
 
-		mw.flow.ve.ui.MentionInspector.parent.prototype.initialize.call( this );
+		// Parent method
+		mw.flow.ve.ui.MentionInspector.super.prototype.initialize.apply( this, arguments );
 
 		// I would much prefer to use dependency injection to get the list of topic posters
 		// into the inspector, but I haven't been able to figure out how to pass it through
@@ -235,7 +237,8 @@
 			}, this );
 		}
 
-		return mw.flow.ve.ui.MentionInspector.parent.prototype.getActionProcess.call( this, action );
+		// Parent method
+		return mw.flow.ve.ui.MentionInspector.super.prototype.getActionProcess.apply( this, arguments );
 	};
 
 	// Technically, these are private.  However, it's necessary to override them (and not call
@@ -272,7 +275,8 @@
 	 * @return {OO.ui.Process}
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getSetupProcess = function ( data ) {
-		return mw.flow.ve.ui.MentionInspector.parent.prototype.getSetupProcess.call( this, data )
+		// Parent method
+		return mw.flow.ve.ui.MentionInspector.super.prototype.getSetupProcess.apply( this, arguments )
 			.next( function () {
 				var templateModel, promise, atFragment;
 
@@ -322,16 +326,17 @@
 			}, this );
 	};
 
-	mw.flow.ve.ui.MentionInspector.prototype.getReadyProcess = function ( data ) {
-		return mw.flow.ve.ui.MentionInspector.parent.prototype.getReadyProcess.call( this, data )
+	mw.flow.ve.ui.MentionInspector.prototype.getReadyProcess = function () {
+		// Parent method
+		return mw.flow.ve.ui.MentionInspector.super.prototype.getReadyProcess.apply( this, arguments )
 			.next( function () {
 				this.targetInput.focus();
 			}, this );
 	};
 
-	mw.flow.ve.ui.MentionInspector.prototype.getTeardownProcess = function ( data ) {
-		data = data || {};
-		return mw.flow.ve.ui.MentionInspector.parent.prototype.getTeardownProcess.call( this, data )
+	mw.flow.ve.ui.MentionInspector.prototype.getTeardownProcess = function () {
+		// Parent method
+		return mw.flow.ve.ui.MentionInspector.super.prototype.getTeardownProcess.apply( this, arguments )
 			.first( function () {
 				// Cleanup
 				this.$element.removeClass( 'flow-ve-ui-mentionInspector-ready' );
@@ -356,12 +361,11 @@
 	 * @return {ve.dm.Node|null} Selected node
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getSelectedNode = function () {
+		// Parent method
+		var node = mw.flow.ve.ui.MentionInspector.super.prototype.getSelectedNode.apply( this, arguments );
 		// Checks the model class
-		var node = mw.flow.ve.ui.MentionInspector.parent.prototype.getSelectedNode.call( this );
-		if ( node !== null ) {
-			if ( node.isSingleTemplate( mw.flow.ve.ui.MentionInspector.static.template ) ) {
-				return node;
-			}
+		if ( node && node.isSingleTemplate( mw.flow.ve.ui.MentionInspector.static.template ) ) {
+			return node;
 		}
 
 		return null;

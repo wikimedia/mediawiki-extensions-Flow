@@ -78,7 +78,7 @@
 
 		// Trigger this on FlowBoardAndHistoryComponentBase
 		// @todo use EventEmitter to do this?
-		$retObj = FlowBoardComponent.parent.prototype.reinitializeContainer.call( this, $container );
+		$retObj = FlowBoardComponent.super.prototype.reinitializeContainer.call( this, $container );
 		// Find any new (or previous) elements
 		$header = $container.find( '.flow-board-header' ).addBack().filter( '.flow-board-header:first' );
 		$boardNavigation = $container.find( '.flow-board-navigation' ).addBack().filter( '.flow-board-navigation:first' );

@@ -30,7 +30,8 @@
 	);
 
 	mw.flow.MessagePoster.prototype.post = function ( subject, body ) {
-		mw.flow.MessagePoster.parent.prototype.post.call( this, subject, body );
+		// Parent method
+		mw.flow.MessagePoster.super.prototype.post.apply( this, arguments );
 
 		return this.api.postWithToken( 'csrf', {
 			action: 'flow',

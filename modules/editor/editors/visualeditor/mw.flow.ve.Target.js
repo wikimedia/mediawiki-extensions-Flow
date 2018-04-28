@@ -12,7 +12,8 @@
 	 * @extends ve.init.mw.Target
 	 */
 	mw.flow.ve.Target = function FlowVeTarget() {
-		mw.flow.ve.Target.parent.call( this, {
+		// Parent constructor
+		mw.flow.ve.Target.super.call( this, {
 			toolbarConfig: { actions: true, position: 'bottom' }
 		} );
 
@@ -74,7 +75,8 @@
 	 * @inheritdoc
 	 */
 	mw.flow.ve.Target.prototype.getSurfaceConfig = function ( config ) {
-		return mw.flow.ve.Target.parent.prototype.getSurfaceConfig.call( this, ve.extendObject( {
+		// Parent method
+		return mw.flow.ve.Target.super.prototype.getSurfaceConfig.call( this, ve.extendObject( {
 			$overlayContainer: $( '#content' )
 		}, config ) );
 	};
@@ -138,7 +140,7 @@
 		var deferred;
 
 		// Parent method
-		mw.flow.ve.Target.parent.prototype.surfaceReady.apply( this, arguments );
+		mw.flow.ve.Target.super.prototype.surfaceReady.apply( this, arguments );
 
 		if ( this.switchingDeferred ) {
 			deferred = this.switchingDeferred;

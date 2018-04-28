@@ -14,10 +14,8 @@
 	mw.flow.ui.CategoryItemWidget = function mwFlowUiCategoryItemWidget( categoryModel, config ) {
 		var prefixedCleanName, $link;
 
-		config = config || {};
-
 		// Parent constructor
-		mw.flow.ui.CategoryItemWidget.parent.call( this, config );
+		mw.flow.ui.CategoryItemWidget.super.call( this, config );
 
 		this.model = categoryModel;
 		this.name = this.model.getId();

@@ -19,7 +19,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.EditorControlsWidget.parent.call( this, config );
+		mw.flow.ui.EditorControlsWidget.super.call( this, config );
 
 		this.termsLabel = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editorControlsWidget-termsLabel' ],
@@ -82,9 +82,9 @@
 		this.saveButton.setDisabled( this.isDisabled() || !this.saveable );
 	};
 
-	mw.flow.ui.EditorControlsWidget.prototype.setDisabled = function ( disabled ) {
+	mw.flow.ui.EditorControlsWidget.prototype.setDisabled = function () {
 		// Parent method
-		mw.flow.ui.EditorControlsWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.flow.ui.EditorControlsWidget.super.prototype.setDisabled.apply( this, arguments );
 
 		if ( this.cancelButton && this.saveButton ) {
 			this.cancelButton.setDisabled( this.isDisabled() );

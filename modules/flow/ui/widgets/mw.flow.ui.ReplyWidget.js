@@ -26,7 +26,7 @@
 		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
 
 		// Parent constructor
-		mw.flow.ui.ReplyWidget.parent.call( this, config );
+		mw.flow.ui.ReplyWidget.super.call( this, config );
 
 		this.api = new mw.flow.dm.APIHandler();
 

@@ -14,7 +14,8 @@
 	 *   without duplicates.
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget = function FlowVeUiMentionTargetInputWidget( config ) {
-		mw.flow.ve.ui.MentionTargetInputWidget.parent.call(
+		// Parent constructor
+		mw.flow.ve.ui.MentionTargetInputWidget.super.call(
 			this,
 			$.extend(
 				{ placeholder: mw.msg( 'flow-ve-mention-placeholder' ) },
