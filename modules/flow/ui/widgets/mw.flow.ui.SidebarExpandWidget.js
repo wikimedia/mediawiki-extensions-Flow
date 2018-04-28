@@ -15,7 +15,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.SidebarExpandWidget.parent.call( this, config );
+		mw.flow.ui.SidebarExpandWidget.super.apply( this, arguments );
 
 		this.expandedButtonTitle = config.expandedButtonTitle || mw.msg( 'flow-board-collapse-description' );
 		this.collapsedButtonTitle = config.collapsedButtonTitle || mw.msg( 'flow-board-expand-description' );

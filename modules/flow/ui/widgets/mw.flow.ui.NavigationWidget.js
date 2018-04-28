@@ -14,7 +14,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.NavigationWidget.parent.call( this, config );
+		mw.flow.ui.NavigationWidget.super.call( this, config );
 
 		this.board = system.getBoard();
 

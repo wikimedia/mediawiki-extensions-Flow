@@ -8,7 +8,8 @@
 	 * @constructor
 	 */
 	mw.flow.ve.UserCache = function FlowVeUserCache() {
-		mw.flow.ve.UserCache.parent.call( this );
+		// Parent constructor
+		mw.flow.ve.UserCache.super.apply( this, arguments );
 	};
 
 	/* Inheritance */

@@ -15,7 +15,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.dm.Topic.parent.call( this, config );
+		mw.flow.dm.Topic.super.call( this, config );
 
 		// Mixin constructor
 		mw.flow.dm.List.call( this );
@@ -101,7 +101,7 @@
 				summary: this.getSummary()
 			},
 			// Parent
-			mw.flow.dm.Topic.parent.prototype.getHashObject.call( this )
+			mw.flow.dm.Topic.super.prototype.getHashObject.apply( this, arguments )
 		);
 	};
 
@@ -117,7 +117,7 @@
 		this.replyIds = data.replies || [];
 
 		// Parent method
-		mw.flow.dm.Topic.parent.prototype.populate.call( this, data );
+		mw.flow.dm.Topic.super.prototype.populate.apply( this, arguments );
 
 		if ( data.replies !== undefined ) {
 			this.unStub();

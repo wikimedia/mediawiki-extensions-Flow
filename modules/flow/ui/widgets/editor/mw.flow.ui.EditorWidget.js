@@ -27,7 +27,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.EditorWidget.parent.call( this, config );
+		mw.flow.ui.EditorWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.PendingElement.call( this, config );
@@ -592,12 +592,12 @@
 		return this.isPending() ||
 			!this.isSaveable() ||
 			// Parent method
-			mw.flow.ui.EditorWidget.parent.prototype.isDisabled.apply( this, arguments );
+			mw.flow.ui.EditorWidget.super.prototype.isDisabled.apply( this, arguments );
 	};
 
-	mw.flow.ui.EditorWidget.prototype.setDisabled = function ( disabled ) {
+	mw.flow.ui.EditorWidget.prototype.setDisabled = function () {
 		// Parent method
-		mw.flow.ui.EditorWidget.parent.prototype.setDisabled.call( this, disabled );
+		mw.flow.ui.EditorWidget.super.prototype.setDisabled.apply( this, arguments );
 
 		if ( this.editorControlsWidget ) {
 			this.editorControlsWidget.setDisabled( this.isDisabled() );

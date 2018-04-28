@@ -14,7 +14,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.ToCWidget.parent.call( this, config );
+		mw.flow.ui.ToCWidget.super.call( this, config );
 
 		this.system = system;
 		this.board = this.system.getBoard();
