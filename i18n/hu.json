@@ -44,7 +44,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] a(z) [[$3]] lapon importálva lett LiquidThreadsből strukturált beszélgetésbe",
 	"abusefilter-edit-builder-vars-board-articleid": "Strukturált beszélgetőoldal lapazonosítója (ID-je)",
 	"abusefilter-edit-builder-vars-board-namespace": "strukturált beszélgetőoldal névtere",
-	"abusefilter-edit-builder-vars-board-text": "Strukturált beszélgetőoldal címe",
+	"abusefilter-edit-builder-vars-board-text": "Strukturált beszélgetőoldal címe (névtér nélkül)",
 	"abusefilter-edit-builder-vars-board-prefixedtext": "strukturált beszélgetőoldal teljes címe",
 	"flow-user-moderated": "Moderált felhasználó",
 	"flow-board-header-browse-topics-link": "Témák böngészése",
