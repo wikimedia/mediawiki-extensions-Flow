@@ -26,7 +26,7 @@
 		shouldDisplay = isProbablyEditable && mw.user.isAnon();
 
 		// Parent constructor
-		mw.flow.ui.AnonWarningWidget.parent.call( this, config );
+		mw.flow.ui.AnonWarningWidget.super.call( this, config );
 
 		this.icon = new OO.ui.IconWidget( { icon: 'userAnonymous' } );
 		this.label = new OO.ui.LabelWidget();

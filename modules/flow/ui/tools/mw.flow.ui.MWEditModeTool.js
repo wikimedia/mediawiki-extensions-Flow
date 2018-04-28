@@ -41,7 +41,7 @@ mw.flow.ui.MWEditModeTool.prototype.isModeAvailable = function () {
  */
 mw.flow.ui.MWEditModeSourceTool = function MwFlowUiMWEditModeSourceTool() {
 	// Parent constructor
-	mw.flow.ui.MWEditModeSourceTool.parent.apply( this, arguments );
+	mw.flow.ui.MWEditModeSourceTool.super.apply( this, arguments );
 };
 
 OO.inheritClass( mw.flow.ui.MWEditModeSourceTool, mw.libs.ve.MWEditModeSourceTool );
@@ -65,7 +65,7 @@ ve.ui.toolFactory.register( mw.flow.ui.MWEditModeSourceTool );
  */
 mw.flow.ui.MWEditModeVisualTool = function MwFlowUiMWEditModeVisualTool() {
 	// Parent constructor
-	mw.flow.ui.MWEditModeVisualTool.parent.apply( this, arguments );
+	mw.flow.ui.MWEditModeVisualTool.super.apply( this, arguments );
 };
 
 OO.inheritClass( mw.flow.ui.MWEditModeVisualTool, mw.libs.ve.MWEditModeVisualTool );
