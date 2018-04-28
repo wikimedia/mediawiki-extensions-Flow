@@ -32,13 +32,13 @@
 		 */
 		function _RecursiveConstructor() {
 			var constructors = [],
-				parent = this.constructor.parent,
+				parent = this.constructor.super,
 				i, j, parentReturn;
 
 			// Find each parent class
 			while ( parent ) {
 				constructors.push( parent );
-				parent = parent.parent;
+				parent = parent.super;
 			}
 
 			// Call each parent in reverse (starting with the base class and moving up the chain)

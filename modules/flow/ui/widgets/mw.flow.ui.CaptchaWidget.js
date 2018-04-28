@@ -10,7 +10,8 @@
 	 * @param {Object} [config]
 	 */
 	mw.flow.ui.CaptchaWidget = function mwFlowUiCaptchaWidget( model, config ) {
-		mw.flow.ui.CaptchaWidget.parent.call( this, config );
+		// Parent constructor
+		mw.flow.ui.CaptchaWidget.super.call( this, config );
 
 		this.toggle( false );
 

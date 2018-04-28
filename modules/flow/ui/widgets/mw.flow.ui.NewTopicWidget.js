@@ -18,7 +18,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.NewTopicWidget.parent.call( this, config );
+		mw.flow.ui.NewTopicWidget.super.call( this, config );
 
 		this.isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' );
 

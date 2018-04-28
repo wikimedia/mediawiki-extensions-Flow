@@ -14,7 +14,7 @@
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
-		var parent = this.constructor.parent;
+		var parent = this.constructor.super;
 
 		// Run progressive enhancements if any are needed by this container
 		mw.flow.TemplateEngine.processProgressiveEnhancement( $container );
@@ -40,7 +40,7 @@
 		// Keep this in the registry to find it by other means
 		while ( parent ) {
 			parent._instanceRegistryById[ this.id ] = parent._instanceRegistry.push( this ) - 1;
-			parent = parent.parent; // and add it to every instance registry
+			parent = parent.super; // and add it to every instance registry
 		}
 		_totalInstanceCount++;
 	}
@@ -122,7 +122,7 @@
 	 */
 	FlowComponent.prototype.getInstances = function () {
 		// Use the correct context (instance vs prototype)
-		return ( this.constructor.parent || this )._instanceRegistry;
+		return ( this.constructor.super || this )._instanceRegistry;
 	};
 
 	/**
@@ -132,7 +132,7 @@
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
 		var $container = $el.closest( '.flow-component' ),
-			context = this.constructor.parent || this, // Use the correct context (instance vs prototype)
+			context = this.constructor.super || this, // Use the correct context (instance vs prototype)
 			id;
 
 		// This element isn't _within_ any actual component; was it spawned _by_ a component?

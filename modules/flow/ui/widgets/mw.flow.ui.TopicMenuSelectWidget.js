@@ -14,7 +14,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.flow.ui.TopicMenuSelectWidget.parent.call( this, config );
+		mw.flow.ui.TopicMenuSelectWidget.super.call( this, config );
 
 		// Properties
 		this.system = system;
@@ -201,7 +201,7 @@
 	 * @param {OO.ui.OptionWidget[]} items Items to add
 	 * @param {number} [index] Index to insert items after
 	 */
-	mw.flow.ui.TopicMenuSelectWidget.prototype.addItems = function ( items, index ) {
+	mw.flow.ui.TopicMenuSelectWidget.prototype.addItems = function ( items ) {
 		var i, len;
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
@@ -210,8 +210,8 @@
 			}
 		}
 
-		// Parent call
-		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.addItems.call( this, items, index );
+		// Parent method
+		mw.flow.ui.TopicMenuSelectWidget.super.prototype.addItems.apply( this, arguments );
 	};
 
 	/**
@@ -228,8 +228,8 @@
 			}
 		}
 
-		// Parent call
-		mw.flow.ui.TopicMenuSelectWidget.parent.prototype.removeItems.call( this, items );
+		// Parent method
+		mw.flow.ui.TopicMenuSelectWidget.super.prototype.removeItems.apply( this, arguments );
 	};
 
 }() );

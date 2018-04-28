@@ -20,7 +20,8 @@
 		this.postId = postId;
 
 		// Parent constructor
-		mw.flow.ui.EditPostWidget.parent.call( this, config );
+		mw.flow.ui.EditPostWidget.super.call( this, config );
+
 		if ( mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ) {
 			msgKey = mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously-publish' : 'flow-post-action-edit-post-submit-publish';
 		} else {

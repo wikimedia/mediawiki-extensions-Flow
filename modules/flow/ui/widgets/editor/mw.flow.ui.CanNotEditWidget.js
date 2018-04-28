@@ -39,7 +39,7 @@
 		this.label = new OO.ui.LabelWidget();
 
 		// Parent constructor
-		mw.flow.ui.CanNotEditWidget.parent.call( this, config );
+		mw.flow.ui.CanNotEditWidget.super.call( this, config );
 
 		// Initialize
 		this.$element
