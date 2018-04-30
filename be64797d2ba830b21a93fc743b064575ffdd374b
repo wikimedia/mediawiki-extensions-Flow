@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f6af8dd_d3806e33",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.UserCache.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-04-30T18:31:02Z",
+      "side": 1,
+      "message": "I don\u0027t know if we\u0027re doing this everywhere always, or whether it was considered on this case in particular. But if \"everywhere\", we might want to reconsider, because it can certainly cause bugs in specific scenarios.\n\nBasically, if one or more parameters is passed-through, they should probably all pass through, and this pattern is great.\n\nWhen, no parameters are passed-through (like here), it seems like technical debt waiting to one-day cause a bug.\n\nIt currently documents no parameters, so any parameters passed would be passed in error. Later, if this class gets a first parameter for local use, it may still be passed to the parent in error.",
+      "range": {
+        "startLine": 12,
+        "startChar": 23,
+        "endLine": 12,
+        "endChar": 53
+      },
+      "revId": "be64797d2ba830b21a93fc743b064575ffdd374b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
