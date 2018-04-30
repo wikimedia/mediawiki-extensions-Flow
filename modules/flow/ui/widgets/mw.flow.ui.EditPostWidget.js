@@ -12,6 +12,8 @@
 	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditPostWidget = function mwFlowUiEditPostWidget( topicId, postId, config ) {
+		var msgKey;
+
 		config = config || {};
 
 		this.topicId = topicId;
@@ -19,9 +21,16 @@
 
 		// Parent constructor
 		mw.flow.ui.EditPostWidget.parent.call( this, config );
+		if ( mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ) {
+			msgKey = mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously-publish' : 'flow-post-action-edit-post-submit-publish';
+		} else {
+			msgKey = mw.user.isAnon() ?
+				'flow-post-action-edit-post-submit-anonymously' :
+				'flow-post-action-edit-post-submit';
+		}
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
-			saveMsgKey: mw.user.isAnon() ? 'flow-post-action-edit-post-submit-anonymously' : 'flow-post-action-edit-post-submit',
+			saveMsgKey: msgKey,
 			classes: [ 'flow-ui-editPostWidget-editor' ]
 		}, config.editor ) );
 		this.editor.toggle( true );
