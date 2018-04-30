@@ -29,6 +29,7 @@
 	"flow-topic-action-lock-topic": "Merk som løyst",
 	"flow-topic-action-summarize-topic": "Lag samandrag",
 	"flow-topic-action-resummarize-topic": "Endra samandraget av emnet",
+	"flow-rev-message-hid-post": "$1 {{GENDER:$2|løynde}} eit [$4 innlegg] på «$6» (<em>$5</em>)",
 	"flow-history-last4": "Siste 4 timane",
 	"flow-history-week": "Siste veka",
 	"flow-last-modified": "Sist endra kring $1",
