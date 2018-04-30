@@ -70,6 +70,12 @@
 
 	// Methods
 
+	mw.flow.ve.Target.prototype.getSurfaceConfig = function ( config ) {
+		return mw.flow.ve.Target.parent.prototype.getSurfaceConfig.call( this, ve.extendObject( {
+			$overlayContainer: $( '#content' )
+		}, config ) );
+	};
+
 	/**
 	 * Load content into the editor
 	 * @param {string} content HTML or wikitext
