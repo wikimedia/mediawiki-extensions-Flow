@@ -616,8 +616,6 @@
 				"mediawiki.editfont.styles",
 				"oojs-ui.styles.icons-editing-advanced",
 				"ext.flow.visualEditor.icons",
-				"site",
-				"user",
 				"mediawiki.api",
 				"mediawiki.util"
 			],

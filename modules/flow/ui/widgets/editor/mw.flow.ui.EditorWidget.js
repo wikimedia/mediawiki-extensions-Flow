@@ -173,13 +173,22 @@
 	 * @return {jQuery.Promise} Promise that resolves when the VisualEditor modules have been loaded
 	 */
 	mw.flow.ui.EditorWidget.static.preload = function () {
-		var modules;
+		var conf, modules;
 		if ( !this.preloadPromise ) {
 			if ( this.isVisualEditorSupported() ) {
+				conf = mw.config.get( 'wgVisualEditorConfig' );
 				modules = [ 'ext.flow.visualEditor' ].concat(
-					mw.config.get( 'wgVisualEditorConfig' ).pluginModules.filter( mw.loader.getState )
+					conf.pluginModules.filter( mw.loader.getState )
 				);
-				this.preloadPromise = mw.loader.using( modules );
+				this.preloadPromise = 
+					mw.loader.using( conf.preloadModules )
+					// If these fail, we still want to continue loading, so convert failure to success
+					.catch( function () {
+						return $.Deferred().resolve();
+					} )
+					.then( function () {
+						return mw.loader.using( modules );
+					} );
 			} else {
 				this.preloadPromise = $.Deferred().resolve().promise();
 			}
