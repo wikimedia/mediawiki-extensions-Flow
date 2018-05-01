@@ -33,6 +33,7 @@
 	"flow-history-last4": "Siste 4 timane",
 	"flow-history-week": "Siste veka",
 	"flow-last-modified": "Sist endra kring $1",
+	"notification-header-flow-new-topic-v2": "Nytt emne oppretta på <strong>$3</strong>: <bdi>«<strong>$4</strong>»</bdi>.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|nemnde}} {{GENDER:$4|deg}} på «<strong>$5</strong>».",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$2|nevnte}} {{GENDER:$4|deg}} i ei skildring av <strong>$3</strong>.",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|nemnde}} {{GENDER:$4|deg}} i «<strong>$5</strong>».",
