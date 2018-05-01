@@ -228,56 +228,6 @@ Does not support IE7 nor IE8.
 	}
 }
 
-/*
-== MediaWiki UI Radio and Checkbox ==
-
-=== Guidelines ===
-
-=== Notes ===
-Does not support IE7 nor IE8.
- */
-.mw-ui-fieldtag-input:not( .ie8WillIgnoreThis ) {
-	cursor: pointer;
-
-	.mw-ui-radio:before,
-	.mw-ui-checkbox:before {
-		display: inline-block;
-		vertical-align: text-bottom;
-		font-family: 'Glyphicons Halflings';
-		-webkit-font-smoothing: antialiased;
-		color: @colorTextLight;
-		font-size: inherit;
-		line-height: inherit;
-	}
-
-	input[ type='radio' ],
-	input[ type='checkbox' ] {
-		display: none;
-	}
-
-	input[ type='radio' ] {
-		+ .mw-ui-radio:before {
-			//.glyphicon-dashboard
-			content: '\e141';
-		}
-		&:checked + .mw-ui-radio:before {
-			//.glyphicon-record
-			text-shadow: none;
-			content: '\e165';
-		}
-	}
-	input[ type='checkbox' ] {
-		+ .mw-ui-checkbox:before {
-			//.glyphicon-unchecked
-			content: '\e157';
-		}
-		&:checked + .mw-ui-checkbox:before {
-			//.glyphicon-check
-			content: '\e067';
-		}
-	}
-}
-
 input.mw-ui-input-large {
 	padding-left: 0.75em;
 }
