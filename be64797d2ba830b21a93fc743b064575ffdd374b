@@ -22,6 +22,30 @@
       "revId": "be64797d2ba830b21a93fc743b064575ffdd374b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56151e01_3dfd53d6",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.UserCache.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2018-05-02T20:28:59Z",
+      "side": 1,
+      "message": "Conversely if I add an argument to the parent, such as config, and I have a factory which I modify to always pass \u0027config\u0027 to Cache classes, then this will prevent a bug.",
+      "parentUuid": "4f6af8dd_d3806e33",
+      "range": {
+        "startLine": 12,
+        "startChar": 23,
+        "endLine": 12,
+        "endChar": 53
+      },
+      "revId": "be64797d2ba830b21a93fc743b064575ffdd374b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
