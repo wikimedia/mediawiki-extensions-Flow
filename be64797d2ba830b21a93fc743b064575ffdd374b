@@ -46,6 +46,30 @@
       "revId": "be64797d2ba830b21a93fc743b064575ffdd374b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36ede2c1_c459bef7",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.UserCache.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-05-02T20:51:02Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s a fair point. I think it comes down to:\n\nAutomatically perform use of X vs Automatically block Y.\n\nWhere each is mutually exclusive.\n\nMy thinking was that  setting up the automation seemed premature.\n\nOf course, anyone can make mistakes, e.g. renaming a private property without updating the references. That can always happen, but my belief is that it\u0027s more likely that one remembers to update the class X\u0027s constructor when adding a parameter to that same constructor, compared to remembering to update subclass(es) when making a commit that only changes the parent to have an extra parameter.",
+      "parentUuid": "56151e01_3dfd53d6",
+      "range": {
+        "startLine": 12,
+        "startChar": 23,
+        "endLine": 12,
+        "endChar": 53
+      },
+      "revId": "be64797d2ba830b21a93fc743b064575ffdd374b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
