@@ -24,7 +24,8 @@
 			"Quiddity",
 			"Macofe",
 			"Sethakill",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Stojex"
 		]
 	},
 	"enablestructureddiscussions": "Włącz Flow",
@@ -130,6 +131,8 @@
 	"flow-post-action-edit-post": "Edytuj",
 	"flow-post-action-edit-post-submit": "Zapisz zmiany",
 	"flow-post-action-edit-post-submit-anonymously": "Zapisz zmiany (anonimowo)",
+	"flow-post-action-edit-post-submit-publish": "Opublikuj zmiany",
+	"flow-post-action-edit-post-submit-anonymously-publish": "Zapisz zmiany anonimowo",
 	"flow-post-action-unsuppress-post": "Odkryj (oversight)",
 	"flow-post-action-undelete-post": "Odtwórz",
 	"flow-post-action-unhide-post": "Nie ukrywaj",
@@ -231,6 +234,8 @@
 	"flow-edit-header-placeholder": "Opisz tę stronę dyskusji",
 	"flow-edit-header-submit": "Zapisz opis",
 	"flow-edit-header-submit-anonymously": "Zapisz opis (anonimowo)",
+	"flow-edit-header-submit-publish": "Opublikuj opis",
+	"flow-edit-header-submit-anonymously-publish": "Opublikuj opis anonimowo",
 	"flow-edit-title-submit": "Zmień tytuł",
 	"flow-edit-title-submit-anonymously": "Zmień tytuł anonimowo",
 	"flow-edit-post-submit": "Zapisz zmiany",
