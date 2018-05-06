@@ -136,7 +136,7 @@
 	"flow-post-action-edit-post": "Used as text for the link which is used to edit the post.\n{{Related|Flow-action}}\n{{Identical|Edit}}",
 	"flow-post-action-edit-post-submit": "Used as text for a button to submit an 'edit post' form on private wikis.",
 	"flow-post-action-edit-post-submit-anonymously": "Used as text for a button to submit an 'edit post' form when submitting as an anonymous user on private wikis.",
-	"flow-post-action-edit-post-submit-publish": "Used as text for a button to submit an 'edit post' form on public wikis.",
+	"flow-post-action-edit-post-submit-publish": "Used as text for a button to submit an 'edit post' form on public wikis.\n{{Identical|Publish changes}}",
 	"flow-post-action-edit-post-submit-anonymously-publish": "Used as text for a button to submit an 'edit post' form when submitting as an anonymous user on public wikis.",
 	"flow-post-action-unsuppress-post": "Used as a link in a dropdown menu to unsuppress a post.\n{{Related|Flow-action}}\n{{Identical|Unsuppress}}",
 	"flow-post-action-undelete-post": "Used as a link in a dropdown menu to undelete a post.\n{{Related|Flow-action}}\n{{Identical|Undelete}}",

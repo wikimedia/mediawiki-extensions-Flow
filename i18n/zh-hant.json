@@ -104,6 +104,7 @@
 	"flow-post-action-edit-post": "編輯",
 	"flow-post-action-edit-post-submit": "儲存變更",
 	"flow-post-action-edit-post-submit-anonymously": "匿名使用者儲存變更",
+	"flow-post-action-edit-post-submit-publish": "發布變更",
 	"flow-post-action-unsuppress-post": "解除封鎖",
 	"flow-post-action-undelete-post": "取消刪除",
 	"flow-post-action-unhide-post": "取消隱藏",
