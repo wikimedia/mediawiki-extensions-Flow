@@ -190,6 +190,8 @@
 	"flow-edit-header-placeholder": "Descriviu aquest tauler de discussió",
 	"flow-edit-header-submit": "Desa la descripció",
 	"flow-edit-header-submit-anonymously": "Desa la descripció de forma anònima",
+	"flow-edit-header-submit-publish": "Publica la descripció",
+	"flow-edit-header-submit-anonymously-publish": "Publica la descripció anònimament",
 	"flow-edit-title-submit": "Canvia el títol",
 	"flow-edit-title-submit-anonymously": "Canviar el títol de forma anònima",
 	"flow-edit-post-submit": "Publica els canvis",
