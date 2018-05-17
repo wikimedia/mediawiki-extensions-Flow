@@ -42,6 +42,7 @@
 
 	mw.flow.ve.Target.static.toolbarGroups = [
 		{
+			name: 'style',
 			type: 'list',
 			icon: 'textStyle',
 			title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
@@ -49,9 +50,15 @@
 			forceExpand: [ 'bold', 'italic' ]
 		},
 
-		{ include: [ 'link' ] },
+		{
+			name: 'link',
+			include: [ 'link' ]
+		},
 
-		{ include: [ 'flowMention' ] }
+		{
+			name: 'flowMention',
+			include: [ 'flowMention' ]
+		}
 	];
 
 	// Allow pasting links
@@ -62,6 +69,7 @@
 	);
 
 	mw.flow.ve.Target.static.actionGroups = [ {
+		name: 'editMode',
 		type: 'list',
 		icon: 'edit',
 		title: mw.msg( 'visualeditor-mweditmode-tooltip' ),
