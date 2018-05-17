@@ -12,6 +12,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\RevisionActionPermissions;
 use Flow\Search\Iterators\AbstractIterator;
@@ -124,9 +125,12 @@ class Exporter extends WikiExporter {
 	 * @param string[]|null $pages Array of DB-prefixed page titles
 	 * @param int|null $startId page_id to start from (inclusive)
 	 * @param int|null $endId page_id to end (exclusive)
+	 * @param int|null $workflowStartId workflow_id, b36-encoded, to start from (inclusive)
+	 * @param int|null $workflowEndId wokflow_id, b36-encoded, to end (exclusive)
 	 * @return BatchRowIterator
 	 */
-	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null ) {
+	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null,
+		$workflowStartId = null, $workflowEndId = null ) {
 		/** @var IDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
@@ -157,6 +161,16 @@ class Exporter extends WikiExporter {
 			$iterator->addConditions( [ 'workflow_page_id < ' . $dbr->addQuotes( $endId ) ] );
 		}
 
+		if ( $workflowStartId ) {
+			$tempUUID = UUID::create( $workflowStartId );
+			$decodedId = $tempUUID->getBinary();
+			$iterator->addConditions( [ 'workflow_id >= ' . $dbr->addQuotes( $decodedId ) ] );
+		}
+		if ( $workflowEndId ) {
+			$tempUUID = UUID::create( $workflowEndId );
+			$decodedId = $tempUUID->getBinary();
+			$iterator->addConditions( [ 'workflow_id < ' . $dbr->addQuotes( $decodedId ) ] );
+		}
 		return $iterator;
 	}
 
