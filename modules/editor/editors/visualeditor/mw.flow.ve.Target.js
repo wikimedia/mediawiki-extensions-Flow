@@ -93,9 +93,6 @@
 		this.documentReady( doc );
 	};
 
-	// These tools aren't available so don't bother generating them
-	mw.flow.ve.Target.prototype.generateCitationFeatures = function () {};
-
 	mw.flow.ve.Target.prototype.attachToolbar = function () {
 		this.$element.after( this.getToolbar().$element );
 	};
