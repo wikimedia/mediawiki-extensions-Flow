@@ -510,5 +510,6 @@
 	"flow-guidedtour-optin-find-old-conversations": "Pronađi {{GENDER:$1|svoje}} ranije razgovore",
 	"flow-guidedtour-optin-find-old-conversations-description": "Raniji razgovori premješteni su u arhivu.",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|Dajte}} nam povratne informacije!",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Možete}} dobiti više informacija, pružiti povratne informacije ili isključiti novi sistem u bilo kojem trenutku koristeći odjeljak za Beta mogućnosti u postavkama."
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Možete}} dobiti više informacija, pružiti povratne informacije ili isključiti novi sistem u bilo kojem trenutku koristeći odjeljak za Beta mogućnosti u postavkama.",
+	"flow-preference-visualeditor": "Uključi vizualni uređivač i novi režim uređivanja wikiteksta u Strukturiranim raspravama"
 }
