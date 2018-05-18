@@ -78,10 +78,9 @@
 
 	// Methods
 
-	mw.flow.ve.Target.prototype.getSurfaceConfig = function ( config ) {
-		return mw.flow.ve.Target.parent.prototype.getSurfaceConfig.call( this, ve.extendObject( {
-			$overlayContainer: $( '#content' )
-		}, config ) );
+	mw.flow.ve.Target.prototype.addSurface = function ( dmDoc, config ) {
+		config = ve.extendObject( { $overlayContainer: $( '#content' ) }, config )
+		return mw.flow.ve.Target.parent.prototype.addSurface.call( this, dmDoc, config );
 	};
 
 	/**
