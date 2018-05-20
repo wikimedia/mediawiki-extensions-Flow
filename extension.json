@@ -22,7 +22,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.32.0"
 	},
 	"callback": "FlowHooks::registerExtension",
 	"APIModules": {
@@ -538,7 +538,6 @@
 				"oojs-ui.styles.icons-editing-advanced",
 				"oojs-ui.styles.icons-user",
 				"mediawiki.api",
-				"mediawiki.api.options",
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.util",
@@ -578,7 +577,6 @@
 				"ext.flow.jquery.conditionalScroll",
 				"ext.flow.ui",
 				"mediawiki.api",
-				"mediawiki.api.options",
 				"mediawiki.user",
 				"mediawiki.util"
 			],
