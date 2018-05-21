@@ -3,7 +3,8 @@
 		"authors": [
 			"Bowleerin",
 			"Cwlin0416",
-			"EagerLin"
+			"EagerLin",
+			"Kly"
 		]
 	},
 	"apihelp-flow-description": "允許對 Flow 頁面執行操作。",
@@ -14,17 +15,20 @@
 	"apihelp-flow+close-open-topic-param-moderationState": "話題要設定的狀態，可為 \"lock\" 或 \"unlock\"。",
 	"apihelp-flow+close-open-topic-param-reason": "鎖定或解除鎖定話題的原因。",
 	"apihelp-flow+edit-header-description": "編輯討論板的描述。",
+	"apihelp-flow+edit-header-summary": "編輯討論板的描述。",
 	"apihelp-flow+edit-header-param-prev_revision": "目前描述修訂的修訂 ID，以用來檢查編輯衝突。",
 	"apihelp-flow+edit-header-param-content": "內容描述。",
 	"apihelp-flow+edit-header-param-format": "描述格式 (wikitext|html)。",
 	"apihelp-flow+edit-header-example-1": "編輯 [[Talk:Sandbox]] 的描述",
 	"apihelp-flow+edit-post-description": "編輯一篇貼文的內容。",
+	"apihelp-flow+edit-post-summary": "編輯一篇貼文的內容。",
 	"apihelp-flow+edit-post-param-postId": "貼文 ID。",
 	"apihelp-flow+edit-post-param-prev_revision": "目前貼文修訂的修訂 ID，以用來檢查編輯衝突。",
 	"apihelp-flow+edit-post-param-content": "貼文的內容。",
 	"apihelp-flow+edit-post-param-format": "貼文內容格式 (wikitext|html)",
 	"apihelp-flow+edit-post-example-1": "編輯於 [[Topic:S2tycnas4hcucw8w]] 的貼文",
 	"apihelp-flow+edit-title-description": "編輯話題的標題。",
+	"apihelp-flow+edit-title-summary": "編輯話題的標題。",
 	"apihelp-flow+edit-title-param-prev_revision": "目前標題修訂的版本ID，以檢查編輯衝突。",
 	"apihelp-flow+edit-title-param-content": "標題內容",
 	"apihelp-flow+edit-title-example-1": "編輯於[[Topic:S2tycnas4hcucw8w]]的標題",
@@ -46,5 +50,19 @@
 	"apihelp-flow+reply-param-content": "新貼文的內容。",
 	"apihelp-flow+reply-example-1": "於 [[Topic:S2tycnas4hcucw8w]] 回覆一篇貼文",
 	"apihelp-flow+view-header-description": "檢視討論板的描述。",
-	"apihelp-flow+view-post-description": "檢視一篇貼文。"
+	"apihelp-flow+view-post-description": "檢視一篇貼文。",
+	"apihelp-flow+view-post-summary": "檢視一篇貼文。",
+	"apihelp-flow+view-topic-description": "檢視話題。",
+	"apihelp-flow+view-topic-summary": "檢視話題。",
+	"apihelp-flow+view-topic-summary-description": "檢視話題摘要。",
+	"apihelp-flow+view-topic-summary-summary": "檢視話題摘要。",
+	"apihelp-flow+view-topiclist-description": "檢視話題清單。",
+	"apihelp-flow+view-topiclist-summary": "檢視話題清單。",
+	"apihelp-flow-parsoid-utils-param-content": "要轉換的內容。",
+	"apihelp-flow+undo-edit-header-param-startId": "要開始撤銷的修訂 ID。",
+	"apihelp-flow+undo-edit-header-param-endId": "要開始撤銷的修訂 ID。",
+	"apihelp-flow+undo-edit-post-param-startId": "要開始撤銷的修訂 ID。",
+	"apihelp-flow+undo-edit-post-param-endId": "要結束撤銷的修訂 ID。",
+	"apihelp-flow+undo-edit-topic-summary-param-startId": "要開始撤銷的修訂 ID。",
+	"apihelp-flow+undo-edit-topic-summary-param-endId": "要結束撤銷的修訂 ID。"
 }
