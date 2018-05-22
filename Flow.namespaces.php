@@ -118,6 +118,11 @@ $namespaceNames['id'] = [
 	NS_TOPIC => 'Topik',
 ];
 
+/** Ingush */
+$namespaceNames['inh'] = [
+	NS_TOPIC => 'Тема',
+];
+
 /** Italian */
 $namespaceNames['it'] = [
 	NS_TOPIC => 'Argomento',
