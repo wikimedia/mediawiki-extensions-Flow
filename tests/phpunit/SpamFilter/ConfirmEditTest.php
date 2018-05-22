@@ -7,6 +7,7 @@ use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
 use Title;
 use User;
+use GlobalVarConfig;
 
 class ConfirmEditTest extends \MediaWikiTestCase {
 
@@ -34,6 +35,11 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 		$context->expects( $this->any() )
 			->method( 'getUser' )
 			->will( $this->returnValue( $user ) );
+
+		// ConfirmEdit::filter() requires a Config that has most MW globals
+		$context->expects( $this->any() )
+			->method( 'getConfig' )
+			->willReturn( new GlobalVarConfig );
 
 		$context->expects( $this->any() )
 			->method( 'getRequest' )
