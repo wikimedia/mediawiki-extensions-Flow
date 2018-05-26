@@ -332,7 +332,7 @@ class UrlGenerator {
 	 * @param AbstractRevision $revision
 	 * @param Title|null $title
 	 * @param UUID $workflowId
-	 * @param UUID $oldRevId
+	 * @param UUID|null $oldRevId
 	 * @return Anchor
 	 * @throws FlowException When $revision is not PostRevision, Header or PostSummary
 	 */

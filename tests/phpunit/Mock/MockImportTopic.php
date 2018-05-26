@@ -13,7 +13,7 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	protected $summary;
 
 	/**
-	 * @param IImportSummary $summary
+	 * @param IImportSummary|null $summary
 	 * @param IObjectRevision[] $revisions
 	 * @param IImportPost[] $replies
 	 */

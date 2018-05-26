@@ -36,7 +36,7 @@ class ArchiveNameHelper {
 	/**
 	 * @param Title $source
 	 * @param array $formats
-	 * @param TitleRepository $titleRepo
+	 * @param TitleRepository|null $titleRepo
 	 * @return bool|mixed
 	 */
 	public function findLatestArchiveTitle( Title $source, array $formats, TitleRepository $titleRepo = null ) {
@@ -47,7 +47,7 @@ class ArchiveNameHelper {
 	/**
 	 * @param Title $source
 	 * @param array $formats
-	 * @param TitleRepository $titleRepo
+	 * @param TitleRepository|null $titleRepo
 	 * @return bool|mixed
 	 */
 	protected function findLatestArchiveInfo( Title $source, array $formats, TitleRepository $titleRepo = null ) {

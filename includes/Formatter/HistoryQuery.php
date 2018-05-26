@@ -53,7 +53,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 *  the offset.  'rev' means to get items newer.  Either way, an individual page is
 	 *  eventually returned and displayed in descending order.
 	 * @param int $limit Maximum number of items
-	 * @param UUID $offset UUID to use as offset (optional)
+	 * @param UUID|null $offset UUID to use as offset (optional)
 	 * @return array Associative array of options for query
 	 */
 	protected function getOptions( $direction, $limit, UUID $offset = null ) {

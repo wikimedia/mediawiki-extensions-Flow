@@ -66,7 +66,7 @@ interface Block {
 	 * Checks if any errors have occurred in the block (no argument), or if a
 	 * specific error has occurred (argument being the error type)
 	 *
-	 * @param string[optional] $type
+	 * @param string[optional]|null $type
 	 * @return bool
 	 */
 	function hasErrors( $type = null );
@@ -224,7 +224,7 @@ abstract class AbstractBlock implements Block {
 	 * Checks if any errors have occurred in the block (no argument), or if a
 	 * specific error has occurred (argument being the error type)
 	 *
-	 * @param string[optional] $type
+	 * @param string[optional]|null $type
 	 * @return bool
 	 */
 	public function hasErrors( $type = null ) {
@@ -265,7 +265,7 @@ abstract class AbstractBlock implements Block {
 	/**
 	 * @param string $type
 	 * @param \Message $message
-	 * @param mixed[optional] $extra
+	 * @param mixed[optional]|null $extra
 	 */
 	public function addError( $type, \Message $message, $extra = null ) {
 		$this->errors[$type] = [

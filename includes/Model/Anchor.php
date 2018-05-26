@@ -49,7 +49,7 @@ class Anchor implements ApiSerializable {
 	 * @param Title $title Page the anchor points to
 	 * @param array $query Query parameters for the anchor
 	 * @param string|null $fragment URL fragment of the anchor
-	 * @param Message|string $htmlTitleMessage Title text of anchor
+	 * @param Message|string|null $htmlTitleMessage Title text of anchor
 	 */
 	public function __construct( $message, Title $title, array $query = [], $fragment = null, $htmlTitleMessage = null ) {
 		$this->title = $title;

@@ -60,7 +60,7 @@ class BoardContentHandler extends \ContentHandler {
 	 * @since 1.21
 	 *
 	 * @param string $blob Serialized form of the content
-	 * @param string $format The format used for serialization
+	 * @param string|null $format The format used for serialization
 	 *
 	 * @return BoardContent The Content object created by deserializing $blob
 	 */

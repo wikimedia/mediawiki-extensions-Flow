@@ -170,7 +170,7 @@ class RevisionFormatter {
 	 *  'wikitext', and 'fixed-html' are valid only for non-topic titles.
 	 *  'topic-title-html' and 'topic-title-wikitext' are only valid for topic titles.
 	 *  Otherwise, an exception will be thrown later.
-	 * @param UUID $revisionId Revision ID this format applies for.
+	 * @param UUID|null $revisionId Revision ID this format applies for.
 	 */
 	public function setContentFormat( $format, UUID $revisionId = null ) {
 		if ( false === array_search( $format, $this->allowedContentFormats ) ) {

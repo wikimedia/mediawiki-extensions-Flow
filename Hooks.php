@@ -807,7 +807,7 @@ class FlowHooks {
 	 *
 	 * @param object $row Single row of data from ContribsPager
 	 * @param IContextSource $ctx The context to creat the feed item within
-	 * @param FeedItem &$feedItem Return value holder for created feed item.
+	 * @param FeedItem|null &$feedItem Return value holder for created feed item.
 	 * @return bool
 	 */
 	public static function onContributionsFeedItem( $row, IContextSource $ctx, FeedItem &$feedItem = null ) {
@@ -1586,7 +1586,7 @@ class FlowHooks {
 	 * @param User &$user User that deleted article
 	 * @param string $reason Reason given
 	 * @param int $articleId Article ID of deleted article
-	 * @param Content $content Content that was deleted, or null on error
+	 * @param Content|null $content Content that was deleted, or null on error
 	 * @param LogEntry $logEntry Log entry for deletion
 	 * @return true
 	 */

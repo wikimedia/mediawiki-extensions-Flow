@@ -128,7 +128,7 @@ class BoardContent extends \AbstractContent {
 	 *
 	 * @since 1.21
 	 *
-	 * @param bool $hasLinks If it is known whether this content contains
+	 * @param bool|null $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out.
 	 *
@@ -149,8 +149,8 @@ class BoardContent extends \AbstractContent {
 	 *       may call ParserOutput::recordOption() on the output object.
 	 *
 	 * @param Title $title The page title to use as a context for rendering.
-	 * @param int $revId Optional revision ID being rendered.
-	 * @param ParserOptions $options Any parser options.
+	 * @param int|null $revId Optional revision ID being rendered.
+	 * @param ParserOptions|null $options Any parser options.
 	 * @param bool $generateHtml Whether to generate HTML (default: true). If false,
 	 *        the result of calling getText() on the ParserOutput object returned by
 	 *        this method is undefined.

@@ -73,7 +73,7 @@ abstract class Utils {
 	 *
 	 * @param string $html
 	 * @param int|null $truncateLength Maximum length (including ellipses) or null for whole string.
-	 * @param Language $lang Language to use for truncation.  Defaults to $wgLang
+	 * @param Language|null $lang Language to use for truncation.  Defaults to $wgLang
 	 * @return string plaintext
 	 */
 	public static function htmlToPlaintext( $html, $truncateLength = null, Language $lang = null ) {

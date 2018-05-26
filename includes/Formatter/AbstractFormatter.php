@@ -100,7 +100,7 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array $links Contains any combination of Anchor|Message|string
 	 * @param IContextSource $ctx
-	 * @param string[] $request List of link names to be allowed in result output
+	 * @param string[]|null $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
 	 */
 	protected function formatAnchorsAsPipeList( array $links, IContextSource $ctx, array $request = null ) {

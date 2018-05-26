@@ -61,7 +61,7 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 	 * a Closure.
 	 *
 	 * @param string $out
-	 * @param mixed $channel
+	 * @param mixed|null $channel
 	 */
 	public function output( $out, $channel = null ) {
 		parent::output( $out, $channel );

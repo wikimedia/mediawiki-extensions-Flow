@@ -43,7 +43,7 @@ class LinksTableUpdater {
 	/**
 	 * @param Title $title
 	 * @param ParserOutput $parserOutput
-	 * @param Reference[] $references
+	 * @param Reference[]|null $references
 	 */
 	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, $references = null ) {
 		if ( $references === null ) {
