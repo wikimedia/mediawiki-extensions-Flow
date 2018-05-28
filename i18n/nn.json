@@ -5,11 +5,13 @@
 			"Ranveig"
 		]
 	},
+	"notification-dynamic-actions-flow-topic-unwatch": "Ikkje {{GENDER:$3|fylg}} dette emnet lenger",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|attoppretta}} eit [$4 innlegg] på «[[$3|$5]]» på [[$6]]",
 	"flow-board-header-browse-topics-link": "Bla gjennom emne",
 	"flow-board-header": "Om tavla",
 	"flow-board-collapse-description": "Gøym skildring",
 	"flow-topic-collapse-siderail": "Les med full breidd",
+	"flow-topic-expand-siderail": "Les med fast breidd",
 	"flow-edit-header-link": "Endra skildring",
 	"flow-summary-authored": "Samandrag av $1",
 	"flow-summary-edited": "Samandrag sist {{GENDER:$1|endra}} av $1",
@@ -32,6 +34,7 @@
 	"flow-topic-action-lock-topic": "Merk som løyst",
 	"flow-topic-action-summarize-topic": "Lag samandrag",
 	"flow-topic-action-resummarize-topic": "Endra samandraget av emnet",
+	"flow-rev-message-edit-post-recentchanges-summary": "{{GENDER:$2|Endra}} eit innlegg",
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|la att}}] ein kommentar på «$4»(<em>$5</em>).",
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|laga}} emnesamandrag for «$3».",
 	"flow-rev-message-hid-post": "$1 {{GENDER:$2|løynde}} eit [$4 innlegg] på «$6» (<em>$5</em>)",

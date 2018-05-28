@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chelin",
-			"C.R."
+			"C.R.",
+			"Ruthven"
 		]
 	},
 	"enablestructureddiscussions": "Appiccia 'o Flow",
@@ -183,7 +184,7 @@
 	"flow-error-fail-commit": "Nun se pò sarvà 'o cuntenuto d' 'o flusso.",
 	"flow-error-insufficient-permission": "Ll'autorizzaziune nun abbastano pe' puté trasì a 'o cuntenuto.",
 	"flow-error-revision-comparison": "'E differenze se ponno fà vedé surtanto pe' dduje verziune d' 'a stessa mmasciata.",
-	"flow-error-missing-topic-title": "Nun se pò truvà nu titolo 'e ll'argomento pe' nu flusso 'e fatica 'e mò.",
+	"flow-error-missing-topic-title": "Nun se pò truvà 'o tituolo 'e ll'argomento pe nu flusso 'e fatica 'e mo.",
 	"flow-error-missing-metadata": "Nun se ponno truvà 'e metadate ca servessero pe' sta verziona.",
 	"flow-error-fail-load-data": "Nun se ponno carrecà 'e date addimannate.",
 	"flow-error-invalid-workflow": "nun se ò truvà 'o flusso 'e fatica addimannato.",
@@ -199,7 +200,7 @@
 	"flow-error-unknown-workflow-id-title": "Argomento scanusciuto",
 	"flow-error-unknown-workflow-id": "L'argomento addimannato nun esiste.",
 	"flow-error-search": "Nun putimmo cumpretà 'a ricerca d' 'a vuosta pe' nu probblema temporaneo. Pe' piacere pruvate n'ata vota cchiù tarde.",
-	"flow-error-invalid-undelete": "'A voce nun se putess'arrepiglià pecché mo mò nce stesse na discussione ncopp'a chisto.",
+	"flow-error-invalid-undelete": "'A voce nun se putess'arrepiglià pecché mo mmo nce stesse na discussione ncopp'a chisto.",
 	"flow-edit-header-placeholder": "Descrive sta bacheca 'e discussione",
 	"flow-edit-header-submit": "Astipa descriziona",
 	"flow-edit-header-submit-anonymously": "Astipa descriziona anonimamente",
@@ -231,7 +232,7 @@
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|arrepigliaje}} [$4 l'argomento] \"$6\" (<em>$5</em>).",
 	"flow-rc-topic-of-board": "$1 ncopp'a $2",
 	"flow-board-history": "Cronologia 'e \"$1\"",
-	"flow-board-history-empty": "Sta bacheca mò mò nun tene cronologgia.",
+	"flow-board-history-empty": "Sta bacheca mo nun tene cronologgia.",
 	"flow-topic-history": "Cronologia 'e ll'argomento \"$1\"",
 	"flow-post-history": "Cronologgia d' 'e \"cummente 'e {{GENDER:$2|$2}}\"",
 	"flow-history-last4": "Ùrdeme quatt'ore",
