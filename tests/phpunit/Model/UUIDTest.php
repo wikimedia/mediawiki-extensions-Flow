@@ -7,6 +7,8 @@ use Flow\Model\UUIDBlob;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Model\UUID
+ *
  * @group Flow
  */
 class UUIDTest extends FlowTestCase {
