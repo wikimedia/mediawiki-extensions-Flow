@@ -8,6 +8,8 @@ use Flow\Tests\PostRevisionTestCase;
 use Title;
 
 /**
+ * @covers \Flow\SpamFilter\SpamRegex
+ *
  * @group Flow
  */
 class SpamRegexTest extends PostRevisionTestCase {

@@ -7,6 +7,8 @@ use Flow\Repository\UserName\UserNameQuery;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Repository\UserNameBatch
+ *
  * @group Database
  * @group Flow
  */

@@ -6,6 +6,8 @@ use Lightncandy;
 use Flow\TemplateHelper;
 
 /**
+ * @covers \Flow\TemplateHelper
+ *
  * @group Flow
  */
 class TemplateHelperTest extends \MediaWikiTestCase {

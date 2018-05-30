@@ -9,6 +9,8 @@ use Flow\Tests\PostRevisionTestCase;
 use Title;
 
 /**
+ * @covers \Flow\SpamFilter\SpamBlacklist
+ *
  * @group Flow
  */
 class SpamBlacklistTest extends PostRevisionTestCase {

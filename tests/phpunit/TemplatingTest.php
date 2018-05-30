@@ -10,6 +10,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Templating
+ *
  * @group Flow
  */
 class TemplatingTest extends \MediaWikiTestCase {

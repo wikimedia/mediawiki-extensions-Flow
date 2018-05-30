@@ -9,6 +9,8 @@ use Flow\Data\Listener\UserNameListener;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\Listener\UserNameListener
+ *
  * @group Database
  * @group Flow
  */

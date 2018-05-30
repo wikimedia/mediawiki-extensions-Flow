@@ -13,6 +13,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Import\PageImportState
+ *
  * @group Flow
  */
 class PageImportStateTest extends \MediaWikiTestCase {

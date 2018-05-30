@@ -9,6 +9,8 @@ use Flow\Model\UUID;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\Storage\RevisionStorage
+ *
  * @group Flow
  */
 class RevisionStorageTest extends FlowTestCase {

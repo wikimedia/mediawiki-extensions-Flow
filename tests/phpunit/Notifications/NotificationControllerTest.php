@@ -8,6 +8,8 @@ use Wikimedia\TestingAccessWrapper;
 
 // See also NotitifiedUsersTest
 /**
+ * @covers \Flow\NotificationController
+ *
  * @group Flow
  */
 class NotificationControllerTest extends \MediaWikiTestCase {

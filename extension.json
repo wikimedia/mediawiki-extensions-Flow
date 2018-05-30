@@ -1254,7 +1254,7 @@
 		"Flow\\Tests\\Collection\\RevisionCollectionPermissionsTest": "tests/phpunit/Collection/RevisionCollectionPermissionsTest.php",
 		"Flow\\Tests\\ContainerTest": "tests/phpunit/ContainerTest.php",
 		"Flow\\Tests\\Conversion\\ConversionUtilsTest": "tests/phpunit/Conversion/UtilsTest.php",
-		"Flow\\Tests\\Data\\CachingObjectManagerTest": "tests/phpunit/Data/CachingObjectMapperTest.php",
+		"Flow\\Tests\\Data\\CachingObjectMapperTest": "tests/phpunit/Data/CachingObjectMapperTest.php",
 		"Flow\\Tests\\Data\\FlowNothingTest": "tests/phpunit/Data/NothingTest.php",
 		"Flow\\Tests\\Data\\IndexTest": "tests/phpunit/Data/IndexTest.php",
 		"Flow\\Tests\\Data\\Listener\\RecentChangesListenerTest": "tests/phpunit/Data/Listener/RecentChangesListenerTest.php",

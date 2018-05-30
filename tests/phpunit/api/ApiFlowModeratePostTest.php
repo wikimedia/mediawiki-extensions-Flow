@@ -5,6 +5,8 @@ namespace Flow\Tests\Api;
 use Flow\Model\AbstractRevision;
 
 /**
+ * @covers \Flow\Api\ApiFlowModeratePost
+ *
  * @group Flow
  * @group medium
  */

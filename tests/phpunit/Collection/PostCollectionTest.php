@@ -6,6 +6,8 @@ use Flow\Collection\PostCollection;
 use Flow\Tests\PostRevisionTestCase;
 
 /**
+ * @covers \Flow\Collection\PostCollection
+ *
  * @group Flow
  * @group Database
  */

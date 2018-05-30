@@ -6,6 +6,8 @@ use Flow\Import\HistoricalUIDGenerator;
 use Flow\Model\UUID;
 
 /**
+ * @covers \Flow\Import\HistoricalUIDGenerator
+ *
  * @group Flow
  */
 class HistoricalUIDGeneratorTest extends \MediaWikiTestCase {

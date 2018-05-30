@@ -8,6 +8,8 @@ use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\DatabaseMysqli;
 
 /**
+ * @covers \Flow\Repository\TreeRepository
+ *
  * @group Flow
  */
 class TreeRepositoryTest extends FlowTestCase {

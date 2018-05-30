@@ -5,6 +5,8 @@ namespace Flow\Tests\Api;
 use Sanitizer;
 
 /**
+ * @covers \Flow\Api\ApiFlowEditTopicSummary
+ *
  * @group Flow
  * @group medium
  */

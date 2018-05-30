@@ -7,6 +7,8 @@ use Flow\Parsoid\ReferenceFactory;
 use Title;
 
 /**
+ * @covers \Flow\Parsoid\ReferenceFactory
+ *
  * @group Flow
  */
 class ReferenceFactoryTest extends \MediaWikiTestCase {

@@ -6,6 +6,8 @@ use Title;
 use Flow\Import\ArchiveNameHelper;
 
 /**
+ * @covers \Flow\Import\ArchiveNameHelper
+ *
  * @group Flow
  */
 class ArchiveNameHelperTest extends \MediaWikiTestCase {

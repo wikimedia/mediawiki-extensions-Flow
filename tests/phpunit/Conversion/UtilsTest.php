@@ -8,6 +8,8 @@ use Flow\Tests\FlowTestCase;
 use Title;
 
 /**
+ * @covers \Flow\Conversion\Utils
+ *
  * @group Flow
  */
 class ConversionUtilsTest extends FlowTestCase {

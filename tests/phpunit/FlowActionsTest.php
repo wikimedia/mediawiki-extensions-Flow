@@ -5,6 +5,8 @@ namespace Flow\Tests;
 use Flow\FlowActions;
 
 /**
+ * @covers \Flow\FlowActions
+ *
  * @group Flow
  */
 class FlowActionsTest extends \MediaWikiTestCase {

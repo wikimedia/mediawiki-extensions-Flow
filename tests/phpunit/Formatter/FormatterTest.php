@@ -45,6 +45,7 @@ class FormatterTest extends FlowTestCase {
 	}
 
 	/**
+	 * @covers \Flow\Formatter\CheckUserFormatter
 	 * @dataProvider checkUserProvider
 	 */
 	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
