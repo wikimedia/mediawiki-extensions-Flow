@@ -14,6 +14,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Formatter\RevisionFormatter
+ *
  * @group Flow
  */
 class RevisionFormatterTest extends PostRevisionTestCase {

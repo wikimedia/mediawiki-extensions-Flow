@@ -3,6 +3,8 @@
 namespace Flow\Tests\Api;
 
 /**
+ * @covers \Flow\Api\ApiFlowLockTopic
+ *
  * @group Flow
  * @group medium
  */

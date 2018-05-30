@@ -11,6 +11,8 @@ use Psr\Log\NullLogger;
 use User;
 
 /**
+ * @covers \Flow\Import\Converter
+ *
  * @group Flow
  */
 class ConverterTest extends \MediaWikiTestCase {

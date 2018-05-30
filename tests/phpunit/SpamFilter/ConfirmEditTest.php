@@ -9,6 +9,9 @@ use Title;
 use User;
 use GlobalVarConfig;
 
+/**
+ * @covers \Flow\SpamFilter\ConfirmEdit
+ */
 class ConfirmEditTest extends \MediaWikiTestCase {
 
 	public function testValidateDoesntBlowUp() {

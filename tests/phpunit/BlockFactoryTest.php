@@ -5,6 +5,8 @@ namespace Flow\Tests;
 use Flow\BlockFactory;
 
 /**
+ * @covers \Flow\BlockFactory
+ *
  * @group Flow
  */
 class BlockFactoryTest extends FlowTestCase {

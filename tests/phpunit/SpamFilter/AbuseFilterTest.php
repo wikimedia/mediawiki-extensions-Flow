@@ -9,6 +9,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\SpamFilter\AbuseFilter
+ *
  * @group Database
  * @group Flow
  */

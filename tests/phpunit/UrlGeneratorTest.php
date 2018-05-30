@@ -7,6 +7,8 @@ use Flow\Model\UUID;
 use Title;
 
 /**
+ * @covers \Flow\UrlGenerator
+ *
  * @group Flow
  */
 class UrlGeneratorTest extends FlowTestCase {

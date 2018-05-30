@@ -10,6 +10,8 @@ use WikitextContent;
 use Flow\Container;
 
 /**
+ * @covers \Flow\TalkpageManager
+ *
  * @group Flow
  * @group Database
  */

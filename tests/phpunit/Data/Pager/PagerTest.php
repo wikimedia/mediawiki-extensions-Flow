@@ -6,6 +6,8 @@ use Flow\Data\Pager\Pager;
 use Flow\Model\UUID;
 
 /**
+ * @covers \Flow\Data\Pager\Pager
+ *
  * @group Flow
  */
 class PagerTest extends \MediaWikiTestCase {

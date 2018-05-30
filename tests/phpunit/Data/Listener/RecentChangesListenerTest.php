@@ -10,6 +10,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Data\Listener\RecentChangesListener
+ *
  * @group Flow
  */
 class RecentChangesListenerTest extends \MediaWikiTestCase {

@@ -5,6 +5,8 @@ namespace Flow\Tests\Model;
 use Flow\Model\UserTuple;
 
 /**
+ * @covers \Flow\Model\UserTuple
+ *
  * @group Flow
  */
 class UserTupleTest extends \MediaWikiTestCase {

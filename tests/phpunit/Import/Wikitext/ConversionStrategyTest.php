@@ -15,6 +15,8 @@ use Title;
 use WikitextContent;
 
 /**
+ * @covers \Flow\Import\Wikitext\ConversionStrategy
+ *
  * @group Flow
  */
 class ConversionStrategyTest extends \MediaWikiTestCase {

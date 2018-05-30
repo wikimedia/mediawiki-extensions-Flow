@@ -6,6 +6,8 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 
 /**
+ * @covers \Flow\Data\ManagerGroup
+ *
  * @group Flow
  */
 class ManagerGroupTest extends \MediaWikiTestCase {

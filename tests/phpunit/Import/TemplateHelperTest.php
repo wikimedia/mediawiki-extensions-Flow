@@ -4,6 +4,9 @@ namespace Flow\Tests\Import;
 
 use Flow\Import\TemplateHelper;
 
+/**
+ * @covers \Flow\Import\TemplateHelper
+ */
 class TemplateHelperTest extends \MediaWikiTestCase {
 
 	public function removeFromHtmlDataProvider() {

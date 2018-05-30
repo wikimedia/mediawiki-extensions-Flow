@@ -5,6 +5,8 @@ namespace Flow\Tests\Data;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\ObjectLocator
+ *
  * @group Flow
  */
 class ObjectLocatorTest extends FlowTestCase {

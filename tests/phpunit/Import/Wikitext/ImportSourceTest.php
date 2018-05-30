@@ -14,6 +14,8 @@ use WikiPage;
 use WikitextContent;
 
 /**
+ * @covers \Flow\Import\Wikitext\ImportSource
+ *
  * @group Flow
  * @group Database
  */

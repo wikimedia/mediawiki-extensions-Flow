@@ -9,6 +9,8 @@ use User;
 use Title;
 
 /**
+ * @covers \Flow\SpamFilter\ContentLengthFilter
+ *
  * @group Flow
  */
 class ContentLengthFilterTest extends \MediaWikiTestCase {

@@ -7,6 +7,8 @@ use Flow\Parsoid\ContentFixer;
 use Title;
 
 /**
+ * @covers \Flow\Parsoid\Fixer\BaseHrefFixer
+ *
  * @group Flow
  */
 class BaseHrefFixerTest extends \MediaWikiTestCase {

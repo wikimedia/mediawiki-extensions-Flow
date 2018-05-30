@@ -8,6 +8,8 @@ use User;
 use Wikimedia\Rdbms\DatabaseMysqli;
 
 /**
+ * @covers \Flow\WatchedTopicItems
+ *
  * @group Flow
  */
 class WatchedTopicItemTest extends FlowTestCase {

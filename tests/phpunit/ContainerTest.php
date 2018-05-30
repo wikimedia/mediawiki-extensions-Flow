@@ -5,6 +5,8 @@ namespace Flow\Tests;
 use Flow\Container;
 
 /**
+ * @covers \Flow\Container
+ *
  * @group Flow
  */
 class ContainerTest extends FlowTestCase {

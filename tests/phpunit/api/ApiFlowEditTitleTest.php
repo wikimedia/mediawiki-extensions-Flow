@@ -3,6 +3,8 @@
 namespace Flow\Tests\Api;
 
 /**
+ * @covers \Flow\Api\ApiFlowEditTitle
+ *
  * @group Flow
  * @group medium
  */

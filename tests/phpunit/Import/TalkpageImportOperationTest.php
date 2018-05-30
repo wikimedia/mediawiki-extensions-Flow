@@ -24,6 +24,8 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Import\TalkpageImportOperation
+ *
  * @group Flow
  * @group Database
  */

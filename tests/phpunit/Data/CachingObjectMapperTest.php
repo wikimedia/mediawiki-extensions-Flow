@@ -6,9 +6,11 @@ use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\Mapper\CachingObjectMapper
+ *
  * @group Flow
  */
-class CachingObjectManagerTest extends FlowTestCase {
+class CachingObjectMapperTest extends FlowTestCase {
 
 	public function testReturnsSameObject() {
 		$mapper = $this->createMapper();

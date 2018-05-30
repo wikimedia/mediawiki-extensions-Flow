@@ -8,6 +8,8 @@ use Flow\Tests\PostRevisionTestCase;
 use Title;
 
 /**
+ * @covers \Flow\Parsoid\Fixer\WikiLinkFixer
+ *
  * @group Flow
  */
 class WikiLinkFixerTest extends PostRevisionTestCase {
