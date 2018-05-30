@@ -9,6 +9,10 @@ use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\Index\FeatureIndex
+ * @covers \Flow\Data\Index\TopKIndex
+ * @covers \Flow\Data\Index\UniqueFeatureIndex
+ *
  * @group Flow
  */
 class IndexTest extends FlowTestCase {
