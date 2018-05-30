@@ -305,6 +305,7 @@
 	"notification-header-flow-mention-post-summary": "$1在「<strong>$5</strong>」裡{{GENDER:$2|提到}}了{{GENDER:$4|您}}。",
 	"notification-header-flow-enabled-on-talkpage": "已在<strong>{{GENDER:$2|您}}的使用者討論頁</strong>開啟了新的討論系統。",
 	"notification-header-flow-description-edited": "<strong>$1</strong> 的描述已編輯。",
+	"notification-header-flow-description-edited-user-talk": "在<strong>{{GENDER:$2|您的}}討論頁</strong>上的描述已被編輯。",
 	"notification-bundle-header-flow-description-edited": "<strong>$1</strong> 的描述已被編輯了多次。",
 	"notification-bundle-header-flow-description-edited-user-talk": "描述已在<strong>{{GENDER:$2|您的}}討論頁</strong>上編輯了太多次。",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|檢視}}頁面",
@@ -530,5 +531,6 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "先前的對話已被移動至存檔頁面。",
 	"flow-guidedtour-optin-feedback": "提供{{GENDER:$1|您}}的回饋給我們！",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以隨時於試用版功能區取得更多資訊，提供意見回饋或者關閉新的系統。",
+	"flow-action-not-page": "為錯誤類別實體的頁面物件",
 	"flow-preference-visualeditor": "在結構式討論中啟用視覺化編輯器及新wikitext模式"
 }
