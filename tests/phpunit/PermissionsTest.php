@@ -10,6 +10,8 @@ use Flow\RevisionActionPermissions;
 use User;
 
 /**
+ * @covers \Flow\RevisionActionPermissions
+ *
  * @group Database
  * @group Flow
  */
