@@ -4,7 +4,8 @@
 			"Adam-Yourist"
 		]
 	},
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Баркал áла}}}}",
 	"flow-topic-action-watchlist": "Зем бара хьаязъяьр",
-	"flow-ve-mention-context-item-label": "Хьоахор",
-	"flow-ve-mention-inspector-title": "Хьоахор"
+	"flow-ve-mention-context-item-label": "Хьоахавар",
+	"flow-ve-mention-inspector-title": "Хьоахавар"
 }
