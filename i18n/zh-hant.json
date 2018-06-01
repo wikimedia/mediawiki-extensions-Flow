@@ -455,6 +455,7 @@
 	"flow-conversion-archive-page-name-format": "%s/存檔 %d\n%s/存檔%d\n%s/存檔 %d\n%s/存檔%d",
 	"flow-conversion-archive-flow-page-name-format": "%s/結構式討論 存檔 %d\n%s/結構式討論存檔%d\n%s/Flow 存檔 %d\n%s/Flow存檔%d",
 	"flow-spam-confirmedit-form": "請回答以下驗証碼來確認您不是機器人：$1",
+	"flow-spam-confirmedit-using-failure": "驗證碼發生技術上的錯誤。若您無法提交您的變更，請複製您的文字，並重新載入並再試一次。",
 	"flow-embedding-unsupported": "無法嵌入討論。",
 	"mw-ui-unsubmitted-confirm": "您在此頁面有未送出的變更，您確定要離開此頁面並放棄您的修改？",
 	"flow-post-undo-hide": "還原隱藏",
@@ -481,6 +482,7 @@
 	"flow-edited-by": "已編輯由 $1",
 	"flow-edited-by-header": "討論板描述已由$1編輯",
 	"flow-edited-by-topic-title": "話題標題由 $1 編輯",
+	"flow-lqt-redirect-reason": "重新導向舊有 LiquidThreads 貼文至已轉換的結構式討論貼文",
 	"flow-talk-conversion-move-reason": "$1的wikitext討論頁轉換成結構式討論頁面",
 	"flow-talk-conversion-archive-edit-reason": "Wikitext討論頁至結構式討論轉換",
 	"flow-previous-diff": "← 較舊編輯",
@@ -535,5 +537,6 @@
 	"flow-guidedtour-optin-feedback": "提供{{GENDER:$1|您}}的回饋給我們！",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以隨時於試用版功能區取得更多資訊，提供意見回饋或者關閉新的系統。",
 	"flow-action-not-page": "為錯誤類別實體的頁面物件",
+	"flow-action-wrong-title-content-model": "頁面正以結構式討論處理，但標題類別指示出內容模組為「$1」。此為錯誤設置或是不一致的狀態，例如：這可能是在未填充 <code>rev_content_model</code> 之非結構式討論命名空間的結構式命名空間頁面。",
 	"flow-preference-visualeditor": "在結構式討論中啟用視覺化編輯器及新wikitext模式"
 }
