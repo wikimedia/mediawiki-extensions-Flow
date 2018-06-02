@@ -9,6 +9,7 @@ use Flow\Model\UUID;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Data\Storage\DbStorage
  * @covers \Flow\Data\Storage\RevisionStorage
  *
  * @group Flow

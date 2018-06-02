@@ -5,6 +5,8 @@ namespace Flow\Tests\Api;
 use Sanitizer;
 
 /**
+ * @covers \Flow\Api\ApiFlowBase
+ * @covers \Flow\Api\ApiFlowBaseGet
  * @covers \Flow\Api\ApiFlowViewHeader
  *
  * @group Flow

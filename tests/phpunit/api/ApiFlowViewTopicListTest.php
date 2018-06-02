@@ -6,6 +6,8 @@ use Flow\Model\UUID;
 use Title;
 
 /**
+ * @covers \Flow\Api\ApiFlowBase
+ * @covers \Flow\Api\ApiFlowBaseGet
  * @covers \Flow\Api\ApiFlowViewTopicList
  *
  * @group Flow

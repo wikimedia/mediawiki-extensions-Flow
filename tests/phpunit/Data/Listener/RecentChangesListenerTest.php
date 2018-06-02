@@ -10,6 +10,7 @@ use Title;
 use User;
 
 /**
+ * @covers \Flow\Data\Listener\AbstractListener
  * @covers \Flow\Data\Listener\RecentChangesListener
  *
  * @group Flow

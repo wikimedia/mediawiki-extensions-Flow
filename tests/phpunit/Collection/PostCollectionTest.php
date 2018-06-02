@@ -6,6 +6,8 @@ use Flow\Collection\PostCollection;
 use Flow\Tests\PostRevisionTestCase;
 
 /**
+ * @covers \Flow\Collection\AbstractCollection
+ * @covers \Flow\Collection\LocalCacheAbstractCollection
  * @covers \Flow\Collection\PostCollection
  *
  * @group Flow

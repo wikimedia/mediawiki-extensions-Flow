@@ -3,6 +3,8 @@
 namespace Flow\Tests\Api;
 
 /**
+ * @covers \Flow\Api\ApiFlowBase
+ * @covers \Flow\Api\ApiFlowBasePost
  * @covers \Flow\Api\ApiFlowEditTitle
  *
  * @group Flow
