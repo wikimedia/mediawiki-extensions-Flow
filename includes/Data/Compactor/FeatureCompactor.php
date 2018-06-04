@@ -43,8 +43,8 @@ class FeatureCompactor implements Compactor {
 	}
 
 	/**
-	 * @param array $rows
-	 * @return array
+	 * @param array[] $rows
+	 * @return array[]
 	 */
 	public function compactRows( array $rows ) {
 		return array_map( [ $this, 'compactRow' ], $rows );
