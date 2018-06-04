@@ -49,7 +49,7 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( $request ) );
 
 		$status = $filter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
-		$this->assertInstanceOf( 'Status', $status );
+		$this->assertInstanceOf( \Status::class, $status );
 		$this->assertTrue( $status->isGood() );
 	}
 }
