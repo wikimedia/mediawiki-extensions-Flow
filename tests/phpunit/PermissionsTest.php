@@ -10,6 +10,8 @@ use Flow\RevisionActionPermissions;
 use User;
 
 /**
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
  * @covers \Flow\RevisionActionPermissions
  *
  * @group Database

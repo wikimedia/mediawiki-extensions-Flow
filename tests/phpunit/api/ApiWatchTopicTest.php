@@ -6,6 +6,8 @@ use Title;
 use User;
 
 /**
+ * @covers \FlowHooks
+ *
  * @group Flow
  * @group medium
  */

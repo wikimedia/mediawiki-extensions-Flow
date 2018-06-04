@@ -9,6 +9,8 @@ use Flow\Tests\PostRevisionTestCase;
  * @covers \Flow\Collection\AbstractCollection
  * @covers \Flow\Collection\LocalCacheAbstractCollection
  * @covers \Flow\Collection\PostCollection
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
  *
  * @group Flow
  * @group Database

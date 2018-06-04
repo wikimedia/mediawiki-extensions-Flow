@@ -7,6 +7,8 @@ use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 
 /**
+ * @covers \Flow\Repository\TreeRepository
+ *
  * @group Flow
  * @group Database
  */

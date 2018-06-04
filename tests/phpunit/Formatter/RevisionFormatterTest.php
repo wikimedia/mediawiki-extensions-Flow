@@ -15,6 +15,8 @@ use User;
 
 /**
  * @covers \Flow\Formatter\RevisionFormatter
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
  *
  * @group Flow
  */
