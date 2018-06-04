@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\DatabaseMysqli;
  *
  * @group Flow
  */
-class WatchedTopicItemTest extends FlowTestCase {
+class WatchedTopicItemsTest extends FlowTestCase {
 
 	public function provideDataGetWatchStatus() {
 		// number of test cases

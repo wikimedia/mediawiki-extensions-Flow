@@ -12,6 +12,9 @@ use Block;
 use User;
 
 /**
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
+ *
  * @group Database
  * @group Flow
  */

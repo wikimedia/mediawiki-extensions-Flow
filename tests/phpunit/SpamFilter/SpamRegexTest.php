@@ -8,6 +8,8 @@ use Flow\Tests\PostRevisionTestCase;
 use Title;
 
 /**
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
  * @covers \Flow\SpamFilter\SpamRegex
  *
  * @group Flow

@@ -8,7 +8,10 @@ use Flow\Model\Workflow;
 use Title;
 use User;
 
-class TopicListTest extends \MediaWikiTestCase {
+/**
+ * @covers \Flow\Block\TopicListBlock
+ */
+class TopicListBlockTest extends \MediaWikiTestCase {
 
 	public function testSortByOption() {
 		$user = User::newFromId( 1 );

@@ -17,6 +17,11 @@ use Flow\Conversion\Utils;
 use Title;
 
 /**
+ * @covers \Flow\Data\Listener\ReferenceRecorder
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
+ * @covers \Flow\Parsoid\ReferenceFactory
+ *
  * @group Flow
  * @group Database
  */

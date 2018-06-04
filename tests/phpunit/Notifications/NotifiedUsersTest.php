@@ -13,6 +13,12 @@ use ExtensionRegistry;
 use User;
 
 /**
+ * @covers \Flow\FlowPresentationModel
+ * @covers \Flow\Model\AbstractRevision
+ * @covers \Flow\Model\PostRevision
+ * @covers \Flow\NewTopicPresentationModel
+ * @covers \Flow\PostReplyPresentationModel
+ *
  * @group Flow
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
