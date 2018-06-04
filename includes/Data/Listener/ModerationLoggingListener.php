@@ -13,7 +13,7 @@ class ModerationLoggingListener extends AbstractListener {
 	 */
 	protected $moderationLogger;
 
-	function __construct( ModerationLogger $moderationLogger ) {
+	public function __construct( ModerationLogger $moderationLogger ) {
 		$this->moderationLogger = $moderationLogger;
 	}
 

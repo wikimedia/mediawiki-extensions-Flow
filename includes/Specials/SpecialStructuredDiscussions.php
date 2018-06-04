@@ -30,7 +30,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 	 */
 	protected $uuid;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'StructuredDiscussions' );
 	}
 

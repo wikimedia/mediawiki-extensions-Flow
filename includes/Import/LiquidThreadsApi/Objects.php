@@ -29,7 +29,7 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 	 * @param ImportSource $source
 	 * @param int $pageId ID of the remote page
 	 */
-	function __construct( $source, $pageId ) {
+	public function __construct( $source, $pageId ) {
 		$this->importSource = $source;
 		$this->pageId = $pageId;
 	}
@@ -327,7 +327,7 @@ class ImportRevision implements IObjectRevision {
 	 * @param IImportObject $parentObject
 	 * @param User $scriptUser Account used when the imported revision is by a suppressed user
 	 */
-	function __construct( array $apiResponse, IImportObject $parentObject, User $scriptUser ) {
+	public function __construct( array $apiResponse, IImportObject $parentObject, User $scriptUser ) {
 		$this->apiResponse = $apiResponse;
 		$this->parent = $parentObject;
 		$this->scriptUser = $scriptUser;
@@ -442,7 +442,7 @@ class ScriptedImportRevision implements IObjectRevision {
 	 * @param string $revisionText Text of revision
 	 * @param IObjectRevision $baseRevision Base revision, used only for timestamp generation
 	 */
-	function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText, $baseRevision ) {
+	public function __construct( IImportObject $parentObject, User $destinationScriptUser, $revisionText, $baseRevision ) {
 		$this->parent = $parentObject;
 		$this->destinationScriptUser = $destinationScriptUser;
 		$this->revisionText = $revisionText;
