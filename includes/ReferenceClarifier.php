@@ -13,7 +13,7 @@ class ReferenceClarifier {
 	protected $storage, $urlGenerator;
 	protected $referenceCache;
 
-	function __construct( ManagerGroup $storage, UrlGenerator $urlGenerator ) {
+	public function __construct( ManagerGroup $storage, UrlGenerator $urlGenerator ) {
 		$this->storage = $storage;
 		$this->urlGenerator = $urlGenerator;
 		$this->referenceCache = [];

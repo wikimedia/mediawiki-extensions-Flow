@@ -40,7 +40,7 @@ class WorkflowLoaderFactory {
 	 * @param BlockFactory $blockFactory
 	 * @param SubmissionHandler $submissionHandler
 	 */
-	function __construct(
+	public function __construct(
 		ManagerGroup $storage,
 		BlockFactory $blockFactory,
 		SubmissionHandler $submissionHandler

@@ -34,7 +34,7 @@ class View extends ContextSource {
 	 */
 	protected $actions;
 
-	function __construct(
+	public function __construct(
 		UrlGenerator $urlGenerator,
 		TemplateHelper $lightncandy,
 		IContextSource $requestContext,
