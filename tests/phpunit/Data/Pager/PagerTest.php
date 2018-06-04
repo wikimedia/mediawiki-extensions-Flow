@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Data\Pager;
 
+use Flow\Data\ObjectManager;
 use Flow\Data\Pager\Pager;
 use Flow\Model\UUID;
 

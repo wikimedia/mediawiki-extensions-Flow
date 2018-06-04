@@ -19,7 +19,7 @@ class FlowActions {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getActions() {
 		return array_keys( $this->actions->all() );
