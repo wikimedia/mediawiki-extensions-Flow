@@ -182,7 +182,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * created topic title) will be returned.
 	 *
 	 * @param array[optional] $row DB row data (only specify override columns)
-	 * @param array[optional] $children Array of child PostRevision objects
+	 * @param PostRevision[] $children Array of child PostRevision objects
 	 * @param int[optional] $depth Depth of the PostRevision object
 	 * @return PostRevision
 	 */

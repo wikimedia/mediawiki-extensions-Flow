@@ -257,7 +257,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves data about a set of pages from the API
 	 *
-	 * @param array $pageIds Page IDs to return data for.
+	 * @param int[] $pageIds Page IDs to return data for.
 	 * @return array The query.pages part of the API response.
 	 * @throws \MWException
 	 */

@@ -90,7 +90,7 @@ abstract class FeatureIndex implements Index {
 	 * @param ObjectStorage $storage
 	 * @param ObjectMapper $mapper
 	 * @param string $prefix Prefix to utilize for all cache keys
-	 * @param array $indexedColumns List of columns to index,
+	 * @param string[] $indexedColumns List of columns to index
 	 */
 	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexedColumns ) {
 		$this->cache = $cache;
