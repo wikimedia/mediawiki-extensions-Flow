@@ -36,7 +36,7 @@ abstract class CachedData {
 	/**
 	 * Get the value for a number of IDs
 	 *
-	 * @param array $ids List of IDs to retrieve
+	 * @param int[] $ids List of IDs to retrieve
 	 * @return array Associative array, indexed by ID.
 	 */
 	public function getMulti( array $ids ) {
@@ -62,7 +62,7 @@ abstract class CachedData {
 	/**
 	 * Uncached retrieval of data from the backend.
 	 *
-	 * @param array $ids The IDs to retrieve data for
+	 * @param int[] $ids The IDs to retrieve data for
 	 * @return array Associative array of data retrieved, indexed by ID.
 	 */
 	abstract protected function retrieve( array $ids );
@@ -79,7 +79,7 @@ abstract class CachedData {
 	/**
 	 * Load missing IDs from a list
 	 *
-	 * @param array $ids The IDs to retrieve
+	 * @param int[] $ids The IDs to retrieve
 	 */
 	protected function ensureLoaded( array $ids ) {
 		$missing = array_diff( $ids, array_keys( $this->data ) );

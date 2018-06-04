@@ -253,7 +253,7 @@ class OptInController {
 
 	/**
 	 * @param string $str
-	 * @return array
+	 * @return string[]
 	 */
 	private function fromNewlineSeparated( $str ) {
 		return explode( "\n", $str );

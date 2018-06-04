@@ -35,7 +35,7 @@ class ArchiveNameHelper {
 
 	/**
 	 * @param Title $source
-	 * @param array $formats
+	 * @param string[] $formats
 	 * @param TitleRepository|null $titleRepo
 	 * @return bool|mixed
 	 */
@@ -46,7 +46,7 @@ class ArchiveNameHelper {
 
 	/**
 	 * @param Title $source
-	 * @param array $formats
+	 * @param string[] $formats
 	 * @param TitleRepository|null $titleRepo
 	 * @return bool|mixed
 	 */
