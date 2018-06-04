@@ -75,7 +75,7 @@ class FlowPostMetaActionsTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider timestampEditedProvider
 	 */
-	public function testTimestampEdited( $message, $expect, $args ) {
+	public function testTimestampEdited( $message, $expect, array $args ) {
 		if ( !class_exists( 'Symfony\Component\DomCrawler\Crawler' ) ) {
 			$this->markTestSkipped( 'DomCrawler component is not available.' );
 			return;

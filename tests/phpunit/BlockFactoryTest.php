@@ -21,7 +21,7 @@ class BlockFactoryTest extends FlowTestCase {
 	/**
 	 * @dataProvider provideDataCreateBlocks
 	 */
-	public function testCreateBlocks( $workflowType, $expectedResults ) {
+	public function testCreateBlocks( $workflowType, array $expectedResults ) {
 		$factory = $this->createBlockFactory();
 		$workflow = $this->mockWorkflow( $workflowType );
 
