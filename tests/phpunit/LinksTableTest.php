@@ -11,7 +11,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Parsoid\ReferenceExtractor;
 use Flow\Parsoid\ReferenceFactory;
 use Flow\Conversion\Utils;
 use Title;
@@ -44,11 +43,6 @@ class LinksTableTest extends PostRevisionTestCase {
 	protected $storage;
 
 	/**
-	 * @var ReferenceExtractor
-	 */
-	protected $extractor;
-
-	/**
 	 * @var ReferenceRecorder
 	 */
 	protected $recorder;
@@ -75,7 +69,6 @@ class LinksTableTest extends PostRevisionTestCase {
 		$this->revision = $this->generateObject();
 		$this->workflow = $this->workflows[$this->revision->getCollectionId()->getAlphadecimal()];
 		$this->storage = Container::get( 'storage' );
-		$this->extractor = Container::get( 'reference.extractor' );
 		$this->recorder = Container::get( 'reference.recorder' );
 		$this->updater = Container::get( 'reference.updater.links-tables' );
 
