@@ -26,7 +26,7 @@ class PagerPage {
 	 * @param array[] $pagingLinkOptions
 	 * @param Pager $pager
 	 */
-	public function __construct( $results, $pagingLinkOptions, $pager ) {
+	public function __construct( array $results, array $pagingLinkOptions, Pager $pager ) {
 		$this->results = $results;
 		$this->pagingLinkOptions = $pagingLinkOptions;
 		$this->pager = $pager;

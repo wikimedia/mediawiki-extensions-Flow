@@ -302,7 +302,7 @@ class ObjectLocator {
 		return $current;
 	}
 
-	protected function load( $row ) {
+	protected function load( array $row ) {
 		$object = $this->mapper->fromStorageRow( $row );
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterLoad( $object, $row );
@@ -315,7 +315,7 @@ class ObjectLocator {
 	 * @param array $options
 	 * @return array
 	 */
-	protected function convertToDbOptions( $options ) {
+	protected function convertToDbOptions( array $options ) {
 		$dbOptions = $orderBy = [];
 		$order = '';
 
@@ -347,7 +347,7 @@ class ObjectLocator {
 	 * @param array $options Options for queries
 	 * @return array Queries for BasicDbStorage class
 	 */
-	protected function convertToDbQueries( $queries, $options ) {
+	protected function convertToDbQueries( array $queries, array $options ) {
 		if ( isset( $options['offset-id'] ) &&
 			isset( $options['sort'] ) && count( $options['sort'] ) === 1 &&
 			preg_match( '/_id$/', $options['sort'][0] ) ) {

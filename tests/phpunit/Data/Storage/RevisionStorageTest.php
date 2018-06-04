@@ -330,7 +330,7 @@ class RevisionStorageTest extends FlowTestCase {
 	/**
 	 * @dataProvider issuesQueryCountProvider
 	 */
-	public function testIssuesQueryCount( $msg, $count, $queries, $options ) {
+	public function testIssuesQueryCount( $msg, $count, array $queries, array $options ) {
 		if ( !isset( $options['LIMIT'] ) || $options['LIMIT'] != 1 ) {
 			$this->fail( 'Can only generate result set for LIMIT = 1' );
 		}

@@ -63,7 +63,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	public function refreshBatch( IDatabase $dbr, UUID $continue, $countableActions, UUID $stop ) {
+	public function refreshBatch( IDatabase $dbr, UUID $continue, array $countableActions, UUID $stop ) {
 		$rows = $dbr->select(
 			'flow_revision',
 			[ 'rev_id', 'rev_user_id' ],

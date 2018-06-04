@@ -268,7 +268,7 @@ echo "Found $totalNoChangeRevisions that will inherit parent content (" . number
 echo "Found a match but invalid due to size of es gaps for $totalMatchButInvalid (" . number_format( 100 * $totalMatchButInvalid / $totalMissingConsidered ). "%)\n";
 echo "Resolved $totalResolvedMultipleMatches multiple matches (" . number_format( 100 * $totalResolvedMultipleMatches / $totalMissingConsidered ) . "%)\n";
 
-function query_revisions( $dbr, $op, $tsEscaped ) {
+function query_revisions( \Wikimedia\Rdbms\IDatabase $dbr, $op, $tsEscaped ) {
 	$direction = $op[0] === '>' ? 'ASC' : 'DESC';
 	$sql = "SELECT revision.rev_timestamp, text.old_text " .
 		"     FROM revision " .
