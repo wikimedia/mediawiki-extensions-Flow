@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="Generic.Files.LineLength.TooLong" />
 		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
@@ -12,6 +11,11 @@
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound"/>
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage"/>
+	</rule>
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="360" />
+		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
