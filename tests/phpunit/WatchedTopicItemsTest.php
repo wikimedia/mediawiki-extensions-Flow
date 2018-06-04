@@ -56,7 +56,7 @@ class WatchedTopicItemTest extends FlowTestCase {
 	/**
 	 * @dataProvider provideDataGetWatchStatus
 	 */
-	public function testGetWatchStatus( $uuids, $dbResult, $result ) {
+	public function testGetWatchStatus( $uuids, $dbResult, array $result ) {
 		// give it a fake user id
 		$watchedTopicItems = new WatchedTopicItems( User::newFromId( 1 ), $this->mockDb( $dbResult ) );
 		$res = $watchedTopicItems->getWatchStatus( $uuids );

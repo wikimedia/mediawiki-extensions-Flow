@@ -176,7 +176,7 @@ class Pager {
 	 * @return PagerPage
 	 * @throws InvalidInputException
 	 */
-	protected function processPage( $results ) {
+	protected function processPage( array $results ) {
 		$pagingLinks = [];
 
 		// Retrieve paging links

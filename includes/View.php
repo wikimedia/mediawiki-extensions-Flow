@@ -81,7 +81,7 @@ class View extends ContextSource {
 		$this->renderApiResponse( $apiResponse, $robotPolicy );
 	}
 
-	private function getRobotPolicy( $action, $workflow, $blocks ) {
+	private function getRobotPolicy( $action, Workflow $workflow, array $blocks ) {
 		if ( $action !== 'view' ) {
 			// consistent with 'edit' and other action pages in Core
 			return [

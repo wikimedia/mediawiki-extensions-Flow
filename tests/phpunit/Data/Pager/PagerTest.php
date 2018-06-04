@@ -111,7 +111,7 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider getPageResultsProvider
 	 */
-	public function testGetPageResults( $message, $expect, $found, array $options, $filter ) {
+	public function testGetPageResults( $message, array $expect, array $found, array $options, $filter ) {
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			[ 'otherthing' => 42 ],
@@ -257,7 +257,7 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider getPagingLinkOptionsProvider
 	 */
-	public function testGetPagingLinkOptions( $message, $expect, $found, array $options, $filter ) {
+	public function testGetPagingLinkOptions( $message, array $expect, array $found, array $options, $filter ) {
 		$pager = new Pager(
 			$this->mockObjectManager( $found ),
 			[ 'otherthing' => 42 ],
@@ -341,7 +341,7 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider optionsPassedToObjectManagerFindProvider
 	 */
-	public function testOptionsPassedToObjectManagerFind( $message, $expect, $options ) {
+	public function testOptionsPassedToObjectManagerFind( $message, array $expect, array $options ) {
 		$om = $this->mockObjectManager();
 		$om->expects( $this->any() )
 			->method( 'find' )
@@ -429,7 +429,7 @@ class PagerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider provideDataMakePagingLink
 	 */
-	public function testMakePagingLink( $storage, $query, $options, $offsetKey ) {
+	public function testMakePagingLink( ObjectManager $storage, array $query, array $options, $offsetKey ) {
 		$pager = new Pager( $storage, $query, $options );
 		$page = $pager->getPage();
 		$pagingOption = $page->getPagingLinksOptions();

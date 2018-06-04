@@ -303,7 +303,7 @@ class ObjectManager extends ObjectLocator {
 	/**
 	 * @inheritDoc
 	 */
-	protected function load( $row ) {
+	protected function load( array $row ) {
 		$object = parent::load( $row );
 		$this->loaded[$object] = $row;
 		return $object;

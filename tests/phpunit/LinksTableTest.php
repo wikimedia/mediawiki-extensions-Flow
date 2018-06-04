@@ -97,7 +97,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @return PostRevision
 	 * @throws \Flow\Exception\FlowException
 	 */
-	protected function generatePost( $overrides ) {
+	protected function generatePost( array $overrides ) {
 		$uuid = UUID::create();
 		return $this->generateObject( $overrides + [
 			'rev_change_type' => 'reply',
@@ -188,7 +188,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideGetReferencesFromRevisionContent
 	 */
-	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
+	public function testGetReferencesFromRevisionContent( $content, array $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
 		$revision = $this->generatePost( [ 'rev_content' => $content ] );
 
@@ -202,7 +202,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideGetReferencesFromRevisionContent
 	 */
-	public function testGetReferencesAfterRevisionInsert( $content, $expectedReferences ) {
+	public function testGetReferencesAfterRevisionInsert( $content, array $expectedReferences ) {
 		$content = Utils::convert( 'wikitext', 'html', $content, $this->workflow->getOwnerTitle() );
 		$revision = $this->generatePost( [ 'rev_content' => $content ] );
 
@@ -335,7 +335,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideReferenceDiff
 	 */
-	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved, $globals = [] ) {
+	public function testReferenceDiff( array $old, array $new, array $expectedAdded, array $expectedRemoved, array $globals = [] ) {
 		if ( $globals ) {
 			$this->setMwGlobals( $globals );
 		}
@@ -394,7 +394,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideMutateParserOutput
 	 */
-	public function testMutateParserOutput( $references, $expectedItems ) {
+	public function testMutateParserOutput( array $references, array $expectedItems ) {
 		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
 		/*
@@ -492,7 +492,12 @@ class LinksTableTest extends PostRevisionTestCase {
 		];
 	}
 
-	protected function flattenReferenceList( $input ) {
+	/**
+	 * @param Reference[] $input
+	 *
+	 * @return string[]
+	 */
+	protected function flattenReferenceList( array $input ) {
 		$list = [];
 
 		foreach ( $input as $reference ) {
@@ -503,7 +508,11 @@ class LinksTableTest extends PostRevisionTestCase {
 		return array_keys( $list );
 	}
 
-	protected function assertReferenceListsEqual( $input1, $input2 ) {
+	/**
+	 * @param Reference[] $input1
+	 * @param Reference[] $input2
+	 */
+	protected function assertReferenceListsEqual( array $input1, array $input2 ) {
 		$list1 = $this->flattenReferenceList( $input1 );
 		$list2 = $this->flattenReferenceList( $input2 );
 

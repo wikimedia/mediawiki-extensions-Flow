@@ -175,7 +175,7 @@ class TemplateHelper {
 	 *
 	 * @return string
 	 */
-	public static function processTemplate( $templateName, $args, array $scopes = [] ) {
+	public static function processTemplate( $templateName, array $args, array $scopes = [] ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		/** @var TemplateHelper $lightncandy */
 		$lightncandy = Container::get( 'lightncandy' );
@@ -312,7 +312,7 @@ class TemplateHelper {
 	 * @return null|string HTML
 	 * @throws FlowException When callbacks are not Closure instances
 	 */
-	public static function eachPost( $context, $postIds, $options ) {
+	public static function eachPost( array $context, $postIds, array $options ) {
 		/** @var callable $inverse */
 		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
 		/** @var callable $fn */
@@ -802,7 +802,7 @@ class TemplateHelper {
 	 * @return mixed result of callback
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
-	public static function ifCond( $value, $operator, $value2, $options ) {
+	public static function ifCond( $value, $operator, $value2, array $options ) {
 		$doCallback = false;
 
 		// Perform operator

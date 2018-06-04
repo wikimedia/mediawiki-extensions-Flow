@@ -236,7 +236,7 @@ class ConvertToText extends Maintenance {
 		return $pages[$pageName];
 	}
 
-	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot, $params = [] ) {
+	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot, array $params = [] ) {
 		$headerRevisions = [];
 		$revId = false;
 		do {

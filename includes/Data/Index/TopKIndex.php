@@ -83,7 +83,7 @@ class TopKIndex extends FeatureIndex {
 	 * @param array $options
 	 * @return array [offset, limit] 0-based index to start with and limit.
 	 */
-	protected function getOffsetLimit( $rows, $options ) {
+	protected function getOffsetLimit( array $rows, array $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
 
 		$offsetValue = isset( $options['offset-value'] ) ? $options['offset-value'] : null;
@@ -142,7 +142,7 @@ class TopKIndex extends FeatureIndex {
 	 * @return int The position of $offsetValue within $rows
 	 * @throws DataModelException When $offsetValue is not found within $rows
 	 */
-	protected function getOffsetFromOffsetValue( $rows, $offsetValue ) {
+	protected function getOffsetFromOffsetValue( array $rows, $offsetValue ) {
 		$rowIndex = 0;
 		$nextInOrder = $this->getOrder() === 'DESC' ? -1 : 1;
 		foreach ( $rows as $row ) {
