@@ -3,6 +3,7 @@
 namespace Flow\Tests\Data\Pager;
 
 use Flow\Data\Pager\Pager;
+use Flow\Data\Pager\PagerPage;
 use Flow\Model\UUID;
 
 /**
@@ -118,7 +119,7 @@ class PagerTest extends \MediaWikiTestCase {
 			$options
 		);
 		$page = $pager->getPage( $filter );
-		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
+		$this->assertInstanceOf( PagerPage::class, $page, $message );
 		$this->assertEquals( $expect, $page->getResults(), $message );
 	}
 
@@ -264,7 +265,7 @@ class PagerTest extends \MediaWikiTestCase {
 			$options
 		);
 		$page = $pager->getPage( $filter );
-		$this->assertInstanceOf( 'Flow\Data\Pager\PagerPage', $page, $message );
+		$this->assertInstanceOf( PagerPage::class, $page, $message );
 		$this->assertEquals( $expect, $page->getPagingLinksOptions(), $message );
 	}
 

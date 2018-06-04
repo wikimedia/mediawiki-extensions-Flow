@@ -6,6 +6,7 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Psr\Log\NullLogger;
 use SplQueue;
@@ -50,7 +51,7 @@ class PageImportStateTest extends \MediaWikiTestCase {
 	public function testGetTimestampIdReturnsUUID() {
 		$state = $this->createState();
 		$this->assertInstanceOf(
-			'Flow\Model\UUID',
+			UUID::class,
 			$state->getTimestampId( time() - 123456 ),
 			'PageImportState::getTimestampId must return a UUID object'
 		);
