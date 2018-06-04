@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use Flow\Container;
 use Flow\Exception\WikitextException;
+use Flow\Import\IObjectRevision;
 use Flow\Import\Wikitext\ImportSource;
 use Flow\Conversion\Utils;
 use Parser;
@@ -64,7 +65,7 @@ class ImportSourceTest extends \MediaWikiTestCase {
 		$this->assertCount( 1, $revisions );
 
 		$revision = reset( $revisions );
-		$this->assertInstanceOf( 'Flow\Import\IObjectRevision', $revision );
+		$this->assertInstanceOf( IObjectRevision::class, $revision );
 		$this->assertEquals( $expectText, $revision->getText() );
 		$this->assertEquals( $user->getName(), $revision->getAuthor() );
 	}

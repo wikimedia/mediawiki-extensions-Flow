@@ -3,6 +3,7 @@
 namespace Flow\Tests\Parsoid;
 
 use Flow\Model\UUID;
+use Flow\Model\WikiReference;
 use Flow\Parsoid\ReferenceFactory;
 use Title;
 
@@ -28,7 +29,7 @@ class ReferenceFactoryTest extends \MediaWikiTestCase {
 		);
 
 		$ref = $factory->createWikiReference( 'file', './File:Foo.jpg' );
-		$this->assertInstanceOf( 'Flow\\Model\\WikiReference', $ref );
+		$this->assertInstanceOf( WikiReference::class, $ref );
 		$this->assertEquals( 'title:File:Foo.jpg', $ref->getTargetIdentifier() );
 	}
 }

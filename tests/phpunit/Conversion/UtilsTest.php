@@ -31,7 +31,7 @@ class ConversionUtilsTest extends FlowTestCase {
 	 * @dataProvider createDomProvider
 	 */
 	public function testCreateDomErrorModes( $message, $content ) {
-		$this->assertInstanceOf( 'DOMDocument', Utils::createDOM( $content ), $message );
+		$this->assertInstanceOf( \DOMDocument::class, Utils::createDOM( $content ), $message );
 	}
 
 	public static function createRelativeTitleProvider() {
@@ -67,7 +67,7 @@ class ConversionUtilsTest extends FlowTestCase {
 		if ( $expect === null ) {
 			$this->assertNull( $expect, $message );
 		} elseif ( $expect instanceof Title ) {
-			$this->assertInstanceOf( 'Title', $result, $message );
+			$this->assertInstanceOf( Title::class, $result, $message );
 			$this->assertEquals( $expect->getPrefixedText(), $result->getPrefixedText(), $message );
 		} else {
 			$this->assertEquals( $expect, $result, $message );

@@ -2,6 +2,9 @@
 
 namespace Flow\Tests\Import\LiquidThreadsApi;
 
+use Flow\Import\IImportSource;
+use Flow\Import\Postprocessor\Postprocessor;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Wikimedia\Rdbms\IDatabase;
 use DateTime;
 use DateTimeZone;
@@ -30,7 +33,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
-			'Flow\Import\LiquidThreadsApi\ConversionStrategy',
+			ConversionStrategy::class,
 			$this->createStrategy()
 		);
 	}
@@ -55,14 +58,14 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 	public function testCreatesValidImportSource() {
 		$this->assertInstanceOf(
-			'Flow\Import\IImportSource',
+			IImportSource::class,
 			$this->createStrategy()->createImportSource( Title::newFromText( 'Talk:Blue_birds' ) )
 		);
 	}
 
 	public function testReturnsValidSourceStore() {
 		$this->assertInstanceOf(
-			'Flow\Import\SourceStore\SourceStoreInterface',
+			SourceStoreInterface::class,
 			$this->createStrategy()->getSourceStore()
 		);
 	}
@@ -141,14 +144,14 @@ EOD
 			Title::newFromText( 'Talk:Blue_birds' )
 		);
 		if ( $result !== null ) {
-			$this->assertInstanceOf( 'WikitextContent', $result );
+			$this->assertInstanceOf( WikitextContent::class, $result );
 		}
 		$this->assertEquals( $expect, $result->getNativeData(), $message );
 	}
 
 	public function testGetPostprocessor() {
 		$this->assertInstanceOf(
-			'Flow\Import\Postprocessor\Postprocessor',
+			Postprocessor::class,
 			$this->createStrategy()->getPostprocessor()
 		);
 	}

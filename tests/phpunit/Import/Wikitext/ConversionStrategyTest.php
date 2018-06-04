@@ -6,8 +6,10 @@ use Flow\Container;
 use DateTime;
 use DateTimeZone;
 use ExtensionRegistry;
+use Flow\Import\IImportSource;
 use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\SourceStore\NullImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
 use LinkCache;
 use Parser;
@@ -22,7 +24,7 @@ use WikitextContent;
 class ConversionStrategyTest extends \MediaWikiTestCase {
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
-			'Flow\Import\Wikitext\ConversionStrategy',
+			ConversionStrategy::class,
 			$this->createStrategy()
 		);
 	}
@@ -47,14 +49,14 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 	public function testCreatesValidImportSource() {
 		$this->assertInstanceOf(
-			'Flow\Import\IImportSource',
+			IImportSource::class,
 			$this->createStrategy()->createImportSource( Title::newFromText( 'Talk:Blue_birds' ) )
 		);
 	}
 
 	public function testReturnsValidSourceStore() {
 		$this->assertInstanceOf(
-			'Flow\Import\SourceStore\SourceStoreInterface',
+			SourceStoreInterface::class,
 			$this->createStrategy()->getSourceStore()
 		);
 	}
@@ -80,7 +82,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 			new WikitextContent( "Four score and..." ),
 			Title::newFromText( 'Talk:Blue_birds' )
 		);
-		$this->assertInstanceOf( 'WikitextContent', $result );
+		$this->assertInstanceOf( WikitextContent::class, $result );
 		$this->assertEquals(
 			"{{Archive for converted wikitext talk page|from=Talk:Blue birds|date=$date}}\n\nFour score and...",
 			$result->getNativeData()

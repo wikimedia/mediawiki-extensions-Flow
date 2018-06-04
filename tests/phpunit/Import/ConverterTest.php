@@ -18,7 +18,7 @@ use User;
 class ConverterTest extends \MediaWikiTestCase {
 	public function testConstruction() {
 		$this->assertInstanceOf(
-			'Flow\Import\Converter',
+			Converter::class,
 			$this->createConverter()
 		);
 	}
