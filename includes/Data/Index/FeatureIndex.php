@@ -341,9 +341,9 @@ abstract class FeatureIndex implements Index {
 	 * to expand (= fetch from cache) - don't want to do this for more than
 	 * what is needed
 	 *
-	 * @param array $results
+	 * @param array[] $results
 	 * @param array[optional] $options
-	 * @return array
+	 * @return array[]
 	 */
 	protected function filterResults( array $results, array $options = [] ) {
 		// Overriden in TopKIndex

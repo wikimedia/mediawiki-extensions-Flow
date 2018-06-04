@@ -1493,7 +1493,7 @@ class FlowHooks {
 			return true;
 		}
 
-		/** @var Flow\Formatter\CategoryViewerQuery */
+		/** @var Flow\Formatter\CategoryViewerQuery $query */
 		$query = Container::get( 'query.categoryviewer' );
 		$query->loadMetadataBatch( $res );
 

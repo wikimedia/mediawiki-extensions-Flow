@@ -343,7 +343,7 @@ class ObjectLocator {
 	/**
 	 * Uses options to figure out conditions to add to the DB queries.
 	 *
-	 * @param array $queries Array of queries, with each element an array of attributes
+	 * @param array[] $queries Array of queries, with each element an array of attributes
 	 * @param array $options Options for queries
 	 * @return array Queries for BasicDbStorage class
 	 */

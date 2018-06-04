@@ -4,7 +4,9 @@ namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use Wikimedia\Rdbms\ResultWrapper;
 
 /**

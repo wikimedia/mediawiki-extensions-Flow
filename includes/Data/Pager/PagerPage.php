@@ -12,7 +12,7 @@ class PagerPage {
 	protected $results;
 
 	/**
-	 * @var array
+	 * @var array[]
 	 */
 	protected $pagingLinkOptions;
 
@@ -23,7 +23,7 @@ class PagerPage {
 
 	/**
 	 * @param array $results
-	 * @param array $pagingLinkOptions
+	 * @param array[] $pagingLinkOptions
 	 * @param Pager $pager
 	 */
 	public function __construct( $results, $pagingLinkOptions, $pager ) {
@@ -47,7 +47,7 @@ class PagerPage {
 	}
 
 	/**
-	 * @return array
+	 * @return array[]
 	 */
 	public function getPagingLinksOptions() {
 		return $this->pagingLinkOptions;

@@ -111,7 +111,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	/**
 	 * Returns list of rev_change_type values that warrant an editcount increase.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	protected function getCountableActions() {
 		$allowedActions = [];

@@ -24,9 +24,9 @@ class BaseTopicListFormatter {
 
 	/**
 	 * @param Workflow $workflow Topic list workflow
-	 * @param array $links pagination link data
+	 * @param array[] $links pagination link data
 	 *
-	 * @return array link structure
+	 * @return Anchor[] link structure
 	 */
 	protected function buildPaginationLinks( Workflow $workflow, array $links ) {
 		$res = [];

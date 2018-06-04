@@ -9,6 +9,7 @@ use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
@@ -436,6 +437,13 @@ class LinksTableTest extends PostRevisionTestCase {
 		];
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @param AbstractRevision $revision
+	 * @param array[] $references
+	 *
+	 * @return Reference[]
+	 */
 	protected function expandReferences( Workflow $workflow, AbstractRevision $revision, array $references ) {
 		$referenceObjs = [];
 		$factory = new ReferenceFactory( $workflow, $revision->getRevisionType(), $revision->getCollectionId() );

@@ -244,7 +244,7 @@ class OptInController {
 
 	/**
 	 * @param string $msgKey
-	 * @param array $args
+	 * @param mixed $args
 	 * @throws ImportException
 	 */
 	private function fatal( $msgKey, $args = [] ) {

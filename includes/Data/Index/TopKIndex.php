@@ -66,6 +66,12 @@ class TopKIndex extends FeatureIndex {
 		return $this->options['limit'];
 	}
 
+	/**
+	 * @param array[] $results
+	 * @param array $options
+	 *
+	 * @return array[]
+	 */
 	protected function filterResults( array $results, array $options = [] ) {
 		foreach ( $results as $i => $result ) {
 			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
