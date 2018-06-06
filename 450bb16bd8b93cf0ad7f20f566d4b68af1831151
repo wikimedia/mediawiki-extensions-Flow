@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52c1ef57_14f9f690",
+        "filename": "includes/Data/Index/FeatureIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-06-06T19:22:05Z",
+      "side": 1,
+      "message": "Should be removed when changing this doc comment",
+      "range": {
+        "startLine": 345,
+        "startChar": 16,
+        "endLine": 345,
+        "endChar": 26
+      },
+      "revId": "450bb16bd8b93cf0ad7f20f566d4b68af1831151",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
