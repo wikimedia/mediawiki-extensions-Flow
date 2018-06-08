@@ -348,8 +348,8 @@ abstract class Utils {
 	 * 	801 - allow unrecognized tags like figcaption
 	 *
 	 * @param string $content
-	 * @param bool[optional] $utf8Fragment If true, prefix $content with <?xml encoding="utf-8"?>
-	 * @param array[optional] $ignoreErrorCodes
+	 * @param bool $utf8Fragment If true, prefix $content with <?xml encoding="utf-8"?>
+	 * @param array $ignoreErrorCodes
 	 * @return DOMDocument
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html

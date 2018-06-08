@@ -100,7 +100,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * With no arguments tossed in, default data (resembling a newly-created
 	 * topic title) will be returned.
 	 *
-	 * @param array[optional] $row DB row data (only specify override columns)
+	 * @param array $row DB row data (only specify override columns)
 	 * @return array
 	 */
 	protected function generateRow( array $row = [] ) {
@@ -181,9 +181,9 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * With no arguments tossed in, a default revision (resembling a newly-
 	 * created topic title) will be returned.
 	 *
-	 * @param array[optional] $row DB row data (only specify override columns)
-	 * @param array[optional] $children Array of child PostRevision objects
-	 * @param int[optional] $depth Depth of the PostRevision object
+	 * @param array $row DB row data (only specify override columns)
+	 * @param array $children Array of child PostRevision objects
+	 * @param int $depth Depth of the PostRevision object
 	 * @return PostRevision
 	 */
 	protected function generateObject( array $row = [], $children = [], $depth = 0 ) {

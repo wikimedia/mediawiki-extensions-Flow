@@ -119,7 +119,7 @@ class Templating {
 	 * other than the default 'html' and 'fixed-html'.
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
-	 * @param string[optional] $format Format to output content in (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext|topic-title-plaintext)
+	 * @param string $format Format to output content in (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext|topic-title-plaintext)
 	 * @return string HTML if requested, otherwise plain text
 	 * @throws InvalidParameterException
 	 */

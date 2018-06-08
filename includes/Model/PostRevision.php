@@ -163,7 +163,7 @@ class PostRevision extends AbstractRevision {
 	 * @param User $user
 	 * @param string $content
 	 * @param string $format wikitext|html
-	 * @param string[optional] $changeType
+	 * @param string $changeType
 	 * @return PostRevision
 	 */
 	public function reply( Workflow $workflow, User $user, $content, $format, $changeType = 'reply' ) {

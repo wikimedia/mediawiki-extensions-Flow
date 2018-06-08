@@ -141,7 +141,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 * Inserts a filter into stub database.
 	 *
 	 * @param string $pattern
-	 * @param string[optional] $action
+	 * @param string $action
 	 */
 	protected function createFilter( $pattern, $action = 'disallow' ) {
 		global $wgFlowAbuseFilterGroup;

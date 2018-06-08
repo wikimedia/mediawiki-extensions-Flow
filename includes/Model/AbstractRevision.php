@@ -372,7 +372,7 @@ abstract class AbstractRevision {
 	 * Templating::getContent, which will do additional (permissions-based)
 	 * checks to make sure it outputs something the user can see.
 	 *
-	 * @param string[optional] $format Format to output content in (html|wikitext|topic-title-wikitext|topic-title-html|topic-title-plaintext)
+	 * @param string $format Format to output content in (html|wikitext|topic-title-wikitext|topic-title-html|topic-title-plaintext)
 	 * @return string
 	 * @throws InvalidDataException
 	 */

@@ -578,7 +578,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * columns.
 	 *
 	 * @param array $row Rows to split
-	 * @param string[optional] $prefix
+	 * @param string $prefix
 	 * @return array Remaining rows
 	 */
 	protected function splitUpdate( array $row, $prefix = 'rev' ) {

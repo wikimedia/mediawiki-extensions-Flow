@@ -123,7 +123,7 @@ class ObjectLocator {
 	 * additional data may be loaded at once.
 	 *
 	 * @param array $attributes Attributes to find()
-	 * @param array[optional] $options Options to find()
+	 * @param array $options Options to find()
 	 * @return bool
 	 */
 	public function found( array $attributes, array $options = [] ) {
@@ -138,7 +138,7 @@ class ObjectLocator {
 	 * additional data may be loaded at once.
 	 *
 	 * @param array $queries Queries to findMulti()
-	 * @param array[optional] $options Options to findMulti()
+	 * @param array $options Options to findMulti()
 	 * @return bool
 	 */
 	public function foundMulti( array $queries, array $options = [] ) {

@@ -342,7 +342,7 @@ abstract class FeatureIndex implements Index {
 	 * what is needed
 	 *
 	 * @param array[] $results
-	 * @param array[optional] $options
+	 * @param array $options
 	 * @return array[]
 	 */
 	protected function filterResults( array $results, array $options = [] ) {
@@ -358,7 +358,7 @@ abstract class FeatureIndex implements Index {
 	 * additional data may be loaded at once.
 	 *
 	 * @param array $attributes Attributes to find()
-	 * @param array[optional] $options Options to find()
+	 * @param array $options Options to find()
 	 * @return bool
 	 */
 	public function found( array $attributes, array $options = [] ) {
@@ -373,7 +373,7 @@ abstract class FeatureIndex implements Index {
 	 * additional data may be loaded at once.
 	 *
 	 * @param array $queries Queries to findMulti()
-	 * @param array[optional] $options Options to findMulti()
+	 * @param array $options Options to findMulti()
 	 * @return bool
 	 */
 	public function foundMulti( array $queries, array $options = [] ) {

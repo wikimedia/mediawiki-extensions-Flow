@@ -22,7 +22,7 @@ class Header extends AbstractRevision {
 	 * @param User $user
 	 * @param string $content
 	 * @param string $format wikitext|html
-	 * @param string[optional] $changeType
+	 * @param string $changeType
 	 * @return Header
 	 */
 	public static function create( Workflow $workflow, User $user, $content, $format, $changeType = 'create-header' ) {
