@@ -68,7 +68,7 @@ class BadImageRemover implements Fixer {
 			return;
 		}
 
-		if ( !call_user_func( $this->isFiltered, $image->getDBkey(), $title ) ) {
+		if ( !( $this->isFiltered )( $image->getDBkey(), $title ) ) {
 			return;
 		}
 

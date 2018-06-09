@@ -123,10 +123,7 @@ class ManagerGroup {
 	protected function call( $method, $args ) {
 		$className = array_shift( $args );
 
-		return call_user_func_array(
-			[ $this->getStorage( $className ), $method ],
-			$args
-		);
+		return $this->getStorage( $className )->$method( ...$args );
 	}
 
 	public function get( /* ... */ ) {

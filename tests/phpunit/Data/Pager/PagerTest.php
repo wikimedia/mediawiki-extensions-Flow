@@ -386,9 +386,8 @@ class PagerTest extends \MediaWikiTestCase {
 		if ( $found ) {
 			$om->expects( $this->any() )
 				->method( 'find' )
-				->will( call_user_func_array(
-					[ $this, 'onConsecutiveCalls' ],
-					array_map( [ $this, 'returnValue' ], $found )
+				->will( $this->onConsecutiveCalls(
+					...array_map( [ $this, 'returnValue' ], $found )
 				) );
 		}
 

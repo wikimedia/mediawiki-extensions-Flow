@@ -147,10 +147,7 @@ class RevisionActionPermissions {
 			return false;
 		}
 
-		return call_user_func_array(
-			[ $this->user, 'isAllowedAny' ],
-			(array)$permission
-		);
+		return $this->user->isAllowedAny( ...(array)$permission );
 	}
 
 	/**
@@ -166,10 +163,7 @@ class RevisionActionPermissions {
 
 		// If user is allowed to see deleted page content, there's no need to
 		// even check if it's been deleted (additional storage lookup)
-		$allowed = call_user_func_array(
-			[ $this->user, 'isAllowedAny' ],
-			(array)$permissions
-		);
+		$allowed = $this->user->isAllowedAny( ...(array)$permissions );
 		if ( $allowed ) {
 			return true;
 		}
@@ -202,10 +196,7 @@ class RevisionActionPermissions {
 		}
 
 		// Check if user is allowed to perform action against this revision
-		return call_user_func_array(
-			[ $this->user, 'isAllowedAny' ],
-			(array)$permission
-		);
+		return $this->user->isAllowedAny( ...(array)$permission );
 	}
 
 	/**
