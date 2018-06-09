@@ -44,8 +44,8 @@ class UserNameListenerTest extends FlowTestCase {
 		$prop->setAccessible( true );
 		$queued = $prop->getValue( $batch );
 
-		if ( $expectedWiki instanceof Closure ) {
-			$expectedWiki = call_user_func( $expectedWiki );
+		if ( is_callable( $expectedWiki ) ) {
+			$expectedWiki = $expectedWiki();
 		}
 
 		if ( $expectedWiki ) {

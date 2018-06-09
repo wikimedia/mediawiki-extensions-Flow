@@ -133,7 +133,7 @@ class Pager {
 				// nothing found
 				break;
 			}
-			$filtered = $filter ? call_user_func( $filter, $found ) : $found;
+			$filtered = $filter ? $filter( $found ) : $found;
 			if ( $this->options['pager-dir'] === 'rev' ) {
 				// Paging A-Z with pager-offset F, pager-dir rev, pager-limit 2 gives
 				// DE on first query, BC on second, and A on third.  The output

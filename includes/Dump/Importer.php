@@ -321,7 +321,7 @@ class Importer {
 		$keys = array_fill_keys( array_keys( Exporter::$map ), null );
 		$attribs += $keys;
 
-		return call_user_func( $callback, $attribs );
+		return $callback( $attribs );
 	}
 
 	/**
