@@ -32,7 +32,7 @@ class Merger {
 		if ( !$ids ) {
 			return $source;
 		}
-		$res = call_user_func( $callable, $ids );
+		$res = $callable( $ids );
 		if ( $res === false ) {
 			return false;
 		}
@@ -76,7 +76,7 @@ class Merger {
 		if ( !$ids ) {
 			return $multiSource;
 		}
-		$res = call_user_func( $callable, array_unique( $ids ) );
+		$res = $callable( array_unique( $ids ) );
 		if ( $res === false ) {
 			return false;
 		}

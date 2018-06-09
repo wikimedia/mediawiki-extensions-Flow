@@ -39,7 +39,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$hasRun = true;
 			$continue = "\0";
 			do {
-				$continue = call_user_func( $callback, $dbw, $continue );
+				$continue = $callback( $dbw, $continue );
 				$dbf->waitForSlaves();
 			} while ( $continue !== null );
 		};
