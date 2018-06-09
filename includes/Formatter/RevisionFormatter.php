@@ -786,7 +786,7 @@ class RevisionFormatter {
 				 * current revision), but it's likely being loaded anyways.
 				 */
 				if ( $revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = call_user_func( $diffCallback, $title, $workflowId, $revId );
+					$links['diff'] = $diffCallback( $title, $workflowId, $revId );
 
 					/*
 					 * Different formatters have different terminology for the link
@@ -810,7 +810,7 @@ class RevisionFormatter {
 				 */
 				$cur = $row->currentRevision;
 				if ( !$revId->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = call_user_func( $diffCallback, $title, $workflowId, $cur->getRevisionId(), $revId );
+					$links['diff-cur'] = $diffCallback( $title, $workflowId, $cur->getRevisionId(), $revId );
 					$curMsg = new Message( 'cur' );
 					$links['diff-cur']->setTitleMessage( $curMsg );
 					$links['diff-cur']->setMessage( $curMsg );

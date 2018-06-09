@@ -62,7 +62,7 @@ class CachingObjectMapper implements ObjectMapper {
 	}
 
 	public function toStorageRow( $object ) {
-		$row = call_user_func( $this->toStorageRow, $object );
+		$row = ( $this->toStorageRow )( $object );
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
 		if ( $pk === null ) {
 			// new object may not have pk yet, calling code
@@ -86,7 +86,7 @@ class CachingObjectMapper implements ObjectMapper {
 			throw new \InvalidArgumentException( 'Storage row has no pk' );
 		} elseif ( !isset( $this->loaded[$pk] ) ) {
 			// unserialize the object
-			$this->loaded[$pk] = call_user_func( $this->fromStorageRow, $row, $object );
+			$this->loaded[$pk] = ( $this->fromStorageRow )( $row, $object );
 			return $this->loaded[$pk];
 		} elseif ( $object === null ) {
 			// provide previously loaded object
@@ -99,7 +99,7 @@ class CachingObjectMapper implements ObjectMapper {
 		} else {
 			// object was provided, load $row into $object
 			// we already know $this->loaded[$pk] === $object
-			return call_user_func( $this->fromStorageRow, $row, $object );
+			return ( $this->fromStorageRow )( $row, $object );
 		}
 	}
 
@@ -125,8 +125,8 @@ class CachingObjectMapper implements ObjectMapper {
 	 * @inheritDoc
 	 */
 	public function normalizeRow( array $row ) {
-		$object = call_user_func( $this->fromStorageRow, $row );
-		return call_user_func( $this->toStorageRow, $object );
+		$object = ( $this->fromStorageRow )( $row );
+		return ( $this->toStorageRow )( $object );
 	}
 
 	public function clear() {

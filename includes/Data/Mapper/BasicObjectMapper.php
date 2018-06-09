@@ -31,11 +31,11 @@ class BasicObjectMapper implements ObjectMapper {
 	}
 
 	public function toStorageRow( $object ) {
-		return call_user_func( $this->toStorageRow, $object );
+		return ( $this->toStorageRow )( $object );
 	}
 
 	public function fromStorageRow( array $row, $object = null ) {
-		return call_user_func( $this->fromStorageRow, $row, $object );
+		return ( $this->fromStorageRow )( $row, $object );
 	}
 
 	public function get( array $pk ) {

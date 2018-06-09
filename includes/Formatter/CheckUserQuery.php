@@ -56,7 +56,7 @@ class CheckUserQuery extends AbstractQuery {
 		} elseif ( $count === 1 ) {
 			$results = reset( $found );
 		} else {
-			$results = call_user_func_array( 'array_merge', $found );
+			$results = array_merge( ...$found );
 		}
 
 		if ( $results ) {

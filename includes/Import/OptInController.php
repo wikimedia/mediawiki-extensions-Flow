@@ -517,7 +517,7 @@ class OptInController {
 		$content = $revision->getContentRaw();
 		$content = Utils::convert( $revision->getContentFormat(), $format, $content, $title );
 
-		$newDescription = call_user_func( $newDescriptionCallback, $content );
+		$newDescription = $newDescriptionCallback( $content );
 
 		$action = 'edit-header';
 		$params = [
@@ -630,7 +630,7 @@ class OptInController {
 	 */
 	private function editWikitextContent( Title $title, $reason, callable $newDescriptionCallback, $format = 'html' ) {
 		$content = Utils::convert( 'wikitext', $format, $this->getContent( $title ), $title );
-		$newContent = call_user_func( $newDescriptionCallback, $content );
+		$newContent = $newDescriptionCallback( $content );
 		$this->createRevision(
 			$title,
 			Utils::convert( $format, 'wikitext', $newContent, $title ),
