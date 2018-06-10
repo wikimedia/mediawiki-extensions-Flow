@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a9e2806_b1098fe8",
+        "filename": "includes/Data/Utils/UserMerger.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 98
+      },
+      "writtenOn": "2018-06-10T01:22:51Z",
+      "side": 1,
+      "message": "Hm wouldn\u0027t $obj-\u003e$userTupleGetter(); work?",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 46
+      },
+      "revId": "bcb1080693111b8c9049d9f5647a917d9d032db0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
