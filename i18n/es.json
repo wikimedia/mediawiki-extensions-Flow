@@ -30,7 +30,8 @@
 			"Lemondoge",
 			"Rubentl134",
 			"Dgstranz",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Matěj Suchánek"
 		]
 	},
 	"enablestructureddiscussions": "Activar discusiones estructuradas",
@@ -304,7 +305,7 @@
 	"notification-bundle-header-flow-description-edited": "La descripción de <strong>$1</strong> se editó varias veces.",
 	"notification-bundle-header-flow-description-edited-user-talk": "La descripción se editó varias veces en '''{{GENDER:$2|tu}} página de discusión'''.",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Ver}} la página",
-	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$q|editó}} la descripción en $2.",
+	"notification-email-subject-flow-description-edited": "$1 {{GENDER:$1|editó}} la descripción en $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 {{GENDER:$1|editó}} la descripción en $2.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 y {{PLURAL:$3|otro|otros $3|100=otros 99+}} {{GENDER:$1|editaron}} la descripción en $2",
 	"notification-header-flow-topic-resolved": "Se resolvió el tema \"<strong>$1</strong>\".",

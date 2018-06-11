@@ -47,7 +47,8 @@
 			"Pols12",
 			"DePlusJean",
 			"Epok",
-			"Jules78120"
+			"Jules78120",
+			"Matěj Suchánek"
 		]
 	},
 	"enablestructureddiscussions": "Activer les discussions structurées",
@@ -369,7 +370,7 @@
 	"flow-notification-rename-email-batch-body": "$1 {{GENDER:$1|a renommé}} votre sujet « $2 » en « $3 » sur $4",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|a créé}} un nouveau sujet sur $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|a créé}} un nouveau sujet avec le titre « $2 » sur $3",
-	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1Un nouveau sujet|$1 nouveaux sujets|100=plus de 100 nouveaux sujets}} sur $2",
+	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Un nouveau sujet|$1 nouveaux sujets|100=plus de 100 nouveaux sujets}} sur $2",
 	"echo-category-title-flow-discussion": "Discussion structurée",
 	"echo-pref-tooltip-flow-discussion": "M’informer sur l’activité concernant des sujets ou des pages que je suis.",
 	"flow-link-post": "message",

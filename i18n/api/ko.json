@@ -16,6 +16,8 @@
 	"apihelp-flow+edit-title-description": "주제의 제목을 편집합니다.",
 	"apihelp-flow+edit-title-summary": "주제의 제목을 편집합니다.",
 	"apihelp-flow+edit-title-example-1": "[[Topic:S2tycnas4hcucw8w]]의 제목을 편집하기",
+	"apihelp-flow+edit-topic-summary-param-summary": "요약 내용입니다.",
+	"apihelp-flow+edit-topic-summary-param-format": "요약 포맷 (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]]의 요약을 편집하기",
 	"apihelp-flow+lock-topic-description": "플로우 주제를 잠그거나 잠금을 해제합니다.",
 	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] 잠그기",

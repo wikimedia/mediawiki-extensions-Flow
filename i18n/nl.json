@@ -230,6 +230,8 @@
 	"flow-edit-header-placeholder": "Beschrijf dit overlegbord",
 	"flow-edit-header-submit": "Beschrijving opslaan",
 	"flow-edit-header-submit-anonymously": "Beschrijving anoniem opslaan",
+	"flow-edit-header-submit-publish": "Beschrijving publiceren",
+	"flow-edit-header-submit-anonymously-publish": "Beschrijving anoniem publiceren",
 	"flow-edit-title-submit": "Onderwerp wijzigen",
 	"flow-edit-title-submit-anonymously": "Anoniem titel wijzigen",
 	"flow-edit-post-submit": "Wijzigingen opslaan",

@@ -50,6 +50,7 @@
 	"apihelp-flow+moderate-post-param-postId": "Kennung des zu moderierenden Beitrags.",
 	"apihelp-flow+moderate-post-example-1": "Löscht einen Beitrag im Thema [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-topic-description": "Moderiert ein Flow-Thema.",
+	"apihelp-flow+moderate-topic-summary": "Moderiert ein Flow-Thema.",
 	"apihelp-flow+moderate-topic-param-moderationState": "Auf welcher Ebene moderiert werden soll.",
 	"apihelp-flow+moderate-topic-param-reason": "Grund für die Moderation.",
 	"apihelp-flow+moderate-topic-example-1": "Löscht das Thema [[Topic:S2tycnas4hcucw8w]]",

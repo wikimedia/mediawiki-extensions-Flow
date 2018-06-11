@@ -34,7 +34,8 @@
 			"Mouse21",
 			"Movses",
 			"Patrick Star",
-			"Ole Yves"
+			"Ole Yves",
+			"Matěj Suchánek"
 		]
 	},
 	"enablestructureddiscussions": "Включить «Cтруктурированные обсуждения»",
@@ -337,7 +338,7 @@
 	"notification-email-subject-flow-topic-resolved": "Тема «<strong>$2</strong>» была завершена.",
 	"notification-email-batch-body-flow-topic-resolved": "Тема «<strong>$2</strong>» была решена.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|создал|создала}} новую тему на <strong>$3</strong>.",
-	"flow-notification-newtopic-bundle": "{{PLURAL:$1 новая тема|$1 новых тем|$1 новые темы|100=99+ новых тем}} в <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
+	"flow-notification-newtopic-bundle": "{{PLURAL:$1|$1 новая тема|$1 новых тем|$1 новые темы|100=99+ новых тем}} в <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
 	"flow-notification-rename": "$1 {{GENDER:$1|изменил|изменила}} заголовок темы <span class=\"plainlinks\">[$2 $3]</span> на «$4» на странице [[$5|$6]].",
 	"flow-notification-mention": "$1 упомянул{{GENDER:$1||а}} {{GENDER:$5|вас}} в {{GENDER:$1|своём}} <span class=\"plainlinks\">[$2 сообщении]</span> в «$3» на «$4».",
 	"flow-notification-link-text-view-post": "Посмотреть сообщение",
