@@ -72,7 +72,7 @@ abstract class Utils {
 	 * and other places where a roundtrip is undesired.
 	 *
 	 * @param string $html
-	 * @param int|null $truncateLength Maximum length (including ellipses) or null for whole string.
+	 * @param int|null $truncateLength Maximum length in characters (including ellipses) or null for whole string.
 	 * @param Language|null $lang Language to use for truncation.  Defaults to $wgLang
 	 * @return string plaintext
 	 */
@@ -86,7 +86,7 @@ abstract class Utils {
 			return $plain;
 		} else {
 			$lang = $lang ?: $wgLang;
-			return $lang->truncate( $plain, $truncateLength );
+			return $lang->truncateForVisual( $plain, $truncateLength );
 		}
 	}
 

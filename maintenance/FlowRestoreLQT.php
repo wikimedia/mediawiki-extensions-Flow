@@ -294,7 +294,7 @@ class FlowRestoreLQT extends Maintenance {
 		}
 
 		$content = $revision->getContent()->serialize();
-		$content = $wgLang->truncate( $content, 150 );
+		$content = $wgLang->truncateForVisual( $content, 150 );
 		$content = str_replace( "\n", '\n', $content );
 		$this->output( "Restoring revision {$revisionId} for LQT page {$pageId}: {$content}\n" );
 

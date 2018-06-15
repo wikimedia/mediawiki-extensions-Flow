@@ -130,7 +130,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
 	protected function truncateTopicTitle( $topicTitle ) {
 		return $this->language->embedBidi(
-			$this->language->truncate(
+			$this->language->truncateForVisual(
 				$topicTitle,
 				self::SECTION_TITLE_RECOMMENDED_LENGTH,
 				'...',
