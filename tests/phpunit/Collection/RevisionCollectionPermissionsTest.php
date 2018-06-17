@@ -164,7 +164,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider permissionsProvider
 	 */
-	public function testPermissions( User $user, $permissionAction, $actions ) {
+	public function testPermissions( User $user, $permissionAction, array $actions ) {
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
 
 		// we'll have to process this in 2 steps: first do all of the actions,

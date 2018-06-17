@@ -86,7 +86,7 @@ class ManagerGroup {
 	 * @param array $metadata
 	 * @throws DataModelException
 	 */
-	protected function multiMethod( $method, $objects, array $metadata ) {
+	protected function multiMethod( $method, array $objects, array $metadata ) {
 		$itemsByClass = [];
 
 		foreach ( $objects as $object ) {

@@ -116,7 +116,7 @@ class AbuseFilter implements SpamFilter {
 			 * @param array $parameters Parameters with data to compute the value
 			 * @param mixed &$result Result of the computation
 			 */
-			'FlowRevisionContent' => function ( \AbuseFilterVariableHolder $vars, $parameters ) {
+			'FlowRevisionContent' => function ( \AbuseFilterVariableHolder $vars, array $parameters ) {
 				if ( !isset( $parameters['revision'] ) ) {
 					return '';
 				}

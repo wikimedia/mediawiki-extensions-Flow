@@ -354,7 +354,7 @@ abstract class Utils {
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $utf8Fragment = true, $ignoreErrorCodes = [ 9, 76, 513, 801 ] ) {
+	public static function createDOM( $content, $utf8Fragment = true, array $ignoreErrorCodes = [ 9, 76, 513, 801 ] ) {
 		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
