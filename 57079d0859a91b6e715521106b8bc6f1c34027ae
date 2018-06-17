@@ -22,6 +22,52 @@
       "revId": "57079d0859a91b6e715521106b8bc6f1c34027ae",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf83caf1_178ad5cc",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-06-17T10:30:01Z",
+      "side": 1,
+      "message": "This method already requires an array and would fail when called with an object.",
+      "range": {
+        "startLine": 306,
+        "startChar": 27,
+        "endLine": 306,
+        "endChar": 41
+      },
+      "revId": "57079d0859a91b6e715521106b8bc6f1c34027ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3bf831c_e58ebbe8",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-06-17T10:30:01Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 308,
+        "startChar": 13,
+        "endLine": 308,
+        "endChar": 24
+      },
+      "revId": "57079d0859a91b6e715521106b8bc6f1c34027ae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
