@@ -185,7 +185,7 @@ class TemplateHelper {
 		if ( !array_key_exists( 'rootBlock', $args ) ) {
 			$args['rootBlock'] = $args;
 		}
-		return call_user_func( $template, $args, $scopes );
+		return $template( $args, $scopes );
 	}
 
 	// Helpers

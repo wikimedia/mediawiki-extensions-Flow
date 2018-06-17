@@ -106,7 +106,7 @@ class UserMerger {
 	protected function purgeTable( Iterator $it, $oldUserId, $callback, $userTupleGetter ) {
 		foreach ( $it as $batch ) {
 			foreach ( $batch as $pkRow ) {
-				$obj = call_user_func( $callback, $pkRow );
+				$obj = $callback( $pkRow );
 				if ( !$obj ) {
 					continue;
 				}
@@ -114,7 +114,7 @@ class UserMerger {
 				// the db with new user ids, or the cache with old user ids.
 				// We need to tweak this object to look like the old user ids and then
 				// purge caches so they get the old user id cache keys.
-				$tuple = call_user_func( [ $obj, $userTupleGetter ] );
+				$tuple = $obj->$userTupleGetter();
 				if ( !$tuple ) {
 					continue;
 				}

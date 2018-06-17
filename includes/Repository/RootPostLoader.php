@@ -218,7 +218,7 @@ class RootPostLoader {
 		} elseif ( count( $nodeList ) === 1 ) {
 			$res = reset( $nodeList );
 		} else {
-			$res = call_user_func_array( 'array_merge', $nodeList );
+			$res = array_merge( ...$nodeList );
 		}
 
 		$retval = [];

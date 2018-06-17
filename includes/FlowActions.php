@@ -83,11 +83,10 @@ class FlowActions {
 		try {
 			$referencedAction = $this->actions[$action];
 			if ( is_string( $referencedAction ) && $referencedAction != $action ) {
-				// Replace action name in arguments.
+				// Remove action name from arguments
 				array_shift( $arguments );
-				array_unshift( $arguments, $referencedAction );
 
-				return call_user_func_array( [ $this, 'getValue' ], $arguments );
+				return $this->getValue( $referencedAction, ...$arguments );
 			}
 		} catch ( \OutOfBoundsException $e ) {
 			// Do nothing; the whole remainder of this method is fail-case.

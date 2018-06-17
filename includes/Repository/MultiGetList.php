@@ -78,7 +78,7 @@ class MultiGetList {
 		if ( count( $cacheKeys ) === 0 ) {
 			return $result;
 		}
-		$res = call_user_func( $loadCallback, array_values( $cacheKeys ) );
+		$res = $loadCallback( array_values( $cacheKeys ) );
 		if ( !$res ) {
 			// storage failure of some sort
 			return $result;

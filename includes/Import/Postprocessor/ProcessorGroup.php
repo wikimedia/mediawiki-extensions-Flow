@@ -39,7 +39,7 @@ class ProcessorGroup implements Postprocessor {
 
 	protected function call( $name, $args ) {
 		foreach ( $this->processors as $proc ) {
-			call_user_func_array( [ $proc, $name ], $args );
+			$proc->$name( $args );
 		}
 	}
 }
