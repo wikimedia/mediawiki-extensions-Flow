@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\UUID;
+use Flow\NotificationController;
 use Wikimedia\TestingAccessWrapper;
 
 // See also NotitifiedUsersTest
@@ -13,6 +14,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group Flow
  */
 class NotificationControllerTest extends \MediaWikiTestCase {
+
+	/**
+	 * @var NotificationController
+	 */
 	protected $notificationController;
 
 	protected function setUp() {

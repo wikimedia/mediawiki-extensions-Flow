@@ -765,7 +765,7 @@ class NotificationController {
 	 * This is the lowest-number post, numbering them using a pre-order depth-first
 	 *  search
 	 *
-	 * @param array $bundledEvents Array of EchoEvents
+	 * @param EchoEvent[] $bundledEvents
 	 * @return UUID|null Post ID, or null on failure
 	 */
 	public function getTopmostPostId( array $bundledEvents ) {
@@ -826,7 +826,7 @@ class NotificationController {
 	 *
 	 * This is the root of the smallest subtree all the posts are in.
 	 *
-	 * @param array $rootPaths Associative array mapping post IDs to root paths
+	 * @param array[] $rootPaths Associative array mapping post IDs to root paths
 	 * @return UUID|null Common root, or null on failure
 	 */
 	protected function getDeepestCommonRoot( array $rootPaths ) {
