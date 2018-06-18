@@ -133,7 +133,7 @@ class BoardContentHandler extends \ContentHandler {
 				continue;
 			}
 
-			if ( $actionData['handler-class'] === 'Flow\Actions\FlowAction' ) {
+			if ( $actionData['handler-class'] === FlowAction::class ) {
 				$output[$action] = function ( Page $page, IContextSource $source ) use ( $action ) {
 					return new FlowAction( $page, $source, $action );
 				};
@@ -143,7 +143,7 @@ class BoardContentHandler extends \ContentHandler {
 		}
 
 		// Flow has its own handling for action=edit
-		$output['edit'] = 'Flow\Actions\EditAction';
+		$output['edit'] = \Flow\Actions\EditAction::class;
 
 		return $output;
 	}

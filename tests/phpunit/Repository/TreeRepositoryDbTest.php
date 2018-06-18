@@ -17,7 +17,7 @@ class TreeRepositoryDbTest extends FlowTestCase {
 
 	public function testSomething() {
 		// meaningless set of ids used for repeatability
-		$ids = array_map( [ 'Flow\Model\UUID', 'create' ], [
+		$ids = array_map( [ \Flow\Model\UUID::class, 'create' ], [
 			"s3z44zhp93j5vvc8", "s3z44zhqt7yt8220", "s46w00pmmw0otc0q",
 			"s3qvc7cnor86wvb4", "s3qvc7bbcxr3f340",
 			"s3gre9r27pobtg0n", "s3cdl3dfqf8brx18", "s3cdl3dhajnz43r0",

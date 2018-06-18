@@ -13,8 +13,21 @@ class BlockFactoryTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {
 		return [
-			[ 'discussion', [ 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ] ],
-			[ 'topic', [ 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ] ],
+			[
+				'discussion',
+				[
+					\Flow\Block\HeaderBlock::class,
+					\Flow\Block\TopicListBlock::class,
+					\Flow\Block\BoardHistoryBlock::class,
+				]
+			],
+			[
+				'topic',
+				[
+					\Flow\Block\TopicBlock::class,
+					\Flow\Block\TopicSummaryBlock::class,
+				]
+			],
 		];
 	}
 
@@ -46,11 +59,11 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	protected function createBlockFactory() {
-		$storage = $this->getMockBuilder( '\Flow\Data\ManagerGroup' )
+		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$rootPostLoader = $this->getMockBuilder( '\Flow\Repository\RootPostLoader' )
+		$rootPostLoader = $this->getMockBuilder( \Flow\Repository\RootPostLoader::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -58,7 +71,7 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	protected function mockWorkflow( $type ) {
-		$workflow = $this->getMockBuilder( '\Flow\Model\Workflow' )
+		$workflow = $this->getMockBuilder( \Flow\Model\Workflow::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$workflow->expects( $this->any() )

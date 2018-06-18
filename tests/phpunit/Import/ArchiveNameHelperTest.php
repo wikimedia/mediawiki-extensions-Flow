@@ -58,7 +58,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 		// flip so we can use isset
 		$existsByKey = array_flip( $exists );
 
-		$titleRepo = $this->getMock( 'Flow\Repository\TitleRepository' );
+		$titleRepo = $this->getMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->expects( $this->any() )
 			->method( 'exists' )
 			->will( $this->returnCallback( function ( Title $title ) use ( $existsByKey ) {
@@ -105,7 +105,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 		// flip so we can use isset
 		$existsByKey = array_flip( $exists );
 
-		$titleRepo = $this->getMock( 'Flow\Repository\TitleRepository' );
+		$titleRepo = $this->getMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->expects( $this->any() )
 			->method( 'exists' )
 			->will( $this->returnCallback( function ( Title $title ) use ( $existsByKey ) {

@@ -164,16 +164,16 @@ EOD
 		return new ConversionStrategy(
 			$dbr ?: wfGetDB( DB_REPLICA ),
 			$sourceStore ?: new NullImportSourceStore,
-			$api ?: $this->getMockBuilder( 'Flow\Import\LiquidThreadsApi\ApiBackend' )
+			$api ?: $this->getMockBuilder( ApiBackend::class )
 				->disableOriginalConstructor()
 				->getMock(),
-			$this->getMockBuilder( 'Flow\UrlGenerator' )
+			$this->getMockBuilder( \Flow\UrlGenerator::class )
 				->disableOriginalConstructor()
 				->getMock(),
 			$this->getMockBuilder( 'User' )
 				->disableOriginalConstructor()
 				->getMock(),
-			$this->getMockBuilder( 'Flow\NotificationController' )
+			$this->getMockBuilder( \Flow\NotificationController::class )
 				->disableOriginalConstructor()
 				->getMock()
 		);

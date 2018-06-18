@@ -29,9 +29,9 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	protected $storage;
 
 	static private $types = [
-		'post' => 'Flow\Model\PostRevision',
-		'header' => 'Flow\Model\Header',
-		'post-summary' => 'Flow\Model\PostSummary',
+		'post' => \Flow\Model\PostRevision::class,
+		'header' => \Flow\Model\Header::class,
+		'post-summary' => \Flow\Model\PostSummary::class,
 	];
 
 	public function __construct() {

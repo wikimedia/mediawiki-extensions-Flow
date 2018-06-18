@@ -17,18 +17,18 @@ use User;
 class TemplatingTest extends \MediaWikiTestCase {
 
 	protected function mockTemplating() {
-		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
+		$query = $this->getMock( \Flow\Repository\UserName\UserNameQuery::class );
 		$usernames = new UserNameBatch( $query );
-		$urlGenerator = $this->getMockBuilder( 'Flow\UrlGenerator' )
+		$urlGenerator = $this->getMockBuilder( \Flow\UrlGenerator::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$output = $this->getMockBuilder( 'OutputPage' )
 			->disableOriginalConstructor()
 			->getMock();
-		$fixer = $this->getMockBuilder( 'Flow\Parsoid\ContentFixer' )
+		$fixer = $this->getMockBuilder( \Flow\Parsoid\ContentFixer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$permissions = $this->getMockBuilder( 'Flow\RevisionActionPermissions' )
+		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
 			->disableOriginalConstructor()
 			->getMock();
 

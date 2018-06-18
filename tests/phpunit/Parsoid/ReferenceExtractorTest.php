@@ -34,7 +34,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[My page]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'link',
 				// expected target
@@ -45,7 +45,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[User talk:Werdna?]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'link',
 				// expected target
@@ -56,7 +56,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[/Subpage]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'link',
 				// expected target
@@ -69,7 +69,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[http://www.google.com Google]',
 				// expected factory method
-				'Flow\Model\UrlReference',
+				\Flow\Model\UrlReference::class,
 				// expected type
 				'link',
 				// expected target
@@ -80,7 +80,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[File:Image.png]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'file',
 				// expected target
@@ -91,7 +91,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[File:Image.png|25px]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'file',
 				// expected target
@@ -102,7 +102,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[File:Image?.png]]',
 				// expected class
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'file',
 				// expected target
@@ -113,7 +113,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'{{Foo}}',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'template',
 				// expected target
@@ -125,7 +125,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[[File:Some/Files/Really/Should_Not_Ex/ist.png]]',
 				// expected factory method
-				'Flow\Model\WikiReference',
+				\Flow\Model\WikiReference::class,
 				// expected type
 				'file',
 				// expected target
@@ -147,7 +147,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 	) {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 
-		$workflow = $this->getMock( 'Flow\Model\Workflow' );
+		$workflow = $this->getMock( \Flow\Model\Workflow::class );
 		$workflow->expects( $this->any() )
 			->method( 'getId' )
 			->will( $this->returnValue( UUID::create() ) );

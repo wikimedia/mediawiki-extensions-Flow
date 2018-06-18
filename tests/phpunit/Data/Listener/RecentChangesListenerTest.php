@@ -35,13 +35,13 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 	 */
 	public function testSomething( $message, $expect, $init ) {
 		$actions = Container::get( 'flow_actions' );
-		$usernames = $this->getMockBuilder( 'Flow\Repository\UserNameBatch' )
+		$usernames = $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$rcFactory = $this->getMockBuilder( 'Flow\Data\Utils\RecentChangeFactory' )
+		$rcFactory = $this->getMockBuilder( \Flow\Data\Utils\RecentChangeFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$ircFormatter = $this->getMockBuilder( 'Flow\Formatter\IRCLineUrlFormatter' )
+		$ircFormatter = $this->getMockBuilder( \Flow\Formatter\IRCLineUrlFormatter::class )
 			->disableOriginalConstructor()
 			->getMock();
 

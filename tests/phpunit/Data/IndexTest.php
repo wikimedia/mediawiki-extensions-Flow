@@ -21,7 +21,7 @@ class IndexTest extends FlowTestCase {
 		$cache = $this->getCache();
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
-		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mapper->expects( $this->any() )
@@ -72,7 +72,7 @@ class IndexTest extends FlowTestCase {
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
-		$mapper = $this->getMockBuilder( 'Flow\Data\Mapper\BasicObjectMapper' )
+		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mapper->expects( $this->any() )
