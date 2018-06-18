@@ -14,7 +14,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
  * @ingroup Maintenance
  */
 class CompileLightncandy extends Maintenance {
-	/** @var  Flow\TemplateHelper */
+	/** @var TemplateHelper */
 	protected $lightncandy;
 
 	public function __construct() {

@@ -92,7 +92,7 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	 * @param stdClass $row
 	 * @return array
 	 * @throws TimestampException
-	 * @throws \Flow\Exception\FlowException
+	 * @throws FlowException
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public function update( $row ) {

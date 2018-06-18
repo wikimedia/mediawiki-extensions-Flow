@@ -51,7 +51,7 @@ class ConvertAllLqtPages extends Maintenance {
 			$logger->setMaximumLevel( LogLevel::INFO );
 		}
 
-		$importer = Flow\Container::get( 'importer' );
+		$importer = Container::get( 'importer' );
 		$talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
 
 		$dbw = wfGetDB( DB_MASTER );

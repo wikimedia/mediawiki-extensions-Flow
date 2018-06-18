@@ -476,7 +476,7 @@ class OptInController {
 	 * @param callable $newDescriptionCallback
 	 * @param string $format
 	 * @throws ImportException
-	 * @throws \Flow\Exception\InvalidDataException
+	 * @throws InvalidDataException
 	 */
 	private function editBoardDescription( Title $title, callable $newDescriptionCallback, $format = 'html' ) {
 		/*

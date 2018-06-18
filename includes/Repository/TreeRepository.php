@@ -461,7 +461,7 @@ class TreeRepository {
 	/**
 	 * @param UUID[] $nodes
 	 * @return UUID[]
-	 * @throws \Flow\Exception\DataModelException
+	 * @throws DataModelException
 	 */
 	public function fetchParentMapFromDb( array $nodes ) {
 		// Find out who the parent is for those nodes
