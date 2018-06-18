@@ -39,7 +39,7 @@ class UserNameBatchTest extends FlowTestCase {
 	}
 
 	public function testQueueUsernames() {
-		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
+		$query = $this->getMock( UserNameQuery::class );
 		$query->expects( $this->once() )
 			->method( 'execute' )
 			->with( 'fakewiki', [ 12, 27, 18 ] );
@@ -52,7 +52,7 @@ class UserNameBatchTest extends FlowTestCase {
 	}
 
 	public function testMissingAsFalse() {
-		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
+		$query = $this->getMock( UserNameQuery::class );
 		$query->expects( $this->once() )
 			->method( 'execute' )
 			->with( 'fakewiki', [ 42 ] );
@@ -62,7 +62,7 @@ class UserNameBatchTest extends FlowTestCase {
 	}
 
 	public function testPartialMissingAsFalse() {
-		$query = $this->getMock( 'Flow\Repository\UserName\\UserNameQuery' );
+		$query = $this->getMock( \Flow\Repository\UserName\\UserNameQuery::class );
 		$query->expects( $this->once() )
 			->method( 'execute' )
 			->with( 'fakewiki', [ 610, 408 ] )
@@ -82,7 +82,7 @@ class UserNameBatchTest extends FlowTestCase {
 	 * @return UserNameQuery
 	 */
 	protected function createUncalledQuery() {
-		$query = $this->getMock( 'Flow\Repository\UserName\UserNameQuery' );
+		$query = $this->getMock( UserNameQuery::class );
 		$query->expects( $this->never() )
 			->method( 'execute' );
 

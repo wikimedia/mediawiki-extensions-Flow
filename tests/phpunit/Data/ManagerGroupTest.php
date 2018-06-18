@@ -14,7 +14,7 @@ class ManagerGroupTest extends \MediaWikiTestCase {
 	protected function mockStorage() {
 		$container = new Container;
 		foreach ( range( 'A', 'D' ) as $letter ) {
-			$container[$letter] = $this->getMockBuilder( 'Flow\Data\ObjectManager' )
+			$container[$letter] = $this->getMockBuilder( \Flow\Data\ObjectManager::class )
 				->disableOriginalConstructor()
 				->getMock();
 		}

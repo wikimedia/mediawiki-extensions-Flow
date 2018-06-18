@@ -38,7 +38,7 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	protected function mockDbFactory( $dbResult ) {
-		$dbFactory = $this->getMockBuilder( '\Flow\DbFactory' )
+		$dbFactory = $this->getMockBuilder( \Flow\DbFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$dbFactory->expects( $this->any() )

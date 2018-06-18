@@ -21,7 +21,7 @@ use User;
 class PageImportStateTest extends \MediaWikiTestCase {
 
 	protected function createState( $returnAll = false ) {
-		$storage = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
+		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -35,7 +35,7 @@ class PageImportStateTest extends \MediaWikiTestCase {
 			$storage,
 			new NullImportSourceStore(),
 			new NullLogger(),
-			$this->getMockBuilder( 'Flow\DbFactory' )
+			$this->getMockBuilder( \Flow\DbFactory::class )
 				->disableOriginalConstructor()
 				->getMock(),
 			new ProcessorGroup,

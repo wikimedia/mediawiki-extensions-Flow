@@ -14,7 +14,7 @@ use Title;
  */
 class ReferenceFactoryTest extends \MediaWikiTestCase {
 	public function testAcceptsParsoidHrefs() {
-		$workflow = $this->getMock( 'Flow\Model\Workflow' );
+		$workflow = $this->getMock( \Flow\Model\Workflow::class );
 		$workflow->expects( $this->any() )
 			->method( 'getId' )
 			->will( $this->returnValue( UUID::create() ) );

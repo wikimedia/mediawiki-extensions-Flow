@@ -47,7 +47,7 @@ class FlowHooks {
 
 				// Some actions are more complex closures - they are added manually in extension.json
 				if ( is_string( $log ) ) {
-					$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\ActionFormatter';
+					$wgLogActionsHandlers["$log/flow-$action"] = \Flow\Log\ActionFormatter::class;
 				}
 			}
 		}

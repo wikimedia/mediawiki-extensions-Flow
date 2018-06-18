@@ -12,7 +12,7 @@ class PostSummaryCollection extends LocalCacheAbstractCollection {
 	protected $rootId;
 
 	public static function getRevisionClass() {
-		return 'Flow\\Model\\PostSummary';
+		return \Flow\Model\PostSummary::class;
 	}
 
 	public function getWorkflowId() {
