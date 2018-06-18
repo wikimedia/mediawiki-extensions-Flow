@@ -367,11 +367,11 @@ class PagerTest extends \MediaWikiTestCase {
 	}
 
 	protected function mockObjectManager( array $found = [] ) {
-		$index = $this->getMock( 'Flow\Data\Index' );
+		$index = $this->getMock( \Flow\Data\Index::class );
 		$index->expects( $this->any() )
 			->method( 'getSort' )
 			->will( $this->returnValue( [ 'something' ] ) );
-		$om = $this->getMockBuilder( 'Flow\Data\ObjectManager' )
+		$om = $this->getMockBuilder( \Flow\Data\ObjectManager::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$om->expects( $this->any() )
@@ -448,7 +448,7 @@ class PagerTest extends \MediaWikiTestCase {
 	 * Mock the storage
 	 */
 	protected function mockStorage( $return, $offset, $sort ) {
-		$storage = $this->getMockBuilder( 'Flow\Data\ObjectManager' )
+		$storage = $this->getMockBuilder( \Flow\Data\ObjectManager::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$storage->expects( $this->any() )
@@ -467,7 +467,7 @@ class PagerTest extends \MediaWikiTestCase {
 	 * Mock TopicListEntry
 	 */
 	protected function mockTopicListEntry() {
-		$entry = $this->getMockBuilder( 'Flow\Model\TopicListEntry' )
+		$entry = $this->getMockBuilder( \Flow\Model\TopicListEntry::class )
 			->disableOriginalConstructor()
 			->getMock();
 		return $entry;
@@ -477,7 +477,7 @@ class PagerTest extends \MediaWikiTestCase {
 	 * Mock TopKIndex
 	 */
 	protected function mockIndex( $sort ) {
-		$index = $this->getMockBuilder( 'Flow\Data\Index\TopKIndex' )
+		$index = $this->getMockBuilder( \Flow\Data\Index\TopKIndex::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$index->expects( $this->any() )

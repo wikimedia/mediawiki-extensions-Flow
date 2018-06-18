@@ -125,7 +125,7 @@ class RootPostLoader {
 		if ( $missing ) {
 			// convert string uuid's into UUID objects
 			/** @var UUID[] $missingUUID */
-			$missingUUID = array_map( [ 'Flow\Model\UUID', 'create' ], $missing );
+			$missingUUID = array_map( [ UUID::class, 'create' ], $missing );
 
 			// we'll need to know parents to add stub post correctly in post hierarchy
 			$parents = $this->treeRepo->fetchParentMap( $missingUUID );

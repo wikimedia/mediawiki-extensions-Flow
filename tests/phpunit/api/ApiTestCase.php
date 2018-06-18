@@ -101,7 +101,7 @@ abstract class ApiTestCase extends BaseApiTestCase {
 		$container = Container::getContainer();
 		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
-		$mock = $this->getMockBuilder( 'Flow\Data\FlowObjectCache' )
+		$mock = $this->getMockBuilder( \Flow\Data\FlowObjectCache::class )
 			->setConstructorArgs( [ $wanCache, $container['db.factory'], $wgFlowCacheTime ] )
 			->enableProxyingToOriginalMethods()
 			->getMock();

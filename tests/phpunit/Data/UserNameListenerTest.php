@@ -35,7 +35,7 @@ class UserNameListenerTest extends FlowTestCase {
 	 * @dataProvider onAfterLoadDataProvider
 	 */
 	public function testOnAfterLoad( array $row, array $key, $expectedWiki, $defaultWiki = null ) {
-		$batch = new UserNameBatch( $this->getMock( '\Flow\Repository\UserName\UserNameQuery' ) );
+		$batch = new UserNameBatch( $this->getMock( \Flow\Repository\UserName\UserNameQuery::class ) );
 		$listener = new UserNameListener( $batch, $key, $defaultWiki );
 		$listener->onAfterLoad( (object)$row, $row );
 

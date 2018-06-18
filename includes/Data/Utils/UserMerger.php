@@ -133,7 +133,7 @@ class UserMerger {
 	 * @return PostRevision|null
 	 */
 	protected function loadFromTreeRevision( $row ) {
-		return $this->storage->get( 'PostRevision', $row->tree_rev_id );
+		return $this->storage->get( PostRevision::class, $row->tree_rev_id );
 	}
 
 	/**
@@ -142,9 +142,9 @@ class UserMerger {
 	 */
 	protected function loadFromRevision( $row ) {
 		$revTypes = [
-			'header' => 'Flow\Model\Header',
-			'post-summary' => 'Flow\Model\PostSummary',
-			'post' => 'Flow\Model\PostRevision',
+			'header' => \Flow\Model\Header::class,
+			'post-summary' => \Flow\Model\PostSummary::class,
+			'post' => PostRevision::class,
 		];
 		if ( !isset( $revTypes[$row->rev_type] ) ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Unknown revision type ' . $row->rev_type . ' did not merge ' . UUID::create( $row->rev_id )->getAlphadecimal() );

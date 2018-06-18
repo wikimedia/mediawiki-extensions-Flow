@@ -85,7 +85,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-header',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'editcount' => true,
 	],
@@ -109,7 +109,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-header',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
 		'moduleStyles' => [
@@ -176,7 +176,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-topic-summary',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'editcount' => true,
 	],
@@ -208,7 +208,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-topic-summary',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'editcount' => true,
 		'moduleStyles' => [
 			'mediawiki.ui.button',
@@ -239,7 +239,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-title',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
@@ -276,7 +276,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-new-post',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
@@ -309,7 +309,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-post',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
@@ -343,7 +343,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-edit-post',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
 		],
@@ -535,7 +535,7 @@ $wgFlowActions = [
 			],
 			'class' => 'flow-history-locked-topic',
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 
@@ -589,7 +589,7 @@ $wgFlowActions = [
 				return "flow-history-un$state-post";
 			}
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 
@@ -644,7 +644,7 @@ $wgFlowActions = [
 				return "flow-history-un$state-topic";
 			}
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 
@@ -664,7 +664,7 @@ $wgFlowActions = [
 		'links' => [], // @todo
 		'actions' => [], // view is not a recorded change type, no actions will be requested
 		'history' => [], // views don't generate history
-		'handler-class' => 'Flow\Actions\ViewAction',
+		'handler-class' => \Flow\Actions\ViewAction::class,
 	],
 
 	'reply' => [
@@ -697,7 +697,7 @@ $wgFlowActions = [
 				'class' => 'flow-history-bundle',
 			],
 		],
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
 			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
@@ -782,7 +782,7 @@ $wgFlowActions = [
 		],
 		'core-delete-permissions' => [ 'deletedhistory' ],
 		'history' => [], // views don't generate history
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 	],
 
 	// Pseudo-action to determine when to show thank links,
@@ -820,7 +820,7 @@ $wgFlowActions = [
 		'links' => [], // @todo
 		'actions' => [], // view is not a recorded change type, no actions will be requested
 		'history' => [], // views don't generate history
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 
@@ -854,36 +854,36 @@ $wgFlowActions = [
 	// or just move these to a different file
 	// @todo: we should probably at least add 'permissions' in these below
 	'compare-header-revisions' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'view-header' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'compare-post-revisions' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	// @todo - This is a very bad action name, consolidate with view-post action
 	'single-view' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'compare-postsummary-revisions' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'moderate-topic' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'moderate-post' => [
-		'handler-class' => 'Flow\Actions\FlowAction',
+		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
 	'purge' => [
-		'handler-class' => 'Flow\Actions\PurgeAction',
+		'handler-class' => \Flow\Actions\PurgeAction::class,
 		'modules' => [],
 	],
 
