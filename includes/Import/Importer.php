@@ -8,8 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\Postprocessor\ProcessorGroup;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
-use Flow\Import\SourceStore\Exception as ImportSourceStoreException;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -106,10 +105,10 @@ class Importer {
 	 * @param User $user User doing the conversion actions (e.g. initial description,
 	 *    wikitext archive edit).  However, actions will be attributed to the original
 	 *    user when possible (e.g. the user who did the original LQT reply)
-	 * @param ImportSourceStore $sourceStore
+	 * @param SourceStoreInterface $sourceStore
 	 * @return bool True When the import completes with no failures
 	 */
-	public function import( IImportSource $source, Title $targetPage, User $user, ImportSourceStore $sourceStore ) {
+	public function import( IImportSource $source, Title $targetPage, User $user, SourceStoreInterface $sourceStore ) {
 		$operation = new TalkpageImportOperation( $source, $user, $this->occupationController );
 		$pageImportState = new PageImportState(
 			$this->workflowLoaderFactory
@@ -235,7 +234,7 @@ class PageImportState {
 	public function __construct(
 		Workflow $boardWorkflow,
 		ManagerGroup $storage,
-		ImportSourceStore $sourceStore,
+		SourceStoreInterface $sourceStore,
 		LoggerInterface $logger,
 		DbFactory $dbFactory,
 		Postprocessor $postprocessor,
@@ -539,7 +538,7 @@ class TalkpageImportOperation {
 	/**
 	 * @param PageImportState $state
 	 * @return bool True if import completed successfully
-	 * @throws ImportSourceStoreException
+	 * @throws \Flow\Import\SourceStore\Exception
 	 * @throws \Exception
 	 */
 	public function import( PageImportState $state ) {
@@ -588,7 +587,7 @@ class TalkpageImportOperation {
 			$state->commit();
 			$state->postprocessor->afterHeaderImported( $state, $header );
 			$imported++;
-		} catch ( ImportSourceStoreException $e ) {
+		} catch ( \Flow\Import\SourceStore\Exception $e ) {
 			// errors from the source store are more serious and should
 			// not just be logged and swallowed.  This may indicate that
 			// we are not properly recording progress.
@@ -613,7 +612,7 @@ class TalkpageImportOperation {
 				$state->clearManagerGroup();
 
 				$imported++;
-			} catch ( ImportSourceStoreException $e ) {
+			} catch ( \Flow\Import\SourceStore\Exception $e ) {
 				// errors from the source store are more serious and shuld
 				// not juts be logged and swallowed.  This may indicate that
 				// we are not properly recording progress.

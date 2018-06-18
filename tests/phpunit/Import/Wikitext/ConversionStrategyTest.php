@@ -7,7 +7,6 @@ use DateTime;
 use DateTimeZone;
 use ExtensionRegistry;
 use Flow\Import\IImportSource;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
@@ -185,7 +184,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 	protected function createStrategy(
 		Parser $parser = null,
-		ImportSourceStore $sourceStore = null
+		SourceStoreInterface $sourceStore = null
 	) {
 		global $wgParser;
 
