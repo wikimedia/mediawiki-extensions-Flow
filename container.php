@@ -168,7 +168,7 @@ $c['collection.cache'] = function ( $c ) {
 	return new Flow\Collection\CollectionCache();
 };
 // Individual workflow instances
-$c['storage.workflow.class'] = 'Flow\Model\Workflow';
+$c['storage.workflow.class'] = \Flow\Model\Workflow::class;
 $c['storage.workflow.table'] = 'flow_workflow';
 $c['storage.workflow.primary_key'] = [ 'workflow_id' ];
 $c['storage.workflow.mapper'] = function ( $c ) {
@@ -411,7 +411,7 @@ $c['storage.header'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary.class'] = 'Flow\Model\PostSummary';
+$c['storage.post_summary.class'] = \Flow\Model\PostSummary::class;
 $c['storage.post_summary.primary_key'] = [ 'rev_id' ];
 $c['storage.post_summary.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
@@ -489,7 +489,7 @@ $c['storage.post_summary'] = function ( $c ) {
 	);
 };
 
-$c['storage.topic_list.class'] = 'Flow\Model\TopicListEntry';
+$c['storage.topic_list.class'] = \Flow\Model\TopicListEntry::class;
 $c['storage.topic_list.table'] = 'flow_topic_list';
 $c['storage.topic_list.primary_key'] = [ 'topic_list_id', 'topic_id' ];
 $c['storage.topic_list.mapper'] = function ( $c ) {
@@ -560,7 +560,7 @@ $c['storage.topic_list'] = function ( $c ) {
 		$c['storage.topic_list.indexes']
 	);
 };
-$c['storage.post.class'] = 'Flow\Model\PostRevision';
+$c['storage.post.class'] = \Flow\Model\PostRevision::class;
 $c['storage.post.primary_key'] = [ 'rev_id' ];
 $c['storage.post.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
@@ -1060,7 +1060,7 @@ $c['logger.moderation'] = function ( $c ) {
 	);
 };
 
-$c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
+$c['storage.wiki_reference.class'] = \Flow\Model\WikiReference::class;
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = function ( $c ) {
 	return [
@@ -1134,7 +1134,7 @@ $c['storage.wiki_reference'] = function ( $c ) {
 		[]
 	);
 };
-$c['storage.url_reference.class'] = 'Flow\Model\URLReference';
+$c['storage.url_reference.class'] = \Flow\Model\URLReference::class;
 $c['storage.url_reference.table'] = 'flow_ext_ref';
 $c['storage.url_reference.primary_key'] = function ( $c ) {
 	return [

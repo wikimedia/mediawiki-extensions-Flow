@@ -163,7 +163,7 @@ class RevisionStorageTest extends FlowTestCase {
 		$dbw = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory = $this->getMockBuilder( 'Flow\DbFactory' )
+		$factory = $this->getMockBuilder( \Flow\DbFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$factory->expects( $this->any() )
@@ -237,7 +237,7 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	protected function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates ) {
-		$klass = new \ReflectionClass( 'Flow\Data\Storage\HeaderRevisionStorage' );
+		$klass = new \ReflectionClass( HeaderRevisionStorage::class );
 		$allowedUpdateColumnsProp = $klass->getProperty( 'allowedUpdateColumns' );
 		$allowedUpdateColumnsProp->setAccessible( true );
 
@@ -345,7 +345,7 @@ class RevisionStorageTest extends FlowTestCase {
 			$result[] = (object)( $query + [ 'rev_id' => 42, 'tree_rev_id' => 42, 'rev_flags' => '' ] );
 		}
 
-		$treeRepo = $this->getMockBuilder( 'Flow\Repository\TreeRepository' )
+		$treeRepo = $this->getMockBuilder( \Flow\Repository\TreeRepository::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$factory = $this->mockDbFactory();
@@ -360,7 +360,7 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	public function testPartialResult() {
-		$treeRepo = $this->getMockBuilder( 'Flow\Repository\TreeRepository' )
+		$treeRepo = $this->getMockBuilder( \Flow\Repository\TreeRepository::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$factory = $this->mockDbFactory();
@@ -397,7 +397,7 @@ class RevisionStorageTest extends FlowTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$factory = $this->getMock( 'Flow\DbFactory' );
+		$factory = $this->getMock( \Flow\DbFactory::class );
 		$factory->expects( $this->any() )
 			->method( 'getDB' )
 			->will( $this->returnValue( $dbw ) );

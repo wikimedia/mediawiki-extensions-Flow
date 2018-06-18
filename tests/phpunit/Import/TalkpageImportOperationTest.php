@@ -58,7 +58,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 			'discussion',
 			Title::newFromText( 'TalkpageImportOperationTest' )
 		);
-		$storage = $this->getMockBuilder( 'Flow\Data\ManagerGroup' )
+		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$stored = [];

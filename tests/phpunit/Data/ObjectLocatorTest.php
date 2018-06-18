@@ -12,9 +12,9 @@ use Flow\Tests\FlowTestCase;
 class ObjectLocatorTest extends FlowTestCase {
 
 	public function testUselessTest() {
-		$mapper = $this->getMock( 'Flow\Data\ObjectMapper' );
-		$storage = $this->getMock( 'Flow\Data\ObjectStorage' );
-		$dbFactory = $this->getMock( 'Flow\DbFactory' );
+		$mapper = $this->getMock( \Flow\Data\ObjectMapper::class );
+		$storage = $this->getMock( \Flow\Data\ObjectStorage::class );
+		$dbFactory = $this->getMock( \Flow\DbFactory::class );
 
 		$locator = new \Flow\Data\ObjectLocator( $mapper, $storage, $dbFactory );
 

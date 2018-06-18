@@ -86,10 +86,10 @@ class Exporter extends WikiExporter {
 	public function __construct( $db, $history = WikiExporter::CURRENT,
 		$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
 		parent::__construct( $db, $history, $buffer, $text );
-		$this->prevRevisionProperty = new ReflectionProperty( 'Flow\Model\AbstractRevision', 'prevRevision' );
+		$this->prevRevisionProperty = new ReflectionProperty( AbstractRevision::class, 'prevRevision' );
 		$this->prevRevisionProperty->setAccessible( true );
 
-		$this->changeTypeProperty = new ReflectionProperty( 'Flow\Model\AbstractRevision', 'changeType' );
+		$this->changeTypeProperty = new ReflectionProperty( AbstractRevision::class, 'changeType' );
 		$this->changeTypeProperty->setAccessible( true );
 
 		$this->lookup = \CentralIdLookup::factory( 'CentralAuth' );

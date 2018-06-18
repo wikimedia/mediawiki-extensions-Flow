@@ -304,13 +304,13 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	protected function mockActions() {
-		return $this->getMockBuilder( 'Flow\FlowActions' )
+		return $this->getMockBuilder( FlowActions::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}
 
 	protected function mockPermissions( FlowActions $actions ) {
-		$permissions = $this->getMockBuilder( 'Flow\RevisionActionPermissions' )
+		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
 			->disableOriginalConstructor()
 			->getMock();
 		// bit of a code smell, should pass actions directly in constructor?
@@ -327,7 +327,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	protected function mockPostRevision() {
-		$postRevision = $this->getMockBuilder( 'Flow\Model\PostRevision' )->getMock();
+		$postRevision = $this->getMockBuilder( PostRevision::class )->getMock();
 		$postRevision->expects( $this->any() )
 			->method( 'isTopicTitle' )
 			->will( $this->returnValue( false ) );
@@ -338,7 +338,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	protected function mockTemplating() {
-		$templating = $this->getMockBuilder( 'Flow\Templating' )
+		$templating = $this->getMockBuilder( \Flow\Templating::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$templating->expects( $this->any() )
@@ -354,7 +354,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	protected function mockTopicTitleRevision() {
-		$topicTitleRevision = $this->getMockBuilder( 'Flow\Model\PostRevision' )->getMock();
+		$topicTitleRevision = $this->getMockBuilder( PostRevision::class )->getMock();
 		$topicTitleRevision->expects( $this->any() )
 			->method( 'isTopicTitle' )
 			->will( $this->returnValue( true ) );
@@ -365,7 +365,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	protected function mockUserNameBatch() {
-		return $this->getMockBuilder( 'Flow\Repository\UserNameBatch' )
+		return $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}

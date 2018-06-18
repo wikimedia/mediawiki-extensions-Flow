@@ -32,12 +32,12 @@ class ConverterTest extends \MediaWikiTestCase {
 	) {
 		return new Converter(
 			$dbw ?: wfGetDB( DB_MASTER ),
-			$importer ?: $this->getMockBuilder( 'Flow\Import\Importer' )
+			$importer ?: $this->getMockBuilder( Importer::class )
 				->disableOriginalConstructor()
 				->getMock(),
 			$logger ?: new NullLogger,
 			$user ?: User::newFromId( 1 ),
-			$strategy ?: $this->getMockBuilder( 'Flow\Import\IConversionStrategy' )
+			$strategy ?: $this->getMockBuilder( IConversionStrategy::class )
 				->disableOriginalConstructor()
 				->getMock()
 		);

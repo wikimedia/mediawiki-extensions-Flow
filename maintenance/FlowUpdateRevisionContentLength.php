@@ -20,9 +20,9 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	 * @var string[]
 	 */
 	static private $revisionTypes = [
-		'post' => 'Flow\Model\PostRevision',
-		'header' => 'Flow\Model\Header',
-		'post-summary' => 'Flow\Model\PostSummary',
+		'post' => \Flow\Model\PostRevision::class,
+		'header' => \Flow\Model\Header::class,
+		'post-summary' => \Flow\Model\PostSummary::class,
 	];
 
 	/**
@@ -63,12 +63,12 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		// Since this is a one-shot maintenance script just reach in via reflection
 		// to change lenghts
 		$this->contentLengthProperty = new ReflectionProperty(
-			'Flow\Model\AbstractRevision',
+			AbstractRevision::class,
 			'contentLength'
 		);
 		$this->contentLengthProperty->setAccessible( true );
 		$this->previousContentLengthProperty = new ReflectionProperty(
-			'Flow\Model\AbstractRevision',
+			AbstractRevision::class,
 			'previousContentLength'
 		);
 		$this->previousContentLengthProperty->setAccessible( true );

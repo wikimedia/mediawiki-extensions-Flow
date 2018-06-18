@@ -73,7 +73,7 @@ class FormatterTest extends FlowTestCase {
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
 		\Wikimedia\suppressWarnings();
-		$links = $this->createFormatter( 'Flow\Formatter\CheckUserFormatter' )->format( $row, $ctx );
+		$links = $this->createFormatter( \Flow\Formatter\CheckUserFormatter::class )->format( $row, $ctx );
 		\Wikimedia\restoreWarnings();
 		$test( $this, $message, $links );
 	}
@@ -110,7 +110,7 @@ class FormatterTest extends FlowTestCase {
 	}
 
 	protected function createFormatter( $class ) {
-		$permissions = $this->getMockBuilder( 'Flow\RevisionActionPermissions' )
+		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$permissions->expects( $this->any() )
@@ -120,10 +120,10 @@ class FormatterTest extends FlowTestCase {
 			->method( 'getActions' )
 			->will( $this->returnValue( Container::get( 'flow_actions' ) ) );
 
-		$templating = $this->getMockBuilder( 'Flow\Templating' )
+		$templating = $this->getMockBuilder( \Flow\Templating::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$workflowMapper = $this->getMockBuilder( 'Flow\Data\Mapper\CachingObjectMapper' )
+		$workflowMapper = $this->getMockBuilder( \Flow\Data\Mapper\CachingObjectMapper::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$urlGenerator = new UrlGenerator( $workflowMapper );
@@ -131,7 +131,7 @@ class FormatterTest extends FlowTestCase {
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
 
-		$usernames = $this->getMockBuilder( 'Flow\Repository\UserNameBatch' )
+		$usernames = $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
 			->disableOriginalConstructor()
 			->getMock();
 
