@@ -107,6 +107,7 @@ class FlowPostMetaActionsTest extends \MediaWikiTestCase {
 	}
 
 	protected function renderTemplate( $templateName, array $args = array() ) {
+		/** @var \Flow\TemplateHelper $lc */
 		$lc = Container::get( 'lightncandy' );
 		$filenames = $lc->getTemplateFilenames( $templateName );
 		$phpCode = $lc::compile(

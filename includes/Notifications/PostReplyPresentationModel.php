@@ -21,6 +21,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			// "Strict standards: Only variables should be passed by reference" in older PHP versions
 			$bundledEvents = $this->getBundledEvents();
 
+			/** @var NotificationController $notificationController */
 			$notificationController = Container::get( 'controller.notification' );
 			$firstChronologicallyEvent = end( $bundledEvents );
 			$firstChronologicallyPostId = $firstChronologicallyEvent->getExtraParam( 'post-id' );
