@@ -5,6 +5,7 @@ namespace Flow;
 use Article;
 use ContextSource;
 use Flow\Block\AbstractBlock;
+use Flow\Block\Block;
 use Flow\Block\TopicBlock;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Anchor;
@@ -81,6 +82,13 @@ class View extends ContextSource {
 		$this->renderApiResponse( $apiResponse, $robotPolicy );
 	}
 
+	/**
+	 * @param string $action
+	 * @param Workflow $workflow
+	 * @param Block[] $blocks
+	 *
+	 * @return string[]
+	 */
 	private function getRobotPolicy( $action, Workflow $workflow, array $blocks ) {
 		if ( $action !== 'view' ) {
 			// consistent with 'edit' and other action pages in Core
