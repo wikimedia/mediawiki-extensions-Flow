@@ -2,7 +2,6 @@
 
 namespace Flow\Tests\Api;
 
-use ApiTestCase as BaseApiTestCase;
 use Flow\Container;
 use FlowHooks;
 use MediaWiki\MediaWikiServices;
@@ -12,7 +11,7 @@ use User;
  * @group Flow
  * @group medium
  */
-abstract class ApiTestCase extends BaseApiTestCase {
+abstract class ApiTestCase extends \ApiTestCase {
 	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',

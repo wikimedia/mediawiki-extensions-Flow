@@ -2,7 +2,7 @@
 
 use Flow\Container;
 use Flow\Import\SourceStore\FileImportSourceStore;
-use Flow\Import\SourceStore\FlowRevisionsDb as FlowRevisionsDBImportSourceStore;
+use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Utils\NamespaceIterator;
@@ -37,7 +37,7 @@ class ConvertAllLqtPages extends Maintenance {
 			// fallback: if we don't have a sourcestore to go on, at least look
 			// at DB to figure out what's already imported...
 			$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
-			$sourceStore = new FlowRevisionsDBImportSourceStore( $dbr );
+			$sourceStore = new FlowRevisionsDb( $dbr );
 		} else {
 			$this->error( 'Param logfile or force-recovery-conversion required!' );
 			$this->maybeHelp( true );
