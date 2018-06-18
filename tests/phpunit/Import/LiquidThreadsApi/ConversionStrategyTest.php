@@ -9,7 +9,6 @@ use Wikimedia\Rdbms\IDatabase;
 use DateTime;
 use DateTimeZone;
 use ExtensionRegistry;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\ApiBackend;
@@ -158,7 +157,7 @@ EOD
 
 	protected function createStrategy(
 		IDatabase $dbr = null,
-		ImportSourceStore $sourceStore = null,
+		SourceStoreInterface $sourceStore = null,
 		ApiBackend $api = null
 	) {
 		return new ConversionStrategy(

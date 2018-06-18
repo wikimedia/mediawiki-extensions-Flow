@@ -5,7 +5,7 @@ namespace Flow\Import\LiquidThreadsApi;
 use Wikimedia\Rdbms\IDatabase;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\Postprocessor\LqtNotifications;
 use Flow\Import\Postprocessor\LqtRedirector;
@@ -20,7 +20,7 @@ use WikitextContent;
 
 /**
  * Converts LiquidThreads pages on a wiki to Flow. This converter is idempotent
- * when used with an appropriate ImportSourceStore, and may be run many times
+ * when used with an appropriate SourceStoreInterface, and may be run many times
  * without worry for duplicate imports.
  *
  * Pages with the LQT magic word will be moved to a subpage of their original location
@@ -35,7 +35,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $dbw;
 
 	/**
-	 * @var ImportSourceStore
+	 * @var SourceStoreInterface
 	 */
 	protected $sourceStore;
 
@@ -61,7 +61,7 @@ class ConversionStrategy implements IConversionStrategy {
 
 	public function __construct(
 		IDatabase $dbw,
-		ImportSourceStore $sourceStore,
+		SourceStoreInterface $sourceStore,
 		ApiBackend $api,
 		UrlGenerator $urlGenerator,
 		User $talkpageUser,

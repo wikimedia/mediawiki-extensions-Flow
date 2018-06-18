@@ -2,7 +2,7 @@
 
 use Flow\Container;
 use Flow\Import\SourceStore\FileImportSourceStore;
-use Flow\Import\LiquidThreadsApi\ConversionStrategy as LiquidThreadsApiConversionStrategy;
+use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Psr\Log\LogLevel;
 
@@ -52,7 +52,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 			$logger->setMaximumLevel( LogLevel::INFO );
 		}
 
-		$strategy = new LiquidThreadsApiConversionStrategy(
+		$strategy = new ConversionStrategy(
 			$dbw,
 			$sourceStore,
 			$api,
