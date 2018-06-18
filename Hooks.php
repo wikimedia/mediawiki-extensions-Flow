@@ -398,7 +398,7 @@ class FlowHooks {
 			if ( $rcType !== RC_FLOW ) {
 				return true;
 			}
-		} elseif ( $source !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
+		} elseif ( $source !== RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -1075,7 +1075,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onCheckUserInsertForRecentChange( RecentChange $rc, array &$rcRow ) {
-		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -1097,7 +1097,7 @@ class FlowHooks {
 	}
 
 	public static function onIRCLineURL( &$url, &$query, RecentChange $rc ) {
-		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\Listener\RecentChangesListener::SRC_FLOW ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -1126,7 +1126,7 @@ class FlowHooks {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			/** @var Flow\ReferenceClarifier $clarifier */
-			$clarifier = Flow\Container::get( 'reference.clarifier' );
+			$clarifier = Container::get( 'reference.clarifier' );
 			$newProps = $clarifier->getWhatLinksHereProps( $row, $title, $target );
 
 			$props = array_merge( $props, $newProps );
@@ -1785,7 +1785,7 @@ class FlowHooks {
 		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
 		$action = null;
 
-		$optInController = Flow\Container::get( 'controller.opt_in' );
+		$optInController = Container::get( 'controller.opt_in' );
 		if ( !$before && $after ) {
 			$action = OptInController::$ENABLE;
 			// Check if the user had a flow board
