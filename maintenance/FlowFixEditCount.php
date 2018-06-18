@@ -117,7 +117,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		$allowedActions = [];
 
 		/** @var FlowActions $actions */
-		$actions = \Flow\Container::get( 'flow_actions' );
+		$actions = Container::get( 'flow_actions' );
 		foreach ( $actions->getActions() as $action ) {
 			if ( $actions->getValue( $action, 'editcount' ) ) {
 				$allowedActions[] = $action;
