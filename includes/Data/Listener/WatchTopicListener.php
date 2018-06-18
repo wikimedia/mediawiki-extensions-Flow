@@ -77,7 +77,7 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 
 		// Some actions may have more complex logic to determine watching users
 		if ( is_callable( $users ) ) {
-			$users( ...$params );
+			$users = $users( ...$params );
 		}
 
 		return $users;
