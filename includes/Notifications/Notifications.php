@@ -7,7 +7,7 @@ $notificationTemplate = [
 ];
 
 $newTopicNotification = [
-	'presentation-model' => 'Flow\\NewTopicPresentationModel',
+	'presentation-model' => \Flow\NewTopicPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -17,7 +17,7 @@ $newTopicNotification = [
 ] + $notificationTemplate;
 
 $descriptionEditedNotification = [
-	'presentation-model' => 'Flow\\HeaderEditedPresentationModel',
+	'presentation-model' => \Flow\HeaderEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -26,7 +26,7 @@ $descriptionEditedNotification = [
 ] + $notificationTemplate;
 
 $postEditedNotification = [
-	'presentation-model' => 'Flow\\PostEditedPresentationModel',
+	'presentation-model' => \Flow\PostEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -35,7 +35,7 @@ $postEditedNotification = [
 ] + $notificationTemplate;
 
 $postReplyNotification = [
-	'presentation-model' => 'Flow\\PostReplyPresentationModel',
+	'presentation-model' => \Flow\PostReplyPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -45,7 +45,7 @@ $postReplyNotification = [
 ] + $notificationTemplate;
 
 $topicRenamedNotification = [
-	'presentation-model' => 'Flow\\TopicRenamedPresentationModel',
+	'presentation-model' => \Flow\TopicRenamedPresentationModel::class,
 	'primary-link' => [
 		'message' => 'flow-notification-link-text-view-post',
 		'destination' => 'flow-post'
@@ -60,7 +60,7 @@ $topicRenamedNotification = [
 ] + $notificationTemplate;
 
 $summaryEditedNotification = [
-	'presentation-model' => 'Flow\\SummaryEditedPresentationModel',
+	'presentation-model' => \Flow\SummaryEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -81,7 +81,7 @@ $summaryEditedNotification = [
 ] + $notificationTemplate;
 
 $topicResolvedNotification = [
-	'presentation-model' => 'Flow\\TopicResolvedPresentationModel',
+	'presentation-model' => \Flow\TopicResolvedPresentationModel::class,
 	'primary-link' => [
 		'message' => 'flow-notification-link-text-view-topic',
 		'destination' => 'flow-post'
@@ -218,7 +218,7 @@ $notifications = [
 	] + $descriptionEditedNotification,
 	'flow-mention' => [
 		'category' => 'mention',
-		'presentation-model' => 'Flow\\MentionPresentationModel',
+		'presentation-model' => \Flow\MentionPresentationModel::class,
 		'section' => 'alert',
 		'user-locators' => [
 			'Flow\\NotificationsUserLocator::locateMentionedUsers',
@@ -237,7 +237,7 @@ $notifications = [
 	] + $notificationTemplate,
 	'flow-enabled-on-talkpage' => [
 		'category' => 'system',
-		'presentation-model' => 'Flow\\FlowEnabledOnTalkpagePresentationModel',
+		'presentation-model' => \Flow\FlowEnabledOnTalkpagePresentationModel::class,
 		'section' => 'message',
 		'user-locators' => [
 			'EchoUserLocator::locateTalkPageOwner'
@@ -275,7 +275,7 @@ $notifications = [
 			'EchoUserLocator::locateEventAgent'
 		],
 		'section' => 'alert',
-		'presentation-model' => 'Flow\\MentionStatusPresentationModel'
+		'presentation-model' => \Flow\MentionStatusPresentationModel::class,
 	] + $notificationTemplate,
 ];
 

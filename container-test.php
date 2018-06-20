@@ -5,7 +5,7 @@ $container = include __DIR__ . '/container.php';
 // need a testcase to get at the mocking methods.
 $testCase = new Flow\Tests\FlowTestCase();
 
-$container['controller.spamblacklist'] = $testCase->getMockBuilder( 'Flow\\SpamFilter\\SpamBlacklist' )
+$container['controller.spamblacklist'] = $testCase->getMockBuilder( \Flow\SpamFilter\SpamBlacklist::class )
 	->disableOriginalConstructor()
 	->getMock();
 

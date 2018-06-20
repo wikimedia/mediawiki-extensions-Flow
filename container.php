@@ -359,7 +359,7 @@ $c['storage.header.listeners'] = function ( $c ) {
 };
 $c['storage.header.primary_key'] = [ 'rev_id' ];
 $c['storage.header.mapper'] = function ( $c ) {
-	return CachingObjectMapper::model( 'Flow\\Model\\Header', [ 'rev_id' ] );
+	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 };
 $c['storage.header.backend'] = function ( $c ) {
 	global $wgFlowExternalStore;
@@ -706,21 +706,21 @@ $c['storage.post_topic_history'] = function ( $c ) {
 
 $c['storage.manager_list'] = function ( $c ) {
 	return [
-		'Flow\\Model\\Workflow' => 'storage.workflow',
+		\Flow\Model\Workflow::class => 'storage.workflow',
 		'Workflow' => 'storage.workflow',
 
-		'Flow\\Model\\PostRevision' => 'storage.post',
+		\Flow\Model\PostRevision::class => 'storage.post',
 		'PostRevision' => 'storage.post',
 		'post' => 'storage.post',
 
-		'Flow\\Model\\PostSummary' => 'storage.post_summary',
+		\Flow\Model\PostSummary::class => 'storage.post_summary',
 		'PostSummary' => 'storage.post_summary',
 		'post-summary' => 'storage.post_summary',
 
-		'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
+		\Flow\Model\TopicListEntry::class => 'storage.topic_list',
 		'TopicListEntry' => 'storage.topic_list',
 
-		'Flow\\Model\\Header' => 'storage.header',
+		\Flow\Model\Header::class => 'storage.header',
 		'Header' => 'storage.header',
 		'header' => 'storage.header',
 
@@ -730,10 +730,10 @@ $c['storage.manager_list'] = function ( $c ) {
 
 		'PostRevisionTopicHistoryEntry' => 'storage.post_topic_history',
 
-		'Flow\\Model\\WikiReference' => 'storage.wiki_reference',
+		\Flow\Model\WikiReference::class => 'storage.wiki_reference',
 		'WikiReference' => 'storage.wiki_reference',
 
-		'Flow\\Model\\URLReference' => 'storage.url_reference',
+		\Flow\Model\URLReference::class => 'storage.url_reference',
 		'URLReference' => 'storage.url_reference',
 	];
 };
