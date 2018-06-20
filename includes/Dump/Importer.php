@@ -143,7 +143,7 @@ class Importer {
 
 		$metadata = [ 'workflow' => $this->boardWorkflow ];
 
-		$revisions = $this->getRevisions( [ 'Flow\\Model\\Header', 'fromStorageRow' ] );
+		$revisions = $this->getRevisions( [ Header::class, 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}
@@ -210,7 +210,7 @@ class Importer {
 			// @todo: topic-title? (used only in NotificationListener)
 		];
 
-		$revisions = $this->getRevisions( [ 'Flow\\Model\\PostRevision', 'fromStorageRow' ] );
+		$revisions = $this->getRevisions( [ PostRevision::class, 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}
@@ -227,7 +227,7 @@ class Importer {
 
 		$metadata = [ 'workflow' => $this->topicWorkflow ];
 
-		$revisions = $this->getRevisions( [ 'Flow\\Model\\PostSummary', 'fromStorageRow' ] );
+		$revisions = $this->getRevisions( [ PostSummary::class, 'fromStorageRow' ] );
 		foreach ( $revisions as $revision ) {
 			$this->put( $revision, $metadata );
 		}

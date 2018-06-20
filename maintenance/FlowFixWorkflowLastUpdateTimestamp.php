@@ -194,7 +194,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 		);
 
 		/** @var UUID[] $uuids */
-		$uuids = array_map( [ 'Flow\\Model\\UUID', 'create' ], array_keys( $timestamps ) );
+		$uuids = array_map( [ UUID::class, 'create' ], array_keys( $timestamps ) );
 
 		/** @var Workflow[] $workflows */
 		$workflows = $this->storage->getMulti( 'Workflow', $uuids );

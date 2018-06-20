@@ -79,7 +79,7 @@ class FormatterTest extends FlowTestCase {
 	}
 
 	protected function mockWorkflow( UUID $workflowId, Title $title ) {
-		$workflow = $this->getMock( 'Flow\\Model\\Workflow' );
+		$workflow = $this->getMock( \Flow\Model\Workflow::class );
 		$workflow->expects( $this->any() )
 			->method( 'getId' )
 			->will( $this->returnValue( $workflowId ) );
@@ -91,9 +91,9 @@ class FormatterTest extends FlowTestCase {
 
 	protected function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
 		if ( $postId ) {
-			$revision = $this->getMock( 'Flow\\Model\\PostRevision' );
+			$revision = $this->getMock( \Flow\Model\PostRevision::class );
 		} else {
-			$revision = $this->getMock( 'Flow\\Model\\Header' );
+			$revision = $this->getMock( \Flow\Model\Header::class );
 		}
 		$revision->expects( $this->any() )
 			->method( 'getChangeType' )

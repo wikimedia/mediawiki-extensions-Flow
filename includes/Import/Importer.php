@@ -252,15 +252,15 @@ class PageImportState {
 		$this->allowUnknownUsernames = $allowUnknownUsernames;
 
 		// Get our workflow UUID property
-		$this->workflowIdProperty = new ReflectionProperty( 'Flow\\Model\\Workflow', 'id' );
+		$this->workflowIdProperty = new ReflectionProperty( Workflow::class, 'id' );
 		$this->workflowIdProperty->setAccessible( true );
 
 		// Get our revision UUID properties
-		$this->postIdProperty = new ReflectionProperty( 'Flow\\Model\\PostRevision', 'postId' );
+		$this->postIdProperty = new ReflectionProperty( PostRevision::class, 'postId' );
 		$this->postIdProperty->setAccessible( true );
-		$this->revIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'revId' );
+		$this->revIdProperty = new ReflectionProperty( AbstractRevision::class, 'revId' );
 		$this->revIdProperty->setAccessible( true );
-		$this->lastEditIdProperty = new ReflectionProperty( 'Flow\\Model\\AbstractRevision', 'lastEditId' );
+		$this->lastEditIdProperty = new ReflectionProperty( AbstractRevision::class, 'lastEditId' );
 		$this->lastEditIdProperty->setAccessible( true );
 	}
 
@@ -466,7 +466,7 @@ class TopicImportState {
 		$this->topicWorkflow = $topicWorkflow;
 		$this->topicTitle = $topicTitle;
 
-		$this->workflowUpdatedProperty = new ReflectionProperty( 'Flow\\Model\\Workflow', 'lastUpdated' );
+		$this->workflowUpdatedProperty = new ReflectionProperty( Workflow::class, 'lastUpdated' );
 		$this->workflowUpdatedProperty->setAccessible( true );
 
 		$this->lastUpdated = '';

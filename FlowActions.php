@@ -242,7 +242,7 @@ $wgFlowActions = [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
-			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+			'immediate' => [ \Flow\Data\Listener\ImmediateWatchTopicListener::class, 'getCurrentUser' ],
 		],
 		'editcount' => true,
 	],
@@ -279,7 +279,7 @@ $wgFlowActions = [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
-			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+			'immediate' => [ \Flow\Data\Listener\ImmediateWatchTopicListener::class, 'getCurrentUser' ],
 		],
 		'editcount' => true,
 	],
@@ -312,7 +312,7 @@ $wgFlowActions = [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
-			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+			'immediate' => [ \Flow\Data\Listener\ImmediateWatchTopicListener::class, 'getCurrentUser' ],
 		],
 		'editcount' => true,
 	],
@@ -345,7 +345,7 @@ $wgFlowActions = [
 		],
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'watch' => [
-			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+			'immediate' => [ \Flow\Data\Listener\ImmediateWatchTopicListener::class, 'getCurrentUser' ],
 		],
 		'editcount' => true,
 		'moduleStyles' => [
@@ -700,7 +700,7 @@ $wgFlowActions = [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 		'watch' => [
-			'immediate' => [ 'Flow\\Data\\Listener\\ImmediateWatchTopicListener', 'getCurrentUser' ],
+			'immediate' => [ \Flow\Data\Listener\ImmediateWatchTopicListener::class, 'getCurrentUser' ],
 		],
 		'editcount' => true,
 	],
