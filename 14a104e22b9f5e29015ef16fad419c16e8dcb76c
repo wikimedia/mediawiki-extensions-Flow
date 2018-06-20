@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "103248a5_b9c6216b",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-06-20T07:55:36Z",
+      "side": 1,
+      "message": "I have checked, and this map contains a whole lot of alias names along with the original, full qualified class names. That\u0027s why there are so many duplicates. The only place where these keys are going to be used is in \\Flow\\Data\\ManagerGroup::getStorage(), which is called with either one of these short string aliases, or get_class( $object ). So changing this here to also use …::class is actually required to be consistent with these calls.",
+      "parentUuid": "89cc1329_d1ab1d79",
+      "range": {
+        "startLine": 709,
+        "startChar": 2,
+        "endLine": 737,
+        "endChar": 44
+      },
+      "revId": "14a104e22b9f5e29015ef16fad419c16e8dcb76c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80c0c0a0_5cfe52b0",
         "filename": "tests/phpunit/Data/IndexTest.php",
         "patchSetId": 3
