@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90ce07f6_e45ec40d",
+        "filename": "container.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-06-21T18:10:23Z",
+      "side": 1,
+      "message": "This is the short class name alias for the same entry as before, kept for compatibility",
+      "range": {
+        "startLine": 710,
+        "startChar": 2,
+        "endLine": 710,
+        "endChar": 12
+      },
+      "revId": "7bd5f8fdf403249a4118c7aa2aaa782a545bece1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
