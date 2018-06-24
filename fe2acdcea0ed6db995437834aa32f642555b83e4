@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "572284bd_db0ed072",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-06-24T01:09:33Z",
+      "side": 1,
+      "message": "Hm.. I understand your point on having inconsistent names for classes, and I\u0027d support most removals in this change, however I\u0027m unsure about this one.\n\nNot using \u0027as\u0027 for this meant that in this case, you also made not imported at all (as its name would be too generic). Which means it is now inconsistent in a different way: There is a global lookup instead of a proper import.\n\nThis seems like an anti-pattern as ideally the top of a file would summarise all relevant imports. If we reference their global path directly, we don\u0027t we use that always and stop using imports? This is mainly a question to think about, not intended as actual suggestion. I agree there is some value to imports, but perhaps we should try to put that into words, and see if it applies to this. If it does, perhaps we should still import this with an \u0027as\u0027 name that closely matches the original, e.g. just with a prefix perhaps?",
+      "range": {
+        "startLine": 615,
+        "startChar": 13,
+        "endLine": 615,
+        "endChar": 47
+      },
+      "revId": "fe2acdcea0ed6db995437834aa32f642555b83e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
