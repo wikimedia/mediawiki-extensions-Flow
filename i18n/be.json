@@ -12,5 +12,6 @@
 	"flow-post-action-hide-post": "Схаваць",
 	"notification-header-flow-topic-renamed-user-talk": "Тэма \"<strong>$1</strong>\" была перайменавана ў \"<strong>$2</strong>\" на <strong>{{GENDER:$3|Вашай}} старонцы размоў</strong>.",
 	"flow-notification-mention": "$1 {{GENDER:$1|упамянуў|упамянула}} {{GENDER:$5|вас}} у {{GENDER:$1|сваім}} <span class=\"plainlinks\">[$2 паведамленні]</span> у \"$3\" на \"$4\".",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|упамянуў|упамянула}} {{GENDER:$3|Вас}} на $2"
+	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|згадаў|згадала}} {{GENDER:$3|Вас}} у $2",
+	"flow-notification-mention-email-batch-body": "$1 {{GENDER:$1|згадаў|згадала}} {{GENDER:$4|Вас}} у сваім паведамленні ў \"$2\" на $3."
 }
