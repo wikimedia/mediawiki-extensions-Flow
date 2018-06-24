@@ -918,14 +918,18 @@
 		"FlowServerCompileTemplates": {
 			"value": false
 		},
-		"FlowEventLogging": {
-			"value": false
-		},
 		"FlowEnableOptInBetaFeature": {
 			"value": false
 		},
 		"FlowReadOnly": {
 			"value": false
+		}
+	},
+	"attributes": {
+		"EventLogging": {
+			"Schemas": {
+				"FlowReplies": 10561344
+			}
 		}
 	},
 	"load_composer_autoloader": true,

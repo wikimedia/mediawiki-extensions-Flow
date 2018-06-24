@@ -54,18 +54,6 @@ class FlowHooks {
 	}
 
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		global $wgFlowEventLogging;
-
-		// Only if EventLogging in Flow is enabled & EventLogging exists
-		if ( $wgFlowEventLogging && ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' ) ) {
-			$resourceLoader->register( 'schema.FlowReplies', [
-				'class' => 'ResourceLoaderSchemaModule',
-				'schema' => 'FlowReplies',
-				// See https://meta.wikimedia.org/wiki/Schema:FlowReplies, below title
-				'revision' => 10561344,
-			] );
-		}
-
 		// Register a dummy supportCheck module in case VE isn't loaded, as we attempt
 		// to load this module unconditionally on load.
 		if ( !$resourceLoader->isModuleRegistered( 'ext.visualEditor.supportCheck' ) ) {
