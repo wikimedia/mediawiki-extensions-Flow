@@ -32,6 +32,12 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	/**
+	 * @covers \Flow\Block\AbstractBlock::__construct
+	 * @covers \Flow\Block\BoardHistoryBlock::__construct
+	 * @covers \Flow\Block\HeaderBlock::__construct
+	 * @covers \Flow\Block\TopicBlock::__construct
+	 * @covers \Flow\Block\TopicListBlock::__construct
+	 * @covers \Flow\Block\TopicSummaryBlock::__construct
 	 * @dataProvider provideDataCreateBlocks
 	 */
 	public function testCreateBlocks( $workflowType, array $expectedResults ) {
