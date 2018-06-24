@@ -22,6 +22,30 @@
       "revId": "fe2acdcea0ed6db995437834aa32f642555b83e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d0720d5_51d4bec6",
+        "filename": "includes/Import/Importer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-06-24T16:11:07Z",
+      "side": 1,
+      "message": "I can follow these arguments. Thank you very much for laying them out so carefully!\n\nI think what happened here is a mistake I have seen a few times already: The original name of this class is problematic. It\u0027s confusing to refer to this \"Exception\" with the short name, and sometimes (like here) not even possible. The \"as\" feature is then used as a quick workaround, effectively allowing for a \"soft\", local rename without actually renaming the class. But actually renaming it would be better.\n\nI reverted this part of the change for now.",
+      "parentUuid": "572284bd_db0ed072",
+      "range": {
+        "startLine": 615,
+        "startChar": 13,
+        "endLine": 615,
+        "endChar": 47
+      },
+      "revId": "fe2acdcea0ed6db995437834aa32f642555b83e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
