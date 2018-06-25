@@ -10,7 +10,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\RevisionActionPermissions;
-use Flow\SpamFilter\Controller as SpamFilterController;
 use IContextSource;
 
 interface Block {
@@ -316,7 +315,7 @@ abstract class AbstractBlock implements Block {
 	 * @return bool True when content is allowed by spam filter
 	 */
 	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
-		/** @var SpamFilterController $spamFilter */
+		/** @var \Flow\SpamFilter\Controller $spamFilter */
 		$spamFilter = Container::get( 'controller.spamfilter' );
 		$status = $spamFilter->validate( $this->context, $new, $old, $this->workflow->getArticleTitle(), $this->workflow->getOwnerTitle() );
 		if ( $status->isOK() ) {

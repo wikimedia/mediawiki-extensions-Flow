@@ -7,7 +7,7 @@ use DateTimeZone;
 use ExtensionRegistry;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use LinkBatch;
 use Parser;
 use Psr\Log\LoggerInterface;
@@ -37,7 +37,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $logger;
 
 	/**
-	 * @var ImportSourceStore
+	 * @var SourceStoreInterface
 	 */
 	protected $sourceStore;
 
@@ -65,7 +65,7 @@ class ConversionStrategy implements IConversionStrategy {
 
 	/**
 	 * @param Parser|StubObject $parser
-	 * @param ImportSourceStore $sourceStore
+	 * @param SourceStoreInterface $sourceStore
 	 * @param LoggerInterface $logger
 	 * @param User $user User to take conversion actions are (applicable for actions
 	 *   where if there is no 'original' user)
@@ -75,7 +75,7 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	public function __construct(
 		$parser,
-		ImportSourceStore $sourceStore,
+		SourceStoreInterface $sourceStore,
 		LoggerInterface $logger,
 		User $user,
 		array $noConvertTemplates = [],

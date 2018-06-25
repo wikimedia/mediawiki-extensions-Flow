@@ -8,7 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\Postprocessor\ProcessorGroup;
-use Flow\Import\SourceStore\SourceStoreInterface as ImportSourceStore;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\SourceStore\Exception as ImportSourceStoreException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -106,10 +106,10 @@ class Importer {
 	 * @param User $user User doing the conversion actions (e.g. initial description,
 	 *    wikitext archive edit).  However, actions will be attributed to the original
 	 *    user when possible (e.g. the user who did the original LQT reply)
-	 * @param ImportSourceStore $sourceStore
+	 * @param SourceStoreInterface $sourceStore
 	 * @return bool True When the import completes with no failures
 	 */
-	public function import( IImportSource $source, Title $targetPage, User $user, ImportSourceStore $sourceStore ) {
+	public function import( IImportSource $source, Title $targetPage, User $user, SourceStoreInterface $sourceStore ) {
 		$operation = new TalkpageImportOperation( $source, $user, $this->occupationController );
 		$pageImportState = new PageImportState(
 			$this->workflowLoaderFactory
@@ -235,7 +235,7 @@ class PageImportState {
 	public function __construct(
 		Workflow $boardWorkflow,
 		ManagerGroup $storage,
-		ImportSourceStore $sourceStore,
+		SourceStoreInterface $sourceStore,
 		LoggerInterface $logger,
 		DbFactory $dbFactory,
 		Postprocessor $postprocessor,

@@ -10,7 +10,7 @@ use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
 use Flow\Import\ImportException;
-use Flow\Import\LiquidThreadsApi\ImportTopic as LqtImportTopic;
+use Flow\Import\LiquidThreadsApi\ImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
@@ -110,7 +110,7 @@ class LqtNotifications implements Postprocessor {
 	}
 
 	public function afterTopicImported( TopicImportState $state, IImportTopic $topic ) {
-		if ( !$topic instanceof LqtImportTopic ) {
+		if ( !$topic instanceof ImportTopic ) {
 			return;
 		}
 		if ( empty( $this->postsImported ) ) {

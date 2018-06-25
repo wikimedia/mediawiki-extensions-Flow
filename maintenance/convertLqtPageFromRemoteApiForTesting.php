@@ -2,7 +2,7 @@
 
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
-use Flow\Import\LiquidThreadsApi\ImportSource as LiquidThreadsApiImportSource;
+use Flow\Import\LiquidThreadsApi\ImportSource;
 use Psr\Log\LogLevel;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -54,7 +54,7 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		}
 
 		$dstTitle = Title::newFromText( $dstPageName );
-		$source = new LiquidThreadsApiImportSource(
+		$source = new ImportSource(
 			$api,
 			$srcPageName,
 			$talkPageManagerUser
