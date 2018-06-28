@@ -92,13 +92,11 @@ class ApiFlow extends ApiBase {
 		}
 
 		$module->extractRequestParams();
-		$module->profileIn();
 		if ( $module->needsPage() ) {
 			$module->setPage( $this->getPage( $params ) );
 		}
 		$module->execute();
 		Hooks::run( 'APIFlowAfterExecute', [ $module ] );
-		$module->profileOut();
 	}
 
 	/**
