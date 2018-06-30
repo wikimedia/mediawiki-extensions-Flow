@@ -120,6 +120,7 @@
 	"flow-board-history": "\"$1\" истори",
 	"flow-history-day": "Тахана",
 	"flow-history-week": "Даханчу кӀирнахь",
+	"flow-hide-comments-title": "{{PLURAL:$1|Къайлаяккха коммент}}",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|жоп делла}} \"<strong>$4</strong>\" чохь.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|кхоьллина}} '''$3''' агӀонгахь керла хьедар.",
 	"flow-notification-mention": "$1 {{GENDER:$1|хьахийна}} {{GENDER:$5|хьо}} {{GENDER:$1|шен}} <span class=\"plainlinks\">[$2 хаамехь]</span> темехь «$3» агӀонгахь «$4».",
