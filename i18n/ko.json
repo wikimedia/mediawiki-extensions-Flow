@@ -24,7 +24,8 @@
 			"Ykhwong",
 			"Jerrykim306",
 			"렌즈",
-			"Garam"
+			"Garam",
+			"Matěj Suchánek"
 		]
 	},
 	"enablestructureddiscussions": "플로우 활성화",
@@ -53,9 +54,9 @@
 	"logentry-suppress-flow-suppress-topic-topic-title-not-visible": "$1님이 [[$3]]의 주제를 {{GENDER:$2|보이지 않게 했습니다}}",
 	"logentry-suppress-flow-restore-topic": "$1님이 [[$6]]의 주제 \"[[$3|$5]]\"를 {{GENDER:$2|삭제했습니다}}",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1님이 [[$3]]의 주제를 {{GENDER:$2|삭제했습니다}}",
-	"logentry-lock-flow-lock-topic": "$1님이 [[$6]]의 \"[[$3|$5]]\" 주제를 해결된 것으로 {{GERDER:$2|표시했습니다}}",
+	"logentry-lock-flow-lock-topic": "$1님이 [[$6]]의 \"[[$3|$5]]\" 주제를 해결된 것으로 {{GENDER:$2|표시했습니다}}",
 	"logentry-lock-flow-lock-topic-topic-title-not-visible": "$1님이 [[$3]]에서 주제를 해결된 것으로 {{GENDER:$2|표시했습니다}}",
-	"logentry-lock-flow-restore-topic": "$1님이 [[$6]]의 \"[[$3|$5]]\" 주제를 {{GERDER:$2|다시 열었습니다}}",
+	"logentry-lock-flow-restore-topic": "$1님이 [[$6]]의 \"[[$3|$5]]\" 주제를 {{GENDER:$2|다시 열었습니다}}",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1님이 [[$3]]의 주제를 {{GENDER:$2|재개했습니다}}",
 	"logentry-import-lqt-to-flow-topic": "[[$3]]의 [[$1|$2]]는 LiquidThreads에서 Flow로 가져왔습니다",
 	"flow-user-moderated": "중재된 사용자",

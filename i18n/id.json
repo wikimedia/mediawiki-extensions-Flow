@@ -9,7 +9,8 @@
 			"Matiia",
 			"Beeyan",
 			"Hidayatsrf",
-			"Gombang"
+			"Gombang",
+			"Matěj Suchánek"
 		]
 	},
 	"enablestructureddiscussions": "Aktifkan Flow",
@@ -290,7 +291,7 @@
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|membuat}} topik baru di <strong>$3</strong>.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|Satu topik baru|$1 topik baru|100=99+ topik baru}} di <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
 	"flow-notification-rename": "$1 {{GENDER:$1|mengubah}} judul <span class=\"plainlinks\">[$2 $3]</span> ke \"$4\" di [[$5|$6]].",
-	"flow-notification-mention": "$1 {{GENDER:$1|menyebutkan}} {{$GENDER:$5|Anda}} di <span class=\"plainlinks\">[$2 kirimannya]</span> dalam \"$3\" di \"$4\".",
+	"flow-notification-mention": "$1 {{GENDER:$1|menyebutkan}} {{GENDER:$5|Anda}} di <span class=\"plainlinks\">[$2 kirimannya]</span> dalam \"$3\" di \"$4\".",
 	"flow-notification-link-text-view-post": "Lihat kiriman",
 	"flow-notification-link-text-view-topic": "Lihat topik",
 	"flow-notification-link-text-view-topics": "Lihat topik",

@@ -4,7 +4,8 @@
 			"Sindhu",
 			"Mehtab ahmed",
 			"Aursani",
-			"Indus Asia"
+			"Indus Asia",
+			"Tweety"
 		]
 	},
 	"flow-topic-collapse-siderail": "پوري ويڪر تي پڙھو",
@@ -15,6 +16,7 @@
 	"flow-topic-action-watchlist-add": "هن موضوع کي سبسڪرائب ڪريو",
 	"flow-topic-action-watchlist-remove": "اڻ سبسڪرائب ڪريو",
 	"flow-edit-post-submit": "ترمرميمون اماڻيو",
+	"flow-undo": "ترميم رد ڪيو",
 	"group-flow-bot-member": "منظم بحث بوٽ",
 	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 تي نئون مباحثي سرشتو",
 	"flow-dialog-cancelconfirm-discard": "تبديليون ڦٽو ڪريو"
