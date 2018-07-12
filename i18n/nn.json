@@ -61,6 +61,7 @@
 	"flow-moderation-placeholder-hide-post": "{{GENDER:$3|Forklår}} kvifor du løyner dette innlegget.",
 	"flow-moderation-placeholder-hide-topic": "{{GENDER:$3|Forklår}} kvifor du løyner dette emnet.",
 	"flow-topic-first-heading": "Emne på «$1»",
+	"flow-no-more-fwd": "Det finst ingen eldre emne",
 	"flow-newest-topics": "Nyaste emna",
 	"flow-recent-topics": "Nyleg aktive emne",
 	"flow-edited": "Endra",
