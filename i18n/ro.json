@@ -28,6 +28,8 @@
 	"flow-post-action-hide-post": "Ascunde",
 	"flow-post-action-edit-post": "Modifică",
 	"flow-post-action-edit-post-submit": "Salvează modificările",
+	"flow-post-action-edit-post-submit-publish": "Publică modificările",
+	"flow-post-action-edit-post-submit-anonymously-publish": "Publică modificările anonim",
 	"flow-topic-action-view": "Legătură permanentă",
 	"flow-topic-action-history": "Istoric",
 	"flow-topic-action-hide-topic": "Ascunde subiectul",
