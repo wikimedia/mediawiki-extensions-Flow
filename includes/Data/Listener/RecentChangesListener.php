@@ -97,6 +97,7 @@ class RecentChangesListener extends AbstractListener {
 			'rc_new_len' => $revision->getContentLength(),
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
+			'rc_logid' => null,
 			'rc_log_type' => null,
 			'rc_params' => serialize( [
 				'flow-workflow-change' => [
