@@ -270,9 +270,6 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowPopulateRefId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateRefId' );
 
-		require_once __DIR__.'/maintenance/FlowFixInconsistentBoards.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixInconsistentBoards' );
-
 		/*
 		 * Add primary key, but only after we've made sure the newly added
 		 * column has been populated (otherwise they'd all be null values)

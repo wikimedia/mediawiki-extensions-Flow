@@ -16,7 +16,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
  *
  * @ingroup Maintenance
  */
-class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
+class FlowFixInconsistentBoards extends Maintenance {
 	/**
 	 * @var Flow\DbFactory
 	 */
@@ -49,11 +49,7 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 300 );
 	}
 
-	protected function getUpdateKey() {
-		return 'FlowFixInconsistentBoards:version1';
-	}
-
-	public function doDBUpdates() {
+	public function execute() {
 		global $wgLang;
 
 		$this->dbFactory = Container::get( 'db.factory' );
@@ -79,12 +75,12 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 
 			if ( !$namespaceId ) {
 				$this->error( "'$namespaceName' is not a valid namespace name" );
-				return;
+				return false;
 			}
 
 			if ( $namespaceId == NS_TOPIC ) {
 				$this->error( 'This script can not be run on the Flow topic namespace' );
-				return;
+				return false;
 			}
 
 			$iterator->addConditions( [
@@ -174,9 +170,6 @@ class FlowFixInconsistentBoards extends LoggedUpdateMaintenance {
 				break;
 			}
 		}
-
-		// Only mark it as completed if it's run on everything.
-		return ( !$dryRun && $limit === null && !$this->hasOption( 'namespaceName' ) );
 	}
 }
 
