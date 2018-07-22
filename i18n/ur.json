@@ -364,7 +364,7 @@
 	"flow-topic-undo-delete": "استرجع حذف شدگی",
 	"flow-topic-undo-suppress": "پوشیدگی رد کریں",
 	"flow-importer-wt-converted-template": "ویکی متن پر مشتمل تبادلۂ خیال صفحہ مرتب گفتگو میں منتقل کر دیا گیا",
-	"flow-importer-wt-converted-template-content": "سابقہ گفتگو مورخہ {{#time: dF،Yء|{{{date}}}}} کو <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> پر وثق میں منتقل کر دی گئی۔",
+	"flow-importer-wt-converted-template-content": "سابقہ گفتگو مورخہ {{#time: d F،Yء|{{{date}}}}} کو <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> پر وثق میں منتقل کر دی گئی۔",
 	"flow-importer-wt-converted-archive-template": "منتقل شدہ ویکی متن تبادلہ خیال صفحہ کا وثق",
 	"flow-edited": "ترمیم شدہ",
 	"flow-edited-by": "ترمیم شدہ از $1",
