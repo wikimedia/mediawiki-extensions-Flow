@@ -106,7 +106,7 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * Find one by specific attributes
-	 * @todo: this method can probably be generalized in parent class?
+	 * @todo this method can probably be generalized in parent class?
 	 * @param array $attributes
 	 * @param array $options
 	 * @return mixed
