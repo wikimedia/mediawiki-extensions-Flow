@@ -8,7 +8,8 @@
 			"Zoranzoki21",
 			"Obsuser",
 			"Acamicamacaraca",
-			"Prevodim"
+			"Prevodim",
+			"BadDog"
 		]
 	},
 	"enablestructureddiscussions": "Омогући Flow",
@@ -67,7 +68,7 @@
 	"flow-error-not-allowed-suppress": "Ова тема је обрисана.",
 	"flow-error-no-commit": "Наведену радњу није могуће сачувати.",
 	"flow-error-invalid-topic-uuid-title": "Неисправан наслов",
-	"flow-error-invalid-topic-uuid": "Наведени наслов није ваљан. Странице у именском простору Тема аутоматски прави Flow.",
+	"flow-error-invalid-topic-uuid": "Наведени наслов није валидан. Странице у именском простору Тема аутоматски прави Flow.",
 	"flow-error-unknown-workflow-id-title": "Непозната тема",
 	"flow-error-unknown-workflow-id": "Тражена тема не постоји.",
 	"flow-edit-header-submit": "Сачувај опис",
