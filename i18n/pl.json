@@ -25,7 +25,8 @@
 			"Macofe",
 			"Sethakill",
 			"Stephanecbisson",
-			"Stojex"
+			"Stojex",
+			"Vlad5250"
 		]
 	},
 	"enablestructureddiscussions": "Włącz Flow",
@@ -417,7 +418,7 @@
 	"flow-compare-revisions-header-header": "Ta strona pokazuje {{GENDER:$2|zmiany}} pomiędzy dwiema wersjami opisu w [$3 $1]. Możesz również zobaczyć inne wersje na [$4 stronie historii].",
 	"action-flow-create-board": "Twórz dyskusję Flow w dowolnym miejscu",
 	"right-flow-create-board": "Tworzenie dyskusji Flow w dowolnym miejscu",
-	"right-flow-hide": "Ukryj wątki i posty Flow",
+	"right-flow-hide": "Ukrywanie wątków i postów w Dyskusjach Strukturalnych",
 	"right-flow-lock": "Oznaczanie wątków Flow jako załatwionych",
 	"right-flow-delete": "Usuwanie wątków i postów w Dyskusjach Strukturalnych",
 	"right-flow-edit-post": "Edycja postów innych użytkowników w Dyskusjach Strukturalnych",
