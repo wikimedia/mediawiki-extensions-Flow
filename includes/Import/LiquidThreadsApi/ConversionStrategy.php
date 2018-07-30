@@ -12,7 +12,6 @@ use Flow\Import\Postprocessor\LqtRedirector;
 use Flow\NotificationController;
 use Flow\UrlGenerator;
 use LqtDispatch;
-use MagicWord;
 use MWTimestamp;
 use Title;
 use User;
@@ -191,13 +190,15 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return string
 	 */
 	public static function removeLqtMagicWord( $content ) {
+		$magicWord = MediaWikiServices::getInstance()->getMagicWordFactory()->
+			get( 'useliquidthreads' );
 		$patterns = array_map(
 			// delete any status: enabled or disabled doesn't matter (we're
 			// adding disabled magic word anyway and having it twice is messy)
 			function ( $word ) {
 				return '/{{\\s*#' . preg_quote( $word ) . ':\\s*[01]*\\s*}}/i';
 			},
-			[ 'useliquidthreads' ] + MagicWord::get( 'useliquidthreads' )->getSynonyms() );
+			[ 'useliquidthreads' ] + $magicWord->getSynonyms() );
 
 		return preg_replace( $patterns, '', $content );
 	}
@@ -206,7 +207,9 @@ class ConversionStrategy implements IConversionStrategy {
 	 * @return string The localized magic word to disable LQT on a page
 	 */
 	public static function getDisableLqtMagicWord() {
-		$magicWord = strtolower( MagicWord::get( 'useliquidthreads' )->getSynonym( 0 ) );
+		$wordObj = MediaWikiServices::getInstance()->getMagicWordFactory()->
+			get( 'useliquidthreads' );
+		$magicWord = strtolower( $wordObj->getSynonym( 0 ) );
 		return "{{#$magicWord:0}}";
 	}
 }
