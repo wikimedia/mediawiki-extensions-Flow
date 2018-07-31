@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e93f4b8_c515b664",
+        "filename": "includes/Import/LiquidThreadsApi/ConversionStrategy.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-07-31T17:48:20Z",
+      "side": 1,
+      "message": "This is probably unused now. And you need a use statement for MediaWikiServices (we don\u0027t have phan\u0027s static analysis set up on this repo otherwise it would have complained).",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "9ed2bfd9cc3749fffd5525790744847432fb340f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
