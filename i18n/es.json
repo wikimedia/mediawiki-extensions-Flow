@@ -31,7 +31,8 @@
 			"Rubentl134",
 			"Dgstranz",
 			"MarcoAurelio",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Tiberius1701"
 		]
 	},
 	"enablestructureddiscussions": "Activar discusiones estructuradas",
@@ -527,7 +528,7 @@
 	"flow-optin-restore-wikitext": "Se restaura página de wikitexto archivada.",
 	"flow-optin-restore-flow-board": "Se restaura tablero de discusión archivado.",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Bienvenido|Bienvenida}} a tu nueva  página de discusión de usuario",
-	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Tu}} página de discusión es el lugar donde otros editores pueden ponerse en contactarte. Con Discusiones Estructuradas, es más fácil empezar temas nuevos y realizar un seguimiento de las conversaciones.",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Tu}} página de discusión es el lugar donde otros editores pueden ponerse en contacto {{GENDER:$1|contigo}}. Con Discusiones Estructuradas, es más fácil empezar temas nuevos y realizar un seguimiento de las conversaciones.",
 	"flow-guidedtour-optin-find-old-conversations": "Ver {{GENDER:$1|tus}} conversaciones antiguas",
 	"flow-guidedtour-optin-find-old-conversations-description": "Las conversaciones previas se han trasladado a una página de archivo.",
 	"flow-guidedtour-optin-feedback": "Bríndanos {{GENDER:$1|tus}} comentarios.",
