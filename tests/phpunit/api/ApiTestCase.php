@@ -27,12 +27,17 @@ abstract class ApiTestCase extends \ApiTestCase {
 	];
 
 	protected function setUp() {
-		$this->setMwGlobals( 'wgNamespaceContentModels', [
-			NS_TALK => CONTENT_MODEL_FLOW_BOARD,
-			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
+		parent::setUp();
+
+		$this->setMwGlobals( [
+			'wgNamespaceContentModels' => [
+				NS_TALK => CONTENT_MODEL_FLOW_BOARD,
+				NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
+			],
+			// @todo This should be totally unnecessary, but somehow it's not?
+			'wgExtraNamespaces' => [ NS_TOPIC => 'Topic' ],
 		] );
 
-		parent::setUp();
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
 	}
 
