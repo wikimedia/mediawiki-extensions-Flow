@@ -247,11 +247,14 @@ class Workflow {
 		$title = self::$titleCache->get( $key );
 		if ( $title === null ) {
 			$title = Title::makeTitleSafe( $namespace, $titleText );
-			if ( $title ) {
-				self::$titleCache->set( $key, $title );
-			} else {
+			if ( !$title ) {
+				var_dump( "NS $namespace exists? " . \MWNamespace::exists( $namespace ) ? 'yes' : 'no' );
+				$t = new Title();
+				$t->mDbkeyform = Title::makeName( $namespace, $titleText, '', '', true );
+				$t->secureAndSplit();
 				throw new InvalidInputException( "Fail to create title from namespace $namespace and title text '$titleText'", 'invalid-input' );
 			}
+			self::$titleCache->set( $key, $title );
 		}
 
 		return $title;
