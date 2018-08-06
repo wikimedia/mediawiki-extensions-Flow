@@ -3,13 +3,30 @@
 		"authors": [
 			"Jens Jensen",
 			"Sarrus",
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
+	"flow-board-collapse-description": "Skjul beskrivelse",
 	"flow-board-expand-description": "Vis beskrivelse",
+	"flow-post-action-post-history": "Historik",
+	"flow-post-action-delete-post": "Slet",
+	"flow-post-action-hide-post": "Skjul",
+	"flow-post-action-edit-post": "Redigér",
+	"flow-edit-header-submit": "Gem beskrivelse",
+	"flow-history-last4": "Sidste 4 timer",
+	"flow-history-day": "I dag",
+	"flow-history-week": "Sidste uge",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$2|nævnte}} {{GENDER:$4|dig}} i \"<strong>$5</strong>\".",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|nævnte}} {{GENDER:$4|dig}} i \"<strong>$5</strong>\".",
 	"flow-notification-link-text-view-topics": "Se emner",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nævnte}} {{GENDER:$3|dig}} på $2",
-	"flow-importer-wt-converted-template": "Wikitext-diskussionsside konverteret til Flow"
+	"flow-moderation-confirm-delete-post": "Slet",
+	"flow-moderation-confirm-hide-post": "Skjul",
+	"flow-moderation-confirm-delete-topic": "Slet",
+	"flow-moderation-confirm-hide-topic": "Skjul",
+	"flow-importer-wt-converted-template": "Wikitext-diskussionsside konverteret til Flow",
+	"flow-edited": "Redigeret",
+	"flow-edited-by": "Redigeret af $1",
+	"flow-undo-your-text": "Din tekst"
 }

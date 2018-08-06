@@ -26,6 +26,7 @@
 	"apihelp-flow+new-topic-example-1": "[[Talk:Sandbox]]에서 새 주제 만들기",
 	"apihelp-flow+reply-summary": "게시물에 댓글을 답니다.",
 	"apihelp-flow+reply-example-1": "[[Topic:S2tycnas4hcucw8w]]의 게시물에 답변하기",
+	"apihelp-flow+view-post-description": "게시물을 봅니다.",
 	"apihelp-flow+view-post-summary": "게시물을 봅니다.",
 	"apihelp-flow+view-post-history-summary": "게시물의 판 역사를 봅니다.",
 	"apihelp-flow+view-topic-description": "주제를 봅니다.",
