@@ -25,6 +25,17 @@ class PostCollectionTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		if ( !\MWNamespace::exists( NS_TOPIC ) ) {
+			// Work around broken tests resetting the extension registry
+			global $wgExtraNamespaces;
+			$wgExtraNamespaces[NS_TOPIC] = 'Topic';
+			if ( method_exists( \MWNamespace::class, 'clearCaches' ) ) {
+				\MWNamespace::clearCaches();
+			} else {
+				$this->overrideMwServices();
+			}
+		}
+
 		// recent changes isn't fully setup here, just skip it
 		$this->clearExtraLifecycleHandlers();
 
