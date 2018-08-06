@@ -5,6 +5,7 @@ namespace Flow\Utils;
 use Wikimedia\Rdbms\IDatabase;
 use BatchRowIterator;
 use EchoCallbackIterator;
+use Iterator;
 use IteratorAggregate;
 use RecursiveIteratorIterator;
 use Title;
@@ -51,7 +52,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	}
 
 	/**
-	 * @return \Iterator<Title>
+	 * @return Iterator<Title>
 	 */
 	public function getIterator() {
 		$it = new BatchRowIterator(

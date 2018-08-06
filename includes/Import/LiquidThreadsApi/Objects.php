@@ -12,6 +12,7 @@ use Flow\Import\IImportTopic;
 use Flow\Import\ImportException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
+use Iterator;
 use MWTimestamp;
 use Title;
 use User;

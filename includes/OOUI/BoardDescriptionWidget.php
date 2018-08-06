@@ -48,7 +48,7 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 	 *
 	 * @param string $content Content to wrap
 	 * @param string[] $classes Classes to add to the div
-	 * @return OOUI\Tag New div with content
+	 * @return \OOUI\Tag New div with content
 	 */
 	private function wrapInDiv( $content, array $classes = [] ) {
 		$tag = new \OOUI\Tag( 'div' );

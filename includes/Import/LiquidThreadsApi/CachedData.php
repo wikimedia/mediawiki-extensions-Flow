@@ -2,6 +2,7 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
+use Iterator;
 use ArrayIterator;
 
 /**
