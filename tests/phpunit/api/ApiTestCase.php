@@ -27,12 +27,13 @@ abstract class ApiTestCase extends \ApiTestCase {
 	];
 
 	protected function setUp() {
+		parent::setUp();
+
 		$this->setMwGlobals( 'wgNamespaceContentModels', [
 			NS_TALK => CONTENT_MODEL_FLOW_BOARD,
 			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
 		] );
 
-		parent::setUp();
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
 	}
 
