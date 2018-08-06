@@ -8,6 +8,8 @@ use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
 use MapCacheLRU;
 use MWTimestamp;
+use ReflectionMethod;
+use ReflectionProperty;
 use Title;
 use User;
 
@@ -247,11 +249,16 @@ class Workflow {
 		$title = self::$titleCache->get( $key );
 		if ( $title === null ) {
 			$title = Title::makeTitleSafe( $namespace, $titleText );
-			if ( $title ) {
-				self::$titleCache->set( $key, $title );
-			} else {
+			if ( !$title ) {
+				var_dump( "NS $namespace exists? " . \MWNamespace::exists( $namespace ) ? 'yes' : 'no' );
+				$t = new Title();
+				$t->mDbkeyform = Title::makeName( $namespace, $titleText, '', '', true );
+				$method = new ReflectionMethod( 'Title', 'secureAndSplit' );
+				$method->setAccessible( true );
+				$method->invoke( $t );
 				throw new InvalidInputException( "Fail to create title from namespace $namespace and title text '$titleText'", 'invalid-input' );
 			}
+			self::$titleCache->set( $key, $title );
 		}
 
 		return $title;
