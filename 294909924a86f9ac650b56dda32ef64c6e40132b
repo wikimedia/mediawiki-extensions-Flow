@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59bbaf78_b3cdccf2",
+        "filename": "includes/Import/ImportSource.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-08-06T21:53:00Z",
+      "side": 1,
+      "message": "Used here",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "294909924a86f9ac650b56dda32ef64c6e40132b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "801afdda_eb4471b1",
+        "filename": "includes/Import/LiquidThreadsApi/CachedData.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-08-06T21:53:00Z",
+      "side": 1,
+      "message": "Used here",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 20
+      },
+      "revId": "294909924a86f9ac650b56dda32ef64c6e40132b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52c38536_41380ef9",
+        "filename": "includes/Import/LiquidThreadsApi/Objects.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-08-06T21:53:00Z",
+      "side": 1,
+      "message": "Used here",
+      "range": {
+        "startLine": 137,
+        "startChar": 12,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "294909924a86f9ac650b56dda32ef64c6e40132b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5caac7db_51b548a3",
+        "filename": "includes/Utils/NamespaceIterator.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-08-06T21:53:00Z",
+      "side": 1,
+      "message": "Used here",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "294909924a86f9ac650b56dda32ef64c6e40132b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "046ecdeb_eb64eac9",
+        "filename": "includes/Utils/PagesWithPropertyIterator.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-08-06T21:53:00Z",
+      "side": 1,
+      "message": "Used here",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "294909924a86f9ac650b56dda32ef64c6e40132b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
