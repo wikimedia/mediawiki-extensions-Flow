@@ -88,6 +88,7 @@
 	"apihelp-flow+view-topic-history-description": "Zeigt die Versionsgeschichte eines Themas an.",
 	"apihelp-flow+view-topic-history-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-topic-summary-description": "Betrachtet eine Themenzusammenfassung.",
+	"apihelp-flow+view-topic-summary-summary": "Betrachtet eine Themenzusammenfassung.",
 	"apihelp-flow+view-topic-summary-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-topic-summary-param-revId": "Lädt diese anstelle der aktuellsten Version.",
 	"apihelp-flow+view-topic-summary-example-1": "Zeigt die Zusammenfassung für [[Topic:S2tycnas4hcucw8w]] als Wikitext an",
