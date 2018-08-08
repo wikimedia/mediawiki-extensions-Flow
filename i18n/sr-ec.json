@@ -66,7 +66,7 @@
 	"flow-topic-notification-subscribe-title": "Ова тема је додата на {{GENDER:$1|Ваш}} списак надгледања.",
 	"flow-error-not-allowed-delete": "Ова тема је обрисана.",
 	"flow-error-not-allowed-suppress": "Ова тема је обрисана.",
-	"flow-error-no-commit": "Наведену радњу није могуће сачувати.",
+	"flow-error-no-commit": "Не могу да сачувам наведену радњу.",
 	"flow-error-invalid-topic-uuid-title": "Неисправан наслов",
 	"flow-error-invalid-topic-uuid": "Наведени наслов није валидан. Странице у именском простору Тема аутоматски прави Flow.",
 	"flow-error-unknown-workflow-id-title": "Непозната тема",
