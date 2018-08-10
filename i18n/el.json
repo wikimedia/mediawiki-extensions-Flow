@@ -351,12 +351,22 @@
 	"flow-wikitext-editor-help-and-preview": "Το κείμενο wiki $1 και μπορείτε να $2 οποτεδήποτε.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|χρησιμοποιεί κώδικα]]",
 	"flow-wikitext-editor-help-preview-the-result": "κάνετε προεπισκόπηση του αποτελέσματος",
+	"flow-mark-revision-patrolled-link-text": "Σήμανση αυτής της σελίδας ως ελεγμένης",
+	"flow-mark-revision-patrolled-link-title": "Σήμανση αυτής της σελίδας ως ελεγμένης",
+	"flow-mark-diff-patrolled-link-text": "Σήμανση ως ελεγμένο",
+	"flow-mark-diff-patrolled-link-title": "Σήμανση ως ελεγμένο",
 	"flow-talk-page-beta-feature-message": "Δομημένες Συζητήσεις στη συζήτηση χρήστη",
+	"flow-dialog-cancelconfirm-title": "Είστε {{GENDER:|σίγουρος|σίγουρη}};",
+	"flow-dialog-cancelconfirm-message": "Είστε {{GENDER:|σίγουρος|σίγουρη}} ότι θέλετε να ακυρώσετε χωρίς πρώτα να σώσετε;",
+	"flow-dialog-cancelconfirm-keep": "Συνέχεια επεξεργασίας",
+	"flow-dialog-cancelconfirm-discard": "Απόρριψη αλλαγών",
+	"flow-optin-archive-wikitext": "Μετακίνηση σελίδας κώδικα wiki για δημιουργία χώρου για πίνακα συζητήσεων",
+	"flow-optin-archive-flow-board": "Μετακίνηση σελίδας πίνακα συζητήσεων για δημιουργία χώρου για σελίδα κώδικα wiki",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Καλώς ήρθατε}} στη νέα σελίδα συζήτησης χρήστη {{GENDER:$1|σας}}",
 	"flow-guidedtour-optin-welcome-description": "Η σελίδα συζήτησής {{GENDER:$1|σας}} είναι ο χώρος όπου άλλοι συντάκτες μπορούν να έρθουν σε επαφή μαζί {{GENDER:$1|σας}}. Με τις Δομημένες Συζητήσεις, είναι πιο εύκολο να ξεκινήσετε νέα θέματα και να παρακολουθείτε τις συνομιλίες.",
 	"flow-guidedtour-optin-find-old-conversations": "Βρείτε παλιές συζητήσεις {{GENDER:$1|σας}}",
 	"flow-guidedtour-optin-find-old-conversations-description": "Προηγούμενες συζητήσεις έχουν μετακινηθεί σε μια σελίδα αρχείου.",
 	"flow-guidedtour-optin-feedback": "Δώστε μας τα σχόλιά {{GENDER:$1|σας}}!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Μπορείτε}} να πάρετε περισσότερες πληροφορίες, να παρέχετε ανατροφοδότηση, ή να απενεργοποιήσετε το νέο σύστημα οποιαδήποτε στιγμή από την ενότητα λειτουργιών Beta.",
-	"flow-preference-visualeditor": "Ενεργοποίηση του οπτικού επεξεργαστή και την νέας λειτουργίας κώδικα wiki στις Δομημένες Συζητήσεις"
+	"flow-preference-visualeditor": "Ενεργοποίηση του οπτικού επεξεργαστή και της νέας λειτουργίας κώδικα wiki στις Δομημένες Συζητήσεις"
 }
