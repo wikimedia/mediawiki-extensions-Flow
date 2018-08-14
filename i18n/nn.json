@@ -17,6 +17,7 @@
 	"flow-summary-authored": "Samandrag av $1",
 	"flow-summary-edited": "Samandrag sist {{GENDER:$1|endra}} av $1",
 	"flow-last-modified-by": "Sist {{GENDER:$1|endra}} av $1",
+	"flow-stub-post-content": "<em>På grunn av ein teknisk feil kunne ikkje dette innhaldet hentast.</em>",
 	"flow-newtopic-title-placeholder": "Nytt emne",
 	"flow-newtopic-content-placeholder": "Skriv ei ny melding på «$1»",
 	"flow-newtopic-header": "Legg til eit nytt emne",
