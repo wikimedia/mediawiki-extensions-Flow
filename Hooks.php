@@ -1368,7 +1368,7 @@ class FlowHooks {
 		}
 
 		$content = $revision->getContent( 'topic-title-plaintext' );
-		$link = Linker::link( $title, htmlspecialchars( $content ) );
+		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title, $content );
 
 		return true;
 	}

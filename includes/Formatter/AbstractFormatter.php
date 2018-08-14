@@ -9,7 +9,7 @@ use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Html;
 use IContextSource;
-use Linker;
+use MediaWiki\MediaWikiServices;
 use Message;
 
 /**
@@ -291,7 +291,7 @@ abstract class AbstractFormatter {
 	 * @return string HTML linking to topic & board
 	 */
 	protected function getTitleLink( array $data, FormatterRow $row, IContextSource $ctx ) {
-		$ownerLink = Linker::link(
+		$ownerLink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			$row->workflow->getOwnerTitle(),
 			null,
 			[ 'class' => 'mw-title' ]
