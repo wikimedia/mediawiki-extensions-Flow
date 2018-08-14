@@ -15,6 +15,7 @@ use Flow\Model\Workflow;
 use Html;
 use Hooks;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use Message;
 use OutputPage;
 use Title;
@@ -191,7 +192,10 @@ class View extends ContextSource {
 				'name' => $value,
 				'exists' => $categoryTitle->exists()
 			];
-			$linkedCategories[] = \Linker::link( $categoryTitle, htmlspecialchars( $categoryTitle->getText() ) );
+			$linkedCategories[] = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+				$categoryTitle,
+				$categoryTitle->getText()
+			);
 		}
 
 		// @todo This and API should use same code
@@ -238,10 +242,10 @@ class View extends ContextSource {
 		// Add category items to the header if they exist
 		if ( count( $linkedCategories ) > 0 && isset( $apiResponse['blocks']['header'] ) ) {
 			$apiResponse['blocks']['header']['categories'] = [
-				'link' => \Linker::link(
+				'link' => MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 						\SpecialPage::getTitleFor( 'Categories' ),
 						wfMessage( 'pagecategories' )->params( count( $linkedCategories ) )->text()
-					) . wfMessage( 'colon-separator' )->text(),
+					) . wfMessage( 'colon-separator' )->escaped(),
 				'items' => $linkedCategories
 			];
 		}

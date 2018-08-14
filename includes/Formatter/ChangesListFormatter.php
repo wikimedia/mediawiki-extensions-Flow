@@ -2,14 +2,15 @@
 
 namespace Flow\Formatter;
 
+use ChangesList;
+use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
-use ChangesList;
 use Flow\Model\UUID;
-use Flow\Conversion\Utils;
 use IContextSource;
 use Linker;
+use MediaWiki\MediaWikiServices;
 
 class ChangesListFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
@@ -89,7 +90,7 @@ class ChangesListFormatter extends AbstractFormatter {
 
 		// Below code is inspired by Linker::formatAutocomments
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
-		$link = Linker::link(
+		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			$title = $row->workflow->getOwnerTitle(),
 			$ctx->getLanguage()->getArrow( 'backwards' ),
 			[],

@@ -17,6 +17,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use Message;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -425,6 +426,6 @@ class TopicSummaryBlock extends AbstractBlock {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}
 
-		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }
