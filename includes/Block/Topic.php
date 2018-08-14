@@ -22,6 +22,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\Repository\RootPostLoader;
+use MediaWiki\MediaWikiServices;
 use Message;
 
 class TopicBlock extends AbstractBlock {
@@ -1014,6 +1015,6 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}
-		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }
