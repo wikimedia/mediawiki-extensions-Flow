@@ -14,6 +14,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\FailCommitException;
+use MediaWiki\MediaWikiServices;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -494,6 +495,6 @@ class TopicListBlock extends AbstractBlock {
 		$message = $out->msg( 'flow-newtopic-first-heading', $title->getPrefixedText() );
 		$out->setPageTitle( $message );
 		$out->setHtmlTitle( $message );
-		$out->setSubtitle( '&lt; ' . \Linker::link( $title ) );
+		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }

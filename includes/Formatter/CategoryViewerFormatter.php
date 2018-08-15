@@ -3,7 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\RevisionActionPermissions;
-use Linker;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Formats single lines for inclusion on the page renders in
@@ -25,13 +25,15 @@ class CategoryViewerFormatter {
 			return '';
 		}
 
-		$topic = Linker::link(
+		$topic = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			$row->workflow->getArticleTitle(),
-			htmlspecialchars( $row->revision->getContent( 'topic-title-wikitext' ) ),
+			$row->revision->getContent( 'topic-title-wikitext' ),
 			[ 'class' => 'mw-title' ]
 		);
 
-		$board = Linker::link( $row->workflow->getOwnerTitle() );
+		$board = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+			$row->workflow->getOwnerTitle()
+		);
 
 		return wfMessage( 'flow-rc-topic-of-board' )->rawParams( $topic, $board )->escaped();
 	}
