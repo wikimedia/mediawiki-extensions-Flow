@@ -133,7 +133,7 @@ class TopicListQuery extends AbstractQuery {
 		} elseif ( count( $nodeList ) === 1 ) {
 			$postIds = reset( $nodeList );
 		} else {
-			$postIds = array_merge( ...$nodeList );
+			$postIds = array_merge( ...array_values( $nodeList ) );
 		}
 
 		// re-index by alphadecimal id
