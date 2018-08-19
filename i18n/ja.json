@@ -14,10 +14,11 @@
 			"Omotecho",
 			"Mirinano",
 			"Suchichi02",
-			"Yusuke1109"
+			"Yusuke1109",
+			"Suyama"
 		]
 	},
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "いつもで[$2 話題]を閲覧できます。",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|あなた}} はいつでも [$2 この話題] を閲覧できます。",
 	"flow-desc": "議論管理システム",
 	"flow-talk-taken-over-comment": "/* このページは構造化された議論のボードに変換されています */",
 	"log-name-flow": "構造化された議論の活動記録",
@@ -375,7 +376,9 @@
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|マークアップを使用]]",
 	"flow-wikitext-editor-help-preview-the-result": "結果をプレビュー",
 	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
+	"flow-mark-revision-patrolled-link-title": "このページを巡回済みにする",
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
+	"flow-mark-diff-patrolled-link-title": "巡回済みにする",
 	"flow-talk-page-beta-feature-description": "{{GENDER:|ご自分}}の利用者トークページで、新しく構造化された議論システムを有効にします。トークページの議論が簡略化されて発信と返信の場所が明瞭になり、また会話ごとに通知ができるようになります。この機能は、けっして自動では有効化されません。利用者が個別に有効にする必要があります。<br /><br />既存のウィキテキスト形式の議論は、過去ログに移動します。一方、機能を無効にすると、ボードをサブページに移動し、既存のトークページを過去ログから復元します。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#有効にする|有効化の詳細はこちら]]。",
 	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを{{GENDER:|見る}}",
 	"flow-notification-enabled-on-talkpage-title": "{{GENDER:$1|あなたの}}利用者の会話ページで新しい議論システムが有効になりました<br /><small>[[$2]]で利用可能です</small>",
