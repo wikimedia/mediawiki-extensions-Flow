@@ -32,7 +32,7 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 			],
 
 			[
-				'With content longer than max length dissalow through filter',
+				'With content longer than max length disallow through filter',
 				// expect
 				false,
 				// content
