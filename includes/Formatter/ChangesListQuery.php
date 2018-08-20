@@ -92,7 +92,7 @@ class ChangesListQuery extends AbstractQuery {
 		} elseif ( $count === 1 ) {
 			$results = reset( $found );
 		} else {
-			$results = array_merge( ...$found );
+			$results = array_merge( ...array_values( $found ) );
 		}
 
 		if ( $results ) {

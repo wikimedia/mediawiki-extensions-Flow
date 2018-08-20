@@ -359,7 +359,7 @@ class TreeRepository {
 		} elseif ( count( $nodes ) === 1 ) {
 			$parentMap = $this->fetchParentMap( reset( $nodes ) );
 		} else {
-			$parentMap = $this->fetchParentMap( array_merge( ...$nodes ) );
+			$parentMap = $this->fetchParentMap( array_merge( ...array_values( $nodes ) ) );
 		}
 		$identityMap = [];
 		foreach ( $parentMap as $child => $parent ) {
