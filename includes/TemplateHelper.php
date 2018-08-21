@@ -595,15 +595,14 @@ class TemplateHelper {
 
 		$data = $args[0];
 		$differenceEngine = new \DifferenceEngine();
-		$multi = $differenceEngine->getMultiNotice();
-		// Display a message when the diff is empty
-		$notice = '';
 		if ( $data['diff_content'] === '' ) {
 			$notice .= '<div class="mw-diff-empty">' .
 				wfMessage( 'diff-empty' )->parse() .
 				"</div>\n";
 		}
-		$differenceEngine->showDiffStyle();
+		// Work around exception in DifferenceEngine (T202454)
+		//$differenceEngine->showDiffStyle();
+		$this->getOutput()->addModuleStyles( 'mediawiki.diff.styles' );
 
 		$renderer = Container::get( 'lightncandy' )->getTemplate( 'flow_revision_diff_header' );
 
@@ -618,9 +617,8 @@ class TemplateHelper {
 				'new' => true,
 				'revision' => $data['new'],
 				'links' => $data['links'],
-			] ),
-			$multi,
-			$notice
+			] )
+			// FIXME we should be passing in a multinotice for multi-rev diffs here
 		) );
 	}
 
