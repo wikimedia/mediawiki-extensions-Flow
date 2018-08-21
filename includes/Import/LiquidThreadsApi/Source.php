@@ -16,7 +16,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ApiUsageException;
-use UsageException;
 use User;
 
 class ImportSource implements IImportSource {
@@ -450,9 +449,6 @@ class LocalApiBackend extends ApiBackend {
 					),
 				] + $msg->getApiData()
 			];
-		} catch ( UsageException $exception ) {
-			// Mimic the behaviour when called remotely
-			return [ 'error' => $exception->getMessageArray() ];
 		} catch ( Exception $exception ) {
 			// Mimic behaviour when called remotely
 			return [
