@@ -35,8 +35,8 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	protected $filters = [
 		// no CSS screen hijack
 		'(new_wikitext rlike "position\s*:\s*(fixed|absolute)|style\s*=\s*\"[a-z0-9:;\s]*&|z-index\s*:\s*\d|\|([4-9]\d{3}|\d{5,})px")' => 'disallow',
-		'(ARTICLE_PREFIXEDTEXT === "Topic:Tnprd6ksfu1v1nme")' => 'disallow',
-		'(BOARD_PREFIXEDTEXT === "BadBoard")' => 'disallow',
+		'(PAGE_PREFIXEDTITLE === "Topic:Tnprd6ksfu1v1nme")' => 'disallow',
+		'(BOARD_PREFIXEDTITLE === "BadBoard")' => 'disallow',
 	];
 
 	public function spamProvider() {
