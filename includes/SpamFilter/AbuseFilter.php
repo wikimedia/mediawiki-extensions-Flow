@@ -67,8 +67,8 @@ class AbuseFilter implements SpamFilter {
 		$vars = \AbuseFilter::getEditVars( $title );
 		$vars->addHolders(
 			\AbuseFilter::generateUserVars( $context->getUser() ),
-			\AbuseFilter::generateTitleVars( $title, 'PAGE', false ),
-			\AbuseFilter::generateTitleVars( $ownerTitle, 'BOARD', false )
+			\AbuseFilter::generateTitleVars( $title, 'PAGE' ),
+			\AbuseFilter::generateTitleVars( $ownerTitle, 'BOARD' )
 		);
 
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
