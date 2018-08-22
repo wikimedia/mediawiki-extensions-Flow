@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f20be4e_eac31128",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-08-22T08:32:27Z",
+      "side": 1,
+      "message": "I have a feeling that addHeader() could blow up in the same way that showDiffStyle() did, if the DifferenceEngine can\u0027t get a Title object for context. The fact that it works seems more like luck to me. Wouldn\u0027t it be better to simply provide a Title to the DifferenceEngine constructor? Isn\u0027t there a \"natural\" Title to use here?",
+      "revId": "7578eccb01e9662f76ee08f2b8820f1e03aae35e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
