@@ -122,7 +122,7 @@ class RevisionViewFormatter {
 				null,
 				$workflowId
 			);
-			$links['diff']->setMessage( wfMessage( 'diff' ) );
+			$links['diff']->setMessage( $ctx->msg( 'diff' ) );
 		} else {
 			$links['diff'] = [
 				'url' => '',

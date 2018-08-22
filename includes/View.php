@@ -244,8 +244,8 @@ class View extends ContextSource {
 			$apiResponse['blocks']['header']['categories'] = [
 				'link' => MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 						\SpecialPage::getTitleFor( 'Categories' ),
-						wfMessage( 'pagecategories' )->params( count( $linkedCategories ) )->text()
-					) . wfMessage( 'colon-separator' )->escaped(),
+						$this->msg( 'pagecategories' )->params( count( $linkedCategories ) )->text()
+					) . $this->msg( 'colon-separator' )->escaped(),
 				'items' => $linkedCategories
 			];
 		}
