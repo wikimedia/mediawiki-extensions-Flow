@@ -211,7 +211,7 @@ abstract class AbstractFormatter {
 		}
 
 		if ( $anchor instanceof Anchor ) {
-			$anchor->setMessage( wfMessage( 'hist' ) );
+			$anchor->setMessage( $ctx->msg( 'hist' ) );
 			return $anchor;
 		} else {
 			// plain text with no link

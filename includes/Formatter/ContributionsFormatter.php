@@ -88,7 +88,7 @@ class ContributionsFormatter extends AbstractFormatter {
 
 		/** @var Anchor $anchor */
 		$anchor = $data['actions'][$key];
-		$message = ' ' . wfMessage( 'parentheses' )->rawParams( Html::rawElement(
+		$message = ' ' . $ctx->msg( 'parentheses' )->rawParams( Html::rawElement(
 			'a',
 			[
 				'href' => $anchor->getFullURL(),
