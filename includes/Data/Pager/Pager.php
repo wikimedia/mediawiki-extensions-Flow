@@ -161,7 +161,12 @@ class Pager {
 		if ( $queries >= self::MAX_QUERIES ) {
 			$count = count( $results );
 			$limit = $this->options['pager-limit'];
-			wfDebugLog( 'Flow', __METHOD__ . "Reached maximum of $queries queries with $count results of $limit requested with query of " . json_encode( $this->query ) . ' and options ' . json_encode( $options ) );
+			wfDebugLog(
+				'Flow',
+				__METHOD__ . "Reached maximum of $queries queries with $count results of $limit " .
+					"requested with query of " . json_encode( $this->query ) . ' and options ' .
+					json_encode( $options )
+			);
 		}
 
 		if ( $results ) {

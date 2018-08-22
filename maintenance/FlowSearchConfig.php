@@ -267,7 +267,18 @@ class FlowSearchConfig extends Maintenance {
 			return $validators;
 		}
 
-		$validators[] = new IndexValidator( $this->getIndex(), $this->startOver, $this->maxShardsPerNode, $this->getShardCount(), $this->getReplicaCount(), $this->refreshInterval, false, $this->analysisConfigBuilder, $this->getMergeSettings(), $this );
+		$validators[] = new IndexValidator(
+			$this->getIndex(),
+			$this->startOver,
+			$this->maxShardsPerNode,
+			$this->getShardCount(),
+			$this->getReplicaCount(),
+			$this->refreshInterval,
+			false,
+			$this->analysisConfigBuilder,
+			$this->getMergeSettings(),
+			$this
+		);
 
 		$validators = array_merge( $validators, $this->getIndexSettingsValidators() );
 
@@ -276,7 +287,14 @@ class FlowSearchConfig extends Maintenance {
 		$validators[] = $validator;
 
 		$types = [ 'topic' => $this->getTopicType(), 'header' => $this->getHeaderType() ];
-		$validator = new MappingValidator( $this->getIndex(), $this->optimizeIndexForExperimentalHighlighter, $this->availablePlugins, $this->getMappingConfig(), $types, $this );
+		$validator = new MappingValidator(
+			$this->getIndex(),
+			$this->optimizeIndexForExperimentalHighlighter,
+			$this->availablePlugins,
+			$this->getMappingConfig(),
+			$types,
+			$this
+		);
 		$validator->printDebugCheckConfig( $this->printDebugCheckConfig );
 		$validators[] = $validator;
 
@@ -285,12 +303,47 @@ class FlowSearchConfig extends Maintenance {
 
 		$types = [ $this->getTopicType(), $this->getHeaderType() ];
 		$oldTypes = [ $this->getOldTopicType(), $this->getOldHeaderType() ];
-		$reindexer = new Reindexer( $this->getIndex(), Connection::getSingleton(), $types, $oldTypes, $this->getShardCount(), $this->getReplicaCount(), $this->maintenanceTimeout, $this->getMergeSettings(), $this->getMappingConfig(), $this );
-		$reindexParams = [ $this->reindexProcesses, $this->refreshInterval, $this->reindexRetryAttempts, $this->reindexChunkSize, $this->reindexAcceptableCountDeviation ];
+		$reindexer = new Reindexer(
+			$this->getIndex(),
+			Connection::getSingleton(),
+			$types,
+			$oldTypes,
+			$this->getShardCount(),
+			$this->getReplicaCount(),
+			$this->maintenanceTimeout,
+			$this->getMergeSettings(),
+			$this->getMappingConfig(),
+			$this
+		);
+		$reindexParams = [
+			$this->reindexProcesses,
+			$this->refreshInterval,
+			$this->reindexRetryAttempts,
+			$this->reindexChunkSize,
+			$this->reindexAcceptableCountDeviation
+		];
 		$reindexValidators = $this->getIndexSettingsValidators();
-		$validators[] = new SpecificAliasValidator( $this->getClient(), $this->getIndexTypeName(), $this->getSpecificIndexName(), $this->startOver, $reindexer, $reindexParams, $reindexValidators, $this->reindexAndRemoveOk, $this->tooFewReplicas, $this );
+		$validators[] = new SpecificAliasValidator(
+			$this->getClient(),
+			$this->getIndexTypeName(),
+			$this->getSpecificIndexName(),
+			$this->startOver,
+			$reindexer,
+			$reindexParams,
+			$reindexValidators,
+			$this->reindexAndRemoveOk,
+			$this->tooFewReplicas,
+			$this
+		);
 
-		$validators[] = new IndexAllAliasValidator( $this->getClient(), $this->getIndexName(), $this->getSpecificIndexName(), $this->startOver, $this->getIndexTypeName(), $this );
+		$validators[] = new IndexAllAliasValidator(
+			$this->getClient(),
+			$this->getIndexName(),
+			$this->getSpecificIndexName(),
+			$this->startOver,
+			$this->getIndexTypeName(),
+			$this
+		);
 		if ( $this->tooFewReplicas ) {
 			$validators = array_merge( $validators, $this->getIndexSettingsValidators() );
 		}

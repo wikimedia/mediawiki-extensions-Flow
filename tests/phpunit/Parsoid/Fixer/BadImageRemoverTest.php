@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:ignoreFile Generic.Files.LineLength Long html test examples
+
 namespace Flow\Tests\Parsoid;
 
 use Flow\Parsoid\Fixer\BadImageRemover;
