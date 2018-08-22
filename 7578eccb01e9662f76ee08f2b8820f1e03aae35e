@@ -16,6 +16,24 @@
       "revId": "7578eccb01e9662f76ee08f2b8820f1e03aae35e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b6d927a_b76b1c14",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 389
+      },
+      "writtenOn": "2018-08-22T10:27:51Z",
+      "side": 1,
+      "message": "Yeah, I wonder how this worked before.\n\n    $de \u003d new DifferenceEngine(); $de-\u003eaddHeader(\u0027\u0027,\u0027\u0027,\u0027\u0027)\n\n\nbreaks for me with or without the diff refactoring patch.",
+      "parentUuid": "6f20be4e_eac31128",
+      "revId": "7578eccb01e9662f76ee08f2b8820f1e03aae35e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
