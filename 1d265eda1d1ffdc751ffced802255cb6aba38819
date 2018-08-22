@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88da2840_1855f8b7",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 389
+      },
+      "writtenOn": "2018-08-22T10:22:22Z",
+      "side": 0,
+      "message": "FWIW I don\u0027t think this ever worked; the notice will be empty unless you manually specify non-neighboring revisions.",
+      "revId": "1d265eda1d1ffdc751ffced802255cb6aba38819",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
