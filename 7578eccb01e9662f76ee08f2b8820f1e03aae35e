@@ -34,6 +34,24 @@
       "revId": "7578eccb01e9662f76ee08f2b8820f1e03aae35e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16e7156_e3228876",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-08-22T16:27:15Z",
+      "side": 1,
+      "message": "Strangely, Flow doesn\u0027t throw exceptions when rendering diffs on wmf.16 wikis, but adding addHeader() does throw in the console because there is no title. You\u0027re right that we should at least be passing a context to DifferenceEngine so that it has a title to use.",
+      "parentUuid": "2b6d927a_b76b1c14",
+      "revId": "7578eccb01e9662f76ee08f2b8820f1e03aae35e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
