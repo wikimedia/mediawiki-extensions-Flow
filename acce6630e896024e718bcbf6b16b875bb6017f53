@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "331f34cb_bd87010b",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 389
+      },
+      "writtenOn": "2018-08-22T18:21:37Z",
+      "side": 1,
+      "message": "DifferenceEngine does use the standard context when nothing is passed in (cf. ContextSource::getContext()) so this should not have any effect. The error happens when $wgTitle is null.",
+      "revId": "acce6630e896024e718bcbf6b16b875bb6017f53",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
