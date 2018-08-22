@@ -16,6 +16,24 @@
       "revId": "acce6630e896024e718bcbf6b16b875bb6017f53",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea4ff602_cddd49ee",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-08-22T18:24:06Z",
+      "side": 1,
+      "message": "I see! That\u0027s an orthogonal issue to this issue then.",
+      "parentUuid": "331f34cb_bd87010b",
+      "revId": "acce6630e896024e718bcbf6b16b875bb6017f53",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
