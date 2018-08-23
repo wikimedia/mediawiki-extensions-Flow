@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:ignoreFile Generic.Files.LineLength Long html test examples
+
 namespace Flow\Tests\Import;
 
 use Flow\Import\TemplateHelper;

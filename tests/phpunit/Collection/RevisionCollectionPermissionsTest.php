@@ -190,7 +190,9 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->assertEquals(
 				$expected,
 				$permissions->isAllowed( $revision, $permissionAction ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) . ' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
+				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) .
+					'be allowed action ' . $permissionAction . ' on revision ' . key( $action ) .
+					' : ' . $debug . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
 			);
 		}
 	}

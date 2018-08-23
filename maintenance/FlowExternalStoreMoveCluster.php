@@ -51,11 +51,16 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Moves ExternalStore content from (a) particular cluster(s) to (an)other(s). Just make sure all clusters are valid $wgExternalServers.';
+		$this->mDescription = 'Moves ExternalStore content from (a) particular cluster(s) to ' .
+			'(an)other(s). Just make sure all clusters are valid $wgExternalServers.';
 
-		$this->addOption( 'from', 'ExternalStore cluster to move from (comma-separated). E.g.: --from=cluster24,cluster25', true, true );
-		$this->addOption( 'to', 'ExternalStore cluster to move to (comma-separated). E.g.: --to=cluster26', true, true );
-		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new External Store, gives hypothetical new column values for flow_revision (but does not actually change flow_revision), and checks that old and new ES are the same.' );
+		$this->addOption( 'from', 'ExternalStore cluster to move from (comma-separated). ' .
+			'E.g.: --from=cluster24,cluster25', true, true );
+		$this->addOption( 'to', 'ExternalStore cluster to move to (comma-separated). ' .
+			'E.g.: --to=cluster26', true, true );
+		$this->addOption( 'dry-run', 'Outputs the old user content, inserts into new ' .
+			'External Store, gives hypothetical new column values for flow_revision (but does ' .
+			'not actually change flow_revision), and checks that old and new ES are the same.' );
 
 		$this->setBatchSize( 300 );
 
