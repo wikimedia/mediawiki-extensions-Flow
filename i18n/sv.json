@@ -100,7 +100,7 @@
 	"flow-newtopic-first-heading": "Starta ett nytt ämne på $1",
 	"flow-summarize-topic-placeholder": "Vänligen sammanfatta denna diskussion",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Kommentera}} på \"$2\"",
-	"flow-reply-topic-title-placeholder": "Svar till \"$1\"",
+	"flow-reply-topic-title-placeholder": "Svara på \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|Svara}}",
 	"flow-reply-link-anonymously": "Svara anonymt",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Tacka}}}}",

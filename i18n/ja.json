@@ -357,6 +357,7 @@
 	"flow-special-type-workflow": "ワークフロー",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-page": "Flow を有効にするページ",
+	"flow-spam-confirmedit-using-failure": "これは CAPTCHA の技術的なエラーによるものです。あなたの行った変更が投稿できていないようであれば、変更したテキストの内容を別の場所にコピーし、ページを開き直して再度試してください。",
 	"flow-importer-lqt-moved-thread-template-content": "この投稿は{{{author}}}によって{{{date}}}上に移動されました。それを[[{{{title}}}]]で発見できます。",
 	"flow-importer-lqt-converted-template-content": "前のページの履歴はアーカイブされています。バックアップの目的のためのアーカイブであり、<span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}にあります。",
 	"flow-importer-wt-converted-template-content": "前の決定は{{#time: Y-m-d|{{{date}}} }}上の<span class='flow-link-to-archive'>[[{{{archive}}}]]</span>にてアーカイブされています。",
