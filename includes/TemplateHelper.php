@@ -40,7 +40,7 @@ class TemplateHelper {
 	}
 
 	/**
-	 * Constructs the location of the the source handlebars template
+	 * Constructs the location of the source handlebars template
 	 * and the compiled php code that goes with it.
 	 *
 	 * @param string $templateName
