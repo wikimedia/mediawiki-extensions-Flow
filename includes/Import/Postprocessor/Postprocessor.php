@@ -13,7 +13,7 @@ use Flow\Import\TopicImportState;
 // implement what you want, without 'not a thing to do yet'
 interface Postprocessor {
 	/**
-	 * Called after the successfull commit of a header. This is
+	 * Called after the successful commit of a header. This is
 	 * currently called regardless of if any new content was imported.
 	 *
 	 * @param PageImportState $state
