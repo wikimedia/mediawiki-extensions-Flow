@@ -750,8 +750,7 @@ $c['loader.root_post'] = function ( $c ) {
 	);
 };
 
-// Queue of callbacks to run by DeferredUpdates, but only
-// on successfull commit
+// Queue of callbacks to run by DeferredUpdates, but only on successful commit
 $c['deferred_queue'] = function ( $c ) {
 	return new SplQueue;
 };
