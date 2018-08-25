@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Generic.Files.LineLength -- Long html test examples
+
 namespace Flow\Tests\Conversion;
 
 use Flow\Exception\WikitextException;

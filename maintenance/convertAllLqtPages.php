@@ -23,8 +23,11 @@ class ConvertAllLqtPages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts LiquidThreads data to Flow data";
-		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources. This is required for the import to be idempotent.', false, true );
-		$this->addOption( 'force-recovery-conversion', 'If a previous logfile was lost, this option can be set to attempt to map threads to topics that have already been imported to prevent doubles.' );
+		$this->addOption( 'logfile', 'File to read and store associations between imported items ' .
+			'and their sources. This is required for the import to be idempotent.', false, true );
+		$this->addOption( 'force-recovery-conversion', 'If a previous logfile was lost, this ' .
+			'option can be set to attempt to map threads to topics that have already been ' .
+			'imported to prevent doubles.' );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
 		$this->requireExtension( 'Flow' );
 	}

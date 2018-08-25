@@ -147,19 +147,22 @@ class Converter {
 	protected function isAllowed( Title $title ) {
 		// Only make changes to wikitext pages
 		if ( $title->getContentModel() !== CONTENT_MODEL_WIKITEXT ) {
-			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it has content model '" . $title->getContentModel() . "''." );
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() .
+				"' is being skipped because it has content model '" . $title->getContentModel() . "''." );
 			return false;
 		}
 
 		if ( !$title->exists() ) {
-			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it does not exist." );
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() .
+				"' is being skipped because it does not exist." );
 			return false;
 		}
 
 		// At some point we may want to handle these, but for now just
 		// let them be
 		if ( $title->isRedirect() ) {
-			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() . "' is being skipped because it is a redirect." );
+			$this->logger->warning( "WARNING: The title '" . $title->getPrefixedDBkey() .
+				"' is being skipped because it is a redirect." );
 			return false;
 		}
 

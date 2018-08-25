@@ -60,7 +60,8 @@ abstract class Utils {
 					return self::parser( $from, $to, $content, $title );
 				}
 			} else {
-				throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
+				throw new WikitextException( "Conversion from '$from' to '$to' was requested, " .
+					"but this is not supported." );
 			}
 		} else {
 			return self::commentParser( $from, $to, $content );
@@ -140,9 +141,12 @@ abstract class Utils {
 			}
 			$vrsInfo = $serviceClient->getMountAndService( '/restbase/' );
 			$serviceName = $vrsInfo[1] ? $vrsInfo[1]->getName() : 'VRS service';
-			$msg = "Request to " . $serviceName . " for \"$from\" to \"$to\" conversion of content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
+			$msg = "Request to " . $serviceName . " for \"$from\" to \"$to\" conversion of " .
+				"content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
 			Container::get( 'default_logger' )->error(
-				'Request to {service} for "{sourceFormat}" to "{targetFormat}" conversion of content connected to title "{title}" failed.  Code: {code}, Reason: "{reason}", Body: "{body}", Error: "{error}"',
+				'Request to {service} for "{sourceFormat}" to "{targetFormat}" conversion of " .
+					"content connected to title "{title}" failed.  Code: {code}, " .
+					"Reason: "{reason}", Body: "{body}", Error: "{error}"',
 				[
 					'service' => $serviceName,
 					'sourceFormat' => $from,
@@ -181,7 +185,8 @@ abstract class Utils {
 			$from !== 'topic-title-wikitext' ||
 			( $to !== 'topic-title-html' && $to !== 'topic-title-plaintext' )
 		) {
-			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but this is not supported." );
+			throw new WikitextException( "Conversion from '$from' to '$to' was requested, " .
+				"but this is not supported." );
 		}
 
 		$html = Linker::formatLinksInComment( Sanitizer::escapeHtmlAllowEntities( $content ) );
@@ -206,7 +211,8 @@ abstract class Utils {
 	 */
 	protected static function parser( $from, $to, $content, Title $title ) {
 		if ( $from !== 'wikitext' || $to !== 'html' ) {
-			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
+			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but " .
+				"core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
 		}
 
 		global $wgParser;
@@ -354,7 +360,11 @@ abstract class Utils {
 	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $utf8Fragment = true, array $ignoreErrorCodes = [ 9, 76, 513, 801 ] ) {
+	public static function createDOM(
+		$content,
+		$utf8Fragment = true,
+		array $ignoreErrorCodes = [ 9, 76, 513, 801 ]
+	) {
 		$dom = new DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.

@@ -88,7 +88,8 @@ class Templating {
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
 		if ( !$revision->isModerated() && !$this->permissions->isAllowed( $revision, 'history' ) ) {
-			throw new PermissionException( 'Insufficient permissions to see userlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+			throw new PermissionException( 'Insufficient permissions to see userlinks for rev_id = ' .
+				$revision->getRevisionId()->getAlphadecimal() );
 		}
 
 		// Convert to use MapCacheLRU?
@@ -101,7 +102,8 @@ class Templating {
 			return $cache[$userid][$userip];
 		}
 		$username = $this->usernames->get( wfWikiID(), $userid, $userip );
-		$cache[$userid][$userip] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
+		$cache[$userid][$userip] = Linker::userLink( $userid, $username ) .
+			Linker::userToolLinks( $userid, $username );
 		return $cache[$userid][$userip];
 	}
 
@@ -119,12 +121,16 @@ class Templating {
 	 * other than the default 'html' and 'fixed-html'.
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
-	 * @param string $format Format to output content in (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext|topic-title-plaintext)
+	 * @param string $format Format to output content in one of:
+	 *   (fixed-html|html|wikitext|topic-title-html|topic-title-wikitext|topic-title-plaintext)
 	 * @return string HTML if requested, otherwise plain text
 	 * @throws InvalidParameterException
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'fixed-html' ) {
-		if ( !in_array( $format, [ 'fixed-html', 'html', 'wikitext', 'topic-title-html', 'topic-title-wikitext', 'topic-title-plaintext' ] ) ) {
+		if ( !in_array( $format, [ 'fixed-html', 'html', 'wikitext', 'topic-title-html',
+				'topic-title-wikitext', 'topic-title-plaintext' ]
+			)
+		) {
 			throw new InvalidParameterException( 'Invalid format: ' . $format );
 		}
 
@@ -163,7 +169,9 @@ class Templating {
 			try {
 				return Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
 			} catch ( FlowException $e ) {
-				wfDebugLog( 'Flow', "Failed loading last revision for revid " . $revision->getRevisionId()->getAlphadecimal() . " with collection id " . $revision->getCollectionId()->getAlphadecimal() );
+				wfDebugLog( 'Flow', "Failed loading last revision for revid " .
+					$revision->getRevisionId()->getAlphadecimal() . " with collection id " .
+					$revision->getCollectionId()->getAlphadecimal() );
 				throw $e;
 			}
 		}

@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable Generic.Files.LineLength -- Long html test examples
+
 namespace Flow\Tests\SpamFilter;
 
 use Flow\Model\PostRevision;

@@ -1,6 +1,6 @@
 <?php
 
-// phpcs:ignoreFile Generic.Files.LineLength Long html test examples
+// phpcs:disable Generic.Files.LineLength -- Long html test examples
 
 namespace Flow\Tests\Parsoid;
 
