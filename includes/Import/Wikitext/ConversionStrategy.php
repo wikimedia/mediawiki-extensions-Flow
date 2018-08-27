@@ -183,7 +183,9 @@ class ConversionStrategy implements IConversionStrategy {
 		// a talk page with matching subject page. For example
 		// we will convert User_talk:Foo/bar only if User:Foo/bar
 		// exists, and we will never convert User:Baz/bang.
-		if ( $sourceTitle->isSubPage() && ( !$sourceTitle->isTalkPage() || !$sourceTitle->getSubjectPage()->exists() ) ) {
+		if ( $sourceTitle->isSubPage() &&
+			( !$sourceTitle->isTalkPage() || !$sourceTitle->getSubjectPage()->exists() )
+		) {
 			return false;
 		}
 
@@ -224,12 +226,15 @@ class ConversionStrategy implements IConversionStrategy {
 		// be converted separately.
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			if ( \LqtDispatch::isLqtPage( $sourceTitle ) ) {
-				$this->logger->info( "Skipping LQT enabled page, conversion must be done with convertLqtPagesWithProp.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
+				$this->logger->info( "Skipping LQT enabled page, conversion must be done with " .
+					"convertLqtPagesWithProp.php or convertLqtPageOnLocalWiki.php: $sourceTitle" );
 				return false;
 			}
 		}
 
-		if ( !$this->meetsSubpageRequirements( $sourceTitle ) || $this->hasNoConvertTemplate( $sourceTitle ) ) {
+		if ( !$this->meetsSubpageRequirements( $sourceTitle ) ||
+			$this->hasNoConvertTemplate( $sourceTitle )
+		) {
 			return false;
 		}
 

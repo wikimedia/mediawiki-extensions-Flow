@@ -136,7 +136,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
 		],
-		'links' => [ 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ],
+		'links' => [
+			'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic',
+			'summary-revision'
+		],
 		'actions' => [ 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
@@ -165,8 +168,13 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_LOCKED => '',
 		],
-		'links' => [ 'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic', 'summary-revision' ],
-		'actions' => [ 'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary' ],
+		'links' => [
+			'topic', 'topic-history', 'diff-post-summary', 'watch-topic', 'unwatch-topic',
+			'summary-revision'
+		],
+		'actions' => [
+			'edit-topic-summary', 'lock-topic', 'restore-topic', 'undo-edit-topic-summary'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
 			'i18n-params' => [
@@ -226,8 +234,13 @@ $wgFlowActions = [
 		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
 		],
-		'links' => [ 'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'links' => [
+			'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic'
+		],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic',
+			'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => [
@@ -259,13 +272,19 @@ $wgFlowActions = [
 		// You should also adjust the memcached indices for best results.
 		'exclude_from_history' => true,
 
-		// exclude_from_recentchanges only refers to the actual Special:RecentChanges.  It does not affect Special:Watchlist.
+		// exclude_from_recentchanges only refers to the actual Special:RecentChanges.
+		// It does not affect Special:Watchlist.
 		'exclude_from_recentchanges' => true,
 		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
 		],
-		'links' => [ 'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'links' => [
+			'topic-history', 'topic', 'post', 'topic-revision', 'watch-topic', 'unwatch-topic'
+		],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic',
+			'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => [
@@ -290,7 +309,9 @@ $wgFlowActions = [
 		'rc_insert' => true,
 		'permissions' => [
 			// no permissions needed for own posts
-			PostRevision::MODERATED_NONE => function ( PostRevision $post, RevisionActionPermissions $permissions ) {
+			PostRevision::MODERATED_NONE => function (
+				PostRevision $post, RevisionActionPermissions $permissions
+			) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
 			}
 		],
@@ -298,7 +319,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => '',
 		],
 		'links' => [ 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post',
+			'suppress-post', 'undo-edit-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => [
@@ -324,7 +348,9 @@ $wgFlowActions = [
 		'rc_insert' => true,
 		'permissions' => [
 			// no permissions needed for own posts
-			PostRevision::MODERATED_NONE => function ( PostRevision $post, RevisionActionPermissions $permissions ) {
+			PostRevision::MODERATED_NONE => function (
+				PostRevision $post, RevisionActionPermissions $permissions
+			) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
 			}
 		],
@@ -332,7 +358,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => '',
 		],
 		'links' => [ 'post-history', 'topic-history', 'topic', 'post', 'diff-post', 'post-revision' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post', 'undo-edit-post' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post',
+			'suppress-post', 'undo-edit-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => [
@@ -375,7 +404,9 @@ $wgFlowActions = [
 			PostRevision::MODERATED_HIDDEN => '',
 		],
 		'links' => [ 'topic', 'post', 'post-history', 'topic-history', 'post-revision' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => [
@@ -397,8 +428,12 @@ $wgFlowActions = [
 		'permissions' => [
 			PostRevision::MODERATED_NONE => [ 'flow-hide', 'flow-delete', 'flow-suppress' ],
 		],
-		'links' => [ 'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ],
+		'links' => [
+			'topic', 'post', 'topic-history', 'post-history', 'topic-revision', 'watch-topic', 'unwatch-topic'
+		],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => [
@@ -421,8 +456,12 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => [ 'flow-delete', 'flow-suppress' ],
 			PostRevision::MODERATED_HIDDEN => [ 'flow-delete', 'flow-suppress' ],
 		],
-		'links' => [ 'topic', 'post', 'post-history', 'topic-history', 'post-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'links' => [
+			'topic', 'post', 'post-history', 'topic-history', 'post-revision', 'watch-topic', 'unwatch-topic'
+		],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => [
@@ -447,7 +486,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_LOCKED => [ 'flow-delete', 'flow-suppress' ],
 		],
 		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic',
+			'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => [
@@ -472,7 +514,9 @@ $wgFlowActions = [
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		],
 		'links' => [ 'topic', 'post', 'topic-history', 'post-revision' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => [
@@ -498,7 +542,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_LOCKED => 'flow-suppress',
 		],
 		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic',
+			'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => [
@@ -572,7 +619,9 @@ $wgFlowActions = [
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		],
 		'links' => [ 'topic', 'post', 'post-history', 'post-revision' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => [
@@ -627,7 +676,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		],
 		'links' => [ 'topic', 'topic-history', 'topic-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'actions' => [
+			'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic',
+			'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => [
@@ -654,7 +706,8 @@ $wgFlowActions = [
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
-			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
+			// Everyone has permission to see this,
+			// but hidden comments are only visible (collapsed) on permalinks directly to them.
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],
@@ -678,7 +731,10 @@ $wgFlowActions = [
 			PostRevision::MODERATED_NONE => '',
 		],
 		'links' => [ 'topic-history', 'topic', 'post', 'post-revision', 'watch-topic', 'unwatch-topic' ],
-		'actions' => [ 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'lock-topic', 'restore-topic' ],
+		'actions' => [
+			'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post',
+			'edit-topic-summary', 'lock-topic', 'restore-topic'
+		],
 		'history' => [
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => [
@@ -710,7 +766,10 @@ $wgFlowActions = [
 		'log_type' => false,
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
-			PostRevision::MODERATED_NONE => function ( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
+			PostRevision::MODERATED_NONE => function (
+				AbstractRevision $revision,
+				RevisionActionPermissions $permissions
+			) {
 				static $previousCollectionId;
 
 				/*
@@ -755,7 +814,9 @@ $wgFlowActions = [
 				if ( strpos( $revision->getChangeType(), 'restore-' ) === 0 ) {
 					$previous = $collection->getPrevRevision( $revision );
 
-					if ( $previous === null || $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
+					if ( $previous === null ||
+						$previous->getModerationState() === AbstractRevision::MODERATED_NONE
+					) {
 						return '';
 					}
 
@@ -805,7 +866,8 @@ $wgFlowActions = [
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => [
 			PostRevision::MODERATED_NONE => '',
-			// Everyone has permission to see this, but hidden comments are only visible (collapsed) on permalinks directly to them.
+			// Everyone has permission to see this,
+			// but hidden comments are only visible (collapsed) on permalinks directly to them.
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_LOCKED => '',
 			PostRevision::MODERATED_DELETED => [ 'flow-delete', 'flow-suppress' ],

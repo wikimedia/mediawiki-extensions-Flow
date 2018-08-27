@@ -55,7 +55,10 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = [ 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary', 'undo-edit-topic-summary' ];
+	protected $supportedGetActions = [
+		'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary',
+		'undo-edit-topic-summary'
+	];
 
 	protected $templates = [
 		'view-topic-summary' => 'single_view',
@@ -108,7 +111,8 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		if ( $this->workflow->isNew() ) {
-			throw new InvalidDataException( 'Topic summary can only be added to an existing topic', 'missing-topic-title' );
+			throw new InvalidDataException( 'Topic summary can only be added to an existing topic',
+				'missing-topic-title' );
 		}
 
 		// Create topic summary
@@ -125,7 +129,8 @@ class TopicSummaryBlock extends AbstractBlock {
 			}
 			// new summary should not have a previous revision
 			if ( !empty( $this->submitted['prev_revision'] ) ) {
-				$this->addError( 'prev_revision', $this->context->msg( 'flow-error-prev-revision-does-not-exist' ) );
+				$this->addError( 'prev_revision',
+					$this->context->msg( 'flow-error-prev-revision-does-not-exist' ) );
 				return;
 			}
 
@@ -150,9 +155,12 @@ class TopicSummaryBlock extends AbstractBlock {
 			}
 			// Check the previous revision to catch possible edit conflict
 			if ( empty( $this->submitted['prev_revision'] ) ) {
-				$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
+				$this->addError( 'prev_revision',
+					$this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
 				return;
-			} elseif ( $this->topicSummary->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
+			} elseif ( $this->topicSummary->getRevisionId()->getAlphadecimal() !==
+				$this->submitted['prev_revision']
+			) {
 				$this->addError(
 					'prev_revision',
 					$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
@@ -200,7 +208,8 @@ class TopicSummaryBlock extends AbstractBlock {
 			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 		if ( !$found ) {
-			throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
+			throw new InvalidDataException( 'Every workflow must have an associated topic title',
+				'missing-topic-title' );
 		}
 		$this->topicTitle = reset( $found );
 		return $this->topicTitle;
@@ -253,7 +262,8 @@ class TopicSummaryBlock extends AbstractBlock {
 			break;
 
 			default:
-				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
+				throw new InvalidActionException( "Unexpected action: {$this->action}",
+					'invalid-action' );
 		}
 	}
 
@@ -298,13 +308,17 @@ class TopicSummaryBlock extends AbstractBlock {
 			case 'compare-postsummary-revisions':
 				// @Todo - duplicated logic in other diff view block
 				if ( !isset( $options['newRevision'] ) ) {
-					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+					throw new InvalidInputException( 'A revision must be provided for comparison',
+						'revision-comparison' );
 				}
 				$oldRevision = null;
 				if ( isset( $options['oldRevision'] ) ) {
 					$oldRevision = $options['oldRevision'];
 				}
-				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
+				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult(
+					UUID::create( $options['newRevision'] ),
+					UUID::create( $oldRevision )
+				);
 				if (
 					!$this->permissions->isAllowed( $new->revision, 'view-topic-summary' ) ||
 					!$this->permissions->isAllowed( $old->revision, 'view-topic-summary' )
@@ -312,7 +326,8 @@ class TopicSummaryBlock extends AbstractBlock {
 					$this->addError( 'permissions', $this->context->msg( 'flow-error-not-allowed' ) );
 					break;
 				}
-				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context );
+				$output['revision'] = Container::get( 'formatter.revision.diff.view' )
+					->formatApi( $new, $old, $this->context );
 				break;
 		}
 
@@ -426,6 +441,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}
 
-		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
+		$out->setSubtitle( '&lt; ' .
+			MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }

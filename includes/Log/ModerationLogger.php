@@ -85,7 +85,8 @@ class ModerationLogger {
 		$logId = $logEntry->insert();
 
 		if ( $error ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' . $workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page" );
+			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' .
+				$workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page" );
 		}
 
 		return $logId;

@@ -14,7 +14,7 @@
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<property name="lineLimit" value="170" />
+			<property name="lineLimit" value="155" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">

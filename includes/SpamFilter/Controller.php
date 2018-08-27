@@ -40,7 +40,13 @@ class Controller {
 	 * @param Title $ownerTitle Board title
 	 * @return Status
 	 */
-	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title, Title $ownerTitle ) {
+	public function validate(
+		IContextSource $context,
+		AbstractRevision $newRevision,
+		AbstractRevision $oldRevision = null,
+		Title $title,
+		Title $ownerTitle
+	) {
 		foreach ( $this->spamfilters as $spamfilter ) {
 			if ( !$spamfilter->enabled() ) {
 				continue;

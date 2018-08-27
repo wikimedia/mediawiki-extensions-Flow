@@ -230,12 +230,14 @@ if ( $multipleMatches ) {
 		$expectedMatches = reset( $group );
 		foreach ( $group as $uuid => $matches ) {
 			if ( count( $matches ) !== count( $group ) ) {
-				echo "Number of matches does not line up: " . count( $matches ) . " !== " . count( $group ) . "\n";
+				echo "Number of matches does not line up: " .
+					count( $matches ) . " !== " . count( $group ) . "\n";
 				$valid = false;
 				break;
 			}
 			if ( $matches != $expectedMatches ) {
-				echo "Matched subsets do not line up: " . json_encode( $matches ) . " != " . json_encode( $expectedMatches ) . "\n";
+				echo "Matched subsets do not line up: " .
+					json_encode( $matches ) . " != " . json_encode( $expectedMatches ) . "\n";
 				$valid = false;
 				break;
 			}
@@ -261,12 +263,18 @@ if ( $multipleMatches ) {
 }
 
 echo "\n\n\nLooked at $totalMissingConsidered flow revisions\n";
-echo "Found matches for $totalCompleteMatch (" . number_format( 100 * $totalCompleteMatch / $totalMissingConsidered ) . "%)\n";
-echo "Found multiple matches for $totalMultipleMatches (" . number_format( 100 * $totalMultipleMatches / $totalMissingConsidered ) . "%)\n";
-echo "Found no match for $totalNoMatch (" . number_format( 100 * $totalNoMatch / $totalMissingConsidered ) . "%)\n";
-echo "Found $totalNoChangeRevisions that will inherit parent content (" . number_format( 100 * $totalNoChangeRevisions / $totalMissingConsidered ) . "%)\n";
-echo "Found a match but invalid due to size of es gaps for $totalMatchButInvalid (" . number_format( 100 * $totalMatchButInvalid / $totalMissingConsidered ). "%)\n";
-echo "Resolved $totalResolvedMultipleMatches multiple matches (" . number_format( 100 * $totalResolvedMultipleMatches / $totalMissingConsidered ) . "%)\n";
+echo "Found matches for $totalCompleteMatch (" .
+	number_format( 100 * $totalCompleteMatch / $totalMissingConsidered ) . "%)\n";
+echo "Found multiple matches for $totalMultipleMatches (" .
+	number_format( 100 * $totalMultipleMatches / $totalMissingConsidered ) . "%)\n";
+echo "Found no match for $totalNoMatch (" .
+	number_format( 100 * $totalNoMatch / $totalMissingConsidered ) . "%)\n";
+echo "Found $totalNoChangeRevisions that will inherit parent content (" .
+	number_format( 100 * $totalNoChangeRevisions / $totalMissingConsidered ) . "%)\n";
+echo "Found a match but invalid due to size of es gaps for $totalMatchButInvalid (" .
+	number_format( 100 * $totalMatchButInvalid / $totalMissingConsidered ). "%)\n";
+echo "Resolved $totalResolvedMultipleMatches multiple matches (" .
+	number_format( 100 * $totalResolvedMultipleMatches / $totalMissingConsidered ) . "%)\n";
 
 function query_revisions( \Wikimedia\Rdbms\IDatabase $dbr, $op, $tsEscaped ) {
 	$direction = $op[0] === '>' ? 'ASC' : 'DESC';

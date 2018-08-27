@@ -41,7 +41,10 @@ abstract class AbstractFormatter {
 	 */
 	protected $serializer;
 
-	public function __construct( RevisionActionPermissions $permissions, RevisionFormatter $serializer ) {
+	public function __construct(
+		RevisionActionPermissions $permissions,
+		RevisionFormatter $serializer
+	) {
 		$this->permissions = $permissions;
 		$this->serializer = $serializer;
 	}
@@ -65,7 +68,11 @@ abstract class AbstractFormatter {
 	 *  have the same kind of links available)
 	 * @return string HTML
 	 */
-	protected function formatTimestamp( array $data, $key = 'timeAndDate', array $linkKeys = [ 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' ] ) {
+	protected function formatTimestamp(
+		array $data,
+		$key = 'timeAndDate',
+		array $linkKeys = [ 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' ]
+	) {
 		// Format timestamp: add link
 		$formattedTime = $data['dateFormats'][$key];
 
@@ -103,7 +110,11 @@ abstract class AbstractFormatter {
 	 * @param string[]|null $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
 	 */
-	protected function formatAnchorsAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
+	protected function formatAnchorsAsPipeList(
+		array $links,
+		IContextSource $ctx,
+		array $request = null
+	) {
 		if ( $request === null ) {
 			$request = array_keys( $links );
 		} elseif ( !$request ) {
@@ -261,7 +272,8 @@ abstract class AbstractFormatter {
 			if ( isset( $data['properties'][$param] ) ) {
 				$params[] = $data['properties'][$param];
 			} else {
-				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
+				wfDebugLog( 'Flow', __METHOD__ .
+					": Missing expected parameter $param for change type $changeType" );
 				$params[] = '';
 			}
 		}
@@ -306,7 +318,8 @@ abstract class AbstractFormatter {
 		// generated link has generic link text, should be actual topic title
 		$root = $row->revision->getRootPost();
 		if ( $root && $this->permissions->isAllowed( $root, 'view' ) ) {
-			$topicDisplayText = Container::get( 'templating' )->getContent( $root, 'topic-title-plaintext' );
+			$topicDisplayText = Container::get( 'templating' )
+				->getContent( $root, 'topic-title-plaintext' );
 			$topic->setMessage( $topicDisplayText );
 		}
 

@@ -25,7 +25,12 @@ class TopicListQuery extends AbstractQuery {
 	 * @param RevisionActionPermissions $permissions
 	 * @param WatchedTopicItems $watchedTopicItems
 	 */
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions, WatchedTopicItems $watchedTopicItems ) {
+	public function __construct(
+		ManagerGroup $storage,
+		TreeRepository $treeRepository,
+		RevisionActionPermissions $permissions,
+		WatchedTopicItems $watchedTopicItems
+	) {
 		parent::__construct( $storage, $treeRepository );
 		$this->permissions = $permissions;
 		$this->watchedTopicItems = $watchedTopicItems;
@@ -49,7 +54,8 @@ class TopicListQuery extends AbstractQuery {
 		if ( $missing ) {
 			$needed = [];
 			foreach ( $missing as $alpha ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Failed to load latest revision for post ID ' . $alpha );
+				wfDebugLog( 'Flow', __METHOD__ .
+					': Failed to load latest revision for post ID ' . $alpha );
 
 				// convert alpha back into UUID object
 				$needed[] = $allPostIds[$alpha];
@@ -128,7 +134,8 @@ class TopicListQuery extends AbstractQuery {
 		// Merge all the children from the various posts into one array
 		if ( !$nodeList ) {
 			// It should have returned at least $topicIds
-			wfDebugLog( 'Flow', __METHOD__ . ': No result received from TreeRepository::fetchSubtreeNodeList' );
+			wfDebugLog( 'Flow', __METHOD__ .
+				': No result received from TreeRepository::fetchSubtreeNodeList' );
 			$postIds = $topicIds;
 		} elseif ( count( $nodeList ) === 1 ) {
 			$postIds = reset( $nodeList );

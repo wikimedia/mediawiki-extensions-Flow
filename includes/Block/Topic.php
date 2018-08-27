@@ -100,7 +100,9 @@ class TopicBlock extends AbstractBlock {
 			$this->rootLoader = $root;
 		} else {
 			throw new DataModelException(
-				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root ), 'invalid-input'
+				'Expected PostRevision or RootPostLoader, received: ' .
+					is_object( $root ) ? get_class( $root ) : gettype( $root ),
+				'invalid-input'
 			);
 		}
 	}
@@ -166,11 +168,13 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( $len > PostRevision::MAX_TOPIC_LENGTH ) {
-			$this->addError( 'content', $this->context->msg( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
+			$this->addError( 'content', $this->context->msg(
+				'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			return;
 		}
 		if ( empty( $this->submitted['prev_revision'] ) ) {
-			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
+			$this->addError( 'prev_revision', $this->context->msg(
+				'flow-error-missing-prev-revision-identifier' ) );
 			return;
 		}
 		$topicTitle = $this->loadTopicTitle();
@@ -182,11 +186,12 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( $topicTitle->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
-			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
-			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
-			// parent we and the submitter think is the latest, our insert will fail.
-			// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
-			// handing user back to specific dialog indicating race condition
+			// This is a reasonably effective way to ensure prev revision matches, but for guarantees
+			// against race conditions there also exists a unique index on rev_prev_revision in mysql,
+			// meaning if someone else inserts against the parent we and the submitter think is the
+			// latest, our insert will fail.
+			// TODO: Catch whatever exception happens there, make sure the most recent revision is the
+			// one in the cache before handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
 				$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
@@ -584,16 +589,19 @@ class TopicBlock extends AbstractBlock {
 	// @Todo - duplicated logic in other diff view block
 	protected function renderDiffViewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) ) {
-			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+			throw new InvalidInputException( 'A revision must be provided for comparison',
+				'revision-comparison' );
 		}
 		$oldRevision = null;
 		if ( isset( $options['oldRevision'] ) ) {
 			$oldRevision = $options['oldRevision'];
 		}
-		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
+		list( $new, $old ) = Container::get( 'query.post.view' )
+			->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 
 		return [
-			'revision' => Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, $this->context )
+			'revision' => Container::get( 'formatter.revision.diff.view' )
+				->formatApi( $new, $old, $this->context )
 		];
 	}
 
@@ -730,14 +738,16 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existent topic' );
 		}
-		return $this->processHistoryResult( Container::get( 'query.topic.history' ), $this->workflow->getId(), $options, $navbar );
+		return $this->processHistoryResult( Container::get( 'query.topic.history' ),
+			$this->workflow->getId(), $options, $navbar );
 	}
 
 	protected function renderPostHistoryApi( array $options, UUID $postId, $navbar = true ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No post history can exist for non-existent topic' );
 		}
-		return $this->processHistoryResult( Container::get( 'query.post.history' ), $postId, $options, $navbar );
+		return $this->processHistoryResult( Container::get( 'query.post.history' ),
+			$postId, $options, $navbar );
 	}
 
 	/**
@@ -749,7 +759,12 @@ class TopicBlock extends AbstractBlock {
 	 * @param bool $navbar Whether to include the page navbar
 	 * @return array
 	 */
-	protected function processHistoryResult( /* TopicHistoryQuery|PostHistoryQuery */ $query, UUID $uuid, $options, $navbar = true ) {
+	protected function processHistoryResult(
+		/* TopicHistoryQuery|PostHistoryQuery */ $query,
+		UUID $uuid,
+		$options,
+		$navbar = true
+	) {
 		global $wgRequest;
 
 		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
@@ -813,7 +828,8 @@ class TopicBlock extends AbstractBlock {
 	 */
 	public function loadTopicTitle( $action = 'view' ) {
 		if ( $this->workflow->isNew() ) {
-			throw new InvalidDataException( 'New workflows do not have any related content', 'missing-topic-title' );
+			throw new InvalidDataException( 'New workflows do not have any related content',
+				'missing-topic-title' );
 		}
 
 		if ( $this->topicTitle === null ) {
@@ -823,7 +839,8 @@ class TopicBlock extends AbstractBlock {
 				[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 			);
 			if ( !$found ) {
-				throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
+				throw new InvalidDataException( 'Every workflow must have an associated topic title',
+					'missing-topic-title' );
 			}
 			$this->topicTitle = reset( $found );
 
@@ -950,14 +967,18 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getDescendant( $postId );
 			if ( $post === null ) {
 				// The requested postId is not a member of the current workflow
-				$this->addError( 'post', $this->context->msg( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
+				$this->addError( 'post', $this->context->msg(
+					'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return null;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
-			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->addError( 'post', $this->context->msg( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
+			if ( !$found['post'] || !$found['root'] ||
+				!$found['root']->getPostId()->equals( $this->workflow->getId() )
+			) {
+				$this->addError( 'post', $this->context->msg(
+					'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return null;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
@@ -1015,6 +1036,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			$out->setHtmlTitle( $title->getPrefixedText() );
 		}
-		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
+		$out->setSubtitle( '&lt; ' .
+			MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }
