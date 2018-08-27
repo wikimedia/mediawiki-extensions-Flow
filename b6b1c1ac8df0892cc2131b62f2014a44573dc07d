@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9fe9938_47af7f98",
+        "filename": "vendor/modules/handlebars-v3.0.0.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-08-27T22:45:13Z",
+      "side": 1,
+      "message": "This is an external file, so the change should be done upstream. Other changes in this patch are OK.",
+      "revId": "b6b1c1ac8df0892cc2131b62f2014a44573dc07d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
