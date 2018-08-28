@@ -127,6 +127,7 @@ class WorkflowLoaderFactory {
 			throw new UnknownWorkflowIdException( 'The requested workflow does not exist on this wiki.' );
 		}
 		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {
+			// @todo something else here, since the page move often is in progress when this happens.
 			throw new InvalidDataException( 'Flow workflow is for different page', 'different-page' );
 		}
 

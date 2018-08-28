@@ -1864,7 +1864,7 @@ class FlowHooks {
 		}
 
 		if ( $action ) {
-			$optInController->initiateChange( $action, $user->getTalkPage(), $user );
+			return $optInController->initiateChange( $action, $user->getTalkPage(), $user );
 		}
 
 		return true;

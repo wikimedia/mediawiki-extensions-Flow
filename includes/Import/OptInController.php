@@ -16,6 +16,7 @@ use Flow\Conversion\Utils;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
+use MWException;
 use Psr\Log\LoggerInterface;
 use MovePage;
 use Parser;
@@ -98,20 +99,57 @@ class OptInController {
 	}
 
 	/**
+	 * Check if the Flow talk page manager has permission to modify the talkpage and its subpages.
+	 * @param $action
+	 * @param Title $talkpage
+	 * @param User $user
+	 * @return bool
+	 */
+	private function checkFlowTalkPageManagerPermissions( $action, Title $talkpage, User
+	$user ) {
+		$errors = $talkpage->getUserPermissionsErrors( 'edit', $this->user, 'secure' );
+		$subpages = $talkpage->getSubpages();
+		/** @var Title $subpage */
+		foreach ( $subpages as $subpage ) {
+			$errors += $subpage->getUserPermissionsErrors( 'edit', $this->user, 'secure' );
+		}
+		if ( count( $errors ) ) {
+			foreach ( $errors as $error ) {
+				$this->logger->error(
+					'Failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
+					[
+						'action' => $action,
+						'talkpage' => $talkpage->getPrefixedText(),
+						'user' => $user->getName(),
+						'message' => $error,
+						'trace' => ( new \RuntimeException() )->getTraceAsString(),
+					]
+				);
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * @param string $action Action to take, self::ENABLE or self::DISABLE
 	 * @param Title $talkpage Title of user's talk page
 	 * @param User $user User that owns the talk page
+	 * @return bool
 	 */
 	public function initiateChange( $action, Title $talkpage, User $user ) {
-		$flowDbw = $this->dbFactory->getDB( DB_MASTER );
-		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
+		// @todo the UI does not update in Beta features.
+		// Check if Flow talk page manager has permissions to make changes to the talk page.
+		if ( !$this->checkFlowTalkPageManagerPermissions( $action, $talkpage, $user ) ) {
+			return false;
+		}
 
-		$outerMethod = __METHOD__;
 		$logger = $this->logger;
 
-		// We need both since we use both databases.
+		$outerMethod = __METHOD__;
+
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $logger, $outerMethod, $action, $talkpage, $user, $wikiDbw, $flowDbw ) {
+			function () use ( $logger, $outerMethod, $action, $talkpage, $user ) {
 				try {
 					if ( $action === self::$ENABLE ) {
 						$this->enable( $talkpage, $user );
@@ -120,25 +158,24 @@ class OptInController {
 					} else {
 						$logger->error( $outerMethod . ': unrecognized action: ' . $action );
 					}
-				} catch ( \Throwable $t ) {
+				} catch ( \Throwable $throwable ) {
 					$logger->error(
-						$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
+						$outerMethod .
+						' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
 						[
 							'action' => $action,
 							'talkpage' => $talkpage->getPrefixedText(),
 							'user' => $user->getName(),
-							'message' => $t->getMessage(),
-							'trace' => $t->getTraceAsString(),
+							'message' => $throwable->getMessage(),
+							'trace' => $throwable->getTraceAsString(),
 						]
 					);
 
-					// rollback both Flow and Core DBs
-					$flowDbw->rollback( $outerMethod );
-					$wikiDbw->rollback( $outerMethod );
+					// Rethrow the error. This triggers MWExceptionHandler::handleException()
+					// which rolls back all databases via rollbackMasterChanges().
+					throw new MWException( $throwable->getMessage() );
 				}
-			},
-			DeferredUpdates::POSTSEND,
-			[ $wikiDbw, $flowDbw ]
+			}
 		);
 	}
 
@@ -306,7 +343,7 @@ class OptInController {
 	 * @param string $contentText
 	 * @param string $summary
 	 * @throws ImportException
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function createRevision( Title $title, $contentText, $summary ) {
 		$page = WikiPage::factory( $title );
@@ -424,7 +461,7 @@ class OptInController {
 	/**
 	 * @param Title $title
 	 * @return string
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function getContent( Title $title ) {
 		$page = WikiPage::factory( $title );
