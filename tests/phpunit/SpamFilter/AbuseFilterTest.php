@@ -53,7 +53,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 				$goodTopicTitle,
 				$goodOwnerTitle,
 				// default new topic title revision, both good titles - no spam
-				$this->generateObject(),
+				[],
 				null,
 				true,
 			],
@@ -62,14 +62,14 @@ class AbuseFilterTest extends PostRevisionTestCase {
 				$goodOwnerTitle,
 				// revision with spam
 				// https://www.mediawiki.org/w/index.php?title=Talk:Sandbox&workflow=050bbdd07b64a1c028b2782bcb087b42#flow-post-050bbdd07b70a1c028b2782bcb087b42
-				$this->generateObject( [ 'rev_content' => '<div style="background: yellow; position: fixed; top: 0; left: 0; width: 3000px; height: 3000px; z-index: 1111;">test</div>', 'rev_flags' => 'html' ] ),
+				[ 'rev_content' => '<div style="background: yellow; position: fixed; top: 0; left: 0; width: 3000px; height: 3000px; z-index: 1111;">test</div>', 'rev_flags' => 'html' ],
 				null,
 				false,
 			],
 			[
 				$badTopicTitle,
 				$goodOwnerTitle,
-				$this->generateObject(),
+				[],
 				// Topic title matches
 				null,
 				false,
@@ -77,7 +77,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			[
 				$goodTopicTitle,
 				$badOwnerTitle,
-				$this->generateObject(),
+				[],
 				// Owner title matches
 				null,
 				false,
@@ -88,7 +88,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( $title, $ownerTitle, PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
+	public function testSpam( $title, $ownerTitle, $newRevisionRow, $oldRevisionRow = null, $expected ) {
+		$newRevision = $this->generateObject( $newRevisionRow );
+		$oldRevision = $oldRevisionRow ? $this->generateObject( $oldRevisionRow ) : null;
+
 		$context = $this->getMockBuilder( 'ContextSource' )
 				->setMethods( [ 'getUser' ] )
 				->getMock();

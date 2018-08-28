@@ -43,17 +43,17 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	public function spamProvider() {
 		return [
 			'default new topic title revision - no spam' => [
-				$this->generateObject(),
+				[],
 				null,
 				true
 			],
 			'revision with spam' => [
-				$this->generateObject( [ 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ] ),
+				[ 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ],
 				null,
 				false
 			],
 			'revision with domain blacklisted as spam, but subdomain whitelisted' => [
-				$this->generateObject( [ 'rev_content' => 'http://a5b.sytes.net', 'rev_flags' => 'html' ] ),
+				[ 'rev_content' => 'http://a5b.sytes.net', 'rev_flags' => 'html' ],
 				null,
 				true
 			],
@@ -63,7 +63,8 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
+	public function testSpam( $newRevisionRow, PostRevision $oldRevision = null, $expected ) {
+		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
 
 		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title, $title );
