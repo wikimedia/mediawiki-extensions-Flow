@@ -24,13 +24,13 @@ class SpamRegexTest extends PostRevisionTestCase {
 		return [
 			[
 				// default new topic title revision - no spam
-				$this->generateObject(),
+				[],
 				null,
 				true
 			],
 			[
 				// revision with spam
-				$this->generateObject( [ 'rev_content' => 'http://spam', 'rev_flags' => 'html' ] ),
+				[ 'rev_content' => 'http://spam', 'rev_flags' => 'html' ],
 				null,
 				false
 			],
@@ -40,7 +40,8 @@ class SpamRegexTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
+	public function testSpam( $newRevisionRow, PostRevision $oldRevision = null, $expected ) {
+		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
 
 		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title, $title );
