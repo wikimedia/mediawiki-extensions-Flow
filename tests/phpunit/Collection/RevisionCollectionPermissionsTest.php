@@ -114,7 +114,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		return [
 			// irregardless of current status, if a user has no permissions for
 			// a specific revision, he can't see it
-			[ $this->confirmedUser(), 'view', [
+			[ 'confirmedUser', 'view', [
 				// Key is the moderation action; value is the 'view' permission
 				// for that corresponding revision after all moderation is done.
 				// In this case, a post will be created with 3 revisions:
@@ -128,20 +128,20 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				[ 'suppress-post' => false ],
 				[ 'restore-post' => true ],
 			] ],
-			[ $this->oversightUser(), 'view', [
+			[ 'oversightUser', 'view', [
 				[ 'new-post' => true ],
 				[ 'suppress-post' => true ],
 				[ 'restore-post' => true ],
 			] ],
 
 			// last moderation status should always bubble down to previous revs
-			[ $this->confirmedUser(), 'view', [
+			[ 'confirmedUser', 'view', [
 				[ 'new-post' => false ],
 				[ 'suppress-post' => false ],
 				[ 'restore-post' => false ],
 				[ 'suppress-post' => false ],
 			] ],
-			[ $this->oversightUser(), 'view', [
+			[ 'oversightUser', 'view', [
 				[ 'new-post' => true ],
 				[ 'suppress-post' => true ],
 				[ 'restore-post' => true ],
@@ -149,11 +149,11 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			] ],
 
 			// bug 61715
-			[ $this->confirmedUser(), 'history', [
+			[ 'confirmedUser', 'history', [
 				[ 'new-post' => false ],
 				[ 'suppress-post' => false ],
 			] ],
-			[ $this->confirmedUser(), 'history', [
+			[ 'confirmedUser', 'history', [
 				[ 'new-post' => true ],
 				[ 'suppress-post' => false ],
 				[ 'restore-post' => false ],
@@ -164,7 +164,12 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider permissionsProvider
 	 */
-	public function testPermissions( User $user, $permissionAction, array $actions ) {
+	public function testPermissions( $userGetterName, $permissionAction, array $actions ) {
+		// NOTE: the provider cannot create the User object, because it would be creating the
+		// user in the real database tables, not the fake tables provided by MediaWikiTestCase.
+		/** @var User $user */
+		$user = $this->$userGetterName();
+
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
 
 		// we'll have to process this in 2 steps: first do all of the actions,
