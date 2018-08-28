@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "01de4c16_eae484e0",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:56:29Z",
+      "side": 1,
+      "message": "\u003e Is there a way to notify BetaFeatures that enabling the feature\n \u003e failed?\nNot exactly but we can update the BETA_FEATURE_FLOW_USER_TALK_PAGE preference based on what happened with the opt in/out. First rendering of the preferences page won\u0027t show it right because this is all deferred but subsequent will.\n\n \u003e \n \u003e We can conditionally hide the feature from the UI, but is it\n \u003e possible to show it in a grayed out state if the flow talk page\n \u003e manager permissions check fail?\nNot that I know of but I think hiding it is fine if we know for sure that trying to change it will fail. We have to make sure that is makes sense for Flow talk page manager to not be able to move/edit the page.",
+      "parentUuid": "40b439e4_be1f725d",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6d3bcc8b_ee483adc",
         "filename": "includes/Import/OptInController.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-28T19:11:25Z",
       "side": 1,
       "message": "I can\u0027t find any logs in production with \"failed to enable/disable Flow\".",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c22a4df_cdc8879b",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:56:29Z",
+      "side": 1,
+      "message": "I\u0027ve never seen it either.",
+      "parentUuid": "6d3bcc8b_ee483adc",
       "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
@@ -50,6 +86,41 @@
       "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55bb940b_317358a4",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:56:29Z",
+      "side": 1,
+      "message": "I don\u0027t think this change or the previous version have any real impact. \n\nAFAICT this catch block is never invoked.\n\nI think what\u0027s needed is something like this to try to synchronize the rollbacks of the 2 DBs.\n\n```\n$wikiDb-\u003eonTransactionResolution( function ( $trigger ) use ($flowDb)  {\n  if ( $trigger \u003d\u003d\u003d IDatabase::TRIGGER_ROLLBACK ) {\n    flowDb-\u003erollback();\n  } \n} );\n```",
+      "parentUuid": "5e842dbe_ca4cb770",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3863dc69_6fbe7008",
+        "filename": "includes/WorkflowLoaderFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:56:29Z",
+      "side": 1,
+      "message": "I wouldn\u0027t mind NOT throwing anything here and just taking $workflowId at face value. \n\nAlso, $title and $workflowId is redundant. Could be worth understanding when/why it\u0027s being called with both.",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }

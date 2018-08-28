@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfa19e74_d4d6fd56",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:56:29Z",
+      "side": 0,
+      "message": "This is there to prevent the deferred update from even starting if one of those DBs has already rollback.\n\nIt\u0027s useful in theory but I\u0027ve never seen evidence of it actually helping.",
+      "range": {
+        "startLine": 141,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "62b521dd48320b1ca99d9f6522b55c63f1d5f61d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
