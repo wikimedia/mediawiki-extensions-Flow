@@ -181,6 +181,8 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * With no arguments tossed in, a default revision (resembling a newly-
 	 * created topic title) will be returned.
 	 *
+	 * @note This must not be called from a data provider, since it accesses the database!
+	 *
 	 * @param array $row DB row data (only specify override columns)
 	 * @param PostRevision[] $children Array of child PostRevision objects
 	 * @param int $depth Depth of the PostRevision object
