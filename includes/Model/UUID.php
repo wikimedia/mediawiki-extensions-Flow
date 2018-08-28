@@ -96,11 +96,16 @@ class UUID implements ApiSerializable {
 		// doublecheck validity of inputs, based on pre-determined lengths
 		$len = strlen( $value );
 		if ( $format === static::INPUT_BIN && $len !== self::BIN_LEN ) {
-			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $value, 'invalid-input' );
+			throw new InvalidInputException( 'Expected ' . self::BIN_LEN .
+				' char binary string, got: ' . $value, 'invalid-input' );
 		} elseif ( $format === static::INPUT_HEX && $len !== self::HEX_LEN ) {
-			throw new InvalidInputException( 'Expected ' . self::HEX_LEN . ' char hex string, got: ' . $value, 'invalid-input' );
-		} elseif ( $format === static::INPUT_ALNUM && ( $len < self::MIN_ALNUM_LEN || $len > self::ALNUM_LEN || !ctype_alnum( $value ) ) ) {
-			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
+			throw new InvalidInputException( 'Expected ' . self::HEX_LEN .
+				' char hex string, got: ' . $value, 'invalid-input' );
+		} elseif ( $format === static::INPUT_ALNUM &&
+			( $len < self::MIN_ALNUM_LEN || $len > self::ALNUM_LEN || !ctype_alnum( $value ) )
+		) {
+			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' .
+				self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
 		}
 
 		// If this is not a binary UUID, reject any string containing upper case characters.
@@ -154,14 +159,17 @@ class UUID implements ApiSerializable {
 		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {
 				// new uuid in base 16 and pad to HEX_LEN with 0's
-				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ),
+					self::HEX_LEN, '0', STR_PAD_LEFT );
 				return new static( $hexValue, static::INPUT_HEX );
 			} else {
 				$len = strlen( $input );
 				if ( $len === self::BIN_LEN ) {
 					$value = $input;
 					$type = static::INPUT_BIN;
-				} elseif ( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN && ctype_alnum( $input ) ) {
+				} elseif ( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN &&
+					ctype_alnum( $input )
+				) {
 					$value = $input;
 					$type = static::INPUT_ALNUM;
 				} elseif ( $len === self::HEX_LEN && ctype_xdigit( $input ) ) {
@@ -331,7 +339,8 @@ class UUID implements ApiSerializable {
 		} elseif ( $relativeTo instanceof MWTimestamp ) {
 			$rel = $relativeTo;
 		} else {
-			throw new InvalidParameterException( 'Expected MWTimestamp or UUID, got ' . get_class( $relativeTo ) );
+			throw new InvalidParameterException( 'Expected MWTimestamp or UUID, got ' .
+				get_class( $relativeTo ) );
 		}
 		$ts = $this->getTimestampObj();
 		return $ts ? $ts->getHumanTimestamp( $rel, $user, $lang ) : false;

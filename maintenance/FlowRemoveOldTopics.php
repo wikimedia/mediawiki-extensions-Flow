@@ -44,7 +44,8 @@ class FlowRemoveOldTopics extends Maintenance {
 
 		$this->mDescription = "Deletes old topics";
 
-		$this->addOption( 'date', 'Date cutoff (in any format understood by wfTimestamp), topics older than this date will be deleted.', true, true );
+		$this->addOption( 'date', 'Date cutoff (in any format understood by wfTimestamp), topics ' .
+			'older than this date will be deleted.', true, true );
 		$this->addOption( 'dryrun', 'Simulate script run, without actually deleting anything' );
 
 		$this->setBatchSize( 10 );
@@ -149,7 +150,8 @@ class FlowRemoveOldTopics extends Maintenance {
 				]
 			);
 
-			$this->output( 'Removing ' . count( $revisions ) . ' header revisions from ' . count( $uuids ) . ' headers (up to ' . $startId->getTimestamp() . ")\n" );
+			$this->output( 'Removing ' . count( $revisions ) . ' header revisions from ' .
+				count( $uuids ) . ' headers (up to ' . $startId->getTimestamp() . ")\n" );
 
 			$this->dbFactory->getDB( DB_MASTER )->begin();
 
@@ -201,7 +203,8 @@ class FlowRemoveOldTopics extends Maintenance {
 			/** @var UUID $startId */
 			$startId = end( $workflows )->getId();
 
-			$this->output( 'Removing ' . count( $workflows ) . ' topic workflows (up to ' . $startId->getTimestamp() . ")\n" );
+			$this->output( 'Removing ' . count( $workflows ) .
+				' topic workflows (up to ' . $startId->getTimestamp() . ")\n" );
 			$this->removeWorkflows( $workflows );
 		} while ( !empty( $workflows ) );
 	}
@@ -261,7 +264,8 @@ class FlowRemoveOldTopics extends Maintenance {
 			/** @var UUID $batchStartId */
 			$batchStartId = end( $workflows )->getId();
 
-			$this->output( 'Removing ' . count( $workflows ) . ' topic workflows with recent Flow updates (up to ' . $batchStartId->getTimestamp() . ")\n" );
+			$this->output( 'Removing ' . count( $workflows ) . ' topic workflows with recent ' .
+				'Flow updates (up to ' . $batchStartId->getTimestamp() . ")\n" );
 			$this->removeWorkflows( $workflows );
 		} while ( !empty( $workflows ) );
 	}

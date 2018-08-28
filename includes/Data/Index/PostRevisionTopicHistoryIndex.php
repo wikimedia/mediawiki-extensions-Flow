@@ -14,9 +14,17 @@ use Flow\Model\UUID;
  * TopKIndex that calculates the topic_root_id
  */
 class PostRevisionTopicHistoryIndex extends TopKIndex {
-	public function __construct( FlowObjectCache $cache, PostRevisionTopicHistoryStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = [] ) {
+	public function __construct(
+		FlowObjectCache $cache,
+		PostRevisionTopicHistoryStorage $storage,
+		ObjectMapper $mapper,
+		$prefix,
+		array $indexed,
+		array $options = []
+	) {
 		if ( $indexed !== [ 'topic_root_id' ] ) {
-			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
+			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' .
+				print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 	}
@@ -77,7 +85,8 @@ class PostRevisionTopicHistoryIndex extends TopKIndex {
 			// try to find if via parent, in that case
 			$parentId = $post->getReplyToId();
 			if ( $parentId === null ) {
-				throw new DataModelException( 'Unable to locate root for post ' . $post->getCollectionId() );
+				throw new DataModelException( 'Unable to locate root for post ' .
+					$post->getCollectionId() );
 			}
 
 			$parent = PostCollection::newFromId( $parentId );

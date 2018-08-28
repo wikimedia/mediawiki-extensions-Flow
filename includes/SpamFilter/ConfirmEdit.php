@@ -21,7 +21,13 @@ class ConfirmEdit implements SpamFilter {
 	 * @param Title $ownerTitle
 	 * @return Status
 	 */
-	public function validate( IContextSource $context, AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title, Title $ownerTitle ) {
+	public function validate(
+		IContextSource $context,
+		AbstractRevision $newRevision,
+		AbstractRevision $oldRevision = null,
+		Title $title,
+		Title $ownerTitle
+	) {
 		$newContent = $newRevision->getContentInWikitext();
 		$oldContent = ( $oldRevision !== null ) ? $oldRevision->getContentInWikitext() : '';
 

@@ -95,7 +95,10 @@ foreach ( $it as $batch ) {
 
 echo "Considered $totalNullContentWithParent revisions with parents and no content\n";
 if ( $totalNullContentWithParent > 0 ) {
-	echo "Could not fix $totalNullParentContent (" . number_format( 100 * $totalNullParentContent / $totalNullContentWithParent ) . "%) due to parent not having content\n";
-	echo "Could not fix $totalBadQueryResult (" . number_format( 100 * $totalBadQueryResult / $totalNullContentWithParent ) . "%) due to not finding the parent revision\n";
-	echo "Found matches for $totalMatched (" . number_format( 100 * $totalMatched / $totalNullContentWithParent ) . "%)\n";
+	echo "Could not fix $totalNullParentContent (" . number_format( 100 * $totalNullParentContent /
+		$totalNullContentWithParent ) . "%) due to parent not having content\n";
+	echo "Could not fix $totalBadQueryResult (" . number_format( 100 * $totalBadQueryResult /
+		$totalNullContentWithParent ) . "%) due to not finding the parent revision\n";
+	echo "Found matches for $totalMatched (" . number_format( 100 * $totalMatched /
+		$totalNullContentWithParent ) . "%)\n";
 }
