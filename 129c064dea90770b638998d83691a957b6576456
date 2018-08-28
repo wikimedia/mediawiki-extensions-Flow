@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8306461a_5af37ebe",
+        "filename": "FlowActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-08-28T07:10:53Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of this style, because it is confusing:\n\n$array \u003d [\n    \u0027first element, with some more text\u0027,\n    \u0027second element\u0027, \u0027and more\u0027,\n    \u0027third e… oh, wait, this is number four already\u0027,\n]\n\nBetter:\n\n$array \u003d [\n    \u0027a\u0027,\n    \u0027b\u0027,\n    \u0027c\u0027,\n    \u0027d\u0027,\n]\n\nOr:\n\n$array \u003d [ \u0027a\u0027, \u0027b\u0027,\n    \u0027c\u0027, \u0027d\u0027 ]",
+      "range": {
+        "startLine": 139,
+        "startChar": 13,
+        "endLine": 142,
+        "endChar": 3
+      },
+      "revId": "129c064dea90770b638998d83691a957b6576456",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
