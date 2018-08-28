@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40b439e4_be1f725d",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-08-28T19:11:25Z",
+      "side": 1,
+      "message": "Is there a way to notify BetaFeatures that enabling the feature failed?\n\nWe can conditionally hide the feature from the UI, but is it possible to show it in a grayed out state if the flow talk page manager permissions check fail?",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d3bcc8b_ee483adc",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-08-28T19:11:25Z",
+      "side": 1,
+      "message": "I can\u0027t find any logs in production with \"failed to enable/disable Flow\".",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e842dbe_ca4cb770",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-08-28T19:11:25Z",
+      "side": 1,
+      "message": "This is a guess, based on looking at https://www.mediawiki.org/wiki/Database_transactions#Use_of_transaction_rollback\n\nI need to set up Flow in Vagrant with master/replica and external store :\\",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
