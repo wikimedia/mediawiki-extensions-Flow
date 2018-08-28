@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "df6c64b6_79879981",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-08-28T19:59:59Z",
+      "side": 1,
+      "message": "\u003e I need to set up Flow in Vagrant with master/replica and external\n \u003e store :\\\n\nFor both DBs to become out of sync you don\u0027t need master/replica or external store. You only need Flow and Core to be in different DBs.",
+      "parentUuid": "5e842dbe_ca4cb770",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3863dc69_6fbe7008",
         "filename": "includes/WorkflowLoaderFactory.php",
         "patchSetId": 2
