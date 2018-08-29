@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "873fbc8a_f564e998",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-08-29T01:39:31Z",
+      "side": 1,
+      "message": "\u003e AFAICT this catch block is never invoked.\n\nTry adding `throw new ImportException(\u0027blah\u0027);` around here https://github.com/wikimedia/mediawiki-extensions-Flow/blob/master/includes/Import/OptInController.php#L550 and toggling Flow on a talk page. From what I see, the catch block is invoked.",
+      "parentUuid": "df6c64b6_79879981",
+      "revId": "d6add94c7ebd6c70f3ab16d7fead97eaddd2195c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3863dc69_6fbe7008",
         "filename": "includes/WorkflowLoaderFactory.php",
         "patchSetId": 2

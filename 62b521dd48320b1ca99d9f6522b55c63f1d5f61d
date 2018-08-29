@@ -70,6 +70,30 @@
       "revId": "62b521dd48320b1ca99d9f6522b55c63f1d5f61d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "053560c1_80b6f3a0",
+        "filename": "includes/Import/OptInController.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-08-29T01:39:31Z",
+      "side": 0,
+      "message": "MWCallableUpdate says:\n\n\u003e * @param IDatabase|IDatabase[]|null $dbws Abort if any of the specified DB handles have\n\u003e *   a currently pending transaction which later gets rolled back [optional (since 1.28)",
+      "parentUuid": "68e08552_256047bc",
+      "range": {
+        "startLine": 141,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "62b521dd48320b1ca99d9f6522b55c63f1d5f61d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
