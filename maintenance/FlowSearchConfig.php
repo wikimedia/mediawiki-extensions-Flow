@@ -223,15 +223,20 @@ class FlowSearchConfig extends Maintenance {
 		$this->indexAllocation = $wgFlowSearchIndexAllocation;
 		$this->maintenanceTimeout = $wgFlowSearchMaintenanceTimeout;
 		$this->refreshInterval = $wgFlowSearchRefreshInterval;
-		$this->maxShardsPerNode = isset( $wgFlowSearchMaxShardsPerNode[$this->indexType] ) ? $wgFlowSearchMaxShardsPerNode[$this->indexType] : 'unlimited';
-		$this->cacheWarmers = isset( $wgFlowSearchCacheWarmers[$this->indexType] ) ? $wgFlowSearchCacheWarmers[$this->indexType] : [];
+		$this->maxShardsPerNode = isset( $wgFlowSearchMaxShardsPerNode[$this->indexType] )
+			? $wgFlowSearchMaxShardsPerNode[$this->indexType] : 'unlimited';
+		$this->cacheWarmers = isset( $wgFlowSearchCacheWarmers[$this->indexType] )
+			? $wgFlowSearchCacheWarmers[$this->indexType] : [];
 
-		$this->indexIdentifier = $this->utils->pickIndexIdentifierFromOption( $this->getOption( 'indexIdentifier', 'current' ), $this->getIndexTypeName() );
-		$this->reindexAcceptableCountDeviation = Util::parsePotentialPercent( $this->getOption( 'reindexAcceptableCountDeviation', '5%' ) );
+		$this->indexIdentifier = $this->utils->pickIndexIdentifierFromOption(
+			$this->getOption( 'indexIdentifier', 'current' ), $this->getIndexTypeName() );
+		$this->reindexAcceptableCountDeviation = Util::parsePotentialPercent( $this->getOption(
+			'reindexAcceptableCountDeviation', '5%' ) );
 		$this->availablePlugins = $this->utils->scanAvailablePlugins( $this->bannedPlugins );
 		$this->analysisConfigBuilder = $this->pickAnalyzer( $this->langCode, $this->availablePlugins );
 
-		$this->tooFewReplicas = $this->reindexAndRemoveOk && ( $this->startOver || !$this->getIndex()->exists() );
+		$this->tooFewReplicas = $this->reindexAndRemoveOk
+			&& ( $this->startOver || !$this->getIndex()->exists() );
 	}
 
 	/**
@@ -245,7 +250,8 @@ class FlowSearchConfig extends Maintenance {
 		$validators[] = new NumberOfShardsValidator( $this->getIndex(), $this->getShardCount(), $this );
 		$validators[] = new ReplicaRangeValidator( $this->getIndex(), $this->getReplicaCount(), $this );
 		$validators[] = new ShardAllocationValidator( $this->getIndex(), $this->indexAllocation, $this );
-		$validators[] = new MaxShardsPerNodeValidator( $this->getIndex(), $this->indexType, $this->maxShardsPerNode, $this );
+		$validators[] = new MaxShardsPerNodeValidator( $this->getIndex(), $this->indexType,
+			$this->maxShardsPerNode, $this );
 
 		return $validators;
 	}
@@ -257,13 +263,16 @@ class FlowSearchConfig extends Maintenance {
 		$validators = [];
 
 		if ( $this->getOption( 'justCacheWarmers', false ) ) {
-			$validators[] = new CacheWarmersValidator( $this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
-			$validators[] = new CacheWarmersValidator( $this->indexType, $this->getHeaderType(), $this->cacheWarmers, $this );
+			$validators[] = new CacheWarmersValidator(
+				$this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
+			$validators[] = new CacheWarmersValidator(
+				$this->indexType, $this->getHeaderType(), $this->cacheWarmers, $this );
 			return $validators;
 		}
 
 		if ( $this->getOption( 'justAllocation', false ) ) {
-			$validators[] = new ShardAllocationValidator( $this->getIndex(), $this->indexAllocation, $this );
+			$validators[] = new ShardAllocationValidator(
+				$this->getIndex(), $this->indexAllocation, $this );
 			return $validators;
 		}
 
@@ -298,8 +307,10 @@ class FlowSearchConfig extends Maintenance {
 		$validator->printDebugCheckConfig( $this->printDebugCheckConfig );
 		$validators[] = $validator;
 
-		$validators[] = new CacheWarmersValidator( $this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
-		$validators[] = new CacheWarmersValidator( $this->indexType, $this->getHeaderType(), $this->cacheWarmers, $this );
+		$validators[] = new CacheWarmersValidator(
+			$this->indexType, $this->getTopicType(), $this->cacheWarmers, $this );
+		$validators[] = new CacheWarmersValidator(
+			$this->indexType, $this->getHeaderType(), $this->cacheWarmers, $this );
 
 		$types = [ $this->getTopicType(), $this->getHeaderType() ];
 		$oldTypes = [ $this->getOldTopicType(), $this->getOldHeaderType() ];
@@ -379,7 +390,9 @@ class FlowSearchConfig extends Maintenance {
 				}
 			}
 
-			// $this->updateVersions(); // @todo: might need this some day? (see CirrusSearch's UpdateOneSearchIndexConfig::updateVersions)
+			// @todo: might need this some day?
+			// (see CirrusSearch's UpdateOneSearchIndexConfig::updateVersions)
+			// $this->updateVersions();
 		} catch ( \Elastica\Exception\Connection\HttpException $e ) {
 			$message = $e->getMessage();
 			$this->output( "\nUnexpected Elasticsearch failure.\n" );
@@ -389,7 +402,8 @@ class FlowSearchConfig extends Maintenance {
 			$message = ElasticsearchIntermediary::extractMessage( $e );
 			$trace = $e->getTraceAsString();
 			$this->output( "\nUnexpected Elasticsearch failure.\n" );
-			$this->error( "Elasticsearch failed in an unexpected way.  This is always a bug in FlowSearch.\n" .
+			$this->error( "Elasticsearch failed in an unexpected way.  " .
+				"This is always a bug in FlowSearch.\n" .
 				"Error type: $type\n" .
 				"Message: $message\n" .
 				"Trace:\n" . $trace, 1 );
@@ -400,8 +414,8 @@ class FlowSearchConfig extends Maintenance {
 		global $wgFlowSearchShardCount;
 
 		if ( !isset( $wgFlowSearchShardCount[$this->indexType] ) ) {
-			$this->error( 'Could not find a shard count for ' . $this->indexType . '.  Did you forget to add it ' .
-				'to $wgFlowSearchShardCount?', 1 );
+			$this->error( 'Could not find a shard count for ' . $this->indexType .
+				'.  Did you forget to add it ' . 'to $wgFlowSearchShardCount?', 1 );
 		}
 
 		return $wgFlowSearchShardCount[$this->indexType];
@@ -440,7 +454,8 @@ class FlowSearchConfig extends Maintenance {
 	 */
 	protected function pickAnalyzer( $langCode, array $availablePlugins = [] ) {
 		$analysisConfigBuilder = new AnalysisConfigBuilder( $langCode, $availablePlugins );
-		$this->outputIndented( 'Picking analyzer...' . $analysisConfigBuilder->getDefaultTextAnalyzerType() . "\n" );
+		$this->outputIndented( 'Picking analyzer...' .
+			$analysisConfigBuilder->getDefaultTextAnalyzerType() . "\n" );
 		return $analysisConfigBuilder;
 	}
 
@@ -457,7 +472,8 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function getIndex() {
-		return $this->connection->getIndex( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
+		return $this->connection->getIndex(
+			$this->indexBaseName, $this->indexType, $this->indexIdentifier );
 	}
 
 	protected function getIndexName() {
@@ -465,7 +481,8 @@ class FlowSearchConfig extends Maintenance {
 	}
 
 	protected function getSpecificIndexName() {
-		return $this->connection->getIndexName( $this->indexBaseName, $this->indexType, $this->indexIdentifier );
+		return $this->connection->getIndexName(
+			$this->indexBaseName, $this->indexType, $this->indexIdentifier );
 	}
 
 	protected function getIndexTypeName() {

@@ -147,7 +147,8 @@ class UserMerger {
 			'post' => PostRevision::class,
 		];
 		if ( !isset( $revTypes[$row->rev_type] ) ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Unknown revision type ' . $row->rev_type . ' did not merge ' . UUID::create( $row->rev_id )->getAlphadecimal() );
+			wfDebugLog( 'Flow', __METHOD__ . ': Unknown revision type ' . $row->rev_type . ' did not merge ' .
+				UUID::create( $row->rev_id )->getAlphadecimal() );
 			return null;
 		}
 

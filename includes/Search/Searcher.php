@@ -88,7 +88,8 @@ class Searcher {
 		$search = $searchable->createSearch( $this->query );
 
 		// @todo: PoolCounter config at PoolCounterSettings-eqiad.php
-		// @todo: do we want this class to extend from ElasticsearchIntermediary and use its success & failure methods (like CirrusSearch/Searcher does)?
+		// @todo: do we want this class to extend from ElasticsearchIntermediary and use its success &
+		// failure methods (like CirrusSearch/Searcher does)?
 
 		// Perform the search
 		$work = new PoolCounterWorkViaCallback( 'Flow-Search', "_elasticsearch", [

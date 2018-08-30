@@ -48,7 +48,13 @@ class ObjectLocator {
 	 * @param Index[] $indexes
 	 * @param LifecycleHandler[] $lifecycleHandlers
 	 */
-	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, DbFactory $dbFactory, array $indexes = [], array $lifecycleHandlers = [] ) {
+	public function __construct(
+		ObjectMapper $mapper,
+		ObjectStorage $storage,
+		DbFactory $dbFactory,
+		array $indexes = [],
+		array $lifecycleHandlers = []
+	) {
 		$this->mapper = $mapper;
 		$this->storage = $storage;
 		$this->indexes = $indexes;
@@ -100,7 +106,10 @@ class ObjectLocator {
 			} else {
 				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 			}
-			$res = $this->storage->findMulti( $this->convertToDbQueries( $queries, $options ), $this->convertToDbOptions( $options ) );
+			$res = $this->storage->findMulti(
+				$this->convertToDbQueries( $queries, $options ),
+				$this->convertToDbOptions( $options )
+			);
 		}
 
 		$output = [];
@@ -366,7 +375,8 @@ class ObjectLocator {
 				}
 
 				$dbr = $this->dbFactory->getDB( DB_REPLICA );
-				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' . $dbr->addQuotes( $options['offset-id']->getBinary() ) );
+				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' .
+					$dbr->addQuotes( $options['offset-id']->getBinary() ) );
 
 				foreach ( $queries as &$query ) {
 					$query[] = $condition;

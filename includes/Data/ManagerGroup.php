@@ -63,7 +63,8 @@ class ManagerGroup {
 	 */
 	public function getStorage( $className ) {
 		if ( !isset( $this->classMap[$className] ) ) {
-			throw new DataModelException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ), 'process-data' );
+			throw new DataModelException( "Request for '$className' is not in classmap: " .
+				implode( ', ', array_keys( $this->classMap ) ), 'process-data' );
 		}
 		$key = $this->classMap[$className];
 		$this->used[$key] = true;

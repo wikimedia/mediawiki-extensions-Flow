@@ -109,7 +109,12 @@ class Importer {
 	 * @param SourceStoreInterface $sourceStore
 	 * @return bool True When the import completes with no failures
 	 */
-	public function import( IImportSource $source, Title $targetPage, User $user, SourceStoreInterface $sourceStore ) {
+	public function import(
+		IImportSource $source,
+		Title $targetPage,
+		User $user,
+		SourceStoreInterface $sourceStore
+	) {
 		$operation = new TalkpageImportOperation( $source, $user, $this->occupationController );
 		$pageImportState = new PageImportState(
 			$this->workflowLoaderFactory
@@ -357,7 +362,9 @@ class PageImportState {
 		// We don't set the topic title postId as it was inherited from the workflow.  We only set the
 		// postId for first revisions because further revisions inherit it from the parent which was
 		// set appropriately.
-		if ( $revision instanceof PostRevision && $revision->isFirstRevision() && !$revision->isTopicTitle() ) {
+		if ( $revision instanceof PostRevision &&
+			$revision->isFirstRevision() && !$revision->isTopicTitle()
+		) {
 			$this->postIdProperty->setValue( $revision, $uid );
 		}
 
@@ -530,7 +537,11 @@ class TalkpageImportOperation {
 	 *   'original' user
 	 * @param OccupationController $occupationController
 	 */
-	public function __construct( IImportSource $source, User $user, OccupationController $occupationController ) {
+	public function __construct(
+		IImportSource $source,
+		User $user,
+		OccupationController $occupationController
+	) {
 		$this->importSource = $source;
 		$this->user = $user;
 		$this->occupationController = $occupationController;
@@ -555,7 +566,8 @@ class TalkpageImportOperation {
 				/* $mustNotExist = */ true
 			);
 			if ( !$creationStatus->isGood() ) {
-				throw new ImportException( "safeAllowCreation failed to allow the import destination, with the following error:\n" . $creationStatus->getWikiText() );
+				throw new ImportException( "safeAllowCreation failed to allow the import " .
+					"destination, with the following error:\n" . $creationStatus->getWikiText() );
 			}
 
 			// Makes sure the page exists and a Flow-specific revision has been inserted
@@ -563,13 +575,16 @@ class TalkpageImportOperation {
 				new Article( $destinationTitle ),
 				$state->boardWorkflow
 			);
-			$state->logger->debug( 'ensureFlowRevision status isOK: ' . var_export( $status->isOK(), true ) );
-			$state->logger->debug( 'ensureFlowRevision status isGood: ' . var_export( $status->isGood(), true ) );
+			$state->logger->debug( 'ensureFlowRevision status isOK: ' .
+				var_export( $status->isOK(), true ) );
+			$state->logger->debug( 'ensureFlowRevision status isGood: ' .
+				var_export( $status->isGood(), true ) );
 
 			if ( $status->isOK() ) {
 				$ensureValue = $status->getValue();
 				$revision = $ensureValue['revision'];
-				$state->logger->debug( 'ensureFlowRevision already-existed: ' . var_export( $ensureValue['already-existed'], true ) );
+				$state->logger->debug( 'ensureFlowRevision already-existed: ' .
+					var_export( $ensureValue['already-existed'], true ) );
 				$revisionId = $revision->getId();
 				$pageId = $revision->getTitle()->getArticleId( Title::GAID_FOR_UPDATE );
 				$state->logger->debug( "ensureFlowRevision revision ID: $revisionId, page ID: $pageId" );
@@ -712,7 +727,8 @@ class TalkpageImportOperation {
 		// Check if it's already been imported
 		$topicState = $this->getExistingTopicState( $state, $importTopic );
 		if ( $topicState ) {
-			$state->logger->info( 'Continuing import to ' . $topicState->topicWorkflow->getArticleTitle()->getPrefixedText() );
+			$state->logger->info( 'Continuing import to ' .
+				$topicState->topicWorkflow->getArticleTitle()->getPrefixedText() );
 			return $topicState;
 		} else {
 			return $this->createTopicState( $state, $importTopic );
@@ -775,7 +791,8 @@ class TalkpageImportOperation {
 
 		$state->recordAssociation( $topicWorkflow->getId(), $importTopic );
 
-		$state->logger->info( 'Finished importing topic title with ' . count( $titleRevisions ) . ' revisions' );
+		$state->logger->info( 'Finished importing topic title with ' .
+			count( $titleRevisions ) . ' revisions' );
 		return $topicState;
 	}
 
@@ -840,7 +857,8 @@ class TalkpageImportOperation {
 		);
 
 		$state->recordUpdateTime( end( $revisions )->getRevisionId() );
-		$state->parent->logger->info( "Finished importing summary with " . count( $revisions ) . " revisions" );
+		$state->parent->logger->info( "Finished importing summary with " .
+			count( $revisions ) . " revisions" );
 	}
 
 	/**
@@ -894,7 +912,8 @@ class TalkpageImportOperation {
 				$topRevision->getPostId(),
 				$post
 			);
-			$state->parent->logger->info( $logPrefix . "Finished importing post with " . count( $replyRevisions ) . " revisions" );
+			$state->parent->logger->info( $logPrefix . "Finished importing post with " .
+				count( $replyRevisions ) . " revisions" );
 			$state->parent->postprocessor->afterPostImported( $state, $post, $topRevision );
 		}
 
@@ -909,7 +928,8 @@ class TalkpageImportOperation {
 	 * Imports an object with all its revisions
 	 *
 	 * @param IRevisionableObject $object Object to import.
-	 * @param callable $importFirstRevision Function which, given the appropriate import revision, creates the Flow revision.
+	 * @param callable $importFirstRevision Function which, given the appropriate import revision,
+	 *   creates the Flow revision.
 	 * @param string $editChangeType The Flow change type (from FlowActions.php) for each new operation.
 	 * @param PageImportState $state State of the import operation.
 	 * @param Title $title Title content is rendered against

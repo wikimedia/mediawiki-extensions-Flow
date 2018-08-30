@@ -124,7 +124,8 @@ class CheckUserQuery extends AbstractQuery {
 				$workflowId = UUID::create( $data[1] );
 				break;
 			default:
-				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of parameters received from cuc_comment.  Expected 2 or 3 but received ' . count( $data ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of parameters received from cuc_comment.' .
+					' Expected 2 or 3 but received ' . count( $data ) );
 				return false;
 		}
 

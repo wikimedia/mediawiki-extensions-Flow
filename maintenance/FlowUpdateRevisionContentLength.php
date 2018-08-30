@@ -111,7 +111,8 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 				} else {
 					$previous = $om->get( $obj->getPrevRevisionId() );
 					if ( !$previous ) {
-						$this->output( 'Could not locate previous revision: ' . $obj->getPrevRevisionId()->getAlphadecimal() );
+						$this->output( 'Could not locate previous revision: ' .
+							$obj->getPrevRevisionId()->getAlphadecimal() );
 						$fail++;
 						continue;
 					}
@@ -123,8 +124,10 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 					$om->put( $obj );
 				} catch ( \Exception $e ) {
 					$this->error(
-						'Failed to update revision ' . $obj->getRevisionId()->getAlphadecimal() . ': ' . $e->getMessage() . "\n".
-						'Please make sure rev_content, rev_content_length, rev_flags & rev_previous_content_length are part of RevisionStorage::$allowedUpdateColumns.'
+						'Failed to update revision ' . $obj->getRevisionId()->getAlphadecimal() .
+							': ' . $e->getMessage() . "\n".
+						'Please make sure rev_content, rev_content_length, rev_flags & ' .
+							'rev_previous_content_length are part of RevisionStorage::$allowedUpdateColumns.'
 					);
 					throw $e;
 				}

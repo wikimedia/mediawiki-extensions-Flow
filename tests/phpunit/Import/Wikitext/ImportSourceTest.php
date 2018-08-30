@@ -99,19 +99,23 @@ class ImportSourceTest extends \MediaWikiTestCase {
 			],
 			[
 				"{{tpl}}\nNon-template text\n{{tpl}}\nNon-template text\n{{tpl}}\n",
-				"{{tpl}}\n{{tpl}}\n{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
+				"{{tpl}}\n{{tpl}}\n{{tpl}}\n\n" .
+					"{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
 			],
 			[
 				"{{tpl\n|key=value}}\n",
-				"{{tpl\n|key=value}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
+				"{{tpl\n|key=value}}\n\n" .
+					"{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}"
 			],
 			[
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n",
-				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
+				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n\n" .
+					"{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
 			],
 			[
 				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\nNon-template text\n{{tpl}}\n",
-				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
+				"{{multiple issues|\n{{copyedit}}\n{{cleanup tone}}\n}}\n" .
+					"{{tpl}}\n\n{{Wikitext talk page converted to Flow|archive=Main Page|date=$date}}",
 			],
 		];
 	}

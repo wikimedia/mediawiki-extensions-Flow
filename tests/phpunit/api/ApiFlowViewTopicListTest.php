@@ -202,7 +202,8 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 
 			$newPostId = $replyResponse[0]['flow']['reply']['committed']['topic']['post-id'];
 			$topicData[$topicDataInd]['updateTimestamp'] = UUID::create( $newPostId )->getTimestamp();
-			$topicData[$topicDataInd]['expectedRevision']['last_updated'] = wfTimestamp( TS_UNIX, $topicData[$topicDataInd]['updateTimestamp'] ) * 1000;
+			$topicData[$topicDataInd]['expectedRevision']['last_updated'] =
+				wfTimestamp( TS_UNIX, $topicData[$topicDataInd]['updateTimestamp'] ) * 1000;
 		}
 
 		$expectedUpdatedResponse = array_merge_recursive( [

@@ -75,7 +75,9 @@ class RevisionActionPermissions {
 			$roots[$revisionId] = $this->getRoot( $revision );
 		}
 		// see if we're allowed to perform $action on anything inside this root
-		if ( !$revision->getRevisionId()->equals( $roots[$revisionId]->getRevisionId() ) && !$this->isRootAllowed( $roots[$revisionId], $action ) ) {
+		if ( !$revision->getRevisionId()->equals( $roots[$revisionId]->getRevisionId() ) &&
+			!$this->isRootAllowed( $roots[$revisionId], $action )
+		) {
 			return false;
 		}
 

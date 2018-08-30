@@ -11,8 +11,10 @@ use ParserOptions;
 use Title;
 
 /*
+ * phpcs:disable Generic.Files.LineLength
  * Parsoid currently returns images that don't exist like:
  * <meta typeof="mw:Placeholder" data-parsoid='{"src":"[[File:Image.png|25px]]","optList":[{"ck":"width","ak":"25px"}],"dsr":[0,23,null,null]}'>
+ * phpcs:enable Generic.Files.LineLength
  *
  * Links to those should also be registered, but since they're
  * different nodes than what we expect above, we'll have to deal

@@ -135,7 +135,8 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	public function updateRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(
 			/* table */'flow_revision',
-			/* select */[ 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ],
+			/* select */[ 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id',
+				'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ],
 			/* conditions */ [
 				'rev_id > ' . $dbw->addQuotes( $continue ),
 				$dbw->makeList(

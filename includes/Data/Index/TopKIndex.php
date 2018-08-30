@@ -20,7 +20,14 @@ class TopKIndex extends FeatureIndex {
 	 */
 	protected $options = [];
 
-	public function __construct( FlowObjectCache $cache, ObjectStorage $storage, ObjectMapper $mapper, $prefix, array $indexed, array $options = [] ) {
+	public function __construct(
+		FlowObjectCache $cache,
+		ObjectStorage $storage,
+		ObjectMapper $mapper,
+		$prefix,
+		array $indexed,
+		array $options = []
+	) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidParameterException( 'TopKIndex must be sorted' );
 		}
@@ -41,8 +48,10 @@ class TopKIndex extends FeatureIndex {
 			$this->options['sort'] = [ $this->options['sort'] ];
 		}
 		if ( $this->options['shallow'] ) {
-			// TODO: perhaps we shouldn't even get a shallow option, just receive a proper compactor in FeatureIndex::__construct
-			$this->rowCompactor = new ShallowCompactor( $this->rowCompactor, $this->options['shallow'], $this->options['sort'] );
+			// TODO: perhaps we shouldn't even get a shallow option, just receive a proper compactor in
+			// FeatureIndex::__construct
+			$this->rowCompactor = new ShallowCompactor(
+				$this->rowCompactor, $this->options['shallow'], $this->options['sort'] );
 		}
 	}
 
@@ -51,7 +60,9 @@ class TopKIndex extends FeatureIndex {
 			return false;
 		}
 
-		if ( isset( $options['offset-id'] ) || ( isset( $options['offset-dir'] ) && $options['offset-dir'] !== 'fwd' ) ) {
+		if ( isset( $options['offset-id'] ) ||
+			( isset( $options['offset-dir'] ) && $options['offset-dir'] !== 'fwd' )
+		) {
 			return false;
 		}
 
@@ -181,7 +192,8 @@ class TopKIndex extends FeatureIndex {
 		$fieldIndex = 0;
 
 		if ( $sortFields === false ) {
-			throw new DataModelException( 'This Index implementation does not support offset values', 'process-data' );
+			throw new DataModelException( 'This Index implementation does not support offset values',
+				'process-data' );
 		}
 
 		foreach ( $sortFields as $field ) {

@@ -216,7 +216,8 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves LiquidThreads data from the API
 	 *
-	 * @param array $conditions The parameters to pass to select the threads. Usually used in two ways: with thstartid/thpage, or with ththreadid
+	 * @param array $conditions The parameters to pass to select the threads.
+	 *  Usually used in two ways: with thstartid/thpage, or with ththreadid
 	 * @return array Data as returned under query.threads by the API
 	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
 	 *  have no matching records.
@@ -227,7 +228,8 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		$params = [
 			'action' => 'query',
 			'list' => 'threads',
-			'thprop' => 'id|subject|page|parent|ancestor|created|modified|author|summaryid|type|rootid|replies|signature',
+			'thprop' => 'id|subject|page|parent|ancestor|created|modified|author|summaryid' .
+				'|type|rootid|replies|signature',
 			'rawcontinue' => 1, // We're doing continuation a different way, but this avoids a warning.
 			'format' => 'json',
 			'limit' => ApiBase::LIMIT_BIG1,
@@ -240,14 +242,16 @@ abstract class ApiBackend implements LoggerAwareInterface {
 				$this->logger->debug( __METHOD__ . ": $message" );
 				throw new ApiNotFoundException( $message );
 			} else {
-				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
+				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() .
+					' with conditions : ' . json_encode( $conditions ) );
 				throw new ImportException( "Null response from API module:" . json_encode( $data ) );
 			}
 		}
 
 		$firstThread = reset( $data['query']['threads'] );
 		if ( !isset( $firstThread['replies'] ) ) {
-			throw new ImportException( "Foreign API does not support reply exporting:" . json_encode( $data ) );
+			throw new ImportException( "Foreign API does not support reply exporting:" .
+				json_encode( $data ) );
 		}
 
 		return $data['query']['threads'];
@@ -295,7 +299,7 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 * Retrieves data about a set of pages from the API
 	 *
 	 * @param array $conditions Conditions to retrieve pages by; to be sent to the API.
-	 * @param bool $expectContinue Pass true here when caller expects more revisions to exist than they are requesting information about.
+	 * @param bool $expectContinue Pass true here when caller expects more revisions to exist than
 	 *  they are requesting information about.
 	 * @return array The query.pages part of the API response.
 	 * @throws ApiNotFoundException Thrown when the remote api reports that the provided conditions
@@ -323,11 +327,13 @@ abstract class ApiBackend implements LoggerAwareInterface {
 				$this->logger->debug( __METHOD__ . ": $message" );
 				throw new ApiNotFoundException( $message );
 			} else {
-				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() . ' with conditions : ' . json_encode( $conditions ) );
+				$this->logger->error( __METHOD__ . ': Failed API call against ' . $this->getKey() .
+					' with conditions : ' . json_encode( $conditions ) );
 				throw new ImportException( "Null response from API module: " . json_encode( $data ) );
 			}
 		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
-			throw new ImportException( "More revisions than can be retrieved for conditions, import would be incomplete: " . json_encode( $conditions ) );
+			throw new ImportException( "More revisions than can be retrieved for conditions, import would" .
+				" be incomplete: " . json_encode( $conditions ) );
 		}
 
 		return $data['query']['pages'];

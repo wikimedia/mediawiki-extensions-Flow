@@ -15,7 +15,8 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 
 	public function getPrimaryLink() {
 		$boardLink = $this->getBoardLink();
-		$boardLink['label'] = $this->msg( "notification-links-flow-description-edited-view-page" )->params( $this->getViewingUserForGender() )->text();
+		$boardLink['label'] = $this->msg( "notification-links-flow-description-edited-view-page" )
+			->params( $this->getViewingUserForGender() )->text();
 		return $boardLink;
 	}
 
@@ -68,7 +69,8 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 
 		return [
 			'url' => $anchor->getFullURL(),
-			'label' => $this->msg( 'notification-link-text-view-changes' )->params( $this->getViewingUserForGender() )->text(),
+			'label' => $this->msg( 'notification-link-text-view-changes' )
+				->params( $this->getViewingUserForGender() )->text(),
 			'description' => '',
 			'icon' => 'changes',
 			'prioritized' => true,

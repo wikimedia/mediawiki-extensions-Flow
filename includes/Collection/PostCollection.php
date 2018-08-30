@@ -42,7 +42,8 @@ class PostCollection extends LocalCacheAbstractCollection {
 			[ 'topic_id' => $this->getWorkflowId() ]
 		);
 		if ( !$found ) {
-			throw new InvalidDataException( 'No TopicListEntry founds for topic id ' . $this->getWorkflowId()->getAlphadecimal(), 'invalid-workflow' );
+			throw new InvalidDataException( 'No TopicListEntry founds for topic id ' .
+				$this->getWorkflowId()->getAlphadecimal(), 'invalid-workflow' );
 		}
 
 		/** @var TopicListEntry $topicListEntry */

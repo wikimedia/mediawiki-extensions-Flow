@@ -240,7 +240,8 @@ class RevisionFormatter {
 				$row->revision->getLastContentEditUserId(),
 				$row->revision->getLastContentEditUserIp()
 			),
-			'lastEditId' => $row->revision->isOriginalContent() ? null : $row->revision->getLastContentEditId()->getAlphadecimal(),
+			'lastEditId' => $row->revision->isOriginalContent()
+				? null : $row->revision->getLastContentEditId()->getAlphadecimal(),
 			'previousRevisionId' => $row->revision->isFirstRevision()
 				? null
 				: $row->revision->getPrevRevisionId()->getAlphadecimal(),
@@ -345,7 +346,8 @@ class RevisionFormatter {
 
 				// moderated posts won't have that property
 				if ( isset( $res['properties']['topic-of-post-text-from-html']['plaintext'] ) ) {
-					$res['content']['plaintext'] = $res['properties']['topic-of-post-text-from-html']['plaintext'];
+					$res['content']['plaintext'] =
+						$res['properties']['topic-of-post-text-from-html']['plaintext'];
 				}
 			}
 
@@ -633,7 +635,8 @@ class RevisionFormatter {
 					break;
 				}
 				if ( isset( $moderateAction ) && $moderateAction ) {
-					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction( $title, $workflowId, $moderateAction, $flowAction );
+					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction(
+						$title, $workflowId, $moderateAction, $flowAction );
 				}
 				break;
 
@@ -651,7 +654,8 @@ class RevisionFormatter {
 					break;
 				}
 				if ( $moderateAction ) {
-					$links[$moderateAction] = $this->urlGenerator->restorePostAction( $title, $workflowId, $postId, $moderateAction, $flowAction );
+					$links[$moderateAction] = $this->urlGenerator->restorePostAction(
+						$title, $workflowId, $postId, $moderateAction, $flowAction );
 				}
 				break;
 
@@ -768,14 +772,17 @@ class RevisionFormatter {
 
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-header':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffHeaderLink' ];
+				$diffCallback = isset( $diffCallback )
+					? $diffCallback : [ $this->urlGenerator, 'diffHeaderLink' ];
 				// don't break, diff links are rendered below
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-post':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffPostLink' ];
+				$diffCallback = isset( $diffCallback )
+					? $diffCallback : [ $this->urlGenerator, 'diffPostLink' ];
 				// don't break, diff links are rendered below
 			case 'diff-post-summary':
-				$diffCallback = isset( $diffCallback ) ? $diffCallback : [ $this->urlGenerator, 'diffSummaryLink' ];
+				$diffCallback = isset( $diffCallback )
+					? $diffCallback : [ $this->urlGenerator, 'diffSummaryLink' ];
 
 				/*
 				 * To diff against previous revision, we don't really need that
@@ -857,7 +864,8 @@ class RevisionFormatter {
 		$params = $actions->getValue( $changeType, 'history', 'i18n-params' );
 		if ( !$params ) {
 			// should we have a sigil for i18n with no parameters?
-			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeType $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
+			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeType $changeType on " .
+				$revision->getRevisionId()->getAlphadecimal() );
 			return [];
 		}
 
@@ -1051,7 +1059,8 @@ class RevisionFormatter {
 			}
 
 			if ( $post->isTopicTitle() ) {
-				return Message::plaintextParam( $this->templating->getContent( $post, 'topic-title-plaintext' ) );
+				return Message::plaintextParam( $this->templating->getContent(
+					$post, 'topic-title-plaintext' ) );
 			} else {
 				return Message::rawParam( $this->templating->getContent( $post, 'fixed-html' ) );
 			}
@@ -1098,9 +1107,11 @@ class RevisionFormatter {
 		}
 
 		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-			return $this->decideTopicTitleContentFormat( $revision, $requestedRevFormat, $requestedDefaultFormat );
+			return $this->decideTopicTitleContentFormat(
+				$revision, $requestedRevFormat, $requestedDefaultFormat );
 		} else {
-			return $this->decideNonTopicTitleContentFormat( $revision, $requestedRevFormat, $requestedDefaultFormat );
+			return $this->decideNonTopicTitleContentFormat(
+				$revision, $requestedRevFormat, $requestedDefaultFormat );
 		}
 	}
 
@@ -1114,12 +1125,17 @@ class RevisionFormatter {
 	 * @throws FlowException If a per-revision format was given and it is
 	 *  invalid for topic titles.
 	 */
-	protected function decideTopicTitleContentFormat( PostRevision $topicTitle, $requestedRevFormat, $requestedDefaultFormat ) {
+	protected function decideTopicTitleContentFormat(
+		PostRevision $topicTitle,
+		$requestedRevFormat,
+		$requestedDefaultFormat
+	) {
 		if ( $requestedRevFormat !== null ) {
 			if ( $requestedRevFormat !== 'topic-title-html' &&
 				$requestedRevFormat !== 'topic-title-wikitext'
 			) {
-				throw new FlowException( 'Per-revision format for a topic title must be \'topic-title-html\' or \'topic-title-wikitext\'' );
+				throw new FlowException( 'Per-revision format for a topic title must be ' .
+					'\'topic-title-html\' or \'topic-title-wikitext\'' );
 			}
 			return $requestedRevFormat;
 		} else {
@@ -1127,7 +1143,9 @@ class RevisionFormatter {
 
 			// Because these are both editable formats, and this is the only
 			// editable topic title format.
-			if ( $requestedDefaultFormat === 'topic-title-wikitext' || $requestedDefaultFormat === 'html' || $requestedDefaultFormat === 'wikitext' ) {
+			if ( $requestedDefaultFormat === 'topic-title-wikitext' || $requestedDefaultFormat === 'html' ||
+				$requestedDefaultFormat === 'wikitext'
+			) {
 				return 'topic-title-wikitext';
 			} else {
 				return 'topic-title-html';
@@ -1145,19 +1163,25 @@ class RevisionFormatter {
 	 * @throws FlowException If a per-revision format was given and it is
 	 *  invalid for this type
 	 */
-	protected function decideNonTopicTitleContentFormat( AbstractRevision $revision, $requestedRevFormat, $requestedDefaultFormat ) {
+	protected function decideNonTopicTitleContentFormat(
+		AbstractRevision $revision,
+		$requestedRevFormat,
+		$requestedDefaultFormat
+	) {
 		if ( $requestedRevFormat !== null ) {
 			if ( $requestedRevFormat === 'topic-title-html' ||
 				$requestedRevFormat === 'topic-title-wikitext'
 			) {
-				throw new FlowException( 'Invalid per-revision format.  Only topic titles can use  \'topic-title-html\' and \'topic-title-wikitext\'' );
+				throw new FlowException( 'Invalid per-revision format.  Only topic titles can use  ' .
+					'\'topic-title-html\' and \'topic-title-wikitext\'' );
 			}
 			return $requestedRevFormat;
 		} else {
 			if ( $requestedDefaultFormat === 'topic-title-html' ||
 				$requestedDefaultFormat === 'topic-title-wikitext'
 			) {
-				throw new FlowException( 'Default format of \'topic-title-html\' or \'topic-title-wikitext\' can only be used to format topic titles.' );
+				throw new FlowException( 'Default format of \'topic-title-html\' or ' .
+					'\'topic-title-wikitext\' can only be used to format topic titles.' );
 			}
 
 			return $requestedDefaultFormat;

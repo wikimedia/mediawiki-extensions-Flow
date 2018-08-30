@@ -144,7 +144,8 @@ abstract class RevisionStorage extends DbStorage {
 			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
 		);
 		if ( $res === false ) {
-			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
+			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
+				'process-data' );
 		}
 
 		$retval = [];
@@ -251,12 +252,14 @@ abstract class RevisionStorage extends DbStorage {
 		$res = $dbr->select(
 			[ 'flow_revision' ],
 			[ 'rev_id' => "MAX( 'rev_id' )" ],
-			[ 'rev_type' => $this->getRevType() ] + $this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
+			[ 'rev_type' => $this->getRevType() ] + $this->preprocessSqlArray(
+				$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
 			__METHOD__,
 			[ 'GROUP BY' => 'rev_type_id' ]
 		);
 		if ( $res === false ) {
-			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
+			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
+				'process-data' );
 		}
 
 		$revisionIds = [];
@@ -299,7 +302,8 @@ abstract class RevisionStorage extends DbStorage {
 				$joins
 			);
 			if ( $res === false ) {
-				throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(), 'process-data' );
+				throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
+					'process-data' );
 			}
 
 			foreach ( $res as $row ) {
@@ -423,7 +427,8 @@ abstract class RevisionStorage extends DbStorage {
 
 		// we're only able to update part of the columns required to update content
 		if ( $diff !== $requiredColumnNames ) {
-			throw new DataModelException( "Allowed update column configuration is inconsistent", 'allowed-update-inconsistent' );
+			throw new DataModelException( "Allowed update column configuration is inconsistent",
+				'allowed-update-inconsistent' );
 		}
 
 		// content changes aren't allowed

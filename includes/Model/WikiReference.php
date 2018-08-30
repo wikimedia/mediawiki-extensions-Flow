@@ -17,12 +17,22 @@ class WikiReference extends Reference {
 	 * @param string $wiki Wiki ID of the reference source
 	 * @param UUID $srcWorkflow ID of the source Workflow
 	 * @param Title $srcTitle Title of the Workflow from which this reference comes.
-	 * @param string $objectType Output of getRevisionType for the AbstractRevision that this reference comes from.
+	 * @param string $objectType Output of getRevisionType for the AbstractRevision that this
+	 *   reference comes from.
 	 * @param UUID $objectId Unique identifier for the revisioned object containing the reference.
 	 * @param string $type Type of reference
 	 * @param Title $targetTitle Title of the reference's target.
 	 */
-	public function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
+	public function __construct(
+		UUID $id,
+		$wiki,
+		UUID $srcWorkflow,
+		Title $srcTitle,
+		$objectType,
+		UUID $objectId,
+		$type,
+		Title $targetTitle
+	) {
 		$this->target = $targetTitle;
 
 		$this->validTypes = array_merge( $this->validTypes,
@@ -57,7 +67,8 @@ class WikiReference extends Reference {
 	public static function fromStorageRow( $row ) {
 		// TODO: Remove this UUID::create() call when the field is populated
 		// everywhere relevant.
-		$id = ( !isset( $row['ref_id'] ) || $row['ref_id'] === null ) ? UUID::create() : UUID::create( $row['ref_id'] );
+		$id = ( !isset( $row['ref_id'] ) || $row['ref_id'] === null )
+			? UUID::create() : UUID::create( $row['ref_id'] );
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
@@ -66,7 +77,9 @@ class WikiReference extends Reference {
 		$type = $row['ref_type'];
 		$wiki = $row['ref_src_wiki'];
 
-		return new WikiReference( $id, $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
+		return new WikiReference(
+			$id, $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle
+		);
 	}
 
 	/**

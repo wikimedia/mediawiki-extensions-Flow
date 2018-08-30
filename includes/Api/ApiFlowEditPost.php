@@ -41,7 +41,8 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return [
-			'action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???&epcontent=Nice%20to&20meet%20you&epformat=wikitext'
+			'action=flow&submodule=edit-post&page=Topic:S2tycnas4hcucw8w&eppostId=???&epprev_revision=???' .
+				'&epcontent=Nice%20to&20meet%20you&epformat=wikitext'
 				=> 'apihelp-flow+edit-post-example-1',
 		];
 	}

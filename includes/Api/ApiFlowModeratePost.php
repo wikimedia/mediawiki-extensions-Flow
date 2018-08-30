@@ -38,7 +38,8 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return [
-			'action=flow&submodule=moderate-post&page=Topic:S2tycnas4hcucw8w&mppostId=050f30e34c87beebcd54080027630f57&mpmoderationState=delete&mpreason=Ahhhh'
+			'action=flow&submodule=moderate-post&page=Topic:S2tycnas4hcucw8w' .
+				'&mppostId=050f30e34c87beebcd54080027630f57&mpmoderationState=delete&mpreason=Ahhhh'
 				=> 'apihelp-flow+moderate-post-example-1',
 		];
 	}

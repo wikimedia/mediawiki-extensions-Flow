@@ -95,7 +95,8 @@ class NotificationControllerTest extends \MediaWikiTestCase {
 	 * @dataProvider getDeepestCommonRootProvider
 	 */
 	public function testGetDeepestCommonRoot( $expectedDeepest, $message, $rootPaths ) {
-		$actualDeepest = TestingAccessWrapper::newFromObject( $this->notificationController )->getDeepestCommonRoot( $rootPaths );
+		$actualDeepest = TestingAccessWrapper::newFromObject( $this->notificationController )
+			->getDeepestCommonRoot( $rootPaths );
 		$this->assertEquals( $expectedDeepest, $actualDeepest, $message );
 	}
 
@@ -170,8 +171,15 @@ class NotificationControllerTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider getFirstPreorderDepthFirstProvider
 	 */
-	public function testGetFirstPreorderDepthFirst( UUID $expectedFirst, $message, array $relevantPostIds, UUID $root, array $tree ) {
-		$actualFirst = TestingAccessWrapper::newFromObject( $this->notificationController )->getFirstPreorderDepthFirst( $relevantPostIds, $root, $tree );
+	public function testGetFirstPreorderDepthFirst(
+		UUID $expectedFirst,
+		$message,
+		array $relevantPostIds,
+		UUID $root,
+		array $tree
+	) {
+		$actualFirst = TestingAccessWrapper::newFromObject( $this->notificationController )
+			->getFirstPreorderDepthFirst( $relevantPostIds, $root, $tree );
 		$this->assertEquals( $expectedFirst, $actualFirst, $message );
 	}
 }

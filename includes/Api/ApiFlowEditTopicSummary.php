@@ -39,7 +39,8 @@ class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 	 */
 	protected function getExamplesMessages() {
 		return [
-			'action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???&etssummary=Nice%20to&20meet%20you&etsformat=wikitext'
+			'action=flow&submodule=edit-topic-summary&page=Topic:S2tycnas4hcucw8w&wetsprev_revision=???' .
+				'&etssummary=Nice%20to&20meet%20you&etsformat=wikitext'
 				=> 'apihelp-flow+edit-topic-summary-example-1',
 		];
 	}

@@ -80,7 +80,8 @@ class SubmissionHandler {
 				$type[] = get_class( $block );
 			}
 			// All blocks returned null, nothing knows how to handle this action
-			throw new InvalidActionException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ), 'invalid-action' );
+			throw new InvalidActionException( "No block accepted the '$action' action: " .
+				implode( ',', array_unique( $type ) ), 'invalid-action' );
 		}
 
 		// Check mediawiki core permissions for title protection, blocked

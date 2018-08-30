@@ -38,7 +38,8 @@ class NotificationListener extends AbstractListener {
 				$metadata['topic-title'],
 				$metadata['first-post']
 			) ) {
-				throw new InvalidDataException( 'Invalid metadata for revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
+				throw new InvalidDataException( 'Invalid metadata for revision ' .
+					$object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
 			}
 
 			$this->notificationController->notifyNewTopic( [
@@ -115,7 +116,8 @@ class NotificationListener extends AbstractListener {
 			$metadata['workflow'],
 			$metadata['topic-title']
 		) ) {
-			throw new InvalidDataException( 'Invalid metadata for topic|post revision ' . $object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
+			throw new InvalidDataException( 'Invalid metadata for topic|post revision ' .
+				$object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
 		}
 
 		$workflow = $metadata['workflow'];
