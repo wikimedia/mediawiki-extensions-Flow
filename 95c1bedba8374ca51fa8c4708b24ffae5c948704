@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "061a5f4f_6ec9eeda",
+        "filename": ".phpcs.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-08-31T08:02:52Z",
+      "side": 1,
+      "message": "I argued for this before in I4c599f8: I find 140 a wonderful limit for \"legacy\" codebases like this one here that never enforced a line length limit before.\n\nFor new codebases it should be 100. But forcing 100 on older codebases by essentially smacking them with a hammer for some time ;-) is almost literally painful and not worth it, in my opinion.",
+      "range": {
+        "startLine": 17,
+        "startChar": 37,
+        "endLine": 17,
+        "endChar": 40
+      },
+      "revId": "95c1bedba8374ca51fa8c4708b24ffae5c948704",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
