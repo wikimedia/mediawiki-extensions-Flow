@@ -123,7 +123,7 @@
 	"flow-error-missing-replyto": "Nulle parametro \"replyTo\" ha essite fornite. Iste parametro es necessari pro le action \"responder\".",
 	"flow-error-missing-postId": "Nulle parametro \"postId\" ha essite specificate. Iste parametro es necessari pro manipular un entrata.",
 	"flow-error-invalid-postId": "Le parametro \"postId\" es invalide. Le entrata specificate ($1) non poteva esser trovate.",
-	"flow-error-invalid-moderation-state": "Un valor invalide pro un parametro ('moderationState') ha essite fornite al API de Flow.",
+	"flow-error-invalid-moderation-state": "Un valor invalide pro un parametro ('moderationState') ha essite fornite al API de Discussiones Structurate.",
 	"flow-error-invalid-moderation-reason": "Per favor da un motivo pro le moderation",
 	"flow-error-not-allowed": "Permissiones insufficiente pro exequer iste action",
 	"flow-error-not-allowed-hide": "Iste topico ha essite celate.",
@@ -145,7 +145,7 @@
 	"flow-error-prev-revision-mismatch": "Un altere usator ha justo modificate iste message alcun secundas retro. Es {{GENDER:$3|tu}} secur de voler superscriber iste modification recente?",
 	"flow-error-prev-revision-does-not-exist": "Impossibile trovar le version precedente.",
 	"flow-error-invalid-topic-uuid-title": "Titulo invalide",
-	"flow-error-invalid-topic-uuid": "Le titulo de pagina requestate non es valide. Paginas in le spatio de nomines Topic es create automaticamente per Flow.",
+	"flow-error-invalid-topic-uuid": "Le titulo de pagina requestate non es valide. Paginas in le spatio de nomines Topic es create automaticamente per Discussiones Structurate.",
 	"flow-error-unknown-workflow-id-title": "Topico incognite",
 	"flow-error-unknown-workflow-id": "Le topico requestate non existe.",
 	"flow-edit-header-submit": "Salveguardar description",
@@ -182,8 +182,8 @@
 	"flow-notification-reply-email-subject": "$2 in $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|respondeva}} a \"$2\" in $3",
 	"flow-notification-reply-email-batch-bundle-body": "$1 e $4 {{PLURAL:$4|un altere|$4 alteres|100=99+ alteres}} {{GENDER:$1|respondeva}} a \"$2\" in \"$3\"",
-	"echo-category-title-flow-discussion": "Fluxo",
-	"echo-pref-tooltip-flow-discussion": "Notificar me quando actiones concernente me occurre in Fluxo.",
+	"echo-category-title-flow-discussion": "Discussion structurate",
+	"echo-pref-tooltip-flow-discussion": "Notificar me sur activitate in topicos o paginas que io seque.",
 	"flow-action-not-page": "Le objecto del pagina es un instantia del classe incorrecte",
-	"flow-action-wrong-title-content-model": "Le pagina es sub gerentia de Flow, ma le classe Title indica que le modello de contento es '$1'. Isto es un configuration incorrecte o stato inconsistente. Per exemplo, il poterea tractar se de un pagina non Flow in un spatio de nomines Flow e sin datos pro <code>rev_content_model</code>."
+	"flow-action-wrong-title-content-model": "Le pagina es sub gerentia de Discussiones Structurate, ma le classe Title indica que le modello de contento es '$1'. Isto es un configuration incorrecte o stato inconsistente. Per exemplo, il poterea tractar se de un pagina non Discussiones Structurate in un spatio de nomines Discussiones Structurate e sin datos pro <code>rev_content_model</code>."
 }
