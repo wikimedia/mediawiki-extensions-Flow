@@ -14,7 +14,7 @@ use Page;
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
 		if ( $modelId !== CONTENT_MODEL_FLOW_BOARD ) {
-			throw new MWException( __CLASS__." initialised for invalid content model" );
+			throw new MWException( __CLASS__ . " initialised for invalid content model" );
 		}
 
 		parent::__construct( CONTENT_MODEL_FLOW_BOARD, [ CONTENT_FORMAT_JSON ] );

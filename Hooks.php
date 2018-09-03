@@ -265,10 +265,10 @@ class FlowHooks {
 		$updater->dropExtensionTable( 'flow_subscription',
 			"$dir/db_patches/patch-drop-flow_subscription.sql" );
 
-		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
+		require_once __DIR__ . '/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
 
-		require_once __DIR__.'/maintenance/FlowSetUserIp.php';
+		require_once __DIR__ . '/maintenance/FlowSetUserIp.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowSetUserIp' );
 
 		/*
@@ -283,31 +283,31 @@ class FlowHooks {
 				"$dir/db_patches/patch-remove_usernames_2.sql" );
 		}
 
-		require_once __DIR__.'/maintenance/FlowUpdateUserWiki.php';
+		require_once __DIR__ . '/maintenance/FlowUpdateUserWiki.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateUserWiki' );
 
-		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
+		require_once __DIR__ . '/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
 
-		require_once __DIR__.'/maintenance/FlowPopulateLinksTables.php';
+		require_once __DIR__ . '/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
 
-		require_once __DIR__.'/maintenance/FlowFixLog.php';
+		require_once __DIR__ . '/maintenance/FlowFixLog.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLog' );
 
-		require_once __DIR__.'/maintenance/FlowUpdateWorkflowPageId.php';
+		require_once __DIR__ . '/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
 
-		require_once __DIR__.'/maintenance/FlowCreateTemplates.php';
+		require_once __DIR__ . '/maintenance/FlowCreateTemplates.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateTemplates' );
 
-		require_once __DIR__.'/maintenance/FlowFixLinks.php';
+		require_once __DIR__ . '/maintenance/FlowFixLinks.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLinks' );
 
-		require_once __DIR__.'/maintenance/FlowUpdateBetaFeaturePreference.php';
+		require_once __DIR__ . '/maintenance/FlowUpdateBetaFeaturePreference.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateBetaFeaturePreference' );
 
-		require_once __DIR__.'/maintenance/FlowPopulateRefId.php';
+		require_once __DIR__ . '/maintenance/FlowPopulateRefId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateRefId' );
 
 		/*

@@ -148,14 +148,14 @@ abstract class DbStorage implements ObjectStorage {
 			if ( is_numeric( $key ) && in_array( strtoupper( $value ), $validUnaryOptions ) ) {
 				continue;
 			} elseif ( is_numeric( $key ) ) {
-				wfDebug( __METHOD__.": Unrecognised unary operator $value\n" );
+				wfDebug( __METHOD__ . ": Unrecognised unary operator $value\n" );
 				return false;
 			}
 
 			if ( $key === 'LIMIT' ) {
 				// LIMIT is one or two integers, separated by a comma.
 				if ( !preg_match( '/^\d+(,\d+)?$/', $value ) ) {
-					wfDebug( __METHOD__.": Invalid LIMIT $value\n" );
+					wfDebug( __METHOD__ . ": Invalid LIMIT $value\n" );
 					return false;
 				}
 			} elseif ( $key === 'ORDER BY' ) {
@@ -167,22 +167,22 @@ abstract class DbStorage implements ObjectStorage {
 
 				foreach ( $value as $orderByField ) {
 					if ( !preg_match( $orderByRegex, $orderByField ) ) {
-						wfDebug( __METHOD__.": invalid ORDER BY field $orderByField\n" );
+						wfDebug( __METHOD__ . ": invalid ORDER BY field $orderByField\n" );
 						return false;
 					}
 				}
 			} elseif ( $key === 'OFFSET' ) {
 				// OFFSET is just an integer
 				if ( !is_numeric( $value ) ) {
-					wfDebug( __METHOD__.": non-numeric offset $value\n" );
+					wfDebug( __METHOD__ . ": non-numeric offset $value\n" );
 					return false;
 				}
 			} elseif ( $key === 'GROUP BY' ) {
 				if ( !preg_match( "/^{$fieldRegex}(,{$fieldRegex})+$/", $value ) ) {
-					wfDebug( __METHOD__.": invalid GROUP BY field\n" );
+					wfDebug( __METHOD__ . ": invalid GROUP BY field\n" );
 				}
 			} else {
-				wfDebug( __METHOD__.": Unknown option $key\n" );
+				wfDebug( __METHOD__ . ": Unknown option $key\n" );
 				return false;
 			}
 		}

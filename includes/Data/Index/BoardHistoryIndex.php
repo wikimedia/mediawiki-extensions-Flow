@@ -129,7 +129,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		if ( !$found ) {
 			throw new DataModelException(
 				"No topic list contains topic " . $topicId->getAlphadecimal() .
-				", called for revision " .  $object->getRevisionId()->getAlphadecimal()
+				", called for revision " . $object->getRevisionId()->getAlphadecimal()
 			);
 		}
 

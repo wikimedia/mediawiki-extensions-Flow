@@ -328,7 +328,7 @@ class TreeRepository {
 		// of caching our own value
 		$path = $this->findRootPath( $descendant );
 		if ( !$path ) {
-			throw new DataModelException( $descendant->getAlphadecimal().' has no root post. Probably is a root post.', 'process-data' );
+			throw new DataModelException( $descendant->getAlphadecimal() . ' has no root post. Probably is a root post.', 'process-data' );
 		}
 
 		$root = array_shift( $path );

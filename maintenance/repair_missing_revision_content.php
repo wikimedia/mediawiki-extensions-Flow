@@ -272,7 +272,7 @@ echo "Found no match for $totalNoMatch (" .
 echo "Found $totalNoChangeRevisions that will inherit parent content (" .
 	number_format( 100 * $totalNoChangeRevisions / $totalMissingConsidered ) . "%)\n";
 echo "Found a match but invalid due to size of es gaps for $totalMatchButInvalid (" .
-	number_format( 100 * $totalMatchButInvalid / $totalMissingConsidered ). "%)\n";
+	number_format( 100 * $totalMatchButInvalid / $totalMissingConsidered ) . "%)\n";
 echo "Resolved $totalResolvedMultipleMatches multiple matches (" .
 	number_format( 100 * $totalResolvedMultipleMatches / $totalMissingConsidered ) . "%)\n";
 

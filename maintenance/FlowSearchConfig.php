@@ -166,7 +166,7 @@ class FlowSearchConfig extends Maintenance {
 			"to the current time in seconds which should give you a unique identifier.", false, true );
 		$this->addOption( 'reindexAndRemoveOk', "If the alias is held by another index then " .
 			"reindex all documents from that index (via the alias) to this one, swing the " .
-			"alias to this index, and then remove other index.  You'll have to redo all updates ".
+			"alias to this index, and then remove other index.  You'll have to redo all updates " .
 			"performed during this operation manually.  Defaults to false." );
 		$this->addOption( 'reindexProcesses', 'Number of processes to use in reindex.  ' .
 			'Not supported on Windows.  Defaults to 1 on Windows and 5 otherwise.', false, true );

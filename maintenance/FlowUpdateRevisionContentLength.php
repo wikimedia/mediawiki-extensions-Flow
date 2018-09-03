@@ -125,7 +125,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 				} catch ( \Exception $e ) {
 					$this->error(
 						'Failed to update revision ' . $obj->getRevisionId()->getAlphadecimal() .
-							': ' . $e->getMessage() . "\n".
+							': ' . $e->getMessage() . "\n" .
 						'Please make sure rev_content, rev_content_length, rev_flags & ' .
 							'rev_previous_content_length are part of RevisionStorage::$allowedUpdateColumns.'
 					);

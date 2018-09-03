@@ -9,6 +9,7 @@
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="Squiz.PHP.NonExecutableCode.Unreachable" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound"/>
 	</rule>

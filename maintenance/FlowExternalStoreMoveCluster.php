@@ -205,7 +205,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 			$data = $this->write( $content, $flags );
 		} catch ( \Exception $e ) {
 			// something went wrong, just output the error & don't update!
-			$this->script->error( $e->getMessage(). "\n" );
+			$this->script->error( $e->getMessage() . "\n" );
 			return [];
 		}
 

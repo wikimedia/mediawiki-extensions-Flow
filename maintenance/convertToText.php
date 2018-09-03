@@ -242,7 +242,7 @@ class ConvertToText extends Maintenance {
 		do {
 			$params[ $prefix . 'format' ] = 'wikitext';
 			if ( $revId ) {
-				$params[ $prefix .  'revId' ] = $revId;
+				$params[ $prefix . 'revId' ] = $revId;
 			}
 			$headerData = $this->flowApi(
 				$pageTitle,
@@ -306,7 +306,7 @@ class ConvertToText extends Maintenance {
 					)->text() . ')';
 			}
 
-			return $content . $glueAfterContent .  ( $formattedAuthors === '' ? '' : $glueBeforeAuthors . $formattedAuthors );
+			return $content . $glueAfterContent . ( $formattedAuthors === '' ? '' : $glueBeforeAuthors . $formattedAuthors );
 		}
 		return '';
 	}

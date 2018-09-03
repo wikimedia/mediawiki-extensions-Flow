@@ -138,11 +138,11 @@ class ContributionsQuery extends AbstractQuery {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
 			$conditions['rev_user_wiki'] = wfWikiID();
-			$conditions[] = 'rev_user_id > '. (int)$minUserId;
+			$conditions[] = 'rev_user_id > ' . (int)$minUserId;
 			if ( $excludeUserIds ) {
 				// better safe than sorry - make sure everything's an int
 				$excludeUserIds = array_map( 'intval', $excludeUserIds );
-				$conditions[] = 'rev_user_id NOT IN ( ' . implode( ',', $excludeUserIds ) .' )';
+				$conditions[] = 'rev_user_id NOT IN ( ' . implode( ',', $excludeUserIds ) . ' )';
 				$conditions['rev_user_ip'] = null;
 			}
 		} else {

@@ -105,7 +105,7 @@ class IndexTest extends FlowTestCase {
 			[ 'id' => 1, 'ot' => 9 ],
 			[ 'id' => 1, 'ot' => 8 ],
 		] );
-		$cache->set( "$db:secondary:" . md5( 'baz' ). ":$v", [
+		$cache->set( "$db:secondary:" . md5( 'baz' ) . ":$v", [
 			[ 'id' => 3, 'ot' => 7 ],
 		] );
 
