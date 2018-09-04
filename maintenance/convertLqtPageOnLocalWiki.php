@@ -25,13 +25,6 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 	}
 
 	public function execute() {
-		$container = Container::getContainer();
-		// Workaround to try to help with memory problems (T108601).  The extend is
-		// so all uses of memcache.local_buffered pick up the same alternative.
-		$container->extend( 'memcache.local_buffered', function ( $mlb, $c ) {
-			return $c['memcache.non_local_buffered'];
-		} );
-
 		$talkPageManagerUser = \FlowHooks::getOccupationController()->getTalkpageManager();
 
 		$api = new LocalApiBackend( $talkPageManagerUser );
