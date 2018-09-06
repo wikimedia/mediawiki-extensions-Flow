@@ -928,10 +928,24 @@ class FlowHooks {
 	 */
 	public static function onAbuseFilterBuilder( &$realValues ) {
 		$realValues['vars'] += [
-			'board_articleid' => 'board-articleid',
+			'board_id' => 'board-id',
 			'board_namespace' => 'board-namespace',
-			'board_text' => 'board-text',
-			'board_prefixedtext' => 'board-prefixedtext',
+			'board_title' => 'board-title',
+			'board_prefixedtitle' => 'board-prefixedtitle',
+		];
+		return true;
+	}
+
+	/**
+	 * Add our deprecated variables
+	 * @param array &$deprecatedVars
+	 * @return bool
+	 */
+	public static function onAbuseFilterDeprecatedVariables( &$deprecatedVars ) {
+		$deprecatedVars += [
+			'board_articleid' => 'board_id',
+			'board_text' => 'board_title',
+			'board_prefixedtext' => 'board_prefixedtitle',
 		];
 		return true;
 	}
