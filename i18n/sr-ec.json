@@ -13,10 +13,10 @@
 		]
 	},
 	"enablestructureddiscussions": "Омогући Flow",
-	"abusefilter-edit-builder-vars-board-articleid": "ID странице Форума за дискусију",
+	"abusefilter-edit-builder-vars-board-id": "ID странице Форума за дискусију",
 	"abusefilter-edit-builder-vars-board-namespace": "Именски простор Форума за дискусију",
-	"abusefilter-edit-builder-vars-board-text": "Наслов (без именског простора) табле структурисаних дискусија",
-	"abusefilter-edit-builder-vars-board-prefixedtext": "Пуни назив Форума за дискусију",
+	"abusefilter-edit-builder-vars-board-title": "Наслов (без именског простора) табле структурисаних дискусија",
+	"abusefilter-edit-builder-vars-board-prefixedtitle": "Пуни назив Форума за дискусију",
 	"flow-board-header-browse-topics-link": "Списак тема",
 	"flow-board-header": "О овој дискусији",
 	"flow-board-collapse-description": "Сакриј опис",

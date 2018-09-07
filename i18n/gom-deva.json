@@ -7,9 +7,9 @@
 		]
 	},
 	"logentry-delete-flow-delete-post": "$1 हाणें \"[[$3|$5]]\" एक [$4 प्रकास्णी] [[$6]] -चेर {{GENDER:$2|काडुन उडोयलां}}",
-	"abusefilter-edit-builder-vars-board-articleid": "फ्लो बोर्डाच्या पानाची वळख",
-	"abusefilter-edit-builder-vars-board-text": "फ्लो बोर्डाचो माथाळो",
-	"abusefilter-edit-builder-vars-board-prefixedtext": "फ्लो बोर्डाचो पुराय माथाळो",
+	"abusefilter-edit-builder-vars-board-id": "फ्लो बोर्डाच्या पानाची वळख",
+	"abusefilter-edit-builder-vars-board-title": "फ्लो बोर्डाचो माथाळो",
+	"abusefilter-edit-builder-vars-board-prefixedtitle": "फ्लो बोर्डाचो पुराय माथाळो",
 	"flow-user-moderated": "बदलणी केल्लो वापरपी",
 	"flow-board-header-browse-topics-link": "विशयो पळय",
 	"flow-board-header": "ह्या फळ्या वीशीं",
