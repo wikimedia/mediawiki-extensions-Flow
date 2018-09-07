@@ -45,7 +45,6 @@ class ReferenceExtractor {
 			);
 		} else {
 			throw new \Exception( "No extractors available for $objectType" );
-			return [];
 		}
 	}
 

@@ -259,7 +259,6 @@ class TopicSummaryBlock extends AbstractBlock {
 			case 'undo-edit-topic-summary':
 			case 'edit-topic-summary':
 				return $this->saveTopicSummary();
-			break;
 
 			default:
 				throw new InvalidActionException( "Unexpected action: {$this->action}",
