@@ -225,7 +225,6 @@ class ContributionsQuery extends AbstractQuery {
 						],
 					]
 				);
-				break;
 
 			case 'Header':
 				return $dbr->select(
@@ -244,7 +243,6 @@ class ContributionsQuery extends AbstractQuery {
 						],
 					]
 				);
-				break;
 
 			case 'PostSummary':
 				return $dbr->select(
@@ -267,11 +265,9 @@ class ContributionsQuery extends AbstractQuery {
 						]
 					]
 				);
-				break;
 
 			default:
 				throw new \MWException( 'Unsupported revision type ' . $revisionClass );
-				break;
 		}
 	}
 

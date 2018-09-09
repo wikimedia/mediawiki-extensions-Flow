@@ -58,7 +58,6 @@ class BlockFactory {
 
 			default:
 				throw new DataModelException( 'Not Implemented', 'process-data' );
-				break;
 		}
 
 		$return = [];
