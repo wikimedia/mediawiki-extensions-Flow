@@ -7,7 +7,8 @@
 			"Nnemo",
 			"Quiddity",
 			"Matiia",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Vlad5250"
 		]
 	},
 	"enablestructureddiscussions": "Вклучи го Тек",
@@ -307,8 +308,8 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 и {{PLURAL:$3|уште еден|$3 други|100=преку 99 други}} {{GENDER:$1|го изменија}} описот на $2",
 	"notification-header-flow-topic-resolved": "Темата „<strong>$1</strong>“ е решена.",
 	"notification-header-flow-topic-reopened": "Темата „<strong>$1</strong>“ е повторно отворена.",
-	"notification-header-flow-topic-resolved-user-talk": "Темата „<strong>$1</strong>“ е решена на <strong>вашата разговорна страница</strong>.",
-	"notification-header-flow-topic-reopened-user-talk": "Темата „<strong>$1</strong>“ е повторно отворена на <strong>вашата разговорна страница</strong>.",
+	"notification-header-flow-topic-resolved-user-talk": "Темата „<strong>$1</strong>“ е решена на <strong>{{GENDER:$2|вашата}} разговорна страница</strong>.",
+	"notification-header-flow-topic-reopened-user-talk": "Темата „<strong>$1</strong>“ е повторно отворена на <strong>{{GENDER:$2|вашата}} разговорна страница</strong>.",
 	"notification-email-subject-flow-topic-resolved": "Темата „<strong>$2</strong>“ е решена.",
 	"notification-email-batch-body-flow-topic-resolved": "Темата „<strong>$2</strong>“ е решена.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|создаде}}  нова тема на <strong>$3</strong>.",

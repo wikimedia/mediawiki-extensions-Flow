@@ -16,7 +16,8 @@
 			"Green Zero",
 			"Visem",
 			"Macofe",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Vlad5250"
 		]
 	},
 	"enablestructureddiscussions": "Увімкнути Flow",
@@ -310,8 +311,8 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 та {{PLURAL:$3|$3 інший|$3 інші|$3 інших|1=один інший|100=99+ інших}} {{GENDER:$1|відредагували}} опис на $2",
 	"notification-header-flow-topic-resolved": "Тему «<strong>$1</strong>» було вирішено.",
 	"notification-header-flow-topic-reopened": "Тему «<strong>$1</strong>» було повторно відкрито.",
-	"notification-header-flow-topic-resolved-user-talk": "Тему «<strong>$1</strong>» було вирішено на <strong>Вашій сторінці обговорення</strong>.",
-	"notification-header-flow-topic-reopened-user-talk": "Тему «<strong>$1</strong>» було повторно відкрито на <strong>Вашій сторінці обговорення</strong>.",
+	"notification-header-flow-topic-resolved-user-talk": "Тему «<strong>$1</strong>» було вирішено на <strong>{{GENDER:$2|Вашій}} сторінці обговорення</strong>.",
+	"notification-header-flow-topic-reopened-user-talk": "Тему «<strong>$1</strong>» було повторно відкрито на <strong>{{GENDER:$2|Вашій}} сторінці обговорення</strong>.",
 	"notification-email-subject-flow-topic-resolved": "Тему «<strong>$2</strong>» було вирішено.",
 	"notification-email-batch-body-flow-topic-resolved": "Тему «<strong>$2</strong>» було вирішено.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|створив|створила}} нову тему на <strong>$3</strong>.",

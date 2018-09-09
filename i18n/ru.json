@@ -36,7 +36,8 @@
 			"Patrick Star",
 			"Ole Yves",
 			"Matěj Suchánek",
-			"Stjn"
+			"Stjn",
+			"Vlad5250"
 		]
 	},
 	"enablestructureddiscussions": "Включить «Cтруктурированные обсуждения»",
@@ -334,8 +335,8 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 и {{PLURAL:$3|$3 {{GENDER:$1|другой отредактировал|другая отредактировала}}|$3 других отредактировали|100=99+ других отредактировали}} описание на странице $2",
 	"notification-header-flow-topic-resolved": "Тема «<strong>$1</strong>» была завершена.",
 	"notification-header-flow-topic-reopened": "Тема «<strong>$1</strong>» была переоткрыта.",
-	"notification-header-flow-topic-resolved-user-talk": "Тема «<strong>$1</strong>» на <strong>вашей странице обсуждения</strong> была решена.",
-	"notification-header-flow-topic-reopened-user-talk": "Тема «<strong>$1</strong>» на <strong>вашей странице обсуждения</strong> была переоткрыта.",
+	"notification-header-flow-topic-resolved-user-talk": "Тема «<strong>$1</strong>» на <strong>{{GENDER:$2|вашей}} странице обсуждения</strong> была решена.",
+	"notification-header-flow-topic-reopened-user-talk": "Тема «<strong>$1</strong>» на <strong>{{GENDER:$2|вашей}} странице обсуждения</strong> была переоткрыта.",
 	"notification-email-subject-flow-topic-resolved": "Тема «<strong>$2</strong>» была завершена.",
 	"notification-email-batch-body-flow-topic-resolved": "Тема «<strong>$2</strong>» была решена.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|создал|создала}} новую тему на <strong>$3</strong>.",
