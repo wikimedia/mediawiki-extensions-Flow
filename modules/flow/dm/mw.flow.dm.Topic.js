@@ -134,7 +134,7 @@
 
 	/**
 	 * Check if a topic is a stub
-	 * @return {Boolean} Topic is a stub
+	 * @return {boolean} Topic is a stub
 	 */
 	mw.flow.dm.Topic.prototype.isStub = function () {
 		return this.stub;

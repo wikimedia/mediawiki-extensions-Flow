@@ -124,7 +124,7 @@
 			return queryMap;
 		}
 		for ( key in queryMap ) {
-			if ( queryMap.hasOwnProperty( key ) ) {
+			if ( Object.prototype.hasOwnProperty.call( queryMap, key ) ) {
 				if ( key.indexOf( map[ 0 ] ) === 0 ) {
 					queryMap[ key.replace( map[ 0 ], map[ 1 ] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
