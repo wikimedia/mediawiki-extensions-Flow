@@ -10,6 +10,7 @@ use User;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiWatchTopicTest extends ApiTestCase {
 

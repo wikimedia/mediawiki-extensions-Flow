@@ -13,6 +13,7 @@ use Title;
  * @covers \Flow\SpamFilter\SpamRegex
  *
  * @group Flow
+ * @group Database
  */
 class SpamRegexTest extends PostRevisionTestCase {
 	/**

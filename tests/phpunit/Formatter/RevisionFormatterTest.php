@@ -19,6 +19,7 @@ use User;
  * @covers \Flow\Model\PostRevision
  *
  * @group Flow
+ * @group Database
  */
 class RevisionFormatterTest extends PostRevisionTestCase {
 	protected $user;

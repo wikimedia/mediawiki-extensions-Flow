@@ -11,6 +11,7 @@ use Sanitizer;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowViewHeaderTest extends ApiTestCase {
 	public function testViewEmptyHeader() {

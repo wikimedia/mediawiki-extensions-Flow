@@ -15,6 +15,7 @@ use Title;
  * @covers \Flow\Parsoid\Fixer\WikiLinkFixer
  *
  * @group Flow
+ * @group Database
  */
 class WikiLinkFixerTest extends PostRevisionTestCase {
 

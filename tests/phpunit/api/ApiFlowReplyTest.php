@@ -11,6 +11,7 @@ use Sanitizer;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowReplyTest extends ApiTestCase {
 	public function testTopLevelReply() {

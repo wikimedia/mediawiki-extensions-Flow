@@ -14,6 +14,7 @@ use Title;
  * @covers \Flow\SpamFilter\SpamBlacklist
  *
  * @group Flow
+ * @group Database
  */
 class SpamBlacklistTest extends PostRevisionTestCase {
 	/**

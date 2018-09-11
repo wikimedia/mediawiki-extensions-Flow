@@ -18,6 +18,7 @@ use User;
  * @covers \FlowHooks
  *
  * @group Flow
+ * @group Database
  */
 class HookTest extends \MediaWikiTestCase {
 	protected $tablesUsed = [

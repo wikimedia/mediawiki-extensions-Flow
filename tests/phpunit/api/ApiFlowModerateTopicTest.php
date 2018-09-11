@@ -11,6 +11,7 @@ use Flow\Model\AbstractRevision;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
 	protected $tablesUsed = [

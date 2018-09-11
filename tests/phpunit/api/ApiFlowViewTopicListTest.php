@@ -12,6 +12,7 @@ use Title;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowViewTopicListTest extends ApiTestCase {
 	const TITLE_PREFIX = 'VTL Test ';

@@ -20,6 +20,7 @@ use User;
  * @covers \Flow\PostReplyPresentationModel
  *
  * @group Flow
+ * @group Database
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
 	protected $tablesUsed = [

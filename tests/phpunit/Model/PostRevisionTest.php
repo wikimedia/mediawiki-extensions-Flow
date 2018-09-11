@@ -14,6 +14,7 @@ use Title;
  * @covers \Flow\Model\PostRevision
  *
  * @group Flow
+ * @group Database
  */
 class PostRevisionTest extends PostRevisionTestCase {
 	/**

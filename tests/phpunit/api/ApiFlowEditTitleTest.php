@@ -9,6 +9,7 @@ namespace Flow\Tests\Api;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowEditTitleTest extends ApiTestCase {
 	public function testEditTitle() {

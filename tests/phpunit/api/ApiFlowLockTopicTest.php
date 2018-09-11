@@ -9,6 +9,7 @@ namespace Flow\Tests\Api;
  *
  * @group Flow
  * @group medium
+ * @group Database
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
 	public function testLockTopic() {
