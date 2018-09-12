@@ -7,7 +7,6 @@ QUnit.test( 'Create board', function ( assert ) {
 		executeOperation = function ( obj, operation, params ) {
 			return obj[ operation ].apply( obj, params );
 		},
-		expectCount = 0,
 		cases = [
 			{
 				method: 'getHashObject',
@@ -162,16 +161,11 @@ QUnit.test( 'Create board', function ( assert ) {
 		isDeleted: false
 	} );
 
-	expectCount = cases.length;
 	for ( i = 0, ilen = cases.length; i < ilen; i++ ) {
 		result = executeOperation( board, cases[ i ].method, cases[ i ].params || [] );
 		if ( cases[ i ].expected !== undefined ) {
 			// Test
 			assert.deepEqual( result, cases[ i ].expected, cases[ i ].msg );
-		} else {
-			expectCount--;
 		}
 	}
-
-	assert.expect( expectCount );
 } );

@@ -1,6 +1,6 @@
 ( function ( $ ) {
 	QUnit.module( 'ext.flow: Handlebars helpers', {
-		setup: function () {
+		beforeEach: function () {
 			var stub = this.sandbox.stub( mw.template, 'get' ),
 				stubUser;
 
@@ -78,22 +78,22 @@
 		assert.strictEqual( this.handlebarsProto.ifCond( 'foo', '!==', 'bar', this.opts ), 'ok' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.ifAnonymous', function () {
-		strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'ok', 'User should be anonymous first time.' );
-		strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
+	QUnit.test( 'Handlebars.prototype.ifAnonymous', function ( assert ) {
+		assert.strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'ok', 'User should be anonymous first time.' );
+		assert.strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.concat', function () {
-		strictEqual( this.handlebarsProto.concat( 'a', 'b', 'c', this.opts ), 'abc', 'Check concat working fine.' );
-		strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
+	QUnit.test( 'Handlebars.prototype.concat', function ( assert ) {
+		assert.strictEqual( this.handlebarsProto.concat( 'a', 'b', 'c', this.opts ), 'abc', 'Check concat working fine.' );
+		assert.strictEqual( this.handlebarsProto.concat( this.opts ), '', 'Without arguments.' );
 	} );
 
-	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', function () {
+	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', function ( assert ) {
 		var opts = $.extend( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
 			$div = $( document.createElement( 'div' ) );
 
 		// Render script tag
-		strictEqual(
+		assert.strictEqual(
 			this.handlebarsProto.progressiveEnhancement( opts ).string,
 			// eslint-disable-next-line no-useless-concat
 			'<scr' + 'ipt' +
@@ -111,7 +111,7 @@
 		$div.empty().append( this.handlebarsProto.processTemplateGetFragment(
 			Handlebars.compile( '{{#progressiveEnhancement}}hello{{/progressiveEnhancement}}' )
 		) );
-		strictEqual(
+		assert.strictEqual(
 			$div.html(),
 			'hello',
 			'progressiveEnhancement should be processed in template string.'
@@ -121,7 +121,7 @@
 		$div.empty().append( this.handlebarsProto.processTemplateGetFragment(
 			Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="replace"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
 		) );
-		strictEqual(
+		assert.strictEqual(
 			$div.html(),
 			'hello',
 			'progressiveEnhancement should replace target node.'
@@ -133,7 +133,7 @@
 				Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="insert"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
 			)
 		);
-		strictEqual(
+		assert.strictEqual(
 			$div.html(),
 			'hello<div class="pgetest">foo</div>',
 			'progressiveEnhancement should insert before target.'
@@ -145,7 +145,7 @@
 				Handlebars.compile( '{{#progressiveEnhancement target="~ .pgetest" type="content"}}hello{{/progressiveEnhancement}}<div class="pgetest">foo</div>' )
 			)
 		);
-		strictEqual(
+		assert.strictEqual(
 			$div.html(),
 			'<div class="pgetest">hello</div>',
 			'progressiveEnhancement should replace target content.'

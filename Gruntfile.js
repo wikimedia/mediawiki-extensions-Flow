@@ -4,7 +4,7 @@
  * @package Flow
  */
 
-/* eslint-env node: */
+/* eslint-env node */
 module.exports = function ( grunt ) {
 	var conf = grunt.file.readJSON( 'extension.json' );
 

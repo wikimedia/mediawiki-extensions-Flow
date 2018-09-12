@@ -48,7 +48,7 @@
 
 		format = format || this.defaultFormat;
 
-		if ( this.contentRepresentations.hasOwnProperty( format ) ) {
+		if ( Object.prototype.hasOwnProperty.call( this.contentRepresentations, format ) ) {
 			return this.contentRepresentations[ format ];
 		}
 		return null;
@@ -70,7 +70,7 @@
 			this.contentRepresentations[ this.defaultFormat ] = representations.content;
 
 			for ( format in representations ) {
-				if ( representations.hasOwnProperty( format ) ) {
+				if ( Object.prototype.hasOwnProperty.call( representations, format ) ) {
 					this.contentRepresentations[ format ] = representations[ format ];
 				}
 			}

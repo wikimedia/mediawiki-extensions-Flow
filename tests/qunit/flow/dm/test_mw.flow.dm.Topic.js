@@ -6,8 +6,7 @@ QUnit.test( 'Load topics', function ( assert ) {
 	var i, j, ilen, jlen, topic, result, operation, cases,
 		executeOperation = function ( obj, operation, params ) {
 			return obj[ operation ].apply( obj, params );
-		},
-		expectCount = 0;
+		};
 
 	cases = [
 		{
@@ -236,8 +235,6 @@ QUnit.test( 'Load topics', function ( assert ) {
 	];
 
 	for ( i = 0, ilen = cases.length; i < ilen; i++ ) {
-		expectCount += cases[ i ].operations.length;
-
 		topic = new mw.flow.dm.Topic( cases[ i ].args.id, cases[ i ].args.data );
 
 		for ( j = 0, jlen = cases[ i ].operations.length; j < jlen; j++ ) {
@@ -246,11 +243,7 @@ QUnit.test( 'Load topics', function ( assert ) {
 			if ( operation.expected !== undefined ) {
 				// Test
 				assert.deepEqual( result, operation.expected, operation.msg );
-			} else {
-				expectCount--;
 			}
 		}
 	}
-
-	assert.expect( expectCount );
 } );
