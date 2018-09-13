@@ -21,6 +21,7 @@ use GenderCache;
 use IContextSource;
 use Message;
 use Wikimedia\Timestamp\TimestampException;
+use User;
 
 /**
  * This implements a serializer for converting revision objects
@@ -473,6 +474,8 @@ class RevisionFormatter {
 	 * @throws FlowException
 	 */
 	public function buildActions( FormatterRow $row ) {
+		global $wgThanksSendToBots;
+
 		$user = $this->permissions->getUser();
 		$workflow = $row->workflow;
 		$title = $workflow->getArticleTitle();
@@ -502,6 +505,7 @@ class RevisionFormatter {
 			}
 			switch ( $type ) {
 			case 'thank':
+				$targetedUser = User::newFromId( $revision->getCreatorId() );
 				if (
 					// thanks extension must be available
 					ExtensionRegistry::getInstance()->isLoaded( 'Thanks' ) &&
@@ -511,9 +515,11 @@ class RevisionFormatter {
 					// (other revision objects have no getCreator* methods)
 					$revision instanceof PostRevision &&
 					// only thank a logged in user
-					$revision->getCreatorId() > 0 &&
+					!$targetedUser->isAnon() &&
 					// can't thank self
-					$user->getId() !== $revision->getCreatorId()
+					$user->getId() !== $revision->getCreatorId() &&
+					// can't thank bots
+					!( !$wgThanksSendToBots && in_array( 'bot', $targetedUser->getGroups() ) )
 				) {
 					$links['thank'] = $this->urlGenerator->thankAction( $postId );
 				}
