@@ -96,7 +96,7 @@ class AbuseFilter implements SpamFilter {
 		$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', [ 'revision' => $oldRevision ] );
 		$vars->setLazyLoadVar( 'old_size', 'length', [ 'length-var' => 'old_wikitext' ] );
 
-		return \AbuseFilter::filterAction( $vars, $title, $this->group );
+		return \AbuseFilter::filterAction( $vars, $title, $this->group, $context->getUser() );
 	}
 
 	/**
