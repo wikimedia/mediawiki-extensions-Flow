@@ -19,7 +19,7 @@
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
-			<property name="ignoreList" type="array" value="query_revisions,parsoid_to_wikitext,truncate" />
+			<property name="ignoreList" type="array" value="query_revisions,parsoid_to_wikitext,truncate,out" />
 		</properties>
 	</rule>
 	<file>.</file>

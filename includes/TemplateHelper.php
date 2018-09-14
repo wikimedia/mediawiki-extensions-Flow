@@ -390,7 +390,7 @@ class TemplateHelper {
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $revision['links'][$linkKey] ) ) {
 				$link = $revision['links'][$linkKey];
-				$formattedTime = Html::element(
+				$formattedTimeOutput = Html::element(
 					'a',
 					[
 						'href' => $link['url'],
@@ -404,7 +404,7 @@ class TemplateHelper {
 		}
 
 		if ( $raw === false ) {
-			$formattedTime = htmlspecialchars( $formattedTime );
+			$formattedTimeOutput = htmlspecialchars( $formattedTime );
 		}
 
 		$class = [ 'mw-changeslist-date' ];
@@ -414,7 +414,7 @@ class TemplateHelper {
 
 		return self::html(
 			'<span class="plainlinks">'
-			. Html::rawElement( 'span', [ 'class' => $class ], $formattedTime )
+			. Html::rawElement( 'span', [ 'class' => $class ], $formattedTimeOutput )
 			. '</span>'
 		);
 	}

@@ -1,4 +1,7 @@
 <?php
+if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
+	die( "Can only be run from the command line" );
+}
 if ( count( $argv ) < 3 ) {
 	print "Call with 2 arguments: the path to the load url and the file to output to";
 	exit();
@@ -23,6 +26,13 @@ foreach ( $wgResourceModules as $moduleName => $def ) {
 }
 
 $url = $loadUrl . '?only=styles&skin=vector&modules=' . implode( '|', $query );
-echo $url;
+/**
+ * @param string $val
+ * @param-taint $val none
+ */
+function out( $val ) {
+	echo $val;
+}
+out( $url );
 $css = file_get_contents( $url );
 file_put_contents( $outputFile, $css );

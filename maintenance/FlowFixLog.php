@@ -96,10 +96,11 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 
 	public function update( $row ) {
 		$updates = [];
+		$logId = (int)$row->log_id;
 
 		$params = unserialize( $row->log_params );
 		if ( !$params ) {
-			$this->maintenance->error( "Failed to unserialize log_params for log_id {$row->log_id}" );
+			$this->maintenance->error( "Failed to unserialize log_params for log_id $logId" );
 			return [];
 		}
 
@@ -114,7 +115,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 		}
 
 		if ( !$topic ) {
-			$this->maintenance->error( "Missing topicId & postId for log_id {$row->log_id}" );
+			$this->maintenance->error( "Missing topicId & postId for log_id $logId" );
 			return [];
 		}
 
@@ -123,7 +124,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 			$updates['log_namespace'] = $topic->getTitle()->getNamespace();
 			$updates['log_title'] = $topic->getTitle()->getDBkey();
 		} catch ( \Exception $e ) {
-			$this->maintenance->error( "Couldn't load Title for log_id {$row->log_id}" );
+			$this->maintenance->error( "Couldn't load Title for log_id $logId" );
 			$updates = [];
 		}
 

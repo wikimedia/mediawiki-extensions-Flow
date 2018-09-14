@@ -379,6 +379,7 @@ abstract class AbstractRevision {
 	 * @param string $format Format to output content in
 	 *   (html|wikitext|topic-title-wikitext|topic-title-html|topic-title-plaintext)
 	 * @return string
+	 * @return-taint onlysafefor_htmlnoent
 	 * @throws InvalidDataException
 	 */
 	public function getContent( $format = 'html' ) {

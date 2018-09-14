@@ -386,6 +386,10 @@ class Exporter extends WikiExporter {
 		$this->sink->write( $output );
 	}
 
+	/**
+	 * @param AbstractRevison $revision
+	 * @suppress SecurityCheck-DoubleEscaped
+	 */
 	protected function formatRevision( AbstractRevision $revision ) {
 		if ( !$this->isAllowed( $revision ) ) {
 			return;
