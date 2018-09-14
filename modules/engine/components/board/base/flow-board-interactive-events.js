@@ -48,6 +48,11 @@
 			return $deferred.resolve().promise();
 		}
 
+		// Ignore clicks on the editor
+		if ( $( event.target ).is( '.flow-ui-editorWidget *' ) ) {
+			return $deferred.resolve().promise();
+		}
+
 		if ( $target.is( '.flow-element-collapsed' ) ) {
 			$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
 			updateTitle( this, 'expanded' );
