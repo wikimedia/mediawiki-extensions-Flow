@@ -15,7 +15,8 @@
 			"Sadrettin",
 			"Vito Genovese",
 			"Bulgu",
-			"Hedda"
+			"Hedda",
+			"TmY e12"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Konulara göz at",
@@ -68,6 +69,8 @@
 	"flow-moderation-confirmation-hide-topic": "Bu konu gizlenmiştir.",
 	"flow-moderation-title-hide-topic": "Konuyu gizle?",
 	"right-flow-hide": "Yapılandırılmış Tartışma konularını ve yayınlarını gizle",
+	"right-flow-lock": "Yapılandırılmış Tartışma konularını çözümlendi olarak işaretle",
+	"right-flow-edit-post": "Yapılandırılmış Tartışma gönderilerini diğer kullanıcılarla düzenle",
 	"flow-anon-warning": "Oturum açmadınız.",
 	"flow-topic-html-title": "$1 sayfa $2",
 	"flow-special-enableflow-invalid-title": "Geçersiz bir sayfa başlığı girildi",
