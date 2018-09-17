@@ -19,6 +19,7 @@ use ApiResult;
 use ExtensionRegistry;
 use GenderCache;
 use IContextSource;
+use MediaWiki\Logger\LoggerFactory;
 use Message;
 use Wikimedia\Timestamp\TimestampException;
 use User;
@@ -201,6 +202,14 @@ class RevisionFormatter {
 		$this->permissions->setUser( $ctx->getUser() );
 
 		if ( !$this->permissions->isAllowed( $row->revision, $action ) ) {
+			LoggerFactory::getInstance( 'Flow' )->debug(
+				__METHOD__ . ': Permission denied for user on action {action}',
+				[
+					'action' => $action,
+					'revision_id' => $row->revision->getRevisionId(),
+					'user_id' => $ctx->getUser()->getId(),
+				]
+			);
 			return false;
 		}
 
