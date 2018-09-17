@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use HashConfig;
 use Title;
 use User;
 use WikiPage;
@@ -69,15 +70,21 @@ class TalkpageManagerTest extends \MediaWikiTestCase {
 	public function testCheckIfUserHasPermission() {
 		global $wgNamespaceContentModels;
 
-		$tempModels = $beforeModels = $wgNamespaceContentModels;
+		$tempModels = $wgNamespaceContentModels;
 		$tempModels[NS_USER_TALK] = CONTENT_MODEL_FLOW_BOARD;
 
 		$unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 
+		// TODO: remove this once core no longer accesses wgNamespaceContentModels directly.
 		$this->setMwGlobals( [
 			'wgNamespaceContentModels' => $tempModels,
 			'wgFlowReadOnly' => false,
 		] );
+
+		$this->overrideMwServices( new HashConfig( [
+			'wgNamespaceContentModels' => $tempModels,
+			'wgFlowReadOnly' => false,
+		] ) );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User talk:Test123' ), $unconfirmedUser );
