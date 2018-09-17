@@ -4,6 +4,7 @@ namespace Flow\Tests\Api;
 
 use Flow\Container;
 use FlowHooks;
+use HashConfig;
 use MediaWiki\MediaWikiServices;
 use User;
 
@@ -27,12 +28,20 @@ abstract class ApiTestCase extends \ApiTestCase {
 	];
 
 	protected function setUp() {
-		$this->setMwGlobals( 'wgNamespaceContentModels', [
+		parent::setUp();
+
+		$namespaceContentModels = [
 			NS_TALK => CONTENT_MODEL_FLOW_BOARD,
 			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
-		] );
+		];
 
-		parent::setUp();
+		// TODO: remove this once core no longer accesses wgNamespaceContentModels directly.
+		$this->setMwGlobals( 'wgNamespaceContentModels', $namespaceContentModels );
+
+		$this->overrideMwServices( new HashConfig( [
+			'NamespaceContentModels' => $namespaceContentModels
+		] ) );
+
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
 	}
 
