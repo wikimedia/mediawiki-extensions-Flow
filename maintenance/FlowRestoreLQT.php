@@ -251,7 +251,8 @@ class FlowRestoreLQT extends Maintenance {
 				if ( !$this->dryRun ) {
 					$page = WikiPage::factory( $flow );
 					$page->doDeleteArticleReal( '/* Make place to restore LQT board */',
-						false, null, null, $error, $this->talkpageManagerUser );
+						false, null, null, $error, $this->talkpageManagerUser,
+						[], 'delete', true );
 				}
 
 				$this->movePage( $lqt, $flow, '/* Restore LQT board to original location */' );
