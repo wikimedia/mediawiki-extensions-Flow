@@ -249,7 +249,7 @@
 	"flow-rev-message-restored-post": "$1 {{GENDER:$2|已還原}}於 「$6」 的一個 [$4 貼文] (<em>$5</em>)",
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|已隱藏}}於 \"$6\" 的 [$4 話題] (<em>$5</em>)",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|已刪除}}於 \"$6\" 的 [$4 話題] (<em>$5</em>)",
-	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|已封鎖}}於 「$6」 的 [$4 話題] (<em>$5</em>)",
+	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|已監督}}於 「$6」 的 [$4 話題] (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|已標記}}於“$6”的 [$4 話題] 為已解決 (<em>$5</em>)",
 	"flow-rev-message-lock-topic-reason": "標記為已解決",
 	"flow-rev-message-restore-topic-reason": "重新開啟",
