@@ -17,8 +17,7 @@
 ),
         'blockhelpers' => array(),
         'hbhelpers' => array(),
-        'partials' => array('flow_header_title' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-board-header-title">
-'.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles"></span>
+        'partials' => array('flow_header_title' => function ($cx, $in, $sp) {return ''.$sp.'<h2 class="flow-board-header-title mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles">
 '.$sp.'	'.LCRun3::ch($cx, 'l10n', array(array('flow-board-header'),array()), 'encq').'
 '.$sp.'</h2>
 ';},'flow_errors' => function ($cx, $in, $sp) {return ''.$sp.'<div class="flow-error-container">
