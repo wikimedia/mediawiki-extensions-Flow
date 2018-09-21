@@ -85,6 +85,7 @@
 	"flow-post-action-hide-post": "Slēpt",
 	"flow-post-action-edit-post": "Labot",
 	"flow-post-action-edit-post-submit": "Saglabāt labojumus",
+	"flow-post-action-edit-post-submit-anonymously": "Saglabāt izmaiņas anonīmi",
 	"flow-post-action-edit-post-submit-publish": "Publicēt izmaiņas",
 	"flow-post-action-edit-post-submit-anonymously-publish": "Publicēt izmaiņas anonīmi",
 	"flow-post-action-restore-post": "Atjaunot",
