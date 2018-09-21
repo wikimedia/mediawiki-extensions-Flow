@@ -16,6 +16,7 @@ use Flow\Conversion\Utils;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use MovePage;
 use Parser;
@@ -103,15 +104,11 @@ class OptInController {
 	 * @param User $user User that owns the talk page
 	 */
 	public function initiateChange( $action, Title $talkpage, User $user ) {
-		$flowDbw = $this->dbFactory->getDB( DB_MASTER );
-		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
-
 		$outerMethod = __METHOD__;
 		$logger = $this->logger;
 
-		// We need both since we use both databases.
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $logger, $outerMethod, $action, $talkpage, $user, $wikiDbw, $flowDbw ) {
+			function () use ( $logger, $outerMethod, $action, $talkpage, $user ) {
 				try {
 					if ( $action === self::$ENABLE ) {
 						$this->enable( $talkpage, $user );
@@ -132,13 +129,12 @@ class OptInController {
 						]
 					);
 
-					// rollback both Flow and Core DBs
-					$flowDbw->rollback( $outerMethod );
-					$wikiDbw->rollback( $outerMethod );
+					// Rollback both Flow and Core DBs.
+					MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+						->rollbackMasterChanges( $outerMethod );
 				}
 			},
-			DeferredUpdates::POSTSEND,
-			[ $wikiDbw, $flowDbw ]
+			DeferredUpdates::POSTSEND
 		);
 	}
 

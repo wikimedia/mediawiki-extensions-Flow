@@ -10,7 +10,9 @@ use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
+use FormatJson;
 use IContextSource;
+use MediaWiki\Logger\LoggerFactory;
 use SplQueue;
 
 class SubmissionHandler {
@@ -88,6 +90,13 @@ class SubmissionHandler {
 		// status, etc.
 		$errors = $workflow->getPermissionErrors( 'edit', $context->getUser(), 'secure' );
 		if ( count( $errors ) ) {
+			LoggerFactory::getInstance( 'Flow' )->error( 'Got permission errors for user {user} attempting action "{action}".',
+				[
+					'action' => $action,
+					'user' => $context->getUser()->getName(),
+					'errors' => FormatJson::encode( $errors )
+				]
+			);
 			foreach ( $errors as $errorMsgArgs ) {
 				$msg = wfMessage( array_shift( $errorMsgArgs ) );
 				if ( $errorMsgArgs ) {
