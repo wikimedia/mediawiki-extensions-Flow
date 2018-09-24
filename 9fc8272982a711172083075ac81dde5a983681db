@@ -22,6 +22,30 @@
       "revId": "9fc8272982a711172083075ac81dde5a983681db",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "804543ff_b8b80eef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2018-09-24T14:47:50Z",
+      "side": 1,
+      "message": "I preferred to add the logging here https://gerrit.wikimedia.org/r/c/mediawiki/extensions/Flow/+/461980/2/includes/SubmissionHandler.php#93 close to where the error array is prepared, as this could provide other log data that might help diagnose the issue (for example, various edit / comment tasks on the talk page as a blocked user) and it also covers createFlowBoard and editBoardDescription methods.",
+      "parentUuid": "6952dcc8_fedff2b9",
+      "range": {
+        "startLine": 20,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "9fc8272982a711172083075ac81dde5a983681db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
