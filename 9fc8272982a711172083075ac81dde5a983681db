@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6952dcc8_fedff2b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-09-24T14:42:10Z",
+      "side": 1,
+      "message": "That\u0027s a good point. Did you consider logging them in that loop?",
+      "range": {
+        "startLine": 20,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "9fc8272982a711172083075ac81dde5a983681db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
