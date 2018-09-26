@@ -17,6 +17,7 @@
 	"flow-delete-header-content": "{{GENDER:$1|Slettet}} af $2",
 	"flow-post-actions": "Handlinger",
 	"flow-topic-actions": "Handlinger",
+	"flow-cancel": "Annullér",
 	"flow-skip-summary": "Spring over",
 	"flow-show-change": "Vis ændringer",
 	"flow-newtopic-title-placeholder": "Nyt emne",
@@ -58,6 +59,7 @@
 	"flow-notification-link-text-view-post": "Vis indlæg",
 	"flow-notification-link-text-view-topic": "Vis emne",
 	"flow-notification-link-text-view-topics": "Se emner",
+	"flow-notification-reply-email-subject": "$2 på $3",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nævnte}} {{GENDER:$3|dig}} på $2",
 	"flow-link-history": "historik",
 	"flow-moderation-title-delete-post": "Slet indlæg?",
@@ -82,5 +84,6 @@
 	"flow-ve-mention-placeholder": "Brugernavn",
 	"flow-ve-mention-tool-title": "Nævn en bruger",
 	"flow-wikitext-editor-help": "Wikitekst $1.",
+	"flow-dialog-cancelconfirm-title": "Er {{GENDER:|du}} sikker?",
 	"flow-dialog-cancelconfirm-keep": "Fortsæt med at redigere"
 }
