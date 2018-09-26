@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use DeferredUpdates;
 use DerivativeContext;
+use Exception;
 use Flow\DbFactory;
 use Flow\Collection\HeaderCollection;
 use Flow\Content\BoardContent;
@@ -117,15 +118,15 @@ class OptInController {
 					} else {
 						$logger->error( $outerMethod . ': unrecognized action: ' . $action );
 					}
-				} catch ( \Throwable $t ) {
+				} catch ( Exception $exception ) {
 					$logger->error(
 						$outerMethod . ' failed to {action} Flow on \'{talkpage}\' for user \'{user}\'. {message} {trace}',
 						[
 							'action' => $action,
 							'talkpage' => $talkpage->getPrefixedText(),
 							'user' => $user->getName(),
-							'message' => $t->getMessage(),
-							'trace' => $t->getTraceAsString(),
+							'message' => $exception->getMessage(),
+							'trace' => $exception->getTraceAsString(),
 						]
 					);
 
