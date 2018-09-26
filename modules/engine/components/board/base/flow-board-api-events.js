@@ -355,7 +355,7 @@
 			flowBoard.emit( 'refreshTopic', workflowId, result );
 		} ).fail( function ( code, result ) {
 			var errorMsg = flowBoard.constructor.static.getApiErrorMessage( code, result );
-			errorMsg = mw.msg( 'flow-error-fetch-after-open-lock', errorMsg );
+			errorMsg = mw.msg( 'flow-error-external', errorMsg );
 
 			flowBoard.emitWithReturn( 'removeError', $target );
 			flowBoard.emitWithReturn( 'showError', $target, errorMsg );
