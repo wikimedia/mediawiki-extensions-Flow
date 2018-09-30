@@ -45,13 +45,14 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
 		$dbw = $dbf->getDB( DB_MASTER );
+		$fname = __METHOD__;
 
-		$runUpdate = function ( $callback ) use ( $dbf, $dbw, $storage ) {
+		$runUpdate = function ( $callback ) use ( $dbf, $dbw, $storage, $fname ) {
 			$continue = "\0";
 			do {
-				$dbw->begin( __METHOD__ );
+				$dbw->begin( $fname );
 				$continue = $callback( $dbw, $continue );
-				$dbw->commit( __METHOD__ );
+				$dbw->commit( $fname );
 				$dbf->waitForSlaves();
 				$storage->clear();
 			} while ( $continue !== null );
