@@ -1,8 +1,8 @@
 <?php
 
-use Flow\Content\BoardContent;
 use Flow\Container;
-use Flow\Exception\UnknownWorkflowIdException;
+use Flow\Utils\InconsistentBoardFixer;
+use MediaWiki\MediaWikiServices;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -54,16 +54,20 @@ class FlowFixInconsistentBoards extends Maintenance {
 	public function execute() {
 		global $wgLang;
 
-		$this->dbFactory = Container::get( 'db.factory' );
-		$this->workflowLoaderFactory = Container::get( 'factory.loader.workflow' );
-		$this->boardMover = Container::get( 'board_mover' );
-		$this->storage = Container::get( 'storage' );
-
 		$dryRun = $this->hasOption( 'dry-run' );
+		$dbFactory = Container::get( 'db.factory' );
+		$boardFixer = new InconsistentBoardFixer(
+			$dbFactory,
+			Container::get( 'factory.loader.workflow' ),
+			Container::get( 'board_mover' ),
+			Container::get( 'storage' ),
+			MediaWikiServices::getInstance()->getRevisionStore(),
+			$dryRun
+		);
 
 		$limit = $this->getOption( 'limit' );
 
-		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
+		$wikiDbw = $dbFactory->getWikiDB( DB_MASTER );
 
 		$iterator = new BatchRowIterator( $wikiDbw, 'page', 'page_id', $this->mBatchSize );
 		$iterator->setFetchColumns( [ 'page_namespace', 'page_title', 'page_latest' ] );
@@ -103,72 +107,26 @@ class FlowFixInconsistentBoards extends Maintenance {
 		foreach ( $iterator as $rows ) {
 			foreach ( $rows as $row ) {
 				$checkedCount++;
-				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$revision = Revision::newFromId( $row->page_latest );
-				$content = $revision->getContent( Revision::RAW );
-				if ( !$content instanceof BoardContent ) {
-					$actualClass = get_class( $content );
-					$this->error( "ERROR: '$coreTitle' content is a '$actualClass', but should be '"
-						. BoardContent::class . "'." );
-					continue;
-				}
-				$workflowId = $content->getWorkflowId();
-				if ( is_null( $workflowId ) ) {
-					// See T153320.  If the workflow exists, it could
-					// be looked up by title/page ID and the JSON could
-					// be fixed with an edit.
-					// Otherwise, the core revision has to be deleted.  This
-					// script does not do either of these things.
-					$this->error( "ERROR: '$coreTitle' JSON content does not have a valid workflow ID." );
-					continue;
-				}
-
-				$workflowIdAlphadecimal = $workflowId->getAlphadecimal();
-
 				try {
-					$workflow = $this->workflowLoaderFactory->loadWorkflowById( false, $workflowId );
-				} catch ( UnknownWorkflowIdException $ex ) {
-					// This is a different error (a core page refers to
-					// a non-existent workflow), which this script can not fix.
-					$this->error( "ERROR: '$coreTitle' refers to workflow ID " .
-						"'$workflowIdAlphadecimal', which could not be found." );
+					$result = $boardFixer->fix( $row->page_namesapce, $row->page_title, (int)$row->page_latest );
+				} catch ( Exception $exception ) {
+					$this->error( $exception->getMessage() );
 					continue;
 				}
-
-				if ( !$workflow->matchesTitle( $coreTitle ) ) {
-					$pageId = (int)$row->page_id;
-
-					$workflowTitle = $workflow->getOwnerTitle();
-					$this->output( "INCONSISTENT: Core title for '$workflowIdAlphadecimal' is " .
-						"'$coreTitle', but Flow title is '$workflowTitle'\n" );
-
+				if ( $result['inconsistentCount'] === true ) {
 					$inconsistentCount++;
-
-					// Sanity check, or this will fail in BoardMover
-					$workflowByPageId = $this->storage->find( 'Workflow', [
-							'workflow_wiki' => wfWikiID(),
-							'workflow_page_id' => $pageId,
-						] );
-
-					if ( !$workflowByPageId ) {
-						$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow " .
-							"is linked to this page ID" );
-						continue;
-					}
-
-					if ( !$dryRun ) {
-						$this->boardMover->move( $pageId, $coreTitle );
-						$this->boardMover->commit();
-						$this->output( "FIXED: Updated '$workflowIdAlphadecimal' to match core " .
-							"title, '$coreTitle'\n" );
-					}
-
-					$fixableInconsistentCount++;
-
-					if ( $limit !== null && $fixableInconsistentCount >= $limit ) {
-						break;
-					}
 				}
+				if ( $result['fixableInconsistentCount'] === true ) {
+					$fixableInconsistentCount++;
+				}
+				foreach ( $result['output'] as $output ) {
+					$this->output( $output );
+				}
+
+				if ( $limit !== null && $fixableInconsistentCount >= $limit ) {
+					break;
+				}
+
 			}
 
 			$action = $dryRun ? 'identified as fixable' : 'fixed';

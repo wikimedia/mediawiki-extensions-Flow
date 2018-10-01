@@ -12,6 +12,7 @@ use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidParameterException;
 use Flow\Exception\InvalidTopicUuidException;
 use Flow\Exception\UnknownWorkflowIdException;
+use JobQueueGroup;
 use Title;
 
 class WorkflowLoaderFactory {
@@ -127,7 +128,20 @@ class WorkflowLoaderFactory {
 			throw new UnknownWorkflowIdException( 'The requested workflow does not exist on this wiki.' );
 		}
 		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {
-			throw new InvalidDataException( 'Flow workflow is for different page', 'different-page' );
+			$workflowTitle = $workflow->getArticleTitle();
+			Container::get( 'default_logger' )->error(
+				'Flow workflow {workflow} does not match page {page}',
+				[
+					'workflow' => $workflowTitle->getText(),
+					'page' => $title->getText(),
+				]
+			);
+			$job = new FixInconsistentFlowWorkflowJob( $title, [] );
+			JobQueueGroup::singleton()->push( $job );
+			throw new InvalidDataException(
+				'Flow workflow is for different page. Enqueueing a job to attempt to fix.',
+				'different-page'
+			);
 		}
 
 		return $workflow;
