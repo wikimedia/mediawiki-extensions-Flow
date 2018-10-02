@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4016285e_02f99ae4",
+        "filename": "db_patches/patch-add-revision-content-length.sql",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 98
+      },
+      "writtenOn": "2018-10-02T15:21:49Z",
+      "side": 1,
+      "message": "missing a /*_*/ before this",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "81d20cea972c5f013580e945067c6af29b0668d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
