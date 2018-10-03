@@ -79,6 +79,10 @@ class View extends ContextSource {
 			$block->setPageTitle( $output );
 		}
 
+		if ( $this->actions->getValue( $action, 'hasUserGeneratedContent' ) ) {
+			$output->setCopyright( true );
+		}
+
 		$robotPolicy = $this->getRobotPolicy( $action, $loader->getWorkflow(), $blocks );
 		$this->renderApiResponse( $apiResponse, $robotPolicy );
 	}
