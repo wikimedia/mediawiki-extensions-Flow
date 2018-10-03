@@ -205,7 +205,7 @@
 	"flow-error-invalid-workflow": "Non se puido atopar o fluxo de traballo solicitado.",
 	"flow-error-process-data": "Houbo un erro ó procesar os datos da súa solicitude.",
 	"flow-error-process-wikitext": "Houbo un erro ó procesar a conversión HTML/wikitexto.",
-	"flow-error-no-index": "Erro ó buscar un índice para realizar a busca de datos.",
+	"flow-error-no-index": "Erro ó procurar un índice para realizar a procura de datos.",
 	"flow-error-no-render": "Non se recoñeceu a acción especificada.",
 	"flow-error-no-commit": "No se puido gardar a acción especificada.",
 	"flow-error-content-too-long": "O contido é demasiado longo. O contido despois da súa expansión está limitado a $1 {{PLURAL:$1|byte|bytes}}.",

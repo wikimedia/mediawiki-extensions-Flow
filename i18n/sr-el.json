@@ -3,10 +3,12 @@
 		"authors": [
 			"Milicevic01",
 			"Macofe",
-			"Obsuser"
+			"Obsuser",
+			"Zoranzoki21"
 		]
 	},
 	"enablestructureddiscussions": "Omogući Flow",
+	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|je obrisao|je obrisala}} temu \"[[$3|$5]]\" na [[$6]]",
 	"flow-board-header-browse-topics-link": "Spisak tema",
 	"flow-board-header": "O ovoj diskusiji",
 	"flow-board-collapse-description": "Sakrij opis",
@@ -95,9 +97,13 @@
 	"flow-terms-of-use-summarize": "Klikom na „{{int:flow-topic-action-update-topic-summary}}“, prihvatate uslove korišćenja ovog vikija.",
 	"flow-terms-of-use-lock-topic": "Klikom na „{{int:flow-topic-action-lock-topic}}“, prihvatate uslove korišćenja ovog vikija.",
 	"flow-terms-of-use-unlock-topic": "Klikom na „{{int:flow-topic-action-unlock-topic}}“, prihvatate uslove korišćenja ovog vikija.",
+	"structureddiscussions": "Strukturirane diskusije",
 	"flow-special-type": "Tip",
 	"flow-previous-diff": "← Starija izmena",
 	"flow-next-diff": "Novija izmena →",
+	"group-flow-bot": "Botovi strukturiranih diskusija",
+	"group-flow-bot-member": "Bot strukturiranih diskusija",
+	"grouppage-flow-bot": "Project:Botovi strukturiranih diskusija",
 	"flow-ve-mention-placeholder": "Korisničko ime",
 	"flow-ve-mention-tool-title": "Spomeni korisnika",
 	"flow-dialog-cancelconfirm-title": "Jeste li sigurni?",
