@@ -84,8 +84,8 @@ class Exporter extends WikiExporter {
 	 * @inheritDoc
 	 */
 	public function __construct( $db, $history = WikiExporter::CURRENT,
-		$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
-		parent::__construct( $db, $history, $buffer, $text );
+		$text = WikiExporter::TEXT ) {
+		parent::__construct( $db, $history, $text );
 		$this->prevRevisionProperty = new ReflectionProperty( AbstractRevision::class, 'prevRevision' );
 		$this->prevRevisionProperty->setAccessible( true );
 

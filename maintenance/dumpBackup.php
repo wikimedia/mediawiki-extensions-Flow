@@ -79,7 +79,7 @@ TEXT
 		}
 
 		$db = Container::get( 'db.factory' )->getDB( DB_REPLICA );
-		$exporter = new Exporter( $db, $history, Exporter::STREAM, Exporter::TEXT );
+		$exporter = new Exporter( $db, $history, Exporter::TEXT );
 		$exporter->setOutputSink( $this->sink );
 
 		if ( !$this->skipHeader ) {
