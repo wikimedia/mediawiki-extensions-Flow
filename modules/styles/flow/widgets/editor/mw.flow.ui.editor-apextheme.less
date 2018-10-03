@@ -6,9 +6,8 @@
 .flow-component {
 	.ve-init-target {
 		&.flow-ui-focused {
-			outline: 0;
-			border-color: #a7dcff;
-			box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
+			border-color: #ace;
+			box-shadow: 0 0 2px 2px #ace;
 		}
 	}
 
@@ -57,10 +56,10 @@
 	// div that contains textarea + legal text + switch button
 	border: 1px solid #c8ccd1;
 	border-radius: @borderRadius;
+	transition: border-color 250ms, box-shadow 250ms;
 
 	.flow-ui-editorWidget-focused & {
-		outline: 0;
-		border-color: #a7dcff;
-		box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
+		border-color: #ace;
+		box-shadow: 0 0 2px 2px #ace;
 	}
 }

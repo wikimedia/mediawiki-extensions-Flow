@@ -62,11 +62,8 @@
 	// want them to look unified with the textarea, we'll have to take away
 	// its border and re-apply on the parent node that contains both
 	border: 1px solid @colorFieldBorder;
-	-webkit-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
-	-moz-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
-	-o-transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
-	transition: border 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 0.2s cubic-bezier( 0.39, 0.575, 0.565, 1 );
 	border-radius: @borderRadius;
+	transition: border-color 250ms, box-shadow 250ms;
 
 	.flow-ui-editorWidget-focused & {
 		// Undo border & box-shadow on textarea and re-apply it on the
