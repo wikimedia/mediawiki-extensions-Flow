@@ -9,6 +9,7 @@ use User;
  * @covers \FlowHooks
  *
  * @group Flow
+ * @group Database
  * @group medium
  * @group Database
  */

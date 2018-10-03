@@ -8,6 +8,7 @@ namespace Flow\Tests\Api;
  * @covers \Flow\Api\ApiFlowEditTitle
  *
  * @group Flow
+ * @group Database
  * @group medium
  * @group Database
  */

@@ -10,6 +10,7 @@ use Sanitizer;
  * @covers \Flow\Api\ApiFlowEditTopicSummary
  *
  * @group Flow
+ * @group Database
  * @group medium
  * @group Database
  */
