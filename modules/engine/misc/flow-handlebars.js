@@ -328,7 +328,10 @@
 		setTimeout( timestampAutoUpdate, 100 );
 	}
 
-	$( timestampAutoUpdate );
+	if ( typeof QUnit == 'undefined' ) {
+		// FIXME: T204633
+		$( timestampAutoUpdate );
+	}
 
 	/**
 	 * Do not escape HTML string. Used as a Handlebars helper.
