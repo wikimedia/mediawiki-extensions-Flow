@@ -70,6 +70,30 @@
       "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db283ebb_781d3c82",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2018-10-05T19:25:58Z",
+      "side": 1,
+      "message": "I\u0027m still a bit confused here.\nIf getRevision returns null or a Revision, I\u0027d expect callers to check for null before accessing Revision usages.\n\nGiven getValue can throw an exception, that should still be handled here regardless of whether the hook is removed",
+      "parentUuid": "1de29614_63075345",
+      "range": {
+        "startLine": 2181,
+        "startChar": 2,
+        "endLine": 2183,
+        "endChar": 6
+      },
+      "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
