@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19cf258f_727362a3",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-10-05T19:07:39Z",
+      "side": 1,
+      "message": "This hook is documented as follows:\n\n\u003e \u0027ChangesListSpecialPageQuery\u0027: Called when building SQL query\n\u003e on pages inheriting from ChangesListSpecialPage (in core: RecentChanges, RecentChangesLinked and Watchlist).\n\u003e [..]\n\u003e $opts: FormOptions for this request\n\nThe ChangesListSpecialPage base class, creates the FormOptions instance in its getDefaultOptions() method, where the \"hidepageedits\" is always and unconditionally set.\n\nWhile it is reasonable for a hook consumer to modify that value, making it absent seems a violation of the contract. It would require that every consumer of the hook and every caller of the hook doubt every use of get() with a try/catch, which doesn\u0027t make sense.\n\nThe problem here is that SpecialMobileWatchlist is not extending ChangesListSpecialPage and also not calling getDefaultOptions() by other means.\n\nPassing an empty FormOptions instance does not seem valid under the hook contract?",
+      "range": {
+        "startLine": 2181,
+        "startChar": 2,
+        "endLine": 2183,
+        "endChar": 6
+      },
+      "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
