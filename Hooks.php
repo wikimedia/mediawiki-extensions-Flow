@@ -16,6 +16,7 @@ use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\MediaWikiServices;
+use MWException;
 
 class FlowHooks {
 	/**
@@ -2178,7 +2179,13 @@ class FlowHooks {
 		$name, array &$tables, array &$fields, array &$conds,
 		array &$query_options, array &$join_conds, FormOptions $opts
 	) {
-		if ( $opts['hidepageedits'] ) {
+		try {
+			$hidePageEdits = $opts->getValue( 'hidepageedits' );
+		} catch ( MWException $e ) {
+			// If not set, assume they should be hidden.
+			$hidePageEdits = true;
+		}
+		if ( $hidePageEdits ) {
 			$conds[] = 'rc_type != ' . RC_FLOW;
 		}
 	}
