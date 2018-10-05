@@ -7,6 +7,7 @@ use DateTimeZone;
 use DeferredUpdates;
 use DerivativeContext;
 use Exception;
+use Flow\Block\AbstractBlock;
 use Flow\DbFactory;
 use Flow\Collection\HeaderCollection;
 use Flow\Content\BoardContent;
@@ -16,7 +17,9 @@ use Flow\OccupationController;
 use Flow\Conversion\Utils;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use FormatJson;
 use IContextSource;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use MovePage;
@@ -340,6 +343,7 @@ class OptInController {
 
 		$loader = $loaderFactory->createWorkflowLoader( $title );
 		$blocks = $loader->getBlocks();
+		$this->logBlockErrors( $blocks );
 
 		if ( !$boardDescription ) {
 			$boardDescription = ' ';
@@ -532,6 +536,7 @@ class OptInController {
 		$loader = $factory->createWorkflowLoader( $title, $workflowId );
 
 		$blocks = $loader->getBlocks();
+		$this->logBlockErrors( $blocks );
 
 		$blocksToCommit = $loader->handleSubmit(
 			$this->context,
@@ -677,5 +682,35 @@ class OptInController {
 			'html' );
 
 		return $flowArchiveTitle;
+	}
+
+	/**
+	 * @param array $blocks
+	 */
+	private function logBlockErrors( array $blocks ) {
+		$errors = [];
+		/** @var AbstractBlock $block */
+		foreach ( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$blockErrors = $block->getErrors();
+				foreach ( $blockErrors as $blockErrorType ) {
+					$errors[ $block->getName() ] = [
+						'type' => $blockErrorType,
+						'message' => $block->getErrorMessage( $blockErrorType ),
+						'extra' => $block->getErrorExtra( $blockErrorType )
+					];
+				}
+			}
+		}
+		if ( $errors ) {
+			LoggerFactory::getInstance( 'Flow' )->error(
+				'Found {count} block errors for user {user_id}',
+				[
+					'count' => count( $errors ),
+					'user_id' => RequestContext::getMain()->getUser()->getId(),
+					'errors' => FormatJson::encode( $errors )
+				]
+			);
+		}
 	}
 }
