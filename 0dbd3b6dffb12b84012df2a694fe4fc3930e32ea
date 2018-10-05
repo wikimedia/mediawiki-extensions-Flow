@@ -22,6 +22,30 @@
       "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7223885_60f87c5c",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2018-10-05T19:14:37Z",
+      "side": 1,
+      "message": "Given, $opts-\u003egetValue (through its validate call) can throw an exception it seems sensible to me to guard against this. If hidepageedits was ever renamed the same problem would happen. it requires too much detective work to clarify what the contract is here. From my perspective the only contract that\u0027s explicit is the hook will get a FormOptions and it feels a bit far-fetched to say we can infer what the contents of that class. Alternatively FormOptions should return undefined for such calls that cannot be validated.\n\nLonger term we plan to get rid of SpecialMobileWatchlist altogether so this won\u0027t be a problem, but such a guard would still be useful here IMO\n\nIf you don\u0027t like this approach the alternative that I will push for is removing the running of the hook in Watchlist altogether, which is likely to have more undesirable effects such as making Flow edits and Wikidata changes show up there (or not show... I\u0027m not an expert on what this hook is used for).\n\nCalling a getter and getting an exception does not seem sane to me.",
+      "parentUuid": "19cf258f_727362a3",
+      "range": {
+        "startLine": 2181,
+        "startChar": 2,
+        "endLine": 2183,
+        "endChar": 6
+      },
+      "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
