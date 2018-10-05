@@ -46,6 +46,30 @@
       "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1de29614_63075345",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-10-05T19:23:05Z",
+      "side": 1,
+      "message": "Removing the hook seems adequate.\n\nIn the interim, you may want to provide an alternate Mobile-specific hook that Wikidata and Flow can opt-in to using whereby it is explicit that these filter options from core are not available, which means it is explicit that Wikidata/Flow logic has to perform its duty without knowing what these are set to.\n\nRight now they are given an object with incorrect indication of absence, and might potentially set() options as well, which become no-op and can create other bugs and conflicts.\n\nAs for the exception, yes get() can throw. When that happens, it means the caller is broken and needs to be updated. That\u0027s a good thing.\n\nIf a FormOptions key is meant to be optional (e.g. not from core but from another extension that is not hard-depended on), then it makes sense to catch any exception, in which case the caller would have a reasonable idea as for what to fall back to  (e.g. the extension isn\u0027t installed)\n\nA \u0027catch\u0027 for a core key of FormOptions on a changes list isn\u0027t useful because the caller can\u0027t know what happened. It is an application error. What will they do? Did core rename the option? Then the exception shouldn\u0027t be good but the caller updated. Is core broken? How do we know what the default should be? That decision is in core, not in the extension. Flow has no business assuming whether it should be shown or not. Wikidata might make a different assumption and create incompatible output.",
+      "parentUuid": "f7223885_60f87c5c",
+      "range": {
+        "startLine": 2181,
+        "startChar": 2,
+        "endLine": 2183,
+        "endChar": 6
+      },
+      "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
