@@ -94,6 +94,30 @@
       "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "096b30ea_05a1748c",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-10-05T19:59:45Z",
+      "side": 1,
+      "message": "Yes, the responsibility of whether a revision exists lies with the database. The caller isn\u0027t authorised to assume it to exist, unless the thing it operates on is already a Revision object.\n\nAnything that is given an ID, now has the responsibility to also deal with when it is absent. This complicates code, but as you say, that\u0027s the contract.\n\nBut not every possible code path is expected. Some are unexpected. Usually (although not always), we use exceptions for those instead of return values. But ultimately it\u0027s the concept that matters, not whether it\u0027s a parameter, return or throw.\n\nFor example, if MediaWiki core provides a class, you\u0027ll extend that class. You won\u0027t if-guard the class.extends rule because you have no ability to fallback, it\u0027s an explicitly chosen hard dependency. If it becomes missing without deprecation warning, or the warning wasn\u0027t acted on, the exception resulting from it, will be fatal, and that\u0027s how we find out something is broken.\n\nSimilarly, a ResourceLoader can exist that you depend on, without if-guard.\n\nSimilarly, here, I believe the FormOptions object provided by the ChangesListSpecialPage class has a starting set of defaults. And while their values  may vary, the keys are always there, even if the user didn\u0027t set them. They can\u0027t be undefined.\n\nAs a watchlist consumer, you need to know whether core decided the user wants to see X or not, there is no fallback.\n\nMore importantly, there are other hooks through which an extension can add additional default options.\n\nIt would be a very fair expectation for you as extension to use hook A to add the option to the form, and read it out from hook B. Whereas, the current empty FormOptions approach means hook B runs without hook A. That, in my opinion, is a breach of contract.",
+      "parentUuid": "db283ebb_781d3c82",
+      "range": {
+        "startLine": 2181,
+        "startChar": 2,
+        "endLine": 2183,
+        "endChar": 6
+      },
+      "revId": "0dbd3b6dffb12b84012df2a694fe4fc3930e32ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
