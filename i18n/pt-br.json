@@ -22,7 +22,8 @@
 			"Luk3",
 			"Cristofer Alves",
 			"Felipe L. Ewald",
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Didifelisberto"
 		]
 	},
 	"enablestructureddiscussions": "Ativar o Flow",
@@ -323,7 +324,7 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 e {{PLURAL:$3|outro usuário|$3 outros usuários|100=mais de 99 usuários}} {{GENDER:$1|editaram}} a descrição em $2",
 	"notification-header-flow-topic-resolved": "O tópico \"<strong>$1</strong>\" foi resolvido.",
 	"notification-header-flow-topic-reopened": "O tópico \"<strong>$1</strong>\" foi reaberto.",
-	"notification-header-flow-topic-resolved-user-talk": "O tópico \"<strong>$1</strong>\" foi resolvido na <strong>sua página de discussão</strong>.",
+	"notification-header-flow-topic-resolved-user-talk": "O tópico \"<strong>$1</strong>\" foi resumido na <strong>{{GENDER:$2|sua}} página de discussão</strong>.",
 	"notification-header-flow-topic-reopened-user-talk": "O tópico \"<strong>$1</strong>\" foi reaberto na <strong>sua página de discussão</strong>.",
 	"notification-email-subject-flow-topic-resolved": "O tópico \"<strong>$2</strong>\" foi resolvido.",
 	"notification-email-batch-body-flow-topic-resolved": "O tópico \"<strong>$2</strong>\" foi resolvido.",

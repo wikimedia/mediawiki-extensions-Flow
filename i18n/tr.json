@@ -27,6 +27,7 @@
 	"flow-history-action-hide-post": "gizle",
 	"flow-post-action-hide-post": "Gizle",
 	"flow-post-action-edit-post": "Düzenle",
+	"flow-post-action-edit-post-submit-publish": "Değişiklikleri yayımla",
 	"flow-topic-action-hide-topic": "Konuyu gizle",
 	"flow-topic-action-lock-topic": "Çözümlendi olarak işaretle",
 	"flow-topic-action-unlock-topic": "Konunun kilidini aç",
