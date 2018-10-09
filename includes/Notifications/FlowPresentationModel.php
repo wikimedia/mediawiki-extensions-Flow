@@ -2,9 +2,9 @@
 
 namespace Flow;
 
-use EchoEventPresentationModel;
-use Flow\Model\UUID;
 use Title;
+use Flow\Model\UUID;
+use MediaWiki\Notifications\EchoEventPresentationModel
 
 abstract class FlowPresentationModel extends EchoEventPresentationModel {
 
