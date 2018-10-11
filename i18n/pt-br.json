@@ -325,7 +325,7 @@
 	"notification-header-flow-topic-resolved": "O tópico \"<strong>$1</strong>\" foi resolvido.",
 	"notification-header-flow-topic-reopened": "O tópico \"<strong>$1</strong>\" foi reaberto.",
 	"notification-header-flow-topic-resolved-user-talk": "O tópico \"<strong>$1</strong>\" foi resumido na <strong>{{GENDER:$2|sua}} página de discussão</strong>.",
-	"notification-header-flow-topic-reopened-user-talk": "O tópico \"<strong>$1</strong>\" foi reaberto na <strong>sua página de discussão</strong>.",
+	"notification-header-flow-topic-reopened-user-talk": "O tópico \"<strong>$1</strong>\" foi reaberto na <strong>{{GENDER:$2|sua}} página de discussão</strong>.",
 	"notification-email-subject-flow-topic-resolved": "O tópico \"<strong>$2</strong>\" foi resolvido.",
 	"notification-email-batch-body-flow-topic-resolved": "O tópico \"<strong>$2</strong>\" foi resolvido.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|criou}} um novo tópico em <strong>$3</strong>.",
