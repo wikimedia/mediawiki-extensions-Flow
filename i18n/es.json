@@ -181,7 +181,7 @@
 	"flow-error-missing-content": "La entrada no tiene contenido. Para guardarla necesitas añadir contenido.",
 	"flow-error-missing-summary": "Debes escribir un resumen.",
 	"flow-error-missing-title": "El tema no tiene título. Para guardarlo necesitas añadirle un título.",
-	"flow-error-parsoid-failure": "No se puede transferir el contenido: Error al intentar contactar al servidor para la conversión entre wikitexto y HTML. Verifica tu conexión a Internet o inténtalo más tarde si el problema persiste. Si sigue apareciendo este error, por favor, envía un informe de error.",
+	"flow-error-parsoid-failure": "No se puede transferir el contenido: Error al intentar contactar con el servidor para la conversión entre wikitexto y HTML. Verifica tu conexión a Internet o inténtalo más tarde si el problema persiste. Si sigue apareciendo este error, por favor, envía un informe de error.",
 	"flow-error-protected-autoconfirmed-logged-in": "Este panel está protegido. Solo usuarios autoconfirmados pueden participar. Razón: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Este panel está protegido. Solo usuarios registrados que están autoconfirmados pueden participar. Razón: $1",
 	"flow-error-protected-readonly": "Discusiones Estructuradas fue deshabilitado en este wiki. No pueden crearse ni editarse paneles, temas o publicaciones.",
