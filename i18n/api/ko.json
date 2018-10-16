@@ -5,16 +5,22 @@
 			"Priviet",
 			"SeoJeongHo",
 			"Yearning",
-			"Ykhwong"
+			"Ykhwong",
+			"Revi"
 		]
 	},
 	"apihelp-flow-param-token": "토큰은 [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]에서 가져옵니다",
 	"apihelp-flow-example-1": "\"[[Talk:Sandbox]]\"의 설명을 편집하기",
 	"apihelp-flow+edit-header-example-1": "[[Talk:Sandbox]]의 설명을 편집하기",
 	"apihelp-flow+edit-post-summary": "게시물의 내용을 편집합니다.",
+	"apihelp-flow+edit-post-param-postId": "게시글 ID.",
+	"apihelp-flow+edit-post-param-prev_revision": "편집 충돌 여부를 확인하기 위한 현재 게시글 판 ID.",
+	"apihelp-flow+edit-post-param-content": "게시할 내용.",
+	"apihelp-flow+edit-post-param-format": "게시글 내용의 포맷 (wikitext|html)",
 	"apihelp-flow+edit-post-example-1": "[[Topic:S2tycnas4hcucw8w]]에서 게시물을 편집합니다",
 	"apihelp-flow+edit-title-description": "주제의 제목을 편집합니다.",
 	"apihelp-flow+edit-title-summary": "주제의 제목을 편집합니다.",
+	"apihelp-flow+edit-title-param-prev_revision": "편집 충돌 여부를 확인하기 위한 현재 제목 판 ID.",
 	"apihelp-flow+edit-title-example-1": "[[Topic:S2tycnas4hcucw8w]]의 제목을 편집하기",
 	"apihelp-flow+edit-topic-summary-param-summary": "요약 내용입니다.",
 	"apihelp-flow+edit-topic-summary-param-format": "요약 포맷 (wikitext|html)",
@@ -45,5 +51,6 @@
 	"apihelp-flow+undo-edit-post-param-postId": "포스트 아이디는 취소할수 있습니다.",
 	"apihelp-flow+undo-edit-post-param-endId": "끝으로 아이디 수정이 취소되었습니다.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "계정 아이디 취소를 시작합니다.",
-	"apihelp-flow+undo-edit-topic-summary-param-endId": "끝으로 아이디 수정이 취소되었습니다."
+	"apihelp-flow+undo-edit-topic-summary-param-endId": "끝으로 아이디 수정이 취소되었습니다.",
+	"apierror-flow-notenabled": "제시된 문서는 구조화된 토론을 활성화하지 않았습니다."
 }

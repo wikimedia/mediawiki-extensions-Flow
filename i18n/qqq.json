@@ -27,7 +27,8 @@
 			"Mormegil",
 			"Mar(c)",
 			"Omotecho",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Revi"
 		]
 	},
 	"enablestructureddiscussions": "{{doc-special|EnableFlow}}",
@@ -533,8 +534,8 @@
 	"flow-importer-lqt-different-author-signature-template-content": "Content of the Template:{{msg-mw|flow-importer-lqt-different-author-signature-template}} page, informing people this LiquidThreads post was posted by a different user than it was signed as. Available template params: {{{authorUser}}}, {{{signatureUser}}}.",
 	"flow-edited": "Message displayed below a post to indicate it has last been edited by the original author\n{{Identical|Edited}}",
 	"flow-edited-by": "Message displayed below a post to indicate it has last been edited by a user other than the original author",
-	"flow-edited-by-header": "Message added to the wikitext export of a board description to indicate it has been edited by users other than the original author.",
-	"flow-edited-by-topic-title": "Message added to the wikitext export of a topic title to indicate it has been edited by users other than the original author.",
+	"flow-edited-by-header": "Message added to the wikitext export of a board description to indicate it has been edited by users other than the original author.\n\nParameters: $1 - Username of the editor.",
+	"flow-edited-by-topic-title": "Message added to the wikitext export of a topic title to indicate it has been edited by users other than the original author.\n\nParameters: $1 - Username of the editor.",
 	"flow-lqt-redirect-reason": "Edit summary used to redirect old LQT thread pages to Structured Discussions topics",
 	"flow-talk-conversion-move-reason": "Message used as an edit summary when moving an existing talk page to an archive location in preparation for enabling flow on that page.\nParameters:\n* $1 - Title the page was moved from",
 	"flow-talk-conversion-archive-edit-reason": "Message used as an edit summary when appending a template to a wikitext talk page after archiving it in preparation for conversion to Structured Discussions.",
