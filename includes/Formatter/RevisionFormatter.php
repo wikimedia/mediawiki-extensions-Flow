@@ -612,7 +612,7 @@ class RevisionFormatter {
 			case 'lock-topic':
 				// lock topic link is only available to topics
 				if ( !$revision instanceof PostRevision || !$revision->isTopicTitle() ) {
-					continue;
+					break;
 				}
 
 				$links['lock'] = $this->urlGenerator->lockTopicAction( $title, $workflowId );
@@ -663,7 +663,7 @@ class RevisionFormatter {
 			case 'edit-topic-summary':
 				// summarize link is only available to topic workflow
 				if ( !in_array( $workflow->getType(), [ 'topic', 'topicsummary' ] ) ) {
-					continue;
+					break;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
 				break;
