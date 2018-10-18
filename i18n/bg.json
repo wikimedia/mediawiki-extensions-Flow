@@ -48,6 +48,10 @@
 	"structureddiscussions": "Структурирани дискусии",
 	"flow-importer-wt-converted-template-content": "Предишната дискусия е архивирана в <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-ve-mention-placeholder": "Потребителско име",
+	"flow-mark-revision-patrolled-link-text": "Отбелязване на страницата като патрулирана",
+	"flow-mark-revision-patrolled-link-title": "Отбелязване на страницата като патрулирана",
+	"flow-mark-diff-patrolled-link-text": "Отбелязване като патрулирана редакция",
+	"flow-mark-diff-patrolled-link-title": "Отбелязване като патрулирана редакция",
 	"flow-optin-archive-wikitext": "Преместване на страницата с уики текст за да се освободи място за дискусионно табло.",
 	"flow-optin-restore-flow-board": "Възстановяване на архивирано дискусионно табло.",
 	"flow-preference-visualeditor": "Включване на визуалния редактор и новия уикитекстов режим в Структурирани дискусии"

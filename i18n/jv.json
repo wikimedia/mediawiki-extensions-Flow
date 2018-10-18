@@ -21,7 +21,7 @@
 	"flow-newtopic-save-anonymously": "Tambah rembug kanthi anonim",
 	"flow-newtopic-start-placeholder": "Wiwiti rembug anyar",
 	"flow-newtopic-first-heading": "Wiwiti rembug anyar ing $1",
-	"flow-summarize-topic-placeholder": "Mangga ringkes rembugan iki",
+	"flow-summarize-topic-placeholder": "Sumangga ringkes parembug iki",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Tanggapi}} \"$2\"",
 	"flow-reply-topic-title-placeholder": "Wangsuli \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|Wangsuli}}",
