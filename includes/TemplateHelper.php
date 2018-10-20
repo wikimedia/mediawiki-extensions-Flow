@@ -319,7 +319,7 @@ class TemplateHelper {
 
 		if ( $postIds && !is_array( $postIds ) ) {
 			$postIds = [ $postIds ];
-		} elseif ( count( $postIds ) === 0 ) {
+		} elseif ( $postIds === [] ) {
 			// Failure callback, if any
 			if ( !$inverse ) {
 				return null;
