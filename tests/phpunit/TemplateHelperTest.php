@@ -4,13 +4,14 @@ namespace Flow\Tests;
 
 use Lightncandy;
 use Flow\TemplateHelper;
+use MediaWikiTestCase;
 
 /**
  * @covers \Flow\TemplateHelper
  *
  * @group Flow
  */
-class TemplateHelperTest extends \MediaWikiTestCase {
+class TemplateHelperTest extends MediaWikiTestCase {
 
 	public function provideTraversalAttackFilenames() {
 		return array_map(

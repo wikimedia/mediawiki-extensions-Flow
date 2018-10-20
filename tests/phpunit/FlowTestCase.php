@@ -9,8 +9,9 @@ use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
 use HashBagOStuff;
 use WANObjectCache;
+use MediaWikiTestCase;
 
-class FlowTestCase extends \MediaWikiTestCase {
+class FlowTestCase extends MediaWikiTestCase {
 	protected function setUp() {
 		Container::reset();
 		parent::setUp();
