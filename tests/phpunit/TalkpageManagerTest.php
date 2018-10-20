@@ -7,6 +7,7 @@ use Title;
 use User;
 use WikiPage;
 use WikitextContent;
+use MediaWikiTestCase;
 
 use Flow\Container;
 
@@ -16,7 +17,7 @@ use Flow\Container;
  * @group Flow
  * @group Database
  */
-class TalkpageManagerTest extends \MediaWikiTestCase {
+class TalkpageManagerTest extends MediaWikiTestCase {
 	/**
 	 * @var TalkpageManager
 	 */

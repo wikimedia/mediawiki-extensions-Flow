@@ -8,13 +8,14 @@ use Flow\Repository\UserNameBatch;
 use Flow\Templating;
 use Title;
 use User;
+use MediaWikiTestCase;
 
 /**
  * @covers \Flow\Templating
  *
  * @group Flow
  */
-class TemplatingTest extends \MediaWikiTestCase {
+class TemplatingTest extends MediaWikiTestCase {
 
 	protected function mockTemplating() {
 		$query = $this->getMock( \Flow\Repository\UserName\UserNameQuery::class );

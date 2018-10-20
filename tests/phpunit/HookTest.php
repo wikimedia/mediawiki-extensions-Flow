@@ -13,6 +13,7 @@ use FlowHooks;
 use RecentChange;
 use Title;
 use User;
+use MediaWikiTestCase;
 
 /**
  * @covers \FlowHooks
@@ -20,7 +21,7 @@ use User;
  * @group Flow
  * @group Database
  */
-class HookTest extends \MediaWikiTestCase {
+class HookTest extends MediaWikiTestCase {
 	protected $tablesUsed = [
 		'flow_revision',
 		'flow_topic_list',
