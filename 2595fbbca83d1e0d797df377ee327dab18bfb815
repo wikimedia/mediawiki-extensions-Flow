@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19818cdd_3446b967",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-10-20T23:34:42Z",
+      "side": 1,
+      "message": "If $postIds is null, then it previously followed this path, but will now follow \u0027else\u0027 instead. That seems fine, given it still results in null being returned.",
+      "range": {
+        "startLine": 323,
+        "startChar": 13,
+        "endLine": 323,
+        "endChar": 21
+      },
+      "revId": "2595fbbca83d1e0d797df377ee327dab18bfb815",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
