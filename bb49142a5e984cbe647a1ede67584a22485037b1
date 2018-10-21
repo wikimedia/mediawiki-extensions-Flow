@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fe8291c_32b65226",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-10-21T16:41:25Z",
+      "side": 1,
+      "message": "Two questions:\n* Are postIds strings or integers? I think they are strings (UUIDs), but I\u0027m not entirely sure.\n* Which code path is responsible for a null ending here?",
+      "revId": "bb49142a5e984cbe647a1ede67584a22485037b1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
