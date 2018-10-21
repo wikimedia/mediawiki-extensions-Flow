@@ -22,6 +22,30 @@
       "revId": "2595fbbca83d1e0d797df377ee327dab18bfb815",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37790e0e_986ab958",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-10-21T08:34:29Z",
+      "side": 1,
+      "message": "Correct but come to think of it, is there a possibility that $postIds is null and the 2 if within the elseif fail and `return $inverse( $option[\u0027cx\u0027], [] );` is executed? Does that line return null as well if $postIds \u003d\u003d\u003d null?",
+      "parentUuid": "19818cdd_3446b967",
+      "range": {
+        "startLine": 323,
+        "startChar": 13,
+        "endLine": 323,
+        "endChar": 21
+      },
+      "revId": "2595fbbca83d1e0d797df377ee327dab18bfb815",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
