@@ -16,6 +16,24 @@
       "revId": "bb49142a5e984cbe647a1ede67584a22485037b1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04f2681b_7b2e5b97",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-10-21T16:44:07Z",
+      "side": 1,
+      "message": "A comment from @Krinkle before merging the previous patch:\n\nIf $postIds is null, then it previously followed this path, but will now follow \u0027else\u0027 instead. That seems fine, given it still results in null being returned.",
+      "parentUuid": "1fe8291c_32b65226",
+      "revId": "bb49142a5e984cbe647a1ede67584a22485037b1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
