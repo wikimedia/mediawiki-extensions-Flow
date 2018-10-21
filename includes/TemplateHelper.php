@@ -306,7 +306,7 @@ class TemplateHelper {
 
 	/**
 	 * @param array $context The 'this' value of the calling context
-	 * @param array $postIds List of ids (roots)
+	 * @param mixed $postIds List of ids (roots)
 	 * @param array $options blockhelper specific invocation options
 	 *
 	 * @return null|string HTML
