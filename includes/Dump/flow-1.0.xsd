@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-		xmlns:flow="http://www.mediawiki.org/xml/flow-1.0/"
-		targetNamespace="http://www.mediawiki.org/xml/flow-1.0/"
+		xmlns:flow="https://www.mediawiki.org/xml/flow-1.0/"
+		targetNamespace="https://www.mediawiki.org/xml/flow-1.0/"
 		elementFormDefault="qualified">
 
 	<!-- Need this to reference xml:lang -->
