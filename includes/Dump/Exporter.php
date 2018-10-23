@@ -111,9 +111,9 @@ class Exporter extends WikiExporter {
 		$output = Xml::openElement(
 			'mediawiki',
 			[
-				'xmlns' => "http://www.mediawiki.org/xml/flow-$version/",
+				'xmlns' => "https://www.mediawiki.org/xml/flow-$version/",
 				'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-				'xsi:schemaLocation' => "http://www.mediawiki.org/xml/flow-$version/ http://www.mediawiki.org/xml/flow-$version.xsd",
+				'xsi:schemaLocation' => "https://www.mediawiki.org/xml/flow-$version/ https://www.mediawiki.org/xml/flow-$version.xsd",
 				'version' => $version,
 				'xml:lang' => $wgLanguageCode
 			]
