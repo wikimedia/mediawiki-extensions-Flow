@@ -50,7 +50,7 @@
 	"apihelp-flow+lock-topic-description": "{{doc-apihelp-description|flow+lock-topic}}",
 	"apihelp-flow+lock-topic-summary": "{{doc-apihelp-summary|flow+lock-topic}}",
 	"apihelp-flow+lock-topic-param-moderationState": "{{doc-apihelp-param|flow+lock-topic|moderationState}}",
-	"apihelp-flow+lock-topic-param-reason": "{{doc-apihelp-param|flow+lock-topic|reason}}",
+	"apihelp-flow+lock-topic-param-reason": "{{doc-apihelp-param|flow+lock-topic|reason}}\n\n\"Marked as resolved\" is used in different wording in several messages, for example {{msg-mw|flow-topic-action-lock-topic}}.",
 	"apihelp-flow+lock-topic-example-1": "{{doc-apihelp-example|flow+lock-topic}}",
 	"apihelp-flow+moderate-post-description": "{{doc-apihelp-description|flow+moderate-post}}",
 	"apihelp-flow+moderate-post-summary": "{{doc-apihelp-summary|flow+moderate-post}}",
