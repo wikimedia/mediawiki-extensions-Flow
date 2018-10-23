@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4051105e_81701521",
+        "filename": "includes/Dump/Exporter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 99
+      },
+      "writtenOn": "2018-10-23T21:26:11Z",
+      "side": 1,
+      "message": "So the second url in xsi:schemaLocation should be https, but the first has to say http. See https://msdn.microsoft.com/en-us/library/ms256100(v\u003dvs.110).aspx for the meaning of this attribute",
+      "range": {
+        "startLine": 116,
+        "startChar": 74,
+        "endLine": 116,
+        "endChar": 121
+      },
+      "revId": "28edd8bb349d4229e61a918aa30559f30fe1799e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
