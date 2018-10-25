@@ -285,7 +285,14 @@ class Workflow {
 	 */
 	public function isDeleted() {
 		if ( $this->exists === null ) {
-			$this->exists = Title::newFromID( $this->pageId ) !== null;
+			// If in the context of a POST request, check against the master DB.
+			// This is important for recentchanges actions; if a user posts a topic on an
+			// empty flow board then querying the replica results in $this->exists getting set to
+			// false. Querying the master DB correctly returns that the title exists, and the
+			// recent changes event can propagate.
+			$flag = \RequestContext::getMain()->getRequest()->wasPosted() ?
+				Title::GAID_FOR_UPDATE : 0;
+			$this->exists = Title::newFromID( $this->pageId, $flag ) !== null;
 		}
 
 		// a board that does not yet exist (because workflow has not yet
