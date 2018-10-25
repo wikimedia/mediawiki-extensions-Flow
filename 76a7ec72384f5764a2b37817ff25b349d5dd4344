@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c108b222_2ad9db1e",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2018-10-25T17:09:33Z",
+      "side": 1,
+      "message": "I think it would be better to be more explicit here: wasPosted() ? Title::GAID_FOR_UPDATE : 0\n\nAs written it\u0027s not very clear what\u0027s happening, and you\u0027re also embedding the assumption that the value of GAID_FOR_UDPATE is 1.",
+      "revId": "76a7ec72384f5764a2b37817ff25b349d5dd4344",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
