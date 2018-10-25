@@ -8,6 +8,7 @@ use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
 use MapCacheLRU;
 use MWTimestamp;
+use RequestContext;
 use Title;
 use User;
 
@@ -285,7 +286,15 @@ class Workflow {
 	 */
 	public function isDeleted() {
 		if ( $this->exists === null ) {
-			$this->exists = Title::newFromID( $this->pageId ) !== null;
+			// If in the context of a POST request, check against the master DB.
+			// This is important for recentchanges actions; if a user posts a topic on an
+			// empty flow board then querying the replica results in $this->exists getting set to
+			// false. Querying the master DB correctly returns that the title exists, and the
+			// recent changes event can propagate.
+			$this->exists = Title::newFromID(
+				$this->pageId,
+				RequestContext::getMain()->getRequest()->wasPosted() ? Title::GAID_FOR_UPDATE : 0
+			) !== null;
 		}
 
 		// a board that does not yet exist (because workflow has not yet
