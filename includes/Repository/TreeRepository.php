@@ -91,7 +91,7 @@ class TreeRepository {
 		$this->deleteSubtreeCache( $descendant, $path );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->insert(
+		$dbw->insert(
 			$this->tableName,
 			[
 				'tree_descendant_id' => $descendant->getBinary(),
@@ -101,7 +101,8 @@ class TreeRepository {
 			__METHOD__
 		);
 
-		if ( $res && $ancestor !== null ) {
+		$ok = true;
+		if ( $ancestor !== null ) {
 			try {
 				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw instanceof DatabaseMysqlBase ) {
 					/*
@@ -113,7 +114,7 @@ class TreeRepository {
 					throw new DBQueryError( $dbw, 'Prevented execution of known bad query', 1137, '', __METHOD__ );
 				}
 
-				$res = $dbw->insertSelect(
+				$dbw->insertSelect(
 					$this->tableName,
 					$this->tableName,
 					[
@@ -127,8 +128,6 @@ class TreeRepository {
 					__METHOD__
 				);
 			} catch ( DBQueryError $e ) {
-				$res = false;
-
 				/*
 				 * insertSelect won't work on temporary tables (as used for MW
 				 * unit tests), because it refers to the same table twice, in
@@ -141,8 +140,6 @@ class TreeRepository {
 				 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
 				 */
 				if ( $e->errno === 1137 ) {
-					$res = true;
-
 					$rows = $dbw->select(
 						$this->tableName,
 						[ 'tree_depth', 'tree_ancestor_id' ],
@@ -152,7 +149,7 @@ class TreeRepository {
 
 					if ( $rows ) {
 						foreach ( $rows as $row ) {
-							$res &= $dbw->insert(
+							$dbw->insert(
 								$this->tableName,
 								[
 									'tree_descendant_id' => $descendant->getBinary(),
@@ -163,11 +160,13 @@ class TreeRepository {
 							);
 						}
 					}
+				} else {
+					$ok = false;
 				}
 			}
 		}
 
-		if ( !$res ) {
+		if ( !$ok ) {
 			throw new DataModelException( 'Failed inserting new tree node', 'process-data' );
 		}
 
