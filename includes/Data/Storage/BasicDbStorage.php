@@ -99,10 +99,9 @@ class BasicDbStorage extends DbStorage {
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		// update returns boolean true/false as $res
-		$res = $dbw->update( $this->table, $updates, $pk, __METHOD__ . " ({$this->table})" );
-		// $dbw->update returns boolean true/false as $res
+		$dbw->update( $this->table, $updates, $pk, __METHOD__ . " ({$this->table})" );
 		// we also want to check that $pk actually selected a row to update
-		return $res && $dbw->affectedRows();
+		return $dbw->affectedRows() ? true : false;
 	}
 
 	/**
