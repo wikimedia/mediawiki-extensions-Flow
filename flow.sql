@@ -1,7 +1,7 @@
 -- Database schema for Flow
 -- This file contains only the unsharded global data
 
-CREATE TABLE /*_*/flow_workflow (
+CREATE TABLE IF NOT EXISTS /*_*/flow_workflow (
 	workflow_id binary(11) not null,
 	workflow_wiki varchar(64) binary not null,
 	workflow_namespace int not null,
@@ -20,7 +20,7 @@ CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, wor
 CREATE INDEX /*i*/flow_workflow_update_timestamp ON /*_*/flow_workflow (workflow_last_update_timestamp);
 
 -- TopicList Tables
-CREATE TABLE /*_*/flow_topic_list (
+CREATE TABLE IF NOT EXISTS /*_*/flow_topic_list (
 	topic_list_id binary(11) not null,
 	topic_id binary(11) not null,
 	PRIMARY KEY (topic_list_id, topic_id)
@@ -30,7 +30,7 @@ CREATE INDEX /*i*/flow_topic_list_topic_id ON /*_*/flow_topic_list (topic_id);
 
 -- Post Content Revisions.  Connects 1 Post to Many revisions.
 -- also denormalizes information commonly needed with a revision
-CREATE TABLE /*_*/flow_tree_revision (
+CREATE TABLE IF NOT EXISTS /*_*/flow_tree_revision (
 	-- the id of the post in the post tree
 	tree_rev_descendant_id binary(11) not null,
 	-- fk to flow_revision
@@ -61,7 +61,7 @@ CREATE INDEX /*i*/flow_tree_descendant_rev_id ON /*_*/flow_tree_revision (tree_r
 -- detecting edit conflicts, so they can be resolved? Idealy they are resolved before
 -- this point, but as a backup plan?
 --
-CREATE TABLE /*_*/flow_revision (
+CREATE TABLE IF NOT EXISTS /*_*/flow_revision (
 	-- UID::newTimestampedUID128()
 	rev_id binary(11) not null,
 	-- What kind of revision is this: tree/header/etc.
@@ -117,7 +117,7 @@ CREATE INDEX /*i*/flow_revision_user ON
 
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
-CREATE TABLE /*_*/flow_tree_node (
+CREATE TABLE IF NOT EXISTS /*_*/flow_tree_node (
 	tree_ancestor_id binary(11) not null,
 	tree_descendant_id binary(11) not null,
 	tree_depth smallint not null,
@@ -126,7 +126,7 @@ CREATE TABLE /*_*/flow_tree_node (
 
 CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant_id, tree_depth);
 
-CREATE TABLE /*_*/flow_wiki_ref (
+CREATE TABLE IF NOT EXISTS /*_*/flow_wiki_ref (
 	ref_id binary(11) not null,
 	ref_src_wiki varchar(16) binary not null,
 	ref_src_object_id binary(11) not null,
@@ -147,7 +147,7 @@ CREATE INDEX /*i*/flow_wiki_ref_idx_v2 ON /*_*/flow_wiki_ref
 CREATE INDEX /*i*/flow_wiki_ref_revision_v2 ON /*_*/flow_wiki_ref
 	(ref_src_wiki, ref_src_namespace, ref_src_title, ref_src_object_type, ref_src_object_id, ref_type, ref_target_namespace, ref_target_title);
 
-CREATE TABLE /*_*/flow_ext_ref (
+CREATE TABLE IF NOT EXISTS /*_*/flow_ext_ref (
 	ref_id binary(11) not null,
 	ref_src_wiki varchar(16) binary not null,
 	ref_src_object_id binary(11) not null,
