@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c323689_de73e438",
+        "filename": "includes/Data/Storage/BasicDbStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-10-26T19:53:04Z",
+      "side": 1,
+      "message": "Contrary to JS, removing \u0026\u0026 changed the return type from bool to int. This probably needs a !! or (bool) now, right?",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 11
+      },
+      "revId": "febf26ed96eaf41f16a8c062e54dd95a06dcce1e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
