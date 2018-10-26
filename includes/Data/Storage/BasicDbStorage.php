@@ -61,16 +61,13 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		// insert returns boolean true/false
-		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+		$this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
 			$insertRows,
 			__METHOD__ . " ({$this->table})"
 		);
-		if ( $res ) {
-			return $rows;
-		} else {
-			return false;
-		}
+
+		return $rows;
 	}
 
 	/**

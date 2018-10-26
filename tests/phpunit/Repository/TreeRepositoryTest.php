@@ -29,14 +29,6 @@ class TreeRepositoryTest extends FlowTestCase {
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 	}
 
-	/**
-	 * @expectedException \Flow\Exception\DataModelException
-	 */
-	public function testFailingInsert() {
-		$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $this->getCache() );
-		$treeRepository->insert( $this->descendant, $this->ancestor );
-	}
-
 	protected function mockDbFactory( $dbResult ) {
 		$dbFactory = $this->getMockBuilder( \Flow\DbFactory::class )
 			->disableOriginalConstructor()
