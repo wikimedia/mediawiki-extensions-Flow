@@ -91,7 +91,7 @@ class TreeRepository {
 		$this->deleteSubtreeCache( $descendant, $path );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->insert(
+		$dbw->insert(
 			$this->tableName,
 			[
 				'tree_descendant_id' => $descendant->getBinary(),
@@ -100,8 +100,9 @@ class TreeRepository {
 			],
 			__METHOD__
 		);
+		$res = true;
 
-		if ( $res && $ancestor !== null ) {
+		if ( $ancestor !== null ) {
 			try {
 				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw instanceof DatabaseMysqlBase ) {
 					/*
@@ -113,7 +114,7 @@ class TreeRepository {
 					throw new DBQueryError( $dbw, 'Prevented execution of known bad query', 1137, '', __METHOD__ );
 				}
 
-				$res = $dbw->insertSelect(
+				$dbw->insertSelect(
 					$this->tableName,
 					$this->tableName,
 					[
