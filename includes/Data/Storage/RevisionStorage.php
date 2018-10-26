@@ -525,13 +525,13 @@ abstract class RevisionStorage extends DbStorage {
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
-			$res = $dbw->update(
+			$dbw->update(
 				'flow_revision',
 				$this->preprocessSqlArray( $rev ),
 				$this->preprocessSqlArray( [ 'rev_id' => $old['rev_id'] ] ),
 				__METHOD__
 			);
-			if ( !( $res && $dbw->affectedRows() ) ) {
+			if ( !$dbw->affectedRows() ) {
 				return false;
 			}
 		}
