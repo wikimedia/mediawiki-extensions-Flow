@@ -483,9 +483,6 @@ class NotificationController {
 			'type' => 'flow-enabled-on-talkpage',
 			'agent' => $user,
 			'title' => $user->getTalkPage(),
-			'extra' => [
-				'notifyAgent' => true,
-			],
 		] );
 
 		return $events;
@@ -547,7 +544,6 @@ class NotificationController {
 				'max-mentions' => $wgFlowMaxMentionCount,
 				'section-title' => $extraData['topic-title'],
 				'failure-type' => 'too-many',
-				'notifyAgent' => true
 			];
 			if ( $content->getRevisionType() === 'post' ) {
 				$extra['post-id'] = $content->getCollection()->getId();

@@ -242,6 +242,7 @@ $notifications = [
 		'user-locators' => [
 			'EchoUserLocator::locateTalkPageOwner'
 		],
+		'canNotifyAgent' => true,
 		'primary-link' => [
 			'message' => 'flow-notification-link-text-enabled-on-talkpage',
 			'destination' => 'title'
@@ -274,6 +275,7 @@ $notifications = [
 		'user-locators' => [
 			'EchoUserLocator::locateEventAgent'
 		],
+		'canNotifyAgent' => true,
 		'section' => 'alert',
 		'presentation-model' => \Flow\MentionStatusPresentationModel::class,
 	] + $notificationTemplate,
