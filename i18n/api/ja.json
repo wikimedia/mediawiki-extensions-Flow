@@ -5,10 +5,11 @@
 			"Otokoume",
 			"Shirayuki",
 			"SkyDaisy9",
-			"Sujiniku"
+			"Sujiniku",
+			"Omotecho"
 		]
 	},
-	"apihelp-flow-description": "Flow ページに対して操作を行います。",
+	"apihelp-flow-description": "スレッド表示した議論の（Flow）ページに対して操作を行います。",
 	"apihelp-flow-param-submodule": "実行する Flow サブモジュールです。",
 	"apihelp-flow-param-page": "操作を行うページです。",
 	"apihelp-flow-example-1": "\"[[Talk:Sandbox]]\" の説明を編集",
@@ -31,13 +32,13 @@
 	"apihelp-flow+edit-topic-summary-param-prev_revision": "現在の話題の要約の版 ID がある場合は指定します。編集競合を確認するためのものです。",
 	"apihelp-flow+edit-topic-summary-param-summary": "要約の内容です。",
 	"apihelp-flow+edit-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] の要約を編集",
-	"apihelp-flow+lock-topic-description": "Flow の話題をロックまたはロック解除します。",
+	"apihelp-flow+lock-topic-description": "スレッド化した議論の話題をロックまたはロック解除します。",
 	"apihelp-flow+lock-topic-param-moderationState": "変更後の話題の状態であり、<kbd>lock</kbd> または <kbd>unlock</kbd> です。",
-	"apihelp-flow+lock-topic-param-reason": "話題をロックまたはロック解除する理由です。Note, the on-wiki Flow client uses \"Marked as resolved\" here, and puts optional additional information in the summary.",
+	"apihelp-flow+lock-topic-param-reason": "話題をロックまたはロック解除する理由です。ただしオンウィキの議論のスレッド表示（旧称フロー）ではこの場合「解決済み」を使用し、編集要約欄にオプションで補足の情報を追加します。",
 	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] をロック",
 	"apihelp-flow+moderate-post-example-1": "話題 [[Topic:S2tycnas4hcucw8w]] の投稿を削除",
 	"apihelp-flow+moderate-topic-example-1": "話題 [[Topic:S2tycnas4hcucw8w]] を削除",
-	"apihelp-flow+new-topic-description": "指定したワークフローに Flow の話題を新規作成します。",
+	"apihelp-flow+new-topic-description": "指定したワークフローにスレッド化した議論 (Flow) の話題を新規作成します。",
 	"apihelp-flow+new-topic-param-topic": "新しい話題の題名です。",
 	"apihelp-flow+new-topic-param-content": "初めのリプライの話題の本文です。",
 	"apihelp-flow+new-topic-example-1": "[[Talk:Sandbox]] に話題を新規作成",
@@ -74,6 +75,6 @@
 	"apihelp-flow-parsoid-utils-param-title": "ページ名です。$1pageid とは同時に使用できません。",
 	"apihelp-flow-parsoid-utils-param-pageid": "ページの ID です。$1title とは同時に使用できません。",
 	"apihelp-flow-parsoid-utils-example-1": "ウィキテキスト <nowiki>'''lorem''' ''blah''</nowiki> を HTML 形式に変換",
-	"apihelp-query+flowinfo-description": "ページの Flow の基礎的な情報を取得します。",
-	"apihelp-query+flowinfo-example-1": "[[Talk:Sandbox]]、[[Main Page]]、[[Talk:Flow]] の Flow の情報を取得"
+	"apihelp-query+flowinfo-description": "ページのスレッド化した議論の基本情報を取得します。",
+	"apihelp-query+flowinfo-example-1": "[[Talk:Sandbox]]、[[Main Page]]、[[Talk:Structured Discussions]]のスレッド化した議論の情報を取得"
 }
