@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Janezdrilc"
+			"Janezdrilc",
+			"Dbc334"
 		]
 	},
-	"apihelp-flow-description": "Dovoli dejanja na straneh Toka.",
-	"apihelp-flow-summary": "Dovoli dejanja na straneh Toka.",
-	"apihelp-flow-param-submodule": "Priklic podmodula Toka.",
+	"apihelp-flow-description": "Dovoli dejanja na straneh Strukturiranih pogovorov.",
+	"apihelp-flow-summary": "Dovoli dejanja na straneh Strukturiranih pogovorov.",
+	"apihelp-flow-param-submodule": "Priklic podmodula Strukturiranih pogovorov.",
 	"apihelp-flow-param-page": "Stran, na kateri se izvršijo dejanja.",
 	"apihelp-flow-param-token": "Žeton pridobljen iz [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"apihelp-flow-example-1": "Uredi opis za \"[[Talk:Sandbox]]\"",
@@ -38,18 +39,18 @@
 	"apihelp-flow+edit-topic-summary-param-summary": "Vsebina povzetka.",
 	"apihelp-flow+edit-topic-summary-param-format": "Format povzetka (wikibesedilo|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "Uredi povzetek v [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+lock-topic-description": "Zakleni ali odkleni temo Toka.",
-	"apihelp-flow+lock-topic-summary": "Zakleni ali odkleni temo Toka.",
+	"apihelp-flow+lock-topic-description": "Zakleni ali odkleni temo Strukturiranih pogovorov.",
+	"apihelp-flow+lock-topic-summary": "Zakleni ali odkleni temo Strukturiranih pogovorov.",
 	"apihelp-flow+lock-topic-param-moderationState": "Stanje vnosa teme, lahko <kbd>zaklenjeno</kbd> ali <kbd>odklenjeno</kbd>.",
 	"apihelp-flow+lock-topic-example-1": "Zakleni [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+moderate-post-description": "Moderira sporočilo Toka.",
-	"apihelp-flow+moderate-post-summary": "Moderira sporočilo Toka.",
+	"apihelp-flow+moderate-post-description": "Moderira sporočilo Strukturiranih pogovorov.",
+	"apihelp-flow+moderate-post-summary": "Moderira sporočilo Strukturiranih pogovorov.",
 	"apihelp-flow+moderate-post-param-moderationState": "Raven moderiranja.",
 	"apihelp-flow+moderate-post-param-reason": "Razlog za moderiranje.",
 	"apihelp-flow+moderate-post-param-postId": "ID sporočila za moderacijo.",
 	"apihelp-flow+moderate-post-example-1": "Izbriši sporočilo na temo [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+moderate-topic-description": "Moderira temo Toka.",
-	"apihelp-flow+moderate-topic-summary": "Moderira temo Toka.",
+	"apihelp-flow+moderate-topic-description": "Moderira temo Strukturiranih pogovorov.",
+	"apihelp-flow+moderate-topic-summary": "Moderira temo Strukturiranih pogovorov.",
 	"apihelp-flow+moderate-topic-param-moderationState": "Raven moderiranja.",
 	"apihelp-flow+moderate-topic-param-reason": "Razlog za moderiranje.",
 	"apihelp-flow+moderate-topic-example-1": "Izbriši temo [[Topic:S2tycnas4hcucw8w]]",
@@ -103,8 +104,8 @@
 	"apihelp-flow-parsoid-utils-param-title": "Naslov strani. Ni ga mogoče uporabiti hkrati z $1pageid.",
 	"apihelp-flow-parsoid-utils-param-pageid": "ID strani. Ni ga mogoče uporabiti hkrati z $1title.",
 	"apihelp-flow-parsoid-utils-example-1": "Pretvori wikibesedilo <nowiki>'''lorem''' ''blah''</nowiki> v HTML",
-	"apihelp-query+flowinfo-description": "Prikaži osnovne informacije Toka o strani.",
-	"apihelp-query+flowinfo-summary": "Prikaži osnovne informacije Toka o strani.",
+	"apihelp-query+flowinfo-description": "Prikaži osnovne informacije Strukturiranih pogovorov o strani.",
+	"apihelp-query+flowinfo-summary": "Prikaži osnovne informacije Strukturiranih pogovorov o strani.",
 	"apihelp-flow+undo-edit-header-param-startId": "ID redakcije za začetek razveljavitve na.",
 	"apihelp-flow+undo-edit-header-param-endId": "ID redakcije za končanje razveljavitve na.",
 	"apihelp-flow+undo-edit-post-param-postId": "ID sporočila za razveljavitev.",
@@ -112,5 +113,5 @@
 	"apihelp-flow+undo-edit-post-param-endId": "ID redakcije za končanje razveljavitve na.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "ID redakcije za začetek razveljavitve na.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "ID redakcije za končanje razveljavitve na.",
-	"apierror-flow-notenabled": "Navedena stran nima omogočenega Toka."
+	"apierror-flow-notenabled": "Navedena stran nima omogočenega Strukturiranih pogovorov."
 }
