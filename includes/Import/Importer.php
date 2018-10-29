@@ -324,7 +324,7 @@ class PageImportState {
 			[ 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 ]
 		);
 
-		if ( count( $result ) ) {
+		if ( is_array( $result ) && count( $result ) ) {
 			return reset( $result );
 		} else {
 			return false;
