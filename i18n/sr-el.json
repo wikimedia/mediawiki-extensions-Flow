@@ -43,6 +43,7 @@
 	"flow-topic-action-summarize-topic": "Sumiraj",
 	"flow-topic-action-undo-moderation": "Opozovi",
 	"flow-topic-notification-subscribe-title": "Ova tema je dodata na {{GENDER:$1|Vaš}} spisak nadgledanja.",
+	"flow-error-not-allowed": "Nemate odgovarajuću dozvolu za izvršenje ove akcije.",
 	"flow-error-not-allowed-delete": "Ova tema je obrisana.",
 	"flow-error-not-allowed-suppress": "Ova tema je obrisana.",
 	"flow-error-no-commit": "Navedenu radnju nije moguće sačuvati.",

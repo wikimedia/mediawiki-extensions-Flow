@@ -50,8 +50,8 @@
 	"flow-ve-mention-placeholder": "Потребителско име",
 	"flow-mark-revision-patrolled-link-text": "Отбелязване на страницата като патрулирана",
 	"flow-mark-revision-patrolled-link-title": "Отбелязване на страницата като патрулирана",
-	"flow-mark-diff-patrolled-link-text": "Отбелязване като патрулирана редакция",
-	"flow-mark-diff-patrolled-link-title": "Отбелязване като патрулирана редакция",
+	"flow-mark-diff-patrolled-link-text": "Отбелязване на редакцията като патрулирана",
+	"flow-mark-diff-patrolled-link-title": "Отбелязване на редакцията като патрулирана",
 	"flow-optin-archive-wikitext": "Преместване на страницата с уики текст за да се освободи място за дискусионно табло.",
 	"flow-optin-restore-flow-board": "Възстановяване на архивирано дискусионно табло.",
 	"flow-preference-visualeditor": "Включване на визуалния редактор и новия уикитекстов режим в Структурирани дискусии"
