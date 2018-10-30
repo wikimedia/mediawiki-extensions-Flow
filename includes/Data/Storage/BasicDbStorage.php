@@ -49,7 +49,6 @@ class BasicDbStorage extends DbStorage {
 	 * @param array $rows The rows to insert. Also accepts a single row.
 	 * @return array|false An array of the rows that now exist
 	 * in the database. Integrity of keys is guaranteed.
-	 * False if we failed.
 	 */
 	public function insert( array $rows ) {
 		// Only allow the row to include key/value pairs.
@@ -61,16 +60,13 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		// insert returns boolean true/false
-		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+		$this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
 			$insertRows,
 			__METHOD__ . " ({$this->table})"
 		);
-		if ( $res ) {
-			return $rows;
-		} else {
-			return false;
-		}
+
+		return $rows;
 	}
 
 	/**
