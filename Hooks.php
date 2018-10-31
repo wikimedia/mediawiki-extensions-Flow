@@ -176,8 +176,13 @@ class FlowHooks {
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
 		$dir = __DIR__;
-		$baseSQLFile = "$dir/flow.sql";
-		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
+		$updater->addExtensionTable( 'flow_workflow', "$dir/sql/flow_workflow.sql" );
+		$updater->addExtensionTable( 'flow_topic_list', "$dir/sql/flow_topic_list.sql" );
+		$updater->addExtensionTable( 'flow_tree_revision', "$dir/sql/flow_tree_revision.sql" );
+		$updater->addExtensionTable( 'flow_revision', "$dir/sql/flow_revision.sql" );
+		$updater->addExtensionTable( 'flow_tree_node', "$dir/sql/flow_tree_node.sql" );
+		$updater->addExtensionTable( 'flow_wiki_ref', "$dir/sql/flow_wiki_ref.sql" );
+		$updater->addExtensionTable( 'flow_ext_ref', "$dir/sql/flow_ext_ref.sql" );
 		$updater->addExtensionField( 'flow_revision', 'rev_last_edit_id',
 			"$dir/db_patches/patch-revision_last_editor.sql" );
 		$updater->addExtensionField( 'flow_revision', 'rev_mod_reason',
