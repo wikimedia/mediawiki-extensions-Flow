@@ -80,7 +80,7 @@
 	"flow-topic-action-restore-topic": "Врати тему",
 	"flow-topic-action-undo-moderation": "Опозови",
 	"flow-topic-notification-subscribe-title": "Ова тема је додата на {{GENDER:$1|ваш}} списак надгледања.",
-	"flow-error-not-allowed": "Немате одговарајућу дозволу за извршење ове акције.",
+	"flow-error-not-allowed": "Немате одговарајућу дозволу за извршење ове радње.",
 	"flow-error-not-allowed-delete": "Ова тема је избрисана.",
 	"flow-error-not-allowed-suppress": "Ова тема је избрисана.",
 	"flow-error-no-commit": "Не могу да сачувам наведену радњу.",
