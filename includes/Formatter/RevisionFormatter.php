@@ -1023,8 +1023,8 @@ class RevisionFormatter {
 				->getFullUrl();
 
 		case 'moderated-reason':
-			// don-t parse wikitext in the moderation reason
-			return Message::plaintextParam( $revision->getModeratedReason() );
+			// don't parse wikitext in the moderation reason
+			return Message::plaintextParam( $revision->getModeratedReason() ?? '' );
 
 		case 'topic-of-post':
 			if ( !$revision instanceof PostRevision ) {
