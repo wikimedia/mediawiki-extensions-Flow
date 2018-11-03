@@ -120,7 +120,7 @@
 	"apihelp-flow-parsoid-utils-example-1": "Konvertera wikitext <nowiki>'''lorem''' ''blah''</nowiki> till HTML",
 	"apihelp-query+flowinfo-description": "Hämta grundläggande Structured Discussions-information för en sida.",
 	"apihelp-query+flowinfo-summary": "Hämta grundläggande Structured Discussions-information för en sida.",
-	"apihelp-query+flowinfo-example-1": "Hämta Structured Discussions-information om [[Talk:Sandbox]], [[Main Page]], och [[Talk:Flow]]",
+	"apihelp-query+flowinfo-example-1": "Hämta Structured Discussions-information om [[Talk:Sandbox]], [[Main Page]], och [[Talk:Structured Discussions]]",
 	"apihelp-flow+undo-edit-header-description": "Hämta information som är nödvändig för att göra beskrivningsredigeringar ogjorda.",
 	"apihelp-flow+undo-edit-header-summary": "Hämta information som är nödvändig för att göra beskrivningsredigeringar ogjorda.",
 	"apihelp-flow+undo-edit-header-param-startId": "Sidversionens ID att börja ångra från.",
