@@ -14,39 +14,24 @@ use Title;
  * @group Flow
  */
 class ContentLengthFilterTest extends \MediaWikiTestCase {
-	/**
-	 * @var SpamRegex
-	 */
-	protected $spamFilter;
 
-	public function spamProvider() {
-		return [
-			[
-				'With content shorter than max length allow through filter',
-				// expect
-				true,
-				// content
-				'blah',
-				// max length
-				100
-			],
-
-			[
-				'With content longer than max length disallow through filter',
-				// expect
-				false,
-				// content
-				'blah',
-				// max length
-				2
-			],
+	public function filterValidationProvider() {
+		yield 'With content shorter than max length allow through filter' => [
+			'expected' => true,
+			'content' => 'blah',
+			'maxLength' => 100
+		];
+		yield 'With content longer than max length disallow through filter' => [
+			'expected' => false,
+			'content' => 'blah',
+			'maxLength' => 2,
 		];
 	}
 
 	/**
-	 * @dataProvider spamProvider
+	 * @dataProvider filterValidationProvider
 	 */
-	public function testSpam( $message, $expect, $content, $maxLength ) {
+	public function testFilterValidation( $expected, $content, $maxLength ) {
 		$ownerTitle = Title::newFromText( 'UTPage' );
 		$title = Title::newFromText( 'Topic:Tnprd6ksfu1v1nme' );
 		$user = User::newFromName( '127.0.0.1', false );
@@ -54,8 +39,8 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 		$topic = PostRevision::createTopicPost( $workflow, $user, 'title content' );
 		$reply = $topic->reply( $workflow, $user, $content, 'wikitext' );
 
-		$spamFilter = new ContentLengthFilter( $maxLength );
-		$status = $spamFilter->validate( $this->getMock( 'IContextSource' ), $reply, null, $title, $ownerTitle );
-		$this->assertEquals( $expect, $status->isOK() );
+		$filter = new ContentLengthFilter( $maxLength );
+		$status = $filter->validate( $this->getMock( 'IContextSource' ), $reply, null, $title, $ownerTitle );
+		$this->assertSame( $expected, $status->isOK() );
 	}
 }
