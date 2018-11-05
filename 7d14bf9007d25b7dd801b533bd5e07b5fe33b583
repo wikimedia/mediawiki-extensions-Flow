@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58e03be8_647f8b9e",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-11-05T17:21:22Z",
+      "side": 1,
+      "message": "I still find this confusing for a series of reasons:\n* Yes, the code below will return null then null is fed in here. But is this an intentional feature? Before, it was not (because it was not documented).\n* I don\u0027t fully understand the tests for this, as they are in .handlebars files. To me it looks like the null case is not tested.\n* The identically named JavaScript function accepts a single post ID, not an array. Is this a problem?\n* I think these IDs are integers, not strings. But I\u0027m not sure.\n\nSuggestion: Change it to \"mixed\" for now (and I will merge this), until one of the original developers of this extension can have a closer look.",
+      "range": {
+        "startLine": 309,
+        "startChar": 11,
+        "endLine": 309,
+        "endChar": 31
+      },
+      "revId": "7d14bf9007d25b7dd801b533bd5e07b5fe33b583",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
