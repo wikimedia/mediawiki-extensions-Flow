@@ -29,9 +29,9 @@ class LinksTableUpdater {
 		$title = $workflow->getArticleTitle();
 		$page = WikiPage::factory( $title );
 		$content = $page->getContent();
-		if ( $content === null ) {
-			$updates = [];
-		} else {
+		$updates = [];
+		// Must have an article ID in order for LinksUpdate to not fail in getSecondaryDataUpdates.
+		if ( $content !== null && $title->getArticleID( Title::GAID_FOR_UPDATE ) ) {
 			$updates = $content->getSecondaryDataUpdates( $title );
 		}
 
