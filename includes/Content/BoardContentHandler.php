@@ -4,6 +4,7 @@ namespace Flow\Content;
 
 use Flow\Actions\FlowAction;
 use Flow\Container;
+use Flow\Diff\FlowBoardContentDiffView;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use FormatJson;
@@ -18,6 +19,10 @@ class BoardContentHandler extends \ContentHandler {
 		}
 
 		parent::__construct( CONTENT_MODEL_FLOW_BOARD, [ CONTENT_FORMAT_JSON ] );
+	}
+
+	protected function getDiffEngineClass() {
+		return FlowBoardContentDiffView::class;
 	}
 
 	public function isSupportedFormat( $format ) {
