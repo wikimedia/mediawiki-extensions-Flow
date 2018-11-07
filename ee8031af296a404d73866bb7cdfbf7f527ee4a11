@@ -22,6 +22,30 @@
       "revId": "ee8031af296a404d73866bb7cdfbf7f527ee4a11",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be08f776_09a432d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-11-07T20:33:34Z",
+      "side": 1,
+      "message": "Was supposed to be this: https://gerrit.wikimedia.org/r/c/mediawiki/extensions/Flow/+/468847/2/includes/TemplateHelper.php#309. Will update.",
+      "parentUuid": "4d96e361_6d5206ee",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 67
+      },
+      "revId": "ee8031af296a404d73866bb7cdfbf7f527ee4a11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
