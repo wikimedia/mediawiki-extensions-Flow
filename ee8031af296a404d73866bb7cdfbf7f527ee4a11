@@ -46,6 +46,30 @@
       "revId": "ee8031af296a404d73866bb7cdfbf7f527ee4a11",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbe214e3_59bfcddc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2018-11-07T20:38:55Z",
+      "side": 1,
+      "message": "Ah, so it\u0027s from the same CR. Not something elsewhere. In that case, maybe just summarise it here?\n\nAny way, -1 for bit.ly in commit messages. The full url is fine.\n\nhttps://www.mediawiki.org/wiki/Gerrit/Commit_message_guidelines",
+      "parentUuid": "be08f776_09a432d7",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 67
+      },
+      "revId": "ee8031af296a404d73866bb7cdfbf7f527ee4a11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
