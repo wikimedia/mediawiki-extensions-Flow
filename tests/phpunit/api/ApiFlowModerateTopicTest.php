@@ -29,6 +29,9 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		'logging',
 	];
 
+	/**
+	 * @group Broken
+	 */
 	public function testModerateTopic() {
 		$topic = $this->createTopic();
 

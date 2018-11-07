@@ -12,6 +12,10 @@ namespace Flow\Tests\Api;
  * @group Database
  */
 class ApiFlowEditTitleTest extends ApiTestCase {
+
+	/**
+	 * @group Broken
+	 */
 	public function testEditTitle() {
 		$topic = $this->createTopic();
 
