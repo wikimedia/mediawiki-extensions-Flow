@@ -163,6 +163,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 	/**
 	 * @dataProvider permissionsProvider
+	 *
+	 * @group Broken
 	 */
 	public function testPermissions( $userGetterName, $permissionAction, array $actions ) {
 		// NOTE: the provider cannot create the User object, because it would be creating the

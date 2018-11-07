@@ -53,6 +53,9 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 		$this->assertEquals( 'plaintext', $revision['moderateReason']['format'], $debug );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testUnlockTopic() {
 		$topic = $this->createTopic();
 

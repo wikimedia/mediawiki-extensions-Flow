@@ -47,6 +47,7 @@ class FormatterTest extends FlowTestCase {
 	/**
 	 * @covers \Flow\Formatter\CheckUserFormatter
 	 * @dataProvider checkUserProvider
+	 * @group Broken
 	 */
 	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
 		global $wgLang;
