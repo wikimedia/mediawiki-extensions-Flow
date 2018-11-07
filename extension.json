@@ -1042,6 +1042,7 @@
 		"Flow\\Data\\Utils\\SortRevisionsByRevisionId": "includes/Data/Utils/SortRevisionsByRevisionId.php",
 		"Flow\\Data\\Utils\\UserMerger": "includes/Data/Utils/UserMerger.php",
 		"Flow\\DbFactory": "includes/DbFactory.php",
+		"Flow\\Diff\\FlowBoardContentDiffView": "includes/Diff/FlowBoardContentDiffView.php",
 		"Flow\\Dump\\Exporter": "includes/Dump/Exporter.php",
 		"Flow\\Dump\\Importer": "includes/Dump/Importer.php",
 		"Flow\\Exception\\CatchableFatalErrorException": "includes/Exception/CatchableFatalErrorException.php",
