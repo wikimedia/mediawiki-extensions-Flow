@@ -18,5 +18,5 @@ interface UserNameQuery {
 	 * @return ResultWrapper|bool Containing objects with user_id and
 	 *   user_name properies.
 	 */
-	function execute( $wiki, array $userIds );
+	public function execute( $wiki, array $userIds );
 }

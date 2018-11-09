@@ -17,14 +17,14 @@ interface IConversionStrategy {
 	 *  same store between conversion runs from the same source to
 	 *  guarantee idempotent imports (without duplicate content).
 	 */
-	function getSourceStore();
+	public function getSourceStore();
 
 	/**
 	 * @param Title $from The original location of the page
 	 * @param Title $to The archive location of the page
 	 * @return string A reason for moving the page to an archive location.
 	 */
-	function getMoveComment( Title $from, Title $to );
+	public function getMoveComment( Title $from, Title $to );
 
 	/**
 	 * @param Title $from The original location of the page
@@ -32,7 +32,7 @@ interface IConversionStrategy {
 	 * @return string A reason for performing an edit to the
 	 *  archive location.
 	 */
-	function getCleanupComment( Title $from, Title $to );
+	public function getCleanupComment( Title $from, Title $to );
 
 	/**
 	 * @param Title $title The current location of the page
@@ -41,7 +41,7 @@ interface IConversionStrategy {
 	 * @return bool True when the conversion is complete and nothing
 	 *  more can be done
 	 */
-	function isConversionFinished( Title $title, Title $movedFrom = null );
+	public function isConversionFinished( Title $title, Title $movedFrom = null );
 
 	/**
 	 * Create an ImportSource implementation for the provided Title.
@@ -51,7 +51,7 @@ interface IConversionStrategy {
 	 * @param Title $title The page to import from
 	 * @return IImportSource
 	 */
-	function createImportSource( Title $title );
+	public function createImportSource( Title $title );
 
 	/**
 	 * Flow does not support viewing the history of the wikitext pages
@@ -62,7 +62,7 @@ interface IConversionStrategy {
 	 * @return Title The title to archive $source to
 	 * @throws ImportException When no title can be decided upon
 	 */
-	function decideArchiveTitle( Title $source );
+	public function decideArchiveTitle( Title $source );
 
 	/**
 	 * Creates the content for an edit to the archived page content. When
@@ -73,13 +73,13 @@ interface IConversionStrategy {
 	 * @param Title $title
 	 * @return WikitextContent|null
 	 */
-	function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title );
+	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title );
 
 	/**
 	 * Gets any postprocessors used for this type of conversion
 	 * @return Postprocessor|null
 	 */
-	function getPostprocessor();
+	public function getPostprocessor();
 
 	/**
 	 * Checks whether the title should be converted.
@@ -89,5 +89,5 @@ interface IConversionStrategy {
 	 * @param Title $sourceTitle
 	 * @return bool True if and only if it should be converted
 	 */
-	function shouldConvert( Title $sourceTitle );
+	public function shouldConvert( Title $sourceTitle );
 }

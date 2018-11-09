@@ -346,12 +346,12 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 * @param int $retry Retry the request on failure this many times
 	 * @return array API return value, decoded from JSON into an array.
 	 */
-	abstract function apiCall( array $params, $retry = 1 );
+	abstract public function apiCall( array $params, $retry = 1 );
 
 	/**
 	 * @return string A unique identifier for this backend.
 	 */
-	abstract function getKey();
+	abstract public function getKey();
 
 	/**
 	 * @param array $apiResponse
