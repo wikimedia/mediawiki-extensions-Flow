@@ -19,7 +19,7 @@ interface Postprocessor {
 	 * @param PageImportState $state
 	 * @param IImportHeader $header
 	 */
-	function afterHeaderImported( PageImportState $state, IImportHeader $header );
+	public function afterHeaderImported( PageImportState $state, IImportHeader $header );
 
 	/**
 	 * Called after the import of a single post. This has not yet been
@@ -31,7 +31,7 @@ interface Postprocessor {
 	 * @param IImportPost $post
 	 * @param PostRevision $newPost
 	 */
-	function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost );
+	public function afterPostImported( TopicImportState $state, IImportPost $post, PostRevision $newPost );
 
 	/**
 	 * Called after the successful commit of a topic to the database.
@@ -41,7 +41,7 @@ interface Postprocessor {
 	 * @param TopicImportState $state
 	 * @param IImportPost $topic
 	 */
-	function afterTopicImported( TopicImportState $state, IImportTopic $topic );
+	public function afterTopicImported( TopicImportState $state, IImportTopic $topic );
 
 	/**
 	 * Called when there has been an error in the import process.
@@ -49,5 +49,5 @@ interface Postprocessor {
 	 * commit operation should be discarded as it will not be written
 	 * to permenant storage.
 	 */
-	function importAborted();
+	public function importAborted();
 }

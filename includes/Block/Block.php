@@ -17,7 +17,7 @@ interface Block {
 	 * @param IContextSource $context
 	 * @param string $action
 	 */
-	function init( IContextSource $context, $action );
+	public function init( IContextSource $context, $action );
 
 	/**
 	 * Perform validation of data model
@@ -25,12 +25,12 @@ interface Block {
 	 * @param array $data
 	 * @return bool True if data model is valid
 	 */
-	function onSubmit( array $data );
+	public function onSubmit( array $data );
 
 	/**
 	 * Write updates to storage
 	 */
-	function commit();
+	public function commit();
 
 	/**
 	 * Render the API output of this Block.
@@ -39,17 +39,17 @@ interface Block {
 	 * @param array $options
 	 * @return array
 	 */
-	function renderApi( array $options );
+	public function renderApi( array $options );
 
 	/**
 	 * @return string Unique name among all blocks on an object
 	 */
-	function getName();
+	public function getName();
 
 	/**
 	 * @return UUID
 	 */
-	function getWorkflowId();
+	public function getWorkflowId();
 
 	/**
 	 * Returns an array of all error types encountered in this block. The values
@@ -59,7 +59,7 @@ interface Block {
 	 *
 	 * @return array
 	 */
-	function getErrors();
+	public function getErrors();
 
 	/**
 	 * Checks if any errors have occurred in the block (no argument), or if a
@@ -68,7 +68,7 @@ interface Block {
 	 * @param string|null $type
 	 * @return bool
 	 */
-	function hasErrors( $type = null );
+	public function hasErrors( $type = null );
 
 	/**
 	 * Returns true if the block can render the requested action, or false
