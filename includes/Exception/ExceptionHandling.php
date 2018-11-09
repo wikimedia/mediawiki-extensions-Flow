@@ -173,7 +173,7 @@ class InvalidInputException extends FlowException {
 	 * Do not log exception resulting from input error
 	 * @return bool
 	 */
-	function isLoggable() {
+	public function isLoggable() {
 		return false;
 	}
 }
@@ -224,7 +224,7 @@ class InvalidActionException extends FlowException {
 	 * Do not log exception resulting from input error
 	 * @return bool
 	 */
-	function isLoggable() {
+	public function isLoggable() {
 		return false;
 	}
 }
@@ -253,7 +253,7 @@ class PermissionException extends FlowException {
 	 * disallowed content.
 	 * @return bool
 	 */
-	function isLoggable() {
+	public function isLoggable() {
 		return false;
 	}
 }
