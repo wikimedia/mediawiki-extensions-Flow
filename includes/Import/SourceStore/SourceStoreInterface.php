@@ -12,22 +12,22 @@ interface SourceStoreInterface {
 	 * @param UUID $objectId ID for the object that was imported.
 	 * @param string $importSourceKey String returned from IImportObject::getObjectKey()
 	 */
-	function setAssociation( UUID $objectId, $importSourceKey );
+	public function setAssociation( UUID $objectId, $importSourceKey );
 
 	/**
 	 * @param IImportObject $importObject
 	 * @return UUID|bool UUID of the imported object if appropriate; otherwise, false.
 	 */
-	function getImportedId( IImportObject $importObject );
+	public function getImportedId( IImportObject $importObject );
 
 	/**
 	 * Save any associations that have been added
 	 * @throws Exception When save fails
 	 */
-	function save();
+	public function save();
 
 	/**
 	 * Forget any recorded associations since last save
 	 */
-	function rollback();
+	public function rollback();
 }

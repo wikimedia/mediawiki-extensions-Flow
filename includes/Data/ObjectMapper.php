@@ -13,7 +13,7 @@ interface ObjectMapper {
 	 * @param object $object
 	 * @return array
 	 */
-	function toStorageRow( $object );
+	public function toStorageRow( $object );
 
 	/**
 	 * Convert a db row to its domain model. Object passing is intended for
@@ -24,7 +24,7 @@ interface ObjectMapper {
 	 * @return object The domain model populated with $row
 	 * @throws \Exception When object is the wrong class for the mapper
 	 */
-	function fromStorageRow( array $row, $object = null );
+	public function fromStorageRow( array $row, $object = null );
 
 	/**
 	 * Check internal cache for previously unserialized objects
@@ -32,7 +32,7 @@ interface ObjectMapper {
 	 * @param array $primaryKey
 	 * @return object|null
 	 */
-	function get( array $primaryKey );
+	public function get( array $primaryKey );
 
 	/**
 	 * Accepts a row representing domain model & returns that same row,
@@ -43,10 +43,10 @@ interface ObjectMapper {
 	 * @param array $row Assoc array representing the domain model
 	 * @return array Normalized row
 	 */
-	function normalizeRow( array $row );
+	public function normalizeRow( array $row );
 
 	/**
 	 * Clear any internally cached information
 	 */
-	function clear();
+	public function clear();
 }

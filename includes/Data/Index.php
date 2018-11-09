@@ -14,7 +14,7 @@ interface Index extends LifecycleHandler {
 	 * @return array Cached subset of data model rows matching the
 	 *     equality conditions provided in $keys.
 	 */
-	function find( array $keys, array $options = [] );
+	public function find( array $keys, array $options = [] );
 
 	/**
 	 * Batch together multiple calls to self::find with minimal network round trips.
@@ -23,7 +23,7 @@ interface Index extends LifecycleHandler {
 	 * @param array $options Options to use
 	 * @return array[] Array of arrays in same order as $queries representing batched result set.
 	 */
-	function findMulti( array $queries, array $options = [] );
+	public function findMulti( array $queries, array $options = [] );
 
 	/**
 	 * Returns a boolean true/false if the find()-operation for the given
@@ -54,7 +54,7 @@ interface Index extends LifecycleHandler {
 	/**
 	 * @return int Maximum number of items in a single index value
 	 */
-	function getLimit();
+	public function getLimit();
 
 	/**
 	 * Rows are first sorted based on the first term of the result, then ties
@@ -63,7 +63,7 @@ interface Index extends LifecycleHandler {
 	 * @todo choose a default sort instead of false?
 	 * @return array|false Columns to sort on
 	 */
-	function getSort();
+	public function getSort();
 
 	/**
 	 * Query options are not supported at the query level, the index always
@@ -75,11 +75,11 @@ interface Index extends LifecycleHandler {
 	 * @param array $options
 	 * @return bool Can the index locate a result for this keys and options pair
 	 */
-	function canAnswer( array $keys, array $options );
+	public function canAnswer( array $keys, array $options );
 
 	/**
 	 * @param object $object
 	 * @param array $row
 	 */
-	function cachePurge( $object, array $row );
+	public function cachePurge( $object, array $row );
 }

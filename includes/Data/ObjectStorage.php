@@ -15,7 +15,7 @@ interface ObjectStorage {
 	 * @param array $options Query options such as ORDER BY and LIMIT.
 	 * @return array
 	 */
-	function find( array $attributes, array $options = [] );
+	public function find( array $attributes, array $options = [] );
 
 	/**
 	 * Perform the equivalent of array_map against self::find for multiple
@@ -25,12 +25,12 @@ interface ObjectStorage {
 	 * @param array $options Options to use for all queries
 	 * @return array[] Array of results for every query
 	 */
-	function findMulti( array $queries, array $options = [] );
+	public function findMulti( array $queries, array $options = [] );
 
 	/**
 	 * @return array The list of columns that together uniquely identify a row
 	 */
-	function getPrimaryKeyColumns();
+	public function getPrimaryKeyColumns();
 
 	/**
 	 * Insert the specified row into the data store.
@@ -40,7 +40,7 @@ interface ObjectStorage {
 	 * also supported.
 	 * @return array|false The resulting $row including any auto-assigned ids or false on failure
 	 */
-	function insert( array $rows );
+	public function insert( array $rows );
 
 	/**
 	 * Perform all changes necessary to turn $old into $new in the data store.
@@ -49,7 +49,7 @@ interface ObjectStorage {
 	 * @param array $new Map of columns to values that the row should become.
 	 * @return bool true when the row is successfully updated
 	 */
-	function update( array $old, array $new );
+	public function update( array $old, array $new );
 
 	/**
 	 * Remove the specified row from the data store.
@@ -57,7 +57,7 @@ interface ObjectStorage {
 	 * @param array $row Map of columns to values.  Must contain the primary key columns.
 	 * @return bool true when the row is successfully removed
 	 */
-	function remove( array $row );
+	public function remove( array $row );
 
 	/**
 	 * Returns a boolean true/false to indicate if the result of a particular
@@ -69,5 +69,5 @@ interface ObjectStorage {
 	 * @param array $row
 	 * @return bool
 	 */
-	function validate( array $row );
+	public function validate( array $row );
 }
