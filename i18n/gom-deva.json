@@ -103,6 +103,7 @@
 	"flow-history-last4": "निमाणीं ४ वरां",
 	"flow-history-day": "आयज",
 	"flow-history-week": "फाटलो सप्तक",
+	"flow-topic-comments": "\n{{PLURAL:$1|एक शेरो|$1 शेरे|0=शेरो करपाक {{GENDER:$2|पयलो जा|पयलें जा}}!}}",
 	"flow-comment-deleted": "काडून उडयल्लो शेरो",
 	"flow-comment-hidden": "लिपयल्लो शेरो",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 हाणें [[$3|$4]] -चेर तूजी <span class=\"plainlinks\">[$5 प्रकास्णी]</span> {{GENDER:$1|बदल्ला}}.",

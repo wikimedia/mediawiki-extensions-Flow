@@ -159,7 +159,7 @@
 	"flow-history-pages-post": "[$1 $2] hacher dista",
 	"flow-topic-comments": "{{PLURAL:$1|Ek xero|$1 xere|0=Xero korpak {{GENDER:$2|poilo za|poilem za}}!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|Xero polloi|Xere polloi}}",
-	"flow-hide-comments-title": "{{PLURAL:$1|Comentario lipoi}}",
+	"flow-hide-comments-title": "{{PLURAL:$1|Xero lipoi|Xere lipoi}}",
 	"flow-comment-restored": "Porot haddlolo xero",
 	"flow-comment-deleted": "Kadun udoilolo comentario",
 	"flow-comment-hidden": "Lipoilolo xero",
