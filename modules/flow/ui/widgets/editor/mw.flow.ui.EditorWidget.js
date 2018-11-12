@@ -1,3 +1,4 @@
+/* global ve */
 ( function () {
 	/**
 	 * Flow editor widget

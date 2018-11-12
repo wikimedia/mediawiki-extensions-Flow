@@ -598,11 +598,11 @@
 				"editor/editors/visualeditor/mw.flow.ve.UserCache.js",
 				"editor/editors/visualeditor/ui/inspectors/mw.flow.ve.ui.MentionInspector.js",
 				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MentionInspectorTool.js",
+				"editor/editors/visualeditor/ui/tools/mw.flow.ve.ui.MWEditModeTool.js",
 				"editor/editors/visualeditor/ui/contextitem/mw.flow.ve.ui.MentionContextItem.js",
 				"editor/editors/visualeditor/ui/widgets/mw.flow.ve.ui.MentionTargetInputWidget.js",
 				"editor/editors/visualeditor/mw.flow.ve.CommandRegistry.js",
-				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js",
-				"flow/ui/tools/mw.flow.ui.MWEditModeTool.js"
+				"editor/editors/visualeditor/mw.flow.ve.SequenceRegistry.js"
 			],
 			"styles": [
 				"editor/editors/visualeditor/mw.flow.ve.Target.less"
