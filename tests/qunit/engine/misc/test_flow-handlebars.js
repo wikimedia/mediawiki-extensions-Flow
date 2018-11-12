@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'ext.flow: Handlebars helpers', {
 		beforeEach: function () {
 			var stub = this.sandbox.stub( mw.template, 'get' ),
@@ -152,4 +152,4 @@
 		);
 	} );
 
-}( jQuery ) );
+}() );

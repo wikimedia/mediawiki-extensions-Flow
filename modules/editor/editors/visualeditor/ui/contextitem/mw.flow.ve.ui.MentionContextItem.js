@@ -1,4 +1,4 @@
-( function ( mw, OO, ve ) {
+( function () {
 	'use strict';
 
 	/**
@@ -55,4 +55,4 @@
 	};
 
 	ve.ui.contextItemFactory.register( mw.flow.ve.ui.MentionContextItem );
-}( mediaWiki, OO, ve ) );
+}() );

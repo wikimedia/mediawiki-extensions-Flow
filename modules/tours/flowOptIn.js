@@ -1,6 +1,6 @@
-( function ( window, document, $, mw, gt ) {
+( function () {
 	var archiveLinkExists = $( '.flow-link-to-archive' ).length,
-		tour = new gt.TourBuilder( {
+		tour = new mw.guidedTour.TourBuilder( {
 			name: 'flowOptIn',
 			shouldLog: true,
 			isSinglePage: true
@@ -52,4 +52,4 @@
 		} )
 		.back( archiveLinkExists ? 'findOldConversations' : 'newTopic' );
 
-}( window, document, jQuery, mediaWiki, mediaWiki.guidedTour ) );
+}() );

@@ -2,7 +2,7 @@
  * Implements element on-load callbacks for FlowBoardComponent
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds element load handlers for FlowBoardComponent
 	 * @param {jQuery} $container
@@ -39,4 +39,4 @@
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentLoadEventsMixin );
-}( jQuery, mediaWiki ) );
+}() );

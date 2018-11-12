@@ -2,7 +2,7 @@
  * Contains loadMore, jumpToTopic, and topic titles list functionality.
  */
 
-( function ( $, mw, moment ) {
+( function () {
 	/**
 	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
 	 * @param {jQuery} $container
@@ -628,4 +628,4 @@
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentLoadMoreFeatureMixin );
-}( jQuery, mediaWiki, moment ) );
+}() );

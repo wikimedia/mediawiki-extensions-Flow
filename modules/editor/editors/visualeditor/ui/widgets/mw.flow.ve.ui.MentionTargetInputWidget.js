@@ -1,4 +1,4 @@
-( function ( $, mw, OO ) {
+( function () {
 	'use strict';
 
 	/**
@@ -147,4 +147,4 @@
 			this.username = item.getData();
 		}
 	};
-}( jQuery, mediaWiki, OO ) );
+}() );

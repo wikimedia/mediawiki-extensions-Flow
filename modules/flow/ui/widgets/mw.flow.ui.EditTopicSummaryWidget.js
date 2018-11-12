@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow edit topic summary widget
 	 *
@@ -176,4 +176,4 @@
 		this.editor.destroy();
 	};
 
-}( jQuery ) );
+}() );

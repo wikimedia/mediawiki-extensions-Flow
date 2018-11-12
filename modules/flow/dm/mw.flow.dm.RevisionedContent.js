@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow RevisionedContent class
 	 *
@@ -444,4 +444,4 @@
 	mw.flow.dm.RevisionedContent.prototype.isEditable = function () {
 		return this.editable;
 	};
-}( jQuery ) );
+}() );

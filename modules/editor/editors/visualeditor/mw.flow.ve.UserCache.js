@@ -1,4 +1,4 @@
-( function ( $, mw, OO, ve ) {
+( function () {
 	'use strict';
 
 	/**
@@ -92,4 +92,4 @@
 
 	// TODO we need a platform class or some other place to put this
 	mw.flow.ve.userCache = new mw.flow.ve.UserCache();
-}( jQuery, mediaWiki, OO, ve ) );
+}() );

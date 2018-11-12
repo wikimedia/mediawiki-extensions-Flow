@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * This implements the UI portion of the CAPTCHA.
 	 *
@@ -83,4 +83,4 @@
 			this.setLabel( '' );
 		}
 	};
-}( jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow List mixin
 	 * Must be mixed into an mw.flow.dm.Item element
@@ -266,4 +266,4 @@
 
 		return this;
 	};
-}( jQuery ) );
+}() );

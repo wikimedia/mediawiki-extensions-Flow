@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Item
 	 *
@@ -77,4 +77,4 @@
 	mw.flow.dm.Item.prototype.hasBeenChanged = function () {
 		return !OO.compare( this.comparableHash, this.getHashObject() );
 	};
-}( jQuery ) );
+}() );

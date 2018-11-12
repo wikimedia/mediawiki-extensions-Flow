@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow ModeratedRevisionedContent class
 	 *
@@ -140,4 +140,4 @@
 		this.moderator = mod;
 	};
 
-}( jQuery ) );
+}() );

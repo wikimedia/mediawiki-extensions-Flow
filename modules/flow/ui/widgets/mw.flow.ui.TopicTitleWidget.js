@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Topic title widget
 	 *
@@ -162,4 +162,4 @@
 		this.updateDisabled();
 	};
 
-}( jQuery ) );
+}() );

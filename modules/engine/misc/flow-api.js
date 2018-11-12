@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	var apiTransformMap = {
 		// Map of API submodule name, block name, and prefix name
 		'moderate-post': [ 'topic_', 'mp' ],
@@ -347,4 +347,4 @@
 
 	// Export
 	mw.flow.FlowApi = FlowApi;
-}( mw, jQuery ) );
+}() );

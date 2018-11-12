@@ -2,7 +2,7 @@
  * Contains base FlowComponent class.
  */
 
-( function ( $, mw ) {
+( function () {
 	var _totalInstanceCount = 0;
 
 	/**
@@ -221,10 +221,10 @@
 			handlerQueue = [];
 
 		// Make a writable jQuery.Event from the native event object
-		event = jQuery.event.fix( event );
+		event = $.event.fix( event );
 		args = Array.prototype.slice.call( arguments, 0 );
-		handlers = ( jQuery._data( this, 'events' ) || {} )[ event.type ] || [];
-		special = jQuery.event.special[ event.type ] || {};
+		handlers = ( $._data( this, 'events' ) || {} )[ event.type ] || [];
+		special = $.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
 		args[ 0 ] = event;
@@ -237,7 +237,7 @@
 
 		// Determine handlers
 		// The important modification: we use container instead of this as the context
-		handlerQueue = jQuery.event.handlers.call( container, event, handlers );
+		handlerQueue = $.event.handlers.call( container, event, handlers );
 
 		// Run delegates first; they may want to stop propagation beneath us
 		i = 0;
@@ -253,7 +253,7 @@
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
 
-					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle || handleObj.handler )
+					ret = ( ( $.event.special[ handleObj.origType ] || {} ).handle || handleObj.handler )
 						.apply( matched.elem, args );
 
 					if ( ret !== undefined ) {
@@ -275,4 +275,4 @@
 	}
 
 	mw.flow.registerComponent( 'component', FlowComponent );
-}( jQuery, mediaWiki ) );
+}() );

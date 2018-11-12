@@ -2,7 +2,7 @@
  * Contains board navigation header, which affixes to the viewport on scroll.
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds handlers for the board header itself.
 	 * @class
@@ -67,4 +67,4 @@
 
 	// Mixin to FlowComponent
 	mw.flow.mixinComponent( 'component', FlowBoardComponentBoardHeaderFeatureMixin );
-}( jQuery, mediaWiki ) );
+}() );

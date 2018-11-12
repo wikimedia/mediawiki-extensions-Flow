@@ -1,4 +1,4 @@
-( function ( ve ) {
+( function () {
 	'use strict';
 
 	ve.ui.sequenceRegistry.register(
@@ -8,4 +8,4 @@
 			'@'
 		)
 	);
-}( ve ) );
+}() );

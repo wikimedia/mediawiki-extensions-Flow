@@ -2,7 +2,7 @@
  * Contains Side Rail functionality.
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds handlers for side rail in board header.
 	 * @param {jQuery} $container
@@ -64,4 +64,4 @@
 
 	// Mixin to FlowComponent
 	mw.flow.mixinComponent( 'component', FlowBoardComponentSideRailFeatureMixin );
-}( jQuery, mediaWiki ) );
+}() );

@@ -3,7 +3,7 @@
  * @todo Clean up the remaining code that may not need to be here.
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Constructor class for instantiating a new Flow board.
 	 *
@@ -189,4 +189,4 @@
 			return _notify.apply( this, arguments );
 		};
 	}
-}( jQuery, mediaWiki ) );
+}() );

@@ -2,7 +2,7 @@
  * This file provides a shim to load Flow when clicking an interactive
  * Flow link.
  */
-( function ( $, mw ) {
+( function () {
 	function clickedFlowLink( event ) {
 		var $container = $( event.delegateTarget ),
 			onComplete = function () {
@@ -28,4 +28,4 @@
 	$( function () {
 		$( '#bodyContent' ).one( 'click', '.flow-click-interactive', clickedFlowLink );
 	} );
-}( jQuery, mediaWiki ) );
+}() );

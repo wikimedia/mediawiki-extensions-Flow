@@ -1,5 +1,5 @@
 /** @class jQuery.fn */
-( function ( $ ) {
+( function () {
 	/**
 	 * Scrolls the viewport to fit $el into view only if necessary. Scenarios:
 	 * 1. If el starts above viewport, scrolls to put top of el at top of viewport.
@@ -50,4 +50,4 @@
 		// Do nothing
 		return this;
 	};
-}( jQuery ) );
+}() );

@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow Topic
 	 *
@@ -168,4 +168,4 @@
 		this.emit( 'summaryChange', this.summary );
 	};
 
-}( jQuery ) );
+}() );
