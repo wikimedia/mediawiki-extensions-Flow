@@ -6,7 +6,6 @@
 	"globals": {
 		"mw": true,
 		"$": false,
-		"ve": false,
 		"OO": false,
 		"Handlebars": false,
 		"moment": false
