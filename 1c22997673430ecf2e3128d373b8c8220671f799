@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f12be91_2e6615c9",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-11-13T12:56:44Z",
+      "side": 1,
+      "message": "It does not look like this method is supposed to return null. At least this documentation must be updated, and probably callers of this method as well.",
+      "range": {
+        "startLine": 242,
+        "startChar": 12,
+        "endLine": 242,
+        "endChar": 16
+      },
+      "revId": "1c22997673430ecf2e3128d373b8c8220671f799",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
