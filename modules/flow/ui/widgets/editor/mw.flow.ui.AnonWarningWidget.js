@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow anonymous editor warning widget.
 	 *
@@ -64,4 +64,4 @@
 
 	OO.inheritClass( mw.flow.ui.AnonWarningWidget, OO.ui.Widget );
 
-}( jQuery ) );
+}() );

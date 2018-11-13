@@ -2,7 +2,7 @@
  * Contains flow-menu functionality.
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds handlers for flow-menu.
 	 * @param {jQuery} $container
@@ -139,4 +139,4 @@
 
 	// Mixin to FlowComponent
 	mw.flow.mixinComponent( 'component', FlowComponentMenusFeatureMixin );
-}( jQuery, mediaWiki ) );
+}() );

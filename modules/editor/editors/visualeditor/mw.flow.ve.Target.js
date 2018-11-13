@@ -1,4 +1,4 @@
-( function ( mw, OO, ve ) {
+( function () {
 	'use strict';
 
 	mw.flow.ve = {
@@ -199,4 +199,4 @@
 
 	ve.init.mw.targetFactory.register( mw.flow.ve.Target );
 
-}( mediaWiki, OO, ve ) );
+}() );

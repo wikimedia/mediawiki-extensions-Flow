@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	var FlowEventLogRegistry = {
 		funnels: {},
 		generateFunnelId: mw.user.generateRandomSessionId
@@ -34,4 +34,4 @@
 	mw.flow.EventLog = FlowEventLog;
 
 	mw.flow.EventLogRegistry = FlowEventLogRegistry;
-}( mw, jQuery ) );
+}() );

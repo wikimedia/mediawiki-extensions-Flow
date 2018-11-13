@@ -1,4 +1,4 @@
-( function ( $, mw, OO, ve ) {
+( function () {
 	'use strict';
 
 	// Based partly on ve.ui.MWTemplateDialog
@@ -372,4 +372,4 @@
 	};
 
 	ve.ui.windowFactory.register( mw.flow.ve.ui.MentionInspector );
-}( jQuery, mediaWiki, OO, ve ) );
+}() );

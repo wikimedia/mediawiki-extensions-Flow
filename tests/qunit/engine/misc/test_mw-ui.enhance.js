@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
 	QUnit.test( 'Forms with required fields have certain buttons disabled by default', function ( assert ) {
@@ -124,4 +124,4 @@
 		// @todo go
 	} );
 
-}( jQuery ) );
+}() );

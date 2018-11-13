@@ -1,4 +1,4 @@
-( function ( mw, OO, ve ) {
+( function () {
 	'use strict';
 
 	/**
@@ -39,4 +39,4 @@
 	};
 
 	ve.ui.toolFactory.register( mw.flow.ve.ui.MentionInspectorTool );
-}( mediaWiki, OO, ve ) );
+}() );

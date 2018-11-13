@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow editor controls widget
 	 *
@@ -92,4 +92,4 @@
 		}
 	};
 
-}( jQuery ) );
+}() );

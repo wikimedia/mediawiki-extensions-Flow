@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow navigation widget
 	 *
@@ -145,4 +145,4 @@
 
 		this.reorderTopicsWidget.toggle( !isScrolledDown );
 	};
-}( jQuery ) );
+}() );

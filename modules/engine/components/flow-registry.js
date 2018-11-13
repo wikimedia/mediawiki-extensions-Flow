@@ -7,7 +7,7 @@
  * 4. Have the ability to fetch individual prototype methods from classes in the registry, as they are out of scope.
  */
 
-( function ( $, mw ) {
+( function () {
 	var _componentRegistry = new OO.Registry();
 
 	/** @class mw.flow */
@@ -167,4 +167,4 @@
 		}
 	}
 	mw.flow.mixinComponent = mixinFlowComponent;
-}( jQuery, mediaWiki ) );
+}() );

@@ -4,7 +4,7 @@
  * @todo Find better places for a lot of the callbacks that have been placed here
  */
 
-( function ( $, mw ) {
+( function () {
 	var _isGlobalBound;
 
 	/**
@@ -827,4 +827,4 @@
 
 	// Copy static and prototype from mixin to main class
 	mw.flow.mixinComponent( 'component', FlowComponentEventsMixin );
-}( jQuery, mediaWiki ) );
+}() );

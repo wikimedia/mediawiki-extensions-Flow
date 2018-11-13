@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow editor widget
 	 *
@@ -684,4 +684,4 @@
 			this.target.destroy();
 		}
 	};
-}( jQuery ) );
+}() );

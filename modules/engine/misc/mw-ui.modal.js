@@ -3,7 +3,7 @@
  * Implements mw.Modal functionality.
  */
 
-( function ( mw, $ ) {
+( function () {
 	// Make it easier to remove this later on, should it be implemented in Core
 	if ( mw.Modal ) {
 		return;
@@ -423,4 +423,4 @@
 			}
 		};
 	} );
-}( mw, jQuery ) );
+}() );

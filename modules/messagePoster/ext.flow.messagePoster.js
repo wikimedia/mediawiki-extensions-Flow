@@ -1,4 +1,4 @@
-( function ( $, mw, OO ) {
+( function () {
 	mw.flow = mw.flow || {};
 
 	/**
@@ -48,4 +48,4 @@
 	};
 
 	mw.messagePoster.factory.register( 'flow-board', mw.flow.MessagePoster );
-}( jQuery, mediaWiki, OO ) );
+}() );

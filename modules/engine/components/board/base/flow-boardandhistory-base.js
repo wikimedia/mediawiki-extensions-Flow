@@ -3,7 +3,7 @@
  * This is functionality that is used by both types of page, but not any other components.
  */
 
-( function ( $, mw ) {
+( function () {
 	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
 
 	/**
@@ -265,4 +265,4 @@
 		return inTopicNamespace && ( !$el || $el.closest( '.flow-post' ).length === 0 );
 	}
 	FlowBoardAndHistoryComponentBase.static.inTopicNamespace = flowBoardInTopicNamespace;
-}( jQuery, mediaWiki ) );
+}() );

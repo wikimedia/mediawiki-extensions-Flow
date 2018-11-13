@@ -2,7 +2,7 @@
  * @todo break this down into mixins for each callback section (eg. post actions, read topics)
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds API events to FlowBoardComponent
 	 * @class
@@ -369,4 +369,4 @@
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentApiEventsMixin );
-}( jQuery, mediaWiki ) );
+}() );

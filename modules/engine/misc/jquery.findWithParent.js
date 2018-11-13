@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/** @class jQuery */
 
 	/**
@@ -54,4 +54,4 @@
 
 		return $elements;
 	};
-}( jQuery ) );
+}() );

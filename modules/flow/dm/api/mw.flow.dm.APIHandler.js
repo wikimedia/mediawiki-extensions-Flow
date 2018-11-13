@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Resource Provider object.
 	 *
@@ -440,4 +440,4 @@
 		return this.lockTopic( topicId, 'unlock', 'flow-rev-message-restore-topic-reason' );
 	};
 
-}( jQuery ) );
+}() );

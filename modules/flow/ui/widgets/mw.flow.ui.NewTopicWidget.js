@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow new topic widget
 	 *
@@ -277,4 +277,4 @@
 			this.title.setValue( '' );
 		}
 	};
-}( jQuery ) );
+}() );

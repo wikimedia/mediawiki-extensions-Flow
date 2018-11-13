@@ -2,7 +2,7 @@
  * Expose some functionality on the board object that is needed for VisualEditor.
  */
 
-( function ( $, mw, OO ) {
+( function () {
 	/**
 	 * FlowBoardComponentVisualEditorFeatureMixin
 	 *
@@ -34,4 +34,4 @@
 	FlowBoardComponentVisualEditorFeatureMixin.prototype.getTopicPosters = flowVisualEditorGetTopicPosters;
 
 	mw.flow.mixinComponent( 'board', FlowBoardComponentVisualEditorFeatureMixin );
-}( jQuery, mediaWiki, OO ) );
+}() );

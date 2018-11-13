@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Initializer object for flow-initialize
 	 * @class
@@ -940,4 +940,4 @@
 		}
 		$( '.flow-ui-load-overlay' ).addClass( 'oo-ui-element-hidden' );
 	};
-}( jQuery ) );
+}() );

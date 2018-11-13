@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow board description widget
 	 *
@@ -345,4 +345,4 @@
 		this.model = model;
 	};
 
-}( jQuery ) );
+}() );

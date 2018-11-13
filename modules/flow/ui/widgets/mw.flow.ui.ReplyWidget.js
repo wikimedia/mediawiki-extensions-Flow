@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow reply widget
 	 *
@@ -246,4 +246,4 @@
 		this.editor.destroy();
 	};
 
-}( jQuery ) );
+}() );

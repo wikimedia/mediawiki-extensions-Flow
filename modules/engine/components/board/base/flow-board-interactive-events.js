@@ -2,7 +2,7 @@
  * Implements element interactive handler callbacks for FlowBoardComponent
  */
 
-( function ( $, mw ) {
+( function () {
 	/**
 	 * Binds element interactive (click) handlers for FlowBoardComponent
 	 * @param {jQuery} $container
@@ -77,4 +77,4 @@
 
 	// Mixin to FlowBoardComponent
 	mw.flow.mixinComponent( 'board', FlowBoardComponentInteractiveEventsMixin );
-}( jQuery, mediaWiki ) );
+}() );

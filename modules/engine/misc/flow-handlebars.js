@@ -2,7 +2,7 @@
  * Implements a Handlebars layer for FlowBoard.TemplateEngine
  */
 
-( function ( mw, $, moment, Handlebars ) {
+( function () {
 	var _tplcache = {},
 		_timestamp = {
 			list: [],
@@ -599,4 +599,4 @@
 	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
-}( mediaWiki, jQuery, moment, Handlebars ) );
+}() );

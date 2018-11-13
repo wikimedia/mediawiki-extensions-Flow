@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	// Should be refined later to handle different scenarios (block/protect/etc.) explicitly.
 	/**
 	 * Flow error widget for when the user can not edit/post/etc.
@@ -172,4 +172,4 @@
 			return false;
 		}
 	};
-}( mediaWiki, jQuery ) );
+}() );

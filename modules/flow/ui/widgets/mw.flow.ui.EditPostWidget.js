@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow edit post widget
 	 *
@@ -184,4 +184,4 @@
 		this.editor.destroy();
 	};
 
-}( jQuery ) );
+}() );

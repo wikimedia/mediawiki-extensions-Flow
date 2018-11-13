@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow initialization system
 	 *
@@ -314,4 +314,4 @@
 	mw.flow.dm.System.prototype.getRenderedTopics = function () {
 		return this.renderedTopics;
 	};
-}( jQuery ) );
+}() );

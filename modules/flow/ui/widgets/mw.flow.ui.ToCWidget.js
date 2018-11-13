@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function () {
 	/**
 	 * Flow ToC widget
 	 *
@@ -112,4 +112,4 @@
 	mw.flow.ui.ToCWidget.prototype.updateLabel = function ( label ) {
 		this.button.setLabel( label || this.originalButtonLabel );
 	};
-}( jQuery ) );
+}() );
