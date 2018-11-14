@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8ae59ce_82a50dac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-11-14T20:54:25Z",
+      "side": 1,
+      "message": "Maybe change this to \"jquery.findWithParent.js\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "371b4dd87a4d1db4db3d3253579f2a6a4ee3b789",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feabcb52_0932c74e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-11-14T20:54:25Z",
+      "side": 1,
+      "message": "Could this be the full word please?",
+      "range": {
+        "startLine": 9,
+        "startChar": 12,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "371b4dd87a4d1db4db3d3253579f2a6a4ee3b789",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32e66a2e_f2a68382",
+        "filename": "tests/qunit/engine/misc/test_jquery.findWithParent.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2018-11-14T20:54:25Z",
+      "side": 1,
+      "message": "Not 100% sure but my only issues with these lines of code is that they\u0027re really long :) which is a little difficult to read. Maybe do;\n```\nassert.strictEqual(\n    $html.findWithParent( \u0027p \u003c div\u0027 )[ 0 ].tagName, \u0027DIV\u0027, \u0027finds outer node div from p\u0027\n)\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 109
+      },
+      "revId": "371b4dd87a4d1db4db3d3253579f2a6a4ee3b789",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
