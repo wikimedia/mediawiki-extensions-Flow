@@ -17,6 +17,11 @@ use Title;
 class ApiFlowViewTopicListTest extends ApiTestCase {
 	const TITLE_PREFIX = 'VTL Test ';
 
+	/**
+	 * Flaky test causing random failures, see T209535
+	 *
+	 * @group Broken
+	 */
 	public function testTocOnly() {
 		$topicData = [];
 		for ( $i = 0; $i < 3; $i++ ) {
