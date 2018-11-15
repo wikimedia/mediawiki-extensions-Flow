@@ -114,6 +114,7 @@
 	"apihelp-query+flowinfo-description": "Ruft Basis-Strukturierte-Diskussionen-Informationen über eine Seite ab.",
 	"apihelp-query+flowinfo-example-1": "Ruft Strukturierte-Diskussionen-Informationen über [[Talk:Sandbox]], [[Main Page]] und [[Talk:Structured Discussions]] ab",
 	"apihelp-flow+undo-edit-header-description": "Informationen beziehen, die zum Rückgängigmachen der Bearbeitung der Beschreibung nötig sind.",
+	"apihelp-flow+undo-edit-header-summary": "Ruft Informationen ab, die zur Rückgängigmachung von Beschreibungsbearbeitungen notwendig sind.",
 	"apihelp-flow+undo-edit-header-param-startId": "Versionskennung, bei der mit dem Rückgängigmachen begonnen werden soll.",
 	"apihelp-flow+undo-edit-header-param-endId": "Versionskennung, auf die zurückgesetzt werden soll.",
 	"apihelp-flow+undo-edit-header-example-1": "Bezieht Informationen zum Rückgängigmachen einer Bearbeitung in der Beschreibung von [[Talk:Sandbox]]",
