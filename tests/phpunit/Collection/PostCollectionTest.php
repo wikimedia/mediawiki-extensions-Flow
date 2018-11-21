@@ -80,6 +80,11 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$this->assertTrue( $expected->getRevisionId()->equals( $revision->getRevisionId() ) );
 	}
 
+	/**
+	 * Flaky test causing random failures, see T210043
+	 *
+	 * @group Broken
+	 */
 	public function testGetLastRevision() {
 		$collection = $this->revisions[0]->getCollection();
 
