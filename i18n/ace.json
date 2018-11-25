@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Rachmat.Wahidi",
-			"Rachmat04"
+			"Rachmat04",
+			"Si Gam Acèh"
 		]
 	},
 	"flow-topic-action-hide-topic": "Peusom topik",
@@ -16,5 +17,6 @@
 	"flow-moderation-title-delete-topic": "Sampôh topik?",
 	"flow-moderation-title-hide-topic": "Peusom topik?",
 	"flow-moderation-placeholder-delete-topic": "Tulông peutrang pakön droeneuh neuneuk sampôh topik nyoe.",
-	"flow-moderation-placeholder-hide-topic": "Neutulông peutrang pakön peusom topik nyoe."
+	"flow-moderation-placeholder-hide-topic": "Neutulông peutrang pakön peusom topik nyoe.",
+	"flow-dialog-cancelconfirm-keep": "Peusaneut lom"
 }
