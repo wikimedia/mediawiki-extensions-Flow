@@ -353,7 +353,7 @@
 	"flow-moderation-placeholder-unhide-topic": "{{GENDER:$3|Kerro}}, miksi olet palauttamassa tätä aihetta näkyviin.",
 	"flow-topic-permalink-warning": "Tämä aihe aloitettiin sivulla [$2 $1]",
 	"flow-topic-permalink-warning-user-board": "Tämä aihe aloitettiin [$2 käyttäjän {{GENDER:$1|$1}} palstalla]",
-	"flow-revision-permalink-warning-post": "Tämä on ikilinkki yhteen versioon tästä viestistä.\nTämän version päiväys on $1.\nVoit nähdä [$5 eroavaisuudet edeltävästä versiosta], tai katsoa muita versioita [$4 viestin historiasivulla].",
+	"flow-revision-permalink-warning-post": "Tämä on pysyvä linkki yksittäiseen versioon tästä viestistä.\nTämän version aikaleima on $1.\nVoit nähdä [$5 eron verrattuna aiempaan versioon], tai voit katsoa muita versioita [$4 viestin historiasivulta].",
 	"flow-revision-permalink-warning-post-first": "Tämä on ikilinkki viestin ensimmäiseen versioon.\nVoit katsoa uudempia versioita [$4 viestin historiasivulla].",
 	"flow-revision-permalink-warning-postsummary": "Tämä on ikilinkki yksittäiseen versioon viestin yhteenvedosta. Tämän version päiväys on $1. Voit katsoa [$5 eroavaisuudet edellisestä versiosta] tai katsoa muita versioita [$4 viestin historiasivulla].",
 	"flow-compare-revisions-revision-header": "Versio, jonka on tehnyt {{GENDER:$2|$2}} $1",
