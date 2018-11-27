@@ -7,7 +7,8 @@
 			"Gamliel Fishkin",
 			"Psychoslave",
 			"NMaia",
-			"Yekrats"
+			"Yekrats",
+			"Surfo"
 		]
 	},
 	"enablestructureddiscussions": "Ŝalti Flow",
@@ -57,8 +58,10 @@
 	"flow-topic-action-lock-topic": "Marki kiel solvita",
 	"flow-topic-action-unlock-topic": "Remalfermi temon",
 	"flow-topic-action-undo-moderation": "Malfari",
+	"flow-error-http": "Okazis eraro dum konekto al la servilo.",
 	"flow-error-protected-unknown-reason": "Nekonata",
 	"flow-error-default": "Eraro okazis.",
+	"flow-error-process-data": "Okazis eraro dum traktado de la datumoj en via peto.",
 	"flow-error-unknown-workflow-id-title": "Nekonata temo",
 	"flow-edit-header-submit": "Konservi priskribon",
 	"flow-edit-title-submit": "Ŝanĝi titolon",
