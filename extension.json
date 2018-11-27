@@ -398,7 +398,7 @@
 			"localBasePath": "",
 			"remoteExtPath": "Flow",
 			"scripts": [
-				"vendor/modules/handlebars-v3.0.0.js",
+				"modules/libs/handlebars-v3.0.0.js",
 				"modules/handlebars.js"
 			],
 			"dependencies": [

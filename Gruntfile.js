@@ -29,7 +29,7 @@ module.exports = function ( grunt ) {
 		eslint: {
 			all: [
 				'**/*.js',
-				'!{node_modules,vendor,docs}/**/*.js'
+				'!{modules/libs,node_modules,vendor,docs}/**/*.js'
 			]
 		},
 		stylelint: {
