@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c34e935_da779be7",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2018-11-28T17:06:09Z",
+      "side": 1,
+      "message": "Wrong indent.",
+      "range": {
+        "startLine": 187,
+        "startChar": 2,
+        "endLine": 187,
+        "endChar": 49
+      },
+      "revId": "99e16313c14fb7793d8281e84e0ec53ecc2ab130",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
