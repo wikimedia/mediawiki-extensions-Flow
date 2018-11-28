@@ -401,7 +401,7 @@
 	};
 
 	// Transforms: automatically map these functions to call their mw.Modal methods globally, on any active instance
-	$.each( [ 'close', 'getName', 'prev', 'next', 'prevOrClose', 'nextOrSubmit', 'go' ], function ( i, fn ) {
+	[ 'close', 'getName', 'prev', 'next', 'prevOrClose', 'nextOrSubmit', 'go' ].forEach( function ( fn ) {
 		mw.Modal[ fn ] = function () {
 			var args = Array.prototype.splice.call( arguments, 0, arguments.length - 1 ),
 				node = arguments[ arguments.length - 1 ],

@@ -133,16 +133,16 @@
 
 		if ( !registeredClass ) {
 			mw.flow.debug( 'Failed to find FlowComponent.', arguments );
-			return $.noop;
+			return function () {};
 		}
 
 		method = registeredClass.prototype[ methodName ];
 		if ( !method ) {
 			mw.flow.debug( 'Failed to find FlowComponent method.', arguments );
-			return $.noop;
+			return function () {};
 		}
 
-		return $.proxy( method, context || registeredClass );
+		return method.bind( context || registeredClass );
 	}
 	mw.flow.getPrototypeMethod = getFlowPrototypeMethod;
 

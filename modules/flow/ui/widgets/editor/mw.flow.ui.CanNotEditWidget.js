@@ -149,8 +149,9 @@
 	 * @return {boolean} The group is both required to edit and missing
 	 */
 	mw.flow.ui.CanNotEditWidget.prototype.isMissingRequiredGroup = function ( groupName ) {
-		var isGroupRequired = $.inArray( groupName, this.restrictionEdit ) !== -1,
-			acceptableGroups, i;
+		var isGroupRequired = this.restrictionEdit.indexOf( groupName ) !== -1,
+			userGroups = this.userGroups,
+			acceptableGroups;
 
 		if ( isGroupRequired ) {
 			acceptableGroups = [ groupName ];
@@ -161,13 +162,9 @@
 				acceptableGroups.push( 'confirmed' );
 			}
 
-			for ( i = 0; i < acceptableGroups.length; i++ ) {
-				if ( $.inArray( acceptableGroups[ i ], this.userGroups ) !== -1 ) {
-					return false;
-				}
-			}
-
-			return true;
+			return acceptableGroups.every( function ( group ) {
+				return userGroups.indexOf( group ) === -1;
+			} );
 		} else {
 			return false;
 		}
