@@ -189,7 +189,7 @@
 					item = newItems[ i ];
 					itemId = item.getId();
 
-					if ( $.inArray( itemId, self.flowBoard.orderedTopicIds ) === -1 ) {
+					if ( self.flowBoard.orderedTopicIds.indexOf( itemId ) === -1 ) {
 						self.flowBoard.orderedTopicIds.push( itemId );
 					}
 

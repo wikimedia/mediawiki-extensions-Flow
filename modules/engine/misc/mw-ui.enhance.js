@@ -295,10 +295,18 @@ mw.flow.ui.enhance = {};
 
 			// Use the preferred pointing direction first
 			switch ( optionsUnreferenced.tooltipPointing ) {
-				case 'left': locationOrder = [ 'left', 'right', 'left' ]; break;
-				case 'right': locationOrder = [ 'right', 'left', 'right' ]; break;
-				case 'down': locationOrder = [ 'down', 'up', 'down' ]; break;
-				default: locationOrder = [ 'up', 'down', 'up' ];
+				case 'left':
+					locationOrder = [ 'left', 'right', 'left' ];
+					break;
+				case 'right':
+					locationOrder = [ 'right', 'left', 'right' ];
+					break;
+				case 'down':
+					locationOrder = [ 'down', 'up', 'down' ];
+					break;
+				default:
+					locationOrder = [ 'up', 'down', 'up' ];
+					break;
 			}
 
 			do {

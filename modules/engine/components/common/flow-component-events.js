@@ -158,6 +158,7 @@
 		var self = this;
 
 		// Bind class event handlers, triggered by .emit
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( handlers, function ( key, fn ) {
 			self.on( key, function () {
 				// Trigger callback with class instance context
@@ -180,8 +181,10 @@
 		var self = this;
 
 		// eg. { interactiveHandlers: { foo: Function } }
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( handlers, function ( type, callbacks ) {
 			// eg. { foo: Function }
+		// eslint-disable-next-line jquery/no-each-util
 			$.each( callbacks, function ( name, fn ) {
 				// First time for this callback name, instantiate the callback list
 				if ( !self.UI.events[ type ][ name ] ) {
@@ -259,8 +262,8 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
-		var $deferred = $.Deferred(),
-			deferreds = [ $deferred ],
+		var deferred = $.Deferred(),
+			deferreds = [ deferred ],
 			$target,
 			self = event.currentTarget || event.delegateTarget || event.target,
 			$this = $( self ),
@@ -293,17 +296,17 @@
 		args.splice( 1, 0, info );
 		args.splice( 2, 0, queryMap );
 
-		$deferred.resolve( args );
+		deferred.resolve( args );
 
 		// chain apiPreHandler callbacks
 		preHandlers = _getApiPreHandlers( self, handlerName );
-		$.each( preHandlers, function ( i, callback ) {
-			$deferred = $deferred.then( callback );
+		preHandlers.forEach( function ( callback ) {
+			deferred = deferred.then( callback );
 		} );
 
 		// mark the element as "in progress" (we're only doing this after running
 		// preHandlers since they may reject the API call)
-		$deferred = $deferred.then( function ( args ) {
+		deferred = deferred.then( function ( args ) {
 			// Protect against repeated or nested API calls for the same handler
 			var inProgress = $target.data( 'inProgress' ) || [];
 			if ( inProgress.indexOf( handlerName ) !== -1 ) {
@@ -323,7 +326,7 @@
 		} );
 
 		// execute API call
-		$deferred = $deferred.then( function ( args ) {
+		deferred = deferred.then( function ( args ) {
 			var queryMap = args[ 2 ];
 			return flowComponent.Api.requestFromNode( self, queryMap ).then(
 				// alter API response: apiHandler expects a 1st param info (that
@@ -383,7 +386,8 @@
 		// chain apiHandler callbacks (it can distinguish in how it needs to wrap up
 		// depending on info.status)
 		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
-			$.each( flowComponent.UI.events.apiHandlers[ handlerName ], function ( i, callback ) {
+			// eslint-disable-next-line jquery/no-each-util
+			flowComponent.UI.events.apiHandlers[ handlerName ].forEach( function ( callback ) {
 				/*
 				 * apiHandlers will return promises that won't resolve until
 				 * the apiHandler has completed all it needs to do.
@@ -394,12 +398,12 @@
 				 * have completed, we'll combine them in an array which we can
 				 * keep tabs on until all of these promises are done ($.when)
 				 */
-				deferreds.push( $deferred.then( callback ) );
+				deferreds.push( deferred.then( callback ) );
 			} );
 		}
 
 		// all-purpose error handling: whichever step in this chain rejects, we'll send it to console
-		$deferred.fail( function ( code, result ) {
+		deferred.fail( function ( code, result ) {
 			var errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
 			flowComponent.debug( false, errorMsg, handlerName, args );
 		} );
@@ -468,7 +472,7 @@
 		context = context || this;
 
 		if ( this.UI.events.loadHandlers[ handlerName ] ) {
-			$.each( this.UI.events.loadHandlers[ handlerName ], function ( i, fn ) {
+			this.UI.events.loadHandlers[ handlerName ].forEach( function ( fn ) {
 				fn.apply( context, args );
 			} );
 		}
@@ -488,12 +492,12 @@
 
 		// Call any matching interactive handlers
 		if ( this.UI.events.interactiveHandlers[ interactiveHandlerName ] ) {
-			$.each( this.UI.events.interactiveHandlers[ interactiveHandlerName ], function ( i, fn ) {
+			this.UI.events.interactiveHandlers[ interactiveHandlerName ].forEach( function ( i, fn ) {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( this.UI.events.apiHandlers[ apiHandlerName ] ) {
 			// Call any matching API handlers
-			$.each( this.UI.events.interactiveHandlers.apiRequest, function ( i, fn ) {
+			this.UI.events.interactiveHandlers.apiRequest.forEach( function ( i, fn ) {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( interactiveHandlerName ) {
@@ -794,6 +798,7 @@
 			preHandlers = [];
 
 		// Compile a list of all preHandlers to be run
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( flowComponent.UI.events.globalApiPreHandlers, function ( key, callbackArray ) {
 			Array.prototype.push.apply( preHandlers, callbackArray );
 		} );
@@ -801,7 +806,7 @@
 			Array.prototype.push.apply( preHandlers, flowComponent.UI.events.apiPreHandlers[ handlerName ] );
 		}
 
-		preHandlers = $.map( preHandlers, function ( callback ) {
+		preHandlers = preHandlers.map( function ( callback ) {
 			/*
 			 * apiPreHandlers aren't properly set up to serve as chained promise
 			 * callbacks (they'll return false instead of returning a rejected

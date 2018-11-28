@@ -244,7 +244,7 @@
 		flowComponent.emitWithReturn( 'removeError', $form );
 
 		// Trigger the cancel callback
-		$.each( callbacks, function ( idx, fn ) {
+		callbacks.forEach( function ( fn ) {
 			fn.call( target, event );
 		} );
 

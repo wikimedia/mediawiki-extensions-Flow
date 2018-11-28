@@ -44,7 +44,9 @@
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
 		}
 
-		return _tplcache[ templateName ] || function () { mw.flow.debug( '[Handlebars] Missing template', arguments ); };
+		return _tplcache[ templateName ] || function () {
+			mw.flow.debug( '[Handlebars] Missing template', arguments );
+		};
 	};
 
 	/**
@@ -107,7 +109,7 @@
 		$( target ).find( 'script' ).addBack( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
 			var $this = $( this ),
 				data = $this.data(),
-				target = $.trim( data.target ),
+				target = data.target.trim(),
 				$target = $this,
 				content, $prevTarg, $nextTarg;
 
@@ -172,7 +174,7 @@
 	 * @return {Array}
 	 */
 	function flowNormalizeL10nParameters( parameters ) {
-		return $.map( parameters, function ( arg ) {
+		return parameters.map( function ( arg ) {
 			return arg ? ( arg.raw || arg.plaintext || arg ) : '';
 		} );
 	}
@@ -567,7 +569,9 @@
 	};
 
 	// Load partials
+	// eslint-disable-next-line jquery/no-each-util
 	$.each( mw.templates.get(), function ( moduleName, moduleTemplates ) {
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( moduleTemplates, function ( name ) {
 			// remove extension
 			var partialMatch, partialName;

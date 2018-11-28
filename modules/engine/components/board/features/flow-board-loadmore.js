@@ -345,6 +345,7 @@
 		this.renderedTopics[ currentTopicId ] = $topic;
 
 		// Remove any topics that are no longer on the page, just in case
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( this.renderedTopics, function ( topicId, $topic ) {
 			if ( !$topic.closest( self.$board ).length ) {
 				delete self.renderedTopics[ topicId ];
@@ -559,7 +560,7 @@
 				flowBoard.renderedTopics[ topicId ] = _render( [ topicId ] );
 				$allRendered.push( flowBoard.renderedTopics[ topicId ][ 0 ] );
 				toInsert.push( topicId );
-				if ( $.inArray( topicId, flowBoard.orderedTopicIds ) === -1 ) {
+				if ( flowBoard.orderedTopicIds.indexOf( topicId ) === -1 ) {
 					flowBoard.orderedTopicIds.push( topicId );
 				}
 				// @todo this is already done elsewhere, but it runs after insert
@@ -578,7 +579,7 @@
 			// initial page load starts at the begining.
 			for ( i = 1; i < flowBoard.orderedTopicIds.length; i++ ) {
 				// topic is not to be inserted yet.
-				if ( $.inArray( flowBoard.orderedTopicIds[ i ], toInsert ) === -1 ) {
+				if ( toInsert.indexOf( flowBoard.orderedTopicIds[ i ] ) === -1 ) {
 					continue;
 				}
 
@@ -604,14 +605,14 @@
 			// page but also the ones loaded by the toc.  If these topics are due
 			// to a jump rather than forward auto-pagination the prior topic will
 			// not be rendered.
-			i = $.inArray( topicsData.roots[ 0 ], flowBoard.orderedTopicIds );
+			i = flowBoard.orderedTopicIds.indexOf( topicsData.roots[ 0 ] );
 			if ( i > 0 && flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i - 1 ] ] === undefined ) {
 				_createRevPagination( flowBoard.renderedTopics[ topicsData.roots[ 0 ] ] );
 			}
 			// Same for forward pagination, if we jumped and then scrolled backwards the
 			// topic after the last will already be rendered, and forward pagination
 			// will not be necessary.
-			i = $.inArray( topicsData.roots[ topicsData.roots.length - 1 ], flowBoard.orderedTopicIds );
+			i = flowBoard.orderedTopicIds.indexOf( topicsData.roots[ topicsData.roots.length - 1 ] );
 			if ( i === flowBoard.orderedTopicIds.length - 1 || flowBoard.renderedTopics[ flowBoard.orderedTopicIds[ i + 1 ] ] === undefined ) {
 				_createFwdPagination( flowBoard.renderedTopics[ topicsData.roots[ topicsData.roots.length - 1 ] ] );
 			}
