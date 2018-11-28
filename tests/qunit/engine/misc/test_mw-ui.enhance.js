@@ -2,7 +2,7 @@
 	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
 	QUnit.test( 'Forms with required fields have certain buttons disabled by default', function ( assert ) {
-		var $forms = [
+		var forms = [
 			$( '<form><input class="mw-ui-input" required><button data-role="action" class="mw-ui-button">go</button></form>' ),
 			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' ),
 			$( '<form><textarea class="mw-ui-input"></textarea><input class="mw-ui-input"><button data-role="submit" class="mw-ui-button">go</button></form>' ),
@@ -11,21 +11,21 @@
 			$( '<form><textarea class="mw-ui-input" required>foo</textarea><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' )
 		];
 
-		$.each( $forms, function () {
-			mw.flow.ui.enhance.enableFormWithRequiredFields( this );
+		forms.forEach( function ( $form ) {
+			mw.flow.ui.enhance.enableFormWithRequiredFields( $form );
 		} );
 
-		assert.strictEqual( $forms[ 0 ].find( 'button' ).prop( 'disabled' ), true,
+		assert.strictEqual( forms[ 0 ].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons with data-role=action are disabled when required fields are empty.' );
-		assert.strictEqual( $forms[ 1 ].find( 'button' ).prop( 'disabled' ), true,
+		assert.strictEqual( forms[ 1 ].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons with data-role=action are disabled when required fields are empty.' );
-		assert.strictEqual( $forms[ 2 ].find( 'button' ).prop( 'disabled' ), false,
+		assert.strictEqual( forms[ 2 ].find( 'button' ).prop( 'disabled' ), false,
 			'Buttons with are enabled when no required fields in form.' );
-		assert.strictEqual( $forms[ 3 ].find( 'button' ).prop( 'disabled' ), true,
+		assert.strictEqual( forms[ 3 ].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons are disabled when textarea is required but empty.' );
-		assert.strictEqual( $forms[ 4 ].find( 'button' ).prop( 'disabled' ), false,
+		assert.strictEqual( forms[ 4 ].find( 'button' ).prop( 'disabled' ), false,
 			'Buttons are enabled when required textarea has text.' );
-		assert.strictEqual( $forms[ 5 ].find( 'button' ).prop( 'disabled' ), true,
+		assert.strictEqual( forms[ 5 ].find( 'button' ).prop( 'disabled' ), true,
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 

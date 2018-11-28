@@ -29,7 +29,7 @@
 		// Properties
 		this.username = null;
 		// Exclude anonymous users, since they do not receive pings.
-		this.loggedInTopicPosters = $.grep( config.topicPosters || [], function ( poster ) {
+		this.loggedInTopicPosters = ( config.topicPosters || [] ).filter( function ( poster ) {
 			return !mw.util.isIPAddress( poster, false );
 		} );
 		// TODO do this in a more sensible place in the future
@@ -91,7 +91,7 @@
 		if ( this.value === '' ) {
 			return $.Deferred()
 				.resolve( this.loggedInTopicPosters.slice() )
-				.promise( { abort: $.noop } );
+				.promise( { abort: function () {} } );
 		}
 
 		xhr = new mw.Api().get( {
@@ -103,7 +103,7 @@
 		} );
 		return xhr
 			.then( function ( data ) {
-				return $.map( OO.getProp( data, 'query', 'allusers' ) || [], function ( user ) {
+				return ( OO.getProp( data, 'query', 'allusers' ) || [] ).map( function ( user ) {
 					mw.flow.ve.userCache.setFromApiData( user );
 					return user.name;
 				} );
@@ -122,7 +122,7 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		return $.map( data, function ( username ) {
+		return data.map( function ( username ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: username,
 				label: username
