@@ -14,8 +14,9 @@ use Flow\Exception\CatchableFatalErrorException;
  *      ...
  *  } catch ( CatchableFatalErrorException $fatal ) {
  *
+ *  } finally {}
+ *      restore_error_handler();
  *  }
- *  restore_error_handler();
  */
 class RecoverableErrorHandler {
 	public function __invoke( $errno, $errstr, $errfile, $errline ) {

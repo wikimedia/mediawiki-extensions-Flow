@@ -348,8 +348,9 @@ class FlowHooks {
 			);
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 	}
 
 	/**
@@ -452,8 +453,7 @@ class FlowHooks {
 				$rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
 			return false;
-		}
-		finally {
+		} finally {
 			restore_error_handler();
 		}
 
@@ -507,10 +507,10 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc logtext ' .
 				$rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
-			restore_error_handler();
 			return false;
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $logTextLinks === false ) {
 			return false;
@@ -609,8 +609,9 @@ class FlowHooks {
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . json_encode( $row ) . ' ' . $e );
 			MWExceptionHandler::logException( $e );
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $replacement === null ) {
 			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
@@ -800,8 +801,9 @@ class FlowHooks {
 				json_encode( $row ) . ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
 			$line = false;
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $line === false ) {
 			return false;
@@ -855,8 +857,9 @@ class FlowHooks {
 				json_encode( $row ) . ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
 			return false;
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $result instanceof FeedItem ) {
 			$feedItem = $result;
@@ -889,8 +892,9 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
 			MWExceptionHandler::logException( $e );
 			$results = false;
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $results === false ) {
 			return false;
@@ -1162,8 +1166,9 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' .
 				$rc->getAttribute( 'rc_id' ) . ': ' . $e->getMessage() );
 			MWExceptionHandler::logException( $e );
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		if ( $result !== null ) {
 			$url = $result;
@@ -1189,8 +1194,9 @@ class FlowHooks {
 				$target->getFullText()
 			) );
 			MWExceptionHandler::logException( $e );
+		} finally {
+			restore_error_handler();
 		}
-		restore_error_handler();
 
 		return true;
 	}
