@@ -8,5 +8,6 @@
 	"flow-history-action-restore-post": "restaurar",
 	"flow-post-action-restore-post": "Restaurar",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Vidar}} pagino",
+	"echo-category-title-flow-discussion": "Strukturigata diskuto",
 	"group-flow-bot": "Roboti por strukturigata diskuti"
 }
