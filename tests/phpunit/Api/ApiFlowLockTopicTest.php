@@ -13,7 +13,7 @@ namespace Flow\Tests\Api;
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
 	/**
-	 * Flaky test causing random failures, see T210043
+	 * Flaky test causing random failures, see T210043 or T210921
 	 *
 	 * @group Broken
 	 */

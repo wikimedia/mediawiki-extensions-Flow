@@ -14,6 +14,11 @@ use Sanitizer;
  * @group Database
  */
 class ApiFlowEditPostTest extends ApiTestCase {
+	/**
+	 * Flaky test causing random failures, see T210921
+	 *
+	 * @group Broken
+	 */
 	public function testEditPost() {
 		$topic = $this->createTopic();
 
