@@ -14,6 +14,11 @@ use Sanitizer;
  * @group Database
  */
 class ApiFlowEditPostTest extends ApiTestCase {
+	/**
+	 * Flaky test causing random failures, see T210921
+	 *
+	 * @group Broken
+	 */
 	public function testEditPost() {
 		$topic = $this->createTopic();
 
@@ -44,6 +49,7 @@ class ApiFlowEditPostTest extends ApiTestCase {
 		] );
 
 		$debug = json_encode( $data );
+		$this->assertTrue( isset( $data[0]['flow']['view-post']['result']['topic']['revisions'][$replyRevisionId] ), $debug );
 		$revision = $data[0]['flow']['view-post']['result']['topic']['revisions'][$replyRevisionId];
 		$this->assertArrayHasKey( 'changeType', $revision, $debug );
 		$this->assertEquals( 'edit-post', $revision['changeType'], $debug );

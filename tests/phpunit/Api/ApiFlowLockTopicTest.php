@@ -13,7 +13,7 @@ namespace Flow\Tests\Api;
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
 	/**
-	 * Flaky test causing random failures, see T210043
+	 * Flaky test causing random failures, see T210043 or T210921
 	 *
 	 * @group Broken
 	 */
@@ -44,6 +44,7 @@ class ApiFlowLockTopicTest extends ApiTestCase {
 		] );
 
 		$debug = json_encode( $data );
+		$this->assertTrue( isset( $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId] ), $debug );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
 		$this->assertArrayHasKey( 'workflowId', $revision, $debug );
 		$this->assertEquals( $topic['topic-id'], $revision['workflowId'], $debug );
