@@ -12,6 +12,11 @@ namespace Flow\Tests\Api;
  * @group Database
  */
 class ApiFlowLockTopicTest extends ApiTestCase {
+	/**
+	 * Flaky test causing random failures, see T210921
+	 *
+	 * @group Broken
+	 */
 	public function testLockTopic() {
 		$topic = $this->createTopic();
 
