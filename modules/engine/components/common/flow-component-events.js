@@ -492,12 +492,12 @@
 
 		// Call any matching interactive handlers
 		if ( this.UI.events.interactiveHandlers[ interactiveHandlerName ] ) {
-			this.UI.events.interactiveHandlers[ interactiveHandlerName ].forEach( function ( i, fn ) {
+			this.UI.events.interactiveHandlers[ interactiveHandlerName ].forEach( function ( fn ) {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( this.UI.events.apiHandlers[ apiHandlerName ] ) {
 			// Call any matching API handlers
-			this.UI.events.interactiveHandlers.apiRequest.forEach( function ( i, fn ) {
+			this.UI.events.interactiveHandlers.apiRequest.forEach( function ( fn ) {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( interactiveHandlerName ) {
