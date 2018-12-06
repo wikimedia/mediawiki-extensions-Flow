@@ -64,17 +64,44 @@ class FlowHooks {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', [
 				'localBasePath' => __DIR__ . '/modules',
 				'remoteExtPath' => 'Flow/modules',
-					'scripts' => 'tours/flowOptIn.js',
-					'styles' => 'tours/flowOptIn.less',
-					'messages' => [
+				'scripts' => 'tours/flowOptIn.js',
+				'styles' => 'tours/flowOptIn.less',
+				'messages' => [
 						"flow-guidedtour-optin-welcome",
 						"flow-guidedtour-optin-welcome-description",
 						"flow-guidedtour-optin-find-old-conversations",
 						"flow-guidedtour-optin-find-old-conversations-description",
 						"flow-guidedtour-optin-feedback",
 						"flow-guidedtour-optin-feedback-description"
-					],
-					'dependencies' => 'ext.guidedTour',
+				],
+				'dependencies' => 'ext.guidedTour',
+			] );
+
+			$resourceLoader->register( 'ext.guidedTour.tour.flowTopic', [
+				'localBasePath' => __DIR__ . '/modules',
+				'remoteExtPath' => 'Flow/modules',
+				'scripts' => 'tours/flowTopic.js',
+				'messages' => [
+					"flow-guidedtour-topic-welcome",
+					"flow-guidedtour-topic-welcome-description",
+					"flow-guidedtour-topic-welcome-discover",
+					"flow-guidedtour-topic-skip",
+					"flow-guidedtour-topic-conversation",
+					"flow-guidedtour-topic-conversation-description",
+					"flow-guidedtour-topic-howToReply",
+					"flow-guidedtour-topic-reply",
+					"flow-guidedtour-topic-reply-description",
+					"flow-guidedtour-topic-replyToSpecificComment",
+					"flow-guidedtour-topic-directReply",
+					"flow-guidedtour-topic-directReply-description",
+					"flow-guidedtour-topic-howToWatchTopics",
+					"flow-guidedtour-topic-watch",
+					"flow-guidedtour-topic-watch-description",
+					"flow-guidedtour-topic-goodbye",
+					"flow-guidedtour-topic-goodbye-description",
+					"flow-guidedtour-topic-goodbye-openHelpPage"
+				],
+				'dependencies' => 'ext.guidedTour',
 			] );
 		}
 
@@ -101,8 +128,17 @@ class FlowHooks {
 			// Destroy Flow cookie
 			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
 		}
-	}
 
+		if (
+			$title->getNamespace() === NS_TOPIC &&
+			$out->getUser()->isLoggedIn() &&
+			$out->getUser()->getBoolOption( 'flow-guidedtour-topic-seen' ) &&
+			ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' )
+		) {
+
+			$out->addModules( 'ext.guidedTour.launcher' );
+		}
+	}
 	/**
 	 * Constructed outside of the container so that non-flow pages
 	 * don't load the container
@@ -1228,6 +1264,10 @@ class FlowHooks {
 				'section' => 'editing/editor',
 			];
 		}
+
+		$preferences['flow-guidedtour-topic-seen'] = [
+			'type' => 'api',
+		];
 
 		return true;
 	}
