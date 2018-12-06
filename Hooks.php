@@ -76,6 +76,33 @@ class FlowHooks {
 					],
 					'dependencies' => 'ext.guidedTour',
 			] );
+			$resourceLoader->register( 'ext.guidedTour.tour.flowTopic', [
+							'localBasePath' => __DIR__ . '/modules',
+							'remoteExtPath' => 'Flow/modules',
+								'scripts' => 'tours/flowTopic.js',
+								'styles' => 'tours/flowTopic.less',
+								'messages' => [
+									"flow-guidedtour-topic-welcome",
+									"flow-guidedtour-topic-welcome-description",
+									"flow-guidedtour-topic-welcome-discover",
+									"flow-guidedtour-topic-skip",
+									"flow-guidedtour-topic-conversation",
+									"flow-guidedtour-topic-conversation-description",
+									"flow-guidedtour-topic-howToReply",
+									"flow-guidedtour-topic-reply",
+									"flow-guidedtour-topic-reply-description",
+									"flow-guidedtour-topic-replyToSpecificComment",
+									"flow-guidedtour-topic-directReply",
+									"flow-guidedtour-topic-directReply-description",
+									"flow-guidedtour-topic-howToWatchTopics",
+									"flow-guidedtour-topic-watch",
+									"flow-guidedtour-topic-watch-description",
+									"flow-guidedtour-topic-goodbye",
+									"flow-guidedtour-topic-goodbye-description",
+									"flow-guidedtour-topic-goodbye-openHelpPage"
+								],
+								'dependencies' => 'ext.guidedTour',
+						] );
 		}
 
 		return true;
@@ -100,6 +127,19 @@ class FlowHooks {
 
 			// Destroy Flow cookie
 			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
+		}
+
+		if ($out->getRequest()->getCookie( 'Flow_topic_guidedTour' ) &&
+			$title->getNamespace() === NS_TOPIC &&
+			// Check that we are on a flow board
+			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
+			// Check that guided tour exists
+			ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' )
+		) {
+			// Activate tour
+			GuidedTourLauncher::launchTourByCookie( 'flowTopic', 'welcome' );
+			// Destroy Flow cookie
+			$out->getRequest()->response()->setcookie( 'Flow_topic_guidedTour', '', time() - 3600 );
 		}
 	}
 
