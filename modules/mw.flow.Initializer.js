@@ -932,12 +932,15 @@
 	};
 
 	/**
-	 * Finish the loading process
+	 * Finish the loading process and dispatch an event 'flowReady'
 	 */
 	mw.flow.Initializer.prototype.finishLoading = function () {
 		if ( this.$component ) {
 			this.$component.addClass( 'flow-component-ready' );
 		}
+
 		$( '.flow-ui-load-overlay' ).addClass( 'oo-ui-element-hidden' );
+
+		document.dispatchEvent( new Event( 'flowReady' ) );
 	};
 }() );
