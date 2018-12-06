@@ -69,6 +69,16 @@
 			);
 		}
 
+		if ( mw.config.get( 'wgNamespaceNumber' ) === 2600 && mw.config.get( 'wgUserName' ) !== null && mw.user.options.get( 'flow-guidedtour-topic-seen' ) ) {
+			document.addEventListener( 'flowReady', function () {
+				var api = new mw.Api();
+				api.saveOption( 'flow-guidedtour-topic-seen', true );
+				// Starts topic tour
+				mw.guidedTour.launcher.launchTour( 'flowTopic' );
+
+			} );
+		}
+
 		// Show the board
 		initializer.finishLoading();
 
