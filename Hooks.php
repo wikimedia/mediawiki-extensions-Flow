@@ -76,6 +76,21 @@ class FlowHooks {
 					],
 					'dependencies' => 'ext.guidedTour',
 			] );
+			$resourceLoader->register( 'ext.guidedTour.tour.flowTopic', [
+            				'localBasePath' => __DIR__ . '/modules',
+            				'remoteExtPath' => 'Flow/modules',
+            					'scripts' => 'tours/flowTopic.js',
+            					'styles' => 'tours/flowTopic.less',
+            					'messages' => [
+            						"flow-guidedtour-topic-welcome",
+            						"flow-guidedtour-topic-welcome-description",
+            						"flow-guidedtour-topic-find-old-conversations",
+            						"flow-guidedtour-topic-find-old-conversations-description",
+            						"flow-guidedtour-topic-feedback",
+            						"flow-guidedtour-topic-feedback-description"
+            					],
+            					'dependencies' => 'ext.guidedTour',
+            			] );
 		}
 
 		return true;
@@ -101,6 +116,21 @@ class FlowHooks {
 			// Destroy Flow cookie
 			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
 		}
+		if (
+//        			$out->getRequest()->getCookie( 'Flow_topic_guidedTour' ) &&
+					// Checks if $title starts with "Talk:"
+        			substr($title,0,5) === "Talk:" &&
+        			// Check that we are on a flow board
+        			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
+        			// Check that guided tour exists
+        			ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' )
+        		) {
+        			// Activate tour
+        			GuidedTourLauncher::launchTourByCookie( 'flowTopic', 'welcome' );
+
+        			// Destroy Flow cookie
+        			$out->getRequest()->response()->setcookie( 'Flow_topic_guidedTour', '', time() - 3600 );
+        		}
 	}
 
 	/**
