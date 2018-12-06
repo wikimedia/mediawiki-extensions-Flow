@@ -26,6 +26,7 @@
 
 		// Initialize old system
 		initializer.initOldComponent();
+
 		// Initialize board
 		if ( initializer.setBoardDom( $board ) ) {
 			// Set up flowBoard
