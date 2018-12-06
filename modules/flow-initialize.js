@@ -26,6 +26,7 @@
 
 		// Initialize old system
 		initializer.initOldComponent();
+
 		// Initialize board
 		if ( initializer.setBoardDom( $board ) ) {
 			// Set up flowBoard
@@ -67,6 +68,30 @@
 				false,
 				$component.data( 'flow-id' )
 			);
+		}
+
+		// Runs a Topic tour for first users
+		if ( mw.config.get( 'wgNamespaceNumber' ) === 2600 ) {
+			console.log( 'shitty?' );
+			if ( mw.config.get( 'wgUserName' ) && !mw.user.options.get( 'flow-guidedtour-topic-seen' ) ) {
+				document.addEventListener( 'flowReady', function () {
+					var api = new mw.Api();
+					api.saveOption( 'flow-guidedtour-topic-seen', true );
+					// Starts topic tour
+					mw.guidedTour.launcher.launchTour( 'flowTopic' );
+
+				} );
+			} else if ( !mw.config.get( 'wgUserName' ) && !$.cookie( 'flow-guidedtour-topic-seen' ) ) {
+				console.log( 'shsih' );
+				document.addEventListener( 'flowReady', function () {
+					// sets a cookie for IP users which lasts for one year
+					$.cookie( 'flow-guidedtour-topic-seen', true, { expires: 365 } );
+					// Starts topic tour
+					mw.guidedTour.launcher.launchTour( 'flowTopic' );
+
+				} );
+			}
+			console.log( 'triytyy' );
 		}
 
 		// Show the board
