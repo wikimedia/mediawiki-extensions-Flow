@@ -932,12 +932,27 @@
 	};
 
 	/**
-	 * Finish the loading process
+	 * Finish the loading process and dispatch an event 'flowReady'
 	 */
 	mw.flow.Initializer.prototype.finishLoading = function () {
+		var api = new mw.Api();
+
 		if ( this.$component ) {
 			this.$component.addClass( 'flow-component-ready' );
 		}
+
 		$( '.flow-ui-load-overlay' ).addClass( 'oo-ui-element-hidden' );
+
+		// Runs a Topic tour for first users
+		if (
+			mw.config.get( 'wgNamespaceNumber' ) === 2600 &&
+			mw.config.get( 'wgUserName' ) &&
+			!mw.user.options.get( 'flow-guidedtour-topic-seen' )
+		) {
+			api.saveOption( 'flow-guidedtour-topic-seen', true );
+			// Starts topic tour
+			mw.guidedTour.launcher.launchTour( 'flowTopic' );
+		}
+
 	};
 }() );
