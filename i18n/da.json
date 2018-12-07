@@ -7,6 +7,7 @@
 			"Saederup92"
 		]
 	},
+	"flow-desc": "Diskussionsystem",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|slettede}} et emne på [[$3]]",
 	"flow-board-header-browse-topics-link": "Gennemse emner",
 	"flow-board-description-can-not-edit": "Ikke redigerbar",
@@ -57,6 +58,7 @@
 	"flow-error-not-a-post": "Emnetitlen kan ikke gemmes som et indlæg.",
 	"flow-error-missing-header-content": "Du skal indsende en beskrivelse.",
 	"flow-error-default": "Der opstod en fejl.",
+	"flow-error-invalid-title": "Ugyldig sidetitel blev angivet.",
 	"flow-error-invalid-topic-uuid-title": "Ugyldig titel",
 	"flow-error-unknown-workflow-id-title": "Ukendt emne",
 	"flow-edit-header-submit": "Gem beskrivelse",
