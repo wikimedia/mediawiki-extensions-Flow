@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4df2641d_77d47828",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 5501
+      },
+      "writtenOn": "2018-12-08T01:19:19Z",
+      "side": 1,
+      "message": "Is this line needed at all?",
+      "range": {
+        "startLine": 1263,
+        "startChar": 2,
+        "endLine": 1266,
+        "endChar": 0
+      },
+      "revId": "b36b3313f6ee19e93a1179f076e6ad4933ec4ded",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
