@@ -3,11 +3,8 @@
 namespace Flow\Tests;
 
 use Flow\Container;
-use Flow\Model\PostRevision;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\NotificationController;
 use EchoNotificationController;
 use ExtensionRegistry;
 use User;
@@ -114,18 +111,15 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	}
 
 	/**
-	 * @return bool|array
-	 * {
-	 *     False on failure, or array with these keys:
-	 *
-	 *     @type Workflow $boardWorkflow
-	 *     @type Workflow $topicWorkflow
-	 *     @type PostRevision $post
-	 *     @type PostRevision $topic
-	 *     @type User $user
-	 *     @type User $agent
-	 *     @type NotificationController $notificationController
-	 * }
+	 * @return bool|array False on failure, or array with these keys:
+	 *   * 'boardWorkflow' - type \Flow\Model\Workflow
+	 *   * 'topicWorkflow' - type \Flow\Model\Workflow
+	 *   * 'post' - type \Flow\Model\PostRevision
+	 *   * 'post-2' - type \Flow\Model\PostRevision
+	 *   * 'topic' - type \Flow\Model\PostRevision
+	 *   * 'user' - type \User
+	 *   * 'agent' - type \User
+	 *   * 'notificationController' - type \Flow\NotificationController
 	 */
 	protected function getTestData() {
 		$user = User::newFromName( 'Flow Test User' );
