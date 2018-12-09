@@ -180,6 +180,7 @@
 	"flow-edit-header-placeholder": "この議論掲示板について説明してください",
 	"flow-edit-header-submit": "説明を保存",
 	"flow-edit-header-submit-anonymously": "匿名で説明を保存",
+	"flow-edit-header-submit-publish": "説明を公開",
 	"flow-edit-title-submit": "題名を変更",
 	"flow-edit-title-submit-anonymously": "匿名でタイトルを保存",
 	"flow-edit-post-submit": "変更を保存",
