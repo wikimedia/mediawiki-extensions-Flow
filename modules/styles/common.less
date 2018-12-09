@@ -16,7 +16,7 @@
 
 // board navigation
 .flow-board-navigation,
-// The whole board content wrapper
+// whole board content wrapper
 .flow-board {
 	.box-sizing( border-box );
 	font-size: 0.875em;
@@ -120,7 +120,7 @@
 	.flow-board-header-menu,
 	// board navigation
 	.flow-board-navigation,
-	// The whole board content wrapper
+	// whole board content wrapper
 	.flow-board {
 		// Set a fixed font-size from which everything else can use a relative amount
 		font-size: 1em;
@@ -170,12 +170,14 @@
 
 	.flow-component.flow-board-page.flow-full-height-side-rail {
 		position: relative;
+
 		.flow-board-header {
 			position: static;
 			/* background and box-shadow are moved to :before for full height */
 			background: transparent;
 			box-shadow: none;
 		}
+
 		.flow-board-header:before {
 			content: '';
 			display: block;
@@ -276,9 +278,11 @@
 					content: '(';
 				}
 			}
+
 			& + li:before {
 				content: ' | ';
 			}
+
 			&:last-of-type:after {
 				content: ')';
 			}
