@@ -118,6 +118,7 @@ Does not support IE7 nor IE8.
 		text-align: center;
 		pointer-events: none;
 		//.glyphicon
+		// stylelint-disable-next-line font-family-no-missing-generic-family-keyword
 		font-family: 'Glyphicons Halflings';
 		-webkit-font-smoothing: antialiased;
 	}
@@ -128,6 +129,7 @@ Does not support IE7 nor IE8.
 		border-style: solid;
 		border-width: 1px 1px 1px 0;
 	}
+
 	.mw-ui-validation-icon:before {
 		color: #fff;
 	}
@@ -161,10 +163,12 @@ Does not support IE7 nor IE8.
 					display: block;
 				}
 			}
+
 			~ .mw-ui-validation-icon {
 				background: #00af89;
 				background: rgba( 0, 176, 138, 0.85 );
 			}
+
 			~ .mw-ui-validation-icon:before {
 				//.glyphicon-ok
 				content: '\e013';
@@ -174,11 +178,13 @@ Does not support IE7 nor IE8.
 			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
 				right: 2em;
 			}
+
 			&[ type='date' ] {
 				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
 					right: 4em;
 				}
 			}
+
 			&[ type='number' ],
 			&[ type='time' ] {
 				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
@@ -205,10 +211,12 @@ Does not support IE7 nor IE8.
 					display: block;
 				}
 			}
+
 			~ .mw-ui-validation-icon {
 				background: #d33;
 				background: rgba( 211, 19, 0, 0.85 );
 			}
+
 			~ .mw-ui-validation-icon:before {
 				//.glyphicon-remove
 				content: '\e014';

@@ -171,7 +171,6 @@ Styleguide 4.0.
 
 	.flow-ui-tooltip-color( @backgroundColor ) {
 		@backgroundColorDarkened: darken( @backgroundColor, @colorDarkenPercentage );
-
 		background: @backgroundColor;
 		/* @noflip */
 		.box-shadow( ~'0 2px 0 0 @{backgroundColorDarkened}' );
@@ -180,14 +179,17 @@ Styleguide 4.0.
 		.flow-ui-tooltip-triangle:after {
 			background: @backgroundColor;
 		}
+
 		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle:after {
 			/* @noflip */
 			.box-shadow( ~'0 -2px 0 2px @{backgroundColorDarkened}' );
 		}
+
 		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle:after {
 			/* @noflip */
 			.box-shadow( ~'2px 0 0 2px @{backgroundColorDarkened}' );
 		}
+
 		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle:after {
 			/* @noflip */
 			.box-shadow( ~'0 2px 0 2px @{backgroundColorDarkened}' );
@@ -204,17 +206,21 @@ Styleguide 4.0.
 	&[ class ] {
 		&.mw-ui-progressive {
 			.flow-ui-tooltip-color( @colorProgressive );
+
 			.mw-ui-icon {
 				fill: @colorProgressive;
 			}
 		}
+
 		&.mw-ui-destructive {
 			.flow-ui-tooltip-color( @colorDestructive );
+
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover,
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:focus span {
 				fill: @colorDestructive;
 			}
 		}
+
 		&.flow-ui-tooltip-small {
 			font-size: 0.75em;
 
@@ -222,6 +228,7 @@ Styleguide 4.0.
 				max-width: 240px;
 			}
 		}
+
 		&.flow-ui-tooltip-large {
 			max-width: 100%;
 
