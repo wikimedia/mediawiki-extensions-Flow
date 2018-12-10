@@ -47,10 +47,6 @@
 		} );
 		this.error.toggle( false );
 
-		this.$element
-			.on( 'focusin', this.onEditorFocusIn.bind( this ) )
-			.on( 'focusout', this.onEditorFocusOut.bind( this ) );
-
 		this.editorControlsWidget = new mw.flow.ui.EditorControlsWidget( {
 			termsMsgKey: config.termsMsgKey || 'flow-terms-of-use-edit',
 			saveMsgKey: config.saveMsgKey || 'flow-newtopic-save',
@@ -104,6 +100,10 @@
 				enter: 'onTargetSubmit'
 			} );
 			this.$editorWrapper.append( this.input.$element );
+			// VE focus listeners are bound in #onTargetSurfaceReady
+			this.$element
+				.on( 'focusin', this.onEditorFocusIn.bind( this ) )
+				.on( 'focusout', this.onEditorFocusOut.bind( this ) );
 		}
 
 		this.toggleAutoFocus( config.autoFocus === undefined ? true : !!config.autoFocus );
@@ -372,7 +372,11 @@
 		var surface = this.target.getSurface();
 
 		surface.setPlaceholder( this.placeholder );
-		surface.getModel().connect( this, { documentUpdate: [ 'onSurfaceDocumentUpdate' ] } );
+		surface.getModel().connect( this, { documentUpdate: 'onSurfaceDocumentUpdate' } );
+		surface.getView().connect( this, {
+			focus: 'onEditorFocusIn',
+			blur: 'onEditorFocusOut'
+		} );
 	};
 
 	/**
