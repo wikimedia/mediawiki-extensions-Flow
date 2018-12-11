@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "676272cf_5b389f28",
+        "filename": "i18n/en.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-11T11:56:35Z",
+      "side": 1,
+      "message": "All the lines here are indented with a mix of spaces and tabs.",
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc90c86c_2e10358c",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 13
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-11T11:56:35Z",
+      "side": 1,
+      "message": "All the lines here are indented with a mix of spaces and tabs.",
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d861cce_37430f24",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-11T11:56:35Z",
+      "side": 1,
+      "message": "What will happen if I decide not to accept cookies for privacy reasons?",
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f23f49d_a6959bd3",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-11T11:56:35Z",
+      "side": 1,
+      "message": "You don\u0027t need to send and receive an event within the same initialization sequence. \n\nI would recommend adding the code to launch the tour here instead.",
+      "range": {
+        "startLine": 944,
+        "startChar": 0,
+        "endLine": 944,
+        "endChar": 53
+      },
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3d60964_51d3e7ef",
+        "filename": "modules/tours/flowTopic.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-11T11:56:35Z",
+      "side": 1,
+      "message": "No need for an empty file.",
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
