@@ -76,6 +76,30 @@
     },
     {
       "key": {
+        "uuid": "888a6838_e79f4874",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 5501
+      },
+      "writtenOn": "2018-12-11T12:15:08Z",
+      "side": 1,
+      "message": "hmm, okay! You said that a `flowReady` event would be good to add, so I did it :( \nFixing...",
+      "parentUuid": "5f23f49d_a6959bd3",
+      "range": {
+        "startLine": 944,
+        "startChar": 0,
+        "endLine": 944,
+        "endChar": 53
+      },
+      "revId": "9f5ad5eb6d7129014d7021c0a0bcf6ae85a68a4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3d60964_51d3e7ef",
         "filename": "modules/tours/flowTopic.less",
         "patchSetId": 13
