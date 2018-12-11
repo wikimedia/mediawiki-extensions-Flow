@@ -109,7 +109,7 @@
 		$( target ).find( 'script' ).addBack( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
 			var $this = $( this ),
 				data = $this.data(),
-				target = data.target.trim(),
+				target = data.target && data.target.trim(),
 				$target = $this,
 				content, $prevTarg, $nextTarg;
 
