@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d99b694b_ee6ac311",
+        "filename": "Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-12T15:17:46Z",
+      "side": 1,
+      "message": "I think those messages don\u0027t exist anymore.",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 102,
+        "endChar": 51
+      },
+      "revId": "015c36b0dbfdb613efd3e21f34ec93742f851483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c924b200_7cbd0693",
         "filename": "Hooks.php",
         "patchSetId": 14
@@ -31,6 +54,40 @@
       "side": 1,
       "message": "ok, adding! Sorry for it. I\u0027m new to PHP, so I don\u0027t feel comfortable in it :(",
       "parentUuid": "c924b200_7cbd0693",
+      "revId": "015c36b0dbfdb613efd3e21f34ec93742f851483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e49a3c0d_d4b607b3",
+        "filename": "modules/engine/misc/flow-handlebars.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-12T15:17:46Z",
+      "side": 1,
+      "message": "This was fixed by another patch so you can forget about it (and remove it from the commit message) when you rebase.",
+      "revId": "015c36b0dbfdb613efd3e21f34ec93742f851483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6f09470_9cf95643",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-12T15:17:46Z",
+      "side": 1,
+      "message": "Please consider undoing this change.\n\nIt might be nicer to have an extra line-break here but it\u0027s hard to justify in the context of this patch and adds noise to the history.",
       "revId": "015c36b0dbfdb613efd3e21f34ec93742f851483",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
