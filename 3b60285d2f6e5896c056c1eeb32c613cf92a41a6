@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e2b69cc_e14e9618",
+        "filename": "Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-13T13:22:43Z",
+      "side": 1,
+      "message": "Too much indentation here.",
+      "range": {
+        "startLine": 70,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 9
+      },
+      "revId": "3b60285d2f6e5896c056c1eeb32c613cf92a41a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "363faa59_89a4fcea",
+        "filename": "Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-13T13:22:43Z",
+      "side": 1,
+      "message": "Maybe this should be negated?",
+      "range": {
+        "startLine": 135,
+        "startChar": 3,
+        "endLine": 135,
+        "endChar": 65
+      },
+      "revId": "3b60285d2f6e5896c056c1eeb32c613cf92a41a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a9edf68_e1c55ed3",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 17
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-13T13:22:43Z",
+      "side": 1,
+      "message": "You could also use `!mw.user.isAnon()` for clarity.\n\nAlso, maybe this line should be broken down into 3 so it\u0027s easier to read.",
+      "range": {
+        "startLine": 947,
+        "startChar": 56,
+        "endLine": 947,
+        "endChar": 85
+      },
+      "revId": "3b60285d2f6e5896c056c1eeb32c613cf92a41a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
