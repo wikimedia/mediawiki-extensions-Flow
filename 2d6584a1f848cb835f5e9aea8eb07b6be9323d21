@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23470657_c749c5dc",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 18
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-13T17:36:14Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 610,
+        "startChar": 30,
+        "endLine": 610,
+        "endChar": 31
+      },
+      "revId": "2d6584a1f848cb835f5e9aea8eb07b6be9323d21",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
