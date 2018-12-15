@@ -25,6 +25,7 @@
 	"flow-history-action-hide-post": "скриване",
 	"flow-post-action-delete-post": "Изтриване",
 	"flow-post-action-hide-post": "Скриване",
+	"flow-post-action-edit-post": "Редактиране",
 	"flow-topic-action-watchlist": "Списък за наблюдение",
 	"flow-topic-action-lock-topic": "Отбелязване като разрешено",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Вие се}} абонирахте за това дискусионно табло!",
