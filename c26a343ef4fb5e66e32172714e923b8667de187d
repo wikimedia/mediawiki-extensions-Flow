@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5de3f4a2_e0181636",
+        "filename": "Hooks.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-17T14:48:57Z",
+      "side": 1,
+      "message": "Too much indentation here.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 1
+      },
+      "revId": "c26a343ef4fb5e66e32172714e923b8667de187d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d81d080_cd908ea3",
+        "filename": "Hooks.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-17T14:48:57Z",
+      "side": 1,
+      "message": "Should this be negated?",
+      "range": {
+        "startLine": 135,
+        "startChar": 3,
+        "endLine": 135,
+        "endChar": 65
+      },
+      "revId": "c26a343ef4fb5e66e32172714e923b8667de187d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c9259b2_88320c55",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2018-12-17T14:48:57Z",
+      "side": 1,
+      "message": "Please break this long line.",
+      "range": {
+        "startLine": 947,
+        "startChar": 0,
+        "endLine": 947,
+        "endChar": 145
+      },
+      "revId": "c26a343ef4fb5e66e32172714e923b8667de187d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
