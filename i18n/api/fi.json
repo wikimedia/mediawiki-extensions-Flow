@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Olimar",
-			"Quiddity"
+			"Quiddity",
+			"Pyscowicz"
 		]
 	},
 	"apihelp-flow+close-open-topic-param-reason": "Syy aiheen lukitsemiselle tai avaamiselle lukituksesta.",
@@ -16,10 +17,10 @@
 	"apihelp-flow+edit-post-param-format": "Viestin sisällön formaatti (wikitext|html)",
 	"apihelp-flow+edit-post-example-1": "Muokkaa viestiä aiheessa [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+edit-title-description": "Muokkaa aiheen otsikkoa.",
-	"apihelp-flow+lock-topic-description": "Lukitse tai avaa Flow-aihe.",
-	"apihelp-flow+moderate-post-description": "Hallinnoi Flow-viestiä.",
+	"apihelp-flow+lock-topic-description": "Lukitse tai avaa Jäsennetyt keskustelut -aihe.",
+	"apihelp-flow+moderate-post-description": "Hallinnoi Jäsennetyt keskustelut -viestiä.",
 	"apihelp-flow+moderate-topic-example-1": "Poista aihe [[Topic:S2tycnas4hcucw8w]]",
-	"apihelp-flow+new-topic-description": "Luo uuden Flow-aiheen annettuun workflow'hun.",
+	"apihelp-flow+new-topic-description": "Luo uuden Jäsennetyt keskustelut -aiheen annettuun workflow'hun.",
 	"apihelp-flow+new-topic-param-topic": "Uuden aiheotsikon teksti.",
 	"apihelp-flow+new-topic-param-content": "Aiheen ensimmäisen vastauksen sisältö.",
 	"apihelp-flow+view-post-description": "Näytä viesti.",
