@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "200ddf66_aaee018e",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2018-12-28T21:31:17Z",
+      "side": 1,
+      "message": "I just realized this can\u0027t return false.\n\nPersonally, I wrote similar documentations in a slightly different style:\n\n/**\n * @return array [\n *     \u0027boardWorkflow\u0027 \u003d\u003e \\Flow\\Model\\Workflow\n *     \u0027topicWorkflow\u0027 \u003d\u003e \\Flow\\Model\\Workflow\n *     \u0027post\u0027 \u003d\u003e \\Flow\\Model\\PostRevision\n *     \u0027post-2\u0027 \u003d\u003e \\Flow\\Model\\PostRevision\n *     \u0027topic\u0027 \u003d\u003e \\Flow\\Model\\PostRevision\n *     \u0027user\u0027 \u003d\u003e \\User\n *     \u0027agent\u0027 \u003d\u003e \\User\n *     \u0027notificationController\u0027 \u003d\u003e \\Flow\\NotificationController\n * ]\n */\n\nIs the \"- type\" syntax you are using recognized by a tool?",
+      "revId": "3770bd1e0effe576e664dd1f3af735f1d924181f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
