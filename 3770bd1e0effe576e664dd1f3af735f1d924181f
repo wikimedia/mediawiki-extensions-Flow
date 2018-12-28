@@ -16,6 +16,24 @@
       "revId": "3770bd1e0effe576e664dd1f3af735f1d924181f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f553c85_89a8c1c6",
+        "filename": "tests/phpunit/Notifications/NotifiedUsersTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2018-12-28T23:17:28Z",
+      "side": 1,
+      "message": "No, it is free style",
+      "parentUuid": "200ddf66_aaee018e",
+      "revId": "3770bd1e0effe576e664dd1f3af735f1d924181f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
