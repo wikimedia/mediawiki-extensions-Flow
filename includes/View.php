@@ -287,14 +287,13 @@ class View extends ContextSource {
 	}
 
 	protected function renderApiResponse( array $apiResponse, array $robotPolicy ) {
-		global $wgEditSubmitButtonLabelPublish;
-
 		// Render the flow-component wrapper
 		if ( empty( $apiResponse['blocks'] ) ) {
 			return [];
 		}
 
 		$out = $this->getOutput();
+		$config = $this->getConfig();
 
 		$jsonBlobResponse = $apiResponse;
 
@@ -307,7 +306,8 @@ class View extends ContextSource {
 
 		// Add JSON blob for OOUI widgets
 		$out->addJsConfigVars( 'wgFlowData', $jsonBlobResponse );
-		$out->addJsConfigVars( 'wgEditSubmitButtonLabelPublish', $wgEditSubmitButtonLabelPublish );
+		$out->addJsConfigVars( 'wgEditSubmitButtonLabelPublish',
+			$config->get( 'EditSubmitButtonLabelPublish' ) );
 
 		$renderedBlocks = [];
 		foreach ( $apiResponse['blocks'] as $block ) {
