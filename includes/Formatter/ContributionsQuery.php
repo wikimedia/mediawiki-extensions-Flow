@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use BagOStuff;
-use ContribsPager;
 use DeletedContribsPager;
 use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
@@ -56,7 +55,7 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
+	 * @param \stdClass|DeletedContribsPager $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
@@ -91,8 +90,13 @@ class ContributionsQuery extends AbstractQuery {
 						continue;
 					}
 
-					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
-					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+					if ( $pager instanceof DeletedContribsPager ) {
+						$result = new DeletedContributionsRow();
+						$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+					} else {
+						$result = new ContributionsRow();
+						$result = $this->buildResult( $revision, 'rev_timestamp', $result );
+					}
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();
 
 					if (
@@ -126,7 +130,7 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
+	 * @param \stdClass $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return array Query conditions
@@ -136,7 +140,9 @@ class ContributionsQuery extends AbstractQuery {
 
 		// Work out user condition
 		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
-			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager->getDatabase() );
+			// Same query group as in \ContribsPager::__construct
+			$db = wfGetDB( DB_REPLICA, 'contributions' );
+			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $db );
 
 			$conditions['rev_user_wiki'] = wfWikiID();
 			$conditions[] = 'rev_user_id > ' . (int)$minUserId;
