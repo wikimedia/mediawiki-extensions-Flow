@@ -780,7 +780,7 @@ class FlowHooks {
 	/**
 	 * Intercept contribution entries and format those belonging to Flow
 	 *
-	 * @param ContribsPager $pager Contributions object
+	 * @param IContextSource $pager
 	 * @param string &$ret The HTML line
 	 * @param stdClass $row The data for this line
 	 * @param array &$classes the classes to add to the surrounding <li>
@@ -823,7 +823,7 @@ class FlowHooks {
 	/**
 	 * Intercept contribution entries and format those belonging to Flow
 	 *
-	 * @param ContribsPager $pager Contributions object
+	 * @param IContextSource $pager
 	 * @param string &$ret The HTML line
 	 * @param stdClass $row The data for this line
 	 * @param array &$classes the classes to add to the surrounding <li>
