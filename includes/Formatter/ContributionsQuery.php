@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use BagOStuff;
-use ContribsPager;
 use DeletedContribsPager;
 use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
@@ -15,6 +14,7 @@ use Flow\Repository\TreeRepository;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ResultWrapper;
 
 class ContributionsQuery extends AbstractQuery {
@@ -55,7 +55,7 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
+	 * @param \stdClass|DeletedContribsPager $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
@@ -90,8 +90,13 @@ class ContributionsQuery extends AbstractQuery {
 						continue;
 					}
 
-					$result = $pager instanceof ContribsPager ? new ContributionsRow : new DeletedContributionsRow;
-					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+					if ( $pager instanceof DeletedContribsPager ) {
+						$result = new DeletedContributionsRow();
+						$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+					} else {
+						$result = new ContributionsRow();
+						$result = $this->buildResult( $revision, 'rev_timestamp', $result );
+					}
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();
 
 					if (
@@ -125,7 +130,7 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
+	 * @param \stdClass $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return array Query conditions
@@ -135,7 +140,9 @@ class ContributionsQuery extends AbstractQuery {
 
 		// Work out user condition
 		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
-			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
+			// Same query group as in \ContribsPager::__construct
+			$db = wfGetDB( DB_REPLICA, 'contributions' );
+			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $db );
 
 			$conditions['rev_user_wiki'] = wfWikiID();
 			$conditions[] = 'rev_user_id > ' . (int)$minUserId;
@@ -299,17 +306,17 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ContribsPager|DeletedContribsPager $pager
+	 * @param IDatabase $db
 	 * @return array [minUserId, excludeUserIds]
 	 */
-	protected function getNewbieConditionInfo( $pager ) {
+	protected function getNewbieConditionInfo( IDatabase $db ) {
 		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
 		// to be wiki-specific
 		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
 		$max = $this->cache->get( $key );
 		if ( $max === false ) {
 			// max user id not present in cache; fetch from db & save to cache for 1h
-			$max = (int)$pager->getDatabase()->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
+			$max = (int)$db->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 			$this->cache->set( $key, $max, 60 * 60 );
 		}
 		$minUserId = (int)( $max - $max / 100 );
@@ -318,7 +325,6 @@ class ContributionsQuery extends AbstractQuery {
 		$excludeUserIds = [];
 		$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 		if ( count( $groupsWithBotPermission ) ) {
-			$db = $pager->getDatabase();
 			$rows = $db->select(
 				[ 'user', 'user_groups' ],
 				'user_id',
