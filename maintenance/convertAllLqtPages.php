@@ -7,6 +7,7 @@ use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
+use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\IDatabase;
 
