@@ -876,7 +876,7 @@ class FlowHooks {
 	 *
 	 * @param array &$data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
-	 * @param ContribsPager $pager Object hooked into
+	 * @param DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
