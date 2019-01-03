@@ -8,6 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
 

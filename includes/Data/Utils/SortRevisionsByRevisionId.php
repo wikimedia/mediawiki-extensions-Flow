@@ -2,7 +2,7 @@
 
 namespace Flow\Data\Utils;
 
-use Flow\InvalidParameterException;
+use Flow\Exception\InvalidParameterException;
 use Flow\Model\AbstractRevision;
 
 /**

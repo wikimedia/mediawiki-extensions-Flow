@@ -10,6 +10,7 @@ use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Revision;
 use Title;
+use Traversable;
 use User;
 use WikiPage;
 use WikitextContent;
