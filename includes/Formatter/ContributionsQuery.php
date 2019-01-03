@@ -90,15 +90,8 @@ class ContributionsQuery extends AbstractQuery {
 						continue;
 					}
 
-					if ( $isDeleted ) {
-						$result = new DeletedContributionsRow();
-						// Note the field name is already hard-coded in DeletedContributionsRow.
-						$result = $this->buildResult( $revision, 'ar_timestamp', $result );
-					} else {
-						$result = new ContributionsRow();
-						// Note the field name is already hard-coded in the ContributionsRow class.
-						$result = $this->buildResult( $revision, 'rev_timestamp', $result );
-					}
+					$result = $isDeleted ? new DeletedContributionsRow() : new ContributionsRow();
+					$result = $this->buildResult( $revision, $result->getIndexField(), $result );
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();
 
 					if (
@@ -368,8 +361,14 @@ class ContributionsQuery extends AbstractQuery {
 
 class ContributionsRow extends FormatterRow {
 	public $rev_timestamp;
+	public function getIndexField() {
+		return 'rev_timestamp';
+	}
 }
 
 class DeletedContributionsRow extends FormatterRow {
 	public $ar_timestamp;
+	public function getIndexField() {
+		return 'ar_timestamp';
+	}
 }
