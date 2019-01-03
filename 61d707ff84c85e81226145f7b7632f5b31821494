@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b38aaea_5d2d9ec9",
+        "filename": "includes/Import/Converter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2019-01-03T07:30:04Z",
+      "side": 1,
+      "message": "This is Java. ;-) I would love to use this, but as far as I know no tool we typically use can understand this.",
+      "range": {
+        "startLine": 102,
+        "startChar": 11,
+        "endLine": 102,
+        "endChar": 29
+      },
+      "revId": "61d707ff84c85e81226145f7b7632f5b31821494",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
