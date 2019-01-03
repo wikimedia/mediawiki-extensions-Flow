@@ -3,7 +3,6 @@
 namespace Flow\Formatter;
 
 use BagOStuff;
-use DeletedContribsPager;
 use Flow\Container;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
@@ -55,13 +54,14 @@ class ContributionsQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param \stdClass|DeletedContribsPager $pager
+	 * @param bool $isDeleted
+	 * @param \stdClass $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return FormatterRow[]
 	 */
-	public function getResults( $pager, $offset, $limit, $descending ) {
+	public function getResults( $isDeleted, $pager, $offset, $limit, $descending ) {
 		// build DB query conditions
 		$conditions = $this->buildConditions( $pager, $offset, $descending );
 
@@ -90,11 +90,13 @@ class ContributionsQuery extends AbstractQuery {
 						continue;
 					}
 
-					if ( $pager instanceof DeletedContribsPager ) {
+					if ( $isDeleted ) {
 						$result = new DeletedContributionsRow();
-						$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
+						// Note the field name is already hard-coded in DeletedContributionsRow.
+						$result = $this->buildResult( $revision, 'ar_timestamp', $result );
 					} else {
 						$result = new ContributionsRow();
+						// Note the field name is already hard-coded in the ContributionsRow class.
 						$result = $this->buildResult( $revision, 'rev_timestamp', $result );
 					}
 					$deleted = $result->currentRevision->isDeleted() || $result->workflow->isDeleted();
