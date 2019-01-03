@@ -354,7 +354,7 @@ class TreeRepository {
 		}
 		$nodes = $this->fetchSubtreeNodeList( $roots );
 		if ( !$nodes ) {
-			throw new DataModelException( 'subtree node list should have at least returned root: ' . $root, 'process-data' );
+			throw new DataModelException( 'subtree node list should have at least returned root: ' . $roots, 'process-data' );
 		} elseif ( count( $nodes ) === 1 ) {
 			$parentMap = $this->fetchParentMap( reset( $nodes ) );
 		} else {
