@@ -135,7 +135,7 @@ class ContributionsQuery extends AbstractQuery {
 		$conditions = [];
 
 		// Work out user condition
-		if ( property_exists( $pager, 'contribs' ) && $pager->contribs == 'newbie' ) {
+		if ( $pager->getContribs() === 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager->getDatabase() );
 
 			$conditions['rev_user_wiki'] = wfWikiID();
@@ -147,19 +147,19 @@ class ContributionsQuery extends AbstractQuery {
 				$conditions['rev_user_ip'] = null;
 			}
 		} else {
-			$uid = User::idFromName( $pager->target );
+			$uid = User::idFromName( $pager->getTarget() );
 			if ( $uid ) {
 				$conditions['rev_user_id'] = $uid;
 				$conditions['rev_user_ip'] = null;
 				$conditions['rev_user_wiki'] = wfWikiID();
 			} else {
 				$conditions['rev_user_id'] = 0;
-				$conditions['rev_user_ip'] = $pager->target;
+				$conditions['rev_user_ip'] = $pager->getTarget();
 				$conditions['rev_user_wiki'] = wfWikiID();
 			}
 		}
 
-		if ( property_exists( $pager, 'newOnly' ) && $pager->newOnly ) {
+		if ( $pager->isNewOnly() ) {
 			$conditions['rev_parent_id'] = null;
 			$conditions['rev_type'] = 'post';
 		}
@@ -174,8 +174,8 @@ class ContributionsQuery extends AbstractQuery {
 
 		// Find only within requested wiki/namespace
 		$conditions['workflow_wiki'] = wfWikiID();
-		if ( $pager->namespace !== '' ) {
-			$conditions['workflow_namespace'] = $pager->namespace;
+		if ( $pager->getNamespace() !== '' ) {
+			$conditions['workflow_namespace'] = $pager->getNamespace();
 		}
 
 		return $conditions;

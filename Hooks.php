@@ -918,7 +918,7 @@ class FlowHooks {
 	 */
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
 		// Flow has nothing to do with the tag filter, so ignore tag searches
-		if ( $pager->tagFilter != false ) {
+		if ( $pager->getTagFilter() != false ) {
 			return true;
 		}
 
