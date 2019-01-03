@@ -228,7 +228,7 @@ class HookTest extends MediaWikiTestCase {
 
 		$url = 'unset';
 		$query = 'unset';
-		$this->assertTrue( FlowHooks::onIRCLineURL( $url, $query, $rc ) );
+		FlowHooks::onIRCLineURL( $url, $query, $rc );
 		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
 		$parts = parse_url( $url );
