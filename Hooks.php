@@ -872,22 +872,21 @@ class FlowHooks {
 	}
 
 	/**
-	 * Adds Flow contributions to the DeletedContributions special page
-	 *
 	 * @param array &$data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
-	 * @param \stdClass|DeletedContribsPager $pager
+	 * @param bool $isDeleted
+	 * @param \stdClass $pager
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return bool
 	 */
-	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+	public static function doContributionsQuery( &$data, $isDeleted, $pager, $offset, $limit, $descending ) {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			/** @var Flow\Formatter\ContributionsQuery $query */
 			$query = Container::get( 'query.contributions' );
-			$results = $query->getResults( $pager, $offset, $limit, $descending );
+			$results = $query->getResults( $isDeleted, $pager, $offset, $limit, $descending );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
 			MWExceptionHandler::logException( $e );
@@ -903,6 +902,21 @@ class FlowHooks {
 		$data[] = $results;
 
 		return true;
+	}
+
+	/**
+	 * Adds Flow contributions to the DeletedContributions special page
+	 *
+	 * @param array &$data an array of results of all contribs queries, to be
+	 *  merged to form all contributions data
+	 * @param \stdClass $pager
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return bool
+	 */
+	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+		return static::doContributionsQuery( $data, true, $pager, $offset, $limit, $descending );
 	}
 
 	/**
@@ -922,7 +936,7 @@ class FlowHooks {
 			return true;
 		}
 
-		return static::onDeletedContributionsQuery( $data, $pager, $offset, $limit, $descending );
+		return static::doContributionsQuery( $data, false, $pager, $offset, $limit, $descending );
 	}
 
 	/**
