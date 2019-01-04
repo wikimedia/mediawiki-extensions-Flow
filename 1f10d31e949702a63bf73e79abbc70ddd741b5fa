@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afb6feca_75cce183",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-01-04T20:55:22Z",
+      "side": 1,
+      "message": "I don\u0027t think this is the right way to check now that the property is private and we\u0027re using the getter. Maybe have an $isDeleted \u003d $pager instanceof DeletedContribsPager; variable on top and then use !$isDeleted here?",
+      "range": {
+        "startLine": 138,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 44
+      },
+      "revId": "1f10d31e949702a63bf73e79abbc70ddd741b5fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39357b94_242e14f8",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-01-04T20:55:22Z",
+      "side": 1,
+      "message": "Same thing here",
+      "range": {
+        "startLine": 162,
+        "startChar": 7,
+        "endLine": 162,
+        "endChar": 43
+      },
+      "revId": "1f10d31e949702a63bf73e79abbc70ddd741b5fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
