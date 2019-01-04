@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1203b7b4_e1c799df",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-01-04T21:23:40Z",
+      "side": 1,
+      "message": "Good idea. I made this a positive check instead of a negative one though.",
+      "parentUuid": "afb6feca_75cce183",
+      "range": {
+        "startLine": 138,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 44
+      },
+      "revId": "1f10d31e949702a63bf73e79abbc70ddd741b5fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39357b94_242e14f8",
         "filename": "includes/Formatter/ContributionsQuery.php",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "1f10d31e949702a63bf73e79abbc70ddd741b5fa",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbe33876_329320f0",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-01-04T21:23:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39357b94_242e14f8",
+      "range": {
+        "startLine": 162,
+        "startChar": 7,
+        "endLine": 162,
+        "endChar": 43
+      },
+      "revId": "1f10d31e949702a63bf73e79abbc70ddd741b5fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
