@@ -100,6 +100,7 @@
 	"flow-terms-of-use-unlock-topic": "Klikom na „{{int:flow-topic-action-unlock-topic}}“, prihvatate uslove korišćenja ovog vikija.",
 	"structureddiscussions": "Strukturirane diskusije",
 	"flow-special-type": "Tip",
+	"flow-special-enableflow-page": "Stranica na kojoj je potrebno omogućiti Strukturiranu Diskusiju",
 	"flow-previous-diff": "← Starija izmena",
 	"flow-next-diff": "Novija izmena →",
 	"group-flow-bot": "Botovi strukturiranih diskusija",
