@@ -1037,16 +1037,17 @@ class FlowHooks {
 	 */
 	public static function onBeforeDisplayOrangeAlert( User $user, Title $title ) {
 		if ( $title->getNamespace() === NS_TOPIC ) {
+			/** @var \Flow\Data\ObjectManager $storage */
 			$storage = Container::get( 'storage.workflow' );
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
+			/** @var \Flow\Model\Workflow $workflow */
 			$workflow = $storage->get( $uuid );
-			if ( $workflow ) {
-				$boardTitle = $workflow->getOwnerTitle();
-			}
-			if ( $user->getTalkPage()->equals( $boardTitle ) ) {
+			if ( $workflow && $user->getTalkPage()->equals( $workflow->getOwnerTitle() ) ) {
 				return false;
 			}
 		}
+
+		return true;
 	}
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
