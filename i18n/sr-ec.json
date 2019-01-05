@@ -169,6 +169,7 @@
 	"flow-terms-of-use-unlock-topic": "Кликом на „{{int:flow-topic-action-unlock-topic}}“, прихватате услове коришћења овог викија.",
 	"structureddiscussions": "Структуриране дискусије",
 	"flow-special-type": "Тип",
+	"flow-special-enableflow-page": "Страница на којој је потребно омогућити Структурирану Дискусију",
 	"flow-previous-diff": "← Старија измена",
 	"flow-next-diff": "Новија измена →",
 	"group-flow-bot": "Ботови структурираних дискусија",
