@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f298a171_7db9ce38",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2019-01-05T16:46:36Z",
+      "side": 1,
+      "message": "Seems this must be a title object per another error i got:\n\n[05-Jan-2019 16:34:15 UTC] PHP Fatal error:  Uncaught TypeError: Argument 1 passed to Title::equals() must be an instance of Title, null given, called in /srv/mediawiki/w/extensions/Flow/Hooks.php on line 1046 and defined in /srv/mediawiki/w/includes/Title.php:4527\n\nBut im not sure how to do that.",
+      "range": {
+        "startLine": 1097,
+        "startChar": 3,
+        "endLine": 1097,
+        "endChar": 20
+      },
+      "revId": "5f4c81aac8f09dcca6113ecd99107ac079287821",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
