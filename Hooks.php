@@ -1094,6 +1094,7 @@ class FlowHooks {
 			$storage = Container::get( 'storage.workflow' );
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$workflow = $storage->get( $uuid );
+			$boardTitle = '';
 			if ( $workflow ) {
 				$boardTitle = $workflow->getOwnerTitle();
 			}
