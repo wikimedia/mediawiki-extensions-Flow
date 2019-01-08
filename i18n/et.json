@@ -201,6 +201,7 @@
 	"flow-terms-of-use-summarize": "Kui klõpsad \"{{int:flow-topic-action-update-topic-summary}}\", nõustud selle viki kasutustingimustega.",
 	"flow-terms-of-use-lock-topic": "Kui klõpsad \"{{int:flow-topic-action-lock-topic}}\", nõustud selle viki kasutustingimustega.",
 	"flow-terms-of-use-unlock-topic": "Kui klõpsad \"{{int:flow-topic-action-unlock-topic}}\", nõustud selle viki kasutustingimustega.",
+	"flow-whatlinkshere-post": "[$1 postitusest]",
 	"structureddiscussions": "Struktuurarutelud",
 	"flow-special-desc": "See erilehekülg suunab ümber antud UUID-ga struktuurarutelu töövoo või postituse juurde.",
 	"flow-special-type": "Tüüp",
