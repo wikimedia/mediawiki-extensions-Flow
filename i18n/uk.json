@@ -20,7 +20,7 @@
 			"Vlad5250"
 		]
 	},
-	"enablestructureddiscussions": "Увімкнути Flow",
+	"enablestructureddiscussions": "Увімкнути Структуровані обговорення",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Припинити}} спостерігати за новою діяльністю на «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Ви}} більше не спостерігаєте за сторінкою «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Це не вплине на окремі теми, за якими {{GENDER:$3|Ви}} спостерігаєте. Ви можете додати [$2 цю сторінку] до списку спостереження будь-коли.",
@@ -123,6 +123,8 @@
 	"flow-post-action-edit-post": "Редагувати",
 	"flow-post-action-edit-post-submit": "Зберегти зміни",
 	"flow-post-action-edit-post-submit-anonymously": "Зберегти зміни анонімно",
+	"flow-post-action-edit-post-submit-publish": "Опублікувати зміни",
+	"flow-post-action-edit-post-submit-anonymously-publish": "Опублікувати зміни анонімно",
 	"flow-post-action-unsuppress-post": "Висвітити",
 	"flow-post-action-undelete-post": "Відновити",
 	"flow-post-action-unhide-post": "Відобразити",
@@ -225,6 +227,8 @@
 	"flow-edit-header-placeholder": "Опишіть цю стіну обговорень",
 	"flow-edit-header-submit": "Зберегти опис",
 	"flow-edit-header-submit-anonymously": "Зберегти опис анонімно",
+	"flow-edit-header-submit-publish": "Опублікувати опис",
+	"flow-edit-header-submit-anonymously-publish": "Опублікувати опис анонімно",
 	"flow-edit-title-submit": "Змінити заголовок",
 	"flow-edit-title-submit-anonymously": "Змінити заголовок анонімно",
 	"flow-edit-post-submit": "Подати зміни",
