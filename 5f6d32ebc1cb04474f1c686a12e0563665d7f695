@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e7974ab_ce74c337",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2019-01-09T16:37:35Z",
+      "side": 1,
+      "message": "I found this copy-paste mistake by doing a global search for code that could possibly use the new PHP 7 ?? shortcut.\n\nThe second isset() means this will either result in the HTML containing id\u003d\"1\", or no id at all.\n\nFixed in I98589ce.",
+      "range": {
+        "startLine": 508,
+        "startChar": 11,
+        "endLine": 508,
+        "endChar": 71
+      },
+      "revId": "5f6d32ebc1cb04474f1c686a12e0563665d7f695",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
