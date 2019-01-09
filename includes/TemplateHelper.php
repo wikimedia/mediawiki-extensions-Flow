@@ -511,7 +511,7 @@ class TemplateHelper {
 		$data['args'] = $args;
 		$baseConfig = [
 			// 'infusable' => true,
-			'id' => isset( $named[ 'name' ] ) ? isset( $named[ 'name' ] ) : null,
+			'id' => isset( $named[ 'name' ] ) ? $named[ 'name' ] : null,
 			'classes' => $classes,
 			'data' => $data
 		];
