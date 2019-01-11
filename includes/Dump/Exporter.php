@@ -387,7 +387,7 @@ class Exporter extends WikiExporter {
 	}
 
 	/**
-	 * @param AbstractRevison $revision
+	 * @param AbstractRevision $revision
 	 * @suppress SecurityCheck-DoubleEscaped
 	 */
 	protected function formatRevision( AbstractRevision $revision ) {
