@@ -218,11 +218,11 @@ class HookTest extends MediaWikiTestCase {
 		$container['user'] = $user;
 
 		$rc = new RecentChange;
-		$rc->mAttribs = [
+		$rc->setAttribs( [
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
 			'rc_source' => RecentChangesListener::SRC_FLOW,
-		];
+		] );
 		$metadata = $metadataGen( $user );
 		Container::get( 'formatter.irclineurl' )->associate( $rc, $metadata );
 
