@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50e7dac9_cafac234",
+        "filename": "includes/Formatter/IRCLineUrlFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2019-01-12T20:05:47Z",
+      "side": 1,
+      "message": "Not that it would make much of a difference, but the two calls to the same method could be joined somehow.",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 64
+      },
+      "revId": "af73a619075d959223620964a20a620d921de7fe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
