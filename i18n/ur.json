@@ -10,6 +10,7 @@
 		]
 	},
 	"enablestructureddiscussions": "فلو فعال کریں",
+	"notification-dynamic-actions-flow-topic-unwatch": "اس موضوع کو دیکھنا {{GENDER:$3|بند}} کریں",
 	"flow-desc": "انتظام گفتگو",
 	"flow-talk-taken-over-comment": "/* پیش نظر صفحہ کو تختۂ مرتب گفتگو کی جانب منتقل کر دیا گیا ہے */",
 	"log-name-flow": "نوشتہ فعالیت مرتب گفتگو",

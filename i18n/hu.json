@@ -456,7 +456,7 @@
 	"flow-topic-undo-hide": "elrejtés visszavonása",
 	"flow-topic-undo-delete": "törlés visszavonása",
 	"flow-topic-undo-suppress": "elrejtés visszavonása",
-	"flow-importer-lqt-moved-thread-template": "Strukturált beszélgetéssé konvertált LQT szál-átnvezés csonk",
+	"flow-importer-lqt-moved-thread-template": "Strukturált beszélgetéssé konvertált LQT szál-átnevezés csonk",
 	"flow-importer-lqt-moved-thread-template-content": "{{{author}}} ezen hozzászólását elmozgatták {{{date}}} időpontban, [[{{{title}}}|itt]] találod meg.",
 	"flow-importer-lqt-converted-template": "LQT-lap konvertálva rendezett beszélgetéssé",
 	"flow-importer-lqt-converted-template-content": "A korábbi laptörténetet archiválták biztonsági mentés céljából a(z) <span class=\"flow-link-to-archive\">[[{{{archive}}}]]</span> lapra {{#time:Y. F j.|{{{date}}} }} dátummal.",
