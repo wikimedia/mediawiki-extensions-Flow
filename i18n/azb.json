@@ -6,6 +6,7 @@
 		]
 	},
 	"flow-summary-edited": "دییشدیرمه قیساسینی سوْن دفعه $1 {{GENDER:$1|دییشدیرمیشدیر}}",
+	"flow-show-change": "دییشیکلیکلره باخ",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$4|سیزه}} «'''$5'''»-ده {{GENDER:$2|ایشاره ائتدی}}.",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|سیزه}} «'''$5'''»-ده {{GENDER:$2|ایشاره ائتدی}}.",
 	"flow-notification-mention-email-subject": "$1 {{GENDER:$3|سیزه}}  «$2»-ده {{GENDER:$1|ایشاره ائتدی}}.",
