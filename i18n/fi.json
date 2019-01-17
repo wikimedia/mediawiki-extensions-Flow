@@ -82,7 +82,7 @@
 	"flow-summary-edited": "Yhteenvetoa on viimeksi {{GENDER:$1|muokannut}} käyttäjä $1",
 	"flow-show-change": "Näytä muutokset",
 	"flow-last-modified-by": "Viimeksi {{GENDER:$1|muokannut}} käyttäjä $1",
-	"flow-stub-post-content": "<em>Teknisen virheen takia tämä viesti ei ole saatavissa.</em>",
+	"flow-stub-post-content": "<em>Teknisen virheen takia tämä sisältö ei ole saatavissa.</em>",
 	"flow-newtopic-title-placeholder": "Uusi aihe",
 	"flow-newtopic-content-placeholder": "Kirjoita uusi viesti sivulle ”$1”",
 	"flow-newtopic-header": "Lisää uusi aihe",
