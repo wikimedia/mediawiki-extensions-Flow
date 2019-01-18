@@ -332,7 +332,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|создаде}} нова тема на $2",
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|создаде}} нова тема со наслов „$2“ на $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|$1 нова тема|$1 нови теми|100=Повеќе од 99 нови теми}} на $2",
-	"echo-category-title-flow-discussion": "Структурирана дискусија",
+	"echo-category-title-flow-discussion": "Структуриран разговор",
 	"echo-pref-tooltip-flow-discussion": "Известувај ме за активности на теми или страници што ги следам.",
 	"flow-link-post": "објава",
 	"flow-link-topic": "тема",
