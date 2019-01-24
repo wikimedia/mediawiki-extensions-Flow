@@ -280,11 +280,11 @@
 
 		if ( content ) {
 			contentToLoad = content.content;
-			if ( content.format === 'html' ) {
-				// loadContent expects a full document, but we were only given the body content
+			contentFormat = content.format;
+			if ( contentFormat === 'html' && contentToLoad.indexOf( '<body' ) === -1 ) {
+				console.log( 'here' );
 				contentToLoad = '<body>' + contentToLoad + '</body>';
 			}
-			contentFormat = content.format;
 		} else {
 			contentToLoad = '';
 			contentFormat = this.getPreferredFormat();
