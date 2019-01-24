@@ -20,6 +20,9 @@ use User;
 use VirtualRESTServiceClient;
 
 abstract class Utils {
+
+	const PARSOID_VERSION = '2.0.0';
+
 	/**
 	 * @var VirtualRESTServiceClient
 	 */
@@ -128,7 +131,11 @@ abstract class Utils {
 			'url' => $url,
 			'body' => $params,
 			'headers' => [
-				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.0.0"',
+				'Accept' =>
+					sprintf(
+						'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/%s"',
+						self::PARSOID_VERSION
+					),
 				'User-Agent' => "Flow-MediaWiki/$wgVersion",
 			],
 		];
@@ -163,7 +170,15 @@ abstract class Utils {
 			throw new NoParserException( $msg, 'process-wikitext' );
 		}
 
+		// Add attributes for parsoid version and base url.
 		$content = $response['body'];
+		if ( $to === 'html' ) {
+			$dom = self::createDOM( $response['body'] );
+			$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+			$body->setAttribute( 'parsoid-version', self::PARSOID_VERSION );
+			$body->setAttribute( 'base-url', wfGetServerUrl( PROTO_CURRENT ) );
+			$content = str_replace( "\n", '', $dom->saveHTML( $body ) );
+		}
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
 			$content = preg_replace( '/\\n$/', '', $content );
