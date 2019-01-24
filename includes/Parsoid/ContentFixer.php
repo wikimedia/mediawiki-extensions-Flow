@@ -45,7 +45,7 @@ class ContentFixer {
 
 	/**
 	 * Applies all contained content fixers to the provided HTML content.
-	 * The resulting content is then suitible for display to the end user.
+	 * The resulting content is then suitable for display to the end user.
 	 *
 	 * @param string $content Html
 	 * @param Title $title
@@ -67,7 +67,8 @@ class ContentFixer {
 			}
 		}
 
-		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
+		// Preserve the body tag and its attributes.
+		return Utils::getInnerHtml( $dom->getElementsByTagName( 'html' )->item( 0 ) );
 	}
 
 	/**

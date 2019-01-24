@@ -182,12 +182,7 @@
 			title: mw.config.get( 'wgPageName' )
 		} )
 			.then( function ( data ) {
-				var content = data[ 'flow-parsoid-utils' ].content;
-				if ( toFormat === 'html' ) {
-					// loadContent() expects a full document, but the API only gives us the body content
-					content = '<body>' + content + '</body>';
-				}
-				return content;
+				return data[ 'flow-parsoid-utils' ].content;
 			}, function () {
 				return mw.msg( 'flow-error-parsoid-failure' );
 			} );
