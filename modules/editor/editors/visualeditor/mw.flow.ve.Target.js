@@ -91,7 +91,8 @@
 	 * @param {string} content HTML or wikitext
 	 */
 	mw.flow.ve.Target.prototype.loadContent = function ( content ) {
-		var doc = this.constructor.static.parseDocument( content, this.getDefaultMode() );
+		// Pass section number of 0 in order to load only the body into the editor.
+		var doc = this.constructor.static.parseDocument( content, this.getDefaultMode(), 0 );
 		this.documentReady( doc );
 	};
 
