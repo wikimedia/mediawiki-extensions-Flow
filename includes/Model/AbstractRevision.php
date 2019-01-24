@@ -8,7 +8,9 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Conversion\Utils;
 use ContentHandler;
+use Flow\Parsoid\ContentFixer;
 use Hooks;
+use Html;
 use Sanitizer;
 use Title;
 use User;
@@ -381,6 +383,7 @@ abstract class AbstractRevision {
 	 * @return string
 	 * @return-taint onlysafefor_htmlnoent
 	 * @throws InvalidDataException
+	 * @throws \Flow\Exception\WikitextException
 	 */
 	public function getContent( $format = 'html' ) {
 		if ( !$this->isContentCurrentlyRetrievable() ) {
@@ -413,6 +416,23 @@ abstract class AbstractRevision {
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			if ( $sourceFormat === $format ) {
 				$this->convertedContent[$format] = $raw;
+				if ( in_array( $format, [ 'fixed-html', 'html' ] ) ) {
+					// For backwards compatibility wrap old content with body tag if necessary,
+					// which is done by ContentFixer::createDOM().
+					$dom = ContentFixer::createDOM( $raw );
+					// Get the body content HTML and wrapping body tag with its attributes, if any.
+					$innerHtml = Utils::getInnerHtml(
+						$dom->getElementsByTagName( 'html' )->item( 0 )
+					);
+					// Newer Flow content has base-url encoded, extract this from the HTML and
+					// set it as a base href property.
+					$baseUri = $dom->getElementsByTagName( 'body' )->item( 0 )->getAttribute( 'base-url' );
+					$this->convertedContent[$format] = Html::rawElement( 'html', [],
+						Html::rawElement( 'head', [],
+							// Only set base href if there's a value to set.
+							$baseUri ? Html::element( 'base', [ 'href' => $baseUri ] ) : ''
+						) . $innerHtml );
+				}
 			} else {
 				$this->convertedContent[$format] = Utils::convert(
 					$sourceFormat,
