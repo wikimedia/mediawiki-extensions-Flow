@@ -181,6 +181,9 @@
 			from: fromFormat,
 			to: toFormat,
 			content: content,
+			// We do not need or want the full HTML document when updating the contents of the
+			// textarea.
+			body_only: true,
 			title: mw.config.get( 'wgPageName' )
 		} )
 			.then( function ( data ) {

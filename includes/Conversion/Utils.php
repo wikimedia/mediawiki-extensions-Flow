@@ -39,11 +39,12 @@ abstract class Utils {
 	 * @param string $to Format to convert to: html|wikitext|topic-title-html
 	 * @param string $content
 	 * @param Title $title
+	 * @param bool $body_only If the conversion should return the HTML body only
 	 * @return string
-	 * @throws WikitextException When the requested conversion is unsupported
 	 * @throws NoParserException When the conversion fails
+	 * @throws WikitextException When the requested conversion is unsupported
 	 */
-	public static function convert( $from, $to, $content, Title $title ) {
+	public static function convert( $from, $to, $content, Title $title, $body_only = false ) {
 		if ( $from === $to || $content === '' ) {
 			return $content;
 		}
@@ -55,7 +56,7 @@ abstract class Utils {
 		if ( $from === 'wikitext' || $from === 'html' ) {
 			if ( $to === 'wikitext' || $to === 'html' ) {
 				if ( self::isParsoidConfigured() ) {
-					return self::parsoid( $from, $to, $content, $title );
+					return self::parsoid( $from, $to, $content, $title, $body_only );
 				} else {
 					return self::parser( $from, $to, $content, $title );
 				}
@@ -100,11 +101,12 @@ abstract class Utils {
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
 	 * @param Title $title
+	 * @param bool $body_only If the conversion should return the HTML body only.
 	 * @return string
 	 * @throws NoParserException When Parsoid/RESTBase operation fails
 	 * @throws WikitextException When conversion is unsupported
 	 */
-	protected static function parsoid( $from, $to, $content, Title $title ) {
+	protected static function parsoid( $from, $to, $content, Title $title, $body_only = false ) {
 		global $wgVersion;
 
 		$serviceClient = self::getServiceClient();
@@ -116,8 +118,10 @@ abstract class Utils {
 		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$params = [
 			$from => $content,
-			'body_only' => 'true',
 		];
+		if ( $body_only ) {
+			$params['body_only'] = 'true';
+		}
 		if ( $from === 'html' ) {
 			$params['scrub_wikitext'] = 'true';
 		}

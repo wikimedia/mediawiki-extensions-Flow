@@ -122,6 +122,7 @@
 	"apihelp-flow-parsoid-utils-param-content": "{{doc-apihelp-param|flow-parsoid-utils|content}}",
 	"apihelp-flow-parsoid-utils-param-title": "{{doc-apihelp-param|flow-parsoid-utils|title}}",
 	"apihelp-flow-parsoid-utils-param-pageid": "{{doc-apihelp-param|flow-parsoid-utils|pageid}}",
+	"apihelp-flow-parsoid-utils-param-body_only": "{{doc-apihelp-param|flow-parsoid-utils|bodyonly}}",
 	"apihelp-flow-parsoid-utils-example-1": "{{doc-apihelp-example|flow-parsoid-utils}}",
 	"apihelp-query+flowinfo-description": "{{doc-apihelp-description|query+flowinfo}}",
 	"apihelp-query+flowinfo-summary": "{{doc-apihelp-summary|query+flowinfo}}",
