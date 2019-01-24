@@ -8,6 +8,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Conversion\Utils;
 use ContentHandler;
+use Flow\Parsoid\ContentFixer;
 use Hooks;
 use Sanitizer;
 use Title;
@@ -413,6 +414,12 @@ abstract class AbstractRevision {
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			if ( $sourceFormat === $format ) {
 				$this->convertedContent[$format] = $raw;
+				if ( in_array( $format, [ 'fixed-html', 'html' ] ) ) {
+					// For BC, wrap old content with body tag.
+					$this->convertedContent[$format] = Utils::getInnerHtml(
+						ContentFixer::createDOM( $raw )->getElementsByTagName( 'html' )->item( 0 )
+					);
+				}
 			} else {
 				$this->convertedContent[$format] = Utils::convert(
 					$sourceFormat,
