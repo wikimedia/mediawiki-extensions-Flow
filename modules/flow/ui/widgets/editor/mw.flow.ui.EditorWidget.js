@@ -280,10 +280,6 @@
 
 		if ( content ) {
 			contentToLoad = content.content;
-			if ( content.format === 'html' ) {
-				// loadContent expects a full document, but we were only given the body content
-				contentToLoad = '<body>' + contentToLoad + '</body>';
-			}
 			contentFormat = content.format;
 		} else {
 			contentToLoad = '';
