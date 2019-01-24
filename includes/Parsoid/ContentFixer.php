@@ -45,7 +45,7 @@ class ContentFixer {
 
 	/**
 	 * Applies all contained content fixers to the provided HTML content.
-	 * The resulting content is then suitible for display to the end user.
+	 * The resulting content is then suitable for display to the end user.
 	 *
 	 * @param string $content Html
 	 * @param Title $title
@@ -67,7 +67,10 @@ class ContentFixer {
 			}
 		}
 
-		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
+		// Preserve the body tag and its attributes. flow-parsoid-utils has
+		// removed all HTML except for the body tag and its inner content
+		// by this point.
+		return Utils::getInnerHtml( $dom->getElementsByTagName( 'html' )->item( 0 ) );
 	}
 
 	/**
@@ -76,15 +79,17 @@ class ContentFixer {
 	 *
 	 * @param string $content HTML from parsoid
 	 * @return DOMDocument
+	 * @throws \Flow\Exception\WikitextException
 	 */
 	public static function createDOM( $content ) {
-		/*
-		 * The body tag is required otherwise <meta> tags at the top are
-		 * magic'd into <head> rather than kept with the content.
-		 */
+		 // The body tag is required otherwise <meta> tags at the top are
+		 // magic'd into <head> rather than kept with the content.
 		if (
 			substr( $content, 0, 5 ) !== '<body'
 			&& substr( $content, 0, 9 ) !== '<!DOCTYPE'
+			// We might have set the base href in AbstractRevision#getContent, so
+			// make one more check before wrapping the content.
+			&& substr( $content, 0, 23 ) !== '<html><head><base href='
 		) {
 			// BC: content currently comes from parsoid and is stored
 			// wrapped in <body> tags, but prior to I0d9659f we were
