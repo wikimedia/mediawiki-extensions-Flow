@@ -45,7 +45,7 @@ class ContentFixer {
 
 	/**
 	 * Applies all contained content fixers to the provided HTML content.
-	 * The resulting content is then suitible for display to the end user.
+	 * The resulting content is then suitable for display to the end user.
 	 *
 	 * @param string $content Html
 	 * @param Title $title
@@ -76,15 +76,17 @@ class ContentFixer {
 	 *
 	 * @param string $content HTML from parsoid
 	 * @return DOMDocument
+	 * @throws \Flow\Exception\WikitextException
 	 */
 	public static function createDOM( $content ) {
-		/*
-		 * The body tag is required otherwise <meta> tags at the top are
-		 * magic'd into <head> rather than kept with the content.
-		 */
+		 // The body tag is required otherwise <meta> tags at the top are
+		 // magic'd into <head> rather than kept with the content.
 		if (
 			substr( $content, 0, 5 ) !== '<body'
 			&& substr( $content, 0, 9 ) !== '<!DOCTYPE'
+			// We might have set the html/head/base href in AbstractRevision#getContent, so
+			// make one more check before body wrapping the content.
+			&& substr( $content, 0, 12 ) !== '<html><head>'
 		) {
 			// BC: content currently comes from parsoid and is stored
 			// wrapped in <body> tags, but prior to I0d9659f we were

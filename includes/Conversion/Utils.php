@@ -9,6 +9,7 @@ use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
+use Flow\Parsoid\ContentFixer;
 use Language;
 use Linker;
 use MultiHttpClient;
@@ -20,6 +21,9 @@ use User;
 use VirtualRESTServiceClient;
 
 abstract class Utils {
+
+	const PARSOID_VERSION = '2.0.0';
+
 	/**
 	 * @var VirtualRESTServiceClient
 	 */
@@ -115,8 +119,7 @@ abstract class Utils {
 
 		$prefixedDbTitle = $title->getPrefixedDBkey();
 		$params = [
-			$from => $content,
-			'body_only' => 'true',
+			$from => $content
 		];
 		if ( $from === 'html' ) {
 			$params['scrub_wikitext'] = 'true';
@@ -128,7 +131,11 @@ abstract class Utils {
 			'url' => $url,
 			'body' => $params,
 			'headers' => [
-				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.0.0"',
+				'Accept' =>
+					sprintf(
+						'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/%s"',
+						self::PARSOID_VERSION
+					),
 				'User-Agent' => "Flow-MediaWiki/$wgVersion",
 			],
 		];
@@ -163,7 +170,18 @@ abstract class Utils {
 			throw new NoParserException( $msg, 'process-wikitext' );
 		}
 
+		// Add attributes for parsoid version and base url if converting to HTML.
 		$content = $response['body'];
+		if ( $to === 'html' ) {
+			$dom = ContentFixer::createDOM( $response['body'] );
+			$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+			$body->setAttribute( 'parsoid-version', self::PARSOID_VERSION );
+			$body->setAttribute( 'base-url', $dom->getElementsByTagName( 'head' )->item( 0 )
+				->getElementsByTagName( 'base' )->item( 0 )
+				->getAttribute( 'href' ) );
+			$body->removeAttribute( 'class' );
+			$content = $dom->saveHTML( $body );
+		}
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
 			$content = preg_replace( '/\\n$/', '', $content );
