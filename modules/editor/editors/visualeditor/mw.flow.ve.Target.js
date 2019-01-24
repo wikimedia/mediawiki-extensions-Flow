@@ -18,9 +18,6 @@
 		} );
 
 		this.switchingPromise = null;
-
-		// HACK: stop VE's education popups from appearing (T116643)
-		this.dummyToolbar = true;
 	};
 
 	OO.inheritClass( mw.flow.ve.Target, ve.init.mw.Target );
