@@ -99,6 +99,7 @@
 	"flow-post-action-edit-post": "編集",
 	"flow-post-action-edit-post-submit": "変更を保存",
 	"flow-post-action-edit-post-submit-anonymously": "匿名で変更を保存",
+	"flow-post-action-edit-post-submit-publish": "変更を公開",
 	"flow-post-action-unsuppress-post": "秘匿を解除",
 	"flow-post-action-undelete-post": "削除を解除",
 	"flow-post-action-unhide-post": "非表示を解除",
