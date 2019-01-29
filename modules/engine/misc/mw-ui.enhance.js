@@ -232,7 +232,7 @@ mw.flow.ui.enhance = {};
 			if ( !$tooltip ) {
 				// See if content itself is a tooltip
 				try {
-					if ( $.type( content ) === 'string' ) {
+					if ( typeof content === 'string' ) {
 						$tooltip = $( $.parseHTML( content ) );
 					} else {
 						$tooltip = $( content );

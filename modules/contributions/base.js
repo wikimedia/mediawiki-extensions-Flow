@@ -6,7 +6,7 @@
 	function clickedFlowLink( event ) {
 		var $container = $( event.delegateTarget ),
 			onComplete = function () {
-				$( event.target ).click();
+				$( event.target ).trigger( 'click' );
 			};
 
 		event.preventDefault();
@@ -26,6 +26,7 @@
 	}
 
 	$( function () {
+		// eslint-disable-next-line jquery/no-global-selector
 		$( '#bodyContent' ).one( 'click', '.flow-click-interactive', clickedFlowLink );
 	} );
 }() );

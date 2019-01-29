@@ -30,17 +30,21 @@
 	} );
 
 	QUnit.test( 'mw-ui-tooltip', function ( assert ) {
+		var $body = $( document.body ),
+			// eslint-disable-next-line jquery/no-global-selector
+			$tooltip = $( '.flow-ui-tooltip-content' );
+
 		assert.ok( mw.tooltip, 'mw.tooltip exists' );
 
 		// Create a tooltip using body
-		$( 'body' ).attr( 'title', 'test' );
-		assert.ok( mw.tooltip.show( $( 'body' ) ), 'mw.ui.tooltip.show returned something' );
-		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test"):visible' ).length, 1,
+		$body.attr( 'title', 'test' );
+		assert.ok( mw.tooltip.show( $body ), 'mw.ui.tooltip.show returned something' );
+		assert.strictEqual( $tooltip.filter( ':contains("test"):visible' ).length, 1,
 			'Tooltip with text "test" is visible' );
-		mw.tooltip.hide( $( 'body' ) );
-		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test")' ).length, 0,
+		mw.tooltip.hide( $body );
+		assert.strictEqual( $tooltip.filter( ':contains("test")' ).length, 0,
 			'Tooltip with text "test" is removed' );
-		$( 'body' ).attr( 'title', '' );
+		$body.attr( 'title', '' );
 	} );
 
 	QUnit.test( 'mw-ui-modal', function ( assert ) {
