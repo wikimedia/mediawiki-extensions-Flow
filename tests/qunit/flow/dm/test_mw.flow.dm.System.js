@@ -129,7 +129,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 					isModerated: false,
 					size: {
 						old: '0',
-						'new': '12'
+						new: '12'
 					},
 					author: {
 						name: 'Tester',
@@ -210,7 +210,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 					isModerated: false,
 					size: {
 						old: '0',
-						'new': '29'
+						new: '29'
 					},
 					author: {
 						name: 'Tester',
