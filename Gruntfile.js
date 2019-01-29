@@ -27,6 +27,9 @@ module.exports = function ( grunt ) {
 			]
 		},
 		eslint: {
+			options: {
+				reportUnusedDisableDirectives: true
+			},
 			all: [
 				'**/*.js',
 				'!{modules/libs,node_modules,vendor,docs}/**/*.js'
