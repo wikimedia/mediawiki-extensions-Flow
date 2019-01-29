@@ -171,7 +171,7 @@
 					$fields.trigger( 'focus' );
 				} else {
 					// Give focus to the wrapper itself
-					$node.focus();
+					$node.trigger( 'focus' );
 				}
 			}
 		}
@@ -179,7 +179,6 @@
 		return this;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Changes the title of the modal.
 	 *
@@ -397,7 +396,7 @@
 		}
 
 		// No node given; return the last-opened modal on the page
-		return $( 'body' ).children( MwUiModal.prototype.wrapperSelector ).filter( ':last' ).data( 'MwUiModal' ) || false;
+		return $( document.body ).children( MwUiModal.prototype.wrapperSelector ).filter( ':last' ).data( 'MwUiModal' ) || false;
 	};
 
 	// Transforms: automatically map these functions to call their mw.Modal methods globally, on any active instance

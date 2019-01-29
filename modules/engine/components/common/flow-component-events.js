@@ -386,7 +386,6 @@
 		// chain apiHandler callbacks (it can distinguish in how it needs to wrap up
 		// depending on info.status)
 		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
-			// eslint-disable-next-line jquery/no-each-util
 			flowComponent.UI.events.apiHandlers[ handlerName ].forEach( function ( callback ) {
 				/*
 				 * apiHandlers will return promises that won't resolve until
