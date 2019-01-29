@@ -118,6 +118,7 @@
 
 		if ( isScrolledDown ) {
 			// TODO use binary search
+			// eslint-disable-next-line jquery/no-global-selector
 			$( '.flow-topic' ).each( function () {
 				if ( isElementInView( $( this ) ) ) {
 					topicId = $( this ).data( 'flowId' );

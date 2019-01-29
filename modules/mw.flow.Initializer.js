@@ -1,3 +1,4 @@
+/* eslint-disable jquery/no-global-selector */
 ( function () {
 	/**
 	 * Initializer object for flow-initialize
@@ -98,7 +99,7 @@
 	 * Set up the window manager
 	 */
 	mw.flow.Initializer.prototype.setupWindowManager = function () {
-		$( 'body' ).append( mw.flow.ui.windowManager.$element );
+		$( document.body ).append( mw.flow.ui.windowManager.$element );
 	};
 
 	/**
@@ -110,7 +111,7 @@
 
 		if (
 			this.$component.hasClass( 'flow-topic-page' ) &&
-			$( 'body' ).hasClass( 'action-view' )
+			$( document.body ).hasClass( 'action-view' )
 		) {
 			this.$board.toggleClass( 'flow-board-expanded', this.siderailCollapsed );
 
@@ -352,7 +353,7 @@
 		this.newTopicWidget.connect( this, {
 			save: function ( newTopicId ) {
 				// Display the new topic with the old system
-				var $stub = $( '<div class="flow-topic"><div></div></div>' ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
+				var $stub = $( '<div>' ).addClass( 'flow-topic' ).append( $( '<div>' ) ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
 		} ).once( 'save', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
@@ -608,7 +609,7 @@
 			if ( $existingWidget.length > 0 ) {
 				// Focus the existing reply widget
 				$existingWidget.data( 'self' ).activateEditor();
-				$existingWidget.data( 'self' ).focus();
+				$existingWidget.data( 'self' ).trigger( 'focus' );
 				return false;
 			}
 

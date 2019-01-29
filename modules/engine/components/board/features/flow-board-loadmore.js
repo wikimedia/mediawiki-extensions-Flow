@@ -55,10 +55,11 @@
 					// Not going the full $( '.flow-board-navigation' ).height()
 					// because then the load more button (above the new topic)
 					// would get in sight and any scroll would fire it
+					// eslint-disable-next-line jquery/no-global-selector
 					$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 20 );
 
 					// Focus on given topic
-					$renderedTopic.click().focus();
+					$renderedTopic.trigger( 'click' ).trigger( 'focus' );
 
 					/*
 					 * Re-enable infinite scroll. Only doing that after a couple

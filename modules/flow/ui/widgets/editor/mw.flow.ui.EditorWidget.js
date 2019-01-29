@@ -73,7 +73,7 @@
 						.get( 0 ).outerHTML
 				] ).parse() )
 				.find( '.flow-ui-editorWidget-label-preview' )
-				.click( this.onPreviewLinkClick.bind( this ) )
+				.on( 'click', this.onPreviewLinkClick.bind( this ) )
 				.end()
 		} );
 		this.wikitextHelpLabel.toggle( false );

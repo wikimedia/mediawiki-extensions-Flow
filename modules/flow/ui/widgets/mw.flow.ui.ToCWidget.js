@@ -80,6 +80,7 @@
 		// scroll, the topics do not unstub themselves, so we can't trust that.
 		if ( $topic.length > 0 ) {
 			// Scroll down to the topic
+			// eslint-disable-next-line jquery/no-global-selector, jquery/no-animate
 			$( 'html, body' ).animate( {
 				scrollTop: ( $topic.offset().top - this.$element.height() ) + 'px'
 			}, 'fast' );

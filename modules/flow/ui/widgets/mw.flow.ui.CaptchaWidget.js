@@ -65,7 +65,7 @@
 
 		if ( isRequired ) {
 			if ( renderingInformation.headitems ) {
-				$( 'head' ).append( renderingInformation.headitems.join( '' ) );
+				$( document.head ).append( renderingInformation.headitems.join( '' ) );
 			}
 
 			moduleStyles = renderingInformation.modulestyles || [];
