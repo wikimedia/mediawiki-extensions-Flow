@@ -3,7 +3,8 @@
 		"authors": [
 			"محمد أحمد عبد الفتاح",
 			"بدارين",
-			"ديفيد"
+			"ديفيد",
+			"Meno25"
 		]
 	},
 	"apihelp-flow-description": "يسمح بالإجراءات التي يتعين اتخاذها على صفحات المناقشات المنظمة.",
@@ -100,7 +101,7 @@
 	"apihelp-flow+view-topiclist-summary": "عرض قائمة بالمواضيع.",
 	"apihelp-flow+view-topiclist-param-offset-dir": "الاتجاه لترتيب المواضيع.",
 	"apihelp-flow+view-topiclist-param-sortby": "خيار الفرز للموضوعات، إما <kbd>updated</kbd> (مرتبة حسب وقت تحديث الموضوع)، أو <kbd>newest</kbd> (مرتبة حسب وقت إنشاء الموضوع).",
-	"apihelp-flow+view-topiclist-param-savesortby": "احفظ خيار sortby لتفضيلات المستخدم، إذا تم ضبطه.",
+	"apihelp-flow+view-topiclist-param-savesortby": "حفظ خيار sortby لتفضيلات المستخدم، إذا تم ضبطه.",
 	"apihelp-flow+view-topiclist-param-offset-id": "قيمة الإزاحة (بصيغة UUID) لبدء جلب المواضيع فيها، تُستخدَم فقط مع الترتيب <kbd>newest</kbd>",
 	"apihelp-flow+view-topiclist-param-offset": "قيمة الإزاحة (كطابع زمني لتحديث الموضوع، بصيغة <code>TS_MW</code> format (<code>YYYYMMDDHHMMSS</code>))، للبدء في جلب المواضيع فيها، تُستخدَم فقط مع ترتيب <kbd>updated</kbd>",
 	"apihelp-flow+view-topiclist-param-include-offset": "يتضمن عنصر الإزاحة في النتائج أيضا.",
