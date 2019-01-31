@@ -6,6 +6,7 @@
 	},
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Баркал áла}}}}",
 	"flow-topic-action-watchlist": "Зем бара хьаязъяьр",
+	"flow-undo-latest-revision": "ХIанзара эрш",
 	"flow-ve-mention-context-item-label": "Хьоахавар",
 	"flow-ve-mention-inspector-title": "Хьоахавар"
 }
