@@ -79,7 +79,7 @@
 	"flow-error-missing-summary": "तुमकां सारांशूय दिवंचो पडटलो.",
 	"flow-error-missing-title": "ह्या विशयाक माथाळो ना. विशय सांबाळून दवरपाक माथाळो गरजेचो आसा.",
 	"flow-error-protected-unknown-reason": "अनवळखी",
-	"flow-error-invalid-postId": "\"replyTo\" हें पीरामीटर चुकीचें आसा. निर्दिष्ट प्रकास्णी ($1) मेळुंक ना.",
+	"flow-error-invalid-postId": "\"postId\" हें पीरामीटर चुकीचें आसा. निर्दिष्ट प्रकास्णी ($1) मेळुंक ना.",
 	"flow-error-not-allowed-hide": "हो विशय लिपयला.",
 	"flow-error-not-allowed-reply-to-hide-topic": "हो विशय लिपयल्ल्या कारणान तुमकां जाप दिवंक मेळना.",
 	"flow-error-not-allowed-delete": "हो विशय काडून उडयला.",
