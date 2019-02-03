@@ -112,6 +112,7 @@
 	"apihelp-flow-parsoid-utils-param-pageid": "Kennung der Seite. Kann nicht zusammen mit $1title verwendet werden.",
 	"apihelp-flow-parsoid-utils-example-1": "Wandelt den Wikitext <nowiki>'''lorem''' ''blah''</nowiki> in HTML um",
 	"apihelp-query+flowinfo-description": "Ruft Basis-Strukturierte-Diskussionen-Informationen über eine Seite ab.",
+	"apihelp-query+flowinfo-summary": "Ruft Basisinformationen zu Strukturierte Diskussionen über eine Seite ab.",
 	"apihelp-query+flowinfo-example-1": "Ruft Strukturierte-Diskussionen-Informationen über [[Talk:Sandbox]], [[Main Page]] und [[Talk:Structured Discussions]] ab",
 	"apihelp-flow+undo-edit-header-description": "Informationen beziehen, die zum Rückgängigmachen der Bearbeitung der Beschreibung nötig sind.",
 	"apihelp-flow+undo-edit-header-summary": "Ruft Informationen ab, die zur Rückgängigmachung von Beschreibungsbearbeitungen notwendig sind.",
