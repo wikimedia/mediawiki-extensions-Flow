@@ -128,7 +128,7 @@ abstract class Utils {
 			'url' => $url,
 			'body' => $params,
 			'headers' => [
-				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/1.6.1"',
+				'Accept' => 'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.0.0"',
 				'User-Agent' => "Flow-MediaWiki/$wgVersion",
 			],
 		];
