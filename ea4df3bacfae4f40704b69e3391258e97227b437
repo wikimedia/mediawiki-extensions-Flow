@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3b3a2e9_257abfcb",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-05T17:50:03Z",
+      "side": 1,
+      "message": "This seems unnecessary. It would be better IMO to let this return a full document, because then we also wouldn\u0027t have to wrap it in a \u003cbody\u003e tag on line 193 below.",
+      "revId": "ea4df3bacfae4f40704b69e3391258e97227b437",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
