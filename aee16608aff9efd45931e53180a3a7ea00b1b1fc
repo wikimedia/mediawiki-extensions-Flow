@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97c19298_7f9c1cb9",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-05T17:48:13Z",
+      "side": 1,
+      "message": "How does this work? The implementation of parseDocument in ve.init.mw.Target will look for a node with data-mw-section-id\u003d\"0\" and then remove everything from the body except that node. Even if that\u0027s present in the Parsoid HTML, it won\u0027t (always) wrap all of the content, and it won\u0027t be present in old Parsoid HTML.\n\nI also don\u0027t see why this is necessary; VE can deal with stuff being in the \u003chead\u003e just fine.",
+      "revId": "aee16608aff9efd45931e53180a3a7ea00b1b1fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
