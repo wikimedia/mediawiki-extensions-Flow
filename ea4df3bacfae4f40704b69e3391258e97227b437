@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "15a997b4_261ccb73",
+        "filename": "includes/Conversion/Utils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2019-02-06T14:38:23Z",
+      "side": 1,
+      "message": "Parsoid wants to get rid of the \u0027body_only\u0027 feature.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 33
+      },
+      "revId": "ea4df3bacfae4f40704b69e3391258e97227b437",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3b3a2e9_257abfcb",
         "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
         "patchSetId": 1
