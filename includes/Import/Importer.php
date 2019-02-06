@@ -586,7 +586,7 @@ class TalkpageImportOperation {
 				$state->logger->debug( 'ensureFlowRevision already-existed: ' .
 					var_export( $ensureValue['already-existed'], true ) );
 				$revisionId = $revision->getId();
-				$pageId = $revision->getTitle()->getArticleId( Title::GAID_FOR_UPDATE );
+				$pageId = $revision->getTitle()->getArticleID( Title::GAID_FOR_UPDATE );
 				$state->logger->debug( "ensureFlowRevision revision ID: $revisionId, page ID: $pageId" );
 
 				$state->put( $state->boardWorkflow, [] );
