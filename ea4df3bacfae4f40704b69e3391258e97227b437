@@ -16,6 +16,24 @@
       "revId": "ea4df3bacfae4f40704b69e3391258e97227b437",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e676e87f_42277128",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-06T00:52:25Z",
+      "side": 1,
+      "message": "If you don\u0027t do this, you end up with artifacts in VE as it tries to present the contents of \u003chead\u003e as editable items.",
+      "parentUuid": "e3b3a2e9_257abfcb",
+      "revId": "ea4df3bacfae4f40704b69e3391258e97227b437",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
