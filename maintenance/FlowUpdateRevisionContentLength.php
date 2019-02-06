@@ -19,7 +19,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	 *
 	 * @var string[]
 	 */
-	static private $revisionTypes = [
+	private static $revisionTypes = [
 		'post' => \Flow\Model\PostRevision::class,
 		'header' => \Flow\Model\Header::class,
 		'post-summary' => \Flow\Model\PostSummary::class,
