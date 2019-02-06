@@ -16,6 +16,24 @@
       "revId": "aee16608aff9efd45931e53180a3a7ea00b1b1fc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d15427d_943c7910",
+        "filename": "modules/editor/editors/visualeditor/mw.flow.ve.Target.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-06T00:51:05Z",
+      "side": 1,
+      "message": "\u003e it won\u0027t be present in old Parsoid HTML.\n\nOK, I need to look at older HTML. It was working as I created content with and without body_only set in Utils::parsoid\n\n\u003e I also don\u0027t see why this is necessary; VE can deal with stuff being in the \u003chead\u003e just fine.\n\nNot in my brief testing. When I was looking at this, I would end up with ugly, semi-editable content in the editor.",
+      "parentUuid": "97c19298_7f9c1cb9",
+      "revId": "aee16608aff9efd45931e53180a3a7ea00b1b1fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
