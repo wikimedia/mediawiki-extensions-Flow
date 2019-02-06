@@ -22,7 +22,7 @@ class Workflow {
 	/**
 	 * @var string[]
 	 */
-	static private $allowedTypes = [ 'discussion', 'topic' ];
+	private static $allowedTypes = [ 'discussion', 'topic' ];
 
 	/**
 	 * @var UUID

@@ -27,7 +27,7 @@ abstract class AbstractRevision {
 	 *
 	 * @var string[]
 	 */
-	static public $perms = [
+	public static $perms = [
 		self::MODERATED_NONE,
 		self::MODERATED_HIDDEN,
 		self::MODERATED_DELETED,
@@ -40,7 +40,7 @@ abstract class AbstractRevision {
 	 *
 	 * @var array|null
 	 */
-	static protected $moderationChangeTypes = null;
+	protected static $moderationChangeTypes = null;
 
 	/**
 	 * @var UUID
