@@ -29,7 +29,7 @@ class ViewAction extends FlowAction {
 	}
 
 	protected function getCategories( Title $title ) {
-		$id = $title->getArticleId();
+		$id = $title->getArticleID();
 		if ( !$id ) {
 			return [];
 		}
