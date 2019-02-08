@@ -424,14 +424,15 @@
 				} );
 
 			replyWidget.on( 'saveContent', function ( workflow ) {
-				replyWidget.destroy();
-				replyWidget.$element.remove();
+				replyWidget.destroy().then( function () {
+					replyWidget.$element.remove();
 
-				// HACK: get the old system to rerender the topic
-				return self.flowBoard.flowBoardComponentRefreshTopic(
-					$topic,
-					workflow
-				);
+					// HACK: get the old system to rerender the topic
+					self.flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					);
+				} );
 			} );
 			replyWidget.$element.data( 'self', replyWidget );
 
@@ -462,18 +463,20 @@
 			} );
 			editPostWidget
 				.on( 'saveContent', function ( workflow ) {
-					editPostWidget.destroy();
-					editPostWidget.$element.remove();
+					editPostWidget.destroy().then( function () {
+						editPostWidget.$element.remove();
 
-					// HACK get the old system to rerender the topic
-					return flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						workflow
-					);
+						// HACK get the old system to rerender the topic
+						flowBoard.flowBoardComponentRefreshTopic(
+							$topic,
+							workflow
+						);
+					} );
 				} )
 				.on( 'cancel', function () {
-					editPostWidget.destroy();
-					editPostWidget.$element.replaceWith( $postMain );
+					editPostWidget.destroy().then( function () {
+						editPostWidget.$element.replaceWith( $postMain );
+					} );
 				} );
 
 			$postMain.replaceWith( editPostWidget.$element );
@@ -629,18 +632,20 @@
 
 			replyWidget
 				.on( 'saveContent', function ( workflow ) {
-					replyWidget.destroy();
-					replyWidget.$element.remove();
+					replyWidget.destroy().then( function () {
+						replyWidget.$element.remove();
 
-					// HACK get the old system to rerender the topic
-					return self.flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						workflow
-					);
+						// HACK get the old system to rerender the topic
+						self.flowBoard.flowBoardComponentRefreshTopic(
+							$topic,
+							workflow
+						);
+					} );
 				} )
 				.on( 'cancel', function () {
-					replyWidget.destroy();
-					replyWidget.$element.remove();
+					replyWidget.destroy().then( function () {
+						replyWidget.$element.remove();
+					} );
 				} );
 
 			return false;
@@ -684,29 +689,31 @@
 		editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, { editor: editorOptions } );
 		editTopicSummaryWidget
 			.on( 'saveContent', function ( workflow ) {
-				editTopicSummaryWidget.destroy();
-				editTopicSummaryWidget.$element.remove();
+				editTopicSummaryWidget.destroy().then( function () {
+					editTopicSummaryWidget.$element.remove();
 
-				if ( isFullBoard ) {
-					// HACK get the old system to rerender the topic
-					return self.flowBoard.flowBoardComponentRefreshTopic(
-						$topic,
-						workflow
-					);
-				} else {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
-				}
+					if ( isFullBoard ) {
+						// HACK get the old system to rerender the topic
+						self.flowBoard.flowBoardComponentRefreshTopic(
+							$topic,
+							workflow
+						);
+					} else {
+						// HACK: redirect to topic view
+						window.location.href = title.getUrl();
+					}
+				} );
 			} )
 			.on( 'cancel', function () {
-				editTopicSummaryWidget.destroy();
-				editTopicSummaryWidget.$element.remove();
-				if ( isFullBoard ) {
-					$summaryContainer.append( $topicSummary );
-				} else {
-					// HACK: redirect to topic view
-					window.location.href = title.getUrl();
-				}
+				editTopicSummaryWidget.destroy().then( function () {
+					editTopicSummaryWidget.$element.remove();
+					if ( isFullBoard ) {
+						$summaryContainer.append( $topicSummary );
+					} else {
+						// HACK: redirect to topic view
+						window.location.href = title.getUrl();
+					}
+				} );
 			} );
 
 		$topicSummary.remove();
@@ -726,14 +733,15 @@
 			self = this;
 
 		function saveOrCancelHandler( workflow ) {
-			editPostWidget.destroy();
-			editPostWidget.$element.remove();
+			editPostWidget.destroy().then( function () {
+				editPostWidget.$element.remove();
 
-			// HACK get the old system to rerender the topic
-			return self.flowBoard.flowBoardComponentRefreshTopic(
-				$topic,
-				workflow
-			);
+				// HACK get the old system to rerender the topic
+				self.flowBoard.flowBoardComponentRefreshTopic(
+					$topic,
+					workflow
+				);
+			} );
 		}
 
 		if ( !$element.length ) {
