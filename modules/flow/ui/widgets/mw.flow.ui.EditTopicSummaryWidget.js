@@ -171,9 +171,11 @@
 
 	/**
 	 * Destroy the widget
+	 *
+	 * @return {jQuery.Promise} Promise which resolves when the widget is destroyed
 	 */
 	mw.flow.ui.EditTopicSummaryWidget.prototype.destroy = function () {
-		this.editor.destroy();
+		return this.editor.destroy();
 	};
 
 }() );

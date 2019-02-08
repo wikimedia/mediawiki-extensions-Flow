@@ -683,10 +683,15 @@
 
 	/**
 	 * Destroy the widget.
+	 *
+	 * @return {jQuery.Promise} Promise which resolves when the widget is destroyed
 	 */
 	mw.flow.ui.EditorWidget.prototype.destroy = function () {
 		if ( this.target ) {
 			this.target.destroy();
+			// TODO: We should be able to just return target.destroy()
+			return this.target.teardownPromise;
 		}
+		return $.Deferred().resolve().promise();
 	};
 }() );
