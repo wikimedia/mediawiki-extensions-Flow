@@ -57,6 +57,7 @@
 	"apihelp-flow+moderate-topic-param-reason": "Grund für die Moderation.",
 	"apihelp-flow+moderate-topic-example-1": "Löscht das Thema [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+new-topic-description": "Erstellt ein neues Strukturierte-Diskussionen-Thema auf dem angegebenen Workflow.",
+	"apihelp-flow+new-topic-summary": "Erstellt ein neues Strukturierte-Diskussionen-Thema auf dem angegebenen Workflow.",
 	"apihelp-flow+new-topic-param-topic": "Text für den Titel des neuen Themas.",
 	"apihelp-flow+new-topic-param-content": "Inhalt für die erste Antwort des Themas.",
 	"apihelp-flow+new-topic-param-format": "Format des Ausgangsbeitrags des neuen Themas (wikitext|html)",
