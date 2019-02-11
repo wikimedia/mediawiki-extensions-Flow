@@ -46,22 +46,40 @@ class NotificationController {
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',
 		];
 		$icons['flow-new-topic'] = [
-			'path' => 'Flow/modules/notification/icon/flow-new-topic.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-new-topic-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-new-topic-rtl.svg'
+			]
 		];
 		$icons['flowusertalk-new-topic'] = [
-			'path' => 'Flow/modules/notification/icon/flowusertalk-new-topic.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-new-topic-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-new-topic-rtl.svg'
+			]
 		];
 		$icons['flow-post-edited'] = $icons['flowusertalk-post-edited'] = [
-			'path' => 'Flow/modules/notification/icon/flow-post-edited.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-post-edited-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-post-edited-rtl.svg'
+			]
 		];
 		$icons['flow-topic-renamed'] = $icons['flowusertalk-topic-renamed'] = [
-			'path' => 'Flow/modules/notification/icon/flow-topic-renamed.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-topic-renamed-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-topic-renamed-rtl.svg'
+			]
 		];
 		$icons['flow-topic-resolved'] = $icons['flowusertalk-topic-resolved'] = [
-			'path' => 'Flow/modules/notification/icon/flow-topic-resolved.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-topic-resolved-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-topic-resolved-rtl.svg'
+			]
 		];
 		$icons['flow-topic-reopened'] = $icons['flowusertalk-topic-reopened'] = [
-			'path' => 'Flow/modules/notification/icon/flow-topic-reopened.svg',
+			'path' => [
+				'ltr' => 'Flow/modules/notification/icon/flow-topic-reopened-ltr.svg',
+				'rtl' => 'Flow/modules/notification/icon/flow-topic-reopened-rtl.svg'
+			]
 		];
 	}
 
