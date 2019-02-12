@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"Tofeiku"
 		]
 	},
 	"flow-post-moderated-toggle-hide-show": "Paparkan komen yang {{GENDER:$1|disembunyikan}} oleh $2",
@@ -38,6 +39,7 @@
 	"flow-notification-edit-email-batch-body": "$1 telah {{GENDER:$1|menyunting}} suatu kiriman di \"$2\" pada \"$3\"",
 	"flow-notification-edit-email-batch-bundle-body": "$1 dan $4 {{PLURAL:$5|orang lain}} telah {{GENDER:$1|menyunting}} suatu kiriman di \"$2\" pada \"$3\"",
 	"flow-notification-newtopic-email-subject": "$1 telah {{GENDER:$1|membuka}} topik baru di \"$2\"",
+	"flow-link-history": "sejarah",
 	"flow-moderation-confirmation-suppress-topic": "Topik ini telah disekat.",
 	"flow-moderation-confirmation-delete-topic": "Tred ini telah dihapuskan.",
 	"flow-moderation-confirmation-hide-topic": "Tred ini telah disembunyikan.",
