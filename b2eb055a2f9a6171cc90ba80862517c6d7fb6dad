@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e52c137_65b65b9d",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-12T22:36:51Z",
+      "side": 1,
+      "message": "It might be worth pointing out more explicitly that the body-wrapping is done by ContentFixer::createDOM(). That wasn\u0027t immediately obvious to me, and I thought this wouldn\u0027t work at first, until I discovered that there\u0027s a body-wrapping hack in createDOM() dating back to 2015.",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac61e7a1_f97577e6",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-12T22:36:51Z",
+      "side": 1,
+      "message": "Is this also a good place to restore the \u003cbase\u003e tag?",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88bf5c94_8137717e",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-12T22:36:51Z",
+      "side": 1,
+      "message": "Am I correct that the reason that this doesn\u0027t produce something like \u0027\u003chead\u003elots of stuff here\u003c/head\u003e\u003cbody\u003e...\u003c/body\u003e\u0027 is because the head stuff is stripped out by Utils::parsoid() and never makes it this far?",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
