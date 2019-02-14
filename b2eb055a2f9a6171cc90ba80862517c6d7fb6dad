@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "caa1f46b_70bed8d5",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T21:08:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e52c137_65b65b9d",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac61e7a1_f97577e6",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2019-02-12T22:36:51Z",
       "side": 1,
       "message": "Is this also a good place to restore the \u003cbase\u003e tag?",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38c53bb_99781eb5",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T21:08:08Z",
+      "side": 1,
+      "message": "Yes, it seems so, although I should probably create a new Fixer to do this rather than the hacky code I have added here in the latest patchset.",
+      "parentUuid": "ac61e7a1_f97577e6",
       "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84e145a9_c88f35ec",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T21:08:08Z",
+      "side": 1,
+      "message": "Correct.",
+      "parentUuid": "88bf5c94_8137717e",
+      "revId": "b2eb055a2f9a6171cc90ba80862517c6d7fb6dad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
