@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d6faac4_b47fa951",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T21:33:30Z",
+      "side": 1,
+      "message": "This puts the content of the \u003cbody\u003e inside the \u003chead\u003e, rather than outside (the %s should be after \u003c/head\u003e, not before)",
+      "range": {
+        "startLine": 428,
+        "startChar": 78,
+        "endLine": 428,
+        "endChar": 80
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396785d3_7dbdf87c",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T21:33:30Z",
+      "side": 1,
+      "message": "This needs to be HTML-escaped. String concatenation is also not a good way to build HTML in general. I\u0027ll come up with an alternate suggestion after lunch.",
+      "range": {
+        "startLine": 429,
+        "startChar": 7,
+        "endLine": 429,
+        "endChar": 14
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
