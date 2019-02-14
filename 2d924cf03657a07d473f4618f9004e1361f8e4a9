@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "b974a45d_225b81c6",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T22:26:54Z",
+      "side": 1,
+      "message": "This variable contains a node, not a string, and you\u0027re calling Utils::getInnerHtml( $innerHtml ) to get the inner HTML of it later (on line 429). I think that\u0027s an indication that this variable is misnamed (it clearly doesn\u0027t contain the inner HTML if you have to call getInnerHtml() on it later).\n\nAlternatively. you could call Util::getInnerHtml() right here, because you\u0027re not actually using the node between here and line 429.",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 15
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfce7767_7e8d59e2",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T22:26:54Z",
+      "side": 1,
+      "message": "This code also needs to handle the case where base-url is not set (for content that predates this patch)",
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d6faac4_b47fa951",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -36,6 +76,30 @@
       "writtenOn": "2019-02-14T21:33:30Z",
       "side": 1,
       "message": "This needs to be HTML-escaped. String concatenation is also not a good way to build HTML in general. I\u0027ll come up with an alternate suggestion after lunch.",
+      "range": {
+        "startLine": 429,
+        "startChar": 7,
+        "endLine": 429,
+        "endChar": 14
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eba0dfa6_df5f5614",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T22:26:54Z",
+      "side": 1,
+      "message": "How about:\n\n    $this-\u003econvertedContent[$format] \u003d Html::rawElement( \u0027html\u0027, [],\n        Html::rawElement( \u0027head\u0027, [],\n            Html::element( \u0027base\u0027, [ \u0027href\u0027 \u003d\u003e $baseUri ] )\n        ) .\n        Html::rawElement( \u0027body\u0027, [], Utils::getInnerHTml( $innerHtml ) )\n    );\n\nOr if you think that\u0027s too verbose, you could do:\n\n    $baseTag \u003d Html::element( \u0027base\u0027, [ \u0027href\u0027 \u003d\u003e $baseUri ] );\n    $innerHtml \u003d Utils::getInnerHtml( $innerHtml );\n    $this-\u003econvertedContent[$format] \u003d \"\u003chtml\u003e\u003chead\u003e$baseTag\u003c/head\u003e\u003cbody\u003e$innerHtml\u003c/body\u003e\u003c/html\u003e\";",
+      "parentUuid": "396785d3_7dbdf87c",
       "range": {
         "startLine": 429,
         "startChar": 7,
