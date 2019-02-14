@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c4a7e131_8c9ea277",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T22:30:14Z",
+      "side": 1,
+      "message": "Good point, will rework this.",
+      "parentUuid": "b974a45d_225b81c6",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 15
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cfce7767_7e8d59e2",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "8c05f85e_f6ec3442",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T22:30:14Z",
+      "side": 1,
+      "message": "If the base-url isn\u0027t set, then $baseUri ends up as \u0027\u0027, so the converted content will have `base href\u003d\u0027\u0027` which VE should then handle. Is that OK or should we not output `base href\u003d\u0027\u0027`?",
+      "parentUuid": "cfce7767_7e8d59e2",
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d6faac4_b47fa951",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -53,6 +95,30 @@
       "writtenOn": "2019-02-14T21:33:30Z",
       "side": 1,
       "message": "This puts the content of the \u003cbody\u003e inside the \u003chead\u003e, rather than outside (the %s should be after \u003c/head\u003e, not before)",
+      "range": {
+        "startLine": 428,
+        "startChar": 78,
+        "endLine": 428,
+        "endChar": 80
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8c6abd0_51c40fed",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T22:30:14Z",
+      "side": 1,
+      "message": "Oops, adding the second %s was a late addition to this patch.",
+      "parentUuid": "1d6faac4_b47fa951",
       "range": {
         "startLine": 428,
         "startChar": 78,
@@ -100,6 +166,30 @@
       "side": 1,
       "message": "How about:\n\n    $this-\u003econvertedContent[$format] \u003d Html::rawElement( \u0027html\u0027, [],\n        Html::rawElement( \u0027head\u0027, [],\n            Html::element( \u0027base\u0027, [ \u0027href\u0027 \u003d\u003e $baseUri ] )\n        ) .\n        Html::rawElement( \u0027body\u0027, [], Utils::getInnerHTml( $innerHtml ) )\n    );\n\nOr if you think that\u0027s too verbose, you could do:\n\n    $baseTag \u003d Html::element( \u0027base\u0027, [ \u0027href\u0027 \u003d\u003e $baseUri ] );\n    $innerHtml \u003d Utils::getInnerHtml( $innerHtml );\n    $this-\u003econvertedContent[$format] \u003d \"\u003chtml\u003e\u003chead\u003e$baseTag\u003c/head\u003e\u003cbody\u003e$innerHtml\u003c/body\u003e\u003c/html\u003e\";",
       "parentUuid": "396785d3_7dbdf87c",
+      "range": {
+        "startLine": 429,
+        "startChar": 7,
+        "endLine": 429,
+        "endChar": 14
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e005059_e368e405",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-14T22:30:14Z",
+      "side": 1,
+      "message": "That seems much better, thanks! I\u0027ll implement it tomorrow. I generally don\u0027t like variables in double quoted strings.",
+      "parentUuid": "eba0dfa6_df5f5614",
       "range": {
         "startLine": 429,
         "startChar": 7,
