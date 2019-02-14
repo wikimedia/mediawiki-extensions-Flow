@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "011e2044_a09d8712",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-14T22:32:28Z",
+      "side": 1,
+      "message": "I was mostly concerned about this code crashing, but I guess this PHP DOM code is a bit less fragile than JS DOM code. But yes, I would prefer not to output a \u003cbase\u003e tag in that case.",
+      "parentUuid": "8c05f85e_f6ec3442",
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d6faac4_b47fa951",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
