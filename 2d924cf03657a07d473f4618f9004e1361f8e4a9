@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "de215828_9747ec3a",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-15T17:13:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a7e131_8c9ea277",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 15
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfce7767_7e8d59e2",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -102,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "566449ca_cc179ba6",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-15T17:13:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "011e2044_a09d8712",
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d6faac4_b47fa951",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -146,6 +188,30 @@
       "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b4e53b2_e348e9d7",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-15T17:13:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8c6abd0_51c40fed",
+      "range": {
+        "startLine": 428,
+        "startChar": 78,
+        "endLine": 428,
+        "endChar": 80
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     },
     {
       "key": {
@@ -220,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "b94dd28d_ac4090c4",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-15T17:13:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e005059_e368e405",
+      "range": {
+        "startLine": 429,
+        "startChar": 7,
+        "endLine": 429,
+        "endChar": 14
+      },
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56b604e1_192b2162",
         "filename": "includes/Parsoid/ContentFixer.php",
         "patchSetId": 8
@@ -231,6 +321,24 @@
       "writtenOn": "2019-02-14T22:39:00Z",
       "side": 1,
       "message": "I think this change is what\u0027s causing the test failures, based on two factors:\n- The failures are in the tests for various ContentFixer subclasses\n- The failures started happening in PS5, and this change was introduced in PS5\n- The failures are about \u003cp\u003eblahblah\u003c/p\u003e changing to \u003cbody\u003e\u003cp\u003eblahblah\u003c/p\u003e\u003c/body\u003e, which matches what this change does\n\nI think that, most likely, this is a good change and the expected values in the ContentFixer tests should be body-wrapped. I suppose it is a good idea to check where the output of ContentFixer goes, to verify that it can take body-wrapped HTML, but I\u0027m guessing you put this here *because* something that uses the output of ContentFixer needed body-wrapped HTML.",
+      "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a648712_7d98d581",
+        "filename": "includes/Parsoid/ContentFixer.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-02-15T17:13:30Z",
+      "side": 1,
+      "message": "I think this was actually an error, and should be left unchanged (as I am doing in the latest patchset). The code in AbstractRevision#getContent which gets the html element and its inner content is sufficient. I think I erroneously started looking at modifying ContentFixer#apply because I was using the createDOM utility method from AbstractRevision#getContent. AFAIK ContentFixer just needs the contents of the body element, not its attributes or surrounding elements.",
+      "parentUuid": "56b604e1_192b2162",
       "revId": "2d924cf03657a07d473f4618f9004e1361f8e4a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
