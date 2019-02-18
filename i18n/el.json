@@ -6,7 +6,8 @@
 			"Geraki",
 			"Nikosguard",
 			"Glavkos",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"Protnet"
 		]
 	},
 	"enablestructureddiscussions": "Ενεργοποίηση Flow",
@@ -356,6 +357,7 @@
 	"flow-mark-diff-patrolled-link-text": "Σήμανση ως ελεγμένο",
 	"flow-mark-diff-patrolled-link-title": "Σήμανση ως ελεγμένο",
 	"flow-talk-page-beta-feature-message": "Δομημένες Συζητήσεις στη συζήτηση χρήστη",
+	"flow-notification-link-text-enabled-on-talkpage": "Προβολή σελίδας συζήτησης {{GENDER:|χρήστη|χρήστριας}}",
 	"flow-dialog-cancelconfirm-title": "Είστε {{GENDER:|σίγουρος|σίγουρη}};",
 	"flow-dialog-cancelconfirm-message": "Είστε {{GENDER:|σίγουρος|σίγουρη}} ότι θέλετε να ακυρώσετε χωρίς πρώτα να σώσετε;",
 	"flow-dialog-cancelconfirm-keep": "Συνέχεια επεξεργασίας",
