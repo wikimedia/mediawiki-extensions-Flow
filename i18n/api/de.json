@@ -127,6 +127,7 @@
 	"apihelp-flow+undo-edit-post-param-endId": "Versionskennung, auf die zurückgesetzt werden soll.",
 	"apihelp-flow+undo-edit-post-example-1": "Bezieht Informationen zum Rückgängigmachen einer Beitragsbearbeitung in einem bestimmten Thema.",
 	"apihelp-flow+undo-edit-topic-summary-description": "Bezieht die zum Rückgängigmachen einer Bearbeitung der Themenzusammenfassung nötigen Informationen.",
+	"apihelp-flow+undo-edit-topic-summary-summary": "Ruft notwendige Informationen zur Rückgängigmachung von Bearbeitungen an Themenzusammenfassungen ab.",
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Versionskennung, bei der mit dem Rückgängigmachen begonnen werden soll.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Versionskennung, auf die zurückgesetzt werden soll.",
 	"apihelp-flow+undo-edit-topic-summary-example-1": "Bezieht Informationen zum Rückgängigmachen einer Bearbeitung der Themenzusammenfassung eines bestimmten Themas",
