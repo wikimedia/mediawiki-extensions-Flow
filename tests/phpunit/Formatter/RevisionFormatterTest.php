@@ -160,12 +160,12 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	/**
-	 * @expectedException \Flow\Exception\FlowException
 	 * @dataProvider decideContentInvalidFormatProvider
 	 */
 	public function testDecideContentInvalidFormat( $setContentRequestedFormat, $setContentRevisionId, $revision ) {
 		list( $formatter ) = $this->makeFormatter();
 		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
+		$this->expectException( \Flow\Exception\FlowException::class );
 		$formatter->decideContentFormat( $revision );
 	}
 
@@ -204,11 +204,11 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	/**
-	 * @expectedException \Flow\Exception\FlowException
 	 * @dataProvider setContentFormatInvalidProvider
 	 */
 	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId ) {
 		list( $formatter ) = $this->makeFormatter();
+		$this->expectException( \Flow\Exception\FlowException::class );
 		$formatter->setContentFormat( $requestedFormat, $revisionId );
 	}
 

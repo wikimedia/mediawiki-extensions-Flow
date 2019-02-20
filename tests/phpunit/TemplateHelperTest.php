@@ -33,10 +33,10 @@ class TemplateHelperTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideTraversalAttackFilenames
-	 * @expectedException \Flow\Exception\FlowException
 	 */
 	public function testGetTemplateFilenamesTraversalAttack( $templateName ) {
 		$helper = new TemplateHelper( '/does/not/exist' );
+		$this->expectException( \Flow\Exception\FlowException::class );
 		$helper->getTemplateFilenames( $templateName );
 	}
 

@@ -123,12 +123,10 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException \Flow\Exception\DataModelException
-	 */
 	public function testCalcUpdatesWithContentChangeWhenNotAllowed() {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( false );
 
+		$this->expectException( \Flow\Exception\DataModelException::class );
 		$revStorage->calcUpdates( $this->BEFORE_WITH_CONTENT_CHANGE, $this->AFTER_WITH_CONTENT_CHANGE );
 	}
 
@@ -147,11 +145,9 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException \Flow\Exception\DataModelException
-	 */
 	public function testUpdatingContentWhenNotAllowed() {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( false );
+		$this->expectException( \Flow\Exception\DataModelException::class );
 		$revStorage->update(
 			$this->BEFORE_WITH_CONTENT_CHANGE,
 			$this->AFTER_WITH_CONTENT_CHANGE
