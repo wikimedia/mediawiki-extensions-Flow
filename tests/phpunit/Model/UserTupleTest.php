@@ -25,9 +25,9 @@ class UserTupleTest extends \MediaWikiTestCase {
 
 	/**
 	 * @dataProvider invalidInputProvider
-	 * @expectedException Flow\Exception\InvalidDataException
 	 */
 	public function testInvalidInput( $wiki, $id, $ip ) {
+		$this->expectException( \Flow\Exception\InvalidDataException::class );
 		new UserTuple( $wiki, $id, $ip );
 	}
 

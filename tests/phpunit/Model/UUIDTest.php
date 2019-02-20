@@ -44,9 +44,9 @@ class UUIDTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider invalidInputProvider
-	 * @expectedException \Flow\Exception\InvalidInputException
 	 */
 	public function testInvalidInputOnCreate( $invalidInput ) {
+		$this->expectException( \Flow\Exception\InvalidInputException::class );
 		UUID::create( $invalidInput );
 	}
 
