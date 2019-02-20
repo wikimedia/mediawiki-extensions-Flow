@@ -547,6 +547,7 @@ class TemplateHelper {
 
 		return wfMessage( $str )->params( $args )->text();
 	}
+
 	/**
 	 * @param array $args one or more arguments, i18n key and parameters
 	 * @param array $named unused

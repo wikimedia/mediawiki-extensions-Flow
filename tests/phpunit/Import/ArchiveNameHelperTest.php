@@ -51,6 +51,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 			],
 		];
 	}
+
 	/**
 	 * @dataProvider decideArchiveTitleProvider
 	 */
@@ -98,6 +99,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 
 		];
 	}
+
 	/**
 	 * @dataProvider findLatestArchiveTitleProvider
 	 */

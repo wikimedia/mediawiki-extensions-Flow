@@ -107,6 +107,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 		];
 	}
+
 	/**
 	 * @dataProvider imageRemovalProvider
 	 */
