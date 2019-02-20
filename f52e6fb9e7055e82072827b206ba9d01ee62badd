@@ -16,6 +16,24 @@
       "revId": "f52e6fb9e7055e82072827b206ba9d01ee62badd",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1b2e2f01_59ea52f9",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-02-20T02:30:21Z",
+      "side": 1,
+      "message": "Yes, this is wrong. The object returned by .data( \u0027self\u0027 ) is not a jQuery collection but an OOUI widget, so it does no have a .trigger() method.",
+      "parentUuid": "40a3de86_f22e7a6d",
+      "revId": "f52e6fb9e7055e82072827b206ba9d01ee62badd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
