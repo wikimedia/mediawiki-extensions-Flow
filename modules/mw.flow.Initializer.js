@@ -597,6 +597,7 @@
 		this.$component.on( 'click', 'a.flow-reply-link', function () {
 			// Store the needed details so we can get rid of the URL in JS mode
 			var replyWidget,
+				existingWidget,
 				href = $( this ).attr( 'href' ),
 				uri = new mw.Uri( href ),
 				replyTo = uri.query.topic_postId,
@@ -611,8 +612,9 @@
 			// Check that there's not already a reply widget existing in the same place
 			if ( $existingWidget.length > 0 ) {
 				// Focus the existing reply widget
-				$existingWidget.data( 'self' ).activateEditor();
-				$existingWidget.data( 'self' ).trigger( 'focus' );
+				existingWidget = $existingWidget.data( 'self' );
+				existingWidget.activateEditor();
+				existingWidget.focus();
 				return false;
 			}
 
