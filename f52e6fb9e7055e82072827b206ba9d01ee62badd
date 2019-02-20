@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40a3de86_f22e7a6d",
+        "filename": "modules/mw.flow.Initializer.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2019-02-20T00:55:23Z",
+      "side": 1,
+      "message": "This may have caused https://phabricator.wikimedia.org/T216580",
+      "revId": "f52e6fb9e7055e82072827b206ba9d01ee62badd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
