@@ -100,7 +100,7 @@
 	mw.flow.ve.Target.prototype.setDisabled = function ( disabled ) {
 		var i, len;
 		for ( i = 0, len = this.surfaces.length; i < len; i++ ) {
-			this.surfaces[ i ].setDisabled( disabled );
+			this.surfaces[ i ].setReadOnly( disabled );
 		}
 	};
 
