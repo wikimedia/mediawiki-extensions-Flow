@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"flow-desc": "سیستوم چٱک چناْ",
+	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|پاکسا کرد}} داسوݩ \"[[$3|$5]]\" میٛن [[$6]] ناْ",
+	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|پاکسا کرد}} داسوݩ میٛن [[$3]] ناْ",
+	"flow-edit-header-link": "آلشدکاری تۉزی",
+	"flow-topic-moderated-reason-prefix": "دلیل:",
+	"flow-hide-header-content": "{{GENDER:$1|قام ڤابیڌاْ}} ڤا $2",
+	"flow-post-actions": "کونشتکاریٱل",
+	"flow-topic-actions": "کونشتکاریٱل",
+	"flow-cancel": "ٱنجومشیڤ کردن",
+	"flow-skip-summary": "خولاساْ",
+	"flow-show-change": "نشوݩ دائن آلشدکاریٱل",
+	"flow-newtopic-title-placeholder": "داسوݩ تازاْ",
+	"flow-newtopic-header": "اْزاف کردن یٱ داسوݩ نۉ",
+	"flow-newtopic-save": "داسوݩ اْزاف کونین"
+}

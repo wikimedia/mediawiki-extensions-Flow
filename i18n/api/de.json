@@ -11,6 +11,7 @@
 		]
 	},
 	"apihelp-flow-description": "Erlaubt auszuführende Aktionen auf Strukturierte-Diskussionen-Seiten.",
+	"apihelp-flow-summary": "Erlaubt auszuführende Aktionen auf Strukturierte-Diskussionen-Seiten.",
 	"apihelp-flow-param-submodule": "Das aufzurufende Strukturierte-Diskussionen-Untermodul.",
 	"apihelp-flow-param-page": "Die Seite, auf die die Aktion angewandt werden soll.",
 	"apihelp-flow-param-token": "Ein abgerufener Token von [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
