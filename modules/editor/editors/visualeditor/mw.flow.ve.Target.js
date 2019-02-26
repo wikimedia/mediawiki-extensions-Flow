@@ -89,7 +89,8 @@
 	 * @param {string} content HTML or wikitext
 	 */
 	mw.flow.ve.Target.prototype.loadContent = function ( content ) {
-		var doc = this.constructor.static.parseDocument( content, this.getDefaultMode() );
+		// We have to pass null for the section parameter so that <section> tags get unwrapped
+		var doc = this.constructor.static.parseDocument( content, this.getDefaultMode(), null );
 		this.documentReady( doc );
 	};
 
