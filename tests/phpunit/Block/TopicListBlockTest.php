@@ -24,7 +24,7 @@ class TopicListBlockTest extends \MediaWikiTestCase {
 		$container = Container::getContainer();
 		$container['user'] = $user;
 
-		$ctx = $this->getMock( 'IContextSource' );
+		$ctx = $this->getMock( \IContextSource::class );
 		$ctx->expects( $this->any() )
 			->method( 'getUser' )
 			->will( $this->returnValue( $user ) );

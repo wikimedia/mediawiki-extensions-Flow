@@ -197,5 +197,5 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 	}
 }
 
-$maintClass = 'FlowFixLog';
+$maintClass = FlowFixLog::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

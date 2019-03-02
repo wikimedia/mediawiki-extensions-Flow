@@ -63,7 +63,7 @@ class FormatterTest extends FlowTestCase {
 		$row->revision = $this->mockRevision( $action, $revId, $postId );
 		$row->currentRevision = $row->revision;
 
-		$ctx = $this->getMock( 'IContextSource' );
+		$ctx = $this->getMock( \IContextSource::class );
 		$ctx->expects( $this->any() )
 			->method( 'getLanguage' )
 			->will( $this->returnValue( $wgLang ) );

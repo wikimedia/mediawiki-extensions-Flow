@@ -391,5 +391,5 @@ class FlowRemoveOldTopics extends Maintenance {
 	}
 }
 
-$maintClass = 'FlowRemoveOldTopics';
+$maintClass = FlowRemoveOldTopics::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

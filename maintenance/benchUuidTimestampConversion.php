@@ -131,5 +131,5 @@ class BenchUuidConversions extends \Benchmarker {
 	}
 }
 
-$maintClass = 'BenchUuidConversions';
+$maintClass = BenchUuidConversions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

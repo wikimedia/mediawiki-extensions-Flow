@@ -81,5 +81,5 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertLqtPageFromRemoteApiForTesting";
+$maintClass = ConvertLqtPageFromRemoteApiForTesting::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

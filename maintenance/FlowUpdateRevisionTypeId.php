@@ -104,5 +104,5 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowUpdateRevisionTypeId';
+$maintClass = FlowUpdateRevisionTypeId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

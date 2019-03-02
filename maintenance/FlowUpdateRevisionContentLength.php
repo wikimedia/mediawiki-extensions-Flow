@@ -163,5 +163,5 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowUpdateRevisionContentLength';
+$maintClass = FlowUpdateRevisionContentLength::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

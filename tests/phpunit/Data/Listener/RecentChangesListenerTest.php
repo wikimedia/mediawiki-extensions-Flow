@@ -46,7 +46,7 @@ class RecentChangesListenerTest extends \MediaWikiTestCase {
 			->getMock();
 
 		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory, $ircFormatter );
-		$change = $this->getMock( 'RecentChange' );
+		$change = $this->getMock( \RecentChange::class );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
 			->will( $this->returnCallback( function ( $obj ) use ( &$ref, $change ) {

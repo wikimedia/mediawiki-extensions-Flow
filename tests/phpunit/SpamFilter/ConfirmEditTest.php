@@ -28,12 +28,12 @@ class ConfirmEditTest extends \MediaWikiTestCase {
 		$oldRevision = PostRevision::createTopicPost( $workflow, $user, 'foo' );
 		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'topic-title-wikitext', 'edit-title', $title );
 
-		$request = $this->getMock( 'WebRequest' );
+		$request = $this->getMock( \WebRequest::class );
 		$request->expects( $this->any() )
 			->method( 'wasPosted' )
 			->will( $this->returnValue( true ) );
 
-		$context = $this->getMock( 'IContextSource' );
+		$context = $this->getMock( \IContextSource::class );
 
 		$context->expects( $this->any() )
 			->method( 'getUser' )

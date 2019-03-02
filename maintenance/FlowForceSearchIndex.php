@@ -75,5 +75,5 @@ class FlowForceSearchIndex extends Maintenance {
 	}
 }
 
-$maintClass = 'FlowForceSearchIndex';
+$maintClass = FlowForceSearchIndex::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

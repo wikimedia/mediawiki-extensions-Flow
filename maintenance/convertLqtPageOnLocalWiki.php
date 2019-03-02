@@ -76,5 +76,5 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertLqtPageOnLocalWiki";
+$maintClass = ConvertLqtPageOnLocalWiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

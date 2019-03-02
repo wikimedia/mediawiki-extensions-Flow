@@ -116,5 +116,5 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowCreateTemplates';
+$maintClass = FlowCreateTemplates::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

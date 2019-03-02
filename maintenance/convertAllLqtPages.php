@@ -109,5 +109,5 @@ class ConvertAllLqtPages extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertAllLqtPages";
+$maintClass = ConvertAllLqtPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -225,5 +225,5 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 	}
 }
 
-$maintClass = 'FlowFixWorkflowLastUpdateTimestamp';
+$maintClass = FlowFixWorkflowLastUpdateTimestamp::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
