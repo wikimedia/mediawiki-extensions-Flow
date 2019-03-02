@@ -69,5 +69,5 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowPopulateRefId';
+$maintClass = FlowPopulateRefId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

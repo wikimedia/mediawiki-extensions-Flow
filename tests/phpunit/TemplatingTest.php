@@ -23,7 +23,7 @@ class TemplatingTest extends MediaWikiTestCase {
 		$urlGenerator = $this->getMockBuilder( \Flow\UrlGenerator::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$output = $this->getMockBuilder( 'OutputPage' )
+		$output = $this->getMockBuilder( \OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$fixer = $this->getMockBuilder( \Flow\Parsoid\ContentFixer::class )

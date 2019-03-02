@@ -333,5 +333,5 @@ class ConvertToText extends Maintenance {
 
 }
 
-$maintClass = "ConvertToText";
+$maintClass = ConvertToText::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

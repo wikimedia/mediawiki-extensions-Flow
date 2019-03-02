@@ -140,5 +140,5 @@ TEXT
 	}
 }
 
-$maintClass = 'FlowDumpBackup';
+$maintClass = FlowDumpBackup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

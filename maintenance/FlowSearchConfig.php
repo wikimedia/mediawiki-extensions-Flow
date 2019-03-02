@@ -516,5 +516,5 @@ class FlowSearchConfig extends Maintenance {
 	}
 }
 
-$maintClass = 'FlowSearchConfig';
+$maintClass = FlowSearchConfig::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

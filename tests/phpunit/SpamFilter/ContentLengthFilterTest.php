@@ -40,7 +40,7 @@ class ContentLengthFilterTest extends \MediaWikiTestCase {
 		$reply = $topic->reply( $workflow, $user, $content, 'wikitext' );
 
 		$filter = new ContentLengthFilter( $maxLength );
-		$status = $filter->validate( $this->getMock( 'IContextSource' ), $reply, null, $title, $ownerTitle );
+		$status = $filter->validate( $this->getMock( \IContextSource::class ), $reply, null, $title, $ownerTitle );
 		$this->assertSame( $expected, $status->isOK() );
 	}
 }

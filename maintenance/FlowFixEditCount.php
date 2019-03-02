@@ -128,5 +128,5 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowFixEditCount';
+$maintClass = FlowFixEditCount::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -93,5 +93,5 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowUpdateResolvedNotifTitles';
+$maintClass = FlowUpdateResolvedNotifTitles::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

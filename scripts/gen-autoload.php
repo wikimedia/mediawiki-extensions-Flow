@@ -37,5 +37,5 @@ class GenerateFlowAutoload extends Maintenance {
 	}
 }
 
-$maintClass = "GenerateFlowAutoload";
+$maintClass = GenerateFlowAutoload::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

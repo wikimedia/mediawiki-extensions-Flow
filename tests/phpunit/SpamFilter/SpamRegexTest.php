@@ -45,7 +45,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
 
-		$status = $this->spamFilter->validate( $this->getMock( 'IContextSource' ), $newRevision, $oldRevision, $title, $title );
+		$status = $this->spamFilter->validate( $this->getMock( \IContextSource::class ), $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 

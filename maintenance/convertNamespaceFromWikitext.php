@@ -100,5 +100,5 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertNamespaceFromWikitext";
+$maintClass = ConvertNamespaceFromWikitext::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

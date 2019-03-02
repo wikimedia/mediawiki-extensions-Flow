@@ -100,5 +100,5 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowFixLinks';
+$maintClass = FlowFixLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

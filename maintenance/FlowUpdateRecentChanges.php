@@ -180,5 +180,5 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowUpdateRecentChanges'; // Tells it to run the class
+$maintClass = FlowUpdateRecentChanges::class; // Tells it to run the class
 require_once RUN_MAINTENANCE_IF_MAIN;

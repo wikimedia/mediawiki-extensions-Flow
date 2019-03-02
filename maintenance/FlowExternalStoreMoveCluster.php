@@ -295,5 +295,5 @@ class FlowExternalStoreMoveCluster extends ExternalStoreMoveCluster {
 	}
 }
 
-$maintClass = 'FlowExternalStoreMoveCluster';
+$maintClass = FlowExternalStoreMoveCluster::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

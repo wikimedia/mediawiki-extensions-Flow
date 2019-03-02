@@ -73,5 +73,5 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 	}
 }
 
-$maintClass = 'FlowUpdateRevContentModelFromOccupyPages';
+$maintClass = FlowUpdateRevContentModelFromOccupyPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

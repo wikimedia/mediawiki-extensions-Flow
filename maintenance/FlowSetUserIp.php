@@ -189,5 +189,5 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FlowSetUserIp'; // Tells it to run the class
+$maintClass = FlowSetUserIp::class; // Tells it to run the class
 require_once RUN_MAINTENANCE_IF_MAIN;

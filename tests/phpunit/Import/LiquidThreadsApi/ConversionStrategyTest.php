@@ -169,7 +169,7 @@ EOD
 			$this->getMockBuilder( \Flow\UrlGenerator::class )
 				->disableOriginalConstructor()
 				->getMock(),
-			$this->getMockBuilder( 'User' )
+			$this->getMockBuilder( \User::class )
 				->disableOriginalConstructor()
 				->getMock(),
 			$this->getMockBuilder( \Flow\NotificationController::class )
