@@ -9,9 +9,9 @@
 	 */
 	$( function () {
 		var flowBoard,
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			$component = $( '.flow-component' ),
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			$board = $( '.flow-board' ),
 			pageTitle = mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			initializer = new mw.flow.Initializer( {
@@ -38,7 +38,7 @@
 			initializer.initDataModel( {
 				pageTitle: pageTitle,
 				tocPostsLimit: 50,
-				// eslint-disable-next-line jquery/no-global-selector
+				// eslint-disable-next-line no-jquery/no-global-selector
 				renderedTopics: $( '.flow-topic' ).length,
 				boardId: $component.data( 'flow-id' ),
 				defaultSort: $board.data( 'flow-sortby' )
@@ -53,7 +53,7 @@
 			} else {
 				// Replace the no-js editor if we are editing in a
 				// new page
-				// eslint-disable-next-line jquery/no-global-selector
+				// eslint-disable-next-line no-jquery/no-global-selector
 				initializer.replaceNoJSEditor( $( '.flow-edit-post-form' ) );
 
 				// Create and replace UI widgets

@@ -1,5 +1,5 @@
 ( function () {
-	// eslint-disable-next-line jquery/no-global-selector
+	// eslint-disable-next-line no-jquery/no-global-selector
 	var archiveLinkExists = $( '.flow-link-to-archive' ).length,
 		tour = new mw.guidedTour.TourBuilder( {
 			name: 'flowOptIn',

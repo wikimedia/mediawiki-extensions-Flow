@@ -37,7 +37,7 @@
 
 			if ( scrollTo > -1 ) {
 				// Scroll the viewport to display this element
-				// eslint-disable-next-line jquery/no-global-selector, jquery/no-animate
+				// eslint-disable-next-line no-jquery/no-global-selector
 				$( 'html, body' ).animate( { scrollTop: scrollTo }, speed, function () {
 					// Fire off the next fx queue on the main element when we finish scrolling the window
 					$this.dequeue();

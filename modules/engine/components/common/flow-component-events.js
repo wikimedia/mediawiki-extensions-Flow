@@ -158,7 +158,7 @@
 		var self = this;
 
 		// Bind class event handlers, triggered by .emit
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( handlers, function ( key, fn ) {
 			self.on( key, function () {
 				// Trigger callback with class instance context
@@ -181,10 +181,10 @@
 		var self = this;
 
 		// eg. { interactiveHandlers: { foo: Function } }
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( handlers, function ( type, callbacks ) {
 			// eg. { foo: Function }
-			// eslint-disable-next-line jquery/no-each-util
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( callbacks, function ( name, fn ) {
 				// First time for this callback name, instantiate the callback list
 				if ( !self.UI.events[ type ][ name ] ) {
@@ -797,7 +797,7 @@
 			preHandlers = [];
 
 		// Compile a list of all preHandlers to be run
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( flowComponent.UI.events.globalApiPreHandlers, function ( key, callbackArray ) {
 			Array.prototype.push.apply( preHandlers, callbackArray );
 		} );

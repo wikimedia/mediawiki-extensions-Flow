@@ -175,7 +175,7 @@
 		var _notify = mw.notify;
 		mw.notify = function ( message, options ) {
 			// override message when we've just watched the board
-			// eslint-disable-next-line jquery/no-global-selector
+			// eslint-disable-next-line no-jquery/no-global-selector
 			if ( options && options.tag === 'watch-self' && $( '#ca-watch' ).length ) {
 				// Render a div telling the user that they have subscribed
 				message = $( mw.flow.TemplateEngine.processTemplateGetFragment(

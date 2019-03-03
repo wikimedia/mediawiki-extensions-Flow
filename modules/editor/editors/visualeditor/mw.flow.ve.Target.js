@@ -78,7 +78,7 @@
 	// Methods
 
 	mw.flow.ve.Target.prototype.addSurface = function ( dmDoc, config ) {
-		// eslint-disable-next-line jquery/no-global-selector
+		// eslint-disable-next-line no-jquery/no-global-selector
 		config = ve.extendObject( { $overlayContainer: $( '#content' ) }, config );
 		// Parent method
 		return mw.flow.ve.Target.super.prototype.addSurface.call( this, dmDoc, config );
