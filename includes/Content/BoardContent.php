@@ -227,7 +227,6 @@ class BoardContent extends \AbstractContent {
 		$parserOutput->setText( $childContext->getOutput()->getHTML() );
 		$parserOutput->addModules( $childContext->getOutput()->getModules() );
 		$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
-		$parserOutput->addModuleScripts( $childContext->getOutput()->getModuleScripts() );
 
 		return $parserOutput;
 	}
