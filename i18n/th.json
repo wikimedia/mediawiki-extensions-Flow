@@ -5,5 +5,6 @@
 			"Geonuch"
 		]
 	},
-	"flow-history-action-restore-post": "กู้คืน"
+	"flow-history-action-restore-post": "กู้คืน",
+	"notification-header-flow-topic-renamed-user-talk": "หัวข้อ \"<strong>$1</strong>\" ได้เปลี่ยนชื่อเป็น \"<strong>$2</strong>\" บน<strong>หน้าคุย{{GENDER:$3|ของคุณ}}</strong>"
 }
