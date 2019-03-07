@@ -180,7 +180,8 @@ abstract class Utils {
 				->getElementsByTagName( 'base' )->item( 0 )
 				->getAttribute( 'href' ) );
 			$body->removeAttribute( 'class' );
-			$content = $dom->saveHTML( $body );
+			// Don't use saveHTML() because of a bug re comment-like syntax in attributes (T217766)
+			$content = $dom->saveXML( $body, LIBXML_NOEMPTYTAG );
 		}
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
@@ -463,7 +464,8 @@ abstract class Utils {
 		if ( $node ) {
 			$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;
 			foreach ( $node->childNodes as $child ) {
-				$html[] = $dom->saveHTML( $child );
+				// Don't use saveHTML() because of a bug re comment-like syntax in attributes (T217766)
+				$html[] = $dom->saveXML( $child, LIBXML_NOEMPTYTAG );
 			}
 		}
 		return implode( '', $html );
