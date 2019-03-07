@@ -53,6 +53,18 @@ class ContentFixer {
 	 */
 	public function apply( $content, Title $title ) {
 		$dom = self::createDOM( $content );
+		$this->applyToDom( $dom, $title );
+		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
+	}
+
+	/**
+	 * Applies all content fixers to the provided DOMDocument.
+	 * Like apply(), but modifies a DOM in place rather than parsing and reserializing a string.
+	 *
+	 * @param DOMDocument $dom
+	 * @param Title $title
+	 */
+	public function applyToDom( DOMDocument $dom, Title $title ) {
 		$xpath = new DOMXPath( $dom );
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
 			$found = $xpath->query( $contentFixer->getXPath() );
@@ -66,8 +78,6 @@ class ContentFixer {
 				$contentFixer->apply( $node, $title );
 			}
 		}
-
-		return Utils::getInnerHtml( $dom->getElementsByTagName( 'body' )->item( 0 ) );
 	}
 
 	/**

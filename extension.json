@@ -1200,6 +1200,7 @@
 		"Flow\\Parsoid\\Fixer": "includes/Parsoid/Fixer.php",
 		"Flow\\Parsoid\\Fixer\\BadImageRemover": "includes/Parsoid/Fixer/BadImageRemover.php",
 		"Flow\\Parsoid\\Fixer\\BaseHrefFixer": "includes/Parsoid/Fixer/BaseHrefFixer.php",
+		"Flow\\Parsoid\\Fixer\\EmptyNodeFixer": "includes/Parsoid/Fixer/EmptyNodeFixer.php",
 		"Flow\\Parsoid\\Fixer\\ExtLinkFixer": "includes/Parsoid/Fixer/ExtLinkFixer.php",
 		"Flow\\Parsoid\\Fixer\\WikiLinkFixer": "includes/Parsoid/Fixer/WikiLinkFixer.php",
 		"Flow\\Parsoid\\ReferenceExtractor": "includes/Parsoid/ReferenceExtractor.php",
