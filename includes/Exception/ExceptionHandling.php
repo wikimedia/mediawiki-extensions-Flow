@@ -365,7 +365,7 @@ class UnknownWorkflowIdException extends InvalidInputException {
 	}
 
 	public function getPageTitle() {
-		return wfMessage( 'flow-error-unknown-workflow-id-title' )->escaped();
+		return wfMessage( 'flow-error-unknown-workflow-id-title' )->text();
 	}
 }
 
@@ -384,7 +384,7 @@ class InvalidTopicUuidException extends InvalidInputException {
 	}
 
 	public function getPageTitle() {
-		return wfMessage( 'flow-error-invalid-topic-uuid-title' )->escaped();
+		return wfMessage( 'flow-error-invalid-topic-uuid-title' )->text();
 	}
 }
 
