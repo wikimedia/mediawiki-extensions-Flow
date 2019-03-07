@@ -569,9 +569,9 @@
 	};
 
 	// Load partials
-	// eslint-disable-next-line jquery/no-each-util
+	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( mw.templates.get(), function ( moduleName, moduleTemplates ) {
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( moduleTemplates, function ( name ) {
 			// remove extension
 			var partialMatch, partialName;

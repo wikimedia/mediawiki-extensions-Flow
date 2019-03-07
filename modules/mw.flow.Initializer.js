@@ -1,4 +1,4 @@
-/* eslint-disable jquery/no-global-selector */
+/* eslint-disable no-jquery/no-global-selector */
 ( function () {
 	/**
 	 * Initializer object for flow-initialize

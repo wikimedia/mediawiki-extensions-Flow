@@ -55,7 +55,7 @@
 					// Not going the full $( '.flow-board-navigation' ).height()
 					// because then the load more button (above the new topic)
 					// would get in sight and any scroll would fire it
-					// eslint-disable-next-line jquery/no-global-selector
+					// eslint-disable-next-line no-jquery/no-global-selector
 					$( 'html, body' ).scrollTop( $renderedTopic.offset().top - 20 );
 
 					// Focus on given topic
@@ -346,7 +346,7 @@
 		this.renderedTopics[ currentTopicId ] = $topic;
 
 		// Remove any topics that are no longer on the page, just in case
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.renderedTopics, function ( topicId, $topic ) {
 			if ( !$topic.closest( self.$board ).length ) {
 				delete self.renderedTopics[ topicId ];
