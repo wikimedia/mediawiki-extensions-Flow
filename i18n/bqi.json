@@ -149,6 +149,7 @@
 	"flow-topic-undo-suppress": "نیاگری نکردن",
 	"flow-edited": "آلشدکاری ڤابیڌاْ",
 	"flow-edited-by": "آلشدکاری ڤابیڌاْ ڤا $1",
+	"flow-edited-by-topic-title": "داسوݩ ڤا دٱسد $1 آلشدکاری ڤابیڌاْ",
 	"flow-previous-diff": "← آلشدکاری دیندایی",
 	"flow-next-diff": "آلشدکاری تازاْتر→",
 	"flow-undo": "ٱنجومشیڤ کردن",
@@ -161,5 +162,6 @@
 	"flow-ve-mention-inspector-title": "گوهڌن",
 	"flow-ve-mention-inspector-remove-label": "ڤورداشدن",
 	"flow-ve-mention-placeholder": "نوم کاریاری",
+	"flow-wikitext-editor-help": "ڤیکی متن $1.",
 	"flow-dialog-cancelconfirm-discard": "کنار لاهاڌن آلشدکاریٱل"
 }
