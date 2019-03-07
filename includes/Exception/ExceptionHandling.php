@@ -360,10 +360,6 @@ class UnknownWorkflowIdException extends InvalidInputException {
 		return [ 'invalid-input' ];
 	}
 
-	public function getHTML() {
-		return wfMessage( 'flow-error-unknown-workflow-id' )->escaped();
-	}
-
 	public function getPageTitle() {
 		return wfMessage( 'flow-error-unknown-workflow-id-title' )->text();
 	}
