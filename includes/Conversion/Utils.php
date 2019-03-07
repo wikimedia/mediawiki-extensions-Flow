@@ -10,6 +10,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
+use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Language;
 use Linker;
 use MultiHttpClient;
@@ -180,7 +181,7 @@ abstract class Utils {
 				->getElementsByTagName( 'base' )->item( 0 )
 				->getAttribute( 'href' ) );
 			$body->removeAttribute( 'class' );
-			$content = $dom->saveHTML( $body );
+			$content = self::getOuterHtml( $body );
 		}
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
@@ -453,20 +454,39 @@ abstract class Utils {
 	}
 
 	/**
-	 * Retrieves the html of the nodes children.
+	 * Retrieves the html of the node's children.
 	 *
 	 * @param DOMNode|null $node
 	 * @return string html of the nodes children
 	 */
 	public static function getInnerHtml( DOMNode $node = null ) {
-		$html = [];
+		$html = '';
 		if ( $node ) {
 			$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;
+			// Don't use saveHTML(), it has bugs (T217766); instead use XML serialization
+			// with a workaround for empty non-void nodes
+			$fixer = new ContentFixer( new EmptyNodeFixer );
+			$fixer->applyToDom( $dom, Title::newMainPage() );
+
 			foreach ( $node->childNodes as $child ) {
-				$html[] = $dom->saveHTML( $child );
+				$html .= $dom->saveXML( $child );
 			}
 		}
-		return implode( '', $html );
+		return $html;
+	}
+
+	/**
+	 * Gets the HTML of a node. This is like getInnterHtml(), but includes the node's tag itself too.
+	 * @param DOMNode $node
+	 * @return string HTML
+	 */
+	public static function getOuterHtml( DOMNode $node ) {
+		$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;
+		// Don't use saveHTML(), it has bugs (T217766); instead use XML serialization
+		// with a workaround for empty non-void nodes
+		$fixer = new ContentFixer( new EmptyNodeFixer );
+		$fixer->applyToDom( $dom, Title::newMainPage() );
+		return $dom->saveXML( $child );
 	}
 
 	/**
