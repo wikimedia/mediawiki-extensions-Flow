@@ -233,7 +233,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		return 'Search within Flow boards';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return [
 			'api.php?action=flow&submodule=search&qterm=keyword&qtitle=Main_Page',
 		];
