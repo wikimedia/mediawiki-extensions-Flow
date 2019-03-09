@@ -11,6 +11,7 @@ use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\EmptyNodeFixer;
+use Html;
 use Language;
 use Linker;
 use MultiHttpClient;
@@ -174,14 +175,7 @@ abstract class Utils {
 		// Add attributes for parsoid version and base url if converting to HTML.
 		$content = $response['body'];
 		if ( $to === 'html' ) {
-			$dom = ContentFixer::createDOM( $response['body'] );
-			$body = $dom->getElementsByTagName( 'body' )->item( 0 );
-			$body->setAttribute( 'parsoid-version', self::PARSOID_VERSION );
-			$body->setAttribute( 'base-url', $dom->getElementsByTagName( 'head' )->item( 0 )
-				->getElementsByTagName( 'base' )->item( 0 )
-				->getAttribute( 'href' ) );
-			$body->removeAttribute( 'class' );
-			$content = self::getOuterHtml( $body );
+			$content = self::encodeHeadInfo( $content );
 		}
 		// HACK remove trailing newline inserted by Parsoid (T106925)
 		if ( $to === 'wikitext' ) {
@@ -486,7 +480,53 @@ abstract class Utils {
 		// with a workaround for empty non-void nodes
 		$fixer = new ContentFixer( new EmptyNodeFixer );
 		$fixer->applyToDom( $dom, Title::newMainPage() );
-		return $dom->saveXML( $child );
+		return $dom->saveXML( $node );
+	}
+
+	/**
+	 * Encode information from the <head> tag as attributes on the <body> tag, then
+	 * drop the <head>.
+	 *
+	 * Specifically, add the Parsoid version number in the parsoid-version attribute;
+	 * put the href of the <base> tag in the base-url attribute;
+	 * and remove the class attribute from the <body>.
+	 *
+	 * @param string $html HTML
+	 * @return string HTML with <head> information encoded as attributes on the <body>
+	 */
+	public static function encodeHeadInfo( $html ) {
+		$dom = ContentFixer::createDOM( $html );
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		$head = $dom->getElementsByTagName( 'head' )->item( 0 );
+		$base = $head ? $head->getElementsByTagName( 'base' )->item( 0 ) : null;
+
+		$body->setAttribute( 'parsoid-version', self::PARSOID_VERSION );
+		if ( $base ) {
+			$body->setAttribute( 'base-url', $base->getAttribute( 'href' ) );
+		}
+		// The class attribute is not used by us and is wastefully long, remove it
+		$body->removeAttribute( 'class' );
+		return self::getOuterHtml( $body );
+	}
+
+	/**
+	 * Put the base URI from the <body>'s base-url attribute back in the <head> as a <base> tag.
+	 * This reverses (part of) the transformation done by encodeHeadInfo().
+	 *
+	 * @param string $html HTML (may be a full document, <body> tag  or unwrapped <body> contents)
+	 * @return string HTML (<html> tag with <head> and <body>) with the <base> tag restored
+	 */
+	public static function decodeHeadInfo( $html ) {
+		$dom = ContentFixer::createDOM( $html );
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		$baseUrl = $body->getAttribute( 'base-url' );
+		return Html::rawElement( 'html', [],
+			Html::rawElement( 'head', [],
+				// Only set base href if there's a value to set.
+				$baseUrl ? Html::element( 'base', [ 'href' => $baseUrl ] ) : ''
+			) .
+			self::getOuterHtml( $body )
+		);
 	}
 
 	/**
