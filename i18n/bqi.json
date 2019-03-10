@@ -163,6 +163,8 @@
 	"flow-ve-mention-inspector-remove-label": "ڤورداشدن",
 	"flow-ve-mention-placeholder": "نوم کاریاری",
 	"flow-wikitext-editor-help": "ڤیکی متن $1.",
+	"flow-beta-feature-add-archive-template-edit-summary": "ب هال و بال اْزاف کردن کۊگٱ چۊئاْ",
+	"flow-beta-feature-remove-archive-template-edit-summary": "ب هال و بال پاکسا کردن کۊگٱ چۊئاْ",
 	"flow-dialog-cancelconfirm-title": "ایسا موتمٱعن {{GENDER:$1|هؽڌین}}؟",
 	"flow-dialog-cancelconfirm-discard": "کنار لاهاڌن آلشدکاریٱل"
 }
