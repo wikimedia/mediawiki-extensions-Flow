@@ -20,6 +20,16 @@
 				$board: $board
 			} );
 
+		function markWikipageContent( $content ) {
+			$content.find( '.mw-parser-output' ).data( 'wikipage-content-fired', true );
+		}
+
+		// Mark content that has been initialized by wikipage.content hook
+		mw.hook( 'wikipage.content' ).add( markWikipageContent );
+		// wikipage.content has already been run on #mw-content-text, so mark that
+		// eslint-disable-next-line no-jquery/no-global-selector
+		markWikipageContent( $( '#mw-content-text' ) );
+
 		// Set component
 		if ( !initializer.setComponentDom( $component ) ) {
 			initializer.finishLoading();

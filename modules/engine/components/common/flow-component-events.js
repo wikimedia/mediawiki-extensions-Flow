@@ -431,7 +431,7 @@
 	 * @todo Perhaps use name="flow-load-handler" for performance in older browsers
 	 */
 	function flowMakeContentInteractiveCallback( $container ) {
-		var component;
+		var component, $content;
 
 		if ( !$container.jquery ) {
 			$container = $container.$container;
@@ -462,6 +462,14 @@
 		// Trigger for flow-actions-disabler
 		// @todo move this into a flow-load-handler
 		$container.find( 'input, textarea' ).trigger( 'keyup' );
+
+		$content = $container.find( '.mw-parser-output' ).filter( function () {
+			// Ignore content that has already been initialized, see flow-initialize.js
+			return !$( this ).data( 'wikipage-content-fired' );
+		} );
+		if ( $content.length ) {
+			mw.hook( 'wikipage.content' ).fire( $content );
+		}
 	}
 	FlowComponentEventsMixin.eventHandlers.makeContentInteractive = flowMakeContentInteractiveCallback;
 
