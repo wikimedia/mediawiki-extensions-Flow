@@ -462,6 +462,8 @@
 		// Trigger for flow-actions-disabler
 		// @todo move this into a flow-load-handler
 		$container.find( 'input, textarea' ).trigger( 'keyup' );
+
+		mw.hook( 'wikipage.content' ).fire( $container );
 	}
 	FlowComponentEventsMixin.eventHandlers.makeContentInteractive = flowMakeContentInteractiveCallback;
 
