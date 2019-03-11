@@ -20,6 +20,11 @@
 				$board: $board
 			} );
 
+		mw.hook( 'wikipage.content' ).add( function ( $content ) {
+			// Mark content that has been initialized by wikipage.content hook
+			$content.find( '.mw-parser-output' ).addBack( '.mw-parser-output' ).data( 'flow-wikipage-content-fired', true );
+		} );
+
 		// Set component
 		if ( !initializer.setComponentDom( $component ) ) {
 			initializer.finishLoading();
