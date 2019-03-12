@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4da99b9f_47051248",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-03-12T17:46:16Z",
+      "side": 1,
+      "message": "Hook handlers for MW JS are generally expected to be able to handle a second firing for something that was already fired, either a subset or the same. I don\u0027t know exactly how often this happens as I don\u0027t know about how Flow works, but it might be helpful to document what problem this data-key/deduplication logic is solving. Is there a functional bug otherwise, or a performance issue, if it\u0027s only a small or anticipated perf issue, then it might not be worth it.\n\nAlternatively, if it\u0027s a big issue, like every single comment or post or some such, and it re-firing every time, then perhaps it is not the right place to fire it. E.g. presumably some code somewhere is responsible for replacing or creating such sub trees, and it could be fired from there instead.",
+      "parentUuid": "fdff04b0_e31440ca",
+      "range": {
+        "startLine": 468,
+        "startChar": 28,
+        "endLine": 468,
+        "endChar": 51
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca683bd2_b80fd798",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 2
