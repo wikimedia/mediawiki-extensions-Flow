@@ -65,6 +65,9 @@ class ApiFlow extends ApiBase {
 		return $this->moduleManager;
 	}
 
+	/**
+	 * @var $module ApiFlowBase
+	 */
 	public function execute() {
 		// To avoid API warning, register the parameter used to bust browser cache
 		$this->getMain()->getVal( '_' );

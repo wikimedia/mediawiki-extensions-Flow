@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Model\Workflow;
 use IContextSource;
@@ -24,7 +25,7 @@ class WorkflowLoader {
 
 	/**
 	 * @param Workflow $workflow
-	 * @param Block[] $blocks
+	 * @param AbstractBlock[] $blocks
 	 * @param SubmissionHandler $submissionHandler
 	 */
 	public function __construct(
@@ -45,7 +46,7 @@ class WorkflowLoader {
 	}
 
 	/**
-	 * @return Block[]
+	 * @return AbstractBlock[]
 	 */
 	public function getBlocks() {
 		return $this->blocks;
