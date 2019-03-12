@@ -16,7 +16,7 @@ class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
 	protected $maxLevel = 7;
 
 	/**
-	 * @var int[string] Map from LogLevel constant to its position relative
+	 * @var int[] Map from LogLevel constant to its position relative
 	 *  to other constants.
 	 */
 	protected $logLevelPosition;

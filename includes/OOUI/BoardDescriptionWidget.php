@@ -8,6 +8,11 @@ class BoardDescriptionWidget extends \OOUI\Widget {
 
 	protected $description = '';
 
+	/**
+	 * @var \OOUI\Tag
+	 */
+	private $contentWrapper;
+
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
 

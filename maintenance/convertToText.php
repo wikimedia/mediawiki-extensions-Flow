@@ -54,8 +54,7 @@ class ConvertToText extends Maintenance {
 			$flowData = $this->flowApi(
 				$this->pageTitle,
 				'view-topiclist',
-				$pagerParams + [ 'vtlformat' => 'wikitext', 'vtlsortby' => 'newest' ],
-				'topiclist'
+				$pagerParams + [ 'vtlformat' => 'wikitext', 'vtlsortby' => 'newest' ]
 			);
 
 			$topicListBlock = $flowData['topiclist'];

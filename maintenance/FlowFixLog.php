@@ -163,7 +163,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 
 	/**
 	 * @param UUID $postId
-	 * @return PostCollection
+	 * @return PostCollection|false
 	 */
 	protected function loadPost( UUID $postId ) {
 		try {

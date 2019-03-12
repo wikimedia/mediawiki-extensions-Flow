@@ -34,7 +34,7 @@ class Merger {
 		}
 		$res = $callable( $ids );
 		if ( $res === false ) {
-			return false;
+			return [];
 		}
 		foreach ( $source as $idx => $row ) {
 			$id = $row[$fromKey];
@@ -78,7 +78,7 @@ class Merger {
 		}
 		$res = $callable( array_unique( $ids ) );
 		if ( $res === false ) {
-			return false;
+			return [];
 		}
 		foreach ( $multiSource as $i => $source ) {
 			if ( $source === null ) {

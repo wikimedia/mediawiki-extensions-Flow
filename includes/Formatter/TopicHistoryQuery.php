@@ -54,6 +54,7 @@ class TopicHistoryQuery extends HistoryQuery {
 
 		foreach ( $results as $result ) {
 			if ( $result->revision instanceof PostRevision ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
 				$alpha = $result->revision->getPostId()->getAlphadecimal();
 				$result->replies = isset( $replies[$alpha] ) ? array_keys( $replies[$alpha] ) : [];
 			}

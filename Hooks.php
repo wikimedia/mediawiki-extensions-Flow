@@ -855,7 +855,7 @@ class FlowHooks {
 	 *
 	 * @param array &$data an array of results of all contribs queries, to be
 	 *  merged to form all contributions data
-	 * @param DeletedContribsPager $pager Object hooked into
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
@@ -1174,7 +1174,6 @@ class FlowHooks {
 	 *
 	 * @param User $user
 	 * @param array &$preferences Preferences object
-	 * @return bool
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
 		$preferences['flow-topiclist-sortby'] = [
@@ -1204,7 +1203,6 @@ class FlowHooks {
 	 *
 	 * @param array &$testModules
 	 * @param ResourceLoader &$resourceLoader
-	 * @return bool
 	 */
 	public static function onResourceLoaderTestModules( array &$testModules,
 		ResourceLoader &$resourceLoader
@@ -1593,6 +1591,7 @@ class FlowHooks {
 	 * @param int $articleId Article ID of deleted article
 	 * @param Content|null $content Content that was deleted, or null on error
 	 * @param LogEntry $logEntry Log entry for deletion
+	 * @suppress PhanParamReqAfterOpt Not optional but nullable
 	 */
 	public static function onArticleDeleteComplete(
 		WikiPage &$article,
@@ -1656,7 +1655,6 @@ class FlowHooks {
 	 * @param bool $create Whether or not the restoration caused the page to be created (i.e. it didn't exist before).
 	 * @param string $comment The comment associated with the undeletion.
 	 * @param int $oldPageId ID of page previously deleted (from archive table)
-	 * @throws InvalidUndeleteException
 	 */
 	public static function onArticleUndelete( Title $title, $create, $comment, $oldPageId ) {
 		$boardMover = Container::get( 'board_mover' );
