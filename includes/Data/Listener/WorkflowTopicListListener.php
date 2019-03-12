@@ -15,12 +15,12 @@ use Flow\Model\TopicListEntry;
 class WorkflowTopicListListener extends AbstractListener {
 
 	/**
-	 * @param ObjectManager
+	 * @var ObjectManager
 	 */
 	protected $topicListStorage;
 
 	/**
-	 * @param TopKIndex
+	 * @var TopKIndex
 	 */
 	protected $topicListLastUpdatedIndex;
 

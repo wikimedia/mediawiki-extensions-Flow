@@ -70,7 +70,8 @@ class BenchUuidConversions extends \Benchmarker {
 			],
 		] );
 
-		$this->output( $this->getFormattedResults() );
+		// @fixme Find a replacement for this (removed from core in 1.29)
+		// $this->output( $this->getFormattedResults() );
 	}
 
 	public function oldhex2timestamp( $hex ) {

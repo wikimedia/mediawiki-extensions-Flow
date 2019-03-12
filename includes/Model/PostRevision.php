@@ -116,6 +116,7 @@ class PostRevision extends AbstractRevision {
 	 * @param PostRevision|null $obj
 	 * @return PostRevision
 	 * @throws DataModelException
+	 * @suppress PhanUndeclaredProperty Types not inferred
 	 */
 	public static function fromStorageRow( array $row, $obj = null ) {
 		/** @var $obj PostRevision */
@@ -145,6 +146,7 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * @param PostRevision $rev
 	 * @return string[]
+	 * @suppress PhanParamSignatureMismatch It doesn't match
 	 */
 	public static function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + [

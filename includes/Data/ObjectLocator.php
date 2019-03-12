@@ -197,7 +197,7 @@ class ObjectLocator {
 		}
 		$primaryKey = $this->storage->getPrimaryKeyColumns();
 		$queries = [];
-		$retval = null;
+		$retval = [];
 		foreach ( $objectIds as $id ) {
 			// check internal cache
 			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );

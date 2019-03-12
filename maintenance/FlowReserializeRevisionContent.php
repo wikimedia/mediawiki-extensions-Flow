@@ -18,6 +18,21 @@ require_once "$IP/maintenance/Maintenance.php";
  * @ingroup Maintenance
  */
 class FlowReserializeRevisionContent extends Maintenance {
+	/**
+	 * @var ReflectionMethod
+	 */
+	private $setContentRawMethod;
+
+	/**
+	 * @var \Flow\DbFactory
+	 */
+	private $dbFactory;
+
+	/**
+	 * @var \Flow\Data\ManagerGroup
+	 */
+	private $storage;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Reserializes HTML revision contents to the latest Parsoid version." );

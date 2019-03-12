@@ -39,6 +39,7 @@ class TopicListQuery extends AbstractQuery {
 	/**
 	 * @param UUID[]|TopicListEntry[] $topicIdsOrEntries
 	 * @return FormatterRow[]
+	 * @suppress PhanUndeclaredMethod Types not inferred from instanceof
 	 */
 	public function getResults( array $topicIdsOrEntries ) {
 		$topicIds = $this->getTopicIds( $topicIdsOrEntries );
@@ -229,7 +230,7 @@ class TopicListQuery extends AbstractQuery {
 
 	/**
 	 * @param UUID[] $missing
-	 * @return PostRevision
+	 * @return PostRevision[]
 	 */
 	protected function createFakePosts( array $missing ) {
 		$parents = $this->treeRepository->fetchParentMap( $missing );

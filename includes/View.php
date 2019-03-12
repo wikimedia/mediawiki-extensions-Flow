@@ -60,7 +60,7 @@ class View extends ContextSource {
 			$retval = $this->handleSubmit( $loader, $action, $parameters );
 			// successful submission
 			if ( $retval === true ) {
-				$this->redirect( $loader->getWorkflow(), 'view' );
+				$this->redirect( $loader->getWorkflow() );
 				return;
 			// only render the returned subset of blocks
 			} elseif ( is_array( $retval ) ) {
@@ -106,6 +106,7 @@ class View extends ContextSource {
 		if ( $workflow->getType() === 'topic' ) {
 			/** @var TopicBlock $topic */
 			$topic = $blocks[ 'topic' ];
+			// @phan-suppress-next-line PhanUndeclaredMethod Cannot infer type
 			$topicRev = $topic->loadTopicTitle();
 			if ( !$topicRev || $topicRev->isHidden() ) {
 				return [
