@@ -60,10 +60,13 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		$this->getMain()->getErrorFormatter()->addMessagesFromStatus(
 			$this->getModuleName(), $status );
 
-		/** @var \Elastica\ResultSet|null $resultSet */
 		$resultSet = $status->getValue();
 		// $resultSet can be null, if nothing was found
-		$results = $resultSet === null ? [] : $resultSet->getResults();
+		if ( $resultSet === null ) {
+			return;
+		}
+		/** @var \Elastica\ResultSet $resultSet */
+		$results = $resultSet->getResults();
 
 		// list of highlighted words
 		$highlights = [];

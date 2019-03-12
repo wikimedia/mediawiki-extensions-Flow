@@ -77,7 +77,7 @@ class TemplateHelper {
 	 *
 	 * @param string $templateName
 	 *
-	 * @return Closure
+	 * @return callable
 	 * @throws FlowException
 	 * @throws \Exception
 	 */
@@ -226,16 +226,13 @@ class TemplateHelper {
 		if ( count( $args ) < 1 || count( $args ) > 2 ) {
 			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
 		}
-		return self::timestamp(
-			$args[0],
-			$args[1] ?? false
-		);
+		return self::timestamp( $args[0] );
 	}
 
 	/**
 	 * @param int $timestamp milliseconds since the unix epoch
 	 *
-	 * @return string|false
+	 * @return string[]|false
 	 */
 	protected static function timestamp( $timestamp ) {
 		global $wgLang, $wgUser;
@@ -432,7 +429,7 @@ class TemplateHelper {
 		}
 		$revision = $args[0];
 		if ( !isset( $revision['properties']['_key'] ) ) {
-			return '';
+			return [];
 		}
 
 		$i18nKey = $revision['properties']['_key'];
@@ -784,7 +781,7 @@ class TemplateHelper {
 	 * @param string[] $args Expects string $contentType, string $content
 	 * @param array $named No named arguments expected
 	 *
-	 * @return string
+	 * @return string|string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	public static function escapeContent( array $args, array $named ) {

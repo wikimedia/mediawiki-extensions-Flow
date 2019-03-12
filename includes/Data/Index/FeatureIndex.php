@@ -393,6 +393,7 @@ abstract class FeatureIndex implements Index {
 
 		// check if keys matching given queries are already known in local cache
 		foreach ( $cacheKeys as $key ) {
+			// @phan-suppress-next-line PhanUndeclaredMethod Checked with method_exists above
 			if ( !$this->cache->has( $key ) ) {
 				return false;
 			}

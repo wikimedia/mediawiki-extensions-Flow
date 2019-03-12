@@ -45,6 +45,7 @@ class ChangesListQuery extends AbstractQuery {
 	/**
 	 * @param \stdClass[] $rows List of recentchange database rows
 	 * @param bool $isWatchlist
+	 * @suppress PhanParamSignatureMismatch The signature doesn't match, though
 	 */
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
 		$needed = [];

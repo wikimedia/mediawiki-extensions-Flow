@@ -62,6 +62,7 @@ class AbuseFilter implements SpamFilter {
 	 * @param Title $title
 	 * @param Title $ownerTitle
 	 * @return Status
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function validate(
 		IContextSource $context,
@@ -117,10 +118,8 @@ class AbuseFilter implements SpamFilter {
 	public function lazyLoadMethods() {
 		return [
 			/**
-			 * @param string $method: Method to generate the variable
 			 * @param \AbuseFilterVariableHolder $vars
 			 * @param array $parameters Parameters with data to compute the value
-			 * @param mixed &$result Result of the computation
 			 */
 			'FlowRevisionContent' => function ( \AbuseFilterVariableHolder $vars, array $parameters ) {
 				if ( !isset( $parameters['revision'] ) ) {

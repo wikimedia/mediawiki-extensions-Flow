@@ -197,6 +197,7 @@ class RevisionFormatter {
 	 * @throws \Exception
 	 * @throws \Flow\Exception\InvalidInputException
 	 * @throws TimestampException
+	 * @suppress PhanUndeclaredMethod Phan doesn't infer types from the instanceofs
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$this->permissions->setUser( $ctx->getUser() );
@@ -499,6 +500,7 @@ class RevisionFormatter {
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();
+		// @phan-suppress-next-line PhanUndeclaredMethod Checks method_exists
 		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
 		if ( $actionTypes === null ) {
@@ -708,6 +710,7 @@ class RevisionFormatter {
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();
+		// @phan-suppress-next-line PhanUndeclaredMethod Checks method_exists
 		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
@@ -717,6 +720,7 @@ class RevisionFormatter {
 		}
 
 		$links = [];
+		$diffCallback = null;
 		foreach ( $linkTypes as $type ) {
 			switch ( $type ) {
 			case 'watch-topic':
@@ -1065,11 +1069,13 @@ class RevisionFormatter {
 
 			/** @var PostRevision $post */
 			$post = $revision->getCollection()->getPost()->getLastRevision();
+			// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
 			$permissionAction = $post->isTopicTitle() ? 'view-topic-title' : 'view';
 			if ( !$this->permissions->isAllowed( $post, $permissionAction ) ) {
 				return '';
 			}
 
+			// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
 			if ( $post->isTopicTitle() ) {
 				return Message::plaintextParam( $this->templating->getContent(
 					$post, 'topic-title-plaintext' ) );
