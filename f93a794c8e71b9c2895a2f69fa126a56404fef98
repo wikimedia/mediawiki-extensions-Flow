@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1e07508_c680279d",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-03-12T17:41:53Z",
+      "side": 1,
+      "message": "These elements (mw-parser-output) don\u0027t appear to be owned by Flow. If the case, then presumably this data key should be namespaced in some way to avoid confusion/conflicts. E.g. mw-flow-* or flow-*",
+      "range": {
+        "startLine": 468,
+        "startChar": 28,
+        "endLine": 468,
+        "endChar": 51
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
