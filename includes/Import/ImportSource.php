@@ -71,7 +71,7 @@ interface IImportTopic extends IImportPost {
 	public function getLogType();
 
 	/**
-	 * @return string[string] A k/v map of strings containing additional
+	 * @return string[] A k/v map of strings containing additional
 	 *  parameters to be stored with the log about importing this topic.
 	 */
 	public function getLogParameters();

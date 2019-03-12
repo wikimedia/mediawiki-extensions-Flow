@@ -39,6 +39,7 @@ class Controller {
 	 *   replies and board for header edits.
 	 * @param Title $ownerTitle Board title
 	 * @return Status
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function validate(
 		IContextSource $context,
