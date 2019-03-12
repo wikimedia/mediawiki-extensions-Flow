@@ -20,7 +20,7 @@ class BaseHrefFixer implements Fixer {
 	protected $baseHref;
 
 	/**
-	 * @param \Article $articlePath path setting for wiki
+	 * @param string $articlePath path setting for wiki
 	 */
 	public function __construct( $articlePath ) {
 		$replacedArticlePath = str_replace( '$1', '', $articlePath );

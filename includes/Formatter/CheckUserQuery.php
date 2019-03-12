@@ -16,6 +16,7 @@ class CheckUserQuery extends AbstractQuery {
 
 	/**
 	 * @param \stdClass[] $rows List of checkuser database rows
+	 * @suppress PhanParamSignatureMismatch The signature doesn't match though
 	 */
 	public function loadMetadataBatch( $rows ) {
 		$needed = [];

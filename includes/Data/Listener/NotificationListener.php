@@ -51,14 +51,17 @@ class NotificationListener extends AbstractListener {
 			break;
 
 		case 'edit-title':
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->notifyPostChange( 'flow-topic-renamed', $object, $metadata );
 			break;
 
 		case 'reply':
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->notifyPostChange( 'flow-post-reply', $object, $metadata );
 			break;
 
 		case 'edit-post':
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->notifyPostChange( 'flow-post-edited', $object, $metadata );
 			break;
 
