@@ -72,10 +72,6 @@ class PostRevisionTopicHistoryStorage implements ObjectStorage {
 	protected function findDescendantQuery( array $query ) {
 		$roots = [ UUID::create( $query['topic_root_id'] ) ];
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
-		if ( $nodeList === false ) {
-			// We can't return the existing $retval, that false data would be cached.
-			return [];
-		}
 
 		/** @var UUID $topicRootId */
 		$topicRootId = UUID::create( $query['topic_root_id'] );

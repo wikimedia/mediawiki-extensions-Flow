@@ -317,6 +317,7 @@ class NotificationController {
 		$user = $revision->getUser();
 		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 
+		$extraData = [];
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
@@ -464,6 +465,7 @@ class NotificationController {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
 		}
 
+		$extraData = [];
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
 		$extraData['topic-title'] = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language );
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
@@ -516,6 +518,7 @@ class NotificationController {
 	 * @return bool|EchoEvent[]
 	 * @throws Exception\InvalidDataException
 	 * @throws \MWException
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	protected function generateMentionEvents(
 		AbstractRevision $content,

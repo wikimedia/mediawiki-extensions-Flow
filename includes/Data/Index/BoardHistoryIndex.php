@@ -26,6 +26,10 @@ abstract class BoardHistoryIndex extends TopKIndex {
 	 */
 	protected $om;
 
+	/**
+	 * @inheritDoc
+	 * @suppress PhanParamReqAfterOpt
+	 */
 	public function __construct(
 		FlowObjectCache $cache,
 		BoardHistoryStorage $storage,

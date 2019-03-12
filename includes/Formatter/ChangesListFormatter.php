@@ -91,11 +91,10 @@ class ChangesListFormatter extends AbstractFormatter {
 		// Below code is inspired by Linker::formatAutocomments
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
 		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-			$title = $row->workflow->getOwnerTitle(),
+			$row->workflow->getOwnerTitle(),
 			$ctx->getLanguage()->getArrow( 'backwards' ),
 			[],
-			[],
-			'noclasses'
+			[]
 		);
 		$summary = '<span class="autocomment">' . $msg->text() . '</span>';
 
