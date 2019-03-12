@@ -29,6 +29,7 @@ class ContentLengthFilter implements SpamFilter {
 	 * @param Title $title
 	 * @param Title $ownerTitle
 	 * @return Status
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function validate(
 		IContextSource $context,

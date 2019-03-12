@@ -48,6 +48,7 @@ $totalResolvedMultipleMatches = 0;
 $totalNoMatch = 0;
 $totalNoChangeRevisions = 0;
 $totalMatchButInvalid = 0;
+$multipleMatches = [];
 foreach ( $it as $batch ) {
 	foreach ( $batch as $rev ) {
 		$item = ExternalStore::fetchFromURL( $rev->rev_content );

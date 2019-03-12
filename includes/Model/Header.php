@@ -44,6 +44,7 @@ class Header extends AbstractRevision {
 	public static function fromStorageRow( array $row, $obj = null ) {
 		/** @var $obj Header */
 		$obj = parent::fromStorageRow( $row, $obj );
+		// @phan-suppress-next-line PhanUndeclaredProperty Type not inferred
 		$obj->workflowId = UUID::create( $row['rev_type_id'] );
 		return $obj;
 	}

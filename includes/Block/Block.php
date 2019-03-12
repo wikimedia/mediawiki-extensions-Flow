@@ -313,6 +313,7 @@ abstract class AbstractBlock implements Block {
 	 * @param AbstractRevision|null $old null when $new is first revision
 	 * @param AbstractRevision $new
 	 * @return bool True when content is allowed by spam filter
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
 		/** @var \Flow\SpamFilter\Controller $spamFilter */

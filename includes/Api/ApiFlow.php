@@ -65,6 +65,9 @@ class ApiFlow extends ApiBase {
 		return $this->moduleManager;
 	}
 
+	/**
+	 * @suppress PhanUndeclaredMethod Phan doesn't infer $module is ApiFlowBase
+	 */
 	public function execute() {
 		// To avoid API warning, register the parameter used to bust browser cache
 		$this->getMain()->getVal( '_' );
