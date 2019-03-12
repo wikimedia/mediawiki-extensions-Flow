@@ -367,12 +367,12 @@ abstract class ApiBackend implements LoggerAwareInterface {
 
 class RemoteApiBackend extends ApiBackend {
 	/**
-	 * @param string
+	 * @var string
 	 */
 	protected $apiUrl;
 
 	/**
-	 * @param string|null
+	 * @var string|null
 	 */
 	protected $cacheDir;
 
@@ -451,6 +451,7 @@ class LocalApiBackend extends ApiBackend {
 				'error' => [
 					'code' => $msg->getApiCode(),
 					'info' => ApiErrorFormatter::stripMarkup(
+						// @phan-suppress-next-line PhanUndeclaredMethod Phan is mostly right
 						$msg->inLanguage( 'en' )->useDatabase( 'false' )->text()
 					),
 				] + $msg->getApiData()

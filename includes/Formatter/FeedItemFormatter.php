@@ -42,7 +42,8 @@ class FeedItemFormatter extends AbstractFormatter {
 		// is always the most specific, we use a similar pattern
 		// to above in TemplateHelper::historyTimestamp too.
 		if ( $url === '' && $data['links'] ) {
-			$link = reset( array_keys( $data['links'] ) );
+			$keys = array_keys( $data['links'] );
+			$link = reset( $keys );
 			$url = $data['links'][$link]->getFullURL();
 		}
 

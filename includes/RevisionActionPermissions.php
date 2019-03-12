@@ -19,7 +19,7 @@ class RevisionActionPermissions {
 	/**
 	 * @var FlowActions
 	 */
-	protected $actions = [];
+	protected $actions;
 
 	/**
 	 * @var User
@@ -111,6 +111,7 @@ class RevisionActionPermissions {
 	 * @param AbstractRevision|null $revision
 	 * @param string $action Multiple parameters to check if either of the provided actions are allowed
 	 * @return bool
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function isAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
 		$actions = func_get_args();
@@ -181,6 +182,7 @@ class RevisionActionPermissions {
 	 * @param AbstractRevision|null $revision
 	 * @param string $action
 	 * @return bool
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
@@ -209,6 +211,7 @@ class RevisionActionPermissions {
 	 * @param string $action
 	 * @param string $type
 	 * @return Closure|string
+	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function getPermission( AbstractRevision $revision = null, $action, $type = 'permissions' ) {
 		// $revision may be null if the revision has yet to be created

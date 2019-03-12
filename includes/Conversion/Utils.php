@@ -495,6 +495,7 @@ abstract class Utils {
 	 * @param string $html HTML
 	 * @return string HTML with <head> information encoded as attributes on the <body>
 	 * @throws WikitextException
+	 * @suppress PhanUndeclaredMethod Apparently a phan bug / wrong built-in PHP stubs
 	 */
 	public static function encodeHeadInfo( $html ) {
 		$dom = ContentFixer::createDOM( $html );
@@ -517,6 +518,7 @@ abstract class Utils {
 	 * @param string $html HTML (may be a full document, <body> tag  or unwrapped <body> contents)
 	 * @return string HTML (<html> tag with <head> and <body>) with the <base> tag restored
 	 * @throws WikitextException
+	 * @suppress PhanUndeclaredMethod Apparently a phan bug / wrong built-in PHP stubs
 	 */
 	public static function decodeHeadInfo( $html ) {
 		$dom = ContentFixer::createDOM( $html );
@@ -537,6 +539,7 @@ abstract class Utils {
 	 *
 	 * @param string $html
 	 * @return string|null Parsoid version number, or null if none found
+	 * @suppress PhanUndeclaredMethod Apparently a phan bug / wrong built-in PHP stubs
 	 */
 	public static function getParsoidVersion( $html ) {
 		$dom = ContentFixer::createDOM( $html );

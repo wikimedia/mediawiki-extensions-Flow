@@ -380,8 +380,8 @@ class TreeRepository {
 		return $identityMap;
 	}
 
-	public function fetchSubtree( UUID $root, $maxDepth = null ) {
-		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
+	public function fetchSubtree( UUID $root ) {
+		$identityMap = $this->fetchSubtreeIdentityMap( $root );
 		if ( !isset( $identityMap[$root->getAlphadecimal()] ) ) {
 			throw new DataModelException( 'No root exists in the identityMap', 'process-data' );
 		}
@@ -397,7 +397,7 @@ class TreeRepository {
 	 * Return the id's of all nodes which are a descendant of provided roots
 	 *
 	 * @param UUID[] $roots
-	 * @return array|bool map from root id to its descendant list or false
+	 * @return array map from root id to its descendant list
 	 * @throws \Flow\Exception\InvalidInputException
 	 */
 	public function fetchSubtreeNodeList( array $roots ) {
@@ -407,10 +407,6 @@ class TreeRepository {
 			$roots,
 			[ $this, 'fetchSubtreeNodeListFromDb' ]
 		);
-		if ( $res === false ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failure fetching node list from cache' );
-			return false;
-		}
 		// $idx is a binary UUID
 		$retval = [];
 		foreach ( $res as $idx => $val ) {

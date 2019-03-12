@@ -30,6 +30,8 @@ require_once __DIR__ . '/../../CirrusSearch/includes/Maintenance/Maintenance.php
  * Similar to CirrusSearch's UpdateOneSearchIndexConfig.
  *
  * @ingroup Maintenance
+ * @phan-file-suppress PhanUndeclaredClassMethod,PhanTypeMismatchArgument,PhanUndeclaredStaticMethod
+ * @phan-file-suppress PhanParamTooFew,PhanUndeclaredMethod This script is outdated, T227563
  */
 class FlowSearchConfig extends Maintenance {
 	/**
@@ -38,7 +40,7 @@ class FlowSearchConfig extends Maintenance {
 	protected $indexType;
 
 	/**
-	 * @var array
+	 * @var array|string
 	 */
 	protected $maxShardsPerNode;
 
