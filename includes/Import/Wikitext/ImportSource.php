@@ -29,6 +29,21 @@ class ImportSource implements IImportSource {
 	protected $user;
 
 	/**
+	 * @var Title
+	 */
+	private $title;
+
+	/**
+	 * @var Parser|StubObject
+	 */
+	private $parser;
+
+	/**
+	 * @var string|null
+	 */
+	private $headerSuffix;
+
+	/**
 	 * @param Title $title
 	 * @param Parser|StubObject $parser
 	 * @param User $user User to take actions as

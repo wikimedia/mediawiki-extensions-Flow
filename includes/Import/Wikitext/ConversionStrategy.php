@@ -64,6 +64,11 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $user;
 
 	/**
+	 * @var Title[]
+	 */
+	private $noConvertTemplates;
+
+	/**
 	 * @param Parser|StubObject $parser
 	 * @param SourceStoreInterface $sourceStore
 	 * @param LoggerInterface $logger

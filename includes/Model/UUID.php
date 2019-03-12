@@ -21,7 +21,7 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class UUID implements ApiSerializable {
 	/**
-	 * @var UUID[][][]
+	 * @var UUID[][]
 	 */
 	private static $instances;
 

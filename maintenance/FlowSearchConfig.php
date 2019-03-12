@@ -38,7 +38,7 @@ class FlowSearchConfig extends Maintenance {
 	protected $indexType;
 
 	/**
-	 * @var array
+	 * @var array|string
 	 */
 	protected $maxShardsPerNode;
 

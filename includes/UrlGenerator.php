@@ -1,4 +1,5 @@
 <?php
+// @phan-file-suppress PhanParamReqAfterOpt All nullable
 
 namespace Flow;
 
@@ -26,6 +27,10 @@ use RecentChange;
  * Anchor instances..
  */
 class UrlGenerator {
+	/**
+	 * @var CachingObjectMapper
+	 */
+	private $workflowMapper;
 
 	public function __construct( CachingObjectMapper $workflowMapper ) {
 		$this->workflowMapper = $workflowMapper;
