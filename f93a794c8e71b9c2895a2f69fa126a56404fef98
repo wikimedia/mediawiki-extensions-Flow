@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "a277d34a_c950b573",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-03-12T21:59:49Z",
+      "side": 1,
+      "message": "These mw-parser-output divs are in fact owned by Flow: they\u0027re inside the Parsoid output for Flow comments. (You\u0027re right that hook calls shouldn\u0027t need to be deduplicated though.",
+      "parentUuid": "4da99b9f_47051248",
+      "range": {
+        "startLine": 468,
+        "startChar": 28,
+        "endLine": 468,
+        "endChar": 51
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca683bd2_b80fd798",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 2
