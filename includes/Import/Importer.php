@@ -180,7 +180,7 @@ class HistoricalUIDGenerator extends UIDGenerator {
 	 */
 	protected static function rotateNodeId( UIDGenerator $gen ) {
 		// 4 bytes = 32 bits
-		$gen->nodeId32 = \Wikimedia\base_convert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
+		$gen->nodeId32 = \Wikimedia\base_convert( MWCryptRand::generateHex( 8 ), 16, 2, 32 );
 		// 6 bytes = 48 bits, used for 128bit uid's
 		// $gen->nodeId48 = \Wikimedia\base_convert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
 	}
@@ -236,6 +236,16 @@ class PageImportState {
 	 * @var SplQueue
 	 */
 	protected $deferredQueue;
+
+	/**
+	 * @var SourceStoreInterface
+	 */
+	private $sourceStore;
+
+	/**
+	 * @var \Wikimedia\Rdbms\IMaintainableDatabase
+	 */
+	private $dbw;
 
 	public function __construct(
 		Workflow $boardWorkflow,
@@ -463,6 +473,11 @@ class TopicImportState {
 	 * @var string
 	 */
 	protected $lastUpdated;
+
+	/**
+	 * @var ReflectionProperty
+	 */
+	private $workflowUpdatedProperty;
 
 	public function __construct(
 		PageImportState $parent,
@@ -807,6 +822,7 @@ class TalkpageImportOperation {
 			$topicWorkflow = $state->get( 'Workflow', $topicId );
 			$topicTitle = $state->getTopRevision( 'PostRevision', $topicId );
 			if ( $topicWorkflow instanceof Workflow && $topicTitle instanceof PostRevision ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type not inferred from instanceof
 				return new TopicImportState( $state, $topicWorkflow, $topicTitle );
 			}
 		}
@@ -866,6 +882,7 @@ class TalkpageImportOperation {
 	 * @param IImportPost $post
 	 * @param PostRevision $replyTo
 	 * @param string $logPrefix
+	 * @suppress PhanTypeMismatchArgument
 	 */
 	public function importPost(
 		TopicImportState $state,

@@ -9,6 +9,7 @@ use Flow\Model\UUID;
 class LogQuery extends AbstractQuery {
 	/**
 	 * @param UUID[] $uuids
+	 * @suppress PhanParamSignatureMismatch It doesn't match though
 	 */
 	public function loadMetadataBatch( $uuids ) {
 		$posts = $this->loadPostsBatch( $uuids );

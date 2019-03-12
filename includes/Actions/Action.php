@@ -78,7 +78,7 @@ class FlowAction extends Action {
 			// This may mean it is a non-Flow page in a Flow namespace, if
 			// page_content_model is populated but rev_content_model is not.
 
-			throw new ErrorPageError( 'nosuchaction', 'flow-action-wrong-title-content-model', $titleContentModel );
+			throw new ErrorPageError( 'nosuchaction', 'flow-action-wrong-title-content-model', [ $titleContentModel ] );
 		}
 
 		// @todo much of this seems to duplicate BoardContent::getParserOutput
