@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "c97c5046_ea1071f9",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2019-03-13T19:10:57Z",
+      "side": 1,
+      "message": "Table sorting appeared to behave strangely when fired twice. It would be great if ever hook user handle double firing and wrote performant code, but I\u0027m not sure we can rely on that.",
+      "parentUuid": "a277d34a_c950b573",
+      "range": {
+        "startLine": 468,
+        "startChar": 28,
+        "endLine": 468,
+        "endChar": 51
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca683bd2_b80fd798",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 2
@@ -108,6 +132,30 @@
       "writtenOn": "2019-03-12T17:43:47Z",
       "side": 1,
       "message": "by whom? by core? If so, then the above would already handle that, right? mw.hook has memory (by design).",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbe7552b_59df0da6",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2019-03-13T19:10:57Z",
+      "side": 1,
+      "message": "By mediawiki init script, but I see it can probably be dropped - will test.",
+      "parentUuid": "ca683bd2_b80fd798",
       "range": {
         "startLine": 29,
         "startChar": 5,
