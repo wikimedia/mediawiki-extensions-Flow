@@ -177,7 +177,7 @@ abstract class AbstractRevision {
 		$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
-		$obj->contentUrl = isset( $row['rev_content_url'] ) ? $row['rev_content_url'] : null;
+		$obj->contentUrl = $row['rev_content_url'] ?? null;
 		$obj->decompressedContent = null;
 
 		$obj->moderationState = $row['rev_mod_state'];
@@ -198,9 +198,8 @@ abstract class AbstractRevision {
 			? UUID::create( $row['rev_last_edit_id'] ) : null;
 		$obj->lastEditUser = UserTuple::newFromArray( $row, 'rev_edit_user_' );
 
-		$obj->contentLength = isset( $row['rev_content_length'] ) ? $row['rev_content_length'] : 0;
-		$obj->previousContentLength = isset( $row['rev_previous_content_length'] )
-			? $row['rev_previous_content_length'] : 0;
+		$obj->contentLength = $row['rev_content_length'] ?? 0;
+		$obj->previousContentLength = $row['rev_previous_content_length'] ?? 0;
 
 		return $obj;
 	}

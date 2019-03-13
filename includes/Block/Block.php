@@ -250,7 +250,7 @@ abstract class AbstractBlock implements Block {
 	 * @return \Message
 	 */
 	public function getErrorMessage( $type ) {
-		return isset( $this->errors[$type]['message'] ) ? $this->errors[$type]['message'] : null;
+		return $this->errors[$type]['message'] ?? null;
 	}
 
 	/**
@@ -258,7 +258,7 @@ abstract class AbstractBlock implements Block {
 	 * @return mixed
 	 */
 	public function getErrorExtra( $type ) {
-		return isset( $this->errors[$type]['extra'] ) ? $this->errors[$type]['extra'] : null;
+		return $this->errors[$type]['extra'] ?? null;
 	}
 
 	/**

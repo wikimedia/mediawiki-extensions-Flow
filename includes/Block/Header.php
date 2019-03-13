@@ -124,7 +124,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->context->getUser(),
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
-			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+			$this->submitted['format'] ?? 'wikitext',
 			'edit-header',
 			$this->workflow->getArticleTitle()
 		);
@@ -157,7 +157,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->context->getUser(),
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
-			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+			$this->submitted['format'] ?? 'wikitext',
 			'create-header'
 		);
 
@@ -202,13 +202,13 @@ class HeaderBlock extends AbstractBlock {
 
 		switch ( $this->action ) {
 			case 'view':
-				$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+				$format = $options['format'] ?? 'fixed-html';
 				$output += $this->renderRevisionApi( $format );
 				break;
 
 			case 'edit-header':
 				// default to wikitext for no-JS
-				$format = isset( $options['format'] ) ? $options['format'] : 'wikitext';
+				$format = $options['format'] ?? 'wikitext';
 				$output += $this->renderRevisionApi( $format );
 				break;
 
@@ -220,7 +220,7 @@ class HeaderBlock extends AbstractBlock {
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$output += $this->renderSingleViewApi( $options['revId'] );
 				} else {
-					$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+					$format = $options['format'] ?? 'fixed-html';
 					$output += $this->renderRevisionApi( $format );
 				}
 				break;

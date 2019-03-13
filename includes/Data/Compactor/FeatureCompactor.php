@@ -69,7 +69,7 @@ class FeatureCompactor implements Compactor {
 	 */
 	public function expandCacheResult( array $cached, array $keyToQuery ) {
 		foreach ( $cached as $key => $rows ) {
-			$query = isset( $keyToQuery[$key] ) ? $keyToQuery[$key] : [];
+			$query = $keyToQuery[$key] ?? [];
 			if ( !is_array( $query ) ) {
 				throw new DataModelException( 'Cached data for "' . $key .
 					'"" should map to a valid query: ' . print_r( $query, true ), 'process-data' );

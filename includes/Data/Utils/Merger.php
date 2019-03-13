@@ -41,7 +41,7 @@ class Merger {
 			if ( $id === null ) {
 				continue;
 			}
-			$source[$idx][$name] = isset( $res[$id] ) ? $res[$id] : $default;
+			$source[$idx][$name] = $res[$id] ?? $default;
 		}
 		return $source;
 	}
@@ -89,7 +89,7 @@ class Merger {
 				if ( $id === null ) {
 					continue;
 				}
-				$multiSource[$i][$j][$name] = isset( $res[$id] ) ? $res[$id] : $default;
+				$multiSource[$i][$j][$name] = $res[$id] ?? $default;
 			}
 		}
 		return $multiSource;

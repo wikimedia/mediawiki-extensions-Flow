@@ -45,7 +45,7 @@ abstract class CachedData {
 
 		$output = [];
 		foreach ( $ids as $id ) {
-			$output[$id] = isset( $this->data[$id] ) ? $this->data[$id] : null;
+			$output[$id] = $this->data[$id] ?? null;
 		}
 
 		return $output;

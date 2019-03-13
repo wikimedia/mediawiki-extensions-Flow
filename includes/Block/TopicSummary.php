@@ -140,7 +140,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->context->getUser(),
 				$this->submitted['summary'],
 				// default to wikitext when not specified, for old API requests
-				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+				$this->submitted['format'] ?? 'wikitext',
 				'create-topic-summary'
 			);
 
@@ -177,7 +177,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->context->getUser(),
 				$this->submitted['summary'],
 				// default to wikitext when not specified, for old API requests
-				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+				$this->submitted['format'] ?? 'wikitext',
 				'edit-topic-summary',
 				$this->workflow->getArticleTitle()
 			);
@@ -292,13 +292,13 @@ class TopicSummaryBlock extends AbstractBlock {
 					$formatter = Container::get( 'formatter.revisionview' );
 					$output['revision'] = $formatter->formatApi( $row, $this->context );
 				} else {
-					$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+					$format = $options['format'] ?? 'fixed-html';
 					$output += $this->renderNewestTopicSummary( $format );
 				}
 				break;
 			case 'edit-topic-summary':
 				// default to wikitext for no-JS
-				$format = isset( $options['format'] ) ? $options['format'] : 'wikitext';
+				$format = $options['format'] ?? 'wikitext';
 				$output += $this->renderNewestTopicSummary( $format );
 				break;
 			case 'undo-edit-topic-summary':

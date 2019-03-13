@@ -74,9 +74,7 @@ class ReferenceClarifier {
 		$fromT = $from->getPrefixedDBkey();
 		$toT = 'title:' . $to->getPrefixedDBkey();
 
-		return isset( $this->referenceCache[$fromT][$toT] )
-			? $this->referenceCache[$fromT][$toT]
-			: [];
+		return $this->referenceCache[$fromT][$toT] ?? [];
 	}
 
 	/**

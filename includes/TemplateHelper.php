@@ -228,7 +228,7 @@ class TemplateHelper {
 		}
 		return self::timestamp(
 			$args[0],
-			isset( $args[1] ) ? $args[1] : false
+			$args[1] ?? false
 		);
 	}
 
@@ -279,7 +279,7 @@ class TemplateHelper {
 	 * @return string[] array(html, 'raw')
 	 */
 	public static function htmlHelper( array $args, array $named ) {
-		return self::html( isset( $args[0] ) ? $args[0] : 'undefined' );
+		return self::html( $args[0] ?? 'undefined' );
 	}
 
 	/**
@@ -314,7 +314,7 @@ class TemplateHelper {
 	 */
 	public static function eachPost( array $context, $postIds, array $options ) {
 		/** @var callable $inverse */
-		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
+		$inverse = $options['inverse'] ?? null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
 
@@ -511,7 +511,7 @@ class TemplateHelper {
 		$data['args'] = $args;
 		$baseConfig = [
 			// 'infusable' => true,
-			'id' => isset( $named[ 'name' ] ) ? $named[ 'name' ] : null,
+			'id' => $named[ 'name' ] ?? null,
 			'classes' => $classes,
 			'data' => $data
 		];
@@ -687,7 +687,7 @@ class TemplateHelper {
 	 * @return string value of property
 	 */
 	public static function user( array $args, array $named ) {
-		$feature = isset( $args[0] ) ? $args[0] : 'name';
+		$feature = $args[0] ?? 'name';
 		$user = RequestContext::getMain()->getUser();
 		$userInfo = [
 			'id' => $user->getId(),

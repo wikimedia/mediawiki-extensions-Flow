@@ -211,7 +211,7 @@ class TreeRepository {
 
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( [ $descendant ] );
-		return isset( $map[$descendant->getAlphadecimal()] ) ? $map[$descendant->getAlphadecimal()] : null;
+		return $map[$descendant->getAlphadecimal()] ?? null;
 	}
 
 	/**
@@ -293,7 +293,7 @@ class TreeRepository {
 	public function findRootPath( UUID $descendant ) {
 		$paths = $this->findRootPaths( [ $descendant ] );
 
-		return isset( $paths[$descendant->getAlphadecimal()] ) ? $paths[$descendant->getAlphadecimal()] : null;
+		return $paths[$descendant->getAlphadecimal()] ?? null;
 	}
 
 	/**
