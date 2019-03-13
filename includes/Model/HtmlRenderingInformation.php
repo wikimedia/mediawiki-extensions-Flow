@@ -86,9 +86,9 @@ class HtmlRenderingInformation implements ApiSerializable {
 	public static function fromArray( array $info ) {
 		return new HtmlRenderingInformation(
 			$info['html'],
-			isset( $info['modules'] ) ? $info['modules'] : [],
-			isset( $info['modulestyles'] ) ? $info['modulestyles'] : [],
-			isset( $info['headitems'] ) ? $info['headitems'] : []
+			$info['modules'] ?? [],
+			$info['modulestyles'] ?? [],
+			$info['headitems'] ?? []
 		);
 	}
 

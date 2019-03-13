@@ -79,7 +79,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 
 		foreach ( $revisions as $i => $serialized ) {
 			$alpha = $serialized['postId'];
-			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : [];
+			$revisions[$i]['replies'] = $replies[$alpha] ?? [];
 		}
 
 		$list = [];
@@ -141,7 +141,7 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		} while ( !$stack->isEmpty() );
 
 		/** @var Workflow|null $workflow */
-		$workflow = isset( $workflows[$postAlphaId] ) ? $workflows[$postAlphaId] : null;
+		$workflow = $workflows[$postAlphaId] ?? null;
 		$ts = $workflow ? $workflow->getLastUpdatedObj()->getTimestamp() : 0;
 		return [
 			'reply_count' => $replies,

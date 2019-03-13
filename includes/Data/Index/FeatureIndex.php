@@ -143,7 +143,7 @@ abstract class FeatureIndex implements Index {
 	 * @return string[]|false The columns to sort by, or false if no sorting is defined
 	 */
 	public function getSort() {
-		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
+		return $this->options['sort'] ?? false;
 	}
 
 	/**
@@ -408,7 +408,7 @@ abstract class FeatureIndex implements Index {
 		// retrieve from cache - this is cheap, it's is local storage
 		$cached = $this->cache->getMulti( $cacheKeys );
 		foreach ( $cached as $i => $result ) {
-			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+			$limit = $options['limit'] ?? $this->getLimit();
 			$cached[$i] = array_splice( $result, 0, $limit );
 		}
 

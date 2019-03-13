@@ -137,7 +137,7 @@ class TopicListBlock extends AbstractBlock {
 				$user,
 				$this->submitted['content'],
 				// default to wikitext when not specified, for old API requests
-				isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext'
+				$this->submitted['format'] ?? 'wikitext'
 			);
 			$topicTitle->setChildren( [ $firstPost ] );
 		}
@@ -242,7 +242,7 @@ class TopicListBlock extends AbstractBlock {
 		// Repeating the default until we use the API for everything (bug 72659)
 		// Also, if this is removed other APIs (i.e. ApiFlowNewTopic) may need
 		// to be adjusted if they trigger a rendering of this block.
-		$isTocOnly = isset( $options['toconly'] ) ? $options['toconly'] : false;
+		$isTocOnly = $options['toconly'] ?? false;
 
 		if ( $isTocOnly ) {
 			/** @var TocTopicListFormatter $serializer */
@@ -250,7 +250,7 @@ class TopicListBlock extends AbstractBlock {
 		} else {
 			/** @var TopicListFormatter $serializer */
 			$serializer = Container::get( 'formatter.topiclist' );
-			$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+			$format = $options['format'] ?? 'fixed-html';
 			$serializer->setContentFormat( $format );
 		}
 
