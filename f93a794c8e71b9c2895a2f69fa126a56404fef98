@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "5930c371_8da3976a",
+        "filename": "modules/engine/components/common/flow-component-events.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2019-03-13T19:14:53Z",
+      "side": 1,
+      "message": "It appears it binds the click handlers twice, so instead of going unsorted\u003easc\u003edesc\u003easc\u003edesc\u003e... it goes unsorted\u003edesc\u003edesc\u003edesc...",
+      "parentUuid": "c97c5046_ea1071f9",
+      "range": {
+        "startLine": 468,
+        "startChar": 28,
+        "endLine": 468,
+        "endChar": 51
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ca683bd2_b80fd798",
         "filename": "modules/flow-initialize.js",
         "patchSetId": 2
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "By mediawiki init script, but I see it can probably be dropped - will test.",
       "parentUuid": "ca683bd2_b80fd798",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "f93a794c8e71b9c2895a2f69fa126a56404fef98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbd4910f_937f3ee3",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2019-03-13T19:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbe7552b_59df0da6",
       "range": {
         "startLine": 29,
         "startChar": 5,
