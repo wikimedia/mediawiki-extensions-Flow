@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"apihelp-flow+edit-header-param-content": "میٛنوناْ سی تۉزی",
+	"apihelp-flow+edit-post-description": "آلشدکاری میٛنوناْ فریشنار.",
+	"apihelp-flow+edit-post-summary": "آلشدکاری میٛنوناْ یٱ فریشنار.",
+	"apihelp-flow+edit-post-param-postId": "نشوݩ دیارکون فریشنار.",
+	"apihelp-flow+edit-post-param-content": "میٛنوناْ سی فریشنار",
+	"apihelp-flow+edit-title-description": "آلشدکاری یٱ داسوݩ.",
+	"apihelp-flow+edit-title-summary": "آلشدکاری یٱ داسوݩ.",
+	"apihelp-flow+view-post-description": "دیڌن یٱ فریشنار",
+	"apihelp-flow+view-post-summary": "دیڌن یٱ فریشنار",
+	"apihelp-flow+view-topic-description": "دیڌن یٱ داسوݩ",
+	"apihelp-flow+view-topic-summary": "دیڌن یٱ داسوݩ",
+	"apihelp-flow+view-topic-summary-description": "دیڌن خولاساْ یٱ داسوݩ",
+	"apihelp-flow+view-topic-summary-summary": "دیڌن خولاساْ یٱ داسوݩ",
+	"apihelp-flow+view-topiclist-description": "دیڌن نومگٱ داسونٱل",
+	"apihelp-flow+view-topiclist-summary": "دیڌن نومگٱ داسونٱل"
+}
