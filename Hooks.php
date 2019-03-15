@@ -263,10 +263,10 @@ class FlowHooks {
 			"$dir/db_patches/patch-drop-flow_subscription.sql" );
 
 		require_once __DIR__ . '/maintenance/FlowUpdateRecentChanges.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );
 
 		require_once __DIR__ . '/maintenance/FlowSetUserIp.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowSetUserIp' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowSetUserIp::class );
 
 		/*
 		 * Remove old *_user_text columns once the maintenance script that
@@ -281,31 +281,31 @@ class FlowHooks {
 		}
 
 		require_once __DIR__ . '/maintenance/FlowUpdateUserWiki.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateUserWiki' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateUserWiki::class );
 
 		require_once __DIR__ . '/maintenance/FlowUpdateRevisionTypeId.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRevisionTypeId::class );
 
 		require_once __DIR__ . '/maintenance/FlowPopulateLinksTables.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateLinksTables::class );
 
 		require_once __DIR__ . '/maintenance/FlowFixLog.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLog' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowFixLog::class );
 
 		require_once __DIR__ . '/maintenance/FlowUpdateWorkflowPageId.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowPageId' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateWorkflowPageId::class );
 
 		require_once __DIR__ . '/maintenance/FlowCreateTemplates.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowCreateTemplates' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowCreateTemplates::class );
 
 		require_once __DIR__ . '/maintenance/FlowFixLinks.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowFixLinks' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowFixLinks::class );
 
 		require_once __DIR__ . '/maintenance/FlowUpdateBetaFeaturePreference.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateBetaFeaturePreference' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateBetaFeaturePreference::class );
 
 		require_once __DIR__ . '/maintenance/FlowPopulateRefId.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateRefId' );
+		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateRefId::class );
 
 		/*
 		 * Add primary key, but only after we've made sure the newly added
