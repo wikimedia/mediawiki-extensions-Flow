@@ -172,7 +172,7 @@ class SubmissionHandler {
 			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
 		}
 
-		$workflow->getArticleTitle()->purgeSquid();
+		$workflow->getArticleTitle()->purgeCdn();
 
 		return $results;
 	}
