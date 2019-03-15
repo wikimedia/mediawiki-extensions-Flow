@@ -64,7 +64,7 @@ class BadImageRemover implements Fixer {
 			return;
 		}
 
-		$image = Utils::createRelativeTitle( $resource, $title );
+		$image = Utils::createRelativeTitle( rawurldecode( $resource ), $title );
 		if ( !$image ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Could not construct title for node: ' .
 				$node->ownerDocument->saveXML( $node ) );
