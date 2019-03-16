@@ -97,7 +97,7 @@ class TopicListQuery extends AbstractQuery {
 
 		foreach ( $results as $result ) {
 			$alpha = $result->revision->getPostId()->getAlphadecimal();
-			$result->replies = isset( $replies[$alpha] ) ? $replies[$alpha] : [];
+			$result->replies = $replies[$alpha] ?? [];
 		}
 
 		return $results;

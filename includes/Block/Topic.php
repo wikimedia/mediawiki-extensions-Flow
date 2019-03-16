@@ -239,7 +239,7 @@ class TopicBlock extends AbstractBlock {
 			$this->context->getUser(),
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
-			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext'
+			$this->submitted['format'] ?? 'wikitext'
 		);
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
@@ -285,9 +285,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		// Moderation state supplied in request parameters
-		$moderationState = isset( $this->submitted['moderationState'] )
-			? $this->submitted['moderationState']
-			: null;
+		$moderationState = $this->submitted['moderationState'] ?? null;
 
 		// $moderationState should be a string like 'restore', 'suppress', etc.  The exact strings allowed
 		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
@@ -393,7 +391,7 @@ class TopicBlock extends AbstractBlock {
 			$this->context->getUser(),
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
-			isset( $this->submitted['format'] ) ? $this->submitted['format'] : 'wikitext',
+			$this->submitted['format'] ?? 'wikitext',
 			'edit-post',
 			$this->workflow->getArticleTitle()
 		);
@@ -621,7 +619,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicApi( array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
-		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+		$format = $options['format'] ?? 'fixed-html';
 		$serializer->setContentFormat( $format );
 
 		if ( !$workflowId ) {
@@ -665,7 +663,7 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
 
-		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+		$format = $options['format'] ?? 'fixed-html';
 		$serializer = $this->getRevisionFormatter( $format );
 
 		if ( !$postId ) {
@@ -682,7 +680,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			// $postId is only set for lock-topic, which should default to
 			// wikitext instead of html
-			$format = isset( $options['format'] ) ? $options['format'] : 'wikitext';
+			$format = $options['format'] ?? 'wikitext';
 			$serializer->setContentFormat( $format, UUID::create( $postId ) );
 		}
 
@@ -767,7 +765,7 @@ class TopicBlock extends AbstractBlock {
 	) {
 		global $wgRequest;
 
-		$format = isset( $options['format'] ) ? $options['format'] : 'fixed-html';
+		$format = $options['format'] ?? 'fixed-html';
 		$serializer = $this->getRevisionFormatter( $format );
 		$serializer->setIncludeHistoryProperties( true );
 

@@ -223,10 +223,8 @@ class FlowSearchConfig extends Maintenance {
 		$this->indexAllocation = $wgFlowSearchIndexAllocation;
 		$this->maintenanceTimeout = $wgFlowSearchMaintenanceTimeout;
 		$this->refreshInterval = $wgFlowSearchRefreshInterval;
-		$this->maxShardsPerNode = isset( $wgFlowSearchMaxShardsPerNode[$this->indexType] )
-			? $wgFlowSearchMaxShardsPerNode[$this->indexType] : 'unlimited';
-		$this->cacheWarmers = isset( $wgFlowSearchCacheWarmers[$this->indexType] )
-			? $wgFlowSearchCacheWarmers[$this->indexType] : [];
+		$this->maxShardsPerNode = $wgFlowSearchMaxShardsPerNode[$this->indexType] ?? 'unlimited';
+		$this->cacheWarmers = $wgFlowSearchCacheWarmers[$this->indexType] ?? [];
 
 		$this->indexIdentifier = $this->utils->pickIndexIdentifierFromOption(
 			$this->getOption( 'indexIdentifier', 'current' ), $this->getIndexTypeName() );

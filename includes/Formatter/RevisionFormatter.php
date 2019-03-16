@@ -787,17 +787,14 @@ class RevisionFormatter {
 
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-header':
-				$diffCallback = isset( $diffCallback )
-					? $diffCallback : [ $this->urlGenerator, 'diffHeaderLink' ];
+				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffHeaderLink' ];
 				// don't break, diff links are rendered below
 			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'diff-post':
-				$diffCallback = isset( $diffCallback )
-					? $diffCallback : [ $this->urlGenerator, 'diffPostLink' ];
+				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffPostLink' ];
 				// don't break, diff links are rendered below
 			case 'diff-post-summary':
-				$diffCallback = isset( $diffCallback )
-					? $diffCallback : [ $this->urlGenerator, 'diffSummaryLink' ];
+				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffSummaryLink' ];
 
 				/*
 				 * To diff against previous revision, we don't really need that

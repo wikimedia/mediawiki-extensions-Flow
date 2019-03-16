@@ -101,9 +101,9 @@ class TopKIndex extends FeatureIndex {
 	 * @return array [offset, limit] 0-based index to start with and limit.
 	 */
 	protected function getOffsetLimit( array $rows, array $options ) {
-		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+		$limit = $options['limit'] ?? $this->getLimit();
 
-		$offsetValue = isset( $options['offset-value'] ) ? $options['offset-value'] : null;
+		$offsetValue = $options['offset-value'] ?? null;
 
 		$dir = 'fwd';
 		if (
