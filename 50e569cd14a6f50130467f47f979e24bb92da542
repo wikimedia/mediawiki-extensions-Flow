@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "554272a1_79a66bc8",
+        "filename": "includes/Parsoid/Fixer/BadImageRemover.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-03-18T16:10:20Z",
+      "side": 1,
+      "message": "I think this looks OK. My only question is if we should be using rawurldecode here, as we do in includes/Parsoid/Fixer/WikiLinkFixer#apply.",
+      "revId": "50e569cd14a6f50130467f47f979e24bb92da542",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
