@@ -35,6 +35,18 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 
 			[
+				'Passes through allowed good inline images with percent in name',
+				// expected html after filtering
+				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
+				// input html
+				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return false;
+				}
+			],
+
+			[
 				'Passes through allowed good inline images (with legacy span markup)',
 				// expected html after filtering
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></span> and other stuff</p>',
@@ -76,6 +88,18 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				'<p> and other stuff</p>',
 				// input html
 				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				// accept/decline callback
+				function () {
+					return true;
+				}
+			],
+
+			[
+				'Strips declined inline images with percent in name',
+				// expected html after filtering
+				'<p> and other stuff</p>',
+				// input html
+				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return true;
