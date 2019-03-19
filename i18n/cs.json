@@ -274,7 +274,7 @@
 	"flow-edited-by": "{{GENDER:$1|Upravil|Upravila|Upravil(a)}} $1",
 	"flow-undo": "zrušit editaci",
 	"group-flow-bot": "Roboti pro Strukturované diskuse",
-	"group-flow-bot-member": "{{PLURAL:$1|robot|robotka}} pro Strukturované diskuse",
+	"group-flow-bot-member": "{{GENDER:$1|robot|robotka}} pro Strukturované diskuse",
 	"grouppage-flow-bot": "Project:Roboti pro Strukturované diskuse",
 	"flow-ve-mention-context-item-label": "Zmínit",
 	"flow-ve-mention-inspector-title": "Zmínka",

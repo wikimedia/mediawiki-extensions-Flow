@@ -7,7 +7,8 @@
 			"Nnemo",
 			"Eitvys200",
 			"Manvydasz",
-			"Hugo.arg"
+			"Hugo.arg",
+			"Vogone"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",
@@ -201,6 +202,7 @@
 	"flow-comment-hidden": "Komentaras paslėptas",
 	"flow-comment-moderated": "Pastabos pakeistos",
 	"flow-last-modified": "Paskutinį kartą keista prieš $1",
+	"flow-workflow": "darbo eiga",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|atsakė}} <strong>$4</strong>.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ir {{PLURAL:$5|dar vienas|$5 kitų|100=99+ kitų}} {{GENDER:$1|atsakė}} į <strong>$3</strong>.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|redagavo}} jūsų <span class=\"plainlinks\">[$5 įrašą]</span> [[$3|$4]].",
@@ -256,6 +258,7 @@
 	"flow-recent-topics": "Neseniai aktyvios temos",
 	"flow-special-type": "Tipas",
 	"flow-special-type-post": "Įrašas",
+	"flow-special-type-workflow": "Darbo eiga",
 	"flow-special-uuid": "UUID",
 	"flow-post-undo-hide": "anuliuoti slėpimą",
 	"flow-post-undo-delete": "anuliuoti trynimą",
