@@ -61,7 +61,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->storage = Container::get( 'storage' );
 		// Since this is a one-shot maintenance script just reach in via reflection
-		// to change lenghts
+		// to change lengths
 		$this->contentLengthProperty = new ReflectionProperty(
 			AbstractRevision::class,
 			'contentLength'
