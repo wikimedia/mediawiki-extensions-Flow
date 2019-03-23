@@ -9,7 +9,7 @@ use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
 use LinkBatch;
-use LinkCache;
+use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use Title;
 use WikiPage;
@@ -87,7 +87,7 @@ class LinksTableUpdater {
 		}
 
 		$linkBatch->execute();
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		foreach ( $internalLinks as $title ) {
 			$ns = $title->getNamespace();
