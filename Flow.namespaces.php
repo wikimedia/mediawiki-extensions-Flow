@@ -173,6 +173,11 @@ $namespaceNames['nl'] = [
 	NS_TOPIC => 'Onderwerp',
 ];
 
+/** N'Ko */
+$namespaceNames['nqo'] = [
+	NS_TOPIC => 'ߢߊߝߐߟߌ ߞߎ߲߬ߕߐ߮',
+];
+
 /** Occitan */
 $namespaceNames['oc'] = [
 	NS_TOPIC => 'Subjècte',
