@@ -10,7 +10,7 @@ use Flow\Import\IImportSource;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
-use LinkCache;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use Title;
 use WikitextContent;
@@ -134,7 +134,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		$strategy = $this->createStrategy();
 		$title = Title::newFromText( $pageName );
 		$subjectTitle = $title->getSubjectPage();
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		// Fake whether $subjectTitle exists
 		if ( $subjectExists ) {

@@ -232,7 +232,7 @@ class OptInController {
 		 * page is no longer valid.
 		 */
 		$from->resetArticleID( 0 );
-		$linkCache = \LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->addBadLinkObj( $from );
 
 		/*
