@@ -89,6 +89,7 @@
 	"right-flow-create-board": "pravljenje Flow tabli bilo gde",
 	"right-flow-hide": "skrivanje tema i komentara u Flow-u",
 	"right-flow-lock": "označavanje tema rešenim u Flow-u",
+	"right-flow-delete": "Brisanje tema i objava strukturiranih diskusija",
 	"right-flow-edit-post": "uređivanje tuđih komentara u Flow-u",
 	"flow-cancel-warning": "Uneli ste tekst u ovaj okvir. Da li sigurno želite da ga odbacite?",
 	"flow-load-more": "Učitaj još",
