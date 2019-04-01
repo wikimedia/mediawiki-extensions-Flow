@@ -54,6 +54,11 @@ $namespaceNames['ckb'] = [
 	NS_TOPIC => 'بابه‌ت',
 ];
 
+/** Czech */
+$namespaceNames['cs'] = [
+	NS_TOPIC => 'Téma',
+];
+
 /** German */
 $namespaceNames['de'] = [
 	NS_TOPIC => 'Thema',
