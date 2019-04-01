@@ -201,7 +201,9 @@ abstract class FeatureIndex implements Index {
 		}
 		$oldCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $old, 'alphadecimal' ) );
 		$newCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
-		if ( ObjectManager::arrayEquals( $oldIndexed, $newIndexed ) ) {
+		$oldIndexedForComparison = UUID::convertUUIDs( $oldIndexed, 'alphadecimal' );
+		$newIndexedForComparison = UUID::convertUUIDs( $newIndexed, 'alphadecimal' );
+		if ( ObjectManager::arrayEquals( $oldIndexedForComparison, $newIndexedForComparison ) ) {
 			if ( ObjectManager::arrayEquals( $oldCompacted, $newCompacted ) ) {
 				// Nothing changed in the index
 				return;
