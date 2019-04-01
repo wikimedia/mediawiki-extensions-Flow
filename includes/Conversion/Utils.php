@@ -532,6 +532,20 @@ abstract class Utils {
 	}
 
 	/**
+	 * Get the Parsoid version from HTML content stored in the database.
+	 * This interprets the transformation done by encodeHeadInfo().
+	 *
+	 * @param string $html
+	 * @return string|null Parsoid version number, or null if none found
+	 */
+	public static function getParsoidVersion( $html ) {
+		$dom = ContentFixer::createDOM( $html );
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		$version = $body->getAttribute( 'parsoid-version' );
+		return $version !== '' ? $version : null;
+	}
+
+	/**
 	 * Subpage links from Parsoid don't contain any direct context, its applied via
 	 * a <base href="..."> tag, so here we apply a similar rule resolving against
 	 * $title
