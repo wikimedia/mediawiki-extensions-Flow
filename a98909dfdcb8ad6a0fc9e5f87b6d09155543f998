@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef75d4e3_c73a4fe6",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-04-03T18:44:38Z",
+      "side": 1,
+      "message": "I believe this only works for the first wikipage.content firing done by MW core, and not for subsequent firings done by Flow.\n\nflow-component-events.js fires wikipage.content on a collection of nodes that are all .mw-parser-output divs. But .find() only searches inside the nodes in a collection and doesn\u0027t look at the node itself, so $somethingThatHasTheMwParserOutputClass.find( \u0027.mw-parser-output\u0027 ) will return an empty collection. I believe this means that when flow-component-event.js line 471 fires the hook, this listener will not set flow-wikipage-content-fired on those divs.\n\nThis is a bit confusing, and I\u0027m not sure if it\u0027s OK to miss these (or if it\u0027s intended behavior). If it\u0027s not, it should be fixed (by using $content.find( \u0027.mw-parser-output\u0027 ).addBack( \u0027.mw-parser-output\u0027 ) ), and if it is, there should be a comment that explains what\u0027s going on.",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 16
+      },
+      "revId": "a98909dfdcb8ad6a0fc9e5f87b6d09155543f998",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
