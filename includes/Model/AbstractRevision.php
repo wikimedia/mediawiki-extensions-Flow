@@ -569,6 +569,25 @@ abstract class AbstractRevision {
 				$format, $storageFormat, $content, $title );
 		}
 
+		$this->setContentRaw( $this->convertedContent );
+	}
+
+	/**
+	 * Helper function for setContent(). Don't call this directly.
+	 * Also called by the FlowReserializeRevisionContent maintenance script using reflection.
+	 *
+	 * $convertedContent may contain 'html', 'wikitext' or both, but must at least contain the
+	 * storage format (as returned by getStorageFormat()).
+	 *
+	 * @param array $convertedContent [ 'html' => string, 'wikitext' => string ]
+	 */
+	protected function setContentRaw( $convertedContent ) {
+		$storageFormat = $this->getStorageFormat();
+		if ( !isset( $convertedContent[ $storageFormat ] ) ) {
+			throw new DataModelException( 'Content not given in storage format ' . $storageFormat );
+		}
+
+		$this->convertedContent = $convertedContent;
 		$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
 		$this->contentUrl = null;
 
