@@ -39,7 +39,7 @@
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|smazal|smazala|smazal(a)}} téma na stránce [[$3]]",
 	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|označil|označila}} téma „[[$3|$5]]“ v [[$6]] jako vyřešené",
 	"logentry-lock-flow-lock-topic-topic-title-not-visible": "$1 {{GENDER:$2|označil|označila|označil(a)}} téma za vyřešené na stránce [[$3]]",
-	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|obnovil|obnovila}} téma „[[$3|$5]]“ na stránce [[$6]]",
+	"logentry-lock-flow-restore-topic": "$1 {{GENDER:$2|znovuotevřel|znovuotevřela}} téma „[[$3|$5]]“ na stránce [[$6]]",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 znovu {{GENDER:$2|otevřel|otevřela|otevřel(a)}} téma na stránce [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "Téma [[$1|$2]] na nástěnce [[$3]] bylo naimportováno z LiquidThreads do Strukturovaných diskusí",
 	"abusefilter-edit-builder-vars-board-id": "ID Strukturované diskuse",

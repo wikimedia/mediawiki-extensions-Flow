@@ -3,7 +3,8 @@
 		"authors": [
 			"Kening Aldgilles",
 			"Robin0van0der0vliet",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"PiefPafPier"
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "Reden:",
@@ -13,6 +14,7 @@
 	"flow-post-action-delete-post": "Fuortsmite",
 	"flow-post-action-edit-post": "Bewurkje",
 	"flow-topic-action-history": "Skiednis",
+	"flow-topic-action-summarize-topic": "Gearfetsje",
 	"flow-board-history": "\"$1\" skiednis",
 	"flow-history-day": "Hjoed",
 	"flow-link-history": "skiednis",
