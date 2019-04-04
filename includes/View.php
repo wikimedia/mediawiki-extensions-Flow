@@ -216,10 +216,10 @@ class View extends ContextSource {
 			'watchable' => !$user->isAnon(),
 			'links' => [
 				'watch-board' => [
-					'url' => $title->getLocalUrl( 'action=watch' ),
+					'url' => $title->getLocalURL( 'action=watch' ),
 				],
 				'unwatch-board' => [
-					'url' => $title->getLocalUrl( 'action=unwatch' ),
+					'url' => $title->getLocalURL( 'action=unwatch' ),
 				],
 			]
 		];
