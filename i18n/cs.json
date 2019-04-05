@@ -399,7 +399,7 @@
 	"flow-undo-edit-topic-summary": "Editace shrnutí tématu",
 	"flow-undo-edit-post": "Editace příspěvku",
 	"group-flow-bot": "Roboti pro Strukturované diskuse",
-	"group-flow-bot-member": "{{GENDER:$1|robot|robotka}} pro Strukturované diskuse",
+	"group-flow-bot-member": "robot pro Strukturované diskuse",
 	"grouppage-flow-bot": "Project:Roboti pro Strukturované diskuse",
 	"flow-ve-mention-context-item-label": "Zmínit",
 	"flow-ve-mention-inspector-title": "Zmínka",
