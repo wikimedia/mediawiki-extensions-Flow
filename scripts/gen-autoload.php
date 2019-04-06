@@ -11,7 +11,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 class GenerateFlowAutoload extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Generates Flow autoload data';
+		$this->addDescription( 'Generates Flow autoload data' );
 	}
 
 	public function execute() {

@@ -21,7 +21,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Fixes Flow References & entries in categorylinks & related tables';
+		$this->addDescription( 'Fixes Flow References & entries in categorylinks & related tables' );
 
 		$this->setBatchSize( 300 );
 

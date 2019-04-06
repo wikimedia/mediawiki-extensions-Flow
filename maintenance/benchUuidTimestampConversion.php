@@ -10,7 +10,7 @@ require_once __DIR__ . '/../../../maintenance/benchmarks/Benchmarker.php';
 class BenchUuidConversions extends \Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Benchmark uuid timstamp extraction implementations';
+		$this->addDescription( 'Benchmark uuid timstamp extraction implementations' );
 	}
 
 	public function execute() {

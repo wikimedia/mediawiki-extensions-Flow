@@ -14,7 +14,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 class ConvertNamespaceFromWikitext extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Converts a single namespace of wikitext talk pages to Flow";
+		$this->addDescription( "Converts a single namespace of wikitext talk pages to Flow" );
 		$this->addArg( 'namespaceName', 'Name of the namespace to convert' );
 		$this->addOption(
 			'no-convert-templates',

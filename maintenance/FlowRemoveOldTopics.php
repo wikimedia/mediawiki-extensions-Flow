@@ -42,7 +42,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = "Deletes old topics";
+		$this->addDescription( "Deletes old topics" );
 
 		$this->addOption( 'date', 'Date cutoff (in any format understood by wfTimestamp), topics ' .
 			'older than this date will be deleted.', true, true );

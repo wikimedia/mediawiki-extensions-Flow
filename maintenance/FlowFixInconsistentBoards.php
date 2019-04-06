@@ -40,8 +40,8 @@ class FlowFixInconsistentBoards extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Changes Flow boards and their topics to be associated with their ' .
-			'current title, based on the JSON content.  Must be run separately for each affected wiki.';
+		$this->addDescription( 'Changes Flow boards and their topics to be associated with their ' .
+			'current title, based on the JSON content.  Must be run separately for each affected wiki.' );
 
 		$this->addOption( 'dry-run', 'Only prints the board names, without changing anything.' );
 		$this->addOption( 'namespaceName', 'Name of namespace to check, otherwise all', false, true );

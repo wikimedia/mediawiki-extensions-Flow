@@ -32,8 +32,8 @@ class FlowRestoreLQT extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Restores LQT boards after a Flow conversion (revert LQT conversion ' .
-			'edits & move LQT boards back)';
+		$this->addDescription( 'Restores LQT boards after a Flow conversion (revert LQT conversion ' .
+			'edits & move LQT boards back)' );
 
 		$this->addOption( 'dryrun', 'Simulate script run, without making actual changes' );
 		$this->addOption( 'overwrite-flow', 'Removes the Flow board entirely, restoring LQT to ' .

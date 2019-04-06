@@ -24,7 +24,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Update xxx_user_wiki field in tables: flow_workflow, flow_tree_revision, flow_revision";
+		$this->addDescription( "Update xxx_user_wiki field in tables: flow_workflow, flow_tree_revision, flow_revision" );
 		$this->requireExtension( 'Flow' );
 		$this->setBatchSize( 300 );
 	}
