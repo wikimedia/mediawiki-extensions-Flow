@@ -3,7 +3,6 @@
 $notificationTemplate = [
 	'category' => 'flow-discussion',
 	'group' => 'other',
-	'immediate' => false, // Default
 ];
 
 $newTopicNotification = [
@@ -13,7 +12,6 @@ $newTopicNotification = [
 		'email' => true,
 		'expandable' => true,
 	],
-	'icon' => 'flow-new-topic'
 ] + $notificationTemplate;
 
 $descriptionEditedNotification = [
@@ -22,7 +20,6 @@ $descriptionEditedNotification = [
 		'web' => true,
 		'email' => true,
 	],
-	'icon' => 'flow-topic-renamed',
 ] + $notificationTemplate;
 
 $postEditedNotification = [
@@ -31,7 +28,6 @@ $postEditedNotification = [
 		'web' => true,
 		'email' => true,
 	],
-	'icon' => 'flow-post-edited',
 ] + $notificationTemplate;
 
 $postReplyNotification = [
@@ -41,7 +37,6 @@ $postReplyNotification = [
 		'email' => true,
 		'expandable' => true,
 	],
-	'icon' => 'chat',
 ] + $notificationTemplate;
 
 $topicRenamedNotification = [
@@ -50,13 +45,6 @@ $topicRenamedNotification = [
 		'message' => 'flow-notification-link-text-view-post',
 		'destination' => 'flow-post'
 	],
-	'title-message' => 'flow-notification-rename',
-	'title-params' => [ 'agent', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ],
-	'email-subject-message' => 'flow-notification-rename-email-subject',
-	'email-subject-params' => [ 'agent' ],
-	'email-body-batch-message' => 'flow-notification-rename-email-batch-body',
-	'email-body-batch-params' => [ 'agent', 'old-subject', 'new-subject', 'title' ],
-	'icon' => 'flow-topic-renamed',
 ] + $notificationTemplate;
 
 $summaryEditedNotification = [
@@ -65,34 +53,10 @@ $summaryEditedNotification = [
 		'web' => true,
 		'email' => true,
 	],
-	'primary-link' => [
-		'message' => 'flow-notification-link-text-view-topic',
-		'destination' => 'flow-post'
-	],
-	'title-message' => 'notification-header-flow-summary-edited',
-	'title-params' => [ 'subject', 'agent' ],
-	'email-subject-message' => 'notification-email-subject-flow-summary-edited',
-	'email-subject-params' => [ 'agent', 'subject' ],
-	'email-body-batch-message' => 'notification-email-batch-body-flow-summary-edited',
-	'email-body-batch-params' => [ 'agent', 'subject' ],
-	'email-body-batch-bundle-message' => 'notification-email-batch-bundle-body-flow-summary-edited',
-	'email-body-batch-bundle-params' => [ 'agent', 'subject', 'agent-other-display', 'agent-other-count' ],
-	'icon' => 'flow-topic-renamed',
 ] + $notificationTemplate;
 
 $topicResolvedNotification = [
 	'presentation-model' => \Flow\TopicResolvedPresentationModel::class,
-	'primary-link' => [
-		'message' => 'flow-notification-link-text-view-topic',
-		'destination' => 'flow-post'
-	],
-	'title-message' => 'notification-header-flow-topic-resolved',
-	'title-params' => [ 'subject', 'agent' ],
-	'email-subject-message' => 'notification-email-subject-flow-topic-resolved',
-	'email-subject-params' => [ 'agent', 'subject' ],
-	'email-body-batch-message' => 'notification-email-batch-body-flow-topic-resolved',
-	'email-body-batch-params' => [ 'agent', 'subject' ],
-	'icon' => 'flow-topic-resolved',
 ] + $notificationTemplate;
 
 $notifications = [
@@ -223,17 +187,6 @@ $notifications = [
 		'user-locators' => [
 			'Flow\\NotificationsUserLocator::locateMentionedUsers',
 		],
-		'primary-link' => [
-			'message' => 'notification-link-text-view-mention',
-			'destination' => 'flow-post'
-		],
-		'title-message' => 'flow-notification-mention',
-		'title-params' => [ 'agent', 'post-permalink', 'subject', 'title', 'user' ],
-		'email-subject-message' => 'flow-notification-mention-email-subject',
-		'email-subject-params' => [ 'agent', 'flow-title', 'user' ],
-		'email-body-batch-message' => 'flow-notification-mention-email-batch-body',
-		'email-body-batch-params' => [ 'agent', 'subject', 'title', 'user' ],
-		'icon' => 'mention',
 	] + $notificationTemplate,
 	'flow-enabled-on-talkpage' => [
 		'category' => 'system',
@@ -243,17 +196,6 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner'
 		],
 		'canNotifyAgent' => true,
-		'primary-link' => [
-			'message' => 'flow-notification-link-text-enabled-on-talkpage',
-			'destination' => 'title'
-		],
-		'title-message' => 'flow-notification-enabled-on-talkpage-title',
-		'title-params' => [ 'agent', 'title' ],
-		'email-subject-message' => 'flow-notification-enabled-on-talkpage-email-subject-message',
-		'email-subject-params' => [ 'agent', 'title' ],
-		'email-body-batch-message' => 'flow-notification-enabled-on-talkpage-email-batch-body',
-		'email-body-batch-params' => [ 'agent', 'title' ],
-		'icon' => 'chat',
 	] + $notificationTemplate,
 	'flow-topic-resolved' => [
 		'section' => 'message',
