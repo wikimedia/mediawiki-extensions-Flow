@@ -22,7 +22,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = "Update the titles of flow-topic-resolved Echo events to point to boards instead of topics";
+		$this->addDescription( "Update the titles of flow-topic-resolved Echo events to point to boards instead of topics" );
 
 		$this->setBatchSize( 500 );
 

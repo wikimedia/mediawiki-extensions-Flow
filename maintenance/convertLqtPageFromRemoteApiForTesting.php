@@ -18,7 +18,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Converts LiquidThreads data to Flow data.  Destination page is determined by ConversionStrategy";
+		$this->addDescription( "Converts LiquidThreads data to Flow data.  Destination page is determined by ConversionStrategy" );
 		$this->addOption( 'dstpage', 'Page name of the destination page on the current wiki.  Defaults to same as source', false, true );
 		$this->addOption( 'srcpage', 'Page name of the source page to import from.', true, true );
 		$this->addOption( 'remoteapi', 'Remote API URL to read from', true, true );

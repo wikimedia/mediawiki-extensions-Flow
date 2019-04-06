@@ -25,7 +25,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Adjusts edit counts for all existing Flow data';
+		$this->addDescription( 'Adjusts edit counts for all existing Flow data' );
 
 		$this->addOption( 'start', 'Timestamp to start counting revisions at', false, true );
 		$this->addOption( 'stop', 'Timestamp to stop counting revisions at', false, true );

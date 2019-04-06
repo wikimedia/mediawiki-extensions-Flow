@@ -18,7 +18,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Backfills missing moderation logs from flow_revision.  Must be run separately for each affected wiki.';
+		$this->addDescription( 'Backfills missing moderation logs from flow_revision.  Must be run separately for each affected wiki.' );
 
 		$this->addOption( 'start', 'rev_id of last moderation revision that was logged correctly before regression.', true, true );
 		$this->addOption( 'stop', 'rev_id of first revision that was logged correctly after moderation logging fix.', true, true );

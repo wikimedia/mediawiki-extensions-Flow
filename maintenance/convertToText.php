@@ -22,7 +22,7 @@ class ConvertToText extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Converts a specific Flow page to text";
+		$this->addDescription( "Converts a specific Flow page to text" );
 
 		$this->addOption( 'page', 'The page to convert', true /*required*/ );
 		$this->addOption( 'remoteapi', 'The api of the wiki to convert the page from (or nothing, for local wiki)', false /*required*/ );

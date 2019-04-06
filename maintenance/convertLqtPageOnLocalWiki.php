@@ -17,7 +17,7 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 class ConvertLqtPageOnLocalWiki extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Converts LiquidThreads data to Flow data on the current wiki, using a ConversionStrategy";
+		$this->addDescription( "Converts LiquidThreads data to Flow data on the current wiki, using a ConversionStrategy" );
 		$this->addOption( 'srcpage', 'Page name of the source page to import from.', true, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', true, true );
 		$this->addOption( 'debug', 'Include debug information to progress report' );

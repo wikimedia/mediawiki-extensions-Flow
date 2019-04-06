@@ -24,7 +24,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Fixes Flow log entries';
+		$this->addDescription( 'Fixes Flow log entries' );
 
 		$this->setBatchSize( 300 );
 
