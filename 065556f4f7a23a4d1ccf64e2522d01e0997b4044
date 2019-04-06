@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "369ae534_eb69b54a",
+        "filename": "includes/Notifications/Notifications.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2019-04-06T23:40:09Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this one have been removed too?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "065556f4f7a23a4d1ccf64e2522d01e0997b4044",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
