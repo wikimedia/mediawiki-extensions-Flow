@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Model\UUID;
 use Flow\WatchedTopicItems;
 use User;
-use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers \Flow\WatchedTopicItems
@@ -74,12 +74,9 @@ class WatchedTopicItemsTest extends FlowTestCase {
 	}
 
 	protected function mockDb( $dbResult ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$db->expects( $this->any() )
-			->method( 'select' )
-			->will( $this->returnValue( $dbResult ) );
+		$db = $this->getMock( IDatabase::class );
+		$db->method( 'select' )
+			->willReturn( $dbResult );
 		return $db;
 	}
 }

@@ -5,7 +5,7 @@ namespace Flow\Tests\Repository;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
-use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers \Flow\Repository\TreeRepository
@@ -35,23 +35,18 @@ class TreeRepositoryTest extends FlowTestCase {
 			->getMock();
 		$dbFactory->expects( $this->any() )
 			->method( 'getDB' )
-			->will( $this->returnValue( $this->mockDb( $dbResult ) ) );
+			->willReturn( $this->mockDb( $dbResult ) );
 		return $dbFactory;
 	}
 
 	protected function mockDb( $dbResult ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$db->expects( $this->any() )
-			->method( 'insert' )
-			->will( $this->returnValue( $dbResult ) );
-		$db->expects( $this->any() )
-			->method( 'insertSelect' )
-			->will( $this->returnValue( $dbResult ) );
-		$db->expects( $this->any() )
-			->method( 'addQuotes' )
-			->will( $this->returnValue( '' ) );
+		$db = $this->getMock( IDatabase::class );
+		$db->method( 'insert' )
+			->willReturn( $dbResult );
+		$db->method( 'insertSelect' )
+			->willReturn( $dbResult );
+		$db->method( 'addQuotes' )
+			->willReturn( '' );
 		return $db;
 	}
 

@@ -362,9 +362,9 @@ class RevisionStorageTest extends FlowTestCase {
 		$factory = $this->mockDbFactory();
 		$factory->getDB( null )->expects( $this->once() )
 			->method( 'select' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]
-			] ) );
+			] );
 
 		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
 
@@ -389,14 +389,11 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	protected function mockDbFactory() {
-		$dbw = $this->getMockBuilder( \DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$dbw = $this->getMock( \IDatabase::class );
 
 		$factory = $this->getMock( \Flow\DbFactory::class );
-		$factory->expects( $this->any() )
-			->method( 'getDB' )
-			->will( $this->returnValue( $dbw ) );
+		$factory->method( 'getDB' )
+			->willReturn( $dbw );
 
 		return $factory;
 	}
