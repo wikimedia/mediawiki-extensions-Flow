@@ -4,9 +4,12 @@ use Flow\Container;
 use Flow\DbFactory;
 use Wikimedia\Rdbms\IDatabase;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+global $IP;
+if ( !isset( $IP ) ) {
+	$IP = getenv( 'MW_INSTALL_PATH' ) ?: __DIR__ . '/../../..';
+}
+
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Populate the *_user_ip fields within flow.  This only updates

@@ -5,9 +5,12 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+global $IP;
+if ( !isset( $IP ) ) {
+	$IP = getenv( 'MW_INSTALL_PATH' ) ?: __DIR__ . '/../../..';
+}
+
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Adjusts edit counts for all existing Flow data.

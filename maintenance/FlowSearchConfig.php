@@ -21,9 +21,12 @@ use CirrusSearch\Maintenance\Validators\SpecificAliasValidator;
 use CirrusSearch\Maintenance\Validators\Validator;
 use CirrusSearch\Util;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+global $IP;
+if ( !isset( $IP ) ) {
+	$IP = getenv( 'MW_INSTALL_PATH' ) ?: __DIR__ . '/../../..';
+}
+
+require_once "$IP/maintenance/Maintenance.php";
 require_once __DIR__ . '/../../CirrusSearch/includes/Maintenance/Maintenance.php';
 
 /**
