@@ -2,9 +2,7 @@
 
 use Flow\Utils\NamespaceIterator;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 /**
  * Converts a single namespace from wikitext talk pages to flow talk pages.  Does not

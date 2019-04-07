@@ -1,8 +1,8 @@
 <?php
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
+global $IP;
+if ( !isset( $IP ) ) {
+	$IP = getenv( 'MW_INSTALL_PATH' ) ?: realpath( __DIR__ . '/../../..' );
 }
 
 require_once "$IP/maintenance/commandLine.inc";

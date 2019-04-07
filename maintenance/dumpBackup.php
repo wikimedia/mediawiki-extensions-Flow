@@ -3,11 +3,8 @@
 use Flow\Container;
 use Flow\Dump\Exporter;
 
-$maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'
-	: __DIR__ . '/../../../maintenance' );
-require_once $maintPath . '/Maintenance.php';
-require_once $maintPath . '/includes/BackupDumper.php';
+require_once __DIR__ . '/includeMaintenance.php';
+require_once "$IP/maintenance/includes/BackupDumper.php";
 
 class FlowDumpBackup extends BackupDumper {
 	public $workflowStartId = "";

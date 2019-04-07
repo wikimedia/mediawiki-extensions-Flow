@@ -8,9 +8,7 @@
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 /**
  * Maintenance script that update flow-topic-resolved events to point event_page_id to the board instead of the topic.
