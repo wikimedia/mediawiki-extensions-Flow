@@ -5,9 +5,7 @@ use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\Updaters\AbstractUpdater;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 /**
  * Similar to CirrusSearch's forceSearchIndex, this will force indexing of Flow

@@ -4,9 +4,7 @@ use Flow\Container;
 use Flow\DbFactory;
 use Flow\Import\ArchiveNameHelper;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 class FlowRestoreLQT extends Maintenance {
 	/**

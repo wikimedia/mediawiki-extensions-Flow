@@ -5,9 +5,7 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 /**
  * Adjusts edit counts for all existing Flow data.

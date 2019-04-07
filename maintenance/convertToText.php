@@ -5,9 +5,7 @@ use Flow\Import\LiquidThreadsApi\ApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 
-require_once getenv( 'MW_INSTALL_PATH' ) !== false
-	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
-	: __DIR__ . '/../../../maintenance/Maintenance.php';
+require_once __DIR__ . '/includeMaintenance.php';
 
 class ConvertToText extends Maintenance {
 	/**
