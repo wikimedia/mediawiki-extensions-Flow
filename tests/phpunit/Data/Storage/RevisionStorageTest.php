@@ -7,6 +7,7 @@ use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Model\UUID;
 use Flow\Tests\FlowTestCase;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers \Flow\Data\Storage\DbStorage
@@ -156,15 +157,12 @@ class RevisionStorageTest extends FlowTestCase {
 
 	// A rev ID will be added to $old and $new automatically.
 	protected function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
-		$dbw = $this->getMockBuilder( \DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$dbw = $this->getMock( IDatabase::class );
 		$factory = $this->getMockBuilder( \Flow\DbFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'getDB' )
-			->will( $this->returnValue( $dbw ) );
+		$factory->method( 'getDB' )
+			->willReturn( $dbw );
 		$id = UUID::create();
 
 		$old['rev_id'] = $id->getBinary();
