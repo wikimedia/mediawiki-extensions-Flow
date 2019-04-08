@@ -54,7 +54,6 @@
 	"flow-history-week": "Síðustu viku",
 	"flow-workflow": "vinnuferli",
 	"flow-notification-reply-email-subject": "$2 á $3",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$2|minntist}} á {{GENDER:$3|þig}} á $2",
 	"flow-link-post": "framlag",
 	"flow-link-topic": "umfjöllunarefni",
 	"flow-link-history": "breytingaskrá",

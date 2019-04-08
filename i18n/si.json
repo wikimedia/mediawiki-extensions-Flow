@@ -18,6 +18,5 @@
 	"flow-terms-of-use-edit": "ඔබගේ වෙනස්කම් සුරැකීමෙන්,ඔබ විකිය භාවිතා කිරීමට ඇති කොන්දේසි වලට එකඟ වේ.",
 	"flow-special-enableflow-invalid-title": "වැරදි පිටු ශීර්ෂයක් ලබා දෙන ලදී",
 	"flow-ve-mention-placeholder": "පරිශීලක නාමය",
-	"flow-notification-link-text-enabled-on-talkpage": "පරිශීලක සාකච්ඡා පිටුව {{GENDER:|පෙන්වන්න}}",
-	"flow-notification-enabled-on-talkpage-title": "{{GENDER:$1| ඔබගේ}} සාකච්ඡා පිටුව සදහා නව සාකච්ඡා පද්ධතියක් සක්‍රීය කර ඇත<br /><small>[[$2]] හි ඇත</small>"
+	"flow-notification-link-text-enabled-on-talkpage": "පරිශීලක සාකච්ඡා පිටුව {{GENDER:|පෙන්වන්න}}"
 }

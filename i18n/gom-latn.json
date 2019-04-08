@@ -211,7 +211,6 @@
 	"notification-header-flow-topic-reopened-user-talk": "\"<strong>$1</strong>\" ho vixoi <strong>{{GENDER:$2|tujea}} uloupache panar</strong> porot ugodla.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 hannem <strong>$3</strong> -cher novem vixoi {{GENDER:$1|rochla}}.",
 	"flow-notification-newtopic-bundle": "<strong><span class=\"plainlinks\">[$3 $2]</span></strong> -cher {{PLURAL:$1|ek novo vixoi|$1 noveo vixoi|100=99+ noveo vixoi}}",
-	"flow-notification-rename": "$1 hannem  [[$5|$6]] -cher <span class=\"plainlinks\">[$2 $3]</span> vixoiachem nanv {{GENDER:$1|bodlun}} \"$4\" kela.",
 	"flow-notification-link-text-view-post": "Prokasnni polloi",
 	"flow-notification-link-text-view-topic": "Vixoi polloi",
 	"flow-notification-link-text-view-topics": "Vixoi polloi",
@@ -221,8 +220,6 @@
 	"flow-notification-edit-email-subject": "$1 hannem ek prokasnni  {{GENDER:$1|bodol'la}}",
 	"flow-notification-edit-email-batch-body": "$1 hannem $3 hacher \"$2\" -ant ek prokasnni {{GENDER:$1|bodol'la}}",
 	"flow-notification-edit-email-batch-bundle-body": "$1 ani anik {{PLURAL:$4|ek vangdian|$4 vangdianim|100=99+ vangdianim}} $3 hacher \"$2\" -ant ek prokasnni {{GENDER:$1|bodol'la}}",
-	"flow-notification-rename-email-subject": "$1 hannem tujea vixoiachem nanv {{GENDER:$1|bodol'la}}",
-	"flow-notification-rename-email-batch-body": "$1 hannem $4 -cher tujea vixoiachem nanv \"$2\" {{GENDER:$1|bodlun}} \"$3\" kela",
 	"flow-notification-newtopic-email-subject": "$1 -an $2 -cher novem vixoi {{GENDER:$1|rochla}}",
 	"flow-notification-newtopic-email-batch-body": "$1 hannem $3 -cher \"$2\" nanvacho novo vixoi {{GENDER:$1|rochla}}",
 	"flow-notification-newtopic-email-batch-bundle-body": "$2 -cher {{PLURAL:$1|ek novo vixoi|$1 noveo vixoi|100=99+ noveo vixoi}}",
@@ -319,7 +316,6 @@
 	"flow-mark-diff-patrolled-link-title": "Topaslele mhonn khunnai",
 	"flow-talk-page-beta-feature-message": "Vapurpi uloupacher Manddlele bhasabhas",
 	"flow-notification-link-text-enabled-on-talkpage": "Vapurpeacho charchecho pan {{GENDER:|polloi}}",
-	"flow-notification-enabled-on-talkpage-email-subject-message": "$2 -cher bhasabhasachi novi pranali",
 	"flow-optin-archive-wikitext": "Bhasabhasechea follea pasot zago korunk wikimozkurachem pan halloi.",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Tujea}} novea vapurpeachea uloupachea panar ievkar!"
 }

@@ -26,7 +26,6 @@
 	"flow-notification-link-text-view-topics": "موضوعگانې کتل",
 	"flow-notification-reply-email-subject": "$2 پر $3",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",
-	"flow-notification-rename-email-subject": "$1 ستاسې سرليک {{GENDER:$1|نوم بدل کړ}}",
 	"echo-category-title-flow-discussion": "بهاو",
 	"flow-link-history": "پېښليک",
 	"flow-moderation-title-delete-post": "پوسټ ړنگول؟",

@@ -136,7 +136,6 @@
 	"notification-header-flow-new-topic-v2": "<strong>$3</strong>-এ নতুন প্রসঙ্গ তৈরি করা হয়েছে: <bdi>\"<strong>$4</strong>\"</bdi>।",
 	"notification-header-flow-post-reply": "$1 \"<strong>$4</strong>\"-এ {{GENDER:$2|উত্তর দিয়েছেন}}।",
 	"notification-bundle-header-flow-post-reply-v2": "\"<strong>$3</strong>\"-এ {{PLURAL:$1|একটি নতুন উত্তর|$1টি নতুন উত্তর|100=৯৯টি+ নতুন উত্তর}} রয়েছে।",
-	"notification-email-batch-body-flow-summary-edited": "$1 $2-এ সারাংশ {{GENDER:$1|হালনাগাদ করেছেন}}।",
 	"notification-header-flow-mention-post-summary": "$1 \"<strong>$5</strong>\"-এ {{GENDER:$2|আপনাকে}} {{GENDER:$4|উল্লেখ করেছেন}}।",
 	"notification-links-flow-description-edited-view-page": "পাতা {{GENDER:$1|দেখুন}}",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 <strong>$3</strong>-এ একটি নতুন প্রসঙ্গ {{GENDER:$1|তৈরি করেছেন}}।",

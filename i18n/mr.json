@@ -230,7 +230,6 @@
 	"flow-notification-reply-email-subject": "$3 वर $2",
 	"flow-notification-reply-email-batch-body": "$1 ने \"$2\" ला $3 वर {{GENDER:$1|प्रतिसाद दिला}}",
 	"flow-notification-reply-email-batch-bundle-body": "$1 व $4 {{PLURAL:$5|इतरांनी}} $3 वर \"$2\"ला {{GENDER:$1|प्रतिसाद दिला}}",
-	"flow-notification-mention-email-subject": "$1 ने \"$2\"वर {{GENDER:$3|आपला}} {{GENDER:$1|उल्लेख केला}}",
 	"flow-notification-edit-email-subject": "एक टपालन $1 ने{{GENDER:$1|संपादन केले}}",
 	"flow-notification-newtopic-email-subject": "$1 ने \"$2\" वर एक नविन विषय {{GENDER:$1|तयार केला}}",
 	"echo-category-title-flow-discussion": "प्रवाह",

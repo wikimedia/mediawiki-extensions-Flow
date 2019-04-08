@@ -52,7 +52,6 @@
 	"flow-history-day": "Îro",
 	"flow-history-week": "Hefteya dawî",
 	"flow-hide-comments-title": "{{PLURAL:$1|Şîroveyê veşêre|Şîroveyan veşêre}}",
-	"flow-notification-mention-email-subject": "$1 li ser $2 qala {{GENDER:$3|te}} {{GENDER:$1|kir}}",
 	"flow-link-topic": "miajr",
 	"flow-link-history": "dîrok",
 	"flow-moderation-confirm-delete-post": "Jê bibe",

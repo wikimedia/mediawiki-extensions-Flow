@@ -150,7 +150,6 @@
 	"flow-last-modified": "അവസാനം പുതുക്കിയത് $1",
 	"flow-notification-link-text-view-post": "കുറിപ്പ് കാണുക",
 	"flow-notification-link-text-view-topic": "വിഷയം കാണുക",
-	"flow-notification-mention-email-subject": "\"$2\" എന്നതിൽ $1 താങ്കളെ {{GENDER:$1|പരാമർശിച്ചിരിക്കുന്നു}}",
 	"echo-category-title-flow-discussion": "ഫ്ലോ",
 	"flow-link-post": "കുറിപ്പ്",
 	"flow-link-topic": "വിഷയം",

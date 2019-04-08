@@ -54,8 +54,6 @@
 	"flow-comment-deleted": "Ջնջված մեկնաբանություն",
 	"flow-comment-hidden": "Թաքցված մեկնաբանություն",
 	"flow-notification-edit": "$1 մասնակիցը {{GENDER:$1|խմբագրեց}} <span class=\"plainlinks\">[$5 գրառումը]</span> [[$3|$4]] էջի «$2» թեմայում։",
-	"flow-notification-rename": "$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի \"$4\"-ում [[$5|$6]]-ի վրա:",
-	"flow-notification-mention-email-subject": "$1 մասնակիցը հիշատակալ է Ձեզ $2 քննարկումում",
 	"flow-moderation-confirm-delete-post": "Ջնջել",
 	"flow-moderation-confirm-delete-topic": "Ջնջել",
 	"flow-moderation-title-delete-topic": "Ջնջե՞լ թեման",

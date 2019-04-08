@@ -93,7 +93,6 @@
 	"flow-notification-link-text-view-topic": "Vis emne",
 	"flow-notification-link-text-view-topics": "Se emner",
 	"flow-notification-reply-email-subject": "$2 på $3",
-	"flow-notification-mention-email-subject": "$1 {{GENDER:$1|nævnte}} {{GENDER:$3|dig}} på $2",
 	"flow-notification-edit-email-subject": "$1 {{GENDER:$1|redigerede}} et indlæg",
 	"flow-link-history": "historik",
 	"flow-moderation-title-delete-post": "Slet indlæg?",
