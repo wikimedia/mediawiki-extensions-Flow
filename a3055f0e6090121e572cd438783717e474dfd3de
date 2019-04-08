@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0abf3f2_4e167633",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-04-08T17:47:16Z",
+      "side": 1,
+      "message": "As I understand it, the contract is that MW_INSTALL_PATH must be set for that use case. Which I thought we do.\n\nThat would be a simpler solution I think then requiring a change to every maintenance script ever written.\n\nrunScript.php in core does this as well.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "a3055f0e6090121e572cd438783717e474dfd3de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
