@@ -379,7 +379,12 @@
 			editor: {
 				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
 			}
-		} ).once( 'saveContent', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
+		} )
+			// Reload page if board is new so we get page actions at top
+			.once( 'saveContent', this.reloadOnCreate )
+			.on( 'saveContent', function () {
+				mw.hook( 'wikipage.content' ).fire( descriptionWidget.$content );
+			} );
 
 		// The category widget is inside the board description widget.
 		// Remove it from the nojs version here
