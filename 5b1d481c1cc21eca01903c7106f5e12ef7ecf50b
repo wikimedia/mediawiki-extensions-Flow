@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dadf1016_469d5748",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 366
+      },
+      "writtenOn": "2019-04-09T15:49:04Z",
+      "side": 1,
+      "message": "The addBack magic deserves a comment, per Roan.",
+      "range": {
+        "startLine": 25,
+        "startChar": 39,
+        "endLine": 25,
+        "endChar": 70
+      },
+      "revId": "5b1d481c1cc21eca01903c7106f5e12ef7ecf50b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
