@@ -22,6 +22,30 @@
       "revId": "5b1d481c1cc21eca01903c7106f5e12ef7ecf50b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d183254d_da123cc8",
+        "filename": "modules/flow-initialize.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-04-09T18:29:18Z",
+      "side": 1,
+      "message": "I now see that what I said was grammatically ambiguous, but what I meant was that either the code should be made correct by adding .addBack(), or a comment should be added to explain why the incorrect-looking code was actually correct. I\u0027m fine with this, $foo.find(\u0027x\u0027).addBack(\u0027x\u0027) isn\u0027t super common but it\u0027s common enough that it doesn\u0027t desperately need a comment IMO.",
+      "parentUuid": "dadf1016_469d5748",
+      "range": {
+        "startLine": 25,
+        "startChar": 39,
+        "endLine": 25,
+        "endChar": 70
+      },
+      "revId": "5b1d481c1cc21eca01903c7106f5e12ef7ecf50b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
