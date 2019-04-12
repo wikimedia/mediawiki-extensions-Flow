@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5537347a_9ef7424e",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 2488
+      },
+      "writtenOn": "2019-04-12T18:37:19Z",
+      "side": 1,
+      "message": "This should be \"topics and posts\" and not revisions. I know it\u0027s not the fault of this patch, the line below is also wrong.\n\nWe all wished Flow had a revision deletion system but it doesn\u0027t: everything is done at the topic or post level.",
+      "range": {
+        "startLine": 445,
+        "startChar": 58,
+        "endLine": 445,
+        "endChar": 67
+      },
+      "revId": "6738382e7872c4acf538bce3ad3fe62b174f0aab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
