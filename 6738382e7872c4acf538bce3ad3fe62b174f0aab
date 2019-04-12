@@ -22,6 +22,30 @@
       "revId": "6738382e7872c4acf538bce3ad3fe62b174f0aab",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "966c6ec0_bb488ba1",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2019-04-12T18:38:00Z",
+      "side": 1,
+      "message": "Now is a good time to change both then :)",
+      "parentUuid": "5537347a_9ef7424e",
+      "range": {
+        "startLine": 445,
+        "startChar": 58,
+        "endLine": 445,
+        "endChar": 67
+      },
+      "revId": "6738382e7872c4acf538bce3ad3fe62b174f0aab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
