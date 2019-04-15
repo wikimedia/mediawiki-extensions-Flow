@@ -403,7 +403,7 @@
 	"right-flow-lock": "Contrassegna argomenti di discussioni strutturate come risolti",
 	"right-flow-delete": "Cancella messaggi e argomenti in discussioni strutturate",
 	"right-flow-edit-post": "Modifica messaggi di discussioni strutturate di altri utenti",
-	"right-flow-suppress": "Sopprime versioni di discussioni strutturate",
+	"right-flow-suppress": "Sopprime messaggi e argomenti in discussioni strutturate",
 	"flow-terms-of-use-new-topic": "Cliccando su \"{{int:flow-newtopic-save}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-reply": "Cliccando su \"{{int:flow-reply-link}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-edit": "Salvando le modifiche, accetti le condizioni d'uso per questo wiki.",
