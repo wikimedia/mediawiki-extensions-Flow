@@ -404,7 +404,7 @@
 	"right-flow-lock": "Marcar como encerrados tópicos de conversas estruturadas",
 	"right-flow-delete": "Eliminar tópicos e mensagens das conversas estruturadas",
 	"right-flow-edit-post": "Editar mensagens de outros utilizadores nas conversas estruturadas",
-	"right-flow-suppress": "Suprimir revisões das conversas estruturadas",
+	"right-flow-suppress": "Suprimir tópicos e mensagens das conversas estruturadas",
 	"flow-terms-of-use-new-topic": "Ao clicar em \"{{int:flow-newtopic-save}}\", concorda com as condições de uso desta wiki.",
 	"flow-terms-of-use-reply": "Ao clicar em \"{{int:flow-reply-link}}\", concorda com as condições de uso desta wiki.",
 	"flow-terms-of-use-edit": "Ao gravar as suas alterações, concorda com as condições de uso desta wiki.",

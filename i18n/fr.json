@@ -439,7 +439,7 @@
 	"right-flow-delete": "Supprimer les sujets et messages de Discussions Structurées",
 	"action-flow-edit-post": "modifier les notes de Discussions structurées des autres utilisateurs",
 	"right-flow-edit-post": "Modifier les messages de Discussions Structurées publiés par d’autres utilisateurs",
-	"action-flow-suppress": "supprimer les sujets et notes de Discussions structurées",
+	"action-flow-suppress": "supprimer les sujets et les notes des Discussions structurées",
 	"right-flow-suppress": "Supprimer les sujets et notes de Discussions structurées",
 	"flow-terms-of-use-new-topic": "En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-reply": "En cliquant sur « {{int:flow-reply-link}} », vous acceptez les conditions d’utilisation de ce wiki.",
