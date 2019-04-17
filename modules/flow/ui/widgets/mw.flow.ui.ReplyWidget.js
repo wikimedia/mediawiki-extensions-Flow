@@ -176,7 +176,8 @@
 				placeholder: this.placeholder,
 				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
 				classes: [ 'flow-ui-replyWidget-editor' ],
-				saveable: this.isProbablyEditable
+				saveable: this.isProbablyEditable,
+				id: 'reply/' + this.replyTo
 			}, this.editorOptions ) );
 
 			this.onEditorChange();

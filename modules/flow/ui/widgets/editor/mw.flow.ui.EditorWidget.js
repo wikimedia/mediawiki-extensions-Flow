@@ -39,6 +39,7 @@
 		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
 		this.leaveCallback = config.leaveCallback;
+		this.id = config.id;
 
 		this.loadPromise = null;
 
@@ -216,7 +217,7 @@
 		if ( !this.loadPromise ) {
 			this.loadPromise = this.constructor.static.preload()
 				.then( function () {
-					widget.target = ve.init.mw.targetFactory.create( 'flow' );
+					widget.target = ve.init.mw.targetFactory.create( 'flow', { id: widget.id } );
 					widget.target.connect( widget, {
 						surfaceReady: 'onTargetSurfaceReady',
 						switchMode: 'onTargetSwitchMode',

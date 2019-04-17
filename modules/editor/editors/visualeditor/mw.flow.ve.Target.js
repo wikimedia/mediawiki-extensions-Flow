@@ -10,13 +10,18 @@
 	 *
 	 * @class
 	 * @extends ve.init.mw.Target
+	 *
+	 * @param {Object} config Configuration options
 	 */
-	mw.flow.ve.Target = function FlowVeTarget() {
-		// Parent constructor
-		mw.flow.ve.Target.super.call( this, {
-			toolbarConfig: { actions: true, $overlay: true, position: 'bottom' }
-		} );
+	mw.flow.ve.Target = function FlowVeTarget( config ) {
+		config = config || {};
 
+		// Parent constructor
+		mw.flow.ve.Target.super.call( this, ve.extendObject( {
+			toolbarConfig: { actions: true, $overlay: true, position: 'bottom' }
+		}, config ) );
+
+		this.id = config.id;
 		this.switchingPromise = null;
 	};
 

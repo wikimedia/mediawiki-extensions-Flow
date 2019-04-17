@@ -56,7 +56,8 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: msgKey,
-			classes: [ 'flow-ui-boardDescriptionWidget-editor' ]
+			classes: [ 'flow-ui-boardDescriptionWidget-editor' ],
+			id: 'edit-board-desc/' + mw.flow.system.boardId
 		}, config.editor ) );
 		this.editor.toggle( false );
 

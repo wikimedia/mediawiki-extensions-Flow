@@ -781,9 +781,10 @@
 	 * @param {jQuery} $domToReplace The element, usually a form, that the new editor replaces
 	 * @param {string} [content] The content of the editing area
 	 * @param {string} [saveMsgKey] The message key for the editor save button
+	 * @param {string} [id] Editor ID
 	 * @return {mw.flow.ui.EditorWidget}
 	 */
-	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey ) {
+	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey, id ) {
 		var $wrapper,
 			$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' ),
 			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
@@ -802,7 +803,8 @@
 			} ),
 			editor = new mw.flow.ui.EditorWidget( {
 				saveMsgKey: saveMsgKey,
-				confirmLeave: !!mw.user.options.get( 'useeditwarning' )
+				confirmLeave: !!mw.user.options.get( 'useeditwarning' ),
+				id: id
 			} );
 
 		function handleFailure( errorCode, errorObj ) {
@@ -920,7 +922,7 @@
 					'flow-topic-action-update-topic-summary'
 				]
 			} )[ undoType ][ mw.user.isAnon() ? 0 : 1 ],
-			editor = this.createEditorWidget( $undoForm, content, saveMsgKey );
+			editor = this.createEditorWidget( $undoForm, content, saveMsgKey, 'undo/' + prevRevId );
 
 		if (
 			mw.config.get( 'wgEditSubmitButtonLabelPublish' ) &&
