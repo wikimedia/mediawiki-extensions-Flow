@@ -45,9 +45,12 @@
 		} );
 		this.canNotEdit.toggle( false );
 
+		this.id = 'new-topic/' + mw.flow.system.boardId;
+
 		this.title = new OO.ui.TextInputWidget( {
 			placeholder: mw.msg( 'flow-newtopic-start-placeholder' ),
-			classes: [ 'flow-ui-newTopicWidget-title' ]
+			classes: [ 'flow-ui-newTopicWidget-title' ],
+			value: mw.storage.session.get( this.id + '/title' )
 		} );
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
@@ -61,7 +64,7 @@
 					return false;
 				}
 			},
-			id: 'new-topic/' + mw.flow.system.boardId
+			id: this.id
 		}, config.editor ) );
 		this.editor.toggle( false );
 
@@ -91,8 +94,10 @@
 		this.title.connect( this, {
 			change: 'updateFormState'
 		} );
-		this.title.$element.on( 'focusin', this.onTitleFocusIn.bind( this ) );
-		this.title.$element.on( 'keydown', this.onTitleKeydown.bind( this ) );
+		this.title.$element.on( {
+			focusin: this.onTitleFocusIn.bind( this ),
+			keydown: this.onTitleKeydown.bind( this )
+		} );
 
 		// Initialization
 		this.updateFormState();
@@ -126,6 +131,8 @@
 
 		this.title.setDisabled( isDisabled );
 		this.editor.setDisabled( isDisabled );
+
+		mw.storage.session.set( this.id + '/title', this.title.getValue() );
 
 		this.editor.editorControlsWidget.toggleSaveable(
 			this.isProbablyEditable &&

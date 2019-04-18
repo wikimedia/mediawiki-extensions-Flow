@@ -674,6 +674,7 @@
 		}
 
 		if ( this.target ) {
+			this.target.clearDocState();
 			this.target.clearSurfaces();
 		}
 	};
@@ -685,6 +686,7 @@
 	 */
 	mw.flow.ui.EditorWidget.prototype.destroy = function () {
 		if ( this.target ) {
+			// clearDocState is called by #destroy
 			this.target.destroy();
 			// TODO: We should be able to just return target.destroy()
 			return this.target.teardownPromise;

@@ -91,8 +91,22 @@
 	 * @param {string} content HTML or wikitext
 	 */
 	mw.flow.ve.Target.prototype.loadContent = function ( content ) {
+		var doc,
+			sessionState = ve.init.platform.getSessionObject( this.id + '/ve-docstate' );
+
+		if ( sessionState && !this.switchingDeferred ) {
+			content = ve.init.platform.getSession( this.id + '/ve-dochtml' );
+			this.setDefaultMode( sessionState.mode );
+			this.recovered = true;
+		} else {
+			// TODO: If recovery data is from the wrong mode, switch mode
+			this.recovered = false;
+		}
+
 		// We have to pass null for the section parameter so that <section> tags get unwrapped
-		var doc = this.constructor.static.parseDocument( content, this.getDefaultMode(), null );
+		doc = this.constructor.static.parseDocument( content, this.getDefaultMode(), null );
+		this.originalHtml = content;
+
 		this.documentReady( doc );
 	};
 
@@ -140,16 +154,20 @@
 	};
 
 	mw.flow.ve.Target.prototype.surfaceReady = function () {
-		var deferred;
-
-		// Parent method
-		mw.flow.ve.Target.super.prototype.surfaceReady.apply( this, arguments );
+		var deferred,
+			surfaceModel = this.getSurface().getModel();
 
 		if ( this.switchingDeferred ) {
 			deferred = this.switchingDeferred;
 			this.switchingDeferred = null;
 			deferred.resolve();
 		}
+
+		surfaceModel.setAutosaveDocId( this.id );
+		this.initAutosave();
+
+		// Parent method
+		mw.flow.ve.Target.super.prototype.surfaceReady.apply( this, arguments );
 
 		// Re-emit main surface 'submit' as target 'submit'
 		this.getSurface().on( 'submit', this.emit.bind( this, 'submit' ) );
