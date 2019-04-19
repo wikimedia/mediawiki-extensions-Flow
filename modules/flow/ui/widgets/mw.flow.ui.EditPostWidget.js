@@ -32,7 +32,8 @@
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: msgKey,
-			classes: [ 'flow-ui-editPostWidget-editor' ]
+			classes: [ 'flow-ui-editPostWidget-editor' ],
+			id: 'edit/' + postId
 		}, config.editor ) );
 		this.editor.toggle( true );
 

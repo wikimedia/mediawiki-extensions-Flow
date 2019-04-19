@@ -21,7 +21,8 @@
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: 'flow-topic-action-update-topic-summary',
 			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
-			placeholder: mw.msg( 'flow-edit-summary-placeholder' )
+			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),
+			id: 'edit-summary/' + this.topicId
 		}, config.editor ) );
 		this.editor.toggle( true );
 

@@ -60,7 +60,8 @@
 				if ( widget.title.getValue() !== '' ) {
 					return false;
 				}
-			}
+			},
+			id: 'new-topic/' + mw.flow.system.boardId
 		}, config.editor ) );
 		this.editor.toggle( false );
 
