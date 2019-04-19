@@ -30,6 +30,12 @@ $specialPageAliases['bn'] = [
 	'EnableStructuredDiscussions' => [ 'ফ্লো_সক্রিয়করণ' ],
 ];
 
+/** Czech (čeština) */
+$specialPageAliases['cs'] = [
+	'StructuredDiscussions' => [ 'Strukturovaná_diskuse' ],
+	'EnableStructuredDiscussions' => [ 'Povolit_strukturovanou_diskusi' ],
+];
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = [
 	'EnableStructuredDiscussions' => [ 'Flow_aktivieren' ],
