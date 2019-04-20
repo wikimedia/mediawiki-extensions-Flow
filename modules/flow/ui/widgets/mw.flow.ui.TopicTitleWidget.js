@@ -70,6 +70,8 @@
 		// Events
 		this.saveButton.connect( this, { click: 'onSaveButtonClick' } );
 		this.cancelButton.connect( this, { click: 'onCancelButtonClick' } );
+		this.input.connect( this, { enter: 'onSaveButtonClick' } );
+		this.input.$input.on( 'keydown', this.onInputKeyDown.bind( this ) );
 
 		this.$element
 			.addClass( 'flow-ui-topicTitleWidget' )
@@ -143,6 +145,13 @@
 
 	mw.flow.ui.TopicTitleWidget.prototype.onInputChange = function () {
 		mw.storage.session.set( this.id + '/title', this.input.getValue() );
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.onInputKeyDown = function ( e ) {
+		if ( e.which === OO.ui.Keys.ESCAPE ) {
+			this.onCancelButtonClick();
+			return false;
+		}
 	};
 
 	mw.flow.ui.TopicTitleWidget.prototype.isDisabled = function () {
