@@ -95,6 +95,7 @@
 		).always(
 			function () {
 				widget.popPending();
+				widget.input.moveCursorToEnd().focus();
 			}
 		);
 
