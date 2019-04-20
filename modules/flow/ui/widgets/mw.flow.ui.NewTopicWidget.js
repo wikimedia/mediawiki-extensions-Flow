@@ -184,7 +184,8 @@
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onTitleKeydown = function ( e ) {
 		if ( e.which === OO.ui.Keys.ESCAPE ) {
-			this.onEditorCancel();
+			// Trigger editor cancel, potentially prompting about discarding changes
+			this.editor.onEditorControlsWidgetCancel();
 			e.preventDefault();
 			e.stopPropagation();
 		}
