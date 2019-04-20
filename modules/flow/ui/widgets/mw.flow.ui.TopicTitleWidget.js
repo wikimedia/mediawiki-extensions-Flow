@@ -20,6 +20,8 @@
 			'Topic:' + topicId
 		);
 
+		this.id = 'edit-topic/' + this.topicId;
+
 		this.anonWarning = new mw.flow.ui.AnonWarningWidget();
 		this.anonWarning.toggle( true );
 
@@ -66,8 +68,8 @@
 		);
 
 		// Events
-		this.saveButton.connect( this, { click: [ 'onSaveButtonClick' ] } );
-		this.cancelButton.connect( this, { click: [ 'emit', 'cancel' ] } );
+		this.saveButton.connect( this, { click: 'onSaveButtonClick' } );
+		this.cancelButton.connect( this, { click: 'onCancelButtonClick' } );
 
 		this.$element
 			.addClass( 'flow-ui-topicTitleWidget' )
@@ -86,7 +88,7 @@
 					currentRevisionId = topic.revisionId;
 
 				widget.api.setCurrentRevision( currentRevisionId );
-				widget.input.setValue( content );
+				widget.input.setValue( mw.storage.session.get( widget.id + '/title' ) || content );
 			},
 			function ( error ) {
 				widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
@@ -96,6 +98,8 @@
 			function () {
 				widget.popPending();
 				widget.input.moveCursorToEnd().focus();
+				// Connect change listener after widget has been populated
+				widget.input.connect( widget, { change: 'onInputChange' } );
 			}
 		);
 
@@ -129,6 +133,15 @@
 				widget.popPending();
 			}
 		);
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.onCancelButtonClick = function () {
+		mw.storage.session.remove( this.id + '/title' );
+		this.emit( 'cancel' );
+	};
+
+	mw.flow.ui.TopicTitleWidget.prototype.onInputChange = function () {
+		mw.storage.session.set( this.id + '/title', this.input.getValue() );
 	};
 
 	mw.flow.ui.TopicTitleWidget.prototype.isDisabled = function () {
