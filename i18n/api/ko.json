@@ -38,6 +38,7 @@
 	"apihelp-flow+reply-example-1": "[[Topic:S2tycnas4hcucw8w]]의 게시물에 답변하기",
 	"apihelp-flow+view-post-description": "게시물을 봅니다.",
 	"apihelp-flow+view-post-summary": "게시물을 봅니다.",
+	"apihelp-flow+view-post-param-postId": "보려는 게시물 ID입니다.",
 	"apihelp-flow+view-post-history-summary": "게시물의 판 역사를 봅니다.",
 	"apihelp-flow+view-topic-description": "주제를 봅니다.",
 	"apihelp-flow+view-topic-summary": "주제를 봅니다.",
