@@ -54,10 +54,11 @@
 				'flow-edit-header-submit';
 		}
 
+		this.id = 'edit-board-desc/' + mw.flow.system.boardId;
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			saveMsgKey: msgKey,
 			classes: [ 'flow-ui-boardDescriptionWidget-editor' ],
-			id: 'edit-board-desc/' + mw.flow.system.boardId
+			id: this.id
 		}, config.editor ) );
 		this.editor.toggle( false );
 

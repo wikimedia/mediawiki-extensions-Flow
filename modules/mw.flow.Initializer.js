@@ -71,6 +71,7 @@
 
 				// Replace reply forms
 				self.replaceReplyForms( self.$board );
+				self.reopenPostWidgets( self.$board );
 			},
 			// HACK: Update the DM when topic is refreshed
 			refreshTopic: function ( workflowId, topicData ) {
@@ -91,6 +92,7 @@
 
 				// Replace reply forms
 				self.replaceReplyForms( topicData.$topic );
+				self.reopenPostWidgets( topicData.$topic );
 			}
 		} );
 	};
@@ -157,6 +159,23 @@
 		this.setupEditPostAction();
 		this.setupEditTopicSummaryAction();
 		this.setupEditTopicTitleAction();
+
+		this.reopenNewTopicWidget();
+		this.reopenDescriptionWidget();
+		this.reopenPostWidgets();
+	};
+
+	/**
+	 * Re-open any post widgets with stored data
+	 *
+	 * @param {jQuery} [$container] Container, defaults to this.$component
+	 */
+	mw.flow.Initializer.prototype.reopenPostWidgets = function ( $container ) {
+		$container = $container || this.$component;
+
+		this.reopenReplyWidgets( $container );
+		this.reopenEditPostWidgets( $container );
+		this.reopenEditTopicSummaryWidget( $container );
 	};
 
 	/**
@@ -362,18 +381,25 @@
 	};
 
 	/**
+	 * Re-open the new topic widget if it has stored data
+	 */
+	mw.flow.Initializer.prototype.reopenNewTopicWidget = function () {
+		if ( this.newTopicWidget.title.getValue() || mw.storage.session.get( this.newTopicWidget.id + '/ve-docstate' ) ) {
+			this.newTopicWidget.activate();
+		}
+	};
+
+	/**
 	 * Set up the description widget and its events
 	 *
 	 * @param {jQuery} $element Description DOM element
 	 */
 	mw.flow.Initializer.prototype.setupDescriptionWidget = function ( $element ) {
-		var descriptionWidget;
-
 		if ( !$element.length ) {
 			return;
 		}
 
-		descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
+		this.descriptionWidget = new mw.flow.ui.BoardDescriptionWidget( this.board, {
 			$existing: $( '.flow-ui-boardDescriptionWidget-content' ).contents(),
 			$categories: $( '.flow-board-header-category-view-nojs' ).contents(),
 			editor: {
@@ -383,7 +409,7 @@
 			// Reload page if board is new so we get page actions at top
 			.once( 'saveContent', this.reloadOnCreate )
 			.on( 'saveContent', function () {
-				mw.hook( 'wikipage.content' ).fire( descriptionWidget.$content );
+				mw.hook( 'wikipage.content' ).fire( this.descriptionWidget.$content );
 			} );
 
 		// The category widget is inside the board description widget.
@@ -392,7 +418,16 @@
 		// HACK: Remove the MW page categories
 		$( '.catlinks:not(.flow-ui-categoriesWidget)' ).detach();
 
-		$element.replaceWith( descriptionWidget.$element );
+		$element.replaceWith( this.descriptionWidget.$element );
+	};
+
+	/**
+	 * Re-open the board description widget if it has stored data
+	 */
+	mw.flow.Initializer.prototype.reopenDescriptionWidget = function () {
+		if ( this.descriptionWidget && mw.storage.session.get( this.descriptionWidget.id + '/ve-docstate' ) ) {
+			this.descriptionWidget.onEditButtonClick();
+		}
 	};
 
 	/**
@@ -492,6 +527,23 @@
 	};
 
 	/**
+	 * Re-open any edit post widgets with stored data
+	 *
+	 * @param {jQuery} $container
+	 */
+	mw.flow.Initializer.prototype.reopenEditPostWidgets = function ( $container ) {
+		// Re-open widgets with stored data
+		$container.find( '.flow-ui-edit-post-link' ).each( function () {
+			var $post = $( this ).closest( '.flow-post' ),
+				postId = $post.data( 'flow-id' );
+
+			if ( mw.storage.session.get( 'edit/' + postId + '/ve-docstate' ) ) {
+				$( this ).trigger( 'click' );
+			}
+		} );
+	};
+
+	/**
 	 * Take over the action of the 'edit topic summary' links
 	 * This is delegated, so it applies to all future links as well.
 	 */
@@ -542,6 +594,22 @@
 				// Prevent default
 				return false;
 			} );
+	};
+
+	/**
+	 * Re-open any edit topic summary widgets with stored data
+	 *
+	 * @param {jQuery} $container
+	 */
+	mw.flow.Initializer.prototype.reopenEditTopicSummaryWidget = function ( $container ) {
+		$container.find( '.flow-ui-summarize-topic-link' ).each( function () {
+			var $topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' );
+
+			if ( mw.storage.session.get( 'edit-summary/' + topicId + '/ve-docstate' ) ) {
+				$( this ).trigger( 'click' );
+			}
+		} );
 	};
 
 	/**
@@ -656,6 +724,32 @@
 				} );
 
 			return false;
+		} );
+	};
+
+	/**
+	 * Re-open any reply widgets with stored data
+	 *
+	 * @param {jQuery} $container
+	 */
+	mw.flow.Initializer.prototype.reopenReplyWidgets = function ( $container ) {
+		var queuedClicks = {};
+
+		$container.find( 'a.flow-reply-link' ).each( function () {
+			var href = $( this ).attr( 'href' ),
+				uri = new mw.Uri( href ),
+				replyTo = uri.query.topic_postId;
+
+			if ( mw.storage.session.get( 'reply/' + replyTo + '/ve-docstate' ) ) {
+				// There can be multiple links to reply to a given topicId. They all behave
+				// the same but show the widget in a slightly different place.
+				// Assume the user wanted to use the last one.
+				queuedClicks[ replyTo ] = this;
+			}
+		} );
+
+		Object.keys( queuedClicks ).forEach( function ( replyTo ) {
+			$( queuedClicks[ replyTo ] ).trigger( 'click' );
 		} );
 	};
 
