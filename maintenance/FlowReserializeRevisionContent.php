@@ -116,8 +116,11 @@ class FlowReserializeRevisionContent extends Maintenance {
 					if ( $fromDiff === $toDiff ) {
 						$this->output( "Revision $revIdAlpha version $storedVersion -> $newVersion: no change to body\n" );
 					} else {
+						$diff = new Diff( explode( "\n", $fromDiff), explode( "\n", $toDiff ) );
+						$format = new UnifiedDiffFormatter();
+						$output = $format->format( $diff );
 						$this->output( "Revision $revIdAlpha version $storedVersion -> $newVersion: diff\n" );
-						$this->output( wfDiff( $fromDiff, $toDiff ) . "\n" );
+						$this->output( $output . "\n" );
 					}
 				} else {
 					$this->makeContentUpdatesAllowed( $om );
