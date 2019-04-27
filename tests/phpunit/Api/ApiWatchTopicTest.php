@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Api;
 
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 
@@ -22,7 +23,10 @@ class ApiWatchTopicTest extends ApiTestCase {
 				'watched',
 				// initialization
 				function ( User $user, Title $title ) {
-					$user->removeWatch( $title, false );
+					$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+					$store->removeWatch( $user, $title->getSubjectPage() );
+					$store->removeWatch( $user, $title->getTalkPage() );
+					$title->invalidateCache();
 				},
 				// extra request parameters
 				[],
