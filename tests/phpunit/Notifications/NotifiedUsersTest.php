@@ -7,6 +7,7 @@ use Flow\Model\UserTuple;
 use Flow\Model\UUID;
 use EchoNotificationController;
 use ExtensionRegistry;
+use MediaWiki\MediaWikiServices;
 use User;
 
 /**
@@ -52,7 +53,15 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		/** @var User $user */
 		$user = $data['user'];
-		$user->addWatch( $data['topicWorkflow']->getArticleTitle() );
+
+		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
+			$user,
+			[
+				$data['topicWorkflow']->getArticleTitle()->getSubjectPage(),
+				$data['topicWorkflow']->getArticleTitle()->getTalkPage()
+			]
+		);
+		$user->invalidateCache();
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			[
@@ -76,7 +85,15 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		/** @var User $user */
 		$user = $data['user'];
-		$user->addWatch( $data['boardWorkflow']->getArticleTitle() );
+
+		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
+			$user,
+			[
+				$data['boardWorkflow']->getArticleTitle()->getSubjectPage(),
+				$data['boardWorkflow']->getArticleTitle()->getTalkPage()
+			]
+		);
+		$user->invalidateCache();
 
 		$events = $data['notificationController']->notifyNewTopic( [
 			'board-workflow' => $data['boardWorkflow'],

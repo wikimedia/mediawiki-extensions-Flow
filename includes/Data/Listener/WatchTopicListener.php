@@ -8,6 +8,7 @@ use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
+use MediaWiki\MediaWikiServices;
 use User;
 
 /**
@@ -114,7 +115,14 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 			}
 			$title = $workflow->getArticleTitle();
 
-			$user->addWatch( $title );
+			if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $user, 'editmywatchlist' ) ) {
+				MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
+					$user,
+					[ $title->getSubjectPage(), $title->getTalkPage() ]
+				);
+				$user->invalidateCache();
+			}
 			$this->watchedTopicItems->addOverrideWatched( $title );
 		}
 	}
