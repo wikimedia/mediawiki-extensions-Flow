@@ -212,7 +212,17 @@ class View extends ContextSource {
 			'specialCategoryLink' => \SpecialPage::getTitleFor( 'Categories' )->getLocalURL(),
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => [],
-			'isWatched' => $user->isWatched( $title ),
+			'isWatched' => (
+				$title->isWatchable() &&
+				MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
+					$user,
+					'viewmywatchlist'
+				) &&
+				MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched(
+					$user,
+					$title
+				)
+			),
 			'watchable' => !$user->isAnon(),
 			'links' => [
 				'watch-board' => [

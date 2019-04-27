@@ -4,6 +4,7 @@ namespace Flow;
 
 use EchoEventPresentationModel;
 use Flow\Model\UUID;
+use MediaWiki\MediaWikiServices;
 use Title;
 
 abstract class FlowPresentationModel extends EchoEventPresentationModel {
@@ -165,7 +166,18 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		$type = $isTopic ? 'topic' : 'board';
 		$stringPageTitle = $isTopic ? $this->getTopicTitle() : $this->getTruncatedTitleText( $title );
 
-		if ( $this->isUserTalkPage() || !$this->getUser()->isWatched( $title ) ) {
+		if ( $this->isUserTalkPage() ||
+			 !(
+				$title->isWatchable() &&
+				MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
+					$this->getUser(),
+					'viewmywatchlist'
+				) &&
+				MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched(
+					$this->getUser(),
+					$title
+				)
+			) ) {
 			return null;
 		}
 
