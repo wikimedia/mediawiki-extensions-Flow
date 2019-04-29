@@ -5,7 +5,8 @@
 			"Cwlin0416",
 			"EagerLin",
 			"Kly",
-			"LNDDYL"
+			"LNDDYL",
+			"A2093064"
 		]
 	},
 	"apihelp-flow-description": "允許對結構式討論頁面執行操作。",
@@ -124,7 +125,7 @@
 	"apihelp-flow+undo-edit-header-description": "索取訊息需取消描述編輯。",
 	"apihelp-flow+undo-edit-header-summary": "索取訊息需取消描述編輯。",
 	"apihelp-flow+undo-edit-header-param-startId": "欲開始復原的修訂 ID。",
-	"apihelp-flow+undo-edit-header-param-endId": "欲開始復原的修訂 ID。",
+	"apihelp-flow+undo-edit-header-param-endId": "欲結束復原的修訂 ID。",
 	"apihelp-flow+undo-edit-header-example-1": "在 [[Talk:Sandbox]] 中擷取有關復原描述編輯的資訊",
 	"apihelp-flow+undo-edit-post-description": "索取訊息需取消貼文編輯。",
 	"apihelp-flow+undo-edit-post-summary": "索取訊息需取消貼文編輯。",
