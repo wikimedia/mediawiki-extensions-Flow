@@ -5,6 +5,8 @@
 		]
 	},
 	"enablestructureddiscussions": "Abbilite 'Ngazzainde strutturate",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Live}} le attività nove sus a \"$1\" da le osservate speciale",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Tu}} non g3e ste cchiù condrolle 'a pàgene \"$1\"",
 	"flow-desc": "Sisteme de le 'ngazzaminde",
 	"log-name-flow": "Arcihvije de le attività sus a le 'ngazzaminde strutturate",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u \"[[$3|$5]]\" sus a [[$6]]",

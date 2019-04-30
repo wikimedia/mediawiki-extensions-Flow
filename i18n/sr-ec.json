@@ -152,6 +152,8 @@
 	"flow-moderation-confirm-unhide-topic": "Откриј",
 	"flow-moderation-confirmation-delete-topic": "Ова тема је обрисана.",
 	"flow-moderation-confirmation-hide-topic": "Ова тема је сакривена.",
+	"flow-moderation-placeholder-delete-topic": "{{GENDER:$3|Објасните}} зашто бришете ову тему.",
+	"flow-moderation-placeholder-hide-topic": "{{GENDER:$3|Објасните}} зашто сакривате ову тему.",
 	"right-flow-create-board": "прављење табли у додатку „Структуриране дискусије” на било којој локацији",
 	"right-flow-hide": "скривање тема и објава у структурираним дискусијама",
 	"right-flow-lock": "означавање тема као решене у додатку „Структуриране дискусије”",

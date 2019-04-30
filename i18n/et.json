@@ -177,7 +177,7 @@
 	"right-flow-lock": "Märkida struktuurarutelu teemasid lahendatuks",
 	"right-flow-delete": "Kustutada struktuurarutelu teemasid ja postitusi",
 	"right-flow-edit-post": "Redigeerida struktuurarutelus teiste postitusi",
-	"right-flow-suppress": "Varjata struktuurarutelu redaktsioone",
+	"right-flow-suppress": "Varjata struktuurarutelu teemasid ja postitusi",
 	"flow-terms-of-use-new-topic": "Kui klõpsad \"{{int:flow-newtopic-save}}\", nõustud selle viki kasutustingimustega.",
 	"flow-terms-of-use-reply": "Kui klõpsad \"{{int:flow-reply-link}}\", nõustud selle viki kasutustingimustega.",
 	"flow-terms-of-use-edit": "Kui muudatused salvestad, nõustud selle viki kasutustingimustega.",
