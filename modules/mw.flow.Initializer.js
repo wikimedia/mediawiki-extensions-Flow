@@ -174,6 +174,7 @@
 		$container = $container || this.$component;
 
 		this.reopenReplyWidgets( $container );
+		this.reopenTopicTitleWidgets( $container );
 		this.reopenEditPostWidgets( $container );
 		this.reopenEditTopicSummaryWidget( $container );
 	};
@@ -657,6 +658,22 @@
 
 				event.preventDefault();
 			} );
+	};
+
+	/**
+	 * Re-open any edit topic title widgets with stored data
+	 *
+	 * @param {jQuery} $container
+	 */
+	mw.flow.Initializer.prototype.reopenTopicTitleWidgets = function ( $container ) {
+		$container.find( 'a.flow-ui-edit-title-link' ).each( function () {
+			var $topic = $( this ).closest( '.flow-topic' ),
+				topicId = $topic.data( 'flow-id' );
+
+			if ( mw.storage.session.get( 'edit-topic/' + topicId + '/title' ) ) {
+				$( this ).trigger( 'click' );
+			}
+		} );
 	};
 
 	/**
