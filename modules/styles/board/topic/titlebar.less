@@ -15,12 +15,10 @@
 	}
 
 	.flow-topic-titlebar-container,
-	.flow-edit-title-form,
-	.flow-topic-summary,
-	.flow-ui-editTopicSummaryWidget {
+	.flow-edit-title-form {
 		.mw-content-ltr & {
 			/* @noflip */
-			padding-right: @topicIndent + 1;
+			padding-right: @topicIndent + 2em;
 			/* @noflip */
 			padding-left: @topicIndent;
 		}
@@ -29,8 +27,14 @@
 			/* @noflip */
 			padding-right: @topicIndent;
 			/* @noflip */
-			padding-left: @topicIndent + 1;
+			padding-left: @topicIndent + 2em;
 		}
+	}
+
+	.flow-topic-summary,
+	.flow-ui-editTopicSummaryWidget {
+		padding-left: @topicIndent;
+		padding-right: @topicIndent;
 	}
 }
 
