@@ -384,7 +384,7 @@
 	"right-flow-lock": "Označi teme strukturiranih pogovorov kot zaključene",
 	"right-flow-delete": "Izbriši teme in sporočila strukturiranih pogovorov",
 	"right-flow-edit-post": "Uredi sporočila strukturiranih pogovorov drugih uporabnikov",
-	"right-flow-suppress": "Ukini redakcije strukturiranih pogovorov",
+	"right-flow-suppress": "Ukini teme in sporočila strukturiranih pogovorov",
 	"flow-terms-of-use-new-topic": "S klikom na \"{{int:flow-newtopic-save}}\" pristajaš na pogoje uporabe za ta wiki.",
 	"flow-terms-of-use-reply": "S klikom na \"{{int:flow-reply-link}}\" pristajaš na pogoje uporabe za ta wiki.",
 	"flow-terms-of-use-edit": "S shranitvijo svojih sprememb pristajaš na pogoje uporabe za ta wiki.",
