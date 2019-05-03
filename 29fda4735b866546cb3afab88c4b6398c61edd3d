@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e37aeb69_e05d119d",
+        "filename": "includes/Notifications/FlowPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-05-03T11:56:08Z",
+      "side": 1,
+      "message": "checking this permission here seems to be a change in semantics. Am I missing something? We want to bail out if it\u0027s not watched. This now also bails out if the user doesn\u0027t have the right to view the watchlist.",
+      "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd9c0c0e_b490cf31",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-05-03T11:56:08Z",
+      "side": 1,
+      "message": "This is the second time i see this complex conditional. Perhaps it should be in a function?",
+      "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
