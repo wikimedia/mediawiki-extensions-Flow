@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "44b272e1_48b2a445",
+        "filename": "includes/Notifications/FlowPresentationModel.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 273
+      },
+      "writtenOn": "2019-05-05T21:55:30Z",
+      "side": 1,
+      "message": "I am just following User::isWatched logic where it checks for $title-\u003eisWatchable() and then for $this-\u003eisAllowed( \u0027viewmywatchlist\u0027 ) unless User::IGNORE_USER_RIGHTS flag is passed",
+      "parentUuid": "e37aeb69_e05d119d",
+      "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd9c0c0e_b490cf31",
         "filename": "includes/View.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2019-05-03T11:56:08Z",
       "side": 1,
       "message": "This is the second time i see this complex conditional. Perhaps it should be in a function?",
+      "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62420621_37fe3d6b",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 273
+      },
+      "writtenOn": "2019-05-05T21:55:30Z",
+      "side": 1,
+      "message": "Yep, this looks a bit weird for me too, but can you think about a better alternative to keep permission checks and watch checks decoupled? Or you mean to introduce a local helper function to wrap this complex condition into it?",
+      "parentUuid": "bd9c0c0e_b490cf31",
       "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
