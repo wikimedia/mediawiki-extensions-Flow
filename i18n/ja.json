@@ -378,7 +378,7 @@
 	"flow-dialog-cancelconfirm-title": "本当によろしいですか?",
 	"flow-dialog-cancelconfirm-message": "保存せずにキャンセルしてもよろしいですか?",
 	"flow-dialog-cancelconfirm-keep": "編集を続行する",
-	"flow-dialog-cancelconfirm-discard": "変更内容を破棄しました",
+	"flow-dialog-cancelconfirm-discard": "変更内容を破棄",
 	"flow-optin-archive-wikitext": "ウィキテキスト・ページを移動して議論ボードのための部屋を作る",
 	"flow-optin-archive-flow-board": "議論ボード・ページを移動し、ウィキテキスト・ページのための部屋をつくる",
 	"flow-optin-restore-wikitext": "アーカイブ化されたウィキテキスト・ページを復元",
