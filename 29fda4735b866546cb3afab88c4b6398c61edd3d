@@ -69,6 +69,24 @@
       "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65ec0f5d_4dc4e332",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-05-07T17:16:59Z",
+      "side": 1,
+      "message": "Hm... viewmywatchlist and editmywatchlist only makes sense in the context of oath. If these rights are absent, the entire WatchedItemStore should probably be a fake that does nothing and returns false. \n\nThis is too big a topic to be discussed here, but perhaps there should be a ticket about it, that could be referenced in a comment here. Basically, the questions is whether WatchedItemStore should just be (partially) disabled if the relevant permissions are missing.",
+      "parentUuid": "62420621_37fe3d6b",
+      "revId": "29fda4735b866546cb3afab88c4b6398c61edd3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
