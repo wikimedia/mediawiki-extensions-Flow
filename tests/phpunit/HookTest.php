@@ -10,6 +10,8 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use FlowHooks;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use RecentChange;
 use Title;
 use User;
@@ -33,6 +35,47 @@ class HookTest extends MediaWikiTestCase {
 		'ip_changes',
 		'text',
 	];
+
+	protected function setUserPerm( $perm = [] ) {
+		$this->overrideMwServices(
+			null, [
+			'PermissionManager' => function () use ( $perm ) {
+				return $this->getMockedPermissionManager(
+					is_array( $perm ) ? $perm : [ $perm ]
+				);
+			}
+		] );
+	}
+
+	private function getMockedPermissionManager( $rights = [] ) {
+		// TODO this need to be changed once PermissionManager constructor will be changed
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$mock = $this->getMock(
+			PermissionManager::class,
+			[ 'getGroupPermissions' ],
+			[
+				MediaWikiServices::getInstance()->getSpecialPageFactory(),
+				$config->get( 'WhitelistRead' ),
+				$config->get( 'WhitelistReadRegexp' ),
+				$config->get( 'EmailConfirmToEdit' ),
+				$config->get( 'BlockDisablesLogin' ),
+				$config->get( 'GroupPermissions' ),
+				$config->get( 'RevokePermissions' ),
+				$config->get( 'AvailableRights' ),
+				MediaWikiServices::getInstance()->getNamespaceInfo()
+			],
+			'',
+			true,
+			true,
+			true,
+			false//,
+		//true
+		);
+
+		$mock->method( 'getGroupPermissions' )->willReturn( $rights );
+
+		return $mock;
+	}
 
 	public static function onIRCLineURLProvider() {
 		// data providers do not run in the same context as the actual test, as such we
@@ -78,7 +121,7 @@ class HookTest extends MediaWikiTestCase {
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
-			$user->mRights = array_merge( $user->getRights(), [ 'flow-create-board' ] );
+			$this->setUserPerm( array_merge( $user->getRights(), [ 'flow-create-board' ] ) );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
