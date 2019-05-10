@@ -88,6 +88,9 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @group Broken
+	 */
 	public function testShouldConvertLqt() {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
 			$this->markTestSkipped( 'LiquidThreads not enabled' );

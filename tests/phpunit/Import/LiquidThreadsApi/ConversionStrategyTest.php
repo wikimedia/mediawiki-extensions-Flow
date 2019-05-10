@@ -130,6 +130,7 @@ EOD
 	}
 
 	/**
+	 * @group Broken
 	 * @dataProvider provideArchiveCleanupRevisionContent
 	 * @param string $content
 	 */
