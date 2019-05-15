@@ -6,8 +6,7 @@ if ( count( $argv ) < 3 ) {
 	print "Call with 2 arguments: the path to the load url and the file to output to";
 	exit();
 }
-$loadUrl = $argv[1];
-$outputFile = $argv[2];
+list( , $loadUrl, $outputFile ) = $argv;
 
 define( 'MEDIAWIKI', true );
 const NS_MAIN = 0;
