@@ -4,7 +4,8 @@
 			"Minisarm",
 			"Tuxilina",
 			"Nnemo",
-			"Strainu"
+			"Strainu",
+			"Andrei Stroe"
 		]
 	},
 	"flow-user-moderated": "Utilizator moderat",
@@ -13,7 +14,7 @@
 	"flow-topic-actions": "Acțiuni",
 	"flow-cancel": "Revocare",
 	"flow-show-change": "Arată modificările",
-	"flow-stub-post-content": "''Din cauza unei erori de natură tehnică, acest mesaj nu a putut fi obținut.''",
+	"flow-stub-post-content": "<em>Din cauza unei erori de natură tehnică, acest mesaj nu a putut fi obținut.</em>",
 	"flow-newtopic-title-placeholder": "Subiect nou",
 	"flow-newtopic-header": "Adaugă un nou subiect",
 	"flow-newtopic-start-placeholder": "Începeți un nou subiect",
@@ -36,6 +37,6 @@
 	"flow-topic-action-summarize-topic": "Rezumare",
 	"flow-topic-action-resummarize-topic": "Modifică rezumatul subiectului",
 	"flow-error-http": "A apărut o eroare în momentul accesării serverului.",
-	"flow-error-external": "A intervenit o eroare. <br />Mesajul de eroare primit a fost: $1.",
-	"flow-error-topic-is-locked": "Acest subiect este blocat pentru orice acțiuni suplimentare."
+	"flow-error-external": "A intervenit o eroare. Mesajul de eroare primit a fost: $1.",
+	"flow-error-topic-is-locked": "Acest subiect este rezolvat, deci nu mai sunt posibile alte activități."
 }
