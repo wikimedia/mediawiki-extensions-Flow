@@ -64,7 +64,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 		}
 
 		// set some properties that'll be used to generate navigation bar
-		$this->mLastShown = $this->mResult[count( $this->mResult ) - 1]->revision->getRevisionId()->getAlphadecimal();
+		$this->mLastShown = end( $this->mResult )->revision->getRevisionId()->getAlphadecimal();
 		$this->mFirstShown = $this->mResult[0]->revision->getRevisionId()->getAlphadecimal();
 
 		/*

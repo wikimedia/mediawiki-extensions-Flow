@@ -184,7 +184,7 @@ class ChangesListFormatter extends AbstractFormatter {
 			return false;
 		}
 
-		$old = unserialize( $block[count( $block ) - 1]->getAttribute( 'rc_params' ) );
+		$old = unserialize( end( $block )->getAttribute( 'rc_params' ) );
 		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
 
 		if ( isset( $data['links']['topic'] ) ) {

@@ -31,7 +31,7 @@ class SortArrayByKeys {
 		} elseif ( $strict ? $a[$key] === $b[$key] : $a[$key] == $b[$key] ) {
 			return $keys ? self::compare( $a, $b, $keys, $strict ) : 0;
 		} else { // is there such a thing as strict gt/lt ?
-			return $a[$key] > $b[$key] ? 1 : -1;
+			return $a[$key] <=> $b[$key];
 		}
 	}
 }

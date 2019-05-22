@@ -189,11 +189,7 @@ class UUID implements ApiSerializable {
 					throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
 				}
 
-				if ( isset( self::$instances[$type][$value] ) ) {
-					return self::$instances[$type][$value];
-				} else {
-					return new static( $value, $type );
-				}
+				return self::$instances[$type][$value] ?? new static( $value, $type );
 			}
 		} elseif ( is_array( $input ) ) {
 			// array syntax in the url (?foo[]=bar) will make $input an array
