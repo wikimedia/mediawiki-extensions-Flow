@@ -102,8 +102,9 @@ class Templating {
 			return $cache[$userid][$userip];
 		}
 		$username = $this->usernames->get( wfWikiID(), $userid, $userip );
-		$cache[$userid][$userip] = Linker::userLink( $userid, $username ) .
-			Linker::userToolLinks( $userid, $username );
+		$cache[$userid][$userip] = $username ?
+			Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username ) :
+			'';
 		return $cache[$userid][$userip];
 	}
 
