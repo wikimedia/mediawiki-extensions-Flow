@@ -18,7 +18,8 @@
 			"Nnemo",
 			"Matteocng",
 			"Anto",
-			"Fringio"
+			"Fringio",
+			"Daimona Eaytoy"
 		]
 	},
 	"enablestructureddiscussions": "Attiva discussioni strutturate",
@@ -497,7 +498,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Il nome utente \"$1\" non è registrato.",
 	"flow-wikitext-editor-help": "$1 wikitesto.",
 	"flow-wikitext-editor-help-and-preview": "Il wikitesto $1 e puoi guardare l'$2 in qualsiasi momento.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|uso del markup]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|utilizza il markup]]",
 	"flow-wikitext-editor-help-preview-the-result": "anteprima del risultato",
 	"flow-mark-revision-patrolled-link-text": "Segna questa pagina come verificata",
 	"flow-mark-revision-patrolled-link-title": "Segna questa pagina come verificata",
