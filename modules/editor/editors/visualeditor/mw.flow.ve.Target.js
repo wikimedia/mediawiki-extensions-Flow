@@ -92,10 +92,10 @@
 	 */
 	mw.flow.ve.Target.prototype.loadContent = function ( content ) {
 		var doc,
-			sessionState = ve.init.platform.getSessionObject( this.id + '/ve-docstate' );
+			sessionState = ve.init.platform.sessionStorage.getObject( this.id + '/ve-docstate' );
 
 		if ( sessionState && !this.switchingDeferred ) {
-			content = ve.init.platform.getSession( this.id + '/ve-dochtml' );
+			content = ve.init.platform.sessionStorage.get( this.id + '/ve-dochtml' );
 			this.setDefaultMode( sessionState.mode );
 			this.recovered = true;
 		} else {
