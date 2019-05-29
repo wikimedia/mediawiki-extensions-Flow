@@ -37,7 +37,7 @@ class PurgeAction extends \PurgeAction {
 		// We then extract the complete list of keys updated from this hash bag o stuff
 		// and delete them from the real memcache.
 		// The container must be reset prior to this because the TitleSquidURLs hook
-		// will initialize memcache before this is run when UseSquid is enabled.
+		// will initialize memcache before this is run when wgUseCdn is enabled.
 		Container::reset();
 		$container = Container::getContainer();
 		$container->extend( 'memcache', function ( $memcache, $c ) {
