@@ -16,7 +16,7 @@ use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use User;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ContributionsQuery extends AbstractQuery {
 
@@ -186,7 +186,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param array $conditions
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
-	 * @return ResultWrapper|false false on failure
+	 * @return IResultWrapper|false false on failure
 	 * @throws \MWException
 	 */
 	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
@@ -276,11 +276,11 @@ class ContributionsQuery extends AbstractQuery {
 	/**
 	 * Turns DB data into revision objects.
 	 *
-	 * @param ResultWrapper $rows
+	 * @param IResultWrapper $rows
 	 * @param string $revisionClass Class of revision object to build: PostRevision|Header
 	 * @return array
 	 */
-	protected function loadRevisions( ResultWrapper $rows, $revisionClass ) {
+	protected function loadRevisions( IResultWrapper $rows, $revisionClass ) {
 		$revisions = [];
 		foreach ( $rows as $row ) {
 			$revisions[UUID::create( $row->rev_id )->getAlphadecimal()] = (array)$row;

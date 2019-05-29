@@ -3,7 +3,7 @@
 namespace Flow\Search\Iterators;
 
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
@@ -24,7 +24,7 @@ abstract class AbstractIterator implements Iterator {
 	protected $conditions = [];
 
 	/**
-	 * @var ResultWrapper|null
+	 * @var IResultWrapper|null
 	 */
 	protected $results;
 
@@ -54,7 +54,7 @@ abstract class AbstractIterator implements Iterator {
 	}
 
 	/**
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	abstract protected function query();
 
