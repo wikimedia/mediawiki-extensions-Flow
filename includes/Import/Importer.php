@@ -25,10 +25,12 @@ use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ReflectionProperty;
+use RuntimeException;
 use SplQueue;
 use Title;
 use UIDGenerator;
 use User;
+use function Wikimedia\base_convert;
 
 /**
  * The import system uses a TalkpageImportOperation class.
@@ -143,31 +145,46 @@ class Importer {
  * the database and re-try importing that item with another generated
  * uid.
  */
-class HistoricalUIDGenerator extends UIDGenerator {
-	public static function historicalTimestampedUID88( $timestamp, $base = 10 ) {
-		$COUNTER_MAX = 1023; // 2^10 - 1
+class HistoricalUIDGenerator {
+	const COUNTER_MAX = 1023; // 2^10 - 1
 
+	public static function historicalTimestampedUID88( $timestamp, $base = 10 ) {
 		static $counter = false;
 		if ( $counter === false ) {
-			$counter = mt_rand( 0, $COUNTER_MAX );
+			$counter = mt_rand( 0, self::COUNTER_MAX );
 		}
 
-		$time = [
-			// seconds
-			wfTimestamp( TS_UNIX, $timestamp ),
-			// milliseconds
-			mt_rand( 0, 999 )
-		];
+		// (seconds, milliseconds)
+		$time = [ time(), mt_rand( 0, 999 ) ];
+		++$counter;
 
-		// The UIDGenerator is implemented very specifically to have
-		// a single instance, we have to reuse that instance.
-		$gen = self::singleton();
-		self::rotateNodeId( $gen );
-		$binaryUUID = $gen->getTimestampedID88(
-			[ $time, ++$counter % ( $COUNTER_MAX + 1 ) ]
-		);
+		// Take the 46 LSBs of "milliseconds since epoch"
+		$id_bin = self::millisecondsSinceEpochBinary( $time );
+		// Add a 10 bit counter resulting in 56 bits total
+		$id_bin .= str_pad( decbin( $counter % ( self::COUNTER_MAX + 1 ) ), 10, '0', STR_PAD_LEFT );
+		// Add the 32 bit node ID resulting in 88 bits total
+		$id_bin .= self::newNodeId();
+		if ( strlen( $id_bin ) !== 88 ) {
+			throw new RuntimeException( "Detected overflow for millisecond timestamp." );
+		}
 
-		return \Wikimedia\base_convert( $binaryUUID, 2, $base );
+		return \Wikimedia\base_convert( $id_bin, 2, $base );
+	}
+
+	/**
+	 * @param array $time Array of second and millisecond integers
+	 * @return string 46 LSBs of "milliseconds since epoch" in binary (rolls over in 4201)
+	 * @throws RuntimeException
+	 */
+	protected static function millisecondsSinceEpochBinary( array $time ) {
+		list( $sec, $msec ) = $time;
+		$ts = 1000 * $sec + $msec;
+		if ( $ts > 2 ** 52 ) {
+			throw new RuntimeException( __METHOD__ .
+				': sorry, this function doesn\'t work after the year 144680' );
+		}
+
+		return substr( \Wikimedia\base_convert( $ts, 10, 2, 46 ), -46 );
 	}
 
 	/**
@@ -176,13 +193,11 @@ class HistoricalUIDGenerator extends UIDGenerator {
 	 * creation of historical uid's with one or a smaller number of
 	 * machines requires use of a random node id.
 	 *
-	 * @param UIDGenerator $gen
+	 * @return string String of 32 binary digits
 	 */
-	protected static function rotateNodeId( UIDGenerator $gen ) {
+	protected static function newNodeId() {
 		// 4 bytes = 32 bits
-		$gen->nodeId32 = \Wikimedia\base_convert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
-		// 6 bytes = 48 bits, used for 128bit uid's
-		// $gen->nodeId48 = \Wikimedia\base_convert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
+		return \Wikimedia\base_convert( MWCryptRand::generateHex( 8 ), 16, 2, 32 );
 	}
 }
 
