@@ -58,6 +58,7 @@
 	"notification-bundle-header-flow-description-edited": "<strong>$1</strong> tanımı birden fazla defa düzenlendi.",
 	"notification-bundle-header-flow-description-edited-user-talk": "<strong>{{GENDER:$2|sizin}} tartışma sayfanızdaki</strong> tanım birden çok defa değiştirildi.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 <strong>$3</strong> başlığında yeni bir konu'{{GENDER:$1|oluşturdu}}'.",
+	"echo-pref-tooltip-flow-discussion": "Takip ettiğim sayfalar veya başlıklardaki gelişmeler hakkında bana bildirim gönder.",
 	"flow-link-history": "geçmiş",
 	"flow-moderation-title-hide-post": "Gönderiyi gizle?",
 	"flow-moderation-confirm-hide-post": "Gizle",
