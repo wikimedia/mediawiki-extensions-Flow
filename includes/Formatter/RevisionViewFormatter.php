@@ -42,7 +42,9 @@ class RevisionViewFormatter {
 	public function formatApi( FormatterRow $row, IContextSource $ctx ) {
 		$res = $this->serializer->formatApi( $row, $ctx );
 		$res['rev_view_links'] = $this->buildLinks( $row, $ctx );
-		$res['human_timestamp'] = $this->getHumanTimestamp( $res['timestamp'] );
+		$res['human_timestamp'] = $ctx->getLanguage()->getHumanTimestamp(
+			new \MWTimestamp( $res['timestamp'] )
+		);
 		if ( $row->revision instanceof PostRevision ) {
 			$res['properties']['topic-of-post'] = $this->serializer->processParam(
 				'topic-of-post',
@@ -145,11 +147,6 @@ class RevisionViewFormatter {
 		}
 
 		return $links;
-	}
-
-	public function getHumanTimestamp( $timestamp ) {
-		$ts = new \MWTimestamp( $timestamp );
-		return $ts->getHumanTimestamp();
 	}
 
 }

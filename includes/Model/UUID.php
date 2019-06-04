@@ -7,9 +7,7 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidParameterException;
 use Flow\Exception\InvalidInputException;
-use Language;
 use MWTimestamp;
-use User;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -324,26 +322,6 @@ class UUID implements ApiSerializable {
 	public function getTimestamp( $format = TS_MW ) {
 		$ts = $this->getTimestampObj();
 		return $ts->getTimestamp( $format );
-	}
-
-	/**
-	 * @param UUID|MWTimestamp|null $relativeTo
-	 * @param User|null $user
-	 * @param Language|null $lang
-	 * @return string|false
-	 * @throws InvalidParameterException
-	 */
-	public function getHumanTimestamp( $relativeTo = null, User $user = null, Language $lang = null ) {
-		if ( $relativeTo instanceof UUID ) {
-			$rel = $relativeTo->getTimestampObj();
-		} elseif ( $relativeTo instanceof MWTimestamp ) {
-			$rel = $relativeTo;
-		} else {
-			throw new InvalidParameterException( 'Expected MWTimestamp or UUID, got ' .
-				get_class( $relativeTo ) );
-		}
-		$ts = $this->getTimestampObj();
-		return $ts ? $ts->getHumanTimestamp( $rel, $user, $lang ) : false;
 	}
 
 	/**
