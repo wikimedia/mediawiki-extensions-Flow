@@ -239,7 +239,7 @@ class TemplateHelper {
 			'timestamp',
 			[
 				'time_iso' => $timestamp,
-				'time_ago' => $ts->getHumanTimestamp(),
+				'time_ago' => $wgLang->getHumanTimestamp( $ts ),
 				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
 				'guid' => null, // generated client-side
 			]
