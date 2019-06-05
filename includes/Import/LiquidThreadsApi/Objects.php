@@ -39,7 +39,7 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 	 * Gets the raw revisions, after filtering but before being converted to
 	 * ImportRevision.
 	 *
-	 * @return Array Filtered revision array
+	 * @return array Page data with filtered revisions
 	 */
 	protected function getRevisionData() {
 		$pageData = $this->importSource->getPageData( $this->pageId );
