@@ -45,6 +45,8 @@
 	"logentry-import-lqt-to-flow-topic": "[[$3]] の [[$1|$2]] は LiquidThreads から Structured Discussions に取り込まれました。",
 	"flow-board-header-browse-topics-link": "話題を参照",
 	"flow-board-header": "このボードについて",
+	"flow-board-collapse-description": "説明を隠す",
+	"flow-board-expand-description": "説明を表示する",
 	"flow-topic-collapse-siderail": "全幅で読む",
 	"flow-topic-expand-siderail": "固定幅で読む",
 	"flow-edit-header-link": "説明を編集",
