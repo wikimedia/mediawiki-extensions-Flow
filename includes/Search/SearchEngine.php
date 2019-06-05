@@ -8,9 +8,7 @@ use Elastica\Query;
 use Flow\Exception\InvalidParameterException;
 
 class SearchEngine extends \SearchEngine {
-	/**
-	 * @var int
-	 */
+
 	const MAX_OFFSET = 100000;
 
 	/**

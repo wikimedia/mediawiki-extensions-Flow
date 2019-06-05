@@ -6,12 +6,11 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 
 class CheckUserQuery extends AbstractQuery {
+
 	/**
 	 * Revision data will be stored in cuc_comment & prefixed with this string
 	 * so we can distinguish between different kinds of data in there, should we
 	 * change that data format later.
-	 *
-	 * @var string
 	 */
 	const VERSION_PREFIX = 'v1';
 

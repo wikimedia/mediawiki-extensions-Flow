@@ -62,8 +62,6 @@ class TopicListBlock extends AbstractBlock {
 	protected $topicRootRevisionCache = [];
 
 	/**
-	 * @constant(TOCLIMIT)
-	 *
 	 * The limit of Table of Contents topics that are rendered per request
 	 */
 	const TOCLIMIT = 50;
