@@ -12,6 +12,7 @@ use Flow\Model\AbstractRevision;
  * @group Flow
  * @group medium
  * @group Database
+ * @group Broken
  */
 class ApiFlowModeratePostTest extends ApiTestCase {
 	public function testModeratePost() {

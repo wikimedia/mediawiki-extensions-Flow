@@ -88,6 +88,10 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		$this->assertEquals( $topic['topic-id'], $logParams['topicId'], $debug );
 	}
 
+	/**
+	 * @throws \ApiUsageException
+	 * @group Broken
+	 */
 	public function testModerateLockedTopic() {
 		$topic = $this->createTopic();
 
