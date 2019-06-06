@@ -56,8 +56,6 @@ class UUID implements ApiSerializable {
 	/**
 	 * Acceptable input values for constructor.
 	 * Values are the property names the input data will be saved to.
-	 *
-	 * @var string
 	 */
 	const INPUT_BIN = 'binaryValue',
 		INPUT_HEX = 'hexValue',

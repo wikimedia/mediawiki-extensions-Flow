@@ -6,24 +6,19 @@ namespace Flow\Search;
  * Provides the connection to the elasticsearch backend.
  */
 class Connection extends \ElasticaConnection {
+
 	/**
 	 * Name of the topic type.
-	 *
-	 * @var string
 	 */
 	const TOPIC_TYPE_NAME = 'topic';
 
 	/**
 	 * Name of the header type.
-	 *
-	 * @var string
 	 */
 	const HEADER_TYPE_NAME = 'header';
 
 	/**
 	 * Name of the index that holds Flow data.
-	 *
-	 * @var string
 	 */
 	const FLOW_INDEX_TYPE = 'flow';
 
