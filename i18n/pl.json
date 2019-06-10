@@ -26,7 +26,8 @@
 			"Sethakill",
 			"Stephanecbisson",
 			"Stojex",
-			"Vlad5250"
+			"Vlad5250",
+			"Railfail536"
 		]
 	},
 	"enablestructureddiscussions": "Włącz Flow",
@@ -109,7 +110,7 @@
 	"flow-newtopic-first-heading": "Rozpocznij nowy wątek w $1",
 	"flow-summarize-topic-placeholder": "Streść krótko tę dyskusję",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|Skomentuj}} „$2”",
-	"flow-reply-topic-title-placeholder": "Odpowiedź na „$1”",
+	"flow-reply-topic-title-placeholder": "Odpowiedz na „$1”",
 	"flow-reply-link": "{{GENDER:$1|Odpowiedz}}",
 	"flow-reply-link-anonymously": "Odpowiedz anonimowo",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Podziękuj}}}}",
@@ -423,7 +424,7 @@
 	"flow-load-more": "Załaduj więcej",
 	"flow-no-more-fwd": "Nie ma starszych wątków",
 	"flow-newest-topics": "Najnowsze wątki",
-	"flow-recent-topics": "Wątki ostatnio aktywne",
+	"flow-recent-topics": "Ostatnio aktywne wątki",
 	"flow-sorting-tooltip-newest": "Teraz {{GENDER:|czytasz}} wątki w kolejności od najnowszego. Kliknij, aby wybrać inną kolejność sortowania.",
 	"flow-sorting-tooltip-recent": "Obecnie {{GENDER:|czytasz}} wątki według ostatniej aktywności. Kliknij, aby wybrać inną kolejność sortowania.",
 	"flow-toggle-small-topics": "Przełącz się na widok małych nagłówków",
