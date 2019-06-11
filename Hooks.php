@@ -97,7 +97,7 @@ class FlowHooks {
 			GuidedTourLauncher::launchTourByCookie( 'flowOptIn', 'newTopic' );
 
 			// Destroy Flow cookie
-			$out->getRequest()->response()->setcookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
+			$out->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
 		}
 	}
 
@@ -1404,7 +1404,7 @@ class FlowHooks {
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
 		} catch ( Exception $e ) {
-			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBKey() );
+			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBkey() );
 			return;
 		}
 

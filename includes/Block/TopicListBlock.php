@@ -492,7 +492,7 @@ class TopicListBlock extends AbstractBlock {
 		$title = $this->workflow->getOwnerTitle();
 		$message = $out->msg( 'flow-newtopic-first-heading', $title->getPrefixedText() );
 		$out->setPageTitle( $message );
-		$out->setHtmlTitle( $message );
+		$out->setHTMLTitle( $message );
 		$out->setSubtitle( '&lt; ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );
 	}
 }

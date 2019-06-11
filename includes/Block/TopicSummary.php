@@ -430,14 +430,14 @@ class TopicSummaryBlock extends AbstractBlock {
 			} else {
 				$key = 'flow-topic-html-title';
 			}
-			$out->setHtmlTitle( $out->msg( $key, [
+			$out->setHTMLTitle( $out->msg( $key, [
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
 				Message::rawParam( $topic->getContent( 'topic-title-plaintext' ) ),
 				$title->getPrefixedText()
 			] ) );
 		} else {
-			$out->setHtmlTitle( $title->getPrefixedText() );
+			$out->setHTMLTitle( $title->getPrefixedText() );
 		}
 
 		$out->setSubtitle( '&lt; ' .

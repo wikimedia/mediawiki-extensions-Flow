@@ -14,7 +14,7 @@ use User;
 /**
  * Records topic imports to Special:Log.
  */
-class SpecialLogTopic implements PostProcessor {
+class SpecialLogTopic implements Postprocessor {
 	/**
 	 * @var bool Indicates if new posts have been seen since the last commit operation
 	 */

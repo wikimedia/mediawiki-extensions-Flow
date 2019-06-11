@@ -6,7 +6,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\WrongNumberArgumentsException;
 use Flow\Model\UUID;
 use Closure;
-use HTML;
+use Html;
 use OOUI\IconWidget;
 use LightnCandy;
 use MWTimestamp;
@@ -742,7 +742,7 @@ class TemplateHelper {
 		unset( $returnToQuery['title'] );
 
 		$args = [
-			'returnto' => $returnTo->getPrefixedUrl(),
+			'returnto' => $returnTo->getPrefixedURL(),
 		];
 		if ( $returnToQuery ) {
 			$args['returntoquery'] = wfArrayToCgi( $returnToQuery );
@@ -768,7 +768,7 @@ class TemplateHelper {
 			return '';
 		}
 		// FIXME: This should use local url to avoid redirects on mobile. See bug 66746.
-		$url = $title->getFullUrl();
+		$url = $title->getFullURL();
 
 		return self::addReturnTo( $url );
 	}

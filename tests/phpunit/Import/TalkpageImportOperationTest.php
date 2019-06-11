@@ -102,7 +102,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 										// revisions
 										new MockImportRevision( [
 											'createdTimestmap' => $now - 500,
-											'user' => User::newFromNAme( '10.0.0.2', false ),
+											'user' => User::newFromName( '10.0.0.2', false ),
 										] ),
 									],
 									[

@@ -120,6 +120,6 @@ class WikiReference extends Reference {
 	}
 
 	public function getTargetIdentifier() {
-		return 'title:' . $this->getTitle()->getPrefixedDBKey();
+		return 'title:' . $this->getTitle()->getPrefixedDBkey();
 	}
 }

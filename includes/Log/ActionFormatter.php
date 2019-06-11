@@ -133,7 +133,7 @@ class ActionFormatter extends LogFormatter {
 		if ( $isTopicTitleVisible ) {
 			$message->params( [
 				$title, // Title of topic
-				$title->getFullUrl(), // Full URL of topic, with highlighted post if applicable
+				$title->getFullURL(), // Full URL of topic, with highlighted post if applicable
 			] );
 
 			$message->plaintextParams( $this->templating->getContent( $rootLastRevision, 'topic-title-plaintext' ) );

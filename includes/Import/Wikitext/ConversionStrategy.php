@@ -183,7 +183,7 @@ class ConversionStrategy implements IConversionStrategy {
 		// a talk page with matching subject page. For example
 		// we will convert User_talk:Foo/bar only if User:Foo/bar
 		// exists, and we will never convert User:Baz/bang.
-		if ( $sourceTitle->isSubPage() &&
+		if ( $sourceTitle->isSubpage() &&
 			( !$sourceTitle->isTalkPage() || !$sourceTitle->getSubjectPage()->exists() )
 		) {
 			return false;

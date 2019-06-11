@@ -141,7 +141,7 @@ class WorkflowLoaderFactory {
 	 * @throws InvalidInputException When the Title does not represent a valid uuid
 	 */
 	public static function uuidFromTitle( Title $title ) {
-		return self::uuidFromTitlePair( $title->getNamespace(), $title->getDbKey() );
+		return self::uuidFromTitlePair( $title->getNamespace(), $title->getDBkey() );
 	}
 
 	/**

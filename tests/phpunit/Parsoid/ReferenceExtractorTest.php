@@ -69,7 +69,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 				// source wiki text
 				'[http://www.google.com Google]',
 				// expected factory method
-				\Flow\Model\UrlReference::class,
+				\Flow\Model\URLReference::class,
 				// expected type
 				'link',
 				// expected target
