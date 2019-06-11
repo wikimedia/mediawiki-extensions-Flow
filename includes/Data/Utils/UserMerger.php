@@ -60,7 +60,7 @@ class UserMerger {
 	 */
 	public function getAccountFields() {
 		$fields = [];
-		$dbw = $this->dbFactory->getDb( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		foreach ( $this->config as $table => $config ) {
 			$row = [
 				'db' => $dbw,
@@ -82,7 +82,7 @@ class UserMerger {
 	 * @param int $newUserId
 	 */
 	public function finalizeMerge( $oldUserId, $newUserId ) {
-		$dbw = $this->dbFactory->getDb( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		foreach ( $this->config as $table => $config ) {
 			foreach ( $config['userColumns'] as $column => $userTupleGetter ) {
 				$it = new BatchRowIterator( $dbw, $table, $config['pk'], 500 );

@@ -81,7 +81,7 @@ abstract class DbStorage implements ObjectStorage {
 
 		foreach ( $data as $key => $value ) {
 			if ( $value instanceof RawSql ) {
-				$data[$key] = $value->getSql( $db );
+				$data[$key] = $value->getSQL( $db );
 			} elseif ( is_numeric( $key ) ) {
 				throw new DataModelException( "Unescaped raw SQL found in " . __METHOD__, 'process-data' );
 			} elseif ( !preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {

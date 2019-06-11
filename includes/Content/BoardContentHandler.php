@@ -53,7 +53,7 @@ class BoardContentHandler extends \ContentHandler {
 		$info = [];
 
 		if ( $content->getWorkflowId() ) {
-			$info['flow-workflow'] = $content->getWorkflowId()->getAlphaDecimal();
+			$info['flow-workflow'] = $content->getWorkflowId()->getAlphadecimal();
 		}
 
 		return FormatJson::encode( $info );

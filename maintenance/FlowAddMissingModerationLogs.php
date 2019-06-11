@@ -37,7 +37,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 		/** @var DbFactory $dbFactory */
 		$dbFactory = $container['db.factory'];
-		$dbw = $dbFactory->getDb( DB_MASTER );
+		$dbw = $dbFactory->getDB( DB_MASTER );
 
 		$storage = $container['storage'];
 

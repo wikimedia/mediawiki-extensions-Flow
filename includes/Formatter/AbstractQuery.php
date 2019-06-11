@@ -342,7 +342,7 @@ abstract class AbstractQuery {
 		}
 
 		$currentRevisionId = $this->currentRevisionsCache[$cacheKey];
-		return $this->revisionCache[$currentRevisionId->getAlphaDecimal()];
+		return $this->revisionCache[$currentRevisionId->getAlphadecimal()];
 	}
 
 	/**
@@ -358,7 +358,7 @@ abstract class AbstractQuery {
 		$rootPostId = $this->getRootPostId( $revision );
 
 		if ( !isset( $this->postCache[$rootPostId->getAlphadecimal()] ) ) {
-			throw new \MwException( 'Did not load root post ' . $rootPostId->getAlphadecimal() );
+			throw new \MWException( 'Did not load root post ' . $rootPostId->getAlphadecimal() );
 		}
 
 		$rootPost = $this->postCache[$rootPostId->getAlphadecimal()];

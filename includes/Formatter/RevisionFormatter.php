@@ -1009,7 +1009,7 @@ class RevisionFormatter {
 		case 'workflow-url':
 			return $this->urlGenerator
 				->workflowLink( null, $workflowId )
-				->getFullUrl();
+				->getFullURL();
 
 		case 'post-url':
 			if ( !$revision instanceof PostRevision ) {
@@ -1017,7 +1017,7 @@ class RevisionFormatter {
 			}
 			return $this->urlGenerator
 				->postLink( null, $workflowId, $revision->getPostId() )
-				->getFullUrl();
+				->getFullURL();
 
 		case 'moderated-reason':
 			// don't parse wikitext in the moderation reason
