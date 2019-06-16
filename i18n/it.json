@@ -479,7 +479,7 @@
 	"flow-previous-diff": "← Differenza precedente",
 	"flow-next-diff": "Differenza successiva →",
 	"flow-undo": "annulla",
-	"flow-undo-latest-revision": "Ultima revisione",
+	"flow-undo-latest-revision": "Versione attuale",
 	"flow-undo-your-text": "Il tuo testo",
 	"flow-undo-edit-header": "Modifica la descrizione",
 	"flow-undo-edit-topic-summary": "Modifica il riassunto dell'argomento",
