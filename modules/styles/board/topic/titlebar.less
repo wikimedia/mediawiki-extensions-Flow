@@ -38,8 +38,8 @@
 	}
 }
 
-// needs extra specificity to override `div#content h2` from vector
-div#content .flow-topic-title { /* stylelint-disable-line selector-max-id */
+// Use extra specificity to override `.mw-body-content h2` from Vector.
+.mw-body .flow-topic-title {
 	padding: 0;
 	border-bottom: 0;
 	font-family: sans-serif;
@@ -49,9 +49,8 @@ div#content .flow-topic-title { /* stylelint-disable-line selector-max-id */
 	overflow: visible;
 }
 
-// Correct positioning for ltr/rtl content direction
-/* stylelint-disable selector-max-id */
-div#content .mw-content-ltr .flow-topic-title {
+// Correct positioning for ltr/rtl content direction.
+.mw-body .mw-content-ltr .flow-topic-title {
 	/* @noflip */
 	margin: 0 2.5em 0.15em 0;
 
@@ -65,8 +64,8 @@ div#content .mw-content-ltr .flow-topic-title {
 	}
 }
 
-// Correct positioning for ltr/rtl content direction
-div#content .mw-content-rtl .flow-topic-title {
+// Correct positioning for ltr/rtl content direction.
+.mw-body .mw-content-rtl .flow-topic-title {
 	/* @noflip */
 	margin: 0 0 0.15em 2.5em;
 
@@ -79,7 +78,6 @@ div#content .mw-content-rtl .flow-topic-title {
 		margin-right: -0.25em;
 	}
 }
-/* stylelint-enable selector-max-id */
 
 .flow-moderated-topic-title {
 	margin-bottom: 0.33em;
@@ -87,8 +85,8 @@ div#content .mw-content-rtl .flow-topic-title {
 	font-weight: bold;
 }
 
-// Override default Vector heading styles
-div#content h2.flow-topic-title { /* stylelint-disable-line selector-max-id */
+// Override default Vector heading styles.
+.mw-body h2.flow-topic-title {
 	font-size: 1.5em;
 }
 
