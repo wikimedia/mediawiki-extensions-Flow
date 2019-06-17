@@ -264,6 +264,7 @@
 	"flow-moderation-title-unsuppress-topic": "Չեղարկե՞լ բաժնի ճնշումը։",
 	"flow-moderation-title-undelete-topic": "Վերականգնե՞լ բաժինը։",
 	"flow-moderation-title-unhide-topic": "Ցուցադրե՞լ բաժինը։",
+	"flow-topic-permalink-warning-user-board": "[$2 {{GENDER:$1|$1}}-ի քննարկման էջում] նոր բաժին է բացվել",
 	"flow-revision-permalink-warning-header-first": "Սա նկարագրության առաջին տարբերակ մշտական հղումն է:\nԴուք կարող եք դիտել ավելի ուշ տարբերակները [$2 էջի պատմության ցուցակ]ում:",
 	"flow-topic-first-heading": "$1 էջի բաժինը",
 	"flow-topic-html-title": "$1-ը $2-ում",

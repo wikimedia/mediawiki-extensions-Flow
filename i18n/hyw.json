@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Azniv Stepanian"
 		]
 	},
-	"flow-cancel": "Չեղարկել"
+	"flow-cancel": "Չեղարկել",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Շնորհակալութիւն}}}}"
 }
