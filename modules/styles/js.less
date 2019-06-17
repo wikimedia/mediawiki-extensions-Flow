@@ -1,5 +1,6 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
+@width-ui-loading-dot: 1.143em; // Equals ~`16px` at `14px` base font size.
 
 // @todo: Find better home for this css
 .client-js {
@@ -55,29 +56,46 @@
 	}
 }
 
-// When the load more wrapper is being processed, show the spinning loading icon
+// When the load more wrapper is being processed, show the spinning loading icon.
 .flow-ui-loading {
-	// Hide by default
+	// Hide by default.
 	display: none;
+	// Align the icon in the center.
+	width: @width-ui-loading-dot * 3;
+	margin-left: auto;
+	margin-right: auto;
 
-	// But show when a load is pending
+	// Show when a load is pending.
 	.flow-load-more.flow-api-inprogress & {
 		display: block;
 	}
 
-	// Align the icon in the center
-	text-align: center;
-
-	.mw-ui-icon {
+	.flow-ui-loading-dot,
+	&:before,
+	&:after {
+		content: '';
+		background-color: @colorGray7;
 		display: inline-block;
-		font-size: 2em;
+		width: @width-ui-loading-dot;
+		height: @width-ui-loading-dot;
+		margin-left: @width-ui-loading-dot / 4;
+		border-radius: 100%;
+		-webkit-animation: bounce-delay 1600ms infinite ease-in-out both;
+		animation: bounce-delay 1600ms infinite ease-in-out both;
+		-webkit-animation-delay: -160ms;
+		animation-delay: -160ms;
+	}
 
-		// Make the icon rotate
-		-webkit-animation: spin infinite 2s linear;
-		-moz-animation: spin infinite 2s linear;
-		-ms-animation: spin infinite 2s linear;
-		-o-animation: spin infinite 2s linear;
-		animation: spin infinite 2s linear;
+	&:before {
+		margin-right: @width-ui-loading-dot / 4;
+		-webkit-animation-delay: -330ms;
+		animation-delay: -330ms;
+	}
+
+	&:after {
+		margin-left: @width-ui-loading-dot / 4;
+		-webkit-animation-delay: 0s;
+		animation-delay: 0s;
 	}
 }
 
@@ -87,50 +105,28 @@ div#content div#bodyContent .flow-api-inprogress { /* stylelint-disable-line sel
 	cursor: wait;
 }
 
-@-webkit-keyframes spin {
-	0% {
-		-webkit-transform: rotate( 0deg );
-		opacity: 0.5;
-	}
-
-	50% {
-		opacity: 0.75;
-	}
-
+@-webkit-keyframes bounce-delay {
+	0%,
+	50%, // Equals 800ms.
 	100% {
-		-webkit-transform: rotate( 360deg );
-		opacity: 0.5;
+		-webkit-transform: scale( 0.625 );
+	}
+
+	20% { // Equals 320ms.
+		opacity: 0.87;
+		-webkit-transform: scale( 1 );
 	}
 }
 
-@-moz-keyframes spin {
-	0% {
-		-moz-transform: rotate( 0deg );
-		opacity: 0.5;
-	}
-
-	50% {
-		opacity: 0.75;
-	}
-
+@keyframes bounce-delay {
+	0%,
+	50%,
 	100% {
-		-moz-transform: rotate( 360deg );
-		opacity: 0.5;
-	}
-}
-
-@keyframes spin {
-	0% {
-		transform: rotate( 0deg );
-		opacity: 0.5;
+		transform: scale( 0.625 );
 	}
 
-	50% {
-		opacity: 0.75;
-	}
-
-	100% {
-		transform: rotate( 360deg );
-		opacity: 0.5;
+	20% {
+		opacity: 0.87;
+		transform: scale( 1 );
 	}
 }
