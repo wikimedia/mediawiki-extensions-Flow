@@ -294,12 +294,11 @@
 	float: right;
 }
 
-// vector theme overrides
+// Vector theme overrides
 // makes the layout more compact on Talk (ns-1) and User_Talk (ns-3)
-/* stylelint-disable selector-max-id */
 body.ns-1,
 body.ns-3 {
-	div#content.mw-body {
+	.mw-body {
 		@media all and ( min-width: @medium ) {
 			padding-right: 0;
 			padding-bottom: 0;
@@ -309,12 +308,11 @@ body.ns-3 {
 			margin-bottom: 0;
 		}
 
-		#contentSub {
+		#contentSub { // stylelint-disable-line selector-max-id
 			display: none;
 		}
 	}
 }
-/* stylelint-enable selector-max-id */
 
 @mw-ui-icon-size-flow: ( 20em / 14 );
 

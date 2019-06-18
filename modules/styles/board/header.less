@@ -29,9 +29,8 @@
 	}
 }
 
-// need to be specific to override this h2
-/* stylelint-disable selector-max-id */
-div#content h2.flow-board-header-title {
+// Use specificity to override skin's h2.
+.mw-body h2.flow-board-header-title {
 	margin-right: 10px;
 	margin-top: 0;
 	margin-bottom: 10px;
@@ -44,7 +43,6 @@ div#content h2.flow-board-header-title {
 		width: 20px;
 	}
 }
-/* stylelint-enable selector-max-id */
 
 .flow-board-header-title {
 	display: none;
