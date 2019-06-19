@@ -319,8 +319,8 @@ class ContributionsQuery extends AbstractQuery {
 		// exclude all users within groups with bot permission
 		$excludeUserIds = [];
 		$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
-		if ( count( $groupsWithBotPermission ) ) {
-			$rows = $db->select(
+		if ( $groupsWithBotPermission !== [] ) {
+			$excludeUserIds = $db->selectFieldValues(
 				[ 'user', 'user_groups' ],
 				'user_id',
 				[
@@ -337,11 +337,6 @@ class ContributionsQuery extends AbstractQuery {
 					]
 				]
 			);
-
-			$excludeUserIds = [];
-			foreach ( $rows as $row ) {
-				$excludeUserIds[] = $row->user_id;
-			}
 		}
 
 		return [ $minUserId, $excludeUserIds ];
