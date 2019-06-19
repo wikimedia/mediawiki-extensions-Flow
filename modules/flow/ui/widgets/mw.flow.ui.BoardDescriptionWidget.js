@@ -277,7 +277,7 @@
 
 				for ( cat in catObject ) {
 					title = mw.Title.newFromText( catObject[ cat ].title );
-					categories[ title.getName() ] = { exists: catObject[ cat ].missing === undefined };
+					categories[ title.getMain() ] = { exists: catObject[ cat ].missing === undefined };
 				}
 				// Update the board data model
 				widget.board.clearCategories();
