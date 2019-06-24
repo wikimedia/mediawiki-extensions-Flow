@@ -17,8 +17,10 @@
 	"flow-topic-action-summarize-topic": "Gearfetsje",
 	"flow-board-history": "\"$1\" skiednis",
 	"flow-history-day": "Hjoed",
+	"echo-category-title-flow-discussion": "Strukturearre diskusje",
 	"flow-link-history": "skiednis",
 	"flow-moderation-confirm-delete-post": "Fuortsmite",
 	"flow-moderation-confirm-delete-topic": "Fuortsmite",
-	"flow-load-more": "Mear laden"
+	"flow-load-more": "Mear laden",
+	"flow-preference-visualeditor": "De fisuele bewurker en de nije wikitekstmodus ynskeakelje yn Strukturearre diskusjes"
 }

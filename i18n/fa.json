@@ -24,7 +24,8 @@
 			"Dalba",
 			"AzorAhai",
 			"Alifakoor",
-			"Arash"
+			"Arash",
+			"FarsiNevis"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -147,7 +148,7 @@
 	"flow-topic-action-unlock-topic": "بازگشایی مبحث",
 	"flow-topic-action-summarize-topic": "جمع‌بندی",
 	"flow-topic-action-resummarize-topic": "ویرایش جمع‌بندی مبحث",
-	"flow-topic-action-update-topic-summary": "به‌روزرسانی جمع‌بندی",
+	"flow-topic-action-update-topic-summary": "روزآمدسازی جمع‌بندی",
 	"flow-topic-action-suppress-topic": "فرونشانی مبحث",
 	"flow-topic-action-unhide-topic": "آشکار کردن مبحث",
 	"flow-topic-action-undelete-topic": "احیای مبحث",
@@ -299,7 +300,7 @@
 	"notification-bundle-header-flow-post-edited-user-talk": "یک ارسال در «<strong>$1</strong>» در <strong>صفحهٔ بحث {{GENDER:$2|شما}}</strong> چندین بار ویرایش شد.",
 	"notification-header-flow-topic-renamed-v2": "مبحث «<strong>$1</strong>» به «<strong>$2</strong>» تغییر نام یافت.",
 	"notification-header-flow-topic-renamed-user-talk": "مبحث «<strong>$1</strong>» در <strong>صفحهٔ بحث {{GENDER:$3|شما}}</strong> به «<strong>$2</strong>» تغییر نام یافت.",
-	"notification-header-flow-summary-edited": "جمع‌بندی «<strong>$1</strong>» به روز شد.",
+	"notification-header-flow-summary-edited": "جمع‌بندی «<strong>$1</strong>» روزآمد شد.",
 	"notification-header-flow-summary-edited-first": "مبحث «<strong>$1</strong>» جمع‌بندی شد.",
 	"notification-bundle-header-flow-summary-edited": "جمع‌بندی «<strong>$1</strong>» چندین بار به روز شد.",
 	"notification-header-flow-summary-edited-user-talk": "جمع‌بندی «<strong>$1</strong>» در <strong>صفحهٔ بحث {{GENDER:$2|شما}}</strong> به روز شد.",
