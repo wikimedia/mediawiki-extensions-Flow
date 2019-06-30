@@ -199,6 +199,7 @@
 	"flow-history-last4": "Zadnja 4 sata",
 	"flow-history-day": "Danas",
 	"flow-history-week": "Prošli tjedan",
+	"flow-topic-comments": "{{PLURAL:$1|1=Jedan komentar|$1 komentar|$1 komentara|0={{GENDER:$2|Prvi|Prva}} napiši komentar!}}",
 	"flow-comment-restored": "Vraćeni komentar",
 	"flow-comment-deleted": "Izbrisani komentar",
 	"flow-comment-hidden": "Sakriveni komentar",
