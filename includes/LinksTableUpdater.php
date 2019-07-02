@@ -59,7 +59,7 @@ class LinksTableUpdater {
 		foreach ( $references as $reference ) {
 			if ( $reference->getType() === 'link' ) {
 				if ( $reference instanceof URLReference ) {
-					$parserOutput->mExternalLinks[$reference->getUrl()] = true;
+					$parserOutput->addExternalLink( $reference->getUrl() );
 				} elseif ( $reference instanceof WikiReference ) {
 					$internalLinks[$reference->getTitle()->getPrefixedDBkey()] = $reference->getTitle();
 					$linkBatch->addObj( $reference->getTitle() );
