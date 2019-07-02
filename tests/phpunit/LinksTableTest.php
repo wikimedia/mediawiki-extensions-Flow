@@ -387,6 +387,16 @@ class LinksTableTest extends PostRevisionTestCase {
 					],
 				],
 			],
+			[
+				[
+					$references['ExtLinkWithInvalidUTF8Sequence']
+				],
+				[
+					'getExternalLinks' => [
+						'http://www.google.com/%E8' => true,
+					],
+				]
+			],
 		];
 	}
 
@@ -484,6 +494,11 @@ class LinksTableTest extends PostRevisionTestCase {
 				'factoryMethod' => 'createUrlReference',
 				'refType' => 'link',
 				'value' => 'http://www.google.com'
+			],
+			'ExtLinkWithInvalidUTF8Sequence' => [
+				'factoryMethod' => 'createUrlReference',
+				'refType' => 'link',
+				'value' => 'http://www.google.com/%E8'
 			],
 			'fooImage' => [
 				'factoryMethod' => 'createWikiReference',
