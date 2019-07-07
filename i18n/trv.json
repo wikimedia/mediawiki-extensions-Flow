@@ -4,16 +4,20 @@
 			"Iyuqciyang"
 		]
 	},
-	"flow-cancel": "pkungat",
-	"flow-show-change": "kmpriyux pqita",
+	"flow-cancel": "Pkungat",
+	"flow-show-change": "Kmpriyux pqita",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2| mqaras }}}}",
 	"flow-history-action-hide-post": "lmiying",
+	"flow-post-action-post-history": "Endaan",
 	"flow-post-action-hide-post": "lmiying",
 	"flow-post-action-edit-post": "smmalu patas",
 	"flow-post-action-undo-moderation": "pkbrih",
 	"flow-topic-action-watchlist": "Patas leexan gmraka",
+	"flow-topic-action-history": "Endaan",
 	"flow-topic-action-undo-moderation": "pkbrih",
 	"flow-error-invalid-topic-uuid-title": "ungat brih ka pusu kari",
+	"flow-board-history": "\"$1\" endaan",
+	"flow-link-history": "endaan",
 	"flow-moderation-confirm-hide-post": "lmiying",
 	"flow-moderation-confirm-hide-topic": "lmiying",
 	"flow-previous-diff": "←smudal hari smmalu patas",
@@ -21,5 +25,5 @@
 	"flow-undo": "pkbrih",
 	"flow-undo-latest-revision": "Bgurah bi muda smalu",
 	"flow-undo-edit-failure": "Paah nii smmalu patas ka muda smalu iyax o niqan mkeekan, smalu patas nii ini tduwa psnbrih.",
-	"flow-ve-mention-inspector-remove-label": "hdlun pkungat"
+	"flow-ve-mention-inspector-remove-label": "Hdlun pkungat"
 }

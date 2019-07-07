@@ -182,7 +182,7 @@
 	"flow-rev-message-edit-title": "$1 je {{GENDER:$2|promijenio|promijenila}} naslov teme iz \"$5\" u \"[$3 $4]\"",
 	"flow-rev-message-create-header": "$1 je {{GENDER:$2|stvorio|stvorila}} opis",
 	"flow-rev-message-edit-header": "$1 je {{GENDER:$2|uređivao|uređivala}} opis",
-	"flow-rev-message-create-topic-summary": "$1 je {{GENDER:$2|stvorio|stvorila}} sažetak neme na $3",
+	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|stvorio|stvorila}} je sažetak teme na $3",
 	"flow-rev-message-edit-topic-summary": "$1 je {{GENDER:$2|uređivao|uređivala}} sažetak teme na $3",
 	"flow-rev-message-hid-post": "$1 je {{GENDER:$2|sakrio|sakrila}} [$4 poruku] na \"$6\" (<em>$5</em>)",
 	"flow-rev-message-deleted-post": "$1 je {{GENDER:$2|izbrisao|izbrisala}} [$4 poruku] na \"$6\" (<em>$5</em>)",

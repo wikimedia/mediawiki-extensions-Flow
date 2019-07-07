@@ -29,7 +29,8 @@
 			"Chiefwei",
 			"Myy730",
 			"Arthur2e5",
-			"神樂坂秀吉"
+			"神樂坂秀吉",
+			"A2093064"
 		]
 	},
 	"enablestructureddiscussions": "启用结构式讨论",
@@ -306,7 +307,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "在<strong>{{GENDER:$3|您}}的讨论页</strong>上的话题“<strong>$1</strong>”已重命名为“<strong>$2</strong>”。",
 	"notification-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已更新。",
 	"notification-header-flow-summary-edited-first": "话题“<strong>$1</strong>”已总结。",
-	"notification-bundle-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已更新太多次。",
+	"notification-bundle-header-flow-summary-edited": "“<strong>$1</strong>”的摘要已多次被更新。",
 	"notification-header-flow-summary-edited-user-talk": "“<strong>$1</strong>”的摘要已在<strong>{{GENDER:$2|您}}的讨论页</strong>上更新。",
 	"notification-header-flow-summary-edited-first-user-talk": "话题“<strong>$1</strong>”已在<strong>{{GENDER:$2|您}}的讨论页</strong>上总结。",
 	"notification-bundle-header-flow-summary-edited-user-talk": "“<strong>$1</strong>”的摘要已在<strong>{{GENDER:$2|您}}的讨论页</strong>上更新太多次。",

@@ -294,7 +294,7 @@
 	"notification-header-flow-topic-renamed-user-talk": "<strong>{{GENDER:$3|您的}}對話頁面</strong>裡面的話題 \"<strong>$1</strong>\" 已被重新命名為 \"<strong>$2</strong>\"。",
 	"notification-header-flow-summary-edited": "「<strong>$1</strong>」的摘要已更新。",
 	"notification-header-flow-summary-edited-first": "話題「<strong>$1</strong>」已總結。",
-	"notification-bundle-header-flow-summary-edited": "「<strong>$1</strong>」的摘要已更新太多次。",
+	"notification-bundle-header-flow-summary-edited": "「<strong>$1</strong>」的摘要已多次被更新。",
 	"notification-header-flow-summary-edited-user-talk": "「<strong>$1</strong>」的摘要已在<strong>{{GENDER:$2|您}}的討論頁</strong>上更新。",
 	"notification-header-flow-summary-edited-first-user-talk": "話題「<strong>$1</strong>」已在<strong>{{GENDER:$2|您}}的討論頁</strong>上總結。",
 	"notification-bundle-header-flow-summary-edited-user-talk": "「<strong>$1</strong>」的摘要已在<strong>{{GENDER:$2|您}}的討論頁</strong>上更新太多次。",
