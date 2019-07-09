@@ -84,6 +84,7 @@ class View extends ContextSource {
 		}
 
 		$robotPolicy = $this->getRobotPolicy( $action, $loader->getWorkflow(), $blocks );
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->renderApiResponse( $apiResponse, $robotPolicy );
 	}
 
