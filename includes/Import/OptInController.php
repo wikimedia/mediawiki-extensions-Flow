@@ -575,12 +575,12 @@ class OptInController {
 	 * @throws ImportException
 	 */
 	private function removeArchiveTemplateFromWikitextTalkpage( Title $title ) {
-		$content = $this->getContent( $title );
-		if ( !$content ) {
+		$wtContent = $this->getContent( $title );
+		if ( !$wtContent ) {
 			return;
 		}
 
-		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+		$content = Utils::convert( 'wikitext', 'html', $wtContent, $title );
 		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 
 		$newContent = TemplateHelper::removeFromHtml( $content, $templateName );

@@ -63,14 +63,14 @@ class ImportSource implements IImportSource {
 
 		// If sections exist only take the content from the top of the page
 		// to the first section.
-		$content = $revision->getContent()->getNativeData();
-		$output = $this->parser->parse( $content, $this->title, new ParserOptions );
+		$nativeContent = $revision->getContent()->getNativeData();
+		$output = $this->parser->parse( $nativeContent, $this->title, new ParserOptions );
 		$sections = $output->getSections();
 		if ( $sections ) {
-			$content = substr( $content, 0, $sections[0]['byteoffset'] );
+			$nativeContent = substr( $nativeContent, 0, $sections[0]['byteoffset'] );
 		}
 
-		$content = TemplateHelper::extractTemplates( $content, $this->title );
+		$content = TemplateHelper::extractTemplates( $nativeContent, $this->title );
 
 		$template = wfMessage( 'flow-importer-wt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode( '|', [

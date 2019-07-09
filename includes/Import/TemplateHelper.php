@@ -68,12 +68,12 @@ class TemplateHelper {
 	 * Extract templates from wikitext content.
 	 * Requires Parsoid to reliably extract templates.
 	 *
-	 * @param string $content
+	 * @param string $wtContent
 	 * @param Title $title
 	 * @return string
 	 */
-	public static function extractTemplates( $content, Title $title ) {
-		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+	public static function extractTemplates( $wtContent, Title $title ) {
+		$content = Utils::convert( 'wikitext', 'html', $wtContent, $title );
 		$dom = Utils::createDOM( $content );
 		$xpath = new \DOMXPath( $dom );
 		$templates = $xpath->query( '//*[@typeof="mw:Transclusion"]' );
