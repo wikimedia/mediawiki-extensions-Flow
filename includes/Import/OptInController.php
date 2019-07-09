@@ -307,6 +307,7 @@ class OptInController {
 	 * @param string $summary
 	 * @throws ImportException
 	 * @throws \MWException
+	 * @param-taint escapes_escaped $contentText
 	 */
 	private function createRevision( Title $title, $contentText, $summary ) {
 		$page = WikiPage::factory( $title );
@@ -575,12 +576,12 @@ class OptInController {
 	 * @throws ImportException
 	 */
 	private function removeArchiveTemplateFromWikitextTalkpage( Title $title ) {
-		$content = $this->getContent( $title );
-		if ( !$content ) {
+		$wtContent = $this->getContent( $title );
+		if ( !$wtContent ) {
 			return;
 		}
 
-		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+		$content = Utils::convert( 'wikitext', 'html', $wtContent, $title );
 		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 
 		$newContent = TemplateHelper::removeFromHtml( $content, $templateName );
