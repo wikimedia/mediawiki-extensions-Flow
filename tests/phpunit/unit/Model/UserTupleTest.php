@@ -9,7 +9,7 @@ use Flow\Model\UserTuple;
  *
  * @group Flow
  */
-class UserTupleTest extends \MediaWikiTestCase {
+class UserTupleTest extends \MediaWikiUnitTestCase {
 
 	public function invalidInputProvider() {
 		return [

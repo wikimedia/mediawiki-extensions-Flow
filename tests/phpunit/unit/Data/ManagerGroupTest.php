@@ -10,7 +10,7 @@ use Flow\Data\ManagerGroup;
  *
  * @group Flow
  */
-class ManagerGroupTest extends \MediaWikiTestCase {
+class ManagerGroupTest extends \MediaWikiUnitTestCase {
 	protected function mockStorage() {
 		$container = new Container;
 		foreach ( range( 'A', 'D' ) as $letter ) {
