@@ -3,14 +3,14 @@
 namespace Flow\Tests;
 
 use Flow\FlowActions;
-use MediaWikiTestCase;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \Flow\FlowActions
  *
  * @group Flow
  */
-class FlowActionsTest extends MediaWikiTestCase {
+class FlowActionsTest extends MediaWikiUnitTestCase {
 
 	public function testAliasedTopLevelValues() {
 		$actions = new FlowActions( [
