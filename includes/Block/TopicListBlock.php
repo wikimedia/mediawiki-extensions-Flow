@@ -86,6 +86,7 @@ class TopicListBlock extends AbstractBlock {
 			return;
 		}
 		if ( mb_strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
+			// @phan-suppress-next-line PhanParamTooMany T191666
 			$this->addError( 'topic', $this->context->msg( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			return;
 		}

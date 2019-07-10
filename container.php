@@ -6,7 +6,7 @@ $c = new Flow\Container;
 if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	$c['user'] = new User;
 } else {
-	$c['user'] = isset( $GLOBALS['wgUser'] ) ? $GLOBALS['wgUser'] : new User;
+	$c['user'] = $GLOBALS['wgUser'] ?? new User;
 }
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
@@ -496,8 +496,7 @@ $c['storage.topic_list.mapper'] = function ( $c ) {
 	// Must be BasicObjectMapper, due to variance in when
 	// we have workflow_last_update_timestamp
 	return BasicObjectMapper::model(
-		$c['storage.topic_list.class'],
-		$c['storage.topic_list.primary_key']
+		$c['storage.topic_list.class']
 	);
 };
 $c['storage.topic_list.backend'] = function ( $c ) {
@@ -847,8 +846,7 @@ $c['controller.spamfilter'] = function ( $c ) {
 
 $c['query.categoryviewer'] = function ( $c ) {
 	return new Flow\Formatter\CategoryViewerQuery(
-		$c['storage'],
-		$c['repository.tree']
+		$c['storage']
 	);
 };
 $c['formatter.categoryviewer'] = function ( $c ) {
@@ -929,8 +927,7 @@ $c['query.changeslist'] = function ( $c ) {
 $c['query.postsummary'] = function ( $c ) {
 	return new Flow\Formatter\PostSummaryQuery(
 		$c['storage'],
-		$c['repository.tree'],
-		$c['flow_actions']
+		$c['repository.tree']
 	);
 };
 $c['query.header.view'] = function ( $c ) {

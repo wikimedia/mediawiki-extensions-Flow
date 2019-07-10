@@ -74,6 +74,7 @@ class SearchEngine extends \SearchEngine {
 
 		// only apply filters if there are any
 		if ( $filter->toArray() ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$query->setPostFilter( $filter );
 		}
 

@@ -168,6 +168,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( $len > PostRevision::MAX_TOPIC_LENGTH ) {
+			// @phan-suppress-next-line PhanParamTooMany T191666
 			$this->addError( 'content', $this->context->msg(
 				'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			return;
@@ -965,6 +966,7 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getDescendant( $postId );
 			if ( $post === null ) {
 				// The requested postId is not a member of the current workflow
+				// @phan-suppress-next-line PhanParamTooMany T191666
 				$this->addError( 'post', $this->context->msg(
 					'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return null;
@@ -975,6 +977,7 @@ class TopicBlock extends AbstractBlock {
 			if ( !$found['post'] || !$found['root'] ||
 				!$found['root']->getPostId()->equals( $this->workflow->getId() )
 			) {
+				// @phan-suppress-next-line PhanParamTooMany T191666
 				$this->addError( 'post', $this->context->msg(
 					'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return null;

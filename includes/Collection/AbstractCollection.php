@@ -75,7 +75,8 @@ abstract class AbstractCollection {
 	 * (post ID, header ID, etc.)
 	 *
 	 * @param UUID $uuid
-	 * @return AbstractCollection
+	 * @return static
+	 * @suppress PhanTypeInstantiateAbstract Phan is right, though
 	 */
 	public static function newFromId( UUID $uuid ) {
 		return new static( $uuid );

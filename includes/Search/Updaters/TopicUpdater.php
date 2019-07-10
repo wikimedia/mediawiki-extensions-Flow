@@ -37,6 +37,7 @@ class TopicUpdater extends AbstractUpdater {
 
 	/**
 	 * @inheritDoc
+	 * @suppress PhanTypeMismatchArgument Phan infers AbstractRevision
 	 */
 	public function buildDocument( AbstractRevision /* PostRevision */ $revision ) {
 		/** @var PostRevision $revision */

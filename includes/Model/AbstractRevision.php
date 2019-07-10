@@ -163,7 +163,7 @@ abstract class AbstractRevision {
 	public static function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			/** @var AbstractRevision $obj */
-			$obj = new static;
+			$obj = new static; // @phan-suppress-current-line PhanTypeInstantiateAbstract
 		} elseif ( !$obj instanceof static ) {
 			throw new DataModelException( 'wrong object type', 'process-data' );
 		}

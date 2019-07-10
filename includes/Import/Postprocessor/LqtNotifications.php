@@ -79,7 +79,7 @@ class LqtNotifications implements Postprocessor {
 	 * @param EchoEvent $event
 	 * @param int $batchSize
 	 * @throws ImportException
-	 * @return \Iterator[User]
+	 * @return EchoCallbackIterator
 	 */
 	public function locateUsersWithPendingLqtNotifications( EchoEvent $event, $batchSize = 500 ) {
 		$activeThreadId = $event->getExtraParam( 'lqtThreadId' );
