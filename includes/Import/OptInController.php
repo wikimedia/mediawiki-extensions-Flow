@@ -307,6 +307,7 @@ class OptInController {
 	 * @param string $summary
 	 * @throws ImportException
 	 * @throws \MWException
+	 * @param-taint escapes_escaped $contentText
 	 */
 	private function createRevision( Title $title, $contentText, $summary ) {
 		$page = WikiPage::factory( $title );
@@ -390,6 +391,7 @@ class OptInController {
 		$content = $this->getFormattedArchiveTemplate( $title ) . "\n\n" . $content;
 
 		$addTemplateReason = wfMessage( 'flow-beta-feature-add-archive-template-edit-summary' )->inContentLanguage()->plain();
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$archiveTitle,
 			$content,
@@ -575,16 +577,17 @@ class OptInController {
 	 * @throws ImportException
 	 */
 	private function removeArchiveTemplateFromWikitextTalkpage( Title $title ) {
-		$content = $this->getContent( $title );
-		if ( !$content ) {
+		$wtContent = $this->getContent( $title );
+		if ( !$wtContent ) {
 			return;
 		}
 
-		$content = Utils::convert( 'wikitext', 'html', $content, $title );
+		$content = Utils::convert( 'wikitext', 'html', $wtContent, $title );
 		$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 
 		$newContent = TemplateHelper::removeFromHtml( $content, $templateName );
 
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$title,
 			Utils::convert( 'html', 'wikitext', $newContent, $title ),
@@ -633,6 +636,7 @@ class OptInController {
 	private function editWikitextContent( Title $title, $reason, callable $newDescriptionCallback, $format = 'html' ) {
 		$content = Utils::convert( 'wikitext', $format, $this->getContent( $title ), $title );
 		$newContent = $newDescriptionCallback( $content );
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$title,
 			Utils::convert( $format, 'wikitext', $newContent, $title ),

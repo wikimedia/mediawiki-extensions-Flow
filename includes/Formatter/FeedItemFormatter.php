@@ -47,6 +47,7 @@ class FeedItemFormatter extends AbstractFormatter {
 			$url = $data['links'][$link]->getFullURL();
 		}
 
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new FeedItem(
 			$row->workflow->getArticleTitle()->getPrefixedText(),
 			$this->formatDescription( $data, $ctx ),
