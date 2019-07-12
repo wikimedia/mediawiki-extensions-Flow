@@ -9,7 +9,7 @@ use Flow\Import\TemplateHelper;
 /**
  * @covers \Flow\Import\TemplateHelper
  */
-class TemplateHelperTest extends \MediaWikiTestCase {
+class TemplateHelperTest extends \MediaWikiUnitTestCase {
 
 	public function removeFromHtmlDataProvider() {
 		return [
