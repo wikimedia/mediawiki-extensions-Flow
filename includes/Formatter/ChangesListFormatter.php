@@ -160,6 +160,9 @@ class ChangesListFormatter extends AbstractFormatter {
 	 * @throws PermissionException
 	 */
 	public function getTimestampLink( $row, $ctx ) {
+		$this->serializer->setIncludeHistoryProperties( true );
+		$this->serializer->setIncludeContent( false );
+
 		$data = $this->serializer->formatApi( $row, $ctx, 'recentchanges' );
 		if ( $data === false ) {
 			throw new PermissionException( 'Insufficient permissions for ' . $row->revision->getRevisionId()->getAlphadecimal() );
