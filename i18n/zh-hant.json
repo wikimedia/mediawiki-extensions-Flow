@@ -441,7 +441,7 @@
 	"flow-special-invalid-uuid": "查無符合該類型與 UUID 的內容。",
 	"flow-special-enableflow-legend": "在新頁面開啟結構式討論",
 	"flow-special-enableflow-page": "要開啟結構式討論的頁面",
-	"flow-special-enableflow-header": "結構式討論討論板的描述 (Wikitext)",
+	"flow-special-enableflow-header": "結構式討論討論板的描述（Wikitext）",
 	"flow-special-enableflow-board-already-exists": "[[$1]] 已使用結構式討論留言板。",
 	"flow-special-enableflow-invalid-title": "提供了無效的頁面標題。",
 	"flow-special-enableflow-board-creation-not-allowed": "您不被允許建立結構式討論留言板於 [[:$1]]。",
