@@ -86,7 +86,7 @@ class ReferenceClarifier {
 	protected function getObjectLink( UUID $workflow, $objectType, UUID $objectId ) {
 		if ( $objectType === 'post' ) {
 			$anchor = $this->urlGenerator->postLink( null, $workflow, $objectId );
-		} elseif ( $objectType === 'header' ) {
+		} elseif ( $objectType === 'header' || $objectType === 'post-summary' ) {
 			$anchor = $this->urlGenerator->workflowLink( null, $workflow );
 		} else {
 			wfDebugLog( 'Flow', __METHOD__ . ": Unknown \$objectType: $objectType" );
