@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use ChangesList;
 use Flow\Conversion\Utils;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
@@ -186,11 +187,22 @@ class ChangesListFormatter extends AbstractFormatter {
 			return false;
 		}
 
-		$old = unserialize( end( $block )->getAttribute( 'rc_params' ) );
+		// Find the last (oldest) row in $block that is a Flow row. Note that there can be non-Flow
+		// things in $block (T228290).
+		$flowRows = array_filter( $block, function ( $blockRow ) {
+			$source = $blockRow->getAttribute( 'rc_source' );
+			return $source === RecentChangesListener::SRC_FLOW ||
+				( $source === null && $blockRow->getAttribute( 'rc_type' ) === RC_FLOW );
+		} );
+		/** @var \RCCacheEntry $oldestRow */
+		$oldestRow = end( $flowRows ) ?? $row;
+
+		$old = unserialize( $oldestRow->getAttribute( 'rc_params' ) );
 		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
 
 		if ( isset( $data['links']['topic'] ) ) {
 			// add highlight details to anchor
+			// FIXME: This doesn't work well if the different rows in $block are for different topics
 			/** @var Anchor $anchor */
 			$anchor = clone $data['links']['topic'];
 			$anchor->query['fromnotif'] = '1';
