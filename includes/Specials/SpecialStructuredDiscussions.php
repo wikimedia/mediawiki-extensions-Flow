@@ -34,6 +34,11 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 		parent::__construct( 'StructuredDiscussions' );
 	}
 
+	public function execute( $par ) {
+		$this->addHelplink( 'Help:Structured_Discussions' );
+		parent::execute( $par );
+	}
+
 	/**
 	 * Initialize $this->type and $this-uuid using the subpage string.
 	 * @param string $par
