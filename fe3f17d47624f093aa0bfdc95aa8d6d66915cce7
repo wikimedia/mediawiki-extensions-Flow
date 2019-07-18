@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bb9caff_ab0c18bc",
+        "filename": "includes/Specials/SpecialStructuredDiscussions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-07-18T01:32:43Z",
+      "side": 1,
+      "message": "Please add @inheritDoc tags here",
+      "revId": "fe3f17d47624f093aa0bfdc95aa8d6d66915cce7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17d538ec_f0c50975",
+        "filename": "includes/Specials/SpecialStructuredDiscussions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-07-18T01:32:43Z",
+      "side": 1,
+      "message": "I think it would be better to call the parent method before adding the help link, so I\u0027d propose to move line 39 above line 38.",
+      "revId": "fe3f17d47624f093aa0bfdc95aa8d6d66915cce7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
