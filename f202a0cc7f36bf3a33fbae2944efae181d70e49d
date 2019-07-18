@@ -22,6 +22,30 @@
       "revId": "f202a0cc7f36bf3a33fbae2944efae181d70e49d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a380bbc_9563717c",
+        "filename": "includes/Formatter/ChangesListFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-07-18T00:22:04Z",
+      "side": 1,
+      "message": "Oh, good point. I was confused why Phan was being so stubborn, but I guess it\u0027s because I was wrong. Didn\u0027t notice the \"?? $row\" at the end there.",
+      "parentUuid": "8a179f39_108ebe3a",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 24
+      },
+      "revId": "f202a0cc7f36bf3a33fbae2944efae181d70e49d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
