@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01f93786_03a53452",
+        "filename": "includes/Specials/SpecialStructuredDiscussions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-07-18T01:11:39Z",
+      "side": 1,
+      "message": "\"Structured_Disicussions\" should be \"Structured_Discussions\"",
+      "revId": "e041988534739d8675b5a2853f1ac0b537cd1d5a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
