@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abac8736_d0a8f2b0",
+        "filename": "includes/Specials/SpecialStructuredDiscussions.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-07-18T01:36:14Z",
+      "side": 1,
+      "message": "a typo here; it should be \"@inheritDoc\"",
+      "revId": "1b530422e9848b7a3232515a8540db7c7c702d25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
