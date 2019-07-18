@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Collection\PostCollection;
+use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Repository\UserNameBatch;
 use Flow\Exception\FlowException;
@@ -173,10 +174,12 @@ class RevisionFormatter {
 	 *  'topic-title-html' and 'topic-title-wikitext' are only valid for topic titles.
 	 *  Otherwise, an exception will be thrown later.
 	 * @param UUID|null $revisionId Revision ID this format applies for.
+	 * @throws FlowException
+	 * @throws InvalidInputException
 	 */
 	public function setContentFormat( $format, UUID $revisionId = null ) {
 		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
-			throw new FlowException( "Unknown content format: $format" );
+			throw new InvalidInputException( "Unknown content format: $format" );
 		}
 		if ( $revisionId === null ) {
 			// set default content format
