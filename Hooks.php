@@ -480,6 +480,8 @@ class FlowHooks {
 		$rc = $block[0];
 
 		// quit if non-flow
+		// FIXME: It could be that $rc is a non-Flow change (e.g. Wikidata), but $block still
+		// contains Flow changes. In that case we should probably process those?
 		if ( !self::isFlow( $rc ) ) {
 			return true;
 		}
