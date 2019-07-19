@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bbec8be_5c2ec3a7",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-07-19T15:10:08Z",
+      "side": 1,
+      "message": "This could also be removed entirely, as the only thing that can make isset() not work is if $options is an object. Anything else (null, string, array, etc.) it will work as expected.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 28
+      },
+      "revId": "2b75b126ca6a39ac4b8fdb539cd4df56e6c1b6e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
