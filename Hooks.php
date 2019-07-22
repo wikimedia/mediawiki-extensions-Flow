@@ -38,15 +38,13 @@ class FlowHooks {
 
 		// Register URL actions and activity log formatter hooks
 		foreach ( $wgFlowActions as $action => $options ) {
-			if ( is_array( $options ) && isset( $options['handler-class'] ) ) {
-				$wgActions[$action] = true;
-			}
-
-			if ( !is_string( $options ) && isset( $options['log_type'] ) ) {
-				$log = $options['log_type'];
-
-				// Some actions are more complex closures - they are added manually in extension.json
-				if ( is_string( $log ) ) {
+			if ( is_array( $options ) ) {
+				if ( isset( $options['handler-class'] ) ) {
+					$wgActions[$action] = true;
+				}
+				if ( isset( $options['log_type'] ) && is_string( $options['log_type'] ) ) {
+					$log = $options['log_type'];
+					// Some actions are more complex closures - they are added manually in extension.json
 					$wgLogActionsHandlers["$log/flow-$action"] = \Flow\Log\ActionFormatter::class;
 				}
 			}
