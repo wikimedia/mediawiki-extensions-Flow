@@ -4,7 +4,8 @@
 			"Fohanno",
 			"Y-M D",
 			"Nnemo",
-			"Fulup"
+			"Fulup",
+			"Huñvreüs"
 		]
 	},
 	"enablestructureddiscussions": "Gweredekaat Flow",
@@ -80,6 +81,8 @@
 	"flow-comment-hidden": "Evezhiadenn kuzhet",
 	"flow-comment-moderated": "Evezhiadenn habaskaet",
 	"flow-last-modified": "Kemm diwezhañ war-dro $1",
+	"notification-header-flow-mention-post": "Meneget oc’h bet gant $1 e \"<strong>$5</strong>\".",
+	"notification-header-flow-mention-post-summary": "Meneget oc’h bet gant $1 e \"<strong>$5</strong>\".",
 	"flow-notification-link-text-view-post": "Gwelet ar gemennadenn",
 	"flow-notification-reply-email-subject": "$2 war $3",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|en deus|he deus}} respontet da \"$2\" war $3",

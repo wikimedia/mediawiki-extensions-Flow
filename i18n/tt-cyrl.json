@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
-	"echo-category-title-flow-discussion": "Агым",
+	"echo-category-title-flow-discussion": "Оештырылган фикер алышу",
 	"structureddiscussions": "Структуралы бәхәс",
-	"group-flow-bot": "Агым ботлары",
+	"group-flow-bot": "Оештырылган фикер алышуның ботлары",
 	"flow-dialog-cancelconfirm-keep": "Үзгәртүне дәвам итү"
 }
