@@ -223,8 +223,10 @@ class FlowHooks {
 			"$dir/db_patches/patch-remove_usernames.sql" );
 		$updater->addExtensionField( 'flow_revision', 'rev_user_wiki',
 			"$dir/db_patches/patch-add-wiki.sql" );
+		$updater->dropExtensionIndex( 'flow_tree_revision', 'flow_tree_descendant_id_revisions',
+			"$dir/db_patches/patch-flow_tree_idx-fix.sql" );
 		$updater->addExtensionIndex( 'flow_tree_revision', 'flow_tree_descendant_rev_id',
-			"$dir/db_patches/patch-flow_tree_idx_fix.sql" );
+			"$dir/db_patches/patch-flow_tree_idx_fix-2.sql" );
 		$updater->dropExtensionField( 'flow_tree_revision', 'tree_orig_create_time',
 			"$dir/db_patches/patch-tree_orig_create_time.sql" );
 		$updater->addExtensionIndex( 'flow_revision', 'flow_revision_user',
