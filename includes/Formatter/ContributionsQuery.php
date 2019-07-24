@@ -63,6 +63,12 @@ class ContributionsQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( $pager, $offset, $limit, $descending ) {
+		// When ORES hidenondamaging filter is used, Flow entries should be skipped
+		// because they are not scored.
+		if ( $pager->getRequest()->getBool( 'hidenondamaging' ) ) {
+			return [];
+		}
+
 		// build DB query conditions
 		$conditions = $this->buildConditions( $pager, $offset, $descending );
 
