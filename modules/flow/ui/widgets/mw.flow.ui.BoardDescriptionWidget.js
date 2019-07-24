@@ -261,6 +261,10 @@
 				widget.emit( 'saveContent' );
 			} )
 			.catch( function ( errorCode, errorObj ) {
+				errorObj = errorObj || {};
+				if ( errorCode instanceof Error ) {
+					errorObj.exception = errorCode.toString();
+				}
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );

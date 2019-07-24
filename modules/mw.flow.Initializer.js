@@ -396,6 +396,7 @@
 	 * @param {jQuery} $element Description DOM element
 	 */
 	mw.flow.Initializer.prototype.setupDescriptionWidget = function ( $element ) {
+		var initializer = this;
 		if ( !$element.length ) {
 			return;
 		}
@@ -410,7 +411,7 @@
 			// Reload page if board is new so we get page actions at top
 			.once( 'saveContent', this.reloadOnCreate )
 			.on( 'saveContent', function () {
-				mw.hook( 'wikipage.content' ).fire( this.descriptionWidget.$content );
+				mw.hook( 'wikipage.content' ).fire( initializer.descriptionWidget.$content );
 			} );
 
 		// The category widget is inside the board description widget.
