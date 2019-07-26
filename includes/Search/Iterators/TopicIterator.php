@@ -22,7 +22,7 @@ class TopicIterator extends AbstractIterator {
 	/**
 	 * @var bool
 	 */
-	private $orderByUUID = false;
+	public $orderByUUID = false;
 
 	/**
 	 * @param DbFactory $dbFactory
