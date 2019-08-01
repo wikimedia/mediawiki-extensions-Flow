@@ -11,7 +11,7 @@
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch": "एइ विषय हेर्न बन्द गर",
-	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "तपाईं [$2 this topic] जहिले पनि हेर्न सक्नुहुन्छ।",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|तपाईँ}} [$2 this topic] जहिले पनि हेर्न सक्नुहुन्छ।",
 	"flow-board-header": "छलफलको बारेमा",
 	"flow-board-collapse-description": "वर्णन लुकाउने",
 	"flow-board-expand-description": "वर्णन देखाउने",
