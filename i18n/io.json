@@ -7,8 +7,11 @@
 	"flow-topic-moderated-reason-prefix": "Motivo:",
 	"flow-skip-summary": "Saltar",
 	"flow-show-change": "Montrez chanji",
+	"flow-history-action-suppress-post": "eliminar",
 	"flow-history-action-restore-post": "restaurar",
 	"flow-post-action-restore-post": "Restaurar",
+	"flow-post-action-undo-moderation": "Desfacez",
+	"flow-topic-action-undo-moderation": "Desfacez",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Vidar}} pagino",
 	"echo-category-title-flow-discussion": "Strukturigata diskuto",
 	"group-flow-bot": "Roboti por strukturigata diskuti"

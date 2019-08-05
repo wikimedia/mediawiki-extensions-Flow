@@ -6,5 +6,7 @@
 		]
 	},
 	"flow-cancel": "Չեղարկել",
-	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Շնորհակալութիւն}}}}"
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Շնորհակալութիւն}}}}",
+	"flow-post-action-view": "Մշտական յղում",
+	"flow-topic-action-view": "Մշտական յղում"
 }

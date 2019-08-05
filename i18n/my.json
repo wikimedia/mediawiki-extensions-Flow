@@ -18,6 +18,7 @@
 	"flow-skip-summary": "ကျော်ရန်",
 	"flow-show-change": "ပြင်​ဆင်​ထား​သည်​များ​ကို​ ပြရန်",
 	"flow-reply-link": "{{GENDER:$1|အကြောင်းပြန်ရန်}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ကျေးဇူးတင်}}}}",
 	"flow-history-action-delete-post": "ဖျက်​ပါ",
 	"flow-history-action-hide-post": "ဝှက်ရန်",
 	"flow-post-action-view": "ပုံသေလိပ်စာ",
