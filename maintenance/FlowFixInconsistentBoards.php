@@ -49,6 +49,8 @@ class FlowFixInconsistentBoards extends Maintenance {
 			'run). Defaults to no limit', false, true );
 
 		$this->setBatchSize( 300 );
+
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {
