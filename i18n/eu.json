@@ -7,7 +7,8 @@
 			"Mikel Ibaiba",
 			"Theklan",
 			"Asierog",
-			"Amaia"
+			"Amaia",
+			"Xabier Armendaritz"
 		]
 	},
 	"enablestructureddiscussions": "Eztabaida Egituratuak Gaitu",
@@ -320,5 +321,6 @@
 	"flow-mark-diff-patrolled-link-text": "Patruilatutzat markatu",
 	"flow-mark-diff-patrolled-link-title": "Patruilatutzat markatu",
 	"flow-talk-page-beta-feature-message": "Lankide orrialdean Egituratutako Eztabaidak",
-	"flow-dialog-cancelconfirm-title": "Ziur {{GENDER:|zaude}}?"
+	"flow-dialog-cancelconfirm-title": "Ziur {{GENDER:|zaude}}?",
+	"flow-preference-visualeditor": "Gaitu Ikusizko Editorea eta wikitestu modu berria elkarrizketa egituratuetan"
 }
