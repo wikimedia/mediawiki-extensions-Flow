@@ -4,7 +4,8 @@
 			"Kumkumuk",
 			"Mirzali",
 			"Asmen",
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Orbot707"
 		]
 	},
 	"enablestructureddiscussions": "Rodiyayışi feal ke",
@@ -70,7 +71,7 @@
 	"flow-error-unknown-workflow-id-title": "Mewzuyo nêzanaye",
 	"flow-rc-topic-of-board": "$2 de $1",
 	"flow-history-day": "Ewro",
-	"echo-category-title-flow-discussion": "Werênayışo awankerde",
+	"echo-category-title-flow-discussion": "Vatena awankerde",
 	"flow-moderation-confirm-suppress-post": "Bındest ke",
 	"flow-moderation-confirm-delete-post": "Bestere",
 	"flow-moderation-confirm-hide-post": "Bınımne",
