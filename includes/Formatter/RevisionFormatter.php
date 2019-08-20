@@ -21,6 +21,7 @@ use ExtensionRegistry;
 use GenderCache;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Message;
 use Wikimedia\Timestamp\TimestampException;
 use User;
@@ -129,7 +130,7 @@ class RevisionFormatter {
 		$this->templating = $templating;
 		$this->urlGenerator = $this->templating->getUrlGenerator();
 		$this->usernames = $usernames;
-		$this->genderCache = GenderCache::singleton();
+		$this->genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		$this->maxThreadingDepth = $maxThreadingDepth;
 	}
 
