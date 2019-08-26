@@ -261,7 +261,7 @@
 	"flow-topic-history": "Ämneshistorik för \"$1\"",
 	"flow-post-history": "\"Kommenterad av {{GENDER:$2|$2}}\" inläggshistorik",
 	"flow-history-last4": "Senaste 4 timmarna",
-	"flow-history-day": "I dag",
+	"flow-history-day": "Idag",
 	"flow-history-week": "Senaste veckan",
 	"flow-history-pages-topic": "Visas på [$1 \"$2\" forum]",
 	"flow-history-pages-post": "Visas på [$1 $2]",
