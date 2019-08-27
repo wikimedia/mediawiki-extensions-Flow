@@ -162,6 +162,8 @@
 		// into the inspector, but I haven't been able to figure out how to pass it through
 		// yet.
 
+		// TODO: This will return false for suface widgets in the global overlay.
+		// Fix this so that it always finds the board associated with the root surface.
 		flowBoard = mw.flow.getPrototypeMethod( 'board', 'getInstanceByElement' )(
 			this.$element
 		);
@@ -170,7 +172,7 @@
 		overlay = this.manager.getOverlay();
 		this.targetInput = new mw.flow.ve.ui.MentionTargetInputWidget( {
 			$overlay: overlay ? overlay.$element : this.$frame,
-			topicPosters: flowBoard.getTopicPosters( this.$element )
+			topicPosters: flowBoard ? flowBoard.getTopicPosters( this.$element ) : []
 		} );
 		iconWidget = new OO.ui.IconWidget( {
 			icon: 'notice'
