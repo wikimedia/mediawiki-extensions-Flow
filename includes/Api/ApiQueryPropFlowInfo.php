@@ -53,7 +53,7 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Extension:Flow/API#action.3Dquery.26prop.3Dflowinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Flow/API#action.3Dquery.26prop.3Dflowinfo';
 	}
 
 }
