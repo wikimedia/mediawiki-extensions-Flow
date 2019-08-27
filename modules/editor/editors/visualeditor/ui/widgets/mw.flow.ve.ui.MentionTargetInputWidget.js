@@ -86,6 +86,7 @@
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
 		var xhr,
+			widget = this,
 			initialUpperValue = this.value.charAt( 0 ).toUpperCase() + this.value.slice( 1 );
 
 		if ( this.value === '' ) {
@@ -103,10 +104,14 @@
 		} );
 		return xhr
 			.then( function ( data ) {
-				return ( OO.getProp( data, 'query', 'allusers' ) || [] ).map( function ( user ) {
+				var allUsers = ( OO.getProp( data, 'query', 'allusers' ) || [] ).map( function ( user ) {
 					mw.flow.ve.userCache.setFromApiData( user );
 					return user.name;
 				} );
+				// Append prefix-matches from the topic list
+				return OO.unique( widget.loggedInTopicPosters.filter( function ( poster ) {
+					return poster.indexOf( initialUpperValue ) === 0;
+				} ).concat( allUsers ) );
 			} )
 			.promise( { abort: xhr.abort } );
 	};
