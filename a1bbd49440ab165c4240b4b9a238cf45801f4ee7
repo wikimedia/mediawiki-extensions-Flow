@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07151926_496a86da",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-08-28T22:16:33Z",
+      "side": 1,
+      "message": "This looks for key \u0027\u0027 (empty string) when it is null. That seems unintentional/surprising. Should we check it for null before using and/or give it a string as fallback above?",
+      "range": {
+        "startLine": 340,
+        "startChar": 36,
+        "endLine": 340,
+        "endChar": 45
+      },
+      "revId": "a1bbd49440ab165c4240b4b9a238cf45801f4ee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
