@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83fcea5b_39ce57df",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2019-08-28T11:44:51Z",
+      "side": 1,
+      "message": "If $user is `null`, this will still cause issues (as -\u003egetGroups() will be called on a `null`) while the `if` will fail.",
+      "range": {
+        "startLine": 260,
+        "startChar": 12,
+        "endLine": 260,
+        "endChar": 17
+      },
+      "revId": "efc0e2ca7c6453efa8c14dba2de9490d9702ecd1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
