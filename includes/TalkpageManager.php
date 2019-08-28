@@ -248,7 +248,7 @@ class TalkpageManager implements OccupationController {
 
 		$user = User::newSystemUser( FLOW_TALK_PAGE_MANAGER_USER, [ 'steal' => true ] );
 
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
+		if ( $user && ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			// Attach to CentralAuth if a global account already
 			// exists
 			$ca = CentralAuthUser::getMasterInstance( $user );
