@@ -22,6 +22,30 @@
       "revId": "efc0e2ca7c6453efa8c14dba2de9490d9702ecd1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f50e6cc6_24b05955",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-08-29T07:46:27Z",
+      "side": 1,
+      "message": "Ah, right. Can you provide me with more details on how to reproduce this? Can you reproduce on a clean install of MW?",
+      "parentUuid": "83fcea5b_39ce57df",
+      "range": {
+        "startLine": 260,
+        "startChar": 12,
+        "endLine": 260,
+        "endChar": 17
+      },
+      "revId": "efc0e2ca7c6453efa8c14dba2de9490d9702ecd1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
