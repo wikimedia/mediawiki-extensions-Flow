@@ -141,29 +141,15 @@ class ContributionsQuery extends AbstractQuery {
 		$conditions = [];
 
 		$isContribsPager = $pager instanceof ContribsPager;
-		// Work out user condition
-		if ( $isContribsPager && $pager->getContribs() === 'newbie' ) {
-			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager->getDatabase() );
-
+		$uid = User::idFromName( $pager->getTarget() );
+		if ( $uid ) {
+			$conditions['rev_user_id'] = $uid;
+			$conditions['rev_user_ip'] = null;
 			$conditions['rev_user_wiki'] = wfWikiID();
-			$conditions[] = 'rev_user_id > ' . (int)$minUserId;
-			if ( $excludeUserIds ) {
-				// better safe than sorry - make sure everything's an int
-				$excludeUserIds = array_map( 'intval', $excludeUserIds );
-				$conditions[] = 'rev_user_id NOT IN ( ' . implode( ',', $excludeUserIds ) . ' )';
-				$conditions['rev_user_ip'] = null;
-			}
 		} else {
-			$uid = User::idFromName( $pager->getTarget() );
-			if ( $uid ) {
-				$conditions['rev_user_id'] = $uid;
-				$conditions['rev_user_ip'] = null;
-				$conditions['rev_user_wiki'] = wfWikiID();
-			} else {
-				$conditions['rev_user_id'] = 0;
-				$conditions['rev_user_ip'] = $pager->getTarget();
-				$conditions['rev_user_wiki'] = wfWikiID();
-			}
+			$conditions['rev_user_id'] = 0;
+			$conditions['rev_user_ip'] = $pager->getTarget();
+			$conditions['rev_user_wiki'] = wfWikiID();
 		}
 
 		if ( $isContribsPager && $pager->isNewOnly() ) {
@@ -304,48 +290,6 @@ class ContributionsQuery extends AbstractQuery {
 		// @todo: we may already be able to build workflowCache (and rootPostIdCache) from this DB data
 
 		return $revisions;
-	}
-
-	/**
-	 * @param IDatabase $db
-	 * @return array [minUserId, excludeUserIds]
-	 */
-	protected function getNewbieConditionInfo( IDatabase $db ) {
-		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
-		// to be wiki-specific
-		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
-		$max = $this->cache->get( $key );
-		if ( $max === false ) {
-			// max user id not present in cache; fetch from db & save to cache for 1h
-			$max = (int)$db->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
-			$this->cache->set( $key, $max, 60 * 60 );
-		}
-		$minUserId = (int)( $max - $max / 100 );
-
-		// exclude all users within groups with bot permission
-		$excludeUserIds = [];
-		$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
-		if ( $groupsWithBotPermission !== [] ) {
-			$excludeUserIds = $db->selectFieldValues(
-				[ 'user', 'user_groups' ],
-				'user_id',
-				[
-					'user_id > ' . $minUserId,
-					'ug_group' => $groupsWithBotPermission,
-					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
-				],
-				__METHOD__,
-				[],
-				[
-					'user_groups' => [
-						'INNER JOIN',
-						[ 'ug_user = user_id' ]
-					]
-				]
-			);
-		}
-
-		return [ $minUserId, $excludeUserIds ];
 	}
 
 	/**
