@@ -22,6 +22,30 @@
       "revId": "a1bbd49440ab165c4240b4b9a238cf45801f4ee7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83af1d06_7ffa4f86",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6097
+      },
+      "writtenOn": "2019-08-29T07:38:37Z",
+      "side": 1,
+      "message": "OK, an empty string is better.",
+      "parentUuid": "07151926_496a86da",
+      "range": {
+        "startLine": 340,
+        "startChar": 36,
+        "endLine": 340,
+        "endChar": 45
+      },
+      "revId": "a1bbd49440ab165c4240b4b9a238cf45801f4ee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
