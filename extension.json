@@ -66,7 +66,7 @@
 			"flow-delete": true,
 			"flow-edit-post": true
 		},
-		"oversight": {
+		"suppress": {
 			"flow-suppress": true
 		},
 		"flow-bot": {
@@ -85,7 +85,9 @@
 			"flow-lock": true
 		},
 		"delete": {
-			"flow-delete": true,
+			"flow-delete": true
+		},
+		"oversight": {
 			"flow-suppress": true
 		}
 	},
