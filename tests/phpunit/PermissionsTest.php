@@ -91,7 +91,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var User
 	 */
-	protected $oversightUser;
+	protected $suppressUser;
 
 	protected function setUp() {
 		parent::setUp();
@@ -227,30 +227,30 @@ class PermissionsTest extends PostRevisionTestCase {
 			[ 'sysopUser', 'suppressedPost', 'restore-post', false ],
 			[ 'sysopUser', 'suppressedTopic', 'restore-topic', false ],
 
-			// oversighters can do everything + suppress (but not edit!)
-			[ 'oversightUser', null, 'create-header', true ],
-			// array( 'oversightUser', 'header', 'edit-header', true ),
-			[ 'oversightUser', 'topic', 'edit-title', true ],
-			[ 'oversightUser', null, 'new-post', true ],
-			[ 'oversightUser', 'post', 'edit-post', false ],
-			[ 'oversightUser', 'post', 'hide-post', true ],
-			[ 'oversightUser', 'topic', 'hide-topic', true ],
-			[ 'oversightUser', 'topic', 'lock-topic', true ],
-			[ 'oversightUser', 'post', 'delete-post', true ],
-			[ 'oversightUser', 'topic', 'delete-topic', true ],
-			[ 'oversightUser', 'post', 'suppress-post', true ],
-			[ 'oversightUser', 'topic', 'suppress-topic', true ],
-			[ 'oversightUser', 'post', 'restore-post', false ], // $this->post is not hidden
-			[ 'oversightUser', 'topic', 'restore-topic', false ], // $this->topic is not hidden
-			[ 'oversightUser', 'post', 'history', true ],
-			[ 'oversightUser', 'post', 'view', true ],
-			[ 'oversightUser', 'post', 'reply', true ],
-			[ 'oversightUser', 'hiddenPost', 'restore-post', true ],
-			[ 'oversightUser', 'hiddenTopic', 'restore-topic', true ],
-			[ 'oversightUser', 'deletedPost', 'restore-post', true ],
-			[ 'oversightUser', 'deletedTopic', 'restore-topic', true ],
-			[ 'oversightUser', 'suppressedPost', 'restore-post', true ],
-			[ 'oversightUser', 'suppressedTopic', 'restore-topic', true ],
+			// suppressors can do everything + suppress (but not edit!)
+			[ 'suppressUser', null, 'create-header', true ],
+			// array( 'suppressUser', 'header', 'edit-header', true ),
+			[ 'suppressUser', 'topic', 'edit-title', true ],
+			[ 'suppressUser', null, 'new-post', true ],
+			[ 'suppressUser', 'post', 'edit-post', false ],
+			[ 'suppressUser', 'post', 'hide-post', true ],
+			[ 'suppressUser', 'topic', 'hide-topic', true ],
+			[ 'suppressUser', 'topic', 'lock-topic', true ],
+			[ 'suppressUser', 'post', 'delete-post', true ],
+			[ 'suppressUser', 'topic', 'delete-topic', true ],
+			[ 'suppressUser', 'post', 'suppress-post', true ],
+			[ 'suppressUser', 'topic', 'suppress-topic', true ],
+			[ 'suppressUser', 'post', 'restore-post', false ], // $this->post is not hidden
+			[ 'suppressUser', 'topic', 'restore-topic', false ], // $this->topic is not hidden
+			[ 'suppressUser', 'post', 'history', true ],
+			[ 'suppressUser', 'post', 'view', true ],
+			[ 'suppressUser', 'post', 'reply', true ],
+			[ 'suppressUser', 'hiddenPost', 'restore-post', true ],
+			[ 'suppressUser', 'hiddenTopic', 'restore-topic', true ],
+			[ 'suppressUser', 'deletedPost', 'restore-post', true ],
+			[ 'suppressUser', 'deletedTopic', 'restore-topic', true ],
+			[ 'suppressUser', 'suppressedPost', 'restore-post', true ],
+			[ 'suppressUser', 'suppressedTopic', 'restore-topic', true ],
 		];
 	}
 
@@ -303,14 +303,14 @@ class PermissionsTest extends PostRevisionTestCase {
 		return $this->sysopUser;
 	}
 
-	protected function oversightUser() {
-		if ( !$this->oversightUser ) {
-			$this->oversightUser = User::newFromName( 'UTFlowOversight' );
-			$this->oversightUser->addToDatabase();
-			$this->oversightUser->addGroup( 'oversight' );
+	protected function suppressUser() {
+		if ( !$this->suppressUser ) {
+			$this->suppressUser = User::newFromName( 'UTFlowSuppress' );
+			$this->suppressUser->addToDatabase();
+			$this->suppressUser->addGroup( 'suppress' );
 		}
 
-		return $this->oversightUser;
+		return $this->suppressUser;
 	}
 
 	protected function topic() {
