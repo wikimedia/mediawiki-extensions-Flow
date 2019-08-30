@@ -335,10 +335,10 @@ class TemplateHelper {
 		}
 		$html = [];
 		foreach ( $postIds as $id ) {
-			$revId = $context['posts'][$id][0];
+			$revId = $context['posts'][$id][0] ?? '';
 
-			if ( !isset( $context['revisions'][$revId] ) ) {
-				throw new FlowException( "Revision not available: $revId" );
+			if ( !$revId || !isset( $context['revisions'][$revId] ) ) {
+				throw new FlowException( "Revision not available: $revId. Post ID: $id" );
 			}
 
 			// $fn is always safe return value, it's the inner template content.
