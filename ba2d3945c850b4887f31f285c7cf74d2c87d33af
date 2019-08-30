@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "431b0c58_412d72b4",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-08-30T16:16:33Z",
+      "side": 0,
+      "message": "You should not be deleting this block, this is for when the requested user is not an anon.",
+      "revId": "ba2d3945c850b4887f31f285c7cf74d2c87d33af",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
