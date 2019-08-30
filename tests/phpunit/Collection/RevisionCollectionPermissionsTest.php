@@ -65,7 +65,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var User
 	 */
-	protected $oversightUser;
+	protected $suppressUser;
 
 	/**
 	 * @var DatabaseBlock
@@ -128,7 +128,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				[ 'suppress-post' => false ],
 				[ 'restore-post' => true ],
 			] ],
-			[ 'oversightUser', 'view', [
+			[ 'suppressUser', 'view', [
 				[ 'new-post' => true ],
 				[ 'suppress-post' => true ],
 				[ 'restore-post' => true ],
@@ -141,7 +141,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				[ 'restore-post' => false ],
 				[ 'suppress-post' => false ],
 			] ],
-			[ 'oversightUser', 'view', [
+			[ 'suppressUser', 'view', [
 				[ 'new-post' => true ],
 				[ 'suppress-post' => true ],
 				[ 'restore-post' => true ],
@@ -253,14 +253,14 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		return $this->sysopUser;
 	}
 
-	protected function oversightUser() {
-		if ( !$this->oversightUser ) {
-			$this->oversightUser = User::newFromName( 'UTFlowOversight' );
-			$this->oversightUser->addToDatabase();
-			$this->oversightUser->addGroup( 'oversight' );
+	protected function suppressUser() {
+		if ( !$this->suppressUser ) {
+			$this->suppressUser = User::newFromName( 'UTFlowSuppress' );
+			$this->suppressUser->addToDatabase();
+			$this->suppressUser->addGroup( 'suppress' );
 		}
 
-		return $this->oversightUser;
+		return $this->suppressUser;
 	}
 
 	/**
