@@ -46,6 +46,30 @@
       "revId": "efc0e2ca7c6453efa8c14dba2de9490d9702ecd1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23a6de9d_0692ae50",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 2842
+      },
+      "writtenOn": "2019-09-01T11:07:49Z",
+      "side": 1,
+      "message": "Yeah. So, on a clean install, I get same issue with --force flag. Funny thing is, when I check my database, I see this username (Flow talk page manager) is present but I don\u0027t get it how creating a user object off this user returns a NULL.",
+      "parentUuid": "f50e6cc6_24b05955",
+      "range": {
+        "startLine": 260,
+        "startChar": 12,
+        "endLine": 260,
+        "endChar": 17
+      },
+      "revId": "efc0e2ca7c6453efa8c14dba2de9490d9702ecd1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
