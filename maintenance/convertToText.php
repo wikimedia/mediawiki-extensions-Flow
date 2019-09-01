@@ -4,6 +4,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Import\LiquidThreadsApi\ApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
+use MediaWiki\MediaWikiServices;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -207,8 +208,6 @@ class ConvertToText extends Maintenance {
 	}
 
 	private function formatTimestamp( $timestamp ) {
-		global $wgContLang;
-
 		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
 		$ts = $timestamp->format( 'YmdHis' );
 		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
@@ -222,7 +221,8 @@ class ConvertToText extends Maintenance {
 			$tzMsg = $msg->text();
 		}
 
-		return $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
+		return MediaWikiServices::getInstance()->getContentLanguage()
+				->timeanddate( $ts, false, false ) . " ($tzMsg)";
 	}
 
 	protected function pageExists( $pageName ) {
@@ -269,7 +269,6 @@ class ConvertToText extends Maintenance {
 		$allRevisions, $sigForFirstAuthor = true, $msg = 'flow-edited-by',
 		$glueAfterContent = '', $glueBeforeAuthors = ' '
 	) {
-		global $wgContLang;
 		if ( count( $allRevisions ) ) {
 			$firstRevision = end( $allRevisions );
 			$latestRevision = reset( $allRevisions );
@@ -301,7 +300,7 @@ class ConvertToText extends Maintenance {
 				$signatures = array_map( [ $this, 'getSignature' ], $otherContributors );
 				$formattedAuthors .= ( $sigForFirstAuthor ? ' ' : '' ) . '(' .
 					wfMessage( $msg )->inContentLanguage()->params(
-						$wgContLang->commaList( $signatures )
+						MediaWikiServices::getInstance()->getContentLanguage()->commaList( $signatures )
 					)->text() . ')';
 			}
 

@@ -7,6 +7,7 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
 use MapCacheLRU;
+use MediaWiki\MediaWikiServices;
 use MWTimestamp;
 use RequestContext;
 use Title;
@@ -333,9 +334,8 @@ class Workflow {
 	 * @return string
 	 */
 	public function getNamespaceName() {
-		global $wgContLang;
-
-		return $wgContLang->getNsText( $this->namespace );
+		$contentLang = MediaWikiServices::getInstance()->getContentLanguage();
+		return $contentLang->getNsText( $this->namespace );
 	}
 
 	/**

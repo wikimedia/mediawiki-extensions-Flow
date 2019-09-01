@@ -797,8 +797,10 @@ $c['controller.opt_in'] = function ( $c ) {
 };
 
 $c['controller.notification'] = function ( $c ) {
-	global $wgContLang;
-	return new Flow\NotificationController( $wgContLang, $c['repository.tree'] );
+	return new Flow\NotificationController(
+		MediaWikiServices::getInstance()->getContentLanguage(),
+		$c['repository.tree']
+	);
 };
 
 // Initialized in FlowHooks to faciliate only loading the flow container
