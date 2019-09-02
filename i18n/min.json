@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iwan Novirion"
+		]
+	},
+	"enablestructureddiscussions": "Aktifkan Pambicaroan Bajanjang",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Baranti}} mamantau kajadian baru pado \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Sanak}} indak lai mamantau laman \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Baranti}} mamantau topik ko",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Sanak}} indak lai mamantau laman \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Sanak}} dapek mamantau [$2 topik ko] bilo sajo.",
+	"flow-desc": "Sistem rundiang",
+	"flow-talk-taken-over-comment": "/* Laman ko alah diubah manjadi bagan Pambicaroan Bajanjang */",
+	"log-name-flow": "Log kagiatan Pambicaroan Bajanjang",
+	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|mangapuih}} sabuah [$4 kiriman] di \"[[$3|$5]]\" pado [[$6]]",
+	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|mangapuih}} sabuah kiriman di suatu topik pado [[$3]]",
+	"flow-user-moderated": "Pangguno dimoderasi",
+	"flow-board-header-browse-topics-link": "Jalajahi topik",
+	"flow-board-header": "Tantang bagan ko",
+	"flow-board-description-can-not-edit": "Indak dapek disuntiang",
+	"flow-board-collapse-description": "Suruakan katarangan",
+	"flow-board-expand-description": "Caliak katarangan",
+	"flow-topic-collapse-siderail": "Baco jo mode laweh",
+	"flow-topic-expand-siderail": "Baco jo mode biaso",
+	"flow-edit-header-link": "Suntiang katarangan",
+	"flow-post-moderated-toggle-hide-show": "Caliak kiriman nan {{GENDER:$1|disuruakan}} dek $2",
+	"flow-post-moderated-toggle-delete-show": "Caliak kiriman nan {{GENDER:$1|dihapuih}} dek $2"
+}

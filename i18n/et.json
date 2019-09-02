@@ -215,5 +215,9 @@
 	"flow-wikitext-editor-help-and-preview": "Vikitekst $1. Saad $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|kasutab märgistuskeelt]]",
 	"flow-wikitext-editor-help-preview-the-result": "tulemust eelvaadelda",
+	"flow-dialog-cancelconfirm-title": "Kas oled kindel?",
+	"flow-dialog-cancelconfirm-message": "Kas oled kindel, et soovid loobuda ilma enne salvestamata?",
+	"flow-dialog-cancelconfirm-keep": "Jätka redigeerimist",
+	"flow-dialog-cancelconfirm-discard": "Hülga muudatused",
 	"flow-preference-visualeditor": "Kasuta struktuuraruteludes visuaaltoimetit ja uut vikiteksti režiimi"
 }
