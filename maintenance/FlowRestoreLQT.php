@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Import\ArchiveNameHelper;
+use MediaWiki\Storage\RevisionRecord;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -309,7 +310,7 @@ class FlowRestoreLQT extends Maintenance {
 			return Status::newGood();
 		} else {
 			return $page->doEditContent(
-				$revision->getContent( Revision::RAW ),
+				$revision->getContent( RevisionRecord::RAW ),
 				'/* Restore LQT topic content */',
 				EDIT_UPDATE | EDIT_MINOR | EDIT_FORCE_BOT,
 				$revision->getId(),

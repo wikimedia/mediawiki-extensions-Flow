@@ -170,7 +170,7 @@ class ConversionStrategy implements IConversionStrategy {
 		] );
 
 		$template = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
-		$newWikitext = "{{{$template}|$arguments}}" . "\n\n" . $content->getNativeData();
+		$newWikitext = "{{{$template}|$arguments}}" . "\n\n" . $content->getText();
 
 		return new WikitextContent( $newWikitext );
 	}

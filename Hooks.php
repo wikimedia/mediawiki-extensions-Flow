@@ -16,6 +16,7 @@ use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 class FlowHooks {
 	/**
@@ -1023,7 +1024,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onArticleEditUpdateNewTalk( WikiPage $page, User $recipient ) {
-		$user = User::newFromId( $page->getUser( Revision::RAW ) );
+		$user = User::newFromId( $page->getUser( RevisionRecord::RAW ) );
 
 		if ( self::isTalkpageManagerUser( $user ) ) {
 			return false;
@@ -1883,7 +1884,9 @@ class FlowHooks {
 			return true;
 		}
 
-		if ( !RequestContext::getMain()->getUser()->isAllowed( 'flow-delete' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( RequestContext::getMain()->getUser(), 'flow-delete' )
+		) {
 			// there's no point adding topics since the current user won't be allowed to delete them
 			return true;
 		}

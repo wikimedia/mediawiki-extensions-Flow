@@ -14,6 +14,7 @@ use Flow\Model\Workflow;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
 use Flow\OccupationController;
+use MediaWiki\MediaWikiServices;
 use SplQueue;
 use User;
 
@@ -234,7 +235,8 @@ class PostRevisionTestCase extends FlowTestCase {
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
-			$user->mRights = array_merge( $user->getRights(), [ 'flow-create-board' ] );
+			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
+				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 

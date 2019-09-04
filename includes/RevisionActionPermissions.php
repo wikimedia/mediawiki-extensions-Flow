@@ -10,6 +10,7 @@ use Flow\Model\PostRevision;
 use Closure;
 use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
+use MediaWiki\MediaWikiServices;
 use User;
 
 /**
@@ -150,7 +151,8 @@ class RevisionActionPermissions {
 			return false;
 		}
 
-		return $this->user->isAllowedAny( ...(array)$permission );
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasAnyRight( $this->user, ...(array)$permission );
 	}
 
 	/**
@@ -166,7 +168,8 @@ class RevisionActionPermissions {
 
 		// If user is allowed to see deleted page content, there's no need to
 		// even check if it's been deleted (additional storage lookup)
-		$allowed = $this->user->isAllowedAny( ...(array)$permissions );
+		$allowed = MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasAnyRight( $this->user, ...(array)$permissions );
 		if ( $allowed ) {
 			return true;
 		}
@@ -187,7 +190,8 @@ class RevisionActionPermissions {
 	public function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
 		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
-		if ( $performsWrites && !$this->user->isAllowed( 'edit' ) ) {
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $performsWrites && !$pm->userHasRight( $this->user, 'edit' ) ) {
 			return false;
 		}
 
@@ -200,7 +204,7 @@ class RevisionActionPermissions {
 		}
 
 		// Check if user is allowed to perform action against this revision
-		return $this->user->isAllowedAny( ...(array)$permission );
+		return $pm->userHasAnyRight( $this->user, ...(array)$permission );
 	}
 
 	/**
