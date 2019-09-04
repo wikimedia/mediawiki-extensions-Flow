@@ -426,7 +426,9 @@ class RevisionFormatter {
 		// is this right permissions? typically this would
 		// be sourced from Linker::userToolLinks, but that
 		// only undertands html strings.
-		if ( $this->permissions->getUser()->isAllowed( 'block' ) ) {
+		if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $this->permissions->getUser(), 'block' )
+		) {
 			// only is the user has blocking rights
 			$links += [
 				"block" => [

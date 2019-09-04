@@ -9,6 +9,7 @@ use Article;
 use CentralAuthUser;
 use ContentHandler;
 use ExtensionRegistry;
+use MediaWiki\MediaWikiServices;
 use Status;
 use Title;
 use User;
@@ -174,7 +175,8 @@ class TalkpageManager implements OccupationController {
 			// Gate this on the flow-create-board right, essentially giving
 			// wiki communities control over if Flow board creation is allowed
 			// to everyone or just a select few.
-			$title->userCan( 'flow-create-board', $user )
+			MediaWikiServices::getInstance()->getPermissionManager()
+				->userCan( 'flow-create-board', $user, $title )
 		) {
 			return Status::newGood();
 		} else {

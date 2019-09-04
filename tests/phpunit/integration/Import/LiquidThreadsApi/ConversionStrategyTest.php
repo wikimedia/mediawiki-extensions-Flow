@@ -146,7 +146,7 @@ EOD
 		if ( $result !== null ) {
 			$this->assertInstanceOf( WikitextContent::class, $result );
 		}
-		$this->assertEquals( $expect, $result->getNativeData(), $message );
+		$this->assertEquals( $expect, $result->getText(), $message );
 	}
 
 	public function testGetPostprocessor() {

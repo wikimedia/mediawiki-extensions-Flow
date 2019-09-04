@@ -126,7 +126,7 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	public function createArchiveCleanupRevisionContent( WikitextContent $content, Title $title ) {
 		// cleanup existing text
-		$existing = $content->getNativeData();
+		$existing = $content->getText();
 		$existing = self::removeLqtMagicWord( $existing );
 		$existing = $this->removePrefixText( $existing );
 
