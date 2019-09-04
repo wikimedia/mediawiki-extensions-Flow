@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90e1a713_dfd53ac6",
+        "filename": "includes/Api/ApiFlowSearch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-09-04T05:52:35Z",
+      "side": 1,
+      "message": "Just ApiBase::PARAM_TYPE \u003d\u003e \u0027namespace\u0027",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 28
+      },
+      "revId": "6c74f43528074d62108c90be572e01984d8899bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc624352_929c6af2",
+        "filename": "includes/Conversion/Utils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-09-04T05:52:35Z",
+      "side": 1,
+      "message": "Unused.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "6c74f43528074d62108c90be572e01984d8899bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
