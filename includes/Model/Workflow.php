@@ -379,7 +379,10 @@ class Workflow {
 		// the anonymous version can be cached and served to many different IP
 		// addresses which will not all be blocked.
 		// See T61928
-		!( $user->isLoggedIn() && $user->isBlockedFrom( $this->getOwnerTitle(), true ) );
+
+		!( $user->isLoggedIn() &&
+			MediaWikiServices::getInstance()->getPermissionManager()
+				->isBlockedFrom( $user, $this->getOwnerTitle(), true ) );
 	}
 
 	/**
@@ -394,8 +397,8 @@ class Workflow {
 	 */
 	public function getPermissionErrors( $permission, $user, $rigor ) {
 		$title = $this->type === 'topic' ? $this->getOwnerTitle() : $this->getArticleTitle();
-
-		$editErrors = $title->getUserPermissionsErrors( $permission, $user, $rigor );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$editErrors = $permissionManager->getPermissionErrors( $permission, $user, $title, $rigor );
 
 		$errors = $editErrors;
 
@@ -410,7 +413,7 @@ class Workflow {
 			}, $editErrors );
 
 			// Pass in the edit errors to avoid duplicates
-			$createErrors = $title->getUserPermissionsErrors( 'create', $user, $rigor, $editErrorKeys );
+			$createErrors = $permissionManager->getPermissionErrors( 'create', $user, $title, $rigor, $editErrorKeys );
 			$errors = array_merge( $errors, $createErrors );
 		}
 

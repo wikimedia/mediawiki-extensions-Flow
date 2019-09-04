@@ -3,6 +3,9 @@
 use Flow\Content\BoardContent;
 use Flow\Container;
 use Flow\Exception\UnknownWorkflowIdException;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -106,8 +109,8 @@ class FlowFixInconsistentBoards extends Maintenance {
 			foreach ( $rows as $row ) {
 				$checkedCount++;
 				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$revision = Revision::newFromId( $row->page_latest );
-				$content = $revision->getContent( Revision::RAW );
+				$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById( $row->page_latest );
+				$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				if ( !$content instanceof BoardContent ) {
 					$actualClass = get_class( $content );
 					$this->error( "ERROR: '$coreTitle' content is a '$actualClass', but should be '"

@@ -84,7 +84,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		$this->assertInstanceOf( WikitextContent::class, $result );
 		$this->assertEquals(
 			"{{Archive for converted wikitext talk page|from=Talk:Blue birds|date=$date}}\n\nFour score and...",
-			$result->getNativeData()
+			$result->getText()
 		);
 	}
 
@@ -136,7 +136,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 	public function testMeetsSubpageRequirements( $pageName, $expectedResult, $subjectExists, $message ) {
 		$strategy = $this->createStrategy();
 		$title = Title::newFromText( $pageName );
-		$subjectTitle = $title->getSubjectPage();
+		$subjectTitle = MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectPage( $title );
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		// Fake whether $subjectTitle exists

@@ -21,6 +21,7 @@ use FormatJson;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Psr\Log\LoggerInterface;
 use MovePage;
 use Parser;
@@ -435,7 +436,7 @@ class OptInController {
 		$page->loadPageData( 'fromdbmaster' );
 		$revision = $page->getRevision();
 		if ( $revision ) {
-			$content = $revision->getContent( Revision::FOR_PUBLIC );
+			$content = $revision->getContent( RevisionRecord::FOR_PUBLIC );
 			if ( $content instanceof WikitextContent ) {
 				return $content->getNativeData();
 			}

@@ -9,6 +9,7 @@ use Flow\Exception\PermissionException;
 use Flow\Conversion\Utils;
 use ContentHandler;
 use Hooks;
+use MediaWiki\MediaWikiServices;
 use Sanitizer;
 use Title;
 use User;
@@ -250,7 +251,9 @@ abstract class AbstractRevision {
 	 * @throws PermissionException
 	 */
 	public function newNullRevision( User $user ) {
-		if ( !$user->isAllowed( 'edit' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $user, 'edit' )
+		) {
 			throw new PermissionException( 'User does not have core edit permission',
 				'insufficient-permission' );
 		}

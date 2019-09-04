@@ -3,12 +3,12 @@
 namespace Flow\Import;
 
 use ActorMigration;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\FlowException;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
-use Revision;
 use Title;
 use Traversable;
 use User;
@@ -287,7 +287,7 @@ class Converter {
 		}
 
 		// Do not create revisions based on rev_deleted revisions.
-		$content = $revision->getContent( Revision::FOR_PUBLIC );
+		$content = $revision->getContent( RevisionRecord::FOR_PUBLIC );
 		if ( !$content instanceof WikitextContent ) {
 			throw new ImportException( "Expected wikitext content at: {$archiveTitle}" );
 		}

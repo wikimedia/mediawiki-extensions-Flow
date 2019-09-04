@@ -6,6 +6,7 @@ use BaseBlacklist;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
+use MediaWiki\MediaWikiServices;
 use Title;
 
 /**
@@ -85,7 +86,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			'files' => [],
 		] );
 
-		\MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", $this->blacklist ) );
 		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", $this->whitelist ) );
 
@@ -97,7 +98,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	}
 
 	protected function tearDown() {
-		\MessageCache::singleton()->disable();
+		MediaWikiServices::getInstance()->getMessageCache()->disable();
 		parent::tearDown();
 	}
 }

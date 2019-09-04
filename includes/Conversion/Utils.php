@@ -15,6 +15,7 @@ use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Html;
 use Language;
 use Linker;
+use MediaWiki\MediaWikiServices;
 use MultiHttpClient;
 use OutputPage;
 use RequestContext;
@@ -335,7 +336,9 @@ abstract class Utils {
 			$params = array_merge( $vrs['global'], $params );
 		}
 		// set up cookie forwarding
-		if ( $params['forwardCookies'] && !User::isEveryoneAllowed( 'read' ) ) {
+		if ( $params['forwardCookies'] &&
+				!MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( 'read' )
+		) {
 			if ( PHP_SAPI === 'cli' ) {
 				// From the command line we need to generate a cookie
 				$params['forwardCookies'] = self::generateForwardedCookieForCli();
