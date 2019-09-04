@@ -11,7 +11,6 @@ use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
 use Flow\Search\Searcher;
-use MWNamespace;
 use Status;
 
 class ApiFlowSearch extends ApiFlowBaseGet {
@@ -189,7 +188,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 			],
 			'namespaces' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => MWNamespace::getValidNamespaces(),
+				ApiBase::PARAM_TYPE => 'namespace',
 			],
 			'moderationState' => [
 				ApiBase::PARAM_ISMULTI => true,

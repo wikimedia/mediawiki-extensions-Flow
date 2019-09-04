@@ -9,6 +9,7 @@ use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
+use MediaWiki\MediaWikiServices;
 use RecentChange;
 
 /**
@@ -82,6 +83,8 @@ class RecentChangesListener extends AbstractListener {
 		}
 
 		$title = $this->getRcTitle( $workflow, $revision->getChangeType() );
+		$autopatrolAllowed = MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasRight( $user, 'autopatrol' );
 		$attribs = [
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
@@ -92,7 +95,7 @@ class RecentChangesListener extends AbstractListener {
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_new' => 0,
-			'rc_patrolled' => $user->isAllowed( 'autopatrol' ) ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
+			'rc_patrolled' => $autopatrolAllowed ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
 			'rc_old_len' => $revision->getPreviousContentLength(),
 			'rc_new_len' => $revision->getContentLength(),
 			'rc_this_oldid' => 0,

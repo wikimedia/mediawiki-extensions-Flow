@@ -10,10 +10,11 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use FlowHooks;
+use MediaWiki\MediaWikiServices;
+use MediaWikiTestCase;
 use RecentChange;
 use Title;
 use User;
-use MediaWikiTestCase;
 
 /**
  * @covers \FlowHooks
@@ -52,7 +53,8 @@ class HookTest extends MediaWikiTestCase {
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
-			$user->mRights = array_merge( $user->getRights(), [ 'flow-create-board' ] );
+			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
+				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
 
@@ -78,7 +80,8 @@ class HookTest extends MediaWikiTestCase {
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
-			$user->mRights = array_merge( $user->getRights(), [ 'flow-create-board' ] );
+			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
+				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
 
