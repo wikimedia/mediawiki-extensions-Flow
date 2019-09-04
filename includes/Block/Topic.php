@@ -894,7 +894,9 @@ class TopicBlock extends AbstractBlock {
 		if ( \LogPage::isLogType( $state ) ) {
 			// check if user has sufficient permissions to see log
 			$logPage = new \LogPage( $state );
-			if ( $this->context->getUser()->isAllowed( $logPage->getRestriction() ) ) {
+			if ( MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $this->context->getUser(), $logPage->getRestriction() )
+			) {
 				// LogEventsList::showLogExtract will write to OutputPage, but we
 				// actually just want that text, to write it ourselves wherever we want,
 				// so let's create an OutputPage object to then get the content from.

@@ -11,11 +11,11 @@ use Flow\Model\UUID;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use Hooks;
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use ParserOptions;
 use ParserOutput;
 use RequestContext;
-use Revision;
 use Title;
 use User;
 use WikiPage;
@@ -184,7 +184,8 @@ class BoardContent extends \AbstractContent {
 			$wikiPage = new WikiPage( $title );
 			$timestamp = $wikiPage->getTimestamp();
 		} else {
-			$timestamp = Revision::getTimestampFromId( $title, $revId );
+			$timestamp = MediaWikiServices::getInstance()->getRevisionLookup()
+				->getTimestampFromId( $revId );
 		}
 
 		$parserOutput->setTimestamp( $timestamp );

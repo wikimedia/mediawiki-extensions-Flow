@@ -15,6 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\FailCommitException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -315,7 +316,7 @@ class TopicListBlock extends AbstractBlock {
 			}
 
 			if ( $page->exists() ) {
-				$content = $page->getContent( \Revision::RAW );
+				$content = $page->getContent( RevisionRecord::RAW );
 				$options['content'] = $content->serialize();
 				$options['format'] = 'wikitext';
 			}
