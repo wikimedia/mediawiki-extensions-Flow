@@ -10,7 +10,8 @@
 			"Beeyan",
 			"Hidayatsrf",
 			"Gombang",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Iwan Novirion"
 		]
 	},
 	"enablestructureddiscussions": "Aktifkan Pembicaraan Terstruktur",
@@ -155,7 +156,7 @@
 	"flow-error-external": "Terjadi galat. Pesan galat yang diterima adalah: $1",
 	"flow-error-topic-is-locked": "Topik ini terselesaikan, maka tidak dimungkinkan untuk memiliki aktivitas lebih jauh lagi.",
 	"flow-error-lock-moderated-post": "Anda tidak dapat menandai kiriman termoderasi terselesaikan.",
-	"flow-error-missing-content": "Kiriman tidak memiliki isi. Isi wajib diisi untuk menyimpan kiriman.",
+	"flow-error-missing-content": "Kiriman tidak memiliki isi. Harus ada isinya untuk menyimpan kiriman.",
 	"flow-error-missing-summary": "Anda harus mengirimkan ringkasan.",
 	"flow-error-missing-title": "Topik tidak memiliki judul. Judul wajib diisi untuk menyimpan topik.",
 	"flow-error-parsoid-failure": "Tidak dapat mentransfer isi: Galat menghubungi peladen untuk mengkonversi teks wiki dengan HTML. Silakan periksa koneksi internet Anda atau coba lagi jika kendala berlanjut. Jika Anda tetap mendapati galat ini, silakan berkaskan kekutu.",
