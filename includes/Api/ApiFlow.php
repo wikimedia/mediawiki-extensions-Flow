@@ -6,6 +6,7 @@ use ApiBase;
 use ApiModuleManager;
 use Flow\Container;
 use Hooks;
+use MediaWiki\MediaWikiServices;
 use Title;
 
 class ApiFlow extends ApiBase {
@@ -51,7 +52,10 @@ class ApiFlow extends ApiBase {
 		global $wgFlowSearchEnabled;
 
 		parent::__construct( $main, $action );
-		$this->moduleManager = new ApiModuleManager( $this );
+		$this->moduleManager = new ApiModuleManager(
+			$this,
+			MediaWikiServices::getInstance()->getObjectFactory()
+		);
 
 		$enabledModules = self::$alwaysEnabledModules;
 		if ( $wgFlowSearchEnabled ) {
