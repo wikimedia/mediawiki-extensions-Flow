@@ -5,11 +5,12 @@
 			"Suresh.balasubra",
 			"Hamnashafeer",
 			"Nesi",
-			"Nnemo"
+			"Nnemo",
+			"Adithyak1997"
 		]
 	},
 	"enablestructureddiscussions": "ഫ്ലോ സജ്ജമാക്കുക",
-	"flow-desc": "പ്രവൃത്തി കൈകാര്യ സൗകര്യം",
+	"flow-desc": "സംവാദ സൗകര്യം",
 	"log-name-flow": "ഫ്ലോ പ്രവർത്തനരേഖ",
 	"logentry-delete-flow-delete-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള ഒരു [$4 കുറിപ്പ്]  $1 {{GENDER:$2|മായ്ച്ചു}}",
 	"logentry-delete-flow-restore-post": "[[$6]] താളിലെ \"[[$3|$5]]\" എന്നതിലുള്ള താളിലെ  ഒരു [$4 കുറിപ്പ്] $1 {{GENDER:$2|പുനഃസ്ഥാപിച്ചു}}",
@@ -23,6 +24,7 @@
 	"flow-user-moderated": "നിയന്ത്രിത ഉപയോക്താവ്",
 	"flow-board-header-browse-topics-link": "വിഷയങ്ങൾ ബ്രൗസ് ചെയ്യുക",
 	"flow-board-header": "ഈ ചർച്ചയുടെ വിവരണം",
+	"flow-board-description-can-not-edit": "തിരുത്താൻ പറ്റാത്തവ",
 	"flow-board-collapse-description": "വിവരണം മറയ്ക്കുക",
 	"flow-board-expand-description": "വിവരണം പ്രദർശിപ്പിക്കുക",
 	"flow-topic-collapse-siderail": "മൊത്തം വീതിയിൽ വായിക്കുക",
@@ -127,10 +129,16 @@
 	"flow-error-invalid-moderation-reason": "മയപ്പെടുത്തുന്നതിനുള്ള കാരണം ദയവായി നൽകുക.",
 	"flow-error-not-allowed": "ഈ പ്രവൃത്തി ചെയ്യുന്നതിനാവശ്യമായ അനുമതികൾ ഇല്ല.",
 	"flow-error-not-allowed-hide": "ഈ വിഷയം മറച്ചിരിക്കുന്നു.",
+	"flow-error-not-allowed-delete": "ഈ വിഷയം ഒഴിവാക്കിയിരിക്കുന്നു.",
+	"flow-error-not-allowed-reply-to-delete-topic": "ഈ വിഷയം ഒഴിവാക്കിയതിനാൽ താങ്കൾക്ക് മറുപടി നൽകാൻ സാധിക്കില്ല.",
+	"flow-error-not-allowed-suppress": "ഈ വിഷയം ഒഴിവാക്കിയിരിക്കുന്നു.",
+	"flow-error-not-allowed-reply-to-suppress-topic": "ഈ വിഷയം ഒഴിവാക്കിയതിനാൽ താങ്കൾക്ക് മറുപടി നൽകാൻ സാധിക്കില്ല.",
 	"flow-error-title-too-long": "വിഷയത്തിന്റെ തലക്കെട്ടുകൾ {{PLURAL:$1|ഒരു ബൈറ്റ്|$1 ബൈറ്റുകൾ}} മാത്രമേ പാടുള്ളു.",
 	"flow-error-no-existing-workflow": "ഈ വർക്ക്‌ഫ്ലോ ഇതുവരെ നിലവിലില്ല.",
+	"flow-error-missing-header-content": "താങ്കൾ ഒരു വിവരണം നിർബന്ധമായും നൽകണം.",
 	"flow-error-prev-revision-does-not-exist": "പഴയ നാൾപ്പതിപ്പ് കണ്ടെത്താനായില്ല.",
 	"flow-error-default": "ഒരു പിഴവുണ്ടായി.",
+	"flow-error-invalid-topic-uuid-title": "അസാധുവായ തലക്കെട്ട്",
 	"flow-edit-header-submit": "വിവരണം സേവ് ചെയ്യുക",
 	"flow-edit-title-submit": "തലക്കെട്ട് മാറ്റുക",
 	"flow-edit-post-submit": "മാറ്റങ്ങൾ സമർപ്പിക്കുക",
@@ -217,5 +225,6 @@
 	"flow-ve-mention-inspector-invalid-user": "\"$1\" എന്ന ഉപയോക്തൃനാമം എടുക്കപ്പെട്ടിട്ടില്ല.",
 	"flow-wikitext-editor-help": "വിക്കിഎഴുത്ത് $1.",
 	"flow-wikitext-editor-help-preview-the-result": "ഫലം എങ്ങനെയുണ്ടെന്ന് കാണുക",
+	"flow-dialog-cancelconfirm-keep": "തിരുത്തൽ തുടരുക",
 	"flow-preference-visualeditor": "ഘടന ഭദ്രതയുള്ള സംവാദങ്ങളിൽ കണ്ടുതിരുത്തൽ സൗകര്യവും പുതിയ വിക്കിഎഴുത്ത് രീതിയും സജ്ജമാക്കുക"
 }
