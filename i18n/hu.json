@@ -256,7 +256,7 @@
 	"flow-history-week": "Múlt héten",
 	"flow-history-pages-topic": "A(z) [$1 „$2” oldalon] jelenik meg",
 	"flow-history-pages-post": "A(z) [$1 $2] témában jelenik meg",
-	"flow-topic-comments": "{{PLURAL:$1|1 hozzászólás|0={{GENDER:$2|Legyél}} az első hozzászóló!}}",
+	"flow-topic-comments": "{{PLURAL:$1|$1 hozzászólás|0={{GENDER:$2|Legyél}} az első hozzászóló!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|Hozzászólás|Hozzászólások}} megtekintése",
 	"flow-hide-comments-title": "{{PLURAL:$1|Hozzászólás|Hozzászólások}} elrejtése",
 	"flow-comment-restored": "Visszaállított hozzászólás",
