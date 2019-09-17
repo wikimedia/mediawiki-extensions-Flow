@@ -125,7 +125,7 @@
 	"flow-rev-message-edit-post": "$1 {{GENDER:$2|ave cangiate}} 'nu [$3 messàgge] sus a \"$4\"",
 	"flow-rev-message-edit-post-recentchanges-summary": "{{GENDER:$2|Ave cangiate}} 'nu messàgge",
 	"flow-rev-message-reply": "$1 [$3 {{GENDER:$2|ave commendate}}] sus a \"$4\" (<em>$5</em>)",
-	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Ccrej<te}} 'n'argomende nuève",
+	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Ccrejte}} 'n'argomende nuève",
 	"flow-rev-message-lock-topic-reason": "signate cumme resolte",
 	"flow-rev-message-restore-topic-reason": "apirte arrete",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|ave repristinate}} [$4 l'argomende] \"$6\" (<em>$5</em>).",
