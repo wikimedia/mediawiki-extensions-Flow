@@ -143,7 +143,7 @@
 			role = $this.data( 'role' ),
 			template = $this.data( 'flow-template' ),
 			params = {
-				editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
+				editToken: mw.user.tokens.get( 'csrfToken' ), // might be unnecessary
 				submitted: {
 					moderationState: role
 				},
