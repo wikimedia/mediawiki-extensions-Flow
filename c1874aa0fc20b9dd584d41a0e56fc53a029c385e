@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a83292e3_255f856a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 4879
+      },
+      "writtenOn": "2019-09-22T16:59:00Z",
+      "side": 1,
+      "message": "Remove this from commit message, not needed.",
+      "range": {
+        "startLine": 9,
+        "startChar": 72,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "c1874aa0fc20b9dd584d41a0e56fc53a029c385e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
