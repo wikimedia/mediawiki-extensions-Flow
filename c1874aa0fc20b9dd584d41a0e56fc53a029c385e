@@ -56,6 +56,24 @@
       "revId": "c1874aa0fc20b9dd584d41a0e56fc53a029c385e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3f22b2f_40f86533",
+        "filename": "modules/engine/components/board/base/flow-boardandhistory-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-09-23T16:12:43Z",
+      "side": 1,
+      "message": "Note that the patch contributor is still new to Gerrit and our MW code bases. I generally agree this kind of thing should be considered, but if you don\u0027t mind I\u0027d rather land this now and maybe file a separate task where we can invite TheSandDoctor to look further into Flow.\n\nThis is part of T233442 which I\u0027d like to complete before 1.34  :)",
+      "parentUuid": "3ec4aa78_76062402",
+      "revId": "c1874aa0fc20b9dd584d41a0e56fc53a029c385e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
