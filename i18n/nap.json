@@ -175,7 +175,7 @@
 	"flow-error-missing-prev-revision-identifier": "L'identificatore d' 'a verziona 'e primma è mancante.",
 	"flow-error-prev-revision-mismatch": "N'at'utente ave cagnata sta mmasciata nu poch' 'e secunde fa. Site {{GENDER:$3|sicuro|sicura}} 'e vulé scrivere stu cagnamiento pe' coppa?",
 	"flow-error-prev-revision-does-not-exist": "Nun se po' truvà 'a verzion' 'e primma.",
-	"flow-error-core-topic-deletion": "Pe' pute scancellà n'argomento, ausate 'o menu... ncopp' 'a bacheca Flow o ncopp' 'a [$1 paggena 'e ll'argomento]. Nun ghì a visità direttamente action=delete pe' l'argomento.",
+	"flow-error-core-topic-deletion": "Pe pute scancellà nu suggetto, ausate 'o... menu ncopp' 'a  Structured Discussions o ncopp' 'a [$1 paggena d''o suggetto]. Nun ghì a visità  a' via 'e mo action=delete pe sta cosa.",
 	"flow-error-default": "N'errore è cumparuto.",
 	"flow-error-invalid-input": "È stato fornito nu valore p' 'a carreca 'e cuntenute Flow invalido.",
 	"flow-error-invalid-title": "S'è fornito nu titolo 'e paggena invalido.",
