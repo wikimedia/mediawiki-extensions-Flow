@@ -141,12 +141,18 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgFlowContentFormat;
+		global $wgFlowContentFormat, $wgWikimediaJenkinsCI;
 
 		// necessary to provide flow options in abuse filter on-wiki pages
 		global $wgFlowAbuseFilterGroup;
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
+		}
+
+		if ( $wgWikimediaJenkinsCI ) {
+			// Parsoid does not work in CI.
+			$wgFlowContentFormat = 'wikitext';
+			return;
 		}
 
 		if ( $wgFlowContentFormat === 'html' && !Utils::isParsoidConfigured() ) {
