@@ -11,7 +11,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Base class that collects the data necessary to utilize AbstractFormatter
@@ -74,7 +74,7 @@ abstract class AbstractQuery {
 	 * Entry point for batch loading metadata for a variety of revisions
 	 * into the internal cache.
 	 *
-	 * @param AbstractRevision[]|ResultWrapper $results
+	 * @param AbstractRevision[]|IResultWrapper $results
 	 */
 	protected function loadMetadataBatch( $results ) {
 		// Batch load data related to a list of revisions
