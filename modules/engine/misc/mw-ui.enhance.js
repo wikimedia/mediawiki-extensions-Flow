@@ -143,13 +143,13 @@ mw.flow.ui.enhance = {};
 	 * Renders tooltips on over, and also via mw.tooltip.
 	 */
 	$( function () {
-		var _$tooltip = $(
-				'<span class="flow-ui-tooltip flow-ui-tooltip-left">' +
-					'<span class="flow-ui-tooltip-content"></span>' +
-					'<span class="flow-ui-tooltip-triangle"></span>' +
-					'<span class="flow-ui-tooltip-close"></span>' +
-				'</span>'
-			),
+		var _$tooltip = $( '<span>' ) )
+				.addClass( 'flow-ui-tooltip flow-ui-tooltip-left' )
+				.append(
+					$( '<span>' ).addClass( 'flow-ui-tooltip-content' ),
+					$( '<span>' ).addClass( 'flow-ui-tooltip-triangle' ),
+					$( '<span>' ).addClass( 'flow-ui-tooltip-close' )
+				),
 			$activeTooltips = $(),
 			_mwUiTooltipExpireTimer;
 
