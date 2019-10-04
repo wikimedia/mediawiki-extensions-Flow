@@ -7,7 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This class is necessary so we can inject the name of
@@ -40,7 +40,7 @@ class CategoryViewerQuery {
 	 * Accepts a result set as sent out to the CategoryViewer::doCategoryQuery
 	 * hook.
 	 *
-	 * @param ResultWrapper|array $rows
+	 * @param IResultWrapper|array $rows
 	 */
 	public function loadMetadataBatch( $rows ) {
 		$neededPosts = [];

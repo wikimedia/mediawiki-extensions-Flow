@@ -5,7 +5,7 @@
  */
 namespace Flow\Repository\UserName;
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Classes implementing the interface can lookup
@@ -15,7 +15,7 @@ interface UserNameQuery {
 	/**
 	 * @param string $wiki wiki id
 	 * @param array $userIds List of user ids to lookup
-	 * @return ResultWrapper|bool Containing objects with user_id and
+	 * @return IResultWrapper|bool Containing objects with user_id and
 	 *   user_name properies.
 	 */
 	public function execute( $wiki, array $userIds );
