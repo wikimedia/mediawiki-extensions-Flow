@@ -63,7 +63,7 @@ class FormatterTest extends FlowTestCase {
 		$row->revision = $this->mockRevision( $action, $revId, $postId );
 		$row->currentRevision = $row->revision;
 
-		$ctx = $this->getMock( \IContextSource::class );
+		$ctx = $this->createMock( \IContextSource::class );
 		$ctx->expects( $this->any() )
 			->method( 'getLanguage' )
 			->will( $this->returnValue( $wgLang ) );
@@ -80,7 +80,7 @@ class FormatterTest extends FlowTestCase {
 	}
 
 	protected function mockWorkflow( UUID $workflowId, Title $title ) {
-		$workflow = $this->getMock( \Flow\Model\Workflow::class );
+		$workflow = $this->createMock( \Flow\Model\Workflow::class );
 		$workflow->expects( $this->any() )
 			->method( 'getId' )
 			->will( $this->returnValue( $workflowId ) );
@@ -92,9 +92,9 @@ class FormatterTest extends FlowTestCase {
 
 	protected function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
 		if ( $postId ) {
-			$revision = $this->getMock( \Flow\Model\PostRevision::class );
+			$revision = $this->createMock( \Flow\Model\PostRevision::class );
 		} else {
-			$revision = $this->getMock( \Flow\Model\Header::class );
+			$revision = $this->createMock( \Flow\Model\Header::class );
 		}
 		$revision->expects( $this->any() )
 			->method( 'getChangeType' )

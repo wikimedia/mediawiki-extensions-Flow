@@ -40,7 +40,7 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	protected function mockDb( $dbResult ) {
-		$db = $this->getMock( IDatabase::class );
+		$db = $this->createMock( IDatabase::class );
 		$db->method( 'insert' )
 			->willReturn( $dbResult );
 		$db->method( 'insertSelect' )

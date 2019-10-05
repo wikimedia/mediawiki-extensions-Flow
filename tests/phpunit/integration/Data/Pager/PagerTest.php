@@ -376,7 +376,7 @@ class PagerTest extends \MediaWikiTestCase {
 	 * @return ObjectManager
 	 */
 	protected function mockObjectManager( array $found = [] ) {
-		$index = $this->getMock( Index::class );
+		$index = $this->createMock( Index::class );
 		$index->expects( $this->any() )
 			->method( 'getSort' )
 			->will( $this->returnValue( [ 'something' ] ) );

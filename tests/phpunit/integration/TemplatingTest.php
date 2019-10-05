@@ -18,7 +18,7 @@ use MediaWikiTestCase;
 class TemplatingTest extends MediaWikiTestCase {
 
 	protected function mockTemplating() {
-		$query = $this->getMock( \Flow\Repository\UserName\UserNameQuery::class );
+		$query = $this->createMock( \Flow\Repository\UserName\UserNameQuery::class );
 		$usernames = new UserNameBatch( $query );
 		$urlGenerator = $this->getMockBuilder( \Flow\UrlGenerator::class )
 			->disableOriginalConstructor()
