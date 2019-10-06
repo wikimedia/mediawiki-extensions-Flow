@@ -8,14 +8,7 @@ endif
 # Flow files to analyze
 ANALYZE=container.php Flow.php Resources.php includes/
 
-# Extra files with some of the dependencies to reduce false positives from hhvm-wrapper
-ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../../includes/api/ApiBase.php \
-	../../includes/logging/LogFormatter.php ../../includes/context/ContextSource.php \
-	../../includes/db/DatabaseUtility.php \
-	../Echo/formatters/BasicFormatter.php ../Echo/formatters/NotificationFormatter.php
-
-# Make sure we use php5
-PHP=`command -v php5 || command -v php`
+PHP=`command -v php`
 
 ###
 # Meta stuff
@@ -77,18 +70,11 @@ vagrant-browsertests:
 ###
 # Static analysis
 ###
-install-analyze-hhvm:
-	wget -O scripts/hhvm-wrapper.phar https://phar.phpunit.de/hhvm-wrapper.phar
-	@which hhvm >/dev/null || which ${HHVM_HOME} >/dev/null || (echo Could not locate hhvm && false)
-
-analyze-hhvm:
-	@test -f scripts/hhvm-wrapper.phar || (echo Run \`make install-analyze\` first && false)
-	php scripts/hhvm-wrapper.phar analyze ${ANALYZE} ${ANALYZE_EXTRA}
 
 analyze-phpstorm:
 	@scripts/analyze-phpstorm.sh
 
-analyze: analyze-hhvm analyze-phpstorm
+analyze: analyze-phpstorm
 
 ###
 # Compile lightncandy templates
