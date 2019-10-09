@@ -3,7 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\TemplateHelper;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use MediaWikiUnitTestCase;
 
 /**

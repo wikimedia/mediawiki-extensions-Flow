@@ -1,30 +1,37 @@
-<?php return function ($in, $debugopt = 1) {
+<?php use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in = null, $options = null) {
+    $helpers = array(            'block' => 'Flow\TemplateHelper::block',
+);
+    $partials = array();
     $cx = array(
         'flags' => array(
             'jstrue' => false,
             'jsobj' => false,
+            'jslen' => false,
             'spvar' => true,
             'prop' => false,
             'method' => false,
+            'lambda' => false,
             'mustlok' => false,
+            'mustlam' => false,
+            'mustsec' => false,
             'echo' => false,
-            'debug' => $debugopt,
+            'partnc' => false,
+            'knohlp' => false,
+            'debug' => isset($options['debug']) ? $options['debug'] : 1,
         ),
         'constants' => array(),
-        'helpers' => array(            'block' => 'Flow\TemplateHelper::block',
-),
-        'blockhelpers' => array(),
-        'hbhelpers' => array(),
-        'partials' => array(),
+        'helpers' => isset($options['helpers']) ? array_merge($helpers, $options['helpers']) : $helpers,
+        'partials' => isset($options['partials']) ? array_merge($partials, $options['partials']) : $partials,
         'scopes' => array(),
-        'sp_vars' => array('root' => $in),
-        'lcrun' => 'LCRun3',
-
+        'sp_vars' => isset($options['data']) ? array_merge(array('root' => $in), $options['data']) : array('root' => $in),
+        'blparam' => array(),
+        'partialid' => 0,
+        'runtime' => '\LightnCandy\Runtime',
     );
     
-    return ''.LCRun3::sec($cx, ((isset($in['blocks']) && is_array($in)) ? $in['blocks'] : null), $in, true, function($cx, $in) {return '	'.LCRun3::ch($cx, 'block', array(array($in),array()), 'encq').'
+    $inary=is_array($in);
+    return ''.LR::sec($cx, (($inary && isset($in['blocks'])) ? $in['blocks'] : null), null, $in, true, function($cx, $in) {$inary=is_array($in);return '	'.LR::encq($cx, LR::hbch($cx, 'block', array(array($in),array()), 'encq', $in)).'
 ';}).'<div class="flow-ui-load-overlay"></div>
 <div style="clear: both"></div>
 ';
-}
-?>
+};

@@ -1,29 +1,36 @@
-<?php return function ($in, $debugopt = 1) {
+<?php use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in = null, $options = null) {
+    $helpers = array(            'html' => 'Flow\TemplateHelper::htmlHelper',
+);
+    $partials = array();
     $cx = array(
         'flags' => array(
             'jstrue' => false,
             'jsobj' => false,
+            'jslen' => false,
             'spvar' => true,
             'prop' => false,
             'method' => false,
+            'lambda' => false,
             'mustlok' => false,
+            'mustlam' => false,
+            'mustsec' => false,
             'echo' => false,
-            'debug' => $debugopt,
+            'partnc' => false,
+            'knohlp' => false,
+            'debug' => isset($options['debug']) ? $options['debug'] : 1,
         ),
         'constants' => array(),
-        'helpers' => array(            'html' => 'Flow\TemplateHelper::htmlHelper',
-),
-        'blockhelpers' => array(),
-        'hbhelpers' => array(),
-        'partials' => array(),
+        'helpers' => isset($options['helpers']) ? array_merge($helpers, $options['helpers']) : $helpers,
+        'partials' => isset($options['partials']) ? array_merge($partials, $options['partials']) : $partials,
         'scopes' => array(),
-        'sp_vars' => array('root' => $in),
-        'lcrun' => 'LCRun3',
-
+        'sp_vars' => isset($options['data']) ? array_merge(array('root' => $in), $options['data']) : array('root' => $in),
+        'blparam' => array(),
+        'partialid' => 0,
+        'runtime' => '\LightnCandy\Runtime',
     );
     
-    return '<div class="'.htmlentities((string)((isset($in['extraClass']) && is_array($in)) ? $in['extraClass'] : null), ENT_QUOTES, 'UTF-8').' flow-ui-tooltip '.htmlentities((string)((isset($in['contextClass']) && is_array($in)) ? $in['contextClass'] : null), ENT_QUOTES, 'UTF-8').' '.htmlentities((string)((isset($in['positionClass']) && is_array($in)) ? $in['positionClass'] : null), ENT_QUOTES, 'UTF-8').' '.htmlentities((string)((isset($in['blockClass']) && is_array($in)) ? $in['blockClass'] : null), ENT_QUOTES, 'UTF-8').' plainlinks">'.LCRun3::ch($cx, 'html', array(array(((isset($in['content']) && is_array($in)) ? $in['content'] : null)),array()), 'encq').'<span class="flow-ui-tooltip-triangle"></span>
+    $inary=is_array($in);
+    return '<div class="'.LR::encq($cx, (($inary && isset($in['extraClass'])) ? $in['extraClass'] : null)).' flow-ui-tooltip '.LR::encq($cx, (($inary && isset($in['contextClass'])) ? $in['contextClass'] : null)).' '.LR::encq($cx, (($inary && isset($in['positionClass'])) ? $in['positionClass'] : null)).' '.LR::encq($cx, (($inary && isset($in['blockClass'])) ? $in['blockClass'] : null)).' plainlinks">'.LR::encq($cx, LR::hbch($cx, 'html', array(array((($inary && isset($in['content'])) ? $in['content'] : null)),array()), 'encq', $in)).'<span class="flow-ui-tooltip-triangle"></span>
 </div>
 ';
-}
-?>
+};

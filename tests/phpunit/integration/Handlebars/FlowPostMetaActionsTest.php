@@ -3,7 +3,7 @@
 namespace Flow\Tests\Handlebars;
 
 use Flow\Container;
-use LightnCandy;
+use LightnCandy\LightnCandy;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

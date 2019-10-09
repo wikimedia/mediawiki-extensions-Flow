@@ -1,33 +1,40 @@
-<?php return function ($in, $debugopt = 1) {
+<?php use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in = null, $options = null) {
+    $helpers = array();
+    $partials = array();
     $cx = array(
         'flags' => array(
             'jstrue' => false,
             'jsobj' => false,
+            'jslen' => false,
             'spvar' => true,
             'prop' => false,
             'method' => false,
+            'lambda' => false,
             'mustlok' => false,
+            'mustlam' => false,
+            'mustsec' => false,
             'echo' => false,
-            'debug' => $debugopt,
+            'partnc' => false,
+            'knohlp' => false,
+            'debug' => isset($options['debug']) ? $options['debug'] : 1,
         ),
         'constants' => array(),
-        'helpers' => array(),
-        'blockhelpers' => array(),
-        'hbhelpers' => array(),
-        'partials' => array(),
+        'helpers' => isset($options['helpers']) ? array_merge($helpers, $options['helpers']) : $helpers,
+        'partials' => isset($options['partials']) ? array_merge($partials, $options['partials']) : $partials,
         'scopes' => array(),
-        'sp_vars' => array('root' => $in),
-        'lcrun' => 'LCRun3',
-
+        'sp_vars' => isset($options['data']) ? array_merge(array('root' => $in), $options['data']) : array('root' => $in),
+        'blparam' => array(),
+        'partialid' => 0,
+        'runtime' => '\LightnCandy\Runtime',
     );
     
-    return ''.((LCRun3::ifvar($cx, ((isset($in['guid']) && is_array($in)) ? $in['guid'] : null))) ? '	<span datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp">
-' : '	<span datetime="'.htmlentities((string)((isset($in['time_iso']) && is_array($in)) ? $in['time_iso'] : null), ENT_QUOTES, 'UTF-8').'"
+    $inary=is_array($in);
+    return ''.((LR::ifvar($cx, (($inary && isset($in['guid'])) ? $in['guid'] : null), false)) ? '	<span datetime="'.LR::encq($cx, (($inary && isset($in['time_iso'])) ? $in['time_iso'] : null)).'" class="flow-timestamp">
+' : '	<span datetime="'.LR::encq($cx, (($inary && isset($in['time_iso'])) ? $in['time_iso'] : null)).'"
 	      class="flow-timestamp flow-load-interactive"
 	      data-flow-load-handler="timestamp">
-').'	<span class="flow-timestamp-user-formatted">'.htmlentities((string)((isset($in['time_readable']) && is_array($in)) ? $in['time_readable'] : null), ENT_QUOTES, 'UTF-8').'</span>
-	<span id="'.htmlentities((string)((isset($in['guid']) && is_array($in)) ? $in['guid'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-timestamp-ago">'.htmlentities((string)((isset($in['time_ago']) && is_array($in)) ? $in['time_ago'] : null), ENT_QUOTES, 'UTF-8').'</span>
+').'	<span class="flow-timestamp-user-formatted">'.LR::encq($cx, (($inary && isset($in['time_readable'])) ? $in['time_readable'] : null)).'</span>
+	<span id="'.LR::encq($cx, (($inary && isset($in['guid'])) ? $in['guid'] : null)).'" class="flow-timestamp-ago">'.LR::encq($cx, (($inary && isset($in['time_ago'])) ? $in['time_ago'] : null)).'</span>
 </span>
 ';
-}
-?>
+};
