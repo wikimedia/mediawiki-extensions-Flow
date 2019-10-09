@@ -68,7 +68,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 */
 	protected $revision;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// create a workflow & revision associated with it

@@ -176,6 +176,7 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	// Public only for unit testing
+
 	/**
 	 * Checks whether it meets the applicable subpage rules.  Meant to be overriden by
 	 * subclasses that do not have the same requirements

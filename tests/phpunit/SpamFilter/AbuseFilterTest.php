@@ -102,7 +102,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		global $wgFlowAbuseFilterGroup,
@@ -134,7 +134,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		}
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		foreach ( $this->tablesUsed as $table ) {
 			$this->db->delete( $table, '*', __METHOD__ );

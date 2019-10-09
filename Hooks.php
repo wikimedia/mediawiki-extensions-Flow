@@ -1543,6 +1543,7 @@ class FlowHooks {
 
 	// This should block them from wasting their time filling the form, but it won't
 	// without a core change.  However, it does show the message.
+
 	/**
 	 * Shows an error message when the user visits the deletion form if the page is in
 	 * the Topic namespace.

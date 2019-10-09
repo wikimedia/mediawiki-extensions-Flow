@@ -45,7 +45,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 */
 	protected $workflows = [];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Revisions must be blanked here otherwise phpunit run with --repeat will remember
@@ -56,7 +56,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	/**
 	 * Reset the container and with it any state
 	 */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 
 		foreach ( $this->revisions as $revision ) {

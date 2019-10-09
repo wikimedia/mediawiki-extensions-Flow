@@ -93,7 +93,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	 */
 	protected $suppressUser;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// We don't want local config getting in the way of testing whether or
@@ -104,7 +104,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		$this->actions = Container::get( 'flow_actions' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 	}
 

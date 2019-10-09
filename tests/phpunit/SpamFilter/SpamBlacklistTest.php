@@ -73,7 +73,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// create spam filter
@@ -97,7 +97,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$reflProp->setValue( $instance, false );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		MediaWikiServices::getInstance()->getMessageCache()->disable();
 		parent::tearDown();
 	}

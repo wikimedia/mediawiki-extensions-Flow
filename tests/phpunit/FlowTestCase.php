@@ -12,7 +12,7 @@ use WANObjectCache;
 use MediaWikiTestCase;
 
 class FlowTestCase extends MediaWikiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		Container::reset();
 		parent::setUp();
 	}

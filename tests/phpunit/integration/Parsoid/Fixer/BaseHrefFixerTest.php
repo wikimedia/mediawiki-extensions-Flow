@@ -14,7 +14,7 @@ use Title;
  * @group Flow
  */
 class BaseHrefFixerTest extends \MediaWikiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgServer', 'http://mywiki' );
 	}

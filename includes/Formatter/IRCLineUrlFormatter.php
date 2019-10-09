@@ -37,6 +37,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	/**
 	 * Allows us to set the rc_comment field
 	 */
+
 	/**
 	 * @param array $feed
 	 * @param RecentChange $rc

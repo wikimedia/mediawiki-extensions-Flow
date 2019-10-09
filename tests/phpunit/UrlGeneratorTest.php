@@ -16,7 +16,7 @@ class UrlGeneratorTest extends FlowTestCase {
 
 	protected $urlGenerator;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->urlGenerator = Container::get( 'url_generator' );
 	}

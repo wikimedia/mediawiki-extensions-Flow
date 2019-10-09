@@ -38,7 +38,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 		'text',
 	];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// reset flow state, so everything ($container['permissions'])

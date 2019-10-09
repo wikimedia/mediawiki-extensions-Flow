@@ -34,7 +34,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		'text',
 	];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {

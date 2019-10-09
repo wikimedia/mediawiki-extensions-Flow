@@ -265,6 +265,7 @@ class ConvertToText extends Maintenance {
 			'flow-edited-by-header'
 		);
 	}
+
 	private function processMultiRevisions(
 		$allRevisions, $sigForFirstAuthor = true, $msg = 'flow-edited-by',
 		$glueAfterContent = '', $glueBeforeAuthors = ' '

@@ -845,6 +845,7 @@ abstract class AbstractRevision {
 	}
 
 	// Only public for FlowUpdateRevisionContentLength.
+
 	/**
 	 * Determines the content length by measuring the actual content.
 	 *

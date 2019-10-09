@@ -25,6 +25,7 @@ foreach ( $wgResourceModules as $moduleName => $def ) {
 }
 
 $url = $loadUrl . '?only=styles&skin=vector&modules=' . implode( '|', $query );
+
 /**
  * @param string $val
  * @param-taint $val none
@@ -32,6 +33,7 @@ $url = $loadUrl . '?only=styles&skin=vector&modules=' . implode( '|', $query );
 function out( $val ) {
 	echo $val;
 }
+
 out( $url );
 $css = file_get_contents( $url );
 file_put_contents( $outputFile, $css );

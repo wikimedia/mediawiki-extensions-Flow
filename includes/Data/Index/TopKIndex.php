@@ -95,6 +95,7 @@ class TopKIndex extends FeatureIndex {
 	// TODO: This is only left for now to handle non-ID offsets (e.g. updated
 	// timestamps).
 	// This has always been broken once you query past the TopKIndex limit.
+
 	/**
 	 * @param array $rows
 	 * @param array $options
