@@ -15,12 +15,11 @@ class SpamRegex implements SpamFilter {
 	 * @param Title $title
 	 * @param Title $ownerTitle
 	 * @return Status
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	public function validate(
 		IContextSource $context,
 		AbstractRevision $newRevision,
-		AbstractRevision $oldRevision = null,
+		?AbstractRevision $oldRevision,
 		Title $title,
 		Title $ownerTitle
 	) {
