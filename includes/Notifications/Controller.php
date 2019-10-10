@@ -518,11 +518,10 @@ class NotificationController {
 	 * @return bool|EchoEvent[]
 	 * @throws Exception\InvalidDataException
 	 * @throws \MWException
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
 	protected function generateMentionEvents(
 		AbstractRevision $content,
-		PostRevision $topic = null,
+		?PostRevision $topic,
 		Workflow $workflow,
 		User $user,
 		array $mentionedUsers,

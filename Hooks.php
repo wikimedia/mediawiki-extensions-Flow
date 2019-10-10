@@ -1595,14 +1595,13 @@ class FlowHooks {
 	 * @param int $articleId Article ID of deleted article
 	 * @param Content|null $content Content that was deleted, or null on error
 	 * @param LogEntry $logEntry Log entry for deletion
-	 * @suppress PhanParamReqAfterOpt Not optional but nullable
 	 */
 	public static function onArticleDeleteComplete(
 		WikiPage &$article,
 		User &$user,
 		$reason,
 		$articleId,
-		Content $content = null,
+		?Content $content,
 		LogEntry $logEntry
 	) {
 		$title = $article->getTitle();
