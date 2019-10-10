@@ -127,27 +127,27 @@ class ManagerGroup {
 		return $this->getStorage( $className )->$method( ...$args );
 	}
 
-	public function get( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function get( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 
-	public function getMulti( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function getMulti( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 
-	public function find( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function find( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 
-	public function findMulti( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function findMulti( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 
-	public function found( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function found( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 
-	public function foundMulti( /* ... */ ) {
-		return $this->call( __FUNCTION__, func_get_args() );
+	public function foundMulti( ...$args ) {
+		return $this->call( __FUNCTION__, $args );
 	}
 }

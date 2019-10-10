@@ -1098,11 +1098,9 @@ class RevisionFormatter {
 		}
 	}
 
-	protected function msg( $key /*...*/ ) {
-		$params = func_get_args();
-		if ( count( $params ) !== 1 ) {
-			array_shift( $params );
-			return wfMessage( $key, $params );
+	protected function msg( $key, ...$params ) {
+		if ( $params ) {
+			return wfMessage( $key, ...$params );
 		}
 		if ( !isset( $this->messages[$key] ) ) {
 			$this->messages[$key] = new Message( $key );
