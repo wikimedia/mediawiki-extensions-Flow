@@ -17,7 +17,7 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	 * @param IObjectRevision[] $revisions
 	 * @param IImportPost[] $replies
 	 */
-	public function __construct( IImportSummary $summary = null, array $revisions, array $replies ) {
+	public function __construct( ?IImportSummary $summary, array $revisions, array $replies ) {
 		parent::__construct( $revisions, $replies );
 		$this->summary = $summary;
 	}

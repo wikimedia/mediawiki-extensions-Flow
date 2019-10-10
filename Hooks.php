@@ -1602,7 +1602,7 @@ class FlowHooks {
 		User &$user,
 		$reason,
 		$articleId,
-		Content $content = null,
+		?Content $content,
 		LogEntry $logEntry
 	) {
 		$title = $article->getTitle();
