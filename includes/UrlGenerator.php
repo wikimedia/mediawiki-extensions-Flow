@@ -1,5 +1,4 @@
 <?php
-// @phan-file-suppress PhanParamReqAfterOpt All nullable
 
 namespace Flow;
 
@@ -82,7 +81,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function editHeaderLink( Title $title = null, UUID $workflowId ) {
+	public function editHeaderLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-edit-header' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -98,7 +97,7 @@ class UrlGenerator {
 	 * @param UUID $revId
 	 * @return Anchor
 	 */
-	public function headerRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+	public function headerRevisionLink( ?Title $title, UUID $workflowId, UUID $revId ) {
 		return new Anchor(
 			wfMessage( 'flow-link-header-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -117,7 +116,7 @@ class UrlGenerator {
 	 * @param UUID $revId
 	 * @return Anchor
 	 */
-	public function topicRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+	public function topicRevisionLink( ?Title $title, UUID $workflowId, UUID $revId ) {
 		return new Anchor(
 			wfMessage( 'flow-link-topic-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -138,7 +137,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function postRevisionLink(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $postId,
 		UUID $revId
@@ -162,7 +161,7 @@ class UrlGenerator {
 	 * @param UUID $revId
 	 * @return Anchor
 	 */
-	public function summaryRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+	public function summaryRevisionLink( ?Title $title, UUID $workflowId, UUID $revId ) {
 		return new Anchor(
 			wfMessage( 'flow-link-summary-revision' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -180,7 +179,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function topicLink( Title $title = null, UUID $workflowId ) {
+	public function topicLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-link-topic' ),
 			$this->resolveTitle( $title, $workflowId )
@@ -196,7 +195,7 @@ class UrlGenerator {
 	 * @param UUID $postId
 	 * @return Anchor
 	 */
-	public function postLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+	public function postLink( ?Title $title, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
 			wfMessage( 'flow-link-post' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -217,7 +216,7 @@ class UrlGenerator {
 	 * @param UUID $postId
 	 * @return Anchor
 	 */
-	public function postHistoryLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+	public function postHistoryLink( ?Title $title, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
 			wfMessage( 'flow-post-action-post-history' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -235,7 +234,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function workflowHistoryLink( Title $title = null, UUID $workflowId ) {
+	public function workflowHistoryLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-history' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -267,7 +266,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 * @throws FlowException When the provided revision is not known
 	 */
-	public function undoAction( AbstractRevision $revision, Title $title = null, UUID $workflowId ) {
+	public function undoAction( AbstractRevision $revision, ?Title $title, UUID $workflowId ) {
 		$startId = $revision->getPrevRevisionId();
 		$endId = $revision->getRevisionId();
 		if ( $revision instanceof PostRevision ) {
@@ -289,7 +288,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function undoEditPostAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $startId,
 		UUID $endId
@@ -313,7 +312,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function undoEditHeaderAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $startId,
 		UUID $endId
@@ -337,7 +336,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function undoEditSummaryAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $startId,
 		UUID $endId
@@ -363,7 +362,7 @@ class UrlGenerator {
 	 */
 	public function diffLink(
 		AbstractRevision $revision,
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $oldRevId = null
 	) {
@@ -392,7 +391,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function diffHeaderLink(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $revId,
 		UUID $oldRevId = null
@@ -423,7 +422,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function diffPostLink(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $revId,
 		UUID $oldRevId = null
@@ -454,7 +453,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function diffSummaryLink(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $revId,
 		UUID $oldRevId = null
@@ -478,7 +477,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function workflowLink( Title $title = null, UUID $workflowId ) {
+	public function workflowLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-workflow' ),
 			$this->resolveTitle( $title, $workflowId )
@@ -493,7 +492,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function watchTopicLink( Title $title = null, UUID $workflowId ) {
+	public function watchTopicLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'watch' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -509,7 +508,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function unwatchTopicLink( Title $title = null, UUID $workflowId ) {
+	public function unwatchTopicLink( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'unwatch' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -554,7 +553,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function replyAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $postId,
 		$isTopLevelReply
@@ -581,7 +580,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function editTopicSummaryAction( Title $title = null, UUID $workflowId ) {
+	public function editTopicSummaryAction( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-summarize-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -596,7 +595,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function lockTopicAction( Title $title = null, UUID $workflowId ) {
+	public function lockTopicAction( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-lock-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -617,7 +616,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function restoreTopicAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		$moderationAction,
 		$flowAction = 'moderate-topic'
@@ -643,7 +642,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function restorePostAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $postId,
 		$moderationAction,
@@ -682,7 +681,7 @@ class UrlGenerator {
 	 * @param UUID $revId
 	 * @return Anchor
 	 */
-	public function editHeaderAction( Title $title = null, UUID $workflowId, UUID $revId ) {
+	public function editHeaderAction( ?Title $title, UUID $workflowId, UUID $revId ) {
 		return new Anchor(
 			wfMessage( 'flow-edit-header-link' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -700,7 +699,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function editTitleAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $postId,
 		UUID $revId
@@ -726,7 +725,7 @@ class UrlGenerator {
 	 * @return Anchor
 	 */
 	public function editPostAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		UUID $postId,
 		UUID $revId
@@ -752,7 +751,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function hideTopicAction( Title $title = null, UUID $workflowId ) {
+	public function hideTopicAction( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-hide-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -771,7 +770,7 @@ class UrlGenerator {
 	 * @param UUID $postId
 	 * @return Anchor
 	 */
-	public function hidePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+	public function hidePostAction( ?Title $title, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
 			wfMessage( 'flow-post-action-hide-post' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -790,7 +789,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function deleteTopicAction( Title $title = null, UUID $workflowId ) {
+	public function deleteTopicAction( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-delete-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -809,7 +808,7 @@ class UrlGenerator {
 	 * @param UUID $postId
 	 * @return Anchor
 	 */
-	public function deletePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+	public function deletePostAction( ?Title $title, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
 			wfMessage( 'flow-post-action-delete-post' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -828,7 +827,7 @@ class UrlGenerator {
 	 * @param UUID $workflowId
 	 * @return Anchor
 	 */
-	public function suppressTopicAction( Title $title = null, UUID $workflowId ) {
+	public function suppressTopicAction( ?Title $title, UUID $workflowId ) {
 		return new Anchor(
 			wfMessage( 'flow-topic-action-suppress-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -847,7 +846,7 @@ class UrlGenerator {
 	 * @param UUID $postId
 	 * @return Anchor
 	 */
-	public function suppressPostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+	public function suppressPostAction( ?Title $title, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
 			wfMessage( 'flow-post-action-suppress-post' ),
 			$this->resolveTitle( $title, $workflowId ),
@@ -898,7 +897,7 @@ class UrlGenerator {
 	 * @throws InvalidInputException
 	 */
 	public function markRevisionPatrolledAction(
-		Title $title = null,
+		?Title $title,
 		UUID $workflowId,
 		RecentChange $rc,
 		$token
