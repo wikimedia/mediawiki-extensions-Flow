@@ -313,9 +313,8 @@ abstract class AbstractBlock implements Block {
 	 * @param AbstractRevision|null $old null when $new is first revision
 	 * @param AbstractRevision $new
 	 * @return bool True when content is allowed by spam filter
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
-	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
+	protected function checkSpamFilters( ?AbstractRevision $old, AbstractRevision $new ) {
 		/** @var \Flow\SpamFilter\Controller $spamFilter */
 		$spamFilter = Container::get( 'controller.spamfilter' );
 		$status = $spamFilter->validate( $this->context, $new, $old, $this->workflow->getArticleTitle(), $this->workflow->getOwnerTitle() );

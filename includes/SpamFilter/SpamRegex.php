@@ -20,7 +20,7 @@ class SpamRegex implements SpamFilter {
 	public function validate(
 		IContextSource $context,
 		AbstractRevision $newRevision,
-		AbstractRevision $oldRevision = null,
+		?AbstractRevision $oldRevision,
 		Title $title,
 		Title $ownerTitle
 	) {
