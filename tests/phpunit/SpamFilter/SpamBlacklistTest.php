@@ -65,7 +65,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( $newRevisionRow, PostRevision $oldRevision = null, $expected ) {
+	public function testSpam( $newRevisionRow, ?PostRevision $oldRevision, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
 

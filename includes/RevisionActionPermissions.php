@@ -112,9 +112,8 @@ class RevisionActionPermissions {
 	 * @param AbstractRevision|null $revision
 	 * @param string $action Multiple parameters to check if either of the provided actions are allowed
 	 * @return bool
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
-	public function isAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
+	public function isAllowedAny( ?AbstractRevision $revision, $action /* [, $action2 [, ... ]] */ ) {
 		$actions = func_get_args();
 		// Pull $revision out of the actions list
 		array_shift( $actions );
@@ -185,9 +184,8 @@ class RevisionActionPermissions {
 	 * @param AbstractRevision|null $revision
 	 * @param string $action
 	 * @return bool
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
-	public function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
+	public function isRevisionAllowed( ?AbstractRevision $revision, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
 		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
@@ -215,9 +213,8 @@ class RevisionActionPermissions {
 	 * @param string $action
 	 * @param string $type
 	 * @return Closure|string
-	 * @suppress PhanParamReqAfterOpt Nullable, not optional
 	 */
-	public function getPermission( AbstractRevision $revision = null, $action, $type = 'permissions' ) {
+	public function getPermission( ?AbstractRevision $revision, $action, $type = 'permissions' ) {
 		// $revision may be null if the revision has yet to be created
 		$moderationState = AbstractRevision::MODERATED_NONE;
 		if ( $revision !== null ) {
