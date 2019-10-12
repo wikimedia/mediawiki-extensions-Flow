@@ -22,7 +22,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.34.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"callback": "FlowHooks::registerExtension",
 	"APIModules": {
@@ -664,20 +664,6 @@
 				}
 			}
 		},
-		"mediawiki.messagePoster.flow-board": {
-			"scripts": [
-				"messagePoster/ext.flow.messagePoster.js"
-			],
-			"dependencies": [
-				"oojs",
-				"mediawiki.api",
-				"mediawiki.messagePoster"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
 		"ext.flow.jquery.conditionalScroll": {
 			"scripts": [
 				"engine/misc/jquery.conditionalScroll.js"
@@ -700,6 +686,16 @@
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
 		"remoteExtPath": "Flow/modules"
+	},
+	"MessagePosterModule": {
+		"scripts": [
+			"modules/messagePoster/ext.flow.messagePoster.js"
+		],
+		"dependencies": [
+			"oojs",
+			"mediawiki.api",
+			"mediawiki.messagePoster"
+		]
 	},
 	"Hooks": {
 		"ResourceLoaderRegisterModules": "FlowHooks::onResourceLoaderRegisterModules",
