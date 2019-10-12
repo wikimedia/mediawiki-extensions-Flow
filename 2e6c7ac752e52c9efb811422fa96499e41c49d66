@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b138c0c_b9dafdc3",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-10-12T06:02:57Z",
+      "side": 1,
+      "message": "Should be ?Title",
+      "range": {
+        "startLine": 84,
+        "startChar": 33,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "2e6c7ac752e52c9efb811422fa96499e41c49d66",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
