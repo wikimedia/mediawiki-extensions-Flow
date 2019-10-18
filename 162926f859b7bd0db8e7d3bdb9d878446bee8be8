@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cd74693_46b6c175",
+        "filename": "extension.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 5
+      },
+      "writtenOn": "2019-10-18T19:37:19Z",
+      "side": 1,
+      "message": "This results in \"Error: Circular reference detected: mediawiki.messagePoster -\u003e mediawiki.messagePoster\", because this module\u0027s dependencies get folded into mediawiki.messagePoster\u0027s",
+      "revId": "162926f859b7bd0db8e7d3bdb9d878446bee8be8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
