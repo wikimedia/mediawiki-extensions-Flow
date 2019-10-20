@@ -138,7 +138,6 @@ class View extends ContextSource {
 				'mediawiki.ui.button',
 				'mediawiki.ui.input',
 				'mediawiki.ui.icon',
-				'mediawiki.ui.text',
 				'mediawiki.special.changeslist',
 				'mediawiki.editfont.styles',
 				'ext.flow.styles.base' ,
