@@ -64,7 +64,7 @@
 	"apihelp-flow+new-topic-summary": "在指定的工作流上建立新的結構式討論話題。",
 	"apihelp-flow+new-topic-param-topic": "用於新話題標題的文字。",
 	"apihelp-flow+new-topic-param-content": "話題裡最初回覆的內容。",
-	"apihelp-flow+new-topic-param-format": "新話題的首篇回覆之格式（wiki 文字|html）",
+	"apihelp-flow+new-topic-param-format": "新話題的首篇回覆之格式（wikitext|html）",
 	"apihelp-flow+new-topic-example-1": "在 [[Talk:Sandbox]] 建立新的話題",
 	"apihelp-flow+reply-description": "回覆一篇貼文。",
 	"apihelp-flow+reply-summary": "回覆一篇貼文。",
