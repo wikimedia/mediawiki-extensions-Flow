@@ -28,7 +28,6 @@ abstract class BoardHistoryIndex extends TopKIndex {
 
 	/**
 	 * @inheritDoc
-	 * @suppress PhanParamReqAfterOpt
 	 */
 	public function __construct(
 		FlowObjectCache $cache,
@@ -36,7 +35,7 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		ObjectMapper $mapper,
 		$prefix,
 		array $indexed,
-		array $options = [],
+		array $options,
 		ObjectManager $om
 	) {
 		if ( $indexed !== [ 'topic_list_id' ] ) {
