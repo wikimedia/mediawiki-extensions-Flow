@@ -189,10 +189,8 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 		Parser $parser = null,
 		SourceStoreInterface $sourceStore = null
 	) {
-		global $wgParser;
-
 		return new ConversionStrategy(
-			$parser ?: $wgParser,
+			$parser ?: MediaWikiServices::getInstance()->getParser(),
 			$sourceStore ?: new NullImportSourceStore,
 			Container::get( 'default_logger' ),
 			Container::get( 'occupation_controller' )->getTalkpageManager()

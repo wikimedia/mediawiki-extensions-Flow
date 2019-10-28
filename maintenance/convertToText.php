@@ -173,10 +173,10 @@ class ConvertToText extends Maintenance {
 	}
 
 	protected function getSignature( array $user, $timestamp = false ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
 		// Force unstub
-		StubObject::unstub( $wgParser );
+		StubObject::unstub( $parser );
 
 		if ( $user ) {
 			// create a bogus user for whom username & id is known, so we
@@ -193,14 +193,14 @@ class ConvertToText extends Maintenance {
 			// doesn't fail (it'll initialise the requested value from a global
 			// anyway)
 			$options = new ParserOptions();
-			$old = $wgParser->Options( $options );
-			$wgParser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
-			$signature = $wgParser->getUserSig( $user, $nickname, $fancysig );
-			$signature = $wgParser->mStripState->unstripBoth( $signature );
+			$old = $parser->Options( $options );
+			$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
+			$signature = $parser->getUserSig( $user, $nickname, $fancysig );
+			$signature = $parser->mStripState->unstripBoth( $signature );
 			if ( $timestamp ) {
 				$signature .= ' ' . $this->formatTimestamp( $timestamp );
 			}
-			$wgParser->Options( $old );
+			$parser->Options( $old );
 			return $signature;
 		} else {
 			return "[Unknown user]" . $timestamp ? ' ' . $this->formatTimestamp( $timestamp ) : '';

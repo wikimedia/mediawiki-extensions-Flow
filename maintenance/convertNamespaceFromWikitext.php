@@ -35,7 +35,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLang, $wgParser;
+		global $wgLang;
 
 		$provided = $this->getArg( 0 );
 		$namespace = $wgLang->getNsIndex( $provided );
@@ -78,7 +78,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 			$talkpageManager,
 
 			new Flow\Import\Wikitext\ConversionStrategy(
-				$wgParser,
+				MediaWikiServices::getInstance()->getParser(),
 				new Flow\Import\SourceStore\NullImportSourceStore(),
 				$logger,
 				$talkpageManager,
