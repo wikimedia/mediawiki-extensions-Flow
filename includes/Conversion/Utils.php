@@ -230,12 +230,11 @@ abstract class Utils {
 				"core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
 		}
 
-		global $wgParser;
-
 		$options = new \ParserOptions;
 		$options->setTidy( true );
 
-		$output = $wgParser->parse( $content, $title, $options );
+		$output = MediaWikiServices::getInstance()->getParser()
+			->parse( $content, $title, $options );
 		return $output->getText( [ 'enableSectionEditLinks' => false ] );
 	}
 

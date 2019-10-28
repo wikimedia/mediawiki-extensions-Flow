@@ -652,14 +652,13 @@ class NotificationController {
 	 * @return User[] Array of User objects
 	 */
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
-		global $wgParser;
-
 		$title = Title::newMainPage(); // Bogus title used for parser
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
 
-		$output = $wgParser->parse( $wikitext, $title, $options );
+		$output = MediaWikiServices::getInstance()->getParser()
+			->parse( $wikitext, $title, $options );
 
 		$links = $output->getLinks();
 
