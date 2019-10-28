@@ -11,7 +11,8 @@
 			"Avner",
 			"ערן",
 			"Macofe",
-			"Rotemliss"
+			"Rotemliss",
+			"Steeve815"
 		]
 	},
 	"enablestructureddiscussions": "הפעלת דיונים מבניים",
@@ -192,7 +193,7 @@
 	"flow-error-prev-revision-does-not-exist": "לא נמצאה גרסה קודמת.",
 	"flow-error-core-topic-deletion": "כדי למחוק נושא, יש להשתמש בכפתור ... בלוח הדיונים המבניים או ב[$1 דף הנושא]. נא לא לבקר ב־action=delete של הנושא הזה ישירות.",
 	"flow-error-default": "אירעה שגיאה.",
-	"flow-error-invalid-input": "ערך בלתי־תקין ניתן ניתן לטעינת תוכן דיונים מבניים.",
+	"flow-error-invalid-input": "ערך בלתי־תקין ניתן לטעינת תוכן דיונים מבניים.",
 	"flow-error-invalid-title": "ניתנה כותרת דף בלתי־תקינה.",
 	"flow-error-invalid-parameter": "פרמטר חסר או בלתי־תקין בקריאה לשיטה",
 	"flow-error-fail-load-history": "טעינת תוכן ההיסטוריה נכשלה.",
