@@ -23,11 +23,13 @@
 
 		this.termsLabel = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editorControlsWidget-termsLabel' ],
+			// eslint-disable-next-line mediawiki/msg-doc
 			label: $( $.parseHTML( mw.message( config.termsMsgKey || 'flow-terms-of-use-edit' ).parse() ) )
 		} );
 
 		this.saveButton = new OO.ui.ButtonWidget( {
 			flags: [ 'primary', 'progressive' ],
+			// eslint-disable-next-line mediawiki/msg-doc
 			label: mw.msg( config.saveMsgKey || 'flow-newtopic-save' ),
 			classes: [ 'flow-ui-editorControlsWidget-saveButton' ]
 		} );
@@ -35,6 +37,7 @@
 		this.cancelButton = new OO.ui.ButtonWidget( {
 			flags: 'destructive',
 			framed: false,
+			// eslint-disable-next-line mediawiki/msg-doc
 			label: mw.msg( config.cancelMsgKey || 'flow-cancel' ),
 			classes: [ 'flow-ui-editorControlsWidget-cancelButton' ]
 		} );

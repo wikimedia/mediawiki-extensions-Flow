@@ -14,9 +14,9 @@
 	}
 }
 
-// board navigation
+/* board navigation */
 .flow-board-navigation,
-// whole board content wrapper
+/* whole board content wrapper */
 .flow-board {
 	.box-sizing( border-box );
 	font-size: 0.875em;
@@ -42,7 +42,7 @@
 	.flow-board-newtopic {
 		.flow-newtopic-form {
 			padding-top: 1.5em;
-			// Join inputs together
+			/* Join inputs together */
 			> .mw-ui-input {
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
@@ -57,13 +57,13 @@
 	}
 }
 
-// Individual topic containers
+/* Individual topic containers */
 .flow-topic {
 	padding: 1em 0 1.4em;
 	margin-top: 0.6em;
 }
 
-// Revision view
+/* Revision view */
 .flow-revision-content {
 	background-color: @colorGray14;
 	color: @colorGray7;
@@ -71,13 +71,13 @@
 	padding: 10px;
 }
 
-// "No more" link
+/* "No more" link */
 .flow-no-more,
-// "Undo" moderation link
+/* "Undo" moderation link */
 .flow-undo {
 	font-size: 0.875em;
 	color: @colorGray7;
-	// These two will flip in RTL interface
+	/* These two will flip in RTL interface */
 	text-align: left;
 	direction: ltr;
 }
@@ -86,7 +86,7 @@
 	font-size: 0.875em;
 }
 
-// Decorate as a pipelist, ex: (foo | bar | baz)
+/* Decorate as a pipelist, ex: (foo | bar | baz) */
 .flow-pipelist {
 	span ~ span:before {
 		content: ' | ';
@@ -98,15 +98,15 @@
 	line-height: 0;
 }
 
-// This is to make sure there is enough space
-// at the bottom to display the last post's menu.
+/* This is to make sure there is enough space */
+/* at the bottom to display the last post's menu. */
 .flow-bottom-spacer {
 	height: 100px;
 }
 
-// Override OOUI's frameless-buttons having
-// a white border inside the description area
-// (which has a grey background)
+/* Override OOUI's frameless-buttons having */
+/* a white border inside the description area */
+/* (which has a grey background) */
 .flow-ui-boardDescriptionWidget-editButton.oo-ui-widget.oo-ui-buttonElement .oo-ui-buttonElement-button {
 	border-color: transparent;
 }
@@ -116,13 +116,13 @@
 		font-size: 1em;
 	}
 
-	// The sort navigation
+	/* The sort navigation */
 	.flow-board-header-menu,
-	// board navigation
+	/* board navigation */
 	.flow-board-navigation,
-	// whole board content wrapper
+	/* whole board content wrapper */
 	.flow-board {
-		// Set a fixed font-size from which everything else can use a relative amount
+		/* Set a fixed font-size from which everything else can use a relative amount */
 		font-size: 1em;
 		line-height: 1.4;
 	}
@@ -294,8 +294,8 @@
 	float: right;
 }
 
-// Vector theme overrides
-// makes the layout more compact on Talk (ns-1) and User_Talk (ns-3)
+/* Vector theme overrides */
+/* makes the layout more compact on Talk (ns-1) and User_Talk (ns-3) */
 body.ns-1,
 body.ns-3 {
 	.mw-body {
@@ -308,7 +308,7 @@ body.ns-3 {
 			margin-bottom: 0;
 		}
 
-		#contentSub { // stylelint-disable-line selector-max-id
+		#contentSub { /* stylelint-disable-line selector-max-id */
 			display: none;
 		}
 	}
@@ -317,7 +317,7 @@ body.ns-3 {
 @mw-ui-icon-size-flow: ( 20em / 14 );
 
 .flow-component .mw-ui-icon {
-	opacity: 0.87; // equals `#222` on background-color `#fff`
+	opacity: 0.87; /* equals `#222` on background-color `#fff` */
 	min-width: @mw-ui-icon-size-flow;
 	min-height: @mw-ui-icon-size-flow;
 

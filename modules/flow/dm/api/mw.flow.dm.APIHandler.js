@@ -411,6 +411,9 @@
 		var params = {
 			page: this.getTopicTitle( topicId ),
 			cotmoderationState: moderationState,
+			// The following messages are used here:
+			// * flow-rev-message-lock-topic-reason
+			// * flow-rev-message-restore-topic-reason
 			cotreason: mw.msg( reasonMsgKey )
 		};
 

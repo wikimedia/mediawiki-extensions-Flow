@@ -190,7 +190,7 @@
 		var target = this,
 			$form = $( this ).closest( 'form' ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $form ),
-			$fields = $form.find( 'textarea, :text' ),
+			$fields = $form.find( 'textarea, [type=text]' ),
 			changedFieldCount = 0,
 			$deferred = $.Deferred(),
 			callbacks = $form.data( 'flow-cancel-callback' ) || [],
@@ -235,7 +235,7 @@
 		$form[ 0 ].reset();
 
 		// Trigger for flow-actions-disabler
-		$form.find( 'textarea, :text' ).trigger( 'keyup' );
+		$form.find( 'textarea, [type=text]' ).trigger( 'keyup' );
 
 		// Hide the form
 		flowComponent.emitWithReturn( 'hideForm', $form );

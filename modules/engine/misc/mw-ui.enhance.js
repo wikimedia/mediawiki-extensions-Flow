@@ -143,7 +143,7 @@ mw.flow.ui.enhance = {};
 	 * Renders tooltips on over, and also via mw.tooltip.
 	 */
 	$( function () {
-		var _$tooltip = $( '<span>' )
+		var $tooltipTemplate = $( '<span>' )
 				.addClass( 'flow-ui-tooltip flow-ui-tooltip-left' )
 				.append(
 					$( '<span>' ).addClass( 'flow-ui-tooltip-content' ),
@@ -240,14 +240,16 @@ mw.flow.ui.enhance = {};
 				} catch ( e ) {}
 				if ( !$tooltip || !$tooltip.is( '.flow-ui-tooltip' ) && !$tooltip.find( '.flow-ui-tooltip' ).length ) {
 					// Content is not and does not contain a tooltip, so instead, put content inside a new tooltip wrapper
-					$tooltip = _$tooltip.clone();
+					$tooltip = $tooltipTemplate.clone();
 				}
 			}
 
 			// Try to inherit tooltipContext from the target's classes
 			if ( !optionsUnreferenced.tooltipContext ) {
+				// eslint-disable-next-line no-jquery/no-class-state
 				if ( $target.hasClass( 'mw-ui-progressive' ) ) {
 					optionsUnreferenced.tooltipContext = 'progressive';
+				// eslint-disable-next-line no-jquery/no-class-state
 				} else if ( $target.hasClass( 'mw-ui-destructive' ) ) {
 					optionsUnreferenced.tooltipContext = 'destructive';
 				}
@@ -400,6 +402,7 @@ mw.flow.ui.enhance = {};
 
 				// Remove the tooltip if this tooltip has been removed,
 				// or if target is not visible (hidden or removed from DOM)
+				// eslint-disable-next-line no-jquery/no-sizzle
 				if ( !this.parentNode || !$target.is( ':visible' ) ) {
 					// Remove the tooltip from the DOM
 					$this.remove();

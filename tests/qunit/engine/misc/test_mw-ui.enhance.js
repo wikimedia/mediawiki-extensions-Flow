@@ -37,6 +37,7 @@
 		// Create a tooltip using body
 		$body.attr( 'title', 'test' );
 		assert.ok( mw.tooltip.show( $body ), 'mw.ui.tooltip.show returned something' );
+		// eslint-disable-next-line no-jquery/no-sizzle
 		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test"):visible' ).length, 1,
 			'Tooltip with text "test" is visible' );
 		mw.tooltip.hide( $body );

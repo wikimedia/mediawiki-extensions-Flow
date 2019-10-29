@@ -758,7 +758,7 @@
 		if ( $button.length ) {
 			// Clear contents to not trigger the "are you sure you want to
 			// discard your text" warning
-			$form.find( 'textarea, :text' ).each( function () {
+			$form.find( 'textarea, [type=text]' ).each( function () {
 				$( this ).val( this.defaultValue );
 			} );
 

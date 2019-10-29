@@ -2,18 +2,18 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
 	"globals": {
-		"mw": true,
-		"OO": false,
-		"Handlebars": false,
-		"moment": false
+		"OO": "readonly",
+		"Handlebars": "readonly",
+		"moment": "readonly"
 	},
 	"rules": {
-		"no-underscore-dangle": 0,
-		"camelcase": 0,
-		"no-use-before-define": 0,
-		"max-len": 0
+		"no-underscore-dangle": "off",
+		"camelcase": "off",
+		"no-use-before-define": "off",
+		"max-len": "off"
 	}
 }
