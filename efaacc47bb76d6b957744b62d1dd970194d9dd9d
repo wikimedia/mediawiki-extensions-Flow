@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29ee7824_d205b88f",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2019-10-29T10:49:41Z",
+      "side": 1,
+      "message": "That\u0027s scary to do on the Parser, isn\u0027t it?",
+      "range": {
+        "startLine": 179,
+        "startChar": 2,
+        "endLine": 179,
+        "endChar": 31
+      },
+      "revId": "efaacc47bb76d6b957744b62d1dd970194d9dd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
