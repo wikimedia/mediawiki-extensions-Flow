@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Teslaton",
-			"Robert Važan"
+			"Robert Važan",
+			"Luky001"
 		]
 	},
 	"flow-board-header-browse-topics-link": "Prechádzať témy",
@@ -25,5 +26,6 @@
 	"echo-category-title-flow-discussion": "diskusiu vo Flow",
 	"echo-pref-tooltip-flow-discussion": "Upozornite ma na aktivitu vo Flow vláknach a diskusných stránkách, ktoré sledujem.",
 	"flow-recent-topics": "Nedávno aktívne témy",
-	"flow-edited": "Upravené"
+	"flow-edited": "Upravené",
+	"flow-dialog-cancelconfirm-discard": "Zahodiť zmeny"
 }

@@ -25,7 +25,8 @@
 			"AzorAhai",
 			"Alifakoor",
 			"Arash",
-			"FarsiNevis"
+			"FarsiNevis",
+			"Iriman"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -318,9 +319,9 @@
 	"notification-email-subject-flow-description-edited": "$1 توضیحات $2 را {{GENDER:$1|ویرایش کرد}}.",
 	"notification-email-batch-body-flow-description-edited": "$1 توضیحات $2 را {{GENDER:$1|ویرایش کرد}}.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 و {{PLURAL:$3|یک نفر دیگر|$3نفر دیگر|100=بیش از ۹۹ نفر دیگر}} توضیحات $2 را {{GENDER:$1|ویرایش کردند}}",
-	"notification-header-flow-topic-resolved": "مبحث «<strong>$1</strong>» برطرف شد.",
+	"notification-header-flow-topic-resolved": "مبحث «<strong>$1</strong>» حل شد.",
 	"notification-header-flow-topic-reopened": "مبحث «<strong>$1</strong>» بازگشایی شد.",
-	"notification-header-flow-topic-resolved-user-talk": "مبحث «<strong>$1</strong>» روی <strong>صفحهٔ بحث شما</strong> برطرف شد.",
+	"notification-header-flow-topic-resolved-user-talk": "مبحث «<strong>$1</strong>» در <strong>صفحهٔ بحث شما</strong> حل شد.",
 	"notification-header-flow-topic-reopened-user-talk": "مبحث «<strong>$1</strong>» روی <strong>صفحهٔ بحث شما</strong> بازگشایی شد.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 یک مبحث جدید در <strong>$3</strong> {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|یک مبحث جدید|$1 مبحث جدید|100=بیش از ۹۹ مبحث جدید}} در <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
