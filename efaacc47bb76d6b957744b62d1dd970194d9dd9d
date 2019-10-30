@@ -46,6 +46,30 @@
       "revId": "efaacc47bb76d6b957744b62d1dd970194d9dd9d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94a764bd_a46ed42d",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2019-10-30T09:08:17Z",
+      "side": 1,
+      "message": "I uploaded a follow-up where I remove this: I223cad8. I suggest to merge this patch here as it is because it is not introducing this issue.",
+      "parentUuid": "086c0760_4a2cefb7",
+      "range": {
+        "startLine": 179,
+        "startChar": 2,
+        "endLine": 179,
+        "endChar": 31
+      },
+      "revId": "efaacc47bb76d6b957744b62d1dd970194d9dd9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
