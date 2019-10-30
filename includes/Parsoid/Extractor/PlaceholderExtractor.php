@@ -7,6 +7,7 @@ use Flow\Model\WikiReference;
 use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
+use MediaWiki\MediaWikiServices;
 use ParserOptions;
 use Title;
 
@@ -43,8 +44,8 @@ class PlaceholderExtractor implements Extractor {
 		 * through Parser to make sure we're dealing with an image
 		 * and get the image name.
 		 */
-		global $wgParser;
-		$output = $wgParser->parse( $data['src'], Title::newFromText( 'Main Page' ), new ParserOptions );
+		$output = MediaWikiServices::getInstance()->getParser()
+			->parse( $data['src'], Title::newFromText( 'Main Page' ), new ParserOptions );
 
 		$file = $output->getImages();
 		if ( !$file ) {

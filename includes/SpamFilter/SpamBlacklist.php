@@ -6,6 +6,7 @@ use BaseBlacklist;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use Status;
 use Title;
 
@@ -56,9 +57,9 @@ class SpamBlacklist implements SpamFilter {
 	 * @return array
 	 */
 	public function getLinks( AbstractRevision $revision, Title $title ) {
-		global $wgParser;
 		$options = new \ParserOptions;
-		$output = $wgParser->parse( $revision->getContentInWikitext(), $title, $options );
+		$output = MediaWikiServices::getInstance()->getParser()
+			->parse( $revision->getContentInWikitext(), $title, $options );
 		return array_keys( $output->getExternalLinks() );
 	}
 
