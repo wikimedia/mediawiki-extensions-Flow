@@ -116,10 +116,14 @@
 						reason = mw.message( 'flow-error-protected-unknown-reason' ).text();
 					}
 
+					// Message keys are documented above
+					// eslint-disable-next-line mediawiki/msg-doc
 					message = mw.message( messageKey, reason );
 
 					dfd.resolve( message );
 				} ).fail( function () {
+					// Message keys are documented above
+					// eslint-disable-next-line mediawiki/msg-doc
 					message = mw.message( messageKey, mw.message( 'flow-error-protected-unknown-reason' ).text() );
 
 					dfd.resolve( message );
@@ -138,8 +142,12 @@
 	 * @return {mw.Message} Message to use for error
 	 */
 	mw.flow.ui.CanNotEditWidget.prototype.getGenericMessage = function () {
-		var messageKey = mw.user.isAnon() ? 'flow-error-can-not-edit-logged-out' : 'flow-error-can-not-edit-logged-in';
-		return mw.message( messageKey, mw.user );
+		return mw.message(
+			mw.user.isAnon() ?
+				'flow-error-can-not-edit-logged-out' :
+				'flow-error-can-not-edit-logged-in',
+			mw.user
+		);
 	};
 
 	/**

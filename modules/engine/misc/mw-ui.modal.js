@@ -158,6 +158,7 @@
 		$node.find( this.nextSelector ).hide();
 
 		// If something in here did not auto-focus, let's focus something
+		// eslint-disable-next-line no-jquery/no-sizzle
 		$fields = $node.find( 'textarea, input, select' ).filter( ':visible' );
 		if ( !$fields.filter( ':focus' ).length ) {
 			// Try to focus on an autofocus field
@@ -166,7 +167,7 @@
 				$fields.trigger( 'focus' );
 			} else {
 				// Try to focus on ANY input
-				$fields = $fields.end().filter( ':first' );
+				$fields = $fields.end().first();
 				if ( $fields.length ) {
 					$fields.trigger( 'focus' );
 				} else {
@@ -330,6 +331,7 @@
 
 		if ( this.next() === false && this.$node ) {
 			// Find an anchor or button with role=primary
+			// eslint-disable-next-line no-jquery/no-sizzle
 			$button = this.$node.find( this.contentSelector ).find( 'a, input, button' ).filter( ':visible' ).filter( '[type=submit], [data-role=submit]' );
 
 			if ( !$button.length ) {
@@ -396,7 +398,7 @@
 		}
 
 		// No node given; return the last-opened modal on the page
-		return $( document.body ).children( MwUiModal.prototype.wrapperSelector ).filter( ':last' ).data( 'MwUiModal' ) || false;
+		return $( document.body ).children( MwUiModal.prototype.wrapperSelector ).last().data( 'MwUiModal' ) || false;
 	};
 
 	// Transforms: automatically map these functions to call their mw.Modal methods globally, on any active instance

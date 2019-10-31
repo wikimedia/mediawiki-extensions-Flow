@@ -112,7 +112,9 @@
 			self = this;
 
 		if (
+			// eslint-disable-next-line no-jquery/no-class-state
 			this.$component.hasClass( 'flow-topic-page' ) &&
+			// eslint-disable-next-line no-jquery/no-class-state
 			$( document.body ).hasClass( 'action-view' )
 		) {
 			this.$board.toggleClass( 'flow-board-expanded', this.siderailCollapsed );

@@ -309,6 +309,7 @@
 
 		$categoriesWrapper.find( '.flow-board-header-category-item a' ).each( function () {
 			categories[ $( this ).text() ] = {
+				// eslint-disable-next-line no-jquery/no-class-state
 				exists: !$( this ).hasClass( 'new' )
 			};
 		} );

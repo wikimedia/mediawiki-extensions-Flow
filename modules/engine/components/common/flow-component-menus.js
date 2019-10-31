@@ -49,9 +49,11 @@
 		if ( event.type === 'click' ) {
 			// If the caret was clicked, toggle focus
 			if ( $this.closest( '.flow-menu-js-drop' ).length ) {
+				// eslint-disable-next-line no-jquery/no-class-state
 				$menu.toggleClass( 'focus' );
 
 				// This trick lets us wait for a blur event from A instead on body, to later hide the menu on outside click
+				// eslint-disable-next-line no-jquery/no-class-state
 				if ( $menu.hasClass( 'focus' ) ) {
 					$menu.find( '.flow-menu-js-drop' ).find( 'a' ).trigger( 'focus' );
 				}
@@ -126,6 +128,7 @@
 	function flowComponentMenusFeatureElementLoadCallback( $menu ) {
 		// For some reason, this menu is visible, but lacks physical focus
 		// This happens when you clone an activated flow-menu
+		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $menu.hasClass( 'focus' ) && !$menu.find( 'a' ).filter( ':focus' ).length ) {
 			// Give it focus again
 			$menu.find( '.flow-menu-js-drop' ).find( 'a' ).trigger( 'focus' );

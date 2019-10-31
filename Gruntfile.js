@@ -32,7 +32,7 @@ module.exports = function ( grunt ) {
 				cache: true
 			},
 			all: [
-				'**/*.js{,on}',
+				'**/*.{js,json}',
 				'!{modules/libs,docs,vendor,node_modules}/**'
 			]
 		},
@@ -45,7 +45,8 @@ module.exports = function ( grunt ) {
 				'modules/**/*.less'
 			]
 		},
-		banana: conf.MessagesDirs,
+		// eslint-disable-next-line no-restricted-properties
+		banana: Object.assign( { options: { requireLowerCase: false } }, conf.MessagesDirs ),
 		watch: {
 			files: [
 				'.{stylelintrc,eslintrc}.json',

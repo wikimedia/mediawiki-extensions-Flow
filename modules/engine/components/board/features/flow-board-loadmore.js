@@ -209,6 +209,7 @@
 	 */
 	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data ) {
 		var scrollTarget,
+			$scrollTarget,
 			$scrollContainer,
 			topicsData,
 			readingTopicPosition,
@@ -249,17 +250,17 @@
 		$target.remove();
 
 		if ( scrollTarget === 'window' ) {
-			scrollTarget = $( window );
+			$scrollTarget = $( window );
 
 			if ( readingTopicPosition ) {
 				readingTopicPosition.anuStart = flowBoard.renderedTopics[ readingTopicPosition.id ].offset().top;
 				if ( readingTopicPosition.anuStart > readingTopicPosition.topicStart ) {
 					// Looks like the topic we are reading got pushed down. Let's jump to where we were before
-					scrollTarget.scrollTop( readingTopicPosition.anuStart + readingTopicPosition.topicPlace );
+					$scrollTarget.scrollTop( readingTopicPosition.anuStart + readingTopicPosition.topicPlace );
 				}
 			}
 		} else {
-			scrollTarget = $.findWithParent( this, scrollTarget );
+			$scrollTarget = $.findWithParent( this, scrollTarget );
 		}
 
 		/*
@@ -268,7 +269,7 @@
 		 * fetch more instead of waiting for the user to scroll again (when
 		 * there's no reason to scroll)
 		 */
-		_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( flowBoard, $scrollContainer, scrollTarget );
+		_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( flowBoard, $scrollContainer, $scrollTarget );
 		return $.Deferred().resolve().promise();
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.apiHandlers.loadMoreTopics = flowBoardComponentLoadMoreFeatureTopicsApiCallback;
@@ -433,6 +434,7 @@
 		calculationContainerScroll = $calculationContainer.scrollTop();
 
 		// Find load more buttons within our search container, and they must be visible
+		// eslint-disable-next-line no-jquery/no-sizzle
 		$searchContainer.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
 			var $this = $( this ),
 				nodeOffset = $this.offset().top,
@@ -595,6 +597,7 @@
 				// Put the new topic after the found topic above it
 				if ( j >= 0 ) {
 					// If there is a load-more here, insert after that as well
+					// eslint-disable-next-line no-jquery/no-class-state
 					if ( $topic.next().hasClass( 'flow-load-more' ) ) {
 						$topic = $topic.next();
 					}
