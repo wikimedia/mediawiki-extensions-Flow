@@ -383,7 +383,7 @@
 	"flow-moderation-placeholder-undelete-topic": "Vennligst {{GENDER:$3|forklar}} hvorfor du gjenoppretter denne saken.",
 	"flow-moderation-placeholder-unhide-topic": "Vennligst {{GENDER:$3|forklar}} hvorfor du avslutter skjuling av denne saken.",
 	"flow-topic-permalink-warning": "Denne saken startet på [$2 $1]",
-	"flow-topic-permalink-warning-user-board": "Denne diskusjonen startet på [$2 {{GENDER:$1|$1}}s tavle]",
+	"flow-topic-permalink-warning-user-board": "Denne diskusjonen startet på [$2 {{GENDER:$1|{{GRAMMAR:genitive|$1}}}} tavle]",
 	"flow-revision-permalink-warning-post": "Dette er en permanent lenke til en enkelt versjon av dette innlegget.\nDenne versjonen er fra $1.\nDu kan se [$5 forskjellene fra foregående versjon], eller se andre versjoner i [$4 innleggshistorikken].",
 	"flow-revision-permalink-warning-post-first": "Dette er en permanent lenke til første versjon av dette innlegget.\nDu kan se senere versjoner i [$4 innleggshistorikken].",
 	"flow-revision-permalink-warning-postsummary": "Dette er en permanent lenke til en enkelt versjon av sammendraget for dette innlegget. Denne versjonen er fra $1. Du kan se [$5 endringer fra forrige versjon], eller vise andre versjoner i [$4 innleggets historikk].",
