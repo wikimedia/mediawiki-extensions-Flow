@@ -38,9 +38,10 @@ class RootPostLoader {
 	 * Retrieves a single post and the related topic title.
 	 *
 	 * @param UUID|string $postId The uid of the post being requested
-	 * @return PostRevision[]|null[] associative array with 'root' and 'post' keys. Array
+	 * @return (PostRevision|null)[] associative array with 'root' and 'post' keys. Array
 	 *   values may be null if not found.
 	 * @throws InvalidDataException
+	 * @phan-return array{root:null|PostRevision,post:null|PostRevision}
 	 */
 	public function getWithRoot( $postId ) {
 		$postId = UUID::create( $postId );
