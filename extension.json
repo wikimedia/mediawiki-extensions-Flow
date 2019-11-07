@@ -922,6 +922,9 @@
 		},
 		"FlowReadOnly": {
 			"value": false
+		},
+		"FlowRestbaseParsoidVariant": {
+			"value": "js"
 		}
 	},
 	"attributes": {
