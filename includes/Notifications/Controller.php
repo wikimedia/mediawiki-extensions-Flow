@@ -538,6 +538,7 @@ class NotificationController {
 		$extraData['mentioned-users'] = $mentionedUsers;
 		$extraData['target-page'] = $workflow->getArticleTitle()->getArticleID();
 		// don't include topic content again if the notification IS in the title
+		// @phan-suppress-next-line PhanImpossibleTypeComparison
 		$extraData['content'] = $content === $topic ? '' : Utils::htmlToPlaintext( $content->getContent(), 200, $this->language );
 		// lets us differentiate between different revision types
 		$extraData['revision-type'] = $content->getRevisionType();

@@ -261,6 +261,7 @@ class TopKIndex extends FeatureIndex {
 
 		$orderBy = [];
 		$order = $this->options['order'];
+		// @phan-suppress-next-line PhanTypeNoPropertiesForeach
 		foreach ( $this->options['sort'] as $key ) {
 			$orderBy[] = "$key $order";
 		}

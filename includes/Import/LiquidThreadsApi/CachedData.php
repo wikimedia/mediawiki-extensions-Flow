@@ -102,10 +102,14 @@ abstract class CachedApiData extends CachedData {
 
 /**
  * Cached LiquidThreads thread data.
+ * @property array[] $data
  */
 class CachedThreadData extends CachedApiData {
 	protected $topics = [];
 
+	/**
+	 * @param array[] $data
+	 */
 	protected function addData( array $data ) {
 		parent::addData( $data );
 

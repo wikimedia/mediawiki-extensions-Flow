@@ -76,7 +76,7 @@ abstract class AbstractCollection {
 	 *
 	 * @param UUID $uuid
 	 * @return static
-	 * @suppress PhanTypeInstantiateAbstract Phan is right, though
+	 * @suppress PhanTypeInstantiateAbstractStatic Phan is right, though
 	 */
 	public static function newFromId( UUID $uuid ) {
 		return new static( $uuid );

@@ -102,6 +102,7 @@ class HeaderBlock extends AbstractBlock {
 
 		if ( empty( $this->submitted['prev_revision'] ) ) {
 			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
@@ -111,6 +112,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->addError(
 				'prev_revision',
 				$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$this->submitted['prev_revision'],
 					$this->header->getRevisionId()->getAlphadecimal(),
 					$this->context->getUser()->getName()
@@ -122,6 +124,7 @@ class HeaderBlock extends AbstractBlock {
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
 		$this->newRevision = $this->header->newNextRevision(
 			$this->context->getUser(),
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
 			$this->submitted['format'] ?? 'wikitext',
