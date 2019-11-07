@@ -79,7 +79,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @param string $storageClass Storage class ID
 	 * @param array $attributes Query attriutes
 	 * @param array $options Query options, including offset-id and limit
-	 * @param int $overfetchFactor Factor to overfetch by to anticipate excludes
+	 * @param float $overfetchFactor Factor to overfetch by to anticipate excludes
 	 * @return array Array of history rows
 	 */
 	protected function doInternalQueries( $storageClass, $attributes, $options, $overfetchFactor ) {
