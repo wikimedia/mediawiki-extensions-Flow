@@ -217,6 +217,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validateReply() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		if ( trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-content' ) );
 			return;
@@ -263,6 +264,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
 			// loadRequestedPost added its own messages to $this->errors;
@@ -277,6 +279,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function doModerate( PostRevision $post ) {
 		if (
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->submitted['moderationState'] === AbstractRevision::MODERATED_LOCKED
 			&& $post->isModerated()
 		) {
@@ -331,11 +334,13 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		if ( trim( $this->submitted['reason'] ) === '' ) {
 			$this->addError( 'moderate', $this->context->msg( 'flow-error-invalid-moderation-reason' ) );
 			return;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$reason = $this->submitted['reason'];
 
 		$this->newRevision = $post->moderate( $this->context->getUser(), $newState, $action, $reason );
@@ -350,6 +355,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'post', $this->context->msg( 'flow-error-missing-postId' ) );
 			return;
 		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		if ( trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-content' ) );
 			return;
@@ -358,6 +364,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
 			return;
 		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
 			return;
@@ -366,6 +373,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', $this->getDisallowedErrorMessage( $post ) );
 			return;
 		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		if ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 			// This is a reasonably effective way to ensure prev revision
 			// matches, but for guarantees against race conditions there
@@ -378,6 +386,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError(
 				'prev_revision',
 				$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$this->submitted['prev_revision'],
 					$post->getRevisionId()->getAlphadecimal(),
 					$this->context->getUser()->getName()
@@ -389,6 +398,7 @@ class TopicBlock extends AbstractBlock {
 
 		$this->newRevision = $post->newNextRevision(
 			$this->context->getUser(),
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->submitted['content'],
 			// default to wikitext when not specified, for old API requests
 			$this->submitted['format'] ?? 'wikitext',
@@ -518,9 +528,11 @@ class TopicBlock extends AbstractBlock {
 			case 'lock-topic':
 				// Treat topic as a post, only the post + summary are needed
 				$result = $this->renderPostApi( $options, $this->workflow->getId() );
-				$topicId = $result['roots'][0];
-				$revisionId = $result['posts'][$topicId][0];
-				$output += $result['revisions'][$revisionId];
+				if ( $result !== null ) {
+					$topicId = $result['roots'][0];
+					$revisionId = $result['posts'][$topicId][0];
+					$output += $result['revisions'][$revisionId];
+				}
 				break;
 
 			case 'compare-post-revisions':
@@ -558,7 +570,10 @@ class TopicBlock extends AbstractBlock {
 			case 'view':
 			default:
 				// view single post, possibly specific revision
-				$output += $this->renderPostApi( $options );
+				$result = $this->renderPostApi( $options );
+				if ( $result !== null ) {
+					$output += $result;
+				}
 				break;
 		}
 
