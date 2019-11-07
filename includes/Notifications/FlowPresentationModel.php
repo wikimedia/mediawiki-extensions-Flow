@@ -38,6 +38,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 			/** @var UUID $firstChronologicallyPostId */
 			$firstChronologicallyPostId = $this->event->getExtraParam( 'post-id' );
 		}
+		'@phan-var UUID $firstChronologicallyPostId';
 
 		if ( $anchorPostId === null ) {
 			$anchorPostId = $firstChronologicallyPostId;

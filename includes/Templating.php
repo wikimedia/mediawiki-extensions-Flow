@@ -95,7 +95,7 @@ class Templating {
 		// Convert to use MapCacheLRU?
 		// if this specific revision is moderated, its usertext can always be
 		// displayed, since it will be the moderator user
-		static $cache;
+		static $cache = [];
 		$userid = $revision->getUserId();
 		$userip = $revision->getUserIp();
 		if ( isset( $cache[$userid][$userip] ) ) {
