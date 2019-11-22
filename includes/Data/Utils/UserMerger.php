@@ -22,7 +22,7 @@ class UserMerger {
 	protected $storage;
 
 	/**
-	 * @var array
+	 * @var array[][]
 	 */
 	protected $config;
 

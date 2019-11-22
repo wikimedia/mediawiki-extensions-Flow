@@ -10,7 +10,7 @@ namespace Flow\Data\Utils;
 class Merger {
 
 	/**
-	 * @param array $source input two dimensional array
+	 * @param array[] $source input two dimensional array
 	 * @param string $fromKey Key in nested arrays of $source containing foreign key
 	 * @param callable $callable Callable receiving array of foreign keys returning map
 	 *  from foreign key to its value
