@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90e1394b_d77ba99e",
+        "filename": "includes/Data/Storage/PostRevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5450
+      },
+      "writtenOn": "2019-11-22T18:36:22Z",
+      "side": 1,
+      "message": "This checks seems to indicate that $rows doesn\u0027t have to be an array of arrays",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "68687a71b0eae94c6064e7e5cc768101774ccbcc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdd4c8fa_8db09c68",
+        "filename": "includes/Data/Utils/UserMerger.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5450
+      },
+      "writtenOn": "2019-11-22T18:36:22Z",
+      "side": 1,
+      "message": "Or even array[][]",
+      "revId": "68687a71b0eae94c6064e7e5cc768101774ccbcc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
