@@ -38,6 +38,10 @@ class PostRevisionStorage extends RevisionStorage {
 		return 'post';
 	}
 
+	/**
+	 * @param array[] $rows
+	 * @return array[]
+	 */
 	protected function insertRelated( array $rows ) {
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
