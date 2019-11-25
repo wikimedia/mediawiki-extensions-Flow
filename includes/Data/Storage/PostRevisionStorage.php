@@ -46,6 +46,7 @@ class PostRevisionStorage extends RevisionStorage {
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
+		'@phan-var array[] $rows';
 
 		$trees = [];
 		foreach ( $rows as $key => $row ) {

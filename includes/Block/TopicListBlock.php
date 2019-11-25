@@ -126,6 +126,7 @@ class TopicListBlock extends AbstractBlock {
 		$topicTitle = PostRevision::createTopicPost(
 			$topicWorkflow,
 			$user,
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->submitted['topic']
 		);
 
@@ -134,6 +135,7 @@ class TopicListBlock extends AbstractBlock {
 			$firstPost = $topicTitle->reply(
 				$topicWorkflow,
 				$user,
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$this->submitted['content'],
 				// default to wikitext when not specified, for old API requests
 				$this->submitted['format'] ?? 'wikitext'
