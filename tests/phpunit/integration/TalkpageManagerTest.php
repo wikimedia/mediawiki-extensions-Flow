@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\TalkpageManager;
 use HashConfig;
 use Title;
 use User;
@@ -23,8 +24,8 @@ class TalkpageManagerTest extends MediaWikiTestCase {
 	 */
 	protected $talkpageManager;
 
-	public function __construct() {
-		parent::__construct();
+	public function setUp() : void {
+		parent::setUp();
 		$this->talkpageManager = Container::get( 'occupation_controller' );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
