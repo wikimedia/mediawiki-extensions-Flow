@@ -8,5 +8,6 @@
 	"flow-topic-action-watchlist": "Зем бара хьаязъяьр",
 	"flow-undo-latest-revision": "ХIанзара эрш",
 	"flow-ve-mention-context-item-label": "Хьоахавар",
-	"flow-ve-mention-inspector-title": "Хьоахавар"
+	"flow-ve-mention-inspector-title": "Хьоахавар",
+	"flow-dialog-cancelconfirm-title": "Лой {{GENDER:|шоана}}?"
 }
