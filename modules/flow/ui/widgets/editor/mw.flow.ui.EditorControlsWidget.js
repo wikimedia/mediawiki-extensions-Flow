@@ -13,8 +13,8 @@
 	 * @cfg {boolean} [saveable=true] Initial state of saveable flag
 	 */
 	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
-		var $buttons = $( '<div>' )
-			.addClass( 'flow-ui-editorControlsWidget-buttons' );
+		var $buttons = $( '<div>' ).addClass( 'flow-ui-editorControlsWidget-buttons' ),
+			widget = this;
 
 		config = config || {};
 
@@ -41,6 +41,22 @@
 			label: mw.msg( config.cancelMsgKey || 'flow-cancel' ),
 			classes: [ 'flow-ui-editorControlsWidget-cancelButton' ]
 		} );
+
+		// Keyboard shortcut messages are provided by VE, so only do this when VE is installed
+		if ( mw.loader.getState( 'ext.visualEditor.core' ) ) {
+			mw.loader.using( 'ext.visualEditor.core' ).then( function () {
+				widget.cancelButton.setTitle(
+					widget.cancelButton.getLabel() +
+					// eslint-disable-next-line no-undef
+					' [' + new ve.ui.Trigger( 'escape' ).getMessage() + ']'
+				);
+				widget.saveButton.setTitle(
+					widget.saveButton.getLabel() +
+					// eslint-disable-next-line no-undef
+					' [' + ve.ui.triggerRegistry.lookup( 'submit' )[ 0 ].getMessage() + ']'
+				);
+			} );
+		}
 
 		$buttons.append(
 			this.cancelButton.$element,
