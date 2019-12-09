@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02dd5f21_13e7ef83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 658
+      },
+      "writtenOn": "2019-12-09T14:22:34Z",
+      "side": 1,
+      "message": "\"Show submit...\" oops",
+      "revId": "e653fc2389062313010d8e6757136922f6c931ec",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
