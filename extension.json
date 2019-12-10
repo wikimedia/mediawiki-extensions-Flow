@@ -934,7 +934,6 @@
 	"load_composer_autoloader": true,
 	"manifest_version": 2,
 	"AutoloadClasses": {
-		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",
 		"FlowHooks": "Hooks.php",
 		"Flow\\Actions\\EditAction": "includes/Actions/EditAction.php",
 		"Flow\\Actions\\FlowAction": "includes/Actions/Action.php",
@@ -1241,15 +1240,6 @@
 		"Flow\\TalkpageManager": "includes/TalkpageManager.php",
 		"Flow\\TemplateHelper": "includes/TemplateHelper.php",
 		"Flow\\Templating": "includes/Templating.php",
-		"Flow\\Tests\\Api\\ApiTestCase": "tests/phpunit/Api/ApiTestCase.php",
-		"Flow\\Tests\\FlowTestCase": "tests/phpunit/FlowTestCase.php",
-		"Flow\\Tests\\Mock\\MockImportHeader": "tests/phpunit/Mock/MockImportHeader.php",
-		"Flow\\Tests\\Mock\\MockImportPost": "tests/phpunit/Mock/MockImportPost.php",
-		"Flow\\Tests\\Mock\\MockImportRevision": "tests/phpunit/Mock/MockImportRevision.php",
-		"Flow\\Tests\\Mock\\MockImportSource": "tests/phpunit/Mock/MockImportSource.php",
-		"Flow\\Tests\\Mock\\MockImportSummary": "tests/phpunit/Mock/MockImportSummary.php",
-		"Flow\\Tests\\Mock\\MockImportTopic": "tests/phpunit/Mock/MockImportTopic.php",
-		"Flow\\Tests\\PostRevisionTestCase": "tests/phpunit/PostRevisionTestCase.php",
 		"Flow\\TopicRenamedPresentationModel": "includes/Notifications/TopicRenamedPresentationModel.php",
 		"Flow\\TopicResolvedPresentationModel": "includes/Notifications/TopicResolvedPresentationModel.php",
 		"Flow\\UrlGenerator": "includes/UrlGenerator.php",
@@ -1260,5 +1250,17 @@
 		"Flow\\WorkflowLoader": "includes/WorkflowLoader.php",
 		"Flow\\WorkflowLoaderFactory": "includes/WorkflowLoaderFactory.php",
 		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php"
+	},
+	"TestAutoloadClasses": {
+		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",
+		"Flow\\Tests\\Api\\ApiTestCase": "tests/phpunit/Api/ApiTestCase.php",
+		"Flow\\Tests\\FlowTestCase": "tests/phpunit/FlowTestCase.php",
+		"Flow\\Tests\\Mock\\MockImportHeader": "tests/phpunit/Mock/MockImportHeader.php",
+		"Flow\\Tests\\Mock\\MockImportPost": "tests/phpunit/Mock/MockImportPost.php",
+		"Flow\\Tests\\Mock\\MockImportRevision": "tests/phpunit/Mock/MockImportRevision.php",
+		"Flow\\Tests\\Mock\\MockImportSource": "tests/phpunit/Mock/MockImportSource.php",
+		"Flow\\Tests\\Mock\\MockImportSummary": "tests/phpunit/Mock/MockImportSummary.php",
+		"Flow\\Tests\\Mock\\MockImportTopic": "tests/phpunit/Mock/MockImportTopic.php",
+		"Flow\\Tests\\PostRevisionTestCase": "tests/phpunit/PostRevisionTestCase.php"
 	}
 }
