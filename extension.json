@@ -966,7 +966,7 @@
 		"Flow\\Api\\ApiParsoidUtilsFlow": "includes/Api/ApiParsoidUtilsFlow.php",
 		"Flow\\Api\\ApiQueryPropFlowInfo": "includes/Api/ApiQueryPropFlowInfo.php",
 		"Flow\\BlockFactory": "includes/BlockFactory.php",
-		"Flow\\Block\\AbstractBlock": "includes/Block/Block.php",
+		"Flow\\Block\\AbstractBlock": "includes/Block/AbstractBlock.php",
 		"Flow\\Block\\Block": "includes/Block/Block.php",
 		"Flow\\Block\\BoardHistoryBlock": "includes/Block/BoardHistory.php",
 		"Flow\\Block\\HeaderBlock": "includes/Block/Header.php",
