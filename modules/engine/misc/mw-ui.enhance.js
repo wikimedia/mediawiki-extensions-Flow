@@ -265,7 +265,7 @@ mw.flow.ui.enhance = {};
 				.css( { position: 'absolute', zIndex: 1000, top: 0, left: '-999em' } )
 				// Render
 				// @todo inject at #bodyContent to inherit (font-)styling
-				.appendTo( 'body' );
+				.appendTo( document.body );
 
 			// Tooltip style context
 			if ( optionsUnreferenced.tooltipContext ) {

@@ -152,7 +152,7 @@
 		}
 
 		// Drop it into the page
-		$node.appendTo( 'body' );
+		$node.appendTo( document.body );
 
 		// Hide the tick box @todo implement multi-step and event handling / form binding
 		$node.find( this.nextSelector ).hide();
