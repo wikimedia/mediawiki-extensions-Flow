@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75f18006_32930006",
+        "filename": "includes/Data/Listener/WatchTopicListener.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-12-17T12:39:46Z",
+      "side": 1,
+      "message": "This should also reference T223165",
+      "revId": "39c4a423577037fec51a03801ad5e1d872f3f5ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
