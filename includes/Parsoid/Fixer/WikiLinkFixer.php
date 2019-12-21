@@ -86,6 +86,7 @@ class WikiLinkFixer implements Fixer {
 			->getElementsByTagName( 'a' )
 			->item( 0 );
 		// import MW-built link node into content DOM
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
 		$replacementNode = $node->ownerDocument->importNode( $replacementNode, true );
 		// replace Parsoid link with MW-built link
 		$node->parentNode->replaceChild( $replacementNode, $node );

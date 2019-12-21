@@ -657,7 +657,7 @@ class RevisionFormatter {
 					$flowAction = 'moderate-topic';
 					break;
 				}
-				if ( isset( $moderateAction ) && $moderateAction ) {
+				if ( $moderateAction && $flowAction ) {
 					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction(
 						$title, $workflowId, $moderateAction, $flowAction );
 				}
@@ -676,7 +676,7 @@ class RevisionFormatter {
 					$flowAction = 'moderate-post';
 					break;
 				}
-				if ( $moderateAction ) {
+				if ( $moderateAction && $flowAction ) {
 					$links[$moderateAction] = $this->urlGenerator->restorePostAction(
 						$title, $workflowId, $postId, $moderateAction, $flowAction );
 				}

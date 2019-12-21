@@ -101,7 +101,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			throw new DataModelException(
 				'Expected PostRevision or RootPostLoader, received: ' .
-					is_object( $root ) ? get_class( $root ) : gettype( $root ),
+					( is_object( $root ) ? get_class( $root ) : gettype( $root ) ),
 				'invalid-input'
 			);
 		}
@@ -798,6 +798,7 @@ class TopicBlock extends AbstractBlock {
 
 		$revisions = [];
 		foreach ( $history as $row ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$serialized = $serializer->formatApi( $row, $this->context, 'history' );
 			// if the user is not allowed to see this row it will return empty
 			if ( $serialized ) {
@@ -972,6 +973,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !$postId instanceof UUID ) {
 			$postId = UUID::create( $postId );
 		}
+		'@phan-var UUID $postId';
 
 		if ( $this->rootLoader === null ) {
 			// Since there is no root loader the full tree is already loaded
@@ -1005,7 +1007,9 @@ class TopicBlock extends AbstractBlock {
 			$post->setRootPost( $found['root'] );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			&& $this->permissions->isAllowed( $post, 'view' ) ) {
 			return $post;
 		}

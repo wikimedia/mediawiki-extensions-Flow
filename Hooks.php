@@ -20,12 +20,12 @@ use MediaWiki\Storage\RevisionRecord;
 
 class FlowHooks {
 	/**
-	 * @var OccupationController Initialized during extension initialization
+	 * @var OccupationController|null Initialized during extension initialization
 	 */
 	protected static $occupationController;
 
 	/**
-	 * @var AbuseFilter Initialized during extension initialization
+	 * @var AbuseFilter|null Initialized during extension initialization
 	 */
 	protected static $abuseFilter;
 
@@ -1279,7 +1279,7 @@ class FlowHooks {
 	 * @param Title $newTitle New title
 	 * @param Status $status Status to update with any technical issues
 	 *
-	 * @return true to continue, false to abort the hook
+	 * @return bool true to continue, false to abort the hook
 	 */
 	public static function onMovePageIsValidMove( Title $oldTitle, Title $newTitle, Status $status ) {
 		// We only care about moving Flow boards, and *not* moving Flow topics
@@ -1817,6 +1817,7 @@ class FlowHooks {
 			// importer can be dry-run (= parse, but don't store), but we can only
 			// derive that from mPageOutCallback. I'll set a new value (which will
 			// return the existing value) to see if it's in dry-run mode (= null)
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$callback = $importer->setPageOutCallback( null );
 			// restore previous mPageOutCallback value
 			$importer->setPageOutCallback( $callback );

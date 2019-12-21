@@ -75,7 +75,7 @@ abstract class AbstractRevision {
 	protected $prevRevision;
 
 	/**
-	 * @var string Raw content of revision
+	 * @var string|null Raw content of revision
 	 */
 	protected $content;
 
@@ -207,7 +207,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * @param AbstractRevision $obj
-	 * @return string[]
+	 * @return array
 	 */
 	public static function toStorageRow( $obj ) {
 		return [
@@ -290,7 +290,7 @@ abstract class AbstractRevision {
 	 * @param string $state
 	 * @param string $changeType
 	 * @param string $reason
-	 * @return AbstractRevision
+	 * @return AbstractRevision|null
 	 */
 	public function moderate( User $user, $state, $changeType, $reason ) {
 		if ( !$this->isValidModerationState( $state ) ) {
@@ -768,7 +768,7 @@ abstract class AbstractRevision {
 	}
 
 	/**
-	 * @return int
+	 * @return int|null
 	 */
 	public function getLastContentEditUserId() {
 		return $this->lastEditUser ? $this->lastEditUser->id : null;

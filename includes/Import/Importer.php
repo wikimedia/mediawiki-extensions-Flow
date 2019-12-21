@@ -182,7 +182,7 @@ class HistoricalUIDGenerator {
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
 
-		return substr( \Wikimedia\base_convert( $ts, 10, 2, 46 ), -46 );
+		return substr( \Wikimedia\base_convert( (string)$ts, 10, 2, 46 ), -46 );
 	}
 
 	/**

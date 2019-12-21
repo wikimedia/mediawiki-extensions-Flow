@@ -422,6 +422,7 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		// we're only able to update part of the columns required to update content
+		// @phan-suppress-next-line PhanImpossibleTypeComparison
 		if ( $diff !== $requiredColumnNames ) {
 			throw new DataModelException( "Allowed update column configuration is inconsistent",
 				'allowed-update-inconsistent' );

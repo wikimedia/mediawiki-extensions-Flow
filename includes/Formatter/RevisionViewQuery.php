@@ -42,7 +42,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	/**
 	 * Get the data for rendering single revision view
 	 * @param string $revId
-	 * @return FormatterRow
+	 * @return FormatterRow|null
 	 * @throws InvalidInputException
 	 */
 	public function getSingleViewResult( $revId ) {
@@ -73,6 +73,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		if ( !$prevId ) {
 			$prevId = $cur->getPrevRevisionId();
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		$prev = $this->createRevision( $prevId );
 		if ( !$prev ) {
 			throw new InvalidInputException( 'Could not find revision to compare against: ' . $curId->getAlphadecimal(), 'missing-revision' );

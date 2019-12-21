@@ -64,7 +64,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 			$storage->multiPut( $references, [] );
 			$total += count( $references );
 			$this->output( "Ensured ref_id for " . $total . " " . get_class( $references[0] ) . " references...\n" );
-			wfWaitForSlaves( false, false, $wgFlowCluster );
+			wfWaitForSlaves( null, false, $wgFlowCluster );
 		}
 	}
 }

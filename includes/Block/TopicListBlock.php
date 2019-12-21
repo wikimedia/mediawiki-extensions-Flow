@@ -376,6 +376,7 @@ class TopicListBlock extends AbstractBlock {
 		switch ( $requestOptions['sortby'] ) {
 		case 'updated':
 			$findOptions = [
+				// @phan-suppress-next-line PhanUselessBinaryAddRight
 				'sortby' => 'updated',
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
@@ -389,6 +390,7 @@ class TopicListBlock extends AbstractBlock {
 		case 'newest':
 		default:
 			$findOptions = [
+				// @phan-suppress-next-line PhanUselessBinaryAddRight
 				'sortby' => 'newest',
 				'sort' => 'topic_id',
 				'order' => 'desc',

@@ -7,7 +7,7 @@ use Flow\Model\UUID;
 class PostSummaryQuery extends AbstractQuery {
 	/**
 	 * @param UUID $postId
-	 * @return FormatterRow
+	 * @return FormatterRow|null
 	 */
 	public function getResult( UUID $postId ) {
 		$found = $this->storage->find(

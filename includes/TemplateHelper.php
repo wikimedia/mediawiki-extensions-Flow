@@ -196,7 +196,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $uuid, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
 	 *
-	 * @return null|string
+	 * @return null|string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	public static function uuidTimestamp( array $args, array $named ) {
@@ -211,7 +211,7 @@ class TemplateHelper {
 		}
 
 		// timestamp helper expects ms timestamp
-		$timestamp = $obj->getTimestampObj()->getTimestamp() * 1000;
+		$timestamp = (int)$obj->getTimestampObj()->getTimestamp() * 1000;
 		return self::timestamp( $timestamp );
 	}
 
@@ -219,7 +219,7 @@ class TemplateHelper {
 	 * @param array $args Expects string $timestamp, string $str, bool $timeAgoOnly = false
 	 * @param array $named No named arguments expected
 	 *
-	 * @return string
+	 * @return string[]
 	 * @throws WrongNumberArgumentsException
 	 */
 	public static function timestampHelper( array $args, array $named ) {
@@ -383,6 +383,7 @@ class TemplateHelper {
 		$revision = $args[0];
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
+		$formattedTimeOutput = '';
 		$linkKeys = [ 'header-revision', 'topic-revision', 'post-revision', 'summary-revision' ];
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $revision['links'][$linkKey] ) ) {

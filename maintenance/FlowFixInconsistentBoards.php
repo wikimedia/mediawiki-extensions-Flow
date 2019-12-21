@@ -112,7 +112,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 				$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById( $row->page_latest );
 				$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				if ( !$content instanceof BoardContent ) {
-					$actualClass = get_class( $content );
+					$actualClass = ( is_object( $content ) ? get_class( $content ) : gettype( $content ) );
 					$this->error( "ERROR: '$coreTitle' content is a '$actualClass', but should be '"
 						. BoardContent::class . "'." );
 					continue;

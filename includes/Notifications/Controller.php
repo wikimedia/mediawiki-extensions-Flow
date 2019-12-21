@@ -564,6 +564,7 @@ class NotificationController {
 			$extra = [
 				'topic-workflow' => $workflow->getId(),
 				'max-mentions' => $wgFlowMaxMentionCount,
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 				'section-title' => $extraData['topic-title'],
 				'failure-type' => 'too-many',
 			];
@@ -587,6 +588,7 @@ class NotificationController {
 	 * @return array
 	 *          0 => int[] Array of user IDs
 	 *          1 => bool Were some mentions ignored due to $wgFlowMaxMentionCount?
+	 * @phan-return array{0:int[],1:bool}
 	 */
 	protected function getMentionedUsersAndSkipState( AbstractRevision $revision ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
@@ -619,6 +621,7 @@ class NotificationController {
 	 * @return array
 	 *          0 => int[] Array of user IDs
 	 *          1 => bool Were some mentions ignored due to $wgFlowMaxMentionCount?
+	 * @phan-return array{0:int[],1:bool}
 	 */
 	protected function filterMentionedUsers( $mentions, AbstractRevision $revision ) {
 		global $wgFlowMaxMentionCount;
@@ -772,7 +775,7 @@ class NotificationController {
 		 * other side are also very rare: who on earth can refresh the page, read
 		 * the post and write a meaningful reply in just 1 second? :)
 		 */
-		$diff = $postId->getTimestamp( TS_UNIX ) - $workflowId->getTimestamp( TS_UNIX );
+		$diff = (int)$postId->getTimestamp( TS_UNIX ) - (int)$workflowId->getTimestamp( TS_UNIX );
 		return $diff <= 1;
 	}
 
@@ -813,7 +816,7 @@ class NotificationController {
 	 *  UUID post ID
 	 * @param UUID $root Root node
 	 * @param array $tree Tree structure
-	 * @return UUID First post ID found, or null on failure
+	 * @return UUID|null First post ID found, or null on failure
 	 */
 	protected function getFirstPreorderDepthFirst( array $relevantPostIds, UUID $root, array $tree ) {
 		$rootAlpha = $root->getAlphadecimal();

@@ -98,7 +98,7 @@ class CheckUserQuery extends AbstractQuery {
 	 * format.
 	 *
 	 * @param \StdClass $row
-	 * @return UUID[]|false Array with workflow, revision & post id (when
+	 * @return (UUID|null)[]|false Array with workflow, revision & post id (when
 	 *  applicable), or false on error
 	 */
 	protected function extractIds( $row ) {

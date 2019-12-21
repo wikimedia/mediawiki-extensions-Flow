@@ -57,7 +57,7 @@ class TopicIterator implements Iterator {
 	}
 
 	/**
-	 * @return ImportTopic
+	 * @return ImportTopic|null
 	 */
 	public function current() {
 		if ( $this->current === false ) {

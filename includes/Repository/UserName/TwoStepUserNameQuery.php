@@ -54,6 +54,7 @@ class TwoStepUserNameQuery implements UserNameQuery {
 			__METHOD__
 		);
 		if ( !$res ) {
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 			return $res;
 		}
 		$blocked = [];

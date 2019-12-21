@@ -42,7 +42,7 @@ class ModerationLogger {
 	 * @param string $action The action we'll be logging
 	 * @param string $reason Comment, reason for the moderation
 	 * @param UUID $workflowId Workflow being worked on
-	 * @return int The id of the newly inserted log entry
+	 * @return int|null The id of the newly inserted log entry
 	 */
 	public function log( PostRevision $post, $action, $reason, UUID $workflowId ) {
 		if ( !$this->canLog( $post, $action ) ) {

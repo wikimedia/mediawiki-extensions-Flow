@@ -38,6 +38,7 @@ class MultiGetList {
 				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
 				throw new InvalidParameterException( "Not scalar: $type" );
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			$cacheKeys[ TreeCacheKey::build( $treeType, $cacheId ) ] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );

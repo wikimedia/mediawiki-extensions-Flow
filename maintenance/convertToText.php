@@ -36,7 +36,7 @@ class ConvertToText extends Maintenance {
 		$this->pageTitle = Title::newFromText( $pageName );
 
 		if ( !$this->pageTitle ) {
-			$this->error( 'Invalid page title', true );
+			$this->fatalError( 'Invalid page title' );
 		}
 
 		if ( $this->getOption( 'remoteapi' ) ) {
