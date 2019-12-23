@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "95857a34_73869e67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2019-12-23T20:57:07Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "32b7f503_0541a71a",
+      "range": {
+        "startLine": 9,
+        "startChar": 43,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "a34f28d6322f4cca6afd5e4f03a93d1aafbeeb0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f61d44d_eb1d0a39",
         "filename": "flow.sql",
         "patchSetId": 6
