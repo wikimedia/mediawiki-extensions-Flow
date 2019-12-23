@@ -128,7 +128,7 @@ CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_desce
 
 CREATE TABLE /*_*/flow_wiki_ref (
 	ref_id binary(11) not null,
-	ref_src_wiki varchar(16) binary not null,
+	ref_src_wiki text binary not null,
 	ref_src_object_id binary(11) not null,
 	ref_src_object_type varbinary(32) not null,
 	ref_src_workflow_id binary(11) not null,
