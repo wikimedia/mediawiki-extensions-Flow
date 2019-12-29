@@ -18,7 +18,8 @@
 			"Kly",
 			"Hello903hello",
 			"A Chinese Wikipedian",
-			"Xiplus"
+			"Xiplus",
+			"Sunny00217"
 		]
 	},
 	"enablestructureddiscussions": "開啟結構式討論",
@@ -54,7 +55,7 @@
 	"logentry-import-lqt-to-flow-topic": "位於 [[$3]] 上的 [[$1|$2]] 已從 LiquidThreads 匯入至結構式討論",
 	"abusefilter-edit-builder-vars-board-id": "結構式討論版塊的頁面ID",
 	"abusefilter-edit-builder-vars-board-namespace": "結構式討論版塊的命名空間",
-	"abusefilter-edit-builder-vars-board-title": "結構式討論版塊的標題（沒有命名空間）",
+	"abusefilter-edit-builder-vars-board-title": "結構式討論版塊的標題（不包含命名空間）",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "結構式討論版塊的完整標題",
 	"flow-user-moderated": "受管制的使用者",
 	"flow-board-header-browse-topics-link": "瀏覽話題",
