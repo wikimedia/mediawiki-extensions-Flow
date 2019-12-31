@@ -160,7 +160,7 @@ class WorkflowLoaderFactory {
 		try {
 			return UUID::create( strtolower( $dbKey ) );
 		} catch ( InvalidInputException $e ) {
-			throw new InvalidTopicUuidException( "$dbKey is not a valid UUID", 0 );
+			throw new InvalidTopicUuidException( "$dbKey is not a valid UUID" );
 		}
 	}
 }

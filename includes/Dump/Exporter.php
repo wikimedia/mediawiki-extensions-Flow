@@ -211,10 +211,12 @@ class Exporter extends WikiExporter {
 
 		foreach ( $headerIterator as $revision ) {
 			/** @var Header $revision */
+			'@phan-var Header $revision';
 			$this->formatHeader( $revision );
 		}
 		foreach ( $topicIterator as $revision ) {
 			/** @var PostRevision $revision */
+			'@phan-var PostRevision $revision';
 			$this->formatTopic( $revision );
 		}
 
@@ -420,7 +422,7 @@ class Exporter extends WikiExporter {
 			$userIdFields = [ 'userid', 'treeoriguserid', 'moduserid', 'edituserid' ];
 			foreach ( $userIdFields as $userIdField ) {
 				if ( isset( $attribs[ $userIdField ] ) ) {
-					$user = User::newFromId( $attribs[ $userIdField ] );
+					$user = User::newFromId( (int)$attribs[ $userIdField ] );
 					$globalUserId = $this->lookup->centralIdFromLocalUser(
 						$user,
 						\CentralIdLookup::AUDIENCE_RAW

@@ -58,7 +58,7 @@ class FlowForceSearchIndex extends Maintenance {
 				// We need some base conversion & bcadd because the number may
 				// be too large to be an int.
 				$decimal = \Wikimedia\base_convert( $toId->getAlphadecimal(), 36, 10 );
-				$new = bcadd( $decimal, 1, 0 );
+				$new = bcadd( $decimal, '1', 0 );
 				$alnum = \Wikimedia\base_convert( $new, 10, 36 );
 				$toId = UUID::create( $alnum );
 			}

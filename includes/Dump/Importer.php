@@ -288,11 +288,11 @@ class Importer {
 				$globalUserIdField = 'global' . $userField . 'id';
 				if ( isset( $attribs[ $globalUserIdField ] ) ) {
 					$localUser = $this->lookup->localUserFromCentralId(
-						$attribs[ $globalUserIdField ],
+						(int)$attribs[ $globalUserIdField ],
 						\CentralIdLookup::AUDIENCE_RAW
 					);
 					if ( !$localUser ) {
-						$localUser = $this->createLocalUser( $attribs[ $globalUserIdField ] );
+						$localUser = $this->createLocalUser( (int)$attribs[ $globalUserIdField ] );
 					}
 					$attribs[ $userField . 'id' ] = $localUser->getId();
 					$attribs[ $userField . 'wiki' ] = wfWikiID();

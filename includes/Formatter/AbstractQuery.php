@@ -194,7 +194,7 @@ abstract class AbstractQuery {
 	 * for rendering a revision.
 	 *
 	 * @param AbstractRevision $revision
-	 * @param string $indexField The field used for pagination
+	 * @param string|null $indexField The field used for pagination
 	 * @param FormatterRow|null $row Row to populate
 	 * @return FormatterRow
 	 * @throws FlowException
@@ -248,8 +248,8 @@ abstract class AbstractQuery {
 		// topic was created if they're 0 or 1 seconds apart, they must have been created in the
 		// same request unless our servers are extremely slow and can't create topic + first reply
 		// in < 1 seconds, this should be a pretty safe method to detect first reply
-		if ( $revision->getPostId()->getTimestamp( TS_UNIX ) -
-			$root->getPostId()->getTimestamp( TS_UNIX ) >= 2
+		if ( (int)$revision->getPostId()->getTimestamp( TS_UNIX ) -
+			(int)$root->getPostId()->getTimestamp( TS_UNIX ) >= 2
 		) {
 			return false;
 		}

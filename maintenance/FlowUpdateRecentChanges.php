@@ -52,7 +52,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	 *
 	 * @param IDatabase $dbw
 	 * @param int|null $continue The next batch starting at rc_id
-	 * @return int Start id for the next batch
+	 * @return int|null Start id for the next batch
 	 */
 	public function refreshBatch( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->select(

@@ -119,7 +119,7 @@ class View extends ContextSource {
 
 		$boardTitle = $workflow->getOwnerTitle();
 		$article = Article::newFromTitle( $boardTitle, $this->getContext() );
-		return $article->getRobotPolicy( /* unused $action parameter */ null );
+		return $article->getRobotPolicy( $action );
 	}
 
 	protected function addModules( OutputPage $out, $action ) {
@@ -257,12 +257,13 @@ class View extends ContextSource {
 
 		if ( isset( $topicListBlock ) && isset( $parameters['topiclist'] ) ) {
 			$apiResponse['toc'] = $topicListBlock->renderTocApi(
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypePossiblyInvalidDimOffset
 				$apiResponse['blocks']['topiclist'],
 				$parameters['topiclist']
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
 			throw new InvalidActionException( "No blocks accepted action: $action", 'invalid-action' );
 		}

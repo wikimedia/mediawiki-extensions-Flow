@@ -448,7 +448,7 @@ class ScriptedImportRevision implements IObjectRevision {
 		$this->destinationScriptUser = $destinationScriptUser;
 		$this->revisionText = $revisionText;
 
-		$baseTimestamp = wfTimestamp( TS_UNIX, $baseRevision->getTimestamp() );
+		$baseTimestamp = (int)wfTimestamp( TS_UNIX, $baseRevision->getTimestamp() );
 
 		// Set a minute after.  If it uses $baseTimestamp again, there can be time
 		// collisions.
@@ -480,7 +480,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	protected $api;
 	/** @var string **/
 	protected $title;
-	/** @var array **/
+	/** @var array|null **/
 	protected $pageData;
 	/** @var ImportSource **/
 	protected $source;

@@ -35,14 +35,14 @@ class UUID implements ApiSerializable {
 	/**
 	 * base16 representation
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	protected $hexValue;
 
 	/**
 	 * base36 representation
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	protected $alphadecimalValue;
 
@@ -334,7 +334,7 @@ class UUID implements ApiSerializable {
 			$rel = $relativeTo;
 		} else {
 			throw new InvalidParameterException( 'Expected MWTimestamp or UUID, got ' .
-				get_class( $relativeTo ) );
+				( is_object( $relativeTo ) ? get_class( $relativeTo ) : gettype( $relativeTo ) ) );
 		}
 		$ts = $this->getTimestampObj();
 		return $ts ? $ts->getHumanTimestamp( $rel, $user, $lang ) : false;
@@ -399,9 +399,9 @@ class UUID implements ApiSerializable {
 		// It should be comparable with UUIDs in binary mode.
 		// Easiest way to do this is to take the 46 MSBs of the UNIX timestamp * 1000
 		// and pad the remaining characters with zeroes.
-		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
+		$millitime = (int)wfTimestamp( TS_UNIX, $ts ) * 1000;
 		// base 10 -> base 2, taking 46 bits
-		$timestampBinary = \Wikimedia\base_convert( $millitime, 10, 2, 46 );
+		$timestampBinary = \Wikimedia\base_convert( (string)$millitime, 10, 2, 46 );
 		// pad out the 46 bits to binary len with 0's
 		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
 		// base 2 -> base 16

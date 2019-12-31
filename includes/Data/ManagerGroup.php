@@ -22,7 +22,7 @@ class ManagerGroup {
 	protected $classMap;
 
 	/**
-	 * @var string[] List of container keys that have been used
+	 * @var bool[] List of container keys that have been used
 	 */
 	protected $used = [];
 

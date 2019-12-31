@@ -208,7 +208,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 		// prevent memory from filling up
 		$this->storage->clear();
 
-		wfWaitForSlaves( false, false, $this->clusterName );
+		wfWaitForSlaves( null, false, $this->clusterName );
 	}
 
 	/**

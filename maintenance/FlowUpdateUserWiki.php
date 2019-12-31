@@ -235,7 +235,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 		$this->updatedCount++;
 		if ( $this->updatedCount > $this->mBatchSize ) {
-			wfWaitForSlaves( false, false, $wgFlowCluster );
+			wfWaitForSlaves( null, false, $wgFlowCluster );
 			$this->updatedCount = 0;
 		}
 	}
