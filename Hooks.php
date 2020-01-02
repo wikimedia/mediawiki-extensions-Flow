@@ -263,7 +263,9 @@ class FlowHooks {
 		$updater->dropExtensionTable( 'flow_subscription',
 			"$dir/db_patches/patch-drop-flow_subscription.sql" );
 		$updater->modifyExtensionField( 'flow_wiki_ref', 'ref_src_wiki',
-			"$dir/db_patches/patch-increase-varchar-ref_src_wiki.sql" );
+			"$dir/db_patches/patch-increase-varchar-flow_wiki_ref-ref_src_wiki.sql" );
+		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
+			"$dir/db_patches/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
 
 		require_once __DIR__ . '/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );

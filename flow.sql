@@ -149,7 +149,7 @@ CREATE INDEX /*i*/flow_wiki_ref_revision_v2 ON /*_*/flow_wiki_ref
 
 CREATE TABLE /*_*/flow_ext_ref (
 	ref_id binary(11) not null,
-	ref_src_wiki varchar(16) binary not null,
+	ref_src_wiki varchar(64) binary not null,
 	ref_src_object_id binary(11) not null,
 	ref_src_object_type varbinary(32) not null,
 	ref_src_workflow_id binary(11) not null,
