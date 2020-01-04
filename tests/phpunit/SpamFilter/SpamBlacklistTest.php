@@ -68,8 +68,12 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	public function testSpam( $newRevisionRow, ?PostRevision $oldRevision, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
+		$ctx = $this->getMockBuilder( \ContextSource::class )
+			->setMethods( [ 'getUser' ] )
+			->getMock();
+		$ctx->method( 'getUser' )->willReturn( $this->createMock( \User::class ) );
 
-		$status = $this->spamFilter->validate( $this->createMock( \IContextSource::class ), $newRevision, $oldRevision, $title, $title );
+		$status = $this->spamFilter->validate( $ctx, $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
@@ -93,7 +97,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", $this->whitelist ) );
 
 		// That only works if the spam blacklist is really reset
-		$instance = BaseBlacklist::getInstance( 'spam' );
+		$instance = BaseBlacklist::getSpamBlacklist();
 		$reflProp = new \ReflectionProperty( $instance, 'regexes' );
 		$reflProp->setAccessible( true );
 		$reflProp->setValue( $instance, false );

@@ -26,17 +26,13 @@ class SpamBlacklist implements SpamFilter {
 		Title $title,
 		Title $ownerTitle
 	) {
-		$spamObj = BaseBlacklist::getInstance( 'spam' );
-		if ( !$spamObj instanceof \SpamBlacklist ) {
-			wfWarn( __METHOD__ . ': Expected a SpamBlacklist instance but instead received: ' . get_class( $spamObj ) );
-			return Status::newFatal( 'something' );
-		}
+		$spamObj = BaseBlacklist::getSpamBlacklist();
 
 		// TODO: This seems to check topic titles.  Should it?  There can't
 		// actually be a link in a topic title, but http://spam.com can still look
 		// spammy even if it's not a working link.
 		$links = $this->getLinks( $newRevision, $title );
-		$matches = $spamObj->filter( $links, $title );
+		$matches = $spamObj->filter( $links, $title, $context->getUser() );
 
 		if ( $matches !== false ) {
 			$status = Status::newFatal( 'spamprotectiontext' );
