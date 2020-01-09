@@ -13,8 +13,8 @@
 		"grunt-banana-checker": "0.8.1",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "22.0.0",
-		"grunt-stylelint": "0.12.0",
+		"grunt-stylelint": "0.13.0",
 		"grunt-tyops": "0.1.0",
-		"stylelint-config-wikimedia": "0.7.0"
+		"stylelint-config-wikimedia": "0.8.0"
 	}
 }
