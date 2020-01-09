@@ -37,9 +37,7 @@ class ConverterTest extends \MediaWikiTestCase {
 				->getMock(),
 			$logger ?: new NullLogger,
 			$user ?: User::newFromId( 1 ),
-			$strategy ?: $this->getMockBuilder( IConversionStrategy::class )
-				->disableOriginalConstructor()
-				->getMock()
+			$strategy ?: $this->createMock( IConversionStrategy::class )
 		);
 	}
 }
