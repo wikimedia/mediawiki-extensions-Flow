@@ -280,7 +280,7 @@ class Converter {
 	protected function createArchiveCleanupRevision( Title $title, Title $archiveTitle ) {
 		$page = WikiPage::factory( $archiveTitle );
 		// doEditContent will do this anyway, but we need to now for the revision.
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 		$revision = $page->getRevision();
 		if ( $revision === null ) {
 			throw new ImportException( "Expected a revision at {$archiveTitle}" );

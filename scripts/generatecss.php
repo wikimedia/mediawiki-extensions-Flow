@@ -1,4 +1,5 @@
 <?php
+
 if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
 	die( "Can only be run from the command line" );
 }

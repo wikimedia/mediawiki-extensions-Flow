@@ -433,7 +433,7 @@ class OptInController {
 	 */
 	private function getContent( Title $title ) {
 		$page = WikiPage::factory( $title );
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 		$revision = $page->getRevision();
 		if ( $revision ) {
 			$content = $revision->getContent( RevisionRecord::FOR_PUBLIC );
