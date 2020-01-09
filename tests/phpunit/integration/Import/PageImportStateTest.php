@@ -41,11 +41,8 @@ class PageImportStateTest extends \MediaWikiTestCase {
 			new ProcessorGroup,
 			new SplQueue
 		);
-		if ( $returnAll ) {
-			return [ $state, $workflow, $storage ];
-		} else {
-			return $state;
-		}
+
+		return $returnAll ? [ $state, $workflow ] : $state;
 	}
 
 	public function testGetTimestampIdReturnsUUID() {
