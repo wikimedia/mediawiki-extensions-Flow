@@ -106,8 +106,7 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 
 		// Not subpage, not LQT
 		$nonLqtTitle = Title::newFromText( 'Talk:Some ConversionStrategyTest page' );
-		$this->assertSame(
-			true,
+		$this->assertTrue(
 			$strategy->shouldConvert( $nonLqtTitle ),
 			'Normal non-LQT talk page should be converted'
 		);
@@ -116,15 +115,13 @@ class ConversionStrategyTest extends \MediaWikiTestCase {
 			NS_HELP_TALK,
 			'Some other ConversionStrategyTest LQT page'
 		);
-		$this->assertSame(
-			false,
+		$this->assertFalse(
 			$strategy->shouldConvert( $lqtNamespacesTitle ),
 			'LQT wgLqtNamespaces talk page should not be converted'
 		);
 
 		$lqtPagesTitle = Title::newFromText( $lqtPagesName );
-		$this->assertSame(
-			false,
+		$this->assertFalse(
 			$strategy->shouldConvert( $lqtPagesTitle ),
 			'LQT wgLqtPages talk page should not be converted'
 		);
