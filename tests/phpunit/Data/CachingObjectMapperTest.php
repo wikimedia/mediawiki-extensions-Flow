@@ -28,11 +28,10 @@ class CachingObjectMapperTest extends FlowTestCase {
 			return (array)$object;
 		};
 		$fromStorageRow = function ( array $row, $object ) {
-			if ( $object === null ) {
-				return (object)$row;
-			} else {
+			if ( $object ) {
 				return (object)( $row + (array)$object );
 			}
+			return (object)$row;
 		};
 		return new CachingObjectMapper( $toStorageRow, $fromStorageRow, [ 'id' ] );
 	}

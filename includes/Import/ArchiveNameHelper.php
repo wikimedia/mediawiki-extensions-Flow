@@ -70,25 +70,19 @@ class ArchiveNameHelper {
 			return false;
 		}
 
-		$archivePages = [];
+		$latestArchiveInfo = false;
 		for ( $n = 1; $n <= 20; ++$n ) {
 			$title = Title::newFromText( sprintf( $format, $text, $n ) );
-			if ( $title && $titleRepo->exists( $title ) ) {
-				$archivePages[] = [
-					'title' => $title,
-					'format' => $format,
-					'counter' => $n
-				];
-			} else {
+			if ( !$title || !$titleRepo->exists( $title ) ) {
 				break;
 			}
+			$latestArchiveInfo = [
+				'title' => $title,
+				'format' => $format,
+				'counter' => $n
+			];
 		}
-
-		if ( $archivePages ) {
-			return end( $archivePages );
-		}
-
-		return false;
+		return $latestArchiveInfo;
 	}
 
 }
