@@ -6,7 +6,7 @@ use Flow\Import\IImportObject;
 use Flow\Model\UUID;
 
 class FileImportSourceStore implements SourceStoreInterface {
-	/** @var string **/
+	/** @var string */
 	protected $filename;
 	/** @var array */
 	protected $data;

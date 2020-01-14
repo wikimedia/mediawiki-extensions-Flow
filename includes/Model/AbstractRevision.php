@@ -2,18 +2,18 @@
 
 namespace Flow\Model;
 
+use ContentHandler;
 use Flow\Collection\AbstractCollection;
+use Flow\Conversion\Utils;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
-use Flow\Conversion\Utils;
-use ContentHandler;
 use Hooks;
 use MediaWiki\MediaWikiServices;
+use RecentChange;
 use Sanitizer;
 use Title;
 use User;
-use RecentChange;
 use WikiPage;
 
 abstract class AbstractRevision {

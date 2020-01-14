@@ -1,10 +1,10 @@
 <?php
 
 use Flow\Container;
-use Flow\Import\SourceStore\FileImportSourceStore;
-use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
+use Flow\Import\SourceStore\FileImportSourceStore;
+use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use MediaWiki\MediaWikiServices;

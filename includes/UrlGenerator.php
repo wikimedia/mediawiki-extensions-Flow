@@ -2,20 +2,20 @@
 
 namespace Flow;
 
-use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Collection\PostCollection;
-use Flow\Exception\InvalidInputException;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Anchor;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use RecentChange;
+use RequestContext;
 use SpecialPage;
 use Title;
-use RequestContext;
-use RecentChange;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an

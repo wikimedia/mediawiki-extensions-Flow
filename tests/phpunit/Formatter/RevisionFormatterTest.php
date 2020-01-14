@@ -263,7 +263,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 			$result['size']['new'],
 			'New topic content reported correctly'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			0,
 			$result['size']['old'],
 			'With no previous revision the old size is 0'

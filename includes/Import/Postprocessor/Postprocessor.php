@@ -2,12 +2,12 @@
 
 namespace Flow\Import\Postprocessor;
 
-use Flow\Model\PostRevision;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
+use Flow\Model\PostRevision;
 
 // We might want to implement a no-op AbstractPostprocessor, so you can extend that and
 // implement what you want, without 'not a thing to do yet'

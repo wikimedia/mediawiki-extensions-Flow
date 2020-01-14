@@ -2,13 +2,13 @@
 
 namespace Flow\Tests\Import;
 
-use Wikimedia\Rdbms\IDatabase;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\Importer;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers \Flow\Import\Converter

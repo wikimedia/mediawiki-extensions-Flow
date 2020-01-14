@@ -6,16 +6,16 @@ use ApiBase;
 use ApiErrorFormatter;
 use ApiMain;
 use ApiMessage;
+use ApiUsageException;
 use Exception;
 use FauxRequest;
-use Flow\Import\ImportException;
 use Flow\Import\IImportSource;
+use Flow\Import\ImportException;
 use Http;
-use RequestContext;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use ApiUsageException;
+use RequestContext;
 use User;
 
 class ImportSource implements IImportSource {

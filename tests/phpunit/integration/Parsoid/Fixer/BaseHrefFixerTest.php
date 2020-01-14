@@ -4,8 +4,8 @@
 
 namespace Flow\Tests\Parsoid;
 
-use Flow\Parsoid\Fixer\BaseHrefFixer;
 use Flow\Parsoid\ContentFixer;
+use Flow\Parsoid\Fixer\BaseHrefFixer;
 use Title;
 
 /**

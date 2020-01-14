@@ -3,10 +3,10 @@
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Conversion\Utils;
+use Flow\Data\Listener\RecentChangesListener;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
-use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Import\OptInController;
 use Flow\Model\UUID;

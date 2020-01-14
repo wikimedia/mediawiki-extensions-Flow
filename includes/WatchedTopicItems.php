@@ -2,10 +2,10 @@
 
 namespace Flow;
 
-use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\DataModelException;
 use Title;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Is there a core object for retrieving multiple watchlist items?

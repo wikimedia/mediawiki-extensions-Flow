@@ -3,8 +3,8 @@
 namespace Flow\Tests\Mock;
 
 use ArrayIterator;
-use Flow\Import\IObjectRevision;
 use Flow\Import\IImportSummary;
+use Flow\Import\IObjectRevision;
 
 class MockImportSummary implements IImportSummary {
 	/**

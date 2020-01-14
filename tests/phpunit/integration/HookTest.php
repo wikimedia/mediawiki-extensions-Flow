@@ -240,6 +240,6 @@ class HookTest extends MediaWikiTestCase {
 		foreach ( $expectedQuery as $key => $value ) {
 			$this->assertEquals( $value, $queryParts[$key], "Query part $key" );
 		}
-		$this->assertEquals( '', $query, $message );
+		$this->assertSame( '', $query, $message );
 	}
 }

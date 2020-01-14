@@ -2,10 +2,10 @@
 
 namespace Flow\Tests\Import\Wikitext;
 
-use Flow\Container;
 use DateTime;
 use DateTimeZone;
 use ExtensionRegistry;
+use Flow\Container;
 use Flow\Import\IImportSource;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;

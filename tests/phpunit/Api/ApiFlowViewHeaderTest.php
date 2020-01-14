@@ -77,7 +77,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 	/**
 	 * @todo
 	 *
-	public function testViewHistorical() {
-	}
+	 * public function testViewHistorical() {
+	 * }
 	 */
 }

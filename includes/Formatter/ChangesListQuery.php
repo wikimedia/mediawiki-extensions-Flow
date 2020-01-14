@@ -2,8 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\ManagerGroup;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;

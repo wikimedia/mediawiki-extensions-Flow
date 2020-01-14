@@ -5,14 +5,14 @@ namespace Flow\Formatter;
 use BagOStuff;
 use ContribsPager;
 use DeletedContribsPager;
+use Flow\Data\ManagerGroup;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
-use Flow\Data\ManagerGroup;
+use Flow\Exception\FlowException;
+use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
-use Flow\Exception\FlowException;
-use Flow\FlowActions;
 use User;
 use Wikimedia\Rdbms\IResultWrapper;
 

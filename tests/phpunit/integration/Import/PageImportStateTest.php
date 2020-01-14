@@ -2,9 +2,9 @@
 
 namespace Flow\Tests\Import;
 
-use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
+use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;

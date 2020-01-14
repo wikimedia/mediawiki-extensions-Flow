@@ -2,10 +2,10 @@
 
 namespace Flow\Tests\Data;
 
-use ReflectionClass;
-use Flow\Repository\UserNameBatch;
 use Flow\Data\Listener\UserNameListener;
+use Flow\Repository\UserNameBatch;
 use Flow\Tests\FlowTestCase;
+use ReflectionClass;
 
 /**
  * @covers \Flow\Data\Listener\AbstractListener

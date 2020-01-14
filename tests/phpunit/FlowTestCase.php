@@ -8,8 +8,8 @@ use Flow\Container;
 use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
 use HashBagOStuff;
-use WANObjectCache;
 use MediaWikiTestCase;
+use WANObjectCache;
 
 class FlowTestCase extends MediaWikiTestCase {
 	protected function setUp() : void {

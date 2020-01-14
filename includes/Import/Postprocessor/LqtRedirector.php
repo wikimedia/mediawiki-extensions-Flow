@@ -19,11 +19,11 @@ use WikiPage;
 use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
-	/** @var UrlGenerator **/
+	/** @var UrlGenerator */
 	protected $urlGenerator;
-	/** @var array **/
+	/** @var array */
 	protected $redirectsToDo;
-	/** @var User **/
+	/** @var User */
 	protected $user;
 
 	public function __construct( UrlGenerator $urlGenerator, User $user ) {

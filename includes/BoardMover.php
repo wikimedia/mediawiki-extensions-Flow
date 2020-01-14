@@ -2,13 +2,13 @@
 
 namespace Flow;
 
-use Wikimedia\Rdbms\IDatabase;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\Header;
 use Flow\Model\Workflow;
 use Title;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 
 class BoardMover {
 	/**

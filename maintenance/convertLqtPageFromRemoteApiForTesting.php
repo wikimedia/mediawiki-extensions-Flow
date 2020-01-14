@@ -1,8 +1,8 @@
 <?php
 
-use Flow\Import\SourceStore\FileImportSourceStore;
-use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\ImportSource;
+use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
+use Flow\Import\SourceStore\FileImportSourceStore;
 use Psr\Log\LogLevel;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false

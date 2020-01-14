@@ -2,8 +2,11 @@
 
 namespace Flow;
 
+use EchoEvent;
 use EchoEventMapper;
 use EchoModerationController;
+use ExtensionRegistry;
+use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -11,10 +14,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Conversion\Utils;
 use Flow\Repository\TreeRepository;
-use EchoEvent;
-use ExtensionRegistry;
 use Language;
 use MediaWiki\MediaWikiServices;
 use Title;

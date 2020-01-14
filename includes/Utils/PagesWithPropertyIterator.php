@@ -2,13 +2,13 @@
 
 namespace Flow\Utils;
 
-use Wikimedia\Rdbms\IDatabase;
 use BatchRowIterator;
 use EchoCallbackIterator;
 use Iterator;
 use IteratorAggregate;
 use RecursiveIteratorIterator;
 use Title;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Iterates over all titles that have the specified page property

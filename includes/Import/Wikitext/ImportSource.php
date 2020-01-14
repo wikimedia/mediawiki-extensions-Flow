@@ -3,11 +3,11 @@
 namespace Flow\Import\Wikitext;
 
 use ArrayIterator;
-use Flow\Import\TemplateHelper;
+use Flow\Import\IImportSource;
 use Flow\Import\ImportException;
 use Flow\Import\Plain\ImportHeader;
 use Flow\Import\Plain\ObjectRevision;
-use Flow\Import\IImportSource;
+use Flow\Import\TemplateHelper;
 use MWTimestamp;
 use Parser;
 use ParserOptions;

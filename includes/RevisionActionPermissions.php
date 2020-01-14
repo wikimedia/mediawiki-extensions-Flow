@@ -2,12 +2,12 @@
 
 namespace Flow;
 
+use Closure;
 use Flow\Collection\CollectionCache;
 use Flow\Collection\PostCollection;
 use Flow\Exception\DataModelException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Closure;
 use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;

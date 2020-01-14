@@ -3,9 +3,9 @@
 namespace Flow\Tests\Import;
 
 use Flow\Container;
-use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
+use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\TalkpageImportOperation;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;

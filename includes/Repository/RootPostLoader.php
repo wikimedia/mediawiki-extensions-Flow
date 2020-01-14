@@ -3,9 +3,9 @@
 namespace Flow\Repository;
 
 use Flow\Data\ManagerGroup;
+use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Exception\InvalidDataException;
 use FormatJson;
 
 /**

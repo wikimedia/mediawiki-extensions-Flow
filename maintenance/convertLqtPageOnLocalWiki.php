@@ -1,9 +1,9 @@
 <?php
 
 use Flow\Container;
-use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
+use Flow\Import\SourceStore\FileImportSourceStore;
 use Psr\Log\LogLevel;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false

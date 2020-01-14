@@ -2,8 +2,8 @@
 
 namespace Flow\Tests\Import;
 
-use Title;
 use Flow\Import\ArchiveNameHelper;
+use Title;
 
 /**
  * @covers \Flow\Import\ArchiveNameHelper

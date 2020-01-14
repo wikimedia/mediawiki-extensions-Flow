@@ -2,9 +2,9 @@
 
 namespace Flow\Tests\Mock;
 
-use Flow\Import\IObjectRevision;
 use Flow\Import\IImportSummary;
 use Flow\Import\IImportTopic;
+use Flow\Import\IObjectRevision;
 
 class MockImportTopic extends MockImportPost implements IImportTopic {
 	/**

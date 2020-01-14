@@ -4,8 +4,8 @@ namespace Flow\Tests\Collection;
 
 use Flow\Container;
 use Flow\FlowActions;
-use Flow\Model\PostRevision;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Flow\Tests\PostRevisionTestCase;
 use MediaWiki\Block\DatabaseBlock;

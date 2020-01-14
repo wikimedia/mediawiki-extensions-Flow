@@ -4,8 +4,8 @@ namespace Flow\Parsoid\Extractor;
 
 use DOMElement;
 use Flow\Model\WikiReference;
-use Flow\Parsoid\ReferenceFactory;
 use Flow\Parsoid\Extractor;
+use Flow\Parsoid\ReferenceFactory;
 
 /**
  * Runs against page content via Flow\Parsoid\ReferenceExtractor

@@ -5,10 +5,10 @@ namespace Flow\Repository;
 use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\DbFactory;
-use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
-use Wikimedia\Rdbms\DBQueryError;
+use Flow\Model\UUID;
 use Wikimedia\Rdbms\DatabaseMysqlBase;
+use Wikimedia\Rdbms\DBQueryError;
 
 /*
  *

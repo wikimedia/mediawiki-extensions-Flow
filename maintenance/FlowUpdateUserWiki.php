@@ -1,8 +1,8 @@
 <?php
 
 use Flow\Container;
-use Flow\Model\UUID;
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

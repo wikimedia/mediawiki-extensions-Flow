@@ -5,8 +5,8 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ContentLengthFilter;
-use User;
 use Title;
+use User;
 
 /**
  * @covers \Flow\SpamFilter\ContentLengthFilter

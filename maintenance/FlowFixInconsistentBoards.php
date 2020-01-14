@@ -1,7 +1,7 @@
 <?php
 
-use Flow\Content\BoardContent;
 use Flow\Container;
+use Flow\Content\BoardContent;
 use Flow\Exception\UnknownWorkflowIdException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
@@ -118,7 +118,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 					continue;
 				}
 				$workflowId = $content->getWorkflowId();
-				if ( is_null( $workflowId ) ) {
+				if ( $workflowId === null ) {
 					// See T153320.  If the workflow exists, it could
 					// be looked up by title/page ID and the JSON could
 					// be fixed with an edit.

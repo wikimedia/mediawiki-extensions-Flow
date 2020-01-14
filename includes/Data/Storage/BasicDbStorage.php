@@ -2,13 +2,13 @@
 
 namespace Flow\Data\Storage;
 
-use Flow\Model\UUID;
-use Flow\DbFactory;
 use Flow\Data\ObjectManager;
 use Flow\Data\Utils\MultiDimArray;
 use Flow\Data\Utils\RawSql;
+use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Exception\DataPersistenceException;
+use Flow\Model\UUID;
 
 /**
  * Standard backing store for data model with no special cases which is stored

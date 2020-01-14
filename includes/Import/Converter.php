@@ -3,15 +3,15 @@
 namespace Flow\Import;
 
 use ActorMigration;
-use MediaWiki\Storage\RevisionRecord;
-use Wikimedia\Rdbms\IDatabase;
 use Flow\Exception\FlowException;
+use MediaWiki\Storage\RevisionRecord;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Title;
 use Traversable;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
 use WikitextContent;
 

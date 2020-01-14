@@ -3,8 +3,8 @@
 namespace Flow\Repository;
 
 use Flow\Data\FlowObjectCache;
-use Flow\Model\UUID;
 use Flow\Exception\InvalidParameterException;
+use Flow\Model\UUID;
 
 class MultiGetList {
 

@@ -2,15 +2,14 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\TalkpageManager;
 use HashConfig;
+use MediaWikiTestCase;
 use Title;
 use User;
 use WikiPage;
 use WikitextContent;
-use MediaWikiTestCase;
-
-use Flow\Container;
 
 /**
  * @covers \Flow\TalkpageManager

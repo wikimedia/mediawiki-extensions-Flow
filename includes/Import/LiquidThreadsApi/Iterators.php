@@ -140,11 +140,11 @@ class TopicIterator implements Iterator {
 }
 
 class ReplyIterator implements Iterator {
-	/** @var ImportPost **/
+	/** @var ImportPost */
 	protected $post;
-	/** @var array Array of thread IDs **/
+	/** @var array Array of thread IDs */
 	protected $threadReplies;
-	/** @var int **/
+	/** @var int */
 	protected $replyIndex;
 	/** @var ImportPost|null */
 	protected $current;
@@ -201,13 +201,13 @@ class ReplyIterator implements Iterator {
  * revisions of a Flow object.
  */
 class RevisionIterator implements Iterator {
-	/** @var array **/
+	/** @var array */
 	protected $pageData;
 
-	/** @var int **/
+	/** @var int */
 	protected $pointer;
 
-	/** @var IImportObject **/
+	/** @var IImportObject */
 	protected $parent;
 
 	/** @var callable */

@@ -3,7 +3,6 @@
 namespace Flow\Dump;
 
 use BatchRowIterator;
-use Wikimedia\Rdbms\IDatabase;
 use Exception;
 use Flow\Collection\PostSummaryCollection;
 use Flow\Container;
@@ -21,8 +20,9 @@ use Flow\Search\Iterators\TopicIterator;
 use ReflectionProperty;
 use User;
 use WikiExporter;
-use Xml;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
+use Xml;
 
 class Exporter extends WikiExporter {
 	/**

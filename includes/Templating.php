@@ -2,16 +2,15 @@
 
 namespace Flow;
 
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidParameterException;
 use Flow\Exception\PermissionException;
-use Flow\Repository\UserNameBatch;
-use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
-use OutputPage;
-// These don't really belong here
+use Flow\Repository\UserNameBatch;
 use Linker;
+use OutputPage;
 
 /**
  * This class is slowly being deprecated. It used to house a minimalist

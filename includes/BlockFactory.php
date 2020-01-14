@@ -3,15 +3,15 @@
 namespace Flow;
 
 use Flow\Block\AbstractBlock;
+use Flow\Block\BoardHistoryBlock;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Block\TopicSummaryBlock;
-use Flow\Block\BoardHistoryBlock;
-use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
+use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
 
 class BlockFactory {

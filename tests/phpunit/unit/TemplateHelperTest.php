@@ -2,8 +2,8 @@
 
 namespace Flow\Tests;
 
-use LightnCandy;
 use Flow\TemplateHelper;
+use LightnCandy;
 use MediaWikiUnitTestCase;
 
 /**
@@ -45,7 +45,7 @@ class TemplateHelperTest extends MediaWikiUnitTestCase {
 		$renderer = LightnCandy::prepare( $code );
 
 		$this->assertEquals( 'Works', $renderer( [ 'foo' => true, 'bar' => false ] ) );
-		$this->assertEquals( '', $renderer( [ 'foo' => false, 'bar' => false ] ) );
+		$this->assertSame( '', $renderer( [ 'foo' => false, 'bar' => false ] ) );
 		/*
 		FIXME: Why won't this work!?
 		$code2 = TemplateHelper::compile( "{{#ifCond foo \"===\" bar}}Works{{/ifCond}}", '' );

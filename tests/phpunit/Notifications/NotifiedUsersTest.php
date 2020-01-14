@@ -2,11 +2,11 @@
 
 namespace Flow\Tests;
 
+use EchoNotificationController;
+use ExtensionRegistry;
 use Flow\Container;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
-use EchoNotificationController;
-use ExtensionRegistry;
 use User;
 
 /**

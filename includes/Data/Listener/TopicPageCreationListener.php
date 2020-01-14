@@ -8,7 +8,7 @@ use Flow\OccupationController;
 use SplQueue;
 
 class TopicPageCreationListener extends AbstractListener {
-	/** @var OccupationController **/
+	/** @var OccupationController */
 	protected $occupationController;
 
 	/** @var SplQueue */

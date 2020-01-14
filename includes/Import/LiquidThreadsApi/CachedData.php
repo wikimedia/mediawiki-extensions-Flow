@@ -2,8 +2,8 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use Iterator;
 use ArrayIterator;
+use Iterator;
 
 /**
  * Abstract class to store ID-indexed cached data.

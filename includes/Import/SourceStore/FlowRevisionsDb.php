@@ -2,8 +2,6 @@
 
 namespace Flow\Import\SourceStore;
 
-use Wikimedia\Rdbms\IDatabase;
-use IP;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportObject;
 use Flow\Import\IImportPost;
@@ -13,8 +11,10 @@ use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
+use IP;
 use MWTimestamp;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
 /**

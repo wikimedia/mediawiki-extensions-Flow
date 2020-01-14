@@ -4,8 +4,8 @@
 
 namespace Flow\Tests\Parsoid;
 
-use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Flow\Parsoid\ContentFixer;
+use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Title;
 
 /**

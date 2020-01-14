@@ -1,8 +1,5 @@
 <?php
 
-use Flow\Container;
-use Flow\Search\Connection;
-use Flow\Search\Maintenance\MappingConfigBuilder;
 use CirrusSearch\ElasticsearchIntermediary;
 use CirrusSearch\Maintenance\AnalysisConfigBuilder;
 use CirrusSearch\Maintenance\ConfigUtils;
@@ -20,6 +17,9 @@ use CirrusSearch\Maintenance\Validators\ShardAllocationValidator;
 use CirrusSearch\Maintenance\Validators\SpecificAliasValidator;
 use CirrusSearch\Maintenance\Validators\Validator;
 use CirrusSearch\Util;
+use Flow\Container;
+use Flow\Search\Connection;
+use Flow\Search\Maintenance\MappingConfigBuilder;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

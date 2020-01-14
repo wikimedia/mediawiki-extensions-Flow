@@ -3,8 +3,9 @@
 namespace Flow\Tests;
 
 use Flow\Container;
-use Flow\Data\ManagerGroup;
+use Flow\Conversion\Utils;
 use Flow\Data\Listener\ReferenceRecorder;
+use Flow\Data\ManagerGroup;
 use Flow\Exception\WikitextException;
 use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
@@ -13,7 +14,6 @@ use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceFactory;
-use Flow\Conversion\Utils;
 use Title;
 
 /**

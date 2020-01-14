@@ -6,9 +6,9 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use Flow\Templating;
+use MediaWikiTestCase;
 use Title;
 use User;
-use MediaWikiTestCase;
 
 /**
  * @covers \Flow\Templating

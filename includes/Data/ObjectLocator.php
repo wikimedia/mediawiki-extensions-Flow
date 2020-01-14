@@ -2,8 +2,8 @@
 
 namespace Flow\Data;
 
-use Flow\DbFactory;
 use Flow\Data\Utils\RawSql;
+use Flow\DbFactory;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
 use FormatJson;

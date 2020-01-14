@@ -5,9 +5,9 @@ namespace Flow\Data\Storage;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectStorage;
 use Flow\Data\Utils\RawSql;
-use Flow\Model\UUID;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
+use Flow\Model\UUID;
 
 /**
  * Base class for all ObjectStorage implementers

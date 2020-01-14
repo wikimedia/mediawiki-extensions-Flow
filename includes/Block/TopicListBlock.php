@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
+use Flow\Exception\FailCommitException;
 use Flow\Exception\FlowException;
 use Flow\Formatter\TocTopicListFormatter;
 use Flow\Formatter\TopicListFormatter;
@@ -13,7 +14,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Exception\FailCommitException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 

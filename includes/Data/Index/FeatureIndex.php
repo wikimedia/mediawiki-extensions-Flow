@@ -3,17 +3,17 @@
 namespace Flow\Data\Index;
 
 use Flow\Container;
-use Flow\Data\FlowObjectCache;
 use Flow\Data\Compactor;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
+use Flow\Data\FlowObjectCache;
 use Flow\Data\Index;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
+use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use FormatJson;
-use Flow\Exception\DataModelException;
 
 /**
  * Index objects with equal features($indexedColumns) into the same buckets.

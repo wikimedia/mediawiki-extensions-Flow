@@ -121,23 +121,23 @@ $c['templating'] = function ( $c ) {
 
 // New Storage Impl
 use Flow\Data\FlowObjectCache;
-use Flow\Data\Mapper\BasicObjectMapper;
-use Flow\Data\Mapper\CachingObjectMapper;
-use Flow\Data\Storage\BasicDbStorage;
-use Flow\Data\Storage\TopicListStorage;
-use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
-use Flow\Data\Storage\PostRevisionStorage;
-use Flow\Data\Storage\HeaderRevisionStorage;
-use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
-use Flow\Data\Storage\PostSummaryRevisionStorage;
-use Flow\Data\Index\UniqueFeatureIndex;
-use Flow\Data\Index\TopKIndex;
-use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\Data\Index\PostRevisionBoardHistoryIndex;
 use Flow\Data\Index\PostRevisionTopicHistoryIndex;
 use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
-use Flow\Data\ObjectManager;
+use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\UniqueFeatureIndex;
+use Flow\Data\Mapper\BasicObjectMapper;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\ObjectLocator;
+use Flow\Data\ObjectManager;
+use Flow\Data\Storage\BasicDbStorage;
+use Flow\Data\Storage\HeaderRevisionStorage;
+use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
+use Flow\Data\Storage\PostRevisionStorage;
+use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
+use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
+use Flow\Data\Storage\PostSummaryRevisionStorage;
+use Flow\Data\Storage\TopicListStorage;
 use MediaWiki\MediaWikiServices;
 
 $c['wancache'] = function ( $c ) {

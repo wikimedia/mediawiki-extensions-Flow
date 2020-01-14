@@ -2,8 +2,8 @@
 
 namespace Flow\Tests\Data;
 
-use Flow\Repository\UserNameBatch;
 use Flow\Repository\UserName\UserNameQuery;
+use Flow\Repository\UserNameBatch;
 use Flow\Tests\FlowTestCase;
 
 /**
@@ -58,7 +58,7 @@ class UserNameBatchTest extends FlowTestCase {
 			->with( 'fakewiki', [ 42 ] );
 		$batch = new UserNameBatch( $query );
 
-		$this->assertEquals( false, $batch->get( 'fakewiki', 42 ) );
+		$this->assertFalse( $batch->get( 'fakewiki', 42 ) );
 	}
 
 	public function testPartialMissingAsFalse() {
@@ -74,7 +74,7 @@ class UserNameBatchTest extends FlowTestCase {
 		$batch->add( 'fakewiki', 610 );
 		$batch->add( 'fakewiki', 408 );
 
-		$this->assertEquals( false, $batch->get( 'fakewiki', 610 ) );
+		$this->assertFalse( $batch->get( 'fakewiki', 610 ) );
 	}
 
 	/**

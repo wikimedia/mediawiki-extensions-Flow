@@ -2,13 +2,13 @@
 
 namespace Flow\Formatter;
 
+use ChangesList;
+use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
-use Flow\Conversion\Utils;
-use ChangesList;
-use IContextSource;
 use Html;
+use IContextSource;
 
 class ContributionsFormatter extends AbstractFormatter {
 	protected function getHistoryType() {

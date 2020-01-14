@@ -3,10 +3,10 @@
 namespace Flow;
 
 use Flow\Data\ManagerGroup;
-use Flow\Model\Reference;
-use Flow\Model\WikiReference;
 use Flow\Exception\CrossWikiException;
+use Flow\Model\Reference;
 use Flow\Model\UUID;
+use Flow\Model\WikiReference;
 use Title;
 
 class ReferenceClarifier {

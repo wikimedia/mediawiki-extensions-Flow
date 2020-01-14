@@ -4,8 +4,8 @@ namespace Flow\Parsoid\Fixer;
 
 use DOMElement;
 use DOMNode;
-use Flow\Parsoid\Fixer;
 use Flow\Conversion\Utils;
+use Flow\Parsoid\Fixer;
 use Title;
 
 /**
@@ -15,7 +15,7 @@ use Title;
  * defined by wfIsBadImage().
  *
  * Usage:
-
+ *
  *	$badImageRemover = new BadImageRemover();
  *
  *	// Before outputting content

@@ -2,29 +2,29 @@
 
 namespace Flow\Formatter;
 
+use ApiResult;
+use ExtensionRegistry;
 use Flow\Collection\PostCollection;
+use Flow\Conversion\Utils;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
-use Flow\Repository\UserNameBatch;
-use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
-use Flow\Conversion\Utils;
+use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
-use ApiResult;
-use ExtensionRegistry;
 use GenderCache;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Message;
-use Wikimedia\Timestamp\TimestampException;
 use User;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * This implements a serializer for converting revision objects

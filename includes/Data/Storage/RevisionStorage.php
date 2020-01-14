@@ -2,15 +2,15 @@
 
 namespace Flow\Data\Storage;
 
-use Wikimedia\Rdbms\IDatabase;
 use ExternalStore;
+use Flow\Data\ObjectManager;
 use Flow\Data\Utils\Merger;
 use Flow\Data\Utils\ResultDuplicator;
-use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use MWException;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Abstract storage implementation for models extending from AbstractRevision

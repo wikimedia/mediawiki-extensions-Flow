@@ -1,9 +1,9 @@
 <?php
 
-use Flow\Model\AbstractRevision;
 use Flow\Import\LiquidThreadsApi\ApiBackend;
-use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
+use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
+use Flow\Model\AbstractRevision;
 use MediaWiki\MediaWikiServices;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false

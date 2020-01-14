@@ -8,8 +8,8 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\Postprocessor\ProcessorGroup;
-use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\SourceStore\Exception as ImportSourceStoreException;
+use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -36,9 +36,9 @@ use User;
  * dependency injection less inconvenient for callers.
  */
 class Importer {
-	/** @var ManagerGroup **/
+	/** @var ManagerGroup */
 	protected $storage;
-	/** @var WorkflowLoaderFactory **/
+	/** @var WorkflowLoaderFactory */
 	protected $workflowLoaderFactory;
 	/** @var LoggerInterface|null */
 	protected $logger;
@@ -46,7 +46,7 @@ class Importer {
 	protected $dbFactory;
 	/** @var bool */
 	protected $allowUnknownUsernames;
-	/** @var ProcessorGroup **/
+	/** @var ProcessorGroup */
 	protected $postprocessors;
 	/** @var SplQueue Callbacks for DeferredUpdate that are queue'd up by the commit process */
 	protected $deferredQueue;

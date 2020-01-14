@@ -2,11 +2,11 @@
 
 namespace Flow\Data\Index;
 
+use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
-use Flow\Data\Compactor\ShallowCompactor;
 use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidParameterException;

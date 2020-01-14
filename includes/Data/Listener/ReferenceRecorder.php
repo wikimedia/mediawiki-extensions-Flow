@@ -2,16 +2,16 @@
 
 namespace Flow\Data\Listener;
 
+use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\LinksTableUpdater;
-use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
+use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Model\Reference;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Repository\TreeRepository;
 use SplQueue;
@@ -155,7 +155,7 @@ class ReferenceRecorder extends AbstractListener {
 			list( $add, $remove ) = $this->calculateChangesFromExisting( $workflow, $revision, $current );
 			$added = array_merge( $added, $add );
 			$removed = array_merge( $removed, $remove );
-		};
+		}
 
 		return [ $added, $removed ];
 	}

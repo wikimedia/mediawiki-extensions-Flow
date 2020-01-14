@@ -2,14 +2,14 @@
 
 namespace Flow;
 
+use Closure;
 use Flow\Exception\FlowException;
 use Flow\Exception\WrongNumberArgumentsException;
 use Flow\Model\UUID;
-use Closure;
 use Html;
-use OOUI\IconWidget;
 use LightnCandy;
 use MWTimestamp;
+use OOUI\IconWidget;
 use RequestContext;
 use Title;
 

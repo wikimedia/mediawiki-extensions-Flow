@@ -3,13 +3,13 @@
 namespace Flow\Specials;
 
 use ExtensionRegistry;
-use FormSpecialPage;
-use Status;
-use Title;
 use Flow\Container;
 use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
+use FormSpecialPage;
+use Status;
+use Title;
 
 /**
  * A special page that allows users with the flow-create-board right to create

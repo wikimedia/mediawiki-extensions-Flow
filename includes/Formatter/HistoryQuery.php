@@ -2,8 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\FlowActions;
 use Flow\Data\ManagerGroup;
+use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;

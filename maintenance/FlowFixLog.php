@@ -1,11 +1,11 @@
 <?php
 
+use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Collection\PostCollection;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

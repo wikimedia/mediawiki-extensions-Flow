@@ -59,7 +59,7 @@ use SplObjectStorage;
  * same operation as their namesake but with fewer network operations when
  * dealing with multiple objects of the same type.
  *
- *  @todo Information about Indexes and LifecycleHandlers
+ * @todo Information about Indexes and LifecycleHandlers
  */
 class ObjectManager extends ObjectLocator {
 	/**

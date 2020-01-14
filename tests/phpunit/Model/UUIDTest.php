@@ -155,7 +155,7 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public function testConversionToTimestamp() {
-		$this->assertEquals( '20150303221220', UUID::create( 'scv3pvbt40kcyy4g' )->getTimestamp() );
+		$this->assertSame( '20150303221220', UUID::create( 'scv3pvbt40kcyy4g' )->getTimestamp() );
 	}
 
 	public function testCreateLowNumber() {

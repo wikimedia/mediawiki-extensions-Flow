@@ -2,13 +2,13 @@
 
 namespace Flow;
 
-use Flow\Content\BoardContent;
-use Flow\Exception\InvalidInputException;
-use Flow\Model\Workflow;
 use Article;
 use CentralAuthUser;
 use ContentHandler;
 use ExtensionRegistry;
+use Flow\Content\BoardContent;
+use Flow\Exception\InvalidInputException;
+use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
 use Status;
 use Title;

@@ -2,9 +2,9 @@
 
 namespace Flow\Search;
 
+use Elastica\Exception\ExceptionInterface;
 use Elastica\Query;
 use Elastica\Query\QueryString;
-use Elastica\Exception\ExceptionInterface;
 use Elastica\Request;
 use Flow\Container;
 use PoolCounterWorkViaCallback;

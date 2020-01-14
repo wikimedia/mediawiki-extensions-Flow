@@ -4,8 +4,8 @@ namespace Flow\Parsoid\Fixer;
 
 use DOMElement;
 use DOMNode;
-use Flow\Parsoid\Fixer;
 use Flow\Conversion\Utils;
+use Flow\Parsoid\Fixer;
 use HtmlArmor;
 use LinkBatch;
 use MediaWiki\MediaWikiServices;

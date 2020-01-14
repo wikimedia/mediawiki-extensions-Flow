@@ -2,8 +2,8 @@
 
 namespace Flow\SpamFilter;
 
-use Flow\Model\AbstractRevision;
 use ExtensionRegistry;
+use Flow\Model\AbstractRevision;
 use IContextSource;
 use Status;
 use Title;

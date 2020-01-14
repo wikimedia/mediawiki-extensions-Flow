@@ -29,7 +29,7 @@ $namespaceNames['azb'] = [
 	NS_TOPIC => 'مبحث',
 ];
 
-/** Bashkir **/
+/** Bashkir */
 $namespaceNames['ba'] = [
 	NS_TOPIC => 'Тема',
 ];

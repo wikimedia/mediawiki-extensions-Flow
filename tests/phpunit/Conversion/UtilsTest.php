@@ -4,8 +4,8 @@
 
 namespace Flow\Tests\Conversion;
 
-use Flow\Exception\WikitextException;
 use Flow\Conversion\Utils;
+use Flow\Exception\WikitextException;
 use Flow\Tests\FlowTestCase;
 use Title;
 

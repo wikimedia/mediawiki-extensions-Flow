@@ -1,12 +1,12 @@
 <?php
 
+use Flow\Data\Listener\RecentChangesListener;
+use Flow\Log\ModerationLogger;
 use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
-use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
-use Flow\Log\ModerationLogger;
-use Flow\Data\Listener\RecentChangesListener;
 
 /**
  * Flow actions: key => value map with key being the action name.

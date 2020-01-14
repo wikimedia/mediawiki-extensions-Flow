@@ -2,7 +2,6 @@
 
 namespace Flow\Import\Postprocessor;
 
-use Wikimedia\Rdbms\IDatabase;
 use BatchRowIterator;
 use EchoCallbackIterator;
 use EchoEvent;
@@ -17,6 +16,7 @@ use Flow\Model\PostRevision;
 use Flow\NotificationController;
 use RecursiveIteratorIterator;
 use User;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Converts LQT unread notifications into Echo notifications after a topic is imported

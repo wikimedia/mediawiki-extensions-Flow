@@ -3,10 +3,10 @@
 namespace Flow\Tests\Parsoid;
 
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 use Flow\Model\UUID;
 use Flow\Parsoid\ReferenceFactory;
-use Flow\Conversion\Utils;
 use Flow\Tests\FlowTestCase;
 use ReflectionMethod;
 use Title;

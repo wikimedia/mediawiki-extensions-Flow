@@ -6,8 +6,8 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\FormatterRow;
-use Flow\Formatter\TopicHistoryQuery;
 use Flow\Formatter\PostHistoryQuery;
+use Flow\Formatter\TopicHistoryQuery;
 use Flow\Model\UUID;
 
 class HistoryPager extends \ReverseChronologicalPager {

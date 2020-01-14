@@ -5,9 +5,9 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
+use GlobalVarConfig;
 use Title;
 use User;
-use GlobalVarConfig;
 
 /**
  * @covers \Flow\SpamFilter\ConfirmEdit

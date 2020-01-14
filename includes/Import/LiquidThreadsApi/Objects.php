@@ -18,7 +18,7 @@ use Title;
 use User;
 
 abstract class PageRevisionedObject implements IRevisionableObject {
-	/** @var int **/
+	/** @var int */
 	protected $pageId;
 
 	/**
@@ -292,7 +292,7 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 }
 
 class ImportSummary extends PageRevisionedObject implements IImportSummary {
-	/** @var ImportSource **/
+	/** @var ImportSource */
 	protected $source;
 
 	/**
@@ -310,10 +310,10 @@ class ImportSummary extends PageRevisionedObject implements IImportSummary {
 }
 
 class ImportRevision implements IObjectRevision {
-	/** @var IImportObject **/
+	/** @var IImportObject */
 	protected $parent;
 
-	/** @var array **/
+	/** @var array */
 	protected $apiResponse;
 
 	/**
@@ -422,7 +422,7 @@ class MovedImportRevision extends ImportRevision {
 
 // Represents a revision the script makes on its own behalf, using a script user
 class ScriptedImportRevision implements IObjectRevision {
-	/** @var IImportObject **/
+	/** @var IImportObject */
 	protected $parent;
 
 	/** @var User */
@@ -476,13 +476,13 @@ class ScriptedImportRevision implements IObjectRevision {
 }
 
 class ImportHeader extends PageRevisionedObject implements IImportHeader {
-	/** @var ApiBackend **/
+	/** @var ApiBackend */
 	protected $api;
-	/** @var string **/
+	/** @var string */
 	protected $title;
-	/** @var array|null **/
+	/** @var array|null */
 	protected $pageData;
-	/** @var ImportSource **/
+	/** @var ImportSource */
 	protected $source;
 
 	public function __construct( ApiBackend $api, ImportSource $source, $title ) {
