@@ -254,7 +254,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$content = 'something something';
 		$nextContent = 'ברוכים הבאים לוויקיפדיה!';
 
-		list( $formatter, $ctx, $permissions, $templating, $usernames, $actions ) = $this->makeFormatter( true );
+		list( $formatter, $ctx ) = $this->makeFormatter();
 
 		$row = $this->generateFormatterRow( $content );
 		$result = $formatter->formatApi( $row, $ctx );
@@ -371,7 +371,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 			->getMock();
 	}
 
-	public function makeFormatter( $returnAll = false ) {
+	public function makeFormatter() {
 		$actions = $this->mockActions();
 		$permissions = $this->mockPermissions( $actions );
 		// formatting only proceedes when this is true
@@ -385,10 +385,6 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$ctx = RequestContext::getMain();
 		$ctx->setUser( $this->user );
 
-		if ( $returnAll ) {
-			return [ $formatter, $ctx, $permissions, $templating, $usernames, $actions ];
-		} else {
-			return [ $formatter, $ctx ];
-		}
+		return [ $formatter, $ctx ];
 	}
 }
