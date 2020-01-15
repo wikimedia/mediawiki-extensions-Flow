@@ -168,13 +168,13 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 
 		// Verify we wrote the expected objects to storage
 
-		$this->assertEquals( 1, $storedHeader );
+		$this->assertSame( 1, $storedHeader );
 
-		$this->assertEquals( 1, $storedDiscussion );
-		$this->assertEquals( 1, $storedTopics );
-		$this->assertEquals( 1, $storedTopicListEntry );
-		$this->assertEquals( 1, $storedSummary );
-		$this->assertEquals( 3, $storedPosts );
+		$this->assertSame( 1, $storedDiscussion );
+		$this->assertSame( 1, $storedTopics );
+		$this->assertSame( 1, $storedTopicListEntry );
+		$this->assertSame( 1, $storedSummary );
+		$this->assertSame( 3, $storedPosts );
 
 		// This total expected number of insertions should match the sum of the left assertEquals parameters above.
 		$this->assertCount( 8, array_unique( array_map( 'spl_object_hash', $stored ) ) );

@@ -75,8 +75,7 @@ class RevisionStorageTest extends FlowTestCase {
 
 		$diff = $revStorage->calcUpdates( $this->BEFORE_WITHOUT_CONTENT_CHANGE, $this->AFTER_WITHOUT_CONTENT_CHANGE );
 
-		$this->assertSame(
-			false,
+		$this->assertFalse(
 			\ExternalStoreFlowMock::$isUsed,
 			'When content changes are allowed, but there is no content change, ExternalStoreFlowMock is untouched'
 		);
@@ -93,8 +92,7 @@ class RevisionStorageTest extends FlowTestCase {
 
 		$diff = $revStorage->calcUpdates( $this->BEFORE_WITH_CONTENT_CHANGE, $this->AFTER_WITH_CONTENT_CHANGE );
 
-		$this->assertSame(
-			true,
+		$this->assertTrue(
 			\ExternalStoreFlowMock::$isUsed,
 			'When content changes are allowed, and there is a content change, an ExternalStoreFlowMock is constructed'
 		);
@@ -111,8 +109,7 @@ class RevisionStorageTest extends FlowTestCase {
 
 		$diff = $revStorage->calcUpdates( $this->BEFORE_WITHOUT_CONTENT_CHANGE, $this->AFTER_WITHOUT_CONTENT_CHANGE );
 
-		$this->assertSame(
-			false,
+		$this->assertFalse(
 			\ExternalStoreFlowMock::$isUsed,
 			'When content changes are not allowed, and there is no content change, ExternalStoreFlowMock is untouched'
 		);
@@ -139,8 +136,7 @@ class RevisionStorageTest extends FlowTestCase {
 			true
 		);
 
-		$this->assertSame(
-			true,
+		$this->assertTrue(
 			\ExternalStoreFlowMock::$isUsed,
 			'When content changes are allowed, and there is a content change, an ExternalStoreFlowMock is constructed'
 		);
