@@ -73,6 +73,6 @@ class WikiLinkFixerTest extends PostRevisionTestCase {
 	public function testAppliesRedLinks( $message, $anchor, $expect ) {
 		$fixer = new ContentFixer( new WikiLinkFixer( $this->createMock( \LinkBatch::class ) ) );
 		$result = $fixer->apply( $anchor, Title::newMainPage() );
-		$this->assertContains( $expect, $result, $message );
+		$this->assertStringContainsString( $expect, $result, $message );
 	}
 }
