@@ -55,7 +55,7 @@ class TemplatingTest extends MediaWikiTestCase {
 			'hide and go seek'
 		);
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'Special:Contributions/127.0.0.1',
 			$templating->getUserLinks( $hidden ),
 			'User links should include anonymous contributions'
@@ -67,7 +67,7 @@ class TemplatingTest extends MediaWikiTestCase {
 			'hide-topic',
 			'hide and go seek'
 		);
-		$this->assertContains(
+		$this->assertStringContainsString(
 			'Special:Contributions/10.0.0.2',
 			$templating->getUserLinks( $hidden ),
 			'An alternate user should have the correct anonymous contributions'
