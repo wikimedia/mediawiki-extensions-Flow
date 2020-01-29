@@ -94,7 +94,7 @@ class ImportSource implements IImportSource {
 		] );
 		$content .= "\n\n{{{$template}|$arguments}}";
 
-		if ( $this->headerSuffix && !empty( $this->headerSuffix ) ) {
+		if ( $this->headerSuffix ) {
 			$content .= "\n\n{$this->headerSuffix}";
 		}
 

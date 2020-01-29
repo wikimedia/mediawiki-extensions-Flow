@@ -113,6 +113,8 @@ class CheckUserQuery extends AbstractQuery {
 		// remove the version specifier
 		array_shift( $data );
 
+		$revisionId = null;
+		$workflowId = null;
 		$postId = null;
 		switch ( count( $data ) ) {
 			/** @noinspection PhpMissingBreakStatementInspection */

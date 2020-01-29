@@ -75,7 +75,9 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 * @return Title
 	 */
 	protected function getTopicTitleObj( $fragment = '' ) {
+		/** @var UUID $workflowId */
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
+		'@phan-var UUID $workflowId';
 
 		return Title::makeTitleSafe(
 			NS_TOPIC,
@@ -103,7 +105,11 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function getViewTopicLink() {
-		$title = Title::newFromText( $this->event->getExtraParam( 'topic-workflow' )->getAlphadecimal(), NS_TOPIC );
+		/** @var UUID $workflow */
+		$workflow = $this->event->getExtraParam( 'topic-workflow' );
+		'@phan-var UUID $workflow';
+
+		$title = Title::newFromText( $workflow->getAlphadecimal(), NS_TOPIC );
 		return [
 			'url' => $title->getFullURL(),
 			'label' => $this->msg( 'flow-notification-link-text-view-topic' )->text(),

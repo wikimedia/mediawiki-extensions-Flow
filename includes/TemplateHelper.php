@@ -445,7 +445,7 @@ class TemplateHelper {
 	 * A helper to output OOUI widgets.
 	 *
 	 * @param array ...$args one or more arguments, i18n key and parameters
-	 * @return string Representation of an ooui widget dom
+	 * @return \OOUI\Widget|null
 	 */
 	public static function oouify( ...$args ) {
 		$options = array_pop( $args );
@@ -467,6 +467,7 @@ class TemplateHelper {
 			'classes' => $classes,
 			'data' => $data
 		];
+		$widget = null;
 		switch ( $widgetType ) {
 			case 'BoardDescriptionWidget':
 				$dataArgs = [

@@ -124,8 +124,7 @@ class HeaderBlock extends AbstractBlock {
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
 		$this->newRevision = $this->header->newNextRevision(
 			$this->context->getUser(),
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-			$this->submitted['content'],
+			$this->submitted['content'] ?? '',
 			// default to wikitext when not specified, for old API requests
 			$this->submitted['format'] ?? 'wikitext',
 			'edit-header',
@@ -158,7 +157,7 @@ class HeaderBlock extends AbstractBlock {
 		$this->newRevision = Header::create(
 			$this->workflow,
 			$this->context->getUser(),
-			$this->submitted['content'],
+			$this->submitted['content'] ?? '',
 			// default to wikitext when not specified, for old API requests
 			$this->submitted['format'] ?? 'wikitext',
 			'create-header'
