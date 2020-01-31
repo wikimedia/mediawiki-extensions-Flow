@@ -8,7 +8,8 @@
 			"Eitvys200",
 			"Manvydasz",
 			"Hugo.arg",
-			"Vogone"
+			"Vogone",
+			"Tomasdd"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",
@@ -62,7 +63,7 @@
 	"flow-summary-edited": "Santrauką paskutinį kartą {{GENDER:$1|redagavo}} $1",
 	"flow-show-change": "Rodyti pakeitimus",
 	"flow-last-modified-by": "Paskutinį kartą {{GENDER:$1|keitė}} $1",
-	"flow-stub-post-content": "<em>Dėl techninės klaidos šis įrašas negali būti pateiktas.</em>",
+	"flow-stub-post-content": "<em>Dėl techninės klaidos šis turinys negali būti pateiktas.</em>",
 	"flow-newtopic-title-placeholder": "Nauja tema",
 	"flow-newtopic-content-placeholder": "Rašyti naujų žinutę „$1“",
 	"flow-newtopic-header": "Pridėti naują temą",

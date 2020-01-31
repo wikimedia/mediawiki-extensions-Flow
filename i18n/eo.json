@@ -61,7 +61,7 @@
 	"flow-suppress-post-content": "Ĉi tiu temo estis {{GENDER:$1|subpremita}} de $1 ([$2 historio])",
 	"flow-suppress-title-content": "Ĉi tiu temo estis {{GENDER:$1|subpremita}} de $1",
 	"flow-suppress-header-content": "{{GENDER:$1|Subpremata}} de $2",
-	"flow-suppress-usertext": "<em>Salutnomo estas subpremata</em>",
+	"flow-suppress-usertext": "<em>Uzantnomo estas subpremata</em>",
 	"flow-post-actions": "Agoj",
 	"flow-topic-actions": "Agoj",
 	"flow-cancel": "Nuligi",
