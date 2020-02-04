@@ -87,5 +87,17 @@
 	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] görüntüle",
 	"apihelp-flow+view-topic-history-description": "Bir konunun düzeltme geçmişini görüntüleyin.",
 	"apihelp-flow+view-topic-history-summary": "Bir konunun düzeltme geçmişini görüntüleyin.",
-	"apihelp-flow+view-topic-history-param-format": "İçeriği döndürmek için biçimlendirin."
+	"apihelp-flow+view-topic-history-param-format": "İçeriği döndürmek için biçimlendirin.",
+	"apihelp-flow+view-topic-history-example-1": "[[Topic:S2tycnas4hcucw8w]] üzerindeki yayınların düzeltmelerini vikimetin olarak görüntüleyin",
+	"apihelp-flow+view-topic-summary-description": "Bir konu özetini görüntüleyin.",
+	"apihelp-flow+view-topic-summary-summary": "Bir konu özetini görüntüleyin.",
+	"apihelp-flow+view-topic-summary-param-format": "İçeriği döndürmek için biçimlendirin.",
+	"apihelp-flow+view-topic-summary-param-revId": "En son sürüm yerine bu düzeltmeyi yükleyin.",
+	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] için özeti vikimetin olarak görüntüleyin",
+	"apihelp-flow+view-topiclist-description": "Konuların bir listesini görüntüleyin.",
+	"apihelp-flow+view-topiclist-summary": "Konuların bir listesini görüntüleyin.",
+	"apihelp-flow+view-topiclist-param-offset-dir": "Konuları sıralamak için yön.",
+	"apihelp-flow+view-topiclist-param-sortby": "Konuların sıralama seçeneği <kbd>güncellendi</kbd> (konu güncelleme süresine göre sıralanmıştır) veya <kbd>en yeni</kbd> (konu oluşturma süresine göre sıralanmıştır).",
+	"apihelp-flow+view-topiclist-param-savesortby": "Ayarlanmışsa, sıralama seçeneğini kullanıcı tercihlerine kaydedin.",
+	"apihelp-flow+view-topiclist-param-offset-id": "Konuları adrese getirmeye başlamak için ofset değeri (UUID biçiminde); yalnızca <kbd>en yeni</kbd> siparişiyle kullanılır"
 }
