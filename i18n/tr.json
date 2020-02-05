@@ -21,6 +21,11 @@
 			"BaRaN6161 TURK"
 		]
 	},
+	"enablestructureddiscussions": "Yapısal Tartışmaları Etkinleştir",
+	"notification-dynamic-actions-flow-board-unwatch": "\"$1\" üzerindeki yeni etkinliği izlemeyi {{GENDER:$3|bırak}}",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Siz}} artık \"$1\" sayfasını izlemiyorsunuz",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Bu {{GENDER:$3|izlediğiniz}} konuları tek tek etkilemez. İstediğiniz zaman [$2 bu sayfayı] izleyebilirsiniz.",
+	"notification-dynamic-actions-flow-topic-unwatch": "Bu konuyu izlemeyi {{GENDER:$3|bırak}}",
 	"flow-board-header-browse-topics-link": "Konulara göz at",
 	"flow-board-collapse-description": "Açıklamaları gizle",
 	"flow-topic-moderated-reason-prefix": "Sebep:",
@@ -61,7 +66,7 @@
 	"flow-error-protected-unknown-reason": "Bilinmiyor",
 	"flow-error-not-allowed-hide-extract": "Bu konu gizlendi. Konuya ilişkin gizlilik günlüğü, başvuru için aşağıda verilmiştir.",
 	"flow-error-content-too-long": "İçerik çok büyük. Genişlemeden sonraki içerik $1 {{PLURAL:$1|byte|byte}}'la sınırlanmıştır.",
-	"flow-topic-history": "\"$\" konu geçmişi",
+	"flow-topic-history": "\"$1\" konu geçmişi",
 	"flow-history-day": "Bugün",
 	"flow-hide-comments-title": "{{PLURAL:$1|Yorumu gizle|Yorumları gizle}}",
 	"flow-workflow": "iş akışı",
