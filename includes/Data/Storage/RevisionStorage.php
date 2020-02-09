@@ -208,7 +208,7 @@ abstract class RevisionStorage extends DbStorage {
 		// the index can ask directly for just the list of rev_id instead of whole rows,
 		// but would still have the need to run a bunch of queries serially.
 		if ( count( $options ) === 2 &&
-			isset( $options['LIMIT'], $options['ORDER BY'] ) &&
+			isset( $options['LIMIT'] ) && isset( $options['ORDER BY'] ) &&
 			$options['ORDER BY'] === [ 'rev_id DESC' ]
 		) {
 			return $this->fallbackFindMulti( $queries, $options );

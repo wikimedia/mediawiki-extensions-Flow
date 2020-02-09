@@ -32,12 +32,11 @@ class NotificationListener extends AbstractListener {
 		switch ( $row['rev_change_type'] ) {
 		// Actually new-topic @todo rename
 		case 'new-post':
-			if ( !isset(
-				$metadata['board-workflow'],
-				$metadata['workflow'],
-				$metadata['topic-title'],
-				$metadata['first-post']
-			) ) {
+			if ( !isset( $metadata['board-workflow'] ) ||
+				!isset( $metadata['workflow'] ) ||
+				!isset( $metadata['topic-title'] ) ||
+				!isset( $metadata['first-post'] )
+			) {
 				throw new InvalidDataException( 'Invalid metadata for revision ' .
 					$object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
 			}
@@ -115,10 +114,9 @@ class NotificationListener extends AbstractListener {
 	 * @throws InvalidDataException
 	 */
 	protected function notifyPostChange( $type, PostRevision $object, $metadata, array $params = [] ) {
-		if ( !isset(
-			$metadata['workflow'],
-			$metadata['topic-title']
-		) ) {
+		if ( !isset( $metadata['workflow'] ) ||
+			!isset( $metadata['topic-title'] )
+		) {
 			throw new InvalidDataException( 'Invalid metadata for topic|post revision ' .
 				$object->getRevisionId()->getAlphadecimal(), 'missing-metadata' );
 		}
