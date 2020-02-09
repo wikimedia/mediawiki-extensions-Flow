@@ -19,7 +19,6 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
-use IP;
 use MWCryptRand;
 use MWTimestamp;
 use Psr\Log\LoggerInterface;
@@ -29,6 +28,7 @@ use RuntimeException;
 use SplQueue;
 use Title;
 use User;
+use Wikimedia\IPUtils;
 
 /**
  * The import system uses a TalkpageImportOperation class.
@@ -419,7 +419,7 @@ class PageImportState {
 	}
 
 	public function createUser( $name ) {
-		if ( IP::isIPAddress( $name ) ) {
+		if ( IPUtils::isIPAddress( $name ) ) {
 			return User::newFromName( $name, false );
 		}
 		$user = User::newFromName( $name );

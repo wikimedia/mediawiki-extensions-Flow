@@ -11,9 +11,9 @@ use Flow\Import\IObjectRevision;
 use Flow\Import\IRevisionableObject;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
-use IP;
 use MWTimestamp;
 use User;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -140,7 +140,7 @@ class FlowRevisionsDb implements SourceStoreInterface {
 	 * @return bool|User
 	 */
 	protected function getUser( $name ) {
-		if ( IP::isIPAddress( $name ) ) {
+		if ( IPUtils::isIPAddress( $name ) ) {
 			return User::newFromName( $name, false );
 		}
 
