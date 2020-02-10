@@ -23,7 +23,7 @@
 	"flow-topic-action-summarize-topic": "Zhrnúť",
 	"flow-topic-action-watchlist-add": "Sledovať tému",
 	"flow-topic-comments": "{{PLURAL:$1|$1 komentár|$1 komentáre|$1 komentárov|0=Napíšte komentár ako {{GENDER:$2|prvý|prvá}}!}}",
-	"echo-category-title-flow-discussion": "diskusiu vo Flow",
+	"echo-category-title-flow-discussion": "Štruktúrovanú diskusiu",
 	"echo-pref-tooltip-flow-discussion": "Upozornite ma na aktivitu vo Flow vláknach a diskusných stránkách, ktoré sledujem.",
 	"flow-recent-topics": "Nedávno aktívne témy",
 	"flow-edited": "Upravené",
