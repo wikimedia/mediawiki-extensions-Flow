@@ -52,6 +52,8 @@
 			classes: [ 'flow-ui-newTopicWidget-title' ],
 			value: mw.storage.session.get( this.id + '/title' )
 		} );
+		this.title.$input
+			.attr( 'aria-label', mw.msg( 'flow-newtopic-start-placeholder' ) );
 
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
