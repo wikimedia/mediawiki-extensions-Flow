@@ -71,6 +71,7 @@
 				placeholder: config.placeholder
 			} );
 			this.triggerInput.$element.on( 'focusin', this.onTriggerFocusIn.bind( this ) );
+			this.triggerInput.$input.attr( 'aria-label', config.placeholder );
 			this.$element.append( this.triggerInput.$element );
 		} else {
 			// Only initialize the editor if we are not in 'expandable' mode

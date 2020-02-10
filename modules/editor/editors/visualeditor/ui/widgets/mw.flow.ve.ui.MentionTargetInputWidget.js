@@ -37,6 +37,7 @@
 
 		// Initialization
 		this.$element.addClass( 'flow-ve-ui-mentionTargetInputWidget' );
+		this.$input.attr( 'aria-label', mw.msg( 'flow-ve-mention-placeholder' ) );
 		this.lookupMenu.$element.addClass( 'flow-ve-ui-mentionTargetInputWidget-menu' );
 	};
 
