@@ -64,8 +64,8 @@ class HistoryPager extends \ReverseChronologicalPager {
 		}
 
 		// set some properties that'll be used to generate navigation bar
-		$this->mLastShown = end( $this->mResult )->revision->getRevisionId()->getAlphadecimal();
-		$this->mFirstShown = $this->mResult[0]->revision->getRevisionId()->getAlphadecimal();
+		$this->mLastShown = [ end( $this->mResult )->revision->getRevisionId()->getAlphadecimal() ];
+		$this->mFirstShown = [ $this->mResult[0]->revision->getRevisionId()->getAlphadecimal() ];
 
 		/*
 		 * By overfetching, we've already figured out if there's additional
@@ -74,7 +74,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 		 * when navigating)
 		 */
 		$nextOffset = $this->mIsBackwards ? $this->mFirstShown : $this->mLastShown;
-		$nextOffset = UUID::create( $nextOffset );
+		$nextOffset = UUID::create( $nextOffset[0] );
 		$reverseDirection = $this->mIsBackwards ? 'fwd' : 'rev';
 		$this->mIsLast = !$overfetched;
 		$this->mIsFirst = !$this->mOffset || count( $this->query->getResults( $this->id, 1, $nextOffset, $reverseDirection ) ) === 0;
@@ -86,7 +86,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 			// id of the overfetched entry, used to build new links starting at
 			// this offset
 			if ( $overfetched ) {
-				$this->mPastTheEndIndex = $overfetched->revision->getRevisionId()->getAlphadecimal();
+				$this->mPastTheEndIndex = [ $overfetched->revision->getRevisionId()->getAlphadecimal() ];
 			}
 		}
 	}
