@@ -54,7 +54,7 @@ class PurgeAction extends \PurgeAction {
 		/** @var WorkflowLoaderFactory $loader */
 		$loader = $container['factory.loader.workflow'];
 		$workflow = $loader
-			->createWorkflowLoader( $this->page->getTitle() )
+			->createWorkflowLoader( $this->getTitle() )
 			->getWorkflow();
 
 		switch ( $workflow->getType() ) {

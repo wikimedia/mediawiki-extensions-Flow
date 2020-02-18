@@ -2,6 +2,7 @@
 
 namespace Flow\Content;
 
+use Article;
 use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\Diff\FlowBoardContentDiffView;
@@ -139,8 +140,12 @@ class BoardContentHandler extends \ContentHandler {
 			}
 
 			if ( $actionData['handler-class'] === FlowAction::class ) {
-				$output[$action] = function ( Page $page, IContextSource $source ) use ( $action ) {
-					return new FlowAction( $page, $source, $action );
+				$output[$action] = function (
+					Page $article,
+					IContextSource $source
+				) use ( $action ) {
+					/** @var Article $article */
+					return new FlowAction( $article, $source, $action );
 				};
 			} else {
 				$output[$action] = $actionData['handler-class'];

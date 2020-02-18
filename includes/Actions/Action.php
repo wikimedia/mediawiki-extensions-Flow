@@ -17,7 +17,6 @@ use OutputPage;
 use Page;
 use Title;
 use WebRequest;
-use WikiPage;
 
 class FlowAction extends Action {
 	/**
@@ -26,7 +25,7 @@ class FlowAction extends Action {
 	protected $actionName;
 
 	/**
-	 * @param Page $page
+	 * @param Article|Page $page
 	 * @param IContextSource $source
 	 * @param string $actionName
 	 */
@@ -63,12 +62,7 @@ class FlowAction extends Action {
 			$output = $this->context->getOutput();
 		}
 
-		// Check if this is actually the right type of page.
-		if ( !$this->page instanceof WikiPage && !$this->page instanceof Article ) {
-			throw new ErrorPageError( 'nosuchaction', 'flow-action-not-page' );
-		}
-
-		$title = $this->page->getTitle();
+		$title = $this->getTitle();
 
 		$titleContentModel = $title->getContentModel();
 		if ( $titleContentModel !== CONTENT_MODEL_FLOW_BOARD ) {

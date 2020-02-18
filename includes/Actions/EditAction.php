@@ -2,12 +2,17 @@
 
 namespace Flow\Actions;
 
+use Article;
 use IContextSource;
 use Page;
 use Title;
 
 class EditAction extends FlowAction {
 
+	/**
+	 * @param Article|Page $page
+	 * @param IContextSource $context
+	 */
 	public function __construct( Page $page, IContextSource $context ) {
 		parent::__construct( $page, $context, 'edit' );
 	}
