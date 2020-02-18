@@ -24,7 +24,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use MovePage;
-use Parser;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use RequestContext;
@@ -618,7 +617,7 @@ class OptInController {
 			return '';
 		}
 
-		$parser = new Parser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$output = $parser->parse( $content, $title, new ParserOptions );
 		$sections = $output->getSections();
 		if ( $sections ) {
