@@ -721,7 +721,7 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
 
-		if ( !isset( $options['startId'], $options['endId'] ) ) {
+		if ( !isset( $options['startId'] ) || !isset( $options['endId'] ) ) {
 			throw new InvalidInputException( 'Both startId and endId must be provided' );
 		}
 

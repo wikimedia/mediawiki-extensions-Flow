@@ -339,7 +339,7 @@ class HeaderBlock extends AbstractBlock {
 			throw new FlowException( 'No header exists to undo' );
 		}
 
-		if ( !isset( $options['startId'], $options['endId'] ) ) {
+		if ( !isset( $options['startId'] ) || !isset( $options['endId'] ) ) {
 			throw new InvalidInputException( 'Both startId and endId must be provided' );
 		}
 

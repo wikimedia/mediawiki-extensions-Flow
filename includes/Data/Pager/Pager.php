@@ -74,7 +74,7 @@ class Pager {
 		$indexOptions = [
 			'limit' => $this->options['pager-limit']
 		];
-		if ( isset( $this->options['sort'], $this->options['order'] ) ) {
+		if ( isset( $this->options['sort'] ) && isset( $this->options['order'] ) ) {
 			$indexOptions += [
 				'sort' => [ $this->options['sort'] ],
 				'order' => $this->options['order'],
