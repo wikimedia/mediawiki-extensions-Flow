@@ -48,7 +48,9 @@ class BoardHistoryBlock extends AbstractBlock {
 		$formatter = Container::get( 'formatter.revision' );
 		$formatter->setIncludeHistoryProperties( true );
 
-		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffset();
+		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffsetForUser(
+			$this->context->getUser()
+		);
 		// don't use offset from getLimitOffset - that assumes an int, which our
 		// UUIDs are not
 		$offset = $wgRequest->getText( 'offset' );
