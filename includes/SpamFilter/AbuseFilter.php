@@ -5,6 +5,7 @@ namespace Flow\SpamFilter;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
+use MediaWiki\Extension\AbuseFilter\VariableGenerator\VariableGenerator;
 use Status;
 use Title;
 
@@ -70,12 +71,13 @@ class AbuseFilter implements SpamFilter {
 		Title $title,
 		Title $ownerTitle
 	) {
-		$vars = \AbuseFilter::getEditVars( $title );
-		$vars->addHolders(
-			\AbuseFilter::generateUserVars( $context->getUser() ),
-			\AbuseFilter::generateTitleVars( $title, 'PAGE' ),
-			\AbuseFilter::generateTitleVars( $ownerTitle, 'BOARD' )
-		);
+		$gen = new VariableGenerator( new \AbuseFilterVariableHolder );
+		$vars = $gen
+			->addEditVars( $title )
+			->addUserVars( $context->getUser() )
+			->addTitleVars( $title, 'page' )
+			->addTitleVars( $ownerTitle, 'board' )
+			->getVariableHolder();
 
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
 
