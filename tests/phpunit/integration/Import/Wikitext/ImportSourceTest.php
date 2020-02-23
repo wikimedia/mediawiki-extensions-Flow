@@ -53,7 +53,7 @@ class ImportSourceTest extends \MediaWikiTestCase {
 
 		$source = new ImportSource(
 			Title::newMainPage(),
-			new Parser,
+			$this->createMock( Parser::class ),
 			$user
 		);
 
