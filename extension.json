@@ -541,6 +541,7 @@
 				"oojs-ui.styles.icons-editing-advanced",
 				"oojs-ui.styles.icons-user",
 				"mediawiki.api",
+				"mediawiki.storage",
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.util",
@@ -580,6 +581,7 @@
 				"ext.flow.jquery.conditionalScroll",
 				"ext.flow.ui",
 				"mediawiki.api",
+				"mediawiki.storage",
 				"mediawiki.user",
 				"mediawiki.util"
 			],
