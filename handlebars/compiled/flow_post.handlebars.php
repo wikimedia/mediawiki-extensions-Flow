@@ -118,7 +118,7 @@
 '.$sp.'			   data-role="unsuppress">'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array(LR::hbch($cx, 'concat', array(array('flow-',(($inary && isset($in['moderationType'])) ? $in['moderationType'] : null),'-action-unsuppress-',(($inary && isset($in['moderationTemplate'])) ? $in['moderationTemplate'] : null)),array()), 'raw', $in)),array()), 'encq', $in)).'</a>'.LR::encq($cx, (($inary && isset($in['noop'])) ? $in['noop'] : null)).'</li>' : '').'</section>
 ';},
 'flow_post_actions' => function ($cx, $in, $sp) {$inary=is_array($in);return ''.$sp.'<div class="flow-menu flow-menu-hoverable">
-'.$sp.'	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-ellipsis"></span></a></div>
+'.$sp.'	<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-ellipsis" aria-label="'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-post-action-menu-accessibility-name'),array()), 'encq', $in)).'"></span></a></div>
 '.$sp.'	<ul class="mw-ui-button-container flow-list">
 '.$sp.''.LR::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'post','moderationTarget'=>'post','moderationTemplate'=>'post','moderationContainerClass'=>'flow-menu','moderationMwUiClass'=>'mw-ui-button','moderationIcons'=>true)),0, '		').'	</ul>
 '.$sp.'</div>
