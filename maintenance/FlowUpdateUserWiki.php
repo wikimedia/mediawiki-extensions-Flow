@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -89,6 +90,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Update header
+	 * @param Workflow $workflow
+	 * @param string $wiki
 	 */
 	private function updateHeader( $workflow, $wiki ) {
 		$id = '';
@@ -126,6 +129,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Update topic list
+	 * @param Workflow $workflow
+	 * @param string $wiki
 	 */
 	private function updateTopicList( $workflow, $wiki ) {
 		$id = '';
@@ -163,6 +168,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Update post
+	 * @param PostRevision $post
+	 * @param string $wiki
 	 */
 	private function updatePost( $post, $wiki ) {
 		$this->updateHistory( $post, $wiki );
@@ -174,6 +181,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Update history revision
+	 * @param PostRevision $post
+	 * @param string $wiki
 	 */
 	private function updateHistory( PostRevision $post, $wiki ) {
 		if ( $post->getPrevRevisionId() ) {
@@ -187,6 +196,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Update either header or post revision
+	 * @param PostRevision $revision
+	 * @param string $wiki
 	 */
 	private function updateRevision( $revision, $wiki ) {
 		if ( !$revision ) {
