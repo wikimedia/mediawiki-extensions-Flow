@@ -593,6 +593,12 @@
 						if ( !skipSummarize ) {
 							self.startEditTopicSummary( true, topicId, action );
 						}
+					} )
+					.fail( function ( code, result ) {
+						var errorMsg = self.flowBoard.constructor.static.getApiErrorMessage( code, result );
+
+						self.flowBoard.emit( 'removeError', $topic );
+						self.flowBoard.emit( 'showError', $topic, errorMsg );
 					} );
 
 				// Prevent default
