@@ -119,7 +119,8 @@ class RecentChangesListener extends AbstractListener {
 		];
 
 		$rc = $this->rcFactory->newFromRow( (object)$attribs );
-		$rc->save( /* $noudp = */ true );  // Insert into db
+		// Insert into db only, don't send to any RC feeds (yet)
+		$rc->save( RecentChange::SEND_NONE );
 		$feeds = $wgRCFeeds;
 		// Override the IRC formatter with our own formatter
 		foreach ( array_keys( $feeds ) as $name ) {
