@@ -72,9 +72,10 @@
 	 *  is done, with the API result.
 	 */
 	mw.flow.dm.APIHandler.prototype.postEdit = function ( submodule, requestParams ) {
-		var params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+		var api = new mw.Api(),
+			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
 
-		return ( new mw.Api() ).postWithToken( 'csrf', params );
+		return api.postWithToken( 'csrf', api.assertCurrentUser( params ) );
 	};
 
 	/**
@@ -196,18 +197,20 @@
 	 *  that this reply belongs to
 	 */
 	mw.flow.dm.APIHandler.prototype.saveReply = function ( topicId, replyTo, content, format, captcha ) {
-		var params = {
-			action: 'flow',
-			submodule: 'reply',
-			page: 'Topic:' + topicId,
-			repreplyTo: replyTo,
-			repcontent: content,
-			repformat: format
-		};
+		var api = new mw.Api(),
+			params = {
+				action: 'flow',
+				submodule: 'reply',
+				page: 'Topic:' + topicId,
+				repreplyTo: replyTo,
+				repcontent: content,
+				repformat: format
+			};
 
+		params = api.assertCurrentUser( params );
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
+		return api.postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
 			.then( function ( data ) {
 				return data.flow.reply.workflow;
 			} );
@@ -223,17 +226,19 @@
 	 * @return {jQuery.Promise} Promise that is resolved with the new topic id
 	 */
 	mw.flow.dm.APIHandler.prototype.saveNewTopic = function ( title, content, format, captcha ) {
-		var params = {
-			submodule: 'new-topic',
-			page: this.page,
-			nttopic: title,
-			ntcontent: content,
-			ntformat: format
-		};
+		var api = new mw.Api(),
+			params = {
+				submodule: 'new-topic',
+				page: this.page,
+				nttopic: title,
+				ntcontent: content,
+				ntformat: format
+			};
 
+		params = api.assertCurrentUser( params );
 		this.addCaptcha( params, captcha );
 
-		return ( new mw.Api() ).postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
+		return api.postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
 			} );
