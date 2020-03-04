@@ -8,10 +8,12 @@ use Flow\Import\ImportException;
 use Flow\Import\Plain\ImportHeader;
 use Flow\Import\Plain\ObjectRevision;
 use Flow\Import\TemplateHelper;
+use IDBAccessObject;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SlotRecord;
 use MWTimestamp;
 use Parser;
 use ParserOptions;
-use Revision;
 use StubObject;
 use Title;
 use User;
@@ -71,14 +73,16 @@ class ImportSource implements IImportSource {
 	 * @throws ImportException When source header revision can not be loaded
 	 */
 	public function getHeader() {
-		$revision = Revision::newFromTitle( $this->title, /* $id= */ 0, Revision::READ_LATEST );
+		$revision = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $this->title, 0, IDBAccessObject::READ_LATEST );
 		if ( !$revision ) {
 			throw new ImportException( "Failed to load revision for title: {$this->title->getPrefixedText()}" );
 		}
 
 		// If sections exist only take the content from the top of the page
 		// to the first section.
-		$nativeContent = $revision->getContent()->getNativeData();
+		$nativeContent = $revision->getContent( SlotRecord::MAIN )->getNativeData();
 		$output = $this->parser->parse(
 			$nativeContent,
 			$this->title,
