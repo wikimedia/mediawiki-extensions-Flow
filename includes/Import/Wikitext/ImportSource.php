@@ -79,7 +79,11 @@ class ImportSource implements IImportSource {
 		// If sections exist only take the content from the top of the page
 		// to the first section.
 		$nativeContent = $revision->getContent()->getNativeData();
-		$output = $this->parser->parse( $nativeContent, $this->title, new ParserOptions );
+		$output = $this->parser->parse(
+			$nativeContent,
+			$this->title,
+			new ParserOptions( $this->user )
+		);
 		$sections = $output->getSections();
 		if ( $sections ) {
 			$nativeContent = substr( $nativeContent, 0, $sections[0]['byteoffset'] );

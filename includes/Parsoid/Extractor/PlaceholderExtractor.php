@@ -44,8 +44,11 @@ class PlaceholderExtractor implements Extractor {
 		 * through Parser to make sure we're dealing with an image
 		 * and get the image name.
 		 */
-		$output = MediaWikiServices::getInstance()->getParser()
-			->parse( $data['src'], Title::newFromText( 'Main Page' ), new ParserOptions );
+		$output = MediaWikiServices::getInstance()->getParser()->parse(
+			$data['src'],
+			Title::newFromText( 'Main Page' ),
+			ParserOptions::newFromAnon()
+		);
 
 		$file = $output->getImages();
 		if ( !$file ) {
