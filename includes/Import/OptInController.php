@@ -618,7 +618,7 @@ class OptInController {
 		}
 
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
-		$output = $parser->parse( $content, $title, new ParserOptions );
+		$output = $parser->parse( $content, $title, new ParserOptions( $this->user ) );
 		$sections = $output->getSections();
 		if ( $sections ) {
 			$content = substr( $content, 0, $sections[0]['byteoffset'] );
