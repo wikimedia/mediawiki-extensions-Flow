@@ -141,7 +141,7 @@
 	"flow-topic-action-unlock-topic": "Konuyu yeniden aç",
 	"flow-topic-action-summarize-topic": "Özetle",
 	"flow-topic-action-resummarize-topic": "Konu özetini düzenle",
-	"flow-topic-action-update-topic-summary": "Özeti düzenle",
+	"flow-topic-action-update-topic-summary": "Özeti güncelle",
 	"flow-topic-action-suppress-topic": "Konuyu gözetle",
 	"flow-topic-action-unhide-topic": "Konuyu göster",
 	"flow-topic-action-undelete-topic": "Konuyu geri getir",
