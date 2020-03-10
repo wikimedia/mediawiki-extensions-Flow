@@ -698,6 +698,24 @@
 			"mediawiki.api"
 		]
 	},
+	"QUnitTestModule": {
+		"localBasePath": "tests/qunit",
+		"remoteExtPath": "Flow/tests/qunit",
+		"scripts": [
+			"flow/dm/test_mw.flow.dm.Content.js",
+			"flow/dm/test_mw.flow.dm.System.js",
+			"flow/dm/test_mw.flow.dm.Post.js",
+			"flow/dm/test_mw.flow.dm.Topic.js",
+			"flow/dm/test_mw.flow.dm.Board.js",
+			"engine/misc/test_mw-ui.enhance.js",
+			"engine/misc/test_jquery.findWithParent.js"
+		],
+		"dependencies": [
+			"ext.flow.dm",
+			"ext.flow",
+			"ext.flow.jquery.findWithParent"
+		]
+	},
 	"Hooks": {
 		"ResourceLoaderRegisterModules": "FlowHooks::onResourceLoaderRegisterModules",
 		"BeforePageDisplay": "FlowHooks::onBeforePageDisplay",
@@ -734,7 +752,6 @@
 		"SkinMinervaDefaultModules": "FlowHooks::onSkinMinervaDefaultModules",
 		"IRCLineURL": "FlowHooks::onIRCLineURL",
 		"WhatLinksHereProps": "FlowHooks::onWhatLinksHereProps",
-		"ResourceLoaderTestModules": "FlowHooks::onResourceLoaderTestModules",
 		"ShowMissingArticle": "FlowHooks::onShowMissingArticle",
 		"WatchArticle": "FlowHooks::onWatchArticle",
 		"UnwatchArticle": "FlowHooks::onWatchArticle",

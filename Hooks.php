@@ -1205,45 +1205,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * ResourceLoaderTestModules hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
-	 *
-	 * @param array &$testModules
-	 * @param ResourceLoader &$resourceLoader
-	 */
-	public static function onResourceLoaderTestModules( array &$testModules,
-		ResourceLoader &$resourceLoader
-	) {
-		global $wgResourceModules;
-
-		// find test files for every RL module
-		foreach ( $wgResourceModules as $key => $module ) {
-			if ( preg_match( '/ext.flow(?:\.|$)/', $key ) && isset( $module['scripts'] ) ) {
-				$testFiles = [];
-
-				$scripts = (array)$module['scripts'];
-				foreach ( $scripts as $script ) {
-					$testFile = 'tests/qunit/' . dirname( $script ) . '/test_' . basename( $script );
-					// if a test file exists for a given JS file, add it
-					if ( file_exists( __DIR__ . '/' . $testFile ) ) {
-						$testFiles[] = $testFile;
-					}
-				}
-				// if test files exist for given module, create a corresponding test module
-				if ( count( $testFiles ) > 0 ) {
-					$module = [
-						'remoteExtPath' => 'Flow',
-						'dependencies' => [ $key ],
-						'localBasePath' => __DIR__,
-						'scripts' => $testFiles,
-					];
-					$testModules['qunit']["$key.tests"] = $module;
-				}
-			}
-		}
-	}
-
-	/**
 	 * Don't (un)watch a non-existing flow topic
 	 *
 	 * @param User &$user
