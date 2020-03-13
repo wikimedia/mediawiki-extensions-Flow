@@ -5,6 +5,8 @@
 		]
 	},
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Баркал áла}}}}",
+	"flow-post-action-view": "Даим бола тӏатовжам",
+	"flow-topic-action-view": "Массехана бола тӏатовжам",
 	"flow-topic-action-watchlist": "Зем бара хьаязъяьр",
 	"flow-undo-latest-revision": "ХIанзара эрш",
 	"flow-ve-mention-context-item-label": "Хьоахавар",
