@@ -52,6 +52,7 @@
 	"flow-load-more": "थप पढ्ने",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-invalid-title": "अबैध पृष्ठ शिर्षक राखिएको थियो",
+	"flow-edited-by": "$1द्वारा सम्पादित",
 	"flow-undo": "पूर्ववत गर्ने",
 	"flow-undo-your-text": "तपाईंको पाठ",
 	"flow-undo-edit-header": "विवरण सम्पादन गरिँदै",
