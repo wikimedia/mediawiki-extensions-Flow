@@ -2,7 +2,6 @@
 
 namespace Flow\Tests\Data;
 
-use Flow\Container;
 use Flow\Data\Index\FeatureIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\UniqueFeatureIndex;
@@ -18,6 +17,7 @@ use Flow\Tests\FlowTestCase;
 class IndexTest extends FlowTestCase {
 
 	public function testShallow() {
+		global $wgFlowCacheVersion;
 		$cache = $this->getCache();
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
@@ -47,7 +47,7 @@ class IndexTest extends FlowTestCase {
 		);
 
 		$db = FeatureIndex::cachedDbId();
-		$v = Container::get( 'cache.version' );
+		$v = $wgFlowCacheVersion;
 		$cache->set( "$db:unique:" . md5( '1' ) . ":$v", [ [ 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ] ] );
 		$cache->set( "$db:unique:" . md5( '2' ) . ":$v", [ [ 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ] ] );
 		$cache->set( "$db:unique:" . md5( '3' ) . ":$v", [ [ 'id' => 3, 'name' => 'baz', 'other' => 'lll' ] ] );
@@ -68,6 +68,7 @@ class IndexTest extends FlowTestCase {
 	}
 
 	public function testCompositeShallow() {
+		global $wgFlowCacheVersion;
 		$cache = $this->getCache();
 		$storage = $this->createMock( \Flow\Data\ObjectStorage::class );
 
@@ -96,7 +97,7 @@ class IndexTest extends FlowTestCase {
 		// remember: unique index still stores an array of results to be consistent with other indexes
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
-		$v = Container::get( 'cache.version' );
+		$v = $wgFlowCacheVersion;
 		$cache->set( "$db:unique:" . md5( '1:9' ) . ":$v", [ [ 'id' => 1, 'ot' => 9, 'name' => 'foo' ] ] );
 		$cache->set( "$db:unique:" . md5( '1:8' ) . ":$v", [ [ 'id' => 1, 'ot' => 8, 'name' => 'foo' ] ] );
 		$cache->set( "$db:unique:" . md5( '3:7' ) . ":$v", [ [ 'id' => 3, 'ot' => 7, 'name' => 'baz' ] ] );

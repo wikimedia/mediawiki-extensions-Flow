@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Index;
 
-use Flow\Container;
 use Flow\Data\Compactor;
 use Flow\Data\Compactor\FeatureCompactor;
 use Flow\Data\Compactor\ShallowCompactor;
@@ -491,6 +490,7 @@ abstract class FeatureIndex implements Index {
 	 * @return string
 	 */
 	protected function cacheKey( array $attributes ) {
+		global $wgFlowCacheVersion;
 		foreach ( $attributes as $key => $attr ) {
 			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getAlphadecimal();
@@ -503,7 +503,7 @@ abstract class FeatureIndex implements Index {
 		// which would lead to differences in cache key if we don't force that
 		ksort( $attributes );
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, md5( implode( ':', $attributes ) ), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, md5( implode( ':', $attributes ) ), $wgFlowCacheVersion );
 	}
 
 	/**

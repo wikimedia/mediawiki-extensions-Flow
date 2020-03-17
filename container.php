@@ -17,7 +17,6 @@ $c['memcache'] = function ( $c ) {
 		return new \HashBagOStuff();
 	}
 };
-$c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
 
 // This lets the index handle the initial query from HistoryPager,
 // even when the UI limit is 500.  An extra item is requested
