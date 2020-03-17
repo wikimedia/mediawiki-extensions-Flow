@@ -8,8 +8,6 @@ if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 } else {
 	$c['user'] = $GLOBALS['wgUser'] ?? new User;
 }
-$c['output'] = $GLOBALS['wgOut'];
-$c['request'] = $GLOBALS['wgRequest'];
 $c['memcache'] = function ( $c ) {
 	global $wgFlowUseMemcache, $wgMemc;
 
@@ -64,12 +62,8 @@ $c['watched_items'] = function ( $c ) {
 	);
 };
 
-$c['link_batch'] = function () {
-	return new LinkBatch;
-};
-
 $c['wiki_link_fixer'] = function ( $c ) {
-	return new Flow\Parsoid\Fixer\WikiLinkFixer( $c['link_batch'] );
+	return new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
 };
 
 $c['bad_image_remover'] = function ( $c ) {
@@ -110,10 +104,12 @@ $c['lightncandy'] = function ( $c ) {
 };
 
 $c['templating'] = function ( $c ) {
+	global $wgOut;
+
 	return new Flow\Templating(
 		$c['repository.username'],
 		$c['url_generator'],
-		$c['output'],
+		$wgOut,
 		$c['content_fixer'],
 		$c['permissions']
 	);
@@ -140,47 +136,37 @@ use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicListStorage;
 use MediaWiki\MediaWikiServices;
 
-$c['wancache'] = function ( $c ) {
-	return MediaWikiServices::getInstance()->getMainWANObjectCache();
-};
-
-$c['ttl.default'] = function ( $c ) {
-	global $wgFlowCacheTime;
-	return $wgFlowCacheTime;
-};
-
 $c['flowcache'] = function ( $c ) {
-	return new FlowObjectCache( $c['wancache'], $c['db.factory'], $c['ttl.default'] );
+	global $wgFlowCacheTime;
+	return new FlowObjectCache(
+		MediaWikiServices::getInstance()->getMainWANObjectCache(),
+		$c['db.factory'], $wgFlowCacheTime
+	);
 };
 
 // Batched username loader
-$c['repository.username.query'] = function ( $c ) {
-	return new Flow\Repository\UserName\TwoStepUserNameQuery(
-		$c['db.factory']
-	);
-};
 $c['repository.username'] = function ( $c ) {
 	return new Flow\Repository\UserNameBatch(
-		$c['repository.username.query']
+		new Flow\Repository\UserName\TwoStepUserNameQuery(
+			$c['db.factory']
+		)
 	);
 };
 $c['collection.cache'] = function ( $c ) {
 	return new Flow\Collection\CollectionCache();
 };
 // Individual workflow instances
-$c['storage.workflow.class'] = \Flow\Model\Workflow::class;
-$c['storage.workflow.table'] = 'flow_workflow';
 $c['storage.workflow.primary_key'] = [ 'workflow_id' ];
 $c['storage.workflow.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
-		$c['storage.workflow.class'],
+		\Flow\Model\Workflow::class,
 		$c['storage.workflow.primary_key']
 	);
 };
 $c['storage.workflow.backend'] = function ( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
-		$c['storage.workflow.table'],
+		'flow_workflow',
 		$c['storage.workflow.primary_key']
 	);
 };
@@ -213,16 +199,13 @@ $c['storage.workflow.indexes'] = function ( $c ) {
 		$c['storage.workflow.indexes.title_lookup']
 	];
 };
-$c['storage.workflow.listeners.topiclist'] = function ( $c ) {
-	return new Flow\Data\Listener\WorkflowTopicListListener(
-		$c['storage.topic_list'],
-		$c['storage.topic_list.indexes.last_updated']
-	);
-};
 $c['storage.workflow.listeners'] = function ( $c ) {
 	return [
 		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
-		'storage.workflow.listeners.topiclist' => $c['storage.workflow.listeners.topiclist'],
+		'storage.workflow.listeners.topiclist' => new Flow\Data\Listener\WorkflowTopicListListener(
+			$c['storage.topic_list'],
+			$c['storage.topic_list.indexes.last_updated']
+		),
 	];
 };
 $c['storage.workflow'] = function ( $c ) {
@@ -357,7 +340,6 @@ $c['storage.header.listeners'] = function ( $c ) {
 		'listener.editcount' => $c['listener.editcount'],
 	];
 };
-$c['storage.header.primary_key'] = [ 'rev_id' ];
 $c['storage.header.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 };
@@ -374,7 +356,7 @@ $c['storage.header.indexes.primary'] = function ( $c ) {
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
 		'flow_header:v2:pk',
-		$c['storage.header.primary_key']
+		[ 'rev_id' ] // primary key
 	);
 };
 $c['storage.header.indexes.header_lookup'] = function ( $c ) {
@@ -411,11 +393,10 @@ $c['storage.header'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary.class'] = \Flow\Model\PostSummary::class;
 $c['storage.post_summary.primary_key'] = [ 'rev_id' ];
 $c['storage.post_summary.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
-		$c['storage.post_summary.class'],
+		\Flow\Model\PostSummary::class,
 		$c['storage.post_summary.primary_key']
 	);
 };
@@ -489,22 +470,19 @@ $c['storage.post_summary'] = function ( $c ) {
 	);
 };
 
-$c['storage.topic_list.class'] = \Flow\Model\TopicListEntry::class;
-$c['storage.topic_list.table'] = 'flow_topic_list';
-$c['storage.topic_list.primary_key'] = [ 'topic_list_id', 'topic_id' ];
 $c['storage.topic_list.mapper'] = function ( $c ) {
 	// Must be BasicObjectMapper, due to variance in when
 	// we have workflow_last_update_timestamp
 	return BasicObjectMapper::model(
-		$c['storage.topic_list.class']
+		\Flow\Model\TopicListEntry::class
 	);
 };
 $c['storage.topic_list.backend'] = function ( $c ) {
 	return new TopicListStorage(
 		// factory and table
 		$c['db.factory'],
-		$c['storage.topic_list.table'],
-		$c['storage.topic_list.primary_key']
+		'flow_topic_list',
+		[ 'topic_list_id', 'topic_id' ]
 	);
 };
 // Lookup from topic_id to its owning board id
@@ -559,11 +537,10 @@ $c['storage.topic_list'] = function ( $c ) {
 		$c['storage.topic_list.indexes']
 	);
 };
-$c['storage.post.class'] = \Flow\Model\PostRevision::class;
 $c['storage.post.primary_key'] = [ 'rev_id' ];
 $c['storage.post.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
-		$c['storage.post.class'],
+		\Flow\Model\PostRevision::class,
 		$c['storage.post.primary_key']
 	);
 };
@@ -808,18 +785,6 @@ $c['controller.notification'] = function ( $c ) {
 // must always happen before calling flow code.
 $c['controller.abusefilter'] = FlowHooks::getAbuseFilter();
 
-$c['controller.spamregex'] = function ( $c ) {
-	return new Flow\SpamFilter\SpamRegex;
-};
-
-$c['controller.spamblacklist'] = function ( $c ) {
-	return new Flow\SpamFilter\SpamBlacklist;
-};
-
-$c['controller.confirmedit'] = function ( $c ) {
-	return new Flow\SpamFilter\ConfirmEdit;
-};
-
 $c['controller.contentlength'] = function ( $c ) {
 	global $wgMaxArticleSize;
 
@@ -831,18 +796,14 @@ $c['controller.contentlength'] = function ( $c ) {
 	return new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
 };
 
-$c['controller.ratelimits'] = function ( $c ) {
-	return new Flow\SpamFilter\RateLimits;
-};
-
 $c['controller.spamfilter'] = function ( $c ) {
 	return new Flow\SpamFilter\Controller(
 		$c['controller.contentlength'],
-		$c['controller.spamregex'],
-		$c['controller.ratelimits'],
-		$c['controller.spamblacklist'],
+		new Flow\SpamFilter\SpamRegex,
+		new Flow\SpamFilter\RateLimits,
+		new Flow\SpamFilter\SpamBlacklist,
 		$c['controller.abusefilter'],
-		$c['controller.confirmedit']
+		new Flow\SpamFilter\ConfirmEdit
 	);
 };
 
@@ -1059,7 +1020,6 @@ $c['logger.moderation'] = function ( $c ) {
 	);
 };
 
-$c['storage.wiki_reference.class'] = \Flow\Model\WikiReference::class;
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = function ( $c ) {
 	return [
@@ -1074,7 +1034,7 @@ $c['storage.wiki_reference.primary_key'] = function ( $c ) {
 };
 $c['storage.wiki_reference.mapper'] = function ( $c ) {
 	return BasicObjectMapper::model(
-		$c['storage.wiki_reference.class']
+		\Flow\Model\WikiReference::class
 	);
 };
 $c['storage.wiki_reference.backend'] = function ( $c ) {
