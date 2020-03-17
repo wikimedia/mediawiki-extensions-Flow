@@ -2,7 +2,6 @@
 
 namespace Flow\Repository;
 
-use Flow\Container;
 use Flow\Model\UUID;
 
 class TreeCacheKey {
@@ -18,6 +17,7 @@ class TreeCacheKey {
 	 * @return string
 	 */
 	public static function build( $treeType, UUID $id ) {
-		return wfForeignMemcKey( 'flow', '', 'tree', $treeType, $id->getAlphadecimal(), Container::get( 'cache.version' ) );
+		global $wgFlowCacheVersion;
+		return wfForeignMemcKey( 'flow', '', 'tree', $treeType, $id->getAlphadecimal(), $wgFlowCacheVersion );
 	}
 }
