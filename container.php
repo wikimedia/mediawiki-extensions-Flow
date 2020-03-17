@@ -832,20 +832,20 @@ $c['query.checkuser'] = function ( $c ) {
 $c['formatter.irclineurl'] = function ( $c ) {
 	return new Flow\Formatter\IRCLineUrlFormatter(
 		$c['permissions'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 
 $c['formatter.checkuser'] = function ( $c ) {
 	return new Flow\Formatter\CheckUserFormatter(
 		$c['permissions'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['formatter.revisionview'] = function ( $c ) {
 	return new Flow\Formatter\RevisionViewFormatter(
 		$c['url_generator'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['formatter.revision.diff.view'] = function ( $c ) {
@@ -916,7 +916,7 @@ $c['query.postsummary.view'] = function ( $c ) {
 $c['formatter.changeslist'] = function ( $c ) {
 	return new Flow\Formatter\ChangesListFormatter(
 		$c['permissions'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 
@@ -932,13 +932,13 @@ $c['query.contributions'] = function ( $c ) {
 $c['formatter.contributions'] = function ( $c ) {
 	return new Flow\Formatter\ContributionsFormatter(
 		$c['permissions'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['formatter.contributions.feeditem'] = function ( $c ) {
 	return new Flow\Formatter\FeedItemFormatter(
 		$c['permissions'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['query.board.history'] = function ( $c ) {
@@ -949,25 +949,20 @@ $c['query.board.history'] = function ( $c ) {
 	);
 };
 
-// The RevisionFormatter holds internal state like
-// contentType of output and if it should include history
-// properties.  To prevent different code using the formatter
-// from causing problems return a new RevisionFormatter every
-// time it is requested.
-$c['formatter.revision'] = $c->factory( function ( $c ) {
+$c['formatter.revision.factory'] = function ( $c ) {
 	global $wgFlowMaxThreadingDepth;
 
-	return new Flow\Formatter\RevisionFormatter(
+	return new Flow\Formatter\RevisionFormatterFactory(
 		$c['permissions'],
 		$c['templating'],
 		$c['repository.username'],
 		$wgFlowMaxThreadingDepth
 	);
-} );
+};
 $c['formatter.topiclist'] = function ( $c ) {
 	return new Flow\Formatter\TopicListFormatter(
 		$c['url_generator'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['formatter.topiclist.toc'] = function ( $c ) {
@@ -978,7 +973,7 @@ $c['formatter.topiclist.toc'] = function ( $c ) {
 $c['formatter.topic'] = function ( $c ) {
 	return new Flow\Formatter\TopicFormatter(
 		$c['url_generator'],
-		$c['formatter.revision']
+		$c['formatter.revision.factory']->create()
 	);
 };
 $c['search.connection'] = function ( $c ) {

@@ -1108,6 +1108,7 @@
 		"Flow\\Formatter\\RecentChangesRow": "includes/Formatter/ChangesListQuery.php",
 		"Flow\\Formatter\\RevisionDiffViewFormatter": "includes/Formatter/RevisionDiffViewFormatter.php",
 		"Flow\\Formatter\\RevisionFormatter": "includes/Formatter/RevisionFormatter.php",
+		"Flow\\Formatter\\RevisionFormatterFactory": "includes/Formatter/RevisionFormatterFactory.php",
 		"Flow\\Formatter\\RevisionUndoViewFormatter": "includes/Formatter/RevisionUndoViewFormatter.php",
 		"Flow\\Formatter\\RevisionViewFormatter": "includes/Formatter/RevisionViewFormatter.php",
 		"Flow\\Formatter\\RevisionViewQuery": "includes/Formatter/RevisionViewQuery.php",

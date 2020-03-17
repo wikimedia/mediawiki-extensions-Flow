@@ -363,7 +363,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		$output = [];
-		$formatter = Container::get( 'formatter.revision' );
+		$formatter = Container::get( 'formatter.revision.factory' )->create();
 		$formatter->setContentFormat( $format );
 
 		if ( $this->formatterRow ) {

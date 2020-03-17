@@ -45,7 +45,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		/** @var BoardHistoryQuery $query */
 		$query = Container::get( 'query.board.history' );
 		/** @var RevisionFormatter $formatter */
-		$formatter = Container::get( 'formatter.revision' );
+		$formatter = Container::get( 'formatter.revision.factory' )->create();
 		$formatter->setIncludeHistoryProperties( true );
 
 		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffsetForUser(

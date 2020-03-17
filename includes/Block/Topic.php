@@ -741,7 +741,7 @@ class TopicBlock extends AbstractBlock {
 	 * @return RevisionFormatter
 	 */
 	protected function getRevisionFormatter( $format ) {
-		$serializer = Container::get( 'formatter.revision' );
+		$serializer = Container::get( 'formatter.revision.factory' )->create();
 		$serializer->setContentFormat( $format );
 
 		return $serializer;
