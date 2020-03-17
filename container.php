@@ -158,18 +158,17 @@ $c['collection.cache'] = function ( $c ) {
 	return new Flow\Collection\CollectionCache();
 };
 // Individual workflow instances
-$c['storage.workflow.primary_key'] = [ 'workflow_id' ];
 $c['storage.workflow.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\Workflow::class,
-		$c['storage.workflow.primary_key']
+		[ 'workflow_id' ]
 	);
 };
 $c['storage.workflow.backend'] = function ( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
 		'flow_workflow',
-		$c['storage.workflow.primary_key']
+		[ 'workflow_id' ]
 	);
 };
 $c['storage.workflow.indexes.primary'] = function ( $c ) {
@@ -178,7 +177,7 @@ $c['storage.workflow.indexes.primary'] = function ( $c ) {
 		$c['storage.workflow.backend'],
 		$c['storage.workflow.mapper'],
 		'flow_workflow:v2:pk',
-		$c['storage.workflow.primary_key']
+		[ 'workflow_id' ]
 	);
 };
 $c['storage.workflow.indexes.title_lookup'] = function ( $c ) {
@@ -395,11 +394,10 @@ $c['storage.header'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary.primary_key'] = [ 'rev_id' ];
 $c['storage.post_summary.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\PostSummary::class,
-		$c['storage.post_summary.primary_key']
+		[ 'rev_id' ]
 	);
 };
 $c['storage.post_summary.listeners.username'] = function ( $c ) {
@@ -435,7 +433,7 @@ $c['storage.post_summary.indexes.primary'] = function ( $c ) {
 		$c['storage.post_summary.backend'],
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:v2:pk',
-		$c['storage.post_summary.primary_key']
+		[ 'rev_id' ]
 	);
 };
 $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
@@ -539,11 +537,10 @@ $c['storage.topic_list'] = function ( $c ) {
 		$c['storage.topic_list.indexes']
 	);
 };
-$c['storage.post.primary_key'] = [ 'rev_id' ];
 $c['storage.post.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\PostRevision::class,
-		$c['storage.post.primary_key']
+		[ 'rev_id' ]
 	);
 };
 $c['storage.post.backend'] = function ( $c ) {
@@ -595,7 +592,7 @@ $c['storage.post.indexes.primary'] = function ( $c ) {
 		$c['storage.post.backend'],
 		$c['storage.post.mapper'],
 		'flow_revision:v4:pk',
-		$c['storage.post.primary_key']
+		[ 'rev_id' ]
 	);
 };
 // Each bucket holds a list of revisions in a single post
@@ -1022,18 +1019,6 @@ $c['logger.moderation'] = function ( $c ) {
 	);
 };
 
-$c['storage.wiki_reference.table'] = 'flow_wiki_ref';
-$c['storage.wiki_reference.primary_key'] = function ( $c ) {
-	return [
-		'ref_src_wiki',
-		'ref_src_namespace',
-		'ref_src_title',
-		'ref_src_object_id',
-		'ref_type',
-		'ref_target_namespace',
-		'ref_target_title'
-	];
-};
 $c['storage.wiki_reference.mapper'] = function ( $c ) {
 	return BasicObjectMapper::model(
 		\Flow\Model\WikiReference::class
@@ -1042,8 +1027,16 @@ $c['storage.wiki_reference.mapper'] = function ( $c ) {
 $c['storage.wiki_reference.backend'] = function ( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
-		$c['storage.wiki_reference.table'],
-		$c['storage.wiki_reference.primary_key']
+		'flow_wiki_ref',
+		[
+			'ref_src_wiki',
+			'ref_src_namespace',
+			'ref_src_title',
+			'ref_src_object_id',
+			'ref_type',
+			'ref_target_namespace',
+			'ref_target_title'
+		]
 	);
 };
 $c['storage.wiki_reference.indexes.source_lookup'] = function ( $c ) {
@@ -1095,30 +1088,25 @@ $c['storage.wiki_reference'] = function ( $c ) {
 		[]
 	);
 };
-$c['storage.url_reference.class'] = \Flow\Model\URLReference::class;
-$c['storage.url_reference.table'] = 'flow_ext_ref';
-$c['storage.url_reference.primary_key'] = function ( $c ) {
-	return [
-		'ref_src_wiki',
-		'ref_src_namespace',
-		'ref_src_title',
-		'ref_src_object_id',
-		'ref_type',
-		'ref_target',
-	];
-};
 
 $c['storage.url_reference.mapper'] = function ( $c ) {
 	return BasicObjectMapper::model(
-		$c['storage.url_reference.class']
+		\Flow\Model\URLReference::class
 	);
 };
 $c['storage.url_reference.backend'] = function ( $c ) {
 	return new BasicDbStorage(
 		// factory and table
 		$c['db.factory'],
-		$c['storage.url_reference.table'],
-		$c['storage.url_reference.primary_key']
+		'flow_ext_ref',
+		[
+			'ref_src_wiki',
+			'ref_src_namespace',
+			'ref_src_title',
+			'ref_src_object_id',
+			'ref_type',
+			'ref_target',
+		]
 	);
 };
 
