@@ -8,6 +8,7 @@ use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use FormSpecialPage;
+use MediaWiki\MediaWikiServices;
 use Status;
 use Title;
 
@@ -109,7 +110,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 				$logger,
 				$this->getUser(),
 				new EnableFlowWikitextConversionStrategy(
-					Container::get( 'parser' ),
+					MediaWikiServices::getInstance()->getParser(),
 					new NullImportSourceStore(),
 					$logger,
 					$this->getUser(),

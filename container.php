@@ -1234,10 +1234,6 @@ $c['board_mover'] = function ( $c ) {
 	);
 };
 
-$c['parser'] = function () {
-	return MediaWikiServices::getInstance()->getParser();
-};
-
 $c['default_logger'] = function () {
 	return MediaWiki\Logger\LoggerFactory::getInstance( 'Flow' );
 };
