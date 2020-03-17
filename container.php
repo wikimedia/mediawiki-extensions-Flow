@@ -96,12 +96,11 @@ $c['permissions'] = function ( $c ) {
 	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
 };
 
-$c['lightncandy.template_dir'] = __DIR__ . '/handlebars';
 $c['lightncandy'] = function ( $c ) {
 	global $wgFlowServerCompileTemplates;
 
 	return new Flow\TemplateHelper(
-		$c['lightncandy.template_dir'],
+		__DIR__ . '/handlebars',
 		$wgFlowServerCompileTemplates
 	);
 };

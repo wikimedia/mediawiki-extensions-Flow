@@ -112,7 +112,7 @@ class FlowPostMetaActionsTest extends \MediaWikiTestCase {
 		$filenames = $lc->getTemplateFilenames( $templateName );
 		$phpCode = $lc::compile(
 			file_get_contents( $filenames['template'] ),
-			Container::get( 'lightncandy.template_dir' )
+			__DIR__ . '/../../../../handlebars'
 		);
 		$renderer = LightnCandy::prepare( $phpCode );
 
