@@ -1,5 +1,19 @@
 <?php
 
+// This lets the index handle the initial query from HistoryPager,
+// even when the UI limit is 500.  An extra item is requested
+// so we know whether to link the pagination.
+if ( !defined( 'FLOW_HISTORY_INDEX_LIMIT' ) ) {
+	define( 'FLOW_HISTORY_INDEX_LIMIT', 501 );
+}
+
+// 501 * OVERFETCH_FACTOR from HistoryQuery + 1
+// Basically, this is so we can try to fetch enough extra to handle
+// exclude_from_history without retrying.
+if ( !defined( 'FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT' ) ) {
+	define( 'FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT', 682 );
+}
+
 $c = new Flow\Container;
 
 // MediaWiki
@@ -17,16 +31,6 @@ $c['memcache'] = function ( $c ) {
 		return new \HashBagOStuff();
 	}
 };
-
-// This lets the index handle the initial query from HistoryPager,
-// even when the UI limit is 500.  An extra item is requested
-// so we know whether to link the pagination.
-$c['history_index_limit'] = 501;
-
-// 501 * OVERFETCH_FACTOR from HistoryQuery + 1
-// Basically, this is so we can try to fetch enough extra to handle
-// exclude_from_history without retrying.
-$c['board_topic_history_post_index_limit'] = 682;
 
 // Flow config
 $c['flow_actions'] = function ( $c ) {
@@ -262,7 +266,7 @@ $c['storage.post_board_history.indexes.primary'] = function ( $c ) {
 		[ 'topic_list_id' ],
 		// index options
 		[
-			'limit' => $c['board_topic_history_post_index_limit'],
+			'limit' => FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC'
 		],
@@ -299,7 +303,7 @@ $c['storage.post_summary_board_history.indexes.primary'] = function ( $c ) {
 		[ 'topic_list_id' ],
 		// index options
 		[
-			'limit' => $c['history_index_limit'],
+			'limit' => FLOW_HISTORY_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC'
 		],
@@ -366,7 +370,7 @@ $c['storage.header.indexes.header_lookup'] = function ( $c ) {
 		'flow_header:workflow:v3',
 		[ 'rev_type_id' ],
 		[
-			'limit' => $c['history_index_limit'],
+			'limit' => FLOW_HISTORY_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.header.indexes.primary'],
@@ -443,7 +447,7 @@ $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
 		'flow_post_summary:workflow:v3',
 		[ 'rev_type_id' ],
 		[
-			'limit' => $c['history_index_limit'],
+			'limit' => FLOW_HISTORY_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.post_summary.indexes.primary'],
@@ -647,7 +651,7 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
 		'flow_revision:topic_history:post:v2',
 		[ 'topic_root_id' ],
 		[
-			'limit' => $c['board_topic_history_post_index_limit'],
+			'limit' => FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			// Why does topic history have a shallow compactor, but not board history?

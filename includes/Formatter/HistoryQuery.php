@@ -11,8 +11,8 @@ use Flow\Repository\TreeRepository;
 abstract class HistoryQuery extends AbstractQuery {
 	// This requests extra to take into account that we will filter some out,
 	// to try to reduce the number of rounds (preferably to 1).
-	// If you raise this, also increase history_index_limit and bump the
-	// key of the indexes using history_index_limit
+	// If you raise this, also increase FLOW_HISTORY_INDEX_LIMIT and bump the
+	// key of the indexes using FLOW_HISTORY_INDEX_LIMIT
 	// This magic number is based on new-post/new-topic being about 26% of post revisions.
 	// (queried from production), since that is the only thing currently excluded.
 	const POST_OVERFETCH_FACTOR = 1.36;
