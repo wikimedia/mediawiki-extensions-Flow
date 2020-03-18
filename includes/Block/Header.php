@@ -319,7 +319,7 @@ class HeaderBlock extends AbstractBlock {
 				return [];
 			}
 
-			$serializer = Container::get( 'formatter.revision' );
+			$serializer = Container::get( 'formatter.revision.factory' )->create();
 			$serializer->setContentFormat( $format );
 
 			// For flow-description-last-modified-at
