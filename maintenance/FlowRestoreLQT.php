@@ -3,6 +3,8 @@
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Import\ArchiveNameHelper;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionRecord;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -293,24 +295,25 @@ class FlowRestoreLQT extends Maintenance {
 		global $wgLang;
 
 		$page = WikiPage::newFromID( $pageId );
-		$revisionId = $page->getTitle()->getPreviousRevisionID( $nextRevisionId );
-		$revision = Revision::newFromPageId( $pageId, $revisionId );
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
+		$revision = $revisionLookup->getPreviousRevision( $nextRevision );
 
-		if ( $page->getContent()->equals( $revision->getContent() ) ) {
+		if ( $page->getContent()->equals( $revision->getContent( SlotRecord::MAIN ) ) ) {
 			// has correct content already (probably a rerun of this script)
 			return Status::newGood();
 		}
 
-		$content = $revision->getContent()->serialize();
+		$content = $revision->getContent( SlotRecord::MAIN )->serialize();
 		$content = $wgLang->truncateForVisual( $content, 150 );
 		$content = str_replace( "\n", '\n', $content );
-		$this->output( "Restoring revision {$revisionId} for LQT page {$pageId}: {$content}\n" );
+		$this->output( "Restoring revision {$revision->getId()} for LQT page {$pageId}: {$content}\n" );
 
 		if ( $this->dryRun ) {
 			return Status::newGood();
 		} else {
 			return $page->doEditContent(
-				$revision->getContent( RevisionRecord::RAW ),
+				$revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW ),
 				'/* Restore LQT topic content */',
 				EDIT_UPDATE | EDIT_MINOR | EDIT_FORCE_BOT,
 				$revision->getId(),
