@@ -157,7 +157,7 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Flow event.
-	 * @param String $eventName The event that occurred. Choice of:
+	 * @param string $eventName The event that occurred. Choice of:
 	 * * flow-post-reply
 	 * * flow-topic-renamed
 	 * * flow-post-edited
