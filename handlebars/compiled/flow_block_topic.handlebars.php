@@ -133,7 +133,7 @@
 ';},
 'flow_topic_titlebar' => function ($cx, $in, $sp) {$inary=is_array($in);return ''.$sp.'<div class="flow-topic-titlebar">
 '.$sp.''.LR::p($cx, 'flow_topic_titlebar_content', array(array($in),array()),0, '	').''.LR::p($cx, 'flow_topic_titlebar_summary', array(array((($inary && isset($in['summary'])) ? $in['summary'] : null)),array('isLocked'=>(($inary && isset($in['isLocked'])) ? $in['isLocked'] : null))),0, '	').''.((LR::ifvar($cx, (($inary && isset($in['watchable'])) ? $in['watchable'] : null), false)) ? ''.LR::p($cx, 'flow_topic_titlebar_watch', array(array($in),array()),0, '		').'' : '').'	<div class="flow-menu flow-menu-hoverable">
-'.$sp.'		<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-ellipsis"></span></a></div>
+'.$sp.'		<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-ellipsis" aria-label="'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-topic-action-menu-accessibility-name'),array()), 'encq', $in)).'"></span></a></div>
 '.$sp.'		<ul class="mw-ui-button-container flow-list">
 '.$sp.''.LR::p($cx, 'flow_moderation_actions_list', array(array($in),array('moderationType'=>'topic','moderationTarget'=>'title','moderationTemplate'=>'topic','moderationContainerClass'=>'flow-menu','moderationMwUiClass'=>'mw-ui-button','moderationIcons'=>true)),0, '			').'		</ul>
 '.$sp.'	</div>
