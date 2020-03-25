@@ -17,7 +17,8 @@
 			"Visem",
 			"Macofe",
 			"Stephanecbisson",
-			"Vlad5250"
+			"Vlad5250",
+			"Movses"
 		]
 	},
 	"enablestructureddiscussions": "Увімкнути Структуровані обговорення",
@@ -115,6 +116,7 @@
 	"flow-history-action-lock-topic": "позначити вирішеним",
 	"flow-history-action-unlock-topic": "відкрити повторно",
 	"flow-post-edited": "Допис {{GENDER:$1|відредагував|відредагувала}} $1 $2",
+	"flow-post-action-menu-accessibility-name": "Показувати меню дій для поста",
 	"flow-post-action-view": "Постійне посилання",
 	"flow-post-action-post-history": "Історія",
 	"flow-post-action-suppress-post": "Прибрати",
@@ -130,6 +132,7 @@
 	"flow-post-action-unhide-post": "Відобразити",
 	"flow-post-action-restore-post": "Відновити",
 	"flow-post-action-undo-moderation": "Скасувати",
+	"flow-topic-action-menu-accessibility-name": "Показувати меню дій для теми",
 	"flow-topic-action-view": "Постійне посилання",
 	"flow-topic-action-watchlist": "Список спостереження",
 	"flow-topic-action-edit-title": "Змінити заголовок",
