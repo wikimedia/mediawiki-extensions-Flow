@@ -35,16 +35,6 @@ class TalkpageManagerTest extends MediaWikiTestCase {
 	}
 
 	public function testCheckIfCreationIsPossible() {
-		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
-
-		$useDbFalseStatus = $this->talkpageManager->checkIfCreationIsPossible(
-			Title::newFromText( 'Earth' ), true );
-		$this->assertTrue( $useDbFalseStatus->hasMessage( 'flow-error-allowcreation-no-usedb' ),
-			'Error for wrong $wgContentHandlerUseDB setting' );
-		$this->assertFalse( $useDbFalseStatus->isOK(), 'Error for wrong $wgContentHandlerUseDB setting' );
-
-		$this->setMwGlobals( 'wgContentHandlerUseDB', true );
-
 		$existentTitle = Title::newFromText( 'Exists' );
 		$status = WikiPage::factory( $existentTitle )
 			->doEditContent(

@@ -146,14 +146,6 @@ class TalkpageManager implements OccupationController {
 	 * @inheritDoc
 	 */
 	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true, $forWrite = true ) {
-		global $wgContentHandlerUseDB;
-
-		// Arbitrary pages can only be enabled when content handler
-		// can store that content model in the database.
-		if ( !$wgContentHandlerUseDB ) {
-			return Status::newFatal( 'flow-error-allowcreation-no-usedb' );
-		}
-
 		// Only allow converting a non-existent page to Flow
 		if ( $mustNotExist ) {
 			if ( $title->exists( $forWrite ? Title::GAID_FOR_UPDATE : 0 ) ) {

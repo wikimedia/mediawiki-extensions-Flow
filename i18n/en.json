@@ -152,7 +152,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|You}} will get a notification when a new topic is created on this board.",
 	"flow-topic-action-watchlist-add": "Subscribe to this topic",
 	"flow-topic-action-watchlist-remove": "Unsubscribe",
-	"flow-error-allowcreation-no-usedb": "Enabling Structured Discussions on a specific page requires <var>$wgContentHandlerUseDB</var> to be <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Page already exists at destination, so a Structured Discussions board can not be moved there.",
 	"flow-error-allowcreation-flow-create-board": "User does not have the \"{{int:right-flow-create-board}}\" permission",
 	"flow-error-can-not-edit-logged-out": "You currently are not able to participate. You can try logging in.",
