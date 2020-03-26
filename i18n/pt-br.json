@@ -160,7 +160,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Você}} receberá uma notificação quando um novo tópico for criado nesta discussão.",
 	"flow-topic-action-watchlist-add": "Inscrever-se neste tópico",
 	"flow-topic-action-watchlist-remove": "Cancelar inscrição",
-	"flow-error-allowcreation-no-usedb": "Ativar as conversas estruturadas numa página específica requer que <var>$wgContentHandlerUseDB</var> seja <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "A página já existe no destino, por isso não pode ser movido para lá um espaço de conversas estruturadas.",
 	"flow-error-allowcreation-flow-create-board": "O usuário não tem a permissão de \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Você ainda não pode participar. Experimente autenticar-se.",

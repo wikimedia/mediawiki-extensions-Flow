@@ -170,7 +170,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Recibirás}} una notificación cuando se cree un tema nuevo en este panel.",
 	"flow-topic-action-watchlist-add": "Suscribirse a este tema",
 	"flow-topic-action-watchlist-remove": "Desuscribirse",
-	"flow-error-allowcreation-no-usedb": "Habilitar Discusiones Estructuradas en una página específica requiere que <var>$wgContentHandlerUseDB</var> sea <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "La página ya existía en el sitio de destino; por ello, no se puede trasladar allí un panel de Discusiones estructuradas.",
 	"flow-error-allowcreation-flow-create-board": "El usuario no tiene el permiso de \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Actualmente no puedes participar. Intenta iniciar sesión.",

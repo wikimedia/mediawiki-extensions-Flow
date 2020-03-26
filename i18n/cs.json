@@ -148,7 +148,6 @@
 	"flow-board-notification-subscribe-description": "Při vytvoříte nového tématu na této stránce {{GENDER:$1|obdržíte}} notifikaci.",
 	"flow-topic-action-watchlist-add": "Odebírat toto téma",
 	"flow-topic-action-watchlist-remove": "Zrušit odběr",
-	"flow-error-allowcreation-no-usedb": "Povolení Strukturovaných diskusí na konkrétní stránce vyžaduje, aby <var>$wgContentHandlerUseDB</var> byl nastaven na <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Cílová stránka již existuje, tato Strukturovaná diskuse tam tedy nemůže být přesunuta.",
 	"flow-error-allowcreation-flow-create-board": "Uživatel nemá právo „{{int:right-flow-create-board}}”",
 	"flow-error-can-not-edit-logged-out": "Momentálně se nemůžete účastnit diskuse. Můžete se zkusit přihlásit.",

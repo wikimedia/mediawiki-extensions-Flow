@@ -147,7 +147,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Recibirá}} unha notificación cando se cree un tema novo neste panel de conversa.",
 	"flow-topic-action-watchlist-add": "Subscribirse a este tema",
 	"flow-topic-action-watchlist-remove": "Cancelar a subscrición",
-	"flow-error-allowcreation-no-usedb": "Habilitar conversas estruturadas nunha páxina específica require que <var>$wgContentHandlerUseDB</var> sexa <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Xa existe a páxina no destino, polo que o taboleiro de conversas estruturadas non pode moverse alí.",
 	"flow-error-allowcreation-flow-create-board": "O usuario non ten o permiso de \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Non pode participar actualmente. Pode intentalo conectándose.",

@@ -143,7 +143,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Θα}} λάβετε μια ειδοποίηση όταν υπάρχει ένα νέο θέμα που έχει δημιουργηθεί σε αυτόν τον πίνακα.",
 	"flow-topic-action-watchlist-add": "Εγγραφή σε αυτό το θέμα",
 	"flow-topic-action-watchlist-remove": "Κατάργηση εγγραφής",
-	"flow-error-allowcreation-no-usedb": "Η ενεργοποίηση Δομημένων Συζητήσεων σε μια συγκεκριμένη σελίδα απαιτεί το <var>$wgContentHandlerUseDB</var> να είναι <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Υπάρχει ήδη σελίδα στον προορισμό, οπότε ένας πίνακας Δομημένων Συζητήσεων δεν μπορεί να μεταφερθεί εκεί.",
 	"flow-error-allowcreation-flow-create-board": "Ο χρήστης δεν έχει την άδεια «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Επί του παρόντος δεν είστε  σε θέση να συμμετάσχετε. Μπορείτε να δοκιμάστε να συνδεθείτε.",

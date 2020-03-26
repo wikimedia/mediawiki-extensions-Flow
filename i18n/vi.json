@@ -148,7 +148,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1}}Bạn sẽ được thông báo khi một đề tài mới được tạo ra trên bảng tin này.",
 	"flow-topic-action-watchlist-add": "Theo dõi đề tài này",
 	"flow-topic-action-watchlist-remove": "Ngừng theo dõi",
-	"flow-error-allowcreation-no-usedb": "Kích hoạt thảo luận có cấu trúc trên một trang cụ thể cần <var>$wgContentHandlerUseDB</var> phải là <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Không thể di chuyển bảng tin Thảo luận Cấu trúc vì trang đích đã tồn tại.",
 	"flow-error-allowcreation-flow-create-board": "Người dùng không có quyền “{{int:right-flow-create-board}}”",
 	"flow-error-can-not-edit-logged-out": "Hiện tại bạn không thể tham gia. Hãy thử đăng nhập.",

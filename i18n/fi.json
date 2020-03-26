@@ -145,7 +145,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Saat}} ilmoituksen kun uusi aihe lisätään tänne.",
 	"flow-topic-action-watchlist-add": "Tilaa tämä aihe",
 	"flow-topic-action-watchlist-remove": "Peruuta tilaus",
-	"flow-error-allowcreation-no-usedb": "Jäsenettyjen keskustelujen käyttöönotto tietyllä sivulla edellyttää <var>$wgContentHandlerUseDB</var> olevan <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Sivu on jo olemassa kohteessa, joten Jäsennetyt keskustelut -palstaa ei voi siirtää sinne.",
 	"flow-error-allowcreation-flow-create-board": "Käyttäjällä ei ole lupaa ”{{int:-flow-create-board}}”",
 	"flow-error-http": "Virhe muodostettaessa yhteyttä palvelimeen.",

@@ -135,7 +135,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Rebreu}} una notificació quan es creï un nou tema en aquest tauler.",
 	"flow-topic-action-watchlist-add": "Subscripció a aquest tema",
 	"flow-topic-action-watchlist-remove": "Cancel·la la subscripció",
-	"flow-error-allowcreation-no-usedb": "Per activar Flow en una pàgina determinada es necessita que <var>$wgContentHandlerUseDB</var> sigui <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "La pàgina destinació ja existeix, per tant no s'hi pot moure un tauler Flow.",
 	"flow-error-allowcreation-flow-create-board": "L'usuari no té el permís «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Ara no podeu participar-hi. Proveu d'iniciar una sessió.",

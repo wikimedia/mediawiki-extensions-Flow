@@ -162,7 +162,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|U}} krijgt een melding als er een nieuw onderwerp wordt gemaakt op dit bord.",
 	"flow-topic-action-watchlist-add": "Op dit onderwerp abonneren",
 	"flow-topic-action-watchlist-remove": "Uitschrijven",
-	"flow-error-allowcreation-no-usedb": "Om Gestructureerde Discussies in te schakelen op een specifieke pagina moet <var>$wgContentHandlerUseDB</var> <code>true</code> zijn.",
 	"flow-error-allowcreation-already-exists": "Er bestaat al een pagina op het doel, dus kan een Gestructureerde Discussiebord hier niet naar toe verplaatst worden.",
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
 	"flow-error-can-not-edit-logged-out": "U momenteel niet in staat om deel te nemen. U kunt proberen in te loggen.",

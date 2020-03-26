@@ -137,7 +137,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Sanak}} ka mandapek pambaritauan sangkek topik baru dibuek di bagan ko.",
 	"flow-topic-action-watchlist-add": "Balangganan topik iko",
 	"flow-topic-action-watchlist-remove": "Batal balangganan",
-	"flow-error-allowcreation-no-usedb": "Mangaktipan Rundiang Bajanjang pado laman tatantu paralu <var>$wgContentHandlerUseDB</var> ditetapkan ka <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Laman alah tasadio di tujuan, mako bagan Rundiang Bajanjang indak dapek dipindah ka sinan.",
 	"flow-error-allowcreation-flow-create-board": "Pangguno indak ado izin \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Sanak pado maso ko indak dapek ikuik sato. Sanak dapek mancubo masuak log.",

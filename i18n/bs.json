@@ -139,7 +139,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Primat}} ćete objavještenje kad se nova tema doda na ovu stranicu za raspravu.",
 	"flow-topic-action-watchlist-add": "Prati ovu temu",
 	"flow-topic-action-watchlist-remove": "Prestani pratiti",
-	"flow-error-allowcreation-no-usedb": "Uključivanje Flowa na specifičnoj stranici zahtijeva da <var>$wgContentHandlerUseDB</var> bude vrijednosti <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Stranica već postoji na odredištu, tako da nije moguće premjestiti Flow na to mjesto.",
 	"flow-error-allowcreation-flow-create-board": "Korisnik nema \"{{int:right-flow-create-board}}\" dozvolu",
 	"flow-error-can-not-edit-logged-out": "Trenutno ne možete učestvovati. Prijavite se.",

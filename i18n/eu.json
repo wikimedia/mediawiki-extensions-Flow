@@ -144,7 +144,6 @@
 	"flow-board-notification-subscribe-description": "Jakinarazpena jasoko {{GENDER:$1|duzu}} eztabaida honetan gai berriren bat sortzen bada.",
 	"flow-topic-action-watchlist-add": "Gai honetara harpidetu",
 	"flow-topic-action-watchlist-remove": "Harpidetza kendu",
-	"flow-error-allowcreation-no-usedb": "Orri zehatz batean Egituratutako Eztabaidak gaitzeko, beharrezkoa da <var>$wgContentHandlerUseDB</var>  <code>true</code> izatea.",
 	"flow-error-allowcreation-already-exists": "Orri hau dagoeneko badago helburuan, beraz, ezin da Eztabaida Egituratua bertara mugitu.",
 	"flow-error-allowcreation-flow-create-board": "Erabiltzaileak ez dauka \"{{int:right-flow-create-board}}\" baimenik",
 	"flow-error-can-not-edit-logged-out": "Oraingoz ezin duzu parte hartu. Saioa hasten saia zaitezke.",

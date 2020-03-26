@@ -156,7 +156,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Siz}} bu mesaj panosunda yeni bir konu oluşturulduğunda bir bildirim alacaksınız.",
 	"flow-topic-action-watchlist-add": "Bu konuya abone ol",
 	"flow-topic-action-watchlist-remove": "Abonelikten çık",
-	"flow-error-allowcreation-no-usedb": "Belirli bir sayfada Yapısal Tartışmaları etkinleştirmek için <var>$wgContentHandlerUseDB</var> öğesinin <code>true</code> olması gerekir.",
 	"flow-error-allowcreation-already-exists": "Sayfa hedefte zaten var, bu nedenle bir Yapılandırılmış Tartışmalar panosu oraya taşınamaz.",
 	"flow-error-allowcreation-flow-create-board": "Kullanıcının \"{{int:right-flow-create-board}}\" izni yok",
 	"flow-error-can-not-edit-logged-out": "Şu anda katılamıyorsunuz. Giriş yapmayı deneyebilirsiniz.",

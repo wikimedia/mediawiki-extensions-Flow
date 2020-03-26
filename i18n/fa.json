@@ -162,7 +162,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|شما}} به طور خودکار هنگامی که مبحثی جدید در این تالار ایجاد شود آگاه‌سازی دریافت خواهید کرد.",
 	"flow-topic-action-watchlist-add": "اشتراک در این مبحث",
 	"flow-topic-action-watchlist-remove": "لغو اشتراک",
-	"flow-error-allowcreation-no-usedb": "فعال کردن بحث‌های ساختارمند در یک صفحهٔ خاص نیاز دارد که <var>$wgContentHandlerUseDB</var> برابر <code>true</code> باشد.",
 	"flow-error-allowcreation-already-exists": "صفحه در حال حاضر در مقصد وجود دارد، لذا یک صفحهٔ بحث ساختارمند را نمی‌توان به آنجا منتقل کرد.",
 	"flow-error-allowcreation-flow-create-board": "کاربر دسترسی «{{int:right-flow-create-board}}» ندارد",
 	"flow-error-can-not-edit-logged-out": "امکان مشارکت برای شما وجود ندارد. باید به سامانه وارد شوید.",

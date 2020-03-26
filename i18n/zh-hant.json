@@ -157,7 +157,6 @@
 	"flow-board-notification-subscribe-description": "當此討論板建立新話題時{{GENDER:$1|您}}將會收到通知。",
 	"flow-topic-action-watchlist-add": "訂閱這個主題",
 	"flow-topic-action-watchlist-remove": "取消訂閱",
-	"flow-error-allowcreation-no-usedb": "於特定頁面啟用結構式討論需要 <var>$wgContentHandlerUseDB</var> 設為 <code>true</code>。",
 	"flow-error-allowcreation-already-exists": "頁面已存在於目標中，因此結構式討論版塊不能移動至此。",
 	"flow-error-allowcreation-flow-create-board": "使用者沒有 \"{{int:right-flow-create-board}}\" 權限",
 	"flow-error-can-not-edit-logged-out": "您當前無法參與討論。您可以嘗試登入。",

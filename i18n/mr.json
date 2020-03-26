@@ -117,7 +117,6 @@
 	"flow-board-notification-subscribe-title": "या चर्चाफलकाचे {{GENDER:$1|आपण}} वर्गणीदार झाला आहात!",
 	"flow-board-notification-subscribe-description": "या फलकावर नविन विषय तयार झाला तर त्याची {{GENDER:$1|आपणास}} अधिसूचना मिळेल.",
 	"flow-topic-action-watchlist-add": "या विषयाचे वर्गणीद्वार व्हा",
-	"flow-error-allowcreation-no-usedb": "allowCreation ला <var>$wgContentHandlerUseDB</var> to be <code>खरे</code> हवे.",
 	"flow-error-allowcreation-already-exists": "पान पूर्वीच अस्तित्वात आहे परंतु ते (अस्तित्वात) नसणे हवे आहे",
 	"flow-error-allowcreation-flow-create-board": "सदस्यास \"{{int:right-flow-create-board}}\" परवानगी नाही",
 	"flow-error-http": "विदागारास संपर्क करायच्या प्रयत्नात त्रुटी उद्भवली.",

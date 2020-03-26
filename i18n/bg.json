@@ -86,7 +86,6 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Вие се}} абонирахте за това дискусионно табло!",
 	"flow-topic-action-watchlist-add": "Абониране за темата",
 	"flow-topic-action-watchlist-remove": "Отписване",
-	"flow-error-allowcreation-no-usedb": "Включването на Структурираните дискусии на отделните страници изисква $<var>wgContentHandlerUseDB</var> да бъде <code>true</code>.",
 	"flow-error-allowcreation-flow-create-board": "Потребителят няма правото „{{int:right-flow-create-board}}“",
 	"flow-error-can-not-edit-logged-out": "В момента не можете да участвате. Опитате да влезете.",
 	"flow-error-can-not-edit-logged-in": "В момента не можете да участвате, тъй като нямате необходимите права.",

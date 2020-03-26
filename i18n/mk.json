@@ -146,7 +146,6 @@
 	"flow-board-notification-subscribe-description": "Ќе {{GENDER:$1|бидете}} автоматски известувани за сите нови теми создадени на разговорницава.",
 	"flow-topic-action-watchlist-add": "Претплати се на темава",
 	"flow-topic-action-watchlist-remove": "Отпиши ме",
-	"flow-error-allowcreation-no-usedb": "Вклчувањето на Структурираните дискусии на поединечните страници бара <var>$wgContentHandlerUseDB</var> да биде <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Страницата веќе постои на тоа одредиште, па затоа не може таму да се премести разговорница на Структурираните дискусии.",
 	"flow-error-allowcreation-flow-create-board": "Корисникот ја нема дозволата „{{int:right-flow-create-board}}“",
 	"flow-error-can-not-edit-logged-out": "Сега не можете да учествувате. Најавете се.",

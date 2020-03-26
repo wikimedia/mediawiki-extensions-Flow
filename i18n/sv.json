@@ -153,7 +153,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Du}} kommer att få ett meddelande när ett nytt ämne skapas på detta forum.",
 	"flow-topic-action-watchlist-add": "Bevaka det här ämnet",
 	"flow-topic-action-watchlist-remove": "Avbevaka",
-	"flow-error-allowcreation-no-usedb": "<var>$wgContentHandlerUseDB</var> måste vara <code>true</code> för att aktivera strukturerade diskussioner på vissa ställen.",
 	"flow-error-allowcreation-already-exists": "Målsidan finns redan, så ett strukturerat diskussionsforum kan inte flyttas dit.",
 	"flow-error-allowcreation-flow-create-board": "Användaren har inte behörigheten \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Du kan för tillfället inte delta. Du kan prova att logga in.",

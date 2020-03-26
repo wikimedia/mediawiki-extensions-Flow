@@ -174,7 +174,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Вы}} получите уведомление, когда на этой доске появится новая тема.",
 	"flow-topic-action-watchlist-add": "Подписаться на эту тему",
 	"flow-topic-action-watchlist-remove": "Отписаться",
-	"flow-error-allowcreation-no-usedb": "Включение Структурированных обсуждений на конкретной странице требует, чтобы значение параметра <var>$wgContentHandlerUseDB</var> было <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Целевая страница уже существует, поэтому доска «Структурированных обсуждений» не может перемещена.",
 	"flow-error-allowcreation-flow-create-board": "У участника нет права «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Вы не можете участвовать в обсуждении. Попробуйте выполнить вход на вики.",

@@ -147,7 +147,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Anda}} akan mendapat pemberitahuan saat suatu topik baru dibuat di forum ini.",
 	"flow-topic-action-watchlist-add": "Berlangganan topik ini",
 	"flow-topic-action-watchlist-remove": "Batal berlangganan",
-	"flow-error-allowcreation-no-usedb": "Mengaktifkan Pembicaraan Terstruktur pada halaman tertentu memerlukan <var>$wgContentHandlerUseDB</var> ditetapkan ke <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Halaman telah tersedia di tujuan, maka forum Pembicaraan Terstruktur tidak dapat dipindah ke sana.",
 	"flow-error-allowcreation-flow-create-board": "Pengguna tidak memiliki izin \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Anda saat ini tidak dapat berpartisipasi. Anda dapat mencoba masuk log.",

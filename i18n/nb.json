@@ -148,7 +148,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Du}} vil bli varslet når en ny sak startes på denne tavlen.",
 	"flow-topic-action-watchlist-add": "Abonner på denne saken.",
 	"flow-topic-action-watchlist-remove": "Avslutt abonnement",
-	"flow-error-allowcreation-no-usedb": "Å slå på strukturert diskusjon på en spesifikk side forutsetter at <var>$wgContentHandlerUseDB</var> er satt til <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Siden finnes allerede på destinasjonen, så et strukturert diskusjonstavle kan ikke flyttes dit.",
 	"flow-error-allowcreation-flow-create-board": "Brukeren har ikke rettigheten «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Du er for tiden ikke i stand til å delta. Du kan prøve å logge inn.",

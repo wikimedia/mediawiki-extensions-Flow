@@ -188,7 +188,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Vous}} recevrez une notification quand un nouveau sujet sera créé sur ce flux de discussion.",
 	"flow-topic-action-watchlist-add": "S’abonner à ce sujet",
 	"flow-topic-action-watchlist-remove": "Se désabonner",
-	"flow-error-allowcreation-no-usedb": "Activer les discussions structurées sur une page spécifique nécessite que <var>$wgContentHandlerUseDB</var> vaille <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "La page existe déjà sur la cible, donc un tableau de discussions structurées ne peut pas y être déplacé.",
 	"flow-error-allowcreation-flow-create-board": "L’utilisateur n’a pas le droit « {{int:right-flow-create-board}} »",
 	"flow-error-can-not-edit-logged-out": "Vous ne pouvez pas participer actuellement. Vous pouvez essayer en vous connectant.",

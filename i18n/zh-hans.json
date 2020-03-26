@@ -169,7 +169,6 @@
 	"flow-board-notification-subscribe-description": "当此版发起新话题时，{{GENDER:$1|您}}将收到通知。",
 	"flow-topic-action-watchlist-add": "订阅这个主题",
 	"flow-topic-action-watchlist-remove": "取消订阅",
-	"flow-error-allowcreation-no-usedb": "在特定页面启用结构式讨论需要<var>$wgContentHandlerUseDB</var>设置为<code>true</code>。",
 	"flow-error-allowcreation-already-exists": "页面已存在于目标中，因此结构式讨论版块不能移动至此。",
 	"flow-error-allowcreation-flow-create-board": "用户没有“{{int:right-flow-create-board}}”权限",
 	"flow-error-can-not-edit-logged-out": "您当前无法参与讨论。您可以尝试登录。",

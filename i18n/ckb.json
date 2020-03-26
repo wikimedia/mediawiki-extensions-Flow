@@ -105,7 +105,6 @@
 	"flow-board-notification-subscribe-description": "کاتێک لەسەر ئەم پەڕەیە وتووێژ دەستپێ کرا، ئاگادار دەکرێیتەوە.",
 	"flow-topic-action-watchlist-add": "پەیوەستبوون بەو بەشە",
 	"flow-topic-action-watchlist-remove": "پەیوەستنەبوون",
-	"flow-error-allowcreation-no-usedb": "چالاککردنی لێشاو لەسەر پەڕەیەکی دیاریکراو پێویستی بە <var>$wgContentHandlerUseDB</var> کە <code>true</code> بێت.",
 	"flow-error-allowcreation-already-exists": "پەڕەیەک لە شوێنی مەبەست ھەیە، بۆیە ناتواندرێت لێشاو بگوازرێتەوە سەری.",
 	"flow-error-allowcreation-flow-create-board": "بەکارھێنەر مافی «{{int:right-flow-create-board}}»ی نییە",
 	"flow-error-can-not-edit-logged-out": "لە ئێستادا ناتوانیت بەشداری بکەیت، دەتوانی هەوڵی چوونەژوورەوە بدەیت.",

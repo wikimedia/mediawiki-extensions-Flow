@@ -156,7 +156,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Ви}} отримаєте сповіщення при створенні нової теми на цій стіні.",
 	"flow-topic-action-watchlist-add": "Підписатися на цю тему",
 	"flow-topic-action-watchlist-remove": "Відписатися",
-	"flow-error-allowcreation-no-usedb": "Увімкнення структурованих обговорень на конкретній сторінці вимагає <var>$wgContentHandlerUseDB</var> зі значенням <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Сторінка вже існує у вказаному місці, тож стіну структурованих обговорень не можна перемістити туди.",
 	"flow-error-allowcreation-flow-create-board": "Користувач не має права «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Наразі Ви не можете брати участь. Ви можете спробувати ввійти до системи.",

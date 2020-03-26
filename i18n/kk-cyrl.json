@@ -117,7 +117,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Сіз}} бұл тақтада жаңа тақырып басталғанда ескертпе алатын боласыз.",
 	"flow-topic-action-watchlist-add": "Бұл тақырыпқа жазылу",
 	"flow-topic-action-watchlist-remove": "Жазылудан бас тарту",
-	"flow-error-allowcreation-no-usedb": "Арнайы бетте Flow жұмыс легін іске қосу  <var>$wgContentHandlerUseDB</var> <code>true</code> болуын қажет етеді.",
 	"flow-error-allowcreation-already-exists": "Тағайындалған орында бет бұрыннан бар, сондықтан мұнда Flow тақтасын жылжыту мүмкін емес.",
 	"flow-error-allowcreation-flow-create-board": "Қатысушыда «{{int:right-flow-create-board}}» рұқсаты жоқ",
 	"flow-error-http": "Серверге байланысу барысында қате кездесті.",

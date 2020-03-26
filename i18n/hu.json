@@ -144,7 +144,6 @@
 	"flow-board-notification-subscribe-description": "Értesítést {{GENDER:$1|fogsz}} kapni, ha egy új témát nyitnak ebben a megbeszélésben.",
 	"flow-topic-action-watchlist-add": "Feliratkozás erre a témára",
 	"flow-topic-action-watchlist-remove": "Leiratkozás",
-	"flow-error-allowcreation-no-usedb": "A Strukturált beszélgetés bekapcsolásához egy adott lapon a <var>$wgContentHandlerUseDB</var> beállításnak igaznak (<code>true</code>) kell lennie.",
 	"flow-error-allowcreation-already-exists": "Már létezik lap a célhelyen, így nem lehet odamozgatni egy strukturált beszélgetőoldalt.",
 	"flow-error-allowcreation-flow-create-board": "A felhasználó nem rendelkezik „{{int:right-flow-create-board}}” jogosultsággal",
 	"flow-error-can-not-edit-logged-out": "Jelenleg nem tudsz közreműködni. Megpróbálhatsz bejelentkezni.",

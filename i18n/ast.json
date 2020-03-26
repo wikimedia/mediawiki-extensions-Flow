@@ -142,7 +142,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Recibirás}} un avisu cuando se cree un tema nuevu nesti tableru.",
 	"flow-topic-action-watchlist-add": "Suscribise a esti tema",
 	"flow-topic-action-watchlist-remove": "Date de baxa",
-	"flow-error-allowcreation-no-usedb": "Activar Alderiques estructuraos nuna determinada páxina rique que <var>$wgContentHandlerUseDB</var> sía <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "La páxina yá esiste nel destín, de mou que nun puede movese allí un tableru d'Alderiques estructuraos.",
 	"flow-error-allowcreation-flow-create-board": "L'usuariu nun tien el permisu de «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Anguaño nun puedes participar. Tenta aniciar sesión.",

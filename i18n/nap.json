@@ -133,7 +133,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Te fosse mannata}} na notifica quanno n'argomento sarrà criato ncopp'a sta bacheca.",
 	"flow-topic-action-watchlist-add": "Fatte 'a suscrizziona a st'argomento",
 	"flow-topic-action-watchlist-remove": "Cancella l'iscriziona",
-	"flow-error-allowcreation-no-usedb": "L'attivaziona d' 'a funziona Flow ncopp'a na paggena specifica addimannasse ca <var>$wgContentHandlerUseDB</var> fosse overo:  <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "'A paggena esiste già 'n destinazione, picciò na bacheca Flow nun se pò mòvere lànn.",
 	"flow-error-allowcreation-flow-create-board": "L'utente nun téne 'autorizzazione \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "A 'o mumento nun putite partercipà. Pruvate a trasì.",

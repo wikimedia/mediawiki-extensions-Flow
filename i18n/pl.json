@@ -164,7 +164,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Otrzymasz}} powiadomienie, kiedy pojawi się nowy wątek na tej stronie.",
 	"flow-topic-action-watchlist-add": "Obserwuj ten wątek",
 	"flow-topic-action-watchlist-remove": "Usuń z listy obserwowanych",
-	"flow-error-allowcreation-no-usedb": "Do włączania Dyskusji Strukturalnych na określonych stronach wymagane jest, żeby zmienna <var>$wgContentHandlerUseDB</var> miała wartość <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Istnieje już strona w miejscu docelowym, więc forum dyskusyjne Flow nie może zostać tam przeniesione.",
 	"flow-error-allowcreation-flow-create-board": "Użytkownik nie posiada uprawnienia „{{int:right-flow-create-board}}”",
 	"flow-error-can-not-edit-logged-out": "Nie masz możliwości uczestnictwa. Możesz spróbować się zalogować.",

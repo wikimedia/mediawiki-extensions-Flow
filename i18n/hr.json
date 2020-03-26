@@ -138,7 +138,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Primat}} ćete obavijest kad se nova tema doda na ovu stranicu za raspravu.",
 	"flow-topic-action-watchlist-add": "Prati ovu temu",
 	"flow-topic-action-watchlist-remove": "Otkaži pretplatu",
-	"flow-error-allowcreation-no-usedb": "Omogućavanje strukturirane rasprave na specifičnoj stranici zahtijeva vrijednost <var>$wgContentHandlerUseDB</var> označenu kao <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "Stranica već postoji na odredištu, stoga se stranica Ustrojnih raspravica ne može premjestiti na to mjesto.",
 	"flow-error-allowcreation-flow-create-board": "Suradnik nema \"{{int:right-flow-create-board}}\" dopuštenje",
 	"flow-error-can-not-edit-logged-out": "Niste u mogućnosti sudjelovati. Probajte se prijaviti.",

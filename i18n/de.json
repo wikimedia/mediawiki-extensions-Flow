@@ -150,7 +150,6 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Du}} erhältst eine Benachrichtigung, wenn ein neues Thema auf diesem Board erstellt wird.",
 	"flow-topic-action-watchlist-add": "Dieses Thema abonnieren",
 	"flow-topic-action-watchlist-remove": "Nicht mehr abonnieren",
-	"flow-error-allowcreation-no-usedb": "Das Aktivieren von strukturierten Diskussionen auf einer speziellen Seite erfordert, dass <var>$wgContentHandlerUseDB</var> auf <code>true</code> gesetzt wird.",
 	"flow-error-allowcreation-already-exists": "Es ist bereits eine Seite am Ziel vorhanden, sodass ein Strukturierte-Diskussionen-Board nicht dorthin verschoben werden kann.",
 	"flow-error-allowcreation-flow-create-board": "Der Benutzer hat nicht das Recht „{{int:right-flow-create-board}}“",
 	"flow-error-can-not-edit-logged-out": "Du kannst derzeit nicht an der Diskussion teilnehmen. Du kannst versuchen, dich anzumelden.",

@@ -151,7 +151,6 @@
 	"flow-board-notification-subscribe-description": "سوف {{GENDER:$1|يصلك}} إشعار في حال إضافة موضوع جديد في هذه الصفحة.",
 	"flow-topic-action-watchlist-add": "تابع هذا الموضوع",
 	"flow-topic-action-watchlist-remove": "ألغِ الاشتراك",
-	"flow-error-allowcreation-no-usedb": "لتمكين النقاشات الهيكلية على صفحة معينة يجب أن تكون قيمة <var>$wgContentHandlerUseDB</var> تساوي <code>true</code>.",
 	"flow-error-allowcreation-already-exists": "الصفحة موجودة فعلا عند الهدف، لذا فلا يمكن نقل لوحة نقاشات هيكلية هناك.",
 	"flow-error-allowcreation-flow-create-board": "المستخدم لا يمتلك صلاحية \"{{int:right-flow-create-board|إنشاء تدفق للصفحة}}\"",
 	"flow-error-can-not-edit-logged-out": "لا يمكنك المشاركة حالياً، جرب أن تسجل الدخول.",
