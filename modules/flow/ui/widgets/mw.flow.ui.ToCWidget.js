@@ -22,7 +22,7 @@
 
 		this.button = new OO.ui.ButtonWidget( {
 			framed: false,
-			icon: 'stripeToC',
+			icon: 'listBullet',
 			label: this.originalButtonLabel,
 			classes: [ 'flow-ui-tocWidget-button' ]
 		} );
