@@ -146,7 +146,7 @@
 	"flow-error-missing-replyto": "「返信先」のパラメーターを指定していません。「返信」するには、このパラメーターが必要です。",
 	"flow-error-missing-postId": "「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。",
 	"flow-error-invalid-postId": "「投稿 ID」のパラメーターが無効です。指定した投稿 ($1) が見つかりませんでした。",
-	"flow-error-invalid-moderation-state": "構造化した議論APIのパラメータ ('moderationState') に無効な値が送信されました。",
+	"flow-error-invalid-moderation-state": "構造化した議論APIのパラメーター ('moderationState') に無効な値が送信されました。",
 	"flow-error-not-allowed": "この操作を実行するのに十分な権限がありません。",
 	"flow-error-not-allowed-hide": "この話題は非表示にされています。",
 	"flow-error-not-allowed-reply-to-hide-topic": "この話題は非表示化されたため、返信できません。",
