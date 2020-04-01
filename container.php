@@ -924,7 +924,6 @@ $c['query.contributions'] = function ( $c ) {
 	return new Flow\Formatter\ContributionsQuery(
 		$c['storage'],
 		$c['repository.tree'],
-		$c['memcache'],
 		$c['db.factory'],
 		$c['flow_actions']
 	);
