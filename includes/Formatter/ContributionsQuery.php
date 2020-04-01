@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use BagOStuff;
 use ContribsPager;
 use DeletedContribsPager;
 use Flow\Data\ManagerGroup;
@@ -19,11 +18,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class ContributionsQuery extends AbstractQuery {
 
 	/**
-	 * @var BagOStuff
-	 */
-	protected $cache;
-
-	/**
 	 * @var DbFactory
 	 */
 	protected $dbFactory;
@@ -36,19 +30,16 @@ class ContributionsQuery extends AbstractQuery {
 	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepo
-	 * @param BagOStuff $cache
 	 * @param DbFactory $dbFactory
 	 * @param FlowActions $actions
 	 */
 	public function __construct(
 		ManagerGroup $storage,
 		TreeRepository $treeRepo,
-		BagOStuff $cache,
 		DbFactory $dbFactory,
 		FlowActions $actions
 	) {
 		parent::__construct( $storage, $treeRepo );
-		$this->cache = $cache;
 		$this->dbFactory = $dbFactory;
 		$this->actions = $actions;
 	}
