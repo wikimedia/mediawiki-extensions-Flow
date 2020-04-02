@@ -4,5 +4,20 @@
 			"Giromin Cangiaxo"
 		]
 	},
+	"enablestructureddiscussions": "Attiva discuscioin strutturæ",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Elimmina}} e noeuve attivitæ insce \"$1\" da-i oservæ speciali",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "No {{GENDER:$3|t'ê}} ciu aproeuvo a oservâ a paggina \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Questo o no l'influensiâ i scingoli argomenti che {{GENDER:$3|t'ê}} aproeuv'a seguî. {{GENDER:$3|Ti poeu}} mette [$2 sta paggina] inti oservæ speciali quandesessæ.",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Leva}} quest'argomento da-i oservæ speciali",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "No {{GENDER:$3|t'ê}} ciù aproeuv'a oservâ \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Ti poeu}} mette [$2 questo argomento] inti oservæ speciali quandesessæ.",
+	"flow-desc": "Scistema de discuscion",
+	"flow-talk-taken-over-comment": "/* Sta paggina chie a l'è stæta convertia inte 'na grixella de discuscioin struturæ */",
+	"log-name-flow": "Registro di attivitæ in scê discuscioin struturæ",
+	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|o|a}} l'ha scassou un [$4 messaggio] insce \"[[$3|$5]]\" insce [[$6]]",
+	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|o|a}} l'ha scassou un intervento insce 'n argomento insce [[$3]]",
+	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|o|a}} l'ha ripristinou un [$4 messaggio] insce \"[[$3|$5]]\" insce [[$6]]",
+	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|o|a}} l'ha ripristinou un messaggio insce 'n argomento insce [[$3]]",
+	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|o|a}} l'ha sopresso un [$4 messaggio] insce \"[[$3|$5]]\" insce [[$6]]",
 	"flow-special-desc": "Questa paggina speciale a rendiriçça a un messaggio Flow ò a un flusso de travaggio Flow dæto un UUID."
 }
