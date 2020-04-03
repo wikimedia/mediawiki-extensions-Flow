@@ -22,12 +22,12 @@ use FormatJson;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MovePage;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use RequestContext;
-use Revision;
 use Title;
 use User;
 use WikiPage;
@@ -494,12 +494,14 @@ class OptInController {
 		 *
 		 * $title->getLatestRevId() should be fine, it'll be read from
 		 * LinkCache, which has been updated.
-		 * Revision::newFromId will try slave first. If it can't find
-		 * the id, it'll try to find it on master.
+		 * RevisionLookup::getRevisionById will try slave first.
+		 * If it can't find the id, it'll try to find it on master.
 		 */
 		$revId = $title->getLatestRevID();
-		$revision = Revision::newFromId( $revId );
-		$content = $revision->getContent();
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionById( $revId );
+		$content = $revRecord->getContent( SlotRecord::MAIN );
 		if ( !$content instanceof BoardContent ) {
 			throw new InvalidDataException(
 				'Could not find board page for ' . $title->getPrefixedDBkey() . ' (id: ' . $title->getArticleID() . ').' .
