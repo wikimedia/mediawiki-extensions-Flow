@@ -1,5 +1,25 @@
 <?php
 
+use Flow\Data\FlowObjectCache;
+use Flow\Data\Index\PostRevisionBoardHistoryIndex;
+use Flow\Data\Index\PostRevisionTopicHistoryIndex;
+use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
+use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\UniqueFeatureIndex;
+use Flow\Data\Mapper\BasicObjectMapper;
+use Flow\Data\Mapper\CachingObjectMapper;
+use Flow\Data\ObjectLocator;
+use Flow\Data\ObjectManager;
+use Flow\Data\Storage\BasicDbStorage;
+use Flow\Data\Storage\HeaderRevisionStorage;
+use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
+use Flow\Data\Storage\PostRevisionStorage;
+use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
+use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
+use Flow\Data\Storage\PostSummaryRevisionStorage;
+use Flow\Data\Storage\TopicListStorage;
+use MediaWiki\MediaWikiServices;
+
 // This lets the index handle the initial query from HistoryPager,
 // even when the UI limit is 500.  An extra item is requested
 // so we know whether to link the pagination.
@@ -70,7 +90,9 @@ $c['wiki_link_fixer'] = function ( $c ) {
 };
 
 $c['bad_image_remover'] = function ( $c ) {
-	return new Flow\Parsoid\Fixer\BadImageRemover( 'wfIsBadImage' );
+	return new Flow\Parsoid\Fixer\BadImageRemover(
+		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
+	);
 };
 
 $c['base_href_fixer'] = function ( $c ) {
@@ -118,26 +140,6 @@ $c['templating'] = function ( $c ) {
 };
 
 // New Storage Impl
-use Flow\Data\FlowObjectCache;
-use Flow\Data\Index\PostRevisionBoardHistoryIndex;
-use Flow\Data\Index\PostRevisionTopicHistoryIndex;
-use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
-use Flow\Data\Index\TopKIndex;
-use Flow\Data\Index\UniqueFeatureIndex;
-use Flow\Data\Mapper\BasicObjectMapper;
-use Flow\Data\Mapper\CachingObjectMapper;
-use Flow\Data\ObjectLocator;
-use Flow\Data\ObjectManager;
-use Flow\Data\Storage\BasicDbStorage;
-use Flow\Data\Storage\HeaderRevisionStorage;
-use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
-use Flow\Data\Storage\PostRevisionStorage;
-use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
-use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
-use Flow\Data\Storage\PostSummaryRevisionStorage;
-use Flow\Data\Storage\TopicListStorage;
-use MediaWiki\MediaWikiServices;
-
 $c['flowcache'] = function ( $c ) {
 	global $wgFlowCacheTime;
 	return new FlowObjectCache(
