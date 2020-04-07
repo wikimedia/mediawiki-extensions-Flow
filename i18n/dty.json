@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"राम प्रसाद जोशी",
-			"Nirajan pant"
+			"Nirajan pant",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "\"$1\"मी नौला कृयाकलाप तक्द {{GENDER:$3|बन्द}} अरऽ",

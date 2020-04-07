@@ -1,17 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cocu",
 			"Danmichaelo",
 			"Jeblad",
-			"Laaknor",
-			"Kingu",
-			"Tarjeimo",
-			"Nnemo",
-			"Macofe",
-			"Cocu",
-			"Kjetil r",
 			"Jon Harald Søby",
-			"Stephanecbisson"
+			"Kingu",
+			"Kjetil r",
+			"Laaknor",
+			"Macofe",
+			"Nnemo",
+			"Stephanecbisson",
+			"Tarjeimo"
 		]
 	},
 	"enablestructureddiscussions": "Aktiver Flow",

@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Balajijagadesh",
 			"ElangoRamanujam",
-			"கலைவாணன்",
 			"Rakeshonwiki",
-			"Balajijagadesh"
+			"கலைவாணன்"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|You}} இந்த பக்கத்தை பார்ப்பதில்லை \"$1\"",

@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chiefwei",
 			"Liuxinyu970226",
 			"Quiddity",
 			"Shizhao",
+			"WQL",
 			"御坂美琴",
-			"飞舞回堂前",
-			"Chiefwei",
-			"WQL"
+			"飞舞回堂前"
 		]
 	},
 	"apihelp-flow-description": "允许对结构化讨论页面的操作。",

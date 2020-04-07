@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Asierog",
 			"Ciencia Al Poder",
+			"Dgstranz",
 			"Effy",
 			"Fitoschido",
 			"Macofe",
 			"Quiddity",
-			"Ryo567",
-			"Dgstranz",
-			"Asierog"
+			"Ryo567"
 		]
 	},
 	"apihelp-flow-description": "Permite realizar acciones en páginas de Discusiones estructuradas.",

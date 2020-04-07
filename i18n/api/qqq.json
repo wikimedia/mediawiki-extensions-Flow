@@ -1,16 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alexander Jones",
 			"Amire80",
 			"Brad Jorsch",
+			"Erik Bernhardson",
+			"IoannisKydonis",
+			"Liuxinyu970226",
 			"Matthias Mullie",
 			"Nemo bis",
-			"Quiddity",
-			"IoannisKydonis",
 			"Purodha",
-			"Alexander Jones",
-			"Erik Bernhardson",
-			"Liuxinyu970226"
+			"Quiddity"
 		]
 	},
 	"apihelp-flow-description": "{{doc-apihelp-description|flow}}",

@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Benel",
 			"Bunukwiki",
-			"Tokoabibi",
-			"Benel"
+			"Tokoabibi"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|pahanhan}}miazih \"$1\" a baluhay likit a kawaw",

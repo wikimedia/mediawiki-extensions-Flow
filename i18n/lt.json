@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robotukas11",
-			"Pofka",
-			"Zygimantus",
-			"Nnemo",
 			"Eitvys200",
-			"Manvydasz",
 			"Hugo.arg",
+			"Manvydasz",
+			"Nnemo",
+			"Pofka",
+			"Robotukas11",
+			"Tomasdd",
 			"Vogone",
-			"Tomasdd"
+			"Zygimantus"
 		]
 	},
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Nebesekti}} naujos „$1“ veiklos",

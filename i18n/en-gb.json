@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki",
-			"Mdann52",
-			"Caliburn",
-			"Aursani",
 			"Andibing",
-			"Anomie"
+			"Anomie",
+			"Aursani",
+			"Caliburn",
+			"Mdann52",
+			"Shirayuki"
 		]
 	},
 	"flow-summarize-topic-placeholder": "Please summarise this discussion",

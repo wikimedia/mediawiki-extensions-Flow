@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"2nd-player",
+			"Omotecho",
 			"Otokoume",
 			"Shirayuki",
 			"SkyDaisy9",
-			"Sujiniku",
-			"Omotecho"
+			"Sujiniku"
 		]
 	},
 	"apihelp-flow-description": "スレッド表示した議論の（Flow）ページに対して操作を行います。",

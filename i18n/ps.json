@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"Baloch Khan",
-			"Amjad Khan"
+			"Amjad Khan",
+			"Baloch Khan"
 		]
 	},
 	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",

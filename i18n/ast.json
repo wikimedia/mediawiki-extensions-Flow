@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu",
-			"Nnemo",
-			"Quiddity",
 			"Macofe",
 			"Matiia",
-			"Stephanecbisson"
+			"Nnemo",
+			"Quiddity",
+			"Stephanecbisson",
+			"Xuacu"
 		]
 	},
 	"enablestructureddiscussions": "Activar Flow",

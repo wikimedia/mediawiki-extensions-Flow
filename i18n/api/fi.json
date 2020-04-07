@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Olimar",
-			"Quiddity",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Quiddity"
 		]
 	},
 	"apihelp-flow+close-open-topic-param-reason": "Syy aiheen lukitsemiselle tai avaamiselle lukituksesta.",
