@@ -16,7 +16,8 @@ use Flow\TalkpageManager;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 class FlowHooks {
 	/**
@@ -1602,19 +1603,22 @@ class FlowHooks {
 	}
 
 	/**
-	 * @param Title $title Title corresponding to the article restored
-	 * @param Revision $revision Revision just undeleted
-	 * @param string $oldPageId Old page ID stored with that revision when it was in the archive table
+	 * @param RevisionRecord $revisionRecord Revision just undeleted
 	 */
-	public static function onArticleRevisionUndeleted( Title $title, Revision $revision, $oldPageId ) {
-		if ( $revision->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+	public static function onRevisionUndeleted( RevisionRecord $revisionRecord ) {
+		$contentModel = $revisionRecord->getSlot(
+			SlotRecord::MAIN, RevisionRecord::RAW
+		)->getModel();
+		if ( $contentModel === CONTENT_MODEL_FLOW_BOARD ) {
 			// complete hack to make sure that when the page is saved to new
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 
+			$title = Title::newFromLinkTarget( $revisionRecord->getPageAsLinkTarget() );
+
 			// Reassociate the Flow board associated with this undeleted revision.
 			$boardMover = Container::get( 'board_mover' );
-			$boardMover->move( intval( $oldPageId ), $title );
+			$boardMover->move( $revisionRecord->getPageId(), $title );
 		}
 	}
 

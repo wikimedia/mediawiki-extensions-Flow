@@ -768,7 +768,7 @@
 		"ArticleConfirmDelete": "FlowHooks::onArticleConfirmDelete",
 		"ArticleDelete": "FlowHooks::onArticleDelete",
 		"ArticleDeleteComplete": "FlowHooks::onArticleDeleteComplete",
-		"ArticleRevisionUndeleted": "FlowHooks::onArticleRevisionUndeleted",
+		"RevisionUndeleted": "FlowHooks::onRevisionUndeleted",
 		"ArticleUndelete": "FlowHooks::onArticleUndelete",
 		"SearchableNamespaces": "FlowHooks::onSearchableNamespaces",
 		"ImportHandleToplevelXMLTag": "FlowHooks::onImportHandleToplevelXMLTag",
