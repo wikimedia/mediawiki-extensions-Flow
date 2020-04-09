@@ -428,7 +428,6 @@
 				"ext.flow.jquery.findWithParent",
 				"mediawiki.api",
 				"mediawiki.Title",
-				"mediawiki.notify",
 				"mediawiki.user",
 				"mediawiki.Uri",
 				"jquery.throttle-debounce"
