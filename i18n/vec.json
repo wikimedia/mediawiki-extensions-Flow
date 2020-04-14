@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Conky77"
+			"Conky77",
+			"Fierodelveneto"
 		]
 	},
 	"flow-board-collapse-description": "Scondi descrision",
 	"flow-post-moderated-toggle-hide-hide": "Nascondi mesajo {{GENDER:$1|sconto}} da $2",
-	"flow-summarize-topic-placeholder": "Par piaxere, fà un sunto de sta discusion"
+	"flow-summarize-topic-placeholder": "Par piaxere, fà un sunto de sta discusion",
+	"flow-undo": "desfare"
 }
