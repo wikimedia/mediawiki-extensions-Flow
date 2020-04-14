@@ -1604,8 +1604,9 @@ class FlowHooks {
 
 	/**
 	 * @param RevisionRecord $revisionRecord Revision just undeleted
+	 * @param string $oldPageId Old page ID stored with that revision when it was in the archive table
 	 */
-	public static function onRevisionUndeleted( RevisionRecord $revisionRecord ) {
+	public static function onRevisionUndeleted( RevisionRecord $revisionRecord, $oldPageId ) {
 		$contentModel = $revisionRecord->getSlot(
 			SlotRecord::MAIN, RevisionRecord::RAW
 		)->getModel();
@@ -1618,7 +1619,7 @@ class FlowHooks {
 
 			// Reassociate the Flow board associated with this undeleted revision.
 			$boardMover = Container::get( 'board_mover' );
-			$boardMover->move( $revisionRecord->getPageId(), $title );
+			$boardMover->move( intval( $oldPageId ), $title );
 		}
 	}
 
