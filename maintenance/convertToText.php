@@ -192,14 +192,15 @@ class ConvertToText extends Maintenance {
 		// doesn't fail (it'll initialise the requested value from a global
 		// anyway)
 		$options = new ParserOptions();
-		$old = $parser->Options( $options );
+		$old = $parser->getOptions();
+		$parser->setOptions( $options );
 		$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
 		$signature = $parser->getUserSig( $user, $nickname, $fancysig );
 		$signature = $parser->mStripState->unstripBoth( $signature );
 		if ( $timestamp ) {
 			$signature .= ' ' . $this->formatTimestamp( $timestamp );
 		}
-		$parser->Options( $old );
+		$parser->setOptions( $old );
 		return $signature;
 	}
 
