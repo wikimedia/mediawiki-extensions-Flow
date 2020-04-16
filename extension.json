@@ -537,7 +537,9 @@
 			"dependencies": [
 				"oojs-ui",
 				"ext.flow.dm",
+				"ext.flow.visualEditor.icons",
 				"oojs-ui.styles.icons-editing-advanced",
+				"oojs-ui.styles.icons-editing-list",
 				"oojs-ui.styles.icons-user",
 				"mediawiki.api",
 				"mediawiki.storage",
