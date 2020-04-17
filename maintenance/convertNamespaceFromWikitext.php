@@ -70,7 +70,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		$logger = new MaintenanceDebugLogger( $this );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$talkpageManager = FlowHooks::getOccupationController()->getTalkpageManager();
+		$talkpageManager = Flow\Hooks::getOccupationController()->getTalkpageManager();
 		$converter = new \Flow\Import\Converter(
 			$dbw,
 			Flow\Container::get( 'importer' ),

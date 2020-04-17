@@ -216,7 +216,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 */
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
-		$talkpageManager = FlowHooks::getOccupationController()->getTalkpageManager();
+		$talkpageManager = Flow\Hooks::getOccupationController()->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that
 		$batchStartId = UUID::getComparisonUUID( '1' );

@@ -113,7 +113,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 			'/* Automatically created by Flow */',
 			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 			false,
-			FlowHooks::getOccupationController()->getTalkpageManager()
+			Flow\Hooks::getOccupationController()->getTalkpageManager()
 		);
 	}
 }

@@ -53,7 +53,7 @@ TEXT
 
 	public function execute() {
 		// Stop if Flow not enabled on the wiki
-		if ( !class_exists( FlowHooks::class ) ) {
+		if ( !class_exists( Flow\Hooks::class ) ) {
 			echo "Flow isn't enabled on this wiki.\n";
 			die( 1 );
 		}

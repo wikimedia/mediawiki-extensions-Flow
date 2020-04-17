@@ -751,10 +751,10 @@ $c['factory.loader.workflow'] = function ( $c ) {
 		$c['submission_handler']
 	);
 };
-// Initialized in FlowHooks to facilitate only loading the flow container
+// Initialized in Flow\Hooks to facilitate only loading the flow container
 // when flow is specifically requested to run. Extension initialization
 // must always happen before calling flow code.
-$c['occupation_controller'] = FlowHooks::getOccupationController();
+$c['occupation_controller'] = Flow\Hooks::getOccupationController();
 
 $c['helper.archive_name'] = function ( $c ) {
 	return new Flow\Import\ArchiveNameHelper();
@@ -779,10 +779,10 @@ $c['controller.notification'] = function ( $c ) {
 	);
 };
 
-// Initialized in FlowHooks to faciliate only loading the flow container
+// Initialized in Flow\Hooks to faciliate only loading the flow container
 // when flow is specifically requested to run. Extension initialization
 // must always happen before calling flow code.
-$c['controller.abusefilter'] = FlowHooks::getAbuseFilter();
+$c['controller.abusefilter'] = Flow\Hooks::getAbuseFilter();
 
 $c['controller.contentlength'] = function ( $c ) {
 	global $wgMaxArticleSize;

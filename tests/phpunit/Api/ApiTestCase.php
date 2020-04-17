@@ -3,7 +3,7 @@
 namespace Flow\Tests\Api;
 
 use Flow\Container;
-use FlowHooks;
+use Flow\Hooks;
 use HashConfig;
 use MediaWiki\MediaWikiServices;
 use User;
@@ -69,7 +69,7 @@ abstract class ApiTestCase extends \ApiTestCase {
 		User $user = null, $tokenType = null
 	) {
 		// reset flow state before each request
-		FlowHooks::resetFlowExtension();
+		Hooks::resetFlowExtension();
 		return parent::doApiRequest( $params, $session, $appendModule, $user );
 	}
 

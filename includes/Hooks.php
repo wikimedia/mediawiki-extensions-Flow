@@ -1,25 +1,73 @@
 <?php
 
+namespace Flow;
+
+use AbuseFilterVariableHolder;
+use Article;
+use BetaFeatures;
+use CdnCacheUpdate;
+use ChangesList;
+use Content;
+use ContentHandler;
+use ContribsPager;
+use DatabaseUpdater;
+use DeferredUpdates;
+use DeletedContribsPager;
+use EchoEvent;
+use EnhancedChangesList;
+use Exception;
+use ExtensionRegistry;
+use FeedItem;
 use Flow\Collection\PostCollection;
-use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Data\Listener\RecentChangesListener;
-use Flow\DbFactory;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Import\OptInController;
 use Flow\Model\UUID;
-use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
-use Flow\TalkpageManager;
-use Flow\WorkflowLoader;
-use Flow\WorkflowLoaderFactory;
+use FlowCreateTemplates;
+use FlowFixLinks;
+use FlowFixLog;
+use FlowPopulateLinksTables;
+use FlowPopulateRefId;
+use FlowSetUserIp;
+use FlowUpdateBetaFeaturePreference;
+use FlowUpdateRecentChanges;
+use FlowUpdateRevisionTypeId;
+use FlowUpdateUserWiki;
+use FlowUpdateWorkflowPageId;
+use FormOptions;
+use GuidedTourLauncher;
+use Html;
+use IContextSource;
+use LogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Message;
+use MWException;
+use MWExceptionHandler;
+use OldChangesList;
+use OutputPage;
+use RecentChange;
+use RequestContext;
+use ResourceLoader;
+use Revision;
+use Skin;
+use SkinTemplate;
+use SpecialPage;
+use Status;
+use stdClass;
+use Title;
+use User;
+use WikiImporter;
+use WikiPage;
+use XMLReader;
 
-class FlowHooks {
+class Hooks {
 	/**
 	 * @var OccupationController|null Initialized during extension initialization
 	 */
@@ -33,10 +81,10 @@ class FlowHooks {
 	public static function registerExtension() {
 		global $wgFlowActions, $wgLogActionsHandlers, $wgActions;
 
-		require_once __DIR__ . '/defines.php';
+		require_once dirname( __DIR__ ) . '/defines.php';
 
 		// Action details config file
-		require __DIR__ . '/FlowActions.php';
+		require dirname( __DIR__ ) . '/FlowActions.php';
 
 		// Register URL actions and activity log formatter hooks
 		foreach ( $wgFlowActions as $action => $options ) {
@@ -62,19 +110,19 @@ class FlowHooks {
 
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' ) ) {
 			$resourceLoader->register( 'ext.guidedTour.tour.flowOptIn', [
-				'localBasePath' => __DIR__ . '/modules',
+				'localBasePath' => dirname( __DIR__ ) . '/modules',
 				'remoteExtPath' => 'Flow/modules',
-					'scripts' => 'tours/flowOptIn.js',
-					'styles' => 'tours/flowOptIn.less',
-					'messages' => [
-						"flow-guidedtour-optin-welcome",
-						"flow-guidedtour-optin-welcome-description",
-						"flow-guidedtour-optin-find-old-conversations",
-						"flow-guidedtour-optin-find-old-conversations-description",
-						"flow-guidedtour-optin-feedback",
-						"flow-guidedtour-optin-feedback-description"
-					],
-					'dependencies' => 'ext.guidedTour',
+				'scripts' => 'tours/flowOptIn.js',
+				'styles' => 'tours/flowOptIn.less',
+				'messages' => [
+					"flow-guidedtour-optin-welcome",
+					"flow-guidedtour-optin-welcome-description",
+					"flow-guidedtour-optin-find-old-conversations",
+					"flow-guidedtour-optin-find-old-conversations-description",
+					"flow-guidedtour-optin-feedback",
+					"flow-guidedtour-optin-feedback-description"
+				],
+				'dependencies' => 'ext.guidedTour',
 			] );
 		}
 	}
@@ -172,7 +220,7 @@ class FlowHooks {
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
-		$dir = __DIR__;
+		$dir = dirname( __DIR__ );
 		$baseSQLFile = "$dir/flow.sql";
 		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
 		$updater->addExtensionField( 'flow_revision', 'rev_last_edit_id',
@@ -268,10 +316,10 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
 			"$dir/db_patches/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
 
-		require_once __DIR__ . '/maintenance/FlowUpdateRecentChanges.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );
 
-		require_once __DIR__ . '/maintenance/FlowSetUserIp.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowSetUserIp.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowSetUserIp::class );
 
 		/*
@@ -286,31 +334,31 @@ class FlowHooks {
 				"$dir/db_patches/patch-remove_usernames_2.sql" );
 		}
 
-		require_once __DIR__ . '/maintenance/FlowUpdateUserWiki.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateUserWiki.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateUserWiki::class );
 
-		require_once __DIR__ . '/maintenance/FlowUpdateRevisionTypeId.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRevisionTypeId::class );
 
-		require_once __DIR__ . '/maintenance/FlowPopulateLinksTables.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateLinksTables::class );
 
-		require_once __DIR__ . '/maintenance/FlowFixLog.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowFixLog.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowFixLog::class );
 
-		require_once __DIR__ . '/maintenance/FlowUpdateWorkflowPageId.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateWorkflowPageId::class );
 
-		require_once __DIR__ . '/maintenance/FlowCreateTemplates.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowCreateTemplates.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowCreateTemplates::class );
 
-		require_once __DIR__ . '/maintenance/FlowFixLinks.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowFixLinks.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowFixLinks::class );
 
-		require_once __DIR__ . '/maintenance/FlowUpdateBetaFeaturePreference.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateBetaFeaturePreference.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateBetaFeaturePreference::class );
 
-		require_once __DIR__ . '/maintenance/FlowPopulateRefId.php';
+		require_once dirname( __DIR__ ) . '/maintenance/FlowPopulateRefId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateRefId::class );
 
 		/*
@@ -339,9 +387,9 @@ class FlowHooks {
 			return;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\ChangesListQuery $query */
+			/** @var Formatter\ChangesListQuery $query */
 			$query = Container::get( 'query.changeslist' );
 			$query->loadMetadataBatch(
 				$rows,
@@ -431,9 +479,9 @@ class FlowHooks {
 			return true;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\ChangesListQuery $query */
+			/** @var Formatter\ChangesListQuery $query */
 			$query = Container::get( 'query.changeslist' );
 
 			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
@@ -442,7 +490,7 @@ class FlowHooks {
 				return false;
 			}
 
-			/** @var Flow\Formatter\ChangesListFormatter $formatter */
+			/** @var Formatter\ChangesListFormatter $formatter */
 			$formatter = Container::get( 'formatter.changeslist' );
 			$line = $formatter->format( $row, $changesList, $topicOnly );
 		} catch ( PermissionException $pe ) {
@@ -492,9 +540,9 @@ class FlowHooks {
 			return true;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\ChangesListQuery $query */
+			/** @var Formatter\ChangesListQuery $query */
 			$query = Container::get( 'query.changeslist' );
 
 			$row = $query->getResult( $changesList, $rc, $changesList->isWatchlist() );
@@ -503,7 +551,7 @@ class FlowHooks {
 				return false;
 			}
 
-			/** @var Flow\Formatter\ChangesListFormatter $formatter */
+			/** @var Formatter\ChangesListFormatter $formatter */
 			$formatter = Container::get( 'formatter.changeslist' );
 			$logTextLinks = $formatter->getLogTextLinks( $row, $changesList, $block, $links );
 		} catch ( Exception $e ) {
@@ -558,7 +606,7 @@ class FlowHooks {
 			return false;
 		}
 
-		/** @var Flow\Formatter\ChangesListFormatter $formatter */
+		/** @var Formatter\ChangesListFormatter $formatter */
 		$formatter = Container::get( 'formatter.changeslist' );
 		try {
 			$data['timestampLink'] = $formatter->getTimestampLink( $row, $changesList );
@@ -596,7 +644,7 @@ class FlowHooks {
 			return;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		$replacement = null;
 		try {
 			/** @var CheckUserQuery $query */
@@ -605,7 +653,7 @@ class FlowHooks {
 			$query->loadMetadataBatch( [ $row ] );
 			$row = $query->getResult( $row );
 			if ( $row !== false ) {
-				/** @var Flow\Formatter\CheckUserFormatter $formatter */
+				/** @var Formatter\CheckUserFormatter $formatter */
 				$formatter = Container::get( 'formatter.checkuser' );
 				$replacement = $formatter->format( $row, $specialCheckUser->getContext() );
 			}
@@ -709,7 +757,7 @@ class FlowHooks {
 	 */
 	public static function onMissingArticleConditions( array &$conds, array $logTypes ) {
 		global $wgLogActionsHandlers;
-		/** @var Flow\FlowActions $actions */
+		/** @var FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
 
 		foreach ( $actions->getActions() as $action ) {
@@ -741,7 +789,7 @@ class FlowHooks {
 	 * @param array &$names
 	 */
 	public static function onUserGetReservedNames( &$names ) {
-		$permissions = Flow\Model\AbstractRevision::$perms;
+		$permissions = Model\AbstractRevision::$perms;
 		foreach ( $permissions as $permission ) {
 			$names[] = "msg:flow-$permission-usertext";
 		}
@@ -759,7 +807,7 @@ class FlowHooks {
 		global $wgFlowEditorList, $wgFlowAjaxTimeout;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
-		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
+		$vars['wgFlowMaxTopicLength'] = Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowMentionTemplate'] = wfMessage( 'flow-ve-mention-template-title' )->inContentLanguage()->plain();
 		$vars['wgFlowAjaxTimeout'] = $wgFlowAjaxTimeout;
 	}
@@ -774,13 +822,13 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onDeletedContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
-		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
+		if ( !$row instanceof Formatter\FormatterRow ) {
 			return true;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\ContributionsFormatter $formatter */
+			/** @var Formatter\ContributionsFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
 		} catch ( Exception $e ) {
@@ -830,13 +878,13 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsFeedItem( $row, IContextSource $ctx, FeedItem &$feedItem = null ) {
-		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
+		if ( !$row instanceof Formatter\FormatterRow ) {
 			return true;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\FeedItemFormatter $formatter */
+			/** @var Formatter\FeedItemFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions.feeditem' );
 			$result = $formatter->format( $row, $ctx );
 		} catch ( Exception $e ) {
@@ -870,9 +918,9 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\Formatter\ContributionsQuery $query */
+			/** @var Formatter\ContributionsQuery $query */
 			$query = Container::get( 'query.contributions' );
 			$results = $query->getResults( $pager, $offset, $limit, $descending );
 		} catch ( Exception $e ) {
@@ -1074,10 +1122,10 @@ class FlowHooks {
 	 */
 	public static function onBeforeDisplayOrangeAlert( User $user, Title $title ) {
 		if ( $title->getNamespace() === NS_TOPIC ) {
-			/** @var \Flow\Data\ObjectManager $storage */
+			/** @var Data\ObjectManager $storage */
 			$storage = Container::get( 'storage.workflow' );
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
-			/** @var \Flow\Model\Workflow $workflow */
+			/** @var Model\Workflow $workflow */
 			$workflow = $storage->get( $uuid );
 			if ( $workflow && $user->getTalkPage()->equals( $workflow->getOwnerTitle() ) ) {
 				return false;
@@ -1135,10 +1183,10 @@ class FlowHooks {
 			return;
 		}
 
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		$result = null;
 		try {
-			/** @var Flow\Formatter\IRCLineUrlFormatter $formatter */
+			/** @var Formatter\IRCLineUrlFormatter $formatter */
 			$formatter = Container::get( 'formatter.irclineurl' );
 			$result = $formatter->format( $rc );
 		} catch ( Exception $e ) {
@@ -1157,9 +1205,9 @@ class FlowHooks {
 	}
 
 	public static function onWhatLinksHereProps( $row, Title $title, Title $target, &$props ) {
-		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
-			/** @var Flow\ReferenceClarifier $clarifier */
+			/** @var ReferenceClarifier $clarifier */
 			$clarifier = Container::get( 'reference.clarifier' );
 			$newProps = $clarifier->getWhatLinksHereProps( $row, $title, $target );
 
@@ -1217,7 +1265,7 @@ class FlowHooks {
 		$title = $page->getTitle();
 		if ( $title->getNamespace() == NS_TOPIC ) {
 			// @todo - use !$title->exists()?
-			/** @var Flow\Data\ManagerGroup $storage */
+			/** @var Data\ManagerGroup $storage */
 			$storage = Container::get( 'storage' );
 			$found = $storage->find(
 				'PostRevision',
@@ -1310,15 +1358,15 @@ class FlowHooks {
 		}
 		try {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
-		} catch ( Flow\Exception\InvalidInputException $e ) {
+		} catch ( InvalidInputException $e ) {
 			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return;
 		}
-		/** @var Flow\Data\ManagerGroup $storage */
+		/** @var Data\ManagerGroup $storage */
 		$storage = Container::get( 'storage' );
 		$workflow = $storage->get( 'Workflow', $uuid );
-		if ( !$workflow instanceof Flow\Model\Workflow ) {
+		if ( !$workflow instanceof Model\Workflow ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Title for non-existent Workflow ' .
 				$title->getPrefixedText() );
 			return;
@@ -1402,7 +1450,7 @@ class FlowHooks {
 			}
 		}
 
-		/** @var Flow\Data\ManagerGroup $storage */
+		/** @var Data\ManagerGroup $storage */
 		$storage = Container::get( 'storage' );
 
 		/*
@@ -1425,7 +1473,7 @@ class FlowHooks {
 	 * @param array &$updateFields
 	 */
 	public static function onUserMergeAccountFields( &$updateFields ) {
-		/** @var Flow\Data\Utils\UserMerger $merger */
+		/** @var Data\Utils\UserMerger $merger */
 		$merger = Container::get( 'user_merger' );
 		foreach ( $merger->getAccountFields() as $row ) {
 			$updateFields[] = $row;
@@ -1438,7 +1486,7 @@ class FlowHooks {
 	 * @param User &$newUser
 	 */
 	public static function onMergeAccountFromTo( User &$oldUser, User &$newUser ) {
-		/** @var Flow\Data\Utils\UserMerger $merger */
+		/** @var Data\Utils\UserMerger $merger */
 		$merger = Container::get( 'user_merger' );
 		$merger->finalizeMerge( $oldUser->getId(), $newUser->getId() );
 	}
@@ -1469,7 +1517,7 @@ class FlowHooks {
 			return;
 		}
 
-		/** @var Flow\Formatter\CategoryViewerQuery $query */
+		/** @var Formatter\CategoryViewerQuery $query */
 		$query = Container::get( 'query.categoryviewer' );
 		$query->loadMetadataBatch( $res );
 	}
@@ -1482,10 +1530,10 @@ class FlowHooks {
 		if ( !$uuid ) {
 			return;
 		}
-		/** @var Flow\Formatter\CategoryViewerQuery */
+		/** @var Formatter\CategoryViewerQuery */
 		$query = Container::get( 'query.categoryviewer' );
 		$row = $query->getResult( $uuid );
-		/** @var Flow\Formatter\CategoryViewerFormatter */
+		/** @var Formatter\CategoryViewerFormatter */
 		$formatter = Container::get( 'formatter.categoryviewer' );
 		$result = $formatter->format( $row );
 		if ( $result ) {
@@ -1580,9 +1628,9 @@ class FlowHooks {
 			$storage = Container::get( 'storage' );
 
 			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
-				/** @var \Flow\Model\Workflow[] $workflows */
+				/** @var Model\Workflow[] $workflows */
 				$workflows = $storage->find( 'Workflow', [
-					'workflow_wiki' => wfWikiID(),
+					'workflow_wiki' => \wfWikiID(),
 					'workflow_page_id' => $articleId,
 				] );
 				if ( !$workflows ) {
@@ -1792,7 +1840,7 @@ class FlowHooks {
 			// restore previous mPageOutCallback value
 			$importer->setPageOutCallback( $callback );
 
-			$flowImporter = new \Flow\Dump\Importer( $importer );
+			$flowImporter = new Dump\Importer( $importer );
 			if ( $callback !== null ) {
 				// not in dry-run mode
 				$flowImporter->setStorage( Container::get( 'storage' ) );
@@ -1856,7 +1904,7 @@ class FlowHooks {
 		}
 
 		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( RequestContext::getMain()->getUser(), 'flow-delete' )
+			->userHasRight( RequestContext::getMain()->getUser(), 'flow-delete' )
 		) {
 			// there's no point adding topics since the current user won't be allowed to delete them
 			return true;
@@ -1904,7 +1952,7 @@ class FlowHooks {
 			array_merge( [
 				'tree_parent_id' => null,
 				'r.rev_type' => 'post',
-				'workflow_wiki' => wfWikiID(),
+				'workflow_wiki' => \wfWikiID(),
 				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
 			], $userWhere ),
 			__METHOD__,

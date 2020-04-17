@@ -44,7 +44,7 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$importer = Flow\Container::get( 'importer' );
 		$importer->setAllowUnknownUsernames( true );
 
-		$talkPageManagerUser = \FlowHooks::getOccupationController()->getTalkpageManager();
+		$talkPageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
 
 		$srcPageName = $this->getOption( 'srcpage' );
 		if ( $this->hasOption( 'dstpage' ) ) {

@@ -4,12 +4,12 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Hooks;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
-use FlowHooks;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use RecentChange;
@@ -17,7 +17,7 @@ use Title;
 use User;
 
 /**
- * @covers \FlowHooks
+ * @covers Hooks
  *
  * @group Flow
  * @group Database
@@ -215,7 +215,7 @@ class HookTest extends MediaWikiTestCase {
 
 		// reset flow state, so everything ($container['permissions'])
 		// uses this particular $user
-		\FlowHooks::resetFlowExtension();
+		Hooks::resetFlowExtension();
 		Container::reset();
 		$container = Container::getContainer();
 		$container['user'] = $user;
@@ -231,7 +231,7 @@ class HookTest extends MediaWikiTestCase {
 
 		$url = 'unset';
 		$query = 'unset';
-		FlowHooks::onIRCLineURL( $url, $query, $rc );
+		Hooks::onIRCLineURL( $url, $query, $rc );
 		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
 		$parts = parse_url( $url );

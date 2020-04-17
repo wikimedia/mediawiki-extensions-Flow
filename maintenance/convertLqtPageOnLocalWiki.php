@@ -25,7 +25,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 	}
 
 	public function execute() {
-		$talkPageManagerUser = \FlowHooks::getOccupationController()->getTalkpageManager();
+		$talkPageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
 
 		$api = new LocalApiBackend( $talkPageManagerUser );
 

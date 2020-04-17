@@ -48,7 +48,7 @@ class FlowRestoreLQT extends Maintenance {
 	}
 
 	public function execute() {
-		$this->talkpageManagerUser = FlowHooks::getOccupationController()->getTalkpageManager();
+		$this->talkpageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->dryRun = $this->getOption( 'dryrun', false );
 		$this->overwrite = $this->getOption( 'overwrite-flow', false );

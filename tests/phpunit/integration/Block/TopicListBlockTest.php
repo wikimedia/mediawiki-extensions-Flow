@@ -4,6 +4,7 @@ namespace Flow\Tests\Block;
 
 use Flow\Block\TopicListBlock;
 use Flow\Container;
+use Flow\Hooks;
 use Flow\Model\Workflow;
 use Title;
 use User;
@@ -19,7 +20,7 @@ class TopicListBlockTest extends \MediaWikiTestCase {
 
 		// reset flow state, so everything ($container['permissions'])
 		// uses this particular $user
-		\FlowHooks::resetFlowExtension();
+		Hooks::resetFlowExtension();
 		Container::reset();
 		$container = Container::getContainer();
 		$container['user'] = $user;

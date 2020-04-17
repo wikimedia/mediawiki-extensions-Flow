@@ -3,6 +3,7 @@
 namespace Flow\Tests\Import;
 
 use Flow\Container;
+use Flow\Hooks;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\SourceStore\NullImportSourceStore;
@@ -43,7 +44,7 @@ class TalkpageImportOperationTest extends \MediaWikiTestCase {
 
 		// reset flow state, so everything ($container['permissions'])
 		// uses this particular $user
-		\FlowHooks::resetFlowExtension();
+		Hooks::resetFlowExtension();
 		Container::reset();
 		$container = Container::getContainer();
 		$container['user'] = User::newFromName( '127.0.0.1', false );
