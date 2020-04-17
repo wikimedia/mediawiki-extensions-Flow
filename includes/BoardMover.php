@@ -56,7 +56,7 @@ class BoardMover {
 	 *
 	 * @param int $oldPageId Page ID before move/change
 	 * @param Title $newPage Page after move/change
-	 * @throws Exception\DataModelException
+	 * @throws \Flow\Exception\DataModelException
 	 * @throws FlowException
 	 */
 	public function move( $oldPageId, Title $newPage ) {

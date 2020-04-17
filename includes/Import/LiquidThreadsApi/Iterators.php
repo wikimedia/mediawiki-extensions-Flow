@@ -3,7 +3,6 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use ArrayIterator;
-use Flow\Import\IImportObject;
 use Iterator;
 
 class TopicIterator implements Iterator {
@@ -136,115 +135,5 @@ class TopicIterator implements Iterator {
 
 		// Keep looping until we get a not found error
 		return true;
-	}
-}
-
-class ReplyIterator implements Iterator {
-	/** @var ImportPost */
-	protected $post;
-	/** @var array Array of thread IDs */
-	protected $threadReplies;
-	/** @var int */
-	protected $replyIndex;
-	/** @var ImportPost|null */
-	protected $current;
-
-	public function __construct( ImportPost $post ) {
-		$this->post = $post;
-		$this->replyIndex = 0;
-
-		$apiResponse = $post->getApiResponse();
-		$this->threadReplies = array_values( $apiResponse['replies'] );
-	}
-
-	/**
-	 * @return ImportPost|null
-	 */
-	public function current() {
-		return $this->current;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function key() {
-		return $this->replyIndex;
-	}
-
-	public function next() {
-		while ( ++$this->replyIndex < count( $this->threadReplies ) ) {
-			try {
-				$replyId = $this->threadReplies[$this->replyIndex]['id'];
-				$this->current = $this->post->getSource()->getPost( $replyId );
-				return;
-			} catch ( ApiNotFoundException $e ) {
-				// while loop fall-through handles our error case
-			}
-		}
-
-		// Nothing found, set current to null
-		$this->current = null;
-	}
-
-	public function rewind() {
-		$this->replyIndex = -1;
-		$this->next();
-	}
-
-	public function valid() {
-		return $this->current !== null;
-	}
-}
-
-/**
- * Iterates over the revisions of a foreign page to produce
- * revisions of a Flow object.
- */
-class RevisionIterator implements Iterator {
-	/** @var array */
-	protected $pageData;
-
-	/** @var int */
-	protected $pointer;
-
-	/** @var IImportObject */
-	protected $parent;
-
-	/** @var callable */
-	protected $factory;
-
-	public function __construct( array $pageData, IImportObject $parent, callable $factory ) {
-		$this->pageData = $pageData;
-		$this->pointer = 0;
-		$this->parent = $parent;
-		$this->factory = $factory;
-	}
-
-	protected function getRevisionCount() {
-		if ( isset( $this->pageData['revisions'] ) ) {
-			return count( $this->pageData['revisions'] );
-		} else {
-			return 0;
-		}
-	}
-
-	public function valid() {
-		return $this->pointer < $this->getRevisionCount();
-	}
-
-	public function next() {
-		++$this->pointer;
-	}
-
-	public function key() {
-		return $this->pointer;
-	}
-
-	public function rewind() {
-		$this->pointer = 0;
-	}
-
-	public function current() {
-		return ( $this->factory )( $this->pageData['revisions'][$this->pointer], $this->parent );
 	}
 }

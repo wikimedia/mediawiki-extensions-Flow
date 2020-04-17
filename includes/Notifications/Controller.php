@@ -448,7 +448,7 @@ class NotificationController {
 	 * @param string $type flow-topic-resolved|flow-topic-reopened
 	 * @param array $data
 	 * @return array
-	 * @throws Exception\InvalidDataException
+	 * @throws \Flow\Exception\InvalidDataException
 	 * @throws FlowException
 	 * @throws \MWException
 	 */
@@ -517,7 +517,7 @@ class NotificationController {
 	 * @param array $mentionedUsers
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
 	 * @return bool|EchoEvent[]
-	 * @throws Exception\InvalidDataException
+	 * @throws \Flow\Exception\InvalidDataException
 	 * @throws \MWException
 	 */
 	protected function generateMentionEvents(

@@ -292,13 +292,3 @@ class ContributionsQuery extends AbstractQuery {
 		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
 	}
 }
-
-class ContributionsRow extends FormatterRow {
-	public $rev_timestamp;
-	// Used when the query uses the 'revision_actor_temp' table
-	public $revactor_timestamp;
-}
-
-class DeletedContributionsRow extends FormatterRow {
-	public $ar_timestamp;
-}

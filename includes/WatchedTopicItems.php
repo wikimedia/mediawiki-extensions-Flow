@@ -34,7 +34,7 @@ class WatchedTopicItems {
 	/**
 	 * @param string[] $titles Array of UUID strings
 	 * @return array
-	 * @throws Exception\DataModelException
+	 * @throws \Flow\Exception\DataModelException
 	 */
 	public function getWatchStatus( array $titles ) {
 		$titles = array_unique( $titles );
