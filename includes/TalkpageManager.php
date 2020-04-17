@@ -10,6 +10,7 @@ use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Status;
 use Title;
 use User;
@@ -115,10 +116,10 @@ class TalkpageManager implements OccupationController {
 	 */
 	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
 		$page = $article->getPage();
-		$revision = $page->getRevision();
+		$revision = $page->getRevisionRecord();
 
 		if ( $revision !== null ) {
-			$content = $revision->getContent();
+			$content = $revision->getContent( SlotRecord::MAIN );
 			if ( $content instanceof BoardContent && $content->getWorkflowId() ) {
 				// Revision is already a valid BoardContent
 				return Status::newGood( [

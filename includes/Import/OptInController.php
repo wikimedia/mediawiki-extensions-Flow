@@ -433,9 +433,9 @@ class OptInController {
 	private function getContent( Title $title ) {
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
-		$revision = $page->getRevision();
+		$revision = $page->getRevisionRecord();
 		if ( $revision ) {
-			$content = $revision->getContent( RevisionRecord::FOR_PUBLIC );
+			$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
 			if ( $content instanceof WikitextContent ) {
 				return $content->getNativeData();
 			}
