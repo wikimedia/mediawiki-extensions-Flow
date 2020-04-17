@@ -65,4 +65,13 @@ class FlowObjectCache {
 	public function delete( $key ) {
 		return $this->cache->delete( $key );
 	}
+
+	/**
+	 * @param string $class
+	 * @param string|int ...$components
+	 * @return string
+	 */
+	public function makeGlobalKey( $class, ...$components ) {
+		return $this->cache->makeGlobalKey( $class, ...$components );
+	}
 }

@@ -13,6 +13,7 @@ use Flow\Data\ObjectStorage;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use FormatJson;
+use WikiMap;
 
 /**
  * Index objects with equal features($indexedColumns) into the same buckets.
@@ -503,7 +504,12 @@ abstract class FeatureIndex implements Index {
 		// which would lead to differences in cache key if we don't force that
 		ksort( $attributes );
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, md5( implode( ':', $attributes ) ), $wgFlowCacheVersion );
+		return $this->cache->makeGlobalKey(
+			$this->prefix,
+			self::cachedDbId(),
+			md5( implode( ':', $attributes ) ),
+			$wgFlowCacheVersion
+		);
 	}
 
 	/**
@@ -512,7 +518,7 @@ abstract class FeatureIndex implements Index {
 	public static function cachedDbId() {
 		global $wgFlowDefaultWikiDb;
 		if ( $wgFlowDefaultWikiDb === false ) {
-			return wfWikiID();
+			return WikiMap::getCurrentWikiDbDomain()->getId();
 		} else {
 			return $wgFlowDefaultWikiDb;
 		}
