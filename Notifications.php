@@ -6,7 +6,7 @@ $notificationTemplate = [
 ];
 
 $newTopicNotification = [
-	'presentation-model' => \Flow\NewTopicPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\NewTopicPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -15,7 +15,7 @@ $newTopicNotification = [
 ] + $notificationTemplate;
 
 $descriptionEditedNotification = [
-	'presentation-model' => \Flow\HeaderEditedPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\HeaderEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -23,7 +23,7 @@ $descriptionEditedNotification = [
 ] + $notificationTemplate;
 
 $postEditedNotification = [
-	'presentation-model' => \Flow\PostEditedPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\PostEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -31,7 +31,7 @@ $postEditedNotification = [
 ] + $notificationTemplate;
 
 $postReplyNotification = [
-	'presentation-model' => \Flow\PostReplyPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\PostReplyPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -40,7 +40,7 @@ $postReplyNotification = [
 ] + $notificationTemplate;
 
 $topicRenamedNotification = [
-	'presentation-model' => \Flow\TopicRenamedPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\TopicRenamedPresentationModel::class,
 	'primary-link' => [
 		'message' => 'flow-notification-link-text-view-post',
 		'destination' => 'flow-post'
@@ -48,7 +48,7 @@ $topicRenamedNotification = [
 ] + $notificationTemplate;
 
 $summaryEditedNotification = [
-	'presentation-model' => \Flow\SummaryEditedPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\SummaryEditedPresentationModel::class,
 	'bundle' => [
 		'web' => true,
 		'email' => true,
@@ -56,7 +56,7 @@ $summaryEditedNotification = [
 ] + $notificationTemplate;
 
 $topicResolvedNotification = [
-	'presentation-model' => \Flow\TopicResolvedPresentationModel::class,
+	'presentation-model' => \Flow\Notifications\TopicResolvedPresentationModel::class,
 ] + $notificationTemplate;
 
 $notifications = [
@@ -66,7 +66,7 @@ $notifications = [
 			'EchoUserLocator::locateUsersWatchingTitle',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 	] + $newTopicNotification,
@@ -77,16 +77,16 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $newTopicNotification,
 	'flow-post-reply' => [
 		'section' => 'message',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
+			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 	] + $postReplyNotification,
@@ -97,17 +97,17 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $postReplyNotification,
 	'flow-post-edited' => [
 		'section' => 'alert',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locatePostAuthors',
+			'Flow\\Notifications\\UserLocator::locatePostAuthors',
 		],
 		'user-filters' => [
 			'EchoUserLocator::locateTalkPageOwner',
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $postEditedNotification,
 	'flowusertalk-post-edited' => [
@@ -117,16 +117,16 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $postEditedNotification,
 	'flow-topic-renamed' => [
 		'section' => 'message',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
+			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 	] + $topicRenamedNotification,
@@ -137,16 +137,16 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $topicRenamedNotification,
 	'flow-summary-edited' => [
 		'section' => 'message',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
+			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 	] + $summaryEditedNotification,
@@ -157,7 +157,7 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $summaryEditedNotification,
 	'flow-description-edited' => [
@@ -167,7 +167,7 @@ $notifications = [
 		],
 		'user-filters' => [
 			'EchoUserLocator::locateTalkPageOwner',
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $descriptionEditedNotification,
 	'flowusertalk-description-edited' => [
@@ -177,20 +177,20 @@ $notifications = [
 			'EchoUserLocator::locateTalkPageOwner',
 		],
 		'user-filters' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $descriptionEditedNotification,
 	'flow-mention' => [
 		'category' => 'mention',
-		'presentation-model' => \Flow\MentionPresentationModel::class,
+		'presentation-model' => \Flow\Notifications\MentionPresentationModel::class,
 		'section' => 'alert',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locateMentionedUsers',
+			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
 		],
 	] + $notificationTemplate,
 	'flow-enabled-on-talkpage' => [
 		'category' => 'system',
-		'presentation-model' => \Flow\FlowEnabledOnTalkpagePresentationModel::class,
+		'presentation-model' => \Flow\Notifications\FlowEnabledOnTalkpagePresentationModel::class,
 		'section' => 'message',
 		'user-locators' => [
 			'EchoUserLocator::locateTalkPageOwner'
@@ -200,7 +200,7 @@ $notifications = [
 	'flow-topic-resolved' => [
 		'section' => 'message',
 		'user-locators' => [
-			'Flow\\NotificationsUserLocator::locateUsersWatchingTopic',
+			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
 		],
 		'user-filters' => [
 			'EchoUserLocator::locateTalkPageOwner',
@@ -219,7 +219,7 @@ $notifications = [
 		],
 		'canNotifyAgent' => true,
 		'section' => 'alert',
-		'presentation-model' => \Flow\MentionStatusPresentationModel::class,
+		'presentation-model' => \Flow\Notifications\MentionStatusPresentationModel::class,
 	] + $notificationTemplate,
 ];
 

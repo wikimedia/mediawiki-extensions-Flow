@@ -11,11 +11,11 @@ use MediaWiki\MediaWikiServices;
 use User;
 
 /**
- * @covers \Flow\FlowPresentationModel
+ * @covers \Flow\Notifications\FlowPresentationModel
  * @covers \Flow\Model\AbstractRevision
  * @covers \Flow\Model\PostRevision
- * @covers \Flow\NewTopicPresentationModel
- * @covers \Flow\PostReplyPresentationModel
+ * @covers \Flow\Notifications\NewTopicPresentationModel
+ * @covers \Flow\Notifications\PostReplyPresentationModel
  *
  * @group Flow
  * @group Database

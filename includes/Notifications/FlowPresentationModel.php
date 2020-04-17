@@ -1,9 +1,11 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
 
 use EchoEventPresentationModel;
+use Flow\Container;
 use Flow\Model\UUID;
+use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
 use Title;
 

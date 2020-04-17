@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
 
 use Title;
 

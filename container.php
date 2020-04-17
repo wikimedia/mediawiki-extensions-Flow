@@ -773,7 +773,7 @@ $c['controller.opt_in'] = function ( $c ) {
 };
 
 $c['controller.notification'] = function ( $c ) {
-	return new Flow\NotificationController(
+	return new \Flow\Notifications\Controller(
 		MediaWikiServices::getInstance()->getContentLanguage(),
 		$c['repository.tree']
 	);

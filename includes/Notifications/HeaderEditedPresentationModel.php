@@ -1,6 +1,9 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
+
+use Flow\Container;
+use Flow\UrlGenerator;
 
 class HeaderEditedPresentationModel extends FlowPresentationModel {
 	public function getIconType() {

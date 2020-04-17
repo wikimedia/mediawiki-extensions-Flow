@@ -1,22 +1,22 @@
 <?php
 
-namespace Flow\Tests;
+namespace Flow\Tests\Notifications;
 
 use Flow\Container;
 use Flow\Model\UUID;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 use Wikimedia\TestingAccessWrapper;
 
 // See also NotitifiedUsersTest
 /**
- * @covers \Flow\NotificationController
+ * @covers \Flow\Notifications\Controller
  *
  * @group Flow
  */
-class NotificationControllerTest extends \MediaWikiTestCase {
+class ControllerTest extends \MediaWikiTestCase {
 
 	/**
-	 * @var NotificationController
+	 * @var Controller
 	 */
 	protected $notificationController;
 

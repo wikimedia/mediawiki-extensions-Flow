@@ -1,11 +1,12 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
 
 use EchoEvent;
 use EchoEventMapper;
 use EchoModerationController;
 use ExtensionRegistry;
+use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -20,7 +21,7 @@ use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 
-class NotificationController {
+class Controller {
 	/**
 	 * @var Language
 	 */
@@ -41,7 +42,7 @@ class NotificationController {
 	}
 
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
-		$notifs += require __DIR__ . "/Notifications.php";
+		$notifs += require dirname( dirname( __DIR__ ) ) . "/Notifications.php";
 		$categories['flow-discussion'] = [
 			'priority' => 3,
 			'tooltip' => 'echo-pref-tooltip-flow-discussion',

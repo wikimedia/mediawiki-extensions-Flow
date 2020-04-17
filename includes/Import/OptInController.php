@@ -14,7 +14,7 @@ use Flow\Content\BoardContent;
 use Flow\Conversion\Utils;
 use Flow\DbFactory;
 use Flow\Exception\InvalidDataException;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 use Flow\OccupationController;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
@@ -46,7 +46,7 @@ class OptInController {
 	private $occupationController;
 
 	/**
-	 * @var NotificationController
+	 * @var Controller
 	 */
 	private $notificationController;
 
@@ -77,7 +77,7 @@ class OptInController {
 
 	/**
 	 * @param OccupationController $occupationController
-	 * @param NotificationController $notificationController
+	 * @param Controller $notificationController
 	 * @param ArchiveNameHelper $archiveNameHelper
 	 * @param DbFactory $dbFactory
 	 * @param LoggerInterface $logger Logger for errors and exceptions
@@ -86,7 +86,7 @@ class OptInController {
 	 */
 	public function __construct(
 		OccupationController $occupationController,
-		NotificationController $notificationController,
+		Controller $notificationController,
 		ArchiveNameHelper $archiveNameHelper,
 		DbFactory $dbFactory,
 		LoggerInterface $logger,

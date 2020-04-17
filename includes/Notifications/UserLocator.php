@@ -1,15 +1,17 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
 
 use EchoEvent;
 use EchoUserLocator;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
+use Flow\RevisionActionPermissions;
 use Title;
 use User;
 
-class NotificationsUserLocator extends EchoUserLocator {
+class UserLocator extends EchoUserLocator {
 	/**
 	 * Return all users watching the topic the event was for.
 	 *

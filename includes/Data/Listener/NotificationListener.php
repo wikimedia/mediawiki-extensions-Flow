@@ -6,16 +6,16 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 
 class NotificationListener extends AbstractListener {
 
 	/**
-	 * @var NotificationController
+	 * @var Controller
 	 */
 	protected $notificationController;
 
-	public function __construct( NotificationController $notificationController ) {
+	public function __construct( Controller $notificationController ) {
 		$this->notificationController = $notificationController;
 	}
 

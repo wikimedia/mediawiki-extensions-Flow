@@ -20,7 +20,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 use Flow\Repository\RootPostLoader;
 use MediaWiki\MediaWikiServices;
 use Message;
@@ -460,7 +460,7 @@ class TopicBlock extends AbstractBlock {
 						&& ( $this->newRevision->getModerationState() === PostRevision::MODERATED_DELETED
 							|| $this->newRevision->getModerationState() === PostRevision::MODERATED_SUPPRESSED );
 
-					/** @var NotificationController $controller */
+					/** @var Controller $controller */
 					$controller = Container::get( 'controller.notification' );
 					if ( $this->action === 'moderate-topic' ) {
 						$controller->moderateTopicNotifications( $topicId, $moderate );

@@ -173,7 +173,7 @@ EOD
 			$this->getMockBuilder( \User::class )
 				->disableOriginalConstructor()
 				->getMock(),
-			$this->getMockBuilder( \Flow\NotificationController::class )
+			$this->getMockBuilder( \Flow\Notifications\Controller::class )
 				->disableOriginalConstructor()
 				->getMock()
 		);

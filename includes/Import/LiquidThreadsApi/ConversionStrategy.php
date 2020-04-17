@@ -8,7 +8,7 @@ use Flow\Import\Postprocessor\LqtNotifications;
 use Flow\Import\Postprocessor\LqtRedirector;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\SourceStore\SourceStoreInterface;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 use Flow\UrlGenerator;
 use LqtDispatch;
 use MediaWiki\MediaWikiServices;
@@ -55,7 +55,7 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $talkpageUser;
 
 	/**
-	 * @var NotificationController
+	 * @var Controller
 	 */
 	protected $notificationController;
 
@@ -65,7 +65,7 @@ class ConversionStrategy implements IConversionStrategy {
 		ApiBackend $api,
 		UrlGenerator $urlGenerator,
 		User $talkpageUser,
-		NotificationController $notificationController
+		Controller $notificationController
 	) {
 		$this->dbw = $dbw;
 		$this->sourceStore = $sourceStore;

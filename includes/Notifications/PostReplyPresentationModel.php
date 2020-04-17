@@ -1,6 +1,8 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
+
+use Flow\Container;
 
 class PostReplyPresentationModel extends FlowPresentationModel {
 
@@ -21,7 +23,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 			// "Strict standards: Only variables should be passed by reference" in older PHP versions
 			$bundledEvents = $this->getBundledEvents();
 
-			/** @var NotificationController $notificationController */
+			/** @var Controller $notificationController */
 			$notificationController = Container::get( 'controller.notification' );
 			$firstChronologicallyEvent = end( $bundledEvents );
 			$firstChronologicallyPostId = $firstChronologicallyEvent->getExtraParam( 'post-id' );

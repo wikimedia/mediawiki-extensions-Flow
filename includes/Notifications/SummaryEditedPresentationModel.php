@@ -1,7 +1,9 @@
 <?php
 
-namespace Flow;
+namespace Flow\Notifications;
 
+use Flow\Container;
+use Flow\UrlGenerator;
 use Title;
 
 class SummaryEditedPresentationModel extends FlowPresentationModel {

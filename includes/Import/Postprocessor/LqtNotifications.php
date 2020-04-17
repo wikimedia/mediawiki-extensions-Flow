@@ -13,7 +13,7 @@ use Flow\Import\LiquidThreadsApi\ImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
-use Flow\NotificationController;
+use Flow\Notifications\Controller;
 use RecursiveIteratorIterator;
 use User;
 use Wikimedia\Rdbms\IDatabase;
@@ -24,7 +24,7 @@ use Wikimedia\Rdbms\IDatabase;
 class LqtNotifications implements Postprocessor {
 
 	/**
-	 * @var NotificationController
+	 * @var Controller
 	 */
 	protected $controller;
 
@@ -38,7 +38,7 @@ class LqtNotifications implements Postprocessor {
 	 */
 	protected $postsImported = [];
 
-	public function __construct( NotificationController $controller, IDatabase $dbw ) {
+	public function __construct( Controller $controller, IDatabase $dbw ) {
 		$this->controller = $controller;
 		$this->dbw = $dbw;
 		$this->overrideUsersToNotify();
@@ -53,7 +53,7 @@ class LqtNotifications implements Postprocessor {
 
 		// Remove the user-locators that choose on a per-notification basis who
 		// should be notified.
-		$notifications = require __DIR__ . '/../../Notifications/Notifications.php';
+		$notifications = require dirname( dirname( dirname( __DIR__ ) ) ) . '/Notifications.php';
 		foreach ( array_keys( $notifications ) as $type ) {
 			unset( $wgEchoNotifications[$type]['user-locators'] );
 
