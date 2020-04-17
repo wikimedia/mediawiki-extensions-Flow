@@ -954,6 +954,17 @@
 	"load_composer_autoloader": true,
 	"manifest_version": 2,
 	"AutoloadClasses": {
+		"FlowCreateTemplates": "maintenance/FlowCreateTemplates.php",
+		"FlowFixLinks": "maintenance/FlowFixLinks.php",
+		"FlowFixLog": "maintenance/FlowFixLog.php",
+		"FlowPopulateLinksTables": "maintenance/FlowPopulateLinksTables.php",
+		"FlowPopulateRefId": "maintenance/FlowPopulateRefId.php",
+		"FlowSetUserIp": "maintenance/FlowSetUserIp.php",
+		"FlowUpdateBetaFeaturePreference": "maintenance/FlowUpdateBetaFeaturePreference.php",
+		"FlowUpdateRecentChanges": "maintenance/FlowUpdateRecentChanges.php",
+		"FlowUpdateRevisionTypeId": "maintenance/FlowUpdateRevisionTypeId.php",
+		"FlowUpdateUserWiki": "maintenance/FlowUpdateUserWiki.php",
+		"FlowUpdateWorkflowPageId": "maintenance/FlowUpdateWorkflowPageId.php",
 		"Flow\\Hooks": "includes/Hooks.php",
 		"Flow\\Actions\\EditAction": "includes/Actions/EditAction.php",
 		"Flow\\Actions\\FlowAction": "includes/Actions/Action.php",
@@ -1270,7 +1281,9 @@
 		"Flow\\WatchedTopicItems": "includes/WatchedTopicItems.php",
 		"Flow\\WorkflowLoader": "includes/WorkflowLoader.php",
 		"Flow\\WorkflowLoaderFactory": "includes/WorkflowLoaderFactory.php",
-		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php"
+		"LogRowUpdateGenerator": "maintenance/FlowFixLog.php",
+		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php",
+		"WorkflowPageIdUpdateGenerator": "maintenance/FlowUpdateWorkflowPageId.php"
 	},
 	"TestAutoloadClasses": {
 		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",

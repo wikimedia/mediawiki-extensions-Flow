@@ -316,10 +316,8 @@ class Hooks {
 		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
 			"$dir/db_patches/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowSetUserIp.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowSetUserIp::class );
 
 		/*
@@ -334,31 +332,22 @@ class Hooks {
 				"$dir/db_patches/patch-remove_usernames_2.sql" );
 		}
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateUserWiki.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateUserWiki::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRevisionTypeId::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateLinksTables::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowFixLog.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowFixLog::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateWorkflowPageId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateWorkflowPageId::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowCreateTemplates.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowCreateTemplates::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowFixLinks.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowFixLinks::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowUpdateBetaFeaturePreference.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateBetaFeaturePreference::class );
 
-		require_once dirname( __DIR__ ) . '/maintenance/FlowPopulateRefId.php';
 		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateRefId::class );
 
 		/*
