@@ -11,9 +11,9 @@ use PoolCounterWorkViaCallback;
 use Status;
 
 class Searcher {
-	const HIGHLIGHT_FIELD = 'revisions.text';
-	const HIGHLIGHT_PRE = '<span class="searchmatch">';
-	const HIGHLIGHT_POST = '</span>';
+	public const HIGHLIGHT_FIELD = 'revisions.text';
+	public const HIGHLIGHT_PRE = '<span class="searchmatch">';
+	public const HIGHLIGHT_POST = '</span>';
 
 	/**
 	 * @var string|bool

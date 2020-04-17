@@ -6,7 +6,7 @@ use Flow\Exception\InvalidParameterException;
 use Title;
 
 abstract class Reference {
-	const TYPE_LINK = 'link';
+	public const TYPE_LINK = 'link';
 
 	/**
 	 * @var UUID

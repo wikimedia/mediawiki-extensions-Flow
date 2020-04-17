@@ -25,7 +25,7 @@ use VirtualRESTServiceClient;
 
 abstract class Utils {
 
-	const PARSOID_VERSION = '2.0.0';
+	public const PARSOID_VERSION = '2.0.0';
 
 	/**
 	 * @var VirtualRESTServiceClient

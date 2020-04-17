@@ -65,7 +65,7 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * The limit of Table of Contents topics that are rendered per request
 	 */
-	const TOCLIMIT = 50;
+	private const TOCLIMIT = 50;
 
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?

@@ -12,7 +12,7 @@ class CheckUserQuery extends AbstractQuery {
 	 * so we can distinguish between different kinds of data in there, should we
 	 * change that data format later.
 	 */
-	const VERSION_PREFIX = 'v1';
+	public const VERSION_PREFIX = 'v1';
 
 	/**
 	 * @param \stdClass[] $rows List of checkuser database rows

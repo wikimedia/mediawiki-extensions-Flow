@@ -6,9 +6,9 @@ use Flow\Exception\InvalidInputException;
 use Title;
 
 class WikiReference extends Reference {
-	const TYPE_FILE = 'file';
-	const TYPE_TEMPLATE = 'template';
-	const TYPE_CATEGORY = 'category';
+	public const TYPE_FILE = 'file';
+	public const TYPE_TEMPLATE = 'template';
+	public const TYPE_CATEGORY = 'category';
 
 	protected $target;
 

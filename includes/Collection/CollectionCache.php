@@ -16,7 +16,7 @@ class CollectionCache extends AbstractListener {
 	/**
 	 * Max to cache collection's last revision
 	 */
-	const LAST_REV_CACHE_MAX = 50;
+	private const LAST_REV_CACHE_MAX = 50;
 
 	/**
 	 * The last revision for a collection

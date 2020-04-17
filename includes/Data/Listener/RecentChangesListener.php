@@ -18,7 +18,7 @@ use RecentChange;
 class RecentChangesListener extends AbstractListener {
 
 	// Value used in rc_source field of recentchanges to identify flow specific changes
-	const SRC_FLOW = "flow";
+	public const SRC_FLOW = "flow";
 
 	/**
 	 * @var FlowActions

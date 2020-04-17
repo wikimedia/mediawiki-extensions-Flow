@@ -17,7 +17,7 @@ use RuntimeException;
  * uid.
  */
 class HistoricalUIDGenerator {
-	const COUNTER_MAX = 1023; // 2^10 - 1
+	private const COUNTER_MAX = 1023; // 2^10 - 1
 
 	public static function historicalTimestampedUID88( $timestamp, $base = 10 ) {
 		static $counter = false;

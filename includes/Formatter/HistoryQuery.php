@@ -15,7 +15,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	// key of the indexes using FLOW_HISTORY_INDEX_LIMIT
 	// This magic number is based on new-post/new-topic being about 26% of post revisions.
 	// (queried from production), since that is the only thing currently excluded.
-	const POST_OVERFETCH_FACTOR = 1.36;
+	protected const POST_OVERFETCH_FACTOR = 1.36;
 
 	/**
 	 * @var FlowActions

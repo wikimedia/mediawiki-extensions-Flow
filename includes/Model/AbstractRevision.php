@@ -17,11 +17,11 @@ use User;
 use WikiPage;
 
 abstract class AbstractRevision {
-	const MODERATED_NONE = '';
-	const MODERATED_HIDDEN = 'hide';
-	const MODERATED_DELETED = 'delete';
-	const MODERATED_SUPPRESSED = 'suppress';
-	const MODERATED_LOCKED = 'lock';
+	public const MODERATED_NONE = '';
+	public const MODERATED_HIDDEN = 'hide';
+	public const MODERATED_DELETED = 'delete';
+	public const MODERATED_SUPPRESSED = 'suppress';
+	public const MODERATED_LOCKED = 'lock';
 
 	/**
 	 * List of available permission levels.
