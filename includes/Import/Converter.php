@@ -4,7 +4,8 @@ namespace Flow\Import;
 
 use ActorMigration;
 use Flow\Exception\FlowException;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
@@ -281,13 +282,13 @@ class Converter {
 		$page = WikiPage::factory( $archiveTitle );
 		// doEditContent will do this anyway, but we need to now for the revision.
 		$page->loadPageData( WikiPage::READ_LATEST );
-		$revision = $page->getRevision();
+		$revision = $page->getRevisionRecord();
 		if ( $revision === null ) {
 			throw new ImportException( "Expected a revision at {$archiveTitle}" );
 		}
 
 		// Do not create revisions based on rev_deleted revisions.
-		$content = $revision->getContent( RevisionRecord::FOR_PUBLIC );
+		$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
 		if ( !$content instanceof WikitextContent ) {
 			throw new ImportException( "Expected wikitext content at: {$archiveTitle}" );
 		}

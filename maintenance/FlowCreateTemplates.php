@@ -103,7 +103,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 		$article = new Article( $title );
 		$page = $article->getPage();
 
-		if ( $page->getRevision() !== null ) {
+		if ( $page->getRevisionRecord() !== null ) {
 			// template already exists, don't overwrite it
 			return Status::newGood();
 		}
