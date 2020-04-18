@@ -9,7 +9,7 @@ use Flow\Exception\InvalidParameterException;
 
 class SearchEngine extends \SearchEngine {
 
-	const MAX_OFFSET = 100000;
+	private const MAX_OFFSET = 100000;
 
 	/**
 	 * @var string|false $type Type of revisions to retrieve

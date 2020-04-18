@@ -15,7 +15,7 @@ use Title;
  * @group Database
  */
 class ApiFlowViewTopicListTest extends ApiTestCase {
-	const TITLE_PREFIX = 'VTL Test ';
+	private const TITLE_PREFIX = 'VTL Test ';
 
 	/**
 	 * Flaky test causing random failures, see T209535

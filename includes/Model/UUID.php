@@ -55,23 +55,23 @@ class UUID implements ApiSerializable {
 	 * Acceptable input values for constructor.
 	 * Values are the property names the input data will be saved to.
 	 */
-	const INPUT_BIN = 'binaryValue',
+	private const INPUT_BIN = 'binaryValue',
 		INPUT_HEX = 'hexValue',
 		INPUT_ALNUM = 'alphadecimalValue';
 
 	// UUID length in hex, always padded
-	const HEX_LEN = 22;
+	public const HEX_LEN = 22;
 	// UUID length in binary, always padded
-	const BIN_LEN = 11;
+	public const BIN_LEN = 11;
 	// UUID length in base36, with padding
-	const ALNUM_LEN = 19;
+	public const ALNUM_LEN = 19;
 	// unpadded base36 input string
-	const MIN_ALNUM_LEN = 16;
+	public const MIN_ALNUM_LEN = 16;
 
 	// 126 bit binary length
-	const OLD_BIN_LEN = 16;
+	public const OLD_BIN_LEN = 16;
 	// 128 bit hex length
-	const OLD_HEX_LEN = 32;
+	public const OLD_HEX_LEN = 32;
 
 	/**
 	 * Constructs a UUID object based on either the binary, hex or alphanumeric

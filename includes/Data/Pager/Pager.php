@@ -11,10 +11,10 @@ use Flow\Exception\InvalidInputException;
  */
 class Pager {
 	private static $VALID_DIRECTIONS = [ 'fwd', 'rev' ];
-	const DEFAULT_DIRECTION = 'fwd';
-	const DEFAULT_LIMIT = 1;
-	const MAX_LIMIT = 500;
-	const MAX_QUERIES = 4;
+	private const DEFAULT_DIRECTION = 'fwd';
+	private const DEFAULT_LIMIT = 1;
+	private const MAX_LIMIT = 500;
+	private const MAX_QUERIES = 4;
 
 	/**
 	 * @var ObjectManager

@@ -14,7 +14,7 @@ use User;
  */
 class UserNameBatch {
 	// Maximum number of usernames to cache for each wiki
-	const USERNAMES_PER_WIKI = 250;
+	private const USERNAMES_PER_WIKI = 250;
 
 	/**
 	 * @var UserName\UserNameQuery

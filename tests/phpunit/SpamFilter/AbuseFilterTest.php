@@ -18,8 +18,8 @@ use User;
  * @group Flow
  */
 class AbuseFilterTest extends PostRevisionTestCase {
-	const BAD_TOPIC_TITLE_TEXT = 'Topic:Tnprd6ksfu1v1nme';
-	const BAD_OWNER_TITLE_TEXT = 'BadBoard';
+	private const BAD_TOPIC_TITLE_TEXT = 'Topic:Tnprd6ksfu1v1nme';
+	private const BAD_OWNER_TITLE_TEXT = 'BadBoard';
 
 	/**
 	 * @var AbuseFilter

@@ -7,10 +7,10 @@ use User;
 
 class ImportSource implements IImportSource {
 	// Thread types defined by LQT which are returned via api
-	const THREAD_TYPE_NORMAL = 0;
-	const THREAD_TYPE_MOVED = 1;
-	const THREAD_TYPE_DELETED = 2;
-	const THREAD_TYPE_HIDDEN = 4;
+	private const THREAD_TYPE_NORMAL = 0;
+	private const THREAD_TYPE_MOVED = 1;
+	private const THREAD_TYPE_DELETED = 2;
+	private const THREAD_TYPE_HIDDEN = 4;
 
 	/**
 	 * @var ApiBackend

@@ -10,17 +10,17 @@ class Connection extends \ElasticaConnection {
 	/**
 	 * Name of the topic type.
 	 */
-	const TOPIC_TYPE_NAME = 'topic';
+	public const TOPIC_TYPE_NAME = 'topic';
 
 	/**
 	 * Name of the header type.
 	 */
-	const HEADER_TYPE_NAME = 'header';
+	public const HEADER_TYPE_NAME = 'header';
 
 	/**
 	 * Name of the index that holds Flow data.
 	 */
-	const FLOW_INDEX_TYPE = 'flow';
+	private const FLOW_INDEX_TYPE = 'flow';
 
 	/**
 	 * @var string[]
