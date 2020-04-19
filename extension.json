@@ -973,15 +973,9 @@
 		"Flow\\": "includes/"
 	},
 	"TestAutoloadClasses": {
-		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php",
-		"Flow\\Tests\\Api\\ApiTestCase": "tests/phpunit/Api/ApiTestCase.php",
-		"Flow\\Tests\\FlowTestCase": "tests/phpunit/FlowTestCase.php",
-		"Flow\\Tests\\Mock\\MockImportHeader": "tests/phpunit/Mock/MockImportHeader.php",
-		"Flow\\Tests\\Mock\\MockImportPost": "tests/phpunit/Mock/MockImportPost.php",
-		"Flow\\Tests\\Mock\\MockImportRevision": "tests/phpunit/Mock/MockImportRevision.php",
-		"Flow\\Tests\\Mock\\MockImportSource": "tests/phpunit/Mock/MockImportSource.php",
-		"Flow\\Tests\\Mock\\MockImportSummary": "tests/phpunit/Mock/MockImportSummary.php",
-		"Flow\\Tests\\Mock\\MockImportTopic": "tests/phpunit/Mock/MockImportTopic.php",
-		"Flow\\Tests\\PostRevisionTestCase": "tests/phpunit/PostRevisionTestCase.php"
+		"ExternalStoreFlowMock": "tests/phpunit/Mock/ExternalStoreFlowMock.php"
+	},
+	"TestAutoloadNamespaces": {
+		"Flow\\Tests\\": "tests/phpunit/"
 	}
 }
