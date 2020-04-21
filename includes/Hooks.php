@@ -5,7 +5,6 @@ namespace Flow;
 use AbuseFilterVariableHolder;
 use Article;
 use BetaFeatures;
-use CdnCacheUpdate;
 use ChangesList;
 use Content;
 use ContentHandler;
@@ -1633,8 +1632,8 @@ class Hooks {
 					}
 				}
 
-				$update = CdnCacheUpdate::newFromTitles( $topicTitles );
-				DeferredUpdates::addUpdate( $update ); // run right after this
+				$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+				$hcu->purgeTitleUrls( $topicTitles, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 			} );
 		}
 	}
