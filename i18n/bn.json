@@ -95,7 +95,7 @@
 	"flow-topic-action-unlock-topic": "প্রসঙ্গ পুনরায় খুলুন",
 	"flow-topic-action-summarize-topic": "সংক্ষেপন",
 	"flow-topic-action-resummarize-topic": "প্রসঙ্গের সারাংশ সম্পাদনা করুন",
-	"flow-topic-action-update-topic-summary": "হালনাগাদের সারসংক্ষেপ",
+	"flow-topic-action-update-topic-summary": "সারাংশ হালনাগাদ",
 	"flow-topic-action-undo-moderation": "পূর্বাবস্থায় ফেরাও",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|আপনি}} এই আলোচনা বোর্ডে সদস্যতা নিয়েছেন!",
 	"flow-topic-action-watchlist-add": "এই প্রসঙ্গে সদস্যতা নিন",
