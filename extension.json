@@ -336,15 +336,6 @@
 				"mobile"
 			]
 		},
-		"ext.flow.mediawiki.ui.text": {
-			"styles": [
-				"styles/mediawiki.ui/text.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
 		"ext.flow.mediawiki.ui.form": {
 			"styles": [
 				"styles/mediawiki.ui/forms.less"
