@@ -57,8 +57,8 @@
 	// because we're attaching switcher controls below the textarea & we
 	// want them to look unified with the textarea, we'll have to take away
 	// its border and re-apply on the parent node that contains both
-	border: 1px solid @colorFieldBorder;
-	border-radius: @borderRadius;
+	border: @border-base;
+	border-radius: @border-radius-base;
 	transition: border-color 250ms, box-shadow 250ms;
 
 	.flow-ui-editorWidget-focused & {
