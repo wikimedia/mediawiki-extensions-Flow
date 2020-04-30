@@ -90,9 +90,7 @@
 			& > a.flow-board-navigator-active {
 				// Clip the topic title
 				display: block;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
+				.text-overflow( @visible: false );
 			}
 		}
 	}
@@ -119,12 +117,10 @@
 
 		a {
 			display: block;
-			overflow: hidden;
-			white-space: nowrap;
 			text-align: left;
-			text-overflow: ellipsis;
 			padding-left: 0;
 			padding-right: 0;
+			.text-overflow( @visible: false );
 
 			&.active {
 				font-weight: bold;
