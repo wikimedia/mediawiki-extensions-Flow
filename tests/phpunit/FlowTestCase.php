@@ -2,7 +2,6 @@
 
 namespace Flow\Tests;
 
-use EventRelayerNull;
 use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\FlowObjectCache;
@@ -36,7 +35,6 @@ class FlowTestCase extends MediaWikiTestCase {
 		$wanCache = new WANObjectCache( [
 			'cache' => new HashBagOStuff(),
 			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
 		] );
 
 		return new FlowObjectCache( $wanCache, Container::get( 'db.factory' ), $wgFlowCacheTime );
