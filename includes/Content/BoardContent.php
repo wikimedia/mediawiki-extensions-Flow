@@ -181,7 +181,7 @@ class BoardContent extends \AbstractContent {
 		$parserOutput->updateCacheExpiry( 0 );
 
 		if ( $revId === null ) {
-			$wikiPage = new WikiPage( $title );
+			$wikiPage = WikiPage::factory( $title );
 			$timestamp = $wikiPage->getTimestamp();
 		} else {
 			$timestamp = MediaWikiServices::getInstance()->getRevisionLookup()

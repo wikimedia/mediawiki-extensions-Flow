@@ -33,7 +33,7 @@ class ConfirmEdit implements SpamFilter {
 
 		/** @var SimpleCaptcha $captcha */
 		$captcha = ConfirmEditHooks::getInstance();
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = WikiPage::factory( $title );
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered
