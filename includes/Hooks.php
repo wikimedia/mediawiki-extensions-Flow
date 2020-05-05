@@ -1550,7 +1550,7 @@ class Hooks {
 	 * Shows an error message when the user visits the deletion form if the page is in
 	 * the Topic namespace.
 	 *
-	 * @param WikiPage $article Page the user requested to delete
+	 * @param Article $article Page the user requested to delete
 	 * @param OutputPage $output Output page
 	 * @param string &$reason Pre-filled reason given for deletion (note, this could
 	 *   be used to customize this for boards and/or topics later)
