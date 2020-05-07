@@ -2,19 +2,19 @@
 
 namespace Flow;
 
-use Article;
 use Flow\Model\Workflow;
 use Status;
 use Title;
 use User;
+use WikiPage;
 
 interface OccupationController {
 	/**
-	 * @param Article $title
+	 * @param WikiPage $wikipage
 	 * @param Workflow $workflow
 	 * @return Status
 	 */
-	public function ensureFlowRevision( Article $title, Workflow $workflow );
+	public function ensureFlowRevision( WikiPage $wikipage, Workflow $workflow );
 
 	/**
 	 * Checks whether creation is technically possible.

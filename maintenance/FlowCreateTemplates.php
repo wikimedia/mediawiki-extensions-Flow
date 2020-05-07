@@ -100,8 +100,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	 * @throws MWException
 	 */
 	protected function create( Title $title, WikitextContent $content ) {
-		$article = new Article( $title );
-		$page = $article->getPage();
+		$page = WikiPage::factory( $title );
 
 		if ( $page->getRevisionRecord() !== null ) {
 			// template already exists, don't overwrite it

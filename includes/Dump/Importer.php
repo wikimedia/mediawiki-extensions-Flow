@@ -17,6 +17,7 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MWException;
 use WikiImporter;
+use WikiPage;
 use XMLReader;
 
 class Importer {
@@ -129,7 +130,10 @@ class Importer {
 			throw new MWException( $creationStatus->getWikiText() );
 		}
 
-		$ensureStatus = $occupationController->ensureFlowRevision( new \Article( $title ), $this->boardWorkflow );
+		$ensureStatus = $occupationController->ensureFlowRevision(
+			WikiPage::factory( $title ),
+			$this->boardWorkflow
+		);
 		if ( !$ensureStatus->isOK() ) {
 			throw new MWException( $ensureStatus->getWikiText() );
 		}
@@ -190,7 +194,7 @@ class Importer {
 		}
 
 		$ensureStatus = $occupationController->ensureFlowRevision(
-			new \Article( $this->topicWorkflow->getArticleTitle() ),
+			WikiPage::factory( $this->topicWorkflow->getArticleTitle() ),
 			$this->topicWorkflow
 		);
 		if ( !$ensureStatus->isOK() ) {

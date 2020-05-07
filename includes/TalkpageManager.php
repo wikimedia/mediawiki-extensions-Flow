@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use Article;
 use CentralAuthUser;
 use ContentHandler;
 use ExtensionRegistry;
@@ -14,6 +13,7 @@ use MediaWiki\Revision\SlotRecord;
 use Status;
 use Title;
 use User;
+use WikiPage;
 
 class TalkpageManager implements OccupationController {
 	/**
@@ -42,7 +42,7 @@ class TalkpageManager implements OccupationController {
 	 * or the like.  Those happen much earlier in the request and should be checked
 	 * before even attempting to create revisions.
 	 *
-	 * @param \Article $article
+	 * @param WikiPage $page
 	 * @param Workflow $workflow
 	 * @return Status Status for revision creation; On success (including if it already
 	 *  had a top-most Flow revision), it will return a good status with an associative
@@ -51,8 +51,7 @@ class TalkpageManager implements OccupationController {
 	 *  to be created
 	 * @throws InvalidInputException
 	 */
-	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
-		$page = $article->getPage();
+	public function ensureFlowRevision( WikiPage $page, Workflow $workflow ) {
 		$revision = $page->getRevisionRecord();
 
 		if ( $revision !== null ) {

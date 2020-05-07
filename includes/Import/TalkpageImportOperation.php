@@ -2,7 +2,6 @@
 
 namespace Flow\Import;
 
-use Article;
 use Flow\Import\SourceStore\Exception as ImportSourceStoreException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
@@ -14,6 +13,7 @@ use Flow\OccupationController;
 use MWTimestamp;
 use Title;
 use User;
+use WikiPage;
 
 class TalkpageImportOperation {
 	/**
@@ -69,7 +69,7 @@ class TalkpageImportOperation {
 
 			// Makes sure the page exists and a Flow-specific revision has been inserted
 			$status = $this->occupationController->ensureFlowRevision(
-				new Article( $destinationTitle ),
+				WikiPage::factory( $destinationTitle ),
 				$state->boardWorkflow
 			);
 			$state->logger->debug(
