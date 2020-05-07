@@ -628,7 +628,7 @@ class Hooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( SpecialPage $specialCheckUser, $row, &$links ) {
-		if ( !( $row->cuc_type == RC_FLOW ) ) {
+		if ( $row->cuc_type != RC_FLOW ) {
 			return;
 		}
 
