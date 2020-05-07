@@ -102,7 +102,7 @@
 	"flow-newtopic-first-heading": "發起新話題於 $1",
 	"flow-summarize-topic-placeholder": "請為為此討論摘要說明",
 	"flow-reply-topic-placeholder": "於 \"$2\" 的{{GENDER:$1|評論}}",
-	"flow-reply-topic-title-placeholder": "回覆至 \"$1\"",
+	"flow-reply-topic-title-placeholder": "回覆至「$1」",
 	"flow-reply-link": "{{GENDER:$1|回覆}}",
 	"flow-reply-link-anonymously": "匿名使用者回覆",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|感謝}}}}",
