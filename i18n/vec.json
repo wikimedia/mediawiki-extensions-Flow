@@ -46,5 +46,6 @@
 	"flow-post-moderated-toggle-hide-hide": "Nascondi mesajo {{GENDER:$1|sconto}} da $2",
 	"flow-post-moderated-toggle-delete-hide": "Scondi el mesajo {{GENDER:$1|descançełà}} da $2",
 	"flow-summarize-topic-placeholder": "Par piaxere, fà un sunto de sta discusion",
-	"flow-undo": "desfare"
+	"flow-undo": "desfare",
+	"flow-dialog-cancelconfirm-keep": "Sévitar a canbiar"
 }

@@ -5,6 +5,7 @@
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "Motivo:",
+	"flow-cancel": "Nuligar",
 	"flow-skip-summary": "Saltar",
 	"flow-show-change": "Montrez chanji",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Dankar}}}}",
