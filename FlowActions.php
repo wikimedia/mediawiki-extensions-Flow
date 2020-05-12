@@ -784,7 +784,7 @@ $wgFlowActions = [
 				 * We don't want that test to happen; otherwise, when a post
 				 * has just been restored in the most recent revisions, that
 				 * would result in none of the previous revisions being
-				 * available (because a user would need permissions for the the
+				 * available (because a user would need permissions for the
 				 * state the last revision was restored from)
 				 */
 				$collection = $revision->getCollection();
