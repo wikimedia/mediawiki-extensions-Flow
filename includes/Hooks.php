@@ -104,7 +104,7 @@ class Hooks {
 		// Register a dummy supportCheck module in case VE isn't loaded, as we attempt
 		// to load this module unconditionally on load.
 		if ( !$resourceLoader->isModuleRegistered( 'ext.visualEditor.supportCheck' ) ) {
-			$resourceLoader->register( 'ext.visualEditor.supportCheck', [] );
+			$resourceLoader->register( 'ext.visualEditor.supportCheck', [ 'targets' => [ 'desktop', 'mobile' ] ] );
 		}
 
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' ) ) {
