@@ -15,6 +15,7 @@ use MediaWikiTestCase;
 use RecentChange;
 use Title;
 use User;
+use WikiPage;
 
 /**
  * @covers Hooks
@@ -56,7 +57,10 @@ class HookTest extends MediaWikiTestCase {
 			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
-			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+			$occupationController->ensureFlowRevision(
+				WikiPage::factory( $title ),
+				$workflow
+			);
 
 			Container::get( 'storage' )->put( $workflow, $metadata );
 
@@ -83,7 +87,10 @@ class HookTest extends MediaWikiTestCase {
 			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
-			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
+			$occupationController->ensureFlowRevision(
+				WikiPage::factory( $title ),
+				$boardWorkflow
+			);
 
 			$storage = Container::get( 'storage' );
 			$storage->put( $boardWorkflow, $metadata );

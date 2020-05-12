@@ -17,6 +17,7 @@ use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use SplQueue;
 use User;
+use WikiPage;
 
 /**
  * @group Flow
@@ -238,7 +239,10 @@ class PostRevisionTestCase extends FlowTestCase {
 			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
-			$occupationController->ensureFlowRevision( new \Article( $title ), $boardWorkflow );
+			$occupationController->ensureFlowRevision(
+				WikiPage::factory( $title ),
+				$boardWorkflow
+			);
 
 			$topicListEntry = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
 

@@ -134,7 +134,10 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 
 		try {
 			$status = $occupationController->safeAllowCreation( $title, $occupationController->getTalkpageManager() );
-			$status2 = $occupationController->ensureFlowRevision( new Article( $title ), $workflow );
+			$status2 = $occupationController->ensureFlowRevision(
+				WikiPage::factory( $title ),
+				$workflow
+			);
 
 			$status->merge( $status2 );
 		} catch ( \Exception $e ) {

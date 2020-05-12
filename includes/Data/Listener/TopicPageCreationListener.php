@@ -2,10 +2,10 @@
 
 namespace Flow\Data\Listener;
 
-use Article;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use SplQueue;
+use WikiPage;
 
 class TopicPageCreationListener extends AbstractListener {
 	/** @var OccupationController */
@@ -39,7 +39,7 @@ class TopicPageCreationListener extends AbstractListener {
 		$controller = $this->occupationController;
 		$this->deferredQueue->push( function () use ( $controller, $object ) {
 			$controller->ensureFlowRevision(
-				new Article( $object->getArticleTitle() ),
+				WikiPage::factory( $object->getArticleTitle() ),
 				$object
 			);
 		} );

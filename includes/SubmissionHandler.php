@@ -14,6 +14,7 @@ use FormatJson;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use SplQueue;
+use WikiPage;
 
 class SubmissionHandler {
 
@@ -153,7 +154,10 @@ class SubmissionHandler {
 		try {
 			$dbw->startAtomic( __METHOD__ );
 			// Create the occupation page/revision if needed
-			$occupationController->ensureFlowRevision( new \Article( $title ), $workflow );
+			$occupationController->ensureFlowRevision(
+				WikiPage::factory( $title ),
+				$workflow
+			);
 			// Create/modify each Flow block as requested
 			$results = [];
 			foreach ( $blocks as $block ) {
