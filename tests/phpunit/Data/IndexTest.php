@@ -48,12 +48,12 @@ class IndexTest extends FlowTestCase {
 
 		$db = FeatureIndex::cachedDbId();
 		$v = $wgFlowCacheVersion;
-		$cache->set( "$db:unique:" . md5( '1' ) . ":$v", [ [ 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ] ] );
-		$cache->set( "$db:unique:" . md5( '2' ) . ":$v", [ [ 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ] ] );
-		$cache->set( "$db:unique:" . md5( '3' ) . ":$v", [ [ 'id' => 3, 'name' => 'baz', 'other' => 'lll' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '1' ) . ":$v", [ [ 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '2' ) . ":$v", [ [ 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '3' ) . ":$v", [ [ 'id' => 3, 'name' => 'baz', 'other' => 'lll' ] ] );
 
-		$cache->set( "$db:secondary:" . md5( 'foo' ) . ":$v", [ [ 'id' => 1 ], [ 'id' => 2 ] ] );
-		$cache->set( "$db:secondary:" . md5( 'baz' ) . ":$v", [ [ 'id' => 3 ] ] );
+		$cache->set( "global:secondary:$db:" . md5( 'foo' ) . ":$v", [ [ 'id' => 1 ], [ 'id' => 2 ] ] );
+		$cache->set( "global:secondary:$db:" . md5( 'baz' ) . ":$v", [ [ 'id' => 3 ] ] );
 
 		$expect = [
 			[ 'id' => 1, 'name' => 'foo', 'other' => 'ppp', ],
@@ -98,15 +98,15 @@ class IndexTest extends FlowTestCase {
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
 		$v = $wgFlowCacheVersion;
-		$cache->set( "$db:unique:" . md5( '1:9' ) . ":$v", [ [ 'id' => 1, 'ot' => 9, 'name' => 'foo' ] ] );
-		$cache->set( "$db:unique:" . md5( '1:8' ) . ":$v", [ [ 'id' => 1, 'ot' => 8, 'name' => 'foo' ] ] );
-		$cache->set( "$db:unique:" . md5( '3:7' ) . ":$v", [ [ 'id' => 3, 'ot' => 7, 'name' => 'baz' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '1:9' ) . ":$v", [ [ 'id' => 1, 'ot' => 9, 'name' => 'foo' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '1:8' ) . ":$v", [ [ 'id' => 1, 'ot' => 8, 'name' => 'foo' ] ] );
+		$cache->set( "global:unique:$db:" . md5( '3:7' ) . ":$v", [ [ 'id' => 3, 'ot' => 7, 'name' => 'baz' ] ] );
 
-		$cache->set( "$db:secondary:" . md5( 'foo' ) . ":$v", [
+		$cache->set( "global:secondary:$db:" . md5( 'foo' ) . ":$v", [
 			[ 'id' => 1, 'ot' => 9 ],
 			[ 'id' => 1, 'ot' => 8 ],
 		] );
-		$cache->set( "$db:secondary:" . md5( 'baz' ) . ":$v", [
+		$cache->set( "global:secondary:$db:" . md5( 'baz' ) . ":$v", [
 			[ 'id' => 3, 'ot' => 7 ],
 		] );
 

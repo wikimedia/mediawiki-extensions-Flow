@@ -3,6 +3,7 @@
 namespace Flow\Repository;
 
 use Flow\Model\UUID;
+use MediaWiki\MediaWikiServices;
 
 class TreeCacheKey {
 
@@ -18,6 +19,14 @@ class TreeCacheKey {
 	 */
 	public static function build( $treeType, UUID $id ) {
 		global $wgFlowCacheVersion;
-		return wfForeignMemcKey( 'flow', '', 'tree', $treeType, $id->getAlphadecimal(), $wgFlowCacheVersion );
+
+		return MediaWikiServices::getInstance()
+			->getMainWANObjectCache()
+			->makeGlobalKey(
+				'flow-tree',
+				$treeType,
+				$id->getAlphadecimal(),
+				$wgFlowCacheVersion
+			);
 	}
 }
