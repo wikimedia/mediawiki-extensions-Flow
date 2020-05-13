@@ -45,7 +45,10 @@
 	"flow-post-moderated-toggle-suppress-show": "Mostra el mesajo {{GENDER:$1|soprimesto}} da $2",
 	"flow-post-moderated-toggle-hide-hide": "Nascondi mesajo {{GENDER:$1|sconto}} da $2",
 	"flow-post-moderated-toggle-delete-hide": "Scondi el mesajo {{GENDER:$1|descançełà}} da $2",
+	"flow-last-modified-by": "{{GENDER:$1|canbio}} in ùltema de $1",
 	"flow-summarize-topic-placeholder": "Par piaxere, fà un sunto de sta discusion",
+	"flow-post-action-view": "Łinganbo permanente",
+	"flow-topic-action-view": "Łinganbo permanente",
 	"flow-undo": "desfare",
 	"flow-dialog-cancelconfirm-keep": "Sévitar a canbiar"
 }
