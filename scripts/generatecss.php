@@ -10,8 +10,11 @@ if ( count( $argv ) < 3 ) {
 list( , $loadUrl, $outputFile ) = $argv;
 
 define( 'MEDIAWIKI', true );
+// FIXME: Why not use define()?
 const NS_MAIN = 0;
-$wgVersion = 1.23;
+// FIXME: This should be a string
+// TODO: Can this be bumped?
+define( 'MW_VERSION', 1.23 );
 $wgSpecialPages = [];
 $wgResourceModules = [];
 
