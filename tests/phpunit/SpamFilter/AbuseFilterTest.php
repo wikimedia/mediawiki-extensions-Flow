@@ -87,7 +87,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider spamProvider
 	 */
-	public function testSpam( $title, $ownerTitle, $newRevisionRow, $oldRevisionRow = null, $expected ) {
+	public function testSpam( $title, $ownerTitle, $newRevisionRow, $oldRevisionRow, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$oldRevision = $oldRevisionRow ? $this->generateObject( $oldRevisionRow ) : null;
 
