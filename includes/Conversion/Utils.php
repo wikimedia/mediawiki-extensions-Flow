@@ -16,7 +16,6 @@ use Html;
 use Language;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use MultiHttpClient;
 use OutputPage;
 use RequestContext;
 use Sanitizer;
@@ -262,7 +261,9 @@ abstract class Utils {
 	 */
 	protected static function getServiceClient() {
 		if ( self::$serviceClient === null ) {
-			$sc = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
+			$sc = new VirtualRESTServiceClient(
+				MediaWikiServices::getInstance()->getHttpRequestFactory()->createMultiClient()
+			);
 			$sc->mount( '/restbase/', self::getVRSObject() );
 			self::$serviceClient = $sc;
 		}
