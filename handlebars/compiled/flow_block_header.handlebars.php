@@ -22,7 +22,7 @@
 '.$sp.'' : '').'</div>
 ';},
 'flow_header_detail' => function ($cx, $in, $sp) {$inary=is_array($in);return ''.$sp.''.LR::raw($cx, LR::hbch($cx, 'oouify', array(array(((isset($in['revision']['content']) && is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null),((isset($in['revision']['actions']['edit']) && is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['url'])) ? $in['revision']['actions']['edit']['url'] : null),((isset($in['revision']['actions']['edit']) && is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['title'])) ? $in['revision']['actions']['edit']['title'] : null)),array('type'=>'BoardDescriptionWidget','name'=>'flow-board-description')), 'raw', $in)).'
-'.$sp.'<a href="javascript:void(0);"
+'.$sp.'<a href="javascript:void(0);" role="button"
 '.$sp.'	class="mw-ui-button mw-ui-quiet side-rail-toggle-button"
 '.$sp.'	data-flow-interactive-handler="toggleSideRail">
 '.$sp.'	<span class="mw-ui-icon mw-ui-icon-before mw-ui-icon-only mw-ui-icon-close pull-right collapse-button"
