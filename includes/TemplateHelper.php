@@ -773,12 +773,14 @@ class TemplateHelper {
 	}
 
 	/**
-	 * Adds required resource and protection for patrolling link.
+	 * Enhance the patrolling link and protect it.
 	 */
 	public static function enablePatrollingLink() {
 		$outputPage = RequestContext::getMain()->getOutput();
 
+		// Enhance the patrol link with ajax
+		// FIXME: This duplicates DifferenceEngine::markPatrolledLink.
 		$outputPage->preventClickjacking();
-		$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+		$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 	}
 }
