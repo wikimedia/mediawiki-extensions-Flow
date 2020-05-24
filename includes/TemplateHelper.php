@@ -585,8 +585,8 @@ class TemplateHelper {
 		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( $differenceEngine->addHeader(
 			$diffContent,
-			wfMessage( 'flow-undo-latest-revision' ),
-			wfMessage( 'flow-undo-your-text' ),
+			wfMessage( 'flow-undo-latest-revision' )->parse(),
+			wfMessage( 'flow-undo-your-text' )->parse(),
 			// FIXME we should be passing in a multinotice for multi-rev diffs here
 			'',
 			$notice
