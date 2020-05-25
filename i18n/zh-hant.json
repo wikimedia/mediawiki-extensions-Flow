@@ -504,7 +504,7 @@
 	"flow-ve-mention-template-title": "Flow提到",
 	"flow-ve-mention-inspector-invalid-user": "使用者名稱 \"$1\" 未註冊。",
 	"flow-wikitext-editor-help": "Wikitext $1。",
-	"flow-wikitext-editor-help-and-preview": "Wikitext $1；您可以隨時 $2。",
+	"flow-wikitext-editor-help-and-preview": "Wikitext$1；您可以隨時$2。",
 	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|標籤用法]]",
 	"flow-wikitext-editor-help-preview-the-result": "預覽結果",
 	"flow-mark-revision-patrolled-link-text": "標記此頁面為已巡查",
