@@ -56,6 +56,7 @@
 
 		this.id = 'edit-board-desc/' + mw.flow.system.boardId;
 		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
+			placeholder: mw.msg( 'flow-edit-header-link' ),
 			saveMsgKey: msgKey,
 			classes: [ 'flow-ui-boardDescriptionWidget-editor' ],
 			id: this.id
