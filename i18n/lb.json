@@ -54,7 +54,7 @@
 	"flow-newtopic-first-heading": "En neit Thema op $1 ufänken",
 	"flow-summarize-topic-placeholder": "Resuméiert dës Diskussioun wgl.",
 	"flow-reply-topic-placeholder": "\"$2\" {{GENDER:$1|kommentéieren}}",
-	"flow-reply-topic-title-placeholder": "Op \"$1\" äntwerten",
+	"flow-reply-topic-title-placeholder": "Op \"$1\" äntweren",
 	"flow-reply-link": "{{GENDER:$1|Äntwerten}}",
 	"flow-reply-link-anonymously": "Anonym äntweren",
 	"flow-thank-link": "{{GENDER:$1||{{GENDER:$2|Merci soen}}}}",
