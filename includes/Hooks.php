@@ -4,7 +4,6 @@ namespace Flow;
 
 use AbuseFilterVariableHolder;
 use Article;
-use BetaFeatures;
 use ChangesList;
 use Content;
 use ContentHandler;
@@ -1780,8 +1779,9 @@ class Hooks {
 	/**
 	 * @param User $user
 	 * @param array &$options
+	 * @param array $originalOptions
 	 */
-	public static function onUserSaveOptions( $user, &$options ) {
+	public static function onUserSaveOptions( $user, &$options, $originalOptions ) {
 		if ( !self::isBetaFeatureAvailable() ) {
 			return;
 		}
@@ -1790,8 +1790,7 @@ class Hooks {
 			return;
 		}
 
-		$userClone = User::newFromId( $user->getId() );
-		$before = BetaFeatures::isFeatureEnabled( $userClone, BETA_FEATURE_FLOW_USER_TALK_PAGE );
+		$before = $originalOptions[BETA_FEATURE_FLOW_USER_TALK_PAGE] ?? false;
 		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
 		$action = null;
 
