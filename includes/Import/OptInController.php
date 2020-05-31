@@ -392,7 +392,6 @@ class OptInController {
 		$content = $this->getFormattedArchiveTemplate( $title ) . "\n\n" . $content;
 
 		$addTemplateReason = wfMessage( 'flow-beta-feature-add-archive-template-edit-summary' )->inContentLanguage()->plain();
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$archiveTitle,
 			$content,
@@ -590,7 +589,6 @@ class OptInController {
 
 		$newContent = TemplateHelper::removeFromHtml( $content, $templateName );
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$title,
 			Utils::convert( 'html', 'wikitext', $newContent, $title ),
@@ -639,7 +637,6 @@ class OptInController {
 	private function editWikitextContent( Title $title, $reason, callable $newDescriptionCallback, $format = 'html' ) {
 		$content = Utils::convert( 'wikitext', $format, $this->getContent( $title ), $title );
 		$newContent = $newDescriptionCallback( $content );
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$this->createRevision(
 			$title,
 			Utils::convert( $format, 'wikitext', $newContent, $title ),
