@@ -258,7 +258,7 @@
 	"flow-rev-message-lock-topic-reason": "標記為已解決",
 	"flow-rev-message-restore-topic-reason": "重新開啟",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|已還原}}於 「$6」 的 [$4 話題] (<em>$5</em>)",
-	"flow-rc-topic-of-board": "於 $2 之 $1",
+	"flow-rc-topic-of-board": "$2上的$1",
 	"flow-board-history": "\"$1\" 歷史",
 	"flow-board-history-empty": "此討論板目前沒有歷史記錄。",
 	"flow-topic-history": "\"$1\" 話題歷史",
