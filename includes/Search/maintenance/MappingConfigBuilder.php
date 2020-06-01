@@ -3,7 +3,7 @@
 namespace Flow\Search\Maintenance;
 
 /**
- * @phan-file-suppress PhanUndeclaredMethod,PhanUndeclaredConstant This script is outdated, T227561
+ * @phan-file-suppress PhanUndeclaredMethod,PhanUndeclaredConstantOfClass This script is outdated, T227561
  */
 class MappingConfigBuilder extends \CirrusSearch\Maintenance\MappingConfigBuilder {
 	/**
