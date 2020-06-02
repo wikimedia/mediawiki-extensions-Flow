@@ -22,15 +22,6 @@ if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 } else {
 	$c['user'] = $GLOBALS['wgUser'] ?? new User;
 }
-$c['memcache'] = function ( $c ) {
-	global $wgFlowUseMemcache, $wgMemc;
-
-	if ( $wgFlowUseMemcache ) {
-		return $wgMemc;
-	} else {
-		return new \HashBagOStuff();
-	}
-};
 
 // Flow config
 $c['flow_actions'] = function ( $c ) {
