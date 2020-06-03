@@ -8,7 +8,6 @@ $cfg['file_list'] = array_merge(
 		'container.php',
 		'defines.php',
 		'FlowActions.php',
-		'Hooks.php'
 	]
 );
 
