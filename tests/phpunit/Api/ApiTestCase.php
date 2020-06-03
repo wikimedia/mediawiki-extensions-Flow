@@ -98,7 +98,6 @@ abstract class ApiTestCase extends \ApiTestCase {
 
 	protected function expectCacheInvalidate() {
 		$mock = $this->mockCache();
-		$mock->expects( $this->never() )->method( 'set' );
 		$mock->expects( $this->atLeastOnce() )->method( 'delete' );
 		return $mock;
 	}
