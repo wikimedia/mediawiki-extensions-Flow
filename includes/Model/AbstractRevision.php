@@ -353,7 +353,10 @@ abstract class AbstractRevision {
 	 */
 	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
-			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
+			$this->decompressedContent = MediaWikiServices::getInstance()
+				->getBlobStoreFactory()
+				->newSqlBlobStore()
+				->decompressData( $this->content, $this->flags );
 		}
 
 		return $this->decompressedContent;
@@ -595,7 +598,11 @@ abstract class AbstractRevision {
 		$this->contentUrl = null;
 
 		// should this only remove a subset of flags?
-		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
+		$compressed = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore()
+			->compressData( $this->content );
+		$this->flags = array_filter( explode( ',', $compressed ) );
 		$this->flags[] = $storageFormat;
 
 		$this->contentLength = $this->calculateContentLength();

@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -227,7 +228,10 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 			throw new MWException( "Failed to fetch content from URL: $url" );
 		}
 
-		$content = \Revision::decompressRevisionText( $content, $flags );
+		$content = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore()
+			->decompressData( $content, $flags );
 		if ( $content === false ) {
 			throw new MWException( "Failed to decompress content from URL: $url" );
 		}
@@ -254,7 +258,11 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 		}
 
 		// re-compress (if $wgCompressRevisions is enabled) the content & set flags accordingly
-		$flags = array_filter( explode( ',', \Revision::compressRevisionText( $content ) ) );
+		$compressed = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore()
+			->compressData( $content );
+		$flags = array_filter( explode( ',', $compressed ) );
 
 		// ExternalStore::insertWithFallback expects stores with protocol
 		$stores = [];
