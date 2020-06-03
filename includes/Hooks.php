@@ -631,6 +631,36 @@ class Hooks {
 			return;
 		}
 
+		$replacement = self::getReplacementRowItems( $specialCheckUser->getContext(), $row );
+
+		if ( $replacement === null ) {
+			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
+			// which aren't correct
+			$links['history'] = '';
+			$links['diff'] = '';
+		} else {
+			$links = $replacement;
+		}
+	}
+
+	public static function onCheckUserFormatRow( IContextSource $context, $row, &$rowItems ) {
+		if ( $row->cuc_type != RC_FLOW ) {
+			return;
+		}
+
+		$replacement = self::getReplacementRowItems( $context, $row );
+
+		// These links are incorrect for Flow
+		$rowItems['links']['diffLink'] = '';
+		$rowItems['links']['historyLink'] = '';
+
+		if ( $replacement !== null ) {
+			array_unshift( $rowItems['links'], $replacement['links'] );
+			$rowItems['info']['titleLink'] = $replacement['title'];
+		}
+	}
+
+	private static function getReplacementRowItems( IContextSource $context, $row ) : ?array {
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		$replacement = null;
 		try {
@@ -642,7 +672,7 @@ class Hooks {
 			if ( $row !== false ) {
 				/** @var Formatter\CheckUserFormatter $formatter */
 				$formatter = Container::get( 'formatter.checkuser' );
-				$replacement = $formatter->format( $row, $specialCheckUser->getContext() );
+				$replacement = $formatter->format( $row, $context );
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . json_encode( $row ) . ' ' . $e );
@@ -651,14 +681,7 @@ class Hooks {
 			restore_error_handler();
 		}
 
-		if ( $replacement === null ) {
-			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
-			// which aren't correct
-			unset( $links['history'] );
-			unset( $links['diff'] );
-		} else {
-			$links = $replacement;
-		}
+		return $replacement;
 	}
 
 	/**

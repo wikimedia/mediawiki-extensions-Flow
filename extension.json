@@ -739,6 +739,7 @@
 		"BeforeEchoEventInsert": "Flow\\Hooks::onBeforeEchoEventInsert",
 		"ArticleEditUpdateNewTalk": "Flow\\Hooks::onArticleEditUpdateNewTalk",
 		"InfoAction": "Flow\\Hooks::onInfoAction",
+		"CheckUserFormatRow": "Flow\\Hooks::onCheckUserFormatRow",
 		"SpecialCheckUserGetLinksFromRow": "Flow\\Hooks::onSpecialCheckUserGetLinksFromRow",
 		"CheckUserInsertForRecentChange": "Flow\\Hooks::onCheckUserInsertForRecentChange",
 		"SkinMinervaDefaultModules": "Flow\\Hooks::onSkinMinervaDefaultModules",
