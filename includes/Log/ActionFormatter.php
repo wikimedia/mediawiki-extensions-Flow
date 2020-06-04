@@ -145,7 +145,7 @@ class ActionFormatter extends LogFormatter {
 		return \Html::rawElement(
 			'span',
 			[ 'class' => 'plainlinks' ],
-			$message
+			$message->parse()
 		);
 	}
 

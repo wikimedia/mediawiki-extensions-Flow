@@ -54,7 +54,7 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 		/** @var Status $status */
 		$status = $this->searchEngine->searchText( $params['term'] );
 		if ( !$status->isOK() ) {
-			throw new InvalidDataException( $status->getMessage(), 'fail-search' );
+			throw new InvalidDataException( $status->getMessage()->text(), 'fail-search' );
 		}
 		$this->getMain()->getErrorFormatter()->addMessagesFromStatus(
 			$this->getModuleName(), $status );
