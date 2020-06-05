@@ -953,10 +953,6 @@ $wgFlowActions = [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'modules' => [],
 	],
-	'purge' => [
-		'handler-class' => \Flow\Actions\PurgeAction::class,
-		'modules' => [],
-	],
 
 	// Other formatters have the same config as history
 	'recentchanges' => 'history',

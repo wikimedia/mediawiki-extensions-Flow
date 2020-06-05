@@ -20,7 +20,6 @@ class Container extends \Pimple\Container {
 		if ( self::$container === null ) {
 			self::$container = include __DIR__ . "/../container.php";
 		}
-		// @phan-suppress-next-line PhanTypeMismatchReturn
 		return self::$container;
 	}
 
