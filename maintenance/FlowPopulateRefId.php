@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Data\ObjectManager;
+use MediaWiki\MediaWikiServices;
 
 $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
@@ -55,6 +56,9 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 		global $wgFlowCluster;
 
 		$total = 0;
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		while ( true ) {
 			$references = (array)$storage->find( [ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ], [ 'limit' => $this->mBatchSize ] );
 			if ( !$references ) {
@@ -64,7 +68,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 			$storage->multiPut( $references, [] );
 			$total += count( $references );
 			$this->output( "Ensured ref_id for " . $total . " " . get_class( $references[0] ) . " references...\n" );
-			wfWaitForSlaves( null, false, $wgFlowCluster );
+			$lbFactory->waitForReplication( [ 'cluster' => $wgFlowCluster ] );
 		}
 	}
 }

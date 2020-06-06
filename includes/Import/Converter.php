@@ -4,6 +4,7 @@ namespace Flow\Import;
 
 use ActorMigration;
 use Flow\Exception\FlowException;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MovePage;
@@ -185,7 +186,10 @@ class Converter {
 			$archiveTitle = $this->strategy->decideArchiveTitle( $title );
 			$this->logger->info( "Archiving page from $title to $archiveTitle" );
 			$this->movePage( $title, $archiveTitle );
-			wfWaitForSlaves(); // Wait for slaves to pick up the move
+
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			// Wait for replicas to pick up the page move
+			$lbFactory->waitForReplication();
 		}
 
 		$source = $this->strategy->createImportSource( $archiveTitle );

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: __DIR__ . '/../../../maintenance/Maintenance.php';
@@ -62,6 +64,8 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			]
 		);
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		$i = 0;
 		$users = UserArray::newFromResult( $result );
 		foreach ( $users as $user ) {
@@ -69,7 +73,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			$user->saveSettings();
 
 			if ( ++$i % $this->mBatchSize === 0 ) {
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 		}
 

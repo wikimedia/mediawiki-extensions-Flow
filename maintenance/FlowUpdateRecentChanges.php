@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Data\Listener\RecentChangesListener;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -39,9 +40,11 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 
 		$continue = 0;
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		while ( $continue !== null ) {
 			$continue = $this->refreshBatch( $dbw, $continue );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 
 		return true;

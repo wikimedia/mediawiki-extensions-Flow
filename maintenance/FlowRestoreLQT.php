@@ -76,6 +76,8 @@ class FlowRestoreLQT extends Maintenance {
 		$logWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'log_user', $this->talkpageManagerUser );
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			foreach ( $logWhere['orconds'] as $logCond ) {
 				$startId = 0;
@@ -126,7 +128,7 @@ class FlowRestoreLQT extends Maintenance {
 						$startId = $row->page_id;
 					}
 
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				} while ( $rows->numRows() >= $this->mBatchSize );
 			}
 		}
@@ -142,6 +144,8 @@ class FlowRestoreLQT extends Maintenance {
 
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			$startId = 0;
@@ -176,7 +180,7 @@ class FlowRestoreLQT extends Maintenance {
 					$startId = $row->rev_page;
 				}
 
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			} while ( $rows->numRows() >= $this->mBatchSize );
 		}
 	}

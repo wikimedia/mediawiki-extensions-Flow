@@ -9,6 +9,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -208,7 +209,8 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 		// prevent memory from filling up
 		$this->storage->clear();
 
-		wfWaitForSlaves( null, false, $this->clusterName );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->waitForReplication( [ 'cluster' => $this->clusterName ] );
 	}
 
 	/**

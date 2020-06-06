@@ -3,6 +3,7 @@
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -47,11 +48,14 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		// defaults = date of first Flow commit up until now
 		$continue = UUID::getComparisonUUID( $this->getOption( 'start', '20130710230511' ) );
 		$stop = UUID::getComparisonUUID( $this->getOption( 'stop', time() ) );
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		while ( $continue !== false ) {
 			$continue = $this->refreshBatch( $dbr, $continue, $countableActions, $stop );
 
 			// wait for core (we're updating user table) slaves to catch up
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 
 		$this->output( "Done increasing edit counts. Increased:\n" );

@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Model\Workflow;
+use MediaWiki\MediaWikiServices;
 
 $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
@@ -70,6 +71,8 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$iterator->setFetchColumns( [ '*' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		$count = 0;
 		foreach ( $iterator as $rows ) {
 			$this->beginTransaction( $dbw, __METHOD__ );
@@ -95,7 +98,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 			$count += count( $rows );
 			$this->output( "Rebuilt links for " . $count . " workflows...\n" );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 	}
 }
