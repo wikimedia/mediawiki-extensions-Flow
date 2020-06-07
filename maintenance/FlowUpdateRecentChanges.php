@@ -164,7 +164,8 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$dbw->update(
 				'recentchanges',
 				[ 'rc_params' => serialize( $params ) ],
-				[ 'rc_id' => $row->rc_id ]
+				[ 'rc_id' => $row->rc_id ],
+				__METHOD__
 			);
 
 			$this->completeCount++;

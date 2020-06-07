@@ -77,7 +77,8 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 					$dbw->update(
 						'echo_event',
 						[ 'event_page_id' => $boardTitle->getArticleID() ],
-						[ 'event_id' => $row->event_id ]
+						[ 'event_id' => $row->event_id ],
+						__METHOD__
 					);
 					$processed += $dbw->affectedRows();
 				} else {

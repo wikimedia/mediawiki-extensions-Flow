@@ -111,7 +111,8 @@ class PostRevisionStorage extends RevisionStorage {
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),
-			$this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] )
+			$this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] ),
+			__METHOD__
 		);
 	}
 }

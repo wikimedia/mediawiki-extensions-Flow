@@ -153,7 +153,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->output( 'Removing ' . count( $revisions ) . ' header revisions from ' .
 				count( $uuids ) . ' headers (up to ' . $startId->getTimestamp() . ")\n" );
 
-			$this->dbFactory->getDB( DB_MASTER )->begin();
+			$this->dbFactory->getDB( DB_MASTER )->begin( __METHOD__ );
 
 			foreach ( $revisions as $revision ) {
 				$this->removeReferences( $revision );
@@ -162,9 +162,9 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->multiRemove( $revisions );
 
 			if ( $this->dryRun ) {
-				$this->dbFactory->getDB( DB_MASTER )->rollback();
+				$this->dbFactory->getDB( DB_MASTER )->rollback( __METHOD__ );
 			} else {
-				$this->dbFactory->getDB( DB_MASTER )->commit();
+				$this->dbFactory->getDB( DB_MASTER )->commit( __METHOD__ );
 				$this->dbFactory->waitForSlaves();
 			}
 		} while ( !empty( $revisions ) );
@@ -275,7 +275,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
 	 */
 	protected function removeWorkflows( array $workflows ) {
-		$this->dbFactory->getDB( DB_MASTER )->begin();
+		$this->dbFactory->getDB( DB_MASTER )->begin( __METHOD__ );
 
 		foreach ( $workflows as $workflow ) {
 			$this->removeSummary( $workflow );
@@ -286,9 +286,9 @@ class FlowRemoveOldTopics extends Maintenance {
 		$this->multiRemove( $workflows );
 
 		if ( $this->dryRun ) {
-			$this->dbFactory->getDB( DB_MASTER )->rollback();
+			$this->dbFactory->getDB( DB_MASTER )->rollback( __METHOD__ );
 		} else {
-			$this->dbFactory->getDB( DB_MASTER )->commit();
+			$this->dbFactory->getDB( DB_MASTER )->commit( __METHOD__ );
 			$this->dbFactory->waitForSlaves();
 		}
 	}

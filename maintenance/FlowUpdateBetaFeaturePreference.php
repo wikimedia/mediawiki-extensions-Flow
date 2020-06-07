@@ -44,7 +44,8 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			[
 				'up_property' => BETA_FEATURE_FLOW_USER_TALK_PAGE,
 				'up_value' => 1
-			]
+			],
+			__METHOD__
 		);
 
 		$result = $db->select(
