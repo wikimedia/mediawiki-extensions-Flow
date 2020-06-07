@@ -2,7 +2,7 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use Http;
+use MediaWiki\MediaWikiServices;
 
 class RemoteApiBackend extends ApiBackend {
 	/**
@@ -37,13 +37,18 @@ class RemoteApiBackend extends ApiBackend {
 		if ( $this->cacheDir && file_exists( $file ) ) {
 			$result = file_get_contents( $file );
 		} else {
+			$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 			do {
-				$result = Http::get( $url );
-			} while ( $result === false && --$retry >= 0 );
+				$result = $httpRequestFactory->get( $url, [], __METHOD__ );
+			} while ( $result === null && --$retry >= 0 );
 
 			if ( $this->cacheDir && file_put_contents( $file, $result ) === false ) {
 				$this->logger->warning( "Failed writing cached api result to $file" );
 			}
+		}
+
+		if ( !$result ) {
+			return [];
 		}
 
 		return json_decode( $result, true );
