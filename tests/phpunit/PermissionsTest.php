@@ -104,10 +104,6 @@ class PermissionsTest extends PostRevisionTestCase {
 		$this->actions = Container::get( 'flow_actions' );
 	}
 
-	protected function tearDown() : void {
-		parent::tearDown();
-	}
-
 	/**
 	 * Provides User, PostRevision (or null) & action to testPermissions, as
 	 * well as the expected result: whether or not a certain user should be
