@@ -135,7 +135,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->storage->clear();
-			$this->dbFactory->waitForSlaves();
+			$this->dbFactory->waitForReplicas();
 		}
 
 		return true;

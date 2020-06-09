@@ -165,7 +165,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				$this->dbFactory->getDB( DB_MASTER )->rollback( __METHOD__ );
 			} else {
 				$this->dbFactory->getDB( DB_MASTER )->commit( __METHOD__ );
-				$this->dbFactory->waitForSlaves();
+				$this->dbFactory->waitForReplicas();
 			}
 		} while ( !empty( $revisions ) );
 	}
@@ -289,7 +289,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->dbFactory->getDB( DB_MASTER )->rollback( __METHOD__ );
 		} else {
 			$this->dbFactory->getDB( DB_MASTER )->commit( __METHOD__ );
-			$this->dbFactory->waitForSlaves();
+			$this->dbFactory->waitForReplicas();
 		}
 	}
 

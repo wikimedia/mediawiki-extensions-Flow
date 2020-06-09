@@ -95,7 +95,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 
 			$this->commitTransaction( $dbw, __METHOD__ );
 			$storage->clear();
-			$dbFactory->waitForSlaves();
+			$dbFactory->waitForReplicas();
 		}
 
 		$this->output( "Processed a total of $total moderation revisions.\n" );

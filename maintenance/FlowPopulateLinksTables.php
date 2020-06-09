@@ -70,7 +70,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 					);
 				}
 			}
-			$dbf->waitForSlaves();
+			$dbf->waitForReplicas();
 		}
 	}
 

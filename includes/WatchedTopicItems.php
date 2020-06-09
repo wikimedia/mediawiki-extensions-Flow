@@ -24,7 +24,7 @@ class WatchedTopicItems {
 	/**
 	 * Helps prevent reading our own writes.  If we have explicitly
 	 * watched this title in this request set it here instead of
-	 * querying a slave and possibly not noticing due to slave lag.
+	 * querying a replica and possibly not noticing due to replica lag.
 	 * @param Title $title
 	 */
 	public function addOverrideWatched( Title $title ) {

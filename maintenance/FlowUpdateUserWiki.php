@@ -222,7 +222,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		if ( !$res ) {
 			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
-		$this->checkForSlave();
+		$this->checkForReplica();
 
 		if ( $type === 'post' ) {
 			$res = $dbw->update(
@@ -238,11 +238,11 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
-			$this->checkForSlave();
+			$this->checkForReplica();
 		}
 	}
 
-	private function checkForSlave() {
+	private function checkForReplica() {
 		global $wgFlowCluster;
 
 		$this->updatedCount++;
