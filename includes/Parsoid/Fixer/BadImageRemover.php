@@ -33,7 +33,7 @@ class BadImageRemover implements Fixer {
 	 *  argument is the image name to check. Second argument is the page on
 	 *  which the image occurs. Returns true when the image should be filtered.
 	 */
-	public function __construct( $isFiltered = 'wfIsBadImage' ) {
+	public function __construct( $isFiltered ) {
 		$this->isFiltered = $isFiltered;
 	}
 
