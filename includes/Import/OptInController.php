@@ -486,14 +486,14 @@ class OptInController {
 		 * We could use WorkflowLoaderFactory::createWorkflowLoader
 		 * to get to the workflow ID, but that uses WikiPage::factory
 		 * to build the wikipage & get the content. For most requests,
-		 * that'll be better (it reads from slaves), but we really
+		 * that'll be better (it reads from replicas), but we really
 		 * need to read from master here.
 		 * We'll need WorkflowLoader further down anyway, but we'll
 		 * then have the correct workflow ID to initialize it with!
 		 *
 		 * $title->getLatestRevId() should be fine, it'll be read from
 		 * LinkCache, which has been updated.
-		 * RevisionLookup::getRevisionById will try slave first.
+		 * RevisionLookup::getRevisionById will try replica first.
 		 * If it can't find the id, it'll try to find it on master.
 		 */
 		$revId = $title->getLatestRevID();
@@ -516,7 +516,7 @@ class OptInController {
 		 * We could just do $revision->getContent( $format ), but that
 		 * may need to find $title in order to convert.
 		 * We already know $title (and don't want to risk it being used
-		 * in a way it stores lagging slave data), so let's just
+		 * in a way it stores lagging replica data), so let's just
 		 * manually convert the content.
 		 */
 		$content = $revision->getContentRaw();

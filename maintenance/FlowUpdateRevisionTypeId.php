@@ -68,7 +68,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 			} else {
 				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
-			$dbFactory->waitForSlaves();
+			$dbFactory->waitForReplicas();
 		}
 
 		$dbw->dropTable( 'flow_header_revision', __METHOD__ );

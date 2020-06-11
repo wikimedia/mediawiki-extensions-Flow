@@ -54,7 +54,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		while ( $continue !== false ) {
 			$continue = $this->refreshBatch( $dbr, $continue, $countableActions, $stop );
 
-			// wait for core (we're updating user table) slaves to catch up
+			// wait for core (we're updating user table) replicas to catch up
 			$lbFactory->waitForReplication();
 		}
 

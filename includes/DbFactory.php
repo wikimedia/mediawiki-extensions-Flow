@@ -96,9 +96,9 @@ class DbFactory {
 	}
 
 	/**
-	 * Wait for the slaves of the Flow database
+	 * Wait for the replicas of the Flow database
 	 */
-	public function waitForSlaves() {
+	public function waitForReplicas() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		try {
 			$lbFactory->waitForReplication( [

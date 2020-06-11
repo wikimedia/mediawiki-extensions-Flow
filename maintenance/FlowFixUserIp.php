@@ -53,7 +53,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 				$dbw->begin( $fname );
 				$continue = $callback( $dbw, $continue );
 				$dbw->commit( $fname );
-				$dbf->waitForSlaves();
+				$dbf->waitForReplicas();
 				$storage->clear();
 			} while ( $continue !== null );
 		};
