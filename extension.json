@@ -751,7 +751,7 @@
 		"MovePageCheckPermissions": "Flow\\Hooks::onMovePageCheckPermissions",
 		"MovePageIsValidMove": "Flow\\Hooks::onMovePageIsValidMove",
 		"TitleMoveStarting": "Flow\\Hooks::onTitleMoveStarting",
-		"TitleMoveCompleting": "Flow\\Hooks::onTitleMoveCompleting",
+		"PageMoveComplete": "Flow\\Hooks::onPageMoveComplete",
 		"TitleSquidURLs": "Flow\\Hooks::onTitleSquidURLs",
 		"WatchlistEditorBuildRemoveLine": "Flow\\Hooks::onWatchlistEditorBuildRemoveLine",
 		"WatchlistEditorBeforeFormRender": "Flow\\Hooks::onWatchlistEditorBeforeFormRender",
