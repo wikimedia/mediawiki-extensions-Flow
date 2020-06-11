@@ -87,7 +87,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 			}
 
 			$this->output( "Updated $processed events.\n" );
-			$dbFactory->waitForSlaves();
+			$dbFactory->waitForReplicas();
 		}
 
 		return true;
