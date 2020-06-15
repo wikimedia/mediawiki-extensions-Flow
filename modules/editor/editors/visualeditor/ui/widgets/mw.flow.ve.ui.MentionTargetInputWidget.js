@@ -30,7 +30,7 @@
 		this.username = null;
 		// Exclude anonymous users, since they do not receive pings.
 		this.loggedInTopicPosters = ( config.topicPosters || [] ).filter( function ( poster ) {
-			return !mw.util.isIPAddress( poster, false );
+			return !mw.util.isIPAddress( poster );
 		} );
 		// TODO do this in a more sensible place in the future
 		mw.flow.ve.userCache.setAsExisting( this.loggedInTopicPosters );
