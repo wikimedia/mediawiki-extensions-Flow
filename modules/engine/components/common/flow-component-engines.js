@@ -2,6 +2,15 @@
  * Initializes TemplateEngine (Handlebars), and API (FlowApi).
  */
 
+/**
+ * @class FlowHandlebars
+ * TODO: Use @-external in JSDoc
+ */
+/**
+ * @class FlowApi
+ * TODO: Use @-external in JSDoc
+ */
+
 ( function () {
 	/**
 	 * Initializes Handlebars and FlowApi.

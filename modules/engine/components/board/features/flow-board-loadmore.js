@@ -2,6 +2,11 @@
  * Contains loadMore, jumpToTopic, and topic titles list functionality.
  */
 
+/**
+ * @class FlowBoardComponent
+ * TODO: Use @-external in JSDoc
+ */
+
 ( function () {
 	/**
 	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
@@ -43,7 +48,6 @@
 	 * @param {string} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
-		/** @type FlowBoardComponent */
 		var apiParameters,
 			flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
@@ -161,7 +165,7 @@
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
-	 * @param {Object} queryMap
+	 * @param {Object} info.queryMap
 	 * @param {FlowBoardComponent} info.component
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiPreHandler( event, info ) {
@@ -186,7 +190,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info ) {
 		if ( info.status !== 'done' ) {
@@ -209,7 +213,7 @@
 	 * @param {jQuery} info.$target
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data ) {

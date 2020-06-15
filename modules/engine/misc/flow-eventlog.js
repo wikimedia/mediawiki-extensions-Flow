@@ -5,6 +5,7 @@
 	};
 
 	/**
+	 * @class FlowEventLog
 	 * @constructor
 	 * @param {string} schemaName Canonical schema name.
 	 * @param {Object} [eventInstance] Shared event instance data.

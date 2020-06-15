@@ -32,7 +32,7 @@
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	function flowBoardHistoryModerationCallback( info ) {

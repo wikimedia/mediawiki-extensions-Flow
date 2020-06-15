@@ -7,6 +7,11 @@
  * 4. Have the ability to fetch individual prototype methods from classes in the registry, as they are out of scope.
  */
 
+/**
+ * @class FlowComponent
+ * TODO: Use @-external in JSDoc
+ */
+
 ( function () {
 	var _componentRegistry = new OO.Registry();
 
