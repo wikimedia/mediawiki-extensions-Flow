@@ -89,6 +89,7 @@
 
 	/**
 	 * Add raw categories from the initial board api response
+	 *
 	 * @param {Object} categories Categories object
 	 */
 	mw.flow.dm.Board.prototype.setCategoriesFromObject = function ( categories ) {
@@ -140,6 +141,7 @@
 
 	/**
 	 * Check whether the board has any categories
+	 *
 	 * @return {boolean} Board has categories
 	 */
 	mw.flow.dm.Board.prototype.hasCategories = function () {

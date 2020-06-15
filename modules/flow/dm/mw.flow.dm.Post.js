@@ -91,6 +91,7 @@
 
 	/**
 	 * Get an array of post ids attached to this post
+	 *
 	 * @return {string[]} Post reply ids
 	 */
 	mw.flow.dm.Post.prototype.getReplyIds = function () {

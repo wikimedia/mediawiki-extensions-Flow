@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Binds API events to FlowBoardComponent
+	 *
 	 * @class
 	 * @extends FlowComponent
 	 * @constructor
@@ -36,6 +37,7 @@
 	 * subsequently be re-submitted (to overwrite the conflicting content)
 	 * This will prepare the data-to-be-submitted so that the override is
 	 * submitted against the most current revision ID.
+	 *
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {Object} queryMap
@@ -65,6 +67,7 @@
 
 	/**
 	 * Adjusts query params to use global watch action, and specifies it should use a watch token.
+	 *
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {Object} queryMap
@@ -93,6 +96,7 @@
 
 	/**
 	 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.
+	 *
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target

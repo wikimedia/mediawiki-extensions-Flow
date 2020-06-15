@@ -69,6 +69,7 @@
 
 	/**
 	 * Respond to topic select choose event
+	 *
 	 * @param {string} topicId Topic id
 	 */
 	mw.flow.ui.ToCWidget.prototype.onTopicSelectTopic = function ( topicId ) {

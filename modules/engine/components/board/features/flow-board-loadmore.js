@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
+	 *
 	 * @param {jQuery} $container
 	 * @this FlowBoardComponent
 	 * @constructor
@@ -38,10 +39,11 @@
 	 * 1. If topic is rendered, scrolls to it.
 	 * 2. Otherwise, we load the topic itself
 	 * 3b. When the user scrolls up, we begin loading the topics in between.
+	 *
 	 * @param {string} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
-		/** @type FlowBoardComponent*/
+		/** @type FlowBoardComponent */
 		var apiParameters,
 			flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
@@ -155,6 +157,7 @@
 	/**
 	 * On before board reloading (eg. change sort).
 	 * This method only clears the storage in preparation for it to be reloaded.
+	 *
 	 * @param {Event} event
 	 * @param {Object} info
 	 * @param {jQuery} info.$target
@@ -177,6 +180,7 @@
 
 	/**
 	 * On failed board reloading (eg. change sort), restore old data.
+	 *
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
@@ -199,6 +203,7 @@
 
 	/**
 	 * Loads more content
+	 *
 	 * @param {Object} info
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
@@ -337,6 +342,7 @@
 
 	/**
 	 * Stores a list of all topics currently visible on the page.
+	 *
 	 * @param {jQuery} $topic
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadTopic( $topic ) {
@@ -419,6 +425,7 @@
 
 	/**
 	 * Called on scroll. Checks to see if a FlowBoard needs to have more content loaded.
+	 *
 	 * @param {jQuery} $searchContainer Container to find 'load more' buttons in
 	 * @param {jQuery} $calculationContainer Container to do scroll calculations on (height, scrollTop, offset, etc.)
 	 */
@@ -459,6 +466,7 @@
 
 	/**
 	 * Renders and inserts a list of new topics.
+	 *
 	 * @param {FlowBoardComponent} flowBoard
 	 * @param {Object} topicsData
 	 * @param {boolean} [forceShowLoadMore]
@@ -530,6 +538,7 @@
 
 		/**
 		 * Renders topics by IDs from topicsData, and returns the elements.
+		 *
 		 * @param {Array} toRender List of topic IDs in topicsData
 		 * @return {jQuery}
 		 * @private

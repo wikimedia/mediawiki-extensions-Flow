@@ -17,6 +17,7 @@
 	 * Instantiate one or more new FlowComponents.
 	 * Uses data-flow-component to find the right class, and returns that new instance.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
+	 *
 	 * @param {jQuery} $container
 	 * @return {FlowComponent|boolean|Array} The created FlowComponent instance, or an
 	 *  array of FlowComponent instances, or boolean false in case of an error.
@@ -92,6 +93,7 @@
 	/**
 	 * Registers a given FlowComponent into the component registry, and also has it inherit another class using the
 	 * prototypeName argument (defaults to 'component', which returns FlowComponent).
+	 *
 	 * @param {string} name Name of component to register
 	 * @param {Function} constructorClass Actual class to link to that name
 	 * @param {string} [prototypeName='component'] A base class which this one will inherit
@@ -148,6 +150,7 @@
 
 	/**
 	 * Mixes in the given mixinClass to be copied to an existing class, by name.
+	 *
 	 * @param {string} targetName Target component
 	 * @param {Function} mixinClass Class with extension to add to target
 	 */

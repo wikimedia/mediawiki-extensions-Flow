@@ -33,6 +33,7 @@
 
 		/**
 		 * Makes the actual API call and returns
+		 *
 		 * @param {Object|string} [params] May be a JSON object string
 		 * @param {string} [method]
 		 * @return {jQuery.Promise}
@@ -93,6 +94,7 @@
 
 	/**
 	 * Sets the fixed pageName for this API instance.
+	 *
 	 * @param {string} pageName
 	 */
 	function flowApiSetPageName( pageName ) {
@@ -103,6 +105,7 @@
 
 	/**
 	 * Sets the fixed workflowId for this API instance.
+	 *
 	 * @param {string} workflowId
 	 */
 	function flowApiSetWorkflowId( workflowId ) {
@@ -113,6 +116,7 @@
 
 	/**
 	 * Transforms URL request parameters into API params
+	 *
 	 * @todo fix it server-side so we don't need this client-side
 	 * @param {Object} queryMap
 	 * @return {Object}
@@ -141,6 +145,7 @@
 
 	/**
 	 * Sets the fixed defaultSubmodule for this API instance.
+	 *
 	 * @param {string} defaultSubmodule
 	 */
 	function flowApiSetDefaultSubmodule( defaultSubmodule ) {
@@ -151,6 +156,7 @@
 
 	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
+	 *
 	 * @param {string|HTMLElement} url
 	 * @param {Object} [queryMap]
 	 * @return {Object}
@@ -241,6 +247,7 @@
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
+	 *
 	 * @param {Event|HTMLElement} button
 	 * @param {Object} queryMap
 	 * @return {jQuery.Promise}
@@ -258,6 +265,7 @@
 	/**
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
+	 *
 	 * @param {HTMLElement} anchor
 	 * @param {Object} queryMap
 	 * @return {jQuery.Promise}
@@ -274,6 +282,7 @@
 
 	/**
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
+	 *
 	 * @param {HTMLElement} node
 	 * @param {Object} queryMap
 	 * @return {jQuery.Promise}
@@ -295,6 +304,7 @@
 	/**
 	 * Handles aborting an old in-flight API request.
 	 * If startNewMethod is given, this method also STARTS a new API call and stores it for later abortion if needed.
+	 *
 	 * @param {jQuery|HTMLElement} $node
 	 * @param {Object} queryMap
 	 * @param {string} [startNewMethod] If given: starts, stores, and returns a new API call

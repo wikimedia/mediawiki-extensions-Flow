@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Initializes Handlebars and FlowApi.
+	 *
 	 * @constructor
 	 */
 	function FlowComponentEnginesMixin() {}
@@ -12,12 +13,14 @@
 
 	/**
 	 * Contains the Flow templating engine translation class (in case we change templating engines).
+	 *
 	 * @type {FlowHandlebars}
 	 */
 	mw.flow.TemplateEngine = FlowComponentEnginesMixin.static.TemplateEngine = new mw.flow.FlowHandlebars();
 
 	/**
 	 * Flow API singleton
+	 *
 	 * @type {FlowApi}
 	 */
 	mw.flow.Api = new mw.flow.FlowApi();

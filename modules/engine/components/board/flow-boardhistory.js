@@ -59,6 +59,7 @@
 
 	/**
 	 * Reloads the history page after resolving or reopening a topic.
+	 *
 	 * @param {Object} info
 	 * @param {Object} data
 	 * @return {jQuery.Promise}

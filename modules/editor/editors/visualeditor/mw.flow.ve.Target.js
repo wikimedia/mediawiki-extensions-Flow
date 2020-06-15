@@ -88,6 +88,7 @@
 
 	/**
 	 * Load content into the editor
+	 *
 	 * @param {string} content HTML or wikitext
 	 */
 	mw.flow.ve.Target.prototype.loadContent = function ( content ) {

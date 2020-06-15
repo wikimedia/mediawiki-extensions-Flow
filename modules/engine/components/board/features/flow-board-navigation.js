@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Binds handlers for the board header itself.
+	 *
 	 * @class
 	 * @constructor
 	 * @param {jQuery} $container
@@ -49,6 +50,7 @@
 
 	/**
 	 * Bind the navigation header bar to the window.scroll event.
+	 *
 	 * @param {jQuery} $boardNavigation
 	 */
 	function flowBoardLoadEventsBoardNavigation( $boardNavigation ) {

@@ -172,6 +172,7 @@
 
 	/**
 	 * Preload the VisualEditor modules so that loading the editor later will be faster.
+	 *
 	 * @return {jQuery.Promise} Promise that resolves when the VisualEditor modules have been loaded
 	 */
 	mw.flow.ui.EditorWidget.static.preload = function () {
@@ -297,6 +298,7 @@
 
 	/**
 	 * If autofocus is enabled, focus the editor and move the cursor to the end.
+	 *
 	 * @private
 	 */
 	mw.flow.ui.EditorWidget.prototype.maybeAutoFocus = function () {
@@ -308,6 +310,7 @@
 
 	/**
 	 * Toggle whether the editor is automatically focused after activating and switching.
+	 *
 	 * @param {boolean} [autoFocus] Whether to focus automatically; if unset, flips current value
 	 */
 	mw.flow.ui.EditorWidget.prototype.toggleAutoFocus = function ( autoFocus ) {

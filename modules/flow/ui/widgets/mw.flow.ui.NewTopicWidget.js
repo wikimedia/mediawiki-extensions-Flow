@@ -126,6 +126,7 @@
 
 	/**
 	 * Update the state of the form.
+	 *
 	 * @private
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.updateFormState = function () {
@@ -145,6 +146,7 @@
 
 	/**
 	 * Respond to title input focusin event
+	 *
 	 * @private
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onTitleFocusIn = function () {
@@ -153,6 +155,7 @@
 
 	/**
 	 * Expand the widget and make it ready to create a new topic
+	 *
 	 * @param {Object} content Content to preload into the editor
 	 * @param {string} content.content Content
 	 * @param {string} content.format Format of content ('html' or 'wikitext')
@@ -189,6 +192,7 @@
 
 	/**
 	 * Respond to keydown events in title input, and cancel when escape is pressed.
+	 *
 	 * @param {jQuery.Event} e Keydown event
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onTitleKeydown = function ( e ) {
@@ -263,6 +267,7 @@
 
 	/**
 	 * Get the expanded state of the widget
+	 *
 	 * @return {boolean} expanded Widget is expanded
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.isExpanded = function () {
@@ -271,6 +276,7 @@
 
 	/**
 	 * Toggle the expanded state of the widget
+	 *
 	 * @param {boolean} expanded Widget is expanded
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.toggleExpanded = function ( expanded ) {

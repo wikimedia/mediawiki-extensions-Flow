@@ -71,6 +71,7 @@
 	}
 
 	/** Stores template
+	 *
 	 * @todo use data-mwui attributes instead of data-flow **/
 	MwUiModal.prototype.template =
 		'<div class="flow-ui-modal">' +
@@ -233,6 +234,7 @@
 
 	/**
 	 * Returns the modal's wrapper Element, which contains the header node and content node.
+	 *
 	 * @return {jQuery}
 	 */
 	MwUiModal.prototype.getNode = function () {
@@ -261,6 +263,7 @@
 
 	/**
 	 * Returns the wrapping Element on which you can bind bubbling events for your content.
+	 *
 	 * @return {jQuery}
 	 */
 	MwUiModal.prototype.getContentNode = function () {
@@ -324,7 +327,7 @@
 	/**
 	 * For a multi-step modal, goes to the next step (if any), otherwise, submits the form.
 	 *
- * @return {MwUiModal|boolean} false if no next step and no button to click, MwUiModal on success
+	 * @return {MwUiModal|boolean} false if no next step and no button to click, MwUiModal on success
 	 */
 	MwUiModal.prototype.nextOrSubmit = function () {
 		var $button;

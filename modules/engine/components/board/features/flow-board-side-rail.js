@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Binds handlers for side rail in board header.
+	 *
 	 * @param {jQuery} $container
 	 * @this FlowComponent
 	 * @constructor

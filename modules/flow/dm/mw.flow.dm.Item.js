@@ -33,6 +33,7 @@
 
 	/**
 	 * Get item id
+	 *
 	 * @return {string} Item Id
 	 */
 	mw.flow.dm.Item.prototype.getId = function () {
@@ -41,6 +42,7 @@
 
 	/**
 	 * Set item id
+	 *
 	 * @param {string} id Item Id
 	 */
 	mw.flow.dm.Item.prototype.setId = function ( id ) {

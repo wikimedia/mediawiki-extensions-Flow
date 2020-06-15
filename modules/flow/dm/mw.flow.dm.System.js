@@ -59,6 +59,7 @@
 
 	/**
 	 * Board reset procedure started
+	 *
 	 * @todo This shouldn't be needed when we work with full widgets. Right now
 	 * this is a hack between the 'old' system the new data model.
 	 *
@@ -67,6 +68,7 @@
 
 	/**
 	 * Board reset procedure ended
+	 *
 	 * @todo This shouldn't be needed when we work with full widgets. Right now
 	 * this is a hack between the 'old' system the new data model.
 	 *

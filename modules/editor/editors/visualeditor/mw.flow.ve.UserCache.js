@@ -3,6 +3,7 @@
 
 	/**
 	 * Cache information about users.
+	 *
 	 * @class
 	 * @extends ve.init.mw.ApiResponseCache
 	 * @constructor
@@ -67,6 +68,7 @@
 
 	/**
 	 * Add data from a partial API response
+	 *
 	 * @param {Object} apiData API data for a single item
 	 */
 	mw.flow.ve.UserCache.prototype.setFromApiData = function ( apiData ) {
@@ -77,6 +79,7 @@
 
 	/**
 	 * Mark a list of user names as valid and existing.
+	 *
 	 * @param {string|string[]} usernames One or more user names
 	 */
 	mw.flow.ve.UserCache.prototype.setAsExisting = function ( usernames ) {

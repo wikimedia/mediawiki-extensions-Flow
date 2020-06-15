@@ -66,6 +66,7 @@
 	/**
 	 * Sets up the board and base properties on this class.
 	 * Returns either FALSE for failure, or jQuery object of old nodes that were replaced.
+	 *
 	 * @param {jQuery|boolean} $container
 	 * @return {boolean|jQuery}
 	 */
@@ -136,6 +137,7 @@
 
 	/**
 	 * Helper receives
+	 *
 	 * @param {jQuery} $container
 	 * @param {string} uid Anchor to scroll to
 	 * @param {string} [option] 'newer' if all posts equal to or newer than uid should be

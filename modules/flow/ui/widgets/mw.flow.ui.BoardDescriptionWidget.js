@@ -216,6 +216,7 @@
 
 	/**
 	 * Respond to an editor cancel event
+	 *
 	 * @fires cancel
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorCancel = function () {

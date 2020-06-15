@@ -57,6 +57,7 @@
 
 	/**
 	 * Check if content is moderated
+	 *
 	 * @return {boolean} Topic is moderated
 	 */
 	mw.flow.dm.ModeratedRevisionedContent.prototype.isModerated = function () {
@@ -65,6 +66,7 @@
 
 	/**
 	 * Toggle the moderated state of the content
+	 *
 	 * @param {boolean} moderated Content is moderated
 	 * @param {string} moderationState Moderation state
 	 * @param {string} moderationReason Moderation reason

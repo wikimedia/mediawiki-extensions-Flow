@@ -29,6 +29,7 @@
 	// Export
 	/**
 	 * EventLogging wrapper
+	 *
 	 * @type {FlowEventLog}
 	 */
 	mw.flow.EventLog = FlowEventLog;

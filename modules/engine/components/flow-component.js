@@ -7,6 +7,7 @@
 
 	/**
 	 * Inherited base class. Stores the instance in the class's instance registry.
+	 *
 	 * @param {jQuery} $container
 	 * @mixins FlowComponentEventsMixin
 	 * @mixins FlowComponentEnginesMixin
@@ -52,6 +53,7 @@
 
 	/**
 	 * Takes any length of arguments, and passes it off to console.log.
+	 *
 	 * @param {boolean} [isError=true]
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( isError ) {
@@ -118,6 +120,7 @@
 
 	/**
 	 * Returns all the registered instances of a given FlowComponent.
+	 *
 	 * @return {FlowComponent[]}
 	 */
 	FlowComponent.prototype.getInstances = function () {
@@ -127,6 +130,7 @@
 
 	/**
 	 * Goes up the DOM tree to find which FlowComponent $el belongs to, via .flow-component[flow-id].
+	 *
 	 * @param {jQuery} $el
 	 * @return {FlowComponent|boolean}
 	 */
@@ -162,6 +166,7 @@
 	 * Sets the FlowComponent's $container element as the data-flow-spawned-by attribute on $el.
 	 * Fires ALL events from within $el onto $eventTarget, albeit with the whole event intact.
 	 * This allows us to listen for events from outside of FlowComponent's nodes, but still trigger them within.
+	 *
 	 * @param {jQuery} $el
 	 * @param {jQuery} [$eventTarget]
 	 */

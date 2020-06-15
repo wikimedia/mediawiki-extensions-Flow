@@ -81,6 +81,7 @@
 
 	/**
 	 * Save the content of the reply
+	 *
 	 * @event saveContent
 	 * @param {string} workflow The workflow this reply was saved under
 	 * @param {string} content The content of the reply

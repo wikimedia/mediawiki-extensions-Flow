@@ -94,6 +94,7 @@
 
 	/**
 	 * Toggle whether the save button can be used
+	 *
 	 * @param {boolean} [saveable=!this.saveable] Whether the save button can be used
 	 */
 	mw.flow.ui.EditorControlsWidget.prototype.toggleSaveable = function ( saveable ) {

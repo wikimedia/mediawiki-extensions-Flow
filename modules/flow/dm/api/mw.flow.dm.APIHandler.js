@@ -46,6 +46,7 @@
 
 	/**
 	 * General get request
+	 *
 	 * @param {string} submodule The requested submodule
 	 * @param {Object} requestParams API request parameters
 	 * @return {jQuery.Promise} Promise that is resolved when the API request

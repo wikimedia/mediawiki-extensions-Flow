@@ -92,6 +92,7 @@ mw.flow.ui.enhance = {};
 
 	/**
 	 * Disables action and submit buttons when a form has required fields
+	 *
 	 * @param {jQuery} $form jQuery object corresponding to a form element.
 	 */
 	function enableFormWithRequiredFields( $form ) {
@@ -367,6 +368,7 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Hides the tooltip associated with target instantly.
+		 *
 		 * @param {HTMLElement|jQuery} target
 		 */
 		function mwUiTooltipHide( target ) {
@@ -429,6 +431,7 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Event handler for mouse entering on a .flow-ui-tooltip-target
+		 *
 		 * @param {jQuery.Event} event
 		 */
 		function onMwUiTooltipFocus() {
@@ -437,6 +440,7 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Event handler for mouse leaving a .flow-ui-tooltip-target
+		 *
 		 * @param {jQuery.Event} event
 		 */
 		function onMwUiTooltipBlur() {

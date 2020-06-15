@@ -1,5 +1,6 @@
 /**
  * Flow ReorderTopicsWidget
+ *
  * @class
  * @extends OO.ui.Widget
  *

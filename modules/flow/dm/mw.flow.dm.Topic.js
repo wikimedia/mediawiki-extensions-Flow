@@ -126,6 +126,7 @@
 
 	/**
 	 * Get an array of post ids attached to this topic
+	 *
 	 * @return {string[]} Post reply ids
 	 */
 	mw.flow.dm.Topic.prototype.getReplyIds = function () {
@@ -134,6 +135,7 @@
 
 	/**
 	 * Check if a topic is a stub
+	 *
 	 * @return {boolean} Topic is a stub
 	 */
 	mw.flow.dm.Topic.prototype.isStub = function () {
@@ -142,6 +144,7 @@
 
 	/**
 	 * Unstub a topic when all available information exists on it
+	 *
 	 * @private
 	 */
 	mw.flow.dm.Topic.prototype.unStub = function () {

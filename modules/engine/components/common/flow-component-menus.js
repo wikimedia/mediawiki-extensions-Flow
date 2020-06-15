@@ -5,6 +5,7 @@
 ( function () {
 	/**
 	 * Binds handlers for flow-menu.
+	 *
 	 * @param {jQuery} $container
 	 * @this FlowComponent
 	 * @constructor
@@ -40,6 +41,7 @@
 
 	/**
 	 * On click, focus, and blur of hover menu events, decides whether or not to hide or show the expanded menu
+	 *
 	 * @param {Event} event
 	 */
 	function flowComponentMenusFeatureMixinToggleHoverMenuCallback( event ) {
@@ -94,6 +96,7 @@
 	/**
 	 * Allows you to open a flow-menu from a secondary click handler elsewhere.
 	 * Uses data-flow-menu-target="< foo .flow-menu"
+	 *
 	 * @param {Event} event
 	 * @return {jQuery.Promise}
 	 */
@@ -123,6 +126,7 @@
 
 	/**
 	 * When a menu appears, check if it's already got the focus class. If so, re-focus it.
+	 *
 	 * @param {jQuery} $menu
 	 */
 	function flowComponentMenusFeatureElementLoadCallback( $menu ) {

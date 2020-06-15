@@ -10,6 +10,7 @@
 	/**
 	 * This implements functionality for being able to capture the return value from a called event.
 	 * In addition, this handles Flow event triggering and binding.
+	 *
 	 * @class
 	 * @extends OO.EventEmitter
 	 * @constructor
@@ -108,6 +109,7 @@
 	/**
 	 * Same as OO.EventEmitter.emit, except that it returns an array of results.
 	 * If something returns false, we stop processing the rest of the callbacks, if any.
+	 *
 	 * @param {string} event Name of the event to trigger
 	 * @param {...*} [args] Arguments to pass to event callback
 	 * @return {Array}
@@ -175,6 +177,7 @@
 
 	/**
 	 * handlers can have keys globalApiPreHandlers, apiPreHandlers, apiHandlers, interactiveHandlers, loadHandlers
+	 *
 	 * @param {Object} handlers
 	 */
 	function bindFlowNodeHandlers( handlers ) {
@@ -206,6 +209,7 @@
 	 * Returns a callback function which passes off arguments to the emitter.
 	 * This only exists to clean up the FlowComponentEventsMixin constructor,
 	 * by preventing it from having too many anonymous functions.
+	 *
 	 * @param {string} name
 	 * @return {Function}
 	 * @private
@@ -632,6 +636,7 @@
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).
+	 *
 	 * @param {FlowComponent} component
 	 */
 	function flowEventsMixinInstantiationComplete() {
@@ -641,6 +646,7 @@
 
 	/**
 	 * Compress a flow form and/or its actions.
+	 *
 	 * @param {jQuery} $form
 	 * @todo Move this to a separate file
 	 */
@@ -653,6 +659,7 @@
 
 	/**
 	 * Show form when input is focused.
+	 *
 	 * @param {Event} event
 	 * @todo Move this to a separate file
 	 */
@@ -667,6 +674,7 @@
 
 	/**
 	 * Expand a flow form and/or its actions.
+	 *
 	 * @param {jQuery} $form
 	 */
 	function flowEventsMixinShowForm( $form ) {
@@ -677,6 +685,7 @@
 
 	/**
 	 * Adds a flow-cancel-callback to a given form, to be triggered on click of the "cancel" button.
+	 *
 	 * @param {jQuery} $form
 	 * @param {Function} callback
 	 */
@@ -713,6 +722,7 @@
 	/**
 	 * Shows a tooltip telling the user that they have subscribed
 	 * to this topic|board
+	 *
 	 * @param  {jQuery} $tooltipTarget Element to attach tooltip to.
 	 * @param  {string} type           'topic' or 'board'
 	 * @param  {string} dir            Direction to point the pointer. 'left', 'right', 'up' or 'down'
@@ -749,6 +759,7 @@
 	/**
 	 * If a form has a cancelForm handler, we clear the form and trigger it. This allows easy cleanup
 	 * and triggering of form events after successful API calls.
+	 *
 	 * @param {HTMLElement|jQuery} formElement
 	 */
 	function flowEventsMixinCancelForm( formElement ) {

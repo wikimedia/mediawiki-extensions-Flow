@@ -413,6 +413,7 @@
 
 	/**
 	 * Toggle the watchable state of a topic
+	 *
 	 * @param {boolean} [watchable] Topic is watchable
 	 * @fires watchable
 	 */
@@ -424,6 +425,7 @@
 
 	/**
 	 * Toggle the editability state of this revision
+	 *
 	 * @param {boolean} [editable] The revision is editable
 	 * @fires editableChange
 	 */

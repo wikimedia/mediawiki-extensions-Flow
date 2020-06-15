@@ -2,6 +2,7 @@
 ( function () {
 	/**
 	 * Initializer object for flow-initialize
+	 *
 	 * @class
 	 *
 	 * @constructor
@@ -192,6 +193,7 @@
 
 	/**
 	 * Initialize the data model objects
+	 *
 	 * @param {Object} config Configuration options for the mw.flow.dm.System
 	 */
 	mw.flow.Initializer.prototype.initDataModel = function ( config ) {

@@ -34,6 +34,7 @@
 	/**
 	 * Sets up the board and base properties on this class.
 	 * Returns either FALSE for failure, or jQuery object of old nodes that were replaced.
+	 *
 	 * @param {jQuery|boolean} $container
 	 * @return {boolean|jQuery}
 	 */
@@ -183,6 +184,7 @@
 
 	/**
 	 * Cancels and closes a form. If text has been entered, issues a warning first.
+	 *
 	 * @param {Event} event
 	 * @return {jQuery.Promise}
 	 */
@@ -258,6 +260,7 @@
 	/**
 	 * Return true page is in topic namespace,
 	 * and if $el is given, that if $el is also within .flow-post.
+	 *
 	 * @param {jQuery} [$el]
 	 * @return {boolean}
 	 */
