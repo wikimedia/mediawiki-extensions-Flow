@@ -8,6 +8,7 @@
 	"flow-post-action-view": "Даим бола тӏатовжам",
 	"flow-topic-action-view": "Массехана бола тӏатовжам",
 	"flow-topic-action-watchlist": "Зем бара хьаязъяьр",
+	"notification-header-flow-topic-renamed-v2": "«<strong>$1</strong>» яхача теман цIи хийцай → «<strong>$2</strong>».",
 	"flow-link-post": "хоам",
 	"flow-undo-latest-revision": "ХIанзара эрш",
 	"flow-ve-mention-context-item-label": "Хьоахавар",
