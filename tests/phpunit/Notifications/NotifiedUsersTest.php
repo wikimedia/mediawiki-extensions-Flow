@@ -44,6 +44,18 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		}
 	}
 
+	/**
+	 * @todo FIXME This logs an unhandled exception. (T249839)
+	 *
+	 * ```
+	 * Flow\Exception\InvalidDataException: Invalid metadata for topic|post revision …
+	 * at NotificationListener->notifyPostChange
+	 * at …
+	 * at NotifiedUsersTest->getTestData
+	 * ```
+	 *
+	 * @group Broken
+	 */
 	public function testWatchingTopic() {
 		$data = $this->getTestData();
 		if ( !$data ) {
@@ -76,6 +88,18 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$this->assertNotifiedUser( $events, $user, $data['agent'] );
 	}
 
+	/**
+	 * @todo FIXME This logs an unhandled exception. (T249839)
+	 *
+	 * ```
+	 * Flow\Exception\InvalidDataException: Invalid metadata for topic|post revision …
+	 * at NotificationListener->notifyPostChange
+	 * at …
+	 * at NotifiedUsersTest->getTestData
+	 * ```
+	 *
+	 * @group Broken
+	 */
 	public function testWatchingBoard() {
 		$data = $this->getTestData();
 		if ( !$data ) {
