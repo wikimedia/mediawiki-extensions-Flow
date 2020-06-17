@@ -42,11 +42,9 @@ use GuidedTourLauncher;
 use Html;
 use IContextSource;
 use LogEntry;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\UserIdentity;
 use Message;
 use MWException;
 use MWExceptionHandler;
@@ -55,6 +53,7 @@ use OutputPage;
 use RecentChange;
 use RequestContext;
 use ResourceLoader;
+use Revision;
 use Skin;
 use SkinTemplate;
 use SpecialPage;
@@ -1718,23 +1717,22 @@ class Hooks {
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 			// open a database transaction and prepare everything for the move, but
-			// don't commit yet. That is done below in self::onPageMoveComplete
+			// don't commit yet. That is done below in self::onTitleMoveCompleting
 			$boardMover = Container::get( 'board_mover' );
 			$boardMover->move( $oldTitle->getArticleID(), $bogusTitle );
 		}
 	}
 
-	public static function onPageMoveComplete(
-		LinkTarget $oldTitle,
-		LinkTarget $newTitle,
-		UserIdentity $user,
+	public static function onTitleMoveCompleting(
+		Title $oldTitle,
+		Title $newTitle,
+		User $user,
 		$pageid,
 		$redirid,
 		$reason,
-		RevisionRecord $revisionRecord
+		Revision $revision
 	) {
-		$titleObj = Title::newFromLinkTarget( $newTitle );
-		if ( $titleObj->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
+		if ( $newTitle->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			Container::get( 'board_mover' )->commit();
 		}
 	}
