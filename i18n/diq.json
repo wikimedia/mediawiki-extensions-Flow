@@ -178,5 +178,7 @@
 	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "Namey karberi $1 çıniyo",
 	"flow-wikitext-editor-help": "Wikimetini $1",
+	"flow-mark-diff-patrolled-link-text": "Zey kontrolbiyayiye nişan ke",
+	"flow-mark-diff-patrolled-link-title": "Zey kontrolbiyayiye nişan ke",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|Şıma}} bêgumanê?"
 }
