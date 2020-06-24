@@ -81,15 +81,15 @@ class TalkpageImportOperation {
 
 			if ( $status->isOK() ) {
 				$ensureValue = $status->getValue();
-				$revision = $ensureValue['revision'];
+				$revisionRecord = $ensureValue['revision-record'];
 				$state->logger->debug(
 					'ensureFlowRevision already-existed: ' . var_export(
 						$ensureValue['already-existed'],
 						true
 					)
 				);
-				$revisionId = $revision->getId();
-				$pageId = $revision->getTitle()->getArticleID( Title::GAID_FOR_UPDATE );
+				$revisionId = $revisionRecord->getId();
+				$pageId = $revisionRecord->getPageId();
 				$state->logger->debug(
 					"ensureFlowRevision revision ID: $revisionId, page ID: $pageId"
 				);
