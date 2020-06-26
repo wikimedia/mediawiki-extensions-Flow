@@ -46,7 +46,7 @@ class TalkpageManager implements OccupationController {
 	 * @param Workflow $workflow
 	 * @return Status Status for revision creation; On success (including if it already
 	 *  had a top-most Flow revision), it will return a good status with an associative
-	 *  array value.  $status->getValue()['revision'] will be a Revision
+	 *  array value.  $status->getValue()['revision-record'] will be a RevisionRecord
 	 *  $status->getValue()['already-existed'] will be set to true if no revision needed
 	 *  to be created
 	 * @throws InvalidInputException
