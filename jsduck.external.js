@@ -9,7 +9,7 @@
  *
  * @method ajax
  * @static
- * @return {jqXHR}
+ * @return {jQuery.jqXHR}
  */
 
 /**
@@ -35,7 +35,6 @@
  * Source: <https://api.jquery.com/Types/#jqXHR>
  *
  * @class jQuery.jqXHR
- * @alternateClassName jqXHR
  */
 
 /**

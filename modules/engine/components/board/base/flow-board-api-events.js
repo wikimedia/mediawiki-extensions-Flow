@@ -101,7 +101,7 @@
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.board = function ( info, data ) {
@@ -137,7 +137,7 @@
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.submitTopicTitle = function ( info, data ) {
@@ -158,7 +158,7 @@
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {Object} data
-	 * @param {jqXHR} jqxhr
+	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentApiEventsMixin.UI.events.apiHandlers.watchItem = function ( info, data ) {
@@ -285,7 +285,7 @@
 	 * @return {Function} Callback processing the response after submit of a moderation form
 	 * @return {Object} return.info `{status: done|fail, $target: jQuery}`
 	 * @return {Object} return.data
-	 * @return {jqXHR} return.jqxhr
+	 * @return {jQuery.jqXHR} return.jqxhr
 	 * @return {jQuery.Promise} return.return
 	 */
 	function _genModerateHandler( action, successCallback ) {

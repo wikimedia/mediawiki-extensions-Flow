@@ -134,7 +134,6 @@
 		}
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Add items
 	 *
@@ -193,7 +192,6 @@
 		return this;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Remove items
 	 *
@@ -234,7 +232,6 @@
 		return this;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Clear all items
 	 *

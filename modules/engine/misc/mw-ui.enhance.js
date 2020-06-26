@@ -271,12 +271,16 @@ mw.flow.ui.enhance = {};
 			// Tooltip style context
 			if ( optionsUnreferenced.tooltipContext ) {
 				$tooltip.removeClass( 'mw-ui-progressive mw-ui-destructive' );
+				// Classes documented above
+				// eslint-disable-next-line mediawiki/class-doc
 				$tooltip.addClass( 'mw-ui-' + optionsUnreferenced.tooltipContext );
 			}
 
 			// Tooltip size (small, large)
 			if ( optionsUnreferenced.tooltipSize ) {
 				$tooltip.removeClass( 'flow-ui-tooltip-sm flow-ui-tooltip-lg' );
+				// Classes documented above
+				// eslint-disable-next-line mediawiki/class-doc
 				$tooltip.addClass( 'flow-ui-tooltip-' + optionsUnreferenced.tooltipSize );
 			}
 
@@ -348,6 +352,8 @@ mw.flow.ui.enhance = {};
 			} while ( ++i <= locationOrder.length );
 
 			// Add the pointing direction class from the loop
+			// Classes documented above
+			// eslint-disable-next-line mediawiki/class-doc
 			$tooltip.addClass( 'flow-ui-tooltip-' + locationOrder[ i ] );
 
 			// Apply the new location CSS

@@ -4,6 +4,15 @@
  * @todo Find better places for a lot of the callbacks that have been placed here
  */
 
+/**
+ * @class FlowComponent
+ * TODO: Use @-external in JSDoc
+ */
+/**
+ * @class FlowBoardComponent
+ * TODO: Use @-external in JSDoc
+ */
+
 ( function () {
 	var _isGlobalBound;
 

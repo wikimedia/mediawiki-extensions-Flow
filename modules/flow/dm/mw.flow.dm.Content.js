@@ -38,8 +38,8 @@
 	/**
 	 * Get content representation for the specified format or the default format if none is specified.
 	 *
-	 * @param {string} [format=this.defaultFormat]; can be wikitext, html, fixed-html, topic-title-wikitext, topic-title-html, plaintext
-	 * @return {string} Content
+	 * @param {string} [format=this.defaultFormat] Can be wikitext, html, fixed-html, topic-title-wikitext, topic-title-html, plaintext
+	 * @return {string|null} Content
 	 */
 	mw.flow.dm.Content.prototype.get = function ( format ) {
 		if ( !this.contentRepresentations ) {

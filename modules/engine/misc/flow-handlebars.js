@@ -14,11 +14,10 @@
 	/**
 	 * Instantiates a FlowHandlebars instance for TemplateEngine.
 	 *
-	 * @return {FlowHandlebars}
+	 * @class FlowHandlebars
 	 * @constructor
 	 */
 	function FlowHandlebars() {
-		return this;
 	}
 
 	mw.flow.FlowHandlebars = FlowHandlebars;
@@ -174,7 +173,7 @@
 	 * Parameters could be Message::rawParam (in PHP) object, which will
 	 * translate into a { raw: "string" } object in JS.
 	 *
-	 * @todo: this does not exactly match the behavior in PHP yet (no parse,
+	 * TODO: this does not exactly match the behavior in PHP yet (no parse,
 	 * no escape), but at least it won't print an [Object object] param.
 	 *
 	 * @param {Array} parameters
