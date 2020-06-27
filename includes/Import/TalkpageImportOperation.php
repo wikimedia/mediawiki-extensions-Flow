@@ -62,8 +62,8 @@ class TalkpageImportOperation {
 			);
 			if ( !$creationStatus->isGood() ) {
 				throw new ImportException(
-					"safeAllowCreation failed to allow the import " . "destination, with the following error:\n" . $creationStatus->getWikiText(
-					)
+					"safeAllowCreation failed to allow the import destination, with the following error:\n" .
+						$creationStatus->getWikiText()
 				);
 			}
 

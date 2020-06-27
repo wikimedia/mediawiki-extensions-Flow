@@ -69,7 +69,8 @@ class ContentFixer {
 		foreach ( $this->contentFixers as $i => $contentFixer ) {
 			$found = $xpath->query( $contentFixer->getXPath() );
 			if ( !$found ) {
-				wfDebugLog( 'Flow', __METHOD__ . ': Invalid XPath from ' . get_class( $contentFixer ) . ' of: ' . $contentFixer->getXPath() );
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid XPath from ' . get_class( $contentFixer ) . ' of: ' .
+					$contentFixer->getXPath() );
 				unset( $this->contentFixers[$i] );
 				continue;
 			}

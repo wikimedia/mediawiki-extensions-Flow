@@ -250,7 +250,9 @@ class Importer {
 		$revisions = [];
 
 		// keep processing <revision> nodes until </revisions>
-		while ( $this->importer->getReader()->localName !== 'revisions' || $this->importer->getReader()->nodeType !== XMLReader::END_ELEMENT ) {
+		while ( $this->importer->getReader()->localName !== 'revisions' ||
+			$this->importer->getReader()->nodeType !== XMLReader::END_ELEMENT
+		) {
 			if ( $this->importer->getReader()->localName === 'revision' ) {
 				$revisions[] = $this->getRevision( $callback );
 			}
@@ -378,7 +380,8 @@ class Importer {
 	 */
 	private function createLocalUser( $globalUserId ) {
 		if ( !( $this->lookup instanceof \CentralAuthIdLookup ) ) {
-			throw new ImportException( 'Creating local users is not supported with central id provider: ' . get_class( $this->lookup ) );
+			throw new ImportException( 'Creating local users is not supported with central id provider: ' .
+				get_class( $this->lookup ) );
 		}
 
 		$globalUser = \CentralAuthUser::newFromId( $globalUserId );

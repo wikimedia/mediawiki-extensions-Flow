@@ -35,7 +35,8 @@ class HeaderUpdater extends AbstractUpdater {
 				'id' => $revision->getCollectionId()->getAlphadecimal(),
 				'text' => trim( Sanitizer::stripAllTags( $revision->getContent( $format ) ) ),
 				'source_text' => $revision->getContent( 'wikitext' ), // for insource: searches
-				'moderation_state' => $revision->getModerationState(), // headers can't (currently) be moderated, so should always be MODERATED_NONE
+				// headers can't (currently) be moderated, so should always be MODERATED_NONE
+				'moderation_state' => $revision->getModerationState(),
 				'timestamp' => $creationTimestamp->getTimestamp( TS_ISO_8601 ),
 				'update_timestamp' => $updateTimestamp->getTimestamp( TS_ISO_8601 ),
 				'type' => $revision->getRevisionType(),

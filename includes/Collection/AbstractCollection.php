@@ -92,7 +92,10 @@ abstract class AbstractCollection {
 		$revision = static::getStorage()->get( $revId );
 
 		if ( $revision === null ) {
-			throw new InvalidDataException( 'Revisions for ' . $revId->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
+			throw new InvalidDataException(
+				'Revisions for ' . $revId->getAlphadecimal() . ' could not be found',
+				'invalid-revision-id'
+			);
 		}
 
 		return static::newFromRevision( $revision );
@@ -144,7 +147,10 @@ abstract class AbstractCollection {
 			);
 
 			if ( !$revisions ) {
-				throw new InvalidDataException( 'Revisions for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-type-id' );
+				throw new InvalidDataException(
+					'Revisions for ' . $this->uuid->getAlphadecimal() . ' could not be found',
+					'invalid-type-id'
+				);
 			}
 
 			foreach ( $revisions as $revision ) {

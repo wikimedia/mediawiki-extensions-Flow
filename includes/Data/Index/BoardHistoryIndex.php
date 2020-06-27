@@ -39,7 +39,10 @@ abstract class BoardHistoryIndex extends TopKIndex {
 		ObjectManager $om
 	) {
 		if ( $indexed !== [ 'topic_list_id' ] ) {
-			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
+			throw new DataModelException(
+				__CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ),
+				'process-data'
+			);
 		}
 		parent::__construct( $cache, $storage, $mapper, $prefix, $indexed, $options );
 		$this->om = $om;

@@ -114,7 +114,10 @@ class RootPostLoader {
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
 			if ( isset( $posts[$post->getPostId()->getAlphadecimal()] ) ) {
-				throw new InvalidDataException( 'Multiple results for id: ' . $post->getPostId()->getAlphadecimal(), 'fail-load-data' );
+				throw new InvalidDataException(
+					'Multiple results for id: ' . $post->getPostId()->getAlphadecimal(),
+					'fail-load-data'
+				);
 			}
 			$posts[$post->getPostId()->getAlphadecimal()] = $post;
 		}
@@ -134,7 +137,10 @@ class RootPostLoader {
 			if ( $missingParents ) {
 				// if we can't fetch a post's original position in the tree
 				// hierarchy, we can't create a stub post to display, so bail
-				throw new InvalidDataException( 'Missing Posts & parents: ' . json_encode( $missingParents ), 'fail-load-data' );
+				throw new InvalidDataException(
+					'Missing Posts & parents: ' . json_encode( $missingParents ),
+					'fail-load-data'
+				);
 			}
 
 			foreach ( $missingUUID as $postId ) {
@@ -153,7 +159,10 @@ class RootPostLoader {
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
-			throw new InvalidDataException( 'Found unrequested posts: ' . FormatJson::encode( $extra ), 'fail-load-data' );
+			throw new InvalidDataException(
+				'Found unrequested posts: ' . FormatJson::encode( $extra ),
+				'fail-load-data'
+			);
 		}
 
 		// populate array of children
@@ -164,7 +173,10 @@ class RootPostLoader {
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
-			throw new InvalidDataException( 'Found posts with unrequested parents: ' . FormatJson::encode( $extraParents ), 'fail-load-data' );
+			throw new InvalidDataException(
+				'Found posts with unrequested parents: ' . FormatJson::encode( $extraParents ),
+				'fail-load-data'
+			);
 		}
 
 		foreach ( $posts as $postId => $post ) {

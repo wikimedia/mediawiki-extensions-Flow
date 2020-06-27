@@ -173,7 +173,8 @@ class ActionFormatter extends LogFormatter {
 		try {
 			if ( !isset( $params['topicId'] ) ) {
 				// failed finding the expected data in storage
-				wfWarn( __METHOD__ . ': Failed to locate topicId in log_params for: ' . serialize( $params ) . ' (forgot to run FlowFixLog.php?)' );
+				wfWarn( __METHOD__ . ': Failed to locate topicId in log_params for: ' . serialize( $params ) .
+					' (forgot to run FlowFixLog.php?)' );
 				return false;
 			}
 
@@ -185,7 +186,8 @@ class ActionFormatter extends LogFormatter {
 			return $collection;
 		} catch ( \Exception $e ) {
 			// failed finding the expected data in storage
-			wfWarn( __METHOD__ . ': Failed to locate root for: ' . serialize( $params ) . ' (potentially storage issue)' );
+			wfWarn( __METHOD__ . ': Failed to locate root for: ' . serialize( $params ) .
+				' (potentially storage issue)' );
 			return false;
 		}
 	}

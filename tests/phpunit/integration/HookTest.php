@@ -140,7 +140,8 @@ class HookTest extends MediaWikiTestCase {
 					$title = $metadata['workflow']->getArticleTitle();
 
 					return [
-						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos', 'topic-title-wikitext', 'edit-title', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'gnihtemos gnihtemos',
+							'topic-title-wikitext', 'edit-title', $title ),
 					] + $metadata;
 				},
 				[
@@ -154,7 +155,8 @@ class HookTest extends MediaWikiTestCase {
 					$metadata = $replyToTopic( $user );
 					$title = $metadata['workflow']->getArticleTitle();
 					return [
-						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!', 'wikitext', 'edit-post', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'IT\'S CAPS LOCKS DAY!',
+							'wikitext', 'edit-post', $title ),
 					] + $metadata;
 				},
 				[
@@ -168,7 +170,8 @@ class HookTest extends MediaWikiTestCase {
 					$metadata = $newHeader( $user );
 					$title = $metadata['workflow']->getArticleTitle();
 					return [
-						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!', 'wikitext', 'edit-header', $title ),
+						'revision' => $metadata['revision']->newNextRevision( $user, 'STILL CAPS LOCKS DAY!',
+							'wikitext', 'edit-header', $title ),
 					] + $metadata;
 				},
 				[

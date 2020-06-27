@@ -76,7 +76,10 @@ abstract class RevisionViewQuery extends AbstractQuery {
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		$prev = $this->createRevision( $prevId );
 		if ( !$prev ) {
-			throw new InvalidInputException( 'Could not find revision to compare against: ' . $curId->getAlphadecimal(), 'missing-revision' );
+			throw new InvalidInputException(
+				'Could not find revision to compare against: ' . $curId->getAlphadecimal(),
+				'missing-revision'
+			);
 		}
 		if ( !$this->isComparable( $cur, $prev ) ) {
 			throw new InvalidInputException( 'Attempt to compare revisions of different types', 'revision-comparison' );
