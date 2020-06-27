@@ -253,7 +253,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider permissionsProvider
 	 */
-	public function testPermissions( $userGetterName, $revisionGetterName = null, $action, $expected ) {
+	public function testPermissions( $userGetterName, $revisionGetterName, $action, $expected ) {
 		$user = $this->$userGetterName();
 		$revision = $revisionGetterName ? $this->$revisionGetterName() : null;
 
