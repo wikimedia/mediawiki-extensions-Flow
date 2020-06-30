@@ -33,7 +33,7 @@
 		]
 	},
 	"enablestructureddiscussions": "Gestructureerde Discussies inschakelen",
-	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} met het volgen van nieuwe gebeurtenissen op \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} volgen van nieuwe activiteit op \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|U}} volgt de pagina \"$1\" niet meer",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dit heeft geen invloed op individuele onderwerpen die {{GENDER:$3|u}} volgt. U kunt [$2 deze pagina] op elk moment volgen.",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Stop}} met het volgen van dit onderwerp",
