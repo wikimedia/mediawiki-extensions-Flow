@@ -9,7 +9,7 @@
 			"వైజాసత్య"
 		]
 	},
-	"flow-desc": "కార్యధార నిర్వహణా వ్యవస్థ",
+	"flow-desc": "చర్చా వ్యవస్థ",
 	"log-name-flow": "ఫ్లో చర్య లాగ్",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] లో [[$3|$5]] లోని [$4 టపాను]  {{GENDER:$2|తొలగించారు}}",
 	"flow-board-header-browse-topics-link": "అంశాలను చూడండి",
