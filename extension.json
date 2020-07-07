@@ -15,7 +15,8 @@
 		"S Page",
 		"Jon Robson",
 		"Moriel Schottlender",
-		"Benny Situ"
+		"Benny Situ",
+		"Volker E."
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Flow",
 	"descriptionmsg": "flow-desc",
@@ -349,7 +350,8 @@
 			"styles": [
 				"styles/common.less",
 				"styles/errors.less",
-				"styles/history/history-line.less"
+				"styles/history/history-line.less",
+				"styles/mediawiki.ui/anchors.less"
 			],
 			"targets": [
 				"desktop",
