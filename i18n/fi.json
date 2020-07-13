@@ -3,7 +3,6 @@
 		"authors": [
 			"01miki10",
 			"Alluk.",
-			"BaRaN6161 TURK",
 			"Elseweyr",
 			"Lliehu",
 			"Macofe",
@@ -31,7 +30,7 @@
 	"flow-talk-taken-over-comment": "/* Tämä sivu on muunnettu käyttämään Jäsennetyt keskustelut -palstaa */",
 	"log-name-flow": "Jäsennetyt keskustelut -tapahtumaloki",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|poisti}} [$4 viestin] aiheessa ”[[$3|$5]]” kohteessa [[$6]]",
-	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|poisti}} viestin sivulla [[$3]] olevasta aiheesta",
+	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{$2|poisti}} viestin sivulla [[$3]] olevasta aiheesta",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|palautti}} [$4 viestin] aiheessa ”[[$3|$5]]” kohteessa [[$6]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|häivytti}} [$4 viestin] aiheessa ”[[$3|$5]]” kohteessa [[$6]]",
 	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|poisti}} [$4 viestin] aiheessa ”[[$3|$5]]” kohteessa [[$6]]",
