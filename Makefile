@@ -54,10 +54,6 @@ endif
 jsduck:
 	jsduck
 
-csscss: gems
-	echo "Generating CSS file..."
-	php scripts/generatecss.php ${MEDIAWIKI_LOAD_URL} /tmp/foo.css
-	csscss -v /tmp/foo.css --num 2 --no-match-shorthand --ignore-properties=display,position,top,bottom,left,right
 ###
 # Testing
 ###
@@ -94,8 +90,3 @@ autoload:
 	@${PHP} scripts/one-class-per-file.php
 	@${PHP} scripts/gen-autoload.php
 
-###
-# Update this repository
-###
-gems:
-	bundle install
