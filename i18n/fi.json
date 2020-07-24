@@ -438,7 +438,7 @@
 	"flow-ve-mention-context-item-label": "Mainitse",
 	"flow-ve-mention-inspector-title": "Mainitse",
 	"flow-ve-mention-inspector-remove-label": "Poista",
-	"flow-ve-mention-placeholder": "Käyttäjätunnus",
+	"flow-ve-mention-placeholder": "Käyttäjänimi",
 	"flow-ve-mention-tool-title": "Mainitse käyttäjä",
 	"flow-ve-mention-template-title": "Flow-maininta",
 	"flow-ve-mention-inspector-invalid-user": "Käyttäjänimeä ”$1” ei ole rekisteröity.",
