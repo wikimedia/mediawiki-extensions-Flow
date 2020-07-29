@@ -111,6 +111,7 @@ class Searcher {
 			},
 			'error' => function ( Status $status ) {
 				$status = $status->getErrorsArray();
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				wfLogWarning( 'Pool error searching Elasticsearch: ' . $status[0][0] );
 				return Status::newFatal( 'flow-error-search' );
 			}
