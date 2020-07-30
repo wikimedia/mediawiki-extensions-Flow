@@ -43,8 +43,8 @@
 		} );
 
 		// Keyboard shortcut messages are provided by VE, so only do this when VE is installed
-		if ( mw.loader.getState( 'ext.visualEditor.core' ) ) {
-			mw.loader.using( 'ext.visualEditor.core' ).then( function () {
+		if ( mw.loader.getState( 'ext.visualEditor.mwcore' ) ) {
+			mw.loader.using( 'ext.visualEditor.mwcore' ).then( function () {
 				widget.cancelButton.setTitle(
 					widget.cancelButton.getLabel() +
 					// eslint-disable-next-line no-undef
