@@ -18,7 +18,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Више не {{GENDER:$3|надгледате}} страницу „$1”",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "У било ком тренутку {{GENDER:$3|можете}} да надгледате [$2 ову тему].",
 	"flow-desc": "Систем за дискусију",
-	"flow-talk-taken-over-comment": "/* Ова страница је конвертована у табелу структираних дискусија */",
+	"flow-talk-taken-over-comment": "/* Ова страница је претворена у таблу структираних разговора */",
 	"log-name-flow": "Дневник активности структурираних дискусија",
 	"logentry-delete-flow-delete-post": "$1 је {{GENDER:$2|избрисао|избрисала}} [$4 објаву] на тему „[[$3|$5]]” на [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 је {{GENDER:$2|избрисао|избрисала}} објаву на тему [[$3]].",
@@ -211,7 +211,7 @@
 	"flow-dialog-cancelconfirm-keep": "Настави са уређивањем",
 	"flow-dialog-cancelconfirm-discard": "Одбаци промене",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро дошли}} на {{GENDER:$1|Вашу}} нову страницу за разговор",
-	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вас други уредници могу контактирати. Са додатком „Структурирана дискусија”, једноставније је направити нову тему и пратити конверзацију.",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вам се други уредници могу обратити. Структурирани разговори омогућавају лакше започињање нових тема и праћење тока разговора.",
 	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
 	"flow-preference-visualeditor": "Омогући визуелни уређивач и нови режим викитеста у структурираним дискусијама."
 }
