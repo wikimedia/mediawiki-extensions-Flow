@@ -540,6 +540,7 @@
 				"mediawiki.user",
 				"mediawiki.util",
 				"mediawiki.editfont.styles",
+				"mediawiki.jqueryMsg",
 				"ext.visualEditor.supportCheck"
 			],
 			"targets": [
