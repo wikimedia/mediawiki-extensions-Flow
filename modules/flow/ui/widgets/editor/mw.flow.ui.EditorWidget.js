@@ -62,18 +62,16 @@
 			label: $( '<span>' ).append(
 				mw.message( 'flow-wikitext-editor-help-and-preview' ).params( [
 					// Link to help page
-					$( '<div>' )
+					$( '<span>' )
 						.html( mw.message( 'flow-wikitext-editor-help-uses-wikitext' ).parse() )
 						.find( 'a' )
 						.attr( 'target', '_blank' )
-						.end()
-						.html(),
+						.end(),
 					// Preview link
 					$( '<a>' )
 						.attr( 'href', '#' )
 						.addClass( 'flow-ui-editorWidget-label-preview' )
 						.text( mw.message( 'flow-wikitext-editor-help-preview-the-result' ).text() )
-						.get( 0 ).outerHTML
 				] ).parse() )
 				.find( '.flow-ui-editorWidget-label-preview' )
 				.click( this.onPreviewLinkClick.bind( this ) )
