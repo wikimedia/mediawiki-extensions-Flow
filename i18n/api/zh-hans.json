@@ -6,6 +6,7 @@
 			"Quiddity",
 			"Shizhao",
 			"WQL",
+			"列维劳德",
 			"御坂美琴",
 			"飞舞回堂前"
 		]
@@ -122,7 +123,7 @@
 	"apihelp-flow-parsoid-utils-example-1": "将wiki文本<nowiki>'''lorem''' ''blah''</nowiki>转换为HTML",
 	"apihelp-query+flowinfo-description": "获取有关页面的基本结构化讨论信息。",
 	"apihelp-query+flowinfo-summary": "获取有关页面的基本结构化讨论信息。",
-	"apihelp-query+flowinfo-example-1": "获取有关[[Talk:Sandbox]]、[[Main Page]]和[[Talk:Flow]]的结构化讨论",
+	"apihelp-query+flowinfo-example-1": "获取有关[[Talk:Sandbox]]、[[Main Page]]和[[Talk:Structured Discussions]]的结构化讨论",
 	"apihelp-flow+undo-edit-header-description": "检索撤销描述编辑所必需的信息。",
 	"apihelp-flow+undo-edit-header-summary": "检索撤销描述编辑所必需的信息。",
 	"apihelp-flow+undo-edit-header-param-startId": "要开始撤销的修订ID。",
