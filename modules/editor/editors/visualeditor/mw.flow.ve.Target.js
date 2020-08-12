@@ -158,6 +158,9 @@
 		var deferred,
 			surfaceModel = this.getSurface().getModel();
 
+		// ime-position-inside needs to be added before first focus
+		this.getSurface().getView().getDocument().getDocumentNode().$element.addClass( 'ime-position-inside' );
+
 		if ( this.switchingDeferred ) {
 			deferred = this.switchingDeferred;
 			this.switchingDeferred = null;
