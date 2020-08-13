@@ -661,7 +661,6 @@ class Controller {
 		$title = Title::newMainPage(); // Bogus title used for parser
 
 		$options = new \ParserOptions;
-		$options->setTidy( true );
 
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $wikitext, $title, $options );

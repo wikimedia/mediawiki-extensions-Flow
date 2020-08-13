@@ -228,7 +228,6 @@ abstract class Utils {
 		}
 
 		$options = new \ParserOptions;
-		$options->setTidy( true );
 
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $content, $title, $options );
