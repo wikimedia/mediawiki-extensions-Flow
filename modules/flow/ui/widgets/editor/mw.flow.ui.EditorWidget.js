@@ -255,7 +255,6 @@
 				widget.bindBeforeUnloadHandler();
 				widget.maybeAutoFocus();
 				widget.wikitextHelpLabel.toggle( widget.target.getDefaultMode() === 'source' );
-				widget.target.getSurface().getView().getDocument().getDocumentNode().$element.attr( 'aria-label', widget.placeholder );
 			}, function ( error ) {
 				widget.error.setLabel( $( '<span>' ).text( error || mw.msg( 'flow-error-default' ) ) );
 				widget.error.toggle( true );
