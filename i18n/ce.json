@@ -45,7 +45,9 @@
 	"flow-last-modified-by": "ТӀаьххьара бина {{GENDER:$1|хийцам}} цу $1",
 	"flow-newtopic-title-placeholder": "Керла тема",
 	"flow-newtopic-content-placeholder": "ДӀбазбе керла хаам «$1» чохь",
+	"flow-newtopic-header": "Керла тема тӀетоха",
 	"flow-newtopic-save": "Тема тӀетоха",
+	"flow-newtopic-save-anonymously": "Анонимно тема тӀетоха",
 	"flow-newtopic-start-placeholder": "Йолае керла тема",
 	"flow-reply-topic-title-placeholder": "«$1» жоп далар",
 	"flow-reply-link": "{{GENDER:$1|Жоп}}",
@@ -187,6 +189,6 @@
 	"flow-ve-mention-inspector-remove-label": "ДӀаяккха",
 	"flow-ve-mention-placeholder": "Декъашхочун цӀе",
 	"flow-ve-mention-tool-title": "Декъашхо хьахо",
-	"flow-ve-mention-inspector-invalid-user": "Декъашхочун «$1» дӀаяздар дац.",
+	"flow-ve-mention-inspector-invalid-user": "Декъашхочун «$1» агӀо яц.",
 	"flow-wikitext-editor-help": "Вики-йоза $1."
 }
