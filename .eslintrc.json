@@ -15,6 +15,7 @@
 		"camelcase": "off",
 		"no-use-before-define": "off",
 		"max-len": "off",
-		"mediawiki/class-doc": "warn"
+		"mediawiki/class-doc": "warn",
+		"no-shadow": "warn"
 	}
 }
