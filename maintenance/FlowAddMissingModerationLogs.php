@@ -73,6 +73,8 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 			'rev_id < ' . $dbw->addQuotes( $stopId->getBinary() ),
 		] );
 
+		$rowIterator->setCaller( __METHOD__ );
+
 		$total = $fail = 0;
 		foreach ( $rowIterator as $batch ) {
 			$this->beginTransaction( $dbw, __METHOD__ );

@@ -91,6 +91,8 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 				$dbr->makeList( $clusterConditions, LIST_OR ),
 		] );
 
+		$iterator->setCaller( __METHOD__ );
+
 		$updateGenerator = new ExternalStoreUpdateGenerator( $this, $to, $schema );
 
 		if ( $this->hasOption( 'dry-run' ) ) {
@@ -133,9 +135,12 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 			return;
 		}
 
+		$writer = new BatchRowWriter( $dbw, $schema['table'] );
+		$writer->setCaller( __METHOD__ );
+
 		$updater = new BatchRowUpdate(
 			$iterator,
-			new BatchRowWriter( $dbw, $schema['table'] ),
+			$writer,
 			$updateGenerator
 		);
 		$updater->setOutput( [ $this, 'output' ] );

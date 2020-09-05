@@ -138,6 +138,7 @@ class Exporter extends WikiExporter {
 		$iterator->setFetchColumns( [ '*' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 		$iterator->addConditions( [ 'workflow_type' => 'discussion' ] );
+		$iterator->setCaller( __METHOD__ );
 
 		if ( $pages ) {
 			$pageConds = [];

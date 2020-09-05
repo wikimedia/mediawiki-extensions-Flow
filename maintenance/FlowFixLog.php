@@ -45,10 +45,13 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 				'flow-delete-topic', 'flow-suppress-topic', 'flow-restore-topic',
 			],
 		] );
+		$iterator->setCaller( __METHOD__ );
+
+		$writer = new BatchRowWriter( wfGetDB( DB_MASTER ), 'logging' );
 
 		$updater = new BatchRowUpdate(
 			$iterator,
-			new BatchRowWriter( wfGetDB( DB_MASTER ), 'logging' ),
+			$writer,
 			new LogRowUpdateGenerator( $this )
 		);
 		$updater->setOutput( [ $this, 'output' ] );

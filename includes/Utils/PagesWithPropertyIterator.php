@@ -75,6 +75,8 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 			'page' => [ 'JOIN', 'pp_page=page_id' ],
 		] );
 		$it->setFetchColumns( [ 'page_namespace', 'page_title' ] );
+		$it->setCaller( __METHOD__ );
+
 		$it = new RecursiveIteratorIterator( $it );
 
 		return new EchoCallbackIterator( $it, function ( $row ) {

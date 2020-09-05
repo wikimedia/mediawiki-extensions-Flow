@@ -88,6 +88,8 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		// We only need the id and type field
 		$it->setFetchColumns( [ 'rev_id', 'rev_type' ] );
 
+		$it->setCaller( __METHOD__ );
+
 		$total = $fail = 0;
 		foreach ( $it as $batch ) {
 			$this->beginTransaction( $dbw, __METHOD__ );

@@ -46,9 +46,11 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 		$it->addConditions( [
 			'workflow_wiki' => wfWikiID(),
 		] );
+		$it->setCaller( __METHOD__ );
 
 		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
 		$writer = new BatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
+		$writer->setCaller( __METHOD__ );
 		$updater = new BatchRowUpdate( $it, $writer, $gen );
 
 		$updater->execute();

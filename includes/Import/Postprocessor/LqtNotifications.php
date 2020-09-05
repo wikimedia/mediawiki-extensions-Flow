@@ -97,6 +97,7 @@ class LqtNotifications implements Postprocessor {
 			'ums_conversation' => $activeThreadId,
 			'ums_read_timestamp' => null,
 		] );
+		$it->setCaller( __METHOD__ );
 
 		// flatten result into a stream of rows
 		$it = new RecursiveIteratorIterator( $it );

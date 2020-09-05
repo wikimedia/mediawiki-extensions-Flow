@@ -52,6 +52,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 			'event_page_id IS NOT NULL',
 		] );
 		$iterator->setFetchColumns( [ 'event_page_id' ] );
+		$iterator->setCaller( __METHOD__ );
 
 		$storage = Container::get( 'storage.workflow' );
 

@@ -75,6 +75,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 		$iterator->addConditions( [
 			'page_content_model' => CONTENT_MODEL_FLOW_BOARD,
 		] );
+		$iterator->setCaller( __METHOD__ );
 
 		if ( $this->hasOption( 'namespaceName' ) ) {
 			$namespaceName = $this->getOption( 'namespaceName' );

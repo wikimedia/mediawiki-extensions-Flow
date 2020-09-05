@@ -87,6 +87,7 @@ class FlowReserializeRevisionContent extends Maintenance {
 			'rev_flags' . $dbr->buildLike( $dbr->anyString(), 'html', $dbr->anyString() ),
 		] );
 		$iterator->setFetchColumns( [ 'rev_id', 'rev_type', 'rev_content', 'rev_flags' ] );
+		$iterator->setCaller( __METHOD__ );
 
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {

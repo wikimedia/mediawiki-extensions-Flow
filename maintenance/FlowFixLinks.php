@@ -70,6 +70,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->mBatchSize );
 		$iterator->setFetchColumns( [ '*' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
+		$iterator->setCaller( __METHOD__ );
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 

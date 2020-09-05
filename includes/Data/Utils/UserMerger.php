@@ -88,6 +88,7 @@ class UserMerger {
 				$it = new BatchRowIterator( $dbw, $table, $config['pk'], 500 );
 				// The database is migrated, so look for the new user id
 				$it->addConditions( [ $column => $newUserId ] );
+				$it->setCaller( __METHOD__ );
 				if ( isset( $config['loadColumns'] ) ) {
 					$it->setFetchColumns( $config['loadColumns'] );
 				}
