@@ -155,6 +155,7 @@ class TalkpageManager implements OccupationController {
 	 * @return bool
 	 */
 	public function canBeUsedOn( Title $title ) {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgUser;
 
 		// If the user has rights, mark the page as allowed

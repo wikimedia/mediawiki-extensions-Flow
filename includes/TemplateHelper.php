@@ -225,6 +225,7 @@ class TemplateHelper {
 	 * @return SafeString|null
 	 */
 	protected static function timestamp( $timestamp ) {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgLang, $wgUser;
 
 		if ( !$timestamp ) {

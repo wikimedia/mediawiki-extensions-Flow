@@ -167,6 +167,7 @@ class BoardContent extends \AbstractContent {
 		// TODO: This should also call the "ContentGetParserOutput" hook
 		if ( $generateHtml ) {
 			try {
+				// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 				global $wgUser;
 				$user = $options ? $options->getUser() : $wgUser;
 				$parserOutput = $this->generateHtml( $title, $user );
