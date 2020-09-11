@@ -5,6 +5,8 @@
 			"Kareyac"
 		]
 	},
+	"flow-post-actions": "Գործողութիւններ",
+	"flow-topic-actions": "Գործողութիւններ",
 	"flow-cancel": "Չեղարկել",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Շնորհակալութիւն}}}}",
 	"flow-post-action-view": "Մշտական յղում",
