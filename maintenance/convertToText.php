@@ -191,7 +191,7 @@ class ConvertToText extends Maintenance {
 		// mOptions, which may not be set. Set a dummy options object so it
 		// doesn't fail (it'll initialise the requested value from a global
 		// anyway)
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 		$old = $parser->getOptions();
 		$parser->setOptions( $options );
 		$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
