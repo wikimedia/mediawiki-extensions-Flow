@@ -225,8 +225,7 @@ class TemplateHelper {
 	 * @return SafeString|null
 	 */
 	protected static function timestamp( $timestamp ) {
-		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
-		global $wgLang, $wgUser;
+		global $wgLang;
 
 		if ( !$timestamp ) {
 			return null;
@@ -241,7 +240,10 @@ class TemplateHelper {
 			[
 				'time_iso' => $timestamp,
 				'time_ago' => $wgLang->getHumanTimestamp( $ts ),
-				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
+				'time_readable' => $wgLang->userTimeAndDate(
+					$timestamp,
+					RequestContext::getMain()->getUser()
+				),
 				'guid' => null, // generated client-side
 			]
 		) );

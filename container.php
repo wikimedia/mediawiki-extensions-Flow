@@ -40,7 +40,7 @@ $c = new Flow\Container;
 if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	$c['user'] = new User;
 } else {
-	$c['user'] = $GLOBALS['wgUser'] ?? new User;
+	$c['user'] = RequestContext::getMain()->getUser();
 }
 
 // Flow config

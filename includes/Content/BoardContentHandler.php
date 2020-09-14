@@ -111,7 +111,11 @@ class BoardContentHandler extends \ContentHandler {
 	public function canBeUsedOn( \Title $title ) {
 		/** @var \Flow\TalkpageManager $manager */
 		$manager = Container::get( 'occupation_controller' );
-		return $manager->canBeUsedOn( $title );
+
+		/** @var User $user */
+		$user = Container::get( 'user' );
+
+		return $manager->canBeUsedOn( $title, $user );
 	}
 
 	/**
