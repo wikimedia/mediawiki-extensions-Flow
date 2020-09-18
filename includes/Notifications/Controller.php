@@ -18,6 +18,7 @@ use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
 use MediaWiki\MediaWikiServices;
+use ParserOptions;
 use Title;
 use User;
 
@@ -660,7 +661,7 @@ class Controller {
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
 		$title = Title::newMainPage(); // Bogus title used for parser
 
-		$options = new \ParserOptions;
+		$options = ParserOptions::newFromAnon();
 
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $wikitext, $title, $options );

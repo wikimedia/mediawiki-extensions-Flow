@@ -7,6 +7,7 @@ use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
+use ParserOptions;
 use Status;
 use Title;
 
@@ -53,7 +54,7 @@ class SpamBlacklist implements SpamFilter {
 	 * @return array
 	 */
 	public function getLinks( AbstractRevision $revision, Title $title ) {
-		$options = new \ParserOptions;
+		$options = ParserOptions::newFromAnon();
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $revision->getContentInWikitext(), $title, $options );
 		return array_keys( $output->getExternalLinks() );
