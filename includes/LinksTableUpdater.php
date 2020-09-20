@@ -76,7 +76,7 @@ class LinksTableUpdater {
 			} elseif ( $reference->getType() === 'file' ) {
 				if ( $reference instanceof WikiReference ) {
 					// Only local images supported
-					$parserOutput->mImages[$reference->getTitle()->getDBkey()] = true;
+					$parserOutput->addImage( $reference->getTitle()->getDBkey() );
 				}
 			} elseif ( $reference->getType() === 'template' ) {
 				if ( $reference instanceof WikiReference ) {
@@ -92,23 +92,23 @@ class LinksTableUpdater {
 		foreach ( $internalLinks as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
-			if ( !isset( $parserOutput->mLinks[$ns] ) ) {
-				$parserOutput->mLinks[$ns] = [];
+			if ( !isset( $parserOutput->getLinks()[$ns] ) ) {
+				$parserOutput->getLinks()[$ns] = [];
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
-			$parserOutput->mLinks[$ns][$dbk] = $id;
+			$parserOutput->getLinks()[$ns][$dbk] = $id;
 		}
 
 		foreach ( $templates as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
-			if ( !isset( $parserOutput->mTemplates[$ns] ) ) {
-				$parserOutput->mTemplates[$ns] = [];
+			if ( !isset( $parserOutput->getTemplates()[$ns] ) ) {
+				$parserOutput->getTemplates()[$ns] = [];
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
-			$parserOutput->mTemplates[$ns][$dbk] = $id;
+			$parserOutput->getTemplates()[$ns][$dbk] = $id;
 		}
 	}
 
