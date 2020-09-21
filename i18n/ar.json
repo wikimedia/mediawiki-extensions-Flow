@@ -95,7 +95,7 @@
 	"flow-newtopic-save": "أضف موضوعا",
 	"flow-newtopic-save-anonymously": "إضافة موضوع كمجهول",
 	"flow-newtopic-start-placeholder": "أضف موضوعا جديدا",
-	"flow-newtopic-first-heading": "ابدأ موضوعًا جديدًا في $1",
+	"flow-newtopic-first-heading": "ابدأ موضوعا جديدا في $1",
 	"flow-summarize-topic-placeholder": "برجاء تلخيص النقاش",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|علّق|علّقت}} على \"$2\"",
 	"flow-reply-topic-title-placeholder": "رد على \"$1\"",
