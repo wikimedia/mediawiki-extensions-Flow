@@ -4,6 +4,7 @@
 			"2nd-player",
 			"Fryed-peach",
 			"Kanon und wikipedia",
+			"Kkairri",
 			"Linuxmetel",
 			"Macofe",
 			"Mirinano",
@@ -413,6 +414,7 @@
 	"flow-mark-revision-patrolled-link-title": "このページを巡回済みにする",
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
 	"flow-mark-diff-patrolled-link-title": "巡回済みにする",
+	"flow-talk-page-beta-feature-message": "会話ページでの構造化された議論",
 	"flow-talk-page-beta-feature-description": "{{GENDER:|ご自分}}の利用者トークページで、新しく構造化された議論システムを有効にします。トークページの議論が簡略化されて発信と返信の場所が明瞭になり、また会話ごとに通知ができるようになります。この機能は、けっして自動では有効化されません。利用者が個別に有効にする必要があります。<br /><br />既存のウィキテキスト形式の議論は、過去ログに移動します。一方、機能を無効にすると、ボードをサブページに移動し、既存のトークページを過去ログから復元します。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#有効にする|有効化の詳細はこちら]]。",
 	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを{{GENDER:|見る}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "アーカイブテンプレートの追加",
@@ -426,5 +428,6 @@
 	"flow-optin-restore-wikitext": "アーカイブ化されたウィキテキスト・ページを復元",
 	"flow-optin-restore-flow-board": "アーカイブ化された議論ボードを復元",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す",
-	"flow-guidedtour-optin-feedback": "{{GENDER:$1|あなた}}のフィードバックをください。"
+	"flow-guidedtour-optin-feedback": "{{GENDER:$1|あなた}}のフィードバックをください。",
+	"flow-preference-visualeditor": "構造化された議論でビジュアルエディタと新しいウィキテキストモードを有効にする"
 }
