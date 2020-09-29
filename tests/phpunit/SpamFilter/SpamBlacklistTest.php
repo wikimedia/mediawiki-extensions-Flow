@@ -86,6 +86,8 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			'files' => [],
 		] );
 
+		BaseBlacklist::clearInstanceCache();
+
 		MediaWikiServices::getInstance()->getMessageCache()->enable();
 		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", $this->blacklist ) );
 		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", $this->whitelist ) );
