@@ -745,7 +745,6 @@
 		"CheckUserFormatRow": "Flow\\Hooks::onCheckUserFormatRow",
 		"SpecialCheckUserGetLinksFromRow": "Flow\\Hooks::onSpecialCheckUserGetLinksFromRow",
 		"CheckUserInsertForRecentChange": "Flow\\Hooks::onCheckUserInsertForRecentChange",
-		"SkinMinervaDefaultModules": "Flow\\Hooks::onSkinMinervaDefaultModules",
 		"IRCLineURL": "Flow\\Hooks::onIRCLineURL",
 		"WhatLinksHereProps": "Flow\\Hooks::onWhatLinksHereProps",
 		"ShowMissingArticle": "Flow\\Hooks::onShowMissingArticle",

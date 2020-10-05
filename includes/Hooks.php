@@ -737,20 +737,6 @@ class Hooks {
 	}
 
 	/**
-	 * Interact with the mobile skin's default modules on Flow enabled pages
-	 *
-	 * @param Skin $skin
-	 * @param array &$modules
-	 */
-	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
-		// Disable toggling on occupied talk pages in mobile
-		$title = $skin->getTitle();
-		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			$modules['toggling'] = [];
-		}
-	}
-
-	/**
 	 * When a (talk) page does not exist, one of the checks being performed is
 	 * to see if the page had once existed but was removed. In doing so, the
 	 * deletion & move log is checked.
