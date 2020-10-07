@@ -3,6 +3,7 @@
 		"authors": [
 			"Borislav",
 			"DCLXVI",
+			"Kareyac",
 			"Mitzev",
 			"ShockD",
 			"StanProg",
@@ -114,6 +115,7 @@
 	"flow-recent-topics": "Наскоро активни теми",
 	"structureddiscussions": "Структурирани дискусии",
 	"flow-importer-wt-converted-template-content": "Предишната дискусия е архивирана в <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> on {{#time: Y-m-d|{{{date}}}}}.",
+	"flow-undo": "отмяна",
 	"flow-ve-mention-placeholder": "Потребителско име",
 	"flow-mark-revision-patrolled-link-text": "Отбелязване на страницата като патрулирана",
 	"flow-mark-revision-patrolled-link-title": "Отбелязване на страницата като патрулирана",
