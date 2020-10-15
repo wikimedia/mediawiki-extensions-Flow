@@ -6,6 +6,7 @@ use Flow\Block\TopicListBlock;
 use Flow\Container;
 use Flow\Hooks;
 use Flow\Model\Workflow;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 
@@ -56,6 +57,11 @@ class TopicListBlockTest extends \MediaWikiTestCase {
 			'savesortby' => '1',
 		] );
 		$this->assertEquals( 'updated', $res['sortby'], 'Request saving sortby option' );
+
+		// The preference is saved via a job; run the job for the next set of assertions.
+		MediaWikiServices::getInstance()->getJobRunner()->run( [
+			'type' => 'userOptionsUpdate'
+		] );
 
 		$res = $block->renderApi( [
 		] );
