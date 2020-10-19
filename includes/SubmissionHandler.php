@@ -91,7 +91,7 @@ class SubmissionHandler {
 		// status, etc.
 		$errors = $workflow->getPermissionErrors( 'edit', $context->getUser(), 'secure' );
 		if ( count( $errors ) ) {
-			LoggerFactory::getInstance( 'Flow' )->error( 'Got permission errors for user {user} attempting action "{action}".',
+			LoggerFactory::getInstance( 'Flow' )->debug( 'Got permission errors for user {user} attempting action "{action}".',
 				[
 					'action' => $action,
 					'user' => $context->getUser()->getName(),
