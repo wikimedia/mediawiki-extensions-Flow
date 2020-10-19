@@ -14,8 +14,10 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use JobQueueGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
+use UserOptionsUpdateJob;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -422,11 +424,12 @@ class TopicListBlock extends AbstractBlock {
 			&& !$user->isAnon()
 			&& $user->getOption( 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
-			$user->setOption( 'flow-topiclist-sortby', $findOptions['sortby'] );
-			// Save the user preferences post-send
-			\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-				$user->saveSettings();
-			} );
+			// Save the new sortby preference.
+			$job = new UserOptionsUpdateJob( [
+				'userId' => $user->getId(),
+				'options' => [ 'flow-topiclist-sortby' => $findOptions['sortby'] ]
+			] );
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 
 		return $findOptions;
