@@ -16,5 +16,6 @@
 	"flow-topic-action-watchlist": "Հսկողութեան ցանկ",
 	"flow-topic-action-undo-moderation": "Յետարկել",
 	"flow-undo": "յետարկել",
-	"flow-undo-latest-revision": "Վերջին տարբերակ"
+	"flow-undo-latest-revision": "Վերջին տարբերակ",
+	"flow-mark-revision-patrolled-link-title": "Էջը նշել իբրեւ ստուգուած էջ"
 }
