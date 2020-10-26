@@ -493,7 +493,7 @@
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Tvoja}} pogovorna stran je tvoj prostor, kjer te lahko ostali uporabniki lahko kontaktirajo. S Strukturiranimi pogovori je začeti novo temo in slediti njenemu poteku še lažje.",
 	"flow-guidedtour-optin-find-old-conversations": "Najdi {{GENDER:$1|svoje}} stare pogovore",
 	"flow-guidedtour-optin-find-old-conversations-description": "Prejšnji pogovori so bili prestavljeni na arhivsko stran.",
-	"flow-guidedtour-optin-feedback": "Pošlji nam {{GENDER:$1|svoje}} mnenje!",
+	"flow-guidedtour-optin-feedback": "Pošljite nam {{GENDER:$1|svoje}} mnenje!",
 	"flow-guidedtour-optin-feedback-description": "Na voljo so dodatne informacije, lahko tudi {{GENDER:$1|pošlješ}} svoje mnenje ali sistem izključiš v Preizkusnih funkcijah v svojih Nastavitvah.",
 	"flow-preference-visualeditor": "Vključi Vizualni urejevalec in nov wikibesedilni način v Strukturiranih pogovorih"
 }
