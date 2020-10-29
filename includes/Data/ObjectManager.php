@@ -63,7 +63,7 @@ use SplObjectStorage;
  */
 class ObjectManager extends ObjectLocator {
 	/**
-	 * @var SplObjectStorage $loaded Maps from a php object to the database
+	 * @var SplObjectStorage Maps from a php object to the database
 	 *  row that was used to create it. One use of this is to toggle between
 	 *  self::insert and self::update when self::put is called.
 	 */

@@ -241,20 +241,20 @@ class Controller {
 					);
 				}
 
-			break;
+				break;
 			case 'flow-topic-renamed':
 				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 				$extraData += [
 					'old-subject' => $this->language->truncateForVisual( $previousRevision->getContent( 'topic-title-plaintext' ), 200 ),
 					'new-subject' => $this->language->truncateForVisual( $revision->getContent( 'topic-title-plaintext' ), 200 ),
 				];
-			break;
+				break;
 			case 'flow-post-edited':
 				$extraData += [
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
 				];
-			break;
+				break;
 		}
 
 		$info = [

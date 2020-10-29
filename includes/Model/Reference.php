@@ -24,7 +24,7 @@ abstract class Reference {
 	protected $srcTitle;
 
 	/**
-	 * @var String
+	 * @var string
 	 */
 	protected $objectType;
 

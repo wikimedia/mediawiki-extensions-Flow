@@ -28,7 +28,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 	protected $occupationController;
 
 	/**
-	 * @var string $page Full page name that was converted to a board
+	 * @var string Full page name that was converted to a board
 	 */
 	protected $page = '';
 

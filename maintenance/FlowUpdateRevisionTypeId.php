@@ -59,10 +59,10 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 					switch ( $row->rev_type ) {
 						case 'header':
 							$this->updateRevision( $dbw, $row->rev_id, $row->header_workflow_id );
-						break;
+							break;
 						case 'post':
 							$this->updateRevision( $dbw, $row->rev_id, $row->tree_rev_descendant_id );
-						break;
+							break;
 					}
 				}
 			} else {

@@ -202,7 +202,7 @@ class ChangesListQuery extends AbstractQuery {
 					return true;
 				}
 				$this->displayStatus['header-' . $changeData['workflow']] = $changeData['revision'];
-			break;
+				break;
 
 			case 'hide-post':
 			case 'hide-topic':
@@ -229,7 +229,7 @@ class ChangesListQuery extends AbstractQuery {
 					return true;
 				}
 				$this->displayStatus['topic-' . $changeData['workflow']] = $changeData['revision'];
-			break;
+				break;
 		}
 
 		return false;

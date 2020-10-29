@@ -64,12 +64,12 @@ class Exporter extends WikiExporter {
 	];
 
 	/**
-	 * @var ReflectionProperty $prevRevisionProperty Previous revision property
+	 * @var ReflectionProperty Previous revision property
 	 */
 	protected $prevRevisionProperty;
 
 	/**
-	 * @var ReflectionProperty $changeTypeProperty Change type property
+	 * @var ReflectionProperty Change type property
 	 */
 	protected $changeTypeProperty;
 

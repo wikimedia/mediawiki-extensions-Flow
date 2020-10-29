@@ -376,31 +376,31 @@ class TopicListBlock extends AbstractBlock {
 			$requestOptions['sortby'] = $user->getOption( 'flow-topiclist-sortby' );
 		}
 		switch ( $requestOptions['sortby'] ) {
-		case 'updated':
-			$findOptions = [
-				// @phan-suppress-next-line PhanUselessBinaryAddRight
-				'sortby' => 'updated',
-				'sort' => 'workflow_last_update_timestamp',
-				'order' => 'desc',
-			] + $findOptions;
+			case 'updated':
+				$findOptions = [
+					// @phan-suppress-next-line PhanUselessBinaryAddRight
+					'sortby' => 'updated',
+					'sort' => 'workflow_last_update_timestamp',
+					'order' => 'desc',
+				] + $findOptions;
 
-			if ( $requestOptions['offset-id'] ) {
-				throw new FlowException( 'The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.' );
-			}
-			break;
+				if ( $requestOptions['offset-id'] ) {
+					throw new FlowException( 'The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.' );
+				}
+				break;
 
-		case 'newest':
-		default:
-			$findOptions = [
-				// @phan-suppress-next-line PhanUselessBinaryAddRight
-				'sortby' => 'newest',
-				'sort' => 'topic_id',
-				'order' => 'desc',
-			] + $findOptions;
+			case 'newest':
+			default:
+				$findOptions = [
+					// @phan-suppress-next-line PhanUselessBinaryAddRight
+					'sortby' => 'newest',
+					'sort' => 'topic_id',
+					'order' => 'desc',
+				] + $findOptions;
 
-			if ( $requestOptions['offset'] ) {
-				throw new FlowException( 'The `newest` sort order does not allow the `offset` parameter.  Please use `offset-id`.' );
-			}
+				if ( $requestOptions['offset'] ) {
+					throw new FlowException( 'The `newest` sort order does not allow the `offset` parameter.  Please use `offset-id`.' );
+				}
 		}
 
 		if ( $requestOptions['offset-id'] ) {

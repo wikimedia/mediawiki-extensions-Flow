@@ -76,7 +76,7 @@ class FlowSearchConfig extends Maintenance {
 	protected $optimizeIndexForExperimentalHighlighter;
 
 	/**
-	 * @var String[] list of available plugins
+	 * @var string[] list of available plugins
 	 */
 	protected $availablePlugins;
 

@@ -12,7 +12,7 @@ class SearchEngine extends \SearchEngine {
 	private const MAX_OFFSET = 100000;
 
 	/**
-	 * @var string|false $type Type of revisions to retrieve
+	 * @var string|false Type of revisions to retrieve
 	 */
 	protected $type = false;
 

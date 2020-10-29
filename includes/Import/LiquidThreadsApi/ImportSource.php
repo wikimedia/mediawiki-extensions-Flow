@@ -97,25 +97,25 @@ class ImportSource implements IImportSource {
 
 		$data = $this->threadData->get( $id );
 		switch ( $data['type'] ) {
-		// Standard thread
-		case self::THREAD_TYPE_NORMAL:
-			return new ImportTopic( $this, $data );
+			// Standard thread
+			case self::THREAD_TYPE_NORMAL:
+				return new ImportTopic( $this, $data );
 
-		// The topic no longer exists at the queried location, but
-		// a stub was left behind pointing to it. This modified
-		// version of ImportTopic gracefully adjusts the #REDIRECT
-		// into a template to keep a similar output to lqt.
-		case self::THREAD_TYPE_MOVED:
-			return new MovedImportTopic( $this, $data );
+			// The topic no longer exists at the queried location, but
+			// a stub was left behind pointing to it. This modified
+			// version of ImportTopic gracefully adjusts the #REDIRECT
+			// into a template to keep a similar output to lqt.
+			case self::THREAD_TYPE_MOVED:
+				return new MovedImportTopic( $this, $data );
 
-		// To get these back from the api we would have to send the `showdeleted`
-		// query param.  As we are not requesting them, just ignore for now.
-		case self::THREAD_TYPE_DELETED:
-			return null;
+			// To get these back from the api we would have to send the `showdeleted`
+			// query param.  As we are not requesting them, just ignore for now.
+			case self::THREAD_TYPE_DELETED:
+				return null;
 
-		// Was assigned but never used by LQT.
-		case self::THREAD_TYPE_HIDDEN:
-			return null;
+			// Was assigned but never used by LQT.
+			case self::THREAD_TYPE_HIDDEN:
+				return null;
 		}
 	}
 

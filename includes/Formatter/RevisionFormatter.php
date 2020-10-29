@@ -521,183 +521,183 @@ class RevisionFormatter {
 				continue;
 			}
 			switch ( $type ) {
-			case 'thank':
-				$targetedUser = User::newFromId( $revision->getCreatorId() );
-				if (
-					// thanks extension must be available
-					ExtensionRegistry::getInstance()->isLoaded( 'Thanks' ) &&
-					// anons can't give a thank
-					!$user->isAnon() &&
-					// can only thank for PostRevisions
-					// (other revision objects have no getCreator* methods)
-					$revision instanceof PostRevision &&
-					// only thank a logged in user
-					!$targetedUser->isAnon() &&
-					// can't thank self
-					$user->getId() !== $revision->getCreatorId() &&
-					// can't thank bots
-					!( !$wgThanksSendToBots && in_array( 'bot', $targetedUser->getGroups() ) )
-				) {
-					$links['thank'] = $this->urlGenerator->thankAction( $postId );
-				}
-				break;
-
-			case 'reply':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				} elseif ( !$revision instanceof PostRevision ) {
-					throw new FlowException( "$type called without PostRevision object" );
-				}
-
-				/*
-				 * If the post being replied to is the most recent post
-				 * of its depth, the reply link should point to parent
-				 */
-				$replyToId = $postId;
-				$replyToRevision = $revision;
-				if ( $row->isLastReply ) {
-					$replyToId = $replyToRevision->getReplyToId();
-					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
-				}
-
-				/*
-				 * If the post being replied to is at or exceeds the max
-				 * threading depth, the reply link should point to parent.
-				 */
-				while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
-					$replyToId = $replyToRevision->getReplyToId();
-					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
-				}
-
-				$links['reply'] = $this->urlGenerator->replyAction(
-					$title,
-					$workflowId,
-					$replyToId,
-					$revision->isTopicTitle()
-				);
-				break;
-
-			case 'edit-header':
-				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId, $revId );
-				break;
-
-			case 'edit-title':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$links['edit'] = $this->urlGenerator
-					->editTitleAction( $title, $workflowId, $postId, $revId );
-				break;
-
-			case 'edit-post':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$links['edit'] = $this->urlGenerator
-					->editPostAction( $title, $workflowId, $postId, $revId );
-				break;
-
-			case 'undo-edit-header':
-			case 'undo-edit-post':
-			case 'undo-edit-topic-summary':
-				if ( !$revision->isFirstRevision() ) {
-					$links['undo'] = $this->urlGenerator->undoAction( $revision, $title, $workflowId );
-				}
-				break;
-
-			case 'hide-post':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$links['hide'] = $this->urlGenerator->hidePostAction( $title, $workflowId, $postId );
-				break;
-
-			case 'delete-topic':
-				$links['delete'] = $this->urlGenerator->deleteTopicAction( $title, $workflowId );
-				break;
-
-			case 'delete-post':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$links['delete'] = $this->urlGenerator->deletePostAction( $title, $workflowId, $postId );
-				break;
-
-			case 'suppress-topic':
-				$links['suppress'] = $this->urlGenerator->suppressTopicAction( $title, $workflowId );
-				break;
-
-			case 'suppress-post':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
-				break;
-
-			case 'lock-topic':
-				// lock topic link is only available to topics
-				if ( !$revision instanceof PostRevision || !$revision->isTopicTitle() ) {
+				case 'thank':
+					$targetedUser = User::newFromId( $revision->getCreatorId() );
+					if (
+						// thanks extension must be available
+						ExtensionRegistry::getInstance()->isLoaded( 'Thanks' ) &&
+						// anons can't give a thank
+						!$user->isAnon() &&
+						// can only thank for PostRevisions
+						// (other revision objects have no getCreator* methods)
+						$revision instanceof PostRevision &&
+						// only thank a logged in user
+						!$targetedUser->isAnon() &&
+						// can't thank self
+						$user->getId() !== $revision->getCreatorId() &&
+						// can't thank bots
+						!( !$wgThanksSendToBots && in_array( 'bot', $targetedUser->getGroups() ) )
+					) {
+						$links['thank'] = $this->urlGenerator->thankAction( $postId );
+					}
 					break;
-				}
 
-				$links['lock'] = $this->urlGenerator->lockTopicAction( $title, $workflowId );
-				break;
+				case 'reply':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					} elseif ( !$revision instanceof PostRevision ) {
+						throw new FlowException( "$type called without PostRevision object" );
+					}
 
-			case 'restore-topic':
-				$moderateAction = $flowAction = null;
-				switch ( $revision->getModerationState() ) {
-				case AbstractRevision::MODERATED_LOCKED:
-					$moderateAction = 'unlock';
-					$flowAction = 'lock-topic';
+					/*
+					 * If the post being replied to is the most recent post
+					 * of its depth, the reply link should point to parent
+					 */
+					$replyToId = $postId;
+					$replyToRevision = $revision;
+					if ( $row->isLastReply ) {
+						$replyToId = $replyToRevision->getReplyToId();
+						$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+					}
+
+					/*
+					 * If the post being replied to is at or exceeds the max
+					 * threading depth, the reply link should point to parent.
+					 */
+					while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
+						$replyToId = $replyToRevision->getReplyToId();
+						$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+					}
+
+					$links['reply'] = $this->urlGenerator->replyAction(
+						$title,
+						$workflowId,
+						$replyToId,
+						$revision->isTopicTitle()
+					);
 					break;
-				case AbstractRevision::MODERATED_HIDDEN:
-				case AbstractRevision::MODERATED_DELETED:
-				case AbstractRevision::MODERATED_SUPPRESSED:
-					$moderateAction = 'un' . $revision->getModerationState();
-					$flowAction = 'moderate-topic';
+
+				case 'edit-header':
+					$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId, $revId );
 					break;
-				}
-				if ( $moderateAction && $flowAction ) {
-					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction(
-						$title, $workflowId, $moderateAction, $flowAction );
-				}
-				break;
 
-			case 'restore-post':
-				if ( !$postId ) {
-					throw new FlowException( "$type called without \$postId" );
-				}
-				$moderateAction = $flowAction = null;
-				switch ( $revision->getModerationState() ) {
-				case AbstractRevision::MODERATED_HIDDEN:
-				case AbstractRevision::MODERATED_DELETED:
-				case AbstractRevision::MODERATED_SUPPRESSED:
-					$moderateAction = 'un' . $revision->getModerationState();
-					$flowAction = 'moderate-post';
+				case 'edit-title':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$links['edit'] = $this->urlGenerator
+						->editTitleAction( $title, $workflowId, $postId, $revId );
 					break;
-				}
-				if ( $moderateAction && $flowAction ) {
-					$links[$moderateAction] = $this->urlGenerator->restorePostAction(
-						$title, $workflowId, $postId, $moderateAction, $flowAction );
-				}
-				break;
 
-			case 'hide-topic':
-				$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
-				break;
-
-			// Need to use 'edit-topic-summary' to match FlowActions
-			case 'edit-topic-summary':
-				// summarize link is only available to topic workflow
-				if ( !in_array( $workflow->getType(), [ 'topic', 'topicsummary' ] ) ) {
+				case 'edit-post':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$links['edit'] = $this->urlGenerator
+						->editPostAction( $title, $workflowId, $postId, $revId );
 					break;
-				}
-				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
-				break;
 
-			default:
-				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
-				break;
+				case 'undo-edit-header':
+				case 'undo-edit-post':
+				case 'undo-edit-topic-summary':
+					if ( !$revision->isFirstRevision() ) {
+						$links['undo'] = $this->urlGenerator->undoAction( $revision, $title, $workflowId );
+					}
+					break;
+
+				case 'hide-post':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$links['hide'] = $this->urlGenerator->hidePostAction( $title, $workflowId, $postId );
+					break;
+
+				case 'delete-topic':
+					$links['delete'] = $this->urlGenerator->deleteTopicAction( $title, $workflowId );
+					break;
+
+				case 'delete-post':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$links['delete'] = $this->urlGenerator->deletePostAction( $title, $workflowId, $postId );
+					break;
+
+				case 'suppress-topic':
+					$links['suppress'] = $this->urlGenerator->suppressTopicAction( $title, $workflowId );
+					break;
+
+				case 'suppress-post':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
+					break;
+
+				case 'lock-topic':
+					// lock topic link is only available to topics
+					if ( !$revision instanceof PostRevision || !$revision->isTopicTitle() ) {
+						break;
+					}
+
+					$links['lock'] = $this->urlGenerator->lockTopicAction( $title, $workflowId );
+					break;
+
+				case 'restore-topic':
+					$moderateAction = $flowAction = null;
+					switch ( $revision->getModerationState() ) {
+						case AbstractRevision::MODERATED_LOCKED:
+							$moderateAction = 'unlock';
+							$flowAction = 'lock-topic';
+							break;
+						case AbstractRevision::MODERATED_HIDDEN:
+						case AbstractRevision::MODERATED_DELETED:
+						case AbstractRevision::MODERATED_SUPPRESSED:
+							$moderateAction = 'un' . $revision->getModerationState();
+							$flowAction = 'moderate-topic';
+							break;
+					}
+					if ( $moderateAction && $flowAction ) {
+						$links[$moderateAction] = $this->urlGenerator->restoreTopicAction(
+							$title, $workflowId, $moderateAction, $flowAction );
+					}
+					break;
+
+				case 'restore-post':
+					if ( !$postId ) {
+						throw new FlowException( "$type called without \$postId" );
+					}
+					$moderateAction = $flowAction = null;
+					switch ( $revision->getModerationState() ) {
+						case AbstractRevision::MODERATED_HIDDEN:
+						case AbstractRevision::MODERATED_DELETED:
+						case AbstractRevision::MODERATED_SUPPRESSED:
+							$moderateAction = 'un' . $revision->getModerationState();
+							$flowAction = 'moderate-post';
+							break;
+					}
+					if ( $moderateAction && $flowAction ) {
+						$links[$moderateAction] = $this->urlGenerator->restorePostAction(
+							$title, $workflowId, $postId, $moderateAction, $flowAction );
+					}
+					break;
+
+				case 'hide-topic':
+					$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
+					break;
+
+				// Need to use 'edit-topic-summary' to match FlowActions
+				case 'edit-topic-summary':
+					// summarize link is only available to topic workflow
+					if ( !in_array( $workflow->getType(), [ 'topic', 'topicsummary' ] ) ) {
+						break;
+					}
+					$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
+					break;
+
+				default:
+					wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
+					break;
 			}
 		}
 
@@ -729,130 +729,130 @@ class RevisionFormatter {
 		$diffCallback = null;
 		foreach ( $linkTypes as $type ) {
 			switch ( $type ) {
-			case 'watch-topic':
-				$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
-				break;
-
-			case 'unwatch-topic':
-				$links['unwatch-topic'] = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
-				break;
-
-			case 'topic':
-				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
-				break;
-
-			case 'post':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
+				case 'watch-topic':
+					$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
 					break;
-				}
-				$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
-				break;
 
-			case 'header-revision':
-				$links['header-revision'] = $this->urlGenerator
-					->headerRevisionLink( $title, $workflowId, $revId );
-				break;
-
-			case 'topic-revision':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
+				case 'unwatch-topic':
+					$links['unwatch-topic'] = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
 					break;
-				}
 
-				$links['topic-revision'] = $this->urlGenerator
-					->topicRevisionLink( $title, $workflowId, $revId );
-				break;
-
-			case 'post-revision':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
+				case 'topic':
+					$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
 					break;
-				}
 
-				$links['post-revision'] = $this->urlGenerator
-					->postRevisionLink( $title, $workflowId, $postId, $revId );
-				break;
-
-			case 'summary-revision':
-				$links['summary-revision'] = $this->urlGenerator
-					->summaryRevisionLink( $title, $workflowId, $revId );
-				break;
-
-			case 'post-history':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
+				case 'post':
+					if ( !$postId ) {
+						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
 					break;
-				}
-				$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
-				break;
+					}
+					$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
+					break;
 
-			case 'topic-history':
-				$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
-				break;
+				case 'header-revision':
+					$links['header-revision'] = $this->urlGenerator
+						->headerRevisionLink( $title, $workflowId, $revId );
+					break;
 
-			case 'board-history':
-				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
-				break;
+				case 'topic-revision':
+					if ( !$postId ) {
+						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
+					break;
+					}
 
-			/** @noinspection PhpMissingBreakStatementInspection */
-			case 'diff-header':
-				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffHeaderLink' ];
-				// don't break, diff links are rendered below
-			/** @noinspection PhpMissingBreakStatementInspection */
-			case 'diff-post':
-				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffPostLink' ];
-				// don't break, diff links are rendered below
-			case 'diff-post-summary':
-				$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffSummaryLink' ];
+					$links['topic-revision'] = $this->urlGenerator
+						->topicRevisionLink( $title, $workflowId, $revId );
+					break;
 
-				/*
-				 * To diff against previous revision, we don't really need that
-				 * revision id; if no particular diff id is specified, it will
-				 * assume a diff against previous revision. However, we do want
-				 * to make sure that a previous revision actually exists to diff
-				 * against. This could result in a network request (fetching the
-				 * current revision), but it's likely being loaded anyways.
-				 */
-				if ( $revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = $diffCallback( $title, $workflowId, $revId );
+				case 'post-revision':
+					if ( !$postId ) {
+						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
+					break;
+					}
+
+					$links['post-revision'] = $this->urlGenerator
+						->postRevisionLink( $title, $workflowId, $postId, $revId );
+					break;
+
+				case 'summary-revision':
+					$links['summary-revision'] = $this->urlGenerator
+						->summaryRevisionLink( $title, $workflowId, $revId );
+					break;
+
+				case 'post-history':
+					if ( !$postId ) {
+						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
+					break;
+					}
+					$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
+					break;
+
+				case 'topic-history':
+					$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
+					break;
+
+				case 'board-history':
+					$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
+					break;
+
+				/** @noinspection PhpMissingBreakStatementInspection */
+				case 'diff-header':
+					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffHeaderLink' ];
+					// don't break, diff links are rendered below
+				/** @noinspection PhpMissingBreakStatementInspection */
+				case 'diff-post':
+					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffPostLink' ];
+					// don't break, diff links are rendered below
+				case 'diff-post-summary':
+					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffSummaryLink' ];
 
 					/*
-					 * Different formatters have different terminology for the link
-					 * that diffs a certain revision to the previous revision.
-					 *
-					 * E.g.: Special:Contributions has "diff" ($links['diff']),
-					 * ?action=history has "prev" ($links['prev']).
+					 * To diff against previous revision, we don't really need that
+					 * revision id; if no particular diff id is specified, it will
+					 * assume a diff against previous revision. However, we do want
+					 * to make sure that a previous revision actually exists to diff
+					 * against. This could result in a network request (fetching the
+					 * current revision), but it's likely being loaded anyways.
 					 */
-					$links['diff-prev'] = clone $links['diff'];
-					$lastMsg = new Message( 'last' );
-					$links['diff-prev']->setTitleMessage( $lastMsg );
-					$links['diff-prev']->setMessage( $lastMsg );
-				}
+					if ( $revision->getPrevRevisionId() !== null ) {
+						$links['diff'] = $diffCallback( $title, $workflowId, $revId );
 
-				/*
-				 * To diff against the current revision, we need to know the id
-				 * of this last revision. This could be an additional network
-				 * request, though anything using formatter likely already needs
-				 * to request the most current revision (e.g. to check
-				 * permissions) so we should be able to get it from local cache.
-				 */
-				$cur = $row->currentRevision;
-				if ( !$revId->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = $diffCallback( $title, $workflowId, $cur->getRevisionId(), $revId );
-					$curMsg = new Message( 'cur' );
-					$links['diff-cur']->setTitleMessage( $curMsg );
-					$links['diff-cur']->setMessage( $curMsg );
-				}
-				break;
+						/*
+						 * Different formatters have different terminology for the link
+						 * that diffs a certain revision to the previous revision.
+						 *
+						 * E.g.: Special:Contributions has "diff" ($links['diff']),
+						 * ?action=history has "prev" ($links['prev']).
+						 */
+						$links['diff-prev'] = clone $links['diff'];
+						$lastMsg = new Message( 'last' );
+						$links['diff-prev']->setTitleMessage( $lastMsg );
+						$links['diff-prev']->setMessage( $lastMsg );
+					}
 
-			case 'workflow':
-				$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
-				break;
+					/*
+					 * To diff against the current revision, we need to know the id
+					 * of this last revision. This could be an additional network
+					 * request, though anything using formatter likely already needs
+					 * to request the most current revision (e.g. to check
+					 * permissions) so we should be able to get it from local cache.
+					 */
+					$cur = $row->currentRevision;
+					if ( !$revId->equals( $cur->getRevisionId() ) ) {
+						$links['diff-cur'] = $diffCallback( $title, $workflowId, $cur->getRevisionId(), $revId );
+						$curMsg = new Message( 'cur' );
+						$links['diff-cur']->setTitleMessage( $curMsg );
+						$links['diff-cur']->setMessage( $curMsg );
+					}
+					break;
 
-			default:
-				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
-				break;
+				case 'workflow':
+					$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
+					break;
+
+				default:
+					wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
+					break;
 			}
 		}
 
@@ -920,181 +920,181 @@ class RevisionFormatter {
 		FormatterRow $row = null
 	) {
 		switch ( $param ) {
-		case 'creator-text':
-			if ( $revision instanceof PostRevision ) {
-				return $this->usernames->getFromTuple( $revision->getCreatorTuple() );
-			} else {
+			case 'creator-text':
+				if ( $revision instanceof PostRevision ) {
+					return $this->usernames->getFromTuple( $revision->getCreatorTuple() );
+				} else {
+					return '';
+				}
+
+			case 'user-text':
+				return $this->usernames->getFromTuple( $revision->getUserTuple() );
+
+			case 'user-links':
+				return Message::rawParam( $this->templating->getUserLinks( $revision ) );
+
+			case 'summary':
+				if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+					return '';
+				}
+
+				/*
+				 * Fetch in HTML; unparsed wikitext in summary is pointless.
+				 * Larger-scale wikis will likely also store content in html, so no
+				 * Parsoid roundtrip is needed then (and if it *is*, it'll already
+				 * be needed to render Flow discussions, so this is manageable)
+				 */
+				$content = $this->templating->getContent( $revision, 'fixed-html' );
+				// strip html tags and decode to plaintext
+				$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
+				return Message::plaintextParam( $content );
+
+			case 'wikitext':
+				if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+					return '';
+				}
+
+				$format = $revision->getWikitextFormat();
+
+				$content = $this->templating->getContent( $revision, $format );
+				// This must be escaped and marked raw to prevent special chars in
+				// content, like $1, from changing the i18n result
+				return Message::plaintextParam( $content );
+
+			// This is potentially two networked round trips, much too expensive for
+			// the rendering loop
+			case 'prev-wikitext':
+				if ( $revision->isFirstRevision() ) {
+					return '';
+				}
+				if ( $row === null ) {
+					$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+				} else {
+					$previousRevision = $row->previousRevision;
+				}
+				if ( !$previousRevision ) {
+					return '';
+				}
+				if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
+					return '';
+				}
+
+				$format = $revision->getWikitextFormat();
+
+				$content = $this->templating->getContent( $previousRevision, $format );
+				return Message::plaintextParam( $content );
+			case 'plaintext':
+				if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
+					return '';
+				}
+
+				$format = $revision->getHtmlFormat();
+
+				$content = Utils::htmlToPlaintext( $this->templating->getContent( $revision, $format ) );
+				return Message::plaintextParam( $content );
+
+			// This is potentially two networked round trips, much too expensive for
+			// the rendering loop
+			case 'prev-plaintext':
+				if ( $revision->isFirstRevision() ) {
+					return '';
+				}
+				if ( $row === null ) {
+					$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
+				} else {
+					$previousRevision = $row->previousRevision;
+				}
+				if ( !$previousRevision ) {
+					return '';
+				}
+				if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
+					return '';
+				}
+
+				$format = $revision->getHtmlFormat();
+
+				$content = Utils::htmlToPlaintext( $this->templating->getContent( $previousRevision, $format ) );
+				return Message::plaintextParam( $content );
+
+			case 'workflow-url':
+				return $this->urlGenerator
+					->workflowLink( null, $workflowId )
+					->getFullURL();
+
+			case 'post-url':
+				if ( !$revision instanceof PostRevision ) {
+					throw new FlowException( 'Expected PostRevision but received' . get_class( $revision ) );
+				}
+				return $this->urlGenerator
+					->postLink( null, $workflowId, $revision->getPostId() )
+					->getFullURL();
+
+			case 'moderated-reason':
+				// don't parse wikitext in the moderation reason
+				return Message::plaintextParam( $revision->getModeratedReason() ?? '' );
+
+			case 'topic-of-post':
+				if ( !$revision instanceof PostRevision ) {
+					throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
+				}
+
+				$root = $revision->getRootPost();
+				if ( !$this->permissions->isAllowed( $root, 'view-topic-title' ) ) {
+					return '';
+				}
+
+				$content = $this->templating->getContent( $root, 'topic-title-wikitext' );
+
+				// TODO: We need to use plaintextParam or similar to avoid parsing,
+				// but the API output says "plaintext", which is confusing and
+				// should be fixed.  From the API consumer's perspective, it's
+				// topic-title-wikitext.
+				return Message::plaintextParam( $content );
+
+			// Strip the tags from the HTML version to produce text:
+			// [[Red link 3]], [[Adrines]], [[Media:Earth.jpg]], http://example.com =>
+			// Red link 3, Adrines, Media:Earth.jpg, http://example.com
+			case 'topic-of-post-text-from-html':
+				if ( !$revision instanceof PostRevision ) {
+					throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
+				}
+
+				$root = $revision->getRootPost();
+				if ( !$this->permissions->isAllowed( $root, 'view-topic-title' ) ) {
+					return '';
+				}
+
+				$content = $this->templating->getContent( $root, 'topic-title-plaintext' );
+
+				return Message::plaintextParam( $content );
+
+			case 'post-of-summary':
+				if ( !$revision instanceof PostSummary ) {
+					throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
+				}
+
+				/** @var PostRevision $post */
+				$post = $revision->getCollection()->getPost()->getLastRevision();
+				// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
+				$permissionAction = $post->isTopicTitle() ? 'view-topic-title' : 'view';
+				if ( !$this->permissions->isAllowed( $post, $permissionAction ) ) {
+					return '';
+				}
+
+				// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
+				if ( $post->isTopicTitle() ) {
+					return Message::plaintextParam( $this->templating->getContent(
+						$post, 'topic-title-plaintext' ) );
+				} else {
+					return Message::rawParam( $this->templating->getContent( $post, 'fixed-html' ) );
+				}
+
+			case 'bundle-count':
+				return Message::numParam( count( $revision ) );
+
+			default:
+				wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
 				return '';
-			}
-
-		case 'user-text':
-			return $this->usernames->getFromTuple( $revision->getUserTuple() );
-
-		case 'user-links':
-			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
-
-		case 'summary':
-			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
-				return '';
-			}
-
-			/*
-			 * Fetch in HTML; unparsed wikitext in summary is pointless.
-			 * Larger-scale wikis will likely also store content in html, so no
-			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
-			 * be needed to render Flow discussions, so this is manageable)
-			 */
-			$content = $this->templating->getContent( $revision, 'fixed-html' );
-			// strip html tags and decode to plaintext
-			$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
-			return Message::plaintextParam( $content );
-
-		case 'wikitext':
-			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
-				return '';
-			}
-
-			$format = $revision->getWikitextFormat();
-
-			$content = $this->templating->getContent( $revision, $format );
-			// This must be escaped and marked raw to prevent special chars in
-			// content, like $1, from changing the i18n result
-			return Message::plaintextParam( $content );
-
-		// This is potentially two networked round trips, much too expensive for
-		// the rendering loop
-		case 'prev-wikitext':
-			if ( $revision->isFirstRevision() ) {
-				return '';
-			}
-			if ( $row === null ) {
-				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
-			} else {
-				$previousRevision = $row->previousRevision;
-			}
-			if ( !$previousRevision ) {
-				return '';
-			}
-			if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
-				return '';
-			}
-
-			$format = $revision->getWikitextFormat();
-
-			$content = $this->templating->getContent( $previousRevision, $format );
-			return Message::plaintextParam( $content );
-		case 'plaintext':
-			if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
-				return '';
-			}
-
-			$format = $revision->getHtmlFormat();
-
-			$content = Utils::htmlToPlaintext( $this->templating->getContent( $revision, $format ) );
-			return Message::plaintextParam( $content );
-
-		// This is potentially two networked round trips, much too expensive for
-		// the rendering loop
-		case 'prev-plaintext':
-			if ( $revision->isFirstRevision() ) {
-				return '';
-			}
-			if ( $row === null ) {
-				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
-			} else {
-				$previousRevision = $row->previousRevision;
-			}
-			if ( !$previousRevision ) {
-				return '';
-			}
-			if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
-				return '';
-			}
-
-			$format = $revision->getHtmlFormat();
-
-			$content = Utils::htmlToPlaintext( $this->templating->getContent( $previousRevision, $format ) );
-			return Message::plaintextParam( $content );
-
-		case 'workflow-url':
-			return $this->urlGenerator
-				->workflowLink( null, $workflowId )
-				->getFullURL();
-
-		case 'post-url':
-			if ( !$revision instanceof PostRevision ) {
-				throw new FlowException( 'Expected PostRevision but received' . get_class( $revision ) );
-			}
-			return $this->urlGenerator
-				->postLink( null, $workflowId, $revision->getPostId() )
-				->getFullURL();
-
-		case 'moderated-reason':
-			// don't parse wikitext in the moderation reason
-			return Message::plaintextParam( $revision->getModeratedReason() ?? '' );
-
-		case 'topic-of-post':
-			if ( !$revision instanceof PostRevision ) {
-				throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
-			}
-
-			$root = $revision->getRootPost();
-			if ( !$this->permissions->isAllowed( $root, 'view-topic-title' ) ) {
-				return '';
-			}
-
-			$content = $this->templating->getContent( $root, 'topic-title-wikitext' );
-
-			// TODO: We need to use plaintextParam or similar to avoid parsing,
-			// but the API output says "plaintext", which is confusing and
-			// should be fixed.  From the API consumer's perspective, it's
-			// topic-title-wikitext.
-			return Message::plaintextParam( $content );
-
-		// Strip the tags from the HTML version to produce text:
-		// [[Red link 3]], [[Adrines]], [[Media:Earth.jpg]], http://example.com =>
-		// Red link 3, Adrines, Media:Earth.jpg, http://example.com
-		case 'topic-of-post-text-from-html':
-			if ( !$revision instanceof PostRevision ) {
-				throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
-			}
-
-			$root = $revision->getRootPost();
-			if ( !$this->permissions->isAllowed( $root, 'view-topic-title' ) ) {
-				return '';
-			}
-
-			$content = $this->templating->getContent( $root, 'topic-title-plaintext' );
-
-			return Message::plaintextParam( $content );
-
-		case 'post-of-summary':
-			if ( !$revision instanceof PostSummary ) {
-				throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
-			}
-
-			/** @var PostRevision $post */
-			$post = $revision->getCollection()->getPost()->getLastRevision();
-			// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
-			$permissionAction = $post->isTopicTitle() ? 'view-topic-title' : 'view';
-			if ( !$this->permissions->isAllowed( $post, $permissionAction ) ) {
-				return '';
-			}
-
-			// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
-			if ( $post->isTopicTitle() ) {
-				return Message::plaintextParam( $this->templating->getContent(
-					$post, 'topic-title-plaintext' ) );
-			} else {
-				return Message::rawParam( $this->templating->getContent( $post, 'fixed-html' ) );
-			}
-
-		case 'bundle-count':
-			return Message::numParam( count( $revision ) );
-
-		default:
-			wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
-			return '';
 		}
 	}
 

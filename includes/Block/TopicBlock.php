@@ -116,39 +116,39 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		switch ( $this->action ) {
-		case 'edit-title':
-			$this->validateEditTitle();
-			break;
+			case 'edit-title':
+				$this->validateEditTitle();
+				break;
 
-		case 'reply':
-			$this->validateReply();
-			break;
+			case 'reply':
+				$this->validateReply();
+				break;
 
-		case 'moderate-topic':
-		case 'lock-topic':
-			$this->validateModerateTopic();
-			break;
+			case 'moderate-topic':
+			case 'lock-topic':
+				$this->validateModerateTopic();
+				break;
 
-		case 'moderate-post':
-			$this->validateModeratePost();
-			break;
+			case 'moderate-post':
+				$this->validateModeratePost();
+				break;
 
-		case 'restore-post':
-			// @todo still necessary?
-			$this->validateModeratePost();
-			break;
+			case 'restore-post':
+				// @todo still necessary?
+				$this->validateModeratePost();
+				break;
 
-		case 'undo-edit-post':
-		case 'edit-post':
-			$this->validateEditPost();
-			break;
+			case 'undo-edit-post':
+			case 'edit-post':
+				$this->validateEditPost();
+				break;
 
-		case 'edit-topic-summary':
-			// pseudo-action does not do anything, only includes data in api response
-			break;
+			case 'edit-topic-summary':
+				// pseudo-action does not do anything, only includes data in api response
+				break;
 
-		default:
-			throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
+			default:
+				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 	}
 
@@ -415,81 +415,81 @@ class TopicBlock extends AbstractBlock {
 
 	public function commit() {
 		switch ( $this->action ) {
-		case 'edit-topic-summary':
+			case 'edit-topic-summary':
 			// pseudo-action does not do anything, only includes data in api response
-			return [];
+				return [];
 
-		case 'reply':
-		case 'moderate-topic':
-		case 'lock-topic':
-		case 'restore-post':
-		case 'moderate-post':
-		case 'edit-title':
-		case 'undo-edit-post':
-		case 'edit-post':
-			if ( $this->newRevision === null ) {
-				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
-			}
+			case 'reply':
+			case 'moderate-topic':
+			case 'lock-topic':
+			case 'restore-post':
+			case 'moderate-post':
+			case 'edit-title':
+			case 'undo-edit-post':
+			case 'edit-post':
+				if ( $this->newRevision === null ) {
+					throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
+				}
 
-			$metadata = $this->extraCommitMetadata + [
-				'workflow' => $this->workflow,
-				'topic-title' => $this->loadTopicTitle(),
-			];
-			if ( !$metadata['topic-title'] instanceof PostRevision ) {
-				// permissions failure, should never have gotten this far
-				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
-			}
-			if ( $this->newRevision->getPostId()->equals( $metadata['topic-title']->getPostId() ) ) {
-				// When performing actions against the topic-title self::loadTopicTitle
-				// returns the previous revision.
-				$metadata['topic-title'] = $this->newRevision;
-			}
+				$metadata = $this->extraCommitMetadata + [
+					'workflow' => $this->workflow,
+					'topic-title' => $this->loadTopicTitle(),
+				];
+				if ( !$metadata['topic-title'] instanceof PostRevision ) {
+					// permissions failure, should never have gotten this far
+					throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+				}
+				if ( $this->newRevision->getPostId()->equals( $metadata['topic-title']->getPostId() ) ) {
+					// When performing actions against the topic-title self::loadTopicTitle
+					// returns the previous revision.
+					$metadata['topic-title'] = $this->newRevision;
+				}
 
-			// store data, unless we're dealing with a null-edit (in which case
-			// is storing the same thing not only pointless, it can even be
-			// incorrect, since listeners will run & generate notifications etc)
-			if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
-				$this->storage->put( $this->newRevision, $metadata );
-				$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
-				$this->storage->put( $this->workflow, $metadata );
+				// store data, unless we're dealing with a null-edit (in which case
+				// is storing the same thing not only pointless, it can even be
+				// incorrect, since listeners will run & generate notifications etc)
+				if ( !isset( $this->extraCommitMetadata['null-edit'] ) ) {
+					$this->storage->put( $this->newRevision, $metadata );
+					$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
+					$this->storage->put( $this->workflow, $metadata );
 
-				if ( strpos( $this->action, 'moderate-' ) === 0 ) {
-					$topicId = $this->newRevision->getCollection()->getRoot()->getId();
+					if ( strpos( $this->action, 'moderate-' ) === 0 ) {
+						$topicId = $this->newRevision->getCollection()->getRoot()->getId();
 
-					$moderate = $this->newRevision->isModerated()
-						&& ( $this->newRevision->getModerationState() === PostRevision::MODERATED_DELETED
-							|| $this->newRevision->getModerationState() === PostRevision::MODERATED_SUPPRESSED );
+						$moderate = $this->newRevision->isModerated()
+							&& ( $this->newRevision->getModerationState() === PostRevision::MODERATED_DELETED
+								|| $this->newRevision->getModerationState() === PostRevision::MODERATED_SUPPRESSED );
 
-					/** @var Controller $controller */
-					$controller = Container::get( 'controller.notification' );
-					if ( $this->action === 'moderate-topic' ) {
-						$controller->moderateTopicNotifications( $topicId, $moderate );
-					} elseif ( $this->action === 'moderate-post' ) {
-						$postId = $this->newRevision->getPostId();
-						$controller->moderatePostNotifications( $topicId, $postId, $moderate );
+						/** @var Controller $controller */
+						$controller = Container::get( 'controller.notification' );
+						if ( $this->action === 'moderate-topic' ) {
+							$controller->moderateTopicNotifications( $topicId, $moderate );
+						} elseif ( $this->action === 'moderate-post' ) {
+							$postId = $this->newRevision->getPostId();
+							$controller->moderatePostNotifications( $topicId, $postId, $moderate );
+						}
 					}
 				}
-			}
 
-			$newRevision = $this->newRevision;
+				$newRevision = $this->newRevision;
 
-			// If no context was loaded render the post in isolation
-			// @todo make more explicit
-			try {
-				$newRevision->getChildren();
-			} catch ( \MWException $e ) {
-				$newRevision->setChildren( [] );
-			}
+				// If no context was loaded render the post in isolation
+				// @todo make more explicit
+				try {
+					$newRevision->getChildren();
+				} catch ( \MWException $e ) {
+					$newRevision->setChildren( [] );
+				}
 
-			$returnMetadata = [
-				'post-id' => $this->newRevision->getPostId(),
-				'post-revision-id' => $this->newRevision->getRevisionId(),
-			];
+				$returnMetadata = [
+					'post-id' => $this->newRevision->getPostId(),
+					'post-revision-id' => $this->newRevision->getRevisionId(),
+				];
 
-			return $returnMetadata;
+				return $returnMetadata;
 
-		default:
-			throw new InvalidActionException( "Unknown commit action: {$this->action}", 'invalid-action' );
+			default:
+				throw new InvalidActionException( "Unknown commit action: {$this->action}", 'invalid-action' );
 		}
 	}
 
