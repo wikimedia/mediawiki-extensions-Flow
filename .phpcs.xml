@@ -15,8 +15,6 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage" />
 		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgOutBkp" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment" />
-		<exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenercase" />
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<properties>
