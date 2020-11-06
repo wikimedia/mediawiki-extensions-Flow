@@ -176,6 +176,7 @@
 	"flow-spam-confirmedit-form": "Сурт тӀера йоза лаха яздехьа, нагахь хьо робот вацахь: $1",
 	"flow-post-undo-delete": "дӀаяккхар сацаде",
 	"flow-topic-undo-hide": "схьаеллар юхадаккхар",
+	"flow-edited": "Хийцам бина",
 	"flow-edited-by": "Хийцина $1",
 	"flow-previous-diff": "← Хьалхара нисдар",
 	"flow-next-diff": "РогӀера нисдар →",
