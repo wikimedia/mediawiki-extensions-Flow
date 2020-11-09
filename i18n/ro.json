@@ -72,7 +72,7 @@
 	"flow-newtopic-start-placeholder": "Începeți un nou subiect",
 	"flow-newtopic-first-heading": "Începe un nou subiect pe $1",
 	"flow-summarize-topic-placeholder": "Vă rugăm să faceți un rezumat al acestei discuții",
-	"flow-reply-topic-title-placeholder": "Răspunde lui „$1”",
+	"flow-reply-topic-title-placeholder": "Răspunde la „$1”",
 	"flow-reply-link": "{{GENDER:$1|Răspunde}}",
 	"flow-reply-link-anonymously": "Răspunde anonim",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Mulțumește}}}}",
