@@ -189,6 +189,6 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		// returns this exception.
 		$expect = 'Exception Caught: Wikimedia\\Rdbms\\Database::makeList: empty input for field thread_parent';
 
-		return false !== strpos( $apiResponse['error']['info'], $expect );
+		return strpos( $apiResponse['error']['info'], $expect ) !== false;
 	}
 }

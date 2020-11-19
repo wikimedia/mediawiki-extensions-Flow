@@ -726,7 +726,7 @@ abstract class AbstractRevision {
 	 */
 	public function isFlaggedAny( $flags ) {
 		foreach ( (array)$flags as $flag ) {
-			if ( false !== array_search( $flag, $this->flags ) ) {
+			if ( array_search( $flag, $this->flags ) !== false ) {
 				return true;
 			}
 		}
@@ -739,7 +739,7 @@ abstract class AbstractRevision {
 	 */
 	public function isFlaggedAll( $flags ) {
 		foreach ( (array)$flags as $flag ) {
-			if ( false === array_search( $flag, $this->flags ) ) {
+			if ( array_search( $flag, $this->flags ) === false ) {
 				return false;
 			}
 		}

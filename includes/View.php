@@ -423,7 +423,7 @@ class View extends ContextSource {
 		foreach ( $request->getValues() as $name => $value ) {
 			// between urls only allowing [-_.] as unencoded special chars and
 			// php mangling all of those into '_', we have to split on '_'
-			if ( false !== strpos( $name, '_' ) ) {
+			if ( strpos( $name, '_' ) !== false ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
 				// flow_xxx is global data for all blocks
 				if ( $block === 'flow' ) {

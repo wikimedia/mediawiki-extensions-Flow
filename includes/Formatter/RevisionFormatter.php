@@ -179,7 +179,7 @@ class RevisionFormatter {
 	 * @throws InvalidInputException
 	 */
 	public function setContentFormat( $format, UUID $revisionId = null ) {
-		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
+		if ( array_search( $format, $this->allowedContentFormats ) === false ) {
 			throw new InvalidInputException( "Unknown content format: $format" );
 		}
 		if ( $revisionId === null ) {
