@@ -48,7 +48,7 @@ abstract class Utils {
 	 * @return string
 	 * @throws WikitextException When the requested conversion is unsupported
 	 * @throws NoParserException When the conversion fails
-	 * @param-taint $content escapes_escaped
+	 * @return-taint none
 	 */
 	public static function convert( $from, $to, $content, Title $title ) {
 		if ( $from === $to || $content === '' ) {
