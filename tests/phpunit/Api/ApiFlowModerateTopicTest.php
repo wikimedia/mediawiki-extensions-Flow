@@ -83,7 +83,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 		] );
 		$debug = json_encode( $data );
 		$logEntry = $data[0]['query']['logevents'][0];
-		$logParams = isset( $logEntry['params'] ) ? $logEntry['params'] : $logEntry;
+		$logParams = $logEntry['params'] ?? $logEntry;
 		$this->assertArrayHasKey( 'topicId', $logParams, $debug );
 		$this->assertEquals( $topic['topic-id'], $logParams['topicId'], $debug );
 	}

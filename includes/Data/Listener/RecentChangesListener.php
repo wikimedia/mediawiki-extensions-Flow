@@ -123,9 +123,9 @@ class RecentChangesListener extends AbstractListener {
 		$rc->save( RecentChange::SEND_NONE );
 		$feeds = $wgRCFeeds;
 		// Override the IRC formatter with our own formatter
-		foreach ( array_keys( $feeds ) as $name ) {
-			$feeds[$name]['original_formatter'] = $feeds[$name]['formatter'];
-			$feeds[$name]['formatter'] = $this->ircFormatter;
+		foreach ( $feeds as $name => &$feed ) {
+			$feed['original_formatter'] = $feed['formatter'];
+			$feed['formatter'] = $this->ircFormatter;
 		}
 		// pre-load the irc formatter which will be triggered via hook
 		$this->ircFormatter->associate( $rc, [

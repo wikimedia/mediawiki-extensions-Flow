@@ -352,7 +352,7 @@ class ObjectManager extends ObjectLocator {
 	 */
 	public static function calcUpdatesWithoutValidation( array $old, array $new ) {
 		$updates = [];
-		foreach ( array_keys( $new ) as $key ) {
+		foreach ( $new as $key => $newValue ) {
 			/*
 			 * $old[$key] and $new[$key] could both be the same value going into the same
 			 * column, but represented as different data type here: one could be a string
@@ -361,8 +361,8 @@ class ObjectManager extends ObjectLocator {
 			 * (different between them doesn't matter here, both are for the same database
 			 * column), so I'm casting them to string before performing comparison.
 			 */
-			if ( !array_key_exists( $key, $old ) || (string)$old[$key] !== (string)$new[$key] ) {
-				$updates[$key] = $new[$key];
+			if ( !array_key_exists( $key, $old ) || (string)$old[$key] !== (string)$newValue ) {
+				$updates[$key] = $newValue;
 			}
 			unset( $old[$key] );
 		}

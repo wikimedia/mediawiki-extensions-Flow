@@ -1102,11 +1102,7 @@ class Hooks {
 	 */
 	public static function onEchoAbortEmailNotification( User $user, EchoEvent $event ) {
 		$extra = $event->getExtra();
-		if ( isset( $extra['lqtThreadId'] ) && $extra['lqtThreadId'] !== null ) {
-			return false;
-		}
-
-		return true;
+		return !isset( $extra['lqtThreadId'] );
 	}
 
 	/**
