@@ -37,8 +37,8 @@ use WikitextContent;
  * Entry point for enabling Flow on a page.
  */
 class OptInController {
-	public static $ENABLE = 'enable';
-	public static $DISABLE = 'disable';
+	public const ENABLE = 'enable';
+	public const DISABLE = 'disable';
 
 	/**
 	 * @var OccupationController
@@ -114,9 +114,9 @@ class OptInController {
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $logger, $outerMethod, $action, $talkpage, $user ) {
 				try {
-					if ( $action === self::$ENABLE ) {
+					if ( $action === self::ENABLE ) {
 						$this->enable( $talkpage, $user );
-					} elseif ( $action === self::$DISABLE ) {
+					} elseif ( $action === self::DISABLE ) {
 						$this->disable( $talkpage );
 					} else {
 						$logger->error( $outerMethod . ': unrecognized action: ' . $action );

@@ -46,7 +46,10 @@ class HeaderBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = [ 'view', 'compare-header-revisions', 'edit-header', 'view-header', 'undo-edit-header' ];
 
-	// @Todo - fill in the template names
+	/**
+	 * @var string[]
+	 * @todo Fill in the template names
+	 */
 	protected $templates = [
 		'view' => '',
 		'compare-header-revisions' => 'diff_view',

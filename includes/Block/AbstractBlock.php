@@ -48,7 +48,7 @@ abstract class AbstractBlock implements Block {
 
 	/**
 	 * Templates for each view actions
-	 * @var array
+	 * @var string[]
 	 */
 	protected $templates = [];
 

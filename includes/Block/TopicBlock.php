@@ -77,7 +77,10 @@ class TopicBlock extends AbstractBlock {
 		'moderate-topic', 'moderate-post', 'lock-topic',
 	];
 
-	// @Todo - fill in the template names
+	/**
+	 * @var string[]
+	 * @todo Fill in the template names
+	 */
 	protected $templates = [
 		'single-view' => 'single_view',
 		'view' => '',

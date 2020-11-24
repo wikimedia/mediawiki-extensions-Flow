@@ -11,7 +11,10 @@ use Flow\Formatter\RevisionFormatter;
 class BoardHistoryBlock extends AbstractBlock {
 	protected $supportedGetActions = [ 'history' ];
 
-	// @Todo - fill in the template names
+	/**
+	 * @var string[]
+	 * @todo Fill in the template names
+	 */
 	protected $templates = [
 		'history' => '',
 	];
