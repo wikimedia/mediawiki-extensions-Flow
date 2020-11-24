@@ -357,7 +357,6 @@
 	};
 
 	/**
-	 *
 	 * Example: `{{block this}}`
 	 *
 	 * @param {Object} context

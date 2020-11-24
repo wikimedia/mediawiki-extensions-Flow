@@ -11,7 +11,6 @@ use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DBQueryError;
 
 /*
- *
  * In SQL
  *
  * CREATE TABLE flow_tree_node (

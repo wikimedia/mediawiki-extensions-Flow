@@ -493,7 +493,7 @@ abstract class Utils {
 	 * put the href of the <base> tag in the base-url attribute;
 	 * and remove the class attribute from the <body>.
 	 *
-	 * @param string $html HTML
+	 * @param string $html
 	 * @return string HTML with <head> information encoded as attributes on the <body>
 	 * @throws WikitextException
 	 * @suppress PhanUndeclaredMethod,PhanTypeMismatchArgumentNullable Apparently a phan bug / wrong built-in PHP stubs

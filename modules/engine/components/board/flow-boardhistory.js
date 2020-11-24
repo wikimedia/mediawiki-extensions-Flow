@@ -1,6 +1,5 @@
 ( function () {
 	/**
-	 *
 	 *    <div class="flow-component" data-flow-component="boardHistory" data-flow-id="rqx495tvz888x5ur">...</div>
 	 *
 	 * @class

@@ -162,7 +162,6 @@
 	FlowComponentEventsMixin.prototype.emitWithReturn = emitWithReturn;
 
 	/**
-	 *
 	 * @param {Object} handlers
 	 */
 	function bindFlowComponentHandlers( handlers ) {
@@ -439,7 +438,6 @@
 	//
 
 	/**
-	 *
 	 * @param {FlowComponent|jQuery} $container or entire FlowComponent
 	 * @todo Perhaps use name="flow-load-handler" for performance in older browsers
 	 */

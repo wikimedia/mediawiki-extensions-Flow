@@ -100,8 +100,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Validate topic summary
-	 *
 	 * @throws InvalidDataException
 	 */
 	protected function validateTopicSummary() {
@@ -216,8 +214,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Save topic summary
-	 *
 	 * @throws FailCommitException
 	 * @return array
 	 */
