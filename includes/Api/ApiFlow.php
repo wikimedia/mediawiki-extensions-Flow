@@ -3,6 +3,7 @@
 namespace Flow\Api;
 
 use ApiBase;
+use ApiMain;
 use ApiModuleManager;
 use Flow\Container;
 use Hooks;
@@ -16,7 +17,7 @@ class ApiFlow extends ApiBase {
 	 */
 	private $moduleManager;
 
-	private static $alwaysEnabledModules = [
+	private const ALWAYS_ENABLED_MODULES = [
 		// POST
 		'new-topic' => \Flow\Api\ApiFlowNewTopic::class,
 		'edit-header' => \Flow\Api\ApiFlowEditHeader::class,
@@ -44,22 +45,24 @@ class ApiFlow extends ApiBase {
 		'view-topic-summary' => \Flow\Api\ApiFlowViewTopicSummary::class,
 	];
 
-	private static $searchModules = [
+	private const SEARCH_MODULES = [
 		'search' => \Flow\Api\ApiFlowSearch::class,
 	];
 
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 */
 	public function __construct( $main, $action ) {
-		global $wgFlowSearchEnabled;
-
 		parent::__construct( $main, $action );
 		$this->moduleManager = new ApiModuleManager(
 			$this,
 			MediaWikiServices::getInstance()->getObjectFactory()
 		);
 
-		$enabledModules = self::$alwaysEnabledModules;
-		if ( $wgFlowSearchEnabled ) {
-			$enabledModules += self::$searchModules;
+		$enabledModules = self::ALWAYS_ENABLED_MODULES;
+		if ( $this->getConfig()->get( 'FlowSearchEnabled' ) ) {
+			$enabledModules += self::SEARCH_MODULES;
 		}
 
 		$this->moduleManager->addModules( $enabledModules, 'submodule' );

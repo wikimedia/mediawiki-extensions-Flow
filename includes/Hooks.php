@@ -1807,14 +1807,14 @@ class Hooks {
 
 		$optInController = Container::get( 'controller.opt_in' );
 		if ( !$before && $after ) {
-			$action = OptInController::$ENABLE;
+			$action = OptInController::ENABLE;
 			// Check if the user had a flow board
 			if ( !$optInController->hasFlowBoardArchive( $user ) ) {
 				// Enable the guided tour by setting the cookie
 				RequestContext::getMain()->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '1' );
 			}
 		} elseif ( $before && !$after ) {
-			$action = OptInController::$DISABLE;
+			$action = OptInController::DISABLE;
 		}
 
 		if ( $action ) {

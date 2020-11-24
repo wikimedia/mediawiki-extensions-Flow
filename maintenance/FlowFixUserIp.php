@@ -28,7 +28,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	 */
 	protected $storage;
 
-	private static $types = [
+	private const TYPES = [
 		'post' => \Flow\Model\PostRevision::class,
 		'header' => \Flow\Model\Header::class,
 		'post-summary' => \Flow\Model\PostSummary::class,
@@ -128,7 +128,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		$ids = $objs = [];
 		foreach ( $rows as $row ) {
 			$id = UUID::create( $row->rev_id );
-			$type = self::$types[$row->rev_type];
+			$type = self::TYPES[$row->rev_type];
 			$om = $this->storage->getStorage( $type );
 			$obj = $om->get( $id );
 			if ( $obj ) {

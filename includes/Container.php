@@ -3,6 +3,9 @@
 namespace Flow;
 
 class Container extends \Pimple\Container {
+	/**
+	 * @var self|null
+	 */
 	private static $container;
 
 	/**
@@ -14,7 +17,7 @@ class Container extends \Pimple\Container {
 	 *  special page or API module), there is a good chance that your code
 	 *  requires refactoring
 	 *
-	 * @return Container
+	 * @return self
 	 */
 	public static function getContainer() {
 		if ( self::$container === null ) {

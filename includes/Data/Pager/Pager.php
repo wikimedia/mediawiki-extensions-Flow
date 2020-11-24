@@ -10,7 +10,7 @@ use Flow\Exception\InvalidInputException;
  * Fetches paginated results from the OM provided in constructor
  */
 class Pager {
-	private static $VALID_DIRECTIONS = [ 'fwd', 'rev' ];
+	private const VALID_DIRECTIONS = [ 'fwd', 'rev' ];
 	private const DEFAULT_DIRECTION = 'fwd';
 	private const DEFAULT_LIMIT = 1;
 	private const MAX_LIMIT = 500;
@@ -67,7 +67,7 @@ class Pager {
 			$this->options['pager-limit'] = self::DEFAULT_LIMIT;
 		}
 
-		if ( !in_array( $this->options['pager-dir'], self::$VALID_DIRECTIONS ) ) {
+		if ( !in_array( $this->options['pager-dir'], self::VALID_DIRECTIONS ) ) {
 			$this->options['pager-dir'] = self::DEFAULT_DIRECTION;
 		}
 

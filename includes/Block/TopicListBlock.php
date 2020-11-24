@@ -31,7 +31,10 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = [ 'view', 'view-topiclist' ];
 
-	// @Todo - fill in the template names
+	/**
+	 * @var string[]
+	 * @todo Fill in the template names
+	 */
 	protected $templates = [
 		'view' => '',
 		'new-topic' => 'newtopic',

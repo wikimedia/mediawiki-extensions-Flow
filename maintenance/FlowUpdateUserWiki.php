@@ -21,6 +21,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
 	 * Used to track the number of current updated count
+	 *
+	 * @var int
 	 */
 	private $updatedCount = 0;
 

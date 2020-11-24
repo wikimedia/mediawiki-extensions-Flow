@@ -126,10 +126,10 @@ class FlowException extends MWException {
 		 * After that, restore original $wgOut.
 		 */
 		global $wgOut;
-		$wgOutBkp = $wgOut;
+		$original = $wgOut;
 		$wgOut = $this->output;
 		parent::reportHTML(); // this will do ->output() already
-		$wgOut = $wgOutBkp;
+		$wgOut = $original;
 	}
 
 	/**
