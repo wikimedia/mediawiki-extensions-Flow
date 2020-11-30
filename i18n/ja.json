@@ -20,7 +20,8 @@
 			"Suyama",
 			"Tmv",
 			"Whym",
-			"Yusuke1109"
+			"Yusuke1109",
+			"つぶあん派"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -415,7 +416,7 @@
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
 	"flow-mark-diff-patrolled-link-title": "巡回済みにする",
 	"flow-talk-page-beta-feature-message": "会話ページでの構造化された議論",
-	"flow-talk-page-beta-feature-description": "{{GENDER:|ご自分}}の利用者トークページで、新しく構造化された議論システムを有効にします。トークページの議論が簡略化されて発信と返信の場所が明瞭になり、また会話ごとに通知ができるようになります。この機能は、けっして自動では有効化されません。利用者が個別に有効にする必要があります。<br /><br />既存のウィキテキスト形式の議論は、過去ログに移動します。一方、機能を無効にすると、ボードをサブページに移動し、既存のトークページを過去ログから復元します。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#有効にする|有効化の詳細はこちら]]。",
+	"flow-talk-page-beta-feature-description": "{{GENDER:|your}}ユーザーのトークページに新しい構造化されたディスカッションシステムを有効にします。 <br /><br />既存のwikitextディスカッションはアーカイブに移動します。この機能を無効にすると、構造化されたディスカッションボードはサブページに移動し、以前のトークページのアーカイブは解除されます。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Learn more about activation|有効化する際の詳細はこちら]]。",
 	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを{{GENDER:|見る}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "アーカイブテンプレートの追加",
 	"flow-beta-feature-remove-archive-template-edit-summary": "アーカイブ・テンプレートの除去",
