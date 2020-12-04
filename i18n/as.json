@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bishnu Saikia"
+			"Bishnu Saikia",
+			"Simbu123"
 		]
 	},
+	"flow-history-day": "আজি",
 	"flow-moderation-confirm-unhide-post": "দেখুৱাওক",
 	"flow-moderation-confirm-unhide-topic": "দেখুৱাওক",
 	"flow-edited-by": "$1 দ্বাৰা সম্পাদিত"
