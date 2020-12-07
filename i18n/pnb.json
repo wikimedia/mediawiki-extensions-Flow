@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abbas dhothar"
+		]
+	},
+	"flow-error-title-too-long": "Topic titles are restricted to $1 {{PLURAL:$1|بائیٹ|بائیٹس}}.",
+	"flow-error-content-too-long": "The content is too large. Content after expansion is limited to $1 {{PLURAL:$1|بائیٹ|بائیٹس}}."
+}

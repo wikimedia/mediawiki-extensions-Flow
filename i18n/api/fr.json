@@ -13,6 +13,7 @@
 			"Thibaut120094",
 			"Trizek",
 			"Urhixidur",
+			"Verdy p",
 			"Wladek92",
 			"Zarisi"
 		]
@@ -146,6 +147,6 @@
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Id de révision auquel commencer l’annulation.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Id de révision auquel arrêter l’annulation.",
 	"apihelp-flow+undo-edit-topic-summary-example-1": "Récupérer les informations sur l’annulation de la modification d’un résumé de sujet dans un sujet spécifique",
-	"apierror-flow-safeallowcreationfailed": "La page fournie n’a pas Discussions Structurées d’activé, et safeAllowCreation a échoué avec : $1",
+	"apierror-flow-safeallowcreationfailed": "La page fournie n’a pas de Discussions structurées activées et safeAllowCreation a échoué avec : $1",
 	"apierror-flow-notenabled": "La page fournie n’a pas Discussions Structurées d’activé."
 }
