@@ -64,6 +64,7 @@
 	"flow-topic-action-unlock-topic": "თემის გახსნა",
 	"flow-topic-action-summarize-topic": "შეჯამება",
 	"flow-topic-action-resummarize-topic": "თემის ჯამის რედაქტირება",
+	"flow-topic-action-update-topic-summary": "რეზიუმის განახლება",
 	"flow-topic-action-suppress-topic": "აკრძალული თემა",
 	"flow-topic-action-unhide-topic": "თემის დამალვა",
 	"flow-topic-action-undelete-topic": "თემის წაშლა",
