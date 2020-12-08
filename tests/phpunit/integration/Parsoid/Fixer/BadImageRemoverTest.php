@@ -25,9 +25,9 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			[
 				'Passes through allowed good inline images',
 				// expected html after filtering
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></span> and other stuff</p>',
 				// input html
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return false;
@@ -37,9 +37,9 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			[
 				'Passes through allowed good inline images with percent in name',
 				// expected html after filtering
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"/></a></span> and other stuff</p>',
 				// input html
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return false;
@@ -47,11 +47,11 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 			],
 
 			[
-				'Passes through allowed good inline images (with legacy span markup)',
+				'Passes through allowed good inline images (with legacy figure-inline markup)',
 				// expected html after filtering
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></span> and other stuff</p>',
+				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return false;
@@ -87,7 +87,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return true;
@@ -99,7 +99,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				function () {
 					return true;

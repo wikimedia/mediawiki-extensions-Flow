@@ -41,6 +41,7 @@ class BadImageRemover implements Fixer {
 	 * @return string
 	 */
 	public function getXPath() {
+		// FIXME: mw:Audio and mw:Video
 		return '//figure[starts-with(@typeof,"mw:Image")]//img[@resource] | ' .
 			'//figure-inline[starts-with(@typeof,"mw:Image")]//img[@resource] | ' .
 			'//span[starts-with(@typeof,"mw:Image")]//img[@resource]';
