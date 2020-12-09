@@ -12,6 +12,7 @@
 	"flow-history-action-suppress-post": "eliminar",
 	"flow-history-action-delete-post": "efacar",
 	"flow-history-action-restore-post": "restaurar",
+	"flow-history-action-lock-topic": "solvez",
 	"flow-post-action-edit-post": "Redaktar",
 	"flow-post-action-restore-post": "Restaurar",
 	"flow-post-action-undo-moderation": "Desfacez",
