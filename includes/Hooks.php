@@ -1829,7 +1829,7 @@ class Hooks {
 			// importer can be dry-run (= parse, but don't store), but we can only
 			// derive that from mPageOutCallback. I'll set a new value (which will
 			// return the existing value) to see if it's in dry-run mode (= null)
-			// @phan-suppress-next-line PhanTypeMismatchArgument
+			// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 			$callback = $importer->setPageOutCallback( null );
 			// restore previous mPageOutCallback value
 			$importer->setPageOutCallback( $callback );

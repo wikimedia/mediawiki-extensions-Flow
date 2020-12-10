@@ -67,6 +67,7 @@ abstract class AbstractFormatter {
 	 *  keys for when different kinds of data are tossed in, which may not all
 	 *  have the same kind of links available)
 	 * @return string HTML
+	 * @return-taint escaped
 	 */
 	protected function formatTimestamp(
 		array $data,
@@ -105,7 +106,7 @@ abstract class AbstractFormatter {
 	 * Generate HTML for "(foo | bar | baz)"  based on the links provided by
 	 * RevisionFormatter.
 	 *
-	 * @param array $links Contains any combination of Anchor|Message|string
+	 * @param (Anchor|Message)[] $links
 	 * @param IContextSource $ctx
 	 * @param string[]|null $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
@@ -130,9 +131,6 @@ abstract class AbstractFormatter {
 					$formatted[] = $link->toHtml();
 				} elseif ( $link instanceof Message ) {
 					$formatted[] = $link->escaped();
-				} else {
-					// plain text
-					$formatted[] = htmlspecialchars( $key );
 				}
 			}
 		}

@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../CirrusSearch/includes/Maintenance/Maintenance.php
  *
  * @ingroup Maintenance
  * @phan-file-suppress PhanUndeclaredClassMethod,PhanTypeMismatchArgument,PhanUndeclaredStaticMethod
- * @phan-file-suppress PhanTypeMismatchArgumentReal,PhanTypeMismatchReturn
+ * @phan-file-suppress PhanTypeMismatchArgumentReal,PhanTypeMismatchReturn, PhanTypeMismatchArgumentProbablyReal
  * @phan-file-suppress PhanParamTooFew,PhanUndeclaredMethod This script is outdated, T227563
  */
 class FlowSearchConfig extends Maintenance {

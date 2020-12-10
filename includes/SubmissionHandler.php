@@ -118,7 +118,7 @@ class SubmissionHandler {
 		foreach ( $interestedBlocks as $block ) {
 			$name = $block->getName();
 			$data = $parameters[$name] ?? [];
-			$success &= $block->onSubmit( $data );
+			$success = $block->onSubmit( $data ) && $success;
 		}
 
 		return $success ? $interestedBlocks : [];

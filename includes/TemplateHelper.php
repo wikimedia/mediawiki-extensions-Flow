@@ -450,6 +450,7 @@ class TemplateHelper {
 	 */
 	public static function oouify( ...$args ) {
 		$options = array_pop( $args );
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Only when $args is empty
 		$named = $options['hash'];
 
 		$widgetType = $named[ 'type' ];
