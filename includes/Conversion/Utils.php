@@ -17,6 +17,7 @@ use Language;
 use Linker;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
+use ParserOptions;
 use RequestContext;
 use Sanitizer;
 use Title;
@@ -227,7 +228,7 @@ abstract class Utils {
 				"core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
 		}
 
-		$options = new \ParserOptions;
+		$options = ParserOptions::newFromAnon();
 
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $content, $title, $options );
