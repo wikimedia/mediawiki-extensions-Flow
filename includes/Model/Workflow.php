@@ -383,7 +383,7 @@ class Workflow {
 		// addresses which will not all be blocked.
 		// See T61928
 
-		!( $user->isLoggedIn() &&
+		!( $user->isRegistered() &&
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->isBlockedFrom( $user, $this->getOwnerTitle(), true ) );
 	}

@@ -1920,7 +1920,7 @@ class Hooks {
 		$userWhere = [];
 		if ( $username ) {
 			$user = User::newFromName( $username );
-			if ( $user && $user->isLoggedIn() ) {
+			if ( $user && $user->isRegistered() ) {
 				$userWhere = [ 'tree_orig_user_id' => $user->getId() ];
 			} else {
 				$userWhere = [ 'tree_orig_user_ip' => $username ];
