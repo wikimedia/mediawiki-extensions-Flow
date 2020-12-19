@@ -163,7 +163,8 @@ class ConversionStrategy implements IConversionStrategy {
 	 */
 	protected function removePrefixText( $content ) {
 		$template = wfMessage( 'flow-importer-lqt-converted-archive-template' )->inContentLanguage()->plain();
-		return preg_replace( "{{{$template}\\|[^\\}]+}}", '', $content );
+		$templateSearch = preg_quote( $template, '/' );
+		return preg_replace( '/{{' . $templateSearch . '}\\|[^\\}]+}/', '', $content );
 	}
 
 	/**

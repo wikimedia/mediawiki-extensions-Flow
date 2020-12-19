@@ -575,6 +575,7 @@ abstract class AbstractRevision {
 				$format, $storageFormat, $content, $title );
 		}
 
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped Seems a false positive
 		$this->setContentRaw( $this->convertedContent );
 	}
 
