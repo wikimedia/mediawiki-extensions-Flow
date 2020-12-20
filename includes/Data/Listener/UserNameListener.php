@@ -12,9 +12,11 @@ use Flow\Repository\UserNameBatch;
  * a batch username loader.
  */
 class UserNameListener extends AbstractListener {
+	/** @var UserNameBatch */
 	protected $batch;
+	/** @var array */
 	protected $keys;
-	protected $wikiKey;
+	/** @var string */
 	protected $wiki;
 
 	/**

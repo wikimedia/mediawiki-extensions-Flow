@@ -10,7 +10,9 @@ namespace Flow\Data\Utils;
  * usage: usort( $array, new SortArrayByKeys( array( 'c1', 'c2' ) ) );
  */
 class SortArrayByKeys {
+	/** @var array */
 	protected $keys;
+	/** @var bool */
 	protected $strict;
 
 	public function __construct( array $keys, $strict = false ) {

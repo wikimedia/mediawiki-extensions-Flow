@@ -74,8 +74,11 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	 * @var Language|StubUserLang
 	 */
 	protected $lang;
+	/** @var int */
 	protected $fixedCount = 0;
+	/** @var stdClass[] */
 	protected $failures = [];
+	/** @var string[] */
 	protected $warnings = [];
 
 	/**

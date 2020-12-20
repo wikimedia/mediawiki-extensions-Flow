@@ -59,6 +59,7 @@ abstract class AbstractQuery {
 	 */
 	protected $currentRevisionsCache = [];
 
+	/** @var array */
 	protected $identityMap = [];
 
 	/**

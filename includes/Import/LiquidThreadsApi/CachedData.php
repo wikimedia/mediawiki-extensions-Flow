@@ -6,6 +6,7 @@ namespace Flow\Import\LiquidThreadsApi;
  * Abstract class to store ID-indexed cached data.
  */
 abstract class CachedData {
+	/** @var array */
 	protected $data = [];
 
 	public function reset() {

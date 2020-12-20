@@ -9,6 +9,7 @@ use Flow\Formatter\BoardHistoryQuery;
 use Flow\Formatter\RevisionFormatter;
 
 class BoardHistoryBlock extends AbstractBlock {
+	/** @inheritDoc */
 	protected $supportedGetActions = [ 'history' ];
 
 	/**

@@ -24,6 +24,7 @@ use WikiPage;
  * @group Database
  */
 class PostRevisionTestCase extends FlowTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		'flow_revision',
 		'flow_topic_list',

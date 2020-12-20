@@ -43,6 +43,7 @@ abstract class Reference {
 	 */
 	protected $wikiId;
 
+	/** @var string[] */
 	protected $validTypes = [ self::TYPE_LINK ];
 
 	/**

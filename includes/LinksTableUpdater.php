@@ -16,6 +16,7 @@ use WikiPage;
 
 class LinksTableUpdater {
 
+	/** @var ManagerGroup */
 	protected $storage;
 
 	/**
