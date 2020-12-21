@@ -152,15 +152,13 @@ class TalkpageManager implements OccupationController {
 	 * turn into a Flow board was allowed to create (with allowedPageNames)
 	 *
 	 * @param Title $title
+	 * @param User $user
 	 * @return bool
 	 */
-	public function canBeUsedOn( Title $title ) {
-		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
-		global $wgUser;
-
+	public function canBeUsedOn( Title $title, User $user ) {
 		// If the user has rights, mark the page as allowed
 		// For MovePage
-		$this->safeAllowCreation( $title, $wgUser, /* $mustNotExist = */ true );
+		$this->safeAllowCreation( $title, $user, /* $mustNotExist = */ true );
 
 		return // default content model already
 			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
