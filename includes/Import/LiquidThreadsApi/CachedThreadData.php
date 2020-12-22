@@ -10,6 +10,7 @@ use Iterator;
  * @property array[] $data
  */
 class CachedThreadData extends CachedApiData {
+	/** @var true[] */
 	protected $topics = [];
 
 	/**

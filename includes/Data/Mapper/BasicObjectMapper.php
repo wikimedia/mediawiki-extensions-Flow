@@ -17,8 +17,10 @@ use Flow\Data\ObjectMapper;
  * );
  */
 class BasicObjectMapper implements ObjectMapper {
+	/** @var callable */
 	protected $toStorageRow;
 
+	/** @var callable */
 	protected $fromStorageRow;
 
 	public function __construct( $toStorageRow, $fromStorageRow ) {

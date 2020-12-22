@@ -58,6 +58,7 @@ class TopicBlock extends AbstractBlock {
 	 */
 	protected $extraCommitMetadata = [];
 
+	/** @inheritDoc */
 	protected $supportedPostActions = [
 		// Standard editing
 		'edit-post', 'reply',
@@ -71,6 +72,7 @@ class TopicBlock extends AbstractBlock {
 		'undo-edit-post',
 	];
 
+	/** @inheritDoc */
 	protected $supportedGetActions = [
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
 		'view-topic', 'view-topic-history', 'view-post', 'view-post-history', 'undo-edit-post',

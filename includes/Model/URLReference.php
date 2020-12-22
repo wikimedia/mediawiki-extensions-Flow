@@ -6,6 +6,7 @@ use Flow\Exception\InvalidReferenceException;
 use Title;
 
 class URLReference extends Reference {
+	/** @var string */
 	protected $url;
 
 	/**

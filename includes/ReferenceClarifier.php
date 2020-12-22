@@ -10,7 +10,11 @@ use Flow\Model\WikiReference;
 use Title;
 
 class ReferenceClarifier {
-	protected $storage, $urlGenerator;
+	/** @var ManagerGroup */
+	protected $storage;
+	/** @var UrlGenerator */
+	protected $urlGenerator;
+	/** @var WikiReference[][][] */
 	protected $referenceCache;
 
 	public function __construct( ManagerGroup $storage, UrlGenerator $urlGenerator ) {

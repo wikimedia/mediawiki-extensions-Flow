@@ -16,7 +16,9 @@ use User;
 
 class TopicListQuery extends AbstractQuery {
 
+	/** @var RevisionActionPermissions */
 	protected $permissions;
+	/** @var WatchedTopicItems */
 	protected $watchedTopicItems;
 
 	/**

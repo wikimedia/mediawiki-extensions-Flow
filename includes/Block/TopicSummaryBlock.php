@@ -60,6 +60,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		'undo-edit-topic-summary'
 	];
 
+	/** @inheritDoc */
 	protected $templates = [
 		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',

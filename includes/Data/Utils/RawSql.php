@@ -8,6 +8,7 @@ namespace Flow\Data\Utils;
  * plain strings.
  */
 class RawSql {
+	/** @var string|callable */
 	protected $sql;
 
 	public function __construct( $sql ) {

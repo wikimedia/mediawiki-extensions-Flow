@@ -7,6 +7,7 @@ use IContextSource;
 use TextContent;
 
 class RevisionUndoViewFormatter {
+	/** @var RevisionViewFormatter */
 	protected $revisionViewFormatter;
 
 	public function __construct( RevisionViewFormatter $revisionViewFormatter ) {

@@ -29,6 +29,7 @@ use RecursiveIteratorIterator;
  *   )
  */
 class MultiDimArray implements \ArrayAccess {
+	/** @var array */
 	protected $data = [];
 
 	public function all() {

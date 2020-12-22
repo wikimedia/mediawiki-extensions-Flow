@@ -7,7 +7,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 	</rule>
 	<rule ref="Generic.Files.LineLength">

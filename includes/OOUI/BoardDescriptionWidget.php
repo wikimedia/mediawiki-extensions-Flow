@@ -4,8 +4,10 @@ namespace Flow\OOUI;
 
 class BoardDescriptionWidget extends \OOUI\Widget {
 
+	/** @var \OOUI\ButtonWidget */
 	protected $editButton;
 
+	/** @var string */
 	protected $description = '';
 
 	/**

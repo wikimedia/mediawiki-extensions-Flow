@@ -10,6 +10,7 @@ class WikiReference extends Reference {
 	public const TYPE_TEMPLATE = 'template';
 	public const TYPE_CATEGORY = 'category';
 
+	/** @var Title */
 	protected $target;
 
 	/**

@@ -13,6 +13,7 @@ use User;
  * @group medium
  */
 abstract class ApiTestCase extends \ApiTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',

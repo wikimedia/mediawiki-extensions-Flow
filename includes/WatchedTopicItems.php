@@ -12,8 +12,11 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class WatchedTopicItems {
 
+	/** @var User */
 	protected $user;
+	/** @var IDatabase */
 	protected $watchListDb;
+	/** @var true[][] */
 	protected $overrides = [];
 
 	public function __construct( User $user, IDatabase $watchListDb ) {

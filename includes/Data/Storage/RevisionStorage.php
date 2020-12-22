@@ -42,6 +42,7 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_type_id',
 	];
 
+	/** @var array|false */
 	protected $externalStore;
 
 	/**
