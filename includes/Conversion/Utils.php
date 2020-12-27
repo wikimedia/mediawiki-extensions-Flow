@@ -383,9 +383,12 @@ abstract class Utils {
 	) {
 		$dom = new DOMDocument();
 
-		// Otherwise the parser may attempt to load the dtd from an external source.
-		// See: https://www.mediawiki.org/wiki/XML_External_Entity_Processing
-		$loadEntities = libxml_disable_entity_loader( true );
+		$loadEntities = false;
+		if ( LIBXML_VERSION < 20900 ) {
+			// Otherwise the parser may attempt to load the dtd from an external source.
+			// See: https://www.mediawiki.org/wiki/XML_External_Entity_Processing
+			$loadEntities = libxml_disable_entity_loader( true );
+		}
 
 		// don't output warnings
 		$useErrors = libxml_use_internal_errors( true );
@@ -396,7 +399,9 @@ abstract class Utils {
 		$html = ( $utf8Fragment ? '<?xml encoding="utf-8"?>' : '' ) . $content;
 		$dom->loadHTML( $html, LIBXML_PARSEHUGE );
 
-		libxml_disable_entity_loader( $loadEntities );
+		if ( LIBXML_VERSION < 20900 ) {
+			libxml_disable_entity_loader( $loadEntities );
+		}
 
 		// check error codes; if not in the supplied list of ignorable errors,
 		// throw an exception
