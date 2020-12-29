@@ -255,7 +255,10 @@ class Converter {
 	 * @throws ImportException on failed import
 	 */
 	protected function movePage( Title $from, Title $to ) {
-		$mp = new MovePage( $from, $to );
+		$mp = MediaWikiServices::getInstance()
+			->getMovePageFactory()
+			->newMovePage( $from, $to );
+
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
 			$this->logger->error( $valid->getMessage()->text() );

@@ -284,7 +284,9 @@ class FlowRestoreLQT extends Maintenance {
 	protected function movePage( Title $from, Title $to, $reason ) {
 		$this->output( "	Moving '{$from->getPrefixedDBkey()}' to '{$to->getPrefixedDBkey()}'.\n" );
 
-		$movePage = new MovePage( $from, $to );
+		$movePage = MediaWikiServices::getInstance()
+			->getMovePageFactory()
+			->newMovePage( $from, $to );
 		$status = $movePage->isValidMove();
 		if ( !$status->isGood() ) {
 			return $status;

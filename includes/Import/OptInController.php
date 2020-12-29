@@ -217,7 +217,10 @@ class OptInController {
 	 */
 	private function movePage( Title $from, Title $to, $reason = '' ) {
 		$this->occupationController->forceAllowCreation( $to );
-		$mp = new MovePage( $from, $to );
+
+		$mp = MediaWikiServices::getInstance()
+			->getMovePageFactory()
+			->newMovePage( $from, $to );
 		$mp->move( $this->user, $reason, false );
 
 		/*
