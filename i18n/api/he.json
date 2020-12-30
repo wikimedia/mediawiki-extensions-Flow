@@ -127,7 +127,7 @@
 	"apihelp-flow+undo-edit-header-example-1": "אחזור מידע על ביטול עריכת תיאור ב־[[Talk:Sandbox]]",
 	"apihelp-flow+undo-edit-post-description": "אחזור המידע הנחוץ לביטול עריכת רשומה.",
 	"apihelp-flow+undo-edit-post-summary": "אחזור המידע הנחוץ לביטול עריכת רשומה.",
-	"apihelp-flow+undo-edit-post-param-postId": "מזהה של הרשומה שצריך לבטל.",
+	"apihelp-flow+undo-edit-post-param-postId": "המזהה של הרשומה שצריך לבטל.",
 	"apihelp-flow+undo-edit-post-param-startId": "באיזה מזהה גרסה להתחיל את הביטול.",
 	"apihelp-flow+undo-edit-post-param-endId": "באיזה מזהה גרסה לסיים את הביטול.",
 	"apihelp-flow+undo-edit-post-example-1": "אחזור מידע על ביטול עריכת רשומה בנושא מסוים.",
