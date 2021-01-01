@@ -70,7 +70,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 
 		$wikiDbw = $this->dbFactory->getWikiDB( DB_MASTER );
 
-		$iterator = new BatchRowIterator( $wikiDbw, 'page', 'page_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( $wikiDbw, 'page', 'page_id', $this->getBatchSize() );
 		$iterator->setFetchColumns( [ 'page_namespace', 'page_title', 'page_latest' ] );
 		$iterator->addConditions( [
 			'page_content_model' => CONTENT_MODEL_FLOW_BOARD,

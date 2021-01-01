@@ -40,7 +40,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 			$dbw,
 			'flow_workflow',
 			'workflow_id',
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		$it->setFetchColumns( [ '*' ] );
 		$it->addConditions( [

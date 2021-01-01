@@ -37,6 +37,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
+		$this->setBatchSize( 300 );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -79,7 +80,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 				'tree_orig_user_id > 0',
 			],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'tree_rev_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'tree_rev_id' ]
 		);
 
 		$om = Container::get( 'storage' )->getStorage( 'PostRevision' );
@@ -122,7 +123,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 				"{$columnPrefix}_ip IS NOT NULL",
 			],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rev_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'rev_id' ]
 		);
 
 		$ids = $objs = [];

@@ -45,7 +45,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 			$dbr,
 			'echo_event',
 			'event_id',
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		$iterator->addConditions( [
 			'event_type' => 'flow-topic-resolved',

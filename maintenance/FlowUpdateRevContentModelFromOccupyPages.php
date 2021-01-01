@@ -36,11 +36,12 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 		$overallInd = 0;
 		$updatedCount = 0;
 		$skippedCount = 0;
+		$batchSize = $this->getBatchSize();
 
 		while ( $overallInd < $pageCount ) {
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$batchInd = 0;
-			while ( $overallInd < $pageCount && $batchInd < $this->mBatchSize ) {
+			while ( $overallInd < $pageCount && $batchInd < $batchSize ) {
 				$pageName = $wgFlowOccupyPages[$overallInd];
 				$title = Title::newFromTextThrow( $pageName );
 				$revId = $title->getLatestRevID( Title::GAID_FOR_UPDATE );

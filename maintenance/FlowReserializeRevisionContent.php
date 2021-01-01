@@ -81,7 +81,7 @@ class FlowReserializeRevisionContent extends Maintenance {
 		$dbw = $this->dbFactory->getDb( DB_MASTER );
 		$newVersion = Utils::PARSOID_VERSION;
 
-		$iterator = new BatchRowIterator( $dbw, 'flow_revision', 'rev_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( $dbw, 'flow_revision', 'rev_id', $this->getBatchSize() );
 		$iterator->addConditions( [
 			'rev_user_wiki' => wfWikiID(),
 			'rev_flags' . $dbr->buildLike( $dbr->anyString(), 'html', $dbr->anyString() ),

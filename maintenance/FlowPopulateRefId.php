@@ -60,7 +60,10 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		while ( true ) {
-			$references = (array)$storage->find( [ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ], [ 'limit' => $this->mBatchSize ] );
+			$references = (array)$storage->find(
+				[ 'ref_id' => null, 'ref_src_wiki' => wfWikiID() ],
+				[ 'limit' => $this->getBatchSize() ]
+			);
 			if ( !$references ) {
 				break;
 			}

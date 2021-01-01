@@ -47,7 +47,8 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	 */
 	protected function doDBUpdates() {
 		$id = '';
-		$count = $this->mBatchSize;
+		$batchSize = $this->getBatchSize();
+		$count = $batchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		// If table flow_header_revision does not exist, that means the wiki
@@ -66,7 +67,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					'workflow_id > ' . $dbr->addQuotes( $id ),
 				],
 				__METHOD__,
-				[ 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize ]
+				[ 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $batchSize ]
 			);
 			if ( $res ) {
 				foreach ( $res as $row ) {
@@ -98,10 +99,11 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	 */
 	private function updateHeader( $workflow, $wiki ) {
 		$id = '';
-		$count = $this->mBatchSize;
+		$batchSize = $this->getBatchSize();
+		$count = $batchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
-		while ( $count == $this->mBatchSize ) {
+		while ( $count == $batchSize ) {
 			$count = 0;
 			$res = $dbr->select(
 				[ 'flow_header_revision', 'flow_revision' ],
@@ -112,7 +114,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					'header_workflow_id' => $workflow->getId()->getBinary()
 				],
 				__METHOD__,
-				[ 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $this->mBatchSize ]
+				[ 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $batchSize ]
 			);
 			if ( $res ) {
 				foreach ( $res as $row ) {
@@ -137,10 +139,11 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	 */
 	private function updateTopicList( $workflow, $wiki ) {
 		$id = '';
-		$count = $this->mBatchSize;
+		$batchSize = $this->getBatchSize();
+		$count = $batchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
-		while ( $count == $this->mBatchSize ) {
+		while ( $count == $batchSize ) {
 			$count = 0;
 			$res = $dbr->select(
 				[ 'flow_topic_list' ],
@@ -150,7 +153,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					'topic_id > ' . $dbr->addQuotes( $id ),
 				],
 				__METHOD__,
-				[ 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $this->mBatchSize ]
+				[ 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $batchSize ]
 			);
 			if ( $res ) {
 				$index = 0;
@@ -248,7 +251,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		global $wgFlowCluster;
 
 		$this->updatedCount++;
-		if ( $this->updatedCount > $this->mBatchSize ) {
+		if ( $this->updatedCount > $this->getBatchSize() ) {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lbFactory->waitForReplication( [ 'cluster' => $wgFlowCluster ] );
 			$this->updatedCount = 0;
