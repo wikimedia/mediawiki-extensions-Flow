@@ -71,7 +71,7 @@ class AbuseFilter implements SpamFilter {
 		Title $title,
 		Title $ownerTitle
 	) {
-		$gen = new VariableGenerator( new \AbuseFilterVariableHolder );
+		$gen = new VariableGenerator();
 		$vars = $gen
 			->addEditVars( $title, \WikiPage::factory( $title ), $context->getUser() )
 			->addUserVars( $context->getUser() )
