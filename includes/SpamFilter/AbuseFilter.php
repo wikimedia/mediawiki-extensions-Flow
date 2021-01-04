@@ -5,7 +5,7 @@ namespace Flow\SpamFilter;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
-use MediaWiki\Extension\AbuseFilter\VariableGenerator\VariableGenerator;
+use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use Status;
 use Title;
 
@@ -71,8 +71,7 @@ class AbuseFilter implements SpamFilter {
 		Title $title,
 		Title $ownerTitle
 	) {
-		$gen = new VariableGenerator();
-		$vars = $gen
+		$vars = AbuseFilterServices::getVariableGeneratorFactory()->newGenerator()
 			->addEditVars( $title, \WikiPage::factory( $title ), $context->getUser() )
 			->addUserVars( $context->getUser() )
 			->addTitleVars( $title, 'page' )
