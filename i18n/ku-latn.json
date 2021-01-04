@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Balyozxane",
 			"Bikarhêner",
 			"George Animal",
 			"Ghybu",
@@ -32,7 +33,7 @@
 	"flow-post-action-hide-post": "Veşêre",
 	"flow-post-action-edit-post": "Biguherîne",
 	"flow-post-action-edit-post-submit": "Guhertinan tomar bike",
-	"flow-post-action-edit-post-submit-publish": "Guhertinan biweşîne",
+	"flow-post-action-edit-post-submit-publish": "Guhartinan biweşîne",
 	"flow-post-action-undo-moderation": "Betal bike",
 	"flow-topic-action-view": "Girêdana herdemî",
 	"flow-topic-action-edit-title": "Sernav biguherîne",
