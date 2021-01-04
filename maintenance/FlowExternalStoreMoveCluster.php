@@ -78,7 +78,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		/** @var IDatabase $dbw */
 		$dbw = $schema['dbw'];
 
-		$iterator = new BatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->mBatchSize );
+		$iterator = new BatchRowIterator( $dbr, $schema['table'], $schema['pk'], $this->getBatchSize() );
 		$iterator->setFetchColumns( [ $schema['content'], $schema['flags'] ] );
 
 		$clusterConditions = [];

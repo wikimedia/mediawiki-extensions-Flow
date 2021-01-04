@@ -47,7 +47,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 
 		$rowIterator->setFetchColumns( [

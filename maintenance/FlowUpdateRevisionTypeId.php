@@ -25,7 +25,8 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$revId = '';
-		$count = $this->mBatchSize;
+		$batchSize = $this->getBatchSize();
+		$count = $this->getBatchSize();
 		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
 		$dbr = $dbFactory->getDB( DB_REPLICA );
@@ -38,14 +39,14 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		while ( $count == $this->mBatchSize ) {
+		while ( $count == $batchSize ) {
 			$count = 0;
 			$res = $dbr->select(
 				[ 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ],
 				[ 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ],
 				[ 'rev_id > ' . $dbr->addQuotes( $revId ) ],
 				__METHOD__,
-				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ],
+				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $batchSize ],
 				[
 					'flow_tree_revision' => [ 'LEFT JOIN', 'rev_id=tree_rev_id' ],
 					'flow_header_revision' => [ 'LEFT JOIN', 'rev_id=header_rev_id' ]

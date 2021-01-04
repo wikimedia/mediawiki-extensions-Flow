@@ -70,6 +70,7 @@ class FlowRestoreLQT extends Maintenance {
 	 */
 	protected function restoreLQTBoards() {
 		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
@@ -101,7 +102,7 @@ class FlowRestoreLQT extends Maintenance {
 						__METHOD__,
 						[
 							'GROUP BY' => 'rev_page',
-							'LIMIT' => $this->mBatchSize,
+							'LIMIT' => $batchSize,
 							'ORDER BY' => 'log_id ASC',
 						],
 						[
@@ -129,7 +130,7 @@ class FlowRestoreLQT extends Maintenance {
 					}
 
 					$lbFactory->waitForReplication();
-				} while ( $rows->numRows() >= $this->mBatchSize );
+				} while ( $rows->numRows() >= $batchSize );
 			}
 		}
 	}
@@ -141,6 +142,7 @@ class FlowRestoreLQT extends Maintenance {
 	 */
 	protected function restoreLQTThreads() {
 		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
@@ -163,7 +165,7 @@ class FlowRestoreLQT extends Maintenance {
 					__METHOD__,
 					[
 						'GROUP BY' => 'page_id',
-						'LIMIT' => $this->mBatchSize,
+						'LIMIT' => $batchSize,
 						'ORDER BY' => 'page_id ASC',
 					],
 					[
@@ -181,7 +183,7 @@ class FlowRestoreLQT extends Maintenance {
 				}
 
 				$lbFactory->waitForReplication();
-			} while ( $rows->numRows() >= $this->mBatchSize );
+			} while ( $rows->numRows() >= $batchSize );
 		}
 	}
 

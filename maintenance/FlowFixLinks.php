@@ -67,7 +67,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		/** @var \Flow\LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
 
-		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->mBatchSize );
+		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->getBatchSize() );
 		$iterator->setFetchColumns( [ '*' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
 		$iterator->setCaller( __METHOD__ );

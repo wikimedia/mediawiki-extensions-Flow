@@ -22,16 +22,10 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	 */
 	private $completeCount = 0;
 
-	/**
-	 * Max number of records to process at a time
-	 *
-	 * @var int
-	 */
-	protected $batchSize = 300;
-
 	public function __construct() {
 		parent::__construct();
 
+		$this->setBatchSize( 300 );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -63,7 +57,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			/* select */[ 'rc_id', 'rc_params' ],
 			/* conds */[ "rc_id > $continue", 'rc_source' => RecentChangesListener::SRC_FLOW ],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rc_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'rc_id' ]
 		);
 
 		$continue = null;

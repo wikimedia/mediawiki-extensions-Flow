@@ -71,6 +71,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	protected function removeHeader( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 
 		// we don't store a timestamp with revisions - the id also holds date
 		// info, so that's what we should compare against
@@ -92,7 +93,7 @@ class FlowRemoveOldTopics extends Maintenance {
 					'rev_parent_id' => null,
 				],
 				[
-					'limit' => $this->mBatchSize,
+					'limit' => $batchSize,
 					'sort' => 'rev_id',
 					'order' => 'ASC',
 				]
@@ -176,6 +177,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 */
 	protected function removeTopics( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 
 		// start from around unix epoch - there can be no Flow data before that
 		$startId = UUID::getComparisonUUID( '1' );
@@ -189,7 +191,7 @@ class FlowRemoveOldTopics extends Maintenance {
 					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $timestamp ) ),
 				],
 				[
-					'limit' => $this->mBatchSize,
+					'limit' => $batchSize,
 					'sort' => 'workflow_id',
 					'order' => 'ASC',
 				]
@@ -216,6 +218,7 @@ class FlowRemoveOldTopics extends Maintenance {
 	 */
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 		$talkpageManager = Flow\Hooks::getOccupationController()->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that
@@ -240,7 +243,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				],
 				__METHOD__,
 				[
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $batchSize,
 					'ORDER BY' => 'workflow_id ASC',
 					// we only want to find topics that were only altered by talk
 					// page manager: as long as anyone else edited any post, we're

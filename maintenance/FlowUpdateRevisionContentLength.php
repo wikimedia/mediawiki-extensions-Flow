@@ -48,6 +48,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Updates content length for revisions with unset content length." );
+		$this->setBatchSize( 300 );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -79,7 +80,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			$dbw,
 			/* table = */'flow_revision',
 			/* primary key = */'rev_id',
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		// Only fetch rows created by users from the current wiki.
 		$it->addConditions( [

@@ -81,7 +81,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 			__METHOD__,
 			[
 				'ORDER BY' => 'rev_id ASC',
-				'LIMIT' => $this->mBatchSize,
+				'LIMIT' => $this->getBatchSize(),
 			]
 		);
 

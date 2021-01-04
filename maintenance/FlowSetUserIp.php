@@ -26,6 +26,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 
+		$this->setBatchSize( 300 );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -83,7 +84,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				'workflow_user_id = 0'
 			],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'workflow_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'workflow_id' ]
 		);
 
 		$continue = null;
@@ -113,7 +114,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				'tree_orig_user_id = 0',
 			],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'tree_rev_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'tree_rev_id' ]
 		);
 
 		$continue = null;
@@ -149,7 +150,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				),
 			],
 			__METHOD__,
-			/* options */[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rev_id' ]
+			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'rev_id' ]
 		);
 
 		$continue = null;

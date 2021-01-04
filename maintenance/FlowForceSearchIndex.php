@@ -44,6 +44,7 @@ class FlowForceSearchIndex extends Maintenance {
 
 		// Set the timeout for maintenance actions
 		$this->connection->setTimeout( $wgFlowSearchMaintenanceTimeout );
+		$batchSize = $this->getBatchSize();
 
 		/** @var AbstractUpdater[] $updaters */
 		$updaters = Container::get( 'search.index.updaters' );
@@ -69,7 +70,7 @@ class FlowForceSearchIndex extends Maintenance {
 			$updater->iterator->setFrom( $fromId );
 			$updater->iterator->setTo( $toId );
 
-			$total += $updater->updateRevisions( null, null, $this->mBatchSize );
+			$total += $updater->updateRevisions( null, null, $batchSize );
 			$this->output( "Indexed $total $updaterType document(s)\n" );
 		}
 	}
