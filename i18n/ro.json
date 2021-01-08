@@ -111,6 +111,8 @@
 	"flow-error-invalid-topic-uuid-title": "Titlu incorect",
 	"flow-rev-message-reply-bundle": "{{PLURAL:$1|A fost adăugat|Au fost adăugate}} <strong>$1 {{PLURAL:$1|comentariu|comentarii}}</strong>",
 	"notification-header-flow-post-reply": "$1 a {{GENDER:$2|răspuns}} în cadrul secțiunii „<strong>$4</strong>”.",
+	"notification-header-flow-summary-edited-first": "Subiectul „<strong>$1</strong>” a fost rezumat.",
+	"notification-header-flow-summary-edited-first-user-talk": "Subiectul „<strong>$1</strong>” a fost rezumat pe <strong>pagina {{GENDER:$2|dvs.}} de discuție</strong>.",
 	"notification-header-flow-mention-post": "$1 {{GENDER:$4|v-}}{{GENDER:$2|a menționat}} în cadrul secțiunii „<strong>$5</strong>”.",
 	"notification-header-flow-topic-resolved": "Subiectul „<strong>$1</strong>” a fost rezolvat.",
 	"notification-header-flow-topic-resolved-user-talk": "Subiectul „<strong>$1</strong>” a fost rezolvat pe <strong> pagina {{GENDER:$2|dvs.}} de discuție</strong>.",
