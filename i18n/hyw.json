@@ -15,6 +15,7 @@
 	"flow-topic-action-view": "Մշտական յղում",
 	"flow-topic-action-watchlist": "Հսկողութեան ցանկ",
 	"flow-topic-action-undo-moderation": "Յետարկել",
+	"flow-error-protected-unknown-reason": "Անյայտ",
 	"flow-undo": "յետարկել",
 	"flow-undo-latest-revision": "Վերջին տարբերակ",
 	"flow-mark-revision-patrolled-link-title": "Էջը նշել իբրեւ ստուգուած էջ"
