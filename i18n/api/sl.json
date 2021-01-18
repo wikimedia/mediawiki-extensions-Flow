@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Dbc334",
+			"Eleassar",
 			"Janezdrilc"
 		]
 	},
@@ -24,7 +25,7 @@
 	"apihelp-flow+edit-post-description": "Uredi vsebino sporočila.",
 	"apihelp-flow+edit-post-summary": "Uredi vsebino sporočila.",
 	"apihelp-flow+edit-post-param-postId": "ID sporočila.",
-	"apihelp-flow+edit-post-param-prev_revision": "ID trenutne redakcije sporočila, za preverjanje navzkrižnih urejanj.",
+	"apihelp-flow+edit-post-param-prev_revision": "ID trenutne redakcije sporočila za preverjanje navzkrižnih urejanj.",
 	"apihelp-flow+edit-post-param-content": "Vsebina sporočila.",
 	"apihelp-flow+edit-post-param-format": "Format sporočila (wikibesedilo|html)",
 	"apihelp-flow+edit-post-example-1": "Uredi sporočilo v [[Topic:S2tycnas4hcucw8w]]",
@@ -47,7 +48,7 @@
 	"apihelp-flow+moderate-post-summary": "Moderira sporočilo Strukturiranih pogovorov.",
 	"apihelp-flow+moderate-post-param-moderationState": "Raven moderiranja.",
 	"apihelp-flow+moderate-post-param-reason": "Razlog za moderiranje.",
-	"apihelp-flow+moderate-post-param-postId": "ID sporočila za moderacijo.",
+	"apihelp-flow+moderate-post-param-postId": "ID sporočila za moderiranje.",
 	"apihelp-flow+moderate-post-example-1": "Izbriši sporočilo na temo [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-topic-description": "Moderira temo Strukturiranih pogovorov.",
 	"apihelp-flow+moderate-topic-summary": "Moderira temo Strukturiranih pogovorov.",
