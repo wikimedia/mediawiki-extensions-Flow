@@ -511,7 +511,7 @@
 	"flow-guidedtour-optin-find-old-conversations": "Trova {{GENDER:$1|i to}} conversazzion vegge",
 	"flow-guidedtour-optin-find-old-conversations-description": "I to conversazzion passade, a inn stade spostade in una pagina de archivi.",
 	"flow-guidedtour-optin-feedback": "Dann {{GENDER:$1|el to}} parer!",
-	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Te poden}} conoss di alter informazzion, met giò el to parer, o disativà el noeuv sistema quand che te voeuret in la sezzin di fonzion sperimentai.",
+	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Te poden}} conoss di alter informazzion, met sgiò el to parer, o disativà el noeuv sistema quand che te voeuret in la sezzin di fonzion sperimentai.",
 	"flow-action-not-page": "L'ogget de la pagina l'è un'istanza de la classe sbagliada",
 	"flow-action-wrong-title-content-model": "La pagina la ven manesgiada de Discussion Struturade, ma la class del titol l'indica che el model de contegnud l'è '$1'. Se trata d'un eror de impostazzion o d'un stat minga coerent. Per esempi, quest el po vesser nondemen una pagina minga-Discussion Struturade in un spazzi de scritura-Discussion Struturade, con <code>rev_content_model</code> minga popolad.",
 	"flow-preference-visualeditor": "Ativa l'editor visual e 'l moeud wikitest noeuv in Discussion Struturade"

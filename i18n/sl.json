@@ -91,7 +91,7 @@
 	"flow-reply-link": "{{GENDER:$1|Odgovori}}",
 	"flow-reply-link-anonymously": "Odgovori anonimno",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Zahvala}}}}",
-	"flow-thank-link-title": "Javna zahvala avtorju sporočila",
+	"flow-thank-link-title": "Javna zahvala {{GENDER:$1|{{GENDER:$2|avtorju|avtorici}}}} sporočila",
 	"flow-history-action-suppress-post": "ukini",
 	"flow-history-action-delete-post": "izbriši",
 	"flow-history-action-hide-post": "skrij",
