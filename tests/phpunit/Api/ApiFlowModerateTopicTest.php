@@ -14,6 +14,7 @@ use Flow\Model\AbstractRevision;
  * @group Database
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',

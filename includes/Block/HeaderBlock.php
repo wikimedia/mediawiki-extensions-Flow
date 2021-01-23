@@ -242,6 +242,8 @@ class HeaderBlock extends AbstractBlock {
 
 	/**
 	 * @todo Duplicated logic in other diff view block
+	 * @param array $options
+	 * @return array
 	 */
 	protected function renderDiffviewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) || !is_string( $options['newRevision'] ) ) {
@@ -264,6 +266,8 @@ class HeaderBlock extends AbstractBlock {
 
 	/**
 	 * @todo Duplicated logic in other single view block
+	 * @param int $revId
+	 * @return array
 	 */
 	protected function renderSingleViewApi( $revId ) {
 		/** @var HeaderViewQuery $query */

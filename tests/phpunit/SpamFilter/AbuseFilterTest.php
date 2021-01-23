@@ -26,11 +26,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 */
 	protected $spamFilter;
 
-	/**
-	 * @var array
-	 */
+	/** @inheritDoc */
 	protected $tablesUsed = [ 'abuse_filter', 'abuse_filter_action', 'abuse_filter_history', 'abuse_filter_log' ];
 
+	/** @var string[] */
 	protected $filters = [
 		// no CSS screen hijack
 		'(new_wikitext rlike "position\s*:\s*(fixed|absolute)|style\s*=\s*\"[a-z0-9:;\s]*&|z-index\s*:\s*\d|\|([4-9]\d{3}|\d{5,})px")' => 'disallow',

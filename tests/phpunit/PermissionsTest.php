@@ -18,9 +18,7 @@ use User;
  * @group Flow
  */
 class PermissionsTest extends PostRevisionTestCase {
-	/**
-	 * @var array
-	 */
+	/** @inheritDoc */
 	protected $tablesUsed = [ 'user', 'user_groups' ];
 
 	/**

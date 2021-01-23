@@ -26,9 +26,7 @@ use Title;
  * @group Database
  */
 class LinksTableTest extends PostRevisionTestCase {
-	/**
-	 * @var array
-	 */
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		'flow_ext_ref',
 		'flow_revision',

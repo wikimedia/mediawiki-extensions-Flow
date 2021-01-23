@@ -52,6 +52,9 @@ class WorkflowTopicListListener extends AbstractListener {
 	 * Is this necessary? It seems it doesn't find anything since the topic workflow is
 	 * inserted before TopicListEntry (TLE), but then there is a direct listener on the
 	 * TLE insertion so it shouldn't be needed.
+	 * @param object $object
+	 * @param array $new
+	 * @param array $metadata
 	 */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );

@@ -14,6 +14,7 @@ use Title;
  */
 class UrlGeneratorTest extends FlowTestCase {
 
+	/** @var UrlGenerator */
 	protected $urlGenerator;
 
 	protected function setUp() : void {

@@ -453,6 +453,9 @@ class PagerTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * @param mixed $return
+	 * @param mixed $offset
+	 * @param string[] $sort
 	 * @return ObjectManager
 	 */
 	protected function mockStorage( $return, $offset, $sort ) {
@@ -482,6 +485,7 @@ class PagerTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * @param string[] $sort
 	 * @return TopKIndex
 	 */
 	protected function mockIndex( $sort ) {

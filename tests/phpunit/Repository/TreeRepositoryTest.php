@@ -14,7 +14,9 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class TreeRepositoryTest extends FlowTestCase {
 
+	/** @var UUID */
 	protected $ancestor;
+	/** @var UUID */
 	protected $descendant;
 
 	protected function setUp() : void {

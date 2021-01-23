@@ -21,6 +21,7 @@ use User;
  * @group Database
  */
 class NotifiedUsersTest extends PostRevisionTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		'echo_event',
 		'echo_notification',

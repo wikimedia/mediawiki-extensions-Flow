@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @group Flow
  */
 class RevisionStorageTest extends FlowTestCase {
+	/** @var string[] */
 	protected $BEFORE_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
@@ -23,6 +24,7 @@ class RevisionStorageTest extends FlowTestCase {
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
+	/** @var string[] */
 	protected $AFTER_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
@@ -30,10 +32,12 @@ class RevisionStorageTest extends FlowTestCase {
 		'rev_mod_user_wiki' => 'testwiki',
 	];
 
+	/** @var string[] */
 	protected $WITHOUT_CONTENT_CHANGE_DIFF = [
 		'rev_mod_user_wiki' => 'testwiki',
 	];
 
+	/** @var string[] */
 	protected $BEFORE_WITH_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/249',
 		'rev_content' => 'Hello, world!<span onclick="alert(\'Hacked\');">Test</span>',
@@ -41,6 +45,7 @@ class RevisionStorageTest extends FlowTestCase {
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
+	/** @var string[] */
 	protected $AFTER_WITH_CONTENT_CHANGE = [
 		// URL is deliberately stale here; since the column diff shows a content
 		// change, processExternalContent is in charge of updating the URL.
@@ -50,11 +55,13 @@ class RevisionStorageTest extends FlowTestCase {
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
+	/** @var string[] */
 	protected $WITH_CONTENT_CHANGE_DIFF = [
 		'rev_content' => 'FlowMock://location1/1',
 		'rev_flags' => 'external',
 	];
 
+	/** @var string[] */
 	protected $MOCK_EXTERNAL_STORE_CONFIG = [
 		'FlowMock://location1',
 	];
@@ -153,6 +160,10 @@ class RevisionStorageTest extends FlowTestCase {
 
 	/**
 	 * A rev ID will be added to $old and $new automatically.
+	 * @param array $old
+	 * @param array $new
+	 * @param array $expectedUpdateValues
+	 * @param bool $isContentUpdatingAllowed
 	 */
 	protected function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
 		$dbw = $this->createMock( IDatabase::class );
