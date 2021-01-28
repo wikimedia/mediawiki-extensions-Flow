@@ -185,7 +185,7 @@
 	"flow-error-default": "A l'è capità un eror.",
 	"flow-error-invalid-input": "A l'è stad fornid un valor minga bon per el caregament di contegnud di Discussion Struturade.",
 	"flow-error-invalid-title": "A l'è stad fornid un titol de la pagina minga valid.",
-	"flow-error-invalid-parameter": "Parametro mancant o minga bon ind la ciamada al metod",
+	"flow-error-invalid-parameter": "Parametro mancant o minga bon in de la ciamada al metod",
 	"flow-error-fail-load-history": "Caregament de la cronologia fallad.",
 	"flow-error-missing-revision": "A l'è minga possibil trovà una revision per caregà i contegnud di Discussion Struturade.",
 	"flow-error-fail-commit": "Impossibil salvà el contegnud di Discussion Struturade.",
