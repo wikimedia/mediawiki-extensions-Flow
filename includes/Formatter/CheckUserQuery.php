@@ -26,23 +26,27 @@ class CheckUserQuery extends AbstractQuery {
 				continue;
 			}
 
-			$ids = self::extractIds( $row );
+			$ids = self::extractActionAndIds( $row );
 			if ( !$ids ) {
 				continue;
 			}
 
 			/** @noinspection PhpUnusedLocalVariableInspection */
-			list( $workflowId, $revisionId, $postId ) = $ids;
+			list( $action, $workflowId, $revisionId ) = $ids;
 
-			/*
-			 * We'll load all revisions based on their revision id. There could
-			 * be revisions from multiple models, so figure out what the id
-			 * actually belongs to.
-			 * This isn't really the most robust way to identify a revision
-			 * type, but it'll work for now.
-			 */
-			$revisionType = $postId ? 'PostRevision' : 'Header';
-			$needed[$revisionType][] = $revisionId;
+			switch ( $action ) {
+				case 'create-topic-summary':
+				case 'edit-topic-summary':
+					$needed['PostSummary'][] = $revisionId;
+					break;
+				case 'create-header':
+				case 'edit-header':
+					$needed['Header'][] = $revisionId;
+					break;
+				default:
+					$needed['PostRevision'][] = $revisionId;
+					break;
+			}
 		}
 
 		$found = [];
@@ -74,13 +78,13 @@ class CheckUserQuery extends AbstractQuery {
 			return false;
 		}
 
-		$ids = self::extractIds( $row );
+		$ids = self::extractActionAndIds( $row );
 		if ( !$ids ) {
 			return false;
 		}
 
-		// order of $ids is (workflowId, revisionId, postId)
-		$alpha = $ids[1]->getAlphadecimal();
+		// order of $ids is (workflowId, revisionId)
+		$alpha = $ids[2]->getAlphadecimal();
 		if ( !isset( $this->revisionCache[$alpha] ) ) {
 			throw new FlowException( "Revision not found in revisionCache: $alpha" );
 		}
@@ -98,10 +102,9 @@ class CheckUserQuery extends AbstractQuery {
 	 * format.
 	 *
 	 * @param \StdClass $row
-	 * @return (UUID|null)[]|false Array with workflow, revision & post id (when
-	 *  applicable), or false on error
+	 * @return false|array{0:string,1:UUID,2:UUID} Array with workflow and revision id, or false on error
 	 */
-	protected function extractIds( $row ) {
+	protected function extractActionAndIds( $row ) {
 		$data = explode( ',', $row->cuc_comment );
 
 		// anything not prefixed v1 is a pre-versioned check user comment
@@ -113,24 +116,20 @@ class CheckUserQuery extends AbstractQuery {
 		// remove the version specifier
 		array_shift( $data );
 
+		$action = array_shift( $data );
 		$revisionId = null;
 		$workflowId = null;
-		$postId = null;
 		switch ( count( $data ) ) {
-			/** @noinspection PhpMissingBreakStatementInspection */
-			case 4:
-				$postId = UUID::create( $data[3] );
-			// fall-through to 3 parameter case
-			case 3:
-				$revisionId = UUID::create( $data[2] );
-				$workflowId = UUID::create( $data[1] );
+			case 2:
+				$revisionId = UUID::create( $data[1] );
+				$workflowId = UUID::create( $data[0] );
 				break;
 			default:
-				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of parameters received from cuc_comment.' .
-					' Expected 2 or 3 but received ' . count( $data ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of ids received from cuc_comment.' .
+					' Expected 2 but received ' . count( $data ) );
 				return false;
 		}
 
-		return [ $workflowId, $revisionId, $postId ];
+		return [ $action, $workflowId, $revisionId ];
 	}
 }

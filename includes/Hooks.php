@@ -1174,9 +1174,6 @@ class Hooks {
 		$comment .= ',' . $change['action'];
 		$comment .= ',' . $change['workflow'];
 		$comment .= ',' . $change['revision'];
-		if ( isset( $change['post'] ) ) {
-			$comment .= ',' . $change['post'];
-		}
 
 		$rcRow['cuc_comment'] = $comment;
 	}
