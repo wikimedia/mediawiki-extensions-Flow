@@ -140,6 +140,6 @@ class PostCollectionTest extends PostRevisionTestCase {
 
 		$revisions = $collection->getAllRevisions();
 
-		$this->assertEquals( count( $this->revisions ), count( $revisions ) );
+		$this->assertCount( count( $this->revisions ), $revisions );
 	}
 }

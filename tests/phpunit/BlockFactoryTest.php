@@ -45,7 +45,7 @@ class BlockFactoryTest extends FlowTestCase {
 		$workflow = $this->mockWorkflow( $workflowType );
 
 		$blocks = $factory->createBlocks( $workflow );
-		$this->assertEquals( count( $blocks ), count( $expectedResults ) );
+		$this->assertCount( count( $blocks ), $expectedResults );
 
 		$results = [];
 		foreach ( $blocks as $obj ) {

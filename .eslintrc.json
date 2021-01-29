@@ -16,6 +16,7 @@
 		"no-use-before-define": "off",
 		"max-len": "off",
 		"mediawiki/class-doc": "warn",
-		"no-shadow": "warn"
+		"no-shadow": "warn",
+		"compat/compat": "warn"
 	}
 }
