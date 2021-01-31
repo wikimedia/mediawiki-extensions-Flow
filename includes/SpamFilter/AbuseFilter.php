@@ -3,11 +3,18 @@
 namespace Flow\SpamFilter;
 
 use ExtensionRegistry;
+use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
+use Flow\Model\UUID;
 use IContextSource;
 use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
+use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
+use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
+use RecentChange;
 use Status;
 use Title;
+use User;
 
 class AbuseFilter implements SpamFilter {
 	/**
@@ -78,7 +85,7 @@ class AbuseFilter implements SpamFilter {
 			->addTitleVars( $ownerTitle, 'board' )
 			->getVariableHolder();
 
-		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
+		$vars->setVar( 'action', $newRevision->getChangeType() );
 
 		/*
 		 * This should not roundtrip to Parsoid; AbuseFilter checks will be
@@ -87,7 +94,6 @@ class AbuseFilter implements SpamFilter {
 		 * saved to DB.
 		 */
 		$vars->setLazyLoadVar( 'new_wikitext', 'FlowRevisionContent', [ 'revision' => $newRevision ] );
-		$vars->setLazyLoadVar( 'new_size', 'length', [ 'length-var' => 'new_wikitext' ] );
 
 		/*
 		 * This may roundtrip to Parsoid if content is stored in HTML.
@@ -95,9 +101,43 @@ class AbuseFilter implements SpamFilter {
 		 * variable is actually used.
 		 */
 		$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', [ 'revision' => $oldRevision ] );
-		$vars->setLazyLoadVar( 'old_size', 'length', [ 'length-var' => 'old_wikitext' ] );
 
 		return \AbuseFilter::filterAction( $vars, $title, $this->group, $context->getUser() );
+	}
+
+	/**
+	 * @see RCVariableGenerator::addEditVarsForRow()
+	 * @param RecentChange $recentChange
+	 * @param VariableHolder $vars
+	 * @param User $contextUser
+	 */
+	public function generateRecentChangesVars(
+		RecentChange $recentChange,
+		VariableHolder $vars,
+		User $contextUser
+	) : void {
+		$changeData = $recentChange->parseParams()['flow-workflow-change'];
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		/** @var AbstractRevision $rev */
+		$rev = $storage->get( $changeData['revision_type'], UUID::create( $changeData['revision'] ) );
+
+		$vars->setVar( 'action', $rev->getChangeType() );
+		$vars->setLazyLoadVar( 'new_wikitext', 'FlowRevisionContent', [ 'revision' => $rev ] );
+
+		$prevRev = $rev->getCollection()->getPrevRevision( $rev );
+		if ( $prevRev ) {
+			$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', [ 'revision' => $prevRev ] );
+		} else {
+			$vars->setVar( 'old_wikitext', '' );
+		}
+
+		$title = $recentChange->getTitle();
+		AbuseFilterServices::getVariableGeneratorFactory()->newGenerator( $vars )
+			->addUserVars( $recentChange->getPerformer() )
+			->addTitleVars( $title, 'page' )
+			->addTitleVars( $rev->getCollection()->getWorkflow()->getOwnerTitle(), 'board' )
+			->addEditVars( \WikiPage::factory( $title ), $contextUser );
 	}
 
 	/**
