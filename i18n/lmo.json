@@ -36,7 +36,7 @@
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "{{GENDER:$2|El $1|La $1|El/La $1}} l'hà dervid de noeuv un argoment in su [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] in su [[$3]] a l'è stad importad de LiquidThreads a Discussion Struturade",
 	"abusefilter-edit-builder-vars-board-id": "ID de la pagina de la vedrina di discussion struturade",
-	"abusefilter-edit-builder-vars-board-namespace": "Spazzi de scritura de la bacheca di Discussion Struturade",
+	"abusefilter-edit-builder-vars-board-namespace": "Spazzi di nom de la bacheca di Discussion Struturade",
 	"abusefilter-edit-builder-vars-board-title": "Titol de la vedrina de discussion struturade",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Titol complet de la vedrina di Discussion Struturade",
 	"flow-user-moderated": "Utent moderad",
@@ -204,7 +204,7 @@
 	"flow-error-content-too-long": "El contegnud l'è trop grand. El contegnud dopo de l'espansion el gh'hà de vesser de men de $1 {{PLURAL:$1|byte|bytes}}.",
 	"flow-error-move-topic": "Adesedess el spostament di pagine d'un argoment a l'è minga suportad.",
 	"flow-error-invalid-topic-uuid-title": "Titol minga bon",
-	"flow-error-invalid-topic-uuid": "El titol de la pagina ciamad a l'è minga valid. I pagine del spazzi de scritura Topic a inn creade in automatich di Discussion Struturade.",
+	"flow-error-invalid-topic-uuid": "El titol de la pagina ciamad a l'è minga valid. I pagine del spazzi di nom Topic a inn creade in automatich di Discussion Struturade.",
 	"flow-error-unknown-workflow-id-title": "Argoment conossud de nissun",
 	"flow-error-unknown-workflow-id": "L'argoment che t'hee ciamad a l'esist minga.",
 	"flow-error-search": "A l'è stad minga possibil completà la toa ricerca per via d'una problema temporani. Prova anmò pussee tard.",
@@ -513,6 +513,6 @@
 	"flow-guidedtour-optin-feedback": "Dann {{GENDER:$1|el to}} parer!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Te poden}} conoss di alter informazzion, met sgiò el to parer, o disativà el noeuv sistema quand che te voeuret in la sezzin di fonzion sperimentai.",
 	"flow-action-not-page": "L'ogget de la pagina l'è un'istanza de la classe sbagliada",
-	"flow-action-wrong-title-content-model": "La pagina la ven manesgiada de Discussion Struturade, ma la class del titol l'indica che el model de contegnud l'è '$1'. Se trata d'un eror de impostazzion o d'un stat minga coerent. Per esempi, quest el po vesser nondemen una pagina minga-Discussion Struturade in un spazzi de scritura-Discussion Struturade, con <code>rev_content_model</code> minga popolad.",
+	"flow-action-wrong-title-content-model": "La pagina la ven manesgiada de Discussion Struturade, ma la class del titol l'indica che el model de contegnud l'è '$1'. Se trata d'un eror de impostazzion o d'un stat minga coerent. Per esempi, quest el po vesser nondemen una pagina minga-Discussion Struturade in un spazzi di nom-Discussion Struturade, con <code>rev_content_model</code> minga popolad.",
 	"flow-preference-visualeditor": "Ativa l'editor visual e 'l moeud wikitest noeuv in Discussion Struturade"
 }

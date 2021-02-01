@@ -1,9 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"NGC 54"
+			"NGC 54",
+			"Strainu"
 		]
 	},
+	"apihelp-flow+edit-title-description": "Editează titlul unui subiect.",
+	"apihelp-flow+edit-title-summary": "Editează titlul unui subiect.",
+	"apihelp-flow+edit-topic-summary-param-format": "Formatul rezumatului (wikitext|html)",
+	"apihelp-flow+moderate-topic-param-reason": "Motiv pentru moderare.",
+	"apihelp-flow+moderate-topic-example-1": "Șterge subiectul [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+new-topic-param-topic": "Text pentru titlul noului subiect.",
 	"apihelp-flow+reply-description": "Răspunsuri la un mesaj.",
 	"apihelp-flow+reply-summary": "Răspunsuri la un mesaj.",
