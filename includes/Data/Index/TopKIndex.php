@@ -221,11 +221,12 @@ class TopKIndex extends FeatureIndex {
 	 * cached rows, we need to normalize those to make sure the
 	 * columns match: they may be outdated.
 	 *
+	 * INTERNAL: in 5.4 it can be protected.
+	 *
 	 * @param array $row Array in [column => value] format
 	 * @param array $schema Array of column names to be present in $row
 	 * @return array
 	 */
-	// INTERNAL: in 5.4 it can be protected
 	public function normalizeCompressed( array $row, array $schema ) {
 		$schema = array_fill_keys( $schema, null );
 
@@ -238,7 +239,12 @@ class TopKIndex extends FeatureIndex {
 		return $row;
 	}
 
-	// INTERNAL: in 5.4 it can be protected
+	/**
+	 * INTERNAL: in 5.4 it can be protected.
+	 *
+	 * @param array $values
+	 * @return array
+	 */
 	public function sortIndex( array $values ) {
 		// I don't think this is a valid way to sort a 128bit integer string
 		$callback = new SortArrayByKeys( $this->options['sort'], true );
@@ -250,12 +256,21 @@ class TopKIndex extends FeatureIndex {
 		return $values;
 	}
 
-	// INTERNAL: in 5.4 it can be protected
+	/**
+	 * INTERNAL: in 5.4 it can be protected.
+	 *
+	 * @param array $values
+	 * @return array
+	 */
 	public function limitIndexSize( array $values ) {
 		return array_slice( $values, 0, $this->options['limit'] );
 	}
 
-	// INTERNAL: in 5.4 it can be protected
+	/**
+	 * INTERNAL: in 5.4 it can be protected.
+	 *
+	 * @return array
+	 */
 	public function queryOptions() {
 		$options = [ 'LIMIT' => $this->options['limit'] ];
 

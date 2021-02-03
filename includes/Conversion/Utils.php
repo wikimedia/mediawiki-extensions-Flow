@@ -577,7 +577,9 @@ abstract class Utils {
 		return Title::newFromText( $text );
 	}
 
-	// @todo move into FauxRequest
+	/**
+	 * @todo move into FauxRequest
+	 */
 	public static function generateForwardedCookieForCli() {
 		global $wgCookiePrefix;
 

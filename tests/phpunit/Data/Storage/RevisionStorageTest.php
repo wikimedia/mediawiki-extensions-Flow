@@ -151,7 +151,9 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 	}
 
-	// A rev ID will be added to $old and $new automatically.
+	/**
+	 * A rev ID will be added to $old and $new automatically.
+	 */
 	protected function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
 		$dbw = $this->createMock( IDatabase::class );
 		$factory = $this->getMockBuilder( \Flow\DbFactory::class )

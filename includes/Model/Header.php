@@ -6,7 +6,7 @@ use Flow\Collection\HeaderCollection;
 use User;
 
 /**
- * @Todo - Header is just a summary to the discussion workflow, it could be just
+ * @todo Header is just a summary to the discussion workflow, it could be just
  * migrated to Summary revision with rev_change_type: create-header-summary,
  * edit-header-summary
  */

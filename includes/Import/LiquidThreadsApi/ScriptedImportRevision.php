@@ -55,9 +55,11 @@ class ScriptedImportRevision implements IObjectRevision {
 		return $this->destinationScriptUser->getName();
 	}
 
-	// XXX: This is called but never used, but if it were, including getText and getAuthor in
-	// the key might not be desirable, because we don't necessarily want to re-import
-	// the revision when these change.
+	/**
+	 * XXX: This is called but never used, but if it were, including getText and getAuthor in
+	 * the key might not be desirable, because we don't necessarily want to re-import
+	 * the revision when these change.
+	 */
 	public function getObjectKey() {
 		return $this->parent->getObjectKey() . ':rev:scripted:' . md5(
 				$this->getText() . $this->getAuthor()

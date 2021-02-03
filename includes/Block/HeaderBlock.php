@@ -240,7 +240,9 @@ class HeaderBlock extends AbstractBlock {
 		return $output;
 	}
 
-	// @Todo - duplicated logic in other diff view block
+	/**
+	 * @todo Duplicated logic in other diff view block
+	 */
 	protected function renderDiffviewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) || !is_string( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A valid revision must be provided for comparison', 'revision-comparison' );
@@ -260,7 +262,9 @@ class HeaderBlock extends AbstractBlock {
 		];
 	}
 
-	// @Todo - duplicated logic in other single view block
+	/**
+	 * @todo Duplicated logic in other single view block
+	 */
 	protected function renderSingleViewApi( $revId ) {
 		/** @var HeaderViewQuery $query */
 		$query = Container::get( 'query.header.view' );

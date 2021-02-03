@@ -132,7 +132,6 @@ EOD
 	/**
 	 * @group Broken
 	 * @dataProvider provideArchiveCleanupRevisionContent
-	 * @param string $content
 	 */
 	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {

@@ -604,7 +604,9 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	// @Todo - duplicated logic in other diff view block
+	/**
+	 * @todo Duplicated logic in other diff view block
+	 */
 	protected function renderDiffViewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) ) {
 			throw new InvalidInputException( 'A revision must be provided for comparison',
@@ -623,7 +625,9 @@ class TopicBlock extends AbstractBlock {
 		];
 	}
 
-	// @Todo - duplicated logic in other single view block
+	/**
+	 * @todo Duplicated logic in other single view block
+	 */
 	protected function renderSingleViewApi( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
 

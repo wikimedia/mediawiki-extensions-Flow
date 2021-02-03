@@ -486,7 +486,7 @@ class UrlGenerator {
 
 	/**
 	 * Watch topic link
-	 * @todo - replace title with a flow topic namespace topic
+	 * @todo Replace title with a flow topic namespace topic
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId
@@ -502,7 +502,7 @@ class UrlGenerator {
 
 	/**
 	 * Unwatch topic link
-	 * @todo - replace title with a flow topic namespace topic
+	 * @todo Replace title with a flow topic namespace topic
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId

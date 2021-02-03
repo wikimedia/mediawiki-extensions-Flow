@@ -31,7 +31,7 @@ abstract class RevisionStorage extends DbStorage {
 	/**
 	 * @inheritDoc
 	 *
-	 * @Todo - This may not be necessary anymore since we don't update historical
+	 * @todo This may not be necessary anymore since we don't update historical
 	 * revisions ( flow_revision ) during moderation
 	 */
 	protected $obsoleteUpdateColumns = [

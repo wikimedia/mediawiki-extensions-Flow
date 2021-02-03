@@ -103,6 +103,10 @@ class HistoryPager extends \ReverseChronologicalPager {
 
 	// abstract functions required to extend ReverseChronologicalPager
 
+	/**
+	 * @param array|\stdClass $row
+	 * @throws FlowException
+	 */
 	public function formatRow( $row ) {
 		throw new FlowException( __METHOD__ . ' is not implemented.' );
 	}
