@@ -25,18 +25,6 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	/** @var User */
 	protected $user;
 
-	/** @var PostRevision */
-	protected $topicTitleRevisionUnspecified;
-
-	/** @var PostRevision */
-	protected $topicTitleRevisionSpecified;
-
-	/** @var PostRevision */
-	protected $postRevisionUnspecified;
-
-	/** @var PostRevision */
-	protected $postRevisionSpecified;
-
 	protected function setUp() : void {
 		parent::setUp();
 
