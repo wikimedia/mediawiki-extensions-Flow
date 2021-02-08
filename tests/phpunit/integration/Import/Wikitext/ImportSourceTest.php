@@ -22,6 +22,7 @@ use WikitextContent;
  */
 class ImportSourceTest extends \MediaWikiTestCase {
 
+	/** @inheritDoc */
 	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];
 
 	protected function setUp() : void {

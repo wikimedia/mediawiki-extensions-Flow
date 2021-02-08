@@ -31,6 +31,7 @@ use User;
  * @group Database
  */
 class TalkpageImportOperationTest extends \MediaWikiTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [
 		// importer will ensureFlowRevision(), which will insert into these core tables
 		'page',

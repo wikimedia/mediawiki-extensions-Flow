@@ -606,6 +606,8 @@ class TopicBlock extends AbstractBlock {
 
 	/**
 	 * @todo Duplicated logic in other diff view block
+	 * @param array $options
+	 * @return array
 	 */
 	protected function renderDiffViewApi( array $options ) {
 		if ( !isset( $options['newRevision'] ) ) {
@@ -627,6 +629,8 @@ class TopicBlock extends AbstractBlock {
 
 	/**
 	 * @todo Duplicated logic in other single view block
+	 * @param int $revId
+	 * @return array
 	 */
 	protected function renderSingleViewApi( $revId ) {
 		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );

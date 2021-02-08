@@ -579,6 +579,7 @@ abstract class Utils {
 
 	/**
 	 * @todo move into FauxRequest
+	 * @return string
 	 */
 	public static function generateForwardedCookieForCli() {
 		global $wgCookiePrefix;

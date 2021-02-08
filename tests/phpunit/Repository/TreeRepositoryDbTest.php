@@ -13,6 +13,7 @@ use Flow\Tests\FlowTestCase;
  * @group Database
  */
 class TreeRepositoryDbTest extends FlowTestCase {
+	/** @inheritDoc */
 	protected $tablesUsed = [ 'flow_tree_node' ];
 
 	public function testSomething() {
