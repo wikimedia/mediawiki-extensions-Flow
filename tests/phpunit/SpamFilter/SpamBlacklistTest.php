@@ -28,19 +28,15 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	 *
 	 * @see http://meta.wikimedia.org/wiki/Spam_blacklist
 	 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-blacklist
-	 *
-	 * @var array
 	 */
-	protected $blacklist = [ '\b01bags\.com\b', 'sytes\.net' ];
+	private const BLACKLIST = [ '\b01bags\.com\b', 'sytes\.net' ];
 
 	/**
 	 * Spam whitelist regexes. Examples taken from:
 	 *
 	 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-whitelist
-	 *
-	 * @var array
 	 */
-	protected $whitelist = [ 'a5b\.sytes\.net' ];
+	private const WHITELIST = [ 'a5b\.sytes\.net' ];
 
 	public function spamProvider() {
 		return [
@@ -93,8 +89,8 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		BaseBlacklist::clearInstanceCache();
 
 		MediaWikiServices::getInstance()->getMessageCache()->enable();
-		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", $this->blacklist ) );
-		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", $this->whitelist ) );
+		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", self::BLACKLIST ) );
+		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", self::WHITELIST ) );
 
 		// That only works if the spam blacklist is really reset
 		$instance = BaseBlacklist::getSpamBlacklist();

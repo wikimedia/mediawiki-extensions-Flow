@@ -29,8 +29,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'abuse_filter', 'abuse_filter_action', 'abuse_filter_history', 'abuse_filter_log' ];
 
-	/** @var string[] */
-	protected $filters = [
+	private const FILTERS = [
 		// no CSS screen hijack
 		'(new_wikitext rlike "position\s*:\s*(fixed|absolute)|style\s*=\s*\"[a-z0-9:;\s]*&|z-index\s*:\s*\d|\|([4-9]\d{3}|\d{5,})px")' => 'disallow',
 		'(page_prefixedtitle === "Topic:Tnprd6ksfu1v1nme" & page_prefixedtitle === article_prefixedtext)' => 'disallow',
@@ -128,7 +127,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			'age' => $wgFlowAbuseFilterEmergencyDisableAge,
 		] );
 
-		foreach ( $this->filters as $pattern => $action ) {
+		foreach ( self::FILTERS as $pattern => $action ) {
 			$this->createFilter( $pattern, $action );
 		}
 	}

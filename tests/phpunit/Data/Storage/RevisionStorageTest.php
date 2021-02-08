@@ -16,37 +16,32 @@ use Wikimedia\Rdbms\IDatabase;
  * @group Flow
  */
 class RevisionStorageTest extends FlowTestCase {
-	/** @var string[] */
-	protected $BEFORE_WITHOUT_CONTENT_CHANGE = [
+	private const BEFORE_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
-	/** @var string[] */
-	protected $AFTER_WITHOUT_CONTENT_CHANGE = [
+	private const AFTER_WITHOUT_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/345',
 		'rev_content' => 'Hello, world!',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'testwiki',
 	];
 
-	/** @var string[] */
-	protected $WITHOUT_CONTENT_CHANGE_DIFF = [
+	private const WITHOUT_CONTENT_CHANGE_DIFF = [
 		'rev_mod_user_wiki' => 'testwiki',
 	];
 
-	/** @var string[] */
-	protected $BEFORE_WITH_CONTENT_CHANGE = [
+	private const BEFORE_WITH_CONTENT_CHANGE = [
 		'rev_content_url' => 'FlowMock://location1/249',
 		'rev_content' => 'Hello, world!<span onclick="alert(\'Hacked\');">Test</span>',
 		'rev_type' => 'reply',
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
-	/** @var string[] */
-	protected $AFTER_WITH_CONTENT_CHANGE = [
+	private const AFTER_WITH_CONTENT_CHANGE = [
 		// URL is deliberately stale here; since the column diff shows a content
 		// change, processExternalContent is in charge of updating the URL.
 		'rev_content_url' => 'FlowMock://location1/249',
@@ -55,14 +50,12 @@ class RevisionStorageTest extends FlowTestCase {
 		'rev_mod_user_wiki' => 'devwiki',
 	];
 
-	/** @var string[] */
-	protected $WITH_CONTENT_CHANGE_DIFF = [
+	private const WITH_CONTENT_CHANGE_DIFF = [
 		'rev_content' => 'FlowMock://location1/1',
 		'rev_flags' => 'external',
 	];
 
-	/** @var string[] */
-	protected $MOCK_EXTERNAL_STORE_CONFIG = [
+	private const MOCK_EXTERNAL_STORE_CONFIG = [
 		'FlowMock://location1',
 	];
 
@@ -80,7 +73,7 @@ class RevisionStorageTest extends FlowTestCase {
 	public function testCalcUpdatesWithoutContentChangeWhenAllowed() {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( true );
 
-		$diff = $revStorage->calcUpdates( $this->BEFORE_WITHOUT_CONTENT_CHANGE, $this->AFTER_WITHOUT_CONTENT_CHANGE );
+		$diff = $revStorage->calcUpdates( self::BEFORE_WITHOUT_CONTENT_CHANGE, self::AFTER_WITHOUT_CONTENT_CHANGE );
 
 		$this->assertFalse(
 			\ExternalStoreFlowMock::$isUsed,
@@ -88,7 +81,7 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 
 		$this->assertSame(
-			$this->WITHOUT_CONTENT_CHANGE_DIFF,
+			self::WITHOUT_CONTENT_CHANGE_DIFF,
 			$diff,
 			'When content changes are allowed, but there is no content change, content columns are not included in the diff'
 		);
@@ -97,7 +90,7 @@ class RevisionStorageTest extends FlowTestCase {
 	public function testCalcUpdatesWithContentChangeWhenAllowed() {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( true );
 
-		$diff = $revStorage->calcUpdates( $this->BEFORE_WITH_CONTENT_CHANGE, $this->AFTER_WITH_CONTENT_CHANGE );
+		$diff = $revStorage->calcUpdates( self::BEFORE_WITH_CONTENT_CHANGE, self::AFTER_WITH_CONTENT_CHANGE );
 
 		$this->assertTrue(
 			\ExternalStoreFlowMock::$isUsed,
@@ -105,7 +98,7 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 
 		$this->assertSame(
-			$this->WITH_CONTENT_CHANGE_DIFF,
+			self::WITH_CONTENT_CHANGE_DIFF,
 			$diff,
 			'When content changes are allowed, and there is a content change, the diff shows the updated URL'
 		);
@@ -114,7 +107,7 @@ class RevisionStorageTest extends FlowTestCase {
 	public function testCalcUpdatesWithoutContentChangeWhenNotAllowed() {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( false );
 
-		$diff = $revStorage->calcUpdates( $this->BEFORE_WITHOUT_CONTENT_CHANGE, $this->AFTER_WITHOUT_CONTENT_CHANGE );
+		$diff = $revStorage->calcUpdates( self::BEFORE_WITHOUT_CONTENT_CHANGE, self::AFTER_WITHOUT_CONTENT_CHANGE );
 
 		$this->assertFalse(
 			\ExternalStoreFlowMock::$isUsed,
@@ -122,7 +115,7 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 
 		$this->assertSame(
-			$this->WITHOUT_CONTENT_CHANGE_DIFF,
+			self::WITHOUT_CONTENT_CHANGE_DIFF,
 			$diff,
 			'When content changes are not allowed, and there is no content change, content columns are not included in the diff'
 		);
@@ -132,14 +125,14 @@ class RevisionStorageTest extends FlowTestCase {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( false );
 
 		$this->expectException( \Flow\Exception\DataModelException::class );
-		$revStorage->calcUpdates( $this->BEFORE_WITH_CONTENT_CHANGE, $this->AFTER_WITH_CONTENT_CHANGE );
+		$revStorage->calcUpdates( self::BEFORE_WITH_CONTENT_CHANGE, self::AFTER_WITH_CONTENT_CHANGE );
 	}
 
 	public function testUpdatingContentWhenAllowed() {
 		$this->helperToTestUpdating(
-			$this->BEFORE_WITH_CONTENT_CHANGE,
-			$this->AFTER_WITH_CONTENT_CHANGE,
-			$this->WITH_CONTENT_CHANGE_DIFF,
+			self::BEFORE_WITH_CONTENT_CHANGE,
+			self::AFTER_WITH_CONTENT_CHANGE,
+			self::WITH_CONTENT_CHANGE_DIFF,
 			true
 		);
 
@@ -153,8 +146,8 @@ class RevisionStorageTest extends FlowTestCase {
 		$revStorage = $this->getRevisionStorageWithMockExternalStore( false );
 		$this->expectException( \Flow\Exception\DataModelException::class );
 		$revStorage->update(
-			$this->BEFORE_WITH_CONTENT_CHANGE,
-			$this->AFTER_WITH_CONTENT_CHANGE
+			self::BEFORE_WITH_CONTENT_CHANGE,
+			self::AFTER_WITH_CONTENT_CHANGE
 		);
 	}
 
@@ -195,7 +188,7 @@ class RevisionStorageTest extends FlowTestCase {
 		// the parent class.
 		$storage = new HeaderRevisionStorage(
 			$factory,
-			$this->MOCK_EXTERNAL_STORE_CONFIG
+			self::MOCK_EXTERNAL_STORE_CONFIG
 		);
 
 		$this->setWhetherContentUpdatingAllowed( $storage, $isContentUpdatingAllowed );
@@ -232,7 +225,7 @@ class RevisionStorageTest extends FlowTestCase {
 	protected function getRevisionStorageWithMockExternalStore( $allowContentUpdates ) {
 		$revisionStorage = new HeaderRevisionStorage(
 			Container::get( 'db.factory' ),
-			$this->MOCK_EXTERNAL_STORE_CONFIG
+			self::MOCK_EXTERNAL_STORE_CONFIG
 		);
 
 		$this->setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates );
