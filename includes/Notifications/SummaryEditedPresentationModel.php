@@ -7,20 +7,25 @@ use Flow\UrlGenerator;
 use Title;
 
 class SummaryEditedPresentationModel extends FlowPresentationModel {
+
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'flow-topic-renamed';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()
 			&& $this->event->getExtraParam( 'revision-id' ) !== null;
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		return $this->getViewTopicLink();
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
 			$links = [ $this->getBoardLink() ];
@@ -36,6 +41,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		return $links;
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			$key = "notification-bundle-header-flow-summary-edited";
@@ -56,6 +62,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		return $this->event->getExtraParam( 'prev-revision-id' ) === null;
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->plaintextParams( $this->getTopicTitle() );
@@ -63,6 +70,7 @@ class SummaryEditedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		$key = 'notification-body-flow-summary-edited';
 		if ( $this->isUserTalkPage() ) {

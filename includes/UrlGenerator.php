@@ -858,6 +858,11 @@ class UrlGenerator {
 		);
 	}
 
+	/**
+	 * @param Title|null $title
+	 * @param UUID|null $workflowId
+	 * @return Anchor
+	 */
 	public function newTopicAction( Title $title = null, UUID $workflowId = null ) {
 		return new Anchor(
 			wfMessage( 'flow-newtopic-start-placeholder' ),

@@ -5,6 +5,8 @@ namespace Flow\Notifications;
 use Title;
 
 class MentionStatusPresentationModel extends \EchoMentionStatusPresentationModel {
+
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		return array_merge(
 			parent::getPrimaryLink(),
@@ -12,6 +14,9 @@ class MentionStatusPresentationModel extends \EchoMentionStatusPresentationModel
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getTopicOrPostUrl() {
 		$workflowId = $this->event->getExtraParam( 'topic-workflow' );
 		$postId = $this->event->getExtraParam( 'post-id' );

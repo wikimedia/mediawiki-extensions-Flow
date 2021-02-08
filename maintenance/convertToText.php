@@ -21,6 +21,7 @@ class ConvertToText extends Maintenance {
 	 */
 	private $api;
 
+	/** @inheritDoc */
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Converts a specific Flow page to text" );
@@ -31,6 +32,7 @@ class ConvertToText extends Maintenance {
 		$this->requireExtension( 'Flow' );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$pageName = $this->getOption( 'page' );
 		$this->pageTitle = Title::newFromText( $pageName );
@@ -91,7 +93,6 @@ class ConvertToText extends Maintenance {
 	 * @param string $submodule
 	 * @param array $request
 	 * @return array
-	 * @throws MWException
 	 */
 	private function flowApi( Title $title, $submodule, array $request ) {
 		$result = $this->api->apiCall( $request + [
@@ -103,6 +104,11 @@ class ConvertToText extends Maintenance {
 		return $result['flow'][$submodule]['result'];
 	}
 
+	/**
+	 * @param array $context
+	 * @param array $revision
+	 * @return string
+	 */
 	private function processTopic( array $context, array $revision ) {
 		$topicOutput = $this->processTopicTitle( $revision );
 		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $context, $revision['summary'] ) : '';
@@ -125,10 +131,20 @@ class ConvertToText extends Maintenance {
 		}
 	}
 
+	/**
+	 * @param int $id
+	 * @param string $name
+	 * @return User
+	 */
 	private function loadUser( $id, $name ) {
 		return User::newFromRow( (object)[ 'user_name' => $name, 'user_id' => $id ] );
 	}
 
+	/**
+	 * @param array $context
+	 * @param array $summary
+	 * @return string
+	 */
 	private function processSummary( array $context, array $summary ) {
 		$topicTitle = Title::newFromText( $summary['revision']['articleTitle'] );
 		return $this->processMultiRevisions(
@@ -136,6 +152,12 @@ class ConvertToText extends Maintenance {
 		);
 	}
 
+	/**
+	 * @param array $context
+	 * @param int[] $collection
+	 * @param int $indentLevel
+	 * @return string
+	 */
 	private function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
 		$indent = str_repeat( ':', $indentLevel );
 		$output = '';
@@ -168,6 +190,11 @@ class ConvertToText extends Maintenance {
 		return $output;
 	}
 
+	/**
+	 * @param array $user
+	 * @param string|false $timestamp
+	 * @return string
+	 */
 	private function getSignature( array $user, $timestamp = false ) {
 		if ( !$user ) {
 			$signature = '[Unknown user]';
@@ -204,6 +231,10 @@ class ConvertToText extends Maintenance {
 		return $signature;
 	}
 
+	/**
+	 * @param string $timestamp
+	 * @return string
+	 */
 	private function formatTimestamp( $timestamp ) {
 		$timestamp = MWTimestamp::getLocalInstance( $timestamp );
 		$ts = $timestamp->format( 'YmdHis' );
@@ -222,6 +253,10 @@ class ConvertToText extends Maintenance {
 				->timeanddate( $ts, false, false ) . " ($tzMsg)";
 	}
 
+	/**
+	 * @param string $pageName
+	 * @return bool
+	 */
 	private function pageExists( $pageName ) {
 		static $pages = [];
 
@@ -233,6 +268,13 @@ class ConvertToText extends Maintenance {
 		return $pages[$pageName];
 	}
 
+	/**
+	 * @param Title $pageTitle
+	 * @param string $submodule
+	 * @param string $prefix
+	 * @param string $responseRoot
+	 * @return array[]
+	 */
 	private function getAllRevisions( Title $pageTitle, $submodule, $prefix, $responseRoot ) {
 		$params = [ $prefix . 'format' => 'wikitext' ];
 		$headerRevisions = [];
@@ -253,6 +295,9 @@ class ConvertToText extends Maintenance {
 		return $headerRevisions;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function processHeader() {
 		return $this->processMultiRevisions(
 			$this->getAllRevisions( $this->pageTitle, 'view-header', 'vh', 'header' ),
@@ -261,6 +306,14 @@ class ConvertToText extends Maintenance {
 		);
 	}
 
+	/**
+	 * @param array[] $allRevisions
+	 * @param bool $sigForFirstAuthor
+	 * @param string $msg
+	 * @param string $glueAfterContent
+	 * @param string $glueBeforeAuthors
+	 * @return string
+	 */
 	private function processMultiRevisions(
 		array $allRevisions,
 		$sigForFirstAuthor = true,
@@ -306,16 +359,28 @@ class ConvertToText extends Maintenance {
 		return $content . $glueAfterContent . ( $formattedAuthors === '' ? '' : $glueBeforeAuthors . $formattedAuthors );
 	}
 
+	/**
+	 * @param array $revision
+	 * @return array[]
+	 */
 	private function getAllPostRevisions( array $revision ) {
 		$topicTitle = Title::newFromText( $revision['articleTitle'] );
 		$response = $this->flowApi( $topicTitle, 'view-post-history', [ 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ] );
 		return $response['topic']['revisions'];
 	}
 
+	/**
+	 * @param array $revision
+	 * @return string
+	 */
 	private function processPost( array $revision ) {
 		return $this->processMultiRevisions( $this->getAllPostRevisions( $revision ) );
 	}
 
+	/**
+	 * @param array $revision
+	 * @return string
+	 */
 	private function processTopicTitle( array $revision ) {
 		return '==' . $this->processMultiRevisions(
 			$this->getAllPostRevisions( $revision ),

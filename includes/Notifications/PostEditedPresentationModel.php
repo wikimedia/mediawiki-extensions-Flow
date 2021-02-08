@@ -8,16 +8,19 @@ use Title;
 
 class PostEditedPresentationModel extends FlowPresentationModel {
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'flow-post-edited';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()
 			&& $this->hasValidPostId();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		return [
 			'url' => $this->getPostLinkUrl(),
@@ -25,6 +28,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
 			$links = [ $this->getBoardLink() ];
@@ -48,6 +52,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		return $links;
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
@@ -64,6 +69,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->plaintextParams( $this->getTopicTitle() );
@@ -71,6 +77,7 @@ class PostEditedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		if ( $this->isUserTalkPage() ) {
 			$msg = $this->msg( 'notification-body-flow-post-edited-user-talk' );

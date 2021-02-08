@@ -4,15 +4,18 @@ namespace Flow\Notifications;
 
 class NewTopicPresentationModel extends FlowPresentationModel {
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return $this->getType();
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		if ( $this->isBundled() ) {
 			return $this->getBoardLinkByNewestTopic();
@@ -21,6 +24,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
 			return [
@@ -35,6 +39,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		if ( $this->isBundled() ) {
 			return false;
@@ -48,6 +53,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
@@ -64,6 +70,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 
@@ -81,6 +88,7 @@ class NewTopicPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getCompactHeaderMessage() {
 		$msg = $this->msg( 'notification-compact-header-flow-new-topic' );
 		$msg->plaintextParams( $this->getTopicTitle() );

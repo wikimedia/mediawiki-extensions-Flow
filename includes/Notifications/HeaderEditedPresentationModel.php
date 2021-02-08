@@ -6,16 +6,20 @@ use Flow\Container;
 use Flow\UrlGenerator;
 
 class HeaderEditedPresentationModel extends FlowPresentationModel {
+
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'flow-topic-renamed';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->event->getExtraParam( 'revision-id' ) !== null
 			&& $this->event->getExtraParam( 'collection-id' ) !== null;
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		$boardLink = $this->getBoardLink();
 		$boardLink['label'] = $this->msg( "notification-links-flow-description-edited-view-page" )
@@ -23,6 +27,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 		return $boardLink;
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		return [
 			$this->getAgentLink(),
@@ -45,6 +50,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
@@ -52,6 +58,7 @@ class HeaderEditedPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		$key = "notification-body-flow-description-edited";
 		if ( $this->isUserTalkPage() ) {

@@ -4,14 +4,17 @@ namespace Flow\Notifications;
 
 class MentionPresentationModel extends FlowPresentationModel {
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'mention';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		$link = [
 			'url' => $this->event->getTitle()->getFullURL(),
@@ -28,6 +31,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		return $link;
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		return [
 			$this->getAgentLink(),
@@ -35,10 +39,12 @@ class MentionPresentationModel extends FlowPresentationModel {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessageKey() {
 		return parent::getHeaderMessageKey() . '-' . $this->getRevisionType();
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = parent::getHeaderMessage();
 		$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
@@ -51,6 +57,7 @@ class MentionPresentationModel extends FlowPresentationModel {
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		$msg = $this->msg( "notification-body-{$this->type}" );
 		$msg->plaintextParams( $this->getContentSnippet() );

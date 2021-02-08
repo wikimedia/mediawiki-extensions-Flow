@@ -3,11 +3,14 @@
 namespace Flow\Notifications;
 
 class TopicResolvedPresentationModel extends FlowPresentationModel {
+
+	/** @inheritDoc */
 	public function getIconType() {
 		// flow-topic-resolved or flow-topic-reopened
 		return $this->event->getExtraParam( 'type' );
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		$type = $this->event->getExtraParam( 'type' );
 
@@ -16,10 +19,12 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 			&& in_array( $type, [ 'flow-topic-resolved', 'flow-topic-reopened' ] );
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		return $this->getViewTopicLink();
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		return [
 			$this->getAgentLink(),
@@ -28,6 +33,7 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		// notification-header-flow-topic-resolved,
 		// notification-header-flow-topic-reopened,
@@ -41,6 +47,7 @@ class TopicResolvedPresentationModel extends FlowPresentationModel {
 		return $key;
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->plaintextParams( $this->getTopicTitle() );

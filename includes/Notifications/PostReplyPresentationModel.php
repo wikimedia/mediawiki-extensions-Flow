@@ -6,16 +6,19 @@ use Flow\Container;
 
 class PostReplyPresentationModel extends FlowPresentationModel {
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return $this->isUserTalkPage() ? 'edit-user-talk' : 'chat';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId()
 			&& $this->hasValidPostId();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		$topmostPostID = null;
 
@@ -41,6 +44,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		if ( $this->isBundled() ) {
 			$links = [ $this->getBoardLink() ];
@@ -53,6 +57,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		return $links;
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		if ( $this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
@@ -69,6 +74,7 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		if ( $this->isBundled() ) {
 			$count = $this->getNotificationCountForOutput();
@@ -86,12 +92,14 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getCompactHeaderMessage() {
 		$msg = $this->getMessageWithAgent( 'notification-compact-header-flow-post-reply' );
 		$msg->plaintextParams( $this->getContentSnippet() );
 		return $msg;
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {

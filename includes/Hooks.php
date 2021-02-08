@@ -564,7 +564,7 @@ class Hooks {
 	 * @param array &$data
 	 * @param RecentChange[] $block
 	 * @param RecentChange $rc
-	 * @param array &$classes
+	 * @param string[] &$classes
 	 * @return bool
 	 */
 	public static function onEnhancedChangesListModifyLineData( $changesList, &$data, $block, $rc, &$classes ) {
@@ -578,10 +578,17 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onEnhancedChangesListModifyBlockLineData( $changesList, &$data, $rc ) {
-		$classes = null;
+		$classes = [];
 		return static::modifyChangesListLine( $changesList, $data, $rc, $classes );
 	}
 
+	/**
+	 * @param ChangesList $changesList
+	 * @param array &$data
+	 * @param RecentChange $rc
+	 * @param string[] &$classes
+	 * @return bool
+	 */
 	private static function modifyChangesListLine( $changesList, &$data, $rc, &$classes ) {
 		// quit if non-flow
 		if ( !self::isFlow( $rc ) ) {
@@ -602,9 +609,7 @@ class Hooks {
 				$data['recentChangesFlags'],
 				$formatter->getFlags( $row, $changesList )
 			);
-			if ( $classes ) {
-				$classes[] = 'mw-changeslist-src-mw-edit';
-			}
+			$classes[] = 'mw-changeslist-src-mw-edit';
 		} catch ( PermissionException $e ) {
 			return false;
 		}
@@ -661,6 +666,11 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * @param IContextSource $context
+	 * @param stdClass $row
+	 * @return array|null
+	 */
 	private static function getReplacementRowItems( IContextSource $context, $row ) : ?array {
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		$replacement = null;
