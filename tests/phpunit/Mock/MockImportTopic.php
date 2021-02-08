@@ -10,7 +10,7 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	/**
 	 * @var IImportSummary
 	 */
-	protected $summary;
+	private $summary;
 
 	/**
 	 * @param IImportSummary|null $summary

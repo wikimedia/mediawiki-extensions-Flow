@@ -18,7 +18,7 @@ class ControllerTest extends \MediaWikiTestCase {
 	/**
 	 * @var Controller
 	 */
-	protected $notificationController;
+	private $notificationController;
 
 	protected function setUp() : void {
 		$this->notificationController = Container::get( 'controller.notification' );

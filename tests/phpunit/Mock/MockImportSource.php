@@ -10,12 +10,12 @@ class MockImportSource implements IImportSource {
 	/**
 	 * @var IImportTopic[]
 	 */
-	protected $topics;
+	private $topics;
 
 	/**
 	 * @var IImportHeader|null
 	 */
-	protected $header;
+	private $header;
 
 	/**
 	 * @param IImportHeader|null $header

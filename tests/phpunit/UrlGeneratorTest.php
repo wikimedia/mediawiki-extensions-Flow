@@ -15,7 +15,7 @@ use Title;
 class UrlGeneratorTest extends FlowTestCase {
 
 	/** @var UrlGenerator */
-	protected $urlGenerator;
+	private $urlGenerator;
 
 	protected function setUp() : void {
 		parent::setUp();

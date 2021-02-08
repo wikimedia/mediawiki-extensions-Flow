@@ -9,7 +9,7 @@ class MockImportHeader implements IImportHeader {
 	/**
 	 * @var MockImportRevision
 	 */
-	protected $revisions;
+	private $revisions;
 
 	/**
 	 * @param MockImportRevision[] $revisions

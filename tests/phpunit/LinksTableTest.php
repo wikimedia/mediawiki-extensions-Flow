@@ -44,27 +44,27 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @var ManagerGroup
 	 */
-	protected $storage;
+	private $storage;
 
 	/**
 	 * @var ReferenceRecorder
 	 */
-	protected $recorder;
+	private $recorder;
 
 	/**
 	 * @var LinksTableUpdater
 	 */
-	protected $updater;
+	private $updater;
 
 	/**
 	 * @var Workflow
 	 */
-	protected $workflow;
+	private $workflow;
 
 	/**
 	 * @var PostRevision
 	 */
-	protected $revision;
+	private $revision;
 
 	protected function setUp() : void {
 		parent::setUp();

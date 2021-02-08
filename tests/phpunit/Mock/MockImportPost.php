@@ -10,12 +10,12 @@ class MockImportPost implements IImportPost {
 	/**
 	 * @var IObjectRevision[]
 	 */
-	protected $revisions;
+	private $revisions;
 
 	/**
 	 * @var IImportPost[]
 	 */
-	protected $replies;
+	private $replies;
 
 	/**
 	 * @param IObjectRevision[] $revisions

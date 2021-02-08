@@ -22,7 +22,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var FlowActions
 	 */
-	protected $actions;
+	private $actions;
 
 	/**
 	 * Map of action name to moderation status, as helper for
@@ -38,37 +38,37 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var User
 	 */
-	protected $blockedUser;
+	private $blockedUser;
 
 	/**
 	 * @var User
 	 */
-	protected $anonUser;
+	private $anonUser;
 
 	/**
 	 * @var User
 	 */
-	protected $unconfirmedUser;
+	private $unconfirmedUser;
 
 	/**
 	 * @var User
 	 */
-	protected $confirmedUser;
+	private $confirmedUser;
 
 	/**
 	 * @var User
 	 */
-	protected $sysopUser;
+	private $sysopUser;
 
 	/**
 	 * @var User
 	 */
-	protected $suppressUser;
+	private $suppressUser;
 
 	/**
 	 * @var DatabaseBlock
 	 */
-	protected $block;
+	private $block;
 
 	protected function setUp() : void {
 		parent::setUp();

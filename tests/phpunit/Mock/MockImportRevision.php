@@ -9,7 +9,7 @@ class MockImportRevision implements IObjectRevision {
 	/**
 	 * @var array
 	 */
-	protected $attribs;
+	private $attribs;
 
 	/**
 	 * @param array $attribs

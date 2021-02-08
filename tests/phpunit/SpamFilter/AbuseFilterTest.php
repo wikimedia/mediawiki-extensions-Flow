@@ -24,7 +24,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	/**
 	 * @var AbuseFilter
 	 */
-	protected $spamFilter;
+	private $spamFilter;
 
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'abuse_filter', 'abuse_filter_action', 'abuse_filter_history', 'abuse_filter_log' ];

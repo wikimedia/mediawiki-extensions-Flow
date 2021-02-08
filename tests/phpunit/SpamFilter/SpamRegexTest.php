@@ -19,7 +19,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 	/**
 	 * @var SpamRegex
 	 */
-	protected $spamFilter;
+	private $spamFilter;
 
 	public function spamProvider() {
 		return [

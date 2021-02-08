@@ -23,7 +23,7 @@ use User;
  */
 class RevisionFormatterTest extends PostRevisionTestCase {
 	/** @var User */
-	protected $user;
+	private $user;
 
 	protected function setUp() : void {
 		parent::setUp();

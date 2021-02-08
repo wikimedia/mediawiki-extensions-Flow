@@ -21,7 +21,7 @@ class TalkpageManagerTest extends MediaWikiTestCase {
 	/**
 	 * @var TalkpageManager
 	 */
-	protected $talkpageManager;
+	private $talkpageManager;
 
 	public function setUp() : void {
 		parent::setUp();

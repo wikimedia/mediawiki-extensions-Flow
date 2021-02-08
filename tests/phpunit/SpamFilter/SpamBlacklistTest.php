@@ -21,7 +21,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	/**
 	 * @var SpamBlacklist
 	 */
-	protected $spamFilter;
+	private $spamFilter;
 
 	/**
 	 * Spam blacklist regexes. Examples taken from:

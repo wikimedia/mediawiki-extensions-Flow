@@ -10,7 +10,7 @@ class MockImportSummary implements IImportSummary {
 	/**
 	 * @var IObjectRevision[]
 	 */
-	protected $revisions;
+	private $revisions;
 
 	/**
 	 * @param IObjectRevision[] $revisions
