@@ -27,10 +27,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	/**
 	 * Map of action name to moderation status, as helper for
 	 * $this->generateRevision()
-	 *
-	 * @var array
 	 */
-	protected $moderation = [
+	private const MODERATION = [
 		'restore-post' => AbstractRevision::MODERATED_NONE,
 		'hide-post' => AbstractRevision::MODERATED_HIDDEN,
 		'delete-post' => AbstractRevision::MODERATED_DELETED,
@@ -281,7 +279,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		switch ( $action ) {
 			case 'restore-post':
 				$overrides += [
-					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_NONE
+					'rev_mod_state' => self::MODERATION[$action], // AbstractRevision::MODERATED_NONE
 					'rev_mod_user_id' => null,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => null,
@@ -293,7 +291,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			case 'delete-post':
 			case 'suppress-post':
 				$overrides += [
-					'rev_mod_state' => $this->moderation[$action], // AbstractRevision::MODERATED_(HIDDEN|DELETED|SUPPRESSED)
+					'rev_mod_state' => self::MODERATION[$action], // AbstractRevision::MODERATED_(HIDDEN|DELETED|SUPPRESSED)
 					'rev_mod_user_id' => 1,
 					'rev_mod_user_ip' => null,
 					'rev_mod_timestamp' => wfTimestampNow(),
