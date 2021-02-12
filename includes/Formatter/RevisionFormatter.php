@@ -311,7 +311,7 @@ class RevisionFormatter {
 			// Only non-anon users can watch/unwatch a flow topic
 			// isWatched - the topic is watched by current user
 			// watchable - the user could watch the topic, eg, anon-user can't watch a topic
-			if ( !$ctx->getUser()->isAnon() ) {
+			if ( $ctx->getUser()->isRegistered() ) {
 				// default topic is not watched and topic is not always watched
 				$res['isWatched'] = (bool)$row->isWatched;
 				$res['watchable'] = true;
@@ -527,12 +527,12 @@ class RevisionFormatter {
 						// thanks extension must be available
 						ExtensionRegistry::getInstance()->isLoaded( 'Thanks' ) &&
 						// anons can't give a thank
-						!$user->isAnon() &&
+						$user->isRegistered() &&
 						// can only thank for PostRevisions
 						// (other revision objects have no getCreator* methods)
 						$revision instanceof PostRevision &&
 						// only thank a logged in user
-						!$targetedUser->isAnon() &&
+						$targetedUser->isRegistered() &&
 						// can't thank self
 						$user->getId() !== $revision->getCreatorId() &&
 						// can't thank bots

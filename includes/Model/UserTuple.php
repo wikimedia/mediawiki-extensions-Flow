@@ -66,7 +66,7 @@ class UserTuple {
 		return new self(
 			wfWikiID(),
 			$user->getId(),
-			$user->isAnon() ? $user->getName() : null
+			$user->isRegistered() ? null : $user->getName()
 		);
 	}
 

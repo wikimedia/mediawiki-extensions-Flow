@@ -633,7 +633,7 @@ class Controller {
 
 		foreach ( $mentions as $mentionedUser ) {
 			// Don't notify anonymous users
-			if ( $mentionedUser->isAnon() ) {
+			if ( !$mentionedUser->isRegistered() ) {
 				continue;
 			}
 
@@ -676,7 +676,7 @@ class Controller {
 		$users = [];
 		foreach ( $links[NS_USER] as $dbk => $page_id ) {
 			$user = User::newFromName( $dbk );
-			if ( !$user || $user->isAnon() ) {
+			if ( !$user || !$user->isRegistered() ) {
 				continue;
 			}
 
