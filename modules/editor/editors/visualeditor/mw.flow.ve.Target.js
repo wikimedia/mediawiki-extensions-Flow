@@ -80,8 +80,12 @@
 	// Methods
 
 	mw.flow.ve.Target.prototype.addSurface = function ( dmDoc, config ) {
-		// eslint-disable-next-line no-jquery/no-global-selector
-		config = ve.extendObject( { $overlayContainer: $( '#content' ) }, config );
+		config = ve.extendObject( {
+			// eslint-disable-next-line no-jquery/no-global-selector
+			$overlayContainer: $( '#content' ),
+			// Disable to allow Tab/Shift+Tab to move focus out of the widget (T172694)
+			excludeCommands: [ 'indent', 'outdent' ]
+		}, config );
 		// Parent method
 		return mw.flow.ve.Target.super.prototype.addSurface.call( this, dmDoc, config );
 	};
