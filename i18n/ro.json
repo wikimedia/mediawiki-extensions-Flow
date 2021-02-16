@@ -288,7 +288,7 @@
 	"notification-header-flow-mention-post": "$1 {{GENDER:$4|v-}}{{GENDER:$2|a menționat}} în cadrul secțiunii „<strong>$5</strong>”.",
 	"notification-header-flow-mention-header": "$1 {{GENDER:$4|v-a}} {{GENDER:$2|menționat}} în descrierea afișierului <strong>$3</strong>.",
 	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|v-a}} {{GENDER:$2|menționat}} în „<strong>$5</strong>”.",
-	"notification-header-flow-enabled-on-talkpage": "Sistemul de discuții nou activat pe <strong>pagina {{GENDER:$2|dvs.}} de discuție</strong>.",
+	"notification-header-flow-enabled-on-talkpage": "Sistemul de discuții nou activat pentru <strong>pagina {{GENDER:$2|dvs.}} de discuție</strong>.",
 	"notification-header-flow-description-edited": "Descrierea afișierului <strong>$1</strong> a fost modificată.",
 	"notification-header-flow-description-edited-user-talk": "Descrierea a fost modificată pe <strong>pagina {{GENDER:$2|dvs.}} de discuție</strong>.",
 	"notification-bundle-header-flow-description-edited": "Descrierea afișierului <strong>$1</strong> a fost modificată de mai multe ori.",
