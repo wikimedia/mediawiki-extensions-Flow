@@ -391,7 +391,7 @@ class PostRevision extends AbstractRevision {
 	 * @return bool
 	 */
 	public function isCreator( User $user ) {
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 		return $user->getId() == $this->getCreatorId();

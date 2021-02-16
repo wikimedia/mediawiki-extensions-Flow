@@ -1034,7 +1034,7 @@ class Hooks {
 			return false;
 		}
 
-		if ( !$editor instanceof User ) {
+		if ( !$editor instanceof UserIdentity ) {
 			return true;
 		}
 
@@ -1084,10 +1084,10 @@ class Hooks {
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	private static function isTalkpageManagerUser( User $user ) {
+	private static function isTalkpageManagerUser( UserIdentity $user ) {
 		return $user->getName() === FLOW_TALK_PAGE_MANAGER_USER;
 	}
 

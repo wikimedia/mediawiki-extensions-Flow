@@ -424,7 +424,7 @@ class TopicListBlock extends AbstractBlock {
 
 		if (
 			$requestOptions['savesortby']
-			&& !$user->isAnon()
+			&& $user->isRegistered()
 			&& $user->getOption( 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
 			// Save the new sortby preference.

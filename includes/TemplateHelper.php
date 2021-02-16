@@ -626,7 +626,7 @@ class TemplateHelper {
 	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
 	public static function ifAnonymous( $options ) {
-		if ( RequestContext::getMain()->getUser()->isAnon() ) {
+		if ( !RequestContext::getMain()->getUser()->isRegistered() ) {
 			$fn = $options['fn'];
 			if ( !$fn instanceof Closure ) {
 				throw new FlowException( 'Expected callback to be Closuire instance' );

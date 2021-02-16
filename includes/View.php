@@ -225,7 +225,7 @@ class View extends ContextSource {
 					$title
 				)
 			),
-			'watchable' => !$user->isAnon(),
+			'watchable' => $user->isRegistered(),
 			'links' => [
 				'watch-board' => [
 					'url' => $title->getLocalURL( 'action=watch' ),
