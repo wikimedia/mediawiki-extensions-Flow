@@ -126,7 +126,7 @@ class ActionFormatter extends LogFormatter {
 		$message = $this->msg( $messageKey )
 			->params( [
 				Message::rawParam( $this->getPerformerElement() ),
-				$this->entry->getPerformer()->getName(),
+				$this->entry->getPerformerIdentity()->getName(),
 			] );
 
 		if ( $isTopicTitleVisible ) {
