@@ -196,7 +196,7 @@ class ConvertToText extends Maintenance {
 		$parser->setOptions( $options );
 		$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
 		$signature = $parser->getUserSig( $user, $nickname, $fancysig );
-		$signature = $parser->mStripState->unstripBoth( $signature );
+		$signature = $parser->getStripState()->unstripBoth( $signature );
 		if ( $timestamp ) {
 			$signature .= ' ' . $this->formatTimestamp( $timestamp );
 		}
