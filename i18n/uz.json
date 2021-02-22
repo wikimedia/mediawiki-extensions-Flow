@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Malikxan",
 			"Sociologist"
 		]
 	},
 	"flow-skip-summary": "Oʻtkazib yuborish",
 	"flow-show-change": "Oʻzgarishlarni koʻrsat",
-	"flow-rev-message-edit-post-recentchanges-summary": "Xabarni {{GENDER:$2|tahrirladi}}"
+	"flow-rev-message-edit-post-recentchanges-summary": "Xabarni {{GENDER:$2|tahrirladi}}",
+	"flow-history-day": "Bugun"
 }

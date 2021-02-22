@@ -11,7 +11,7 @@
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1 mijareka li ser [[$3]] {{GENDER:$2|jê bir}}",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 mijareka li ser [[$3]] {{GENDER:$2|jê bir}}",
 	"flow-board-header-browse-topics-link": "Li mijaran bigere",
-	"flow-board-header": "Di derbarê vê gotûbêjê de",
+	"flow-board-header": "Di derbarê vê panoyê de",
 	"flow-board-collapse-description": "Danasînê veşêre",
 	"flow-board-expand-description": "Danasînê nîşan bide",
 	"flow-edit-header-link": "Danasînê biguherîne",
