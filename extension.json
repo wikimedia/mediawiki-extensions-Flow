@@ -645,7 +645,8 @@
 					"variants": [ "progressive" ]
 				},
 				"newestTopics": {
-					"file": "styles/flow/images/newestTopics.svg"
+					"file": "styles/flow/images/newestTopics.svg",
+					"variants": [ "progressive" ]
 				},
 				"topicCollapse": {
 					"file": {
