@@ -95,9 +95,9 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 	public function getBodyMessage() {
 		if ( !$this->isBundled() ) {
 			if ( $this->isUserTalkPage() ) {
-				$msg = $this->msg( "notification-body-flow-post-reply-v2" );
-			} else {
 				$msg = $this->msg( "notification-body-flow-post-reply-user-talk" );
+			} else {
+				$msg = $this->msg( "notification-body-flow-post-reply-v2" );
 			}
 			$msg->plaintextParams( $this->getContentSnippet() );
 			return $msg;
