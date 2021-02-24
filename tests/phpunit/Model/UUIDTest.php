@@ -171,7 +171,6 @@ class UUIDTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider uuidProvider
-	 * @param UUID $uuid
 	 */
 	public function testAlphadecimalRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getAlphadecimal();
@@ -182,7 +181,6 @@ class UUIDTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider uuidProvider
-	 * @param UUID $uuid
 	 */
 	public function testHexRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getHex();
@@ -193,7 +191,6 @@ class UUIDTest extends FlowTestCase {
 
 	/**
 	 * @dataProvider uuidProvider
-	 * @param UUID $uuid
 	 */
 	public function testBinaryRoundtrip( UUID $uuid ) {
 		$expect = $uuid->getBinary();

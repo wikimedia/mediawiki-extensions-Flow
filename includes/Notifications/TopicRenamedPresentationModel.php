@@ -8,19 +8,23 @@ use Title;
 
 class TopicRenamedPresentationModel extends FlowPresentationModel {
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'flow-topic-renamed';
 	}
 
+	/** @inheritDoc */
 	public function canRender() {
 		return $this->hasTitle()
 			&& $this->hasValidTopicWorkflowId();
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		return $this->getViewTopicLink();
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		if ( $this->isUserTalkPage() ) {
 			$links = [
@@ -40,6 +44,7 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		return $links;
 	}
 
+	/** @inheritDoc */
 	protected function getHeaderMessageKey() {
 		if ( $this->isUserTalkPage() ) {
 			return 'notification-header-flow-topic-renamed-user-talk';
@@ -48,6 +53,7 @@ class TopicRenamedPresentationModel extends FlowPresentationModel {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$msg = $this->msg( $this->getHeaderMessageKey() );
 		$msg->plaintextParams( $this->getTopicTitle( 'old-subject' ) );

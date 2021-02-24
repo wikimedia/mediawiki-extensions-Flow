@@ -113,6 +113,10 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		];
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @return array
+	 */
 	protected function buildApiActions( Workflow $workflow ) {
 		$actions = [];
 
@@ -151,6 +155,10 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		];
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @return array
+	 */
 	private function buildLinks( Workflow $workflow ) {
 		$links = [];
 

@@ -77,6 +77,11 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 		return true;
 	}
 
+	/**
+	 * @param IDatabase $dbw
+	 * @param int $revId
+	 * @param string $revTypeId
+	 */
 	private function updateRevision( $dbw, $revId, $revTypeId ) {
 		if ( $revTypeId === null ) {
 			// this shouldn't actually be happening, but if it is, ignoring it
