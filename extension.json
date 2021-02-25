@@ -711,7 +711,7 @@
 	},
 	"HookHandlers": {
 		"AbuseFilter": {
-			"class": "StructuredDiscussions\\Hooks\\AbuseFilterHandler"
+			"class": "MediaWiki\\Extension\\StructuredDiscussions\\Hooks\\AbuseFilterHandler"
 		}
 	},
 	"Hooks": {
