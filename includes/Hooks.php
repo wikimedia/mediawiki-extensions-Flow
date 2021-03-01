@@ -635,7 +635,7 @@ class Hooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( SpecialPage $specialCheckUser, $row, &$links ) {
-		if ( $row->cuc_type != RC_FLOW ) {
+		if ( $row->cuc_type !== RC_FLOW ) {
 			return;
 		}
 
@@ -652,7 +652,7 @@ class Hooks {
 	}
 
 	public static function onCheckUserFormatRow( IContextSource $context, $row, &$rowItems ) {
-		if ( $row->cuc_type != RC_FLOW ) {
+		if ( $row->cuc_type !== RC_FLOW ) {
 			return;
 		}
 
@@ -1265,7 +1265,7 @@ class Hooks {
 	 */
 	public static function onWatchArticle( &$user, WikiPage &$page, &$status ) {
 		$title = $page->getTitle();
-		if ( $title->getNamespace() == NS_TOPIC ) {
+		if ( $title->getNamespace() === NS_TOPIC ) {
 			// @todo - use !$title->exists()?
 			/** @var Data\ManagerGroup $storage */
 			$storage = Container::get( 'storage' );
@@ -1845,32 +1845,32 @@ class Hooks {
 		$tag = $reader->localName;
 		$type = $reader->nodeType;
 
-		if ( $tag == 'board' ) {
+		if ( $tag === 'board' ) {
 			if ( $type === XMLReader::ELEMENT ) {
 				$flowImporter->handleBoard();
 			}
 			return false;
-		} elseif ( $tag == 'description' ) {
+		} elseif ( $tag === 'description' ) {
 			if ( $type === XMLReader::ELEMENT ) {
 				$flowImporter->handleHeader();
 			}
 			return false;
-		} elseif ( $tag == 'topic' ) {
+		} elseif ( $tag === 'topic' ) {
 			if ( $type === XMLReader::ELEMENT ) {
 				$flowImporter->handleTopic();
 			}
 			return false;
-		} elseif ( $tag == 'post' ) {
+		} elseif ( $tag === 'post' ) {
 			if ( $type === XMLReader::ELEMENT ) {
 				$flowImporter->handlePost();
 			}
 			return false;
-		} elseif ( $tag == 'summary' ) {
+		} elseif ( $tag === 'summary' ) {
 			if ( $type === XMLReader::ELEMENT ) {
 				$flowImporter->handleSummary();
 			}
 			return false;
-		} elseif ( $tag == 'children' ) {
+		} elseif ( $tag === 'children' ) {
 			return false;
 		}
 

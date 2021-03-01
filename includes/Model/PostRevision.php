@@ -395,7 +395,7 @@ class PostRevision extends AbstractRevision {
 		if ( !$user->isRegistered() ) {
 			return false;
 		}
-		return $user->getId() == $this->getCreatorId();
+		return $user->getId() === $this->getCreatorId();
 	}
 
 	/**

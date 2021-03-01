@@ -247,7 +247,7 @@ class PageImportState {
 		if ( !$user ) {
 			throw new ImportException( 'Unable to create user: ' . $name );
 		}
-		if ( $user->getId() == 0 && !$this->allowUnknownUsernames ) {
+		if ( $user->getId() === 0 && !$this->allowUnknownUsernames ) {
 			throw new ImportException( 'User does not exist: ' . $name );
 		}
 
