@@ -314,6 +314,7 @@
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 a {{GENDER:$1|modifié}} votre <span class=\"plainlinks\">[$5 message]</span> sur [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 et {{PLURAL:$5|un autre|$5 autres|100=plus de 100 autres}} {{GENDER:$1|ont modifié}} un <span class=\"plainlinks\">[$4 message]</span> sur « $2 », lié à « $3 ».",
 	"notification-header-flow-new-topic-v2": "Nouveau sujet créé sur <strong>$3</strong> : « <strong><bdi>$4</bdi></strong> ».",
+	"notification-compact-header-flow-new-topic": "« <strong>$1</strong> »",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Un nouveau sujet|$1 nouveaux sujets|100=Plus de 100 nouveaux sujets}} sur <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "Un nouveau sujet a été créé sur <strong>votre page de discussion</strong> : « <strong><bdi>$4</bdi></strong> ».",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Un nouveau sujet|$1 nouveaux sujets|100=Plus de 100 nouveaux sujets}} sur <strong>votre page de discussion</strong>.",
