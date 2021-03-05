@@ -4,6 +4,7 @@ namespace Flow\Actions;
 
 use Article;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Page;
 use Title;
@@ -26,7 +27,8 @@ class ViewAction extends FlowAction {
 		parent::showForAction( $action, $output );
 
 		$title = $this->context->getTitle();
-		$this->context->getUser()->clearNotification( $title );
+		$watchlistNotificationManager = MediaWikiServices::getInstance()->getWatchlistNotificationManager();
+		$watchlistNotificationManager->clearTitleUserNotifications( $this->context->getUser(), $title );
 
 		if ( $output === null ) {
 			$output = $this->context->getOutput();
