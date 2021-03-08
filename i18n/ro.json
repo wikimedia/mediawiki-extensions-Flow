@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Andrei Stroe",
+			"Andreyyshore",
 			"Minisarm",
 			"NGC 54",
 			"Nnemo",
@@ -453,8 +454,8 @@
 	"flow-undo-edit-post": "Editarea unui mesaj",
 	"flow-undo-edit-content": "Modificarea poate fi anulată. Verificați diferența de dedesubt pentru a confirma că este ceea ce doriți să faceți și apoi salvați pentru a finaliza anularea modificării.",
 	"flow-undo-edit-failure": "Modificarea nu poate fi anulată datorită conflictului cu modificări intermediare.",
-	"group-flow-bot": "Boți de discuții structurate",
-	"group-flow-bot-member": "Bot de discuții structurate",
+	"group-flow-bot": "Roboți de discuții structurate",
+	"group-flow-bot-member": "robot de discuții structurate",
 	"flow-ve-mention-context-item-label": "Menționează",
 	"flow-ve-mention-inspector-title": "Menționează",
 	"flow-ve-mention-inspector-remove-label": "Elimină",

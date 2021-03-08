@@ -116,7 +116,7 @@
 	"flow-post-history": "Verorê  rışteyê \"vatışê {{GENDER:$2|$2}} \"",
 	"flow-history-last4": "Peyên 4 seate",
 	"flow-history-day": "Ewro",
-	"flow-history-week": "Hefteyo Peyên",
+	"flow-history-week": "Hefteyo verên",
 	"flow-history-pages-topic": "[$1 panoyê \"$2\"] sero belı beno",
 	"flow-history-pages-post": "[$1 $2] sero belı beno",
 	"flow-topic-comments": "{{PLURAL:$1|yew vatış|$1 vatış|0=vatış kerdê {{GENDER:$2|veror şıma bıbê }}!}}",
