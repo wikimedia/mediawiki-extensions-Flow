@@ -456,6 +456,7 @@
 	"flow-undo-edit-failure": "Modificarea nu poate fi anulată datorită conflictului cu modificări intermediare.",
 	"group-flow-bot": "Roboți de discuții structurate",
 	"group-flow-bot-member": "robot de discuții structurate",
+	"grouppage-flow-bot": "Project:Roboți de discuții structurate",
 	"flow-ve-mention-context-item-label": "Menționează",
 	"flow-ve-mention-inspector-title": "Menționează",
 	"flow-ve-mention-inspector-remove-label": "Elimină",
