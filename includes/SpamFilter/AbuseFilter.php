@@ -134,7 +134,7 @@ class AbuseFilter implements SpamFilter {
 
 		$title = $recentChange->getTitle();
 		AbuseFilterServices::getVariableGeneratorFactory()->newGenerator( $vars )
-			->addUserVars( $recentChange->getPerformer() )
+			->addUserVars( $recentChange->getPerformerIdentity() )
 			->addTitleVars( $title, 'page' )
 			->addTitleVars( $rev->getCollection()->getWorkflow()->getOwnerTitle(), 'board' )
 			->addEditVars( \WikiPage::factory( $title ), $contextUser );
