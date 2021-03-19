@@ -7,6 +7,7 @@
 	},
 	"flow-skip-summary": "Oʻtkazib yuborish",
 	"flow-show-change": "Oʻzgarishlarni koʻrsat",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Rahmat}}}}",
 	"flow-rev-message-edit-post-recentchanges-summary": "Xabarni {{GENDER:$2|tahrirladi}}",
 	"flow-history-day": "Bugun"
 }
