@@ -495,5 +495,5 @@
 	"flow-guidedtour-optin-find-old-conversations-description": "Prejšnji pogovori so bili prestavljeni na arhivsko stran.",
 	"flow-guidedtour-optin-feedback": "Pošljite nam {{GENDER:$1|svoje}} mnenje!",
 	"flow-guidedtour-optin-feedback-description": "Na voljo so dodatne informacije, lahko tudi {{GENDER:$1|pošlješ}} svoje mnenje ali sistem izključiš v Preizkusnih funkcijah v svojih Nastavitvah.",
-	"flow-preference-visualeditor": "Vključi Vizualni urejevalec in nov wikibesedilni način v Strukturiranih pogovorih"
+	"flow-preference-visualeditor": "Vključi Vizualni urejevalnik in nov vikibesedilni način v Strukturiranih pogovorih"
 }
