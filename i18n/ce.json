@@ -125,6 +125,7 @@
 	"flow-history-week": "Даханчу кӀирнахь",
 	"flow-hide-comments-title": "{{PLURAL:$1|Къайлаяккха коммент}}",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|жоп делла}} \"<strong>$4</strong>\" чохь.",
+	"notification-header-flow-mention-header": "$1 {{GENDER:$4|хьо}} {{GENDER:$2|хьахийна}} «<strong>$3</strong>» декъа тӀехь.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|кхоьллина}} '''$3''' агӀонгахь керла хьедар.",
 	"flow-notification-link-text-view-post": "Хьажа хааме",
 	"flow-notification-link-text-view-topic": "Хьажа хьедаре",
