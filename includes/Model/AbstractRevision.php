@@ -919,9 +919,7 @@ abstract class AbstractRevision {
 		// it is possible that more than 1 changes on the same page have the same timestamp
 		// the revision id is hidden in rc_params['flow-workflow-change']['revision']
 		$revId = $this->revId->getAlphadecimal();
-		// @codingStandardsIgnoreStart
-		while ( $row = $rows->next() ) {
-		// @codingStandardsIgnoreEnd
+		foreach ( $rows as $row ) {
 			$rc = RecentChange::newFromRow( $row );
 			$params = $rc->parseParams();
 			if ( isset( $params['flow-workflow-change'] ) &&
