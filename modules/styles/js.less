@@ -1,10 +1,10 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 
-// @todo: Find better home for this css
+// @todo: Find better home for this CSS
 .client-js {
 	.flow-action-view {
-		// Hide the component while it is loading if Javascript
+		// Hide the component while it is loading if JavaScript
 		// is enabled.
 		.flow-ui-load-overlay {
 			z-index: 101;
@@ -22,9 +22,7 @@
 
 			&-ready {
 				opacity: 1;
-				-moz-transition: opacity 0.5s;
 				-webkit-transition: opacity 0.5s;
-				-o-transition: opacity 0.5s;
 				transition: opacity 0.5s;
 			}
 		}
@@ -74,9 +72,7 @@
 
 		// Make the icon rotate
 		-webkit-animation: spin infinite 2s linear;
-		-moz-animation: spin infinite 2s linear;
 		-ms-animation: spin infinite 2s linear;
-		-o-animation: spin infinite 2s linear;
 		animation: spin infinite 2s linear;
 	}
 }
@@ -99,22 +95,6 @@
 
 	100% {
 		-webkit-transform: rotate( 360deg );
-		opacity: 0.5;
-	}
-}
-
-@-moz-keyframes spin {
-	0% {
-		-moz-transform: rotate( 0deg );
-		opacity: 0.5;
-	}
-
-	50% {
-		opacity: 0.75;
-	}
-
-	100% {
-		-moz-transform: rotate( 360deg );
 		opacity: 0.5;
 	}
 }
