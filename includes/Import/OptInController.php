@@ -129,7 +129,7 @@ class OptInController {
 							'talkpage' => $talkpage->getPrefixedText(),
 							'user' => $user->getName(),
 							'message' => $exception->getMessage(),
-							'trace' => $exception->getTraceAsString(),
+							'exception' => $exception,
 						]
 					);
 
