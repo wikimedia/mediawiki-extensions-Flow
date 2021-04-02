@@ -1,6 +1,5 @@
 <?php
 
-use Flow\Data\FlowObjectCache;
 use Flow\Data\Index\PostRevisionBoardHistoryIndex;
 use Flow\Data\Index\PostRevisionTopicHistoryIndex;
 use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
@@ -45,12 +44,12 @@ if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 
 // Flow config
 $c['flow_actions'] = function ( $c ) {
-	return MediaWikiServices::getInstance()->get( 'FlowActions' );
+	return MediaWikiServices::getInstance()->getService( 'FlowActions' );
 };
 
 // Always returns the correct database for flow storage
 $c['db.factory'] = function ( $c ) {
-	return MediaWikiServices::getInstance()->get( 'FlowDbFactory' );
+	return MediaWikiServices::getInstance()->getService( 'FlowDbFactory' );
 };
 
 // Database Access Layer external from main implementation
@@ -108,12 +107,7 @@ $c['permissions'] = function ( $c ) {
 };
 
 $c['lightncandy'] = function ( $c ) {
-	global $wgFlowServerCompileTemplates;
-
-	return new Flow\TemplateHelper(
-		__DIR__ . '/handlebars',
-		$wgFlowServerCompileTemplates
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTemplateHandler' );
 };
 
 $c['templating'] = function ( $c ) {
@@ -130,11 +124,7 @@ $c['templating'] = function ( $c ) {
 
 // New Storage Impl
 $c['flowcache'] = function ( $c ) {
-	global $wgFlowCacheTime;
-	return new FlowObjectCache(
-		MediaWikiServices::getInstance()->getMainWANObjectCache(),
-		$c['db.factory'], $wgFlowCacheTime
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowCache' );
 };
 
 // Batched username loader
@@ -1225,7 +1215,7 @@ $c['board_mover'] = function ( $c ) {
 };
 
 $c['default_logger'] = function () {
-	return MediaWiki\Logger\LoggerFactory::getInstance( 'Flow' );
+	return MediaWikiServices::getInstance()->getService( 'FlowDefaultLogger' );
 };
 
 return $c;

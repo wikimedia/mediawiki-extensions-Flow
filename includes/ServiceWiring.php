@@ -1,8 +1,12 @@
 <?php
 
+use Flow\Data\FlowObjectCache;
 use Flow\DbFactory;
 use Flow\FlowActions;
+use Flow\TemplateHelper;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service wiring for Flow services
@@ -21,16 +25,38 @@ use MediaWiki\MediaWikiServices;
  */
 return [
 	'FlowActions' => static function ( MediaWikiServices $services ) : FlowActions {
+		// Flow configuration
 		return new FlowActions(
 			$services->getMainConfig()->get( 'FlowActions' )
 		);
 	},
 
+	'FlowCache' => static function ( MediaWikiServices $services ) : FlowObjectCache {
+		// New storage implementation
+		return new FlowObjectCache(
+			$services->getMainWANObjectCache(),
+			$services->getService( 'FlowDbFactory' ),
+			$services->getMainConfig()->get( 'FlowCacheTime' )
+		);
+	},
+
 	'FlowDbFactory' => static function ( MediaWikiServices $services ) : DbFactory {
+		// Always returns the correct database for flow storage
 		$config = $services->getMainConfig();
 		return new DbFactory(
 			$config->get( 'FlowDefaultWikiDb' ),
 			$config->get( 'FlowCluster' )
+		);
+	},
+
+	'FlowDefaultLogger' => static function ( MediaWikiServices $services ) : LoggerInterface {
+		return LoggerFactory::getInstance( 'Flow' );
+	},
+
+	'FlowTemplateHandler' => static function ( MediaWikiServices $services ) : TemplateHelper {
+		return new TemplateHelper(
+			__DIR__ . '/../handlebars',
+			$services->getMainConfig()->get( 'FlowServerCompileTemplates' )
 		);
 	},
 ];
