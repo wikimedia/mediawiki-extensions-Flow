@@ -45,14 +45,12 @@ if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 
 // Flow config
 $c['flow_actions'] = function ( $c ) {
-	global $wgFlowActions;
-	return new Flow\FlowActions( $wgFlowActions );
+	return MediaWikiServices::getInstance()->get( 'FlowActions' );
 };
 
 // Always returns the correct database for flow storage
 $c['db.factory'] = function ( $c ) {
-	global $wgFlowDefaultWikiDb, $wgFlowCluster;
-	return new Flow\DbFactory( $wgFlowDefaultWikiDb, $wgFlowCluster );
+	return MediaWikiServices::getInstance()->get( 'FlowDbFactory' );
 };
 
 // Database Access Layer external from main implementation

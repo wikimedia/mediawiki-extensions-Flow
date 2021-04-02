@@ -55,6 +55,9 @@
 	"ExtensionFunctions": [
 		"Flow\\Hooks::initFlowExtension"
 	],
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
 	"GroupPermissions": {
 		"*": {
 			"flow-hide": true
