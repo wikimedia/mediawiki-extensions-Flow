@@ -17,7 +17,8 @@ class TopicListBlockTest extends \MediaWikiTestCase {
 
 	public function testSortByOption() {
 		$user = User::newFromId( 1 );
-		$user->setOption( 'flow-topiclist-sortby', '' );
+		$this->getServiceContainer()->getUserOptionsManager()
+			->setOption( $user, 'flow-topiclist-sortby', '' );
 
 		// reset flow state, so everything ($container['permissions'])
 		// uses this particular $user
