@@ -9,6 +9,7 @@ use Flow\Formatter\FormatterRow;
 use Flow\Formatter\PostHistoryQuery;
 use Flow\Formatter\TopicHistoryQuery;
 use Flow\Model\UUID;
+use MediaWiki\MediaWikiServices;
 
 class HistoryPager extends \ReverseChronologicalPager {
 	/**
@@ -34,7 +35,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 		$this->query = $query;
 		$this->id = $id;
 
-		$this->mDefaultLimit = $this->getUser()->getIntOption( 'rclimit' );
+		$this->mDefaultLimit = MediaWikiServices::getInstance()->getUserOptionsLookup()->getIntOption( $this->getUser(), 'rclimit' );
 		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) == 'prev';
 	}
 
