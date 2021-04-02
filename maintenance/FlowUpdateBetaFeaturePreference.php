@@ -65,14 +65,16 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			]
 		);
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$userOptionsManager = $services->getUserOptionsManager();
 
 		$i = 0;
 		$batchSize = $this->getBatchSize();
 		$users = UserArray::newFromResult( $result );
 		foreach ( $users as $user ) {
-			$user->setOption( BETA_FEATURE_FLOW_USER_TALK_PAGE, 1 );
-			$user->saveSettings();
+			$userOptionsManager->setOption( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE, 1 );
+			$userOptionsManager->saveOptions( $user );
 
 			if ( ++$i % $batchSize === 0 ) {
 				$lbFactory->waitForReplication();
