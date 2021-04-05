@@ -27,7 +27,7 @@ class ViewAction extends FlowAction {
 		parent::showForAction( $action, $output );
 
 		$title = $this->context->getTitle();
-		$watchlistNotificationManager = MediaWikiServices::getInstance()->getWatchlistNotificationManager();
+		$watchlistNotificationManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		$watchlistNotificationManager->clearTitleUserNotifications( $this->context->getUser(), $title );
 
 		if ( $output === null ) {
