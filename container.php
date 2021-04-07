@@ -12,8 +12,6 @@ use Flow\Data\ObjectManager;
 use Flow\Data\Storage\BasicDbStorage;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
-use Flow\Data\Storage\PostRevisionStorage;
-use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
 use Flow\Data\Storage\TopicListStorage;
@@ -52,10 +50,7 @@ $c['db.factory'] = function ( $c ) {
 
 // Database Access Layer external from main implementation
 $c['repository.tree'] = function ( $c ) {
-	return new Flow\Repository\TreeRepository(
-		$c['db.factory'],
-		$c['flowcache']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTreeRepository' );
 };
 
 $c['url_generator'] = function ( $c ) {
@@ -523,12 +518,7 @@ $c['storage.post.mapper'] = function ( $c ) {
 	);
 };
 $c['storage.post.backend'] = function ( $c ) {
-	global $wgFlowExternalStore;
-	return new PostRevisionStorage(
-		$c['db.factory'],
-		$wgFlowExternalStore,
-		$c['repository.tree']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowPostRevisionStorage' );
 };
 $c['storage.post.listeners.moderation_logging'] = function ( $c ) {
 	return new Flow\Data\Listener\ModerationLoggingListener(
@@ -612,10 +602,7 @@ $c['storage.post'] = function ( $c ) {
 };
 
 $c['storage.post_topic_history.backend'] = function ( $c ) {
-	return new PostRevisionTopicHistoryStorage(
-		$c['storage.post.backend'],
-		$c['repository.tree']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowPostRevisionTopicHistoryStorage' );
 };
 
 $c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
@@ -752,10 +739,7 @@ $c['controller.opt_in'] = function ( $c ) {
 };
 
 $c['controller.notification'] = function ( $c ) {
-	return new \Flow\Notifications\Controller(
-		MediaWikiServices::getInstance()->getContentLanguage(),
-		$c['repository.tree']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowNotificationsController' );
 };
 
 // Initialized in Flow\Hooks to faciliate only loading the flow container

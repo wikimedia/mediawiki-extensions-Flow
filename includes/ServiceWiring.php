@@ -1,8 +1,12 @@
 <?php
 
 use Flow\Data\FlowObjectCache;
+use Flow\Data\Storage\PostRevisionStorage;
+use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
 use Flow\FlowActions;
+use Flow\Notifications\Controller as NotificationsController;
+use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\TemplateHelper;
 use MediaWiki\Logger\LoggerFactory;
@@ -54,6 +58,15 @@ return [
 		return LoggerFactory::getInstance( 'Flow' );
 	},
 
+	'FlowNotificationsController' => static function (
+		MediaWikiServices $services
+	) : NotificationsController {
+		return new NotificationsController(
+			$services->getContentLanguage(),
+			$services->getService( 'FlowTreeRepository' )
+		);
+	},
+
 	'FlowPermissions' => static function ( MediaWikiServices $services ) : RevisionActionPermissions {
 		return new RevisionActionPermissions(
 			$services->getService( 'FlowActions' ),
@@ -61,10 +74,35 @@ return [
 		);
 	},
 
+	'FlowPostRevisionStorage' => static function ( MediaWikiServices $services ) : PostRevisionStorage {
+		return new PostRevisionStorage(
+			$services->getService( 'FlowDbFactory' ),
+			$services->getMainConfig()->get( 'FlowExternalStore' ),
+			$services->getService( 'FlowTreeRepository' )
+		);
+	},
+
+	'FlowPostRevisionTopicHistoryStorage' => static function (
+		MediaWikiServices $services
+	) : PostRevisionTopicHistoryStorage {
+		return new PostRevisionTopicHistoryStorage(
+			$services->getService( 'FlowPostRevisionStorage' ),
+			$services->getService( 'FlowTreeRepository' )
+		);
+	},
+
 	'FlowTemplateHandler' => static function ( MediaWikiServices $services ) : TemplateHelper {
 		return new TemplateHelper(
 			__DIR__ . '/../handlebars',
 			$services->getMainConfig()->get( 'FlowServerCompileTemplates' )
+		);
+	},
+
+	'FlowTreeRepository' => static function ( MediaWikiServices $services ) : TreeRepository {
+		// Database Access Layer external from main implementation
+		return new TreeRepository(
+			$services->getService( 'FlowDbFactory' ),
+			$services->getService( 'FlowCache' )
 		);
 	},
 
