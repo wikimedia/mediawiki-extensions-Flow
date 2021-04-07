@@ -3,6 +3,7 @@
 use Flow\Data\FlowObjectCache;
 use Flow\DbFactory;
 use Flow\FlowActions;
+use Flow\RevisionActionPermissions;
 use Flow\TemplateHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -53,10 +54,25 @@ return [
 		return LoggerFactory::getInstance( 'Flow' );
 	},
 
+	'FlowPermissions' => static function ( MediaWikiServices $services ) : RevisionActionPermissions {
+		return new RevisionActionPermissions(
+			$services->getService( 'FlowActions' ),
+			$services->getService( 'FlowUser' )
+		);
+	},
+
 	'FlowTemplateHandler' => static function ( MediaWikiServices $services ) : TemplateHelper {
 		return new TemplateHelper(
 			__DIR__ . '/../handlebars',
 			$services->getMainConfig()->get( 'FlowServerCompileTemplates' )
 		);
+	},
+
+	'FlowUser' => static function ( MediaWikiServices $services ) : User {
+		if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
+			return new User;
+		} else {
+			return RequestContext::getMain()->getUser();
+		}
 	},
 ];

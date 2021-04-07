@@ -36,11 +36,9 @@ if ( !defined( 'FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT' ) ) {
 $c = new Flow\Container;
 
 // MediaWiki
-if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
-	$c['user'] = new User;
-} else {
-	$c['user'] = RequestContext::getMain()->getUser();
-}
+$c['user'] = function ( $c ) {
+	return MediaWikiServices::getInstance()->getService( 'FlowUser' );
+};
 
 // Flow config
 $c['flow_actions'] = function ( $c ) {
@@ -103,7 +101,7 @@ $c['content_fixer'] = function ( $c ) {
 };
 
 $c['permissions'] = function ( $c ) {
-	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
+	return MediaWikiServices::getInstance()->getService( 'FlowPermissions' );
 };
 
 $c['lightncandy'] = function ( $c ) {
