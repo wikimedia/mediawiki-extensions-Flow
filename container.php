@@ -66,32 +66,20 @@ $c['watched_items'] = function ( $c ) {
 	);
 };
 
-$c['wiki_link_fixer'] = function ( $c ) {
-	return new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
-};
-
-$c['bad_image_remover'] = function ( $c ) {
-	return new Flow\Parsoid\Fixer\BadImageRemover(
-		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
-	);
-};
-
-$c['base_href_fixer'] = function ( $c ) {
+$c['content_fixer'] = function ( $c ) {
 	global $wgArticlePath;
 
-	return new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
-};
-
-$c['ext_link_fixer'] = function ( $c ) {
-	return new Flow\Parsoid\Fixer\ExtLinkFixer();
-};
-
-$c['content_fixer'] = function ( $c ) {
+	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
+	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
+		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
+	);
+	$baseHrefFixer = new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
+	$extLinkFixer = new Flow\Parsoid\Fixer\ExtLinkFixer();
 	return new Flow\Parsoid\ContentFixer(
-		$c['wiki_link_fixer'],
-		$c['bad_image_remover'],
-		$c['base_href_fixer'],
-		$c['ext_link_fixer']
+		$wikiLinkFixer,
+		$badImageRemover,
+		$baseHrefFixer,
+		$extLinkFixer
 	);
 };
 
@@ -521,8 +509,11 @@ $c['storage.post.backend'] = function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowPostRevisionStorage' );
 };
 $c['storage.post.listeners.moderation_logging'] = function ( $c ) {
+	$moderationLogger = new Flow\Log\ModerationLogger(
+		$c['flow_actions']
+	);
 	return new Flow\Data\Listener\ModerationLoggingListener(
-		$c['logger.moderation']
+		$moderationLogger
 	);
 };
 $c['storage.post.listeners.username'] = function ( $c ) {
@@ -747,7 +738,7 @@ $c['controller.notification'] = function ( $c ) {
 // must always happen before calling flow code.
 $c['controller.abusefilter'] = Flow\Hooks::getAbuseFilter();
 
-$c['controller.contentlength'] = function ( $c ) {
+$c['controller.spamfilter'] = function ( $c ) {
 	global $wgMaxArticleSize;
 
 	// wgMaxArticleSize is in kilobytes,
@@ -755,12 +746,10 @@ $c['controller.contentlength'] = function ( $c ) {
 	// mb_strlen), so it's not the exact same limit.
 	$maxCharCount = $wgMaxArticleSize * 1024;
 
-	return new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
-};
+	$contentLengthFilter = new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
 
-$c['controller.spamfilter'] = function ( $c ) {
 	return new Flow\SpamFilter\Controller(
-		$c['controller.contentlength'],
+		$contentLengthFilter,
 		new Flow\SpamFilter\SpamRegex,
 		new Flow\SpamFilter\RateLimits,
 		new Flow\SpamFilter\SpamBlacklist,
@@ -968,12 +957,6 @@ $c['search.index.updaters'] = function ( $c ) {
 		'topic' => new \Flow\Search\Updaters\TopicUpdater( $c['search.index.iterators.topic'], $anonPermissions, $c['loader.root_post'] ),
 		'header' => new \Flow\Search\Updaters\HeaderUpdater( $c['search.index.iterators.header'], $anonPermissions )
 	];
-};
-
-$c['logger.moderation'] = function ( $c ) {
-	return new Flow\Log\ModerationLogger(
-		$c['flow_actions']
-	);
 };
 
 $c['storage.wiki_reference.mapper'] = function ( $c ) {
