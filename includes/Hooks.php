@@ -156,7 +156,7 @@ class Hooks {
 	 */
 	public static function getOccupationController() {
 		if ( self::$occupationController === null ) {
-			self::$occupationController = new TalkpageManager();
+			self::$occupationController = new TalkpageManager( MediaWikiServices::getInstance()->getUserGroupManager() );
 		}
 		return self::$occupationController;
 	}

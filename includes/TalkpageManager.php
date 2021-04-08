@@ -10,12 +10,18 @@ use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserGroupManager;
 use Status;
 use Title;
 use User;
 use WikiPage;
 
 class TalkpageManager implements OccupationController {
+	/**
+	 * @var UserGroupManager
+	 */
+	private $userGroupManager;
+
 	/**
 	 * @var string[]
 	 */
@@ -26,6 +32,13 @@ class TalkpageManager implements OccupationController {
 	 * @var User
 	 */
 	protected $talkPageManagerUser;
+
+	/**
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct( UserGroupManager $userGroupManager ) {
+		$this->userGroupManager = $userGroupManager;
+	}
 
 	/**
 	 * When a page is taken over by Flow, add a revision.
@@ -187,10 +200,10 @@ class TalkpageManager implements OccupationController {
 			}
 		}
 
-		$groups = $user->getGroups();
+		$groups = $this->userGroupManager->getUserGroups( $user );
 		foreach ( [ 'bot', 'flow-bot' ] as $group ) {
 			if ( !in_array( $group, $groups ) ) {
-				$user->addGroup( $group );
+				$this->userGroupManager->addUserToGroup( $user, $group );
 			}
 		}
 
