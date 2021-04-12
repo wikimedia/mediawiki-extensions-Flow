@@ -156,12 +156,6 @@ $c['storage.workflow.indexes.title_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.workflow.indexes'] = function ( $c ) {
-	return [
-		$c['storage.workflow.indexes.primary'],
-		$c['storage.workflow.indexes.title_lookup']
-	];
-};
 $c['storage.workflow.listeners'] = function ( $c ) {
 	return [
 		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
@@ -172,11 +166,15 @@ $c['storage.workflow.listeners'] = function ( $c ) {
 	];
 };
 $c['storage.workflow'] = function ( $c ) {
+	$indexes = [
+		$c['storage.workflow.indexes.primary'],
+		$c['storage.workflow.indexes.title_lookup']
+	];
 	return new ObjectManager(
 		$c['storage.workflow.mapper'],
 		$c['storage.workflow.backend'],
 		$c['db.factory'],
-		$c['storage.workflow.indexes'],
+		$indexes,
 		$c['storage.workflow.listeners']
 	);
 };
@@ -234,16 +232,13 @@ $c['storage.post_board_history.indexes.primary'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_board_history.indexes'] = function ( $c ) {
-	return [ $c['storage.post_board_history.indexes.primary'] ];
-};
-
 $c['storage.post_board_history'] = function ( $c ) {
+	$indexes = [ $c['storage.post_board_history.indexes.primary'] ];
 	return new ObjectLocator(
 		$c['storage.post.mapper'],
 		$c['storage.post_board_history.backend'],
 		$c['db.factory'],
-		$c['storage.post_board_history.indexes']
+		$indexes
 	);
 };
 
@@ -271,16 +266,13 @@ $c['storage.post_summary_board_history.indexes.primary'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary_board_history.indexes'] = function ( $c ) {
-	return [ $c['storage.post_summary_board_history.indexes.primary'] ];
-};
-
 $c['storage.post_summary_board_history'] = function ( $c ) {
+	$indexes = [ $c['storage.post_summary_board_history.indexes.primary'] ];
 	return new ObjectLocator(
 		$c['storage.post_summary.mapper'],
 		$c['storage.post_summary_board_history.backend'],
 		$c['db.factory'],
-		$c['storage.post_summary_board_history.indexes']
+		$indexes
 	);
 };
 
@@ -340,18 +332,16 @@ $c['storage.header.indexes.header_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.header.indexes'] = function ( $c ) {
-	return [
+$c['storage.header'] = function ( $c ) {
+	$indexes = [
 		$c['storage.header.indexes.primary'],
 		$c['storage.header.indexes.header_lookup']
 	];
-};
-$c['storage.header'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.header.mapper'],
 		$c['storage.header.backend'],
 		$c['db.factory'],
-		$c['storage.header.indexes'],
+		$indexes,
 		$c['storage.header.listeners']
 	);
 };
@@ -416,18 +406,16 @@ $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.post_summary.indexes'] = function ( $c ) {
-	return [
+$c['storage.post_summary'] = function ( $c ) {
+	$indexes = [
 		$c['storage.post_summary.indexes.primary'],
 		$c['storage.post_summary.indexes.topic_lookup'],
 	];
-};
-$c['storage.post_summary'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.post_summary.mapper'],
 		$c['storage.post_summary.backend'],
 		$c['db.factory'],
-		$c['storage.post_summary.indexes'],
+		$indexes,
 		$c['storage.post_summary.listeners']
 	);
 };
@@ -484,19 +472,17 @@ $c['storage.topic_list.indexes.last_updated'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.topic_list.indexes'] = function ( $c ) {
-	return [
+$c['storage.topic_list'] = function ( $c ) {
+	$indexes = [
 		$c['storage.topic_list.indexes.primary'],
 		$c['storage.topic_list.indexes.reverse_lookup'],
 		$c['storage.topic_list.indexes.last_updated'],
 	];
-};
-$c['storage.topic_list'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.topic_list.mapper'],
 		$c['storage.topic_list.backend'],
 		$c['db.factory'],
-		$c['storage.topic_list.indexes']
+		$indexes
 	);
 };
 $c['storage.post.mapper'] = function ( $c ) {
@@ -575,19 +561,17 @@ $c['storage.post.indexes.post_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.post.indexes'] = function ( $c ) {
-	return [
+$c['storage.post'] = function ( $c ) {
+	$indexes = [
 		$c['storage.post.indexes.primary'],
 		$c['storage.post.indexes.post_lookup'],
 		$c['storage.post_topic_history.indexes.topic_lookup']
 	];
-};
-$c['storage.post'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.post.mapper'],
 		$c['storage.post.backend'],
 		$c['db.factory'],
-		$c['storage.post.indexes'],
+		$indexes,
 		$c['storage.post.listeners']
 	);
 };
@@ -621,18 +605,15 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_topic_history.indexes'] = function ( $c ) {
-	return [
+$c['storage.post_topic_history'] = function ( $c ) {
+	$indexes = [
 		$c['storage.post_topic_history.indexes.topic_lookup'],
 	];
-};
-
-$c['storage.post_topic_history'] = function ( $c ) {
 	return new ObjectLocator(
 		$c['storage.post.mapper'],
 		$c['storage.post_topic_history.backend'],
 		$c['db.factory'],
-		$c['storage.post_topic_history.indexes']
+		$indexes
 	);
 };
 
@@ -1013,18 +994,16 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.wiki_reference.indexes'] = function ( $c ) {
-	return [
+$c['storage.wiki_reference'] = function ( $c ) {
+	$indexes = [
 		$c['storage.wiki_reference.indexes.source_lookup'],
 		$c['storage.wiki_reference.indexes.revision_lookup'],
 	];
-};
-$c['storage.wiki_reference'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.wiki_reference.mapper'],
 		$c['storage.wiki_reference.backend'],
 		$c['db.factory'],
-		$c['storage.wiki_reference.indexes'],
+		$indexes,
 		[]
 	);
 };
@@ -1084,18 +1063,16 @@ $c['storage.url_reference.indexes.revision_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.url_reference.indexes'] = function ( $c ) {
-	return [
+$c['storage.url_reference'] = function ( $c ) {
+	$indexes = [
 		$c['storage.url_reference.indexes.source_lookup'],
 		$c['storage.url_reference.indexes.revision_lookup'],
 	];
-};
-$c['storage.url_reference'] = function ( $c ) {
 	return new ObjectManager(
 		$c['storage.url_reference.mapper'],
 		$c['storage.url_reference.backend'],
 		$c['db.factory'],
-		$c['storage.url_reference.indexes'],
+		$indexes,
 		[]
 	);
 };
