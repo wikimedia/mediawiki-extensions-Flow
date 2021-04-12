@@ -142,8 +142,8 @@ $c['storage.workflow.indexes.primary'] = function ( $c ) {
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow.indexes.title_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.workflow'] = function ( $c ) {
+	$workflowTitleLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.workflow.backend'],
 		$c['storage.workflow.mapper'],
@@ -155,11 +155,9 @@ $c['storage.workflow.indexes.title_lookup'] = function ( $c ) {
 			'sort' => 'workflow_id'
 		]
 	);
-};
-$c['storage.workflow'] = function ( $c ) {
 	$indexes = [
 		$c['storage.workflow.indexes.primary'],
-		$c['storage.workflow.indexes.title_lookup']
+		$workflowTitleLookupIndex,
 	];
 	$listeners = [
 		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
@@ -303,8 +301,8 @@ $c['storage.header.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ] // primary key
 	);
 };
-$c['storage.header.indexes.header_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.header'] = function ( $c ) {
+	$headerHeaderLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
@@ -320,11 +318,9 @@ $c['storage.header.indexes.header_lookup'] = function ( $c ) {
 			},
 		]
 	);
-};
-$c['storage.header'] = function ( $c ) {
 	$indexes = [
 		$c['storage.header.indexes.primary'],
-		$c['storage.header.indexes.header_lookup']
+		$headerHeaderLookupIndex
 	];
 	$listeners = [
 		'reference.recorder' => $c['reference.recorder'],
@@ -374,8 +370,8 @@ $c['storage.post_summary.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.post_summary'] = function ( $c ) {
+	$postSummaryTopicLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.post_summary.backend'],
 		$c['storage.post_summary.mapper'],
@@ -391,11 +387,9 @@ $c['storage.post_summary.indexes.topic_lookup'] = function ( $c ) {
 			},
 		]
 	);
-};
-$c['storage.post_summary'] = function ( $c ) {
 	$indexes = [
 		$c['storage.post_summary.indexes.primary'],
-		$c['storage.post_summary.indexes.topic_lookup'],
+		$postSummaryTopicLookupIndex,
 	];
 	$listeners = [
 		'listener.recentchanges' => $c['listener.recentchanges'],
@@ -522,9 +516,9 @@ $c['storage.post.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ]
 	);
 };
-// Each bucket holds a list of revisions in a single post
-$c['storage.post.indexes.post_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.post'] = function ( $c ) {
+	// Each bucket holds a list of revisions in a single post
+	$postPostLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.post.backend'],
 		$c['storage.post.mapper'],
@@ -541,11 +535,9 @@ $c['storage.post.indexes.post_lookup'] = function ( $c ) {
 			},
 		]
 	);
-};
-$c['storage.post'] = function ( $c ) {
 	$indexes = [
 		$c['storage.post.indexes.primary'],
-		$c['storage.post.indexes.post_lookup'],
+		$postPostLookupIndex,
 		$c['storage.post_topic_history.indexes.topic_lookup']
 	];
 	$listeners = [
@@ -952,8 +944,8 @@ $c['storage.wiki_reference.backend'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.wiki_reference.indexes.source_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.wiki_reference'] = function ( $c ) {
+	$wikiReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.wiki_reference.backend'],
 		$c['storage.wiki_reference.mapper'],
@@ -968,9 +960,7 @@ $c['storage.wiki_reference.indexes.source_lookup'] = function ( $c ) {
 			'sort' => 'ref_src_object_id',
 		]
 	);
-};
-$c['storage.wiki_reference.indexes.revision_lookup'] = function ( $c ) {
-	return new TopKIndex(
+	$wikiReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.wiki_reference.backend'],
 		$c['storage.wiki_reference.mapper'],
@@ -985,11 +975,9 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function ( $c ) {
 			'sort' => [ 'ref_target_namespace', 'ref_target_title' ],
 		]
 	);
-};
-$c['storage.wiki_reference'] = function ( $c ) {
 	$indexes = [
-		$c['storage.wiki_reference.indexes.source_lookup'],
-		$c['storage.wiki_reference.indexes.revision_lookup'],
+		$wikiReferenceSourceLookupIndex,
+		$wikiReferenceRevisionLookupIndex,
 	];
 	return new ObjectManager(
 		$c['storage.wiki_reference.mapper'],
@@ -1021,8 +1009,8 @@ $c['storage.url_reference.backend'] = function ( $c ) {
 	);
 };
 
-$c['storage.url_reference.indexes.source_lookup'] = function ( $c ) {
-	return new TopKIndex(
+$c['storage.url_reference'] = function ( $c ) {
+	$urlReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.url_reference.backend'],
 		$c['storage.url_reference.mapper'],
@@ -1037,9 +1025,7 @@ $c['storage.url_reference.indexes.source_lookup'] = function ( $c ) {
 			'sort' => 'ref_src_object_id',
 		]
 	);
-};
-$c['storage.url_reference.indexes.revision_lookup'] = function ( $c ) {
-	return new TopKIndex(
+	$urlReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.url_reference.backend'],
 		$c['storage.url_reference.mapper'],
@@ -1054,11 +1040,9 @@ $c['storage.url_reference.indexes.revision_lookup'] = function ( $c ) {
 			'sort' => [ 'ref_target' ],
 		]
 	);
-};
-$c['storage.url_reference'] = function ( $c ) {
 	$indexes = [
-		$c['storage.url_reference.indexes.source_lookup'],
-		$c['storage.url_reference.indexes.revision_lookup'],
+		$urlReferenceSourceLookupIndex,
+		$urlReferenceRevisionLookupIndex,
 	];
 	return new ObjectManager(
 		$c['storage.url_reference.mapper'],
