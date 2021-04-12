@@ -156,26 +156,24 @@ $c['storage.workflow.indexes.title_lookup'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.workflow.listeners'] = function ( $c ) {
-	return [
+$c['storage.workflow'] = function ( $c ) {
+	$indexes = [
+		$c['storage.workflow.indexes.primary'],
+		$c['storage.workflow.indexes.title_lookup']
+	];
+	$listeners = [
 		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
 		'storage.workflow.listeners.topiclist' => new Flow\Data\Listener\WorkflowTopicListListener(
 			$c['storage.topic_list'],
 			$c['storage.topic_list.indexes.last_updated']
 		),
 	];
-};
-$c['storage.workflow'] = function ( $c ) {
-	$indexes = [
-		$c['storage.workflow.indexes.primary'],
-		$c['storage.workflow.indexes.title_lookup']
-	];
 	return new ObjectManager(
 		$c['storage.workflow.mapper'],
 		$c['storage.workflow.backend'],
 		$c['db.factory'],
 		$indexes,
-		$c['storage.workflow.listeners']
+		$listeners
 	);
 };
 $c['listener.recentchanges'] = function ( $c ) {
@@ -286,15 +284,6 @@ $c['storage.header.listeners.username'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.header.listeners'] = function ( $c ) {
-	return [
-		'reference.recorder' => $c['reference.recorder'],
-		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
-		'listeners.notification' => $c['listeners.notification'],
-		'listener.recentchanges' => $c['listener.recentchanges'],
-		'listener.editcount' => $c['listener.editcount'],
-	];
-};
 $c['storage.header.mapper'] = function ( $c ) {
 	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 };
@@ -337,12 +326,19 @@ $c['storage.header'] = function ( $c ) {
 		$c['storage.header.indexes.primary'],
 		$c['storage.header.indexes.header_lookup']
 	];
+	$listeners = [
+		'reference.recorder' => $c['reference.recorder'],
+		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
+		'listeners.notification' => $c['listeners.notification'],
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'listener.editcount' => $c['listener.editcount'],
+	];
 	return new ObjectManager(
 		$c['storage.header.mapper'],
 		$c['storage.header.backend'],
 		$c['db.factory'],
 		$indexes,
-		$c['storage.header.listeners']
+		$listeners
 	);
 };
 
@@ -361,16 +357,6 @@ $c['storage.post_summary.listeners.username'] = function ( $c ) {
 			'rev_edit_user_id' => 'rev_edit_user_wiki'
 		]
 	);
-};
-$c['storage.post_summary.listeners'] = function ( $c ) {
-	return [
-		'listener.recentchanges' => $c['listener.recentchanges'],
-		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
-		'listeners.notification' => $c['listeners.notification'],
-		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
-		'listener.editcount' => $c['listener.editcount'],
-		'reference.recorder' => $c['reference.recorder'],
-	];
 };
 $c['storage.post_summary.backend'] = function ( $c ) {
 	global $wgFlowExternalStore;
@@ -411,12 +397,20 @@ $c['storage.post_summary'] = function ( $c ) {
 		$c['storage.post_summary.indexes.primary'],
 		$c['storage.post_summary.indexes.topic_lookup'],
 	];
+	$listeners = [
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
+		'listeners.notification' => $c['listeners.notification'],
+		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
+		'listener.editcount' => $c['listener.editcount'],
+		'reference.recorder' => $c['reference.recorder'],
+	];
 	return new ObjectManager(
 		$c['storage.post_summary.mapper'],
 		$c['storage.post_summary.backend'],
 		$c['db.factory'],
 		$indexes,
-		$c['storage.post_summary.listeners']
+		$listeners
 	);
 };
 
@@ -519,19 +513,6 @@ $c['storage.post.listeners.watch_topic'] = function ( $c ) {
 		$c['watched_items']
 	);
 };
-$c['storage.post.listeners'] = function ( $c ) {
-	return [
-		'reference.recorder' => $c['reference.recorder'],
-		'collection.cache' => $c['collection.cache'],
-		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
-		'storage.post.listeners.watch_topic' => $c['storage.post.listeners.watch_topic'],
-		'listeners.notification' => $c['listeners.notification'],
-		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
-		'listener.recentchanges' => $c['listener.recentchanges'],
-		'listener.editcount' => $c['listener.editcount'],
-		'storage.post_board_history.indexes.primary' => $c['storage.post_board_history.indexes.primary'],
-	];
-};
 $c['storage.post.indexes.primary'] = function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
@@ -567,12 +548,23 @@ $c['storage.post'] = function ( $c ) {
 		$c['storage.post.indexes.post_lookup'],
 		$c['storage.post_topic_history.indexes.topic_lookup']
 	];
+	$listeners = [
+		'reference.recorder' => $c['reference.recorder'],
+		'collection.cache' => $c['collection.cache'],
+		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
+		'storage.post.listeners.watch_topic' => $c['storage.post.listeners.watch_topic'],
+		'listeners.notification' => $c['listeners.notification'],
+		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
+		'listener.recentchanges' => $c['listener.recentchanges'],
+		'listener.editcount' => $c['listener.editcount'],
+		'storage.post_board_history.indexes.primary' => $c['storage.post_board_history.indexes.primary'],
+	];
 	return new ObjectManager(
 		$c['storage.post.mapper'],
 		$c['storage.post.backend'],
 		$c['db.factory'],
 		$indexes,
-		$c['storage.post.listeners']
+		$listeners
 	);
 };
 

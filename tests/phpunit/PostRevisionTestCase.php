@@ -17,6 +17,7 @@ use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use SplQueue;
 use User;
+use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
 /**
@@ -274,26 +275,41 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	protected function clearExtraLifecycleHandlers() {
 		$container = Container::getContainer();
-		foreach ( array_unique( $container['storage.manager_list'] ) as $storage ) {
-			if ( !isset( $container["$storage.listeners"] ) ) {
-				continue;
-			}
 
-			$container->extend( "$storage.listeners", function ( $listeners ) {
-				unset(
+		// We want to remove some of the listeners from a few of the ObjectManager services;
+		// entries in this array correspond to the key for the service in the container
+		// (this will need to be written once the services are moved to ServiceWiring.php)
+		$toUpdate = [ 'storage.workflow', 'storage.header', 'storage.post_summary', 'storage.post' ];
+		foreach ( $toUpdate as $objectManagerName ) {
+			$container->extend(
+				$objectManagerName,
+				function ( $objectManager ) {
+					$access = TestingAccessWrapper::newFromObject( $objectManager );
+
+					// Prevent "Indirect modification of overloaded property
+					// Wikimedia\TestingAccessWrapper::$lifecycleHandlers has no effect"
+					// by getting the array and then setting it at the end
+					$listeners = $access->lifecycleHandlers;
+
 					// putting together the right metadata for a commit is beyond the
 					// scope of these tests
-					$listeners['listeners.notification'],
+					unset( $listeners['listeners.notification'] );
+
 					// Recent changes logging is outside the scope of tests, and
 					// causes interaction issues
-					$listeners['listener.recentchanges'],
+					unset( $listeners['listener.recentchanges'] );
+
 					// BoardHistory requires we also wire together TopicListEntry objects for
 					// each revision, but that's also beyond our scope.
-					$listeners['storage.post_board_history.indexes.primary']
-				);
+					unset( $listeners['storage.post_board_history.indexes.primary'] );
 
-				return $listeners;
-			} );
+					// Update object
+					$access->lifecycleHandlers = $listeners;
+
+					// Return updated object
+					return $objectManager;
+				}
+			);
 		}
 	}
 }
