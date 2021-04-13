@@ -133,16 +133,14 @@ $c['storage.workflow.backend'] = static function ( $c ) {
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow.indexes.primary'] = static function ( $c ) {
-	return new UniqueFeatureIndex(
+$c['storage.workflow'] = static function ( $c ) {
+	$workflowPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.workflow.backend'],
 		$c['storage.workflow.mapper'],
 		'flow_workflow:v2:pk',
 		[ 'workflow_id' ]
 	);
-};
-$c['storage.workflow'] = static function ( $c ) {
 	$workflowTitleLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.workflow.backend'],
@@ -150,13 +148,13 @@ $c['storage.workflow'] = static function ( $c ) {
 		'flow_workflow:title:v2:',
 		[ 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ],
 		[
-			'shallow' => $c['storage.workflow.indexes.primary'],
+			'shallow' => $workflowPrimaryIndex,
 			'limit' => 1,
 			'sort' => 'workflow_id'
 		]
 	);
 	$indexes = [
-		$c['storage.workflow.indexes.primary'],
+		$workflowPrimaryIndex,
 		$workflowTitleLookupIndex,
 	];
 	$listeners = [
@@ -292,16 +290,14 @@ $c['storage.header.backend'] = static function ( $c ) {
 		$wgFlowExternalStore
 	);
 };
-$c['storage.header.indexes.primary'] = static function ( $c ) {
-	return new UniqueFeatureIndex(
+$c['storage.header'] = static function ( $c ) {
+	$headerPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.header.backend'],
 		$c['storage.header.mapper'],
 		'flow_header:v2:pk',
 		[ 'rev_id' ] // primary key
 	);
-};
-$c['storage.header'] = static function ( $c ) {
 	$headerHeaderLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.header.backend'],
@@ -312,14 +308,14 @@ $c['storage.header'] = static function ( $c ) {
 			'limit' => FLOW_HISTORY_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
-			'shallow' => $c['storage.header.indexes.primary'],
+			'shallow' => $headerPrimaryIndex,
 			'create' => static function ( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
 		]
 	);
 	$indexes = [
-		$c['storage.header.indexes.primary'],
+		$headerPrimaryIndex,
 		$headerHeaderLookupIndex
 	];
 	$listeners = [
@@ -361,16 +357,14 @@ $c['storage.post_summary.backend'] = static function ( $c ) {
 		$wgFlowExternalStore
 	);
 };
-$c['storage.post_summary.indexes.primary'] = static function ( $c ) {
-	return new UniqueFeatureIndex(
+$c['storage.post_summary'] = static function ( $c ) {
+	$postSummaryPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.post_summary.backend'],
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:v2:pk',
 		[ 'rev_id' ]
 	);
-};
-$c['storage.post_summary'] = static function ( $c ) {
 	$postSummaryTopicLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.post_summary.backend'],
@@ -381,14 +375,14 @@ $c['storage.post_summary'] = static function ( $c ) {
 			'limit' => FLOW_HISTORY_INDEX_LIMIT,
 			'sort' => 'rev_id',
 			'order' => 'DESC',
-			'shallow' => $c['storage.post_summary.indexes.primary'],
+			'shallow' => $postSummaryPrimaryIndex,
 			'create' => static function ( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
 		]
 	);
 	$indexes = [
-		$c['storage.post_summary.indexes.primary'],
+		$postSummaryPrimaryIndex,
 		$postSummaryTopicLookupIndex,
 	];
 	$listeners = [
@@ -423,29 +417,6 @@ $c['storage.topic_list.backend'] = static function ( $c ) {
 		[ 'topic_list_id', 'topic_id' ]
 	);
 };
-// Lookup from topic_id to its owning board id
-$c['storage.topic_list.indexes.primary'] = static function ( $c ) {
-	return new UniqueFeatureIndex(
-		$c['flowcache'],
-		$c['storage.topic_list.backend'],
-		$c['storage.topic_list.mapper'],
-		'flow_topic_list:topic',
-		[ 'topic_id' ]
-	);
-};
-
-// Lookup from board to contained topics
-/// In reverse order by topic_id
-$c['storage.topic_list.indexes.reverse_lookup'] = static function ( $c ) {
-	return new TopKIndex(
-		$c['flowcache'],
-		$c['storage.topic_list.backend'],
-		$c['storage.topic_list.mapper'],
-		'flow_topic_list:list',
-		[ 'topic_list_id' ],
-		[ 'sort' => 'topic_id' ]
-	);
-};
 /// In reverse order by topic last_updated
 $c['storage.topic_list.indexes.last_updated'] = static function ( $c ) {
 	return new TopKIndex(
@@ -461,9 +432,27 @@ $c['storage.topic_list.indexes.last_updated'] = static function ( $c ) {
 	);
 };
 $c['storage.topic_list'] = static function ( $c ) {
+	// Lookup from topic_id to its owning board id
+	$topicListPrimaryIndex = new UniqueFeatureIndex(
+		$c['flowcache'],
+		$c['storage.topic_list.backend'],
+		$c['storage.topic_list.mapper'],
+		'flow_topic_list:topic',
+		[ 'topic_id' ]
+	);
+	// Lookup from board to contained topics
+	// In reverse order by topic_id
+	$topicListReverseLookupIndex = new TopKIndex(
+		$c['flowcache'],
+		$c['storage.topic_list.backend'],
+		$c['storage.topic_list.mapper'],
+		'flow_topic_list:list',
+		[ 'topic_list_id' ],
+		[ 'sort' => 'topic_id' ]
+	);
 	$indexes = [
-		$c['storage.topic_list.indexes.primary'],
-		$c['storage.topic_list.indexes.reverse_lookup'],
+		$topicListPrimaryIndex,
+		$topicListReverseLookupIndex,
 		$c['storage.topic_list.indexes.last_updated'],
 	];
 	return new ObjectManager(
