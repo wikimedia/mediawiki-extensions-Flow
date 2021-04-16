@@ -69,11 +69,11 @@
 			'Modal heading should be hidden with no title' );
 
 		modal = mw.Modal( { title: 'titlefoo' } );
-		assert.strictEqual( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) > -1, true,
+		assert.ok( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) > -1,
 			'Modal instantiation sets title to "titlefoo"' );
 
 		modal.setTitle( 'titlebaz' );
-		assert.strictEqual( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) > -1, true,
+		assert.ok( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) > -1,
 			'Modal setTitle to "titlebaz"' );
 
 		// Content at instantiation
