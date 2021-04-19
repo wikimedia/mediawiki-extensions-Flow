@@ -2,12 +2,10 @@
 
 namespace Flow\Import;
 
-use ActorMigration;
 use Flow\Exception\FlowException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MovePage;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Title;
@@ -215,30 +213,25 @@ class Converter {
 	 * @return Title|null
 	 */
 	protected function getPageMovedFrom( Title $title ) {
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$row = $this->dbw->selectRow(
-			[ 'logging', 'page' ] + $actorQuery['tables'],
-			[ 'log_namespace', 'log_title', 'log_user' => $actorQuery['fields']['log_user'] ],
+			[ 'logging', 'page' ],
+			[ 'log_namespace', 'log_title' ],
 			[
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'log_type' => 'move',
+				'log_actor' => $this->user->getActorId()
 			],
 			__METHOD__,
 			[
 				'LIMIT' => 1,
 				'ORDER BY' => 'log_timestamp DESC'
 			],
-			[ 'page' => [ 'JOIN', 'log_page = page_id' ] ] + $actorQuery['joins']
+			[ 'page' => [ 'JOIN', 'log_page = page_id' ] ]
 		);
 
-		// The page has never been moved
+		// The page has never been moved or the most recent move was not by our user
 		if ( !$row ) {
-			return null;
-		}
-
-		// The most recent move was not by our user
-		if ( $row->log_user != $this->user->getId() ) {
 			return null;
 		}
 

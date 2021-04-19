@@ -74,64 +74,60 @@ class FlowRestoreLQT extends Maintenance {
 
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
-		$logWhere = ActorMigration::newMigration()
-			->getWhere( $dbr, 'log_user', $this->talkpageManagerUser );
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		foreach ( $revWhere['orconds'] as $revCond ) {
-			foreach ( $logWhere['orconds'] as $logCond ) {
-				$startId = 0;
-				do {
-					// fetch all LQT boards that have been moved out of the way,
-					// with their original title & their current title
-					$rows = $dbr->select(
-						[ 'logging', 'page', 'revision' ] + $revWhere['tables'] + $logWhere['tables'],
-						// log_namespace & log_title will be the original location
-						// page_namespace & page_title will be the current location
-						// rev_id is the first Flow talk page manager edit id
-						// log_id is the log entry for when importer moved LQT page
-						[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title',
-							'rev_id' => 'MIN(rev_id)', 'log_id' ],
-						[
-							$logCond,
-							'log_type' => 'move',
-							'page_content_model' => 'wikitext',
-							'page_id > ' . $dbr->addQuotes( $startId ),
+			$startId = 0;
+			do {
+				// fetch all LQT boards that have been moved out of the way,
+				// with their original title & their current title
+				$rows = $dbr->select(
+					[ 'logging', 'page', 'revision' ] + $revWhere['tables'],
+					// log_namespace & log_title will be the original location
+					// page_namespace & page_title will be the current location
+					// rev_id is the first Flow talk page manager edit id
+					// log_id is the log entry for when importer moved LQT page
+					[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title',
+						'rev_id' => 'MIN(rev_id)', 'log_id' ],
+					[
+						'log_actor' => $this->talkpageManagerUser->getActorId(),
+						'log_type' => 'move',
+						'page_content_model' => 'wikitext',
+						'page_id > ' . $dbr->addQuotes( $startId ),
+					],
+					__METHOD__,
+					[
+						'GROUP BY' => 'rev_page',
+						'LIMIT' => $batchSize,
+						'ORDER BY' => 'log_id ASC',
+					],
+					[
+						'page' => [
+							'INNER JOIN',
+							[ 'page_id = log_page' ],
 						],
-						__METHOD__,
-						[
-							'GROUP BY' => 'rev_page',
-							'LIMIT' => $batchSize,
-							'ORDER BY' => 'log_id ASC',
+						'revision' => [
+							'INNER JOIN',
+							[ 'rev_page = log_page', $revCond ],
 						],
-						[
-							'page' => [
-								'INNER JOIN',
-								[ 'page_id = log_page' ],
-							],
-							'revision' => [
-								'INNER JOIN',
-								[ 'rev_page = log_page', $revCond ],
-							],
-						] + $revWhere['joins'] + $logWhere['joins']
-					);
+					] + $revWhere['joins']
+				);
 
-					foreach ( $rows as $row ) {
-						$from = Title::newFromText( $row->page_title, $row->page_namespace );
-						$to = Title::newFromText( $row->log_title, $row->log_namespace );
+				foreach ( $rows as $row ) {
+					$from = Title::newFromText( $row->page_title, $row->page_namespace );
+					$to = Title::newFromText( $row->log_title, $row->log_namespace );
 
-						// undo {{#useliquidthreads:0}}
-						$this->restorePageRevision( $row->page_id, $row->rev_id );
-						// undo page move to archive location
-						$this->restoreLQTPage( $from, $to, $row->log_id );
+					// undo {{#useliquidthreads:0}}
+					$this->restorePageRevision( $row->page_id, $row->rev_id );
+					// undo page move to archive location
+					$this->restoreLQTPage( $from, $to, $row->log_id );
 
-						$startId = $row->page_id;
-					}
+					$startId = $row->page_id;
+				}
 
-					$lbFactory->waitForReplication();
-				} while ( $rows->numRows() >= $batchSize );
-			}
+				$lbFactory->waitForReplication();
+			} while ( $rows->numRows() >= $batchSize );
 		}
 	}
 
