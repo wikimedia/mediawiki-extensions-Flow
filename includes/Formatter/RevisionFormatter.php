@@ -22,6 +22,7 @@ use GenderCache;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
 use Message;
 use User;
 use Wikimedia\Timestamp\TimestampException;
@@ -115,6 +116,11 @@ class RevisionFormatter {
 	protected $genderCache;
 
 	/**
+	 * @var UserGroupManager
+	 */
+	protected $userGroupManager;
+
+	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
 	 * @param UserNameBatch $usernames
@@ -131,6 +137,7 @@ class RevisionFormatter {
 		$this->urlGenerator = $this->templating->getUrlGenerator();
 		$this->usernames = $usernames;
 		$this->genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$this->userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
 		$this->maxThreadingDepth = $maxThreadingDepth;
 	}
 
@@ -536,7 +543,7 @@ class RevisionFormatter {
 						// can't thank self
 						$user->getId() !== $revision->getCreatorId() &&
 						// can't thank bots
-						!( !$wgThanksSendToBots && in_array( 'bot', $targetedUser->getGroups() ) )
+						!( !$wgThanksSendToBots && in_array( 'bot', $this->userGroupManager->getUserGroups( $targetedUser ) ) )
 					) {
 						$links['thank'] = $this->urlGenerator->thankAction( $postId );
 					}

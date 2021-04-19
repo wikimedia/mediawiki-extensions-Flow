@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use ExtensionRegistry;
 use Flow\Container;
+use Flow\Hooks;
 use Flow\Import\IImportSource;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
@@ -21,6 +22,12 @@ use WikitextContent;
  * @group Flow
  */
 class ConversionStrategyTest extends \MediaWikiTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+		Container::reset();
+		Hooks::resetFlowExtension();
+	}
+
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
 			ConversionStrategy::class,
