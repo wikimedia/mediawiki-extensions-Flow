@@ -35,15 +35,14 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 	}
 
 	public function testViewHeader() {
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => 'Talk:Flow_QA',
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'edit-header',
 			'ehprev_revision' => '',
 			'ehcontent' => 'swimmingly',
 			'ehformat' => 'wikitext',
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-header']['status'], $debug );

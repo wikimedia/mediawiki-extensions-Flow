@@ -36,14 +36,13 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	public function testModerateTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
 			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
 			'mtreason' => '<>&{};'
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );
@@ -96,27 +95,25 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	public function testModerateLockedTopic() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'lock-topic',
 			'cotmoderationState' => AbstractRevision::MODERATED_LOCKED,
 			'cotreason' => '<>&{};'
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['lock-topic']['status'], $debug );
 		$this->assertCount( 1, $data[0]['flow']['lock-topic']['committed'], $debug );
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'moderate-topic',
 			'mtmoderationState' => AbstractRevision::MODERATED_DELETED,
 			'mtreason' => '<>&{};'
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['moderate-topic']['status'], $debug );

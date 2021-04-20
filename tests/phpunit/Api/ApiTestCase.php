@@ -46,11 +46,6 @@ abstract class ApiTestCase extends \ApiTestCase {
 		$this->setCurrentUser( self::$users['sysop']->getUser() );
 	}
 
-	protected function getEditToken( $user = null, $token = 'edittoken' ) {
-		$tokens = $this->getTokenList( $user ?: self::$users['sysop'] );
-		return $tokens[$token];
-	}
-
 	/**
 	 * Set $user in the Flow container
 	 * WARNING: This resets your container and
@@ -67,11 +62,12 @@ abstract class ApiTestCase extends \ApiTestCase {
 		array $params,
 		array $session = null,
 		$appendModule = false,
-		User $user = null, $tokenType = null
+		User $user = null,
+		$tokenType = null
 	) {
 		// reset flow state before each request
 		Hooks::resetFlowExtension();
-		return parent::doApiRequest( $params, $session, $appendModule, $user );
+		return parent::doApiRequest( $params, $session, $appendModule, $user, $tokenType );
 	}
 
 	/**
@@ -80,14 +76,13 @@ abstract class ApiTestCase extends \ApiTestCase {
 	 * @return array
 	 */
 	protected function createTopic( $topicTitle = 'Hi there!' ) {
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => 'Talk:Flow QA',
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'new-topic',
 			'nttopic' => $topicTitle,
 			'ntcontent' => '...',
-		] );
+		], null, null, 'csrf' );
 
 		$this->assertTrue(
 			isset( $data[0]['flow']['new-topic']['committed']['topiclist']['topic-id'] ),
