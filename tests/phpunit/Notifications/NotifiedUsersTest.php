@@ -67,14 +67,10 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		/** @var User $user */
 		$user = $data['user'];
 
-		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
+		MediaWikiServices::getInstance()->getWatchlistManager()->addWatch(
 			$user,
-			[
-				$data['topicWorkflow']->getArticleTitle()->getSubjectPage(),
-				$data['topicWorkflow']->getArticleTitle()->getTalkPage()
-			]
+			$data['topicWorkflow']->getArticleTitle()
 		);
-		$user->invalidateCache();
 
 		$events = $data['notificationController']->notifyPostChange( 'flow-post-reply',
 			[
@@ -111,14 +107,10 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		/** @var User $user */
 		$user = $data['user'];
 
-		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
+		MediaWikiServices::getInstance()->getWatchlistManager()->addWatch(
 			$user,
-			[
-				$data['boardWorkflow']->getArticleTitle()->getSubjectPage(),
-				$data['boardWorkflow']->getArticleTitle()->getTalkPage()
-			]
+			$data['boardWorkflow']->getArticleTitle()
 		);
-		$user->invalidateCache();
 
 		$events = $data['notificationController']->notifyNewTopic( [
 			'board-workflow' => $data['boardWorkflow'],
