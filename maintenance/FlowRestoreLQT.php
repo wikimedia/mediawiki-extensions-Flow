@@ -95,6 +95,7 @@ class FlowRestoreLQT extends Maintenance {
 						'log_type' => 'move',
 						'page_content_model' => 'wikitext',
 						'page_id > ' . $dbr->addQuotes( $startId ),
+						$revCond,
 					],
 					__METHOD__,
 					[
@@ -109,7 +110,7 @@ class FlowRestoreLQT extends Maintenance {
 						],
 						'revision' => [
 							'INNER JOIN',
-							[ 'rev_page = log_page', $revCond ],
+							[ 'rev_page = log_page' ],
 						],
 					] + $revWhere['joins']
 				);
