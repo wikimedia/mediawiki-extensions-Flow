@@ -59,11 +59,10 @@ class ApiWatchTopicTest extends ApiTestCase {
 		$init( self::$users['sysop']->getUser(), $title );
 
 		// issue a watch api request
-		$data = $this->doApiRequest( $request + [
+		$data = $this->doApiRequestWithToken( $request + [
 				'action' => 'watch',
 				'format' => 'json',
 				'titles' => $topic['topic-page'],
-				'token' => $this->getEditToken( null, 'watchtoken' ),
 		] );
 		$this->assertArrayHasKey( $expect, $data[0]['watch'][0], $message );
 	}

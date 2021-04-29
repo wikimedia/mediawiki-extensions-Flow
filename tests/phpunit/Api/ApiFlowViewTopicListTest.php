@@ -182,16 +182,13 @@ class ApiFlowViewTopicListTest extends ApiTestCase {
 		$updateList = [ 1, 0, 2 ];
 
 		foreach ( $updateList as $updateListInd => $topicDataInd ) {
-			$replyResponse = $this->doApiRequest(
-				[
-					'action' => 'flow',
-					'page' => $topicData[$topicDataInd]['page'],
-					'submodule' => 'reply',
-					'token' => $this->getEditToken(),
-					'repreplyTo' => $topicData[$topicDataInd]['id'],
-					'repcontent' => "Reply to topic $topicDataInd",
-				]
-			);
+			$replyResponse = $this->doApiRequestWithToken( [
+				'action' => 'flow',
+				'page' => $topicData[ $topicDataInd ]['page'],
+				'submodule' => 'reply',
+				'repreplyTo' => $topicData[ $topicDataInd ]['id'],
+				'repcontent' => "Reply to topic $topicDataInd",
+			], null, null, 'csrf' );
 
 			// This is because we use timestamps with second granularity.
 			// Without this, the timestamp can be exactly the same

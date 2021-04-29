@@ -19,15 +19,14 @@ class ApiFlowEditTopicSummaryTest extends ApiTestCase {
 
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'edit-topic-summary',
 			'etsprev_revision' => '',
 			'etssummary' => $summaryText,
 			'etsformat' => 'wikitext',
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-topic-summary']['status'], $debug );

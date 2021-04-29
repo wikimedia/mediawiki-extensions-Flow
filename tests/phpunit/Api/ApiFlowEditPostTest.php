@@ -22,16 +22,15 @@ class ApiFlowEditPostTest extends ApiTestCase {
 	public function testEditPost() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'edit-post',
 			'eppostId' => $topic['post-id'],
 			'epprev_revision' => $topic['post-revision-id'],
 			'epcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
 			'epformat' => 'wikitext',
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['edit-post']['status'], $debug );

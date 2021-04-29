@@ -17,15 +17,14 @@ class ApiFlowReplyTest extends ApiTestCase {
 	public function testTopLevelReply() {
 		$topic = $this->createTopic();
 
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'page' => $topic['topic-page'],
-			'token' => $this->getEditToken(),
 			'action' => 'flow',
 			'submodule' => 'reply',
 			'repreplyTo' => $topic['topic-id'],
 			'repcontent' => '⎛ ﾟ∩ﾟ⎞⎛ ⍜⌒⍜⎞⎛ ﾟ⌒ﾟ⎞',
 			'repformat' => 'wikitext',
-		] );
+		], null, null, 'csrf' );
 
 		$debug = json_encode( $data );
 		$this->assertEquals( 'ok', $data[0]['flow']['reply']['status'], $debug );
