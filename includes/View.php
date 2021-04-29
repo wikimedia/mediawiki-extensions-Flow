@@ -215,17 +215,7 @@ class View extends ContextSource {
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => [],
 			// see https://phabricator.wikimedia.org/T223165
-			'isWatched' => (
-				$title->isWatchable() &&
-				MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
-					$user,
-					'viewmywatchlist'
-				) &&
-				MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched(
-					$user,
-					$title
-				)
-			),
+			'isWatched' => MediaWikiServices::getInstance()->getWatchlistManager()->isWatched( $user, $title ),
 			'watchable' => $user->isRegistered(),
 			'links' => [
 				'watch-board' => [

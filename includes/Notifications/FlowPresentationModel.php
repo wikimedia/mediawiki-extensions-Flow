@@ -176,17 +176,8 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 		$stringPageTitle = $isTopic ? $this->getTopicTitle() : $this->getTruncatedTitleText( $title );
 
 		if ( $this->isUserTalkPage() ||
-			 !(
-				$title->isWatchable() &&
-				MediaWikiServices::getInstance()->getPermissionManager()->userHasRight(
-					$this->getUser(),
-					'viewmywatchlist'
-				) &&
-				MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched(
-					$this->getUser(),
-					$title
-				)
-			) ) {
+			 !MediaWikiServices::getInstance()->getWatchlistManager()->isWatched( $this->getUser(), $title )
+			) {
 			return null;
 		}
 
