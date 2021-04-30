@@ -23,10 +23,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				'watched',
 				// initialization
 				function ( User $user, Title $title ) {
-					$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-					$store->removeWatch( $user, $title->getSubjectPage() );
-					$store->removeWatch( $user, $title->getTalkPage() );
-					$title->invalidateCache();
+					MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch( $user, $title );
 				},
 				// extra request parameters
 				[],
@@ -37,11 +34,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				'unwatched',
 				// initialization
 				function ( User $user, Title $title ) {
-					MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
-						$user,
-						[ $title->getSubjectPage(), $title->getTalkPage() ]
-					);
-					$user->invalidateCache();
+					MediaWikiServices::getInstance()->getWatchlistManager()->addWatch( $user, $title );
 				},
 				// extra request parameters
 				[ 'unwatch' => 1 ],

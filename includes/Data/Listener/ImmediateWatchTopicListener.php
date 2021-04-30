@@ -38,15 +38,7 @@ class ImmediateWatchTopicListener extends AbstractTopicInsertListener {
 			$title = $workflow->getArticleTitle();
 
 			// see https://phabricator.wikimedia.org/T223165
-			if ( MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $user, 'editmywatchlist' ) ) {
-				MediaWikiServices::getInstance()->getWatchedItemStore()
-					->addWatchBatchForUser( $user, [
-							$title->getSubjectPage(),
-							$title->getTalkPage()
-						] );
-				$user->invalidateCache();
-			}
+			MediaWikiServices::getInstance()->getWatchlistManager()->addWatch( $user, $title );
 			$this->watchedTopicItems->addOverrideWatched( $title );
 		}
 	}
