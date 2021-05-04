@@ -470,7 +470,7 @@
 	"flow-topic-undo-hide": "desfazer ocultar",
 	"flow-topic-undo-delete": "desfazer excluir",
 	"flow-topic-undo-suppress": "desfazer suprimir",
-	"flow-importer-lqt-moved-thread-template": "Esboço de tópico movido LQT convertido para Fluxo",
+	"flow-importer-lqt-moved-thread-template": "Rascunho de tópico movido LQT convertido para Fluxo",
 	"flow-importer-lqt-moved-thread-template-content": "Esta publicação por {{{author}}} foi movida em {{{date}}}. Você pode encontrá-la em [[{{{title}}}]].",
 	"flow-importer-lqt-converted-template": "Página LQT convertida para Fluxo",
 	"flow-importer-lqt-converted-template-content": "As páginas anteriores foram arquivadas em <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> em {{#time: Y-m-d|{{{date}}}}}.",
