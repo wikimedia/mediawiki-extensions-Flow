@@ -2,9 +2,40 @@
 	"@metadata": {
 		"authors": [
 			"Ananth subray",
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "ಕಾರಣ:",
+	"flow-post-actions": "ಕ್ರಿಯೆಗಳು",
+	"flow-topic-actions": "ಕ್ರಿಯೆಗಳು",
+	"flow-cancel": "ರದ್ದುಮಾಡಿ",
 	"flow-summary-authored": "$1 ಇಂದ ಸಾರಾಂಶ",
-	"flow-topic-action-resummarize-topic": "ಸಂಪಾದನೆಯ ತಾತ್ಪರ್ಯ"
+	"flow-show-change": "ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸು",
+	"flow-newtopic-title-placeholder": "ಹೊಸ ವಿಷಯ",
+	"flow-newtopic-header": "ಹೊಸ ವಿಷಯವನ್ನು ಸೇರಿಸಿ",
+	"flow-newtopic-save": "ವಿಷಯ ಸೇರಿಸಿ",
+	"flow-newtopic-save-anonymously": "ಅನಾಮಧೇಯವಾಗಿ ವಿಷಯ ಸೇರಿಸಿ",
+	"flow-newtopic-start-placeholder": "ಒಂದು ಹೊಸ ವಿಷಯವನ್ನು ಆರಂಭಿಸಿ",
+	"flow-newtopic-first-heading": "$1 ನಲ್ಲಿ ಒಂದು ಹೊಸ ವಿಷಯವನ್ನು ಆರಂಭಿಸಿ",
+	"flow-history-action-delete-post": "ಅಳಿಸು",
+	"flow-history-action-hide-post": "ಅಡಗಿಸು",
+	"flow-history-action-restore-post": "ಪುನಃಸ್ಥಾಪಿಸು",
+	"flow-post-action-post-history": "ಇತಿಹಾಸ",
+	"flow-post-action-delete-post": "ಅಳಿಸು",
+	"flow-post-action-hide-post": "ಅಡಗಿಸು",
+	"flow-post-action-edit-post": "ಸಂಪಾದಿಸಿ",
+	"flow-post-action-edit-post-submit": "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ",
+	"flow-post-action-edit-post-submit-anonymously": "ಅನಾಮಧೇಯವಾಗಿ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ",
+	"flow-post-action-edit-post-submit-publish": "ಬದಲಾವಣೆಗಳನ್ನು ಪ್ರಕಟಿಸು",
+	"flow-post-action-edit-post-submit-anonymously-publish": "ಅನಾಮಧೇಯವಾಗಿ ಬದಲಾವಣೆಗಳನ್ನು ಪ್ರಕಟಿಸು",
+	"flow-topic-action-watchlist": "ವೀಕ್ಷಣಾಪಟ್ಟಿ",
+	"flow-topic-action-edit-title": "ಶೀರ್ಷಿಕೆ ಸಂಪಾದಿಸಿ",
+	"flow-topic-action-history": "ಇತಿಹಾಸ",
+	"flow-topic-action-hide-topic": "ವಿಷಯ ಅಡಗಿಸಿ",
+	"flow-topic-action-delete-topic": "ವಿಷಯ ಅಳಿಸಿ",
+	"flow-topic-action-resummarize-topic": "ಸಂಪಾದನೆಯ ತಾತ್ಪರ್ಯ",
+	"flow-history-day": "ಇಂದು",
+	"flow-history-week": "ಹಿಂದಿನ ವಾರ",
+	"flow-link-history": "ಇತಿಹಾಸ"
 }
