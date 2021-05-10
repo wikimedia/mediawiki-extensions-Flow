@@ -182,7 +182,7 @@ class TalkpageImportOperation {
 
 		$revisions = $this->importObjectWithHistory(
 			$importHeader,
-			function ( IObjectRevision $rev ) use ( $pageState ) {
+			static function ( IObjectRevision $rev ) use ( $pageState ) {
 				return Header::create(
 					$pageState->boardWorkflow,
 					$pageState->createUser( $rev->getAuthor() ),
@@ -278,7 +278,7 @@ class TalkpageImportOperation {
 
 		$titleRevisions = $this->importObjectWithHistory(
 			$importTopic,
-			function ( IObjectRevision $rev ) use ( $state, $topicWorkflow ) {
+			static function ( IObjectRevision $rev ) use ( $state, $topicWorkflow ) {
 				return PostRevision::createTopicPost(
 					$topicWorkflow,
 					$state->createUser( $rev->getAuthor() ),
@@ -350,7 +350,7 @@ class TalkpageImportOperation {
 
 		$revisions = $this->importObjectWithHistory(
 			$importSummary,
-			function ( IObjectRevision $rev ) use ( $state ) {
+			static function ( IObjectRevision $rev ) use ( $state ) {
 				return PostSummary::create(
 					$state->topicWorkflow->getArticleTitle(),
 					$state->topicTitle,
@@ -400,7 +400,7 @@ class TalkpageImportOperation {
 		} else {
 			$replyRevisions = $this->importObjectWithHistory(
 				$post,
-				function ( IObjectRevision $rev ) use ( $replyTo, $state ) {
+				static function ( IObjectRevision $rev ) use ( $replyTo, $state ) {
 					return $replyTo->reply(
 						$state->topicWorkflow,
 						$state->parent->createUser( $rev->getAuthor() ),

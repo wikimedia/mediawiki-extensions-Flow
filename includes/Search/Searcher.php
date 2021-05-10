@@ -93,7 +93,7 @@ class Searcher {
 
 		// Perform the search
 		$work = new PoolCounterWorkViaCallback( 'Flow-Search', "_elasticsearch", [
-			'doWork' => function () use ( $search ) {
+			'doWork' => static function () use ( $search ) {
 				try {
 					$result = $search->search();
 					return Status::newGood( $result );
@@ -109,7 +109,7 @@ class Searcher {
 					return Status::newFatal( 'flow-error-search' );
 				}
 			},
-			'error' => function ( Status $status ) {
+			'error' => static function ( Status $status ) {
 				$status = $status->getErrorsArray();
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				wfLogWarning( 'Pool error searching Elasticsearch: ' . $status[0][0] );

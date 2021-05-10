@@ -283,7 +283,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		foreach ( $toUpdate as $objectManagerName ) {
 			$container->extend(
 				$objectManagerName,
-				function ( $objectManager ) {
+				static function ( $objectManager ) {
 					$access = TestingAccessWrapper::newFromObject( $objectManager );
 
 					// Prevent "Indirect modification of overloaded property

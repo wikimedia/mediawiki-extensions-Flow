@@ -211,7 +211,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		}
 		$type = $revision->getRevisionType();
 
-		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
+		$dbw = Container::get( 'db.factory' )->getDB( DB_PRIMARY );
 		$res = $dbw->update(
 			'flow_revision',
 			[

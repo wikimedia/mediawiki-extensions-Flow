@@ -78,7 +78,7 @@ class FlowReserializeRevisionContent extends Maintenance {
 		$this->storage = Container::get( 'storage' );
 
 		$dbr = $this->dbFactory->getDb( DB_REPLICA );
-		$dbw = $this->dbFactory->getDb( DB_MASTER );
+		$dbw = $this->dbFactory->getDb( DB_PRIMARY );
 		$newVersion = Utils::PARSOID_VERSION;
 
 		$iterator = new BatchRowIterator( $dbw, 'flow_revision', 'rev_id', $this->getBatchSize() );

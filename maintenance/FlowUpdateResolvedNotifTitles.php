@@ -35,7 +35,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 
 	public function doDBUpdates() {
 		$dbFactory = MWEchoDbFactory::newFromDefault();
-		$dbw = $dbFactory->getEchoDb( DB_MASTER );
+		$dbw = $dbFactory->getEchoDb( DB_PRIMARY );
 		$dbr = $dbFactory->getEchoDb( DB_REPLICA );
 		// We can't join echo_event with page, because those tables can be on different
 		// DB clusters. If we had been able to do that, we could have added

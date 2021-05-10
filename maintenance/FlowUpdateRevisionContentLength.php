@@ -74,7 +74,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		);
 		$this->previousContentLengthProperty->setAccessible( true );
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		// Walk through the flow_revision table
 		$it = new BatchRowIterator(
 			$dbw,

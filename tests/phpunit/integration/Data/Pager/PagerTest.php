@@ -61,8 +61,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// query options
 				[ 'pager-limit' => 10 ],
 				// filter
-				function ( $found ) {
-					return array_filter( $found, function ( $obj ) {
+				static function ( $found ) {
+					return array_filter( $found, static function ( $obj ) {
 						return $obj->foo !== 'B';
 					} );
 				},
@@ -80,8 +80,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// query options
 				[ 'pager-limit' => 2 ],
 				// query filter
-				function ( $found ) {
-					return array_filter( $found, function ( $obj ) {
+				static function ( $found ) {
+					return array_filter( $found, static function ( $obj ) {
 						return $obj->foo !== 'B' && $obj->foo !== 'C';
 					} );
 				},
@@ -104,8 +104,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// query options
 				[ 'pager-limit' => 3, 'pager-dir' => 'rev', 'pager-offset' => 'K' ],
 				// query filter
-				function ( $found ) {
-					return array_filter( $found, function ( $obj ) {
+				static function ( $found ) {
+					return array_filter( $found, static function ( $obj ) {
 						return in_array( $obj->foo, [ 'I', 'F', 'B', 'A' ] );
 					} );
 				},
@@ -198,8 +198,8 @@ class PagerTest extends \MediaWikiTestCase {
 				// pager options
 				[ 'pager-limit' => 2 ],
 				// filter
-				function ( $found ) {
-					return array_filter( $found, function ( $obj ) {
+				static function ( $found ) {
+					return array_filter( $found, static function ( $obj ) {
 						return $obj->foo > 'B';
 					} );
 				},
@@ -221,8 +221,8 @@ class PagerTest extends \MediaWikiTestCase {
 				],
 				[ 'pager-limit' => 2 ],
 				// filter
-				function ( $found ) {
-					return array_filter( $found, function ( $obj ) {
+				static function ( $found ) {
+					return array_filter( $found, static function ( $obj ) {
 						return $obj->foo !== 'A';
 					} );
 				},
@@ -350,7 +350,7 @@ class PagerTest extends \MediaWikiTestCase {
 		$om = $this->mockObjectManager();
 		$om->expects( $this->any() )
 			->method( 'find' )
-			->with( $this->anything(), $this->callback( function ( $opts ) use ( &$options ) {
+			->with( $this->anything(), $this->callback( static function ( $opts ) use ( &$options ) {
 				$options = $opts;
 				return true;
 			} ) );
@@ -388,7 +388,7 @@ class PagerTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( $index ) );
 		$om->expects( $this->any() )
 			->method( 'serializeOffset' )
-			->will( $this->returnCallback( function ( $obj, $sort ) {
+			->will( $this->returnCallback( static function ( $obj, $sort ) {
 				return 'serialized-' . $obj->foo;
 			} ) );
 

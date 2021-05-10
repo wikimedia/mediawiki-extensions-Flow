@@ -30,7 +30,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
 		$dbr = $dbFactory->getDB( DB_REPLICA );
-		$dbw = $dbFactory->getDB( DB_MASTER );
+		$dbw = $dbFactory->getDB( DB_PRIMARY );
 
 		// If table flow_header_revision does not exist, that means the wiki
 		// has run the data migration before or the wiki starts from scratch,

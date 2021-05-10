@@ -33,10 +33,10 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
-		$dbw = $dbf->getDB( DB_MASTER );
+		$dbw = $dbf->getDB( DB_PRIMARY );
 		$hasRun = false;
 
-		$runUpdate = function ( $callback ) use ( $dbf, $dbw, &$hasRun ) {
+		$runUpdate = static function ( $callback ) use ( $dbf, $dbw, &$hasRun ) {
 			$hasRun = true;
 			$continue = "\0";
 			do {

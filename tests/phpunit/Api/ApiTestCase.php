@@ -109,7 +109,7 @@ abstract class ApiTestCase extends \ApiTestCase {
 			->enableProxyingToOriginalMethods()
 			->getMock();
 
-		$container->extend( 'flowcache', function () use ( $mock ) {
+		$container->extend( 'flowcache', static function () use ( $mock ) {
 			return $mock;
 		} );
 

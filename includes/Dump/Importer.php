@@ -358,7 +358,7 @@ class Importer {
 	private function checkTransWikiMode( $boardWorkflowId, $title ) {
 		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
-		$workflowExist = (bool)$dbFactory->getDB( DB_MASTER )->selectField(
+		$workflowExist = (bool)$dbFactory->getDB( DB_PRIMARY )->selectField(
 			'flow_workflow',
 			'workflow_id',
 			[ 'workflow_id' => UUID::create( $boardWorkflowId )->getBinary() ],

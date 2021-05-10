@@ -53,7 +53,7 @@ class PostRevisionStorage extends RevisionStorage {
 			$trees[$key] = $this->splitUpdate( $row, 'tree' );
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$dbw->insert(
 			$this->joinTable(),
 			$this->preprocessNestedSqlArray( $trees ),
@@ -90,7 +90,7 @@ class PostRevisionStorage extends RevisionStorage {
 			return $changes;
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$dbw->update(
 			$this->joinTable(),
 			$this->preprocessSqlArray( $treeChanges ),
@@ -109,7 +109,7 @@ class PostRevisionStorage extends RevisionStorage {
 	 * @return bool|\Wikimedia\Rdbms\IResultWrapper
 	 */
 	protected function removeRelated( array $row ) {
-		return $this->dbFactory->getDB( DB_MASTER )->delete(
+		return $this->dbFactory->getDB( DB_PRIMARY )->delete(
 			$this->joinTable(),
 			$this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] ),
 			__METHOD__

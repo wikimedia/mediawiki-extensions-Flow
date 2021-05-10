@@ -36,7 +36,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		$innerQuery = $db->selectSQLText(
 			'user_properties',

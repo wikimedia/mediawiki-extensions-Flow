@@ -270,7 +270,7 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action", 'invalid-action' );
 		}
 
-		array_walk_recursive( $apiResponse, function ( &$value ) {
+		array_walk_recursive( $apiResponse, static function ( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$anchor = $value;
 				$value = $value->toArray();
@@ -303,7 +303,7 @@ class View extends ContextSource {
 		$jsonBlobResponse = $apiResponse;
 
 		// Temporary fix for T107170
-		array_walk_recursive( $jsonBlobResponse, function ( &$value, $key ) {
+		array_walk_recursive( $jsonBlobResponse, static function ( &$value, $key ) {
 			if ( stristr( $key, 'Token' ) !== false ) {
 				$value = null;
 			}

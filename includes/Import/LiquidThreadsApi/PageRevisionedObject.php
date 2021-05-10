@@ -44,7 +44,7 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 	public function getRevisions() {
 		$pageData = $this->getRevisionData();
 		$scriptUser = $this->importSource->getScriptUser();
-		return new RevisionIterator( $pageData, $this, function ( $data, $parent ) use ( $scriptUser ) {
+		return new RevisionIterator( $pageData, $this, static function ( $data, $parent ) use ( $scriptUser ) {
 			return new ImportRevision( $data, $parent, $scriptUser );
 		} );
 	}

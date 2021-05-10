@@ -20,7 +20,7 @@ class UUIDTest extends FlowTestCase {
 		// s:16:"s3xyjucl93jtq2ci"
 		$broken = preg_replace_callback(
 			'/(s:16:")([a-z0-9])/',
-			function ( $matches ) {
+			static function ( $matches ) {
 				return $matches[1] . strtoupper( $matches[2] );
 			},
 			$serialized

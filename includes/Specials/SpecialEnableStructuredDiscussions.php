@@ -105,7 +105,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 			$logger = Container::get( 'default_logger' );
 
 			$converter = new Converter(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				Container::get( 'importer' ),
 				$logger,
 				$this->getUser(),

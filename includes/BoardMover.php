@@ -45,7 +45,7 @@ class BoardMover {
 		$this->dbFactory->forceMaster();
 
 		// Open a transaction, this will be closed from self::commit.
-		$this->dbw = $this->dbFactory->getDB( DB_MASTER );
+		$this->dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$this->dbw->startAtomic( __CLASS__ );
 	}
 

@@ -407,7 +407,7 @@ abstract class Utils {
 		// throw an exception
 		$errors = array_filter(
 			libxml_get_errors(),
-			function ( $error ) use( $ignoreErrorCodes ) {
+			static function ( $error ) use( $ignoreErrorCodes ) {
 				return !in_array( $error->code, $ignoreErrorCodes );
 			}
 		);
@@ -421,7 +421,7 @@ abstract class Utils {
 				implode(
 					"\n",
 					array_map(
-						function ( $error ) {
+						static function ( $error ) {
 							return $error->message;
 						},
 						$errors

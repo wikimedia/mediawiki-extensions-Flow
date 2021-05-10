@@ -24,10 +24,10 @@ class CachingObjectMapperTest extends FlowTestCase {
 	}
 
 	protected function createMapper() {
-		$toStorageRow = function ( $object ) {
+		$toStorageRow = static function ( $object ) {
 			return (array)$object;
 		};
-		$fromStorageRow = function ( array $row, $object ) {
+		$fromStorageRow = static function ( array $row, $object ) {
 			if ( $object ) {
 				return (object)( $row + (array)$object );
 			}

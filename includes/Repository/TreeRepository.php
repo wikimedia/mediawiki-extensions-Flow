@@ -89,7 +89,7 @@ class TreeRepository {
 		}
 		$this->deleteSubtreeCache( $descendant, $path );
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$dbw->insert(
 			$this->tableName,
 			[
@@ -186,7 +186,7 @@ class TreeRepository {
 	 * @return bool
 	 */
 	public function delete( UUID $descendant ) {
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$res = $dbw->delete(
 			$this->tableName,
 			[

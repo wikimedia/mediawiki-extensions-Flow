@@ -22,7 +22,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'watched',
 				// initialization
-				function ( User $user, Title $title ) {
+				static function ( User $user, Title $title ) {
 					MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch( $user, $title );
 				},
 				// extra request parameters
@@ -33,7 +33,7 @@ class ApiWatchTopicTest extends ApiTestCase {
 				// expected key in api result
 				'unwatched',
 				// initialization
-				function ( User $user, Title $title ) {
+				static function ( User $user, Title $title ) {
 					MediaWikiServices::getInstance()->getWatchlistManager()->addWatch( $user, $title );
 				},
 				// extra request parameters

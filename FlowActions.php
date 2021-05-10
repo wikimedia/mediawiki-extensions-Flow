@@ -310,7 +310,7 @@ $wgFlowActions = [
 		'rc_insert' => true,
 		'permissions' => [
 			// no permissions needed for own posts
-			PostRevision::MODERATED_NONE => function (
+			PostRevision::MODERATED_NONE => static function (
 				PostRevision $post, RevisionActionPermissions $permissions
 			) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
@@ -349,7 +349,7 @@ $wgFlowActions = [
 		'rc_insert' => true,
 		'permissions' => [
 			// no permissions needed for own posts
-			PostRevision::MODERATED_NONE => function (
+			PostRevision::MODERATED_NONE => static function (
 				PostRevision $post, RevisionActionPermissions $permissions
 			) {
 				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
@@ -589,7 +589,7 @@ $wgFlowActions = [
 
 	'restore-post' => [
 		'performs-writes' => true,
-		'log_type' => function ( PostRevision $revision, ModerationLogger $logger ) {
+		'log_type' => static function ( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
@@ -602,7 +602,7 @@ $wgFlowActions = [
 
 			return '';
 		},
-		'rc_insert' => function ( PostRevision $revision, RecentChangesListener $recentChanges ) {
+		'rc_insert' => static function ( PostRevision $revision, RecentChangesListener $recentChanges ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
@@ -633,7 +633,7 @@ $wgFlowActions = [
 				'moderated-reason',
 				'topic-of-post-text-from-html',
 			],
-			'class' => function ( PostRevision $revision ) {
+			'class' => static function ( PostRevision $revision ) {
 				$previous = $revision->getCollection()->getPrevRevision( $revision );
 				$state = $previous->getModerationState();
 				return "flow-history-un$state-post";
@@ -645,7 +645,7 @@ $wgFlowActions = [
 
 	'restore-topic' => [
 		'performs-writes' => true,
-		'log_type' => function ( PostRevision $revision, ModerationLogger $logger ) {
+		'log_type' => static function ( PostRevision $revision, ModerationLogger $logger ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
@@ -658,7 +658,7 @@ $wgFlowActions = [
 
 			return '';
 		},
-		'rc_insert' => function ( PostRevision $revision, RecentChangesListener $recentChanges ) {
+		'rc_insert' => static function ( PostRevision $revision, RecentChangesListener $recentChanges ) {
 			$post = $revision->getCollection();
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
@@ -691,7 +691,7 @@ $wgFlowActions = [
 				'moderated-reason',
 				'topic-of-post-text-from-html',
 			],
-			'class' => function ( PostRevision $revision ) {
+			'class' => static function ( PostRevision $revision ) {
 				$previous = $revision->getCollection()->getPrevRevision( $revision );
 				$state = $previous->getModerationState();
 				return "flow-history-un$state-topic";

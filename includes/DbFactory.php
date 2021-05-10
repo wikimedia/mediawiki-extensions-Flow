@@ -55,7 +55,7 @@ class DbFactory {
 	 * @return IMaintainableDatabase
 	 */
 	public function getDB( $db ) {
-		return $this->getLB()->getConnection( $this->forceMaster ? DB_MASTER : $db, [], $this->wiki );
+		return $this->getLB()->getConnection( $this->forceMaster ? DB_PRIMARY : $db, [], $this->wiki );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class DbFactory {
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forceMaster ? DB_MASTER : $db, [], $wiki );
+		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forceMaster ? DB_PRIMARY : $db, [], $wiki );
 	}
 
 	/**

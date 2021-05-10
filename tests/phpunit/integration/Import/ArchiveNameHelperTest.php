@@ -62,7 +62,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 		$titleRepo = $this->createMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->expects( $this->any() )
 			->method( 'exists' )
-			->will( $this->returnCallback( function ( Title $title ) use ( $existsByKey ) {
+			->will( $this->returnCallback( static function ( Title $title ) use ( $existsByKey ) {
 				return isset( $existsByKey[$title->getPrefixedText()] );
 			} ) );
 
@@ -110,7 +110,7 @@ class ArchiveNameHelperTest extends \MediaWikiTestCase {
 		$titleRepo = $this->createMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->expects( $this->any() )
 			->method( 'exists' )
-			->will( $this->returnCallback( function ( Title $title ) use ( $existsByKey ) {
+			->will( $this->returnCallback( static function ( Title $title ) use ( $existsByKey ) {
 				return isset( $existsByKey[$title->getPrefixedText()] );
 			} ) );
 

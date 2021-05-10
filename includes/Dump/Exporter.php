@@ -409,7 +409,7 @@ class Exporter extends WikiExporter {
 		// combine them
 		$attribs = array_combine( $keys, $values );
 		// and get rid of columns with null values
-		$attribs = array_filter( $attribs, function ( $value ) {
+		$attribs = array_filter( $attribs, static function ( $value ) {
 			return $value !== null;
 		} );
 

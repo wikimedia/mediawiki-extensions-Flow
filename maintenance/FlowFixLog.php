@@ -47,7 +47,7 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 		] );
 		$iterator->setCaller( __METHOD__ );
 
-		$writer = new BatchRowWriter( wfGetDB( DB_MASTER ), 'logging' );
+		$writer = new BatchRowWriter( wfGetDB( DB_PRIMARY ), 'logging' );
 		$writer->setCaller( __METHOD__ );
 
 		$updater = new BatchRowUpdate(

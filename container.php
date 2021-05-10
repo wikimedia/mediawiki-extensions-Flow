@@ -34,39 +34,39 @@ if ( !defined( 'FLOW_BOARD_TOPIC_HISTORY_POST_INDEX_LIMIT' ) ) {
 $c = new Flow\Container;
 
 // MediaWiki
-$c['user'] = function ( $c ) {
+$c['user'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowUser' );
 };
 
 // Flow config
-$c['flow_actions'] = function ( $c ) {
+$c['flow_actions'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowActions' );
 };
 
 // Always returns the correct database for flow storage
-$c['db.factory'] = function ( $c ) {
+$c['db.factory'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowDbFactory' );
 };
 
 // Database Access Layer external from main implementation
-$c['repository.tree'] = function ( $c ) {
+$c['repository.tree'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowTreeRepository' );
 };
 
-$c['url_generator'] = function ( $c ) {
+$c['url_generator'] = static function ( $c ) {
 	return new Flow\UrlGenerator(
 		$c['storage.workflow.mapper']
 	);
 };
 
-$c['watched_items'] = function ( $c ) {
+$c['watched_items'] = static function ( $c ) {
 	return new Flow\WatchedTopicItems(
 		$c['user'],
 		wfGetDB( DB_REPLICA, 'watchlist' )
 	);
 };
 
-$c['content_fixer'] = function ( $c ) {
+$c['content_fixer'] = static function ( $c ) {
 	global $wgArticlePath;
 
 	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
@@ -83,15 +83,15 @@ $c['content_fixer'] = function ( $c ) {
 	);
 };
 
-$c['permissions'] = function ( $c ) {
+$c['permissions'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowPermissions' );
 };
 
-$c['lightncandy'] = function ( $c ) {
+$c['lightncandy'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowTemplateHandler' );
 };
 
-$c['templating'] = function ( $c ) {
+$c['templating'] = static function ( $c ) {
 	global $wgOut;
 
 	return new Flow\Templating(
@@ -104,36 +104,36 @@ $c['templating'] = function ( $c ) {
 };
 
 // New Storage Impl
-$c['flowcache'] = function ( $c ) {
+$c['flowcache'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowCache' );
 };
 
 // Batched username loader
-$c['repository.username'] = function ( $c ) {
+$c['repository.username'] = static function ( $c ) {
 	return new Flow\Repository\UserNameBatch(
 		new Flow\Repository\UserName\TwoStepUserNameQuery(
 			$c['db.factory']
 		)
 	);
 };
-$c['collection.cache'] = function ( $c ) {
+$c['collection.cache'] = static function ( $c ) {
 	return new Flow\Collection\CollectionCache();
 };
 // Individual workflow instances
-$c['storage.workflow.mapper'] = function ( $c ) {
+$c['storage.workflow.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\Workflow::class,
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow.backend'] = function ( $c ) {
+$c['storage.workflow.backend'] = static function ( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
 		'flow_workflow',
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow.indexes.primary'] = function ( $c ) {
+$c['storage.workflow.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.workflow.backend'],
@@ -142,7 +142,7 @@ $c['storage.workflow.indexes.primary'] = function ( $c ) {
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow'] = function ( $c ) {
+$c['storage.workflow'] = static function ( $c ) {
 	$workflowTitleLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.workflow.backend'],
@@ -174,7 +174,7 @@ $c['storage.workflow'] = function ( $c ) {
 		$listeners
 	);
 };
-$c['listener.recentchanges'] = function ( $c ) {
+$c['listener.recentchanges'] = static function ( $c ) {
 	// Recent change listeners go out to external services and
 	// as such must only be run after the transaction is commited.
 	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
@@ -187,13 +187,13 @@ $c['listener.recentchanges'] = function ( $c ) {
 		)
 	);
 };
-$c['listener.topicpagecreation'] = function ( $c ) {
+$c['listener.topicpagecreation'] = static function ( $c ) {
 	return new Flow\Data\Listener\TopicPageCreationListener(
 		$c['occupation_controller'],
 		$c['deferred_queue']
 	);
 };
-$c['listeners.notification'] = function ( $c ) {
+$c['listeners.notification'] = static function ( $c ) {
 	// Defer notifications triggering till end of request so we could get
 	// article_id in the case of a new topic
 	return new Flow\Data\Listener\DeferredInsertLifecycleHandler(
@@ -204,10 +204,10 @@ $c['listeners.notification'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_board_history.backend'] = function ( $c ) {
+$c['storage.post_board_history.backend'] = static function ( $c ) {
 	return new PostRevisionBoardHistoryStorage( $c['db.factory'] );
 };
-$c['storage.post_board_history.indexes.primary'] = function ( $c ) {
+$c['storage.post_board_history.indexes.primary'] = static function ( $c ) {
 	return new PostRevisionBoardHistoryIndex(
 		$c['flowcache'],
 		// backend storage
@@ -228,7 +228,7 @@ $c['storage.post_board_history.indexes.primary'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_board_history'] = function ( $c ) {
+$c['storage.post_board_history'] = static function ( $c ) {
 	$indexes = [ $c['storage.post_board_history.indexes.primary'] ];
 	return new ObjectLocator(
 		$c['storage.post.mapper'],
@@ -238,10 +238,10 @@ $c['storage.post_board_history'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary_board_history.backend'] = function ( $c ) {
+$c['storage.post_summary_board_history.backend'] = static function ( $c ) {
 	return new PostSummaryRevisionBoardHistoryStorage( $c['db.factory'] );
 };
-$c['storage.post_summary_board_history.indexes.primary'] = function ( $c ) {
+$c['storage.post_summary_board_history.indexes.primary'] = static function ( $c ) {
 	return new PostSummaryRevisionBoardHistoryIndex(
 		$c['flowcache'],
 		// backend storage
@@ -262,7 +262,7 @@ $c['storage.post_summary_board_history.indexes.primary'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary_board_history'] = function ( $c ) {
+$c['storage.post_summary_board_history'] = static function ( $c ) {
 	$indexes = [ $c['storage.post_summary_board_history.indexes.primary'] ];
 	return new ObjectLocator(
 		$c['storage.post_summary.mapper'],
@@ -272,7 +272,7 @@ $c['storage.post_summary_board_history'] = function ( $c ) {
 	);
 };
 
-$c['storage.header.listeners.username'] = function ( $c ) {
+$c['storage.header.listeners.username'] = static function ( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
 		[
@@ -282,17 +282,17 @@ $c['storage.header.listeners.username'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.header.mapper'] = function ( $c ) {
+$c['storage.header.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 };
-$c['storage.header.backend'] = function ( $c ) {
+$c['storage.header.backend'] = static function ( $c ) {
 	global $wgFlowExternalStore;
 	return new HeaderRevisionStorage(
 		$c['db.factory'],
 		$wgFlowExternalStore
 	);
 };
-$c['storage.header.indexes.primary'] = function ( $c ) {
+$c['storage.header.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.header.backend'],
@@ -301,7 +301,7 @@ $c['storage.header.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ] // primary key
 	);
 };
-$c['storage.header'] = function ( $c ) {
+$c['storage.header'] = static function ( $c ) {
 	$headerHeaderLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.header.backend'],
@@ -313,7 +313,7 @@ $c['storage.header'] = function ( $c ) {
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.header.indexes.primary'],
-			'create' => function ( array $row ) {
+			'create' => static function ( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
 		]
@@ -338,13 +338,13 @@ $c['storage.header'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_summary.mapper'] = function ( $c ) {
+$c['storage.post_summary.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\PostSummary::class,
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post_summary.listeners.username'] = function ( $c ) {
+$c['storage.post_summary.listeners.username'] = static function ( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
 		[
@@ -354,14 +354,14 @@ $c['storage.post_summary.listeners.username'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.post_summary.backend'] = function ( $c ) {
+$c['storage.post_summary.backend'] = static function ( $c ) {
 	global $wgFlowExternalStore;
 	return new PostSummaryRevisionStorage(
 		$c['db.factory'],
 		$wgFlowExternalStore
 	);
 };
-$c['storage.post_summary.indexes.primary'] = function ( $c ) {
+$c['storage.post_summary.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.post_summary.backend'],
@@ -370,7 +370,7 @@ $c['storage.post_summary.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post_summary'] = function ( $c ) {
+$c['storage.post_summary'] = static function ( $c ) {
 	$postSummaryTopicLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.post_summary.backend'],
@@ -382,7 +382,7 @@ $c['storage.post_summary'] = function ( $c ) {
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.post_summary.indexes.primary'],
-			'create' => function ( array $row ) {
+			'create' => static function ( array $row ) {
 				return $row['rev_parent_id'] === null;
 			},
 		]
@@ -408,14 +408,14 @@ $c['storage.post_summary'] = function ( $c ) {
 	);
 };
 
-$c['storage.topic_list.mapper'] = function ( $c ) {
+$c['storage.topic_list.mapper'] = static function ( $c ) {
 	// Must be BasicObjectMapper, due to variance in when
 	// we have workflow_last_update_timestamp
 	return BasicObjectMapper::model(
 		\Flow\Model\TopicListEntry::class
 	);
 };
-$c['storage.topic_list.backend'] = function ( $c ) {
+$c['storage.topic_list.backend'] = static function ( $c ) {
 	return new TopicListStorage(
 		// factory and table
 		$c['db.factory'],
@@ -424,7 +424,7 @@ $c['storage.topic_list.backend'] = function ( $c ) {
 	);
 };
 // Lookup from topic_id to its owning board id
-$c['storage.topic_list.indexes.primary'] = function ( $c ) {
+$c['storage.topic_list.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.topic_list.backend'],
@@ -436,7 +436,7 @@ $c['storage.topic_list.indexes.primary'] = function ( $c ) {
 
 // Lookup from board to contained topics
 /// In reverse order by topic_id
-$c['storage.topic_list.indexes.reverse_lookup'] = function ( $c ) {
+$c['storage.topic_list.indexes.reverse_lookup'] = static function ( $c ) {
 	return new TopKIndex(
 		$c['flowcache'],
 		$c['storage.topic_list.backend'],
@@ -447,7 +447,7 @@ $c['storage.topic_list.indexes.reverse_lookup'] = function ( $c ) {
 	);
 };
 /// In reverse order by topic last_updated
-$c['storage.topic_list.indexes.last_updated'] = function ( $c ) {
+$c['storage.topic_list.indexes.last_updated'] = static function ( $c ) {
 	return new TopKIndex(
 		$c['flowcache'],
 		$c['storage.topic_list.backend'],
@@ -460,7 +460,7 @@ $c['storage.topic_list.indexes.last_updated'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.topic_list'] = function ( $c ) {
+$c['storage.topic_list'] = static function ( $c ) {
 	$indexes = [
 		$c['storage.topic_list.indexes.primary'],
 		$c['storage.topic_list.indexes.reverse_lookup'],
@@ -473,16 +473,16 @@ $c['storage.topic_list'] = function ( $c ) {
 		$indexes
 	);
 };
-$c['storage.post.mapper'] = function ( $c ) {
+$c['storage.post.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model(
 		\Flow\Model\PostRevision::class,
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post.backend'] = function ( $c ) {
+$c['storage.post.backend'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowPostRevisionStorage' );
 };
-$c['storage.post.listeners.moderation_logging'] = function ( $c ) {
+$c['storage.post.listeners.moderation_logging'] = static function ( $c ) {
 	$moderationLogger = new Flow\Log\ModerationLogger(
 		$c['flow_actions']
 	);
@@ -490,7 +490,7 @@ $c['storage.post.listeners.moderation_logging'] = function ( $c ) {
 		$moderationLogger
 	);
 };
-$c['storage.post.listeners.username'] = function ( $c ) {
+$c['storage.post.listeners.username'] = static function ( $c ) {
 	return new Flow\Data\Listener\UserNameListener(
 		$c['repository.username'],
 		[
@@ -501,13 +501,13 @@ $c['storage.post.listeners.username'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.post.listeners.watch_topic'] = function ( $c ) {
+$c['storage.post.listeners.watch_topic'] = static function ( $c ) {
 	// Auto-subscribe users to the topic after performing specific actions
 	return new Flow\Data\Listener\ImmediateWatchTopicListener(
 		$c['watched_items']
 	);
 };
-$c['storage.post.indexes.primary'] = function ( $c ) {
+$c['storage.post.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
 		$c['storage.post.backend'],
@@ -516,7 +516,7 @@ $c['storage.post.indexes.primary'] = function ( $c ) {
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post'] = function ( $c ) {
+$c['storage.post'] = static function ( $c ) {
 	// Each bucket holds a list of revisions in a single post
 	$postPostLookupIndex = new TopKIndex(
 		$c['flowcache'],
@@ -529,7 +529,7 @@ $c['storage.post'] = function ( $c ) {
 			'sort' => 'rev_id',
 			'order' => 'DESC',
 			'shallow' => $c['storage.post.indexes.primary'],
-			'create' => function ( array $row ) {
+			'create' => static function ( array $row ) {
 				// return true to create instead of merge index
 				return $row['rev_parent_id'] === null;
 			},
@@ -560,11 +560,11 @@ $c['storage.post'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_topic_history.backend'] = function ( $c ) {
+$c['storage.post_topic_history.backend'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowPostRevisionTopicHistoryStorage' );
 };
 
-$c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
+$c['storage.post_topic_history.indexes.topic_lookup'] = static function ( $c ) {
 	return new PostRevisionTopicHistoryIndex(
 		$c['flowcache'],
 		$c['storage.post_topic_history.backend'],
@@ -577,7 +577,7 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
 			'order' => 'DESC',
 			// Why does topic history have a shallow compactor, but not board history?
 			'shallow' => $c['storage.post.indexes.primary'],
-			'create' => function ( array $row ) {
+			'create' => static function ( array $row ) {
 				// only create new indexes for new topics, so it has to be
 				// of type 'post' and have no parent post & revision
 				if ( $row['rev_type'] !== 'post' ) {
@@ -589,7 +589,7 @@ $c['storage.post_topic_history.indexes.topic_lookup'] = function ( $c ) {
 	);
 };
 
-$c['storage.post_topic_history'] = function ( $c ) {
+$c['storage.post_topic_history'] = static function ( $c ) {
 	$indexes = [
 		$c['storage.post_topic_history.indexes.topic_lookup'],
 	];
@@ -601,7 +601,7 @@ $c['storage.post_topic_history'] = function ( $c ) {
 	);
 };
 
-$c['storage.manager_list'] = function ( $c ) {
+$c['storage.manager_list'] = static function ( $c ) {
 	return [
 		\Flow\Model\Workflow::class => 'storage.workflow',
 		'Workflow' => 'storage.workflow',
@@ -634,13 +634,13 @@ $c['storage.manager_list'] = function ( $c ) {
 		'URLReference' => 'storage.url_reference',
 	];
 };
-$c['storage'] = function ( $c ) {
+$c['storage'] = static function ( $c ) {
 	return new \Flow\Data\ManagerGroup(
 		$c,
 		$c['storage.manager_list']
 	);
 };
-$c['loader.root_post'] = function ( $c ) {
+$c['loader.root_post'] = static function ( $c ) {
 	return new \Flow\Repository\RootPostLoader(
 		$c['storage'],
 		$c['repository.tree']
@@ -649,24 +649,24 @@ $c['loader.root_post'] = function ( $c ) {
 
 // Queue of callbacks to run by DeferredUpdates, but only
 // on successful commit
-$c['deferred_queue'] = function ( $c ) {
+$c['deferred_queue'] = static function ( $c ) {
 	return new SplQueue;
 };
 
-$c['submission_handler'] = function ( $c ) {
+$c['submission_handler'] = static function ( $c ) {
 	return new Flow\SubmissionHandler(
 		$c['storage'],
 		$c['db.factory'],
 		$c['deferred_queue']
 	);
 };
-$c['factory.block'] = function ( $c ) {
+$c['factory.block'] = static function ( $c ) {
 	return new Flow\BlockFactory(
 		$c['storage'],
 		$c['loader.root_post']
 	);
 };
-$c['factory.loader.workflow'] = function ( $c ) {
+$c['factory.loader.workflow'] = static function ( $c ) {
 	return new Flow\WorkflowLoaderFactory(
 		$c['storage'],
 		$c['factory.block'],
@@ -678,11 +678,11 @@ $c['factory.loader.workflow'] = function ( $c ) {
 // must always happen before calling flow code.
 $c['occupation_controller'] = Flow\Hooks::getOccupationController();
 
-$c['helper.archive_name'] = function ( $c ) {
+$c['helper.archive_name'] = static function ( $c ) {
 	return new Flow\Import\ArchiveNameHelper();
 };
 
-$c['controller.opt_in'] = function ( $c ) {
+$c['controller.opt_in'] = static function ( $c ) {
 	return new Flow\Import\OptInController(
 		$c['occupation_controller'],
 		$c['controller.notification'],
@@ -694,7 +694,7 @@ $c['controller.opt_in'] = function ( $c ) {
 	);
 };
 
-$c['controller.notification'] = function ( $c ) {
+$c['controller.notification'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowNotificationsController' );
 };
 
@@ -703,7 +703,7 @@ $c['controller.notification'] = function ( $c ) {
 // must always happen before calling flow code.
 $c['controller.abusefilter'] = Flow\Hooks::getAbuseFilter();
 
-$c['controller.spamfilter'] = function ( $c ) {
+$c['controller.spamfilter'] = static function ( $c ) {
 	global $wgMaxArticleSize;
 
 	// wgMaxArticleSize is in kilobytes,
@@ -723,55 +723,55 @@ $c['controller.spamfilter'] = function ( $c ) {
 	);
 };
 
-$c['query.categoryviewer'] = function ( $c ) {
+$c['query.categoryviewer'] = static function ( $c ) {
 	return new Flow\Formatter\CategoryViewerQuery(
 		$c['storage']
 	);
 };
-$c['formatter.categoryviewer'] = function ( $c ) {
+$c['formatter.categoryviewer'] = static function ( $c ) {
 	return new Flow\Formatter\CategoryViewerFormatter(
 		$c['permissions']
 	);
 };
-$c['query.singlepost'] = function ( $c ) {
+$c['query.singlepost'] = static function ( $c ) {
 	return new Flow\Formatter\SinglePostQuery(
 		$c['storage'],
 		$c['repository.tree']
 	);
 };
-$c['query.checkuser'] = function ( $c ) {
+$c['query.checkuser'] = static function ( $c ) {
 	return new Flow\Formatter\CheckUserQuery(
 		$c['storage'],
 		$c['repository.tree']
 	);
 };
 
-$c['formatter.irclineurl'] = function ( $c ) {
+$c['formatter.irclineurl'] = static function ( $c ) {
 	return new Flow\Formatter\IRCLineUrlFormatter(
 		$c['permissions'],
 		$c['formatter.revision.factory']->create()
 	);
 };
 
-$c['formatter.checkuser'] = function ( $c ) {
+$c['formatter.checkuser'] = static function ( $c ) {
 	return new Flow\Formatter\CheckUserFormatter(
 		$c['permissions'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['formatter.revisionview'] = function ( $c ) {
+$c['formatter.revisionview'] = static function ( $c ) {
 	return new Flow\Formatter\RevisionViewFormatter(
 		$c['url_generator'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['formatter.revision.diff.view'] = function ( $c ) {
+$c['formatter.revision.diff.view'] = static function ( $c ) {
 	return new Flow\Formatter\RevisionDiffViewFormatter(
 		$c['formatter.revisionview'],
 		$c['url_generator']
 	);
 };
-$c['query.topiclist'] = function ( $c ) {
+$c['query.topiclist'] = static function ( $c ) {
 	return new Flow\Formatter\TopicListQuery(
 		$c['storage'],
 		$c['repository.tree'],
@@ -779,21 +779,21 @@ $c['query.topiclist'] = function ( $c ) {
 		$c['watched_items']
 	);
 };
-$c['query.topic.history'] = function ( $c ) {
+$c['query.topic.history'] = static function ( $c ) {
 	return new Flow\Formatter\TopicHistoryQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['flow_actions']
 	);
 };
-$c['query.post.history'] = function ( $c ) {
+$c['query.post.history'] = static function ( $c ) {
 	return new Flow\Formatter\PostHistoryQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['flow_actions']
 	);
 };
-$c['query.changeslist'] = function ( $c ) {
+$c['query.changeslist'] = static function ( $c ) {
 	$query = new Flow\Formatter\ChangesListQuery(
 		$c['storage'],
 		$c['repository.tree'],
@@ -803,41 +803,41 @@ $c['query.changeslist'] = function ( $c ) {
 
 	return $query;
 };
-$c['query.postsummary'] = function ( $c ) {
+$c['query.postsummary'] = static function ( $c ) {
 	return new Flow\Formatter\PostSummaryQuery(
 		$c['storage'],
 		$c['repository.tree']
 	);
 };
-$c['query.header.view'] = function ( $c ) {
+$c['query.header.view'] = static function ( $c ) {
 	return new Flow\Formatter\HeaderViewQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['permissions']
 	);
 };
-$c['query.post.view'] = function ( $c ) {
+$c['query.post.view'] = static function ( $c ) {
 	return new Flow\Formatter\PostViewQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['permissions']
 	);
 };
-$c['query.postsummary.view'] = function ( $c ) {
+$c['query.postsummary.view'] = static function ( $c ) {
 	return new Flow\Formatter\PostSummaryViewQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['permissions']
 	);
 };
-$c['formatter.changeslist'] = function ( $c ) {
+$c['formatter.changeslist'] = static function ( $c ) {
 	return new Flow\Formatter\ChangesListFormatter(
 		$c['permissions'],
 		$c['formatter.revision.factory']->create()
 	);
 };
 
-$c['query.contributions'] = function ( $c ) {
+$c['query.contributions'] = static function ( $c ) {
 	return new Flow\Formatter\ContributionsQuery(
 		$c['storage'],
 		$c['repository.tree'],
@@ -845,19 +845,19 @@ $c['query.contributions'] = function ( $c ) {
 		$c['flow_actions']
 	);
 };
-$c['formatter.contributions'] = function ( $c ) {
+$c['formatter.contributions'] = static function ( $c ) {
 	return new Flow\Formatter\ContributionsFormatter(
 		$c['permissions'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['formatter.contributions.feeditem'] = function ( $c ) {
+$c['formatter.contributions.feeditem'] = static function ( $c ) {
 	return new Flow\Formatter\FeedItemFormatter(
 		$c['permissions'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['query.board.history'] = function ( $c ) {
+$c['query.board.history'] = static function ( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],
 		$c['repository.tree'],
@@ -865,7 +865,7 @@ $c['query.board.history'] = function ( $c ) {
 	);
 };
 
-$c['formatter.revision.factory'] = function ( $c ) {
+$c['formatter.revision.factory'] = static function ( $c ) {
 	global $wgFlowMaxThreadingDepth;
 
 	return new Flow\Formatter\RevisionFormatterFactory(
@@ -875,24 +875,24 @@ $c['formatter.revision.factory'] = function ( $c ) {
 		$wgFlowMaxThreadingDepth
 	);
 };
-$c['formatter.topiclist'] = function ( $c ) {
+$c['formatter.topiclist'] = static function ( $c ) {
 	return new Flow\Formatter\TopicListFormatter(
 		$c['url_generator'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['formatter.topiclist.toc'] = function ( $c ) {
+$c['formatter.topiclist.toc'] = static function ( $c ) {
 	return new Flow\Formatter\TocTopicListFormatter(
 		$c['templating']
 	);
 };
-$c['formatter.topic'] = function ( $c ) {
+$c['formatter.topic'] = static function ( $c ) {
 	return new Flow\Formatter\TopicFormatter(
 		$c['url_generator'],
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['search.connection'] = function ( $c ) {
+$c['search.connection'] = static function ( $c ) {
 	if ( defined( 'MW_PHPUNIT_TEST' ) && !ExtensionRegistry::getInstance()->isLoaded( 'Elastica' ) ) {
 		/*
 		 * ContainerTest::testInstantiateAll instantiates everything
@@ -909,13 +909,13 @@ $c['search.connection'] = function ( $c ) {
 	global $wgFlowSearchServers, $wgFlowSearchConnectionAttempts;
 	return new Flow\Search\Connection( $wgFlowSearchServers, $wgFlowSearchConnectionAttempts );
 };
-$c['search.index.iterators.header'] = function ( $c ) {
+$c['search.index.iterators.header'] = static function ( $c ) {
 	return new \Flow\Search\Iterators\HeaderIterator( $c['db.factory'] );
 };
-$c['search.index.iterators.topic'] = function ( $c ) {
+$c['search.index.iterators.topic'] = static function ( $c ) {
 	return new \Flow\Search\Iterators\TopicIterator( $c['db.factory'], $c['loader.root_post'] );
 };
-$c['search.index.updaters'] = function ( $c ) {
+$c['search.index.updaters'] = static function ( $c ) {
 	// permissions for anon user
 	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
 	return [
@@ -924,12 +924,12 @@ $c['search.index.updaters'] = function ( $c ) {
 	];
 };
 
-$c['storage.wiki_reference.mapper'] = function ( $c ) {
+$c['storage.wiki_reference.mapper'] = static function ( $c ) {
 	return BasicObjectMapper::model(
 		\Flow\Model\WikiReference::class
 	);
 };
-$c['storage.wiki_reference.backend'] = function ( $c ) {
+$c['storage.wiki_reference.backend'] = static function ( $c ) {
 	return new BasicDbStorage(
 		$c['db.factory'],
 		'flow_wiki_ref',
@@ -944,7 +944,7 @@ $c['storage.wiki_reference.backend'] = function ( $c ) {
 		]
 	);
 };
-$c['storage.wiki_reference'] = function ( $c ) {
+$c['storage.wiki_reference'] = static function ( $c ) {
 	$wikiReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.wiki_reference.backend'],
@@ -988,12 +988,12 @@ $c['storage.wiki_reference'] = function ( $c ) {
 	);
 };
 
-$c['storage.url_reference.mapper'] = function ( $c ) {
+$c['storage.url_reference.mapper'] = static function ( $c ) {
 	return BasicObjectMapper::model(
 		\Flow\Model\URLReference::class
 	);
 };
-$c['storage.url_reference.backend'] = function ( $c ) {
+$c['storage.url_reference.backend'] = static function ( $c ) {
 	return new BasicDbStorage(
 		// factory and table
 		$c['db.factory'],
@@ -1009,7 +1009,7 @@ $c['storage.url_reference.backend'] = function ( $c ) {
 	);
 };
 
-$c['storage.url_reference'] = function ( $c ) {
+$c['storage.url_reference'] = static function ( $c ) {
 	$urlReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$c['storage.url_reference.backend'],
@@ -1053,15 +1053,15 @@ $c['storage.url_reference'] = function ( $c ) {
 	);
 };
 
-$c['reference.updater.links-tables'] = function ( $c ) {
+$c['reference.updater.links-tables'] = static function ( $c ) {
 	return new Flow\LinksTableUpdater( $c['storage'] );
 };
 
-$c['reference.clarifier'] = function ( $c ) {
+$c['reference.clarifier'] = static function ( $c ) {
 	return new Flow\ReferenceClarifier( $c['storage'], $c['url_generator'] );
 };
 
-$c['reference.extractor'] = function ( $c ) {
+$c['reference.extractor'] = static function ( $c ) {
 	$default = [
 		new Flow\Parsoid\Extractor\ImageExtractor,
 		new Flow\Parsoid\Extractor\PlaceholderExtractor,
@@ -1081,7 +1081,7 @@ $c['reference.extractor'] = function ( $c ) {
 	return new Flow\Parsoid\ReferenceExtractor( $extractors );
 };
 
-$c['reference.recorder'] = function ( $c ) {
+$c['reference.recorder'] = static function ( $c ) {
 	return new Flow\Data\Listener\ReferenceRecorder(
 		$c['reference.extractor'],
 		$c['reference.updater.links-tables'],
@@ -1091,14 +1091,14 @@ $c['reference.recorder'] = function ( $c ) {
 	);
 };
 
-$c['user_merger'] = function ( $c ) {
+$c['user_merger'] = static function ( $c ) {
 	return new Flow\Data\Utils\UserMerger(
 		$c['db.factory'],
 		$c['storage']
 	);
 };
 
-$c['importer'] = function ( $c ) {
+$c['importer'] = static function ( $c ) {
 	$importer = new Flow\Import\Importer(
 		$c['storage'],
 		$c['factory.loader.workflow'],
@@ -1114,17 +1114,17 @@ $c['importer'] = function ( $c ) {
 	return $importer;
 };
 
-$c['listener.editcount'] = function ( $c ) {
+$c['listener.editcount'] = static function ( $c ) {
 	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
 };
 
-$c['formatter.undoedit'] = function ( $c ) {
+$c['formatter.undoedit'] = static function ( $c ) {
 	return new Flow\Formatter\RevisionUndoViewFormatter(
 		$c['formatter.revisionview']
 	);
 };
 
-$c['board_mover'] = function ( $c ) {
+$c['board_mover'] = static function ( $c ) {
 	return new Flow\BoardMover(
 		$c['db.factory'],
 		$c['storage'],
@@ -1132,7 +1132,7 @@ $c['board_mover'] = function ( $c ) {
 	);
 };
 
-$c['default_logger'] = function () {
+$c['default_logger'] = static function () {
 	return MediaWikiServices::getInstance()->getService( 'FlowDefaultLogger' );
 };
 

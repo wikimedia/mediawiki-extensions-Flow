@@ -225,7 +225,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 	 * @return array
 	 */
 	protected function arrayColumn( array $array, $key ) {
-		return array_map( function ( $item ) use ( $key ) {
+		return array_map( static function ( $item ) use ( $key ) {
 			return $item[$key];
 		}, $array );
 	}

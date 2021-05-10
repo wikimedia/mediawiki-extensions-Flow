@@ -134,7 +134,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 
 		// convert user objects back into user ids to simplify assertion
 		$users = array_map(
-			function ( $user ) {
+			static function ( $user ) {
 				return $user->getId();
 			},
 			$users

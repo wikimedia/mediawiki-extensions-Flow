@@ -59,7 +59,7 @@ class ConvertAllLqtPages extends Maintenance {
 		$importer = Container::get( 'importer' );
 		$talkpageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$strategy = new ConversionStrategy(
 			$dbw,
 			$sourceStore,

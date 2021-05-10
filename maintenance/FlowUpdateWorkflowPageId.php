@@ -34,7 +34,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 	public function doDbUpdates() {
 		global $wgFlowCluster, $wgLang;
 
-		$dbw = Container::get( 'db.factory' )->getDB( DB_MASTER );
+		$dbw = Container::get( 'db.factory' )->getDB( DB_PRIMARY );
 
 		$it = new BatchRowIterator(
 			$dbw,

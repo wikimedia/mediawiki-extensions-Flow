@@ -45,10 +45,10 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		$this->storage = $storage = Container::get( 'storage' );
 		/** @var DbFactory $dbf */
 		$dbf = Container::get( 'db.factory' );
-		$dbw = $dbf->getDB( DB_MASTER );
+		$dbw = $dbf->getDB( DB_PRIMARY );
 		$fname = __METHOD__;
 
-		$runUpdate = function ( $callback ) use ( $dbf, $dbw, $storage, $fname ) {
+		$runUpdate = static function ( $callback ) use ( $dbf, $dbw, $storage, $fname ) {
 			$continue = "\0";
 			do {
 				$dbw->begin( $fname );
@@ -62,7 +62,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		$runUpdate( [ $this, 'updateTreeRevision' ] );
 		$self = $this;
 		foreach ( [ 'rev_user', 'rev_mod_user', 'rev_edit_user' ] as $prefix ) {
-			$runUpdate( function ( $dbw, $continue ) use ( $self, $prefix ) {
+			$runUpdate( static function ( $dbw, $continue ) use ( $self, $prefix ) {
 				return $self->updateRevision( $prefix, $dbw, $continue );
 			} );
 		}

@@ -59,7 +59,7 @@ class MultiGetList {
 		// returns false for not found keys.
 		$multiRes = array_filter(
 			$multiRes,
-			function ( $val ) {
+			static function ( $val ) {
 				return $val !== false;
 			}
 		);

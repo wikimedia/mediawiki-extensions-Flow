@@ -189,7 +189,7 @@ class ChangesListFormatter extends AbstractFormatter {
 
 		// Find the last (oldest) row in $block that is a Flow row. Note that there can be non-Flow
 		// things in $block (T228290).
-		$flowRows = array_filter( $block, function ( $blockRow ) {
+		$flowRows = array_filter( $block, static function ( $blockRow ) {
 			$source = $blockRow->getAttribute( 'rc_source' );
 			return $source === RecentChangesListener::SRC_FLOW ||
 				( $source === null && $blockRow->getAttribute( 'rc_type' ) === RC_FLOW );

@@ -26,7 +26,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	protected function getTemplates() {
 		return [
 			// Template:FlowMention, used to render mentions in Flow's Visual Editor
-			'flow-ve-mention-template-title' => function ( Title $title ) {
+			'flow-ve-mention-template-title' => static function ( Title $title ) {
 				// get "User:" namespace prefix in wiki language
 				$namespaces = MediaWikiServices::getInstance()->getContentLanguage()
 					->getFormattedNamespaces();
@@ -34,26 +34,26 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 				return '@[[' . $namespaces[NS_USER] . ':{{{1|Example}}}|{{{2|{{{1|Example}}}}}}]]';
 			},
 			// LiquidThread import templates
-			'flow-importer-lqt-moved-thread-template' => function ( Title $title ) {
+			'flow-importer-lqt-moved-thread-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-lqt-moved-thread-template-content' )->inContentLanguage()->plain();
 			},
-			'flow-importer-lqt-converted-template' => function ( Title $title ) {
+			'flow-importer-lqt-converted-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-lqt-converted-template-content' )->inContentLanguage()->plain();
 			},
-			'flow-importer-lqt-converted-archive-template' => function ( Title $title ) {
+			'flow-importer-lqt-converted-archive-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-lqt-converted-archive-template-content' )->inContentLanguage()->plain();
 			},
-			'flow-importer-lqt-suppressed-user-template' => function ( Title $title ) {
+			'flow-importer-lqt-suppressed-user-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-lqt-suppressed-user-template-content' )->inContentLanguage()->plain();
 			},
-			'flow-importer-lqt-different-author-signature-template' => function ( Title $title ) {
+			'flow-importer-lqt-different-author-signature-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-lqt-different-author-signature-template-content' )->inContentLanguage()->plain();
 			},
 			// Wikitext import templates
-			'flow-importer-wt-converted-template' => function ( Title $title ) {
+			'flow-importer-wt-converted-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-wt-converted-template-content' )->inContentLanguage()->plain();
 			},
-			'flow-importer-wt-converted-archive-template' => function ( Title $title ) {
+			'flow-importer-wt-converted-archive-template' => static function ( Title $title ) {
 				return wfMessage( 'flow-importer-wt-converted-archive-template-content' )->inContentLanguage()->plain();
 			},
 		];

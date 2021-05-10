@@ -144,7 +144,7 @@ class BoardContentHandler extends \ContentHandler {
 			}
 
 			if ( $actionData['handler-class'] === FlowAction::class ) {
-				$output[$action] = function (
+				$output[$action] = static function (
 					Page $article,
 					IContextSource $source
 				) use ( $action ) {

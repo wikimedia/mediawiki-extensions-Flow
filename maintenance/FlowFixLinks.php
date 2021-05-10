@@ -62,7 +62,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 
 	protected function rebuildCoreTables() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		/** @var \Flow\LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );

@@ -79,7 +79,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 
 		$it = new RecursiveIteratorIterator( $it );
 
-		return new EchoCallbackIterator( $it, function ( $row ) {
+		return new EchoCallbackIterator( $it, static function ( $row ) {
 			return Title::makeTitle( $row->page_namespace, $row->page_title );
 		} );
 	}

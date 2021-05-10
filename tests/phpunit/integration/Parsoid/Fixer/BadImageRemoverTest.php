@@ -29,7 +29,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return false;
 				}
 			],
@@ -41,7 +41,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return false;
 				}
 			],
@@ -53,7 +53,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return false;
 				}
 			],
@@ -65,7 +65,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return false;
 				}
 			],
@@ -77,7 +77,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<meta typeof="mw:Placeholder" data-parsoid="...">',
 				// accept/decline callback
-				function () {
+				static function () {
 					return true;
 				}
 			],
@@ -89,7 +89,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return true;
 				}
 			],
@@ -101,7 +101,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return true;
 				}
 			],
@@ -113,7 +113,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return true;
 				}
 			],
@@ -125,7 +125,7 @@ class BadImageRemoverTest extends \MediaWikiTestCase {
 				// input html
 				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
-				function () {
+				static function () {
 					return true;
 				}
 			],

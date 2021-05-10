@@ -298,7 +298,7 @@ class FlowExternalStoreMoveCluster extends ExternalStoreMoveCluster {
 
 		return [
 			'dbr' => $dbFactory->getDB( DB_REPLICA ),
-			'dbw' => $dbFactory->getDB( DB_MASTER ),
+			'dbw' => $dbFactory->getDB( DB_PRIMARY ),
 			'table' => 'flow_revision',
 			'pk' => 'rev_id',
 			'content' => 'rev_content',

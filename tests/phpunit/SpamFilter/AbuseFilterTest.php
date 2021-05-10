@@ -90,7 +90,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		$oldRevision = $oldRevisionRow ? $this->generateObject( $oldRevisionRow ) : null;
 
 		$context = $this->getMockBuilder( \ContextSource::class )
-				->setMethods( [ 'getUser' ] )
+				->onlyMethods( [ 'getUser' ] )
 				->getMock();
 		$context->expects( $this->any() )
 				->method( 'getUser' )

@@ -1630,7 +1630,7 @@ class Hooks {
 			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$storage = Container::get( 'storage' );
 
-			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
+			DeferredUpdates::addCallableUpdate( static function () use ( $storage, $articleId ) {
 				/** @var Model\Workflow[] $workflows */
 				$workflows = $storage->find( 'Workflow', [
 					'workflow_wiki' => \wfWikiID(),
@@ -1896,7 +1896,7 @@ class Hooks {
 		// Remove any pre-existing Topic pages.
 		// They are coming from the recentchanges table.
 		// Most likely the filters were not applied correctly.
-		$pages = array_filter( $pages, function ( $entry ) {
+		$pages = array_filter( $pages, static function ( $entry ) {
 			/** @var Title $title */
 			$title = $entry[0];
 			return $title->getNamespace() !== NS_TOPIC;
@@ -2010,7 +2010,7 @@ class Hooks {
 		// fill usernames if no $username filter was specified
 		if ( !$username ) {
 			$userIds = array_map(
-				function ( $userInfo ) {
+				static function ( $userInfo ) {
 					return $userInfo['userId'];
 				},
 				array_values( $limitedRevIds )

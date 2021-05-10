@@ -15,7 +15,7 @@ class TemplateHelperTest extends MediaWikiUnitTestCase {
 
 	public function provideTraversalAttackFilenames() {
 		return array_map(
-			function ( $x ) {
+			static function ( $x ) {
 				return [ $x ];
 			},
 			[

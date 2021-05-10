@@ -6,6 +6,8 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenercase" />
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<properties>

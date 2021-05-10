@@ -109,7 +109,7 @@ class TemplateHelper {
 
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
-		$this->renderers[$templateName] = function ( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
+		$this->renderers[$templateName] = static function ( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
 			return $renderer( $args, $scopes );
 		};
 		return $this->renderers[$templateName];
@@ -131,7 +131,7 @@ class TemplateHelper {
 					| LightnCandy::FLAG_SPVARS
 					| LightnCandy::FLAG_HANDLEBARS
 					| LightnCandy::FLAG_RUNTIMEPARTIAL,
-				'partialresolver' => function ( $context, $name ) use ( $templateDir ) {
+				'partialresolver' => static function ( $context, $name ) use ( $templateDir ) {
 					$filename = "$templateDir/$name.partial.handlebars";
 					if ( file_exists( $filename ) ) {
 						return file_get_contents( $filename );

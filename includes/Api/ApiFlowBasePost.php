@@ -47,7 +47,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		] ];
 
 		// required until php5.4 which has the JsonSerializable interface
-		array_walk_recursive( $output, function ( &$value ) {
+		array_walk_recursive( $output, static function ( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$value = $value->toArray();
 			} elseif ( $value instanceof Message ) {

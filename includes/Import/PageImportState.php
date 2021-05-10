@@ -92,7 +92,7 @@ class PageImportState {
 		$this->boardWorkflow = $boardWorkflow;
 		$this->sourceStore = $sourceStore;
 		$this->logger = $logger;
-		$this->dbw = $dbFactory->getDB( DB_MASTER );
+		$this->dbw = $dbFactory->getDB( DB_PRIMARY );
 		$this->postprocessor = $postprocessor;
 		$this->deferredQueue = $deferredQueue;
 		$this->allowUnknownUsernames = $allowUnknownUsernames;

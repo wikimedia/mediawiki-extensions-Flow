@@ -133,7 +133,7 @@ class SubmissionHandler {
 	 * @throws \Exception
 	 */
 	public function commit( Workflow $workflow, array $blocks ) {
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 
 		/** @var OccupationController $occupationController */
 		$occupationController = Container::get( 'occupation_controller' );

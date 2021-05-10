@@ -95,7 +95,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		] );
 		$this->block->insert();
 		// ensure that block made it into the database
-		wfGetDB( DB_MASTER )->commit( __METHOD__, 'flush' );
+		wfGetDB( DB_PRIMARY )->commit( __METHOD__, 'flush' );
 	}
 
 	/**
@@ -185,7 +185,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		}
 
 		// commit pending db transaction
-		Container::get( 'db.factory' )->getDB( DB_MASTER )->commit( __METHOD__, 'flush' );
+		Container::get( 'db.factory' )->getDB( DB_PRIMARY )->commit( __METHOD__, 'flush' );
 
 		$debug = implode( ' ', $debug );
 		// secondly, iterate all revisions & see if expected permissions line up

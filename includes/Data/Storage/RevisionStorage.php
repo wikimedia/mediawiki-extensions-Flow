@@ -385,7 +385,7 @@ abstract class RevisionStorage extends DbStorage {
 			$revisions[$key] = $this->splitUpdate( $row, 'rev' );
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$dbw->insert(
 			'flow_revision',
 			$this->preprocessNestedSqlArray( $revisions ),
@@ -522,7 +522,7 @@ abstract class RevisionStorage extends DbStorage {
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
 
 		if ( $rev ) {
-			$dbw = $this->dbFactory->getDB( DB_MASTER );
+			$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 			$dbw->update(
 				'flow_revision',
 				$this->preprocessSqlArray( $rev ),
@@ -546,7 +546,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @return bool
 	 */
 	public function remove( array $row ) {
-		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
+		$res = $this->dbFactory->getDB( DB_PRIMARY )->delete(
 			'flow_revision',
 			$this->preprocessSqlArray( [ 'rev_id' => $row['rev_id'] ] ),
 			__METHOD__

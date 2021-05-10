@@ -109,7 +109,7 @@ TEXT
 			$pages = array_map( 'trim', $pages );
 			$this->pages = array_filter(
 				$pages,
-				function ( $x ) {
+				static function ( $x ) {
 					return $x !== '';
 				}
 			);

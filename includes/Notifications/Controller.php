@@ -892,7 +892,7 @@ class Controller {
 
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
-		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $moderated ) {
+		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $moderated ) {
 			$eventMapper = new EchoEventMapper();
 			$eventIds = $eventMapper->fetchIdsByPage( $pageId );
 
@@ -916,7 +916,7 @@ class Controller {
 
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
-		\DeferredUpdates::addCallableUpdate( function () use ( $pageId, $postId, $moderated ) {
+		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $postId, $moderated ) {
 			$eventMapper = new \EchoEventMapper();
 			$moderatedPostIdAlpha = $postId->getAlphadecimal();
 			$eventIds = [];

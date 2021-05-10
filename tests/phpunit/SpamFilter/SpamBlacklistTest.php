@@ -65,7 +65,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
 		$ctx = $this->getMockBuilder( \ContextSource::class )
-			->setMethods( [ 'getUser' ] )
+			->onlyMethods( [ 'getUser' ] )
 			->getMock();
 		$ctx->method( 'getUser' )->willReturn( $this->createMock( \User::class ) );
 

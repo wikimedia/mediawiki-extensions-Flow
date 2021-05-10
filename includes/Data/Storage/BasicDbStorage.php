@@ -60,7 +60,7 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		// insert returns boolean true/false
-		$this->dbFactory->getDB( DB_MASTER )->insert(
+		$this->dbFactory->getDB( DB_PRIMARY )->insert(
 			$this->table,
 			$insertRows,
 			__METHOD__ . " ({$this->table})"
@@ -93,7 +93,7 @@ class BasicDbStorage extends DbStorage {
 		$updates = $this->preprocessSqlArray( $updates );
 		$pk = $this->preprocessSqlArray( $pk );
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		// update returns boolean true/false as $res
 		$dbw->update( $this->table, $updates, $pk, __METHOD__ . " ({$this->table})" );
 		// we also want to check that $pk actually selected a row to update
@@ -114,7 +114,7 @@ class BasicDbStorage extends DbStorage {
 
 		$pk = $this->preprocessSqlArray( $pk );
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		$res = $dbw->delete( $this->table, $pk, __METHOD__ . " ({$this->table})" );
 		return $res && $dbw->affectedRows();
 	}
