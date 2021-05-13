@@ -225,7 +225,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		if ( !$this->unconfirmedUser ) {
 			$this->unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 			$this->unconfirmedUser->addToDatabase();
-			$this->unconfirmedUser->addGroup( 'user' );
+			$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+			$userGroupManager->addUserToGroup( $this->unconfirmedUser, 'user' );
 		}
 
 		return $this->unconfirmedUser;
@@ -235,7 +236,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		if ( !$this->confirmedUser ) {
 			$this->confirmedUser = User::newFromName( 'UTFlowConfirmed' );
 			$this->confirmedUser->addToDatabase();
-			$this->confirmedUser->addGroup( 'autoconfirmed' );
+			$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+			$userGroupManager->addUserToGroup( $this->confirmedUser, 'autoconfirmed' );
 		}
 
 		return $this->confirmedUser;
@@ -245,7 +247,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		if ( !$this->sysopUser ) {
 			$this->sysopUser = User::newFromName( 'UTFlowSysop' );
 			$this->sysopUser->addToDatabase();
-			$this->sysopUser->addGroup( 'sysop' );
+			$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+			$userGroupManager->addUserToGroup( $this->sysopUser, 'sysop' );
 		}
 
 		return $this->sysopUser;
@@ -255,7 +258,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		if ( !$this->suppressUser ) {
 			$this->suppressUser = User::newFromName( 'UTFlowSuppress' );
 			$this->suppressUser->addToDatabase();
-			$this->suppressUser->addGroup( 'suppress' );
+			$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
+			$userGroupManager->addUserToGroup( $this->suppressUser, 'suppress' );
 		}
 
 		return $this->suppressUser;

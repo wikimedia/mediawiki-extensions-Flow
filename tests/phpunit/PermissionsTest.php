@@ -269,9 +269,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 	protected function unconfirmedUser() {
 		if ( !$this->unconfirmedUser ) {
-			$this->unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
-			$this->unconfirmedUser->addToDatabase();
-			$this->unconfirmedUser->addGroup( 'user' );
+			$this->unconfirmedUser = $this->getTestUser( [ 'user' ] )->getUser();
 		}
 
 		return $this->unconfirmedUser;
@@ -279,9 +277,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 	protected function confirmedUser() {
 		if ( !$this->confirmedUser ) {
-			$this->confirmedUser = User::newFromName( 'UTFlowConfirmed' );
-			$this->confirmedUser->addToDatabase();
-			$this->confirmedUser->addGroup( 'autoconfirmed' );
+			$this->confirmedUser = $this->getTestUser( [ 'autoconfirmed' ] )->getUser();
 		}
 
 		return $this->confirmedUser;
@@ -289,9 +285,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 	protected function sysopUser() {
 		if ( !$this->sysopUser ) {
-			$this->sysopUser = User::newFromName( 'UTFlowSysop' );
-			$this->sysopUser->addToDatabase();
-			$this->sysopUser->addGroup( 'sysop' );
+			$this->sysopUser = $this->getTestSysop()->getUser();
 		}
 
 		return $this->sysopUser;
@@ -299,9 +293,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 	protected function suppressUser() {
 		if ( !$this->suppressUser ) {
-			$this->suppressUser = User::newFromName( 'UTFlowSuppress' );
-			$this->suppressUser->addToDatabase();
-			$this->suppressUser->addGroup( 'suppress' );
+			$this->suppressUser = $this->getTestUser( [ 'suppress' ] )->getUser();
 		}
 
 		return $this->suppressUser;
