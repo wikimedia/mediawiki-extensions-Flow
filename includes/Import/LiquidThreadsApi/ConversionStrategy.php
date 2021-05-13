@@ -30,7 +30,7 @@ use WikitextContent;
  */
 class ConversionStrategy implements IConversionStrategy {
 	/**
-	 * @var IDatabase Master database for the current wiki
+	 * @var IDatabase Primary database for the current wiki
 	 */
 	protected $dbw;
 

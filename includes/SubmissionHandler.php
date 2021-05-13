@@ -60,7 +60,7 @@ class SubmissionHandler {
 		$action,
 		array $parameters
 	) {
-		// since this is a submit force dbFactory to always return master
+		// since this is a submit force dbFactory to always return primary
 		$this->dbFactory->forceMaster();
 
 		/** @var Block[] $interestedBlocks */

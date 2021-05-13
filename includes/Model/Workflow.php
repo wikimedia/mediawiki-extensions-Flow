@@ -290,10 +290,10 @@ class Workflow {
 	 */
 	public function isDeleted() {
 		if ( $this->exists === null ) {
-			// If in the context of a POST request, check against the master DB.
+			// If in the context of a POST request, check against the primary DB.
 			// This is important for recentchanges actions; if a user posts a topic on an
 			// empty flow board then querying the replica results in $this->exists getting set to
-			// false. Querying the master DB correctly returns that the title exists, and the
+			// false. Querying the primary DB correctly returns that the title exists, and the
 			// recent changes event can propagate.
 			$this->exists = Title::newFromID(
 				$this->pageId,

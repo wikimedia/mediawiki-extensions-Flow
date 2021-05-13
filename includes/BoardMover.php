@@ -41,7 +41,7 @@ class BoardMover {
 	 * Starts a transaction on the Flow database.
 	 */
 	protected function begin() {
-		// All reads must go through master to help ensure consistency
+		// All reads must go through primary to help ensure consistency
 		$this->dbFactory->forceMaster();
 
 		// Open a transaction, this will be closed from self::commit.
