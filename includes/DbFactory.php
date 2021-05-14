@@ -31,7 +31,7 @@ class DbFactory {
 	protected $cluster;
 
 	/**
-	 * @var bool When true only DB_MASTER will be returned
+	 * @var bool When true only DB_PRIMARY will be returned
 	 */
 	protected $forceMaster = false;
 
@@ -51,7 +51,7 @@ class DbFactory {
 	/**
 	 * Gets a database connection for the Flow-specific database.
 	 *
-	 * @param int $db index of the connection to get.  DB_MASTER|DB_REPLICA.
+	 * @param int $db index of the connection to get.  DB_PRIMARY|DB_REPLICA.
 	 * @return IMaintainableDatabase
 	 */
 	public function getDB( $db ) {
@@ -75,7 +75,7 @@ class DbFactory {
 	/**
 	 * Gets a database connection for the main wiki database.  Mockable version of wfGetDB.
 	 *
-	 * @param int $db index of the connection to get.  DB_MASTER|DB_REPLICA.
+	 * @param int $db index of the connection to get.  DB_PRIMARY|DB_REPLICA.
 	 * @param string|bool $wiki The wiki ID, or false for the current wiki
 	 * @return IDatabase
 	 */

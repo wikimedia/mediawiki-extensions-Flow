@@ -33,7 +33,7 @@ use WikitextContent;
  */
 class Converter {
 	/**
-	 * @var IDatabase Master database of the current wiki. Required
+	 * @var IDatabase Primary database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
 	protected $dbw;
@@ -63,7 +63,7 @@ class Converter {
 	protected $strategy;
 
 	/**
-	 * @param IDatabase $dbw Master wiki database to read from
+	 * @param IDatabase $dbw Primary wiki database to read from
 	 * @param Importer $importer
 	 * @param LoggerInterface $logger
 	 * @param User $user User for moves and edits related to the conversion process

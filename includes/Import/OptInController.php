@@ -228,7 +228,7 @@ class OptInController {
 		 * reusing these objects, we have to make sure they reflect the
 		 * correct IDs.
 		 * We could just Title::GAID_FOR_UPDATE everywhere, but that would
-		 * result in a lot of unneeded calls to master.
+		 * result in a lot of unneeded calls to primary database.
 		 * If these IDs are wrong, we could end up associating workflows
 		 * with an incorrect page (that was just moved)
 		 *
@@ -490,14 +490,14 @@ class OptInController {
 		 * to get to the workflow ID, but that uses WikiPage::factory
 		 * to build the wikipage & get the content. For most requests,
 		 * that'll be better (it reads from replicas), but we really
-		 * need to read from master here.
+		 * need to read from primary database here.
 		 * We'll need WorkflowLoader further down anyway, but we'll
 		 * then have the correct workflow ID to initialize it with!
 		 *
 		 * $title->getLatestRevId() should be fine, it'll be read from
 		 * LinkCache, which has been updated.
 		 * RevisionLookup::getRevisionById will try replica first.
-		 * If it can't find the id, it'll try to find it on master.
+		 * If it can't find the id, it'll try to find it on primary database.
 		 */
 		$revId = $title->getLatestRevID();
 		$revRecord = MediaWikiServices::getInstance()
