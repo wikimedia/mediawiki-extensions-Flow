@@ -67,10 +67,9 @@ class LqtNotifications implements Postprocessor {
 		// echo considers an array to be extra parameters.
 		// Overrides existing user-locators, because we don't want unintended
 		// notifications to go out here.
-		$self = $this;
 		$wgEchoNotifications['flow-post-reply']['user-locators'] = [
-			static function ( EchoEvent $event ) use ( $self ) {
-				return $self->locateUsersWithPendingLqtNotifications( $event );
+			function ( EchoEvent $event ) {
+				return $this->locateUsersWithPendingLqtNotifications( $event );
 			}
 		];
 	}

@@ -60,10 +60,9 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		};
 
 		$runUpdate( [ $this, 'updateTreeRevision' ] );
-		$self = $this;
 		foreach ( [ 'rev_user', 'rev_mod_user', 'rev_edit_user' ] as $prefix ) {
-			$runUpdate( static function ( $dbw, $continue ) use ( $self, $prefix ) {
-				return $self->updateRevision( $prefix, $dbw, $continue );
+			$runUpdate( function ( $dbw, $continue ) use ( $prefix ) {
+				return $this->updateRevision( $prefix, $dbw, $continue );
 			} );
 		}
 
