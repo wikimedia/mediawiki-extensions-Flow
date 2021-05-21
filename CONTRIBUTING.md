@@ -11,7 +11,7 @@ required dependencies listed at
 https://www.mediawiki.org/wiki/Extension:Flow#Dependencies .
 
 You can find the Collaboration team, which maintains Flow, in
-#wikimedia-collaboration on Freenode.
+#wikimedia-collaboration on Libera Chat.
 
 ## Libraries
 Flow primarily uses two libraries, OOUI/OOUI PHP and Handlebars.  Handlebars
