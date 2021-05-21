@@ -10,8 +10,8 @@ If you do not use MediaWiki-Vagrant, you will need to set up all the
 required dependencies listed at
 https://www.mediawiki.org/wiki/Extension:Flow#Dependencies .
 
-You can find the Collaboration team, which maintains Flow, in
-#wikimedia-collaboration on Libera Chat.
+You can find the Collaboration team, and other volunteers who maintain
+Flow, in #wikimedia-tech on Libera Chat.
 
 ## Libraries
 Flow primarily uses two libraries, OOUI/OOUI PHP and Handlebars.  Handlebars
