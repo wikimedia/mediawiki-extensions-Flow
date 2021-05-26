@@ -250,7 +250,7 @@
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|założył|założyła}} wątek  „[$3 $4]”",
 	"flow-rev-message-new-post-recentchanges-summary": "$2 {{GENDER:$2|rozpoczął|rozpoczęła}} nowy wątek",
 	"flow-rev-message-edit-title": "$1 {{GENDER:$2|zmienił|zmieniła}} nazwę wątku z „$5” na „[$3 $4]”",
-	"flow-rev-message-create-header": "$1 {{GENDER:$2|utworzył|utworzyła}} opis",
+	"flow-rev-message-create-header": "$1 {{GENDER:$2|utworzył|utworzyła|utworzył(a)}} opis",
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|zmienił|zmieniła}} opis",
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|utworzył|utworzyła}} streszczenie wątku $3",
 	"flow-rev-message-edit-topic-summary": "$1 {{GENDER:$2|edytował|edytowała}} streszczenie wątku $3",
