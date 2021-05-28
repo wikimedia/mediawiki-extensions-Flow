@@ -3,7 +3,6 @@
 namespace Flow;
 
 use CentralAuthUser;
-use ContentHandler;
 use ExtensionRegistry;
 use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
@@ -110,14 +109,16 @@ class TalkpageManager implements OccupationController {
 	 * @inheritDoc
 	 */
 	public function checkIfUserHasPermission( Title $title, User $user ) {
+		$services = MediaWikiServices::getInstance();
 		if (
 			// If the title is default-Flow, the user always has permission
-			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
+			$services->getSlotRoleRegistry()->getRoleHandler( SlotRecord::MAIN )
+				->getDefaultModel( $title ) === CONTENT_MODEL_FLOW_BOARD ||
 
 			// Gate this on the flow-create-board right, essentially giving
 			// wiki communities control over if Flow board creation is allowed
 			// to everyone or just a select few.
-			MediaWikiServices::getInstance()->getPermissionManager()
+			$services->getPermissionManager()
 				->userCan( 'flow-create-board', $user, $title )
 		) {
 			return Status::newGood();
@@ -174,7 +175,9 @@ class TalkpageManager implements OccupationController {
 		$this->safeAllowCreation( $title, $user, /* $mustNotExist = */ true );
 
 		return // default content model already
-			ContentHandler::getDefaultModelFor( $title ) === CONTENT_MODEL_FLOW_BOARD ||
+			MediaWikiServices::getInstance()->getSlotRoleRegistry()->getRoleHandler( SlotRecord::MAIN )
+				->getDefaultModel( $title ) === CONTENT_MODEL_FLOW_BOARD ||
+
 			// explicitly allowed via safeAllowCreation()
 			in_array( $title->getPrefixedDBkey(), $this->allowedPageNames );
 	}
