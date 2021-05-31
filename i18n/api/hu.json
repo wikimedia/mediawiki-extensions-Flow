@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bencemac",
-			"Misibacsi"
+			"Misibacsi",
+			"Tacsipacsi"
 		]
 	},
 	"apihelp-flow-example-1": "„[[Talk:Sandbox]]” leírásának szerkesztése",
@@ -21,16 +22,16 @@
 	"apihelp-flow+edit-topic-summary-summary": "Egy téma összefoglalójának tartalmának szerkesztése",
 	"apihelp-flow+edit-topic-summary-param-format": "Az összefoglaló formátuma (wikitext|html)",
 	"apihelp-flow+edit-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] összefoglalójának szerkesztése",
-	"apihelp-flow+lock-topic-description": "Egy Flow téma lezárása vagy feloldása",
-	"apihelp-flow+lock-topic-summary": "Egy Flow téma lezárása vagy feloldása",
+	"apihelp-flow+lock-topic-description": "Egy Strukturált beszélgetések-téma lezárása vagy feloldása",
+	"apihelp-flow+lock-topic-summary": "Egy Strukturált beszélgetések-téma lezárása vagy feloldása",
 	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] lezárása",
-	"apihelp-flow+moderate-post-description": "Egy Flow hozzászólás moderálása",
-	"apihelp-flow+moderate-post-summary": "Egy Flow hozzászólás moderálása",
+	"apihelp-flow+moderate-post-description": "Egy Strukturált beszélgetések-hozzászólás moderálása",
+	"apihelp-flow+moderate-post-summary": "Egy Strukturált beszélgetések-hozzászólás moderálása",
 	"apihelp-flow+moderate-post-param-reason": "Moderálás oka.",
 	"apihelp-flow+moderate-post-param-postId": "A moderálandó hozzászólás azonosítója (ID-je).",
 	"apihelp-flow+moderate-post-example-1": "[[Topic:S2tycnas4hcucw8w]] téma hozzászólásának törlése",
-	"apihelp-flow+moderate-topic-description": "Egy Flow téma moderálása",
-	"apihelp-flow+moderate-topic-summary": "Egy Flow téma moderálása",
+	"apihelp-flow+moderate-topic-description": "Egy Strukturált beszélgetések-téma moderálása",
+	"apihelp-flow+moderate-topic-summary": "Egy Strukturált beszélgetések-téma moderálása",
 	"apihelp-flow+moderate-topic-param-reason": "Moderálás oka.",
 	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] téma törlése",
 	"apihelp-flow+new-topic-param-topic": "Új téma címe",
