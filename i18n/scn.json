@@ -1,11 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Gmelfi",
 			"Pippinu",
 			"Sarvaturi"
 		]
 	},
+	"flow-post-actions": "Azzioni",
+	"flow-topic-actions": "Azzioni",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringrazzia}}}}",
-	"structureddiscussions": "Flussu"
+	"flow-history-action-hide-post": "ammuccia",
+	"flow-post-action-hide-post": "Ammuccia",
+	"flow-post-action-undo-moderation": "Annulla",
+	"flow-topic-action-undo-moderation": "Annulla",
+	"flow-moderation-confirm-hide-post": "Ammuccia",
+	"flow-moderation-confirm-hide-topic": "Ammuccia",
+	"structureddiscussions": "Flussu",
+	"flow-undo": "annulla"
 }
