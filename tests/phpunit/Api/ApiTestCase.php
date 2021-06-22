@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Hooks;
 use HashConfig;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use User;
 
 /**
@@ -62,12 +63,12 @@ abstract class ApiTestCase extends \ApiTestCase {
 		array $params,
 		array $session = null,
 		$appendModule = false,
-		User $user = null,
+		Authority $performer = null,
 		$tokenType = null
 	) {
 		// reset flow state before each request
 		Hooks::resetFlowExtension();
-		return parent::doApiRequest( $params, $session, $appendModule, $user, $tokenType );
+		return parent::doApiRequest( $params, $session, $appendModule, $performer, $tokenType );
 	}
 
 	/**
