@@ -77,7 +77,7 @@ class LqtRedirector implements Postprocessor {
 		$newContent = new WikitextContent( "#REDIRECT [[" . $redirectTarget->getFullText() . "]]" );
 		$page = WikiPage::factory( $fromTitle );
 		$summary = wfMessage( 'flow-lqt-redirect-reason' )->plain();
-		$page->doEditContent( $newContent, $summary, EDIT_FORCE_BOT, false, $this->user );
+		$page->doUserEditContent( $newContent, $this->user, $summary, EDIT_FORCE_BOT );
 
 		MediaWikiServices::getInstance()->getWatchedItemStore()->duplicateAllAssociatedEntries(
 			$fromTitle, $redirectTarget

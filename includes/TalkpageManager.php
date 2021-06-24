@@ -78,12 +78,11 @@ class TalkpageManager implements OccupationController {
 			}
 		}
 
-		$status = $page->doEditContent(
+		$status = $page->doUserEditContent(
 			new BoardContent( CONTENT_MODEL_FLOW_BOARD, $workflow->getId() ),
+			$this->getTalkpageManager(),
 			wfMessage( 'flow-talk-taken-over-comment' )->plain(),
-			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTalkpageManager()
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 		);
 		$value = $status->getValue();
 		$value['already-existed'] = false;

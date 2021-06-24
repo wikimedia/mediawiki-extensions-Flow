@@ -37,8 +37,9 @@ class TalkpageManagerTest extends MediaWikiTestCase {
 	public function testCheckIfCreationIsPossible() {
 		$existentTitle = Title::newFromText( 'Exists' );
 		$status = WikiPage::factory( $existentTitle )
-			->doEditContent(
+			->doUserEditContent(
 				new WikitextContent( 'This exists' ),
+				$this->getTestUser()->getUser(),
 				"with an edit summary"
 			);
 		if ( !$status->isGood() ) {

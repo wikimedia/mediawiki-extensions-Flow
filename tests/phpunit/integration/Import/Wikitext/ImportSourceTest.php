@@ -44,8 +44,9 @@ class ImportSourceTest extends \MediaWikiTestCase {
 
 		// create a page with some content
 		$status = WikiPage::factory( Title::newMainPage() )
-			->doEditContent(
+			->doUserEditContent(
 				new WikitextContent( $content ),
+				$this->getTestUser()->getUser(),
 				"and an edit summary"
 			);
 		if ( !$status->isGood() ) {

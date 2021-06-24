@@ -325,12 +325,12 @@ class FlowRestoreLQT extends Maintenance {
 		if ( $this->dryRun ) {
 			return Status::newGood();
 		} else {
-			return $page->doEditContent(
+			return $page->doUserEditContent(
 				$revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW ),
+				$this->talkpageManagerUser,
 				'/* Restore LQT topic content */',
 				EDIT_UPDATE | EDIT_MINOR | EDIT_FORCE_BOT,
-				$revision->getId(),
-				$this->talkpageManagerUser
+				$revision->getId()
 			);
 		}
 	}

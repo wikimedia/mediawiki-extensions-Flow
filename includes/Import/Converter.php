@@ -280,7 +280,7 @@ class Converter {
 	 */
 	protected function createArchiveCleanupRevision( Title $title, Title $archiveTitle ) {
 		$page = WikiPage::factory( $archiveTitle );
-		// doEditContent will do this anyway, but we need to now for the revision.
+		// doUserEditContent will do this anyway, but we need to now for the revision.
 		$page->loadPageData( WikiPage::READ_LATEST );
 		$revision = $page->getRevisionRecord();
 		if ( $revision === null ) {
@@ -298,12 +298,11 @@ class Converter {
 			return;
 		}
 
-		$status = $page->doEditContent(
+		$status = $page->doUserEditContent(
 			$newContent,
+			$this->user,
 			$this->strategy->getCleanupComment( $title, $archiveTitle ),
-			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-			false,
-			$this->user
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 		);
 
 		if ( !$status->isGood() ) {

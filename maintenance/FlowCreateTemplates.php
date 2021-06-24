@@ -107,12 +107,11 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 			return Status::newGood();
 		}
 
-		return $page->doEditContent(
+		return $page->doUserEditContent(
 			$content,
+			Flow\Hooks::getOccupationController()->getTalkpageManager(),
 			'/* Automatically created by Flow */',
-			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-			false,
-			Flow\Hooks::getOccupationController()->getTalkpageManager()
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 		);
 	}
 }

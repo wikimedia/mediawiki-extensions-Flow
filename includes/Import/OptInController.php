@@ -316,12 +316,11 @@ class OptInController {
 	private function createRevision( Title $title, $contentText, $summary ) {
 		$page = WikiPage::factory( $title );
 		$newContent = new WikitextContent( $contentText );
-		$status = $page->doEditContent(
+		$status = $page->doUserEditContent(
 			$newContent,
+			$this->user,
 			$summary,
-			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
-			false,
-			$this->user
+			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 		);
 
 		if ( !$status->isGood() ) {
