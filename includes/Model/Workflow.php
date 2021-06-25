@@ -401,24 +401,7 @@ class Workflow {
 	public function getPermissionErrors( $permission, $user, $rigor ) {
 		$title = $this->type === 'topic' ? $this->getOwnerTitle() : $this->getArticleTitle();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$editErrors = $permissionManager->getPermissionErrors( $permission, $user, $title, $rigor );
-
-		$errors = $editErrors;
-
-		$titleExistsFlags = ( $rigor === 'secure' ) ? Title::GAID_FOR_UPDATE : 0;
-
-		if ( $permission === 'edit' && !$title->exists( $titleExistsFlags ) ) {
-			// If it's 'edit', but the title doesn't exist, check 'create' as
-			// well.
-
-			$editErrorKeys = array_map( static function ( $val ) {
-				return reset( $val );
-			}, $editErrors );
-
-			// Pass in the edit errors to avoid duplicates
-			$createErrors = $permissionManager->getPermissionErrors( 'create', $user, $title, $rigor, $editErrorKeys );
-			$errors = array_merge( $errors, $createErrors );
-		}
+		$errors = $permissionManager->getPermissionErrors( $permission, $user, $title, $rigor );
 
 		if ( count( $errors ) ) {
 			return $errors;
