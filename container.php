@@ -126,24 +126,22 @@ $c['storage.workflow.mapper'] = static function ( $c ) {
 		[ 'workflow_id' ]
 	);
 };
-$c['storage.workflow.backend'] = static function ( $c ) {
-	return new BasicDbStorage(
+$c['storage.workflow'] = static function ( $c ) {
+	$workflowBackend = new BasicDbStorage(
 		$c['db.factory'],
 		'flow_workflow',
 		[ 'workflow_id' ]
 	);
-};
-$c['storage.workflow'] = static function ( $c ) {
 	$workflowPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
-		$c['storage.workflow.backend'],
+		$workflowBackend,
 		$c['storage.workflow.mapper'],
 		'flow_workflow:v2:pk',
 		[ 'workflow_id' ]
 	);
 	$workflowTitleLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.workflow.backend'],
+		$workflowBackend,
 		$c['storage.workflow.mapper'],
 		'flow_workflow:title:v2:',
 		[ 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_type' ],
@@ -166,7 +164,7 @@ $c['storage.workflow'] = static function ( $c ) {
 	];
 	return new ObjectManager(
 		$c['storage.workflow.mapper'],
-		$c['storage.workflow.backend'],
+		$workflowBackend,
 		$c['db.factory'],
 		$indexes,
 		$listeners
@@ -283,24 +281,22 @@ $c['storage.header.listeners.username'] = static function ( $c ) {
 $c['storage.header.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 };
-$c['storage.header.backend'] = static function ( $c ) {
+$c['storage.header'] = static function ( $c ) {
 	global $wgFlowExternalStore;
-	return new HeaderRevisionStorage(
+	$headerBackend = new HeaderRevisionStorage(
 		$c['db.factory'],
 		$wgFlowExternalStore
 	);
-};
-$c['storage.header'] = static function ( $c ) {
 	$headerPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
-		$c['storage.header.backend'],
+		$headerBackend,
 		$c['storage.header.mapper'],
 		'flow_header:v2:pk',
 		[ 'rev_id' ] // primary key
 	);
 	$headerHeaderLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.header.backend'],
+		$headerBackend,
 		$c['storage.header.mapper'],
 		'flow_header:workflow:v3',
 		[ 'rev_type_id' ],
@@ -327,7 +323,7 @@ $c['storage.header'] = static function ( $c ) {
 	];
 	return new ObjectManager(
 		$c['storage.header.mapper'],
-		$c['storage.header.backend'],
+		$headerBackend,
 		$c['db.factory'],
 		$indexes,
 		$listeners
@@ -350,24 +346,22 @@ $c['storage.post_summary.listeners.username'] = static function ( $c ) {
 		]
 	);
 };
-$c['storage.post_summary.backend'] = static function ( $c ) {
+$c['storage.post_summary'] = static function ( $c ) {
 	global $wgFlowExternalStore;
-	return new PostSummaryRevisionStorage(
+	$postSummaryBackend = new PostSummaryRevisionStorage(
 		$c['db.factory'],
 		$wgFlowExternalStore
 	);
-};
-$c['storage.post_summary'] = static function ( $c ) {
 	$postSummaryPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
-		$c['storage.post_summary.backend'],
+		$postSummaryBackend,
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:v2:pk',
 		[ 'rev_id' ]
 	);
 	$postSummaryTopicLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.post_summary.backend'],
+		$postSummaryBackend,
 		$c['storage.post_summary.mapper'],
 		'flow_post_summary:workflow:v3',
 		[ 'rev_type_id' ],
@@ -395,7 +389,7 @@ $c['storage.post_summary'] = static function ( $c ) {
 	];
 	return new ObjectManager(
 		$c['storage.post_summary.mapper'],
-		$c['storage.post_summary.backend'],
+		$postSummaryBackend,
 		$c['db.factory'],
 		$indexes,
 		$listeners
@@ -918,8 +912,8 @@ $c['storage.wiki_reference.mapper'] = static function ( $c ) {
 		\Flow\Model\WikiReference::class
 	);
 };
-$c['storage.wiki_reference.backend'] = static function ( $c ) {
-	return new BasicDbStorage(
+$c['storage.wiki_reference'] = static function ( $c ) {
+	$wikiReferenceBackend = new BasicDbStorage(
 		$c['db.factory'],
 		'flow_wiki_ref',
 		[
@@ -932,11 +926,9 @@ $c['storage.wiki_reference.backend'] = static function ( $c ) {
 			'ref_target_title'
 		]
 	);
-};
-$c['storage.wiki_reference'] = static function ( $c ) {
 	$wikiReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.wiki_reference.backend'],
+		$wikiReferenceBackend,
 		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-source:v3',
 		[
@@ -951,7 +943,7 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 	);
 	$wikiReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.wiki_reference.backend'],
+		$wikiReferenceBackend,
 		$c['storage.wiki_reference.mapper'],
 		'flow_ref:wiki:by-revision:v3',
 		[
@@ -970,7 +962,7 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 	];
 	return new ObjectManager(
 		$c['storage.wiki_reference.mapper'],
-		$c['storage.wiki_reference.backend'],
+		$wikiReferenceBackend,
 		$c['db.factory'],
 		$indexes,
 		[]
@@ -982,8 +974,9 @@ $c['storage.url_reference.mapper'] = static function ( $c ) {
 		\Flow\Model\URLReference::class
 	);
 };
-$c['storage.url_reference.backend'] = static function ( $c ) {
-	return new BasicDbStorage(
+
+$c['storage.url_reference'] = static function ( $c ) {
+	$urlReferenceBackend = new BasicDbStorage(
 		// factory and table
 		$c['db.factory'],
 		'flow_ext_ref',
@@ -996,12 +989,9 @@ $c['storage.url_reference.backend'] = static function ( $c ) {
 			'ref_target',
 		]
 	);
-};
-
-$c['storage.url_reference'] = static function ( $c ) {
 	$urlReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.url_reference.backend'],
+		$urlReferenceBackend,
 		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-source:v3',
 		[
@@ -1016,7 +1006,7 @@ $c['storage.url_reference'] = static function ( $c ) {
 	);
 	$urlReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
-		$c['storage.url_reference.backend'],
+		$urlReferenceBackend,
 		$c['storage.url_reference.mapper'],
 		'flow_ref:url:by-revision:v3',
 		[
@@ -1035,7 +1025,7 @@ $c['storage.url_reference'] = static function ( $c ) {
 	];
 	return new ObjectManager(
 		$c['storage.url_reference.mapper'],
-		$c['storage.url_reference.backend'],
+		$urlReferenceBackend,
 		$c['db.factory'],
 		$indexes,
 		[]
