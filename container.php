@@ -278,11 +278,9 @@ $c['storage.header.listeners.username'] = static function ( $c ) {
 		]
 	);
 };
-$c['storage.header.mapper'] = static function ( $c ) {
-	return CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
-};
 $c['storage.header'] = static function ( $c ) {
 	global $wgFlowExternalStore;
+	$headerMapper = CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
 	$headerBackend = new HeaderRevisionStorage(
 		$c['db.factory'],
 		$wgFlowExternalStore
@@ -290,14 +288,14 @@ $c['storage.header'] = static function ( $c ) {
 	$headerPrimaryIndex = new UniqueFeatureIndex(
 		$c['flowcache'],
 		$headerBackend,
-		$c['storage.header.mapper'],
+		$headerMapper,
 		'flow_header:v2:pk',
 		[ 'rev_id' ] // primary key
 	);
 	$headerHeaderLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$headerBackend,
-		$c['storage.header.mapper'],
+		$headerMapper,
 		'flow_header:workflow:v3',
 		[ 'rev_type_id' ],
 		[
@@ -322,7 +320,7 @@ $c['storage.header'] = static function ( $c ) {
 		'listener.editcount' => $c['listener.editcount'],
 	];
 	return new ObjectManager(
-		$c['storage.header.mapper'],
+		$headerMapper,
 		$headerBackend,
 		$c['db.factory'],
 		$indexes,
@@ -907,12 +905,10 @@ $c['search.index.updaters'] = static function ( $c ) {
 	];
 };
 
-$c['storage.wiki_reference.mapper'] = static function ( $c ) {
-	return BasicObjectMapper::model(
+$c['storage.wiki_reference'] = static function ( $c ) {
+	$wikiReferenceMapper = BasicObjectMapper::model(
 		\Flow\Model\WikiReference::class
 	);
-};
-$c['storage.wiki_reference'] = static function ( $c ) {
 	$wikiReferenceBackend = new BasicDbStorage(
 		$c['db.factory'],
 		'flow_wiki_ref',
@@ -929,7 +925,7 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 	$wikiReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$wikiReferenceBackend,
-		$c['storage.wiki_reference.mapper'],
+		$wikiReferenceMapper,
 		'flow_ref:wiki:by-source:v3',
 		[
 			'ref_src_wiki',
@@ -944,7 +940,7 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 	$wikiReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$wikiReferenceBackend,
-		$c['storage.wiki_reference.mapper'],
+		$wikiReferenceMapper,
 		'flow_ref:wiki:by-revision:v3',
 		[
 			'ref_src_wiki',
@@ -961,7 +957,7 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 		$wikiReferenceRevisionLookupIndex,
 	];
 	return new ObjectManager(
-		$c['storage.wiki_reference.mapper'],
+		$wikiReferenceMapper,
 		$wikiReferenceBackend,
 		$c['db.factory'],
 		$indexes,
@@ -969,13 +965,10 @@ $c['storage.wiki_reference'] = static function ( $c ) {
 	);
 };
 
-$c['storage.url_reference.mapper'] = static function ( $c ) {
-	return BasicObjectMapper::model(
+$c['storage.url_reference'] = static function ( $c ) {
+	$urlReferenceMapper = BasicObjectMapper::model(
 		\Flow\Model\URLReference::class
 	);
-};
-
-$c['storage.url_reference'] = static function ( $c ) {
 	$urlReferenceBackend = new BasicDbStorage(
 		// factory and table
 		$c['db.factory'],
@@ -992,7 +985,7 @@ $c['storage.url_reference'] = static function ( $c ) {
 	$urlReferenceSourceLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$urlReferenceBackend,
-		$c['storage.url_reference.mapper'],
+		$urlReferenceMapper,
 		'flow_ref:url:by-source:v3',
 		[
 			'ref_src_wiki',
@@ -1007,7 +1000,7 @@ $c['storage.url_reference'] = static function ( $c ) {
 	$urlReferenceRevisionLookupIndex = new TopKIndex(
 		$c['flowcache'],
 		$urlReferenceBackend,
-		$c['storage.url_reference.mapper'],
+		$urlReferenceMapper,
 		'flow_ref:url:by-revision:v3',
 		[
 			'ref_src_wiki',
@@ -1024,7 +1017,7 @@ $c['storage.url_reference'] = static function ( $c ) {
 		$urlReferenceRevisionLookupIndex,
 	];
 	return new ObjectManager(
-		$c['storage.url_reference.mapper'],
+		$urlReferenceMapper,
 		$urlReferenceBackend,
 		$c['db.factory'],
 		$indexes,
