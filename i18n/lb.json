@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Les Meloures",
 			"Nnemo",
 			"Robby",
 			"Soued031"
@@ -48,7 +49,7 @@
 	"flow-newtopic-title-placeholder": "Neit Thema",
 	"flow-newtopic-content-placeholder": "En neie Message iwwer \"$1\" schécken",
 	"flow-newtopic-header": "En neit Thema dobäisetzen",
-	"flow-newtopic-save": "Thema dobäisetzen",
+	"flow-newtopic-save": "Thema derbäisetzen",
 	"flow-newtopic-save-anonymously": "Thema anonym dobäisetzen",
 	"flow-newtopic-start-placeholder": "En neit Thema ufänken",
 	"flow-newtopic-first-heading": "En neit Thema op $1 ufänken",

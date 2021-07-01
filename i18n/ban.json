@@ -6,5 +6,8 @@
 		]
 	},
 	"flow-show-change": "Cingak uahan",
-	"flow-post-action-edit-post-submit": "Raksa uahan"
+	"flow-post-action-edit-post-submit": "Raksa uahan",
+	"flow-comment-restored": "Penampen kaulihang",
+	"flow-comment-deleted": "Penampen kausap",
+	"flow-comment-hidden": "Engkebang penampen"
 }
