@@ -66,23 +66,6 @@ $c['watched_items'] = static function ( $c ) {
 	);
 };
 
-$c['content_fixer'] = static function ( $c ) {
-	global $wgArticlePath;
-
-	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
-	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
-		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
-	);
-	$baseHrefFixer = new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
-	$extLinkFixer = new Flow\Parsoid\Fixer\ExtLinkFixer();
-	return new Flow\Parsoid\ContentFixer(
-		$wikiLinkFixer,
-		$badImageRemover,
-		$baseHrefFixer,
-		$extLinkFixer
-	);
-};
-
 $c['permissions'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowPermissions' );
 };
@@ -92,13 +75,26 @@ $c['lightncandy'] = static function ( $c ) {
 };
 
 $c['templating'] = static function ( $c ) {
-	global $wgOut;
+	global $wgOut, $wgArticlePath;
+
+	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
+	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
+		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
+	);
+	$baseHrefFixer = new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
+	$extLinkFixer = new Flow\Parsoid\Fixer\ExtLinkFixer();
+	$contextFixer = new Flow\Parsoid\ContentFixer(
+		$wikiLinkFixer,
+		$badImageRemover,
+		$baseHrefFixer,
+		$extLinkFixer
+	);
 
 	return new Flow\Templating(
 		$c['repository.username'],
 		$c['url_generator'],
 		$wgOut,
-		$c['content_fixer'],
+		$contextFixer,
 		$c['permissions']
 	);
 };
@@ -155,12 +151,17 @@ $c['storage.workflow'] = static function ( $c ) {
 		$workflowPrimaryIndex,
 		$workflowTitleLookupIndex,
 	];
+	$topicPageCreationListener = new Flow\Data\Listener\TopicPageCreationListener(
+		$c['occupation_controller'],
+		$c['deferred_queue']
+	);
+	$workflowTopicListListener = new Flow\Data\Listener\WorkflowTopicListListener(
+		$c['storage.topic_list'],
+		$c['storage.topic_list.indexes.last_updated']
+	);
 	$listeners = [
-		'listener.topicpagecreation' => $c['listener.topicpagecreation'],
-		'storage.workflow.listeners.topiclist' => new Flow\Data\Listener\WorkflowTopicListListener(
-			$c['storage.topic_list'],
-			$c['storage.topic_list.indexes.last_updated']
-		),
+		'listener.topicpagecreation' => $topicPageCreationListener,
+		'storage.workflow.listeners.topiclist' => $workflowTopicListListener,
 	];
 	return new ObjectManager(
 		$c['storage.workflow.mapper'],
@@ -181,12 +182,6 @@ $c['listener.recentchanges'] = static function ( $c ) {
 			new Flow\Data\Utils\RecentChangeFactory,
 			$c['formatter.irclineurl']
 		)
-	);
-};
-$c['listener.topicpagecreation'] = static function ( $c ) {
-	return new Flow\Data\Listener\TopicPageCreationListener(
-		$c['occupation_controller'],
-		$c['deferred_queue']
 	);
 };
 $c['listeners.notification'] = static function ( $c ) {
@@ -268,16 +263,6 @@ $c['storage.post_summary_board_history'] = static function ( $c ) {
 	);
 };
 
-$c['storage.header.listeners.username'] = static function ( $c ) {
-	return new Flow\Data\Listener\UserNameListener(
-		$c['repository.username'],
-		[
-			'rev_user_id' => 'rev_user_wiki',
-			'rev_mod_user_id' => 'rev_mod_user_wiki',
-			'rev_edit_user_id' => 'rev_edit_user_wiki'
-		]
-	);
-};
 $c['storage.header'] = static function ( $c ) {
 	global $wgFlowExternalStore;
 	$headerMapper = CachingObjectMapper::model( \Flow\Model\Header::class, [ 'rev_id' ] );
@@ -312,9 +297,17 @@ $c['storage.header'] = static function ( $c ) {
 		$headerPrimaryIndex,
 		$headerHeaderLookupIndex
 	];
+	$userNameListener = new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		[
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki'
+		]
+	);
 	$listeners = [
 		'reference.recorder' => $c['reference.recorder'],
-		'storage.header.listeners.username' => $c['storage.header.listeners.username'],
+		'storage.header.listeners.username' => $userNameListener,
 		'listeners.notification' => $c['listeners.notification'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
 		'listener.editcount' => $c['listener.editcount'],
@@ -471,23 +464,6 @@ $c['storage.post.listeners.moderation_logging'] = static function ( $c ) {
 		$moderationLogger
 	);
 };
-$c['storage.post.listeners.username'] = static function ( $c ) {
-	return new Flow\Data\Listener\UserNameListener(
-		$c['repository.username'],
-		[
-			'rev_user_id' => 'rev_user_wiki',
-			'rev_mod_user_id' => 'rev_mod_user_wiki',
-			'rev_edit_user_id' => 'rev_edit_user_wiki',
-			'tree_orig_user_id' => 'tree_orig_user_wiki'
-		]
-	);
-};
-$c['storage.post.listeners.watch_topic'] = static function ( $c ) {
-	// Auto-subscribe users to the topic after performing specific actions
-	return new Flow\Data\Listener\ImmediateWatchTopicListener(
-		$c['watched_items']
-	);
-};
 $c['storage.post.indexes.primary'] = static function ( $c ) {
 	return new UniqueFeatureIndex(
 		$c['flowcache'],
@@ -521,11 +497,24 @@ $c['storage.post'] = static function ( $c ) {
 		$postPostLookupIndex,
 		$c['storage.post_topic_history.indexes.topic_lookup']
 	];
+	$userNameListener = new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		[
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki',
+			'tree_orig_user_id' => 'tree_orig_user_wiki'
+		]
+	);
+	// Auto-subscribe users to the topic after performing specific actions
+	$watchTopicListener = new Flow\Data\Listener\ImmediateWatchTopicListener(
+		$c['watched_items']
+	);
 	$listeners = [
 		'reference.recorder' => $c['reference.recorder'],
 		'collection.cache' => $c['collection.cache'],
-		'storage.post.listeners.username' => $c['storage.post.listeners.username'],
-		'storage.post.listeners.watch_topic' => $c['storage.post.listeners.watch_topic'],
+		'storage.post.listeners.username' => $userNameListener,
+		'storage.post.listeners.watch_topic' => $watchTopicListener,
 		'listeners.notification' => $c['listeners.notification'],
 		'storage.post.listeners.moderation_logging' => $c['storage.post.listeners.moderation_logging'],
 		'listener.recentchanges' => $c['listener.recentchanges'],
@@ -634,24 +623,20 @@ $c['deferred_queue'] = static function ( $c ) {
 	return new SplQueue;
 };
 
-$c['submission_handler'] = static function ( $c ) {
-	return new Flow\SubmissionHandler(
+$c['factory.loader.workflow'] = static function ( $c ) {
+	$blockFactory = new Flow\BlockFactory(
+		$c['storage'],
+		$c['loader.root_post']
+	);
+	$submissionHandler = new Flow\SubmissionHandler(
 		$c['storage'],
 		$c['db.factory'],
 		$c['deferred_queue']
 	);
-};
-$c['factory.block'] = static function ( $c ) {
-	return new Flow\BlockFactory(
-		$c['storage'],
-		$c['loader.root_post']
-	);
-};
-$c['factory.loader.workflow'] = static function ( $c ) {
 	return new Flow\WorkflowLoaderFactory(
 		$c['storage'],
-		$c['factory.block'],
-		$c['submission_handler']
+		$blockFactory,
+		$submissionHandler
 	);
 };
 // Initialized in Flow\Hooks to facilitate only loading the flow container
@@ -659,15 +644,12 @@ $c['factory.loader.workflow'] = static function ( $c ) {
 // must always happen before calling flow code.
 $c['occupation_controller'] = Flow\Hooks::getOccupationController();
 
-$c['helper.archive_name'] = static function ( $c ) {
-	return new Flow\Import\ArchiveNameHelper();
-};
-
 $c['controller.opt_in'] = static function ( $c ) {
+	$archiveNameHelper = new Flow\Import\ArchiveNameHelper();
 	return new Flow\Import\OptInController(
 		$c['occupation_controller'],
 		$c['controller.notification'],
-		$c['helper.archive_name'],
+		$archiveNameHelper,
 		$c['db.factory'],
 		$c['default_logger'],
 		$c['occupation_controller']->getTalkpageManager()
