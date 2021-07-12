@@ -9,5 +9,6 @@
 	"flow-post-action-edit-post-submit": "Raksa uahan",
 	"flow-comment-restored": "Penampen kaulihang",
 	"flow-comment-deleted": "Penampen kausap",
-	"flow-comment-hidden": "Engkebang penampen"
+	"flow-comment-hidden": "Engkebang penampen",
+	"flow-dialog-cancelconfirm-discard": "Kutang uahan"
 }
