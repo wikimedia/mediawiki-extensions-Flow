@@ -105,6 +105,7 @@ class ConversionUtilsTest extends FlowTestCase {
 	 * @dataProvider wikitextRoundtripProvider
 	 */
 	public function testwikitextRoundtrip( $message, $expect, Title $title ) {
+		$this->markTestSkipped( 'If Parsoid is enabled an actual network request is run and that is not allowed. See T262443' );
 		// Check for Parsoid
 		try {
 			$html = Utils::convert( 'wikitext', 'html', $expect, $title );
