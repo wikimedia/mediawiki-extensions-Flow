@@ -3,6 +3,7 @@
 		"authors": [
 			"Mainframe98",
 			"Robin van der Vliet",
+			"Romaine",
 			"Sjoerddebruin"
 		]
 	},
@@ -11,5 +12,10 @@
 	"apihelp-flow+edit-post-param-postId": "Berichtnummer.",
 	"apihelp-flow+edit-post-param-content": "Inhoud voor bericht",
 	"apihelp-flow+edit-title-param-content": "Inhoud voor titel.",
-	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] sluiten"
+	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] sluiten",
+	"apihelp-flow+moderate-post-param-reason": "Reden voor moderatie:",
+	"apihelp-flow+moderate-topic-param-reason": "Reden voor moderatie.",
+	"apihelp-flow+reply-description": "Reacties op een bericht.",
+	"apihelp-flow+reply-summary": "Reacties op een bericht.",
+	"apihelp-flow+reply-param-content": "Inhoud voor nieuw bericht."
 }
