@@ -29,16 +29,8 @@ class LinksTableUpdater {
 	public function doUpdate( Workflow $workflow ) {
 		$title = $workflow->getArticleTitle();
 		$page = WikiPage::factory( $title );
-		$content = $page->getContent();
-		$updates = [];
-		// Must have an article ID in order for LinksUpdate to not fail in getSecondaryDataUpdates.
-		if ( $content !== null && $title->getArticleID( Title::GAID_FOR_UPDATE ) ) {
-			$updates = $content->getSecondaryDataUpdates( $title );
-		}
 
-		foreach ( $updates as $update ) {
-			DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
-		}
+		$page->doSecondaryDataUpdates( [ 'defer' => DeferredUpdates::PRESEND ] );
 	}
 
 	/**
