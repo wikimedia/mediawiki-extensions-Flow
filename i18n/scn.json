@@ -9,6 +9,7 @@
 	},
 	"flow-post-actions": "Azzioni",
 	"flow-topic-actions": "Azzioni",
+	"flow-cancel": "Annulla",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ringrazzia}}}}",
 	"flow-history-action-hide-post": "ammuccia",
 	"flow-post-action-hide-post": "Ammuccia",
