@@ -20,7 +20,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'flow_revision', 'flow_tree_revision' ];
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// recent changes isn't fully setup here, just skip it

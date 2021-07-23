@@ -91,7 +91,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	 */
 	private $suppressUser;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// We don't want local config getting in the way of testing whether or

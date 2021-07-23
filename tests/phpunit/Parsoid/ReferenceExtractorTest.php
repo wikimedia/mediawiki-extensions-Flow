@@ -16,7 +16,7 @@ use Title;
  * @group Flow
  */
 class ReferenceExtractorTestCase extends FlowTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Check for Parsoid

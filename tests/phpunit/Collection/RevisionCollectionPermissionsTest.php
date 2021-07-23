@@ -70,7 +70,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 */
 	private $block;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->clearExtraLifecycleHandlers();

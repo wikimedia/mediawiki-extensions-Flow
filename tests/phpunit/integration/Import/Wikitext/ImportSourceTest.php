@@ -25,7 +25,7 @@ class ImportSourceTest extends \MediaWikiTestCase {
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Check for Parsoid

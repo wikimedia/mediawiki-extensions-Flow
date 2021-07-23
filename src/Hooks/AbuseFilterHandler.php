@@ -19,7 +19,7 @@ class AbuseFilterHandler implements AbuseFilterGenerateVarsForRecentChangeHook {
 		RecentChange $rc,
 		VariableHolder $vars,
 		User $contextUser
-	) : bool {
+	): bool {
 		if ( $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
 			return false;
 		}

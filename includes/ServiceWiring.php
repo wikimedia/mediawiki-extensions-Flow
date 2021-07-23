@@ -29,14 +29,14 @@ use Psr\Log\LoggerInterface;
  * @phpcs-require-sorted-array
  */
 return [
-	'FlowActions' => static function ( MediaWikiServices $services ) : FlowActions {
+	'FlowActions' => static function ( MediaWikiServices $services ): FlowActions {
 		// Flow configuration
 		return new FlowActions(
 			$services->getMainConfig()->get( 'FlowActions' )
 		);
 	},
 
-	'FlowCache' => static function ( MediaWikiServices $services ) : FlowObjectCache {
+	'FlowCache' => static function ( MediaWikiServices $services ): FlowObjectCache {
 		// New storage implementation
 		return new FlowObjectCache(
 			$services->getMainWANObjectCache(),
@@ -45,7 +45,7 @@ return [
 		);
 	},
 
-	'FlowDbFactory' => static function ( MediaWikiServices $services ) : DbFactory {
+	'FlowDbFactory' => static function ( MediaWikiServices $services ): DbFactory {
 		// Always returns the correct database for flow storage
 		$config = $services->getMainConfig();
 		return new DbFactory(
@@ -54,27 +54,27 @@ return [
 		);
 	},
 
-	'FlowDefaultLogger' => static function ( MediaWikiServices $services ) : LoggerInterface {
+	'FlowDefaultLogger' => static function ( MediaWikiServices $services ): LoggerInterface {
 		return LoggerFactory::getInstance( 'Flow' );
 	},
 
 	'FlowNotificationsController' => static function (
 		MediaWikiServices $services
-	) : NotificationsController {
+	): NotificationsController {
 		return new NotificationsController(
 			$services->getContentLanguage(),
 			$services->getService( 'FlowTreeRepository' )
 		);
 	},
 
-	'FlowPermissions' => static function ( MediaWikiServices $services ) : RevisionActionPermissions {
+	'FlowPermissions' => static function ( MediaWikiServices $services ): RevisionActionPermissions {
 		return new RevisionActionPermissions(
 			$services->getService( 'FlowActions' ),
 			$services->getService( 'FlowUser' )
 		);
 	},
 
-	'FlowPostRevisionStorage' => static function ( MediaWikiServices $services ) : PostRevisionStorage {
+	'FlowPostRevisionStorage' => static function ( MediaWikiServices $services ): PostRevisionStorage {
 		return new PostRevisionStorage(
 			$services->getService( 'FlowDbFactory' ),
 			$services->getMainConfig()->get( 'FlowExternalStore' ),
@@ -84,21 +84,21 @@ return [
 
 	'FlowPostRevisionTopicHistoryStorage' => static function (
 		MediaWikiServices $services
-	) : PostRevisionTopicHistoryStorage {
+	): PostRevisionTopicHistoryStorage {
 		return new PostRevisionTopicHistoryStorage(
 			$services->getService( 'FlowPostRevisionStorage' ),
 			$services->getService( 'FlowTreeRepository' )
 		);
 	},
 
-	'FlowTemplateHandler' => static function ( MediaWikiServices $services ) : TemplateHelper {
+	'FlowTemplateHandler' => static function ( MediaWikiServices $services ): TemplateHelper {
 		return new TemplateHelper(
 			__DIR__ . '/../handlebars',
 			$services->getMainConfig()->get( 'FlowServerCompileTemplates' )
 		);
 	},
 
-	'FlowTreeRepository' => static function ( MediaWikiServices $services ) : TreeRepository {
+	'FlowTreeRepository' => static function ( MediaWikiServices $services ): TreeRepository {
 		// Database Access Layer external from main implementation
 		return new TreeRepository(
 			$services->getService( 'FlowDbFactory' ),
@@ -106,7 +106,7 @@ return [
 		);
 	},
 
-	'FlowUser' => static function ( MediaWikiServices $services ) : User {
+	'FlowUser' => static function ( MediaWikiServices $services ): User {
 		if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 			return new User;
 		} else {

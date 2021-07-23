@@ -49,7 +49,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// create a dummy filter

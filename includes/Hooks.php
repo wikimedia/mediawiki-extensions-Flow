@@ -671,7 +671,7 @@ class Hooks {
 	 * @param stdClass $row
 	 * @return array|null
 	 */
-	private static function getReplacementRowItems( IContextSource $context, $row ) : ?array {
+	private static function getReplacementRowItems( IContextSource $context, $row ): ?array {
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		$replacement = null;
 		try {

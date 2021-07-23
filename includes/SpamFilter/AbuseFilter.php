@@ -115,7 +115,7 @@ class AbuseFilter implements SpamFilter {
 		RecentChange $recentChange,
 		VariableHolder $vars,
 		User $contextUser
-	) : void {
+	): void {
 		$changeData = $recentChange->parseParams()['flow-workflow-change'];
 		/** @var ManagerGroup $storage */
 		$storage = Container::get( 'storage' );

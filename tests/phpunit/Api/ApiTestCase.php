@@ -29,7 +29,7 @@ abstract class ApiTestCase extends \ApiTestCase {
 		'text',
 	];
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$namespaceContentModels = [
