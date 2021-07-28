@@ -23,5 +23,6 @@
 	"flow-moderation-confirm-delete-topic": "Cancella",
 	"flow-moderation-confirm-hide-topic": "Ammuccia",
 	"structureddiscussions": "Flussu",
-	"flow-undo": "annulla"
+	"flow-undo": "annulla",
+	"flow-dialog-cancelconfirm-title": "Sî {{GENDER:|sicuru|sicura}}?"
 }
