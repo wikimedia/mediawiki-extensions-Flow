@@ -780,7 +780,7 @@
 		"BeforeCreateEchoEvent": "Flow\\Notifications\\Controller::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "Flow\\Notifications\\Controller::onEchoGetBundleRules",
 		"GetBetaFeaturePreferences": "Flow\\Hooks::onGetBetaFeaturePreferences",
-		"UserSaveOptions": "Flow\\Hooks::onUserSaveOptions",
+		"SaveUserOptions": "Flow\\Hooks::onSaveUserOptions",
 		"NukeGetNewPages": "Flow\\Hooks::onNukeGetNewPages",
 		"NukeDeletePage": "Flow\\Hooks::onNukeDeletePage",
 		"getUserPermissionsErrors": "Flow\\Hooks::onGetUserPermissionsErrors"

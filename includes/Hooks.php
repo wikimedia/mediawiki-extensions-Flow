@@ -1794,24 +1794,25 @@ class Hooks {
 	}
 
 	/**
-	 * @param User $user
-	 * @param array &$options
+	 * @param UserIdentity $user
+	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
 	 */
-	public static function onUserSaveOptions( $user, &$options, $originalOptions ) {
+	public static function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
 		if ( !self::isBetaFeatureAvailable() ) {
 			return;
 		}
 
-		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $options ) ) {
+		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $modifiedOptions ) ) {
 			return;
 		}
 
 		$before = $originalOptions[BETA_FEATURE_FLOW_USER_TALK_PAGE] ?? false;
-		$after = $options[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$after = $modifiedOptions[BETA_FEATURE_FLOW_USER_TALK_PAGE];
 		$action = null;
 
 		$optInController = Container::get( 'controller.opt_in' );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
 		if ( !$before && $after ) {
 			$action = OptInController::ENABLE;
 			// Check if the user had a flow board
