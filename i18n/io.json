@@ -8,6 +8,7 @@
 	"flow-cancel": "Nuligar",
 	"flow-skip-summary": "Saltar",
 	"flow-show-change": "Montrez chanji",
+	"flow-reply-link": "{{GENDER:$1|Respondo}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Dankar}}}}",
 	"flow-history-action-suppress-post": "eliminar",
 	"flow-history-action-delete-post": "efacar",
