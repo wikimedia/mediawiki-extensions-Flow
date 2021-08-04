@@ -1,6 +1,8 @@
 ( function () {
 	// eslint-disable-next-line no-jquery/no-global-selector
 	var archiveLinkExists = $( '.flow-link-to-archive' ).length,
+		// eslint-disable-next-line no-jquery/no-global-selector
+		isVectorCompactPersonalToolbar = $( '.vector-user-links' ).length,
 		tour = new mw.guidedTour.TourBuilder( {
 			name: 'flowOptIn',
 			shouldLog: true,
@@ -46,8 +48,17 @@
 			name: 'feedback',
 			titlemsg: 'flow-guidedtour-optin-feedback',
 			descriptionmsg: 'flow-guidedtour-optin-feedback-description',
-			attachTo: '#pt-betafeatures',
-			position: 'bottom',
+			// In compact personal toolbar mode, preferences are within a dropdown, and
+			// that dropdown is close to the viewport edge so the guider wouldn't fit.
+			// Use diagonal guider positioning, and an offset because the default placement
+			// for diagonal positioning is poor. Also a vertical offset because the compact
+			// toolbar has more whitespace.
+			attachTo: isVectorCompactPersonalToolbar ? '#p-personal' : '#pt-betafeatures',
+			position: isVectorCompactPersonalToolbar ? 'bottomRight' : 'bottom',
+			offset: isVectorCompactPersonalToolbar ? {
+				top: -10,
+				left: 8
+			} : undefined,
 			autoFocus: true,
 			closeOnClickOutside: false
 		} )
