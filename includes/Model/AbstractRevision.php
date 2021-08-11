@@ -555,13 +555,14 @@ abstract class AbstractRevision {
 
 		if ( $format === 'wikitext' ) {
 			// Run pre-save transform
-			$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT )
-				->preSaveTransform(
-					$title,
-					$this->getUser(),
-					WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
-				)
-				->serialize( 'text/x-wiki' );
+			$contentTransformer = MediaWikiServices::getInstance()->getContentTransformer();
+			$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT );
+			$content = $contentTransformer->preSaveTransform(
+				$content,
+				$title,
+				$this->getUser(),
+				WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
+			)->serialize( 'text/x-wiki' );
 		}
 
 		// Keep consistent with normal edit page, trim only trailing whitespaces
