@@ -15,6 +15,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\MediaWikiServices;
 use MWException;
 use WikiImporter;
 use WikiPage;
@@ -53,7 +54,7 @@ class Importer {
 	/**
 	 * To convert between global and local user ids
 	 *
-	 * @var \CentralIdLookup
+	 * @var \CentralIdLookup|null
 	 */
 	protected $lookup;
 
@@ -69,7 +70,13 @@ class Importer {
 	 */
 	public function __construct( WikiImporter $importer ) {
 		$this->importer = $importer;
-		$this->lookup = \CentralIdLookup::factory( 'CentralAuth' );
+		try {
+			$this->lookup = MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( 'CentralAuth' );
+		} catch ( \Throwable $unused ) {
+			$this->lookup = null;
+		}
 	}
 
 	/**
@@ -379,9 +386,8 @@ class Importer {
 	 * @throws ImportException
 	 */
 	private function createLocalUser( $globalUserId ) {
-		if ( !( $this->lookup instanceof \CentralAuthIdLookup ) ) {
-			throw new ImportException( 'Creating local users is not supported with central id provider: ' .
-				get_class( $this->lookup ) );
+		if ( !$this->lookup ) {
+			throw new ImportException( 'Creating local users is not supported without central id provider' );
 		}
 
 		$globalUser = \CentralAuthUser::newFromId( $globalUserId );

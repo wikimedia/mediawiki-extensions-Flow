@@ -17,6 +17,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Search\Iterators\AbstractIterator;
 use Flow\Search\Iterators\HeaderIterator;
 use Flow\Search\Iterators\TopicIterator;
+use MediaWiki\MediaWikiServices;
 use ReflectionProperty;
 use User;
 use WikiExporter;
@@ -76,7 +77,7 @@ class Exporter extends WikiExporter {
 	/**
 	 * To convert between local and global user ids
 	 *
-	 * @var \CentralIdLookup
+	 * @var \CentralIdLookup|null
 	 */
 	protected $lookup;
 
@@ -92,7 +93,13 @@ class Exporter extends WikiExporter {
 		$this->changeTypeProperty = new ReflectionProperty( AbstractRevision::class, 'changeType' );
 		$this->changeTypeProperty->setAccessible( true );
 
-		$this->lookup = \CentralIdLookup::factory( 'CentralAuth' );
+		try {
+			$this->lookup = MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( 'CentralAuth' );
+		} catch ( \Throwable $unused ) {
+			$this->lookup = null;
+		}
 	}
 
 	public static function schemaVersion() {
