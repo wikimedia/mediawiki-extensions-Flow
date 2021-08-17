@@ -1306,7 +1306,7 @@ class Hooks {
 		}
 
 		// Pages within the Topic namespace are not movable
-		// This is also checked by NamespaceIsMovable.
+		// This is also enforced by the namespace configuration in extension.json.
 		if ( $oldTitle->getNamespace() === NS_TOPIC ) {
 			$status->fatal( 'flow-error-move-topic' );
 			return false;
@@ -1502,16 +1502,6 @@ class Hooks {
 	public static function onIsLiquidThreadsPage( Title $title, &$isLqtPage ) {
 		if ( $isLqtPage && $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$isLqtPage = false;
-		}
-	}
-
-	/**
-	 * @param int $namespace
-	 * @param bool &$movable
-	 */
-	public static function onNamespaceIsMovable( $namespace, &$movable ) {
-		if ( $namespace === NS_TOPIC ) {
-			$movable = false;
 		}
 	}
 

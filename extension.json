@@ -764,7 +764,6 @@
 		"TitleSquidURLs": "Flow\\Hooks::onTitleSquidURLs",
 		"WatchlistEditorBuildRemoveLine": "Flow\\Hooks::onWatchlistEditorBuildRemoveLine",
 		"WatchlistEditorBeforeFormRender": "Flow\\Hooks::onWatchlistEditorBeforeFormRender",
-		"NamespaceIsMovable": "Flow\\Hooks::onNamespaceIsMovable",
 		"CategoryViewer::doCategoryQuery": "Flow\\Hooks::onCategoryViewerDoCategoryQuery",
 		"CategoryViewer::generateLink": "Flow\\Hooks::onCategoryViewerGenerateLink",
 		"ArticleConfirmDelete": "Flow\\Hooks::onArticleConfirmDelete",
@@ -792,7 +791,8 @@
 			"name": "Topic",
 			"subpages": false,
 			"defaultcontentmodel": "flow-board",
-			"capitallinkoverride": true
+			"capitallinkoverride": true,
+			"movable": false
 		}
 	],
 	"config": {
