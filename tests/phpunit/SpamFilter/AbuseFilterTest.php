@@ -149,11 +149,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		global $wgFlowAbuseFilterGroup;
 		$user = User::newFromName( 'UTSysop' );
 
-		$this->db->replace(
+		$this->db->startAtomic( __METHOD__ );
+		$this->db->insert(
 			'abuse_filter',
-			[ 'af_id' ],
 			[
-				// 'af_id',
 				'af_pattern' => $pattern,
 				'af_user' => $user->getId(),
 				'af_user_text' => $user->getName(),
@@ -171,9 +170,8 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			__METHOD__
 		);
 
-		$this->db->replace(
+		$this->db->insert(
 			'abuse_filter_action',
-			[ 'afa_filter' ],
 			[
 				'afa_filter' => $this->db->insertId(),
 				'afa_consequence' => $action,
@@ -181,5 +179,6 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			],
 			__METHOD__
 		);
+		$this->db->endAtomic( __METHOD__ );
 	}
 }
