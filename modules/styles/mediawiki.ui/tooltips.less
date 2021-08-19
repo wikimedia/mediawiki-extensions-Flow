@@ -23,7 +23,7 @@ Styleguide 4.0.
 	display: inline-block;
 	border-radius: @border-radius-base;
 	padding: 0.571em 0.857em; // equals to ~8px ~12px with base `font-size`
-	.box-shadow( ~'0 2px 2px 0 rgba(0, 0, 0, 0.25)' );
+	box-shadow: 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
 	font-size: 0.875em; // not inherited from #bodyContent, as we insert at body
 	word-wrap: break-word;
 	z-index: 99;
@@ -109,7 +109,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 0 1px 0 @{colorGray12}' );
+				box-shadow: 0 0 1px 0 @colorGray12;
 			}
 		}
 	}
@@ -126,7 +126,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 -1.5px 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
+				box-shadow: 0 -1.5px 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
 			}
 		}
 	}
@@ -145,7 +145,7 @@ Styleguide 4.0.
 				/* @noflip */
 				right: -0.5em;
 				/* @noflip */
-				.box-shadow( ~'1.5px 0 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
+				box-shadow: 1.5px 0 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
 			}
 		}
 	}
@@ -164,7 +164,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: -0.5em;
 				/* @noflip */
-				.box-shadow( ~'0 1.5px 0 1.5px @{colorGray12}, 0 0 1px 0 @{colorGray12}' );
+				box-shadow: 0 1.5px 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
 			}
 		}
 	}
@@ -173,7 +173,7 @@ Styleguide 4.0.
 		@backgroundColorDarkened: darken( @backgroundColor, @colorDarkenPercentage );
 		background: @backgroundColor;
 		/* @noflip */
-		.box-shadow( ~'0 2px 0 0 @{backgroundColorDarkened}' );
+		box-shadow: 0 2px 0 0 @backgroundColorDarkened;
 		color: #fff;
 
 		.flow-ui-tooltip-triangle:after {
@@ -182,17 +182,17 @@ Styleguide 4.0.
 
 		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle:after {
 			/* @noflip */
-			.box-shadow( ~'0 -2px 0 2px @{backgroundColorDarkened}' );
+			box-shadow: 0 -2px 0 2px @backgroundColorDarkened;
 		}
 
 		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle:after {
 			/* @noflip */
-			.box-shadow( ~'2px 0 0 2px @{backgroundColorDarkened}' );
+			box-shadow: 2px 0 0 2px @backgroundColorDarkened;
 		}
 
 		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle:after {
 			/* @noflip */
-			.box-shadow( ~'0 2px 0 2px @{backgroundColorDarkened}' );
+			box-shadow: 0 2px 0 2px @backgroundColorDarkened;
 		}
 	}
 
