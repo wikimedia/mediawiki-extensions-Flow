@@ -168,7 +168,9 @@ class BoardContent extends \AbstractContent {
 		if ( $generateHtml ) {
 			try {
 				$user = $options ?
-					$options->getUser() :
+					MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity(
+						$options->getUserIdentity()
+					) :
 					RequestContext::getMain()->getUser();
 				$parserOutput = $this->generateHtml( $title, $user );
 			} catch ( \Exception $e ) {
