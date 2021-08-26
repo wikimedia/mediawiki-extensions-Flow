@@ -196,7 +196,7 @@ class TalkpageManager implements OccupationController {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			// Attach to CentralAuth if a global account already
 			// exists
-			$ca = CentralAuthUser::getMasterInstance( $user );
+			$ca = CentralAuthUser::getPrimaryInstance( $user );
 			if ( $ca->exists() && !$ca->isAttached() ) {
 				$ca->attach( wfWikiID(), 'admin' );
 			}
