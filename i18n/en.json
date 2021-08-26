@@ -486,7 +486,7 @@
 	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d",
 	"flow-conversion-archive-flow-page-name-format": "%s/Structured Discussions Archive %d\n%s/Structured DiscussionsArchive%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Please confirm you are a human by solving the below CAPTCHA: $1",
-	"flow-spam-confirmedit-using-failure": "There was a technical error with the CAPTCHA.  If you are unable to submit your change, please copy your text, reload, and try again.",
+	"flow-spam-confirmedit-using-failure": "There was a technical error with the CAPTCHA. If you are unable to submit your change, please copy your text, reload, and try again.",
 	"flow-embedding-unsupported": "Discussions cannot be embedded yet.",
 	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",
 	"flow-post-undo-hide": "undo hide",
@@ -565,6 +565,6 @@
 	"flow-guidedtour-optin-feedback": "Give us {{GENDER:$1|your}} feedback!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|You}} can get more information, provide feedback, or disable the new system any time from the Beta features section.",
 	"flow-action-not-page": "Page object is an instance of the wrong class",
-	"flow-action-wrong-title-content-model": "The page is being handled by Structured Discussions, but the Title class indicates that the content model is '$1'.  This is a misconfiguration or inconsistent state.  For example, this may actually be a non-Structured Discussions page in a Structured Discussions namespace, with <code>rev_content_model</code> not populated.",
+	"flow-action-wrong-title-content-model": "The page is being handled by Structured Discussions, but the Title class indicates that the content model is '$1'. This is a misconfiguration or inconsistent state. For example, this may actually be a non-Structured Discussions page in a Structured Discussions namespace, with <code>rev_content_model</code> not populated.",
 	"flow-preference-visualeditor": "Enable the visual editor and the new wikitext mode in Structured Discussions"
 }
