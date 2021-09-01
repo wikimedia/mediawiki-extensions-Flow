@@ -20,6 +20,7 @@
 	"flow-post-action-undo-moderation": "Desfacez",
 	"flow-topic-action-view": "Permananta ligilo",
 	"flow-topic-action-undo-moderation": "Desfacez",
+	"flow-error-external": "Eventis ula eroro. La mesajo pri l'eroro esis: $1",
 	"flow-error-protected-unknown-reason": "Nekonocata",
 	"flow-history-last4": "Pasinta 4 hori",
 	"flow-history-day": "Hodie",
