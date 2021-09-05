@@ -311,13 +311,15 @@ class FlowRestoreLQT extends Maintenance {
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
 		$revision = $revisionLookup->getPreviousRevision( $nextRevision );
+		$mainContent = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+		'@phan-var Content $mainContent';
 
-		if ( $page->getContent()->equals( $revision->getContent( SlotRecord::MAIN ) ) ) {
+		if ( $page->getContent()->equals( $mainContent ) ) {
 			// has correct content already (probably a rerun of this script)
 			return Status::newGood();
 		}
 
-		$content = $revision->getContent( SlotRecord::MAIN )->serialize();
+		$content = $mainContent->serialize();
 		$content = $wgLang->truncateForVisual( $content, 150 );
 		$content = str_replace( "\n", '\n', $content );
 		$this->output( "Restoring revision {$revision->getId()} for LQT page {$pageId}: {$content}\n" );
@@ -326,7 +328,7 @@ class FlowRestoreLQT extends Maintenance {
 			return Status::newGood();
 		} else {
 			return $page->doUserEditContent(
-				$revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW ),
+				$mainContent,
 				$this->talkpageManagerUser,
 				'/* Restore LQT topic content */',
 				EDIT_UPDATE | EDIT_MINOR | EDIT_FORCE_BOT,
