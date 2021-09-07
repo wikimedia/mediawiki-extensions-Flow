@@ -135,7 +135,7 @@ class OptInController {
 
 					// Rollback both Flow and Core DBs.
 					MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
-						->rollbackMasterChanges( $outerMethod );
+						->rollbackPrimaryChanges( $outerMethod );
 				}
 			},
 			DeferredUpdates::POSTSEND

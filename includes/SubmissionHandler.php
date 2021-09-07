@@ -61,7 +61,7 @@ class SubmissionHandler {
 		array $parameters
 	) {
 		// since this is a submit force dbFactory to always return primary
-		$this->dbFactory->forceMaster();
+		$this->dbFactory->forcePrimary();
 
 		/** @var Block[] $interestedBlocks */
 		$interestedBlocks = [];
@@ -168,7 +168,7 @@ class SubmissionHandler {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
-			$this->dbFactory->rollbackMasterChanges( __METHOD__ );
+			$this->dbFactory->rollbackPrimaryChanges( __METHOD__ );
 			throw $e;
 		}
 

@@ -42,7 +42,7 @@ class BoardMover {
 	 */
 	protected function begin() {
 		// All reads must go through primary to help ensure consistency
-		$this->dbFactory->forceMaster();
+		$this->dbFactory->forcePrimary();
 
 		// Open a transaction, this will be closed from self::commit.
 		$this->dbw = $this->dbFactory->getDB( DB_PRIMARY );

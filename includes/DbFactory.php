@@ -33,7 +33,7 @@ class DbFactory {
 	/**
 	 * @var bool When true only DB_PRIMARY will be returned
 	 */
-	protected $forceMaster = false;
+	protected $forcePrimary = false;
 
 	/**
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
@@ -44,8 +44,8 @@ class DbFactory {
 		$this->cluster = $cluster;
 	}
 
-	public function forceMaster() {
-		$this->forceMaster = true;
+	public function forcePrimary() {
+		$this->forcePrimary = true;
 	}
 
 	/**
@@ -55,7 +55,7 @@ class DbFactory {
 	 * @return IMaintainableDatabase
 	 */
 	public function getDB( $db ) {
-		return $this->getLB()->getConnection( $this->forceMaster ? DB_PRIMARY : $db, [], $this->wiki );
+		return $this->getLB()->getConnection( $this->forcePrimary ? DB_PRIMARY : $db, [], $this->wiki );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class DbFactory {
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forceMaster ? DB_PRIMARY : $db, [], $wiki );
+		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forcePrimary ? DB_PRIMARY : $db, [], $wiki );
 	}
 
 	/**
@@ -112,11 +112,11 @@ class DbFactory {
 
 	/**
 	 * Roll back changes on all databases.
-	 * @see LBFactory::rollbackMasterChanges
+	 * @see LBFactory::rollbackPrimaryChanges
 	 * @param string $fname
 	 */
-	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+	public function rollbackPrimaryChanges( $fname = __METHOD__ ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->rollbackMasterChanges( $fname );
+		$lbFactory->rollbackPrimaryChanges( $fname );
 	}
 }
