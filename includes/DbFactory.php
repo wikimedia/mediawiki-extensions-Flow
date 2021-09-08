@@ -5,7 +5,7 @@ namespace Flow;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBReplicationWaitError;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * All classes within Flow that need to access the Flow db will go through
@@ -52,7 +52,7 @@ class DbFactory {
 	 * Gets a database connection for the Flow-specific database.
 	 *
 	 * @param int $db index of the connection to get.  DB_PRIMARY|DB_REPLICA.
-	 * @return IMaintainableDatabase
+	 * @return IDatabase
 	 */
 	public function getDB( $db ) {
 		return $this->getLB()->getConnection( $this->forcePrimary ? DB_PRIMARY : $db, [], $this->wiki );
@@ -88,7 +88,7 @@ class DbFactory {
 	 * Gets a load balancer for the main wiki database.
 	 *
 	 * @param string|bool $wiki wiki ID, or false for the current wiki
-	 * @return \Wikimedia\Rdbms\LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	public function getWikiLB( $wiki = false ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

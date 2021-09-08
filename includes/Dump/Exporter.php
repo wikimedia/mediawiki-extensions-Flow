@@ -249,7 +249,7 @@ class Exporter extends WikiExporter {
 		try {
 			/** @var PostSummary $summary */
 			$summary = $summaryCollection->getLastRevision();
-			// @phan-suppress-next-line PhanTypeMismatchArgument Phan cannot understand the annotation above
+			'@phan-var PostSummary $summary';
 			$this->formatSummary( $summary );
 		} catch ( \Exception $e ) {
 			// no summary - that's ok!

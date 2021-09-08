@@ -29,12 +29,21 @@ class FormatterRow {
 	/** @var bool */
 	public $isFirstReply = false;
 
-	// protect against typos
+	/**
+	 * Protect against typos
+	 * @param string $attribute
+	 * @return never
+	 */
 	public function __get( $attribute ) {
 		throw new \MWException( "Accessing non-existent parameter: $attribute" );
 	}
 
-	// protect against typos
+	/**
+	 * Protect against typos
+	 * @param string $attribute
+	 * @param mixed $value
+	 * @return never
+	 */
 	public function __set( $attribute, $value ) {
 		throw new \MWException( "Accessing non-existent parameter: $attribute" );
 	}

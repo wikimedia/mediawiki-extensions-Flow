@@ -116,11 +116,11 @@ class PostRevision extends AbstractRevision {
 	 * @param PostRevision|null $obj
 	 * @return PostRevision
 	 * @throws DataModelException
-	 * @suppress PhanUndeclaredProperty Types not inferred
 	 */
 	public static function fromStorageRow( array $row, $obj = null ) {
-		/** @var $obj PostRevision */
+		/** @var PostRevision $obj */
 		$obj = parent::fromStorageRow( $row, $obj );
+		'@phan-var PostRevision $obj';
 		$treeRevId = UUID::create( $row['tree_rev_id'] );
 
 		if ( !$obj->revId->equals( $treeRevId ) ) {
@@ -341,6 +341,7 @@ class PostRevision extends AbstractRevision {
 		} elseif ( $this->rootPost === null ) {
 			$collection = $this->getCollection();
 			$root = $collection->getRoot();
+			// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 			return $root->getLastRevision();
 		}
 		return $this->rootPost;
@@ -408,6 +409,7 @@ class PostRevision extends AbstractRevision {
 	 * @return PostCollection
 	 */
 	public function getCollection() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return PostCollection::newFromRevision( $this );
 	}
 }

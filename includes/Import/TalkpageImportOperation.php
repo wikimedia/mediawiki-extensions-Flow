@@ -290,7 +290,7 @@ class TalkpageImportOperation {
 			$topicWorkflow->getArticleTitle()
 		);
 
-		// @phan-suppress-next-line PhanTypeMismatchArgument
+		// @phan-suppress-next-line PhanTypeMismatchArgumentSuperType
 		$topicState = new TopicImportState( $state, $topicWorkflow, end( $titleRevisions ) );
 		$topicMetadata = $topicState->getMetadata();
 

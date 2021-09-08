@@ -250,6 +250,7 @@ class OptInController {
 	 * @param string $msgKey
 	 * @param mixed $args
 	 * @throws ImportException
+	 * @return never
 	 */
 	private function fatal( $msgKey, $args = [] ) {
 		throw new ImportException( wfMessage( $msgKey, $args )->inContentLanguage()->text() );
