@@ -42,7 +42,7 @@ class MultiDimArray implements \ArrayAccess {
 	 * @return RecursiveIteratorIterator
 	 */
 	public function getIterator() {
-		// @phan-suppress-next-line PhanParamTooMany
+		// @phan-suppress-next-line PhanParamTooManyInternal
 		$it = new RecursiveArrayIterator( $this->data );
 		return new RecursiveIteratorIterator( $it );
 	}

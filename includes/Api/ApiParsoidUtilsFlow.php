@@ -24,7 +24,6 @@ class ApiParsoidUtilsFlow extends ApiBase {
 			$this->dieWithError( $code, $code,
 				[ 'detail' => $e->getMessage() ], $e->getStatusCode()
 			);
-			return; // helps static analysis know execution does not continue past self::dieUsage
 		}
 
 		$result = [

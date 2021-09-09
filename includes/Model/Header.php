@@ -42,9 +42,9 @@ class Header extends AbstractRevision {
 	 * @return Header
 	 */
 	public static function fromStorageRow( array $row, $obj = null ) {
-		/** @var $obj Header */
+		/** @var Header $obj */
 		$obj = parent::fromStorageRow( $row, $obj );
-		// @phan-suppress-next-line PhanUndeclaredProperty Type not inferred
+		'@phan-var Header $obj';
 		$obj->workflowId = UUID::create( $row['rev_type_id'] );
 		return $obj;
 	}
@@ -74,6 +74,7 @@ class Header extends AbstractRevision {
 	 * @return HeaderCollection
 	 */
 	public function getCollection() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return HeaderCollection::newFromRevision( $this );
 	}
 

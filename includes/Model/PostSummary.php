@@ -39,6 +39,7 @@ class PostSummary extends AbstractSummary {
 	 * @return PostSummaryCollection
 	 */
 	public function getCollection() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return PostSummaryCollection::newFromRevision( $this );
 	}
 }

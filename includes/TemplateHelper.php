@@ -363,7 +363,7 @@ class TemplateHelper {
 			}
 		}
 
-		if ( $raw === false ) {
+		if ( !$raw ) {
 			$formattedTimeOutput = htmlspecialchars( $formattedTime );
 		}
 
@@ -372,7 +372,6 @@ class TemplateHelper {
 			$class[] = 'history-deleted';
 		}
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString(
 			'<span class="plainlinks">'
 			. Html::rawElement( 'span', [ 'class' => $class ], $formattedTimeOutput )
@@ -398,7 +397,6 @@ class TemplateHelper {
 		// RevisionFormatter::getDescriptionParams() uses a foreach loop to build this array
 		// from the i18n-params definition in FlowActions.php.
 		// A variety of the i18n history messages contain wikitext and require ->parse().
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( wfMessage( $i18nKey, array_values( $revision['properties'] ) )->parse() );
 	}
 
@@ -409,7 +407,6 @@ class TemplateHelper {
 	 * @return SafeString
 	 */
 	public static function showCharacterDifference( $old, $new ) {
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( \ChangesList::showCharacterDifference( (int)$old, (int)$new ) );
 	}
 
@@ -430,7 +427,6 @@ class TemplateHelper {
 		$target = empty( $input['target'] ) ? '' : 'data-target="' . htmlspecialchars( $input['target'] ) . '"';
 		$sectionId = empty( $input['id'] ) ? '' : 'id="' . htmlspecialchars( $input['id'] ) . '"';
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString(
 			'<script name="handlebars-template-progressive-enhancement"' .
 				' type="text/x-handlebars-template-progressive-enhancement"' .
@@ -512,7 +508,6 @@ class TemplateHelper {
 	public static function l10nParse( ...$args ) {
 		$options = array_pop( $args );
 		$str = array_shift( $args );
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( wfMessage( $str, $args )->parse() );
 	}
 
@@ -555,7 +550,6 @@ class TemplateHelper {
 
 		$renderer = Container::get( 'lightncandy' )->getTemplate( 'flow_revision_diff_header' );
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( $differenceEngine->addHeader(
 			$data['diff_content'],
 			$renderer( [
@@ -586,7 +580,6 @@ class TemplateHelper {
 		$out = RequestContext::getMain()->getOutput();
 		$out->addModuleStyles( 'mediawiki.diff.styles' );
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return new SafeString( $differenceEngine->addHeader(
 			$diffContent,
 			wfMessage( 'flow-undo-latest-revision' )->parse(),

@@ -56,10 +56,9 @@ class ArchiveNameHelper {
 		}
 
 		$format = false;
-		$n = 1;
 		$text = $source->getPrefixedText();
 		foreach ( $formats as $potential ) {
-			$title = Title::newFromText( sprintf( $potential, $text, $n ) );
+			$title = Title::newFromText( sprintf( $potential, $text, 1 ) );
 			if ( $title && $titleRepo->exists( $title ) ) {
 				$format = $potential;
 				break;

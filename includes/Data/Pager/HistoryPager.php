@@ -97,6 +97,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 	 *
 	 * @param bool $include
 	 * @throws FlowException
+	 * @suppress PhanPluginNeverReturnMethod LSP/ISP violation.
 	 */
 	public function setIncludeOffset( $include ) {
 		throw new FlowException( __METHOD__ . ' is not implemented.' );
@@ -107,6 +108,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 	/**
 	 * @param array|\stdClass $row
 	 * @throws FlowException
+	 * @suppress PhanPluginNeverReturnMethod LSP/ISP violation.
 	 */
 	public function formatRow( $row ) {
 		throw new FlowException( __METHOD__ . ' is not implemented.' );

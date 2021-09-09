@@ -189,10 +189,10 @@ class Hooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgFlowContentFormat;
+		global $wgFlowContentFormat, $wgFlowAbuseFilterGroup;
 
 		// necessary to provide flow options in abuse filter on-wiki pages
-		global $wgFlowAbuseFilterGroup;
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}

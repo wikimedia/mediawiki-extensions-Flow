@@ -44,14 +44,17 @@ abstract class BoardHistoryStorage extends DbStorage {
 	}
 
 	public function insert( array $row ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod LSP violation.
 		throw new DataModelException( __CLASS__ . ' does not support insert action', 'process-data' );
 	}
 
 	public function update( array $old, array $new ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod LSP violation.
 		throw new DataModelException( __CLASS__ . ' does not support update action', 'process-data' );
 	}
 
 	public function remove( array $row ) {
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod LSP violation.
 		throw new DataModelException( __CLASS__ . ' does not support remove action', 'process-data' );
 	}
 }

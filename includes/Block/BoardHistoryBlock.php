@@ -22,6 +22,7 @@ class BoardHistoryBlock extends AbstractBlock {
 
 	/**
 	 * Board history is read-only block which should not invoke write action
+	 * @suppress PhanPluginNeverReturnMethod LSP/ISP violation.
 	 */
 	public function validate() {
 		throw new DataModelException( __CLASS__ . ' should not invoke validate()', 'process-data' );
@@ -29,6 +30,7 @@ class BoardHistoryBlock extends AbstractBlock {
 
 	/**
 	 * Board history is read-only block which should not invoke write action
+	 * @suppress PhanPluginNeverReturnMethod LSP/ISP violation.
 	 */
 	public function commit() {
 		throw new DataModelException( __CLASS__ . ' should not invoke commit()', 'process-data' );
