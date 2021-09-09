@@ -3,22 +3,7 @@
 namespace Flow\Content;
 
 use Content;
-use DerivativeContext;
-use FauxRequest;
-use Flow\Container;
-use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
-use Flow\View;
-use Flow\WorkflowLoaderFactory;
-use Hooks;
-use MediaWiki\MediaWikiServices;
-use OutputPage;
-use ParserOptions;
-use ParserOutput;
-use RequestContext;
-use Title;
-use User;
-use WikiPage;
 
 class BoardContent extends \AbstractContent {
 	/** @var UUID|null */
@@ -135,116 +120,6 @@ class BoardContent extends \AbstractContent {
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return true;
-	}
-
-	/**
-	 * Parse the Content object and generate a ParserOutput from the result.
-	 * $result->getText() can be used to obtain the generated HTML. If no HTML
-	 * is needed, $generateHtml can be set to false; in that case,
-	 * $result->getText() may return null.
-	 *
-	 * @note To control which options are used in the cache key for the
-	 *       generated parser output, implementations of this method
-	 *       may call ParserOutput::recordOption() on the output object.
-	 *
-	 * @param Title $title The page title to use as a context for rendering.
-	 * @param int|null $revId Optional revision ID being rendered.
-	 * @param ParserOptions|null $options Any parser options.
-	 * @param bool $generateHtml Whether to generate HTML (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
-	 *
-	 * @since 1.21
-	 *
-	 * @return ParserOutput
-	 */
-	public function getParserOutput(
-		Title $title,
-		$revId = null,
-		ParserOptions $options = null,
-		$generateHtml = true
-	) {
-		// TODO: This should also call the "ContentGetParserOutput" hook
-		if ( $generateHtml ) {
-			try {
-				$user = $options ?
-					MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity(
-						$options->getUserIdentity()
-					) :
-					RequestContext::getMain()->getUser();
-				$parserOutput = $this->generateHtml( $title, $user );
-			} catch ( \Exception $e ) {
-				// Workflow does not yet exist (may be in the process of being created)
-				$parserOutput = new ParserOutput();
-			}
-		} else {
-			$parserOutput = new ParserOutput();
-		}
-
-		$parserOutput->updateCacheExpiry( 0 );
-
-		if ( $revId === null ) {
-			$wikiPage = WikiPage::factory( $title );
-			$timestamp = $wikiPage->getTimestamp();
-		} else {
-			$timestamp = MediaWikiServices::getInstance()->getRevisionLookup()
-				->getTimestampFromId( $revId );
-		}
-
-		$parserOutput->setTimestamp( $timestamp );
-
-		/** @var LinksTableUpdater $updater */
-		$updater = Container::get( 'reference.updater.links-tables' );
-		$updater->mutateParserOutput( $title, $parserOutput );
-
-		Hooks::run( 'ContentAlterParserOutput', [ $this, $title, $parserOutput ] );
-
-		return $parserOutput;
-	}
-
-	/**
-	 * @param Title $title
-	 * @param User $user
-	 * @return ParserOutput
-	 */
-	protected function generateHtml( Title $title, User $user ) {
-		// Set up a derivative context (which inherits the current request)
-		// to hold the output modules + text
-		$childContext = new DerivativeContext( RequestContext::getMain() );
-		$childContext->setOutput( new OutputPage( $childContext ) );
-		$childContext->setRequest( new FauxRequest );
-		$childContext->setUser( $user );
-
-		// Create a View set up to output to our derivative context
-		$view = new View(
-			Container::get( 'url_generator' ),
-			Container::get( 'lightncandy' ),
-			$childContext->getOutput(),
-			Container::get( 'flow_actions' )
-		);
-
-		$loader = $this->getWorkflowLoader( $title );
-		$view->show( $loader, 'view' );
-
-		// Extract data from derivative context
-		$parserOutput = new ParserOutput();
-		$parserOutput->setText( $childContext->getOutput()->getHTML() );
-		$parserOutput->addModules( $childContext->getOutput()->getModules() );
-		$parserOutput->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
-
-		return $parserOutput;
-	}
-
-	/**
-	 * @param Title $title
-	 * @return \Flow\WorkflowLoader
-	 * @throws \Flow\Exception\CrossWikiException
-	 * @throws \Flow\Exception\InvalidInputException
-	 */
-	protected function getWorkflowLoader( Title $title ) {
-		/** @var WorkflowLoaderFactory $factory */
-		$factory = Container::get( 'factory.loader.workflow' );
-		return $factory->createWorkflowLoader( $title, $this->getWorkflowId() );
 	}
 
 	/**
