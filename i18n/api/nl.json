@@ -18,5 +18,9 @@
 	"apihelp-flow+moderate-topic-param-reason": "Reden voor moderatie.",
 	"apihelp-flow+reply-description": "Reacties op een bericht.",
 	"apihelp-flow+reply-summary": "Reacties op een bericht.",
-	"apihelp-flow+reply-param-content": "Inhoud voor nieuw bericht."
+	"apihelp-flow+reply-param-content": "Inhoud voor nieuw bericht.",
+	"apihelp-flow+view-post-description": "Bericht bekijken.",
+	"apihelp-flow+view-post-summary": "Bericht bekijken.",
+	"apihelp-flow+view-topic-description": "Onderwerp bekijken.",
+	"apihelp-flow+view-topic-summary": "Onderwerp bekijken."
 }
