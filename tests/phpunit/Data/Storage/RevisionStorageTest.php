@@ -389,7 +389,7 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	protected function mockDbFactory() {
-		$dbw = $this->createMock( \IDatabase::class );
+		$dbw = $this->createMock( IDatabase::class );
 
 		$factory = $this->createMock( \Flow\DbFactory::class );
 		$factory->method( 'getDB' )
