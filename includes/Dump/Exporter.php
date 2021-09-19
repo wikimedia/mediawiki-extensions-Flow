@@ -17,8 +17,11 @@ use Flow\RevisionActionPermissions;
 use Flow\Search\Iterators\AbstractIterator;
 use Flow\Search\Iterators\HeaderIterator;
 use Flow\Search\Iterators\TopicIterator;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionStore;
 use ReflectionProperty;
+use TitleParser;
 use User;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
@@ -84,9 +87,24 @@ class Exporter extends WikiExporter {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( $db, $history = WikiExporter::CURRENT,
-		$text = WikiExporter::TEXT ) {
-		parent::__construct( $db, $history, $text );
+	public function __construct(
+		$db,
+		HookContainer $hookContainer,
+		RevisionStore $revisionStore,
+		TitleParser $titleParser,
+		$history = WikiExporter::CURRENT,
+		$text = WikiExporter::TEXT,
+		$limitNamespaces = null
+	) {
+		parent::__construct(
+			$db,
+			$hookContainer,
+			$revisionStore,
+			$titleParser,
+			$history,
+			$text,
+			$limitNamespaces
+		);
 		$this->prevRevisionProperty = new ReflectionProperty( AbstractRevision::class, 'prevRevision' );
 		$this->prevRevisionProperty->setAccessible( true );
 
