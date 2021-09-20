@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Dump\Exporter;
+use MediaWiki\MediaWikiServices;
 
 $maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'
@@ -75,7 +76,16 @@ TEXT
 		}
 
 		$db = Container::get( 'db.factory' )->getDB( DB_REPLICA );
-		$exporter = new Exporter( $db, $history, Exporter::TEXT );
+
+		$services = MediaWikiServices::getInstance();
+		$exporter = new Exporter(
+			$db,
+			$services->getHookContainer(),
+			$services->getRevisionStore(),
+			$services->getTitleParser(),
+			$history,
+			WikiExporter::TEXT
+		);
 		$exporter->setOutputSink( $this->sink );
 
 		if ( !$this->skipHeader ) {
