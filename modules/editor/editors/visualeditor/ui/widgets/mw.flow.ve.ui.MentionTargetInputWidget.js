@@ -88,7 +88,7 @@
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
 		var xhr,
 			widget = this,
-			initialUpperValue = this.value.charAt( 0 ).toUpperCase() + this.value.slice( 1 );
+			value = this.value;
 
 		if ( this.value === '' ) {
 			return $.Deferred()
@@ -99,7 +99,7 @@
 		xhr = new mw.Api().get( {
 			action: 'query',
 			list: 'allusers',
-			auprefix: initialUpperValue,
+			auprefix: value,
 			aulimit: 5,
 			rawcontinue: 1
 		} );
@@ -111,7 +111,7 @@
 				} );
 				// Append prefix-matches from the topic list
 				return OO.unique( widget.loggedInTopicPosters.filter( function ( poster ) {
-					return poster.indexOf( initialUpperValue ) === 0;
+					return poster.indexOf( value ) === 0;
 				} ).concat( allUsers ) );
 			} )
 			.promise( { abort: xhr.abort } );
