@@ -7,7 +7,10 @@
 	"flow-history-action-hide-post": "čiõǥǥ",
 	"flow-post-action-view": "Põõšši liŋkk",
 	"flow-post-action-hide-post": "Čiõǥǥ",
+	"flow-post-action-undo-moderation": "Kååʹmet",
 	"flow-topic-action-view": "Põõšši liŋkk",
+	"flow-topic-action-undo-moderation": "Kååʹmet",
 	"flow-moderation-confirm-hide-post": "Čiõǥǥ",
-	"flow-moderation-confirm-hide-topic": "Čiõǥǥ"
+	"flow-moderation-confirm-hide-topic": "Čiõǥǥ",
+	"flow-undo": "kååʹmet"
 }
