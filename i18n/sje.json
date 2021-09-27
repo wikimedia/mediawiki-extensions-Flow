@@ -8,6 +8,7 @@
 	"flow-newtopic-header": "Laseda åđđå ábdnasav",
 	"flow-newtopic-start-placeholder": "Álge åđđå ábdnasav",
 	"flow-topic-action-hide-topic": "Tjiega ábdnasav",
+	"flow-error-invalid-topic-uuid-title": "Nievres bajjeltjála",
 	"flow-topic-history": "«$1» ábnashisturrja",
 	"flow-notification-link-text-view-topic": "Vuoseda ábdnasav",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|älgij}} åđđå ábdnasav «$2» bielen",
