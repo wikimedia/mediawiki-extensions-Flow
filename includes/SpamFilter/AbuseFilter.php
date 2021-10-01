@@ -159,10 +159,10 @@ class AbuseFilter implements SpamFilter {
 	public function lazyLoadMethods() {
 		return [
 			/**
-			 * @param \AbuseFilterVariableHolder $vars
+			 * @param VariableHolder $vars
 			 * @param array $parameters Parameters with data to compute the value
 			 */
-			'FlowRevisionContent' => static function ( \AbuseFilterVariableHolder $vars, array $parameters ) {
+			'FlowRevisionContent' => static function ( VariableHolder $vars, array $parameters ) {
 				if ( !isset( $parameters['revision'] ) ) {
 					return '';
 				}

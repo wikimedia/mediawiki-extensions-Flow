@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use AbuseFilterVariableHolder;
 use Article;
 use ChangesList;
 use Content;
@@ -42,6 +41,7 @@ use GuidedTourLauncher;
 use Html;
 use IContextSource;
 use LogEntry;
+use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -996,14 +996,14 @@ class Hooks {
 	 * Adds lazy-load methods for AbstractRevision objects.
 	 *
 	 * @param string $method Method to generate the variable
-	 * @param AbuseFilterVariableHolder $vars
+	 * @param VariableHolder $vars
 	 * @param array $parameters Parameters with data to compute the value
 	 * @param mixed &$result Result of the computation
 	 * @return bool
 	 */
 	public static function onAbuseFilterComputeVariable(
 		$method,
-		AbuseFilterVariableHolder $vars,
+		VariableHolder $vars,
 		$parameters,
 		&$result
 	) {
