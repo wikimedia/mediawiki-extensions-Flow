@@ -8,6 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use IContextSource;
+use MediaWiki\Extension\AbuseFilter\AbuseFilter as ExtAbuseFilter;
 use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
@@ -102,7 +103,7 @@ class AbuseFilter implements SpamFilter {
 		 */
 		$vars->setLazyLoadVar( 'old_wikitext', 'FlowRevisionContent', [ 'revision' => $oldRevision ] );
 
-		return \AbuseFilter::filterAction( $vars, $title, $this->group, $context->getUser() );
+		return ExtAbuseFilter::filterAction( $vars, $title, $this->group, $context->getUser() );
 	}
 
 	/**
