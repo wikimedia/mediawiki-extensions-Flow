@@ -2,6 +2,7 @@
     $helpers = array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'html' => 'Flow\TemplateHelper::htmlHelper',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'l10nParseFlowTermsOfUse' => 'Flow\TemplateHelper::l10nParseFlowTermsOfUse',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
             'tooltip' => 'Flow\TemplateHelper::tooltip',
@@ -46,7 +47,7 @@
 '.$sp.'			<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'				<button data-role="submit"
 '.$sp.'					class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq', $in)).'</button>
-'.$sp.'				<small class="flow-terms-of-use plainlinks">'.LR::encq($cx, LR::hbch($cx, 'l10nParse', array(array('flow-terms-of-use-new-topic'),array()), 'encq', $in)).'</small>
+'.$sp.'				<small class="flow-terms-of-use plainlinks">'.LR::encq($cx, LR::hbch($cx, 'l10nParseFlowTermsOfUse', array(array('new-topic'),array()), 'encq', $in)).'</small>
 '.$sp.'			</div>
 '.$sp.'' : '').'	</form>
 '.$sp.'' : '').'';});

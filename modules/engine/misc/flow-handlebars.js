@@ -220,6 +220,15 @@
 	};
 
 	/**
+	 * @param {string} key
+	 * @return {string|Handlebars.SafeString}
+	 */
+	FlowHandlebars.prototype.l10nParseFlowTermsOfUse = function ( key ) {
+		var flowTermsOfUse = require( './flowTermsOfUse.json' );
+		return FlowHandlebars.prototype.html( flowTermsOfUse[ key ] );
+	};
+
+	/**
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
 	 *
 	 * Example: `{{uuidTimestamp id "flow-message-x-"}}`
@@ -597,6 +606,7 @@
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
+	Handlebars.registerHelper( 'l10nParseFlowTermsOfUse', FlowHandlebars.prototype.l10nParseFlowTermsOfUse );
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );

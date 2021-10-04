@@ -131,8 +131,13 @@
 		"ext.flow.templating": {
 			"localBasePath": "",
 			"remoteExtPath": "Flow",
-			"scripts": [
-				"modules/engine/misc/flow-handlebars.js"
+			"packageFiles": [
+				"modules/engine/misc/flow-handlebars.js",
+				{
+					"name": "modules/engine/misc/flowTermsOfUse.json",
+					"callback": "\\Flow\\Hooks::getTermsOfUseMessagesParsed",
+					"versionCallback": "\\Flow\\Hooks::getTermsOfUseMessagesVersion"
+				}
 			],
 			"dependencies": [
 				"mediawiki.template.handlebars",
@@ -268,12 +273,6 @@
 				"flow-suppress-post-content",
 				"blocklink",
 				"contribslink",
-				"flow-terms-of-use-new-topic",
-				"flow-terms-of-use-reply",
-				"flow-terms-of-use-edit",
-				"flow-terms-of-use-summarize",
-				"flow-terms-of-use-lock-topic",
-				"flow-terms-of-use-unlock-topic",
 				"flow-no-more-fwd",
 				"flow-topic-notification-subscribe-title",
 				"flow-topic-notification-subscribe-description",

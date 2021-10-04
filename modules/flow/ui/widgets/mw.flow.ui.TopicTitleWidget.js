@@ -40,7 +40,7 @@
 
 		this.termsLabel = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-topicTitleWidget-termsLabel' ],
-			label: $( $.parseHTML( mw.message( 'flow-terms-of-use-edit' ).parse() ) )
+			label: $( $.parseHTML( mw.flow.TemplateEngine.l10nParseFlowTermsOfUse( 'edit' ).toString() ) )
 		} );
 
 		this.$controls = $( '<div>' ).addClass( 'flow-ui-topicTitleWidget-controls' );
