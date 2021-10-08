@@ -3,15 +3,29 @@
 namespace Flow\Content;
 
 use Article;
+use Content;
+use DerivativeContext;
+use FauxRequest;
 use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\Diff\FlowBoardContentDiffView;
 use Flow\FlowActions;
+use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
+use Flow\View;
+use Flow\WorkflowLoaderFactory;
 use FormatJson;
 use IContextSource;
+use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\MediaWikiServices;
 use MWException;
+use OutputPage;
 use Page;
+use ParserOutput;
+use RequestContext;
+use Title;
+use User;
+use WikiPage;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
@@ -160,5 +174,95 @@ class BoardContentHandler extends \ContentHandler {
 		$output['edit'] = \Flow\Actions\EditAction::class;
 
 		return $output;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		'@phan-var BoardContent $content';
+		$parserOptions = $cpoParams->getParserOptions();
+		$revId = $cpoParams->getRevId();
+		$title = Title::castFromPageReference( $cpoParams->getPage() )
+			?: Title::makeTitle( NS_MEDIAWIKI, 'BadTitle/Flow' );
+		if ( $cpoParams->getGenerateHtml() ) {
+			try {
+				$user = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromUserIdentity( $parserOptions->getUserIdentity() );
+				$this->generateHtml( $title, $user, $content, $output );
+			} catch ( \Exception $e ) {
+				// Workflow does not yet exist (may be in the process of being created)
+			}
+		}
+
+		$output->updateCacheExpiry( 0 );
+
+		if ( $revId === null ) {
+			$wikiPage = WikiPage::factory( $title );
+			$timestamp = $wikiPage->getTimestamp();
+		} else {
+			$timestamp = MediaWikiServices::getInstance()->getRevisionLookup()
+				->getTimestampFromId( $revId );
+		}
+
+		$output->setTimestamp( $timestamp );
+
+		/** @var LinksTableUpdater $updater */
+		$updater = Container::get( 'reference.updater.links-tables' );
+		$updater->mutateParserOutput( $title, $output );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param User $user
+	 * @param BoardContent $content
+	 * @param ParserOutput $output
+	 */
+	protected function generateHtml(
+		Title $title,
+		User $user,
+		BoardContent $content,
+		ParserOutput $output
+	) {
+		// Set up a derivative context (which inherits the current request)
+		// to hold the output modules + text
+		$childContext = new DerivativeContext( RequestContext::getMain() );
+		$childContext->setOutput( new OutputPage( $childContext ) );
+		$childContext->setRequest( new FauxRequest );
+		$childContext->setUser( $user );
+
+		// Create a View set up to output to our derivative context
+		$view = new View(
+			Container::get( 'url_generator' ),
+			Container::get( 'lightncandy' ),
+			$childContext->getOutput(),
+			Container::get( 'flow_actions' )
+		);
+
+		$loader = $this->getWorkflowLoader( $title, $content );
+		$view->show( $loader, 'view' );
+
+		// Extract data from derivative context
+		$output->setText( $childContext->getOutput()->getHTML() );
+		$output->addModules( $childContext->getOutput()->getModules() );
+		$output->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param BoardContent $content
+	 * @return \Flow\WorkflowLoader
+	 * @throws \Flow\Exception\CrossWikiException
+	 * @throws \Flow\Exception\InvalidInputException
+	 */
+	protected function getWorkflowLoader( Title $title, BoardContent $content ) {
+		/** @var WorkflowLoaderFactory $factory */
+		$factory = Container::get( 'factory.loader.workflow' );
+		return $factory->createWorkflowLoader( $title, $content->getWorkflowId() );
 	}
 }
