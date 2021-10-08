@@ -777,7 +777,7 @@ class TemplateHelper {
 
 		// Enhance the patrol link with ajax
 		// FIXME: This duplicates DifferenceEngine::markPatrolledLink.
-		$outputPage->preventClickjacking();
+		$outputPage->setPreventClickjacking( true );
 		$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 	}
 }
