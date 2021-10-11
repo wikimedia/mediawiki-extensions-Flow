@@ -456,6 +456,22 @@ abstract class Utils {
 	}
 
 	/**
+	 * Saves a document using saveXML, but avoid escaping style blocks with CDATA.
+	 * This is not needed in HTML and breaks the CSS.
+	 *
+	 * @param DOMDocument $doc
+	 * @param DOMNode|null $node the specific node to save
+	 * @return string HTML
+	 */
+	public static function saferSaveXML( DOMDocument $doc, DOMNode $node = null ) {
+		$html = $doc->saveXML( $node );
+		// This regex is only safe as long as attribute values get escaped > chars
+		// This is checked by the testcases
+		$html = preg_replace( '/<style([^>]*)><!\[CDATA\[/i', '<style\1>', $html );
+		return preg_replace( '/\]\]><\/style>/i', '</style>', $html );
+	}
+
+	/**
 	 * Retrieves the html of the node's children.
 	 *
 	 * @param DOMNode|null $node
@@ -471,7 +487,7 @@ abstract class Utils {
 			$fixer->applyToDom( $dom, Title::newMainPage() );
 
 			foreach ( $node->childNodes as $child ) {
-				$html .= $dom->saveXML( $child );
+				$html .= self::saferSaveXML( $dom, $child );
 			}
 		}
 		return $html;
@@ -488,7 +504,7 @@ abstract class Utils {
 		// with a workaround for empty non-void nodes
 		$fixer = new ContentFixer( new EmptyNodeFixer );
 		$fixer->applyToDom( $dom, Title::newMainPage() );
-		return $dom->saveXML( $node );
+		return self::saferSaveXML( $dom, $node );
 	}
 
 	/**
