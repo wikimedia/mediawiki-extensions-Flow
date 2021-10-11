@@ -20,7 +20,7 @@ use WikitextContent;
  * @group Flow
  * @group Database
  */
-class ImportSourceTest extends \MediaWikiTestCase {
+class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];

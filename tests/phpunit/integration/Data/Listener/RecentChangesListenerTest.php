@@ -15,7 +15,7 @@ use User;
  *
  * @group Flow
  */
-class RecentChangesListenerTest extends \MediaWikiTestCase {
+class RecentChangesListenerTest extends \MediaWikiIntegrationTestCase {
 
 	public function somethingProvider() {
 		return [

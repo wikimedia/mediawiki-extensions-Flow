@@ -10,7 +10,7 @@ use Flow\Model\UUID;
  *
  * @group Flow
  */
-class HistoricalUIDGeneratorTest extends \MediaWikiTestCase {
+class HistoricalUIDGeneratorTest extends \MediaWikiIntegrationTestCase {
 
 	public function roundTripProvider() {
 		$now = time();

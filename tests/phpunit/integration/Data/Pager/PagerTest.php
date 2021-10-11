@@ -15,7 +15,7 @@ use Flow\Model\UUID;
  *
  * @group Flow
  */
-class PagerTest extends \MediaWikiTestCase {
+class PagerTest extends \MediaWikiIntegrationTestCase {
 
 	public static function getPageResultsProvider() {
 		$objs = [];

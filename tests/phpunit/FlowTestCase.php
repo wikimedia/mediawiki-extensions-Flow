@@ -7,10 +7,10 @@ use Flow\Container;
 use Flow\Data\FlowObjectCache;
 use Flow\Model\UUID;
 use HashBagOStuff;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use WANObjectCache;
 
-class FlowTestCase extends MediaWikiTestCase {
+class FlowTestCase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		Container::reset();
 		parent::setUp();

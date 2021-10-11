@@ -13,7 +13,7 @@ use User;
 /**
  * @covers \Flow\Block\TopicListBlock
  */
-class TopicListBlockTest extends \MediaWikiTestCase {
+class TopicListBlockTest extends \MediaWikiIntegrationTestCase {
 
 	public function testSortByOption() {
 		$user = User::newFromId( 1 );

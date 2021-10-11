@@ -12,7 +12,7 @@ use User;
 /**
  * @covers \Flow\SpamFilter\ConfirmEdit
  */
-class ConfirmEditTest extends \MediaWikiTestCase {
+class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 
 	public function testValidateDoesntBlowUp() {
 		$filter = new ConfirmEdit;

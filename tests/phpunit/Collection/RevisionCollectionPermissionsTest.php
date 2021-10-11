@@ -166,7 +166,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 */
 	public function testPermissions( $userGetterName, $permissionAction, array $actions ) {
 		// NOTE: the provider cannot create the User object, because it would be creating the
-		// user in the real database tables, not the fake tables provided by MediaWikiTestCase.
+		// user in the real database tables, not the fake tables provided by MediaWikiIntegrationTestCase.
 		/** @var User $user */
 		$user = $this->$userGetterName();
 

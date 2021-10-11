@@ -6,7 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use Flow\Templating;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Title;
 use User;
 
@@ -15,7 +15,7 @@ use User;
  *
  * @group Flow
  */
-class TemplatingTest extends MediaWikiTestCase {
+class TemplatingTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockTemplating() {
 		$query = $this->createMock( \Flow\Repository\UserName\UserNameQuery::class );

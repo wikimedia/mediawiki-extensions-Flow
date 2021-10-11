@@ -10,7 +10,7 @@ use Title;
  *
  * @group Flow
  */
-class ArchiveNameHelperTest extends \MediaWikiTestCase {
+class ArchiveNameHelperTest extends \MediaWikiIntegrationTestCase {
 
 	public function decideArchiveTitleProvider() {
 		return [

@@ -13,7 +13,7 @@ use Title;
  *
  * @group Flow
  */
-class BadImageRemoverTest extends \MediaWikiTestCase {
+class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * Note that this must return html rather than roundtripping wikitext

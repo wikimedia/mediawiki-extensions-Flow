@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * @group Flow
  */
-class FlowPostMetaActionsTest extends \MediaWikiTestCase {
+class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * The specific timestamps used inside are not anything

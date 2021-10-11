@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Flow
  */
-class ControllerTest extends \MediaWikiTestCase {
+class ControllerTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var Controller

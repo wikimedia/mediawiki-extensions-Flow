@@ -13,7 +13,7 @@ use Title;
  *
  * @group Flow
  */
-class EmptyNodeFixerTest extends \MediaWikiTestCase {
+class EmptyNodeFixerTest extends \MediaWikiIntegrationTestCase {
 
 	public function testEmptyNodeFixer() {
 		$html = '<body><p><a id="notempty">Hello</a><a id="empty"></a><a id="image"><img src="foo"></a></p></body>';

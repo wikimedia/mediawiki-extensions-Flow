@@ -20,7 +20,7 @@ use WikitextContent;
  *
  * @group Flow
  */
-class ConversionStrategyTest extends \MediaWikiTestCase {
+class ConversionStrategyTest extends \MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 

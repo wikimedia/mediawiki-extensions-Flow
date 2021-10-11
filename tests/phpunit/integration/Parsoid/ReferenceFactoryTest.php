@@ -12,7 +12,7 @@ use Title;
  *
  * @group Flow
  */
-class ReferenceFactoryTest extends \MediaWikiTestCase {
+class ReferenceFactoryTest extends \MediaWikiIntegrationTestCase {
 	public function testAcceptsParsoidHrefs() {
 		$workflow = $this->createMock( \Flow\Model\Workflow::class );
 		$workflow->expects( $this->any() )

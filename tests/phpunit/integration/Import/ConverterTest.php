@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @group Flow
  */
-class ConverterTest extends \MediaWikiTestCase {
+class ConverterTest extends \MediaWikiIntegrationTestCase {
 	public function testConstruction() {
 		$this->assertInstanceOf(
 			Converter::class,

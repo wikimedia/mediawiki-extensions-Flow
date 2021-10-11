@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\TalkpageManager;
 use HashConfig;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Title;
 use User;
 use WikiPage;
@@ -17,7 +17,7 @@ use WikitextContent;
  * @group Flow
  * @group Database
  */
-class TalkpageManagerTest extends MediaWikiTestCase {
+class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var TalkpageManager
 	 */

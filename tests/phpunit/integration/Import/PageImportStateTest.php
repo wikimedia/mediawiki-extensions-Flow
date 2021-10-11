@@ -18,7 +18,7 @@ use User;
  *
  * @group Flow
  */
-class PageImportStateTest extends \MediaWikiTestCase {
+class PageImportStateTest extends \MediaWikiIntegrationTestCase {
 
 	protected function createState( $returnAll = false ) {
 		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )

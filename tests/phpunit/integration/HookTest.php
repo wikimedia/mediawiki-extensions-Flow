@@ -11,7 +11,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use RecentChange;
 use Title;
 use User;
@@ -23,7 +23,7 @@ use WikiPage;
  * @group Flow
  * @group Database
  */
-class HookTest extends MediaWikiTestCase {
+class HookTest extends MediaWikiIntegrationTestCase {
 	/** @inheritDoc */
 	protected $tablesUsed = [
 		'flow_revision',

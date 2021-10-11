@@ -13,7 +13,7 @@ use User;
  *
  * @group Flow
  */
-class ContentLengthFilterTest extends \MediaWikiTestCase {
+class ContentLengthFilterTest extends \MediaWikiIntegrationTestCase {
 
 	public function filterValidationProvider() {
 		yield 'With content shorter than max length allow through filter' => [
