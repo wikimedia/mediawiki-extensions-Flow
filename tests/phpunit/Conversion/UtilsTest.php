@@ -234,6 +234,26 @@ class ConversionUtilsTest extends FlowTestCase {
 				'Hello',
 				'<html><head></head><body>Hello</body></html>'
 			],
+			[
+				'Body tag with style tag',
+				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
+				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+			],
+			[
+				'Body tag with style tag and attributes',
+				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style typeof="mw:Extension/templatestyles mw:Transclusion">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
+				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style typeof="mw:Extension/templatestyles mw:Transclusion">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+			],
+			[
+				'Body tag with multiple style tags',
+				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p><style>.mw-parser-output { background-color: gray; }</style></body>',
+				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p><style>.mw-parser-output { background-color: gray; }</style></body></html>'
+			],
+			[
+				'Body tag with style tag',
+				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style test=">">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
+				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style test="&gt;">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+			],
 		];
 	}
 }
