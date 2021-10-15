@@ -117,8 +117,6 @@ $wgFlowActions = [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles',
 		],
 	],
 
@@ -223,8 +221,6 @@ $wgFlowActions = [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles',
 		],
 	],
 
@@ -382,8 +378,6 @@ $wgFlowActions = [
 			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 			'ext.flow.styles.base',
-			'ext.flow.board.styles',
-			'ext.flow.board.topic.styles',
 		],
 	],
 

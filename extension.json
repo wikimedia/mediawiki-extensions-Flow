@@ -354,15 +354,7 @@
 				"styles/common.less",
 				"styles/errors.less",
 				"styles/history/history-line.less",
-				"styles/mediawiki.ui/anchors.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.board.styles": {
-			"styles": [
+				"styles/mediawiki.ui/anchors.less",
 				"styles/board/header.less",
 				"styles/board/menu.less",
 				"styles/board/navigation.less",
@@ -372,15 +364,7 @@
 				"styles/nojs.less",
 				"styles/js.less",
 				"styles/board/form-actions.less",
-				"styles/board/terms-of-use.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.board.topic.styles": {
-			"styles": [
+				"styles/board/terms-of-use.less",
 				"styles/board/topic/titlebar.less",
 				"styles/board/topic/meta.less",
 				"styles/board/topic/post.less",
