@@ -46,8 +46,9 @@ class TemplateHelper {
 	private static function getTemplateName( $dataMW ) {
 		try {
 			$mwAttr = json_decode( $dataMW );
-			return $mwAttr->parts[0]->template->target->wt;
-		} catch ( \Exception $e ) {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			return @$mwAttr->parts[0]->template->target->wt;
+		} catch ( \Throwable $e ) {
 			return null;
 		}
 	}
