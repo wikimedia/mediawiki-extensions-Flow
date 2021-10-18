@@ -5,6 +5,7 @@
 			"Erasmo Barresi",
 			"F. Cosoleto",
 			"Giuseppe Forte",
+			"McDutchie",
 			"Ricordisamoa"
 		]
 	},
@@ -64,8 +65,8 @@
 	"apihelp-flow+new-topic-param-content": "Contenuto della risposta iniziale all'argomento.",
 	"apihelp-flow+new-topic-param-format": "Formato della risposta iniziale al nuovo argomento (wikitext|html)",
 	"apihelp-flow+new-topic-example-1": "Crea un nuovo argomento su [[Talk:Sandbox]]",
-	"apihelp-flow+reply-description": "Risposte a un messaggio.",
-	"apihelp-flow+reply-summary": "Risposte a un messaggio.",
+	"apihelp-flow+reply-description": "Risponde a un messaggio.",
+	"apihelp-flow+reply-summary": "Risponde a un messaggio.",
 	"apihelp-flow+reply-param-replyTo": "ID messaggio a cui rispondere.",
 	"apihelp-flow+reply-param-content": "Contenuto per il nuovo messaggio.",
 	"apihelp-flow+reply-param-format": "Formato del nuovo messaggio (wikitext|html)",

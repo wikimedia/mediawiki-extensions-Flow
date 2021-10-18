@@ -71,8 +71,8 @@
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1{{GENDER:$2|重启}}了[[$3]]上的话题",
 	"logentry-import-lqt-to-flow-topic": "在[[$3]]上的[[$1|$2]]已从LiquidThreads导入至结构式讨论",
 	"abusefilter-edit-builder-vars-board-id": "结构式讨论版块的页面ID",
-	"abusefilter-edit-builder-vars-board-namespace": "结构式讨论版块的名字空间",
-	"abusefilter-edit-builder-vars-board-title": "结构式讨论版块的标题（没有名字空间）",
+	"abusefilter-edit-builder-vars-board-namespace": "结构式讨论版块的命名空间",
+	"abusefilter-edit-builder-vars-board-title": "结构式讨论版块的标题（没有命名空间）",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "结构式讨论版块的完整标题",
 	"flow-user-moderated": "限制用户",
 	"flow-board-header-browse-topics-link": "浏览话题",
@@ -239,7 +239,7 @@
 	"flow-error-content-too-long": "内容太长。扩张后内容限于$1字节。",
 	"flow-error-move-topic": "目前暂不支持移动话题页面。",
 	"flow-error-invalid-topic-uuid-title": "错误标题",
-	"flow-error-invalid-topic-uuid": "请求的页面标题无效。Topic名字空间的页面由结构式讨论自动创建。",
+	"flow-error-invalid-topic-uuid": "请求的页面标题无效。Topic命名空间的页面由结构式讨论自动创建。",
 	"flow-error-unknown-workflow-id-title": "未知话题",
 	"flow-error-unknown-workflow-id": "请求的话题不存在。",
 	"flow-error-search": "由于出现暂时性的问题，我们未能完成您的搜索。请稍后再试。",
@@ -549,6 +549,6 @@
 	"flow-guidedtour-optin-feedback": "向我们提供{{GENDER:$1|您}}的反馈！",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|您}}可以随时从测试功能选项中获取更多信息、提供反馈、或禁用新系统。",
 	"flow-action-not-page": "页面对象是错误类的实例",
-	"flow-action-wrong-title-content-model": "页面正在由结构式讨论处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在结构式讨论名字空间中的非结构式讨论页面，而<code>rev_content_model</code>未被填充。",
+	"flow-action-wrong-title-content-model": "页面正在由结构式讨论处理，但标题类指出内容模型是“$1”。这是配置错误或不一致的状态。例如，这可能确实是在结构式讨论命名空间中的非结构式讨论页面，而<code>rev_content_model</code>未被填充。",
 	"flow-preference-visualeditor": "在结构式讨论中启用可视化编辑器及新版wikitext模式"
 }

@@ -5,6 +5,7 @@
 			"Bittin",
 			"Josve05a",
 			"Lokal Profil",
+			"McDutchie",
 			"WikiPhoenix"
 		]
 	},
@@ -64,8 +65,8 @@
 	"apihelp-flow+new-topic-param-content": "Innehåll för ämnets första svar.",
 	"apihelp-flow+new-topic-param-format": "Format på det nya ämnets första svar (wikitext|html)",
 	"apihelp-flow+new-topic-example-1": "Skapa ett nytt ämne på [[Talk:Sandbox]]",
-	"apihelp-flow+reply-description": "Svar på ett inlägg.",
-	"apihelp-flow+reply-summary": "Svar på ett inlägg.",
+	"apihelp-flow+reply-description": "Svarar på ett inlägg.",
+	"apihelp-flow+reply-summary": "Svarar på ett inlägg.",
 	"apihelp-flow+reply-param-replyTo": "Inläggs-ID att svara på.",
 	"apihelp-flow+reply-param-content": "Innehåll för nytt inlägg.",
 	"apihelp-flow+reply-param-format": "Formatet för det nya inlägget (wikitext|html)",
