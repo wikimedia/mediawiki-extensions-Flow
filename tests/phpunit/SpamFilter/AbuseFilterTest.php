@@ -92,9 +92,8 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		$context = $this->getMockBuilder( \ContextSource::class )
 				->onlyMethods( [ 'getUser' ] )
 				->getMock();
-		$context->expects( $this->any() )
-				->method( 'getUser' )
-				->will( $this->returnValue( User::newFromName( 'UTSysop' ) ) );
+		$context->method( 'getUser' )
+				->willReturn( User::newFromName( 'UTSysop' ) );
 
 		$status = $this->spamFilter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
 		$this->assertEquals( $expected, $status->isOK() );

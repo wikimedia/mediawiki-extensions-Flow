@@ -66,9 +66,9 @@ class UserNameBatchTest extends FlowTestCase {
 		$query->expects( $this->once() )
 			->method( 'execute' )
 			->with( 'fakewiki', [ 610, 408 ] )
-			->will( $this->returnValue( [
+			->willReturn( [
 				(object)[ 'user_id' => '408', 'user_name' => 'chuck' ]
-			] ) );
+			] );
 
 		$batch = new UserNameBatch( $query );
 		$batch->add( 'fakewiki', 610 );

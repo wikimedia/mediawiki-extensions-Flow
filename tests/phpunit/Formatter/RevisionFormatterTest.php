@@ -308,26 +308,22 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		// bit of a code smell, should pass actions directly in constructor?
-		$permissions->expects( $this->any() )
-			->method( 'getActions' )
-			->will( $this->returnValue( $actions ) );
+		$permissions->method( 'getActions' )
+			->willReturn( $actions );
 		// perhaps another code smell, should have a method that does whatever this
 		// uses the user for
-		$permissions->expects( $this->any() )
-			->method( 'getUser' )
-			->will( $this->returnValue( $this->user ) );
+		$permissions->method( 'getUser' )
+			->willReturn( $this->user );
 
 		return $permissions;
 	}
 
 	protected function mockPostRevision() {
 		$postRevision = $this->getMockBuilder( PostRevision::class )->getMock();
-		$postRevision->expects( $this->any() )
-			->method( 'isTopicTitle' )
-			->will( $this->returnValue( false ) );
-		$postRevision->expects( $this->any() )
-			->method( 'getRevisionId' )
-			->will( $this->returnValue( UUID::create() ) );
+		$postRevision->method( 'isTopicTitle' )
+			->willReturn( false );
+		$postRevision->method( 'getRevisionId' )
+			->willReturn( UUID::create() );
 		return $postRevision;
 	}
 
@@ -335,11 +331,9 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$templating = $this->getMockBuilder( \Flow\Templating::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$templating->expects( $this->any() )
-			->method( 'getModeratedRevision' )
+		$templating->method( 'getModeratedRevision' )
 			->will( $this->returnArgument( 0 ) );
-		$templating->expects( $this->any() )
-			->method( 'getContent' )
+		$templating->method( 'getContent' )
 			->will( $this->returnCallback( static function ( $revision, $contentFormat ) {
 				return $revision->getContent( $contentFormat );
 			} ) );
@@ -349,12 +343,10 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 	protected function mockTopicTitleRevision() {
 		$topicTitleRevision = $this->getMockBuilder( PostRevision::class )->getMock();
-		$topicTitleRevision->expects( $this->any() )
-			->method( 'isTopicTitle' )
-			->will( $this->returnValue( true ) );
-		$topicTitleRevision->expects( $this->any() )
-			->method( 'getRevisionId' )
-			->will( $this->returnValue( UUID::create() ) );
+		$topicTitleRevision->method( 'isTopicTitle' )
+			->willReturn( true );
+		$topicTitleRevision->method( 'getRevisionId' )
+			->willReturn( UUID::create() );
 		return $topicTitleRevision;
 	}
 
@@ -368,9 +360,8 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$actions = $this->mockActions();
 		$permissions = $this->mockPermissions( $actions );
 		// formatting only proceedes when this is true
-		$permissions->expects( $this->any() )
-			->method( 'isAllowed' )
-			->will( $this->returnValue( true ) );
+		$permissions->method( 'isAllowed' )
+			->willReturn( true );
 		$templating = $this->mockTemplating();
 		$usernames = $this->mockUserNameBatch();
 		$formatter = new RevisionFormatter( $permissions, $templating, $usernames, 3 );

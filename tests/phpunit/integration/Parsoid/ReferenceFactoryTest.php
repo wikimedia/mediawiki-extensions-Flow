@@ -15,12 +15,10 @@ use Title;
 class ReferenceFactoryTest extends \MediaWikiIntegrationTestCase {
 	public function testAcceptsParsoidHrefs() {
 		$workflow = $this->createMock( \Flow\Model\Workflow::class );
-		$workflow->expects( $this->any() )
-			->method( 'getId' )
-			->will( $this->returnValue( UUID::create() ) );
-		$workflow->expects( $this->any() )
-			->method( 'getArticleTitle' )
-			->will( $this->returnValue( Title::newMainPage() ) );
+		$workflow->method( 'getId' )
+			->willReturn( UUID::create() );
+		$workflow->method( 'getArticleTitle' )
+			->willReturn( Title::newMainPage() );
 
 		$factory = new ReferenceFactory(
 			$workflow,

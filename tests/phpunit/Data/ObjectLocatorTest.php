@@ -18,9 +18,8 @@ class ObjectLocatorTest extends FlowTestCase {
 
 		$locator = new \Flow\Data\ObjectLocator( $mapper, $storage, $dbFactory );
 
-		$storage->expects( $this->any() )
-			->method( 'findMulti' )
-			->will( $this->returnValue( [ [ null, null ] ] ) );
+		$storage->method( 'findMulti' )
+			->willReturn( [ [ null, null ] ] );
 
 		$this->assertEquals( [], $locator->findMulti( [ [ 'foo' => 'random crap' ] ] ) );
 	}

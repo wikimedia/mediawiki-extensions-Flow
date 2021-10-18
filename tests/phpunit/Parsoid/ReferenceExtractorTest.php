@@ -148,12 +148,10 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 
 		$workflow = $this->createMock( \Flow\Model\Workflow::class );
-		$workflow->expects( $this->any() )
-			->method( 'getId' )
-			->will( $this->returnValue( UUID::create() ) );
-		$workflow->expects( $this->any() )
-			->method( 'getArticleTitle' )
-			->will( $this->returnValue( Title::newMainPage() ) );
+		$workflow->method( 'getId' )
+			->willReturn( UUID::create() );
+		$workflow->method( 'getArticleTitle' )
+			->willReturn( Title::newMainPage() );
 		$factory = new ReferenceFactory( $workflow, 'foo', UUID::create() );
 
 		$reflMethod = new ReflectionMethod( $referenceExtractor, 'extractReferences' );

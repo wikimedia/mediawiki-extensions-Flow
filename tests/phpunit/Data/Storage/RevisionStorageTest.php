@@ -173,16 +173,13 @@ class RevisionStorageTest extends FlowTestCase {
 		$dbw->expects( $this->once() )
 			->method( 'update' )
 			->with(
-				$this->equalTo( 'flow_revision' ),
-				$this->equalTo( $expectedUpdateValues ),
-				$this->equalTo( [
-					'rev_id' => $id->getBinary(),
-				] )
+				'flow_revision',
+				$expectedUpdateValues,
+				[ 'rev_id' => $id->getBinary() ]
 			)
-			->will( $this->returnValue( true ) );
-		$dbw->expects( $this->any() )
-			->method( 'affectedRows' )
-			->will( $this->returnValue( 1 ) );
+			->willReturn( true );
+		$dbw->method( 'affectedRows' )
+			->willReturn( 1 );
 
 		// Header is bare bones implementation, sufficient for testing
 		// the parent class.
@@ -348,7 +345,7 @@ class RevisionStorageTest extends FlowTestCase {
 		// this expect is the assertion for the test
 		$factory->getDB( null )->expects( $this->exactly( $count ) )
 			->method( 'select' )
-			->will( $this->returnValue( $result ) );
+			->willReturn( $result );
 
 		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
 

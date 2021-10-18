@@ -64,11 +64,9 @@ class FormatterTest extends FlowTestCase {
 		$row->currentRevision = $row->revision;
 
 		$ctx = $this->createMock( \IContextSource::class );
-		$ctx->expects( $this->any() )
-			->method( 'getLanguage' )
-			->will( $this->returnValue( $wgLang ) );
-		$ctx->expects( $this->any() )
-			->method( 'msg' )
+		$ctx->method( 'getLanguage' )
+			->willReturn( $wgLang );
+		$ctx->method( 'msg' )
 			->will( $this->returnCallback( 'wfMessage' ) );
 
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
@@ -81,12 +79,10 @@ class FormatterTest extends FlowTestCase {
 
 	protected function mockWorkflow( UUID $workflowId, Title $title ) {
 		$workflow = $this->createMock( \Flow\Model\Workflow::class );
-		$workflow->expects( $this->any() )
-			->method( 'getId' )
-			->will( $this->returnValue( $workflowId ) );
-		$workflow->expects( $this->any() )
-			->method( 'getArticleTitle' )
-			->will( $this->returnValue( $title ) );
+		$workflow->method( 'getId' )
+			->willReturn( $workflowId );
+		$workflow->method( 'getArticleTitle' )
+			->willReturn( $title );
 		return $workflow;
 	}
 
@@ -96,16 +92,13 @@ class FormatterTest extends FlowTestCase {
 		} else {
 			$revision = $this->createMock( \Flow\Model\Header::class );
 		}
-		$revision->expects( $this->any() )
-			->method( 'getChangeType' )
-			->will( $this->returnValue( $changeType ) );
-		$revision->expects( $this->any() )
-			->method( 'getRevisionId' )
-			->will( $this->returnValue( $revId ) );
+		$revision->method( 'getChangeType' )
+			->willReturn( $changeType );
+		$revision->method( 'getRevisionId' )
+			->willReturn( $revId );
 		if ( $postId ) {
-			$revision->expects( $this->any() )
-				->method( 'getPostId' )
-				->will( $this->returnValue( $postId ) );
+			$revision->method( 'getPostId' )
+				->willReturn( $postId );
 		}
 		return $revision;
 	}
@@ -114,12 +107,10 @@ class FormatterTest extends FlowTestCase {
 		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$permissions->expects( $this->any() )
-			->method( 'isAllowed' )
-			->will( $this->returnValue( true ) );
-		$permissions->expects( $this->any() )
-			->method( 'getActions' )
-			->will( $this->returnValue( Container::get( 'flow_actions' ) ) );
+		$permissions->method( 'isAllowed' )
+			->willReturn( true );
+		$permissions->method( 'getActions' )
+			->willReturn( Container::get( 'flow_actions' ) );
 
 		$templating = $this->getMockBuilder( \Flow\Templating::class )
 			->disableOriginalConstructor()
@@ -128,9 +119,8 @@ class FormatterTest extends FlowTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$urlGenerator = new UrlGenerator( $workflowMapper );
-		$templating->expects( $this->any() )
-			->method( 'getUrlGenerator' )
-			->will( $this->returnValue( $urlGenerator ) );
+		$templating->method( 'getUrlGenerator' )
+			->willReturn( $urlGenerator );
 
 		$usernames = $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
 			->disableOriginalConstructor()

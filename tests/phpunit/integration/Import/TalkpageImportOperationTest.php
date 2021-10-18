@@ -64,13 +64,11 @@ class TalkpageImportOperationTest extends \MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$stored = [];
-		$storage->expects( $this->any() )
-			->method( 'put' )
+		$storage->method( 'put' )
 			->will( $this->returnCallback( static function ( $obj ) use( &$stored ) {
 				$stored[] = $obj;
 			} ) );
-		$storage->expects( $this->any() )
-			->method( 'multiPut' )
+		$storage->method( 'multiPut' )
 			->will( $this->returnCallback( static function ( $objs ) use( &$stored ) {
 				$stored = array_merge( $stored, $objs );
 			} ) );
