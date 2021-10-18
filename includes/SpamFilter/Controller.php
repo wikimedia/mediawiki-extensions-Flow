@@ -10,7 +10,7 @@ use Title;
 
 class Controller {
 	/**
-	 * @var SpamFilter[] Array of SpamFilter objects
+	 * @var SpamFilter[]
 	 */
 	protected $spamfilters = [];
 

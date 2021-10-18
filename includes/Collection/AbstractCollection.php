@@ -133,9 +133,7 @@ abstract class AbstractCollection {
 	}
 
 	/**
-	 * Returns all revisions.
-	 *
-	 * @return AbstractRevision[] Array of AbstractRevision
+	 * @return AbstractRevision[]
 	 * @throws InvalidDataException When no revisions can be found
 	 */
 	public function getAllRevisions() {

@@ -177,7 +177,7 @@ class Anchor implements ApiSerializable {
 	 * Returns the effective title message.  Takes into account defaulting
 	 *  to $this->message if there is none.
 	 *
-	 * @return Message Title message
+	 * @return Message
 	 */
 	protected function getTitleMessage() {
 		if ( $this->titleMessage !== null ) {

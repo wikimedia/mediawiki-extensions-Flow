@@ -392,8 +392,8 @@ abstract class AbstractQuery {
 
 	/**
 	 * Gets a Workflow object given its ID
-	 * @param UUID $workflowId The Workflow ID to retrieve.
-	 * @return Workflow The Workflow.
+	 * @param UUID $workflowId
+	 * @return Workflow
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {
 		$alpha = $workflowId->getAlphadecimal();

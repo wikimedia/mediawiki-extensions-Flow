@@ -617,7 +617,7 @@ class Controller {
 	 *
 	 * Removes duplicates, anonymous users, self-mentions, and mentions of the
 	 * owner of the talk page
-	 * @param User[] $mentions Array of User objects
+	 * @param User[] $mentions
 	 * @param AbstractRevision $revision The Post that is being examined.
 	 * @return array
 	 *          0 => int[] Array of user IDs
@@ -655,7 +655,7 @@ class Controller {
 	/**
 	 * Examines a wikitext string and finds users that were mentioned
 	 * @param string $wikitext
-	 * @return User[] Array of User objects
+	 * @return User[]
 	 */
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
 		$title = Title::newMainPage(); // Bogus title used for parser
