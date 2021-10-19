@@ -24,8 +24,7 @@ class IndexTest extends FlowTestCase {
 		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mapper->expects( $this->any() )
-			->method( 'normalizeRow' )
+		$mapper->method( 'normalizeRow' )
 			->will( $this->returnArgument( 0 ) );
 
 		// As we are only testing the cached result, storage should never be called
@@ -76,8 +75,7 @@ class IndexTest extends FlowTestCase {
 		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mapper->expects( $this->any() )
-			->method( 'normalizeRow' )
+		$mapper->method( 'normalizeRow' )
 			->will( $this->returnArgument( 0 ) );
 
 		$unique = new UniqueFeatureIndex(

@@ -77,9 +77,8 @@ class BlockFactoryTest extends FlowTestCase {
 		$workflow = $this->getMockBuilder( \Flow\Model\Workflow::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$workflow->expects( $this->any() )
-			->method( 'getType' )
-			->will( $this->returnValue( $type ) );
+		$workflow->method( 'getType' )
+			->willReturn( $type );
 
 		return $workflow;
 	}

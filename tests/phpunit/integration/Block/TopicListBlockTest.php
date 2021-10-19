@@ -28,9 +28,8 @@ class TopicListBlockTest extends \MediaWikiIntegrationTestCase {
 		$container['user'] = $user;
 
 		$ctx = $this->createMock( \IContextSource::class );
-		$ctx->expects( $this->any() )
-			->method( 'getUser' )
-			->will( $this->returnValue( $user ) );
+		$ctx->method( 'getUser' )
+			->willReturn( $user );
 
 		$workflow = Workflow::create( 'discussion', Title::newFromText( 'Talk:Flow_QA' ) );
 		$block = new TopicListBlock( $workflow, Container::get( 'storage' ) );
