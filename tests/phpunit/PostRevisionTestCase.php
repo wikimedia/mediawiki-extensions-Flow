@@ -188,7 +188,7 @@ class PostRevisionTestCase extends FlowTestCase {
 	 * @note This must not be called from a data provider, since it accesses the database!
 	 *
 	 * @param array $row DB row data (only specify override columns)
-	 * @param PostRevision[] $children Array of child PostRevision objects
+	 * @param PostRevision[] $children
 	 * @param int $depth Depth of the PostRevision object
 	 * @return PostRevision
 	 */

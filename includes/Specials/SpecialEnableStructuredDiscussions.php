@@ -79,7 +79,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 	 * Archives any pre-existing wikitext talk page.
 	 *
 	 * @param array $data Form data
-	 * @return Status Status indicating result
+	 * @return Status
 	 */
 	public function onSubmit( array $data ) {
 		$page = $data['page'];

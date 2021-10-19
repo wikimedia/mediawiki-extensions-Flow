@@ -11,7 +11,7 @@ use Title;
 
 class ContentFixer {
 	/**
-	 * @var Fixer[] Array of Fixer objects
+	 * @var Fixer[]
 	 */
 	protected $contentFixers = [];
 
