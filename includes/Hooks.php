@@ -1729,7 +1729,8 @@ class Hooks {
 		}
 
 		$emptyContent = ContentHandler::getForModelID( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
-		$parserOutput = $emptyContent->getParserOutput( $article->getTitle() );
+		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$parserOutput = $contentRenderer->getParserOutput( $emptyContent, $article->getTitle() );
 		$article->getContext()->getOutput()->addParserOutput( $parserOutput );
 
 		return false;
@@ -1827,7 +1828,6 @@ class Hooks {
 			// importer can be dry-run (= parse, but don't store), but we can only
 			// derive that from mPageOutCallback. I'll set a new value (which will
 			// return the existing value) to see if it's in dry-run mode (= null)
-			// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 			$callback = $importer->setPageOutCallback( null );
 			// restore previous mPageOutCallback value
 			$importer->setPageOutCallback( $callback );
