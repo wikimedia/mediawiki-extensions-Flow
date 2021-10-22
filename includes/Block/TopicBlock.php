@@ -565,7 +565,7 @@ class TopicBlock extends AbstractBlock {
 			case 'reply':
 			case 'moderate-topic':
 			case 'view-topic':
-			case 'view' && !isset( $options['postId'] ) && !isset( $options['revId'] );
+			case 'view' && !isset( $options['postId'] ) && !isset( $options['revId'] ):
 				// view full topic
 				$output += $this->renderTopicApi( $options );
 				break;

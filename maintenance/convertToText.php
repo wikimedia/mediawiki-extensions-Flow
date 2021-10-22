@@ -220,7 +220,6 @@ class ConvertToText extends Maintenance {
 		// anyway)
 		$options = ParserOptions::newFromAnon();
 		$old = $parser->getOptions();
-		$parser->setOptions( $options );
 		$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
 		$signature = $parser->getUserSig( $user, $nickname, $fancysig );
 		$signature = $parser->getStripState()->unstripBoth( $signature );

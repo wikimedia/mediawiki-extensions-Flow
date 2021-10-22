@@ -25,7 +25,7 @@ class FlowEnabledOnTalkpagePresentationModel extends FlowPresentationModel {
 	/**
 	 * All Flow notifications have the 'Agent' link except this one.
 	 *
-	 * @return array Empty array
+	 * @return array[]
 	 */
 	public function getSecondaryLinks() {
 		$userTalkLink = $this->getPageLink(

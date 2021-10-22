@@ -803,6 +803,7 @@ class RevisionFormatter {
 					break;
 
 				/** @noinspection PhpMissingBreakStatementInspection */
+				// phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 				case 'diff-header':
 					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffHeaderLink' ];
 					// don't break, diff links are rendered below
