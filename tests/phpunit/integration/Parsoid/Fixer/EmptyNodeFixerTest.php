@@ -23,19 +23,19 @@ class EmptyNodeFixerTest extends \MediaWikiIntegrationTestCase {
 		$imageLink = $dom->getElementById( 'image' );
 		$imageNode = $dom->getElementsByTagName( 'img' )->item( 0 );
 
-		$this->assertEquals( $notemptyLink->childNodes->length, 1, 'non-empty link has one child before fixer' );
-		$this->assertEquals( $emptyLink->childNodes->length, 0, 'empty link has no children before fixer' );
-		$this->assertEquals( $imageLink->childNodes->length, 1, 'image link has one child before fixer' );
-		$this->assertEquals( $imageNode->childNodes->length, 0, 'img has no children before fixer' );
+		$this->assertSame( 1, $notemptyLink->childNodes->length, 'non-empty link has one child before fixer' );
+		$this->assertSame( 0, $emptyLink->childNodes->length, 'empty link has no children before fixer' );
+		$this->assertSame( 1, $imageLink->childNodes->length, 'image link has one child before fixer' );
+		$this->assertSame( 0, $imageNode->childNodes->length, 'img has no children before fixer' );
 
 		$fixer = new ContentFixer( new EmptyNodeFixer );
 		$fixer->applyToDom( $dom, Title::newMainPage() );
 
-		$this->assertEquals( $notemptyLink->childNodes->length, 1, 'non-empty link has one child after fixer' );
-		$this->assertEquals( $emptyLink->childNodes->length, 1, 'empty link has one child after fixer' );
+		$this->assertSame( 1, $notemptyLink->childNodes->length, 'non-empty link has one child after fixer' );
+		$this->assertSame( 1, $emptyLink->childNodes->length, 'empty link has one child after fixer' );
 		$this->assertEquals( $emptyLink->childNodes->item( 0 )->nodeType, XML_TEXT_NODE, 'empty link child is a text node' );
-		$this->assertEquals( $emptyLink->childNodes->item( 0 )->data, '', 'empty link child text node is empty' );
-		$this->assertEquals( $imageLink->childNodes->length, 1, 'image link has one child after fixer' );
-		$this->assertEquals( $imageNode->childNodes->length, 0, 'img has no children after fixer' );
+		$this->assertSame( '', $emptyLink->childNodes->item( 0 )->data, 'empty link child text node is empty' );
+		$this->assertSame( 1, $imageLink->childNodes->length, 'image link has one child after fixer' );
+		$this->assertSame( 0, $imageNode->childNodes->length, 'img has no children after fixer' );
 	}
 }
