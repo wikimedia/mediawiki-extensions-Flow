@@ -1,7 +1,7 @@
 <?php use \LightnCandy\SafeString as SafeString;use \LightnCandy\Runtime as LR;return function ($in = null, $options = null) {
     $helpers = array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'html' => 'Flow\TemplateHelper::htmlHelper',
-            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'l10nParseFlowTermsOfUse' => 'Flow\TemplateHelper::l10nParseFlowTermsOfUse',
 );
     $partials = array('flow_header_title' => function ($cx, $in, $sp) {$inary=is_array($in);return ''.$sp.'<h2 class="flow-board-header-title mw-ui-icon mw-ui-icon-before mw-ui-icon-speechBubbles">
 '.$sp.'	'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-board-header'),array()), 'encq', $in)).'
@@ -60,7 +60,7 @@
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 					class="mw-ui-button mw-ui-progressive">'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-edit-header-submit'),array()), 'encq', $in)).'</button>
-				<small class="flow-terms-of-use plainlinks">'.LR::encq($cx, LR::hbch($cx, 'l10nParse', array(array('flow-terms-of-use-edit'),array()), 'encq', $in)).'</small>
+				<small class="flow-terms-of-use plainlinks">'.LR::encq($cx, LR::hbch($cx, 'l10nParseFlowTermsOfUse', array(array('edit'),array()), 'encq', $in)).'</small>
 			</div>
 		</form>
 	</div>

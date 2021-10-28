@@ -7,7 +7,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [termsMsgKey='flow-terms-of-use-edit'] i18n message key for the footer message
+	 * @cfg {string} [termsKey='edit'] terms-of-use message key for the footer message
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
 	 * @cfg {boolean} [saveable=true] Initial state of saveable flag
@@ -23,8 +23,7 @@
 
 		this.termsLabel = new OO.ui.LabelWidget( {
 			classes: [ 'flow-ui-editorControlsWidget-termsLabel' ],
-			// eslint-disable-next-line mediawiki/msg-doc
-			label: $( $.parseHTML( mw.message( config.termsMsgKey || 'flow-terms-of-use-edit' ).parse() ) )
+			label: $( $.parseHTML( mw.flow.TemplateEngine.l10nParseFlowTermsOfUse( config.termsKey || 'edit' ).toString() ) )
 		} );
 
 		this.saveButton = new OO.ui.ButtonWidget( {

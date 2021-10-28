@@ -8,6 +8,7 @@ use Flow\Model\UUID;
 use Html;
 use LightnCandy\LightnCandy;
 use LightnCandy\SafeString;
+use MediaWiki\MediaWikiServices;
 use MWTimestamp;
 use OOUI\IconWidget;
 use RequestContext;
@@ -149,6 +150,7 @@ class TemplateHelper {
 					'historyDescription' => 'Flow\TemplateHelper::historyDescription',
 					'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
 					'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+					'l10nParseFlowTermsOfUse' => 'Flow\TemplateHelper::l10nParseFlowTermsOfUse',
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					'diffUndo' => 'Flow\TemplateHelper::diffUndo',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
@@ -509,6 +511,18 @@ class TemplateHelper {
 		$options = array_pop( $args );
 		$str = array_shift( $args );
 		return new SafeString( wfMessage( $str, $args )->parse() );
+	}
+
+	/**
+	 * @param string $key
+	 *
+	 * @return SafeString HTML
+	 */
+	public static function l10nParseFlowTermsOfUse( $key ) {
+		$context = RequestContext::getMain();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$messages = Hooks::getTermsOfUseMessagesParsed( $context, $config );
+		return new SafeString( $messages[ $key ] );
 	}
 
 	/**
