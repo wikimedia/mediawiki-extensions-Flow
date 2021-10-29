@@ -254,7 +254,7 @@
 	"flow-show-comments-title": "{{PLURAL:$1|Varda el coment|Varda i coment}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|Scond el coment|Scond i coment}}",
 	"flow-comment-restored": "Coment restaorad",
-	"flow-comment-deleted": "Coment scancelad",
+	"flow-comment-deleted": "Coment scancellad",
 	"flow-comment-hidden": "Coment scondud",
 	"flow-comment-moderated": "Coment moderad",
 	"flow-last-modified": "Ultima modifega sora $1",
