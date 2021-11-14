@@ -3,6 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager\HistoryPager;
 use Flow\Exception\DataModelException;
@@ -1054,7 +1055,8 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$title = $this->workflow->getOwnerTitle();
-		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
+		$convertedTitle = Utils::getConvertedTitle( $title );
+		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $convertedTitle ) );
 		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
 			if ( $this->action === 'undo-edit-post' ) {
 				$key = 'flow-undo-edit-post';
@@ -1065,10 +1067,10 @@ class TopicBlock extends AbstractBlock {
 				// This must be a rawParam to not expand {{foo}} in the title, it must
 				// not be htmlspecialchar'd because OutputPage::setHtmlTitle handles that.
 				Message::rawParam( $topic->getContent( 'topic-title-plaintext' ) ),
-				$title->getPrefixedText()
+				$convertedTitle
 			) );
 		} else {
-			$out->setHTMLTitle( $title->getPrefixedText() );
+			$out->setHTMLTitle( $convertedTitle );
 		}
 		$out->setSubtitle( '&lt; ' .
 			MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title ) );

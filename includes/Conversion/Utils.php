@@ -13,6 +13,7 @@ use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Html;
+use ILanguageConverter;
 use Language;
 use Linker;
 use MediaWiki\MediaWikiServices;
@@ -71,6 +72,9 @@ abstract class Utils {
 				throw new WikitextException( "Conversion from '$from' to '$to' was requested, " .
 					"but this is not supported." );
 			}
+		} elseif ( $from === 'topic-title-wikitext' && ( $to === 'topic-title-html' || $to === 'topic-title-plaintext' ) ) {
+			// FIXME: links need to be proceed by findVariantLinks or equivant function
+			return self::getLanguageConverter()->convert( self::commentParser( $from, $to, $content ) );
 		} else {
 			return self::commentParser( $from, $to, $content );
 		}
@@ -618,5 +622,34 @@ abstract class Utils {
 		}
 
 		return implode( '; ', $output );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return ILanguageConverter
+	 */
+	private static function getLanguageConverter(): ILanguageConverter {
+		$services = MediaWikiServices::getInstance();
+		return $services
+			->getLanguageConverterFactory()
+			->getLanguageConverter( $services->getContentLanguage() );
+	}
+
+	/**
+	 * @since 1.35
+	 * @param Title $title Title to convert to language variant
+	 * @return string Converted title
+	 */
+	public static function getConvertedTitle( Title $title ) {
+		$ns = $title->getNamespace();
+		$titleText = $title->getText();
+		$langConv = self::getLanguageConverter();
+		$variant = $langConv->getPreferredVariant();
+		if ( $langConv->convertNamespace( $ns, $variant ) ) {
+			return $langConv->convertNamespace( $ns, $variant ) .
+				':' . $langConv->translate( $titleText, $variant );
+		} else {
+			return $langConv->translate( $titleText, $variant );
+		}
 	}
 }
