@@ -9,6 +9,8 @@ require_once __DIR__ . '/defines.php';
 
 $namespaceNames = [];
 
+$namespaceAliases = [];
+
 /** English */
 $namespaceNames['en'] = [
 	NS_TOPIC => 'Topic',
@@ -241,4 +243,27 @@ $namespaceNames['vi'] = [
 /** Yiddish */
 $namespaceNames['yi'] = [
 	NS_TOPIC => 'טעמע',
+];
+
+/** Chinese (中文) */
+$namespaceNames['zh'] = [
+	NS_TOPIC => 'Topic',
+];
+
+/** Simplified Chinese (中文（简体）) */
+$namespaceNames['zh-hans'] = [
+	NS_TOPIC => '话题',
+];
+
+$namespaceAliases['zh-hans'] = [
+	'话题' => NS_TOPIC,
+];
+
+/** Traditional Chinese (中文（繁體）) */
+$namespaceNames['zh-hant'] = [
+	NS_TOPIC => '話題',
+];
+
+$namespaceAliases['zh-hant'] = [
+	'話題' => NS_TOPIC,
 ];
