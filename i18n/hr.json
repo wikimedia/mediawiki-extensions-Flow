@@ -4,6 +4,7 @@
 			"Bugoslav",
 			"MaGa",
 			"Macofe",
+			"Ponor",
 			"Vrhnje"
 		]
 	},
@@ -207,8 +208,8 @@
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Jedna nova tema|$1 nove teme|$1 novih tema|100=Preko 99 novih tema}} na <strong>$3</strong>.",
 	"notification-header-flow-new-topic-user-talk": "Nova tema otvorena je na <strong>Vašoj razgovornoj stranici</strong>: »<strong>$4</strong>«.",
 	"notification-header-flow-topic-renamed-v2": "Tema \"'''$1'''\" preimenovana je u \"'''$2'''\".",
-	"notification-header-flow-mention-post": "$1 {{GENDER:$4|Vas}} je {{GENDER:$2|spomenuo|spomenula}} u \"<strong>$5</strong>\".",
-	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|Vas}} je {{GENDER:$2|spomenuo|spomenula}} u \"<strong>$5</strong>\".",
+	"notification-header-flow-mention-post": "$1 {{GENDER:$4|Vas}} je {{GENDER:$2|spomenuo|spomenula}} u temi <strong>$5</strong>.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|Vas}} je {{GENDER:$2|spomenuo|spomenula}} u sažetku uređivanja teme <strong>$5</strong>.",
 	"notification-header-flow-enabled-on-talkpage": "Novi sustav ustrojnih raspravica uključen je na <strong>{{GENDER:$2|Vašoj}} suradničkoj razgovornoj stranici</strong>.",
 	"notification-header-flow-description-edited": "Opis stranice <strong>$1</strong> bio je uređivan.",
 	"notification-bundle-header-flow-description-edited": "Opis stranice <strong>$1</strong> bio je uređivan nekoliko puta.",
