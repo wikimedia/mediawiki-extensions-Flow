@@ -5,5 +5,7 @@
 			"咽頭べさ"
 		]
 	},
-	"flow-undo": "သဲင်ꩻဖျင်ချာ"
+	"flow-topic-action-summarize-topic": "ချုတ်မာꩻအဲဉ်ႏ",
+	"flow-undo": "သဲင်ꩻဖျင်ချာ",
+	"flow-notification-link-text-enabled-on-talkpage": "ထွား {{GENDER:|ကေားသုင်ꩻသား}} အိုင်ကိုမ်ချက်လိတ်မဲ့ငါ"
 }
