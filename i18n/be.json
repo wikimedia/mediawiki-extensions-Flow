@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
-			"Дзяніс Тутэйшы"
+			"Дзяніс Тутэйшы",
+			"ZlyiLev"
 		]
 	},
 	"abusefilter-edit-builder-vars-board-id": "Ідэнтыфікатар старонкі дошкі «Структураваных абмеркаванняў»",
@@ -10,6 +11,8 @@
 	"abusefilter-edit-builder-vars-board-title": "Назва (без прасторвы назваў) старонкі дошкі «Структураваных абмеркаванняў»",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Поўная назва дошкі «Структураваных абмеркаванняў»",
 	"flow-topic-moderated-reason-prefix": "Прычына:",
+	"flow-reply-link": "{{GENDER:$1|Адказаць}}",
 	"flow-post-action-hide-post": "Схаваць",
-	"notification-header-flow-topic-renamed-user-talk": "Тэма \"<strong>$1</strong>\" была перайменавана ў \"<strong>$2</strong>\" на <strong>{{GENDER:$3|Вашай}} старонцы размоў</strong>."
+	"notification-header-flow-topic-renamed-user-talk": "Тэма \"<strong>$1</strong>\" была перайменавана ў \"<strong>$2</strong>\" на <strong>{{GENDER:$3|Вашай}} старонцы размоў</strong>.",
+	"flow-undo-latest-revision": "Бягучая версія"
 }

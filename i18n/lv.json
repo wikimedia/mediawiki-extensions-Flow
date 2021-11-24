@@ -190,6 +190,7 @@
 	"flow-workflow": "darbplūsma",
 	"flow-notification-reply": "$1 {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$5 $2]</span> lapā \"$4\".",
 	"flow-notification-reply-bundle": "$1 un $5 {{PLURAL:$6|citi|cits|citi}} {{GENDER:$1|atbildēja}} par <span class=\"plainlinks\">[$4 $2]</span> lapā \"$3\".",
+	"notification-header-flow-new-topic-user-talk": "<strong>Tavā diskusiju lapā</strong> tika pievienota jauna tēma: \"<strong>$4</strong>\".",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|atbildēja}} tēmā \"<strong>$4</strong>\".",
 	"notification-compact-header-flow-post-reply": "$1: <em>$3</em>.",
 	"notification-header-flow-enabled-on-talkpage": "<strong>{{GENDER:$2|Tavā}} dalībnieka diskusiju lapā ieslēgta jaunā diskusiju sistēma</strong>.",

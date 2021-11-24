@@ -16,5 +16,6 @@
 	"flow-moderation-confirm-hide-post": "Čievâ",
 	"flow-moderation-confirm-hide-topic": "Čievâ",
 	"flow-moderation-confirmation-hide-post": "Viestâ čiehui.\n{{GENDER:$2|Kuorâttâl}} macâttâs adelem kevttei $1 taan viestâst.",
-	"flow-moderation-confirmation-hide-topic": "Taat fáddá lii čiehhum."
+	"flow-moderation-confirmation-hide-topic": "Taat fáddá lii čiehhum.",
+	"flow-load-more": "Luođii lase"
 }

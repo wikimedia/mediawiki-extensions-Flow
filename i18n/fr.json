@@ -56,7 +56,7 @@
 		]
 	},
 	"enablestructureddiscussions": "Activer les discussions structurées",
-	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|}}Arrêter de suivre les nouvelles activités de « $1 »",
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|}}Arrêter de suivre les nouvelles activités de « $1 »",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Vous}} ne suivez plus la page «&nbsp;$1&nbsp;»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Cela n'affectera pas les différentes rubriques que {{GENDER:$3|vous}} suivez. Vous pouvez suivre [$2 cette page] à tout moment.",
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Arrêter}} de suivre ce sujet",
