@@ -503,7 +503,7 @@ class OptInController {
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
 			->getRevisionById( $revId );
-		$content = $revRecord->getContent( SlotRecord::MAIN );
+		$content = $revRecord ? $revRecord->getContent( SlotRecord::MAIN ) : null;
 		if ( !$content instanceof BoardContent ) {
 			throw new InvalidDataException(
 				'Could not find board page for ' . $title->getPrefixedDBkey() . ' (id: ' . $title->getArticleID() . ').' .
