@@ -614,7 +614,6 @@ abstract class Utils {
 		// foo=bar; baz=bang
 		$output = [];
 		foreach ( $cookies as $key => $value ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Caused by taint-check
 			$output[] = "$wgCookiePrefix$key={$value['value']}";
 		}
 
