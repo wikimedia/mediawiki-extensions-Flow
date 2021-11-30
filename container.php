@@ -762,7 +762,8 @@ $c['query.changeslist'] = static function ( $c ) {
 		$c['repository.tree'],
 		$c['flow_actions']
 	);
-	$query->setExtendWatchlist( $c['user']->getOption( 'extendwatchlist' ) );
+	$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+	$query->setExtendWatchlist( $userOptionsLookup->getOption( $c['user'], 'extendwatchlist' ) );
 
 	return $query;
 };

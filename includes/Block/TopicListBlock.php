@@ -353,6 +353,7 @@ class TopicListBlock extends AbstractBlock {
 
 	protected function getFindOptions( array $requestOptions ) {
 		$findOptions = [];
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
@@ -376,7 +377,7 @@ class TopicListBlock extends AbstractBlock {
 		// the sortby option in $findOptions is not directly used for querying,
 		// but is needed by the pager to generate appropriate pagination links.
 		if ( $requestOptions['sortby'] === 'user' ) {
-			$requestOptions['sortby'] = $user->getOption( 'flow-topiclist-sortby' );
+			$requestOptions['sortby'] = $userOptionsLookup->getOption( $user, 'flow-topiclist-sortby' );
 		}
 		switch ( $requestOptions['sortby'] ) {
 			case 'updated':
@@ -425,7 +426,7 @@ class TopicListBlock extends AbstractBlock {
 		if (
 			$requestOptions['savesortby']
 			&& $user->isRegistered()
-			&& $user->getOption( 'flow-topiclist-sortby' ) != $findOptions['sortby']
+			&& $userOptionsLookup->getOption( $user, 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
 			// Save the new sortby preference.
 			$job = new UserOptionsUpdateJob( [

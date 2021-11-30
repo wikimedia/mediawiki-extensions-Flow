@@ -224,7 +224,8 @@ class View extends ContextSource {
 		];
 
 		$editToken = $user->getEditToken();
-		$editFont = $user->getOption( 'editfont' );
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$editFont = $userOptionsLookup->getOption( $user, 'editfont' );
 		$wasPosted = $this->getRequest()->wasPosted();
 		$topicListBlock = null;
 		foreach ( $blocks as $block ) {
