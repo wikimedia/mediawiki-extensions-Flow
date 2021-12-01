@@ -114,11 +114,12 @@ $specialPageAliases['vi'] = [
 
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = [
-	'EnableStructuredDiscussions' => [ '启用Flow' ],
+	'StructuredDiscussions' => [ '结构式讨论', '結構式討論' ],
+	'EnableStructuredDiscussions' => [ '启用结构式讨论', '启用Flow', '啟用結構式討論', '啟用Flow' ],
 ];
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = [
-	'StructuredDiscussions' => [ '流動量' ],
-	'EnableStructuredDiscussions' => [ '啟用流動量' ],
+	'StructuredDiscussions' => [ '結構式討論', '流動量' ],
+	'EnableStructuredDiscussions' => [ '啟用結構式討論', '啟用Flow', '啟用流動量' ],
 ];
