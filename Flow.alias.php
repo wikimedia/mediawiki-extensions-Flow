@@ -27,7 +27,7 @@ $specialPageAliases['arz'] = [
 /** Bengali (বাংলা) */
 $specialPageAliases['bn'] = [
 	'StructuredDiscussions' => [ 'ফ্লো' ],
-	'EnableStructuredDiscussions' => [ 'ফ্লো_সক্রিয়করণ' ],
+	'EnableStructuredDiscussions' => [ 'ফ্লো_সক্রিয়করণ' ],
 ];
 
 /** Czech (čeština) */
