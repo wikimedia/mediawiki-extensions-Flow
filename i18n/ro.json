@@ -139,7 +139,7 @@
 	"flow-topic-action-unsuppress-topic": "Anulează suprimarea subiectului",
 	"flow-topic-action-restore-topic": "Restaurează subiectul",
 	"flow-topic-action-undo-moderation": "Anulează",
-	"flow-topic-notification-subscribe-title": "Acest subiect a fost adăugată la lista {{GENDER:$1|dumneavoastră}} de pagini urmărite.",
+	"flow-topic-notification-subscribe-title": "Acest subiect a fost adăugat la lista {{GENDER:$1|dumneavoastră}} de pagini urmărite.",
 	"flow-topic-notification-subscribe-description": "{{GENDER:$1|Veți}} primi notificări despre toate activitățile din acest subiect.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|V-ați}} abonat la acest afișier de discuții!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Veți}} primi o notificare când va fi creat un nou subiect în acest afișier.",

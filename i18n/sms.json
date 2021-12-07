@@ -4,10 +4,20 @@
 			"Yupik"
 		]
 	},
+	"flow-show-change": "Čuäʹjet muttsid",
 	"flow-history-action-hide-post": "čiõǥǥ",
 	"flow-post-action-view": "Põõšši liŋkk",
 	"flow-post-action-hide-post": "Čiõǥǥ",
+	"flow-post-action-edit-post": "Muuʹtt",
+	"flow-post-action-edit-post-submit": "Ruõkk muttsid",
+	"flow-post-action-undo-moderation": "Kååʹmet",
 	"flow-topic-action-view": "Põõšši liŋkk",
+	"flow-topic-action-watchlist": "Valvvâmlistt",
+	"flow-topic-action-undo-moderation": "Kååʹmet",
 	"flow-moderation-confirm-hide-post": "Čiõǥǥ",
-	"flow-moderation-confirm-hide-topic": "Čiõǥǥ"
+	"flow-moderation-confirm-hide-topic": "Čiõǥǥ",
+	"flow-load-more": "Laadd lââʹzz",
+	"flow-undo": "kååʹmet",
+	"flow-ve-mention-placeholder": "Õõʹnninõmm",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Čuäʹjet}} õõʹnni saǥstõõllâmsseeid"
 }

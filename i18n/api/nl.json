@@ -3,13 +3,24 @@
 		"authors": [
 			"Mainframe98",
 			"Robin van der Vliet",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"McDutchie",
+			"Romaine"
 		]
 	},
 	"apihelp-flow-example-1": "Bewerk de beschrijving van \"[[Talk:Sandbox]]\"",
 	"apihelp-flow+edit-header-example-1": "De beschrijving van [[Talk:Sandbox]] bewerken",
 	"apihelp-flow+edit-post-param-postId": "Berichtnummer.",
 	"apihelp-flow+edit-post-param-content": "Inhoud voor bericht",
-	"apihelp-flow+edit-title-param-content": "Inhoud voor titel.",
-	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] sluiten"
+	"apihelp-flow+edit-title-param-content": "Inhoud voor titel, in hetzelfde formaat dat geldt voor bewerkingssamenvattingen (onderwerp-titel-wikitekst).",
+	"apihelp-flow+lock-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] sluiten",
+	"apihelp-flow+moderate-post-param-reason": "Reden voor moderatie:",
+	"apihelp-flow+moderate-topic-param-reason": "Reden voor moderatie.",
+	"apihelp-flow+reply-description": "Reageert op een bericht.",
+	"apihelp-flow+reply-summary": "Reageert op een bericht.",
+	"apihelp-flow+reply-param-content": "Inhoud voor nieuw bericht.",
+	"apihelp-flow+view-post-description": "Bericht bekijken.",
+	"apihelp-flow+view-post-summary": "Bericht bekijken.",
+	"apihelp-flow+view-topic-description": "Onderwerp bekijken.",
+	"apihelp-flow+view-topic-summary": "Onderwerp bekijken."
 }

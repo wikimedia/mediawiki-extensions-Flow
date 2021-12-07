@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"apihelp-flow-example-1": "Cancia la discrizzioni di \"[[Talk:Sandbox]]\"",
+	"apihelp-flow+edit-header-param-content": "Cuntinutu pâ discrizzioni.",
+	"apihelp-flow+edit-header-example-1": "Cancia la discrizzioni di [[Talk:Sandbox]]",
+	"apihelp-flow+edit-post-description": "Cancia lu cuntinutu d'un missaggiu.",
+	"apihelp-flow+edit-post-summary": "Cancia lu cuntinutu d'un missaggiu.",
+	"apihelp-flow+edit-post-param-postId": "ID missaggiu.",
+	"apihelp-flow+edit-post-param-content": "Cuntinutu pû missaggiu.",
+	"apihelp-flow+edit-post-example-1": "Cancia n'argumentu n [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+edit-title-description": "Cancia lu tìtulu di n'argumentu.",
+	"apihelp-flow+edit-title-summary": "Cancia lu tìtulu di n'argumentu.",
+	"apihelp-flow+edit-title-example-1": "Cancia lu tìtulu di [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+edit-topic-summary-description": "Cancia lu cuntinutu dû riassuntu di n'argumentu.",
+	"apihelp-flow+edit-topic-summary-summary": "Cancia lu cuntinutu dû riassuntu di n'argumentu.",
+	"apihelp-flow+edit-topic-summary-param-summary": "Cuntinutu pû riassuntu",
+	"apihelp-flow+edit-topic-summary-example-1": "Cancia lu riassuntu di [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+moderate-post-example-1": "Cancella nu missagiu ntu l'argumentu [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+moderate-topic-example-1": "Cancella l'argumentu [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+new-topic-param-topic": "Testu pû tìtulu novu di l'argumentu.",
+	"apihelp-flow+view-post-description": "Talìa nu missaggiu.",
+	"apihelp-flow+view-post-summary": "Talìa nu missaggiu.",
+	"apihelp-flow+view-post-param-postId": "ID dû missaggiu da taliari.",
+	"apihelp-flow+view-topic-description": "Talìa n'argumentu.",
+	"apihelp-flow+view-topic-summary": "Talìa n'argumentu.",
+	"apihelp-flow+view-topic-example-1": "Talìa [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+view-topic-history-description": "Talìa la crunuluggìa dî canciamenti di n'argumentu.",
+	"apihelp-flow+view-topic-history-summary": "Talìa la crunuluggìa dî canciamenti di n'argumentu.",
+	"apihelp-flow+view-topic-summary-description": "Talìa lu riassuntu di n'argumentu.",
+	"apihelp-flow+view-topic-summary-summary": "Talìa lu riassuntu di n'argumentu.",
+	"apihelp-flow+view-topiclist-description": "Talìa n'elencu d'argumenti.",
+	"apihelp-flow+view-topiclist-summary": "Talìa n'elencu d'argumenti.",
+	"apihelp-flow+view-topiclist-example-1": "Elencu argumenti supra [[Talk:Sandbox]]"
+}

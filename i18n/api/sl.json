@@ -104,7 +104,7 @@
 	"apihelp-flow-parsoid-utils-param-content": "Vsebina za pretvorbo.",
 	"apihelp-flow-parsoid-utils-param-title": "Naslov strani. Ni ga mogoče uporabiti hkrati z $1pageid.",
 	"apihelp-flow-parsoid-utils-param-pageid": "ID strani. Ni ga mogoče uporabiti hkrati z $1title.",
-	"apihelp-flow-parsoid-utils-example-1": "Pretvori wikibesedilo <nowiki>'''lorem''' ''blah''</nowiki> v HTML",
+	"apihelp-flow-parsoid-utils-example-1": "Pretvori vikibesedilo <nowiki>'''lorem''' ''blah''</nowiki> v HTML",
 	"apihelp-query+flowinfo-description": "Prikaži osnovne informacije Strukturiranih pogovorov o strani.",
 	"apihelp-query+flowinfo-summary": "Prikaži osnovne informacije Strukturiranih pogovorov o strani.",
 	"apihelp-flow+undo-edit-header-param-startId": "ID redakcije za začetek razveljavitve na.",

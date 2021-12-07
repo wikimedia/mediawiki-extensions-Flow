@@ -36,6 +36,7 @@
 	"flow-topic-action-summarize-topic": "အကျဉ်းချုပ်ရန်",
 	"flow-topic-action-undo-moderation": "နောက်ပြန် ပြန်ပြင်ရန်",
 	"flow-error-default": "အမှားတစ်ခု ဖြစ်ပွားခဲ့ပါသည်",
+	"flow-error-process-data": "သင်၏တောင်းဆိုမှုတွင် ဒေတာတွက်ချက်နေစဉ် အမှားတစ်ခုဖြစ်ပွားခဲ့ပါသည်။",
 	"flow-edit-header-submit": "ဖော်ပြချက်ကို သိမ်းရန်",
 	"flow-edit-title-submit": "ခေါင်းစဉ် ပြောင်းရန်",
 	"flow-board-history": "\"$1\" ရာဇဝင်",

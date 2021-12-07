@@ -7,7 +7,8 @@
 			"He7d3r",
 			"Imperadeiro90",
 			"Lijealso",
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"McDutchie"
 		]
 	},
 	"apihelp-flow-description": "Permite que sejam realizadas ações nas páginas de discussões estruturadas.",
@@ -66,8 +67,8 @@
 	"apihelp-flow+new-topic-param-content": "Conteúdo para a resposta inicial do tópico.",
 	"apihelp-flow+new-topic-param-format": "Formato da resposta inicial do tópico novo (wikitext|html).",
 	"apihelp-flow+new-topic-example-1": "Criar um novo tópico em [[Talk:Sandbox]]",
-	"apihelp-flow+reply-description": "Respostas a uma mensagem.",
-	"apihelp-flow+reply-summary": "Respostas a uma mensagem.",
+	"apihelp-flow+reply-description": "Responde a uma mensagem.",
+	"apihelp-flow+reply-summary": "Responde a uma mensagem.",
 	"apihelp-flow+reply-param-replyTo": "Identificador da mensagem que será respondida.",
 	"apihelp-flow+reply-param-content": "Conteúdo para nova mensagem.",
 	"apihelp-flow+reply-param-format": "Formato da mensagem nova (wikitext|html)",

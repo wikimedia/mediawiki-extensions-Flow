@@ -393,7 +393,7 @@
 	"right-flow-lock": "rendezettbeszélgetés-témák megjelölése megoldottként",
 	"right-flow-delete": "rendezettbeszélgés-témák és -hozzászólások törlése",
 	"right-flow-edit-post": "más felhasználók rendezettbeszélgetés-hozzászólásainak szerkesztése",
-	"right-flow-suppress": "Strukturált beszélgetések változatainak elrejtése",
+	"right-flow-suppress": "Strukturált beszélgetések témáinak és hozzászólásainak elrejtése",
 	"flow-terms-of-use-new-topic": "A „{{int:flow-newtopic-save}}” gombra kattintással elfogadod ezen wiki felhasználási feltételeit.",
 	"flow-terms-of-use-reply": "A „{{int:flow-reply-link}}” gombra kattintással elfogadod ezen wiki felhasználási feltételeit.",
 	"flow-terms-of-use-edit": "A változtatásaid elmentésével egyetértesz ezen wiki felhasználási feltételeivel.",
