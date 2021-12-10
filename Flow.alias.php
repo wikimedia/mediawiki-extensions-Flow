@@ -120,6 +120,6 @@ $specialPageAliases['zh-hans'] = [
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = [
-	'StructuredDiscussions' => [ '結構式討論', '流動量' ],
-	'EnableStructuredDiscussions' => [ '啟用結構式討論', '啟用Flow', '啟用流動量' ],
+	'StructuredDiscussions' => [ '結構式討論' ],
+	'EnableStructuredDiscussions' => [ '啟用結構式討論', '啟用Flow' ],
 ];
