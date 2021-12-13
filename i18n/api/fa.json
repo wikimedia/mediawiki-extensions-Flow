@@ -5,7 +5,8 @@
 			"Huji",
 			"Ladsgroup",
 			"Mjbmr",
-			"Quiddity"
+			"Quiddity",
+			"Jeeputer"
 		]
 	},
 	"apihelp-flow-param-page": "صفحهٔ موضوع عمل.",
@@ -52,5 +53,6 @@
 	"apihelp-flow+view-topic-summary-summary": "نمایش خلاصه یک مبحث",
 	"apihelp-flow+view-topiclist-description": "مشاهده فهرستی از مبحث‌ها.",
 	"apihelp-flow+view-topiclist-param-limit": "تعداد مبحث‌ها برای گرفتن.",
+	"apihelp-flow-parsoid-utils-description": "تبدیل متن بین ویکی‌متن و اچ‌تی‌ام‌ال.",
 	"apihelp-flow-parsoid-utils-example-1": "تبدیل ویکی‌متن <nowiki>'''فلان''' و ''بهمان''</nowiki> به HTML"
 }

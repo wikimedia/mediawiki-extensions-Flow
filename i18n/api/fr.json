@@ -14,7 +14,8 @@
 			"Trizek",
 			"Urhixidur",
 			"Wladek92",
-			"Zarisi"
+			"Zarisi",
+			"Verdy p"
 		]
 	},
 	"apihelp-flow-description": "Permet d’effectuer des actions sur les pages de Discussions Structurées.",
@@ -89,11 +90,11 @@
 	"apihelp-flow+view-post-param-postId": "ID du message à voir.",
 	"apihelp-flow+view-post-param-format": "Format dans lequel renvoyer le contenu.",
 	"apihelp-flow+view-post-example-1": "Récupérer le contenu du message sur [[Topic:S2tycnas4hcucw8w]] en wikitexte",
-	"apihelp-flow+view-post-history-description": "Afficher l’historique des révisions d’une note.",
-	"apihelp-flow+view-post-history-summary": "Afficher l’historique des révisions d’une note.",
+	"apihelp-flow+view-post-history-description": "Afficher l’historique des révisions d’un message.",
+	"apihelp-flow+view-post-history-summary": "Afficher l’historique des révisions d’un message.",
 	"apihelp-flow+view-post-history-param-postId": "ID du message pour lequel afficher l’historique de révisions.",
 	"apihelp-flow+view-post-history-param-format": "Format dans lequel renvoyer le contenu.",
-	"apihelp-flow+view-post-history-example-1": "Récupérer les révisions d’une note sur [[Topic:S2tycnas4hcucw8w]] en wikitexte",
+	"apihelp-flow+view-post-history-example-1": "Récupérer les révisions d’un message sur [[Topic:S2tycnas4hcucw8w]] en wikitexte",
 	"apihelp-flow+view-topic-description": "Afficher un sujet.",
 	"apihelp-flow+view-topic-summary": "Afficher un sujet.",
 	"apihelp-flow+view-topic-param-format": "Format dans lequel renvoyer le contenu.",
@@ -146,6 +147,6 @@
 	"apihelp-flow+undo-edit-topic-summary-param-startId": "Id de révision auquel commencer l’annulation.",
 	"apihelp-flow+undo-edit-topic-summary-param-endId": "Id de révision auquel arrêter l’annulation.",
 	"apihelp-flow+undo-edit-topic-summary-example-1": "Récupérer les informations sur l’annulation de la modification d’un résumé de sujet dans un sujet spécifique",
-	"apierror-flow-safeallowcreationfailed": "La page fournie n’a pas Discussions Structurées d’activé, et safeAllowCreation a échoué avec : $1",
+	"apierror-flow-safeallowcreationfailed": "La page fournie n’a pas de Discussions structurées activées et safeAllowCreation a échoué avec : $1",
 	"apierror-flow-notenabled": "La page fournie n’a pas Discussions Structurées d’activé."
 }

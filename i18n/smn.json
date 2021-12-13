@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Seipinne",
+			"Yupik"
+		]
+	},
+	"flow-hide-header-content": "{{GENDER:$1|Čiehâm}} $2",
+	"flow-history-action-hide-post": "čievâ",
+	"flow-post-action-hide-post": "Čievâ",
+	"flow-error-protected-unknown-reason": "Tubdâmettum",
+	"flow-error-not-allowed-hide": "Taat fáddá lii čiehhum.",
+	"flow-error-not-allowed-reply-to-hide-topic": "Jieh pyevti västidiđ tanen ko taat fáddá lii čiehhum.",
+	"flow-error-not-allowed-hide-extract": "Taat fáddá lii čiehhum. Vyellin uáináh čiehâdemloki, mast láá lasetiäđuh.",
+	"flow-comment-hidden": "Čiehhum komment",
+	"flow-moderation-confirm-hide-post": "Čievâ",
+	"flow-moderation-confirm-hide-topic": "Čievâ",
+	"flow-moderation-confirmation-hide-post": "Viestâ čiehui.\n{{GENDER:$2|Kuorâttâl}} macâttâs adelem kevttei $1 taan viestâst.",
+	"flow-moderation-confirmation-hide-topic": "Taat fáddá lii čiehhum.",
+	"flow-load-more": "Luođii lase"
+}

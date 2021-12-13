@@ -4,7 +4,9 @@
 			"BRUTE",
 			"David1010",
 			"MIKHEIL",
-			"Otogi"
+			"Otogi",
+			"Გიო ოქრო",
+			"Იო ოქრო"
 		]
 	},
 	"enablestructureddiscussions": "ნაკადის ჩართვა",
@@ -28,6 +30,7 @@
 	"flow-newtopic-save": "თემის ჩამატება",
 	"flow-newtopic-save-anonymously": "თემის დამატება ანონიმურად",
 	"flow-newtopic-start-placeholder": "ახალი თემის სტარტი",
+	"flow-reply-topic-title-placeholder": "უპასუხეთ „$1“-ს",
 	"flow-reply-link": "{{GENDER:$1|პასუხი}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|მადლობა}}}}",
 	"flow-thank-link-title": "შეტყობინების ავტორისთვის საჯარო {{GENDER:$1|{{GENDER:$2|მადლობის}}}} გადახდა",
@@ -62,6 +65,7 @@
 	"flow-topic-action-unlock-topic": "თემის გახსნა",
 	"flow-topic-action-summarize-topic": "შეჯამება",
 	"flow-topic-action-resummarize-topic": "თემის ჯამის რედაქტირება",
+	"flow-topic-action-update-topic-summary": "რეზიუმის განახლება",
 	"flow-topic-action-suppress-topic": "აკრძალული თემა",
 	"flow-topic-action-unhide-topic": "თემის დამალვა",
 	"flow-topic-action-undelete-topic": "თემის წაშლა",

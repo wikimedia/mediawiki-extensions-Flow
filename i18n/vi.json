@@ -13,7 +13,8 @@
 			"Phjtieudoc",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
-			"Withoutaname"
+			"Withoutaname",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"enablestructureddiscussions": "Kích hoạt Thảo luận Cấu trúc",
@@ -76,7 +77,7 @@
 	"flow-suppress-post-content": "Bài đăng này đã bị {{GENDER:$1}}xóa hẳn bởi $1 ([$2 lịch sử])",
 	"flow-suppress-title-content": "Đề tài này đã bị {{GENDER:$1}}xóa hẳn bởi $1",
 	"flow-suppress-header-content": "{{GENDER:$1}}Xóa hẳn bởi $2",
-	"flow-suppress-usertext": "<em>Tên người dùng bị xóa hẳn</em>",
+	"flow-suppress-usertext": "<em>Tên người dùng bị hủy</em>",
 	"flow-post-actions": "Tác vụ",
 	"flow-topic-actions": "Tác vụ",
 	"flow-cancel": "Hủy bỏ",
@@ -461,8 +462,8 @@
 	"flow-importer-wt-converted-template-content": "Thảo luận cũ được lưu trữ tại <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> vào {{#time: \"ngày\" j M \"năm\" Y | {{{date}}}}}.",
 	"flow-importer-wt-converted-archive-template": "Lưu trữ trang thảo luận mã wiki chuyển đổi",
 	"flow-importer-wt-converted-archive-template-content": "Trang này là một bản lưu trữ. <strong>Xin đừng sửa đổi nội dung của trang này.</strong> Xin hãy đưa các ý kiến mới vào [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|trang thảo luận hiện tại]].",
-	"flow-importer-lqt-suppressed-user-template": "Bài đăng LQT được nhập của người dùng bị xóa hẳn",
-	"flow-importer-lqt-suppressed-user-template-content": "Phiên bản này được nhập từ LiquidThreads trong khi tác giả là một người dùng đã bị xóa hẳn. Tác giả được đổi thành người dùng hiện tại.",
+	"flow-importer-lqt-suppressed-user-template": "Bài đăng LQT được nhập của người dùng bị hủy",
+	"flow-importer-lqt-suppressed-user-template-content": "Phiên bản được nhập từ LiquidThreads này có tác giả là một người dùng đã bị hủy. Tác giả của nó được đổi thành người dùng hiện tại.",
 	"flow-importer-lqt-different-author-signature-template": "Bài đăng LQT được nhập có người ký tên khác",
 	"flow-importer-lqt-different-author-signature-template-content": "<em>Bài này do [[User:{{{authorUser}}}|{{{authorUser}}}]] đăng nhưng có chữ ký của [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Đã sửa đổi",
@@ -501,7 +502,7 @@
 	"flow-mark-diff-patrolled-link-text": "Đánh dấu tuần tra",
 	"flow-mark-diff-patrolled-link-title": "Đánh dấu tuần tra",
 	"flow-talk-page-beta-feature-message": "Thảo luận Cấu trúc trên trang thảo luận cá nhân",
-	"flow-talk-page-beta-feature-description": "Kích hoạt một hệ thống thảo luận có cấu trúc mới trên trang thảo luận cá nhân của bạn. Tính năng Thảo luận Cấu trúc làm các trang thảo luận đơn giản hơn, với vị trí đăng bài và trả lời dễ thấy hơn, và nó tự động gửi thông báo cho những người tham gia cuộc thảo luận. Tính năng này không được kích hoạt mặc định; mỗi người phải tự kích hoạt cho mình.<br /><br />Các thảo luận đã tồn tại ở dạng mã wiki sẽ được lưu trữ lại. Nếu tắt tính năng này, bảng tin Thảo luận Cấu trúc sẽ được di chuyển đến một trang con và trang thảo luận cũ sẽ được khôi phục từ trang lưu trữ. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Tìm hiểu thêm về việc kích hoạt]].",
+	"flow-talk-page-beta-feature-description": "Kích hoạt một hệ thống thảo luận có cấu trúc mới trên trang thảo luận cá nhân của bạn. Tính năng Thảo luận Cấu trúc làm các trang thảo luận đơn giản hơn, với vị trí đăng bài và trả lời dễ thấy hơn, và nó tự động gửi thông báo cho những người tham gia cuộc thảo luận. Tính năng này không được kích hoạt mặc định; mỗi người phải tự kích hoạt cho mình.<br /><br />Các thảo luận đã tồn tại ở dạng mã wiki sẽ được lưu trữ lại. Nếu tắt tính năng này, bảng tin Thảo luận Cấu trúc sẽ được di chuyển đến một trang con và trang thảo luận cũ sẽ được phục hồi từ trang lưu trữ. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Tìm hiểu thêm về việc kích hoạt]].",
 	"flow-notification-link-text-enabled-on-talkpage": "Xem trang thảo luận cá nhân",
 	"flow-beta-feature-add-archive-template-edit-summary": "Đã gắn bản mẫu lưu trữ",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Đã gỡ bản mẫu lưu trữ",

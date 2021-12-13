@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abbas dhothar"
+		]
+	},
+	"flow-board-collapse-description": "ویروا لُکاؤ",
+	"flow-topic-moderated-reason-prefix": "وجہ:",
+	"flow-cancel": "رد کرو",
+	"flow-history-action-hide-post": "لُکاؤ",
+	"flow-post-action-hide-post": "لُکاؤ",
+	"flow-topic-action-hide-topic": "موضوع لُکاؤ",
+	"flow-error-title-too-long": "Topic titles are restricted to $1 {{PLURAL:$1|بائیٹ|بائیٹس}}.",
+	"flow-error-content-too-long": "The content is too large. Content after expansion is limited to $1 {{PLURAL:$1|بائیٹ|بائیٹس}}.",
+	"flow-moderation-confirm-hide-post": "لُکاؤ",
+	"flow-moderation-confirm-hide-topic": "لُکاؤ",
+	"flow-moderation-title-hide-topic": "موضوع لُکاؤ",
+	"flow-undo-latest-revision": "سجرا نسخہ"
+}

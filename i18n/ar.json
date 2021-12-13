@@ -15,7 +15,8 @@
 			"زكريا",
 			"علاء",
 			"محمد أحمد عبد الفتاح",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"Super ninja2"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -95,7 +96,7 @@
 	"flow-newtopic-save": "أضف موضوعا",
 	"flow-newtopic-save-anonymously": "إضافة موضوع كمجهول",
 	"flow-newtopic-start-placeholder": "أضف موضوعا جديدا",
-	"flow-newtopic-first-heading": "ابدأ موضوعًا جديدًا في $1",
+	"flow-newtopic-first-heading": "ابدأ موضوعا جديدا في $1",
 	"flow-summarize-topic-placeholder": "برجاء تلخيص النقاش",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|علّق|علّقت}} على \"$2\"",
 	"flow-reply-topic-title-placeholder": "رد على \"$1\"",
@@ -277,9 +278,9 @@
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 و{{PLURAL:$5|واحد آخر|$5 آخرون|100=99+ آخرون}} {{GENDER:$1|رد}} على <strong>$3</strong>.",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 لقد قام {{GENDER:$1|بتعديل}} <span class=\"plainlinks\">[$5 منشورك]</span> على [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 و{{PLURAL:$5|واحد آخر|$5 آخرون|100=99+ آخرون}} {{GENDER:$1|عدّل}}  <span class=\"plainlinks\">[$4 منشور]</span> في\"$2\" على\"$3\".",
-	"notification-header-flow-new-topic-v2": "أنشئ موضوع جديد في <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
+	"notification-header-flow-new-topic-v2": "أنشأ موضوع جديد في <strong>$3</strong>: <bdi>\"<strong>$4</strong>\"</bdi>.",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|موضوع واحد جديد|$1 مواضيع جديدة|100=99+ مواضيع جديدة}} على <strong>$3</strong>.",
-	"notification-header-flow-new-topic-user-talk": "أنشئ موضوع جديد في <strong>صفحة نقاشك</strong>: \"<strong>$4</strong>\".",
+	"notification-header-flow-new-topic-user-talk": "أنشأ موضوع جديد في <strong>صفحة نقاشك</strong>: \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|رسالة جديدة|رسالتان جديدتان|$1 رسائل جديدة|$1 رسالة جديدة}} في '''صفحة نقاشك'''.",
 	"notification-header-flow-post-reply": "$1 {{GENDER:$2|رد|ردت}} في \"<strong>$4</strong>\".",
 	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|رد واحد جديد|$1 ردود جديدة|100=99+ ردود جديدة}} in \"<strong>$3</strong>\".",

@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"AryanSogd",
-			"ToJack"
+			"ToJack",
+			"DannyS712"
 		]
 	},
-	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{ГЕНДЕР:$2|пок}} мавзӯъ оид ба [[$3]]",
+	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|пок}} мавзӯъ оид ба [[$3]]",
 	"flow-show-change": "Намоиши тағйирот",
 	"flow-thank-link": "Ташаккур",
 	"flow-ve-mention-placeholder": "Номи корбар"

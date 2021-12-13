@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reda Benkhadra"
+		]
+	},
+	"notification-header-flow-mention-post": "{{GENDER:$2|نغز|نغزات}} $1 {{GENDER:$4|ليك}} ف \"<strong>$5</strong>\".",
+	"notification-header-flow-mention-post-summary": "{{GENDER:$2|نغز|نغزات}} $1 {{GENDER:$4|ليك}} ف  \"<strong>$5</strong>\"."
+}

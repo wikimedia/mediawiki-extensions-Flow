@@ -9,7 +9,8 @@
 			"Prevodim",
 			"Rancher",
 			"Zoranzoki21",
-			"Сербијана"
+			"Сербијана",
+			"Kizule"
 		]
 	},
 	"enablestructureddiscussions": "Омогућавање додатка Структуриране дискусије",
@@ -18,7 +19,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Више не {{GENDER:$3|надгледате}} страницу „$1”",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "У било ком тренутку {{GENDER:$3|можете}} да надгледате [$2 ову тему].",
 	"flow-desc": "Систем за дискусију",
-	"flow-talk-taken-over-comment": "/* Ова страница је конвертована у табелу структираних дискусија */",
+	"flow-talk-taken-over-comment": "/* Ова страница је претворена у таблу структираних разговора */",
 	"log-name-flow": "Дневник активности структурираних дискусија",
 	"logentry-delete-flow-delete-post": "$1 је {{GENDER:$2|избрисао|избрисала}} [$4 објаву] на тему „[[$3|$5]]” на [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 је {{GENDER:$2|избрисао|избрисала}} објаву на тему [[$3]].",
@@ -144,9 +145,9 @@
 	"notification-header-flow-summary-edited-first": "Тема „<strong>$1</strong>” је резимирана.",
 	"notification-header-flow-summary-edited-user-talk": "Резиме теме „<strong>$1</strong>” је ажуриран на <strong>{{GENDER:$2|вашој}} страници за разговор</strong>.",
 	"notification-header-flow-summary-edited-first-user-talk": "Тема „<strong>$1</strong>” је резимирана на <strong>{{GENDER:$2|вашој}} страници за разговор</strong>.",
-	"notification-header-flow-mention-post": "$1 Вас је {{GENDER:$2|поменуо|поменула}} {{GENDER:$4|у}} „<strong>$5</strong>“.",
-	"notification-header-flow-mention-header": "$1 {{GENDER:$4|вас}} је {{GENDER:$2|поменуо|поменула}} у опису странице <strong>$3</strong>.",
-	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|вас}} је {{GENDER:$2|поменуо|поменула}} у теми „<strong>$5</strong>”.",
+	"notification-header-flow-mention-post": "$1 Вас је {{GENDER:$2|поменуо|поменула|поменуо/-ла}} {{GENDER:$4|у}} „<strong>$5</strong>“.",
+	"notification-header-flow-mention-header": "$1 {{GENDER:$4|Вас}} је {{GENDER:$2|поменуо|поменула|поменуо/-ла}} у опису странице <strong>$3</strong>.",
+	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$4|Вас}} је {{GENDER:$2|поменуо|поменула|поменуо/-ла}} у теми „<strong>$5</strong>”.",
 	"notification-header-flow-enabled-on-talkpage": "Нов систем за дискусију је омогућен на <strong>{{GENDER:$2|вашој}} страници за разговор</strong>.",
 	"notification-header-flow-description-edited": "Опис странице <strong>$1</strong> је уређен.",
 	"notification-header-flow-description-edited-user-talk": "Опис је уређен на <strong>{{GENDER:$2|вашој}} страници за разговор</strong>.",
@@ -189,7 +190,7 @@
 	"flow-terms-of-use-lock-topic": "Кликом на „{{int:flow-topic-action-lock-topic}}“, прихватате услове коришћења овог викија.",
 	"flow-terms-of-use-unlock-topic": "Кликом на „{{int:flow-topic-action-unlock-topic}}“, прихватате услове коришћења овог викија.",
 	"structureddiscussions": "Структуриране дискусије",
-	"flow-special-type": "Тип",
+	"flow-special-type": "Врста",
 	"flow-special-enableflow-page": "Страница на којој ће се омогућити Структуриране дискусије",
 	"flow-previous-diff": "← Старија измена",
 	"flow-next-diff": "Новија измена →",
@@ -209,9 +210,9 @@
 	"flow-dialog-cancelconfirm-title": "Јесте ли сигурни?",
 	"flow-dialog-cancelconfirm-message": "{{GENDER:|Желите}} ли заиста да откажете без претходног чувања измене?",
 	"flow-dialog-cancelconfirm-keep": "Настави са уређивањем",
-	"flow-dialog-cancelconfirm-discard": "Одбаци промене",
+	"flow-dialog-cancelconfirm-discard": "Одбаци измене",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро дошли}} на {{GENDER:$1|Вашу}} нову страницу за разговор",
-	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вас други уредници могу контактирати. Са додатком „Структурирана дискусија”, једноставније је направити нову тему и пратити конверзацију.",
+	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница за разговор је место где вам се други уредници могу обратити. Структурирани разговори омогућавају лакше започињање нових тема и праћење тока разговора.",
 	"flow-guidedtour-optin-feedback": "Дајте нам {{GENDER:$1|Ваше}} мишљење!",
 	"flow-preference-visualeditor": "Омогући визуелни уређивач и нови режим викитеста у структурираним дискусијама."
 }

@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joanmp17"
+		]
+	},
+	"flow-topic-moderated-reason-prefix": "ምኽንያት፦",
+	"flow-post-actions": "ተግባራት",
+	"flow-topic-actions": "ተግባራት",
+	"flow-cancel": "ኣትርፍ",
+	"flow-skip-summary": "ዝለል",
+	"flow-history-action-restore-post": "ናብ ዝነበሮ ምለስ",
+	"flow-post-action-edit-post-submit-publish": "ለውጥታት ኣሕትም",
+	"flow-post-action-restore-post": "ናብ ዝነበሮ ምለስ",
+	"flow-history-day": "ሎሚ",
+	"flow-dialog-cancelconfirm-discard": "ለውጥታት ኣወግድ"
+}

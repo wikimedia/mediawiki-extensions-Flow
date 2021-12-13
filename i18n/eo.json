@@ -9,7 +9,8 @@
 			"Psychoslave",
 			"Robin van der Vliet",
 			"Surfo",
-			"Yekrats"
+			"Yekrats",
+			"KuboF"
 		]
 	},
 	"enablestructureddiscussions": "Ŝalti Flow",
@@ -191,7 +192,7 @@
 	"flow-notification-edit-email-batch-body": "$1 {{GENDER:$1|edited}} redaktis afiŝon en \"$2\" ĉe $3",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|kreis}} novan temon ĉe $2",
 	"echo-category-title-flow-discussion": "Strukturita Diskuto",
-	"echo-pref-tooltip-flow-discussion": "Sciigi al mi kiam rilataj al mi agoj okazas en Flua diskuto.",
+	"echo-pref-tooltip-flow-discussion": "Sciigi min pri aktivado en temoj aŭ en paĝoj, kiujn mi sekvas.",
 	"flow-link-post": "afiŝo",
 	"flow-link-topic": "temo",
 	"flow-link-history": "historio",
@@ -274,6 +275,7 @@
 	"flow-ve-mention-inspector-remove-label": "Forigi",
 	"flow-ve-mention-placeholder": "Uzantnomo",
 	"flow-ve-mention-tool-title": "Mencii uzanton",
+	"flow-ve-mention-template-title": "FlowMention",
 	"flow-wikitext-editor-help": "Vikiteksto $1.",
 	"flow-wikitext-editor-help-preview-the-result": "antaŭvidi la rezulton",
 	"flow-mark-revision-patrolled-link-text": "Marki ĉi tiun paĝon kiel pripatrolitan",
@@ -281,7 +283,7 @@
 	"flow-mark-diff-patrolled-link-text": "Marki kiel pripatrolitan",
 	"flow-mark-diff-patrolled-link-title": "Marki kiel pripatrolitan",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Vidi}} diskutpaĝon de uzanto",
-	"flow-dialog-cancelconfirm-title": "Ĉu vi certas?",
+	"flow-dialog-cancelconfirm-title": "Ĉu {{GENDER:|vi}} certas?",
 	"flow-dialog-cancelconfirm-keep": "Redakti plu",
 	"flow-dialog-cancelconfirm-discard": "Ignori ŝanĝojn",
 	"flow-action-not-page": "Objekto de paĝo estas ano de malkongrua klaso"

@@ -5,9 +5,18 @@
 			"Kareyac"
 		]
 	},
+	"flow-post-actions": "Գործողութիւններ",
+	"flow-topic-actions": "Գործողութիւններ",
 	"flow-cancel": "Չեղարկել",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Շնորհակալութիւն}}}}",
 	"flow-post-action-view": "Մշտական յղում",
+	"flow-post-action-edit-post": "Խմբագրել",
+	"flow-post-action-undo-moderation": "Յետարկել",
 	"flow-topic-action-view": "Մշտական յղում",
-	"flow-undo-latest-revision": "Վերջին տարբերակ"
+	"flow-topic-action-watchlist": "Հսկողութեան ցանկ",
+	"flow-topic-action-undo-moderation": "Յետարկել",
+	"flow-error-protected-unknown-reason": "Անյայտ",
+	"flow-undo": "յետարկել",
+	"flow-undo-latest-revision": "Վերջին տարբերակ",
+	"flow-mark-revision-patrolled-link-title": "Էջը նշել իբրեւ ստուգուած էջ"
 }

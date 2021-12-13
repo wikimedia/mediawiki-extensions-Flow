@@ -2,9 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Yahya"
 		]
 	},
+	"apihelp-flow+edit-header-description": "একটি বোর্ড বিবরণ সম্পাদনা করুন।",
+	"apihelp-flow+edit-header-summary": "একটি বোর্ড বিবরণ সম্পাদনা করুন।",
+	"apihelp-flow+edit-post-param-postId": "পোস্ট আইডি।",
+	"apihelp-flow+reply-description": "একটি পোস্টের উত্তরসমূহ।",
+	"apihelp-flow+reply-summary": "একটি পোস্টের উত্তরসমূহ।",
+	"apihelp-flow+view-post-description": "একটি পোস্ট দেখুন।",
+	"apihelp-flow+view-post-summary": "একটি পোস্ট দেখুন।",
+	"apihelp-flow+view-topic-description": "একটি প্রসঙ্গ দেখুন।",
 	"apihelp-flow+view-topic-summary": "একটি প্রসঙ্গ দেখুন।",
 	"apihelp-flow+view-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] দেখুন"
 }

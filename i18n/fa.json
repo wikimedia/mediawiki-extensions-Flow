@@ -26,7 +26,8 @@
 			"Reza1615",
 			"Rtemis",
 			"Saeidpourbabak",
-			"درفش کاویانی"
+			"درفش کاویانی",
+			"Jeeputer"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -320,8 +321,8 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 و {{PLURAL:$3|یک نفر دیگر|$3نفر دیگر|100=بیش از ۹۹ نفر دیگر}} توضیحات $2 را {{GENDER:$1|ویرایش کردند}}",
 	"notification-header-flow-topic-resolved": "مبحث «<strong>$1</strong>» حل شد.",
 	"notification-header-flow-topic-reopened": "مبحث «<strong>$1</strong>» بازگشایی شد.",
-	"notification-header-flow-topic-resolved-user-talk": "مبحث «<strong>$1</strong>» در <strong>صفحهٔ بحث شما</strong> حل شد.",
-	"notification-header-flow-topic-reopened-user-talk": "مبحث «<strong>$1</strong>» روی <strong>صفحهٔ بحث شما</strong> بازگشایی شد.",
+	"notification-header-flow-topic-resolved-user-talk": "مبحث «<strong>$1</strong>» در <strong>صفحهٔ بحث {{GENDER:$2|شما}}</strong> حل شد.",
+	"notification-header-flow-topic-reopened-user-talk": "مبحث «<strong>$1</strong>» در <strong>صفحهٔ بحث {{GENDER:$2|شما}}</strong> بازگشایی شد.",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 یک مبحث جدید در <strong>$3</strong> {{GENDER:$1|ایجاد کرد}}.",
 	"flow-notification-newtopic-bundle": "{{PLURAL:$1|یک مبحث جدید|$1 مبحث جدید|100=بیش از ۹۹ مبحث جدید}} در <strong><span class=\"plainlinks\">[$3 $2]</span></strong>",
 	"flow-notification-link-text-view-post": "نمایش ارسال",
@@ -411,7 +412,7 @@
 	"right-flow-lock": "علامت‌گذاری مبحث‌های بحث‌های ساختارمند به عنوان برطرف‌شده",
 	"right-flow-delete": "حذف مبحث‌ها و ارسال‌های بحث‌های ساختارمند",
 	"right-flow-edit-post": "ویرایش ارسال‌های سایر کاربران در بحث‌های ساختارمند",
-	"right-flow-suppress": "فرونشانی نسخه‌های بحث‌های ساختارمند",
+	"right-flow-suppress": "فرونشانی مبحث‌ها و پست‌ها بحث‌های ساختارمند",
 	"flow-terms-of-use-new-topic": "با کلیک کردن \"{{int:flow-newtopic-save}}\"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
 	"flow-terms-of-use-reply": "با کلیک کردن \"{{int:flow-reply-link}}\"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
 	"flow-terms-of-use-edit": "با ذخیرهٔ تغییرات‌تان، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.",
@@ -532,5 +533,5 @@
 	"flow-guidedtour-optin-feedback": "به ما بازخورد {{GENDER:$1|دهید}}!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|شما}} می‌توانید برای اطلاعات بیشتر، ارائهٔ بازخورد، یا غیرفعال کردن سامانه در هر زمان به بخش ویژگی‌های آزمایشی مراجعه کنید.",
 	"flow-action-not-page": "شیء صفحه نمونه‌ای از کلاس اشتباه است",
-	"flow-preference-visualeditor": "ویرایشگر دیداری و سبک جدید ویکی‌متن در بحث‌های ساخت‌یافته را فعال کنید"
+	"flow-preference-visualeditor": "فعال‌سازی ویرایشگر دیدادی و حالت جدید ویکی‌متن در بحث‌های ساختارمند"
 }

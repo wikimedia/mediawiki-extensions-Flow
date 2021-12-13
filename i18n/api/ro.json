@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie",
+			"NGC 54",
+			"Strainu"
+		]
+	},
+	"apihelp-flow+edit-title-description": "Editează titlul unui subiect.",
+	"apihelp-flow+edit-title-summary": "Editează titlul unui subiect.",
+	"apihelp-flow+edit-topic-summary-param-format": "Formatul rezumatului (wikitext|html)",
+	"apihelp-flow+moderate-topic-param-reason": "Motiv pentru moderare.",
+	"apihelp-flow+moderate-topic-example-1": "Șterge subiectul [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+new-topic-param-topic": "Text pentru titlul noului subiect.",
+	"apihelp-flow+reply-description": "Răspunde la un mesaj.",
+	"apihelp-flow+reply-summary": "Răspunde la un mesaj.",
+	"apihelp-flow+view-header-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-post-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-post-history-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-topic-description": "Vezi un subiect.",
+	"apihelp-flow+view-topic-summary": "Vezi un subiect.",
+	"apihelp-flow+view-topic-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-topic-example-1": "Vezi [[Topic:S2tycnas4hcucw8w]]",
+	"apihelp-flow+view-topic-history-description": "Vezi istoricul de revizii al unui subiect.",
+	"apihelp-flow+view-topic-history-summary": "Vezi istoricul de revizii al unui subiect.",
+	"apihelp-flow+view-topic-history-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-topic-summary-description": "Vezi un rezumat al unui subiect.",
+	"apihelp-flow+view-topic-summary-summary": "Vezi un rezumat al unui subiect.",
+	"apihelp-flow+view-topic-summary-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apihelp-flow+view-topiclist-description": "Vezi o listă de subiecte.",
+	"apihelp-flow+view-topiclist-summary": "Vezi o listă de subiecte.",
+	"apihelp-flow+view-topiclist-param-limit": "Numărul de subiecte de adus.",
+	"apihelp-flow+view-topiclist-param-format": "Formatul în care să se întoarcă conținutul.",
+	"apierror-flow-safeallowcreationfailed": "Pagina furnizată nu are activată extensia Discuții structurate și safeAllowCreation a eșuat cu: $1",
+	"apierror-flow-notenabled": "Pagina furnizată nu are activată extensia Discuții structurate."
+}

@@ -13,7 +13,8 @@
 			"Matiia",
 			"Matěj Suchánek",
 			"Sumbukompor",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Daud I.F. Argana"
 		]
 	},
 	"enablestructureddiscussions": "Aktifkan Pembicaraan Terstruktur",
@@ -111,6 +112,7 @@
 	"flow-history-action-lock-topic": "selesaikan",
 	"flow-history-action-unlock-topic": "buka kembali",
 	"flow-post-edited": "Kiriman {{GENDER:$1|disunting}} oleh $1 $2",
+	"flow-post-action-menu-accessibility-name": "Tampilkan menu tindakan kiriman",
 	"flow-post-action-view": "Pranala permanen",
 	"flow-post-action-post-history": "Riwayat",
 	"flow-post-action-suppress-post": "Beredel",
@@ -126,6 +128,7 @@
 	"flow-post-action-unhide-post": "Batal sembunyikan",
 	"flow-post-action-restore-post": "Pulihkan",
 	"flow-post-action-undo-moderation": "Urungkan",
+	"flow-topic-action-menu-accessibility-name": "Tampilkan menu tindakan topik",
 	"flow-topic-action-view": "Pranala permanen",
 	"flow-topic-action-watchlist": "Daftar pantauan",
 	"flow-topic-action-edit-title": "Sunting judul",
