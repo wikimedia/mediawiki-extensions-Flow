@@ -423,7 +423,7 @@
 	"flow-topic-html-title": "$1 - $2",
 	"flow-topic-count": "話題 ($1)",
 	"flow-load-more": "讀取更多",
-	"flow-no-more-fwd": "沒有更舊的話題",
+	"flow-no-more-fwd": "沒有更早的話題",
 	"flow-newest-topics": "最新話題",
 	"flow-recent-topics": "近期活躍的話題",
 	"flow-sorting-tooltip-newest": "{{GENDER:|您}}目前的排序方式為最新的話題優先，點選此處以使用更多的排序選項。",
