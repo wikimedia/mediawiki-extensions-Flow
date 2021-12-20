@@ -147,7 +147,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	}
 
 	public function isComparable( AbstractRevision $cur, AbstractRevision $prev ) {
-		if ( $cur->getRevisionType() == $prev->getRevisionType() ) {
+		if ( $cur->getRevisionType() === $prev->getRevisionType() ) {
 			return $cur->getCollectionId()->equals( $prev->getCollectionId() );
 		} else {
 			return false;

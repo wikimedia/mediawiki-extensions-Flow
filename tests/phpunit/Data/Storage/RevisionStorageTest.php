@@ -327,7 +327,7 @@ class RevisionStorageTest extends FlowTestCase {
 		if ( !isset( $options['LIMIT'] ) || $options['LIMIT'] != 1 ) {
 			$this->fail( 'Can only generate result set for LIMIT = 1' );
 		}
-		if ( count( $queries ) <= 2 && count( $queries ) != $count ) {
+		if ( count( $queries ) <= 2 && count( $queries ) !== $count ) {
 			$this->fail( '<= 2 queries always issues the same number of queries' );
 		}
 

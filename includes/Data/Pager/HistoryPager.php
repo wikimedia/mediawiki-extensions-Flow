@@ -36,7 +36,7 @@ class HistoryPager extends \ReverseChronologicalPager {
 		$this->id = $id;
 
 		$this->mDefaultLimit = MediaWikiServices::getInstance()->getUserOptionsLookup()->getIntOption( $this->getUser(), 'rclimit' );
-		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) == 'prev';
+		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) === 'prev';
 	}
 
 	public function doQuery() {

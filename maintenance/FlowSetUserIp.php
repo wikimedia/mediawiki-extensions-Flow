@@ -158,13 +158,13 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$continue = $row->rev_id;
 			$updates = [];
 
-			if ( $row->rev_user_id == 0 ) {
+			if ( $row->rev_user_id === 0 ) {
 				$updates['rev_user_ip'] = $row->rev_user_text;
 			}
-			if ( $row->rev_mod_user_id == 0 ) {
+			if ( $row->rev_mod_user_id === 0 ) {
 				$updates['rev_mod_user_ip'] = $row->rev_mod_user_text;
 			}
-			if ( $row->rev_edit_user_id == 0 ) {
+			if ( $row->rev_edit_user_id === 0 ) {
 				$updates['rev_edit_user_ip'] = $row->rev_edit_user_text;
 			}
 			if ( $updates ) {

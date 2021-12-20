@@ -637,7 +637,7 @@ class Controller {
 			}
 
 			// Don't notify the user who made the post
-			if ( $mentionedUser->getId() == $revision->getUserId() ) {
+			if ( $mentionedUser->getId() === $revision->getUserId() ) {
 				continue;
 			}
 
@@ -850,7 +850,7 @@ class Controller {
 	 * @return UUID|null Common root, or null on failure
 	 */
 	protected function getDeepestCommonRoot( array $rootPaths ) {
-		if ( count( $rootPaths ) == 0 ) {
+		if ( count( $rootPaths ) === 0 ) {
 			return null;
 		}
 
