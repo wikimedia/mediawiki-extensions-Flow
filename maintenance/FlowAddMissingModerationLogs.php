@@ -58,7 +58,7 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 		// Fetch rows that are a moderation action
 		$rowIterator->addConditions( [
 			'rev_change_type' => AbstractRevision::getModerationChangeTypes(),
-			'rev_user_wiki' => wfWikiID(),
+			'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 		] );
 
 		$start = $this->getOption( 'start' );

@@ -9,6 +9,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;
 use stdClass;
+use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -50,7 +51,7 @@ abstract class AbstractIterator implements Iterator {
 	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbr = $dbFactory->getDB( DB_REPLICA );
-		$this->conditions = [ 'workflow_wiki' => wfWikiID() ];
+		$this->conditions = [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ];
 	}
 
 	/**

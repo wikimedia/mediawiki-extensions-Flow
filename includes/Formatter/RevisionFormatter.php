@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserGroupManager;
 use Message;
 use User;
+use WikiMap;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -459,7 +460,7 @@ class RevisionFormatter {
 			'id' => $userId
 		];
 		// Only works for the local wiki
-		if ( wfWikiID() === $userWiki ) {
+		if ( WikiMap::getCurrentWikiId() === $userWiki ) {
 			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
 		}
 		if ( $res['name'] ) {

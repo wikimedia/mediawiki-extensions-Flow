@@ -65,6 +65,7 @@ use stdClass;
 use Title;
 use User;
 use WikiImporter;
+use WikiMap;
 use WikiPage;
 use XMLReader;
 
@@ -1622,7 +1623,7 @@ class Hooks {
 			DeferredUpdates::addCallableUpdate( static function () use ( $storage, $articleId ) {
 				/** @var Model\Workflow[] $workflows */
 				$workflows = $storage->find( 'Workflow', [
-					'workflow_wiki' => \wfWikiID(),
+					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_page_id' => $articleId,
 				] );
 				if ( !$workflows ) {
@@ -1946,7 +1947,7 @@ class Hooks {
 			array_merge( [
 				'tree_parent_id' => null,
 				'r.rev_type' => 'post',
-				'workflow_wiki' => \wfWikiID(),
+				'workflow_wiki' => WikiMap::getCurrentWikiId(),
 				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
 			], $userWhere ),
 			__METHOD__,

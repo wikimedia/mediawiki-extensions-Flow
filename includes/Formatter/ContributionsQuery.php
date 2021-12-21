@@ -13,6 +13,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use User;
+use WikiMap;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ContributionsQuery extends AbstractQuery {
@@ -134,11 +135,11 @@ class ContributionsQuery extends AbstractQuery {
 		if ( $uid ) {
 			$conditions['rev_user_id'] = $uid;
 			$conditions['rev_user_ip'] = null;
-			$conditions['rev_user_wiki'] = wfWikiID();
+			$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 		} else {
 			$conditions['rev_user_id'] = 0;
 			$conditions['rev_user_ip'] = $pager->getTarget();
-			$conditions['rev_user_wiki'] = wfWikiID();
+			$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 		}
 
 		if ( $isContribsPager && $pager->isNewOnly() ) {
@@ -155,7 +156,7 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		// Find only within requested wiki/namespace
-		$conditions['workflow_wiki'] = wfWikiID();
+		$conditions['workflow_wiki'] = WikiMap::getCurrentWikiId();
 		if ( $pager->getNamespace() !== '' ) {
 			$conditions['workflow_namespace'] = $pager->getNamespace();
 		}

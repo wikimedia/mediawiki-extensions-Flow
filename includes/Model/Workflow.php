@@ -12,6 +12,7 @@ use MWTimestamp;
 use RequestContext;
 use Title;
 use User;
+use WikiMap;
 
 class Workflow {
 
@@ -150,7 +151,7 @@ class Workflow {
 			throw new DataModelException( 'Invalid workflow type provided: ' . $type, 'process-data' );
 		}
 		if ( $title->isLocal() ) {
-			$wiki = wfWikiID();
+			$wiki = WikiMap::getCurrentWikiId();
 		} else {
 			$wiki = $title->getTransWikiID();
 		}

@@ -18,6 +18,7 @@ use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use WikiImporter;
+use WikiMap;
 use WikiPage;
 use XMLReader;
 
@@ -122,7 +123,7 @@ class Importer {
 		$this->boardWorkflow = Workflow::fromStorageRow( [
 			'workflow_id' => $uuid->getAlphadecimal(),
 			'workflow_type' => 'discussion',
-			'workflow_wiki' => wfWikiID(),
+			'workflow_wiki' => WikiMap::getCurrentWikiId(),
 			'workflow_page_id' => $title->getArticleID(),
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
@@ -175,7 +176,7 @@ class Importer {
 		$this->topicWorkflow = Workflow::fromStorageRow( [
 			'workflow_id' => $uuid->getAlphadecimal(),
 			'workflow_type' => 'topic',
-			'workflow_wiki' => wfWikiID(),
+			'workflow_wiki' => WikiMap::getCurrentWikiId(),
 			'workflow_page_id' => $title->getArticleID(),
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
@@ -308,10 +309,10 @@ class Importer {
 						$localUser = $this->createLocalUser( (int)$attribs[ $globalUserIdField ] );
 					}
 					$attribs[ $userField . 'id' ] = $localUser->getId();
-					$attribs[ $userField . 'wiki' ] = wfWikiID();
+					$attribs[ $userField . 'wiki' ] = WikiMap::getCurrentWikiId();
 				} elseif ( isset( $attribs[ $userField . 'ip' ] ) ) {
 					// make anons local users
-					$attribs[ $userField . 'wiki' ] = wfWikiID();
+					$attribs[ $userField . 'wiki' ] = WikiMap::getCurrentWikiId();
 				}
 			}
 		}

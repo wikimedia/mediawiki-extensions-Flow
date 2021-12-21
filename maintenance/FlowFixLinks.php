@@ -51,7 +51,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		/** @var \Flow\Data\ObjectManager $storage */
 		$storage = Container::get( 'storage.wiki_reference' );
 		$links = $storage->find( [
-			'ref_src_wiki' => wfWikiID(),
+			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 			'ref_target_namespace' => [ -1, -2 ],
 		] );
 		if ( $links ) {
@@ -69,7 +69,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->getBatchSize() );
 		$iterator->setFetchColumns( [ '*' ] );
-		$iterator->addConditions( [ 'workflow_wiki' => wfWikiID() ] );
+		$iterator->addConditions( [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ] );
 		$iterator->setCaller( __METHOD__ );
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

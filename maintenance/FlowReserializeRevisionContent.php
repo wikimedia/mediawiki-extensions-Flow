@@ -83,7 +83,7 @@ class FlowReserializeRevisionContent extends Maintenance {
 
 		$iterator = new BatchRowIterator( $dbw, 'flow_revision', 'rev_id', $this->getBatchSize() );
 		$iterator->addConditions( [
-			'rev_user_wiki' => wfWikiID(),
+			'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 			'rev_flags' . $dbr->buildLike( $dbr->anyString(), 'html', $dbr->anyString() ),
 		] );
 		$iterator->setFetchColumns( [ 'rev_id', 'rev_type', 'rev_content', 'rev_flags' ] );

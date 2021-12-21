@@ -8,6 +8,7 @@ use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Title;
+use WikiMap;
 
 class ReferenceClarifier {
 	/** @var ManagerGroup */
@@ -109,7 +110,7 @@ class ReferenceClarifier {
 			$res = $this->storage->find(
 				$refType,
 				[
-					'ref_src_wiki' => wfWikiID(),
+					'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 					'ref_src_namespace' => $from->getNamespace(),
 					'ref_src_title' => $from->getDBkey(),
 				]

@@ -15,6 +15,7 @@ use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Repository\TreeRepository;
 use SplQueue;
+use WikiMap;
 
 /**
  * Listens for new revisions to be inserted.  Calculates the difference in
@@ -259,13 +260,13 @@ class ReferenceRecorder extends AbstractListener {
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
 		$prevWikiReferences = $this->storage->find( 'WikiReference', [
-			'ref_src_wiki' => wfWikiID(),
+			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		] );
 
 		$prevUrlReferences = $this->storage->find( 'URLReference', [
-			'ref_src_wiki' => wfWikiID(),
+			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		] );

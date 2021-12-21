@@ -152,7 +152,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 
 					// Sanity check, or this will fail in BoardMover
 					$workflowByPageId = $this->storage->find( 'Workflow', [
-							'workflow_wiki' => wfWikiID(),
+							'workflow_wiki' => WikiMap::getCurrentWikiId(),
 							'workflow_page_id' => $pageId,
 						] );
 

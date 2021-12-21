@@ -6,6 +6,7 @@ use Flow\Exception\CrossWikiException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use User;
+use WikiMap;
 
 /**
  * Small value object holds the values necessary to uniquely identify
@@ -64,7 +65,7 @@ class UserTuple {
 
 	public static function newFromUser( User $user ) {
 		return new self(
-			wfWikiID(),
+			WikiMap::getCurrentWikiId(),
 			$user->getId(),
 			$user->isRegistered() ? null : $user->getName()
 		);
@@ -96,7 +97,7 @@ class UserTuple {
 	}
 
 	public function createUser() {
-		if ( $this->wiki !== wfWikiID() ) {
+		if ( $this->wiki !== WikiMap::getCurrentWikiId() ) {
 			throw new CrossWikiException( 'Can only retrieve same-wiki users' );
 		}
 		if ( $this->id ) {

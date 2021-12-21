@@ -11,6 +11,7 @@ use Flow\Parsoid\ContentFixer;
 use Flow\Repository\UserNameBatch;
 use Linker;
 use OutputPage;
+use WikiMap;
 
 /**
  * This class is slowly being deprecated. It used to house a minimalist
@@ -100,7 +101,7 @@ class Templating {
 		if ( isset( $cache[$userid][$userip] ) ) {
 			return $cache[$userid][$userip];
 		}
-		$username = $this->usernames->get( wfWikiID(), $userid, $userip );
+		$username = $this->usernames->get( WikiMap::getCurrentWikiId(), $userid, $userip );
 		$cache[$userid][$userip] = $username ?
 			Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username ) :
 			'';

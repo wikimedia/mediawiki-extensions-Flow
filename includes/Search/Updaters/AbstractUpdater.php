@@ -9,6 +9,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Search\Connection;
 use Flow\Search\Iterators\AbstractIterator;
 use MWExceptionHandler;
+use WikiMap;
 
 abstract class AbstractUpdater {
 	/**
@@ -102,7 +103,7 @@ abstract class AbstractUpdater {
 				$bulk->setShardTimeout( $shardTimeout );
 			}
 
-			$index = $this->connection->getFlowIndex( wfWikiID() );
+			$index = $this->connection->getFlowIndex( WikiMap::getCurrentWikiId() );
 			$type = $index->getType( $this->getTypeName() );
 			$bulk->setType( $type );
 			$bulk->addDocuments( $documents );

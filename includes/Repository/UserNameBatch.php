@@ -8,6 +8,7 @@ namespace Flow\Repository;
 use Flow\Model\UserTuple;
 use MapCacheLRU;
 use User;
+use WikiMap;
 
 /**
  * Batch together queries for a bunch of wiki+userid -> username
@@ -158,7 +159,7 @@ class UserNameBatch {
 	 */
 	protected function resolveUserPages( $wiki, array $usernames ) {
 		// LinkBatch currently only supports the current wiki
-		if ( $wiki !== wfWikiID() || !$usernames ) {
+		if ( $wiki !== WikiMap::getCurrentWikiId() || !$usernames ) {
 			return;
 		}
 

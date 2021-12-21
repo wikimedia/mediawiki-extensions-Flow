@@ -17,6 +17,7 @@ use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use SplQueue;
 use User;
+use WikiMap;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
@@ -159,7 +160,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		$row = $row + [
 			'workflow_id' => UUID::create()->getBinary(),
 			'workflow_type' => 'topic',
-			'workflow_wiki' => wfWikiID(),
+			'workflow_wiki' => WikiMap::getCurrentWikiId(),
 			// The test workflow has no real associated page, this is
 			// just a random page number
 			'workflow_page_id' => 1,

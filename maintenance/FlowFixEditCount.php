@@ -75,7 +75,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 				'rev_id > ' . $dbr->addQuotes( $continue->getBinary() ),
 				'rev_id <= ' . $dbr->addQuotes( $stop->getBinary() ),
 				'rev_user_id > 0',
-				'rev_user_wiki' => wfWikiID(),
+				'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 				'rev_change_type' => $countableActions,
 			],
 			__METHOD__,

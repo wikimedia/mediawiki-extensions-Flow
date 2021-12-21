@@ -11,6 +11,7 @@ use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use MediaWiki\MediaWikiServices;
 use RecentChange;
+use WikiMap;
 
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.
@@ -89,7 +90,7 @@ class RecentChangesListener extends AbstractListener {
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
-			'rc_user_text' => $this->usernames->get( wfWikiID(), $row['rev_user_id'], $row['rev_user_ip'] ),
+			'rc_user_text' => $this->usernames->get( WikiMap::getCurrentWikiId(), $row['rev_user_id'], $row['rev_user_ip'] ),
 			'rc_type' => RC_FLOW,
 			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,

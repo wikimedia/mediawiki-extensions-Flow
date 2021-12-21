@@ -8,6 +8,7 @@ use Flow\Model\Header;
 use Flow\Model\Workflow;
 use Title;
 use User;
+use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
 class BoardMover {
@@ -70,7 +71,7 @@ class BoardMover {
 		// revisit this.
 		/** @var Workflow[] $found */
 		$found = $this->storage->find( 'Workflow', [
-			'workflow_wiki' => wfWikiID(),
+			'workflow_wiki' => WikiMap::getCurrentWikiId(),
 			'workflow_page_id' => $oldPageId,
 		] );
 		if ( !$found ) {

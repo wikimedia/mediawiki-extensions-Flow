@@ -13,6 +13,7 @@ use Flow\Exception\UnknownWorkflowIdException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Title;
+use WikiMap;
 
 class WorkflowLoaderFactory {
 	/**
@@ -123,7 +124,7 @@ class WorkflowLoaderFactory {
 		if ( !$workflow ) {
 			throw new UnknownWorkflowIdException( 'Invalid workflow requested by id', 'invalid-input' );
 		}
-		if ( $workflow->getWiki() !== wfWikiID() ) {
+		if ( $workflow->getWiki() !== WikiMap::getCurrentWikiId() ) {
 			throw new UnknownWorkflowIdException( 'The requested workflow does not exist on this wiki.' );
 		}
 		if ( $title !== false && $this->pageMoveInProgress === false && !$workflow->matchesTitle( $title ) ) {

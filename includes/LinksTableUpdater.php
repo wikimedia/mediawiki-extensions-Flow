@@ -12,6 +12,7 @@ use LinkBatch;
 use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use Title;
+use WikiMap;
 use WikiPage;
 
 class LinksTableUpdater {
@@ -109,7 +110,7 @@ class LinksTableUpdater {
 		$wikiReferences = $this->storage->find(
 			'WikiReference',
 			[
-				'ref_src_wiki' => wfWikiID(),
+				'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			]
@@ -118,7 +119,7 @@ class LinksTableUpdater {
 		$urlReferences = $this->storage->find(
 			'URLReference',
 			[
-				'ref_src_wiki' => wfWikiID(),
+				'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			]

@@ -84,7 +84,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$revisions = $this->storage->find(
 				'Header',
 				[
-					'rev_user_wiki' => wfWikiID(),
+					'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 					'rev_type' => 'header',
 					new RawSql( 'rev_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
 					new RawSql( 'rev_id < ' . $dbr->addQuotes( $endId->getBinary() ) ),
@@ -118,7 +118,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				$uuids[$revision->getCollectionId()->getAlphadecimal()] = $revision->getCollectionId();
 
 				$conds[] = [
-					'rev_user_wiki' => wfWikiID(),
+					'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 					'rev_type' => 'header',
 					new RawSql( 'rev_id >= ' . $dbr->addQuotes( $endId->getBinary() ) ),
 					'rev_type_id' => $revision->getCollectionId()->getBinary(),
@@ -145,7 +145,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$revisions = $this->storage->find(
 				'Header',
 				[
-					'rev_user_wiki' => wfWikiID(),
+					'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 					'rev_type' => 'header',
 					'rev_type_id' => UUID::convertUUIDs( $uuids ),
 				]
@@ -186,7 +186,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				'Workflow',
 				[
 					new RawSql( 'workflow_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
-					'workflow_wiki' => wfWikiID(),
+					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
 					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $timestamp ) ),
 				],
@@ -237,7 +237,7 @@ class FlowRemoveOldTopics extends Maintenance {
 					// workflow_id condition is only used to batch, the exact
 					// $batchStartId otherwise doesn't matter (unlike rev_id)
 					'workflow_id > ' . $dbr->addQuotes( $batchStartId->getBinary() ),
-					'workflow_wiki' => wfWikiID(),
+					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
 					'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $timestamp ),
 				],
@@ -369,7 +369,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	protected function removeReferences( AbstractRevision $revision ) {
 		$wikiReferences = $this->storage->find( 'WikiReference', [
-			'ref_src_wiki' => wfWikiID(),
+			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 			'ref_src_object_type' => $revision->getRevisionType(),
 			'ref_src_object_id' => $revision->getCollectionId(),
 		] );
@@ -379,7 +379,7 @@ class FlowRemoveOldTopics extends Maintenance {
 		}
 
 		$urlReferences = $this->storage->find( 'URLReference', [
-			'ref_src_wiki' => wfWikiID(),
+			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
 			'ref_src_object_type' => $revision->getRevisionType(),
 			'ref_src_object_id' => $revision->getCollectionId(),
 		] );

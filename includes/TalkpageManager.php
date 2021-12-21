@@ -13,6 +13,7 @@ use MediaWiki\User\UserGroupManager;
 use Status;
 use Title;
 use User;
+use WikiMap;
 use WikiPage;
 
 class TalkpageManager implements OccupationController {
@@ -198,7 +199,7 @@ class TalkpageManager implements OccupationController {
 			// exists
 			$ca = CentralAuthUser::getPrimaryInstance( $user );
 			if ( $ca->exists() && !$ca->isAttached() ) {
-				$ca->attach( wfWikiID(), 'admin' );
+				$ca->attach( WikiMap::getCurrentWikiId(), 'admin' );
 			}
 		}
 
