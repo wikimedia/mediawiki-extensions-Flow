@@ -7,6 +7,8 @@
 			"Sarvaturi"
 		]
 	},
+	"flow-desc": "Sistema di discussioni",
+	"flow-board-expand-description": "Ammustra discrizzioni",
 	"flow-topic-moderated-reason-prefix": "Mutivu:",
 	"flow-post-actions": "Azzioni",
 	"flow-topic-actions": "Azzioni",
