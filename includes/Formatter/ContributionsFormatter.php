@@ -32,7 +32,8 @@ class ContributionsFormatter extends AbstractFormatter {
 
 		$charDiff = ChangesList::showCharacterDifference(
 			$data['size']['old'],
-			$data['size']['new']
+			$data['size']['new'],
+			$ctx
 		);
 
 		$separator = $this->changeSeparator();
