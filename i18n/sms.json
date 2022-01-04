@@ -5,6 +5,7 @@
 		]
 	},
 	"flow-show-change": "Čuäʹjet muttsid",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Späʹssbõõžž}}}}",
 	"flow-history-action-hide-post": "čiõǥǥ",
 	"flow-post-action-view": "Põõšši liŋkk",
 	"flow-post-action-hide-post": "Čiõǥǥ",
@@ -20,5 +21,6 @@
 	"flow-load-more": "Laadd lââʹzz",
 	"flow-undo": "kååʹmet",
 	"flow-ve-mention-placeholder": "Õõʹnninõmm",
-	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Čuäʹjet}} õõʹnni saǥstõõllâmsseeid"
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Čuäʹjet}} õõʹnni saǥstõõllâmsseeid",
+	"flow-guidedtour-optin-feedback": "Uuʹd {{GENDER:$1|}}maacctõõzz!"
 }
