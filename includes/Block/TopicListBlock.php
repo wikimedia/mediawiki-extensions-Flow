@@ -426,7 +426,7 @@ class TopicListBlock extends AbstractBlock {
 		if (
 			$requestOptions['savesortby']
 			&& $user->isRegistered()
-			&& $userOptionsLookup->getOption( $user, 'flow-topiclist-sortby' ) !== $findOptions['sortby']
+			&& $userOptionsLookup->getOption( $user, 'flow-topiclist-sortby' ) != $findOptions['sortby']
 		) {
 			// Save the new sortby preference.
 			$job = new UserOptionsUpdateJob( [
