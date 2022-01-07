@@ -3,6 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
 use Flow\FlowActions;
@@ -282,6 +283,8 @@ abstract class AbstractBlock implements Block {
 			return;
 		}
 
-		$out->setPageTitle( $this->workflow->getArticleTitle()->getFullText() );
+		$title = $this->workflow->getArticleTitle();
+		$convertedTitle = Utils::getConvertedTitle( $title );
+		$out->setPageTitle( $convertedTitle );
 	}
 }
