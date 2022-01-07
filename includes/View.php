@@ -237,7 +237,7 @@ class View extends ContextSource {
 									'editToken' => $editToken,
 									'editFont' => $editFont,
 								];
-				if ( $block->getName() === 'topiclist' ) {
+				if ( $block->getName() == 'topiclist' ) {
 					$topicListBlock = $block;
 				}
 			}

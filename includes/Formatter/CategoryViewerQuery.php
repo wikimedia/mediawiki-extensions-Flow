@@ -46,7 +46,7 @@ class CategoryViewerQuery {
 		$neededPosts = [];
 		$neededWorkflows = [];
 		foreach ( $rows as $row ) {
-			if ( $row->page_namespace !== NS_TOPIC ) {
+			if ( $row->page_namespace != NS_TOPIC ) {
 				continue;
 			}
 			$uuid = UUID::create( strtolower( $row->page_title ) );

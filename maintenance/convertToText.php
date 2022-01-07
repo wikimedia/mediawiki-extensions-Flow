@@ -182,7 +182,7 @@ class ConvertToText extends Maintenance {
 				$output .= $this->processPostCollection( $context, $revision['replies'], $indentLevel + 1 );
 			}
 
-			if ( $indentLevel === 0 ) {
+			if ( $indentLevel == 0 ) {
 				$output .= "\n";
 			}
 		}
