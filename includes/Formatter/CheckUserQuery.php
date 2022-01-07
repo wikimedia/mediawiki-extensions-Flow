@@ -22,7 +22,7 @@ class CheckUserQuery extends AbstractQuery {
 		$needed = [];
 
 		foreach ( $rows as $row ) {
-			if ( $row->cuc_type !== RC_FLOW || !$row->cuc_comment ) {
+			if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
 				continue;
 			}
 
@@ -74,7 +74,7 @@ class CheckUserQuery extends AbstractQuery {
 	 * @throws FlowException
 	 */
 	public function getResult( $row ) {
-		if ( $row->cuc_type !== RC_FLOW || !$row->cuc_comment ) {
+		if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
 			return false;
 		}
 

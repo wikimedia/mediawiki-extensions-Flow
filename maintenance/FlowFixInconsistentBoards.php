@@ -86,7 +86,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 				return false;
 			}
 
-			if ( $namespaceId === NS_TOPIC ) {
+			if ( $namespaceId == NS_TOPIC ) {
 				$this->error( 'This script can not be run on the Flow topic namespace' );
 				return false;
 			}
