@@ -15,6 +15,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use WikiImporter;
@@ -391,7 +392,7 @@ class Importer {
 			throw new ImportException( 'Creating local users is not supported without central id provider' );
 		}
 
-		$globalUser = \CentralAuthUser::newFromId( $globalUserId );
+		$globalUser = CentralAuthUser::newFromId( $globalUserId );
 		$localUser = \User::newFromName( $globalUser->getName() );
 
 		if ( $localUser->getId() ) {

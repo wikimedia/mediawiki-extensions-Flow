@@ -2,11 +2,11 @@
 
 namespace Flow;
 
-use CentralAuthUser;
 use ExtensionRegistry;
 use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
+use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserGroupManager;
