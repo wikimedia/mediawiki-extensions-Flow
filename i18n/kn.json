@@ -37,5 +37,7 @@
 	"flow-topic-action-resummarize-topic": "ಸಂಪಾದನೆಯ ತಾತ್ಪರ್ಯ",
 	"flow-history-day": "ಇಂದು",
 	"flow-history-week": "ಹಿಂದಿನ ವಾರ",
-	"flow-link-history": "ಇತಿಹಾಸ"
+	"flow-link-history": "ಇತಿಹಾಸ",
+	"flow-moderation-confirm-delete-post": "ಅಳಿಸು",
+	"flow-moderation-confirm-delete-topic": "ಅಳಿಸು"
 }
