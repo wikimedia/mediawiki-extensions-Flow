@@ -14,7 +14,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use JobQueueGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use UserOptionsUpdateJob;
@@ -353,7 +352,8 @@ class TopicListBlock extends AbstractBlock {
 
 	protected function getFindOptions( array $requestOptions ) {
 		$findOptions = [];
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
@@ -433,7 +433,7 @@ class TopicListBlock extends AbstractBlock {
 				'userId' => $user->getId(),
 				'options' => [ 'flow-topiclist-sortby' => $findOptions['sortby'] ]
 			] );
-			JobQueueGroup::singleton()->lazyPush( $job );
+			$services->getJobQueueGroupFactory()->makeJobQueueGroup()->lazyPush( $job );
 		}
 
 		return $findOptions;
