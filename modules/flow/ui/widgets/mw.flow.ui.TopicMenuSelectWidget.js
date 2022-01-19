@@ -198,11 +198,15 @@
 	/**
 	 * Extend addItems to also add to the topic reference item
 	 *
-	 * @param {OO.ui.OptionWidget[]} items Items to add
+	 * @param {OO.ui.OptionWidget[]} [items] Items to add
 	 * @param {number} [index] Index to insert items after
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.addItems = function ( items ) {
 		var i, len;
+
+		if ( !items || !items.length ) {
+			return this;
+		}
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			if ( items[ i ].getData() ) {
