@@ -215,7 +215,7 @@
 		}
 
 		// Parent method
-		mw.flow.ui.TopicMenuSelectWidget.super.prototype.addItems.apply( this, arguments );
+		return mw.flow.ui.TopicMenuSelectWidget.super.prototype.addItems.apply( this, arguments );
 	};
 
 	/**
@@ -233,7 +233,7 @@
 		}
 
 		// Parent method
-		mw.flow.ui.TopicMenuSelectWidget.super.prototype.removeItems.apply( this, arguments );
+		return mw.flow.ui.TopicMenuSelectWidget.super.prototype.removeItems.apply( this, arguments );
 	};
 
 }() );
