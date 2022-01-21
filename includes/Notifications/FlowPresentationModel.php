@@ -218,7 +218,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 				$title->getFullURL( $query ),
 				$this->getUser()->getName()
 			)
-			->parse();
+			->text();
 
 		return $link;
 	}
