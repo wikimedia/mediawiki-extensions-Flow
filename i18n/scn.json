@@ -8,6 +8,7 @@
 		]
 	},
 	"flow-desc": "Sistema di discussioni",
+	"flow-board-description-can-not-edit": "Nun canciabbili",
 	"flow-board-expand-description": "Ammustra discrizzioni",
 	"flow-topic-moderated-reason-prefix": "Mutivu:",
 	"flow-post-actions": "Azzioni",
@@ -81,6 +82,7 @@
 	"structureddiscussions": "Flussu",
 	"flow-special-type": "Tipu",
 	"flow-special-type-post": "Missaggiu",
+	"flow-conversion-archive-page-name-format": "%s/Archiviu %d\n%s/Archiviu%d\n%s/archiviu %d\n%s/archiviu%d",
 	"flow-edited": "Canciatu",
 	"flow-undo": "annulla",
 	"flow-undo-latest-revision": "Virsioni attuali",
