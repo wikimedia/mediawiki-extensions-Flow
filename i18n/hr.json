@@ -150,7 +150,7 @@
 	"flow-error-missing-content": "Objava nema sadržaja. Sadržaj je potreban da bi se objava sačuvala.",
 	"flow-error-missing-summary": "Morate unijeti sažetak.",
 	"flow-error-missing-title": "Tema je bez naslova. Da bi bila spremljena, mora imati naslov.",
-	"flow-error-parsoid-failure": "Sadržaj se ne može prebaciti: pogrješka u uspostavljanju veze prema serveru za pretvaranje wikiteksta u HTML i obrnuto. Provjerite svoju internetsku vezu ili pokušajte ponovo kasnije ako se problem nastavi. Ako i dalje vidite ovu pogrješku, molimo Vas da je prijavite.",
+	"flow-error-parsoid-failure": "Sadržaj se ne može prebaciti: pogreška u uspostavljanju veze prema serveru za pretvaranje wikiteksta u HTML i obrnuto. Provjerite svoju internetsku vezu ili pokušajte ponovo kasnije ako se problem nastavi. Ako i dalje vidite ovu pogrešku, molimo Vas da je prijavite.",
 	"flow-error-protected-unknown-reason": "Nepoznato",
 	"flow-error-not-allowed": "Nemate dopuštenje za izvođenje ove radnje.",
 	"flow-error-not-allowed-hide": "Ova je tema sakrivena.",
