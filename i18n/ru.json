@@ -39,7 +39,8 @@
 			"Дмитрий",
 			"Максим777",
 			"Туллук",
-			"Ядерный Трамвай"
+			"Ядерный Трамвай",
+			"WhatamIdoing"
 		]
 	},
 	"enablestructureddiscussions": "Включить «Cтруктурированные обсуждения»",
@@ -145,8 +146,8 @@
 	"flow-post-action-edit-post": "Править",
 	"flow-post-action-edit-post-submit": "Сохранить изменения",
 	"flow-post-action-edit-post-submit-anonymously": "Сохранить изменения анонимно",
-	"flow-post-action-edit-post-submit-publish": "Записать изменения",
-	"flow-post-action-edit-post-submit-anonymously-publish": "Записать изменения анонимно",
+	"flow-post-action-edit-post-submit-publish": "Опубликовать изменения",
+	"flow-post-action-edit-post-submit-anonymously-publish": "Опубликовать изменения анонимно",
 	"flow-post-action-unsuppress-post": "Отменить подавление",
 	"flow-post-action-undelete-post": "Восстановить",
 	"flow-post-action-unhide-post": "Показать",
@@ -248,8 +249,8 @@
 	"flow-edit-header-placeholder": "Опишите эту доску обсуждений",
 	"flow-edit-header-submit": "Сохранить описание",
 	"flow-edit-header-submit-anonymously": "Сохранить описание анонимно",
-	"flow-edit-header-submit-publish": "Записать описание",
-	"flow-edit-header-submit-anonymously-publish": "Записать описание анонимно",
+	"flow-edit-header-submit-publish": "Опубликовать описание",
+	"flow-edit-header-submit-anonymously-publish": "Опубликовать описание анонимно",
 	"flow-edit-title-submit": "Изменить заголовок",
 	"flow-edit-title-submit-anonymously": "Изменить заголовок анонимно",
 	"flow-edit-post-submit": "Подтвердить изменения",
