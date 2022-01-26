@@ -8,6 +8,7 @@
 		]
 	},
 	"flow-desc": "Sistema di discussioni",
+	"flow-board-description-can-not-edit": "Nun canciabbili",
 	"flow-board-expand-description": "Ammustra discrizzioni",
 	"flow-topic-moderated-reason-prefix": "Mutivu:",
 	"flow-post-actions": "Azzioni",
