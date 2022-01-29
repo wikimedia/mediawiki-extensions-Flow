@@ -43,6 +43,7 @@ use Html;
 use IContextSource;
 use LogEntry;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
+use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -1794,12 +1795,13 @@ class Hooks {
 			return;
 		}
 
+		// Short circuit, it's fine because this beta feature is exempted from auto-enroll.
 		if ( !array_key_exists( BETA_FEATURE_FLOW_USER_TALK_PAGE, $modifiedOptions ) ) {
 			return;
 		}
 
-		$before = $originalOptions[BETA_FEATURE_FLOW_USER_TALK_PAGE] ?? false;
-		$after = $modifiedOptions[BETA_FEATURE_FLOW_USER_TALK_PAGE];
+		$before = BetaFeatures::isFeatureEnabled( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE, $originalOptions );
+		$after = BetaFeatures::isFeatureEnabled( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE );
 		$action = null;
 
 		$optInController = Container::get( 'controller.opt_in' );

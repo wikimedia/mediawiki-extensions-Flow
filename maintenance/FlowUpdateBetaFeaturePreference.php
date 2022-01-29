@@ -42,6 +42,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			'user_properties',
 			'up_user',
 			[
+				// It works because this beta feature is exempted from auto-enroll.
 				'up_property' => BETA_FEATURE_FLOW_USER_TALK_PAGE,
 				'up_value' => 1
 			],
@@ -73,6 +74,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 		$users = UserArray::newFromResult( $result );
 		foreach ( $users as $user ) {
+			// It works because this beta feature is exempted from auto-enroll.
 			$userOptionsManager->setOption( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE, 1 );
 			$userOptionsManager->saveOptions( $user );
 
