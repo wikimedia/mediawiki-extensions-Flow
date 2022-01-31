@@ -2,6 +2,7 @@
 
 namespace Flow\Diff;
 
+use Content;
 use DifferenceEngine;
 
 /**
@@ -9,7 +10,14 @@ use DifferenceEngine;
  */
 class FlowBoardContentDiffView extends DifferenceEngine {
 
+	/** @inheritDoc */
 	public function getDiffBody() {
 		return false;
 	}
+
+	/** @inheritDoc */
+	public function generateContentDiffBody( Content $old, Content $new ) {
+		return false;
+	}
+
 }
