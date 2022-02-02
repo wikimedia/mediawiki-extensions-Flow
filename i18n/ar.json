@@ -16,7 +16,8 @@
 			"زكريا",
 			"علاء",
 			"محمد أحمد عبد الفتاح",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"Michel Bakni"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -93,7 +94,7 @@
 	"flow-newtopic-title-placeholder": "موضوع جديد",
 	"flow-newtopic-content-placeholder": "أضف رسالة جديدة إلى \"$1\"",
 	"flow-newtopic-header": "أضف موضوعا جديدا",
-	"flow-newtopic-save": "أضف موضوعا",
+	"flow-newtopic-save": "أضف موضوعاً",
 	"flow-newtopic-save-anonymously": "إضافة موضوع كمجهول",
 	"flow-newtopic-start-placeholder": "أضف موضوعا جديدا",
 	"flow-newtopic-first-heading": "ابدأ موضوعا جديدا في $1",
