@@ -221,7 +221,7 @@ class ConversionStrategy implements IConversionStrategy {
 			__METHOD__,
 			[ 'LIMIT' => 1 ]
 		);
-		return $dbr->numRows( $result ) > 0;
+		return $result->numRows() > 0;
 	}
 
 	/**
