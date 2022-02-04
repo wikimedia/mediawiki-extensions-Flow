@@ -11,9 +11,9 @@ require_once $maintPath . '/Maintenance.php';
 require_once $maintPath . '/includes/BackupDumper.php';
 
 class FlowDumpBackup extends BackupDumper {
-	/** @var int|null */
+	/** @var string|null */
 	public $workflowStartId = null;
-	/** @var int|null */
+	/** @var string|null */
 	public $workflowEndId = null;
 
 	public function __construct( $args = null ) {
@@ -134,11 +134,11 @@ TEXT
 		}
 
 		if ( $this->hasOption( 'boardstart' ) ) {
-			$this->workflowStartId = (int)$this->getOption( 'boardstart' );
+			$this->workflowStartId = $this->getOption( 'boardstart' );
 		}
 
 		if ( $this->hasOption( 'boardend' ) ) {
-			$this->workflowEndId = (int)$this->getOption( 'boardend' );
+			$this->workflowEndId = $this->getOption( 'boardend' );
 		}
 
 		$this->skipHeader = $this->hasOption( 'skip-header' );
