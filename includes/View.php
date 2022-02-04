@@ -160,7 +160,7 @@ class View extends ContextSource {
 	}
 
 	protected function handleSubmit( WorkflowLoader $loader, $action, array $parameters ) {
-		$this->getOutput()->enableClientCache( false );
+		$this->getOutput()->disableClientCache();
 
 		$blocksToCommit = $loader->handleSubmit( $this, $action, $parameters );
 		if ( !$blocksToCommit ) {
