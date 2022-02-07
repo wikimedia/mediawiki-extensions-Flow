@@ -9,6 +9,7 @@
 			"NMaia",
 			"Psychoslave",
 			"Robin van der Vliet",
+			"Spenĉjo",
 			"Surfo",
 			"Yekrats"
 		]
@@ -234,7 +235,7 @@
 	"flow-moderation-title-undelete-topic": "Ĉu malforigi temon?",
 	"flow-moderation-title-unhide-topic": "Ĉu malkaŝi temon?",
 	"flow-compare-revisions-revision-header": "Versio far {{GENDER:$2|$2}} je $1",
-	"flow-terms-of-use-edit": "Konservante ŝanĝojn, vi konsentas al la uzkondiĉoj de la vikio.",
+	"flow-terms-of-use-edit": "Se vi konservas viajn ŝanĝojn, per tio vi konsentas al la uzkondiĉoj de la vikio.",
 	"flow-topic-first-heading": "Temo ĉe $1",
 	"flow-topic-html-title": "$1 ĉe $2",
 	"flow-topic-count": "Temoj ($1)",
