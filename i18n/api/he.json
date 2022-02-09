@@ -65,7 +65,7 @@
 	"apihelp-flow+new-topic-example-1": "יצירת נושא חדש ב־[[Talk:Sandbox]]",
 	"apihelp-flow+reply-description": "תגובות לרשומה.",
 	"apihelp-flow+reply-summary": "מגיבה לרשומה.",
-	"apihelp-flow+reply-param-replyTo": "המזהה של הרשומה שצריך להשיב עליה.",
+	"apihelp-flow+reply-param-replyTo": "המזהה של הרשומה שצריך להגיב עליה.",
 	"apihelp-flow+reply-param-content": "תוכן לרשומה החדשה.",
 	"apihelp-flow+reply-param-format": "תסדיר לרשומה החדשה (wikitext|html)",
 	"apihelp-flow+reply-example-1": "תגובה לרשומה ב־[[Topic:S2tycnas4hcucw8w]]",
