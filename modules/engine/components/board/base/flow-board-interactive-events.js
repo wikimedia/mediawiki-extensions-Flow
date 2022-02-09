@@ -68,7 +68,7 @@
 	// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
 	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {
 		// Assigns each handler with the prefix 'modal', eg. 'close' becomes 'modalClose'
-		FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers[ 'modal' + fn.charAt( 0 ).toUpperCase() + fn.substr( 1 ) ] = function ( event ) {
+		FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers[ 'modal' + fn.charAt( 0 ).toUpperCase() + fn.slice( 1 ) ] = function ( event ) {
 			event.preventDefault();
 
 			// eg. call mw.Modal.close( this );

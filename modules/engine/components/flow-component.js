@@ -114,7 +114,7 @@
 		timestamp = _expandScientificNotation( timestamp );
 
 		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
-		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
+		timestamp = parseInt( timestamp.slice( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
 
 		return timestamp;
 	};

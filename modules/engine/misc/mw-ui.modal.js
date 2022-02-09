@@ -70,9 +70,11 @@
 		return this;
 	}
 
-	/** Stores template
+	/**
+	 * Stores template
 	 *
-	 * @todo use data-mwui attributes instead of data-flow **/
+	 * @todo use data-mwui attributes instead of data-flow *
+	 */
 	MwUiModal.prototype.template =
 		'<div class="flow-ui-modal">' +
 		'<div class="flow-ui-modal-layout">' +
@@ -88,15 +90,15 @@
 		'</div>' +
 		'</div>';
 
-	/** Stores modal wrapper selector **/
+	/** Stores modal wrapper selector */
 	MwUiModal.prototype.wrapperSelector = '.flow-ui-modal';
-	/** Stores content wrapper selector **/
+	/** Stores content wrapper selector */
 	MwUiModal.prototype.contentSelector = '.flow-ui-modal-content';
-	/** Stores heading wrapper selector, which contains prev/next links **/
+	/** Stores heading wrapper selector, which contains prev/next links */
 	MwUiModal.prototype.headingSelector = '.flow-ui-modal-heading';
-	/** Stores prev link selector **/
+	/** Stores prev link selector */
 	MwUiModal.prototype.prevSelector = '.flow-ui-modal-heading-prev';
-	/** Stores next link selector **/
+	/** Stores next link selector */
 	MwUiModal.prototype.nextSelector = '.flow-ui-modal-heading-next';
 
 	// Primary functions

@@ -262,7 +262,7 @@
 		formatter = moment( timestamp );
 
 		// Generate a GUID for this element to find it later
-		guid = ( Math.random() + 1 ).toString( 36 ).substring( 2 );
+		guid = ( Math.random() + 1 ).toString( 36 ).slice( 2 );
 
 		// Store this in the timestamps auto-updater array
 		_timestamp.list.push( { guid: guid, timestamp: timestamp, failcount: 0 } );
@@ -290,7 +290,7 @@
 	 */
 	function timestampAutoUpdate() {
 		var arrayItem, $ago, failed, secondsAgo, text, formatter,
-			currentTime = +new Date() / 1000;
+			currentTime = Date.now() / 1000;
 
 		// Only update elements that need updating (eg. only update minutes every 60s)
 		do {

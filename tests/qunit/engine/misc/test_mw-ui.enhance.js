@@ -32,11 +32,11 @@
 	QUnit.test( 'mw-ui-tooltip', function ( assert ) {
 		var $body = $( document.body );
 
-		assert.ok( mw.tooltip, 'mw.tooltip exists' );
+		assert.true( typeof mw.tooltip === 'object', 'mw.tooltip exists' );
 
 		// Create a tooltip using body
 		$body.attr( 'title', 'test' );
-		assert.ok( mw.tooltip.show( $body ), 'mw.ui.tooltip.show returned something' );
+		assert.true( mw.tooltip.show( $body ) instanceof $, 'mw.ui.tooltip.show returned something' );
 		// eslint-disable-next-line no-jquery/no-sizzle
 		assert.strictEqual( $( '.flow-ui-tooltip-content' ).filter( ':contains("test"):visible' ).length, 1,
 			'Tooltip with text "test" is visible' );
@@ -49,7 +49,7 @@
 	QUnit.test( 'mw-ui-modal', function ( assert ) {
 		var modal, $node;
 
-		assert.ok( mw.tooltip, 'mw.Modal exists' );
+		assert.true( typeof mw.Modal === 'function', 'mw.Modal exists' );
 
 		// Instantiation
 		modal = mw.Modal();
@@ -69,11 +69,11 @@
 			'Modal heading should be hidden with no title' );
 
 		modal = mw.Modal( { title: 'titlefoo' } );
-		assert.ok( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) > -1,
+		assert.true( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) !== -1,
 			'Modal instantiation sets title to "titlefoo"' );
 
 		modal.setTitle( 'titlebaz' );
-		assert.ok( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) > -1,
+		assert.true( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) !== -1,
 			'Modal setTitle to "titlebaz"' );
 
 		// Content at instantiation
