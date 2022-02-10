@@ -1776,7 +1776,9 @@ class Hooks {
 			'label-message' => 'flow-talk-page-beta-feature-message',
 			'desc-message' => 'flow-talk-page-beta-feature-description',
 			'screenshot' => [
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 				'ltr' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-ltr.svg",
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 				'rtl' => "$wgExtensionAssetsPath/Flow/images/betafeature-flow-rtl.svg",
 			],
 			'info-link' => 'https://www.mediawiki.org/wiki/Flow',
