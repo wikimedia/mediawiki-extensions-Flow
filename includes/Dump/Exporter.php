@@ -151,8 +151,8 @@ class Exporter extends WikiExporter {
 	 * @param string[]|null $pages Array of DB-prefixed page titles
 	 * @param int|null $startId page_id to start from (inclusive)
 	 * @param int|null $endId page_id to end (exclusive)
-	 * @param int|null $workflowStartId workflow_id, b36-encoded, to start from (inclusive)
-	 * @param int|null $workflowEndId wokflow_id, b36-encoded, to end (exclusive)
+	 * @param string|null $workflowStartId workflow_id, b36-encoded, to start from (inclusive)
+	 * @param string|null $workflowEndId wokflow_id, b36-encoded, to end (exclusive)
 	 * @return BatchRowIterator
 	 */
 	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null,
