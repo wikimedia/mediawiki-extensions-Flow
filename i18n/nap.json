@@ -38,7 +38,7 @@
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|arapette}} n'argomento ncopp'a [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] ncopp'a [[$3]] fuje mpurtato 'a LiquidThreads a Flow",
 	"flow-user-moderated": "Utente moderato",
-	"flow-board-header-browse-topics-link": "Circa argomenti",
+	"flow-board-header-browse-topics-link": "Vire argumienti",
 	"flow-board-header": "Ncopp'a sta bacheca",
 	"flow-board-description-can-not-edit": "Nun cagnabbele",
 	"flow-board-collapse-description": "Annascunne descriziona",
