@@ -552,7 +552,7 @@
 	"flow-ve-mention-context-item-label": "Label of a button for mentioning users in Structured Discussions's VisualEditor.",
 	"flow-ve-mention-inspector-title": "Title for the user mention panel (inspector) in Structured Discussions's VisualEditor.",
 	"flow-ve-mention-inspector-remove-label": "Text of remove button on Structured Discussions's user mention panel (inspector) in the VisualEditor.",
-	"flow-ve-mention-placeholder": "Placeholder text for the input field in the user mention tool where the user can type a user name.\n{{Identical|Username}}",
+	"flow-ve-mention-placeholder": "Placeholder text for the input field in the user mention tool where the user can type a username.\n{{Identical|Username}}",
 	"flow-ve-mention-tool-title": "Title text for the user mention tool on Structured Discussions's VisualEditor toolbar.",
 	"flow-ve-mention-template-title": "Name of on-wiki template used for user mentions.  The template should accept a call in the form <nowiki>{{templatename|Username}}</nowiki> and <nowiki>{{templatename|Username|Displayname}}</nowiki>, to mention the username Username. It uses the content language.",
 	"flow-ve-mention-inspector-invalid-user": "Error shown when the poster attempts to mention a user that does not exist.  Parameters:\n$1: Username.  The username is not registered; thus, gender is unknown.",
