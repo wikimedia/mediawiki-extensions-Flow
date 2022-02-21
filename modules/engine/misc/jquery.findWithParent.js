@@ -23,7 +23,7 @@
 				$context = $context.find( matches[ 1 ] );
 			}
 			if ( matches[ 2 ].trim() ) {
-				$context = $context.closest( matches[ 2 ].substr( 1 ) );
+				$context = $context.closest( matches[ 2 ].slice( 1 ) );
 			}
 			selector = matches[ 3 ].trim();
 		}

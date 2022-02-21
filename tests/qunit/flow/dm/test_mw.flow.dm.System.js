@@ -336,7 +336,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 
 		// Types of comparisons
 		if ( op.operation === 'instanceof' ) {
-			assert.ok( result instanceof op.expected, op.msg );
+			assert.true( result instanceof op.expected, op.msg );
 		} else {
 			assert.deepEqual( result, op.expected, op.msg );
 		}

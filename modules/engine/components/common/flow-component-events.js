@@ -620,7 +620,7 @@
 
 				// Strips "flowEventlog" and lowercases first char after that
 				value = data[ key ];
-				key = key.substr( 12, 1 ).toLowerCase() + key.substr( 13 );
+				key = key.slice( 12, 13 ).toLowerCase() + key.slice( 13 );
 
 				eventInstance[ key ] = value;
 			}
