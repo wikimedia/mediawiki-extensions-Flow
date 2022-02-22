@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Minh Nguyen",
+			"NguoiDungKhongDinhDanh",
 			"Vinhtantran"
 		]
 	},
@@ -12,7 +13,7 @@
 	"apihelp-flow-param-token": "Một dấu hiệu truy xuất từ [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"apihelp-flow-example-1": "Sửa đổi lời miêu tả của “[[Talk:Sandbox]]”",
 	"apihelp-flow+close-open-topic-description": "Đã lỗi thời; hãy sử dụng [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
-	"apihelp-flow+close-open-topic-summary": "Bị phản đối; hãy sử dụng [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
+	"apihelp-flow+close-open-topic-summary": "Đã lỗi thời; hãy sử dụng [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "Trạng thái mới của đề tài, hoặc “lock” (khóa) hoặc “unlock” (mở khóa).",
 	"apihelp-flow+close-open-topic-param-reason": "Lý do khóa hoặc mở khóa đề tài.",
 	"apihelp-flow+edit-header-description": "Sửa đổi lời miêu tả bảng tin.",
