@@ -10,6 +10,7 @@ use Flow\Model\UUID;
 use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
 use Title;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @group Flow
@@ -71,9 +72,9 @@ class FormatterTest extends FlowTestCase {
 
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$links = $this->createFormatter( \Flow\Formatter\CheckUserFormatter::class )->format( $row, $ctx );
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		$test( $this, $message, $links );
 	}
 

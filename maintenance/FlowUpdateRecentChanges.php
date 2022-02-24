@@ -2,6 +2,7 @@
 
 use Flow\Data\Listener\RecentChangesListener;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -66,9 +67,9 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$continue = $row->rc_id;
 
 			// build params
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$params = unserialize( $row->rc_params );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( !$params ) {
 				$params = [];
 			}
