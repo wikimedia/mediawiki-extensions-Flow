@@ -10,7 +10,7 @@ use Flow\Import\Plain\ObjectRevision;
 use Flow\Import\TemplateHelper;
 use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MWTimestamp;
 use Parser;
 use ParserOptions;
