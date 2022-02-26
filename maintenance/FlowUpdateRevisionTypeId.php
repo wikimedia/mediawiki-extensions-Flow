@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\DbFactory;
+use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
