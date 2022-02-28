@@ -5,13 +5,18 @@
 			"Yupik"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "Suijâ:",
 	"flow-hide-header-content": "{{GENDER:$1|Čiehâm}} $2",
+	"flow-show-change": "Čääiti nubástusâid",
 	"flow-history-action-hide-post": "čievâ",
 	"flow-post-action-hide-post": "Čievâ",
+	"flow-post-action-edit-post-submit": "Vuorkkii nubástusâid",
+	"flow-post-action-edit-post-submit-publish": "Almostit nubástusâid",
 	"flow-error-protected-unknown-reason": "Tubdâmettum",
 	"flow-error-not-allowed-hide": "Taat fáddá lii čiehhum.",
 	"flow-error-not-allowed-reply-to-hide-topic": "Jieh pyevti västidiđ tanen ko taat fáddá lii čiehhum.",
 	"flow-error-not-allowed-hide-extract": "Taat fáddá lii čiehhum. Vyellin uáináh čiehâdemloki, mast láá lasetiäđuh.",
+	"flow-hide-comments-title": "{{PLURAL:$1|Čievâ komment|Čievâ kommenteh}}",
 	"flow-comment-hidden": "Čiehhum komment",
 	"flow-moderation-confirm-hide-post": "Čievâ",
 	"flow-moderation-confirm-hide-topic": "Čievâ",
