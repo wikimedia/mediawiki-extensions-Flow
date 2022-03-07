@@ -18,6 +18,7 @@
 	"flow-error-not-allowed-hide": "Taat fáddá lii čiehhum.",
 	"flow-error-not-allowed-reply-to-hide-topic": "Jieh pyevti västidiđ tanen ko taat fáddá lii čiehhum.",
 	"flow-error-not-allowed-hide-extract": "Taat fáddá lii čiehhum. Vyellin uáináh čiehâdemloki, mast láá lasetiäđuh.",
+	"flow-board-history": "Siijđo ”$1” historjá",
 	"flow-hide-comments-title": "{{PLURAL:$1|Čievâ komment|Čievâ kommenteh}}",
 	"flow-comment-hidden": "Čiehhum komment",
 	"flow-link-history": "historjá",
