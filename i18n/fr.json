@@ -555,7 +555,7 @@
 	"flow-beta-feature-add-current-template-edit-summary": "Ajouter le modèle courant",
 	"flow-dialog-cancelconfirm-title": "Êtes-vous {{GENDER:|sûr|sûre}} ?",
 	"flow-dialog-cancelconfirm-message": "Êtes-vous {{GENDER:|sûr|sûre}} de vouloir annuler sans enregistrer d’abord ?",
-	"flow-dialog-cancelconfirm-keep": "Continuer à modifier",
+	"flow-dialog-cancelconfirm-keep": "Continuer les modifications",
 	"flow-dialog-cancelconfirm-discard": "Annuler les modifications",
 	"flow-optin-archive-wikitext": "Renommage de la page en wikitexte pour permettre son remplacement par un flux de discussion.",
 	"flow-optin-archive-flow-board": "Renommage du flux de discussion pour permettre son remplacement par une page en wikitexte.",
