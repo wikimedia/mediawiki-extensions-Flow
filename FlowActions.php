@@ -48,7 +48,7 @@ use Flow\RevisionActionPermissions;
  * * moduleStyles: Style modules to insert with RL to html page for this action instead of the defaults
  * * hasUserGeneratedContent: Whether this action renders a page consisting of user-generated content
  */
-$wgFlowActions = [
+return [
 	'create-header' => [
 		'performs-writes' => true,
 		'log_type' => false,
@@ -590,8 +590,7 @@ $wgFlowActions = [
 				// Kind of log depends on the previous change type:
 				// * if post was deleted, restore should go to deletion log
 				// * if post was suppressed, restore should go to suppression log
-				global $wgFlowActions;
-				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['log_type'];
+				return $previousRevision->getModerationState();
 			}
 
 			return '';
@@ -602,8 +601,7 @@ $wgFlowActions = [
 			if ( $previousRevision ) {
 				// * if post was hidden/deleted, restore can go to RC
 				// * if post was suppressed, restore can not go to RC
-				global $wgFlowActions;
-				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['rc_insert'];
+				return $previousRevision->getModerationState() !== 'suppress';
 			}
 
 			return true;
@@ -646,8 +644,7 @@ $wgFlowActions = [
 				// Kind of log depends on the previous change type:
 				// * if topic was deleted, restore should go to deletion log
 				// * if topic was suppressed, restore should go to suppression log
-				global $wgFlowActions;
-				return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['log_type'];
+				return $previousRevision->getModerationState();
 			}
 
 			return '';
@@ -658,8 +655,7 @@ $wgFlowActions = [
 			if ( $previousRevision ) {
 				// * if topic was hidden/deleted, restore can go to RC
 				// * if topic was suppressed, restore can not go to RC
-				global $wgFlowActions;
-				return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['rc_insert'];
+				return $previousRevision->getModerationState() !== 'suppress';
 			}
 
 			return true;

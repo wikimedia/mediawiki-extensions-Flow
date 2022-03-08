@@ -32,7 +32,7 @@ return [
 	'FlowActions' => static function ( MediaWikiServices $services ): FlowActions {
 		// Flow configuration
 		return new FlowActions(
-			$services->getMainConfig()->get( 'FlowActions' )
+			require __DIR__ . '/../FlowActions.php'
 		);
 	},
 

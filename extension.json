@@ -101,7 +101,12 @@
 		"delete/flow-restore-topic": "Flow\\Log\\ActionFormatter",
 		"suppress/flow-restore-topic": "Flow\\Log\\ActionFormatter",
 		"lock/flow-restore-topic": "Flow\\Log\\ActionFormatter",
-		"import/lqt-to-flow-topic": "Flow\\Log\\LqtImportFormatter"
+		"import/lqt-to-flow-topic": "Flow\\Log\\LqtImportFormatter",
+		"delete/flow-delete-post": "Flow\\Log\\ActionFormatter",
+		"delete/flow-delete-topic": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-suppress-post": "Flow\\Log\\ActionFormatter",
+		"suppress/flow-suppress-topic": "Flow\\Log\\ActionFormatter",
+		"lock/flow-lock-topic": "Flow\\Log\\ActionFormatter"
 	},
 	"SpecialPages": {
 		"StructuredDiscussions": "Flow\\Specials\\SpecialStructuredDiscussions",

@@ -82,23 +82,7 @@ class Hooks {
 	protected static $abuseFilter;
 
 	public static function registerExtension() {
-		global $wgFlowActions, $wgLogActionsHandlers;
-
 		require_once dirname( __DIR__ ) . '/defines.php';
-
-		// Action details config file
-		require dirname( __DIR__ ) . '/FlowActions.php';
-
-		// Register URL actions and activity log formatter hooks
-		foreach ( $wgFlowActions as $action => $options ) {
-			if ( is_array( $options ) ) {
-				if ( isset( $options['log_type'] ) && is_string( $options['log_type'] ) ) {
-					$log = $options['log_type'];
-					// Some actions are more complex closures - they are added manually in extension.json
-					$wgLogActionsHandlers["$log/flow-$action"] = \Flow\Log\ActionFormatter::class;
-				}
-			}
-		}
 	}
 
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
