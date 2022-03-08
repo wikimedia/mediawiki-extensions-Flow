@@ -82,7 +82,7 @@ class Hooks {
 	protected static $abuseFilter;
 
 	public static function registerExtension() {
-		global $wgFlowActions, $wgLogActionsHandlers, $wgActions;
+		global $wgFlowActions, $wgLogActionsHandlers;
 
 		require_once dirname( __DIR__ ) . '/defines.php';
 
@@ -92,9 +92,6 @@ class Hooks {
 		// Register URL actions and activity log formatter hooks
 		foreach ( $wgFlowActions as $action => $options ) {
 			if ( is_array( $options ) ) {
-				if ( isset( $options['handler-class'] ) ) {
-					$wgActions[$action] = true;
-				}
 				if ( isset( $options['log_type'] ) && is_string( $options['log_type'] ) ) {
 					$log = $options['log_type'];
 					// Some actions are more complex closures - they are added manually in extension.json
