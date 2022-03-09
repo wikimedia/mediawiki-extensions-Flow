@@ -15,6 +15,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\Extension\CentralAuth\CentralAuthServices;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MWException;
@@ -399,7 +400,7 @@ class Importer {
 			throw new ImportException( "User '{$localUser->getName()}' already exists" );
 		}
 
-		$status = \CentralAuthServices::getUtilityService()->autoCreateUser( $localUser );
+		$status = CentralAuthServices::getUtilityService()->autoCreateUser( $localUser );
 		if ( !$status->isGood() ) {
 			throw new ImportException(
 				"autoCreateUser failed for {$localUser->getName()}: " . print_r( $status->getErrors(), true )
