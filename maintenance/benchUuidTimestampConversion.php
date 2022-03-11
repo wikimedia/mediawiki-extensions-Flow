@@ -2,7 +2,7 @@
 
 use Flow\Model\UUID;
 
-require_once __DIR__ . '/../../../maintenance/benchmarks/Benchmarker.php';
+require_once __DIR__ . '/../../../maintenance/includes/Benchmarker.php';
 
 /**
  * @ingroup Benchmark
@@ -11,6 +11,7 @@ class BenchUuidConversions extends \Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Benchmark uuid timstamp extraction implementations' );
+		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {
