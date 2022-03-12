@@ -942,24 +942,9 @@
 	},
 	"load_composer_autoloader": true,
 	"manifest_version": 2,
-	"AutoloadClasses": {
-		"FlowCreateTemplates": "maintenance/FlowCreateTemplates.php",
-		"FlowFixLinks": "maintenance/FlowFixLinks.php",
-		"FlowFixLog": "maintenance/FlowFixLog.php",
-		"FlowPopulateLinksTables": "maintenance/FlowPopulateLinksTables.php",
-		"FlowPopulateRefId": "maintenance/FlowPopulateRefId.php",
-		"FlowSetUserIp": "maintenance/FlowSetUserIp.php",
-		"FlowUpdateBetaFeaturePreference": "maintenance/FlowUpdateBetaFeaturePreference.php",
-		"FlowUpdateRecentChanges": "maintenance/FlowUpdateRecentChanges.php",
-		"FlowUpdateRevisionTypeId": "maintenance/FlowUpdateRevisionTypeId.php",
-		"FlowUpdateUserWiki": "maintenance/FlowUpdateUserWiki.php",
-		"FlowUpdateWorkflowPageId": "maintenance/FlowUpdateWorkflowPageId.php",
-		"LogRowUpdateGenerator": "maintenance/FlowFixLog.php",
-		"MaintenanceDebugLogger": "maintenance/MaintenanceDebugLogger.php",
-		"WorkflowPageIdUpdateGenerator": "maintenance/FlowUpdateWorkflowPageId.php"
-	},
 	"AutoloadNamespaces": {
 		"Flow\\": "includes/",
+		"Flow\\Maintenance\\": "maintenance/",
 		"MediaWiki\\Extension\\StructuredDiscussions\\": "src/"
 	},
 	"TestAutoloadClasses": {

@@ -1,15 +1,22 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Utils\RawSql;
 use Flow\DbFactory;
+use Flow\Exception\FlowException;
+use Flow\Hooks;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
+use Maintenance;
+use WikiMap;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -213,13 +220,13 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	/**
 	 * @param string $timestamp Timestamp in TS_MW format
-	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
-	 * @throws \Flow\Exception\FlowException
+	 * @throws DBUnexpectedError
+	 * @throws FlowException
 	 */
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$batchSize = $this->getBatchSize();
-		$talkpageManager = Flow\Hooks::getOccupationController()->getTalkpageManager();
+		$talkpageManager = Hooks::getOccupationController()->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that
 		$batchStartId = UUID::getComparisonUUID( '1' );
@@ -275,7 +282,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 	/**
 	 * @param Workflow[] $workflows
-	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
+	 * @throws DBUnexpectedError
 	 */
 	protected function removeWorkflows( array $workflows ) {
 		$this->dbFactory->getDB( DB_PRIMARY )->begin( __METHOD__ );

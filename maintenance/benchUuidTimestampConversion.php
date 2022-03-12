@@ -1,5 +1,8 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use Benchmarker;
 use Flow\Model\UUID;
 
 require_once __DIR__ . '/../../../maintenance/includes/Benchmarker.php';
@@ -7,10 +10,10 @@ require_once __DIR__ . '/../../../maintenance/includes/Benchmarker.php';
 /**
  * @ingroup Benchmark
  */
-class BenchUuidConversions extends \Benchmarker {
+class BenchUuidConversions extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Benchmark uuid timstamp extraction implementations' );
+		$this->addDescription( 'Benchmark uuid timestamp extraction implementations' );
 		$this->requireExtension( 'Flow' );
 	}
 

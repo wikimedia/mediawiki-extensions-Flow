@@ -1,6 +1,11 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use MWException;
+use UserArray;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -101,5 +106,5 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = FlowUpdateBetaFeaturePreference::class; // Tells it to run the class
+$maintClass = FlowUpdateBetaFeaturePreference::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

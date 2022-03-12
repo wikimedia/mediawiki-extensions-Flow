@@ -1,9 +1,14 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use LoggedUpdateMaintenance;
+use WikiMap;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

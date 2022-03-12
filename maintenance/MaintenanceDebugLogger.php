@@ -1,9 +1,13 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Exception\FlowException;
+use Maintenance;
+use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
-class MaintenanceDebugLogger extends Psr\Log\AbstractLogger {
+class MaintenanceDebugLogger extends AbstractLogger {
 	/**
 	 * @var Maintenance The maintenance script to perform output through
 	 */

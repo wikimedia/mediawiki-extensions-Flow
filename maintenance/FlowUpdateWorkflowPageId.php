@@ -1,9 +1,25 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use BatchRowUpdate;
+use BatchRowWriter;
+use Exception;
 use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use Language;
+use LoggedUpdateMaintenance;
+use RawMessage;
+use RowUpdateGenerator;
+use Status;
+use stdClass;
+use StubUserLang;
+use Title;
+use WikiMap;
+use WikiPage;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -145,7 +161,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 			);
 
 			$status->merge( $status2 );
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 			// "convert" exception into Status
 			$message = new RawMessage( $e->getMessage() );
 			$status = Status::newFatal( $message );

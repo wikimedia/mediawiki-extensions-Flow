@@ -1,9 +1,15 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use LoggedUpdateMaintenance;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -29,9 +35,9 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	protected $storage;
 
 	private const TYPES = [
-		'post' => \Flow\Model\PostRevision::class,
-		'header' => \Flow\Model\Header::class,
-		'post-summary' => \Flow\Model\PostSummary::class,
+		'post' => PostRevision::class,
+		'header' => Header::class,
+		'post-summary' => PostSummary::class,
 	];
 
 	public function __construct() {
@@ -169,5 +175,5 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = FlowFixUserIp::class; // Tells it to run the class
+$maintClass = FlowFixUserIp::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

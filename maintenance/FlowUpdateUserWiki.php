@@ -1,10 +1,14 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use MWException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -85,7 +89,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 
@@ -126,7 +130,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 
 		}
@@ -167,7 +171,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					}
 				}
 			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 	}
@@ -225,7 +229,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			__METHOD__
 		);
 		if ( !$res ) {
-			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+			throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 		$this->checkForReplica();
 
@@ -241,7 +245,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__
 			);
 			if ( !$res ) {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 			$this->checkForReplica();
 		}

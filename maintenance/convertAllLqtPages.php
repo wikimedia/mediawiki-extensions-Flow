@@ -1,12 +1,18 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use AppendIterator;
 use Flow\Container;
+use Flow\Hooks;
+use Flow\Import\Converter;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
@@ -57,7 +63,7 @@ class ConvertAllLqtPages extends Maintenance {
 		}
 
 		$importer = Container::get( 'importer' );
-		$talkpageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
+		$talkpageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$strategy = new ConversionStrategy(
@@ -69,7 +75,7 @@ class ConvertAllLqtPages extends Maintenance {
 			Container::get( 'controller.notification' )
 		);
 
-		$converter = new \Flow\Import\Converter(
+		$converter = new Converter(
 			$dbw,
 			$importer,
 			$logger,

@@ -1,11 +1,21 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use Flow\BoardMover;
 use Flow\Container;
 use Flow\Content\BoardContent;
+use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
 use Flow\Exception\UnknownWorkflowIdException;
+use Flow\WorkflowLoaderFactory;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Title;
+use WikiMap;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -21,22 +31,22 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
  */
 class FlowFixInconsistentBoards extends Maintenance {
 	/**
-	 * @var Flow\DbFactory
+	 * @var DbFactory
 	 */
 	protected $dbFactory;
 
 	/**
-	 * @var Flow\WorkflowLoaderFactory
+	 * @var WorkflowLoaderFactory
 	 */
 	protected $workflowLoaderFactory;
 
 	/**
-	 * @var Flow\BoardMover
+	 * @var BoardMover
 	 */
 	protected $boardMover;
 
 	/**
-	 * @var Flow\Data\ManagerGroup
+	 * @var ManagerGroup
 	 */
 	protected $storage;
 
@@ -152,9 +162,9 @@ class FlowFixInconsistentBoards extends Maintenance {
 
 					// Sanity check, or this will fail in BoardMover
 					$workflowByPageId = $this->storage->find( 'Workflow', [
-							'workflow_wiki' => WikiMap::getCurrentWikiId(),
-							'workflow_page_id' => $pageId,
-						] );
+						'workflow_wiki' => WikiMap::getCurrentWikiId(),
+						'workflow_page_id' => $pageId,
+					] );
 
 					if ( !$workflowByPageId ) {
 						$this->error( "ERROR: '$coreTitle' has page ID '$pageId', but no workflow " .

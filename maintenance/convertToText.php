@@ -1,10 +1,18 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Import\LiquidThreadsApi\ApiBackend;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Model\AbstractRevision;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MWTimestamp;
+use Parser;
+use ParserOptions;
+use Title;
+use User;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -249,7 +257,7 @@ class ConvertToText extends Maintenance {
 		}
 
 		return MediaWikiServices::getInstance()->getContentLanguage()
-				->timeanddate( $ts, false, false ) . " ($tzMsg)";
+			->timeanddate( $ts, false, false ) . " ($tzMsg)";
 	}
 
 	/**

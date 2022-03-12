@@ -1,6 +1,9 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Data\Listener\RecentChangesListener;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
@@ -179,5 +182,5 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = FlowUpdateRecentChanges::class; // Tells it to run the class
+$maintClass = FlowUpdateRecentChanges::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

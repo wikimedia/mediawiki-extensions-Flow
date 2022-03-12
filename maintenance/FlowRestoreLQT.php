@@ -1,11 +1,21 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use ActorMigration;
 use Flow\Container;
 use Flow\DbFactory;
+use Flow\Hooks;
 use Flow\Import\ArchiveNameHelper;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MWException;
+use Status;
+use Title;
+use User;
+use WikiPage;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -48,7 +58,7 @@ class FlowRestoreLQT extends Maintenance {
 	}
 
 	public function execute() {
-		$this->talkpageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
+		$this->talkpageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->dryRun = $this->getOption( 'dryrun', false );
 		$this->overwrite = $this->getOption( 'overwrite-flow', false );
@@ -312,7 +322,7 @@ class FlowRestoreLQT extends Maintenance {
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
 		$revision = $revisionLookup->getPreviousRevision( $nextRevision );
 		$mainContent = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
-		'@phan-var Content $mainContent';
+		'@phan-var \Content $mainContent';
 
 		if ( $page->getContent()->equals( $mainContent ) ) {
 			// has correct content already (probably a rerun of this script)
