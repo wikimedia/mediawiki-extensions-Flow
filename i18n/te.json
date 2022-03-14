@@ -12,6 +12,7 @@
 	"flow-desc": "చర్చా వ్యవస్థ",
 	"log-name-flow": "ఫ్లో చర్య లాగ్",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] లో [[$3|$5]] లోని [$4 టపాను]  {{GENDER:$2|తొలగించారు}}",
+	"logentry-suppress-flow-restore-post": "[[$6]] లో, \"[[$3|$5]]\" లోని [$4 పోస్టు] అణచివేతను $1 {{GENDER:$2|రద్దుచేసారు}}",
 	"flow-board-header-browse-topics-link": "అంశాలను చూడండి",
 	"flow-edit-header-link": "శీర్షికను సవరించు",
 	"flow-topic-moderated-reason-prefix": "కారణం:",

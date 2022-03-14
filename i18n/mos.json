@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hasslaebetch"
+		]
+	},
+	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|unsuppressed}} a [$4 post] on \"[[$3|$5]]\" on [[$6]]"
+}
