@@ -27,7 +27,8 @@
 			"Rtemis",
 			"Saeidpourbabak",
 			"درفش کاویانی",
-			"Jeeputer"
+			"Jeeputer",
+			"Beginneruser"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -121,7 +122,7 @@
 	"flow-history-action-unsuppress-post": "بازنشانی",
 	"flow-history-action-undelete-post": "احیا",
 	"flow-history-action-unhide-post": "نمایش",
-	"flow-history-action-restore-post": "احیا",
+	"flow-history-action-restore-post": "بازیابی",
 	"flow-history-action-lock-topic": "برطرف کردن",
 	"flow-history-action-unlock-topic": "بازگشودن",
 	"flow-post-edited": "ارسال توسط $1 $2 {{GENDER:$1|ویرایش شد}}",
@@ -138,7 +139,7 @@
 	"flow-post-action-unsuppress-post": "بازنشانی",
 	"flow-post-action-undelete-post": "احیا",
 	"flow-post-action-unhide-post": "آشکار کردن",
-	"flow-post-action-restore-post": "احیا",
+	"flow-post-action-restore-post": "بازیابی",
 	"flow-post-action-undo-moderation": "خنثی‌سازی",
 	"flow-topic-action-view": "پیوند پایدار",
 	"flow-topic-action-watchlist": "فهرست پی‌گیری‌ها",
