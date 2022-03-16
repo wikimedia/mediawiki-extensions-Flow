@@ -146,7 +146,7 @@
 		newFormat = newMode === 'visual' ? 'html' : 'wikitext';
 		doc = this.getSurface().getDom();
 		// When coming from visual mode, getDom() returns an HTMLDocument, otherwise a string
-		content = oldFormat === 'html' ? this.getHtml( doc ) : doc;
+		content = oldFormat === 'html' ? mw.libs.ve.targetSaver.getHtml( doc ) : doc;
 
 		this.setDefaultMode( newMode );
 		this.switchingDeferred = $.Deferred();
