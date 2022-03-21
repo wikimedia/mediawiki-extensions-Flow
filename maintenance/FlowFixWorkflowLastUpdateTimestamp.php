@@ -18,6 +18,8 @@ if ( $IP === false ) {
 }
 
 require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
+require_once "$IP/includes/utils/BatchRowWriter.php";
 
 /**
  * @ingroup Maintenance
