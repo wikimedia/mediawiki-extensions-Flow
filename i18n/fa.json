@@ -167,7 +167,7 @@
 	"flow-error-allowcreation-already-exists": "صفحه در حال حاضر در مقصد وجود دارد، لذا یک صفحهٔ بحث ساختارمند را نمی‌توان به آنجا منتقل کرد.",
 	"flow-error-allowcreation-flow-create-board": "کاربر دسترسی «{{int:right-flow-create-board}}» ندارد",
 	"flow-error-can-not-edit-logged-out": "امکان مشارکت برای شما وجود ندارد. باید به سامانه وارد شوید.",
-	"flow-error-can-not-edit-logged-in": "امکان مشارکت برای شما وجود ندارد چون شما دسترسی لازم را ندارید.",
+	"flow-error-can-not-edit-logged-in": "امکان مشارکت برای شما وجود ندارد چون شما امتیاز لازم را ندارید.",
 	"flow-error-http": "یک خطا هنگام تماس با سرور رخ داد.",
 	"flow-error-external": "خطایی رخ داد. پیام خطای دریافت شده این بود: $1",
 	"flow-error-topic-is-locked": "این مبحث برطرف شده است بنابراین فعالیت بیشتر در آن ممکن نیست.",
