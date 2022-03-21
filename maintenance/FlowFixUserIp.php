@@ -6,12 +6,9 @@ use Flow\DbFactory;
 use Flow\Model\UUID;
 use Wikimedia\Rdbms\IDatabase;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/maintenance/Maintenance.php";
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Sets *_user_ip to null when *_user_id is > 0

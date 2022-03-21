@@ -12,12 +12,9 @@ use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\IDatabase;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/maintenance/Maintenance.php";
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Converts all LiquidThreads pages on a wiki to Flow. When using the logfile

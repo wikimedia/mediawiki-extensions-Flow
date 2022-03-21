@@ -4,12 +4,11 @@ use Flow\Container;
 use Flow\Dump\Exporter;
 use MediaWiki\MediaWikiServices;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/maintenance/Maintenance.php";
+$maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'
+	: __DIR__ . '/../../../maintenance' );
+require_once $maintPath . '/Maintenance.php';
+require_once $maintPath . '/includes/BackupDumper.php';
 
 class FlowDumpBackup extends BackupDumper {
 	/** @var string|null */

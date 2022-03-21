@@ -2,12 +2,7 @@
 
 use Flow\Model\UUID;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/includes/Benchmarker.php";
+require_once __DIR__ . '/../../../maintenance/includes/Benchmarker.php';
 
 /**
  * @ingroup Benchmark
