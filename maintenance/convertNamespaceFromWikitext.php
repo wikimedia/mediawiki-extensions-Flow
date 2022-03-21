@@ -3,12 +3,9 @@
 use Flow\Utils\NamespaceIterator;
 use MediaWiki\MediaWikiServices;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/maintenance/Maintenance.php";
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Converts a single namespace from wikitext talk pages to flow talk pages.  Does not

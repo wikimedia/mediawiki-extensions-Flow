@@ -13,6 +13,7 @@ if ( $IP === false ) {
 }
 
 require_once "$IP/maintenance/Maintenance.php";
+require_once "$IP/includes/utils/RowUpdateGenerator.php";
 
 /**
  * Fixes Flow log entries.
