@@ -4,12 +4,14 @@ use Flow\Container;
 use Flow\Data\ObjectManager;
 use MediaWiki\MediaWikiServices;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
+$installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
+	getenv( 'MW_INSTALL_PATH' ) :
+	__DIR__ . '/../../..';
 
-require_once "$IP/maintenance/Maintenance.php";
+require_once $installPath . '/maintenance/Maintenance.php';
+// extending these - autoloader not yet wired up at the point these are interpreted
+require_once $installPath . '/includes/utils/BatchRowWriter.php';
+require_once $installPath . '/includes/utils/RowUpdateGenerator.php';
 
 /**
  * Populates ref_id in flow_wiki_ref & flow_ext_ref.

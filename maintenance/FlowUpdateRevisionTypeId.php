@@ -8,7 +8,6 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
-
 require_once "$IP/maintenance/Maintenance.php";
 
 /**

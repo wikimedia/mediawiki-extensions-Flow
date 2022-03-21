@@ -5,12 +5,9 @@ use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\Updaters\AbstractUpdater;
 
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = __DIR__ . '/../../..';
-}
-
-require_once "$IP/maintenance/Maintenance.php";
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
  * Similar to CirrusSearch's forceSearchIndex, this will force indexing of Flow
