@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Renan"
+		]
+	},
+	"flow-history-action-suppress-post": "supresser",
+	"flow-post-action-suppress-post": "Supresser",
+	"flow-moderation-confirm-suppress-post": "Supresser",
+	"flow-moderation-confirm-suppress-topic": "Supresser"
+}
