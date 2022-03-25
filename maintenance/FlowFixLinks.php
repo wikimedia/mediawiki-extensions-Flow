@@ -11,14 +11,12 @@ use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
 use WikiMap;
 
-$installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
-	getenv( 'MW_INSTALL_PATH' ) :
-	__DIR__ . '/../../..';
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__ . '/../../..';
+}
 
-require_once $installPath . '/maintenance/Maintenance.php';
-// extending these - autoloader not yet wired up at the point these are interpreted
-require_once $installPath . '/includes/utils/BatchRowWriter.php';
-require_once $installPath . '/includes/utils/RowUpdateGenerator.php';
+require_once "$IP/maintenance/Maintenance.php";
 
 /**
  * Fixes Flow References & entries in categorylinks & related tables.
