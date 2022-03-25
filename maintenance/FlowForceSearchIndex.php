@@ -1,9 +1,12 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Search\Connection;
 use Flow\Search\Updaters\AbstractUpdater;
+use Maintenance;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

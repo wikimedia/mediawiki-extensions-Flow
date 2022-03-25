@@ -1,9 +1,14 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
+use Flow\Hooks;
+use Flow\Import\Converter;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
+use Maintenance;
 use Psr\Log\LogLevel;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -25,7 +30,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 	}
 
 	public function execute() {
-		$talkPageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
+		$talkPageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
 
 		$api = new LocalApiBackend( $talkPageManagerUser );
 
@@ -57,7 +62,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$importer->setLogger( $logger );
 		$api->setLogger( $logger );
 
-		$converter = new \Flow\Import\Converter(
+		$converter = new Converter(
 			$dbw,
 			$importer,
 			$logger,

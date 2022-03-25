@@ -1,9 +1,20 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use BatchRowUpdate;
+use BatchRowWriter;
+use ExternalStore;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MWException;
+use RowUpdateGenerator;
+use stdClass;
+use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -86,9 +97,9 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 			$clusterConditions[] = $schema['content'] . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
 		}
 		$iterator->addConditions( [
-				$schema['wiki'] => WikiMap::getCurrentWikiId(),
-				$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
-				$dbr->makeList( $clusterConditions, LIST_OR ),
+			$schema['wiki'] => WikiMap::getCurrentWikiId(),
+			$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+			$dbr->makeList( $clusterConditions, LIST_OR ),
 		] );
 
 		$iterator->setCaller( __METHOD__ );

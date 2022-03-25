@@ -1,11 +1,22 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use Diff;
 use Flow\Container;
 use Flow\Conversion\Utils;
+use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
+use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
+use Maintenance;
+use ReflectionClass;
+use ReflectionMethod;
+use UnifiedDiffFormatter;
+use WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -24,12 +35,12 @@ class FlowReserializeRevisionContent extends Maintenance {
 	private $setContentRawMethod;
 
 	/**
-	 * @var \Flow\DbFactory
+	 * @var DbFactory
 	 */
 	private $dbFactory;
 
 	/**
-	 * @var \Flow\Data\ManagerGroup
+	 * @var ManagerGroup
 	 */
 	private $storage;
 

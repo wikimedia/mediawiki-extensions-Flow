@@ -1,8 +1,16 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
 use Flow\Container;
+use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use LoggedUpdateMaintenance;
+use ReflectionProperty;
+use WikiMap;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -26,12 +34,12 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	];
 
 	/**
-	 * @var Flow\DbFactory
+	 * @var DbFactory
 	 */
 	protected $dbFactory;
 
 	/**
-	 * @var Flow\Data\ManagerGroup
+	 * @var ManagerGroup
 	 */
 	protected $storage;
 

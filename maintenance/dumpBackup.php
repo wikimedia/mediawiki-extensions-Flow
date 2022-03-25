@@ -1,8 +1,12 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BackupDumper;
 use Flow\Container;
 use Flow\Dump\Exporter;
 use MediaWiki\MediaWikiServices;
+use WikiExporter;
 
 $maintPath = ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance'

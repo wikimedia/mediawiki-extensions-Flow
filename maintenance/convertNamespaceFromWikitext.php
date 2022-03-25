@@ -1,7 +1,16 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use Flow\Container;
+use Flow\Hooks;
+use Flow\Import\Converter;
+use Flow\Import\SourceStore\NullImportSourceStore;
+use Flow\Import\Wikitext\ConversionStrategy;
 use Flow\Utils\NamespaceIterator;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
+use Title;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -70,16 +79,16 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		$logger = new MaintenanceDebugLogger( $this );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$talkpageManager = Flow\Hooks::getOccupationController()->getTalkpageManager();
-		$converter = new \Flow\Import\Converter(
+		$talkpageManager = Hooks::getOccupationController()->getTalkpageManager();
+		$converter = new Converter(
 			$dbw,
-			Flow\Container::get( 'importer' ),
+			Container::get( 'importer' ),
 			$logger,
 			$talkpageManager,
 
-			new Flow\Import\Wikitext\ConversionStrategy(
+			new ConversionStrategy(
 				MediaWikiServices::getInstance()->getParser(),
-				new Flow\Import\SourceStore\NullImportSourceStore(),
+				new NullImportSourceStore(),
 				$logger,
 				$talkpageManager,
 				$noConvertTemplates,

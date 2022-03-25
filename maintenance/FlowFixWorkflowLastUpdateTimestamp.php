@@ -1,15 +1,28 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use BatchRowUpdate;
+use BatchRowWriter;
+use Exception;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
+use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
+use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MWTimestamp;
+use RowUpdateGenerator;
+use stdClass;
+use WikiMap;
 use Wikimedia\Timestamp\TimestampException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -98,7 +111,7 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	 * @return array
 	 * @throws TimestampException
 	 * @throws FlowException
-	 * @throws \Flow\Exception\InvalidInputException
+	 * @throws InvalidInputException
 	 */
 	public function update( $row ) {
 		$uuid = UUID::create( $row->workflow_id );
@@ -136,7 +149,7 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	 * @return MWTimestamp
 	 * @throws Exception
 	 * @throws TimestampException
-	 * @throws \Flow\Exception\DataModelException
+	 * @throws DataModelException
 	 */
 	protected function getUpdateTimestamp( AbstractRevision $revision ) {
 		$timestamp = $revision->getRevisionId()->getTimestampObj();

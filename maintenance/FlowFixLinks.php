@@ -1,8 +1,15 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
 use Flow\Container;
+use Flow\Data\ObjectManager;
+use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use WikiMap;
 
 $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
@@ -48,7 +55,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 
 	protected function removeVirtualPages() {
-		/** @var \Flow\Data\ObjectManager $storage */
+		/** @var ObjectManager $storage */
 		$storage = Container::get( 'storage.wiki_reference' );
 		$links = $storage->find( [
 			'ref_src_wiki' => WikiMap::getCurrentWikiId(),
@@ -64,7 +71,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	protected function rebuildCoreTables() {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
-		/** @var \Flow\LinksTableUpdater $linksTableUpdater */
+		/** @var LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->getBatchSize() );

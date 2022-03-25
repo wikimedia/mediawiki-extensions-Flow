@@ -1,8 +1,11 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
+use LoggedUpdateMaintenance;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

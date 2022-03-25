@@ -5,8 +5,15 @@
  * @ingroup Maintenance
  */
 
+namespace Flow\Maintenance;
+
+use BatchRowIterator;
+use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
+use LoggedUpdateMaintenance;
+use MWEchoDbFactory;
+use Title;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

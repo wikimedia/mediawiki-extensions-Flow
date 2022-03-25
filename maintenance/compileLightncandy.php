@@ -1,6 +1,9 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\TemplateHelper;
+use Maintenance;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -64,5 +67,5 @@ class CompileLightncandy extends Maintenance {
 	}
 }
 
-$maintClass = CompileLightncandy::class; // Tells it to run the class
+$maintClass = CompileLightncandy::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

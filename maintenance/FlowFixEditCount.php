@@ -1,9 +1,14 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use User;
+use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false

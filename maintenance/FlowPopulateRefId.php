@@ -1,8 +1,13 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\Data\ObjectManager;
+use Flow\Exception\InvalidInputException;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use WikiMap;
 
 $installPath = getenv( 'MW_INSTALL_PATH' ) !== false ?
 	getenv( 'MW_INSTALL_PATH' ) :
@@ -50,7 +55,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 
 	/**
 	 * @param ObjectManager $storage
-	 * @throws \Flow\Exception\InvalidInputException
+	 * @throws InvalidInputException
 	 */
 	protected function update( ObjectManager $storage ) {
 		global $wgFlowCluster;

@@ -1,9 +1,16 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use Flow\Container;
+use Flow\Exception\FlowException;
+use Flow\Hooks;
 use Flow\Import\LiquidThreadsApi\ImportSource;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
+use Maintenance;
 use Psr\Log\LogLevel;
+use Title;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -32,19 +39,19 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$cacheDir = $this->getOption( 'cacheremoteapidir' );
 		if ( !is_dir( $cacheDir ) ) {
 			if ( !mkdir( $cacheDir ) ) {
-				throw new Flow\Exception\FlowException( 'Provided dir for caching remote api calls is not creatable.' );
+				throw new FlowException( 'Provided dir for caching remote api calls is not creatable.' );
 			}
 		}
 		if ( !is_writable( $cacheDir ) ) {
-			throw new Flow\Exception\FlowException( 'Provided dir for caching remote api calls is not writable.' );
+			throw new FlowException( 'Provided dir for caching remote api calls is not writable.' );
 		}
 
 		$api = new RemoteApiBackend( $this->getOption( 'remoteapi' ), $cacheDir );
 
-		$importer = Flow\Container::get( 'importer' );
+		$importer = Container::get( 'importer' );
 		$importer->setAllowUnknownUsernames( true );
 
-		$talkPageManagerUser = Flow\Hooks::getOccupationController()->getTalkpageManager();
+		$talkPageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
 
 		$srcPageName = $this->getOption( 'srcpage' );
 		if ( $this->hasOption( 'dstpage' ) ) {

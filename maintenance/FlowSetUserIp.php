@@ -1,7 +1,10 @@
 <?php
 
+namespace Flow\Maintenance;
+
 use Flow\Container;
 use Flow\DbFactory;
+use LoggedUpdateMaintenance;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
@@ -9,8 +12,8 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	: __DIR__ . '/../../../maintenance/Maintenance.php';
 
 /**
- * Populate the *_user_ip fields within flow.  This only updates
- * the database and not the cache.  The model loading layer handles
+ * Populate the *_user_ip fields within flow. This only updates
+ * the database and not the cache. The model loading layer handles
  * cached old values.
  *
  * @ingroup Maintenance
@@ -190,5 +193,5 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = FlowSetUserIp::class; // Tells it to run the class
+$maintClass = FlowSetUserIp::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

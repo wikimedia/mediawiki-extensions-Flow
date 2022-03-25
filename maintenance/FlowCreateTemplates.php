@@ -1,6 +1,15 @@
 <?php
 
+namespace Flow\Maintenance;
+
+use Flow\Hooks;
+use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use MWException;
+use Status;
+use Title;
+use WikiPage;
+use WikitextContent;
 
 require_once getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -109,7 +118,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 
 		return $page->doUserEditContent(
 			$content,
-			Flow\Hooks::getOccupationController()->getTalkpageManager(),
+			Hooks::getOccupationController()->getTalkpageManager(),
 			'/* Automatically created by Flow */',
 			EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 		);
