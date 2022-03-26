@@ -33,7 +33,7 @@ class FlowPopulateRefId extends LoggedUpdateMaintenance {
 	}
 
 	protected function getUpdateKey() {
-		return __CLASS__;
+		return 'FlowPopulateRefId';
 	}
 
 	protected function doDBUpdates() {

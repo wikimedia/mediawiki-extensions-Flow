@@ -77,7 +77,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 	}
 
 	protected function getUpdateKey() {
-		return __CLASS__;
+		return 'FlowUpdateWorkflowPageId';
 	}
 }
 

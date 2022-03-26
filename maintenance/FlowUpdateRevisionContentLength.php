@@ -64,7 +64,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 	}
 
 	public function getUpdateKey() {
-		return __CLASS__ . ':version2';
+		return 'FlowUpdateRevisionContentLength:version2';
 	}
 
 	public function doDBUpdates() {

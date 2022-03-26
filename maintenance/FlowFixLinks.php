@@ -35,7 +35,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 
 	protected function getUpdateKey() {
-		return __CLASS__ . ':v2';
+		return 'FlowFixLinks:v2';
 	}
 
 	protected function doDBUpdates() {

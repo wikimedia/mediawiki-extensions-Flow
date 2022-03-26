@@ -40,7 +40,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 	}
 
 	public function getUpdateKey() {
-		return __CLASS__;
+		return 'FlowUpdateResolvedNotifTitles';
 	}
 
 	public function doDBUpdates() {

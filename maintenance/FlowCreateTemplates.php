@@ -86,7 +86,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 
 		// make the updatekey unique for the i18n keys of the pages to be created
 		// so we can easily skip this update if there are no changes
-		return __CLASS__ . ':' . md5( implode( ',', $keys ) );
+		return 'FlowCreateTemplates:' . md5( implode( ',', $keys ) );
 	}
 
 	protected function doDBUpdates() {
