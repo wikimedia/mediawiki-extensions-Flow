@@ -176,9 +176,20 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	}
 
 	public function report() {
-		return "Updated {$this->fixedCount}  workflows\n\n" .
-			"Warnings: " . count( $this->warnings ) . "\n" . print_r( $this->warnings, true ) . "\n\n" .
-			"Failed: " . count( $this->failures ) . "\n" . print_r( $this->failures, true );
+		$ret = "Updated {$this->fixedCount} workflows\n\n";
+
+		$warningsCount = count( $this->warnings );
+		$ret .= "Warnings: {$warningsCount}\n";
+		if ( $warningsCount > 0 ) {
+			$ret .= print_r( $this->warnings, true ) . "\n\n";
+		}
+		$failureCount = count( $this->failures );
+		$ret .= "Failed: {$failureCount}\n";
+		if ( $failureCount > 0 ) {
+			$ret .= print_r( $this->failures, true );
+		}
+
+		return $ret;
 	}
 }
 
