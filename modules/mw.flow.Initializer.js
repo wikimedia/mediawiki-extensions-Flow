@@ -921,7 +921,7 @@
 			captcha = new mw.flow.dm.Captcha(),
 			captchaWidget = new mw.flow.ui.CaptchaWidget( captcha ),
 			error = new OO.ui.LabelWidget( {
-				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors errorbox' ]
+				classes: [ 'flow-ui-boardDescriptionWidget-error flow-errors flow-errorbox mw-message-box mw-message-box-error' ]
 			} ),
 			editor = new mw.flow.ui.EditorWidget( {
 				saveMsgKey: saveMsgKey,
