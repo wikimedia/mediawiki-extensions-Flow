@@ -826,12 +826,6 @@
 		"FlowMaxThreadingDepth": {
 			"value": 8
 		},
-		"FlowEditorList": {
-			"value": [
-				"visualeditor",
-				"wikitext"
-			]
-		},
 		"FlowUseMemcache": {
 			"value": true
 		},
