@@ -57,12 +57,7 @@ class UserLocator extends EchoUserLocator {
 	 */
 	public static function locatePostAuthors( EchoEvent $event ) {
 		$extra = $event->getExtra();
-
-		if ( isset( $extra['reply-to'] ) ) {
-			$postId = $extra['reply-to'];
-		} else {
-			$postId = $extra['post-id'];
-		}
+		$postId = $extra['reply-to'] ?? $extra['post-id'];
 
 		if ( !$postId instanceof UUID ) {
 			// something wrong; don't notify anyone
