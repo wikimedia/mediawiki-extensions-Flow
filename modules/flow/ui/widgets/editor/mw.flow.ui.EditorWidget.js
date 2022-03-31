@@ -44,7 +44,7 @@
 		this.loadPromise = null;
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-editorWidget-error flow-errors errorbox' ]
+			classes: [ 'flow-ui-editorWidget-error flow-errors flow-errorbox mw-message-box mw-message-box-error' ]
 		} );
 		this.error.toggle( false );
 

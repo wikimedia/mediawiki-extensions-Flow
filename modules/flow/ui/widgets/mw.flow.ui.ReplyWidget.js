@@ -43,7 +43,7 @@
 		this.canNotEdit.toggle( !this.expandable );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-replyWidget-error flow-errors errorbox' ]
+			classes: [ 'flow-ui-replyWidget-error flow-errors flow-errorbox mw-message-box mw-message-box-error' ]
 		} );
 		this.error.toggle( false );
 

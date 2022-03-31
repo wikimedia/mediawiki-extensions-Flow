@@ -41,7 +41,7 @@
 		this.anonWarning.toggle( true );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-editPostWidget-error flow-errors errorbox' ]
+			classes: [ 'flow-ui-editPostWidget-error flow-errors flow-errorbox mw-message-box mw-message-box-error' ]
 		} );
 		this.error.toggle( false );
 

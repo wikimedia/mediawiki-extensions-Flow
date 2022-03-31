@@ -74,7 +74,7 @@
 		this.captchaWidget = new mw.flow.ui.CaptchaWidget( this.captcha );
 
 		this.error = new OO.ui.LabelWidget( {
-			classes: [ 'flow-ui-newTopicWidget-error flow-errors errorbox' ]
+			classes: [ 'flow-ui-newTopicWidget-error flow-errors flow-errorbox mw-message-box mw-message-box-error' ]
 		} );
 		this.error.toggle( false );
 
