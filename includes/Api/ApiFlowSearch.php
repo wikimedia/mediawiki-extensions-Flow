@@ -12,6 +12,7 @@ use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
 use Flow\Search\Searcher;
 use Status;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiFlowSearch extends ApiFlowBaseGet {
 	/**
@@ -210,8 +211,8 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
-				ApiBase::PARAM_MAX => $wgFlowDefaultLimit,
-				ApiBase::PARAM_MAX2 => $wgFlowDefaultLimit,
+				IntegerDef::PARAM_MAX => $wgFlowDefaultLimit,
+				IntegerDef::PARAM_MAX2 => $wgFlowDefaultLimit,
 			],
 		];
 	}

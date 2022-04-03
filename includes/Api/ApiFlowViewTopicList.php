@@ -3,6 +3,7 @@
 namespace Flow\Api;
 
 use ApiBase;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
@@ -53,8 +54,8 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
-				ApiBase::PARAM_MAX => $wgFlowMaxLimit,
-				ApiBase::PARAM_MAX2 => $wgFlowMaxLimit,
+				IntegerDef::PARAM_MAX => $wgFlowMaxLimit,
+				IntegerDef::PARAM_MAX2 => $wgFlowMaxLimit,
 			],
 			'toconly' => [
 				ApiBase::PARAM_TYPE => 'boolean',
