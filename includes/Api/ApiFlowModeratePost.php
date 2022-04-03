@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlowModeratePost extends ApiFlowBasePost {
 
@@ -21,14 +21,14 @@ class ApiFlowModeratePost extends ApiFlowBasePost {
 	public function getAllowedParams() {
 		return [
 			'moderationState' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => $this->getModerationStates(),
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => $this->getModerationStates(),
 			],
 			'reason' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'postId' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 		] + parent::getAllowedParams();
 	}

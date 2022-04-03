@@ -5,6 +5,7 @@ namespace Flow\Api;
 use ApiBase;
 use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiParsoidUtilsFlow extends ApiBase {
 
@@ -36,20 +37,20 @@ class ApiParsoidUtilsFlow extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'from' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext' ],
 			],
 			'to' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext' ],
 			],
 			'content' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'title' => null,
 			'pageid' => [
-				ApiBase::PARAM_ISMULTI => false,
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_ISMULTI => false,
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 		];
 	}

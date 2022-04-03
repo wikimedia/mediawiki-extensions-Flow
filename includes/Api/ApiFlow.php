@@ -9,6 +9,7 @@ use Flow\Container;
 use Hooks;
 use MediaWiki\MediaWikiServices;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlow extends ApiBase {
 
@@ -147,12 +148,12 @@ class ApiFlow extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'submodule' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'page' => [
 				// supply bogus default - not every action may *need* ?page=
-				ApiBase::PARAM_DFLT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
+				ParamValidator::PARAM_DEFAULT => Title::newFromText( 'Flow-enabled page', NS_TOPIC )->getPrefixedDBkey(),
 			],
 			'token' => '',
 		];

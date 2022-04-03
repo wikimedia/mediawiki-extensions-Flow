@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
@@ -24,8 +24,8 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	public function getAllowedParams() {
 		return [
 			'format' => [
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
-				ApiBase::PARAM_DFLT => 'fixed-html',
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
+				ParamValidator::PARAM_DEFAULT => 'fixed-html',
 			],
 			'revId' => null,
 		];
