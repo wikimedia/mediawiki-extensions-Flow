@@ -22,7 +22,8 @@
 			"Kkairri",
 			"LaMagiaaa",
 			"Object＊tofu",
-			"つぶあん派"
+			"つぶあん派",
+			"Yamagata Yusuke"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -426,7 +427,7 @@
 	"flow-mark-diff-patrolled-link-text": "巡回済みにする",
 	"flow-mark-diff-patrolled-link-title": "巡回済みにする",
 	"flow-talk-page-beta-feature-message": "会話ページでの構造化された議論",
-	"flow-talk-page-beta-feature-description": "{{GENDER:|あなたの}}ユーザーのトークページに新しい構造化されたディスカッションシステムを有効にします。 <br /><br />既存のwikitextディスカッションはアーカイブに移動します。この機能を無効にすると、構造化されたディスカッションボードはサブページに移動し、以前のトークページのアーカイブは解除されます。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|有効化する際の詳細はこちら]]。",
+	"flow-talk-page-beta-feature-description": "{{GENDER:|あなたの}}利用者トークページに新しい構造化されたディスカッションシステムを有効にします。 <br /><br />既存のwikitextディスカッションはアーカイブに移動します。この機能を無効にすると、構造化されたディスカッションボードは下位ページに移動し、以前のトークページのアーカイブは解除されます。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|有効化する際の詳細はこちら]]。",
 	"flow-notification-link-text-enabled-on-talkpage": "利用者の会話ページを{{GENDER:|見る}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "アーカイブテンプレートの追加",
 	"flow-beta-feature-remove-archive-template-edit-summary": "アーカイブ・テンプレートの除去",
