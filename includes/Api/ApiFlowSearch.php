@@ -2,7 +2,6 @@
 
 namespace Flow\Api;
 
-use ApiBase;
 use Flow\Container;
 use Flow\Exception\InvalidDataException;
 use Flow\Formatter\TopicListFormatter;
@@ -12,6 +11,7 @@ use Flow\Search\Connection;
 use Flow\Search\SearchEngine;
 use Flow\Search\Searcher;
 use Status;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiFlowSearch extends ApiFlowBaseGet {
@@ -179,38 +179,38 @@ class ApiFlowSearch extends ApiFlowBaseGet {
 
 		return [
 			'term' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'title' => null,
 			'pageid' => [
-				ApiBase::PARAM_ISMULTI => false,
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_ISMULTI => false,
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'namespaces' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 			'moderationState' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->getModerationStates( false ),
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $this->getModerationStates( false ),
 			],
 			'sort' => [
-				ApiBase::PARAM_TYPE => $sorts,
-				ApiBase::PARAM_DFLT => reset( $sorts ),
+				ParamValidator::PARAM_TYPE => $sorts,
+				ParamValidator::PARAM_DEFAULT => reset( $sorts ),
 			],
 			'type' => [
 				// false is allowed (means we'll search *all* types)
-				ApiBase::PARAM_TYPE => array_merge( Connection::getAllTypes(), [ false ] ),
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => array_merge( Connection::getAllTypes(), [ false ] ),
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'offset' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => 0,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 0,
 			],
 			'limit' => [
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
+				ParamValidator::PARAM_TYPE => 'limit',
+				ParamValidator::PARAM_DEFAULT => $wgFlowDefaultLimit,
 				IntegerDef::PARAM_MAX => $wgFlowDefaultLimit,
 				IntegerDef::PARAM_MAX2 => $wgFlowDefaultLimit,
 			],

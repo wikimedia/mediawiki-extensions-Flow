@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlowEditPost extends ApiFlowBasePost {
 
@@ -21,17 +21,17 @@ class ApiFlowEditPost extends ApiFlowBasePost {
 	public function getAllowedParams() {
 		return [
 			'postId' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'prev_revision' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'content' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'format' => [
-				ApiBase::PARAM_DFLT => 'wikitext',
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext' ],
+				ParamValidator::PARAM_DEFAULT => 'wikitext',
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext' ],
 			],
 		] + parent::getAllowedParams();
 	}

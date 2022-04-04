@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlowUndoEditTopicSummary extends ApiFlowBaseGet {
 	public function __construct( $api, $modName ) {
@@ -23,10 +23,10 @@ class ApiFlowUndoEditTopicSummary extends ApiFlowBaseGet {
 	public function getAllowedParams() {
 		return [
 			'startId' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'endId' => [
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 		] + parent::getAllowedParams();
 	}

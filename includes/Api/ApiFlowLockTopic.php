@@ -2,8 +2,8 @@
 
 namespace Flow\Api;
 
-use ApiBase;
 use Flow\Model\AbstractRevision;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlowLockTopic extends ApiFlowBasePost {
 
@@ -29,15 +29,15 @@ class ApiFlowLockTopic extends ApiFlowBasePost {
 	public function getAllowedParams() {
 		return [
 			'moderationState' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => [
 					AbstractRevision::MODERATED_LOCKED, 'unlock',
 					'close', 'reopen' // BC: now replaced by lock & unlock
 				],
 			],
 			'reason' => [
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 		] + parent::getAllowedParams();
 	}

@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiBase;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiFlowViewTopicList extends ApiFlowBaseGet {
@@ -28,42 +28,42 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 
 		return [
 			'offset-dir' => [
-				ApiBase::PARAM_TYPE => [ 'fwd', 'rev' ],
-				ApiBase::PARAM_DFLT => 'fwd',
+				ParamValidator::PARAM_TYPE => [ 'fwd', 'rev' ],
+				ParamValidator::PARAM_DEFAULT => 'fwd',
 			],
 			'sortby' => [
-				ApiBase::PARAM_TYPE => [ 'newest', 'updated', 'user' ],
-				ApiBase::PARAM_DFLT => 'user',
+				ParamValidator::PARAM_TYPE => [ 'newest', 'updated', 'user' ],
+				ParamValidator::PARAM_DEFAULT => 'user',
 			],
 			'savesortby' => [
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'offset-id' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'offset' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'include-offset' => [
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'limit' => [
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_DFLT => $wgFlowDefaultLimit,
+				ParamValidator::PARAM_TYPE => 'limit',
+				ParamValidator::PARAM_DEFAULT => $wgFlowDefaultLimit,
 				IntegerDef::PARAM_MAX => $wgFlowMaxLimit,
 				IntegerDef::PARAM_MAX2 => $wgFlowMaxLimit,
 			],
 			'toconly' => [
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'format' => [
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
-				ApiBase::PARAM_DFLT => 'fixed-html',
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext', 'fixed-html' ],
+				ParamValidator::PARAM_DEFAULT => 'fixed-html',
 			],
 		];
 	}
