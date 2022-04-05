@@ -164,20 +164,17 @@ class SubmissionHandler {
 				$results[$block->getName()] = $block->commit();
 			}
 			$dbw->endAtomic( __METHOD__ );
-		} catch ( \Exception $e ) {
+
+			while ( !$this->deferredQueue->isEmpty() ) {
+				DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
+			}
+			$workflow->getArticleTitle()->purgeSquid();
+
+		return $results;
+		} finally {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();
 			}
-			$this->dbFactory->rollbackPrimaryChanges( __METHOD__ );
-			throw $e;
 		}
-
-		while ( !$this->deferredQueue->isEmpty() ) {
-			DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
-		}
-
-		$workflow->getArticleTitle()->purgeSquid();
-
-		return $results;
 	}
 }
