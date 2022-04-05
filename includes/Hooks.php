@@ -1213,7 +1213,7 @@ class Hooks {
 	 * Add topiclist sortby to preferences.
 	 *
 	 * @param User $user
-	 * @param array &$preferences Preferences object
+	 * @param array &$preferences
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
 		$preferences['flow-topiclist-sortby'] = [
@@ -1273,8 +1273,8 @@ class Hooks {
 	 *
 	 * Those are handled in onMovePageCheckPermissions, called later.
 	 *
-	 * @param Title $oldTitle Old title
-	 * @param Title $newTitle New title
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
 	 * @param Status $status Status to update with any technical issues
 	 *
 	 * @return bool true to continue, false to abort the hook
@@ -1305,8 +1305,8 @@ class Hooks {
 	 *
 	 * Technical restrictions are handled in onMovePageIsValidMove, called earlier.
 	 *
-	 * @param Title $oldTitle Old title
-	 * @param Title $newTitle New title
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
 	 * @param User $user User doing the move
 	 * @param string $reason Reason for the move
 	 * @param Status $status Status updated with any permissions issue
