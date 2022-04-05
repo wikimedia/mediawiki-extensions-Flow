@@ -2,10 +2,12 @@
 
 namespace Flow\Search;
 
+use MediaWiki\Extension\Elastica\ElasticaConnection;
+
 /**
  * Provides the connection to the elasticsearch backend.
  */
-class Connection extends \ElasticaConnection {
+class Connection extends ElasticaConnection {
 
 	/**
 	 * Name of the topic type.
