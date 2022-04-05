@@ -442,6 +442,7 @@
 	"flow-special-invalid-uuid": "종류와 UUID에 맞는 콘텐츠를 찾을 수 없습니다.",
 	"flow-special-enableflow-legend": "새 문서에 구조화된 토론 문서 활성화",
 	"flow-special-enableflow-page": "구조화된 토론을 활성화할 문서",
+	"flow-special-enableflow-header": "구조화된 토론 게시판의 초기 설명 (위키텍스트)",
 	"flow-special-enableflow-board-already-exists": "[[$1]]에 이미 구조화된 토론 게시판이 있습니다.",
 	"flow-special-enableflow-invalid-title": "유효하지 않은 페이지 제목이 제공되었습니다.",
 	"flow-special-enableflow-board-creation-not-allowed": "[[:$1]]에서 구조화된 토론 게시판을 만들 권한이 없습니다.",
