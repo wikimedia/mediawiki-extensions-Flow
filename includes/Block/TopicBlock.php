@@ -223,8 +223,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validateReply() {
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-		if ( trim( $this->submitted['content'] ) === '' ) {
+		if ( !isset( $this->submitted['content'] ) || trim( $this->submitted['content'] ) === '' ) {
 			$this->addError( 'content', $this->context->msg( 'flow-error-missing-content' ) );
 			return;
 		}
