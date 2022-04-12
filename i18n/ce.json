@@ -193,6 +193,6 @@
 	"flow-ve-mention-inspector-remove-label": "ДӀайаккха",
 	"flow-ve-mention-placeholder": "Декъашхочун цӀе",
 	"flow-ve-mention-tool-title": "Декъашхо хьахо",
-	"flow-ve-mention-inspector-invalid-user": "Декъашхочун «$1» агӀо йац.",
+	"flow-ve-mention-inspector-invalid-user": "«$1» аккаунт дӀайазйина йац.",
 	"flow-wikitext-editor-help": "Вики-йоза $1."
 }
