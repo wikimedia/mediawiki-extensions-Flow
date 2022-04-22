@@ -197,6 +197,7 @@ class BoardContentHandler extends \ContentHandler {
 				$this->generateHtml( $title, $user, $content, $output );
 			} catch ( \Exception $e ) {
 				// Workflow does not yet exist (may be in the process of being created)
+				$output->setText( '' );
 			}
 		}
 
