@@ -27,7 +27,8 @@
 			"관인생략",
 			"렌즈",
 			"아라",
-			"MemphisA5"
+			"MemphisA5",
+			"Bluehill"
 		]
 	},
 	"enablestructureddiscussions": "구조화된 토론 활성화",
@@ -405,9 +406,12 @@
 	"flow-compare-revisions-header-header": "이 문서는 [$3 $1] 설명의 {{GENDER:$2|차이}}를 보여주고 있습니다. [$4 역사 문서]에서 다른 판을 볼 수 있습니다.",
 	"action-flow-create-board": "임의 장소에서 구조화된 토론 게시판 만들기",
 	"right-flow-create-board": "임의 장소에서 구조화된 토론 게시물 만들기",
+	"action-flow-hide": "구조화된 토론 주제와 게시물 숨기기",
 	"right-flow-hide": "구조화된 토론 주제와 게시물 숨기기",
+	"action-flow-lock": "구조화된 토론 주제를 해결한 것으로 표시",
 	"right-flow-lock": "구조화된 토론 주제를 해결한 것으로 표시",
-	"right-flow-delete": "구조화된 토론 주제와 문서 삭제",
+	"action-flow-delete": "구조화된 토론 주제와 게시물 삭제",
+	"right-flow-delete": "구조화된 토론 주제와 게시물 삭제",
 	"right-flow-edit-post": "다른 사용자의 구조화된 토론 게시글을 편집",
 	"right-flow-suppress": "구조화된 토론 주제와 댓글을 감춤",
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\"을 클릭하면 이 위키의 이용 약관에 동의한 것이 됩니다.",
