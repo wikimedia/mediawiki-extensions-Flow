@@ -52,14 +52,14 @@
 
 		if ( !this.isProbablyEditable ) {
 			// Initial generic message, which the real one loads
-			this.label.setLabel( $( $.parseHTML( this.getGenericMessage().parse() ) ) );
+			this.label.setLabel( this.getGenericMessage().parseDom() );
 
 			this.getMessage().done( function ( message ) {
 				// 'blocked' is never triggered by the quick check, so that is not
 				// mentioned in the message.  So it could be 'protected' (which is specially
 				// handled), but could also be lack of 'createtalk', etc.
-				var labelHtml = message.parse();
-				widget.label.setLabel( $( $.parseHTML( labelHtml ) ) );
+				var labelHtml = message.parseDom();
+				widget.label.setLabel( labelHtml );
 			} );
 		}
 	};
@@ -113,12 +113,12 @@
 				this.api.getProtectionReason().done( function ( reason ) {
 					// Includes empty string
 					if ( !reason ) {
-						reason = mw.message( 'flow-error-protected-unknown-reason' ).text();
+						reason = mw.message( 'flow-error-protected-unknown-reason' ).escaped();
 					}
 
 					// Message keys are documented above
 					// eslint-disable-next-line mediawiki/msg-doc
-					message = mw.message( messageKey, reason );
+					message = mw.message( messageKey, $( $.parseHTML( reason ) ) );
 
 					dfd.resolve( message );
 				} ).fail( function () {
