@@ -101,11 +101,7 @@ class Controller {
 			return [];
 		}
 
-		if ( isset( $data['extra-data'] ) ) {
-			$extraData = $data['extra-data'];
-		} else {
-			$extraData = [];
-		}
+		$extraData = $data['extra-data'] ?? [];
 
 		$revision = $data['revision'];
 		if ( !$revision instanceof Header ) {
@@ -179,11 +175,7 @@ class Controller {
 			return [];
 		}
 
-		if ( isset( $data['extra-data'] ) ) {
-			$extraData = $data['extra-data'];
-		} else {
-			$extraData = [];
-		}
+		$extraData = $data['extra-data'] ?? [];
 
 		$revision = $data['revision'];
 		if ( !$revision instanceof PostRevision ) {
