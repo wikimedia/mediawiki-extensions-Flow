@@ -28,7 +28,7 @@ $( function () {
 
 		assert.strictEqual(
 			$html.findWithParent( 'div > p, p < div' ).length, 2,
-			'finds multiple elements when using selectors seperated by comma'
+			'finds multiple elements when using selectors separated by comma'
 		);
 		assert.strictEqual(
 			$html.findWithParent( 'ul > p' ).length, 0,
