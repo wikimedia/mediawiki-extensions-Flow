@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pacha Tchernof",
 			"פוילישער"
 		]
 	},
@@ -52,7 +53,7 @@
 	"flow-notification-link-text-view-topics": "באקוקן טעמעס",
 	"echo-category-title-flow-discussion": "סטרוקטורירטער שמועס",
 	"flow-link-topic": "טעמע",
-	"flow-link-history": "היסטאריע",
+	"flow-link-history": "היסטאָריע",
 	"flow-moderation-confirm-undelete-post": "מבטל זיין אויסמעקן",
 	"flow-moderation-confirm-undelete-topic": "מבטל זיין אויסמעקן",
 	"flow-importer-lqt-converted-template-content": "פֿריערדיקע בלאט היסטאריע ארכיווט פאר ווידערשטעלונג־צוועק ביי <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> אום {{#time: Y-m-d|{{{date}}}}}.",
