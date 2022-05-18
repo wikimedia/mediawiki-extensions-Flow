@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"TayfunEt."
+		]
+	},
+	"flow-newtopic-save": "Qonu ekle",
+	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Yañı bir qonu|$1 yañı qonu|100=99+ yañı qonu}} <strong>sizin muzakere saifeñizde tapıla</strong>."
+}
