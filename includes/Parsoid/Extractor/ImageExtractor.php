@@ -15,7 +15,10 @@ class ImageExtractor implements Extractor {
 	 * @inheritDoc
 	 */
 	public function getXPath() {
-		return '//*[contains(concat(" ", @typeof, " "), " mw:Image " )]';
+		return '//*[contains(concat(" ", @typeof, " "), " mw:File " )] | ' .
+			// TODO: Remove mw:Image when version 2.4.0 of the content is no
+			// longer supported
+			'//*[contains(concat(" ", @typeof, " "), " mw:Image " )]';
 	}
 
 	/**
