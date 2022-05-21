@@ -51,7 +51,7 @@ class BlockFactoryTest extends FlowTestCase {
 		foreach ( $blocks as $obj ) {
 			$results[] = get_class( $obj );
 		}
-		$this->assertEquals( $results, $expectedResults );
+		$this->assertEquals( $expectedResults, $results );
 	}
 
 	public function testCreateBlocksWithInvalidInputException() {
