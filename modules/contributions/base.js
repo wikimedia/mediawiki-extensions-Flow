@@ -15,7 +15,7 @@
 			.addClass( 'flow-component' )
 			.data( 'flow-component', 'boardHistory' );
 
-		// if successfull, flow will now handle clicking the target
+		// if successful, flow will now handle clicking the target
 		// If that failed still run the onComplete, it will not trigger
 		// our handler and be a normal click this time.
 		mw.loader.using(
