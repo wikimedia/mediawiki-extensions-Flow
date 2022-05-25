@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"NehalDaveND",
-			"Saurmandal"
+			"Saurmandal",
+			"MxYamato"
 		]
 	},
 	"apihelp-flow-description": "संरचित चर्चा पृष्ठों पर कार्य करने की अनुमति देता है।",
@@ -80,7 +81,7 @@
 	"apihelp-flow+view-post-history-description": "किसी पोस्ट का अवतरण इतिहास देखें।",
 	"apihelp-flow+view-post-history-summary": "किसी पोस्ट का अवतरण इतिहास देखें।",
 	"apihelp-flow+view-post-history-param-postId": "अवतरण इतिहास देखने के लिए पोस्ट की ID।",
-	"apihelp-flow+view-post-history-param-format": "सामग्री लौटाने के लिए प्रारूप।",
+	"apihelp-flow+view-post-history-param-format": "सामग्री लौटाने का प्रारूप।",
 	"apihelp-flow+view-post-history-example-1": "विकिटेक्स्ट के रूप में [[Topic:S2tycnas4hcucw8w]] के एक पोस्ट के अवतरण लाएँ",
 	"apihelp-flow+view-topic-description": "कोई विषय देखें।",
 	"apihelp-flow+view-topic-summary": "कोई विषय देखें।",
