@@ -23,13 +23,13 @@ class BaseHrefFixerTest extends \MediaWikiIntegrationTestCase {
 		return [
 			[
 				'Rewrites href of link surrounding image',
-				'<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid="...">'
+				'<figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid="...">'
 					. '<a href="http://mywiki/wiki/./File:Example.jpg" data-parsoid="...">'
 					. '<img resource="./File:Example.jpg" src="//upload.wikimedia.org/wikipedia/mediawiki/thumb/a/a9/Example.jpg/220px-Example.jpg" data-parsoid="..." height="147" width="220"/>'
 					. '</a>'
 					. '<figcaption data-parsoid="..."> caption</figcaption>'
 					. '</figure>',
-				'<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid="...">'
+				'<figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid="...">'
 					. '<a href="./File:Example.jpg" data-parsoid="...">'
 					. '<img resource="./File:Example.jpg" src="//upload.wikimedia.org/wikipedia/mediawiki/thumb/a/a9/Example.jpg/220px-Example.jpg" data-parsoid="..." height="147" width="220">'
 					. '</a>'
