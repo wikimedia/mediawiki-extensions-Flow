@@ -25,9 +25,9 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 			[
 				'Passes through allowed good inline images',
 				// expected html after filtering
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></span> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return false;
@@ -37,9 +37,9 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 			[
 				'Passes through allowed good inline images with percent in name',
 				// expected html after filtering
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"/></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"/></a></span> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return false;
@@ -49,9 +49,9 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 			[
 				'Passes through allowed good inline images (with legacy figure-inline markup)',
 				// expected html after filtering
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
+				'<p><figure-inline class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a></figure-inline> and other stuff</p>',
 				// input html
-				'<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
+				'<p><figure-inline class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return false;
@@ -61,9 +61,9 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 			[
 				'Passes through allowed good block images',
 				// expected html after filtering
-				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a><figcaption>Blah blah</figcaption></figure>',
+				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"/></a><figcaption>Blah blah</figcaption></figure>',
 				// input html
-				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
+				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
 				static function () {
 					return false;
@@ -87,7 +87,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return true;
@@ -99,7 +99,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return true;
@@ -111,7 +111,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// expected html after filtering
 				'<p> and other stuff</p>',
 				// input html
-				'<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
+				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
 				static function () {
 					return true;
@@ -123,7 +123,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// expected html after filtering
 				'',
 				// input html
-				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
+				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
 				static function () {
 					return true;
@@ -131,11 +131,11 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 			],
 
 			[
-				'Strips declined block images (with typeof mw:File)',
+				'Strips declined block images (with typeof mw:Image)',
 				// expected html after filtering
 				'',
 				// input html
-				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
+				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
 				static function () {
 					return true;
