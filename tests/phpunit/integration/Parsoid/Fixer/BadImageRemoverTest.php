@@ -129,6 +129,18 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 					return true;
 				}
 			],
+
+			[
+				'Strips declined block images (with typeof mw:File)',
+				// expected html after filtering
+				'',
+				// input html
+				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
+				// accept/decline callback
+				static function () {
+					return true;
+				}
+			],
 		];
 	}
 

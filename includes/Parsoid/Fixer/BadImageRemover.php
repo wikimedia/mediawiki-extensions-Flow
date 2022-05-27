@@ -41,8 +41,11 @@ class BadImageRemover implements Fixer {
 	 * @return string
 	 */
 	public function getXPath() {
-		// FIXME: mw:Audio and mw:Video
-		return '//figure[starts-with(@typeof,"mw:Image")]//img[@resource] | ' .
+		return '//figure[starts-with(@typeof,"mw:File")]//img[@resource] | ' .
+			'//span[starts-with(@typeof,"mw:File")]//img[@resource] | ' .
+			// TODO: Remove mw:Image when version 2.4.0 of the content is no
+			// longer supported
+			'//figure[starts-with(@typeof,"mw:Image")]//img[@resource] | ' .
 			'//figure-inline[starts-with(@typeof,"mw:Image")]//img[@resource] | ' .
 			'//span[starts-with(@typeof,"mw:Image")]//img[@resource]';
 	}
@@ -76,15 +79,18 @@ class BadImageRemover implements Fixer {
 			return;
 		}
 
-		// Move up the DOM and remove the typeof="mw:Image" node
+		// Move up the DOM and remove the typeof="mw:File" node
 		$nodeToRemove = $node->parentNode;
-		while ( $nodeToRemove instanceof DOMElement &&
-			strpos( $nodeToRemove->getAttribute( 'typeof' ), 'mw:Image' ) !== 0
-		) {
+		while ( $nodeToRemove instanceof DOMElement && (
+				strpos( $nodeToRemove->getAttribute( 'typeof' ), 'mw:File' ) === false &&
+				// TODO: Remove mw:Image when version 2.4.0 of the content is
+				// no longer supported
+				strpos( $nodeToRemove->getAttribute( 'typeof' ), 'mw:Image' ) === false
+		) ) {
 			$nodeToRemove = $nodeToRemove->parentNode;
 		}
 		if ( !$nodeToRemove ) {
-			throw new \MWException( 'Did not find parent mw:Image to remove' );
+			throw new \MWException( 'Did not find parent mw:File to remove' );
 		}
 		$nodeToRemove->parentNode->removeChild( $nodeToRemove );
 	}
