@@ -390,7 +390,7 @@
 	"flow-terms-of-use-summarize": "En clicar «{{int:flow-topic-action-update-topic-summary}}», esteu acceptant les condicions d'ús d'aquest wiki.",
 	"flow-terms-of-use-lock-topic": "En clicar «{{int:flow-topic-action-lock-topic}}», esteu acceptant les condicions d'ús d'aquest wiki.",
 	"flow-terms-of-use-unlock-topic": "En clicar «{{int:flow-topic-action-unlock-topic}}», esteu acceptant les condicions d'ús d'aquest wiki.",
-	"flow-whatlinkshere-post": "de partir d'un [$1 apunt]",
+	"flow-whatlinkshere-post": "[$1 apunt]",
 	"flow-whatlinkshere-header": "a partir de la [$1 descripció]",
 	"flow-whatlinkshere-post-summary": "des del [$1 resum]",
 	"structureddiscussions": "Flow",
