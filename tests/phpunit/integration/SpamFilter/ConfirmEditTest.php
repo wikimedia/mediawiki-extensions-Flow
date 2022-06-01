@@ -6,6 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
 use GlobalVarConfig;
+use ParserOptions;
 use Title;
 use User;
 
@@ -15,6 +16,14 @@ use User;
 class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 
 	public function testValidateDoesntBlowUp() {
+		$services = $this->getServiceContainer();
+
+		$testParserOptions = ParserOptions::newFromUserAndLang( new User,
+			$this->getServiceContainer()->getContentLanguage() );
+
+		$testParser = $services->getParserFactory()->create();
+		$testParser->setOptions( $testParserOptions );
+		$this->setService( 'Parser', $testParser );
 		$filter = new ConfirmEdit;
 		if ( !$filter->enabled() ) {
 			$this->markTestSkipped( 'ConfirmEdit is not enabled' );
