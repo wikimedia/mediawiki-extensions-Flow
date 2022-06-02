@@ -185,6 +185,11 @@ $namespaceNames['nqo'] = [
 	NS_TOPIC => 'ߢߊߝߐߟߌ ߞߎ߲߬ߕߐ߮',
 ];
 
+/** Nigerian Pidgin */
+$namespaceNames['pcm'] = [
+	NS_TOPIC => 'Topik',
+];
+
 /** Occitan */
 $namespaceNames['oc'] = [
 	NS_TOPIC => 'Subjècte',
