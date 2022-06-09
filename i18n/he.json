@@ -410,7 +410,7 @@
 	"flow-terms-of-use-reply": "לחיצה על \"{{int:flow-reply-link}}\" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
 	"flow-terms-of-use-edit": "שמירת השינויים מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
 	"flow-anon-warning": "לא נכנסת לחשבון. כדי לקבל ייחוס עם שמך ולא עם כתובת ה־IP שלך, אפשר [$1 להיכנס] או [$2 ליצור חשבון].",
-	"flow-cancel-warning": "הזנת טקסט בטופס הזה. האם למחוק אותו?",
+	"flow-cancel-warning": "הזנת טקסט בטופס הזה. האם לזרוק אותו?",
 	"flow-topic-first-heading": "נושא בדף $1",
 	"flow-topic-html-title": "$1 בדף $2",
 	"flow-topic-count": "נושאים ($1)",
