@@ -204,15 +204,18 @@ class Hooks {
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
-		$dir = dirname( __DIR__ );
+		$dir = dirname( __DIR__ ) . '/sql';
 		$baseSQLFile = "$dir/flow.sql";
 		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
+		$dbType = $updater->getDB()->getType();
 
-		// 1.35 (backported to 1.34)
-		$updater->modifyExtensionField( 'flow_wiki_ref', 'ref_src_wiki',
-			"$dir/db_patches/patch-increase-varchar-flow_wiki_ref-ref_src_wiki.sql" );
-		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
-			"$dir/db_patches/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
+		if ( $dbType === 'mysql' ) {
+			// 1.35 (backported to 1.34)
+			$updater->modifyExtensionField( 'flow_wiki_ref', 'ref_src_wiki',
+				"$dir/$dbType/patch-increase-varchar-flow_wiki_ref-ref_src_wiki.sql" );
+			$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
+				"$dir/$dbType/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
+		}
 
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );
 
