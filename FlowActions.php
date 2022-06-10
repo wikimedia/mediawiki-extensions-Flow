@@ -951,8 +951,7 @@ return [
 
 	/*
 	 * Backwards compatibility; these are old values that may have made their
-	 * way into the database. patch-rev_change_type_update.sql should take care
-	 * of these, but just to be sure ;)
+	 * way into the database.
 	 * Instead of having the correct config-array as value, you can just
 	 * reference another action.
 	 */
@@ -979,7 +978,6 @@ return [
 	'flow-create-header' => 'create-header',
 	/*
 	 * Backwards compatibility for previous suppression terminology (=censor).
-	 * patch-censor_to_suppress.sql should take care of all of these occurrences.
 	 */
 	'censor-post' => 'suppress-post',
 	'censor-topic' => 'suppress-topic',

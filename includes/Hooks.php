@@ -207,94 +207,8 @@ class Hooks {
 		$dir = dirname( __DIR__ );
 		$baseSQLFile = "$dir/flow.sql";
 		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
-		$updater->addExtensionField( 'flow_revision', 'rev_last_edit_id',
-			"$dir/db_patches/patch-revision_last_editor.sql" );
-		$updater->addExtensionField( 'flow_revision', 'rev_mod_reason',
-			"$dir/db_patches/patch-moderation_reason.sql" );
-		if ( $updater->getDB()->getType() === 'sqlite' ) {
-			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id',
-				"$dir/db_patches/patch-summary2header.sqlite.sql" );
-			$updater->modifyExtensionField( 'flow_revision', 'rev_comment',
-				"$dir/db_patches/patch-rev_change_type.sqlite.sql" );
-			// sqlite ignores field types, this just substr's uuid's to 88 bits
-			$updater->modifyExtensionField( 'flow_workflow', 'workflow_id',
-				"$dir/db_patches/patch-88bit_uuids.sqlite.sql" );
-			$updater->addExtensionField( 'flow_workflow', 'workflow_type',
-				"$dir/db_patches/patch-add_workflow_type.sqlite" );
-			$updater->modifyExtensionField( 'flow_workflow', 'workflow_user_id',
-				"$dir/db_patches/patch-default_null_workflow_user.sqlite.sql" );
-		} else {
-			// renames columns, alternate patch is above for sqlite
-			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id',
-				"$dir/db_patches/patch-summary2header.sql" );
-			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
-			$updater->modifyExtensionField( 'flow_revision', 'rev_comment',
-				"$dir/db_patches/patch-rev_change_type.sql" );
-			// convert 128 bit uuid's into 88bit
-			$updater->modifyExtensionField( 'flow_workflow', 'workflow_id',
-				"$dir/db_patches/patch-88bit_uuids.sql" );
-			$updater->addExtensionField( 'flow_workflow', 'workflow_type',
-				"$dir/db_patches/patch-add_workflow_type.sql" );
-			$updater->modifyExtensionField( 'flow_workflow', 'workflow_user_id',
-				"$dir/db_patches/patch-default_null_workflow_user.sql" );
 
-			// Doesn't need SQLite support, since SQLite doesn't care about text widths.
-			$updater->modifyExtensionField( 'flow_workflow', 'workflow_wiki',
-				"$dir/db_patches/patch-increase_width_wiki_fields.sql" );
-		}
-
-		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup',
-			"$dir/db_patches/patch-workflow_lookup_idx.sql" );
-		$updater->addExtensionIndex( 'flow_topic_list', 'flow_topic_list_topic_id',
-			"$dir/db_patches/patch-topic_list_topic_id_idx.sql" );
-		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type',
-			"$dir/db_patches/patch-rev_change_type_update.sql" );
-		$updater->modifyExtensionField( 'recentchanges', 'rc_source',
-			"$dir/db_patches/patch-rc_source.sql" );
-		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type',
-			"$dir/db_patches/patch-censor_to_suppress.sql" );
-		$updater->addExtensionField( 'flow_revision', 'rev_user_ip',
-			"$dir/db_patches/patch-remove_usernames.sql" );
-		$updater->addExtensionField( 'flow_revision', 'rev_user_wiki',
-			"$dir/db_patches/patch-add-wiki.sql" );
-		$updater->dropExtensionIndex( 'flow_tree_revision', 'flow_tree_descendant_id_revisions',
-			"$dir/db_patches/patch-flow_tree_idx-fix.sql" );
-		$updater->addExtensionIndex( 'flow_tree_revision', 'flow_tree_descendant_rev_id',
-			"$dir/db_patches/patch-flow_tree_idx_fix-2.sql" );
-		$updater->dropExtensionField( 'flow_tree_revision', 'tree_orig_create_time',
-			"$dir/db_patches/patch-tree_orig_create_time.sql" );
-		$updater->addExtensionIndex( 'flow_revision', 'flow_revision_user',
-			"$dir/db_patches/patch-revision_user_idx.sql" );
-		$updater->modifyExtensionField( 'flow_revision', 'rev_user_ip',
-			"$dir/db_patches/patch-revision_user_ip.sql" );
-		$updater->addExtensionField( 'flow_revision', 'rev_type_id',
-			"$dir/db_patches/patch-rev_type_id.sql" );
-		$updater->addExtensionTable( 'flow_ext_ref',
-			"$dir/db_patches/patch-add-linkstables.sql" );
-		$updater->dropExtensionTable( 'flow_definition',
-			"$dir/db_patches/patch-drop_definition.sql" );
-		$updater->dropExtensionField( 'flow_workflow', 'workflow_user_ip',
-			"$dir/db_patches/patch-drop_workflow_user.sql" );
-		$updater->addExtensionField( 'flow_revision', 'rev_content_length',
-			"$dir/db_patches/patch-add-revision-content-length.sql" );
-		$updater->dropExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_pk',
-			"$dir/db_patches/patch-remove_unique_ref_indices.sql" );
-		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_update_timestamp',
-			"$dir/db_patches/patch-flow_workflow_update_timestamp_idx.sql" );
-		$updater->addExtensionField( 'flow_wiki_ref', 'ref_src_wiki',
-			"$dir/db_patches/patch-reference_wiki.sql" );
-		$updater->addExtensionField( 'flow_wiki_ref', 'ref_id',
-			"$dir/db_patches/patch-ref_id-phase1.sql" );
-		$updater->dropExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_idx_v2',
-			"$dir/db_patches/patch-dropindex-flow_ext_ref_idx_v2.sql" );
-		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_target',
-			"$dir/db_patches/patch-ref_target_not_null.sql" );
-		$updater->addExtensionIndex( 'flow_ext_ref', 'flow_ext_ref_idx_v3',
-			"$dir/db_patches/patch-addindex_flow_ext_ref_idx_v3.sql" );
-		$updater->dropExtensionIndex( 'flow_topic_list', 'flow_topic_list_pk',
-			"$dir/db_patches/patch-primary-keys.sql" );
-		$updater->dropExtensionTable( 'flow_subscription',
-			"$dir/db_patches/patch-drop-flow_subscription.sql" );
+		// 1.35 (backported to 1.34)
 		$updater->modifyExtensionField( 'flow_wiki_ref', 'ref_src_wiki',
 			"$dir/db_patches/patch-increase-varchar-flow_wiki_ref-ref_src_wiki.sql" );
 		$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
@@ -303,18 +217,6 @@ class Hooks {
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );
 
 		$updater->addPostDatabaseUpdateMaintenance( FlowSetUserIp::class );
-
-		/*
-		 * Remove old *_user_text columns once the maintenance script that
-		 * moves the necessary data has been run.
-		 * This duplicates what is being done in FlowSetUserIp already, but that
-		 * was not always the case, so that script may have already run without
-		 * having executed this.
-		 */
-		if ( $updater->updateRowExists( 'FlowSetUserIp' ) ) {
-			$updater->dropExtensionField( 'flow_revision', 'rev_user_text',
-				"$dir/db_patches/patch-remove_usernames_2.sql" );
-		}
 
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateUserWiki::class );
 
@@ -333,20 +235,6 @@ class Hooks {
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateBetaFeaturePreference::class );
 
 		$updater->addPostDatabaseUpdateMaintenance( FlowPopulateRefId::class );
-
-		/*
-		 * Add primary key, but only after we've made sure the newly added
-		 * column has been populated (otherwise they'd all be null values)
-		 */
-		if ( $updater->updateRowExists( 'FlowPopulateRefId' ) ) {
-			if ( $updater->getDB()->getType() === 'sqlite' ) {
-				$updater->addExtensionIndex( 'flow_wiki_ref', 'PRIMARY',
-					"$dir/db_patches/patch-ref_id-phase2.sqlite.sql" );
-			} else {
-				$updater->addExtensionIndex( 'flow_wiki_ref', 'PRIMARY',
-					"$dir/db_patches/patch-ref_id-phase2.sql" );
-			}
-		}
 	}
 
 	/**
