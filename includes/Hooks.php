@@ -205,9 +205,8 @@ class Hooks {
 	 */
 	public static function getSchemaUpdates( DatabaseUpdater $updater ) {
 		$dir = dirname( __DIR__ ) . '/sql';
-		$baseSQLFile = "$dir/flow.sql";
-		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
 		$dbType = $updater->getDB()->getType();
+		$updater->addExtensionTable( 'flow_revision', "$dir/$dbType/tables-generated.sql" );
 
 		if ( $dbType === 'mysql' ) {
 			// 1.35 (backported to 1.34)
