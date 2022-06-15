@@ -64,11 +64,12 @@ abstract class ApiTestCase extends \ApiTestCase {
 		array $session = null,
 		$appendModule = false,
 		Authority $performer = null,
-		$tokenType = null
+		$tokenType = null,
+		$paramPrefix = null
 	) {
 		// reset flow state before each request
 		Hooks::resetFlowExtension();
-		return parent::doApiRequest( $params, $session, $appendModule, $performer, $tokenType );
+		return parent::doApiRequest( $params, $session, $appendModule, $performer, $tokenType, $paramPrefix );
 	}
 
 	/**
