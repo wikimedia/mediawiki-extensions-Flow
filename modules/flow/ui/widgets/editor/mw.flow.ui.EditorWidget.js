@@ -13,9 +13,6 @@
 	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
 	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
 	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
-	 * @cfg {boolean} [cancelOnEscape=true] Emit 'cancel' when Esc is pressed
-	 * @cfg {boolean} [confirmCancel=true] Pop up a confirmation dialog if the user attempts
-	 *  to cancel when there are changes in the editor.
 	 * @cfg {boolean} [confirmLeave=true] Pop up a confirmation dialog if the user attempts
 	 *  to navigate away when there are changes in the editor.
 	 * @cfg {Function} [leaveCallback] Function to call when the user attempts to navigate away.
@@ -36,7 +33,6 @@
 		this.useVE = this.constructor.static.isVisualEditorSupported();
 
 		this.placeholder = config.placeholder || '';
-		this.confirmCancel = !!config.confirmCancel || config.cancelOnEscape === undefined;
 		this.confirmLeave = !!config.confirmLeave || config.confirmLeave === undefined;
 		this.leaveCallback = config.leaveCallback;
 		this.id = config.id;
@@ -114,15 +110,13 @@
 			save: 'onEditorControlsWidgetSave'
 		} );
 
-		if ( config.cancelOnEscape || config.cancelOnEscape === undefined ) {
-			this.$element.on( 'keydown', function ( e ) {
-				if ( e.which === OO.ui.Keys.ESCAPE ) {
-					widget.onEditorControlsWidgetCancel();
-					e.preventDefault();
-					e.stopPropagation();
-				}
-			} );
-		}
+		this.$element.on( 'keydown', function ( e ) {
+			if ( e.which === OO.ui.Keys.ESCAPE ) {
+				widget.onEditorControlsWidgetCancel();
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		} );
 
 		this.$element
 			.append(
@@ -408,7 +402,7 @@
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetCancel = function () {
 		var widget = this;
 
-		if ( this.confirmCancel && this.hasBeenChanged() ) {
+		if ( this.hasBeenChanged() ) {
 			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' ).closed.then( function ( data ) {
 				if ( data && data.action === 'discard' ) {
 					// Remove content
