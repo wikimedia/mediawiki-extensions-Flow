@@ -214,6 +214,7 @@
 					widget.target.connect( widget, {
 						surfaceReady: 'onTargetSurfaceReady',
 						switchMode: 'onTargetSwitchMode',
+						cancel: 'onEditorControlsWidgetCancel',
 						submit: 'onTargetSubmit'
 					} );
 					widget.$editorWrapper.prepend( widget.target.$element );
