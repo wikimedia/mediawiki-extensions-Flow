@@ -560,6 +560,7 @@ class TemplateHelper {
 		}
 		// Work around exception in DifferenceEngine::showDiffStyle() (T202454)
 		$out = RequestContext::getMain()->getOutput();
+		$out->addModules( 'mediawiki.diff' );
 		$out->addModuleStyles( 'mediawiki.diff.styles' );
 
 		$renderer = Container::get( 'lightncandy' )->getTemplate( 'flow_revision_diff_header' );
@@ -592,6 +593,7 @@ class TemplateHelper {
 		}
 		// Work around exception in DifferenceEngine::showDiffStyle() (T202454)
 		$out = RequestContext::getMain()->getOutput();
+		$out->addModules( 'mediawiki.diff' );
 		$out->addModuleStyles( 'mediawiki.diff.styles' );
 
 		return new SafeString( $differenceEngine->addHeader(
