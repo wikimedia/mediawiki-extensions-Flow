@@ -37,6 +37,10 @@
 	 * @event submit
 	 */
 
+	/**
+	 * @event cancel
+	 */
+
 	// Static
 
 	mw.flow.ve.Target.static.name = 'flow';
@@ -177,8 +181,11 @@
 		// Parent method
 		mw.flow.ve.Target.super.prototype.surfaceReady.apply( this, arguments );
 
-		// Re-emit main surface 'submit' as target 'submit'
-		this.getSurface().on( 'submit', this.emit.bind( this, 'submit' ) );
+		// Re-emit main surface 'cancel' and 'submit' events
+		this.getSurface().connect( this, {
+			cancel: [ 'emit', 'cancel' ],
+			submit: [ 'emit', 'submit' ]
+		} );
 	};
 
 	/**
