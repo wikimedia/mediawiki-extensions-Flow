@@ -12,6 +12,7 @@ use Flow\Exception\InvalidTopicUuidException;
 use Flow\Exception\UnknownWorkflowIdException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use MediaWiki\MediaWikiServices;
 use Title;
 use WikiMap;
 
@@ -78,7 +79,7 @@ class WorkflowLoaderFactory {
 				$workflowId = self::uuidFromTitle( $pageTitle );
 			} else {
 				// board page: workflow UUID is inside content model
-				$page = \WikiPage::factory( $pageTitle );
+				$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $pageTitle );
 				$content = $page->getContent();
 				if ( $content instanceof BoardContent ) {
 					$workflowId = $content->getWorkflowId();

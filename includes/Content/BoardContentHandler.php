@@ -25,7 +25,6 @@ use ParserOutput;
 use RequestContext;
 use Title;
 use User;
-use WikiPage;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
@@ -204,7 +203,7 @@ class BoardContentHandler extends \ContentHandler {
 		$output->updateCacheExpiry( 0 );
 
 		if ( $revId === null ) {
-			$wikiPage = WikiPage::factory( $title );
+			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$timestamp = $wikiPage->getTimestamp();
 		} else {
 			$timestamp = MediaWikiServices::getInstance()->getRevisionLookup()

@@ -7,10 +7,10 @@ use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use SimpleCaptcha;
 use Status;
 use Title;
-use WikiPage;
 
 class ConfirmEdit implements SpamFilter {
 	/**
@@ -33,7 +33,7 @@ class ConfirmEdit implements SpamFilter {
 
 		/** @var SimpleCaptcha $captcha */
 		$captcha = ConfirmEditHooks::getInstance();
-		$wikiPage = WikiPage::factory( $title );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered

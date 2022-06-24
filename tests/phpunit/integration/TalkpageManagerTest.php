@@ -8,7 +8,6 @@ use HashConfig;
 use MediaWikiIntegrationTestCase;
 use Title;
 use User;
-use WikiPage;
 use WikitextContent;
 
 /**
@@ -36,7 +35,7 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testCheckIfCreationIsPossible() {
 		$existentTitle = Title::newFromText( 'Exists' );
-		$status = WikiPage::factory( $existentTitle )
+		$status = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $existentTitle )
 			->doUserEditContent(
 				new WikitextContent( 'This exists' ),
 				$this->getTestUser()->getUser(),

@@ -11,7 +11,6 @@ use Flow\Import\IObjectRevision;
 use Flow\Import\Wikitext\ImportSource;
 use Parser;
 use Title;
-use WikiPage;
 use WikitextContent;
 
 /**
@@ -43,7 +42,7 @@ class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 		$user = Container::get( 'occupation_controller' )->getTalkpageManager();
 
 		// create a page with some content
-		$status = WikiPage::factory( Title::newMainPage() )
+		$status = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newMainPage() )
 			->doUserEditContent(
 				new WikitextContent( $content ),
 				$this->getTestUser()->getUser(),

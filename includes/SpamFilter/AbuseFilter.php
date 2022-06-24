@@ -12,6 +12,7 @@ use MediaWiki\Extension\AbuseFilter\AbuseFilter as ExtAbuseFilter;
 use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
+use MediaWiki\MediaWikiServices;
 use RecentChange;
 use Status;
 use Title;
@@ -80,7 +81,8 @@ class AbuseFilter implements SpamFilter {
 		Title $ownerTitle
 	) {
 		$vars = AbuseFilterServices::getVariableGeneratorFactory()->newGenerator()
-			->addEditVars( \WikiPage::factory( $title ), $context->getUser() )
+			->addEditVars( MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromTitle( $title ), $context->getUser() )
 			->addUserVars( $context->getUser() )
 			->addTitleVars( $title, 'page' )
 			->addTitleVars( $ownerTitle, 'board' )
@@ -138,7 +140,8 @@ class AbuseFilter implements SpamFilter {
 			->addUserVars( $recentChange->getPerformerIdentity() )
 			->addTitleVars( $title, 'page' )
 			->addTitleVars( $rev->getCollection()->getWorkflow()->getOwnerTitle(), 'board' )
-			->addEditVars( \WikiPage::factory( $title ), $contextUser );
+			->addEditVars( MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromTitle( $title ), $contextUser );
 	}
 
 	/**

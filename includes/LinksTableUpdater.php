@@ -13,7 +13,6 @@ use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use Title;
 use WikiMap;
-use WikiPage;
 
 class LinksTableUpdater {
 
@@ -29,7 +28,7 @@ class LinksTableUpdater {
 
 	public function doUpdate( Workflow $workflow ) {
 		$title = $workflow->getArticleTitle();
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
 		$page->doSecondaryDataUpdates( [ 'defer' => DeferredUpdates::PRESEND ] );
 	}

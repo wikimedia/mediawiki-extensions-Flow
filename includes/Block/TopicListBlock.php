@@ -314,10 +314,11 @@ class TopicListBlock extends AbstractBlock {
 	protected function preloadTexts( $options ) {
 		if ( isset( $options['preload'] ) && !empty( $options['preload'] ) ) {
 			$title = \Title::newFromText( $options['preload'] );
-			$page = \WikiPage::factory( $title );
+			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+			$page = $wikiPageFactory->newFromTitle( $title );
 			if ( $page->isRedirect() ) {
 				$title = $page->getRedirectTarget();
-				$page = \WikiPage::factory( $title );
+				$page = $wikiPageFactory->newFromTitle( $title );
 			}
 
 			if ( $page->exists() ) {

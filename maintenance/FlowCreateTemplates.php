@@ -8,7 +8,6 @@ use MediaWiki\MediaWikiServices;
 use MWException;
 use Status;
 use Title;
-use WikiPage;
 use WikitextContent;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -112,7 +111,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	 * @throws MWException
 	 */
 	protected function create( Title $title, WikitextContent $content ) {
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( $page->getRevisionRecord() !== null ) {
 			// template already exists, don't overwrite it

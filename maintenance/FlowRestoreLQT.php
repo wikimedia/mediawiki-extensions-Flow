@@ -15,7 +15,6 @@ use MWException;
 use Status;
 use Title;
 use User;
-use WikiPage;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -268,7 +267,7 @@ class FlowRestoreLQT extends Maintenance {
 					"'{$lqt->getPrefixedDBkey()}' there.\n" );
 
 				if ( !$this->dryRun ) {
-					$page = WikiPage::factory( $flow );
+					$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $flow );
 					$page->doDeleteArticleReal(
 						'/* Make place to restore LQT board */',
 						$this->talkpageManagerUser,
@@ -320,7 +319,7 @@ class FlowRestoreLQT extends Maintenance {
 	protected function restorePageRevision( $pageId, $nextRevisionId ) {
 		global $wgLang;
 
-		$page = WikiPage::newFromID( $pageId );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $pageId );
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
 		$revision = $revisionLookup->getPreviousRevision( $nextRevision );

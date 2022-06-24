@@ -15,7 +15,6 @@ use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
 use Title;
 use User;
-use WikiPage;
 use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
@@ -75,7 +74,7 @@ class LqtRedirector implements Postprocessor {
 		$redirectTarget = $redirectAnchor->resolveTitle();
 
 		$newContent = new WikitextContent( "#REDIRECT [[" . $redirectTarget->getFullText() . "]]" );
-		$page = WikiPage::factory( $fromTitle );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $fromTitle );
 		$summary = wfMessage( 'flow-lqt-redirect-reason' )->plain();
 		$page->doUserEditContent( $newContent, $this->user, $summary, EDIT_FORCE_BOT );
 

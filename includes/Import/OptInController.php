@@ -315,7 +315,7 @@ class OptInController {
 	 * @param-taint escapes_escaped $contentText
 	 */
 	private function createRevision( Title $title, $contentText, $summary ) {
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		$newContent = new WikitextContent( $contentText );
 		$status = $page->doUserEditContent(
 			$newContent,
@@ -433,7 +433,7 @@ class OptInController {
 	 * @throws \MWException
 	 */
 	private function getContent( Title $title ) {
-		$page = WikiPage::factory( $title );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 		$revision = $page->getRevisionRecord();
 		if ( $revision ) {
@@ -487,7 +487,7 @@ class OptInController {
 	private function editBoardDescription( Title $title, callable $newDescriptionCallback, $format = 'html' ) {
 		/*
 		 * We could use WorkflowLoaderFactory::createWorkflowLoader
-		 * to get to the workflow ID, but that uses WikiPage::factory
+		 * to get to the workflow ID, but that uses WikiPageFactory::newFromTitle
 		 * to build the wikipage & get the content. For most requests,
 		 * that'll be better (it reads from replicas), but we really
 		 * need to read from primary database here.

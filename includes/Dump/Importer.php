@@ -21,7 +21,6 @@ use MediaWiki\MediaWikiServices;
 use MWException;
 use WikiImporter;
 use WikiMap;
-use WikiPage;
 use XMLReader;
 
 class Importer {
@@ -141,7 +140,7 @@ class Importer {
 		}
 
 		$ensureStatus = $occupationController->ensureFlowRevision(
-			WikiPage::factory( $title ),
+			MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
 			$this->boardWorkflow
 		);
 		if ( !$ensureStatus->isOK() ) {
@@ -204,7 +203,8 @@ class Importer {
 		}
 
 		$ensureStatus = $occupationController->ensureFlowRevision(
-			WikiPage::factory( $this->topicWorkflow->getArticleTitle() ),
+			MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromTitle( $this->topicWorkflow->getArticleTitle() ),
 			$this->topicWorkflow
 		);
 		if ( !$ensureStatus->isOK() ) {

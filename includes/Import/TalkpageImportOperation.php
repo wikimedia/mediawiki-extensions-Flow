@@ -10,10 +10,10 @@ use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\MediaWikiServices;
 use MWTimestamp;
 use Title;
 use User;
-use WikiPage;
 
 class TalkpageImportOperation {
 	/**
@@ -69,7 +69,7 @@ class TalkpageImportOperation {
 
 			// Makes sure the page exists and a Flow-specific revision has been inserted
 			$status = $this->occupationController->ensureFlowRevision(
-				WikiPage::factory( $destinationTitle ),
+				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $destinationTitle ),
 				$state->boardWorkflow
 			);
 			$state->logger->debug(

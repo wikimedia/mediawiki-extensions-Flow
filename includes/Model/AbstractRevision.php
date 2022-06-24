@@ -14,7 +14,6 @@ use RecentChange;
 use Sanitizer;
 use Title;
 use User;
-use WikiPage;
 
 abstract class AbstractRevision {
 	public const MODERATED_NONE = '';
@@ -561,7 +560,8 @@ abstract class AbstractRevision {
 				$content,
 				$title,
 				$this->getUser(),
-				WikiPage::factory( $title )->makeParserOptions( $this->getUser() )
+				MediaWikiServices::getInstance()->getWikiPageFactory()
+					->newFromTitle( $title )->makeParserOptions( $this->getUser() )
 			)->serialize( 'text/x-wiki' );
 		}
 

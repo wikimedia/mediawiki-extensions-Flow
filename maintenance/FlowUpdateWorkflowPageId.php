@@ -12,6 +12,7 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Language;
 use LoggedUpdateMaintenance;
+use MediaWiki\MediaWikiServices;
 use RawMessage;
 use RowUpdateGenerator;
 use Status;
@@ -19,7 +20,6 @@ use stdClass;
 use StubUserLang;
 use Title;
 use WikiMap;
-use WikiPage;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -156,7 +156,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 		try {
 			$status = $occupationController->safeAllowCreation( $title, $occupationController->getTalkpageManager() );
 			$status2 = $occupationController->ensureFlowRevision(
-				WikiPage::factory( $title ),
+				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
 				$workflow
 			);
 

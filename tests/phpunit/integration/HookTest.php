@@ -15,7 +15,6 @@ use MediaWikiIntegrationTestCase;
 use RecentChange;
 use Title;
 use User;
-use WikiPage;
 
 /**
  * @covers Hooks
@@ -59,7 +58,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision(
-				WikiPage::factory( $title ),
+				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
 				$workflow
 			);
 
@@ -89,7 +88,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision(
-				WikiPage::factory( $title ),
+				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
 				$boardWorkflow
 			);
 

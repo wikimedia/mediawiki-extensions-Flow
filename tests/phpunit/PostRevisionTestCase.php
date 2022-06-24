@@ -19,7 +19,6 @@ use SplQueue;
 use User;
 use WikiMap;
 use Wikimedia\TestingAccessWrapper;
-use WikiPage;
 
 /**
  * @group Flow
@@ -243,7 +242,7 @@ class PostRevisionTestCase extends FlowTestCase {
 				->getUserPermissions( $user ), [ 'flow-create-board' ] );
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision(
-				WikiPage::factory( $title ),
+				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
 				$boardWorkflow
 			);
 

@@ -279,7 +279,7 @@ class Converter {
 	 * @throws ImportException
 	 */
 	protected function createArchiveCleanupRevision( Title $title, Title $archiveTitle ) {
-		$page = WikiPage::factory( $archiveTitle );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $archiveTitle );
 		// doUserEditContent will do this anyway, but we need to now for the revision.
 		$page->loadPageData( WikiPage::READ_LATEST );
 		$revision = $page->getRevisionRecord();
