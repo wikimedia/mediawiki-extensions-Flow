@@ -4,5 +4,18 @@
 			"Ezagren"
 		]
 	},
-	"echo-pref-tooltip-flow-discussion": "Padahi ulun pasal kagiatan pada tupik atawa laman nang ulun umpati."
+	"flow-cancel": "Pasahakan",
+	"flow-newtopic-save": "Tambah tupik",
+	"flow-history-action-undelete-post": "Pasahakan mahapus",
+	"flow-history-action-unhide-post": "Pasahakan manyuhuk",
+	"flow-post-action-unsuppress-post": "Pasah tikin",
+	"flow-topic-action-lock-topic": "Tandai sabagai tatuntungakan",
+	"flow-topic-action-unlock-topic": "Buka pulang tupik",
+	"flow-topic-action-update-topic-summary": "Hanyari ringkasan",
+	"echo-pref-tooltip-flow-discussion": "Padahi ulun pasal kagiatan pada tupik atawa laman nang ulun umpati.",
+	"flow-terms-of-use-new-topic": "Lawan manikin \"{{int:flow-newtopic-save}}\", Pian hakun lawan katantuan pamakaian gasan wiki ngini.",
+	"flow-terms-of-use-reply": "Lawan manikin \"{{int:flow-reply-link}}\", Pian hakun lawan katantuan pamakaian gasan wiki ngini.",
+	"flow-terms-of-use-edit": "Lawan manabun paubahan Pian, Pian hakun lawan katantuan pamakaian wiki ngini.",
+	"flow-terms-of-use-summarize": "Lawan manikin \"{{int:flow-topic-action-update-topic-summary}}\", Pian hakun lawan katantuan pamakaian gasan wiki ngini.",
+	"flow-terms-of-use-lock-topic": "Lawan manikin \"{{int:flow-topic-action-lock-topic}}\", Pian hakun lawan katantuan pamakaian wiki ngini."
 }
