@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
+			"Tīgelika",
 			"ZlyiLev",
 			"Дзяніс Тутэйшы"
 		]
@@ -11,8 +12,11 @@
 	"abusefilter-edit-builder-vars-board-title": "Назва (без прасторвы назваў) старонкі дошкі «Структураваных абмеркаванняў»",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Поўная назва дошкі «Структураваных абмеркаванняў»",
 	"flow-topic-moderated-reason-prefix": "Прычына:",
+	"flow-reply-topic-title-placeholder": "Адказаць на «$1»",
 	"flow-reply-link": "{{GENDER:$1|Адказаць}}",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Падзякаваць}}}}",
 	"flow-post-action-hide-post": "Схаваць",
+	"flow-topic-comments": "{{PLURAL:$1|$1 каментар|$1 каментара|$1 каментароў|0={{GENDER:$2|Напішыце}} першы каментар!|1=Адзін каментар}}",
 	"notification-header-flow-topic-renamed-user-talk": "Тэма \"<strong>$1</strong>\" была перайменавана ў \"<strong>$2</strong>\" на <strong>{{GENDER:$3|Вашай}} старонцы размоў</strong>.",
 	"flow-undo-latest-revision": "Бягучая версія"
 }
