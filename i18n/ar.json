@@ -18,7 +18,8 @@
 			"مشعل الحربي",
 			"Super ninja2",
 			"Michel Bakni",
-			"FiberAhmed"
+			"FiberAhmed",
+			"أَحمد"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -449,8 +450,8 @@
 	"flow-special-enableflow-board-creation-not-allowed": "أنت من غير المسموح لك إنشاء لوحة نقاشات هيكلية في [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "هناك صفحة LiquidThreads في [[:$1]].",
 	"flow-special-enableflow-confirmation": "أنت أنشأت لوحة نقاشات هيكلية في [[$1]].",
-	"flow-conversion-archive-page-name-format": "%s/Archive %d\n%s/Archive%d\n%s/archive %d\n%s/archive%d\n%s/أرشيف %d\n%s/أرشيف%d",
-	"flow-conversion-archive-flow-page-name-format": "%s/أرشيف النقاشات الهيكلية %d\n%s/أرشيف التدفق %d",
+	"flow-conversion-archive-page-name-format": "%s/أرشيف %d\n%s/أرشيف%d\n%s/الأرشيف %d\n%s/الأرشيف%d",
+	"flow-conversion-archive-flow-page-name-format": "%s/أرشيف النقاشات الهيكلية %d\n%s/أرشيف النقاشات الهيكلية%d\n%s/أرشيف التدفق %d\n%s/أرشيف التدفق%d",
 	"flow-spam-confirmedit-form": "يرجى إثبات أنك لست روبوت من خلال حل كلمة التحقق بالأسفل:\n$1",
 	"flow-spam-confirmedit-using-failure": "هناك خلل تقني في كلمة التحقق. إن كنت غير قادر على حفظ تعديلاتك، قم بنسخها ثم إعادة تحميل الصفحة والمحاولة مرة أخرى لحفظها.",
 	"flow-embedding-unsupported": "لا يمكن تضمين النقاشات في الوقت الحالي.",
