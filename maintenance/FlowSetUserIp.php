@@ -66,10 +66,6 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$runUpdate( [ $this, 'updateRevision' ] );
 		}
 
-		if ( $hasRun ) {
-			$dbw->sourceFile( __DIR__ . '/../db_patches/patch-remove_usernames_2.sql' );
-		}
-
 		return true;
 	}
 
