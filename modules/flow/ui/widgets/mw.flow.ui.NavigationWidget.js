@@ -36,7 +36,11 @@
 				this.tocWidget.$element,
 				this.reorderTopicsWidget.$element
 			)
-			.addClass( 'flow-ui-navigationWidget' );
+			.addClass( [
+				'flow-ui-navigationWidget',
+				// Avoids conflicting with the Vector sticky header, see https://www.mediawiki.org/wiki/Reading/Web/Desktop_Improvements/Features/Sticky_Header/#Integration_notes_for_developers
+				'mw-sticky-header-element'
+			] );
 	};
 
 	/* Initialization */
