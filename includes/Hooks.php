@@ -215,6 +215,13 @@ class Hooks {
 				"$dir/$dbType/patch-increase-varchar-flow_wiki_ref-ref_src_wiki.sql" );
 			$updater->modifyExtensionField( 'flow_ext_ref', 'ref_src_wiki',
 				"$dir/$dbType/patch-increase-varchar-flow_ext_ref-ref_src_wiki.sql" );
+
+			// 1.39
+			$updater->modifyExtensionField(
+				'flow_revision',
+				'rev_mod_timestamp',
+				"$dir/$dbType/patch-flow_revision-rev_mod_timestamp.sql"
+			);
 		}
 
 		$updater->addPostDatabaseUpdateMaintenance( FlowUpdateRecentChanges::class );

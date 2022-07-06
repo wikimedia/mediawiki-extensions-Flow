@@ -89,7 +89,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_mod_user_id bigint unsigned,
 	rev_mod_user_ip varbinary(39) default null,
 	rev_mod_user_wiki varchar(64) binary default null,
-	rev_mod_timestamp varchar(14) binary,
+	rev_mod_timestamp binary(14),
 	-- moderated why? (coming soon: how?, where? and what?)
 	rev_mod_reason varchar(255) binary,
 
