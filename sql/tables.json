@@ -1,0 +1,454 @@
+[
+	{
+		"name": "flow_workflow",
+		"columns": [
+			{
+				"name": "workflow_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "workflow_wiki",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "workflow_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "workflow_page_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "workflow_title_text",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "workflow_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "workflow_last_update_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "workflow_lock_state",
+				"comment": "TODO: is this useful as a bitfield?  may be premature optimization, a string or list of strings may be simpler and use only a little more space.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "workflow_type",
+				"type": "binary",
+				"options": { "notnull": true, "length": 16 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_workflow_lookup",
+				"columns": [ "workflow_wiki", "workflow_namespace", "workflow_title_text" ],
+				"unique": false
+			},
+			{
+				"name": "flow_workflow_update_timestamp",
+				"columns": [ "workflow_last_update_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "workflow_id" ]
+	},
+	{
+		"name": "flow_topic_list",
+		"comment": "TopicList Tables",
+		"columns": [
+			{
+				"name": "topic_list_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "topic_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_topic_list_topic_id",
+				"columns": [ "topic_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "topic_list_id", "topic_id" ]
+	},
+	{
+		"name": "flow_tree_revision",
+		"comment": "Post Content Revisions.  Connects 1 Post to Many revisions. also denormalizes information commonly needed with a revision",
+		"columns": [
+			{
+				"name": "tree_rev_descendant_id",
+				"comment": "the id of the post in the post tree",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "tree_rev_id",
+				"comment": "fk to flow_revision",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "tree_orig_user_id",
+				"comment": "denormalized so we don't need to keep finding the first revision of a post",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "tree_orig_user_ip",
+				"comment": "denormalized so we don't need to keep finding the first revision of a post",
+				"type": "binary",
+				"options": { "notnull": false, "length": 39 }
+			},
+			{
+				"name": "tree_orig_user_wiki",
+				"comment": "denormalized so we don't need to keep finding the first revision of a post",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "tree_parent_id",
+				"comment": "denormalize post parent as well? Prevents an extra query when building tree from closure table.  unnecessary?",
+				"type": "binary",
+				"options": { "notnull": false, "length": 11, "fixed": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_tree_descendant_rev_id",
+				"columns": [ "tree_rev_descendant_id", "tree_rev_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "tree_rev_id" ]
+	},
+	{
+		"name": "flow_revision",
+		"comment": "Content  This is completely unoptimized right now, just a quick get-it-done for the prototype.  NOTE: This doesn't directly link to whatever the revision is for. The rev_type field should be unique enough to know what to look in though.  For example when rev_type === 'tree' then look in flow_tree_revision.  Typical use case should not be to use this field, but to join from an id in the other direction.  Each revision has a timestamped id, and explicitly states who its parent is. Comparing to the ids in the matching flow_tree_revision table should allow for detecting edit conflicts, so they can be resolved? Idealy they are resolved before this point, but as a backup plan?",
+		"columns": [
+			{
+				"name": "rev_id",
+				"comment": "UID::newTimestampedUID128()",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "rev_type",
+				"comment": "What kind of revision is this: tree/header/etc.",
+				"type": "binary",
+				"options": { "notnull": true, "length": 16 }
+			},
+			{
+				"name": "rev_type_id",
+				"comment": "The id of the object this is a revision of. For example, if rev_type is header, rev_type_id is the header's id. If rev_type is post, it is the post's id, etc.",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true, "default": "" }
+			},
+			{
+				"name": "rev_user_id",
+				"comment": "user id creating the revision",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "rev_user_ip",
+				"type": "binary",
+				"options": { "notnull": false, "length": 39 }
+			},
+			{
+				"name": "rev_user_wiki",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "rev_parent_id",
+				"comment": "rev_id of parent or null if no previous revision",
+				"type": "binary",
+				"options": { "notnull": false, "length": 11, "fixed": true }
+			},
+			{
+				"name": "rev_flags",
+				"comment": "comma separated set of ascii flags.",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "rev_content",
+				"comment": "content of the revision",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			},
+			{
+				"name": "rev_change_type",
+				"comment": "the type of change that was made. MW message key. formerly rev_comment",
+				"type": "binary",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "rev_mod_state",
+				"comment": "current moderation state",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "rev_mod_user_id",
+				"comment": "moderated by who?",
+				"type": "bigint",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "rev_mod_user_ip",
+				"type": "binary",
+				"options": { "notnull": false, "length": 39 }
+			},
+			{
+				"name": "rev_mod_user_wiki",
+				"type": "binary",
+				"options": { "notnull": false, "length": 64 }
+			},
+			{
+				"name": "rev_mod_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "rev_mod_reason",
+				"comment": "moderated why? (coming soon: how?, where? and what?)",
+				"type": "binary",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "rev_last_edit_id",
+				"comment": "track who made the most recent content edit",
+				"type": "binary",
+				"options": { "notnull": false, "length": 11, "fixed": true }
+			},
+			{
+				"name": "rev_edit_user_id",
+				"comment": "track who made the most recent content edit",
+				"type": "bigint",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "rev_edit_user_ip",
+				"comment": "track who made the most recent content edit",
+				"type": "binary",
+				"options": { "notnull": false, "length": 39 }
+			},
+			{
+				"name": "rev_edit_user_wiki",
+				"comment": "track who made the most recent content edit",
+				"type": "binary",
+				"options": { "notnull": false, "length": 64 }
+			},
+			{
+				"name": "rev_content_length",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "rev_previous_content_length",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_revision_unique_parent",
+				"comment": "Prevents inconsistency, but perhaps will hurt inserts?",
+				"columns": [ "rev_parent_id" ],
+				"unique": true
+			},
+			{
+				"name": "flow_revision_type_id",
+				"comment": "Primary key is automatically appended to all secondary index in InnoDB",
+				"columns": [ "rev_type", "rev_type_id" ],
+				"unique": false
+			},
+			{
+				"name": "flow_revision_user",
+				"comment": "Special:Contributions can do queries based on user id/ip",
+				"columns": [ "rev_user_id", "rev_user_ip", "rev_user_wiki" ],
+				"unique": false
+			}
+		],
+		"pk": [ "rev_id" ]
+	},
+	{
+		"name": "flow_tree_node",
+		"comment": "Closure table implementation of tree storage in sql. We may be able to go simpler than this",
+		"columns": [
+			{
+				"name": "tree_ancestor_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "tree_descendant_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "tree_depth",
+				"type": "smallint",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_tree_constraint",
+				"columns": [ "tree_descendant_id", "tree_depth" ],
+				"unique": true
+			}
+		],
+		"pk": [ "tree_ancestor_id", "tree_descendant_id" ]
+	},
+	{
+		"name": "flow_wiki_ref",
+		"columns": [
+			{
+				"name": "ref_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_wiki",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "ref_src_object_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_object_type",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "ref_src_workflow_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ref_src_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "ref_target_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ref_target_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "ref_type",
+				"type": "binary",
+				"options": { "notnull": true, "length": 16 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_wiki_ref_idx_v2",
+				"columns": [ "ref_src_wiki", "ref_src_namespace", "ref_src_title", "ref_type", "ref_target_namespace", "ref_target_title", "ref_src_object_type", "ref_src_object_id" ],
+				"unique": false
+			},
+			{
+				"name": "flow_wiki_ref_revision_v2",
+				"columns": [ "ref_src_wiki", "ref_src_namespace", "ref_src_title", "ref_src_object_type", "ref_src_object_id", "ref_type", "ref_target_namespace", "ref_target_title" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ref_id" ]
+	},
+	{
+		"name": "flow_ext_ref",
+		"columns": [
+			{
+				"name": "ref_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_wiki",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "ref_src_object_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_object_type",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "ref_src_workflow_id",
+				"type": "binary",
+				"options": { "notnull": true, "length": 11, "fixed": true }
+			},
+			{
+				"name": "ref_src_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ref_src_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "ref_target",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "ref_type",
+				"type": "binary",
+				"options": { "notnull": true, "length": 16 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "flow_ext_ref_idx_v3",
+				"columns": [ "ref_src_wiki", "ref_src_namespace", "ref_src_title", "ref_type", "ref_target", "ref_src_object_type", "ref_src_object_id" ],
+				"options": { "lengths": [ null, null, null, null, 255, null, null ] },
+				"unique": false
+			},
+			{
+				"name": "flow_ext_ref_revision_v2",
+				"columns": [ "ref_src_wiki", "ref_src_namespace", "ref_src_title", "ref_src_object_type", "ref_src_object_id", "ref_type", "ref_target" ],
+				"options": { "lengths": [ null, null, null, null, null, null, 255 ] },
+				"unique": false
+			}
+		],
+		"pk": [ "ref_id" ]
+	}
+]
