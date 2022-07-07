@@ -95,7 +95,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 	 * Description shown at the top of the page
 	 * @return string
 	 */
-	protected function preText() {
+	protected function preHtml() {
 		return '<p>' . $this->msg( 'flow-special-desc' )->escaped() . '</p>';
 	}
 
