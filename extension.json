@@ -421,7 +421,7 @@
 				"mobile"
 			]
 		},
-		"ext.flow.dm": {
+		"ext.flow.ui": {
 			"scripts": [
 				"flow/mw.flow.js",
 				"flow/dm/mw.flow.dm.js",
@@ -438,19 +438,7 @@
 				"flow/dm/mw.flow.dm.Topic.js",
 				"flow/dm/mw.flow.dm.Board.js",
 				"flow/dm/mw.flow.dm.CategoryItem.js",
-				"flow/dm/mw.flow.dm.Categories.js"
-			],
-			"dependencies": [
-				"mediawiki.api",
-				"oojs"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.flow.ui": {
-			"scripts": [
+				"flow/dm/mw.flow.dm.Categories.js",
 				"flow/ui/mw.flow.ui.js",
 				"flow/ui/widgets/mw.flow.ui.CaptchaWidget.js",
 				"flow/ui/mw.flow.ui.CancelConfirmDialog.js",
@@ -520,7 +508,7 @@
 			],
 			"dependencies": [
 				"oojs-ui",
-				"ext.flow.dm",
+				"oojs",
 				"ext.flow.visualEditor.icons",
 				"oojs-ui.styles.icons-editing-advanced",
 				"oojs-ui.styles.icons-editing-list",
@@ -695,7 +683,7 @@
 			"engine/misc/test_jquery.findWithParent.js"
 		],
 		"dependencies": [
-			"ext.flow.dm",
+			"ext.flow.ui",
 			"ext.flow",
 			"ext.flow.jquery.findWithParent"
 		]
