@@ -66,7 +66,7 @@ TEXT
 		} elseif ( $this->hasOption( 'current' ) ) {
 			$this->dump( WikiExporter::CURRENT );
 		} else {
-			$this->error( 'No valid action specified.', 1 );
+			$this->fatalError( 'No valid action specified.' );
 		}
 	}
 
