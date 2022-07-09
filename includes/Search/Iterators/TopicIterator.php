@@ -52,7 +52,8 @@ class TopicIterator extends AbstractIterator {
 
 		unset( $this->conditions[0] );
 		if ( $revId !== null ) {
-			$this->conditions[0] = 'workflow_last_update_timestamp >= ' . $this->dbr->addQuotes( $revId->getBinary() );
+			$this->conditions[0] = 'workflow_last_update_timestamp >= ' .
+				$this->dbr->addQuotes( $this->dbr->timestamp( $revId->getBinary() ) );
 		}
 	}
 
@@ -75,7 +76,8 @@ class TopicIterator extends AbstractIterator {
 
 		unset( $this->conditions[1] );
 		if ( $revId !== null ) {
-			$this->conditions[1] = 'workflow_last_update_timestamp < ' . $this->dbr->addQuotes( $revId->getBinary() );
+			$this->conditions[1] = 'workflow_last_update_timestamp < ' .
+				$this->dbr->addQuotes( $this->dbr->timestamp( $revId->getBinary() ) );
 		}
 	}
 

@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Exception\DataModelException;
+use MediaWiki\MediaWikiServices;
 
 // TODO: We shouldn't need this class
 class TopicListEntry {
@@ -50,7 +51,7 @@ class TopicListEntry {
 		$obj->topicListId = UUID::create( $row['topic_list_id'] );
 		$obj->topicId = UUID::create( $row['topic_id'] );
 		if ( isset( $row['workflow_last_update_timestamp'] ) ) {
-			$obj->topicWorkflowLastUpdated = $row['workflow_last_update_timestamp'];
+			$obj->topicWorkflowLastUpdated = wfTimestamp( TS_MW, $row['workflow_last_update_timestamp'] );
 		}
 		return $obj;
 	}
@@ -65,7 +66,10 @@ class TopicListEntry {
 			'topic_id' => $obj->topicId->getAlphadecimal(),
 		];
 		if ( $obj->topicWorkflowLastUpdated ) {
-			$row['workflow_last_update_timestamp'] = $obj->topicWorkflowLastUpdated;
+			$dbr = MediaWikiServices::getInstance()
+				->getDBLoadBalancer()
+				->getConnection( DB_REPLICA );
+			$row['workflow_last_update_timestamp'] = $dbr->timestamp( $obj->topicWorkflowLastUpdated );
 		}
 		return $row;
 	}

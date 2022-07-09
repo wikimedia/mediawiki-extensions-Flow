@@ -198,7 +198,7 @@ class FlowRemoveOldTopics extends Maintenance {
 					new RawSql( 'workflow_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
 					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
-					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $timestamp ) ),
+					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
 				],
 				[
 					'limit' => $batchSize,
@@ -249,7 +249,7 @@ class FlowRemoveOldTopics extends Maintenance {
 					'workflow_id > ' . $dbr->addQuotes( $batchStartId->getBinary() ),
 					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
-					'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $timestamp ),
+					'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) ),
 				],
 				__METHOD__,
 				[
