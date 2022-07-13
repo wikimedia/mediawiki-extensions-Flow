@@ -23,6 +23,7 @@ use MWTimestamp;
 use RowUpdateGenerator;
 use stdClass;
 use WikiMap;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -53,8 +54,9 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$dbFactory = Container::get( 'db.factory' );
 		$storage = Container::get( 'storage' );
 		$rootPostLoader = Container::get( 'loader.root_post' );
+		$dbr = $dbFactory->getDB( DB_REPLICA );
 
-		$iterator = new BatchRowIterator( $dbFactory->getDB( DB_REPLICA ), 'flow_workflow', 'workflow_id', $this->getBatchSize() );
+		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', $this->getBatchSize() );
 		$iterator->setFetchColumns( [ 'workflow_id', 'workflow_type', 'workflow_last_update_timestamp' ] );
 		$iterator->addConditions( [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ] );
 		$iterator->setCaller( __METHOD__ );
@@ -65,7 +67,7 @@ class FlowFixWorkflowLastUpdateTimestamp extends Maintenance {
 		$updater = new BatchRowUpdate(
 			$iterator,
 			$writer,
-			new UpdateWorkflowLastUpdateTimestampGenerator( $storage, $rootPostLoader )
+			new UpdateWorkflowLastUpdateTimestampGenerator( $storage, $rootPostLoader, $dbr )
 		);
 		$updater->setOutput( [ $this, 'output' ] );
 		$updater->execute();
@@ -96,12 +98,19 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	protected $rootPostLoader;
 
 	/**
+	 * @var IDatabase
+	 */
+	protected $db;
+
+	/**
 	 * @param ManagerGroup $storage
 	 * @param RootPostLoader $rootPostLoader
+	 * @param IDatabase $db
 	 */
-	public function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader ) {
+	public function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, IDatabase $db ) {
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
+		$this->db = $db;
 	}
 
 	/**
@@ -134,12 +143,12 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 		}
 
 		$timestamp = $this->getUpdateTimestamp( $revision )->getTimestamp( TS_MW );
-		if ( $timestamp === $row->workflow_last_update_timestamp ) {
+		if ( $timestamp === wfTimestamp( TS_MW, $row->workflow_last_update_timestamp ) ) {
 			// correct update timestamp already, nothing to update
 			return [];
 		}
 
-		return [ 'workflow_last_update_timestamp' => $timestamp ];
+		return [ 'workflow_last_update_timestamp' => $this->db->timestamp( $timestamp ) ];
 	}
 
 	/**

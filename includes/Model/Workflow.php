@@ -94,7 +94,7 @@ class Workflow {
 		$obj->pageId = (int)$row['workflow_page_id'];
 		$obj->namespace = (int)$row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
-		$obj->lastUpdated = $row['workflow_last_update_timestamp'];
+		$obj->lastUpdated = wfTimestamp( TS_MW, $row['workflow_last_update_timestamp'] );
 
 		return $obj;
 	}
@@ -124,6 +124,9 @@ class Workflow {
 				throw new FailCommitException( 'No page for workflow: ' . serialize( $obj ) );
 			}
 		}
+		$dbr = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnection( DB_REPLICA );
 
 		return [
 			'workflow_id' => $obj->id->getAlphadecimal(),
@@ -133,7 +136,7 @@ class Workflow {
 			'workflow_namespace' => $obj->namespace,
 			'workflow_title_text' => $obj->titleText,
 			'workflow_lock_state' => 0, // unused
-			'workflow_last_update_timestamp' => $obj->lastUpdated,
+			'workflow_last_update_timestamp' => $dbr->timestamp( $obj->lastUpdated ),
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
 		];

@@ -182,7 +182,7 @@ abstract class AbstractRevision {
 
 		$obj->moderationState = $row['rev_mod_state'];
 		$obj->moderatedBy = UserTuple::newFromArray( $row, 'rev_mod_user_' );
-		$obj->moderationTimestamp = $row['rev_mod_timestamp'] ?: null;
+		$obj->moderationTimestamp = wfTimestampOrNull( TS_MW, $row['rev_mod_timestamp'] ?: null );
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) && $row['rev_mod_reason']
 			? $row['rev_mod_reason'] : null;
 
@@ -209,6 +209,9 @@ abstract class AbstractRevision {
 	 * @return array
 	 */
 	public static function toStorageRow( $obj ) {
+		$dbr = MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnection( DB_REPLICA );
 		return [
 			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->user->id,
@@ -227,7 +230,7 @@ abstract class AbstractRevision {
 			'rev_mod_user_id' => $obj->moderatedBy ? $obj->moderatedBy->id : null,
 			'rev_mod_user_ip' => $obj->moderatedBy ? $obj->moderatedBy->ip : null,
 			'rev_mod_user_wiki' => $obj->moderatedBy ? $obj->moderatedBy->wiki : null,
-			'rev_mod_timestamp' => $obj->moderationTimestamp,
+			'rev_mod_timestamp' => $dbr->timestampOrNull( $obj->moderationTimestamp ),
 			'rev_mod_reason' => $obj->moderatedReason,
 
 			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getAlphadecimal() : null,
