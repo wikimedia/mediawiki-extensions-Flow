@@ -88,7 +88,7 @@
 	"flow-show-change": "הצגת שינויים",
 	"flow-last-modified-by": "שוּנה לאחרונה על־ידי $1",
 	"flow-stub-post-content": "<em>בשל בעיה טכנית, לא ניתן לאחזר את התוכן הזה.</em>",
-	"flow-newtopic-title-placeholder": "כותרת חדשה",
+	"flow-newtopic-title-placeholder": "נושא חדש",
 	"flow-newtopic-content-placeholder": "שליחת הודעה חדשה בדף \"$1\"",
 	"flow-newtopic-header": "הוספת נושא חדש",
 	"flow-newtopic-save": "הוספת נושא",
