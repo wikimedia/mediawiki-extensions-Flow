@@ -44,6 +44,7 @@
 	"flow-topic-action-unsuppress-topic": "Itere montrar temo",
 	"flow-topic-action-restore-topic": "Restaurar temo",
 	"flow-topic-action-undo-moderation": "Desfacez",
+	"flow-topic-action-watchlist-remove": "Desabonar",
 	"flow-error-external": "Eventis ula eroro. La mesajo pri l'eroro esis: $1",
 	"flow-error-protected-unknown-reason": "Nekonocata",
 	"flow-history-last4": "Pasinta 4 hori",
