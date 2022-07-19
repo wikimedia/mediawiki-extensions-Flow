@@ -21,6 +21,8 @@
 	"flow-topic-action-watchlist": "Valvvâmliist",
 	"flow-topic-action-history": "Historia",
 	"flow-topic-action-undo-moderation": "Kååʹmet",
+	"flow-edit-post-submit": "Vuõlttâd muttsid",
+	"flow-hide-comments-title": "{{PLURAL:$1|Čiõǥǥ kommeeʹnt|Čiõǥǥ kommeeʹntid}}",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čuäʹjet}} seeid",
 	"flow-link-history": "historia",
 	"flow-moderation-confirm-delete-post": "Jaukkâd",
