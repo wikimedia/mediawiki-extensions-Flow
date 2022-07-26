@@ -18,7 +18,7 @@
 
 		// Parent constructor
 		mw.flow.ve.Target.super.call( this, ve.extendObject( {
-			toolbarConfig: { actions: true, $overlay: true, position: 'bottom' }
+			toolbarConfig: { $overlay: true, position: 'bottom' }
 		}, config ) );
 
 		this.id = config.id;
@@ -66,20 +66,20 @@
 		{
 			name: 'flowMention',
 			include: [ 'flowMention' ]
+		},
+		{
+			name: 'editMode',
+			align: 'after',
+			type: 'list',
+			icon: 'edit',
+			title: mw.msg( 'visualeditor-mweditmode-tooltip' ),
+			include: [ 'editModeVisual', 'editModeSource' ]
 		}
 	];
 
 	// Allow pasting links
 	mw.flow.ve.Target.static.importRules = ve.copy( mw.flow.ve.Target.static.importRules );
 	mw.flow.ve.Target.static.importRules.external.blacklist[ 'link/mwExternal' ] = false;
-
-	mw.flow.ve.Target.static.actionGroups = [ {
-		name: 'editMode',
-		type: 'list',
-		icon: 'edit',
-		title: mw.msg( 'visualeditor-mweditmode-tooltip' ),
-		include: [ 'editModeVisual', 'editModeSource' ]
-	} ];
 
 	// Methods
 
