@@ -8,7 +8,8 @@
 			"पर्वत सुबेदी",
 			"बिप्लब आनन्द",
 			"राम प्रसाद जोशी",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Bada Kaji"
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch": "एइ विषय हेर्न बन्द गर",
@@ -50,7 +51,7 @@
 	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्",
 	"flow-moderation-confirm-delete-topic": "हटाउने",
 	"flow-moderation-confirm-hide-topic": "लुकाउनुहोस्",
-	"flow-load-more": "थप पढ्ने",
+	"flow-load-more": "थप पढ्नुहोस्",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-invalid-title": "अबैध पृष्ठ शिर्षक राखिएको थियो",
 	"flow-edited-by": "$1द्वारा सम्पादित",
