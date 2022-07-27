@@ -28,6 +28,7 @@
 	"flow-edit-header-submit": "Ruõkk deskriipt",
 	"flow-edit-header-submit-publish": "Õlmstââʹtt deskriipt",
 	"flow-edit-post-submit": "Vuõlttâd muttsid",
+	"flow-show-comments-title": "{{PLURAL:$1|Čuäʹjet kommeeʹnt|Čuäʹjet kommeeʹntid}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|Čiõǥǥ kommeeʹnt|Čiõǥǥ kommeeʹntid}}",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čuäʹjet}} seeid",
 	"flow-link-history": "historia",

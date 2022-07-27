@@ -13,6 +13,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Tu}} non plus observa \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Tu}} pote observar [$2 iste topico] a omne momento.",
 	"flow-desc": "Systema de discussion",
+	"nstab-topic": "Topico",
 	"flow-talk-taken-over-comment": "/* Iste pagina ha essite convertite in un tabuliero de discussion structurate */",
 	"log-name-flow": "Registro de activitate del discussion structurate",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|deleva}} un [$4 message] sur \"[[$3|$5]]\" in [[$6]]",

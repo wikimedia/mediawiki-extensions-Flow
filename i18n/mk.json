@@ -19,6 +19,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Повеќе на ја {{GENDER:$3|набљудувате}} темата „$1“",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Можете да ја {{GENDER:$3|набљудувате}} [$2 темава] во секое време.",
 	"flow-desc": "Разговорен систем",
+	"nstab-topic": "Тема",
 	"flow-talk-taken-over-comment": "/* Оваа страница е претворена во разговорница на Структурираните дискусии */",
 	"log-name-flow": "Дневник на активности во Структурираните дискусии",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|избриша}} [$4 објава] на „[[$3|$5]]“ на [[$6]]",
