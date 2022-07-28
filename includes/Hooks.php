@@ -41,6 +41,7 @@ use FormOptions;
 use Html;
 use IContextSource;
 use LogEntry;
+use MediaWiki\CheckUser\CheckUserPagers\AbstractCheckUserPager;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Extension\GuidedTour\GuidedTourLauncher;
@@ -60,7 +61,6 @@ use RequestContext;
 use ResourceLoader;
 use Skin;
 use SkinTemplate;
-use SpecialPage;
 use Status;
 use stdClass;
 use Title;
@@ -514,12 +514,12 @@ class Hooks {
 		}
 	}
 
-	public static function onSpecialCheckUserGetLinksFromRow( SpecialPage $specialCheckUser, $row, &$links ) {
+	public static function onSpecialCheckUserGetLinksFromRow( AbstractCheckUserPager $pager, $row, &$links ) {
 		if ( $row->cuc_type != RC_FLOW ) {
 			return;
 		}
 
-		$replacement = self::getReplacementRowItems( $specialCheckUser->getContext(), $row );
+		$replacement = self::getReplacementRowItems( $pager->getContext(), $row );
 
 		if ( $replacement === null ) {
 			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
