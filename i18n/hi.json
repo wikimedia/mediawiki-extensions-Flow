@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abijeet Patro",
 			"Anamdas",
 			"Jayprakash12345",
 			"NehalDaveND",
@@ -23,6 +24,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|आप}} अब \"$1\" को ध्यानसूची से हटा चुके हैं",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|आप}} [$2 इस विषय] को कभी भी ध्यानसूची में डाल सकते हैं।",
 	"flow-desc": "चर्चा प्रणाली",
+	"nstab-topic": "विषय",
 	"flow-talk-taken-over-comment": "/* इस पृष्ठ को एक संरचित चर्चा बोर्ड में बदल दिया गया है */",
 	"log-name-flow": "संरचित चर्चा पर गतिविधि का लॉग",
 	"logentry-delete-flow-delete-post": "$1 ने [[$6]] के \"[[$3|$5]]\" पर एक [$4 पोस्ट] को {{GENDER:$2|हटा दिया}}",
