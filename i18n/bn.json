@@ -20,6 +20,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|আপনি}} আর \"$1\"-এর নজর রাখছেন না",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|আপনি}} যেকোন সময় [$2 এই প্রসঙ্গ] নজরে রাখতে পারেন।",
 	"flow-desc": "আলোচনার পদ্ধতি",
+	"nstab-topic": "আলোচনা",
 	"flow-talk-taken-over-comment": "/* এ পৃষ্ঠাটি একটি কাঠামোবদ্ধ আলোচনা বোর্ডে রূপান্তরিত করা হয়েছে */",
 	"log-name-flow": "কাঠামোবদ্ধ আলোচনা কার্যকলাপ লগ",
 	"logentry-delete-flow-delete-post": "$1 [[$6]] পাতায় \"[[$3|$5]]\"-এ একটি [$4 প্রকাশনা] {{GENDER:$2|অপসারণ করেছেন}}",

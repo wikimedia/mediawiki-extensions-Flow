@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adam78",
 			"Bencemac",
 			"Csega",
 			"Dj",
@@ -475,8 +476,8 @@
 	"flow-undo-edit-post": "Hozzászólás szerkesztése",
 	"flow-undo-edit-content": "A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a változtatások mentése gombra a visszavonás véglegesítéséhez.",
 	"flow-undo-edit-failure": "A szerkesztést nem lehet automatikusan visszavonni vele ütköző későbbi szerkesztések miatt.",
-	"group-flow-bot": "Rendezettbeszélgetés-botok",
-	"group-flow-bot-member": "Rendezett beszélgetések-bot",
+	"group-flow-bot": "rendezettbeszélgetés-botok",
+	"group-flow-bot-member": "Rendezettbeszélgetés-bot",
 	"grouppage-flow-bot": "Project:Rendezettbeszélgetés-botok",
 	"flow-ve-mention-context-item-label": "Említés",
 	"flow-ve-mention-inspector-title": "Említés",
