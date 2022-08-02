@@ -39,7 +39,8 @@
 			"飞舞回堂前",
 			"Winston Sung",
 			"SolidBlock",
-			"Diskdance"
+			"Diskdance",
+			"Stang"
 		]
 	},
 	"enablestructureddiscussions": "启用结构式讨论",
@@ -224,7 +225,7 @@
 	"flow-error-invalid-input": "加载结构式讨论内容时，加载的值无效。",
 	"flow-error-invalid-title": "提供了无效的页面标题。",
 	"flow-error-invalid-parameter": "丢失或无效的方法调用参数",
-	"flow-error-fail-load-history": "载入历史内容失败。",
+	"flow-error-fail-load-history": "加载历史内容失败。",
 	"flow-error-missing-revision": "无法找到需要加载结构式讨论内容的版本。",
 	"flow-error-fail-commit": "未能保存结构式讨论内容。",
 	"flow-error-insufficient-permission": "没有足够的权限访问内容。",
@@ -440,7 +441,7 @@
 	"flow-topic-first-heading": "在$1的话题",
 	"flow-topic-html-title": "$2上的$1",
 	"flow-topic-count": "话题（$1）",
-	"flow-load-more": "载入更多",
+	"flow-load-more": "加载更多",
 	"flow-no-more-fwd": "没有更早的话题",
 	"flow-newest-topics": "最新话题",
 	"flow-recent-topics": "最近活跃的话题",
