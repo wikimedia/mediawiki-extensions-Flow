@@ -18,6 +18,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Դուք}} այլևս չեք հսկում «$1» բաժինը։",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Դուք}} կրկին կարող եք հսկել [$2 այս էջը], երբ ցանկանաք։",
 	"flow-desc": "Քննարկումների համակարգ",
+	"nstab-topic": "Թեմա",
 	"flow-talk-taken-over-comment": "/* Այս էջը փոխակերպվել է «Կառուցվածքային քննարկումների» */",
 	"log-name-flow": "«Կառուցվածքային քննարկումների» ակտիվության մատյան",
 	"logentry-delete-flow-delete-post": "$1 մասնակիցը [[$6]] էջի «[[$3|$5]]» բաժնից {{GENDER:$2|ջնջեց}} [$4 գրառումը]։",
