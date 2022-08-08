@@ -30,6 +30,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|أنت}} لم تعد تراقب \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|أنت}} يمكنك مراقبة [$2 هذا الموضوع] في أي وقت.",
 	"flow-desc": "نظام النقاش",
+	"nstab-topic": "موضوع",
 	"flow-talk-taken-over-comment": "/* هذه الصفحة تم تحويلها إلى منصة النقاشات الهيكلية */",
 	"log-name-flow": "سجل نشاط النقاشات الهيكلية",
 	"logentry-delete-flow-delete-post": "{{GENDER:$2|حذف|حذفت}} $1 [$4 منشورًا] في \"[[$3|$5]]\" على [[$6]]",
