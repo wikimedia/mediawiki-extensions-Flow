@@ -4,7 +4,9 @@
 			"Artsiom91",
 			"Дзяніс Тутэйшы",
 			"ZlyiLev",
-			"Tīgelika"
+			"Tīgelika",
+			"Chadyka",
+			"Kareyac"
 		]
 	},
 	"abusefilter-edit-builder-vars-board-id": "Ідэнтыфікатар старонкі дошкі «Структураваных абмеркаванняў»",
@@ -12,6 +14,8 @@
 	"abusefilter-edit-builder-vars-board-title": "Назва (без прасторвы назваў) старонкі дошкі «Структураваных абмеркаванняў»",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Поўная назва дошкі «Структураваных абмеркаванняў»",
 	"flow-topic-moderated-reason-prefix": "Прычына:",
+	"flow-post-actions": "Дзеянні",
+	"flow-topic-actions": "Дзеянні",
 	"flow-reply-topic-title-placeholder": "Адказаць на «$1»",
 	"flow-reply-link": "{{GENDER:$1|Адказаць}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Падзякаваць}}}}",
