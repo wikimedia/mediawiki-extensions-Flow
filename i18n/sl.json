@@ -395,7 +395,7 @@
 	"flow-load-more": "Naloži več",
 	"flow-no-more-fwd": "Ni starejših tem",
 	"flow-newest-topics": "Najnovejše teme",
-	"flow-recent-topics": "Nazadnje aktivne teme",
+	"flow-recent-topics": "Pred kratkim aktivne teme",
 	"flow-sorting-tooltip-newest": "Trenutno {{GENDER:|se}} najprej izpisujejo najnovejše teme. Kliknite za več možnosti razvrščanja.",
 	"flow-sorting-tooltip-recent": "Trenutno {{GENDER:|se}} najprej izpisujejo zadnje urejane teme. Kliknite za več možnosti razvrščanja.",
 	"flow-toggle-small-topics": "Preklopi na prikaz malih ikon",
