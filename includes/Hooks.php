@@ -41,7 +41,7 @@ use FormOptions;
 use Html;
 use IContextSource;
 use LogEntry;
-use MediaWiki\CheckUser\CheckUserPagers\AbstractCheckUserPager;
+use MediaWiki\CheckUser\CheckUser\Pagers\AbstractCheckUserPager;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Extension\GuidedTour\GuidedTourLauncher;
