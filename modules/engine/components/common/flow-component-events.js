@@ -68,11 +68,6 @@
 				'focusin.FlowBoardComponent',
 				'input.mw-ui-input, textarea',
 				this.getDispatchCallback( 'focusField' )
-			)
-			.on(
-				'click.FlowBoardComponent keypress.FlowBoardComponent',
-				'[data-flow-eventlog-action]',
-				this.getDispatchCallback( 'eventLogHandler' )
 			);
 
 		if ( _isGlobalBound ) {
@@ -571,75 +566,6 @@
 		flowExecuteInteractiveHandler.call( this, args, $context, interactiveHandlerName, apiHandlerName );
 	}
 	FlowComponentEventsMixin.eventHandlers.interactiveHandlerFocus = flowInteractiveHandlerFocusCallback;
-
-	/**
-	 * Callback function for when a [data-flow-eventlog-action] node is clicked.
-	 * This will trigger a eventLog call to the given schema with the given
-	 * parameters.
-	 * A unique funnel ID will be created for all new EventLog calls.
-	 *
-	 * There may be multiple subsequent calls in the same "funnel" (and share
-	 * same info) that you want to track. It is possible to forward funnel data
-	 * from one attribute to another once the first has been clicked. It'll then
-	 * log new calls with the same data (schema & entrypoint) & funnel ID as the
-	 * initial logged event.
-	 *
-	 * Required parameters (as data-attributes) are:
-	 * * data-flow-eventlog-schema: The schema name
-	 * * data-flow-eventlog-entrypoint: The schema's entrypoint parameter
-	 * * data-flow-eventlog-action: The schema's action parameter
-	 *
-	 * Additionally:
-	 * * data-flow-eventlog-forward: Selectors to forward funnel data to
-	 *
-	 * @param {Event} event
-	 */
-	function flowEventLogCallback( event ) {
-		var $context, data, component, $promise, eventInstance, key, value;
-
-		// Only trigger with enter key & no modifier keys, if keypress
-		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ) ) {
-			return;
-		}
-
-		$context = $( event.currentTarget );
-		data = $context.data();
-		component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
-		$promise = data.flowInteractiveHandlerPromise || $.Deferred().resolve().promise();
-		eventInstance = {};
-
-		// Fetch loggable data: everything prefixed flowEventlog except
-		// flowEventLogForward and flowEventLogSchema
-		for ( key in data ) {
-			if ( key.indexOf( 'flowEventlog' ) === 0 ) {
-				// @todo Either the data or this config should have separate prefixes,
-				// it shouldn't be shared and then handled here.
-				if ( key === 'flowEventlogForward' || key === 'flowEventlogSchema' ) {
-					continue;
-				}
-
-				// Strips "flowEventlog" and lowercases first char after that
-				value = data[ key ];
-				key = key.slice( 12, 13 ).toLowerCase() + key.slice( 13 );
-
-				eventInstance[ key ] = value;
-			}
-		}
-
-		// Log the event
-		eventInstance = component.logEvent( data.flowEventlogSchema, eventInstance );
-
-		// Promise resolves once all interactiveHandlers/apiHandlers are done,
-		// so all nodes we want to forward to are bound to be there
-		$promise.always( function () {
-			// Now find all nodes to forward to
-			var $forward = data.flowEventlogForward ? $context.findWithParent( data.flowEventlogForward ) : $();
-
-			// Forward the funnel
-			eventInstance = component.forwardEvent( $forward, data.flowEventlogSchema, eventInstance.funnelId );
-		} );
-	}
-	FlowComponentEventsMixin.eventHandlers.eventLogHandler = flowEventLogCallback;
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).

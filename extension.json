@@ -400,7 +400,6 @@
 				"engine/components/flow-registry.js",
 				"engine/components/flow-component.js",
 				"engine/misc/flow-api.js",
-				"engine/misc/flow-eventlog.js",
 				"engine/components/common/flow-component-engines.js",
 				"engine/components/common/flow-component-events.js",
 				"engine/components/board/base/flow-boardandhistory-base.js",

@@ -43,13 +43,6 @@
 '.$sp.''.((LR::ifvar($cx, ((isset($in['actions']) && is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null), false)) ? '			<a href="'.LR::encq($cx, ((isset($in['actions']['reply']) && is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null)).'"
 '.$sp.'			   title="'.LR::encq($cx, ((isset($in['actions']['reply']) && is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null)).'"
 '.$sp.'			   class="mw-ui-anchor mw-ui-progressive mw-ui-quiet flow-reply-link"
-'.$sp.'			   data-flow-eventlog-schema="FlowReplies"
-'.$sp.'			   data-flow-eventlog-action="initiate"
-'.$sp.'			   data-flow-eventlog-entrypoint="reply-post"
-'.$sp.'			   data-flow-eventlog-forward="
-'.$sp.'				   < .flow-post:not([data-flow-post-max-depth=\'1\']) .flow-reply-form [data-role=\'cancel\'],
-'.$sp.'				   < .flow-post:not([data-flow-post-max-depth=\'1\']) .flow-reply-form [data-role=\'submit\']
-'.$sp.'			   "
 '.$sp.'			>'.LR::encq($cx, ((isset($in['actions']['reply']) && is_array($in['actions']['reply']) && isset($in['actions']['reply']['text'])) ? $in['actions']['reply']['text'] : null)).'</a>
 '.$sp.'' : '').''.((LR::ifvar($cx, ((isset($in['actions']) && is_array($in['actions']) && isset($in['actions']['thank'])) ? $in['actions']['thank'] : null), false)) ? '			<a class="mw-ui-anchor mw-ui-progressive mw-ui-quiet mw-thanks-flow-thank-link"
 '.$sp.'			   href="'.LR::encq($cx, ((isset($in['actions']['thank']) && is_array($in['actions']['thank']) && isset($in['actions']['thank']['url'])) ? $in['actions']['thank']['url'] : null)).'"
@@ -177,7 +170,6 @@
 '.$sp.'		          type="text"
 '.$sp.'			      placeholder="'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']) && is_array($in['properties']) && isset($in['properties']['topic-of-post-text-from-html'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq', $in)).'"
 '.$sp.'		          data-role="content"
-'.$sp.'
 '.$sp.'		>'.((LR::ifvar($cx, (isset($cx['sp_vars']['root']['submitted']) ? $cx['sp_vars']['root']['submitted'] : null), false)) ? ''.LR::hbbch($cx, 'ifCond', array(array((isset($cx['sp_vars']['root']['submitted']['postId']) ? $cx['sp_vars']['root']['submitted']['postId'] : null),'===',(($inary && isset($in['postId'])) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){$inary=is_array($in);return ''.LR::encq($cx, (isset($cx['sp_vars']['root']['submitted']['content']) ? $cx['sp_vars']['root']['submitted']['content'] : null)).'';}).'' : '').'</textarea>
 '.$sp.'	</div>
 '.$sp.'
