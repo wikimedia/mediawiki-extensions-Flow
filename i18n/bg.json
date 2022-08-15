@@ -18,6 +18,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Вече не {{GENDER:$3|наблюдавате}} темата „$1“",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "Можете да {{GENDER:$3|наблюдавате}} [$2 темата] по всяко време.",
 	"flow-desc": "Система на дискусии",
+	"nstab-topic": "Тема",
 	"log-name-flow": "Дневник на активности в Структурираните дискусии",
 	"flow-user-moderated": "Модериран потребител",
 	"flow-board-header-browse-topics-link": "Преглед на темите",
