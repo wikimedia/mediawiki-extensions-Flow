@@ -77,6 +77,8 @@
 	"flow-topic-action-undelete-topic": "विशय काडात",
 	"flow-topic-action-undo-moderation": "केल्लें परतावचें",
 	"flow-topic-notification-subscribe-title": "हो विशय {{GENDER:$1|तुमचे}} सादूरवळेरेक जोडला.",
+	"flow-topic-action-watchlist-add": "ह्या विशयाखातीर कळोवण्यो मागय",
+	"flow-topic-action-watchlist-remove": "कळोवण्यो बंद कर",
 	"flow-error-missing-summary": "तुमकां सारांशूय दिवंचो पडटलो.",
 	"flow-error-missing-title": "ह्या विशयाक माथाळो ना. विशय सांबाळून दवरपाक माथाळो गरजेचो आसा.",
 	"flow-error-protected-unknown-reason": "अनवळखी",

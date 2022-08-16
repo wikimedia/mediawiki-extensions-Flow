@@ -23,6 +23,7 @@
 	"flow-topic-actions": "कार्यहरू",
 	"flow-cancel": "रद्द गर्नुहोस्",
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
+	"flow-reply-link": "{{GENDER:$1|जवाफ}} दिनुहोस्",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|धन्यवाद दिनुहोस्}}}}",
 	"flow-history-action-delete-post": "मेटिएको",
 	"flow-history-action-hide-post": "लुकाउनुहोस्",
