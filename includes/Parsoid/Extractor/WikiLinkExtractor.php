@@ -15,7 +15,7 @@ class WikiLinkExtractor implements Extractor {
 	 * @inheritDoc
 	 */
 	public function getXPath() {
-		return '//a[@rel="mw:WikiLink"][not(@typeof)]';
+		return '//a[contains(concat(" ",normalize-space(@rel)," ")," mw:WikiLink ")][not(@typeof)]';
 	}
 
 	/**

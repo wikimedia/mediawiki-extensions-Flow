@@ -5,8 +5,9 @@ namespace Flow\Parsoid\Fixer;
 use Flow\Parsoid\Fixer;
 
 /**
- * Parsoid markup doesn't contain class="external" for external links. This is needed for
- * correct styling, so we add it here.
+ * Parsoid markup didn't always contain class="external" and rel="nofollow" where appropriate.
+ * This is needed for correct styling and to ensure proper indexing,
+ * so we add them here if they are missing.
  */
 class ExtLinkFixer implements Fixer {
 	/**
@@ -15,7 +16,7 @@ class ExtLinkFixer implements Fixer {
 	 * @return string XPath of elements this acts on
 	 */
 	public function getXPath() {
-		return '//a[@rel="mw:ExtLink"]';
+		return '//a[contains(concat(" ",normalize-space(@rel)," ")," mw:ExtLink ")]';
 	}
 
 	/**
@@ -28,13 +29,18 @@ class ExtLinkFixer implements Fixer {
 		if ( !$node instanceof \DOMElement ) {
 			return;
 		}
-
-		$node->setAttribute( 'class', 'external' );
+		$nodeClass = $node->getAttribute( 'class' );
+		if ( strpos( ' ' . $nodeClass . ' ', ' external ' ) === false ) {
+			$node->setAttribute( 'class', 'external' .
+				( $nodeClass !== '' ? ' ' . $nodeClass : '' ) );
+		}
 
 		global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
 		if ( $wgNoFollowLinks && !wfMatchesDomainList( $node->getAttribute( 'href' ), $wgNoFollowDomainExceptions ) ) {
 			$oldRel = $node->getAttribute( 'rel' );
-			$node->setAttribute( 'rel', 'nofollow' . ( $oldRel !== '' ? ' ' . $oldRel : '' ) );
+			if ( strpos( ' ' . $oldRel . ' ', ' nofollow ' ) === false ) {
+				$node->setAttribute( 'rel', 'nofollow' . ( $oldRel !== '' ? ' ' . $oldRel : '' ) );
+			}
 		}
 	}
 }

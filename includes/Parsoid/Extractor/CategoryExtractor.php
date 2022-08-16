@@ -23,7 +23,7 @@ class CategoryExtractor implements Extractor {
 	 * @inheritDoc
 	 */
 	public function getXPath() {
-		return '//link[starts-with( @rel, "mw:PageProp/Category" )]';
+		return '//link[contains(concat(" ",normalize-space(@rel)," "), " mw:PageProp/Category " )]';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CategoryExtractor implements Extractor {
 		// with our expected format so only perform a very minimal
 		// validation.
 		$rel = $element->getAttribute( 'rel' );
-		if ( $rel !== 'mw:PageProp/Category' ) {
+		if ( strpos( ' ' . $rel . ' ', ' mw:PageProp/Category ' ) === false ) {
 			return null;
 		}
 

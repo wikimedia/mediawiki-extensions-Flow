@@ -34,7 +34,7 @@ class BaseHrefFixer implements Fixer {
 	 */
 	public function getXPath() {
 		// WikiLinkFixer handles mw:WikiLink
-		return '//a[@href and not(@rel="mw:WikiLink")]';
+		return '//a[@href and not(contains(concat(" ",normalize-space(@rel)," ")," mw:WikiLink "))]';
 	}
 
 	/**
