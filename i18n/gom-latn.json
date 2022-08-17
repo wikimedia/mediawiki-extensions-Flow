@@ -109,6 +109,8 @@
 	"flow-topic-action-undo-moderation": "Kel'lem portavchem",
 	"flow-topic-notification-subscribe-title": "Ho vixoi {{GENDER:$1|tujea}} sadurvollerek zoddla.",
 	"flow-board-notification-subscribe-description": "Hea folleacher novo vixoi rochtolo tednam {{GENDER:$1|tuka}} kollovnni mellteli.",
+	"flow-topic-action-watchlist-add": "Hea vixoiakhatir kollovnnio magoy",
+	"flow-topic-action-watchlist-remove": "Kollovnnio bond kor",
 	"flow-error-allowcreation-flow-create-board": "Vapurpeak \"{{int:right-flow-create-board}}\" porvangi na",
 	"flow-error-external": "Chuk ghodli.Chuke vixim ho sondex mel'lam: $1",
 	"flow-error-missing-summary": "Tuka sar diuncho poddtolo.",
