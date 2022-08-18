@@ -14,6 +14,7 @@
 			"Matiia",
 			"Matěj Suchánek",
 			"Sumbukompor",
+			"Veracious",
 			"William Surya Permana"
 		]
 	},
@@ -25,6 +26,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Anda}} tidak lagi memantau \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Anda}} dapat memantau [$2 topik ini] kapan saja.",
 	"flow-desc": "Sistem pembicaraan",
+	"nstab-topic": "Topik",
 	"flow-talk-taken-over-comment": "/* Halaman ini telah dikonversi menjadi forum Pembicaraan Terstruktur */",
 	"log-name-flow": "Catatan aktivitas Pembicaraan Terstruktur",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|menghapus}} sebuah [$4 kiriman] di \"[[$3|$5]]\" di [[$6]]",
