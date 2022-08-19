@@ -35,6 +35,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|您}}已不再監視「$1」",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|您}}可以隨時監視[$2 此話題]。",
 	"flow-desc": "討論系統",
+	"nstab-topic": "話題",
 	"flow-talk-taken-over-comment": "/* 已將此頁面轉換為結構式討論討論板 */",
 	"log-name-flow": "結構式討論動態日誌",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|已刪除}}位於 [[$6]] 中 「[[$3|$5]]」 的一篇 [$4 貼文]",
