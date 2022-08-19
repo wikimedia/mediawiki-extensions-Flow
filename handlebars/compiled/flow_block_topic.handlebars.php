@@ -166,7 +166,6 @@
 '.$sp.'		          type="text"
 '.$sp.'			      placeholder="'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-reply-topic-title-placeholder',((isset($in['properties']) && is_array($in['properties']) && isset($in['properties']['topic-of-post-text-from-html'])) ? $in['properties']['topic-of-post-text-from-html'] : null)),array()), 'encq', $in)).'"
 '.$sp.'		          data-role="content"
-'.$sp.'
 '.$sp.'		>'.((LR::ifvar($cx, (isset($cx['sp_vars']['root']['submitted']) ? $cx['sp_vars']['root']['submitted'] : null), false)) ? ''.LR::hbbch($cx, 'ifCond', array(array((isset($cx['sp_vars']['root']['submitted']['postId']) ? $cx['sp_vars']['root']['submitted']['postId'] : null),'===',(($inary && isset($in['postId'])) ? $in['postId'] : null)),array()), $in, false, function($cx, $in)use($sp){$inary=is_array($in);return ''.LR::encq($cx, (isset($cx['sp_vars']['root']['submitted']['content']) ? $cx['sp_vars']['root']['submitted']['content'] : null)).'';}).'' : '').'</textarea>
 '.$sp.'	</div>
 '.$sp.'

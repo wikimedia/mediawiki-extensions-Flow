@@ -20,18 +20,6 @@
 		          type="text"
 			      placeholder="{{l10n "flow-reply-topic-title-placeholder" properties.topic-of-post-text-from-html}}"
 		          data-role="content"
-
-		          {{!--
-		            You'd expect data-flow-eventlog-* data here (this one
-		            needs to be clicked to expand the form).
-		            However, this form is used in multiple places: as topic-
-		            level reply form (activated by clicking the textarea to
-		            expand), or to reply to a post (activated by clicking the
-		            "reply" link).
-		            We only want to track the former, so we'll do that in JS so
-		            we can ignore all focuses for this textarea when it's not
-		            used to activate the topic-level reply form.
-		          --}}
 		>
 			{{~#if @root.submitted~}}
 				{{~#ifCond @root.submitted.postId "===" postId~}}
