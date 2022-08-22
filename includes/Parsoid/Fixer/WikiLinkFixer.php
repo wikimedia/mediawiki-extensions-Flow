@@ -37,7 +37,7 @@ class WikiLinkFixer implements Fixer {
 	 * @return string
 	 */
 	public function getXPath() {
-		return '//a[@rel="mw:WikiLink"]';
+		return '//a[contains(concat(" ",normalize-space(@rel)," ")," mw:WikiLink ")]';
 	}
 
 	/**

@@ -15,7 +15,7 @@ class ExtLinkExtractor implements Extractor {
 	 * @inheritDoc
 	 */
 	public function getXPath() {
-		return '//a[@rel="mw:ExtLink"]';
+		return '//a[contains(concat(" ",normalize-space(@rel)," ")," mw:ExtLink ")]';
 	}
 
 	/**
