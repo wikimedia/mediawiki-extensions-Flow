@@ -4,7 +4,8 @@
 			"Arystanbek",
 			"Matiia",
 			"Nnemo",
-			"Quiddity"
+			"Quiddity",
+			"СеніңШешең"
 		]
 	},
 	"enablestructureddiscussions": "Flow кеңейтілімін іске қосу",
@@ -263,9 +264,9 @@
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 және {{PLURAL:$3|басқа біреу|басқа $3|100=басқа 99+}} қатысушы $2 сипаттамасын {{GENDER:$1|өңдеді}}",
 	"flow-notification-newtopic": "$1 <strong>$3</strong> бетінде <span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span> деген <br /> жаңа тақырып {{GENDER:$1|бастады}} .",
 	"flow-notification-newtopic-bundle": "<strong><span class=\"plainlinks\">[$3 $2]</span></strong> бетінде  {{PLURAL:$1|бір жаңа тақырып|$1 жаңа тақырып|100=99+ жаңа тақырып}}",
-	"flow-notification-link-text-view-post": "Хабарламаны қарау",
-	"flow-notification-link-text-view-topic": "Тақырыпты қарау",
-	"flow-notification-link-text-view-topics": "Тақырыптарды қарау",
+	"flow-notification-link-text-view-post": "Хабарды көру",
+	"flow-notification-link-text-view-topic": "Тақырыпты көру",
+	"flow-notification-link-text-view-topics": "Тақырыптарды көру",
 	"flow-notification-reply-email-subject": "$3 бетіндегі $2",
 	"flow-notification-reply-email-batch-body": "$1 $3 бетіндегі «$2» тақырыбына {{GENDER:$1|жауап жазды}}",
 	"flow-notification-reply-email-batch-bundle-body": "$1 және {{PLURAL:$4|басқа біреу|басқа $4|100=басқа 99+}} $3 бетіндегі \"$2\" тақырыбында {{GENDER:$1|жауап берді}}",
