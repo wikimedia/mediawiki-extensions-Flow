@@ -4,15 +4,26 @@
 			"Olve Utne"
 		]
 	},
+	"flow-board-collapse-description": "Tjiega gåvådimev",
+	"flow-edit-header-link": "Rävvdadä gåvådimev",
 	"flow-newtopic-title-placeholder": "Åđđå ábnas",
 	"flow-newtopic-header": "Lasedä åđđå ábdnasav",
 	"flow-newtopic-start-placeholder": "Álge åđđå ábdnasav",
+	"flow-post-action-post-history": "Histurrja",
+	"flow-topic-action-history": "Histurrja",
 	"flow-topic-action-hide-topic": "Tjiega ábdnasav",
 	"flow-error-invalid-topic-uuid-title": "Nievres bajjeltjála",
+	"flow-edit-header-submit-publish": "Pussti gåvådimev",
+	"flow-rev-message-create-header": "$1 {{GENDER:$2|tjälij}} gåvådimev",
 	"flow-topic-history": "«$1» ábnashisturrja",
+	"flow-show-comments-title": "{{PLURAL:$1|Vuosedä målgedimev|Vuosedä målgedimijt}}",
+	"flow-comment-hidden": "Tjiehkam målgedibme",
 	"flow-notification-link-text-view-topic": "Vuosedä ábdnasav",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|älgij}} åđđå ábdnasav «$2» bielen",
 	"flow-link-topic": "ábnas",
+	"flow-link-history": "histurrja",
 	"flow-link-topic-revision": "ábnasrävvdadibme",
-	"flow-topic-count": "Ábdnasa ($1)"
+	"flow-link-header-revision": "gåvådimrävvdadibme",
+	"flow-topic-count": "Ábdnasa ($1)",
+	"flow-whatlinkshere-header": "[$1 gåvådime] rájest"
 }
