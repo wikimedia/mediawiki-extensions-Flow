@@ -9,7 +9,8 @@
 			"बिप्लब आनन्द",
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
-			"Bada Kaji"
+			"Bada Kaji",
+			"बडा काजी"
 		]
 	},
 	"notification-dynamic-actions-flow-topic-unwatch": "एइ विषय हेर्न बन्द गर",
@@ -52,6 +53,7 @@
 	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्",
 	"flow-moderation-confirm-delete-topic": "हटाउने",
 	"flow-moderation-confirm-hide-topic": "लुकाउनुहोस्",
+	"flow-anon-warning": "तपाईंले पहिले प्रवेश गर्नुपर्छ। तपाईंको ईपी ठेगानाको सट्टा तपाईंको नाम लेख्न, तपाईं [$1 प्रवेश गर्नुहोस्] वा [$2 खाता बनाउनुहोस्]।",
 	"flow-load-more": "थप पढ्नुहोस्",
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-invalid-title": "अबैध पृष्ठ शिर्षक राखिएको थियो",
