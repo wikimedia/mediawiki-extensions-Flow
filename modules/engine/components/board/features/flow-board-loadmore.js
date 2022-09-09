@@ -337,9 +337,9 @@
 			} );
 		} else {
 			$target = $.findWithParent( $button, scrollTargetSelector );
-			$target.on( 'scroll.flow-load-more', $.throttle( 50, function () {
+			$target.on( 'scroll.flow-load-more', mw.util.throttle( function () {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
-			} ) );
+			}, 50 ) );
 		}
 	}
 	FlowBoardComponentLoadMoreFeatureMixin.UI.events.loadHandlers.loadMore = flowBoardComponentLoadMoreFeatureElementLoadCallback;

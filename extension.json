@@ -413,7 +413,7 @@
 				"mediawiki.Title",
 				"mediawiki.user",
 				"mediawiki.Uri",
-				"jquery.throttle-debounce"
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -549,7 +549,6 @@
 			],
 			"dependencies": [
 				"ext.flow.components",
-				"jquery.throttle-debounce",
 				"mediawiki.jqueryMsg",
 				"ext.flow.jquery.conditionalScroll",
 				"ext.flow.ui",

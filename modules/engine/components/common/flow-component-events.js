@@ -84,17 +84,17 @@
 				// global scroll handler, trigger scroll events on elements only with
 				// scroll.flow-something, where 'something' is not 'window-scroll'.
 				'scroll.flow-window-scroll',
-				$.throttle( 50, function ( evt ) {
+				mw.util.throttle( function ( evt ) {
 					if ( evt.target !== window && evt.target !== document ) {
 						throw new Error( 'Target is "' + evt.target.nodeName + '", not window or document.' );
 					}
 
 					self.getDispatchCallback( 'windowScroll' ).apply( self, arguments );
-				} )
+				}, 50 )
 			)
 			.on(
 				'resize.flow',
-				$.throttle( 50, this.getDispatchCallback( 'windowResize' ) )
+				mw.util.throttle( this.getDispatchCallback( 'windowResize' ), 50 )
 			);
 	}
 	OO.mixinClass( FlowComponentEventsMixin, OO.EventEmitter );
