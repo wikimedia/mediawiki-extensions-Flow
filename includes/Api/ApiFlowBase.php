@@ -47,7 +47,7 @@ abstract class ApiFlowBase extends ApiBase {
 	/**
 	 * Returns true if the submodule required the page parameter to be set.
 	 * Most submodules will need to be passed the page the API request is for.
-	 * For some (e.g. search), this is not needed at all.
+	 * For some, this is not needed at all.
 	 *
 	 * @return bool
 	 */

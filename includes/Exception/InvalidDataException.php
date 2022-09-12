@@ -14,8 +14,6 @@ class InvalidDataException extends FlowException {
 			// flow-error-fail-load-data
 			'fail-load-history',
 			// flow-error-fail-load-history
-			'fail-search',
-			// flow-error-fail-search
 			'missing-topic-title',
 			// flow-error-missing-topic-title
 			'missing-metadata',

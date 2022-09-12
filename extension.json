@@ -822,60 +822,6 @@
 		"FlowCacheVersion": {
 			"value": "4.9"
 		},
-		"FlowSearchServers": {
-			"value": [
-				"localhost"
-			]
-		},
-		"FlowSearchConnectionAttempts": {
-			"value": 1
-		},
-		"FlowSearchBannedPlugins": {
-			"value": []
-		},
-		"FlowSearchOptimizeIndexForExperimentalHighlighter": {
-			"value": false
-		},
-		"FlowSearchMaxShardsPerNode": {
-			"value": []
-		},
-		"FlowSearchRefreshInterval": {
-			"value": 1
-		},
-		"FlowSearchMaintenanceTimeout": {
-			"value": 3600
-		},
-		"FlowSearchReplicas": {
-			"value": "0-2"
-		},
-		"FlowSearchShardCount": {
-			"value": {
-				"flow": 4
-			}
-		},
-		"FlowSearchCacheWarmers": {
-			"value": []
-		},
-		"FlowSearchMergeSettings": {
-			"value": {
-				"flow": {
-					"max_merge_at_once": 10,
-					"segments_per_tier": 10,
-					"reclaim_deletes_weight": 2,
-					"max_merged_segment": "5g"
-				}
-			}
-		},
-		"FlowSearchIndexAllocation": {
-			"value": {
-				"include": [],
-				"exclude": [],
-				"require": []
-			}
-		},
-		"FlowSearchEnabled": {
-			"value": false
-		},
 		"FlowAbuseFilterGroup": {
 			"value": "flow"
 		},

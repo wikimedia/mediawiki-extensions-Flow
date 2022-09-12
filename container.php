@@ -856,36 +856,12 @@ $c['formatter.topic'] = static function ( $c ) {
 		$c['formatter.revision.factory']->create()
 	);
 };
-$c['search.connection'] = static function ( $c ) {
-	if ( defined( 'MW_PHPUNIT_TEST' ) && !ExtensionRegistry::getInstance()->isLoaded( 'Elastica' ) ) {
-		/*
-		 * ContainerTest::testInstantiateAll instantiates everything
-		 * in container and doublechecks it's not null.
-		 * Flow runs on Jenkins don't currently load Extension:Elastica,
-		 * which is required to be able to construct this object.
-		 * Because search is not currently in use, let's not add the
-		 * dependency in Jenkins and just return a bogus value to not
-		 * make the test fail ;)
-		 */
-		return 'not-supported';
-	}
 
-	global $wgFlowSearchServers, $wgFlowSearchConnectionAttempts;
-	return new Flow\Search\Connection( $wgFlowSearchServers, $wgFlowSearchConnectionAttempts );
-};
 $c['search.index.iterators.header'] = static function ( $c ) {
 	return new \Flow\Search\Iterators\HeaderIterator( $c['db.factory'] );
 };
 $c['search.index.iterators.topic'] = static function ( $c ) {
 	return new \Flow\Search\Iterators\TopicIterator( $c['db.factory'], $c['loader.root_post'] );
-};
-$c['search.index.updaters'] = static function ( $c ) {
-	// permissions for anon user
-	$anonPermissions = new Flow\RevisionActionPermissions( $c['flow_actions'], new User );
-	return [
-		'topic' => new \Flow\Search\Updaters\TopicUpdater( $c['search.index.iterators.topic'], $anonPermissions, $c['loader.root_post'] ),
-		'header' => new \Flow\Search\Updaters\HeaderUpdater( $c['search.index.iterators.header'], $anonPermissions )
-	];
 };
 
 $c['storage.wiki_reference'] = static function ( $c ) {

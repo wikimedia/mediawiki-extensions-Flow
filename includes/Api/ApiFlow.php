@@ -46,10 +46,6 @@ class ApiFlow extends ApiBase {
 		'view-topic-summary' => \Flow\Api\ApiFlowViewTopicSummary::class,
 	];
 
-	private const SEARCH_MODULES = [
-		'search' => \Flow\Api\ApiFlowSearch::class,
-	];
-
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -62,9 +58,6 @@ class ApiFlow extends ApiBase {
 		);
 
 		$enabledModules = self::ALWAYS_ENABLED_MODULES;
-		if ( $this->getConfig()->get( 'FlowSearchEnabled' ) ) {
-			$enabledModules += self::SEARCH_MODULES;
-		}
 
 		$this->moduleManager->addModules( $enabledModules, 'submodule' );
 	}
