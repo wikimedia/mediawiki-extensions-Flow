@@ -238,8 +238,10 @@ class PostRevisionTestCase extends FlowTestCase {
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
 			// make sure user has rights to create board
-			$user->mRights = array_merge( MediaWikiServices::getInstance()->getPermissionManager()
-				->getUserPermissions( $user ), [ 'flow-create-board' ] );
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+			$permissionManager->overrideUserRightsForTesting( $user,
+				array_merge( $permissionManager->getUserPermissions( $user ), [ 'flow-create-board' ] )
+			);
 			$occupationController->safeAllowCreation( $title, $user );
 			$occupationController->ensureFlowRevision(
 				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
