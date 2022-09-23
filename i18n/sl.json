@@ -139,7 +139,7 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Naročen|Naročena}} si na ta pogovor!",
 	"flow-board-notification-subscribe-description": "Ob odprtju nove teme boš {{GENDER:$1|prejel|prejela}} obvestilo.",
 	"flow-topic-action-watchlist-add": "Naroči se na to temo",
-	"flow-topic-action-watchlist-remove": "Odjavi naročnino",
+	"flow-topic-action-watchlist-remove": "Odjavi naročilo",
 	"flow-error-allowcreation-already-exists": "Tamkajšnja stran že obstaja, zato ni možno prestaviti strukturiranih pogovorov tja.",
 	"flow-error-allowcreation-flow-create-board": "Uporabnik nima dovoljenja \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Trenutno ne moreš sodelovati. Potrebno se je prijaviti.",
