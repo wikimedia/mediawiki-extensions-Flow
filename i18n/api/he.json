@@ -75,7 +75,7 @@
 	"apihelp-flow+view-header-param-revId": "טעינת הגרסה הזאת, ולא האחרונה.",
 	"apihelp-flow+view-header-example-1": "אחזור התיאור של [[Talk:Sandbox]] בתור קוד ויקי",
 	"apihelp-flow+view-post-description": "הצגת רשומה.",
-	"apihelp-flow+view-post-summary": "הצג פוסט",
+	"apihelp-flow+view-post-summary": "הצגת רשומה.",
 	"apihelp-flow+view-post-param-postId": "מזהה הרשומה שרצים להציג.",
 	"apihelp-flow+view-post-param-format": "באיזה תסדיר להחזיר את התוכן.",
 	"apihelp-flow+view-post-example-1": "אחזור תוכן הרשומה ב־[[Topic:S2tycnas4hcucw8w]] בתור קוד ויקי",
