@@ -375,7 +375,7 @@
 	"flow-link-history": "historique",
 	"flow-link-post-revision": "version du message",
 	"flow-link-topic-revision": "version du sujet",
-	"flow-link-header-revision": "version de la description",
+	"flow-link-header-revision": "révision de la description",
 	"flow-link-summary-revision": "version du résumé",
 	"flow-moderation-title-suppress-post": "Masquer le message ?",
 	"flow-moderation-title-delete-post": "Masquer le message ?",
