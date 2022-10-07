@@ -49,7 +49,7 @@ class UserNameListenerTest extends FlowTestCase {
 		}
 
 		if ( $expectedWiki ) {
-			$this->assertContains( $row['user_id'], $queued[$expectedWiki] );
+			$this->assertContains( (int)$row['user_id'], $queued[$expectedWiki] );
 		} else {
 			$this->assertEmpty( $queued );
 		}
