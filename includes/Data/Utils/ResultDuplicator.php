@@ -58,7 +58,7 @@ class ResultDuplicator {
 	/**
 	 * Add a query and its position.  Positions must be unique.
 	 * @param array $query
-	 * @param array $position
+	 * @param int|int[] $position
 	 * @throws InvalidParameterException
 	 */
 	public function add( $query, $position ) {

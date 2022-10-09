@@ -20,7 +20,10 @@ use WikitextContent;
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator */
 	protected $urlGenerator;
-	/** @var array */
+	/**
+	 * @var array[]
+	 * @phan-var non-empty-array[]
+	 */
 	protected $redirectsToDo;
 	/** @var User */
 	protected $user;
@@ -54,6 +57,7 @@ class LqtRedirector implements Postprocessor {
 			$state->topicWorkflow->getId()
 		);
 		foreach ( $this->redirectsToDo as $args ) {
+			// @phan-suppress-next-line PhanParamTooFewUnpack
 			$this->doRedirect( ...$args );
 		}
 
