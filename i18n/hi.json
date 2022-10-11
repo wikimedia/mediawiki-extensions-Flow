@@ -12,7 +12,8 @@
 			"चक्रपाणी",
 			"संजीव कुमार",
 			"हिंदुस्थान वासी",
-			"Saurmandal"
+			"Saurmandal",
+			"Abijeet Patro"
 		]
 	},
 	"enablestructureddiscussions": "संरचित चर्चा को सक्षम करें",
@@ -115,7 +116,7 @@
 	"flow-post-action-suppress-post": "दबाएँ",
 	"flow-post-action-delete-post": "हटाएँ",
 	"flow-post-action-hide-post": "छिपाएँ",
-	"flow-post-action-edit-post": "संपादित करें",
+	"flow-post-action-edit-post": "सम्पादन",
 	"flow-post-action-edit-post-submit": "बदलाव सहेजें",
 	"flow-post-action-edit-post-submit-anonymously": "गुमनाम रूप से बदलाव सहेजें",
 	"flow-post-action-edit-post-submit-publish": "बदलाव सहेजें",
