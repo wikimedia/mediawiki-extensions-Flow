@@ -182,7 +182,7 @@
 	"flow-error-prev-revision-mismatch": "To sporočilo je pred nekaj trenutki uredil nek drug uporabnik. {{GENDER:$3|Si}} prepričan, da želiš prepisati njegovo urejanje?",
 	"flow-error-prev-revision-does-not-exist": "Ni mogoče najti prejšnje redakcije.",
 	"flow-error-core-topic-deletion": "Za izbris teme uporabi ... meni Strukturiranih pogovorov ali [$1 strani teme]. Ne iti neposredno na action=delete.",
-	"flow-error-default": "Zgodila se je napaka.",
+	"flow-error-default": "Prišlo je do napake.",
 	"flow-error-invalid-input": "Navedena je bila neveljavna vrednost za naložitev vsebine strukturiranega pogovora.",
 	"flow-error-invalid-title": "Naveden naslov strani je neveljaven.",
 	"flow-error-invalid-parameter": "Manjkajoči ali naveljavni parameter za način klicanja",
