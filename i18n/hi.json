@@ -12,7 +12,8 @@
 			"चक्रपाणी",
 			"संजीव कुमार",
 			"हिंदुस्थान वासी",
-			"Saurmandal"
+			"Saurmandal",
+			"Abijeet Patro"
 		]
 	},
 	"enablestructureddiscussions": "संरचित चर्चा को सक्षम करें",
@@ -116,7 +117,7 @@
 	"flow-post-action-suppress-post": "दबाएँ",
 	"flow-post-action-delete-post": "हटाएँ",
 	"flow-post-action-hide-post": "छिपाएँ",
-	"flow-post-action-edit-post": "संपादित करें",
+	"flow-post-action-edit-post": "सम्पादन",
 	"flow-post-action-edit-post-submit": "बदलाव सहेजें",
 	"flow-post-action-edit-post-submit-anonymously": "गुमनाम रूप से बदलाव सहेजें",
 	"flow-post-action-edit-post-submit-publish": "बदलाव सहेजें",
@@ -149,7 +150,7 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|आपने}} इस चर्चा पटल पर सदस्यता प्राप्त कर ली है!",
 	"flow-board-notification-subscribe-description": "इस पटल पर नया विषय जोड़े जाने पर {{GENDER:$1|आपको}} सूचना प्राप्त होगी।",
 	"flow-topic-action-watchlist-add": "इस विषय पर सदस्यता लें",
-	"flow-topic-action-watchlist-remove": "सदस्यता रद्द करें",
+	"flow-topic-action-watchlist-remove": "सदस्यता छोड़ें",
 	"flow-error-allowcreation-already-exists": "लक्ष्य पर पृष्ठ पहले से ही मौजूद है, तो वहाँ संरचित चर्चा पटल नहीं बनाई जा सकती।",
 	"flow-error-allowcreation-flow-create-board": "सदस्य के पास \"{{int:right-flow-create-board}}\" अधिकार नहीं है।",
 	"flow-error-can-not-edit-logged-out": "आप वर्तमान में इसमें भाग नहीं ले सकते। आप लॉग-इन करके कोशिश कर सकते हैं।",
