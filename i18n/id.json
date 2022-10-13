@@ -15,7 +15,8 @@
 			"Matěj Suchánek",
 			"Sumbukompor",
 			"Veracious",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Rex"
 		]
 	},
 	"enablestructureddiscussions": "Aktifkan Pembicaraan Terstruktur",
@@ -35,7 +36,7 @@
 	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|memulihkan}} sebuah kirimian di suatu topik di [[$3]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|memberedel}} sebuah [$4 kiriman] di \"[[$3|$5]]\" di [[$6]]",
 	"logentry-suppress-flow-suppress-post-topic-title-not-visible": "$1 {{GENDER:$2|memberedel}} sebuah kiriman di suatu topik di [[$3]]",
-	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|menghapus}} sebuah [$4 kiriman] di \"[[$3|$5]]\" di [[$6]]",
+	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|menghapus}} sebuah [$4 posting] mengenai \"[[$3|$5]]\" di [[$6]]",
 	"logentry-suppress-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|menghapus}} sebuah kiriman di suatu topik di [[$3]]",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|menghapus}} topik \"[[$3|$5]]\" di [[$6]]",
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1 {{GENDER:$2|menghapus}} sebuah topik di [[$3]]",
