@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saimawnkham"
+		]
+	},
+	"apihelp-flow-example-1": "မႄးထတ်း တီႈပွင်ႇ ၶွင် \"[[Talk:Sandbox]]\"",
+	"apihelp-flow+edit-header-example-1": "မႄးထတ်း တီႈပွင်ႇ ၶွင် [[Talk:Sandbox]]",
+	"apihelp-flow+new-topic-example-1": "ၵေႃႇသၢင်ႈ ႁူဝ်ၶေႃႈမႂ်ႇ တီႈ [[Talk:Sandbox]]",
+	"apihelp-flow+view-header-example-1": "ၸၼ်ၶေႃႈမုၼ်း တီႈပွင်ႇ [[Talk:Sandbox]] ပဵၼ်ၼင်ႇ လိၵ်ႈဝီႇၶီႇ",
+	"apihelp-flow+view-topiclist-example-1": "သဵၼ်ႈမၢႆ တီႈပွင်ႇ ၵႃႈတီႈ [[Talk:Sandbox]]",
+	"apihelp-query+flowinfo-example-1": "ၸၼ်ၶေႃႈမုၼ်း လွၼ်ႉၶၢဝ်ႇ ပိူင်သၢင်ႈလွင်ႈဢုပ်ႇဢူဝ်း ၵဵဝ်ႇၵပ်း  [[Talk:Sandbox]]၊ [[Main Page]] လႄႈ [[Talk:Structured Discussions]]",
+	"apihelp-flow+undo-edit-header-example-1": "ၸၼ်ၶေႃႈမုၼ်း လွၼ်ႉၶၢဝ်ႇ ၵဵဝ်ႇၵပ်း လွင်ႈၶိုၼ်ၶိုၼ်း ၵၢၼ်မႄးထတ်း တီႈပွင်ႇ ၵႃႈတီႈ [[Talk:Sandbox]]"
+}
