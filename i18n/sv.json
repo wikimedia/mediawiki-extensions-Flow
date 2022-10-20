@@ -29,6 +29,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Du}} bevakar inte längre \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Du}} kan bevaka [$2 detta ämne] när som helst.",
 	"flow-desc": "Diskussionssystem",
+	"nstab-topic": "Ämne",
 	"flow-talk-taken-over-comment": "/* Denna sida har omvandlats till ett strukturerat diskussionsforum */",
 	"log-name-flow": "Aktivitetslogg för strukturerade diskussioner",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|raderade}} ett [$4 inlägg] i \"[[$3|$5]]\" på [[$6]]",
