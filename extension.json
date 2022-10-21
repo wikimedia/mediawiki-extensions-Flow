@@ -39,6 +39,7 @@
 		"flow-delete",
 		"flow-suppress",
 		"flow-edit-post",
+		"flow-edit-title",
 		"flow-create-board"
 	],
 	"ContentHandlers": {
@@ -60,7 +61,8 @@
 	],
 	"GroupPermissions": {
 		"*": {
-			"flow-hide": true
+			"flow-hide": true,
+			"flow-edit-title": true
 		},
 		"user": {
 			"flow-lock": true
@@ -68,7 +70,8 @@
 		"sysop": {
 			"flow-lock": true,
 			"flow-delete": true,
-			"flow-edit-post": true
+			"flow-edit-post": true,
+			"flow-edit-title": true
 		},
 		"suppress": {
 			"flow-suppress": true
@@ -80,7 +83,8 @@
 	"GrantPermissions": {
 		"editpage": {
 			"flow-hide": true,
-			"flow-edit-post": true
+			"flow-edit-post": true,
+			"flow-edit-title": true
 		},
 		"editprotected": {
 			"flow-create-board": true
