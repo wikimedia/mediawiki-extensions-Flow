@@ -67,7 +67,7 @@
 	"flow-suppress-usertext": "<em>Nom d'utent sopress</em>",
 	"flow-post-actions": "Azzion",
 	"flow-topic-actions": "Azzion",
-	"flow-cancel": "Anula",
+	"flow-cancel": "Anulla",
 	"flow-skip-summary": "Salta",
 	"flow-edit-summary-placeholder": "Descriv a la bonascia l'esit de quella discussion chì",
 	"flow-summary-authored": "Riassont {{GENDER:$1|del $1|de la $1|de $1}}",
