@@ -37,7 +37,7 @@ class UserTuple {
 	 */
 	public function __construct( $wiki, $id, $ip ) {
 		if ( !is_int( $id ) ) {
-			if ( ctype_digit( $id ) ) {
+			if ( ctype_digit( (string)$id ) ) {
 				$id = (int)$id;
 			} else {
 				throw new InvalidDataException( 'User id must be an integer' );
@@ -49,10 +49,10 @@ class UserTuple {
 		if ( !$wiki ) {
 			throw new InvalidDataException( 'No wiki provided' );
 		}
-		if ( $id === 0 && strlen( $ip ) === 0 ) {
+		if ( $id === 0 && ( $ip === null || strlen( $ip ) === 0 ) ) {
 			throw new InvalidDataException( 'User has no id and no ip' );
 		}
-		if ( $id !== 0 && strlen( $ip ) !== 0 ) {
+		if ( $id !== 0 && $ip && strlen( $ip ) !== 0 ) {
 			throw new InvalidDataException( 'User has both id and ip' );
 		}
 		// @todo assert ip is ipv4 or ipv6, but do we really want
