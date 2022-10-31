@@ -2,10 +2,10 @@
 
 namespace Flow\SpamFilter;
 
-use BaseBlacklist;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use IContextSource;
+use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
 use ParserOptions;
 use Status;

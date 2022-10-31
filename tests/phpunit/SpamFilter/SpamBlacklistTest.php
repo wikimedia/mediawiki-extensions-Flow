@@ -2,10 +2,10 @@
 
 namespace Flow\Tests\SpamFilter;
 
-use BaseBlacklist;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
+use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
 use Title;
 
