@@ -233,7 +233,7 @@
 	"flow-rev-message-deleted-topic": "$1 je {{GENDER:$2|izbrisal|izbrisala}} [$4 temo] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 je {{GENDER:$2|ukinil|ukinila}} [$4 temo] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 je {{GENDER:$2|označil|označila}} [$4 temo] \"$6\" kot zaključeno (<em>$5</em>)",
-	"flow-rev-message-lock-topic-reason": "označeno kot zaključeno",
+	"flow-rev-message-lock-topic-reason": "označeno kot končano",
 	"flow-rev-message-restore-topic-reason": "ponovno odprto",
 	"flow-rev-message-restored-topic": "$1 je {{GENDER:$2|obnovil|obnovila}} [$4 temo] \"$6\" (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 na $2",
