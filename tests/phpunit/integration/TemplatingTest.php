@@ -23,9 +23,6 @@ class TemplatingTest extends MediaWikiIntegrationTestCase {
 		$urlGenerator = $this->getMockBuilder( \Flow\UrlGenerator::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$output = $this->getMockBuilder( \OutputPage::class )
-			->disableOriginalConstructor()
-			->getMock();
 		$fixer = $this->getMockBuilder( \Flow\Parsoid\ContentFixer::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -33,7 +30,7 @@ class TemplatingTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		return new Templating( $usernames, $urlGenerator, $output, $fixer, $permissions );
+		return new Templating( $usernames, $urlGenerator, $fixer, $permissions );
 	}
 
 	/**

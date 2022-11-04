@@ -10,7 +10,6 @@ use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
 use Flow\Repository\UserNameBatch;
 use Linker;
-use OutputPage;
 use WikiMap;
 
 /**
@@ -30,11 +29,6 @@ class Templating {
 	public $urlGenerator;
 
 	/**
-	 * @var OutputPage
-	 */
-	protected $output;
-
-	/**
 	 * @var RevisionActionPermissions
 	 */
 	protected $permissions;
@@ -47,29 +41,19 @@ class Templating {
 	/**
 	 * @param UserNameBatch $usernames
 	 * @param UrlGenerator $urlGenerator
-	 * @param OutputPage $output
 	 * @param ContentFixer $contentFixer
 	 * @param RevisionActionPermissions $permissions
 	 */
 	public function __construct(
 		UserNameBatch $usernames,
 		UrlGenerator $urlGenerator,
-		OutputPage $output,
 		ContentFixer $contentFixer,
 		RevisionActionPermissions $permissions
 	) {
 		$this->usernames = $usernames;
 		$this->urlGenerator = $urlGenerator;
-		$this->output = $output;
 		$this->contentFixer = $contentFixer;
 		$this->permissions = $permissions;
-	}
-
-	/**
-	 * @return OutputPage
-	 */
-	public function getOutput() {
-		return $this->output;
 	}
 
 	public function getUrlGenerator() {

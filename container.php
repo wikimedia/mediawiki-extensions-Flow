@@ -75,7 +75,7 @@ $c['lightncandy'] = static function ( $c ) {
 };
 
 $c['templating'] = static function ( $c ) {
-	global $wgOut, $wgArticlePath;
+	global $wgArticlePath;
 
 	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
 	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
@@ -93,7 +93,6 @@ $c['templating'] = static function ( $c ) {
 	return new Flow\Templating(
 		$c['repository.username'],
 		$c['url_generator'],
-		$wgOut,
 		$contextFixer,
 		$c['permissions']
 	);
