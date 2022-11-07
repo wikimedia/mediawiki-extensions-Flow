@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Mock;
 
+use Flow\Import\IImportPost;
 use Flow\Import\IImportSummary;
 use Flow\Import\IImportTopic;
 use Flow\Import\IObjectRevision;
@@ -33,7 +34,7 @@ class MockImportTopic extends MockImportPost implements IImportTopic {
 	 * @inheritDoc
 	 */
 	public function getLogType() {
-		"mock-flow-topic-import";
+		return __CLASS__;
 	}
 
 	/**

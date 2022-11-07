@@ -3,8 +3,6 @@
 namespace Flow\Notifications;
 
 use EchoEvent;
-use EchoEventMapper;
-use EchoModerationController;
 use ExtensionRegistry;
 use Flow\Container;
 use Flow\Conversion\Utils;
@@ -17,6 +15,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
+use MediaWiki\Extension\Notifications\Controller\ModerationController;
+use MediaWiki\Extension\Notifications\Mapper\EventMapper;
 use MediaWiki\MediaWikiServices;
 use ParserOptions;
 use Title;
@@ -884,10 +884,10 @@ class Controller {
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
 		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $moderated ) {
-			$eventMapper = new EchoEventMapper();
+			$eventMapper = new EventMapper();
 			$eventIds = $eventMapper->fetchIdsByPage( $pageId );
 
-			EchoModerationController::moderate( $eventIds, $moderated );
+			ModerationController::moderate( $eventIds, $moderated );
 		} );
 	}
 
@@ -908,7 +908,7 @@ class Controller {
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
 		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $postId, $moderated ) {
-			$eventMapper = new \EchoEventMapper();
+			$eventMapper = new EventMapper();
 			$moderatedPostIdAlpha = $postId->getAlphadecimal();
 			$eventIds = [];
 
@@ -923,7 +923,7 @@ class Controller {
 				}
 			}
 
-			EchoModerationController::moderate( $eventIds, $moderated );
+			ModerationController::moderate( $eventIds, $moderated );
 		} );
 	}
 }
