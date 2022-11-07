@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Leli Forte",
-			"ToniSant"
+			"ToniSant",
+			"Chrisportelli"
 		]
 	},
 	"flow-newtopic-content-placeholder": "Ikteb messaġġ ġdid fuq \"$1\"",
 	"flow-reply-topic-title-placeholder": "Wieġeb lil \"$1\"",
 	"flow-reply-link": "{{GENDER:$1|Wieġeb}}",
 	"flow-notification-newtopic": "<span class=\"mw-echo-title-heading plainlinks\">[$5 $4]</span><br />$1 {{GENDER:$1|ħalaq|ħalqet}}  suġġett ġdid fuq '''$3'''.",
+	"flow-anon-warning": "<strong>Bħalissa m'intix fil-kont tiegħek.</strong> Sabiex tirċievi l-attribuzzjoni b'ismek minflok l-indirizz IP tiegħek, tista' [$1 tidħol] jew [$2 toħloq kont].",
 	"flow-ve-mention-tool-title": "Semmi utent"
 }
