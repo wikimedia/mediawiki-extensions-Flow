@@ -107,5 +107,10 @@
 	"flow-error-not-allowed-delete-extract": "Ovaj kurs je obrisan. Zapisnik brisanja je prikazan ispod.",
 	"flow-error-not-allowed-reply-to-delete-topic-extract": "Ne možete odgovoriti zato jer je tema obrisana. Zapisnik brisanja je prikazan ispod.",
 	"flow-error-not-allowed-suppress-extract": "Ovaj kurs je obrisan. Zapisnik brisanja je prikazan ispod.",
-	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Ne možete odgovoriti na ovu temu jer je potisnuta. Ispod je prikazan zapisnik potiskanja."
+	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Ne možete odgovoriti na ovu temu jer je potisnuta. Ispod je prikazan zapisnik potiskanja.",
+	"notification-header-flow-enabled-on-talkpage": "Uključen je novi sistem za razgovor na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>.",
+	"notification-header-flow-description-edited": "Promijenjen je opis stranice <strong>$1</strong>.",
+	"notification-header-flow-description-edited-user-talk": "Promijenjen je opis na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>.",
+	"notification-bundle-header-flow-description-edited": "Opis stranice <strong>$1</strong> promijenjen je nekoliko puta.",
+	"notification-bundle-header-flow-description-edited-user-talk": "Opis stranice promijenjen je nekoliko puta na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>."
 }
