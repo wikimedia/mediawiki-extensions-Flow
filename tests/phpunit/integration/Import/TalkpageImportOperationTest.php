@@ -3,6 +3,7 @@
 namespace Flow\Tests\Import;
 
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Hooks;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
@@ -60,18 +61,16 @@ class TalkpageImportOperationTest extends \MediaWikiIntegrationTestCase {
 			'discussion',
 			Title::newFromText( 'TalkpageImportOperationTest' )
 		);
-		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$storage = $this->createMock( ManagerGroup::class );
 		$stored = [];
 		$storage->method( 'put' )
-			->will( $this->returnCallback( static function ( $obj ) use( &$stored ) {
+			->willReturnCallback( static function ( $obj ) use( &$stored ) {
 				$stored[] = $obj;
-			} ) );
+			} );
 		$storage->method( 'multiPut' )
-			->will( $this->returnCallback( static function ( $objs ) use( &$stored ) {
+			->willReturnCallback( static function ( $objs ) use( &$stored ) {
 				$stored = array_merge( $stored, $objs );
-			} ) );
+			} );
 
 		$now = time();
 		$source = new MockImportSource(

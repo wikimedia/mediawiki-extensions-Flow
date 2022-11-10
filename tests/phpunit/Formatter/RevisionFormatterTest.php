@@ -5,9 +5,13 @@ namespace Flow\Tests\Formatter;
 use Flow\FlowActions;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Repository\UserNameBatch;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
 use Flow\Tests\PostRevisionTestCase;
 use RequestContext;
 use Title;
@@ -37,7 +41,13 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider decideContentFormatProvider
 	 */
-	public function testDecideContentFormat( $expectedFormat, $setContentRequestedFormat, $setContentRevisionId, $revision ) {
+	public function testDecideContentFormat(
+		string $expectedFormat,
+		string $setContentRequestedFormat,
+		?UUID $setContentRevisionId,
+		AbstractRevision $revision
+	) {
+		/** @var RevisionFormatter $formatter */
 		list( $formatter ) = $this->makeFormatter();
 		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
 
@@ -156,6 +166,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	 * @dataProvider decideContentInvalidFormatProvider
 	 */
 	public function testDecideContentInvalidFormat( $setContentRequestedFormat, $setContentRevisionId, $revision ) {
+		/** @var RevisionFormatter $formatter */
 		list( $formatter ) = $this->makeFormatter();
 		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
 		$this->expectException( \Flow\Exception\FlowException::class );
@@ -200,6 +211,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	 * @dataProvider setContentFormatInvalidProvider
 	 */
 	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId ) {
+		/** @var RevisionFormatter $formatter */
 		list( $formatter ) = $this->makeFormatter();
 		$this->expectException( \Flow\Exception\FlowException::class );
 		$formatter->setContentFormat( $requestedFormat, $revisionId );
@@ -221,6 +233,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	public function testMockFormatterBasicallyWorks() {
+		/** @var RevisionFormatter $formatter */
 		list( $formatter, $ctx ) = $this->makeFormatter();
 		$result = $formatter->formatApi( $this->generateFormatterRow( 'my new topic' ), $ctx );
 		$this->assertEquals( 'new-post', $result['changeType'] );
@@ -228,6 +241,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	}
 
 	public function testFormattingEditedTitle() {
+		/** @var RevisionFormatter $formatter */
 		list( $formatter, $ctx ) = $this->makeFormatter();
 		$row = $this->generateFormatterRow();
 		$row->previousRevision = $row->revision;
@@ -247,6 +261,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$content = 'something something';
 		$nextContent = 'ברוכים הבאים לוויקיפדיה!';
 
+		/** @var RevisionFormatter $formatter */
 		list( $formatter, $ctx ) = $this->makeFormatter();
 
 		$row = $this->generateFormatterRow( $content );
@@ -297,16 +312,11 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		return $row;
 	}
 
-	protected function mockActions() {
-		return $this->getMockBuilder( FlowActions::class )
-			->disableOriginalConstructor()
-			->getMock();
-	}
-
-	protected function mockPermissions( FlowActions $actions ) {
-		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockPermissions( FlowActions $actions ): RevisionActionPermissions {
+		$permissions = $this->createMock( RevisionActionPermissions::class );
+		// formatting only proceedes when this is true
+		$permissions->method( 'isAllowed' )
+			->willReturn( true );
 		// bit of a code smell, should pass actions directly in constructor?
 		$permissions->method( 'getActions' )
 			->willReturn( $actions );
@@ -318,8 +328,8 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		return $permissions;
 	}
 
-	protected function mockPostRevision() {
-		$postRevision = $this->getMockBuilder( PostRevision::class )->getMock();
+	private function mockPostRevision(): PostRevision {
+		$postRevision = $this->createMock( PostRevision::class );
 		$postRevision->method( 'isTopicTitle' )
 			->willReturn( false );
 		$postRevision->method( 'getRevisionId' )
@@ -327,22 +337,20 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		return $postRevision;
 	}
 
-	protected function mockTemplating() {
-		$templating = $this->getMockBuilder( \Flow\Templating::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockTemplating(): Templating {
+		$templating = $this->createMock( Templating::class );
 		$templating->method( 'getModeratedRevision' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 		$templating->method( 'getContent' )
-			->will( $this->returnCallback( static function ( $revision, $contentFormat ) {
+			->willReturnCallback( static function ( $revision, $contentFormat ) {
 				return $revision->getContent( $contentFormat );
-			} ) );
+			} );
 
 		return $templating;
 	}
 
-	protected function mockTopicTitleRevision() {
-		$topicTitleRevision = $this->getMockBuilder( PostRevision::class )->getMock();
+	private function mockTopicTitleRevision(): PostRevision {
+		$topicTitleRevision = $this->createMock( PostRevision::class );
 		$topicTitleRevision->method( 'isTopicTitle' )
 			->willReturn( true );
 		$topicTitleRevision->method( 'getRevisionId' )
@@ -350,21 +358,13 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		return $topicTitleRevision;
 	}
 
-	protected function mockUserNameBatch() {
-		return $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
-			->disableOriginalConstructor()
-			->getMock();
-	}
-
-	public function makeFormatter() {
-		$actions = $this->mockActions();
-		$permissions = $this->mockPermissions( $actions );
-		// formatting only proceedes when this is true
-		$permissions->method( 'isAllowed' )
-			->willReturn( true );
-		$templating = $this->mockTemplating();
-		$usernames = $this->mockUserNameBatch();
-		$formatter = new RevisionFormatter( $permissions, $templating, $usernames, 3 );
+	public function makeFormatter(): array {
+		$formatter = new RevisionFormatter(
+			$this->mockPermissions( $this->createMock( FlowActions::class ) ),
+			$this->mockTemplating(),
+			$this->createMock( UserNameBatch::class ),
+			3
+		);
 
 		$ctx = RequestContext::getMain();
 		$ctx->setUser( $this->user );

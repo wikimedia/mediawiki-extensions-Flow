@@ -4,8 +4,11 @@ namespace Flow\Tests\Data\Listener;
 
 use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Data\Utils\RecentChangeFactory;
+use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
+use Flow\Repository\UserNameBatch;
 use Title;
 use User;
 
@@ -34,29 +37,23 @@ class RecentChangesListenerTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider somethingProvider
 	 */
 	public function testSomething( $message, $expect, $init ) {
-		$actions = Container::get( 'flow_actions' );
-		$usernames = $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$rcFactory = $this->getMockBuilder( \Flow\Data\Utils\RecentChangeFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$ircFormatter = $this->getMockBuilder( \Flow\Formatter\IRCLineUrlFormatter::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$rc = new RecentChangesListener( $actions, $usernames, $rcFactory, $ircFormatter );
-		$change = $this->createMock( \RecentChange::class );
+		$rcFactory = $this->createMock( RecentChangeFactory::class );
 		$rcFactory->expects( $this->once() )
 			->method( 'newFromRow' )
-			->will( $this->returnCallback( static function ( $obj ) use ( &$ref, $change ) {
+			->willReturnCallback( function ( $obj ) use ( &$ref ) {
 				$ref = $obj;
-				return $change;
-			} ) );
+				return $this->createMock( \RecentChange::class );
+			} );
 
-		$title = Title::newMainPage();
+		$rc = new RecentChangesListener(
+			Container::get( 'flow_actions' ),
+			$this->createMock( UserNameBatch::class ),
+			$rcFactory,
+			$this->createMock( IRCLineUrlFormatter::class )
+		);
+
 		$user = User::newFromName( '127.0.0.1', false );
-		$workflow = Workflow::create( 'topic', $title );
+		$workflow = Workflow::create( 'topic', Title::newMainPage() );
 
 		$revision = $init( $workflow, $user );
 

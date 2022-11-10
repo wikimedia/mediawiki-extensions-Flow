@@ -5,6 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
+use IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
 use Title;
@@ -64,9 +65,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	public function testSpam( $newRevisionRow, ?PostRevision $oldRevision, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::newFromText( 'UTPage' );
-		$ctx = $this->getMockBuilder( \ContextSource::class )
-			->onlyMethods( [ 'getUser' ] )
-			->getMock();
+		$ctx = $this->createMock( IContextSource::class );
 		$ctx->method( 'getUser' )->willReturn( $this->createMock( \User::class ) );
 
 		$status = $this->spamFilter->validate( $ctx, $newRevision, $oldRevision, $title, $title );

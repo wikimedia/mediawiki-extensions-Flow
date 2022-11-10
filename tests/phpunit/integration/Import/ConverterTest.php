@@ -32,9 +32,7 @@ class ConverterTest extends \MediaWikiIntegrationTestCase {
 	) {
 		return new Converter(
 			$dbw ?: wfGetDB( DB_PRIMARY ),
-			$importer ?: $this->getMockBuilder( Importer::class )
-				->disableOriginalConstructor()
-				->getMock(),
+			$importer ?: $this->createMock( Importer::class ),
 			$logger ?: new NullLogger,
 			$user ?: User::newFromId( 1 ),
 			$strategy ?: $this->createMock( IConversionStrategy::class )

@@ -4,9 +4,13 @@ namespace Flow\Tests\Formatter;
 
 use ExtensionRegistry;
 use Flow\Container;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\UUID;
+use Flow\Repository\UserNameBatch;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
 use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
 use Title;
@@ -68,7 +72,7 @@ class FormatterTest extends FlowTestCase {
 		$ctx->method( 'getLanguage' )
 			->willReturn( $wgLang );
 		$ctx->method( 'msg' )
-			->will( $this->returnCallback( 'wfMessage' ) );
+			->willReturnCallback( 'wfMessage' );
 
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
@@ -78,7 +82,7 @@ class FormatterTest extends FlowTestCase {
 		$test( $this, $message, $links );
 	}
 
-	protected function mockWorkflow( UUID $workflowId, Title $title ) {
+	private function mockWorkflow( UUID $workflowId, Title $title ) {
 		$workflow = $this->createMock( \Flow\Model\Workflow::class );
 		$workflow->method( 'getId' )
 			->willReturn( $workflowId );
@@ -87,12 +91,8 @@ class FormatterTest extends FlowTestCase {
 		return $workflow;
 	}
 
-	protected function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
-		if ( $postId ) {
-			$revision = $this->createMock( \Flow\Model\PostRevision::class );
-		} else {
-			$revision = $this->createMock( \Flow\Model\Header::class );
-		}
+	private function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
+		$revision = $this->createMock( $postId ? \Flow\Model\PostRevision::class : \Flow\Model\Header::class );
 		$revision->method( 'getChangeType' )
 			->willReturn( $changeType );
 		$revision->method( 'getRevisionId' )
@@ -104,31 +104,25 @@ class FormatterTest extends FlowTestCase {
 		return $revision;
 	}
 
-	protected function createFormatter( $class ) {
-		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function createFormatter( $class ) {
+		$permissions = $this->createMock( RevisionActionPermissions::class );
 		$permissions->method( 'isAllowed' )
 			->willReturn( true );
 		$permissions->method( 'getActions' )
 			->willReturn( Container::get( 'flow_actions' ) );
 
-		$templating = $this->getMockBuilder( \Flow\Templating::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$workflowMapper = $this->getMockBuilder( \Flow\Data\Mapper\CachingObjectMapper::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$urlGenerator = new UrlGenerator( $workflowMapper );
+		$urlGenerator = new UrlGenerator( $this->createMock( CachingObjectMapper::class ) );
+		$templating = $this->createMock( Templating::class );
 		$templating->method( 'getUrlGenerator' )
 			->willReturn( $urlGenerator );
 
-		$usernames = $this->getMockBuilder( \Flow\Repository\UserNameBatch::class )
-			->disableOriginalConstructor()
-			->getMock();
-
 		global $wgFlowMaxThreadingDepth;
-		$serializer = new RevisionFormatter( $permissions, $templating, $usernames, $wgFlowMaxThreadingDepth );
+		$serializer = new RevisionFormatter(
+			$permissions,
+			$templating,
+			$this->createMock( UserNameBatch::class ),
+			$wgFlowMaxThreadingDepth
+		);
 
 		return new $class( $permissions, $serializer );
 	}

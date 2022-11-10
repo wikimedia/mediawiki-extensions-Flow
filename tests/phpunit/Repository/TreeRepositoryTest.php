@@ -2,6 +2,7 @@
 
 namespace Flow\Tests\Repository;
 
+use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
@@ -21,8 +22,8 @@ class TreeRepositoryTest extends FlowTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->ancestor = UUID::create( false );
-		$this->descendant = UUID::create( false );
+		$this->ancestor = UUID::create();
+		$this->descendant = UUID::create();
 	}
 
 	public function testSuccessfulInsert() {
@@ -31,16 +32,14 @@ class TreeRepositoryTest extends FlowTestCase {
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 	}
 
-	protected function mockDbFactory( $dbResult ) {
-		$dbFactory = $this->getMockBuilder( \Flow\DbFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockDbFactory( $dbResult ) {
+		$dbFactory = $this->createMock( DbFactory::class );
 		$dbFactory->method( 'getDB' )
 			->willReturn( $this->mockDb( $dbResult ) );
 		return $dbFactory;
 	}
 
-	protected function mockDb( $dbResult ) {
+	private function mockDb( $dbResult ) {
 		$db = $this->createMock( IDatabase::class );
 		$db->method( $this->logicalOr( 'insert', 'insertSelect' ) )
 			->willReturn( $dbResult );

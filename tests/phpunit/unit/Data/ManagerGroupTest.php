@@ -4,6 +4,7 @@ namespace Flow\Tests\Data;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\Data\ObjectManager;
 
 /**
  * @covers \Flow\Data\ManagerGroup
@@ -11,12 +12,10 @@ use Flow\Data\ManagerGroup;
  * @group Flow
  */
 class ManagerGroupTest extends \MediaWikiUnitTestCase {
-	protected function mockStorage() {
+	private function mockStorage() {
 		$container = new Container;
 		foreach ( range( 'A', 'D' ) as $letter ) {
-			$container[$letter] = $this->getMockBuilder( \Flow\Data\ObjectManager::class )
-				->disableOriginalConstructor()
-				->getMock();
+			$container[$letter] = $this->createMock( ObjectManager::class );
 		}
 
 		$storage = new ManagerGroup( $container, [

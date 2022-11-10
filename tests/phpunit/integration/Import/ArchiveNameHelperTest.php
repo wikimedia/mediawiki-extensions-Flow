@@ -61,9 +61,9 @@ class ArchiveNameHelperTest extends \MediaWikiIntegrationTestCase {
 
 		$titleRepo = $this->createMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->method( 'exists' )
-			->will( $this->returnCallback( static function ( Title $title ) use ( $existsByKey ) {
+			->willReturnCallback( static function ( Title $title ) use ( $existsByKey ) {
 				return isset( $existsByKey[$title->getPrefixedText()] );
-			} ) );
+			} );
 
 		$archiveNameHelper = new ArchiveNameHelper();
 		$result = $archiveNameHelper->decideArchiveTitle( $source, $formats, $titleRepo );
@@ -108,9 +108,9 @@ class ArchiveNameHelperTest extends \MediaWikiIntegrationTestCase {
 
 		$titleRepo = $this->createMock( \Flow\Repository\TitleRepository::class );
 		$titleRepo->method( 'exists' )
-			->will( $this->returnCallback( static function ( Title $title ) use ( $existsByKey ) {
+			->willReturnCallback( static function ( Title $title ) use ( $existsByKey ) {
 				return isset( $existsByKey[$title->getPrefixedText()] );
-			} ) );
+			} );
 
 		$archiveNameHelper = new ArchiveNameHelper();
 		$result = $archiveNameHelper->findLatestArchiveTitle( $source, $formats, $titleRepo );

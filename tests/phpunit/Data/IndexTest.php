@@ -5,6 +5,7 @@ namespace Flow\Tests\Data;
 use Flow\Data\Index\FeatureIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\UniqueFeatureIndex;
+use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Tests\FlowTestCase;
 
 /**
@@ -21,11 +22,9 @@ class IndexTest extends FlowTestCase {
 		$cache = $this->getCache();
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
-		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mapper = $this->createMock( BasicObjectMapper::class );
 		$mapper->method( 'normalizeRow' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 
 		// As we are only testing the cached result, storage should never be called
 		// not sure how to test that
@@ -72,11 +71,9 @@ class IndexTest extends FlowTestCase {
 		$storage = $this->createMock( \Flow\Data\ObjectStorage::class );
 
 		// fake ObjectMapper that doesn't roundtrip to- & fromStorageRow
-		$mapper = $this->getMockBuilder( \Flow\Data\Mapper\BasicObjectMapper::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mapper = $this->createMock( BasicObjectMapper::class );
 		$mapper->method( 'normalizeRow' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 
 		$unique = new UniqueFeatureIndex(
 			$cache, $storage, $mapper, 'unique',

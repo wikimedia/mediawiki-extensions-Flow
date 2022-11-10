@@ -4,8 +4,12 @@ namespace Flow\Tests;
 
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
+use Flow\Parsoid\ContentFixer;
+use Flow\Repository\UserName\UserNameQuery;
 use Flow\Repository\UserNameBatch;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
+use Flow\UrlGenerator;
 use MediaWikiIntegrationTestCase;
 use Title;
 use User;
@@ -17,20 +21,13 @@ use User;
  */
 class TemplatingTest extends MediaWikiIntegrationTestCase {
 
-	protected function mockTemplating() {
-		$query = $this->createMock( \Flow\Repository\UserName\UserNameQuery::class );
-		$usernames = new UserNameBatch( $query );
-		$urlGenerator = $this->getMockBuilder( \Flow\UrlGenerator::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$fixer = $this->getMockBuilder( \Flow\Parsoid\ContentFixer::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$permissions = $this->getMockBuilder( \Flow\RevisionActionPermissions::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		return new Templating( $usernames, $urlGenerator, $fixer, $permissions );
+	private function mockTemplating(): Templating {
+		return new Templating(
+			new UserNameBatch( $this->createMock( UserNameQuery::class ) ),
+			$this->createMock( UrlGenerator::class ),
+			$this->createMock( ContentFixer::class ),
+			$this->createMock( RevisionActionPermissions::class )
+		);
 	}
 
 	/**

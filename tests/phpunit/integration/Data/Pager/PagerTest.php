@@ -374,19 +374,17 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 	 *
 	 * @return ObjectManager
 	 */
-	protected function mockObjectManager( array $found = [] ) {
+	private function mockObjectManager( array $found = [] ) {
 		$index = $this->createMock( Index::class );
 		$index->method( 'getSort' )
 			->willReturn( [ 'something' ] );
-		$om = $this->getMockBuilder( ObjectManager::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$om = $this->createMock( ObjectManager::class );
 		$om->method( 'getIndexFor' )
 			->willReturn( $index );
 		$om->method( 'serializeOffset' )
-			->will( $this->returnCallback( static function ( $obj, $sort ) {
+			->willReturnCallback( static function ( $obj, $sort ) {
 				return 'serialized-' . $obj->foo;
-			} ) );
+			} );
 
 		if ( $found ) {
 			$om->method( 'find' )
@@ -403,9 +401,9 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 			[
 				$this->mockStorage(
 					[
-						$this->mockTopicListEntry(),
-						$this->mockTopicListEntry(),
-						$this->mockTopicListEntry()
+						$this->createMock( TopicListEntry::class ),
+						$this->createMock( TopicListEntry::class ),
+						$this->createMock( TopicListEntry::class )
 					],
 					UUID::create(),
 					[ 'topic_id' ]
@@ -417,8 +415,8 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 			[
 				$this->mockStorage(
 					[
-						$this->mockTopicListEntry(),
-						$this->mockTopicListEntry()
+						$this->createMock( TopicListEntry::class ),
+						$this->createMock( TopicListEntry::class )
 					],
 					UUID::create(),
 					[ 'workflow_last_update_timestamp' ]
@@ -453,10 +451,8 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param string[] $sort
 	 * @return ObjectManager
 	 */
-	protected function mockStorage( $return, $offset, $sort ) {
-		$storage = $this->getMockBuilder( ObjectManager::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockStorage( $return, $offset, $sort ) {
+		$storage = $this->createMock( ObjectManager::class );
 		$storage->method( 'find' )
 			->willReturn( $return );
 		$storage->method( 'serializeOffset' )
@@ -467,23 +463,11 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return TopicListEntry
-	 */
-	protected function mockTopicListEntry() {
-		$entry = $this->getMockBuilder( TopicListEntry::class )
-			->disableOriginalConstructor()
-			->getMock();
-		return $entry;
-	}
-
-	/**
 	 * @param string[] $sort
 	 * @return TopKIndex
 	 */
-	protected function mockIndex( $sort ) {
-		$index = $this->getMockBuilder( TopKIndex::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockIndex( $sort ) {
+		$index = $this->createMock( TopKIndex::class );
 		$index->method( 'getSort' )
 			->willReturn( $sort );
 		return $index;

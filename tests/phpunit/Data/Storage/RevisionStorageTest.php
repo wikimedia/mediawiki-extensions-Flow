@@ -5,7 +5,9 @@ namespace Flow\Tests\Data\Storage;
 use Flow\Container;
 use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionStorage;
+use Flow\DbFactory;
 use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -158,11 +160,9 @@ class RevisionStorageTest extends FlowTestCase {
 	 * @param array $expectedUpdateValues
 	 * @param bool $isContentUpdatingAllowed
 	 */
-	protected function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
+	private function helperToTestUpdating( $old, $new, $expectedUpdateValues, $isContentUpdatingAllowed ) {
 		$dbw = $this->createMock( IDatabase::class );
-		$factory = $this->getMockBuilder( \Flow\DbFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$factory = $this->createMock( DbFactory::class );
 		$factory->method( 'getDB' )
 			->willReturn( $dbw );
 		$id = UUID::create();
@@ -219,7 +219,7 @@ class RevisionStorageTest extends FlowTestCase {
 	 *
 	 * @return HeaderRevisionStorage
 	 */
-	protected function getRevisionStorageWithMockExternalStore( $allowContentUpdates ) {
+	private function getRevisionStorageWithMockExternalStore( $allowContentUpdates ): HeaderRevisionStorage {
 		$revisionStorage = new HeaderRevisionStorage(
 			Container::get( 'db.factory' ),
 			self::MOCK_EXTERNAL_STORE_CONFIG
@@ -229,7 +229,7 @@ class RevisionStorageTest extends FlowTestCase {
 		return $revisionStorage;
 	}
 
-	protected function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates ) {
+	private function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates ) {
 		$klass = new \ReflectionClass( HeaderRevisionStorage::class );
 		$allowedUpdateColumnsProp = $klass->getProperty( 'allowedUpdateColumns' );
 		$allowedUpdateColumnsProp->setAccessible( true );
@@ -338,24 +338,22 @@ class RevisionStorageTest extends FlowTestCase {
 			$result[] = (object)( $query + [ 'rev_id' => 42, 'tree_rev_id' => 42, 'rev_flags' => '' ] );
 		}
 
-		$treeRepo = $this->getMockBuilder( \Flow\Repository\TreeRepository::class )
-			->disableOriginalConstructor()
-			->getMock();
 		$factory = $this->mockDbFactory();
 		// this expect is the assertion for the test
 		$factory->getDB( null )->expects( $this->exactly( $count ) )
 			->method( 'select' )
 			->willReturn( $result );
 
-		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
+		$storage = new PostRevisionStorage(
+			$factory,
+			false,
+			$this->createMock( TreeRepository::class )
+		);
 
 		$storage->findMulti( $queries, $options );
 	}
 
 	public function testPartialResult() {
-		$treeRepo = $this->getMockBuilder( \Flow\Repository\TreeRepository::class )
-			->disableOriginalConstructor()
-			->getMock();
 		$factory = $this->mockDbFactory();
 		$factory->getDB( null )->expects( $this->once() )
 			->method( 'select' )
@@ -363,7 +361,11 @@ class RevisionStorageTest extends FlowTestCase {
 				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]
 			] );
 
-		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
+		$storage = new PostRevisionStorage(
+			$factory,
+			false,
+			$this->createMock( TreeRepository::class )
+		);
 
 		$res = $storage->findMulti(
 			[
@@ -385,10 +387,10 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 	}
 
-	protected function mockDbFactory() {
+	private function mockDbFactory(): DbFactory {
 		$dbw = $this->createMock( IDatabase::class );
 
-		$factory = $this->createMock( \Flow\DbFactory::class );
+		$factory = $this->createMock( DbFactory::class );
 		$factory->method( 'getDB' )
 			->willReturn( $dbw );
 

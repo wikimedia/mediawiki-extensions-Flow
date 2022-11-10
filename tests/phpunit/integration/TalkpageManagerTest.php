@@ -22,7 +22,7 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $talkpageManager;
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->talkpageManager = Container::get( 'occupation_controller' );
 

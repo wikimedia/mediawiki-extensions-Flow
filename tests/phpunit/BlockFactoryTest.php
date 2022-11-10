@@ -3,6 +3,9 @@
 namespace Flow\Tests;
 
 use Flow\BlockFactory;
+use Flow\Data\ManagerGroup;
+use Flow\Model\Workflow;
+use Flow\Repository\RootPostLoader;
 
 /**
  * @covers \Flow\BlockFactory
@@ -61,22 +64,15 @@ class BlockFactoryTest extends FlowTestCase {
 		$factory->createBlocks( $workflow );
 	}
 
-	protected function createBlockFactory() {
-		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$rootPostLoader = $this->getMockBuilder( \Flow\Repository\RootPostLoader::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		return new BlockFactory( $storage, $rootPostLoader );
+	private function createBlockFactory(): BlockFactory {
+		return new BlockFactory(
+			$this->createMock( ManagerGroup::class ),
+			$this->createMock( RootPostLoader::class )
+		);
 	}
 
-	protected function mockWorkflow( $type ) {
-		$workflow = $this->getMockBuilder( \Flow\Model\Workflow::class )
-			->disableOriginalConstructor()
-			->getMock();
+	private function mockWorkflow( $type ): Workflow {
+		$workflow = $this->createMock( Workflow::class );
 		$workflow->method( 'getType' )
 			->willReturn( $type );
 

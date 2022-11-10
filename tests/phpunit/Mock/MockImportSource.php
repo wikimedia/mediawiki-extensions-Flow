@@ -5,6 +5,7 @@ namespace Flow\Tests\Mock;
 use ArrayIterator;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportSource;
+use Flow\Import\IImportTopic;
 
 class MockImportSource implements IImportSource {
 	/**

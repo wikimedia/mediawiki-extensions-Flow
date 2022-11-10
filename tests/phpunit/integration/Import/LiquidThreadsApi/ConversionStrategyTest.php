@@ -11,7 +11,10 @@ use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
+use Flow\Notifications\Controller;
+use Flow\UrlGenerator;
 use Title;
+use User;
 use Wikimedia\Rdbms\IDatabase;
 use WikitextContent;
 
@@ -163,18 +166,10 @@ EOD
 		return new ConversionStrategy(
 			$dbr ?: wfGetDB( DB_REPLICA ),
 			$sourceStore ?: new NullImportSourceStore,
-			$api ?: $this->getMockBuilder( ApiBackend::class )
-				->disableOriginalConstructor()
-				->getMock(),
-			$this->getMockBuilder( \Flow\UrlGenerator::class )
-				->disableOriginalConstructor()
-				->getMock(),
-			$this->getMockBuilder( \User::class )
-				->disableOriginalConstructor()
-				->getMock(),
-			$this->getMockBuilder( \Flow\Notifications\Controller::class )
-				->disableOriginalConstructor()
-				->getMock()
+			$api ?: $this->createMock( ApiBackend::class ),
+			$this->createMock( UrlGenerator::class ),
+			$this->createMock( User::class ),
+			$this->createMock( Controller::class )
 		);
 	}
 }

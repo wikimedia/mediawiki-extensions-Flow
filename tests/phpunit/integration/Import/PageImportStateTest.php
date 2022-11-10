@@ -2,6 +2,8 @@
 
 namespace Flow\Tests\Import;
 
+use Flow\Data\ManagerGroup;
+use Flow\DbFactory;
 use Flow\Import\PageImportState;
 use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\SourceStore\NullImportSourceStore;
@@ -20,11 +22,7 @@ use User;
  */
 class PageImportStateTest extends \MediaWikiIntegrationTestCase {
 
-	protected function createState( $returnAll = false ) {
-		$storage = $this->getMockBuilder( \Flow\Data\ManagerGroup::class )
-			->disableOriginalConstructor()
-			->getMock();
-
+	private function createState( $returnAll = false ) {
 		$workflow = Workflow::create(
 			'discussion',
 			Title::newMainPage()
@@ -32,12 +30,10 @@ class PageImportStateTest extends \MediaWikiIntegrationTestCase {
 
 		$state = new PageImportState(
 			$workflow,
-			$storage,
+			$this->createMock( ManagerGroup::class ),
 			new NullImportSourceStore(),
 			new NullLogger(),
-			$this->getMockBuilder( \Flow\DbFactory::class )
-				->disableOriginalConstructor()
-				->getMock(),
+			$this->createMock( DbFactory::class ),
 			new ProcessorGroup,
 			new SplQueue
 		);

@@ -6,6 +6,7 @@ namespace Flow\Tests\SpamFilter;
 
 use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
+use IContextSource;
 use Title;
 use User;
 
@@ -89,9 +90,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$oldRevision = $oldRevisionRow ? $this->generateObject( $oldRevisionRow ) : null;
 
-		$context = $this->getMockBuilder( \ContextSource::class )
-				->onlyMethods( [ 'getUser' ] )
-				->getMock();
+		$context = $this->createMock( IContextSource::class );
 		$context->method( 'getUser' )
 				->willReturn( User::newFromName( 'UTSysop' ) );
 
