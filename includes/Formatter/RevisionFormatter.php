@@ -806,14 +806,14 @@ class RevisionFormatter {
 				/** @noinspection PhpMissingBreakStatementInspection */
 				// phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 				case 'diff-header':
-					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffHeaderLink' ];
+					$diffCallback ??= [ $this->urlGenerator, 'diffHeaderLink' ];
 					// don't break, diff links are rendered below
 				/** @noinspection PhpMissingBreakStatementInspection */
 				case 'diff-post':
-					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffPostLink' ];
+					$diffCallback ??= [ $this->urlGenerator, 'diffPostLink' ];
 					// don't break, diff links are rendered below
 				case 'diff-post-summary':
-					$diffCallback = $diffCallback ?? [ $this->urlGenerator, 'diffSummaryLink' ];
+					$diffCallback ??= [ $this->urlGenerator, 'diffSummaryLink' ];
 
 					/*
 					 * To diff against previous revision, we don't really need that

@@ -39,9 +39,7 @@ class LinksTableUpdater {
 	 * @param Reference[]|null $references
 	 */
 	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, array $references = null ) {
-		if ( $references === null ) {
-			$references = $this->getReferencesForTitle( $title );
-		}
+		$references ??= $this->getReferencesForTitle( $title );
 
 		$linkBatch = new LinkBatch();
 		/** @var Title[] $internalLinks */

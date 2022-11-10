@@ -58,11 +58,7 @@ class FlowAction extends Action {
 	 */
 	public function showForAction( $action, OutputPage $output = null ) {
 		$container = Container::getContainer();
-
-		if ( $output === null ) {
-			$output = $this->context->getOutput();
-		}
-
+		$output ??= $this->context->getOutput();
 		$title = $this->getTitle();
 
 		$titleContentModel = $title->getContentModel();

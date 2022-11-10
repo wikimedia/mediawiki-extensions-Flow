@@ -51,9 +51,7 @@ class ArchiveNameHelper {
 	 * @return bool|array
 	 */
 	protected function findLatestArchiveInfo( Title $source, array $formats, TitleRepository $titleRepo = null ) {
-		if ( $titleRepo === null ) {
-			$titleRepo = new TitleRepository();
-		}
+		$titleRepo ??= new TitleRepository();
 
 		$format = false;
 		$text = $source->getPrefixedText();

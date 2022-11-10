@@ -19,9 +19,7 @@ class Merger {
 	 * @return array $source array with all found foreign key values merged
 	 */
 	public static function merge( array $source, $fromKey, $callable, $name = null, $default = '' ) {
-		if ( $name === null ) {
-			$name = $fromKey;
-		}
+		$name ??= $fromKey;
 		$ids = [];
 		foreach ( $source as $row ) {
 			$id = $row[$fromKey];
@@ -58,9 +56,7 @@ class Merger {
 	 * @return array $multiSource array with all found foreign key values merged
 	 */
 	public static function mergeMulti( array $multiSource, $fromKey, $callable, $name = null, $default = '' ) {
-		if ( $name === null ) {
-			$name = $fromKey;
-		}
+		$name ??= $fromKey;
 		$ids = [];
 		foreach ( $multiSource as $source ) {
 			if ( $source === null ) {
