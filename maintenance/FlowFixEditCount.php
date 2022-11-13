@@ -98,14 +98,15 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 			return false;
 		}
 
+		$userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
 		foreach ( $rows as $row ) {
-			// User::incEditCount only allows for edit count to be increased 1
-			// at a time. It'd be better to immediately be able to increase the
-			// edit count by the exact number it should be increased with, but
+			// UserEditTracker::incrementUserEditCount only allows for edit count to be
+			// increased 1 at a time. It'd be better to immediately be able to increase
+			// the edit count by the exact number it should be increased with, but
 			// I'd rather re-use existing code, especially in a run-once script,
 			// where performance is not the most important thing ;)
 			$user = User::newFromId( $row->rev_user_id );
-			$user->incEditCount();
+			$userEditTracker->incrementUserEditCount( $user );
 
 			// save updates so we can print them when the script is done running
 			if ( !isset( $this->updates[$user->getId()] ) ) {

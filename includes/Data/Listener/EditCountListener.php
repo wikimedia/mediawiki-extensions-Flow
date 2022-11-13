@@ -5,6 +5,7 @@ namespace Flow\Data\Listener;
 use Flow\Exception\InvalidDataException;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
+use MediaWiki\MediaWikiServices;
 
 class EditCountListener extends AbstractListener {
 	/**
@@ -25,7 +26,8 @@ class EditCountListener extends AbstractListener {
 		$increase = $this->actions->getValue( $action, 'editcount' );
 
 		if ( $increase ) {
-			$revision->getUser()->incEditCount();
+			MediaWikiServices::getInstance()->getUserEditTracker()
+				->incrementUserEditCount( $revision->getUser() );
 		}
 	}
 }
