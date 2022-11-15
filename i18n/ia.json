@@ -495,7 +495,7 @@
 	"flow-mark-diff-patrolled-link-title": "Marcar como patruliate",
 	"flow-talk-page-beta-feature-message": "Discussiones Structurate sur pagina de discussion de usator",
 	"flow-talk-page-beta-feature-description": "Activa un nove systema de discussion structurate sur tu pagina de discussion de usator. Discussiones Structurate simplifica le discussiones del pagina con positiones clarmente indicate pro scriber e responder, e permitte notificationes al nivello del conversation. Iste function non es activate automaticamente; usatores debe activar lo separatemente.<br /><br />Le discussiones existente in wikitexto es transferite a un archivo. Si tu disactiva iste function, le tabuliero de Discussiones Structurate se displaciara a un subpagina e le pagina de discussion original se disarchivara. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Leger plus sur le activation]].",
-	"flow-notification-link-text-enabled-on-talkpage": "Vider le pagina de discussion del usator",
+	"flow-notification-link-text-enabled-on-talkpage": "Visitar le pagina de discussion del usator",
 	"flow-beta-feature-add-archive-template-edit-summary": "Addition del patrono de archivo",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Remotion del patrono de archivo",
 	"flow-beta-feature-add-current-template-edit-summary": "Addition del patrono de version actual",
