@@ -1879,12 +1879,7 @@ class Hooks {
 
 		// fill usernames if no $username filter was specified
 		if ( !$username ) {
-			$userIds = array_map(
-				static function ( $userInfo ) {
-					return $userInfo['userId'];
-				},
-				array_values( $limitedRevIds )
-			);
+			$userIds = array_column( array_values( $limitedRevIds ), 'userId' );
 			$userIds = array_filter( $userIds );
 
 			$userMap = [];

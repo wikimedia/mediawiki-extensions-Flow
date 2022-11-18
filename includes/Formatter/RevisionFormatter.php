@@ -187,7 +187,7 @@ class RevisionFormatter {
 	 * @throws InvalidInputException
 	 */
 	public function setContentFormat( $format, UUID $revisionId = null ) {
-		if ( array_search( $format, $this->allowedContentFormats ) === false ) {
+		if ( !in_array( $format, $this->allowedContentFormats ) ) {
 			throw new InvalidInputException( "Unknown content format: $format" );
 		}
 		if ( $revisionId === null ) {
@@ -473,7 +473,7 @@ class RevisionFormatter {
 	/**
 	 * @param AbstractRevision $revision
 	 * @param IContextSource $ctx
-	 * @return array Contains [timeAndDate, date, time]
+	 * @return string[] Contains [timeAndDate, date, time]
 	 */
 	public function getDateFormats( AbstractRevision $revision, IContextSource $ctx ) {
 		// also restricted to history
