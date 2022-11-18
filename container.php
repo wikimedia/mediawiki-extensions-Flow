@@ -92,7 +92,6 @@ $c['templating'] = static function ( $c ) {
 
 	return new Flow\Templating(
 		$c['repository.username'],
-		$c['url_generator'],
 		$contextFixer,
 		$c['permissions']
 	);
@@ -834,6 +833,7 @@ $c['formatter.revision.factory'] = static function ( $c ) {
 	return new Flow\Formatter\RevisionFormatterFactory(
 		$c['permissions'],
 		$c['templating'],
+		$c['url_generator'],
 		$c['repository.username'],
 		$wgFlowMaxThreadingDepth
 	);

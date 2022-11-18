@@ -23,6 +23,7 @@ namespace Flow\Formatter;
 use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
+use Flow\UrlGenerator;
 
 /**
  * The RevisionFormatter holds internal state like
@@ -37,17 +38,23 @@ class RevisionFormatterFactory {
 	private $permissions;
 	/** @var Templating */
 	private $templating;
+	/** @var UrlGenerator */
+	private $urlGenerator;
 	/** @var UserNameBatch */
 	private $repositoryUsername;
 	/** @var int */
 	private $maxThreadingDepth;
 
 	public function __construct(
-		RevisionActionPermissions $permissions, Templating $templating,
-		UserNameBatch $repositoryUsername, $maxThreadingDepth
+		RevisionActionPermissions $permissions,
+		Templating $templating,
+		UrlGenerator $urlGenerator,
+		UserNameBatch $repositoryUsername,
+		$maxThreadingDepth
 	) {
 		$this->permissions = $permissions;
 		$this->templating = $templating;
+		$this->urlGenerator = $urlGenerator;
 		$this->repositoryUsername = $repositoryUsername;
 		$this->maxThreadingDepth = $maxThreadingDepth;
 	}
@@ -56,6 +63,7 @@ class RevisionFormatterFactory {
 		return new RevisionFormatter(
 			$this->permissions,
 			$this->templating,
+			$this->urlGenerator,
 			$this->repositoryUsername,
 			$this->maxThreadingDepth
 		);

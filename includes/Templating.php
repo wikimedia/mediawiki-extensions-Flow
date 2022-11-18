@@ -21,43 +21,31 @@ class Templating {
 	/**
 	 * @var UserNameBatch
 	 */
-	protected $usernames;
-
-	/**
-	 * @var UrlGenerator
-	 */
-	public $urlGenerator;
+	private $usernames;
 
 	/**
 	 * @var RevisionActionPermissions
 	 */
-	protected $permissions;
+	private $permissions;
 
 	/**
 	 * @var ContentFixer
 	 */
-	protected $contentFixer;
+	private $contentFixer;
 
 	/**
 	 * @param UserNameBatch $usernames
-	 * @param UrlGenerator $urlGenerator
 	 * @param ContentFixer $contentFixer
 	 * @param RevisionActionPermissions $permissions
 	 */
 	public function __construct(
 		UserNameBatch $usernames,
-		UrlGenerator $urlGenerator,
 		ContentFixer $contentFixer,
 		RevisionActionPermissions $permissions
 	) {
 		$this->usernames = $usernames;
-		$this->urlGenerator = $urlGenerator;
 		$this->contentFixer = $contentFixer;
 		$this->permissions = $permissions;
-	}
-
-	public function getUrlGenerator() {
-		return $this->urlGenerator;
 	}
 
 	/**
