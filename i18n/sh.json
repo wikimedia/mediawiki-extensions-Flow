@@ -111,5 +111,18 @@
 	"notification-header-flow-description-edited": "Promijenjen je opis stranice <strong>$1</strong>.",
 	"notification-header-flow-description-edited-user-talk": "Promijenjen je opis na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>.",
 	"notification-bundle-header-flow-description-edited": "Opis stranice <strong>$1</strong> promijenjen je nekoliko puta.",
-	"notification-bundle-header-flow-description-edited-user-talk": "Opis stranice promijenjen je nekoliko puta na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>."
+	"notification-bundle-header-flow-description-edited-user-talk": "Opis stranice promijenjen je nekoliko puta na <strong>{{GENDER:$2|Vašoj}} stranici za razgovor</strong>.",
+	"flow-link-post": "objava",
+	"flow-link-topic": "tema",
+	"flow-link-history": "historija",
+	"flow-link-post-revision": "izmjena objave",
+	"flow-link-topic-revision": "izmjena teme",
+	"flow-link-header-revision": "izmjena opisa",
+	"flow-link-summary-revision": "izmjena rezimea",
+	"action-flow-create-board": "pravljenje ploča za Strukturirane rasprave na bilo kojem mjestu",
+	"right-flow-create-board": "Pravljenje ploča za Strukturirane rasprave na bilo kojem mjestu",
+	"flow-mark-revision-patrolled-link-text": "Označi ovu stranicu kao patroliranu",
+	"flow-mark-revision-patrolled-link-title": "Označi ovu stranicu kao patroliranu",
+	"flow-mark-diff-patrolled-link-text": "Označi kao patroliranu",
+	"flow-mark-diff-patrolled-link-title": "Označi kao patroliranu"
 }
