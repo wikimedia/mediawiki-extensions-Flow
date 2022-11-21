@@ -16,6 +16,7 @@ use ReflectionProperty;
 use SplQueue;
 use User;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IDatabase;
 
 class PageImportState {
 	/**
@@ -256,17 +257,17 @@ class PageImportState {
 
 	public function begin() {
 		$this->flushDeferredQueue();
-		$this->dbw->begin( __METHOD__ );
+		$this->dbw->startAtomic( __CLASS__, IDatabase::ATOMIC_CANCELABLE );
 	}
 
 	public function commit() {
-		$this->dbw->commit( __METHOD__ );
+		$this->dbw->endAtomic( __CLASS__ );
 		$this->sourceStore->save();
 		$this->flushDeferredQueue();
 	}
 
 	public function rollback() {
-		$this->dbw->rollback( __METHOD__ );
+		$this->dbw->cancelAtomic( __CLASS__ );
 		$this->sourceStore->rollback();
 		$this->clearDeferredQueue();
 		$this->postprocessor->importAborted();
