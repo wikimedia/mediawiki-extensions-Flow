@@ -15,10 +15,10 @@
 		// Bind element handlers
 		this.bindNodeHandlers( FlowBoardComponentBoardHeaderFeatureMixin.UI.events );
 
-		/** {string} topic ID currently being read in viewport */
+		/** @type {string|null} topic ID currently being read in viewport */
 		this.readingTopicId = null;
 
-		/** {Object} Map from topic id to its last update timestamp for sorting */
+		/** @type {Object.<string,number>} Map from topic id to its last update timestamp for sorting */
 		this.updateTimestampsByTopicId = {};
 	}
 	OO.initClass( FlowBoardComponentBoardHeaderFeatureMixin );
