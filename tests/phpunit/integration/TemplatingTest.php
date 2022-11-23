@@ -9,7 +9,6 @@ use Flow\Repository\UserName\UserNameQuery;
 use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\UrlGenerator;
 use MediaWikiIntegrationTestCase;
 use Title;
 use User;
@@ -24,7 +23,6 @@ class TemplatingTest extends MediaWikiIntegrationTestCase {
 	private function mockTemplating(): Templating {
 		return new Templating(
 			new UserNameBatch( $this->createMock( UserNameQuery::class ) ),
-			$this->createMock( UrlGenerator::class ),
 			$this->createMock( ContentFixer::class ),
 			$this->createMock( RevisionActionPermissions::class )
 		);

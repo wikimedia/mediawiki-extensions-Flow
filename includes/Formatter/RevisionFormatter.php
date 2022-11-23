@@ -124,18 +124,20 @@ class RevisionFormatter {
 	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
+	 * @param UrlGenerator $urlGenerator
 	 * @param UserNameBatch $usernames
 	 * @param int $maxThreadingDepth
 	 */
 	public function __construct(
 		RevisionActionPermissions $permissions,
 		Templating $templating,
+		UrlGenerator $urlGenerator,
 		UserNameBatch $usernames,
 		$maxThreadingDepth
 	) {
 		$this->permissions = $permissions;
 		$this->templating = $templating;
-		$this->urlGenerator = $this->templating->getUrlGenerator();
+		$this->urlGenerator = $urlGenerator;
 		$this->usernames = $usernames;
 		$this->genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		$this->userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();

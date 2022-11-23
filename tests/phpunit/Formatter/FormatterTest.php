@@ -111,15 +111,12 @@ class FormatterTest extends FlowTestCase {
 		$permissions->method( 'getActions' )
 			->willReturn( Container::get( 'flow_actions' ) );
 
-		$urlGenerator = new UrlGenerator( $this->createMock( CachingObjectMapper::class ) );
 		$templating = $this->createMock( Templating::class );
-		$templating->method( 'getUrlGenerator' )
-			->willReturn( $urlGenerator );
-
 		global $wgFlowMaxThreadingDepth;
 		$serializer = new RevisionFormatter(
 			$permissions,
 			$templating,
+			new UrlGenerator( $this->createMock( CachingObjectMapper::class ) ),
 			$this->createMock( UserNameBatch::class ),
 			$wgFlowMaxThreadingDepth
 		);
