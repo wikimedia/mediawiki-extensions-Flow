@@ -4,17 +4,16 @@ namespace Flow\Actions;
 
 use Article;
 use IContextSource;
-use Page;
 use Title;
 
 class EditAction extends FlowAction {
 
 	/**
-	 * @param Article|Page $page
+	 * @param Article $article
 	 * @param IContextSource $context
 	 */
-	public function __construct( Page $page, IContextSource $context ) {
-		parent::__construct( $page, $context, 'edit' );
+	public function __construct( Article $article, IContextSource $context ) {
+		parent::__construct( $article, $context, 'edit' );
 	}
 
 	/**
