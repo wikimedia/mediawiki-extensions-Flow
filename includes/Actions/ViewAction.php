@@ -6,17 +6,16 @@ use Article;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
-use Page;
 use Title;
 
 class ViewAction extends FlowAction {
 
 	/**
-	 * @param Article|Page $page
+	 * @param Article $article
 	 * @param IContextSource $context
 	 */
-	public function __construct( Page $page, IContextSource $context ) {
-		parent::__construct( $page, $context, 'view' );
+	public function __construct( Article $article, IContextSource $context ) {
+		parent::__construct( $article, $context, 'view' );
 	}
 
 	public function doesWrites() {

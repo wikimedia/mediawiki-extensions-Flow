@@ -20,7 +20,6 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use OutputPage;
-use Page;
 use ParserOutput;
 use RequestContext;
 use Title;
@@ -158,10 +157,9 @@ class BoardContentHandler extends \ContentHandler {
 
 			if ( $actionData['handler-class'] === FlowAction::class ) {
 				$output[$action] = static function (
-					Page $article,
+					Article $article,
 					IContextSource $source
 				) use ( $action ) {
-					/** @var Article $article */
 					return new FlowAction( $article, $source, $action );
 				};
 			} else {

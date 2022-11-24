@@ -15,7 +15,6 @@ use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
 use OutputPage;
-use Page;
 use Title;
 use WebRequest;
 
@@ -26,12 +25,12 @@ class FlowAction extends Action {
 	protected $actionName;
 
 	/**
-	 * @param Article|Page $page
+	 * @param Article $article
 	 * @param IContextSource $source
 	 * @param string $actionName
 	 */
-	public function __construct( Page $page, IContextSource $source, $actionName ) {
-		parent::__construct( $page, $source );
+	public function __construct( Article $article, IContextSource $source, $actionName ) {
+		parent::__construct( $article, $source );
 		$this->actionName = $actionName;
 	}
 
