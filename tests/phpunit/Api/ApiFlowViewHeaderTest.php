@@ -24,12 +24,12 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 		$result = $data[0]['flow']['view-header']['result']['header'];
 		$debug = json_encode( $result );
 		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertEmpty( $result['errors'], $debug );
+		$this->assertSame( [], $result['errors'], $debug );
 
 		// a revision key should exist with only an action link
 		$this->assertArrayHasKey( 'revision', $result, $debug );
 		$revision = $result['revision'];
-		$this->assertEmpty( $revision['links'], $debug );
+		$this->assertSame( [], $revision['links'], $debug );
 		$this->assertEquals( [ 'edit' ], array_keys( $revision['actions'] ), $debug );
 		$this->assertArrayNotHasKey( 'content', $revision );
 	}
@@ -57,7 +57,7 @@ class ApiFlowViewHeaderTest extends ApiTestCase {
 		$result = $data[0]['flow']['view-header']['result']['header'];
 		$debug = json_encode( $result );
 		$this->assertArrayHasKey( 'errors', $result, $debug );
-		$this->assertEmpty( $result['errors'], $debug );
+		$this->assertSame( [], $result['errors'], $debug );
 		$this->assertArrayHasKey( 'revision', $result );
 
 		$revision = $result['revision'];
