@@ -20,7 +20,8 @@
 			"Vlad5250",
 			"Ата",
 			"Капитан Джон Шепард",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"Пан Хаунд"
 		]
 	},
 	"enablestructureddiscussions": "Увімкнути структуровані обговорення",
@@ -39,7 +40,7 @@
 	"logentry-delete-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|відновив|відновила}} допис у темі на сторінці [[$3]]",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|прибрав|прибрала}} [$4 допис] у «[[$3|$5]]» на [[$6]]",
 	"logentry-suppress-flow-suppress-post-topic-title-not-visible": "$1 {{GENDER:$2|приховав|приховала}} допис у темі на сторінці [[$3]]",
-	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|вилучив|вилучила}} [$4 допис] у «[[$3|$5]]» на [[$6]]",
+	"logentry-suppress-flow-restore-post": "$1 {{GENDER:$2|вилучив|вилучила}} [$4 допис] у \"[[$3|$5]]\" на [[$6]]",
 	"logentry-suppress-flow-restore-post-topic-title-not-visible": "$1 {{GENDER:$2|вилучив|вилучила}} допис у темі на сторінці [[$3]]",
 	"logentry-delete-flow-delete-topic": "$1 {{GENDER:$2|вилучив|вилучила}} тему «[[$3|$5]]» на [[$6]]",
 	"logentry-delete-flow-delete-topic-topic-title-not-visible": "$1 {{GENDER:$2|вилучив|вилучила}} тему на сторінці [[$3]]",
