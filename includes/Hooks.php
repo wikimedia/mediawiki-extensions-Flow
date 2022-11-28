@@ -177,7 +177,6 @@ class Hooks {
 		global $wgFlowContentFormat, $wgFlowAbuseFilterGroup;
 
 		// necessary to provide flow options in abuse filter on-wiki pages
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}
@@ -2028,6 +2027,7 @@ class Hooks {
 	 * @param MessageLocalizer $context
 	 * @param Config $config
 	 * @return array Map from internal name to array of parameters for MessageLocalizer::msg()
+	 * @phan-return non-empty-array[]
 	 */
 	private static function getTermsOfUseMessages(
 		MessageLocalizer $context, Config $config

@@ -375,7 +375,6 @@ class ObjectLocator {
 				}
 
 				$dbr = $this->dbFactory->getDB( DB_REPLICA );
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' .
 					$dbr->addQuotes( $options['offset-id']->getBinary() ) );
 
