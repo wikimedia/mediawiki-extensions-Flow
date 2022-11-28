@@ -1,14 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kimberli Mäkäräinen (WMNO)",
 			"Yupik"
 		]
 	},
+	"flow-history-action-delete-post": "sihko",
 	"flow-history-action-hide-post": "čiega",
+	"flow-history-action-undelete-post": "máhcat",
+	"flow-post-action-delete-post": "Sihko",
 	"flow-post-action-hide-post": "Čiega",
+	"flow-post-action-undelete-post": "Máhcat",
 	"flow-topic-action-watchlist": "Čuovvunlisttut",
 	"flow-error-protected-unknown-reason": "Dovdameahttun",
+	"flow-moderation-confirm-delete-post": "Sihko",
 	"flow-moderation-confirm-hide-post": "Čiega",
+	"flow-moderation-confirm-undelete-post": "Máhcat",
+	"flow-moderation-confirm-delete-topic": "Sihko",
 	"flow-moderation-confirm-hide-topic": "Čiega",
+	"flow-moderation-confirm-undelete-topic": "Máhcat",
 	"flow-load-more": "Luđe lasi"
 }
