@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Patriot Kur"
+			"Patriot Kur",
+			"Patriot Kor"
 		]
 	},
 	"flow-cancel": "Ləğv karde",
-	"flow-history-day": "Imrüj"
+	"flow-history-day": "Imruj"
 }

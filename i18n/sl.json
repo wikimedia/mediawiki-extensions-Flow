@@ -461,7 +461,7 @@
 	"flow-importer-wt-converted-archive-template": "Arhiv za pretvorjeno vikibesedilno pogovorno stran",
 	"flow-importer-wt-converted-archive-template-content": "Ta stran je arhivirana. <strong>Vsebine te strani ne urejajte</strong>. Morebitne dodatne komentarje objavite na [[{{{from|{{TALKSPACE}}:{{BASEPAGENAME}}}}}|trenutni pogovorni strani]].",
 	"flow-importer-lqt-suppressed-user-template": "Sporočilo LQT je bilo uvoženo z ukinjenim uporabnikom",
-	"flow-importer-lqt-suppressed-user-template-content": "Ta redakcija je bila uvožena iz Tekočih niti skupaj z ukinjenim uporabnikom. Njeno avtorstvo je sedaj pripisano trenutnemu uporabniku.",
+	"flow-importer-lqt-suppressed-user-template-content": "Ta redakcija je bila uvožena iz Tekočih niti skupaj z ukinjenim uporabnikom. Njeno avtorstvo je zdaj pripisano trenutnemu uporabniku.",
 	"flow-importer-lqt-different-author-signature-template": "Sporočilo LQT je bilo uvoženo z drugačnim podpisom uporabnika",
 	"flow-importer-lqt-different-author-signature-template-content": "<em>To sporočilo je objavil_a [[User:{{{authorUser}}}|{{{authorUser}}}]], vendar podpisan_a kot [[User:{{{signatureUser}}}|{{{signatureUser}}}]].</em>",
 	"flow-edited": "Urejeno",
