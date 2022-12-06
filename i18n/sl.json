@@ -77,7 +77,7 @@
 	"flow-summary-authored": "Avtor povzetka: $1",
 	"flow-summary-edited": "Povzetek {{GENDER:$1|zadnji uredil|zadnja uredila|zadnji_a uredil_a}} $1",
 	"flow-show-change": "Prikaži spremembe",
-	"flow-last-modified-by": "{{GENDER:$1|Zadnji spremenil|Zadnja spremenila|Zadnji_a spremenil_a}} $1",
+	"flow-last-modified-by": "Zadnjič {{GENDER:$1|spremenil|spremenila|spremenil_a}} $1",
 	"flow-stub-post-content": "<em>Zaradi tehnične napake te vsebine ni bilo mogoče prejeti.</em>",
 	"flow-newtopic-title-placeholder": "Nova tema",
 	"flow-newtopic-content-placeholder": "Objavite novo sporočilo na »$1«",
