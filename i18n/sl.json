@@ -302,7 +302,7 @@
 	"notification-email-subject-flow-description-edited": "$1 je {{GENDER:$2|uredil|uredila|uredil_a}} opis na panelu $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 je {{GENDER:$2|uredil|uredila|uredil_a}} opis na panelu $2.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 in {{PLURAL:$3|še nekdo sta uredila|še $3 druga so uredili|še $3 drugih so uredili|$3 drugih je uredili|100=99+ je uredilo}} opis na panelu $2",
-	"notification-header-flow-topic-resolved": "Tema \"<strong>$1</strong>\" je bila zaključena.",
+	"notification-header-flow-topic-resolved": "Tema »<strong>$1</strong>« je bila zaključena.",
 	"notification-header-flow-topic-reopened": "Tema »<strong>$1</strong>« je znova odprta.",
 	"notification-header-flow-topic-resolved-user-talk": "Tema »<strong>$1</strong>« na <strong>{{GENDER:$2|vaši}} pogovorni strani</strong> je bila zaključena.",
 	"notification-header-flow-topic-reopened-user-talk": "Tema »<strong>$1</strong>« na <strong>{{GENDER:$2|vaši}} pogovorni strani je bila znova odprta</strong>.",
