@@ -606,7 +606,8 @@
 				"flow-ve-mention-inspector-invalid-user",
 				"flow-ve-mention-placeholder",
 				"flow-ve-mention-tool-title"
-			]
+			],
+			"targets": [ "desktop" ]
 		},
 		"ext.flow.visualEditor.icons": {
 			"class": "ResourceLoaderImageModule",
