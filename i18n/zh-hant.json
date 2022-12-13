@@ -24,6 +24,7 @@
 			"Tranve",
 			"Winston Sung",
 			"Xiplus",
+			"捍粵者",
 			"飞舞回堂前"
 		]
 	},
@@ -169,7 +170,7 @@
 	"flow-error-can-not-edit-logged-in": "您當前無法參與討論，因為您沒有所需權限。",
 	"flow-error-http": "與伺服器連線時發生錯誤。",
 	"flow-error-external": "發生錯誤。錯誤訊息為：$1",
-	"flow-error-topic-is-locked": "此話題已被解決，不能進行進一步的活動。",
+	"flow-error-topic-is-locked": "此話題已解決，後續活動不可能。",
 	"flow-error-lock-moderated-post": "您無法標記受管制的貼文已解決。",
 	"flow-error-missing-content": "貼文沒有內容。 您需要填寫內容以儲存貼文。",
 	"flow-error-missing-summary": "您必須填寫摘要。",
