@@ -10,7 +10,6 @@ use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use IContextSource;
-use Linker;
 use MediaWiki\MediaWikiServices;
 
 class ChangesListFormatter extends AbstractFormatter {
@@ -89,7 +88,7 @@ class ChangesListFormatter extends AbstractFormatter {
 
 		$msg = $msg->params( $this->getDescriptionParams( $data, $actions, $changeType ) );
 
-		// Below code is inspired by Linker::formatAutocomments
+		// Below code is inspired by MediaWiki\CommentFormatter\CommentParser::doSectionLinks
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
 		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			$row->workflow->getOwnerTitle(),
@@ -100,9 +99,10 @@ class ChangesListFormatter extends AbstractFormatter {
 		$summary = '<span class="autocomment">' . $msg->text() . '</span>';
 
 		// '(' + '' + '←' + summary + ')'
-		$text = Linker::commentBlock( $prefix . $link . $summary );
+		$text = MediaWikiServices::getInstance()->getCommentFormatter()
+			->formatBlock( $prefix . $link . $summary );
 
-		// Linker::commentBlock escaped everything, but what we built was safe
+		// MediaWiki\CommentFormatter\CommentFormatter::formatBlock escaped everything, but what we built was safe
 		// and should not be escaped so let's go back to decoded entities
 		return htmlspecialchars_decode( $text );
 	}

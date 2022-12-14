@@ -15,7 +15,6 @@ use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use Html;
 use ILanguageConverter;
 use Language;
-use Linker;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use ParserOptions;
@@ -189,7 +188,8 @@ abstract class Utils {
 	}
 
 	/**
-	 * Convert from/to topic-title-wikitext/topic-title-html using Linker::formatLinksInComment
+	 * Convert from/to topic-title-wikitext/topic-title-html using
+	 * MediaWiki\CommentFormatter\CommentFormatter::formatLinks
 	 *
 	 * @param string $from Format of content to convert: topic-title-wikitext
 	 * @param string $to Format of content to convert to: topic-title-html
@@ -206,7 +206,8 @@ abstract class Utils {
 				"but this is not supported." );
 		}
 
-		$html = Linker::formatLinksInComment( Sanitizer::escapeHtmlAllowEntities( $content ) );
+		$html = MediaWikiServices::getInstance()->getCommentFormatter()
+			->formatLinks( Sanitizer::escapeHtmlAllowEntities( $content ) );
 		if ( $to === 'topic-title-plaintext' ) {
 			return self::htmlToPlaintext( $html );
 		} else {
