@@ -37,16 +37,11 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	 * @return string
 	 */
 	protected function getPostLinkUrl( $firstChronologicallyPostId = null, $anchorPostId = null ) {
-		if ( $firstChronologicallyPostId === null ) {
-			/** @var UUID $firstChronologicallyPostId */
-			$firstChronologicallyPostId = $this->event->getExtraParam( 'post-id' );
-		}
+		/** @var UUID $firstChronologicallyPostId */
+		$firstChronologicallyPostId ??= $this->event->getExtraParam( 'post-id' );
 		'@phan-var UUID $firstChronologicallyPostId';
 
-		if ( $anchorPostId === null ) {
-			$anchorPostId = $firstChronologicallyPostId;
-		}
-
+		$anchorPostId ??= $firstChronologicallyPostId;
 		$title = $this->getTopicTitleObj(
 			'flow-post-' . $anchorPostId->getAlphadecimal()
 		);
