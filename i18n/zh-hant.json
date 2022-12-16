@@ -187,7 +187,7 @@
 	"flow-error-invalid-postId": "\"postId\" 參數無效。 查無指定的貼文 ($1)。",
 	"flow-error-invalid-moderation-state": "提供給結構式討論 API 的 ('moderationState') 參數值無效。",
 	"flow-error-invalid-moderation-reason": "請說明限制操作的原因。",
-	"flow-error-not-allowed": "無足夠的權限執行此操作。",
+	"flow-error-not-allowed": "無權這樣做。",
 	"flow-error-not-allowed-hide": "此話題已隱藏",
 	"flow-error-not-allowed-reply-to-hide-topic": "您無法回覆，因為此話題已被隱藏。",
 	"flow-error-not-allowed-delete": "此話題已刪除",
