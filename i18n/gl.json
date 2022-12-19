@@ -399,7 +399,7 @@
 	"flow-terms-of-use-new-topic": "Ao premer no botón \"{{int:flow-newtopic-save}}\", acepta os termos de uso deste wiki.",
 	"flow-terms-of-use-reply": "Ao premer no botón \"{{int:flow-reply-link}}\", acepta os termos de uso deste wiki.",
 	"flow-terms-of-use-edit": "Ao gardar os seus cambios, acepta os termos de uso deste wiki.",
-	"flow-anon-warning": "Non iniciou a sesión. Para recibir atribución co seu nome en lugar da súa dirección IP, pode [$1 iniciar sesión] ou [$2 crear unha conta].",
+	"flow-anon-warning": "Non iniciou a sesión. Para recibir atribución co seu nome en lugar do seu enderezo IP, pode [$1 iniciar sesión] ou [$2 crear unha conta].",
 	"flow-cancel-warning": "Engadiu texto neste formulario. Esta seguro de que quere descartalo?",
 	"flow-topic-first-heading": "Tema en $1",
 	"flow-topic-html-title": "$1 en $2",

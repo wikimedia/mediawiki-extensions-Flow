@@ -32,6 +32,7 @@
 	"flow-topic-action-update-topic-summary": "Peiʹvved õʹhtteǩeässmõõžž",
 	"flow-topic-action-undo-moderation": "Kååʹmet",
 	"flow-topic-notification-subscribe-title": "Tän teeʹm lââʹzzteš {{GENDER:$1|tuu}} valvvâmliʹstte.",
+	"flow-error-protected-unknown-reason": "Toobdtem",
 	"flow-edit-header-submit": "Ruõkk deskriipt",
 	"flow-edit-header-submit-publish": "Õlmstââʹtt deskriipt",
 	"flow-edit-post-submit": "Vuõlttâd muttsid",
