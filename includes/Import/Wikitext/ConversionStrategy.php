@@ -8,7 +8,7 @@ use ExtensionRegistry;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface;
-use LinkBatch;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use Psr\Log\LoggerInterface;
 use StubObject;
@@ -210,7 +210,7 @@ class ConversionStrategy implements IConversionStrategy {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$batch = new LinkBatch( $this->noConvertTemplates );
+		$batch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch( $this->noConvertTemplates );
 		$result = $dbr->select(
 			'templatelinks',
 			'tl_from',

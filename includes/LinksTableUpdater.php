@@ -8,7 +8,6 @@ use Flow\Model\Reference;
 use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
-use LinkBatch;
 use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use Title;
@@ -41,7 +40,7 @@ class LinksTableUpdater {
 	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, array $references = null ) {
 		$references ??= $this->getReferencesForTitle( $title );
 
-		$linkBatch = new LinkBatch();
+		$linkBatch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch();
 		/** @var Title[] $internalLinks */
 		$internalLinks = [];
 		/** @var Title[] $templates */

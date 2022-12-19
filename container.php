@@ -77,7 +77,9 @@ $c['lightncandy'] = static function ( $c ) {
 $c['templating'] = static function ( $c ) {
 	global $wgArticlePath;
 
-	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer( new LinkBatch );
+	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer(
+		MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch()
+	);
 	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
 		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
 	);
