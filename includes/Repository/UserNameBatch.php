@@ -7,6 +7,7 @@ namespace Flow\Repository;
 
 use Flow\Model\UserTuple;
 use MapCacheLRU;
+use MediaWiki\MediaWikiServices;
 use User;
 use WikiMap;
 
@@ -163,7 +164,7 @@ class UserNameBatch {
 			return;
 		}
 
-		$lb = new \LinkBatch();
+		$lb = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch();
 		foreach ( $usernames as $name ) {
 			$user = User::newFromName( $name );
 			if ( $user ) {
