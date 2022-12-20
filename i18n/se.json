@@ -19,5 +19,6 @@
 	"flow-moderation-confirm-delete-topic": "Sihko",
 	"flow-moderation-confirm-hide-topic": "Čiega",
 	"flow-moderation-confirm-undelete-topic": "Máhcat",
-	"flow-load-more": "Luđe lasi"
+	"flow-load-more": "Luđe lasi",
+	"flow-ve-mention-inspector-remove-label": "Sihko"
 }
