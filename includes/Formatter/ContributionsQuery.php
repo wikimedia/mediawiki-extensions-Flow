@@ -12,7 +12,7 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
-use User;
+use MediaWiki\User\UserIdentityLookup;
 use WikiMap;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -28,21 +28,27 @@ class ContributionsQuery extends AbstractQuery {
 	 */
 	protected $actions;
 
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
 	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepo
 	 * @param DbFactory $dbFactory
 	 * @param FlowActions $actions
+	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		ManagerGroup $storage,
 		TreeRepository $treeRepo,
 		DbFactory $dbFactory,
-		FlowActions $actions
+		FlowActions $actions,
+		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( $storage, $treeRepo );
 		$this->dbFactory = $dbFactory;
 		$this->actions = $actions;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -131,9 +137,9 @@ class ContributionsQuery extends AbstractQuery {
 		$conditions = [];
 
 		$isContribsPager = $pager instanceof ContribsPager;
-		$uid = User::idFromName( $pager->getTarget() );
-		if ( $uid ) {
-			$conditions['rev_user_id'] = $uid;
+		$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $pager->getTarget() );
+		if ( $userIdentity && $userIdentity->isRegistered() ) {
+			$conditions['rev_user_id'] = $userIdentity->getId();
 			$conditions['rev_user_ip'] = null;
 			$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 		} else {
