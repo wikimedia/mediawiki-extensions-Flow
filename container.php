@@ -806,7 +806,8 @@ $c['query.contributions'] = static function ( $c ) {
 		$c['storage'],
 		$c['repository.tree'],
 		$c['db.factory'],
-		$c['flow_actions']
+		$c['flow_actions'],
+		MediaWikiServices::getInstance()->getUserIdentityLookup()
 	);
 };
 $c['formatter.contributions'] = static function ( $c ) {
