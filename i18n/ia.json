@@ -177,7 +177,7 @@
 	"flow-error-not-allowed-suppress-extract": "Iste topico ha essite delite. Ecce le registro de deletiones pro le topico.",
 	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Tu non pote responder perque iste topico ha essite supprimite. Ecce le registro de suppressiones pro le topico.",
 	"flow-error-title-too-long": "Titulos de topicos non pote esser plus longe de $1 {{PLURAL:$1|byte|bytes}}.",
-	"flow-error-no-existing-workflow": "Iste fluxo de labor non existe ancora.",
+	"flow-error-no-existing-workflow": "Iste fluxo de travalio non existe ancora.",
 	"flow-error-not-a-post": "Le titulo del topico non pote esser salveguardate como un message.",
 	"flow-error-missing-header-content": "Tu debe submitter un description.",
 	"flow-error-missing-prev-revision-identifier": "Le identificator del version precedente es mancante.",
