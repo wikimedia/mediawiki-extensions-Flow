@@ -297,7 +297,7 @@
 	"notification-header-flow-description-edited-user-talk": "Urejen je bil opis na <strong>{{GENDER:$2|vaši}} pogovorni strani</strong>.",
 	"notification-bundle-header-flow-description-edited": "Večkrat je bil urejen opis strani <strong>$1</strong>.",
 	"notification-bundle-header-flow-description-edited-user-talk": "Večkrat je bil urejen opis na <strong>{{GENDER:$2|vaši}} pogovorni strani</strong>.",
-	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Prikaži}} stran",
+	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|}}Ogled strani",
 	"notification-email-subject-flow-description-edited": "$1 je {{GENDER:$2|uredil|uredila|uredil_a}} opis na panelu $2.",
 	"notification-email-batch-body-flow-description-edited": "$1 je {{GENDER:$2|uredil|uredila|uredil_a}} opis na panelu $2.",
 	"notification-email-batch-bundle-body-flow-description-edited": "$1 in {{PLURAL:$3|še nekdo sta uredila|še $3 druga so uredili|še $3 drugih so uredili|$3 drugih je uredili|100=99+ je uredilo}} opis na panelu $2",
