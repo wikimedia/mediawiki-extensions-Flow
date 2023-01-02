@@ -6,7 +6,6 @@ use Article;
 use ChangesList;
 use Config;
 use Content;
-use ContentHandler;
 use ContribsPager;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -1608,8 +1607,10 @@ class Hooks {
 			throw new FlowException( 'Non-existent topic' );
 		}
 
-		$emptyContent = ContentHandler::getForModelID( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
-		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$services = MediaWikiServices::getInstance();
+		$emptyContent = $services->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
+		$contentRenderer = $services->getContentRenderer();
 		$parserOutput = $contentRenderer->getParserOutput( $emptyContent, $article->getTitle() );
 		$article->getContext()->getOutput()->addParserOutput( $parserOutput );
 

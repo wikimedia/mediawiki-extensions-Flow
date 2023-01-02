@@ -2,7 +2,6 @@
 
 namespace Flow\Model;
 
-use ContentHandler;
 use Flow\Collection\AbstractCollection;
 use Flow\Conversion\Utils;
 use Flow\Exception\DataModelException;
@@ -557,13 +556,16 @@ abstract class AbstractRevision {
 
 		if ( $format === 'wikitext' ) {
 			// Run pre-save transform
-			$contentTransformer = MediaWikiServices::getInstance()->getContentTransformer();
-			$content = ContentHandler::makeContent( $content, $title, CONTENT_MODEL_WIKITEXT );
+			$services = MediaWikiServices::getInstance();
+			$contentTransformer = $services->getContentTransformer();
+			$content = $services->getContentHandlerFactory()
+				->getContentHandler( CONTENT_MODEL_WIKITEXT )
+				->unserializeContent( $content );
 			$content = $contentTransformer->preSaveTransform(
 				$content,
 				$title,
 				$this->getUser(),
-				MediaWikiServices::getInstance()->getWikiPageFactory()
+				$services->getWikiPageFactory()
 					->newFromTitle( $title )->makeParserOptions( $this->getUser() )
 			)->serialize( 'text/x-wiki' );
 		}

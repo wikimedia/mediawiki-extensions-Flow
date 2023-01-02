@@ -3,6 +3,7 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use Flow\Import\ImportException;
+use MediaWiki\MediaWikiServices;
 use MWTimestamp;
 
 class MovedImportRevision extends ImportRevision {
@@ -17,7 +18,10 @@ class MovedImportRevision extends ImportRevision {
 	 */
 	public function getText() {
 		$text = parent::getText();
-		$content = \ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
+		$content = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_WIKITEXT )
+			->unserializeContent( $text );
 		$target = $content->getRedirectTarget();
 		if ( !$target ) {
 			throw new ImportException( "Could not detect redirect within: $text" );
