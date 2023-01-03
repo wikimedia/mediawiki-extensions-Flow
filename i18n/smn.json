@@ -29,6 +29,7 @@
 	"flow-history-day": "Onne",
 	"flow-hide-comments-title": "{{PLURAL:$1|Čievâ komment|Čievâ kommenteh}}",
 	"flow-comment-hidden": "Čiehhum komment",
+	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čääiti}} siijđo",
 	"flow-link-history": "historjá",
 	"flow-moderation-confirm-delete-post": "Siho",
 	"flow-moderation-confirm-hide-post": "Čievâ",
