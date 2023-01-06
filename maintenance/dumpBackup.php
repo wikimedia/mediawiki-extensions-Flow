@@ -86,6 +86,7 @@ TEXT
 		$services = MediaWikiServices::getInstance();
 		$exporter = new Exporter(
 			$db,
+			$services->getCommentStore(),
 			$services->getHookContainer(),
 			$services->getRevisionStore(),
 			$services->getTitleParser(),
