@@ -13,6 +13,7 @@
 	"flow-post-action-undelete-post": "Máhcat",
 	"flow-topic-action-watchlist": "Čuovvunlisttut",
 	"flow-error-protected-unknown-reason": "Dovdameahttun",
+	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čájet}} siiddu",
 	"flow-moderation-confirm-delete-post": "Sihko",
 	"flow-moderation-confirm-hide-post": "Čiega",
 	"flow-moderation-confirm-undelete-post": "Máhcat",
