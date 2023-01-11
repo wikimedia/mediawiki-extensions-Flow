@@ -418,7 +418,7 @@
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\" düğmesini tıklayarak bu vikinin kullanım şartlarını kabul etmiş olursunuz.",
 	"flow-terms-of-use-reply": "\"{{int:flow-answer-link}}\" düğmesini tıklayarak bu vikinin kullanım şartlarını kabul etmiş olursunuz.",
 	"flow-terms-of-use-edit": "Değişikliklerinizi kaydederek, bu vikinin kullanım şartlarını kabul etmiş olursunuz.",
-	"flow-anon-warning": "Oturum açmadınız. IP adresiniz yerine adınızla ilişkilendirme almak için [$1 oturum açın] veya [$2 hesap oluşturabilirsiniz].",
+	"flow-anon-warning": "Oturum açmadınız. IP adresiniz yerine adınızla ilgili bir atıf almak için [$1 oturum açın] veya [$2 yeni hesap oluşturun].",
 	"flow-cancel-warning": "Bu forma metin girdiniz. Atmak istediğinizden emin misiniz?",
 	"flow-topic-first-heading": "$1 sayfasındaki konu",
 	"flow-topic-html-title": "$1 sayfasındaki $2 konu",
