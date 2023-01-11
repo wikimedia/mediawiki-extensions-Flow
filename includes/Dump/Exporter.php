@@ -17,6 +17,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Search\Iterators\AbstractIterator;
 use Flow\Search\Iterators\HeaderIterator;
 use Flow\Search\Iterators\TopicIterator;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
@@ -90,6 +91,7 @@ class Exporter extends WikiExporter {
 	 */
 	public function __construct(
 		$db,
+		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		RevisionStore $revisionStore,
 		TitleParser $titleParser,
@@ -99,6 +101,7 @@ class Exporter extends WikiExporter {
 	) {
 		parent::__construct(
 			$db,
+			$commentStore,
 			$hookContainer,
 			$revisionStore,
 			$titleParser,
