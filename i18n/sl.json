@@ -142,7 +142,7 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Naročeni}} ste na ta razpravni panel!",
 	"flow-board-notification-subscribe-description": "Ob odprtju nove teme na tem panelu boste {{GENDER:$1|prejeli}} obvestilo.",
 	"flow-topic-action-watchlist-add": "Naročite se na to temo",
-	"flow-topic-action-watchlist-remove": "Odnaročite se",
+	"flow-topic-action-watchlist-remove": "Odnaroči",
 	"flow-error-allowcreation-already-exists": "Stran tam že obstaja, zato panela Strukturiranih razprav tja ni mogoče prestaviti.",
 	"flow-error-allowcreation-flow-create-board": "Uporabnik nima dovoljenja »{{int:right-flow-create-board}}«",
 	"flow-error-can-not-edit-logged-out": "Trenutno ne morete sodelovati. Lahko se poskusite prijaviti.",
