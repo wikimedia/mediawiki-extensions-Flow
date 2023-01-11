@@ -131,7 +131,8 @@ class FlowAction extends Action {
 	 * @return string URL to redirect to or blank string for no redirect
 	 */
 	protected function getRedirectUrl( WebRequest $request, Title $title ) {
-		$workflowId = UUID::create( strtolower( $request->getVal( 'workflow' ) ) ?: null );
+		$workflow = $request->getVal( 'workflow', null );
+		$workflowId = $workflow !== null ? UUID::create( strtolower( $workflow ) ) : null;
 		if ( !$workflowId ) {
 			return '';
 		}
