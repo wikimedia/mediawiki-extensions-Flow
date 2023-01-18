@@ -10,5 +10,6 @@
 	"flow-comment-restored": "Penampen kaulihang",
 	"flow-comment-deleted": "Penampen kausap",
 	"flow-comment-hidden": "Engkebang penampen",
+	"flow-anon-warning": "Ragané durung manjing log. Antuk nyantumang wastan ragané binayang alamat IP ragané, ragané prasida [$1 manjing log] utawi [$2 ngardi akun anyar].",
 	"flow-dialog-cancelconfirm-discard": "Kutang uahan"
 }
