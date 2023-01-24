@@ -24,7 +24,8 @@
 			"Whym",
 			"Yamagata Yusuke",
 			"Yusuke1109",
-			"つぶあん派"
+			"つぶあん派",
+			"Kokage si"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -416,7 +417,7 @@
 	"group-flow-bot": "Structured Discussions ボット",
 	"group-flow-bot-member": "Flowボット",
 	"grouppage-flow-bot": "Project:Structured Discussions ボット",
-	"flow-ve-mention-context-item-label": "メンション",
+	"flow-ve-mention-context-item-label": "言及",
 	"flow-ve-mention-inspector-title": "言及",
 	"flow-ve-mention-inspector-remove-label": "除去",
 	"flow-ve-mention-placeholder": "利用者名",
