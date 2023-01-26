@@ -407,6 +407,8 @@
 	"right-flow-delete": "Strukturierte-Diskussionen-Themen und -Beiträge löschen",
 	"action-flow-edit-post": "Strukturierte-Diskussionen-Beiträge von anderen Benutzern zu bearbeiten",
 	"right-flow-edit-post": "Strukturierte-Diskussionen-Beiträge von anderen Benutzern bearbeiten",
+	"right-flow-edit-title": "Titel der Themen von Strukturierten Diskussionen von anderen Benutzern bearbeiten",
+	"action-flow-edit-title": "Titel der Themen von Strukturierten Diskussionen von anderen Benutzern bearbeiten",
 	"action-flow-suppress": "Strukturierte-Diskussionen-Themen und -Beiträge zu unterdrücken",
 	"right-flow-suppress": "Strukturierte-Diskussionen-Themen und -Beiträge unterdrücken",
 	"flow-terms-of-use-new-topic": "Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.",

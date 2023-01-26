@@ -5,6 +5,7 @@
 			"Yupik"
 		]
 	},
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Giitte}}}}",
 	"flow-history-action-delete-post": "sihko",
 	"flow-history-action-hide-post": "čiega",
 	"flow-history-action-undelete-post": "máhcat",
