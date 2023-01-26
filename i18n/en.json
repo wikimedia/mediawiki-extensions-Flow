@@ -444,6 +444,8 @@
 	"right-flow-delete": "Delete Structured Discussions topics and posts",
 	"action-flow-edit-post": "edit Structured Discussions posts by other users",
 	"right-flow-edit-post": "Edit Structured Discussions posts by other users",
+	"right-flow-edit-title": "Edit title of Structured Discussions topics by other users",
+	"action-flow-edit-title": "edit title of Structured Discussions topics by other users",
 	"action-flow-suppress": "suppress Structured Discussions topics and posts",
 	"right-flow-suppress": "Suppress Structured Discussions topics and posts",
 	"flow-terms-of-use-new-topic": "By clicking \"{{int:flow-newtopic-save}}\", you agree to the terms of use for this wiki.",

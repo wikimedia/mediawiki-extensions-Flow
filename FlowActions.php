@@ -229,7 +229,12 @@ return [
 		'log_type' => false,
 		'rc_insert' => true,
 		'permissions' => [
-			PostRevision::MODERATED_NONE => '',
+			// no permissions needed for own posts
+			PostRevision::MODERATED_NONE => static function (
+				PostRevision $post, RevisionActionPermissions $permissions
+			) {
+				return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-title';
+			}
 		],
 		'links' => [
 			'topic', 'topic-history', 'diff-post', 'topic-revision', 'watch-topic', 'unwatch-topic'
