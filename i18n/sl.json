@@ -399,6 +399,8 @@
 	"right-flow-delete": "Brisanje tem in sporočil Strukturiranih razprav",
 	"action-flow-edit-post": "urejanje sporočil Strukturiranih razprav drugih uporabnikov",
 	"right-flow-edit-post": "Urejanje sporočil Strukturiranih razprav drugih uporabnikov",
+	"right-flow-edit-title": "Urejanje naslova tem Strukturiranih razprav drugih uporabnikov",
+	"action-flow-edit-title": "urejanje naslova tem Strukturiranih razprav drugih uporabnikov",
 	"action-flow-suppress": "ukinjanje tem in sporočil Strukturiranih razprav",
 	"right-flow-suppress": "Ukinjanje tem in sporočil Strukturiranih razprav",
 	"flow-terms-of-use-new-topic": "S klikom »{{int:flow-newtopic-save}}« sprejemate pogoje uporabe tega vikija.",

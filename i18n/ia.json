@@ -394,6 +394,8 @@
 	"right-flow-delete": "Deler topicos e messages de Discussiones Structurate",
 	"action-flow-edit-post": "modificar messages de Discussiones Structurate de altere usatores",
 	"right-flow-edit-post": "Modificar messages de Discussiones Structurate de altere usatores",
+	"right-flow-edit-title": "Modificar le titulos de topicos de Discussiones Structurate publicate per altere usatores",
+	"action-flow-edit-title": "modificar le titulos de topicos de Discussiones Structurate publicate per altere usatores",
 	"action-flow-suppress": "supprimer topicos e messages de Discussiones Structurate",
 	"right-flow-suppress": "Supprimer topicos e messages de Discussiones Structurate",
 	"flow-terms-of-use-new-topic": "Si tu clicca sur \"{{int:flow-newtopic-save}}\", tu accepta le conditiones de uso de iste wiki.",
