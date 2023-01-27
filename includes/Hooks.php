@@ -513,6 +513,10 @@ class Hooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( AbstractCheckUserPager $pager, $row, &$links ) {
+		if ( isset( $row->type ) ) {
+			$row->cuc_type = $row->type;
+		}
+
 		if ( $row->cuc_type != RC_FLOW ) {
 			return;
 		}
@@ -530,6 +534,10 @@ class Hooks {
 	}
 
 	public static function onCheckUserFormatRow( IContextSource $context, $row, &$rowItems ) {
+		if ( isset( $row->type ) ) {
+			$row->cuc_type = $row->type;
+		}
+
 		if ( $row->cuc_type != RC_FLOW ) {
 			return;
 		}
