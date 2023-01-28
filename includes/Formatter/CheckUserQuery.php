@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use MediaWiki\CheckUser\CheckUserCommentStore;
 
 class CheckUserQuery extends AbstractQuery {
 
@@ -21,8 +22,10 @@ class CheckUserQuery extends AbstractQuery {
 	public function loadMetadataBatch( $rows ) {
 		$needed = [];
 
+		$commentStore = CheckUserCommentStore::getStore();
+
 		foreach ( $rows as $row ) {
-			if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
+			if ( $row->cuc_type != RC_FLOW || !$commentStore->getComment( 'cuc_comment', $row )->text ) {
 				continue;
 			}
 
@@ -74,7 +77,9 @@ class CheckUserQuery extends AbstractQuery {
 	 * @throws FlowException
 	 */
 	public function getResult( $row ) {
-		if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
+		if ( $row->cuc_type != RC_FLOW ||
+			!CheckUserCommentStore::getStore()->getComment( 'cuc_comment', $row )->text
+		) {
 			return false;
 		}
 
@@ -105,11 +110,12 @@ class CheckUserQuery extends AbstractQuery {
 	 * @return false|array{0:string,1:UUID,2:UUID} Array with workflow and revision id, or false on error
 	 */
 	protected function extractActionAndIds( $row ) {
-		$data = explode( ',', $row->cuc_comment );
+		$comment = CheckUserCommentStore::getStore()->getComment( 'cuc_comment', $row )->text;
+		$data = explode( ',', $comment );
 
 		// anything not prefixed v1 is a pre-versioned check user comment
 		// if it changes again the prefix can be updated.
-		if ( strpos( $row->cuc_comment, self::VERSION_PREFIX ) !== 0 ) {
+		if ( strpos( $comment, self::VERSION_PREFIX ) !== 0 ) {
 			return false;
 		}
 
