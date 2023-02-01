@@ -409,6 +409,8 @@
 	"right-flow-lock": "Gestructureerde Discussieonderwerpen sluiten",
 	"right-flow-delete": "Gestructureerde Discussieonderwerpen en berichten verwijderen",
 	"right-flow-edit-post": "Gestructureerde Discussieberichten van andere gebruikers bewerken",
+	"right-flow-edit-title": "De titel van Gestructureerde Discussies-onderwerpen van andere gebruikers bewerken",
+	"action-flow-edit-title": "de titel van Gestructureerde Discussies-onderwerpen van andere gebruikers te bewerken",
 	"right-flow-suppress": "Gestructureerde Discussieonderwerpen en -berichten onderdrukken",
 	"flow-terms-of-use-new-topic": "Door op \"{{int:flow-newtopic-save}}\" te klikken gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-reply": "Door te klikken op \"{{int:flow-reply-link}}\", gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
