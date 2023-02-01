@@ -17,6 +17,7 @@ use ParserOptions;
 use StubObject;
 use Title;
 use User;
+use WikitextContent;
 
 /**
  * Imports the header of a wikitext talk page. Does not attempt to
@@ -80,9 +81,20 @@ class ImportSource implements IImportSource {
 			throw new ImportException( "Failed to load revision for title: {$this->title->getPrefixedText()}" );
 		}
 
+		$content = $revision->getContent( SlotRecord::MAIN );
+
+		// Verify we're operating on wikitext here. This should always be the case for talk pages.
+		if ( !( $content instanceof WikitextContent ) ) {
+			$revId = $revision->getId();
+			$model = $content->getModel();
+			throw new ImportException(
+				"The main slot for revision $revId has non-wikitext content model $model"
+			);
+		}
+
 		// If sections exist only take the content from the top of the page
 		// to the first section.
-		$nativeContent = $revision->getContent( SlotRecord::MAIN )->getNativeData();
+		$nativeContent = $content->getText();
 		$output = $this->parser->parse(
 			$nativeContent,
 			$this->title,
