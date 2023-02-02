@@ -802,22 +802,25 @@ class Hooks {
 	}
 
 	/**
-	 * Adds Flow contributions to the DeletedContributions special page
+	 * Gets Flow contributions for contributions-related special pages
 	 *
-	 * @param array &$data an array of results of all contribs queries, to be
-	 *  merged to form all contributions data
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
-	 * @param string $offset Index offset, inclusive
-	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @see onDeletedContributionsQuery
+	 * @see onContributionsQuery
+	 *
+	 * @param array &$data
+	 * @param ContribsPager|DeletedContribsPager $pager
+	 * @param string $offset
+	 * @param int $limit
+	 * @param bool $descending
+	 * @param array $rangeOffsets Query range, in the format of [ startOffset, endOffset ]
 	 * @return bool
 	 */
-	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+	private static function getContributionsQuery( &$data, $pager, $offset, $limit, $descending, $rangeOffsets = [] ) {
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
 			/** @var Formatter\ContributionsQuery $query */
 			$query = Container::get( 'query.contributions' );
-			$results = $query->getResults( $pager, $offset, $limit, $descending );
+			$results = $query->getResults( $pager, $offset, $limit, $descending, $rangeOffsets );
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
 			MWExceptionHandler::logException( $e );
@@ -833,6 +836,21 @@ class Hooks {
 		$data[] = $results;
 
 		return true;
+	}
+
+	/**
+	 * Adds Flow contributions to the DeletedContributions special page
+	 *
+	 * @param array &$data an array of results of all contribs queries, to be
+	 *  merged to form all contributions data
+	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return bool
+	 */
+	public static function onDeletedContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+		return self::getContributionsQuery( $data, $pager, $offset, $limit, $descending, [ $pager->getEndOffset() ] );
 	}
 
 	/**
@@ -852,7 +870,7 @@ class Hooks {
 			return true;
 		}
 
-		return static::onDeletedContributionsQuery( $data, $pager, $offset, $limit, $descending );
+		return static::getContributionsQuery( $data, $pager, $offset, $limit, $descending, $pager->getRangeOffsets() );
 	}
 
 	/**
