@@ -90,7 +90,8 @@ class ImportSource implements IImportSource {
 		);
 		$sections = $output->getSections();
 		if ( $sections ) {
-			$nativeContent = substr( $nativeContent, 0, $sections[0]['byteoffset'] );
+			# T319141: `byteoffset` is actually a *codepoint* offset.
+			$nativeContent = mb_substr( $nativeContent, 0, $sections[0]['byteoffset'] );
 		}
 
 		$content = TemplateHelper::extractTemplates( $nativeContent, $this->title );
