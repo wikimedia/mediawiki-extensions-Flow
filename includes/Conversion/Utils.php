@@ -420,9 +420,9 @@ abstract class Utils {
 		$titleText = $title->getText();
 		$langConv = self::getLanguageConverter();
 		$variant = $langConv->getPreferredVariant();
-		if ( $langConv->convertNamespace( $ns, $variant ) ) {
-			return $langConv->convertNamespace( $ns, $variant ) .
-				':' . $langConv->translate( $titleText, $variant );
+		$convertedNamespace = $langConv->convertNamespace( $ns, $variant );
+		if ( $convertedNamespace ) {
+			return $convertedNamespace . ':' . $langConv->translate( $titleText, $variant );
 		} else {
 			return $langConv->translate( $titleText, $variant );
 		}
