@@ -4,7 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use MediaWiki\CheckUser\CheckUserCommentStore;
+use MediaWiki\MediaWikiServices;
 
 class CheckUserQuery extends AbstractQuery {
 
@@ -22,7 +22,7 @@ class CheckUserQuery extends AbstractQuery {
 	public function loadMetadataBatch( $rows ) {
 		$needed = [];
 
-		$commentStore = CheckUserCommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 
 		foreach ( $rows as $row ) {
 			if ( $row->cuc_type != RC_FLOW || !$commentStore->getComment( 'cuc_comment', $row )->text ) {
@@ -78,7 +78,9 @@ class CheckUserQuery extends AbstractQuery {
 	 */
 	public function getResult( $row ) {
 		if ( $row->cuc_type != RC_FLOW ||
-			!CheckUserCommentStore::getStore()->getComment( 'cuc_comment', $row )->text
+			!MediaWikiServices::getInstance()
+				->getCommentStore()
+				->getComment( 'cuc_comment', $row )->text
 		) {
 			return false;
 		}
@@ -110,7 +112,9 @@ class CheckUserQuery extends AbstractQuery {
 	 * @return false|array{0:string,1:UUID,2:UUID} Array with workflow and revision id, or false on error
 	 */
 	protected function extractActionAndIds( $row ) {
-		$comment = CheckUserCommentStore::getStore()->getComment( 'cuc_comment', $row )->text;
+		$comment = MediaWikiServices::getInstance()
+			->getCommentStore()
+			->getComment( 'cuc_comment', $row )->text;
 		$data = explode( ',', $comment );
 
 		// anything not prefixed v1 is a pre-versioned check user comment
