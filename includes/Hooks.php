@@ -626,6 +626,7 @@ class Hooks {
 			if ( isset( $links['namespaces']['topic_talk'] ) ) {
 				// hide discussion page in Topic namespace(which is already discussion)
 				unset( $links['namespaces']['topic_talk'] );
+				unset( $links['associated-pages']['topic_talk'] );
 				// hide protection (topic protection is done via moderation)
 				unset( $links['actions']['protect'] );
 				// topic pages are also not movable
