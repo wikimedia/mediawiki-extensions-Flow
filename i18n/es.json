@@ -48,6 +48,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Ya no {{GENDER:$3|vigilas}} «$1»",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Puedes}} vigilar [$2 este tema] en cualquier momento.",
 	"flow-desc": "Sistema de discusión",
+	"nstab-topic": "Tema",
 	"flow-talk-taken-over-comment": "/* Esta página se convirtió en un panel de Discusiones estructuradas */",
 	"log-name-flow": "Registro de actividad de Discusiones estructuradas",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borró}} una [$4 publicación] sobre «[[$3|$5]]» en [[$6]]",

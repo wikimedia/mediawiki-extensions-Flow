@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Rapsar"
 		]
 	},
 	"apihelp-flow-description": "Yapısal Tartışmalar sayfalarında işlem yapılmasına izin verir.",
@@ -17,7 +18,7 @@
 	"apihelp-flow+close-open-topic-param-reason": "Konuyu kilitleme veya kilidini açma nedeni.",
 	"apihelp-flow+edit-header-description": "Bir pano açıklamasını düzenler.",
 	"apihelp-flow+edit-header-summary": "Bir pano açıklamasını düzenler.",
-	"apihelp-flow+edit-header-param-prev_revision": "Düzenleme çakışmalarını kontrol etmek için mevcut açıklama revizyonun kimliği.",
+	"apihelp-flow+edit-header-param-prev_revision": "Değişiklik çakışmalarını kontrol etmek için mevcut açıklama revizyonun kimliği.",
 	"apihelp-flow+edit-header-param-content": "Açıklama içeriği.",
 	"apihelp-flow+edit-header-param-format": "Açıklamanın biçimi (wikitext|html)",
 	"apihelp-flow+edit-header-example-1": "[[Talk:Sandbox]] açıklamasını düzenleyin",
