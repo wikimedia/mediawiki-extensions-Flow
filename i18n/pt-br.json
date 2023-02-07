@@ -25,7 +25,8 @@
 			"Teles",
 			"TheEduGobi",
 			"Tuliouel",
-			"Walesson"
+			"Walesson",
+			"Re demz"
 		]
 	},
 	"enablestructureddiscussions": "Ativar o Flow",
@@ -36,6 +37,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Você}} não está mais vigiando \"$1\"",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Você}} pode vigiar [$2 este tópico] a qualquer momento.",
 	"flow-desc": "Sistema de discussão",
+	"nstab-topic": "Tópico",
 	"flow-talk-taken-over-comment": "/* Esta página foi convertida em um quadro de Discussões Estruturadas */",
 	"log-name-flow": "Registo de atividade das conversas estruturadas",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|excluiu}} uma [$4 publicação] sobre \"[[$3|$5]]\" em [[$6]]",
