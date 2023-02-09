@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"EpicPupper",
 			"Erik Bernhardson",
 			"Matthias Mullie",
 			"Benny Situ",
@@ -490,7 +491,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Structured Discussions Archive %d\n%s/Structured DiscussionsArchive%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Please confirm you are a human by solving the below CAPTCHA: $1",
 	"flow-spam-confirmedit-using-failure": "There was a technical error with the CAPTCHA. If you are unable to submit your change, please copy your text, reload, and try again.",
-	"flow-embedding-unsupported": "Discussions cannot be embedded yet.",
+	"flow-embedding-unsupported": "StructuredDiscussions boards cannot be transcluded.",
 	"mw-ui-unsubmitted-confirm": "You have unsubmitted changes on this page. Are you sure you want to navigate away and lose your work?",
 	"flow-post-undo-hide": "undo hide",
 	"flow-post-undo-delete": "undo delete",
