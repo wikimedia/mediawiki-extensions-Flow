@@ -453,7 +453,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Strukturierte-Diskussionen-Archiv %d\n%s/StrukturierteDiskussionenArchiv%d\n%s/Flow-Archiv %d\n%s/FlowArchiv%d",
 	"flow-spam-confirmedit-form": "Bitte bestätige, dass du ein Mensch bist, indem du das unten stehende CAPTCHA löst: $1",
 	"flow-spam-confirmedit-using-failure": "Es gab einen technischen Fehler mit dem CAPTCHA. Falls du deine Änderung nicht speichern kannst, kopiere bitte deinen Text, lade die Seite erneut und versuche es noch einmal.",
-	"flow-embedding-unsupported": "Diskussionen können noch nicht eingebettet werden.",
+	"flow-embedding-unsupported": "Boards für strukturierte Diskussionen können nicht eingeschlossen werden.",
 	"mw-ui-unsubmitted-confirm": "Du hast auf dieser Seite ungespeicherte Änderungen. Bist du sicher, dass du diese Seite verlassen möchtest und die Arbeit verloren gehen soll?",
 	"flow-post-undo-hide": "Verstecken rückgängig gemacht",
 	"flow-post-undo-delete": "Löschen rückgängig gemacht",

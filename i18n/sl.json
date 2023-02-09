@@ -445,7 +445,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Arhiv Strukturiranih razprav %d\n%s/ArhivStrukturiranih razprav%d\n%s/Arhiv Toka %d\n%s/ArhivToka%d",
 	"flow-spam-confirmedit-form": "Potrdite, da ste človek, tako da rešite spodnjo uganko CAPTCHA: $1",
 	"flow-spam-confirmedit-using-failure": "Pri uganki CAPTCHA je prišlo do tehnične napake. Če vam spremembe ne bo uspelo poslati, kopirajte svoje besedilo, znova naložite stran in poskusite znova.",
-	"flow-embedding-unsupported": "Razprav še ni mogoče vključiti.",
+	"flow-embedding-unsupported": "Strukturiranih razprav še ni mogoče vključiti.",
 	"mw-ui-unsubmitted-confirm": "Na tej strani imate neshranjene spremembe. Ali res želite oditi in izgubiti svoje delo?",
 	"flow-post-undo-hide": "razveljavi skritje",
 	"flow-post-undo-delete": "razveljavi izbris",
