@@ -439,7 +439,7 @@ class OptInController {
 		if ( $revision ) {
 			$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
 			if ( $content instanceof WikitextContent ) {
-				return $content->getNativeData();
+				return $content->getText();
 			}
 		}
 
