@@ -624,7 +624,8 @@ class OptInController {
 		$output = $parser->parse( $content, $title, new ParserOptions( $this->user ) );
 		$sections = $output->getSections();
 		if ( $sections ) {
-			$content = substr( $content, 0, $sections[0]['byteoffset'] );
+			# T319141: `byteoffset` is actually a *codepoint* offset.
+			$content = mb_substr( $content, 0, $sections[0]['byteoffset'] );
 		}
 		return TemplateHelper::extractTemplates( $content, $title );
 	}
