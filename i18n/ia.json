@@ -439,7 +439,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Archivo de Discussiones Structurate %d\n%s/ArchivoDiscussionesStructurate%d\n%s/Archivo Flow %d\n%s/ArchivoFlow%d",
 	"flow-spam-confirmedit-form": "Per favor confirma que tu es un esser human resolvente le CAPTCHA sequente: $1",
 	"flow-spam-confirmedit-using-failure": "Un error technic ha occurrite con le CAPTCHA. Si non es possibile submitter tu modification, per favor copia tu texto, recarga le pagina, e tenta lo de novo.",
-	"flow-embedding-unsupported": "Discussiones non pote ancora esser incastrate.",
+	"flow-embedding-unsupported": "Le tabulieros de discussiones structurate non pote esser transcludite.",
 	"mw-ui-unsubmitted-confirm": "Tu ha modificationes non submittite sur iste pagina. Es tu secur que tu vole exir del pagina e perder tu modificationes?",
 	"flow-post-undo-hide": "celamento disfacite",
 	"flow-post-undo-delete": "deletion disfacite",

@@ -493,7 +493,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Structured Discussions Archive %d\n%s/Structured DiscussionsArchive%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Veuillez confirmer que vous êtes un humain en résolvant le CAPTCHA suivant : $1",
 	"flow-spam-confirmedit-using-failure": "Une erreur technique s’est produite avec le CAPTCHA. Si vous ne pouvez pas soumettre vos modifications, veuillez copier votre texte, recharger la page et essayer à nouveau.",
-	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées.",
+	"flow-embedding-unsupported": "Les tableaux de StructuresDiscussions ne peuvent pas être incorporées.",
 	"mw-ui-unsubmitted-confirm": "Vous avez des modifications non enregistrées sur cette page. Êtes-vous sûr(e) de vouloir la quitter et perdre ainsi votre travail ?",
 	"flow-post-undo-hide": "réaffichage",
 	"flow-post-undo-delete": "annulation de la suppression",

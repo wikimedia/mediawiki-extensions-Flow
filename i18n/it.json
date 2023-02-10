@@ -448,7 +448,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Archivio discussioni strutturate %d\n%s/ArchivioDiscussioniStrutturate%d\n%s/ArchivioStructuredDiscussions%d\n%s/Archivio Flow %d\n%s/ArchivioFlow%d",
 	"flow-spam-confirmedit-form": "Conferma che sei una persona risolvendo il CAPTCHA qui sotto: $1",
 	"flow-spam-confirmedit-using-failure": "Si è verificato un errore tecnico con il CAPTCHA. Se non è possibile inviare la modifica, copia il testo, ricarica e riprova.",
-	"flow-embedding-unsupported": "Gli argomenti non possono essere incorporati, ancora.",
+	"flow-embedding-unsupported": "Le bacheca delle discussioni strutturate non possono essere trascluse.",
 	"mw-ui-unsubmitted-confirm": "Ci sono modifiche non salvate su questa pagina. Sei sicuro di vole uscire e perderle?",
 	"flow-post-undo-hide": "rendo visibile",
 	"flow-post-undo-delete": "ripristino",
