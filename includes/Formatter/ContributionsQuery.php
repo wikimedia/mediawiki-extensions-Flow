@@ -56,9 +56,10 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @param array $rangeOffsets Query range, in the format of [ endOffset, startOffset ]
 	 * @return FormatterRow[]
 	 */
-	public function getResults( $pager, $offset, $limit, $descending ) {
+	public function getResults( $pager, $offset, $limit, $descending, $rangeOffsets = [] ) {
 		// When ORES hidenondamaging filter is used, Flow entries should be skipped
 		// because they are not scored.
 		if ( $pager->getRequest()->getBool( 'hidenondamaging' ) ) {
@@ -66,7 +67,7 @@ class ContributionsQuery extends AbstractQuery {
 		}
 
 		// build DB query conditions
-		$conditions = $this->buildConditions( $pager, $offset, $descending );
+		$conditions = $this->buildConditions( $pager, $offset, $descending, $rangeOffsets );
 
 		$types = [
 			// revision class => block type
@@ -131,9 +132,10 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @param array $rangeOffsets Query range, in the format of [ endOffset, startOffset ]
 	 * @return array Query conditions
 	 */
-	protected function buildConditions( $pager, $offset, $descending ) {
+	protected function buildConditions( $pager, $offset, $descending, $rangeOffsets = [] ) {
 		$conditions = [];
 
 		$isContribsPager = $pager instanceof ContribsPager;
@@ -153,12 +155,21 @@ class ContributionsQuery extends AbstractQuery {
 			$conditions['rev_type'] = 'post';
 		}
 
+		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		// Make offset parameter.
 		if ( $offset ) {
-			$dbr = $this->dbFactory->getDB( DB_REPLICA );
 			$offsetUUID = UUID::getComparisonUUID( $offset );
 			$direction = $descending ? '>' : '<';
-			$conditions[] = "rev_id $direction " . $dbr->addQuotes( $offsetUUID->getBinary() );
+			$conditions[] = $dbr->buildComparison( $direction, [ 'rev_id' => $offsetUUID->getBinary() ] );
+		}
+		if ( $rangeOffsets ) {
+			$endUUID = UUID::getComparisonUUID( $rangeOffsets[0] );
+			$conditions[] = $dbr->buildComparison( '<', [ 'rev_id' => $endUUID->getBinary() ] );
+			// The DeletedContribsPager is only a ReverseChronologicalPager for now.
+			if ( count( $rangeOffsets ) > 1 && $rangeOffsets[1] ) {
+				$startUUID = UUID::getComparisonUUID( $rangeOffsets[1] );
+				$conditions[] = $dbr->buildComparison( '>=', [ 'rev_id' => $startUUID->getBinary() ] );
+			}
 		}
 
 		// Find only within requested wiki/namespace
