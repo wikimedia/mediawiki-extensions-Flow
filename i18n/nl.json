@@ -454,7 +454,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Gestructureerde Discussies Archief %d\n%s/Gestructureerde DiscussiesArchief%d\n%s/Flow Archief %d\n%s/FlowArchief%d",
 	"flow-spam-confirmedit-form": "Bevestig alstublieft dat u een mens bent door onderstaande captcha op te lossen: $1",
 	"flow-spam-confirmedit-using-failure": "Er was een technische fout met de CAPTCHA. Als u niet in staat bent om uw verandering in te dienen, kopieer dan uw tekst, ververs en probeer opnieuw.",
-	"flow-embedding-unsupported": "Overleg kan nog niet ingebed worden.",
+	"flow-embedding-unsupported": "StructuredDiscussion-borden kunnen niet worden ingebed.",
 	"mw-ui-unsubmitted-confirm": "U hebt nog niet opgeslagen wijzigingen op deze pagina. Weet u zeker dat u door weg te gaan van deze pagina uw wijzigingen wilt verliezen?",
 	"flow-post-undo-hide": "verbergen ongedaan maken",
 	"flow-post-undo-delete": "verwijderen ongedaan maken",
