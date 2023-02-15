@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Patriot Kur"
+			"Patriot Kur",
+			"Patriot Kor"
 		]
 	},
 	"flow-cancel": "Ləğv karde",
-	"flow-history-day": "Imruj"
+	"flow-post-action-hide-post": "Niyon bıkə",
+	"flow-history-day": "Imruj",
+	"flow-moderation-confirm-hide-topic": "Niyon bıkə"
 }
