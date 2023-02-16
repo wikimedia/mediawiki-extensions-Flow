@@ -37,7 +37,7 @@
 	"flow-hide-title-content": "ХӀара тема хьулдина {{GENDER:$1|декъашхочо}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|Декъашхочо}} $2 къайладаьккхина",
 	"flow-delete-post-content": "ХӀара къамел дӀадаьккхина {{GENDER:$1|декъашхочо}} $1",
-	"flow-post-actions": "дийраш",
+	"flow-post-actions": "Дийраш",
 	"flow-topic-actions": "Дийраш",
 	"flow-cancel": "Цаоьшу",
 	"flow-skip-summary": "Дехьа гӀо",
