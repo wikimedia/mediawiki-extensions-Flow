@@ -6,6 +6,7 @@
 			"ToniSant"
 		]
 	},
+	"flow-topic-moderated-reason-prefix": "Raġuni:",
 	"flow-post-actions": "Azzjonijiet",
 	"flow-newtopic-content-placeholder": "Ikteb messaġġ ġdid fuq \"$1\"",
 	"flow-reply-topic-title-placeholder": "Wieġeb lil \"$1\"",
