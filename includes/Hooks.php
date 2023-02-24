@@ -1658,11 +1658,14 @@ class Hooks {
 	 * @return bool
 	 */
 	private static function isBetaFeatureAvailable() {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' ) ) {
+			return false;
+		}
+
 		$config = RequestContext::getMain()->getConfig();
 		$betaFeaturesAllowList = $config->get( 'BetaFeaturesAllowList' );
 
 		return $config->get( 'FlowEnableOptInBetaFeature' )
-			&& ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' )
 			&& (
 				!is_array( $betaFeaturesAllowList )
 				|| in_array( BETA_FEATURE_FLOW_USER_TALK_PAGE, $betaFeaturesAllowList )
