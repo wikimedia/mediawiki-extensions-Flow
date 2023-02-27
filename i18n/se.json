@@ -5,6 +5,7 @@
 			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
+	"flow-cancel": "Šluhtte",
 	"flow-show-change": "Čájet rievdadusaid",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Giitte}}}}",
 	"flow-history-action-delete-post": "sihko",
