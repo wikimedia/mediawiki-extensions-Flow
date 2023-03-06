@@ -5,6 +5,7 @@
 			"Rooiratel"
 		]
 	},
+	"flow-post-actions": "Aksies",
 	"flow-summary-authored": "Opsomming deur $1",
 	"flow-newtopic-save": "Voeg onderwerp by",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Jy is}} ingeteken op hierdie besprekingsbord!"
