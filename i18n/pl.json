@@ -42,7 +42,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Możesz}} obserwować [$2 ten wątek] w dowolnym momencie.",
 	"flow-desc": "System dyskusji",
 	"nstab-topic": "Wątek",
-	"flow-talk-taken-over-comment": "/* Ta strona została przekształcona na forum dyskusyjne Flow */",
+	"flow-talk-taken-over-comment": "/* Ta strona została przekształcona na forum dyskusyjne Dyskusji Strukturyzowanych */",
 	"log-name-flow": "Rejestr aktywności Dyskusji Strukturalnych",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|usunął|usunęła}} [$4 post] z „[[$3|$5]]” na [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|usunął|usunęła}} post w wątku w [[$3]]",
