@@ -159,7 +159,7 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public function testCreateLowNumber() {
-		$this->assertEquals( UUID::create( 10 )->getAlphadecimal(), '000000000000000a' );
+		$this->assertSame( '000000000000000a', UUID::create( 10 )->getAlphadecimal() );
 	}
 
 	public static function uuidProvider() {

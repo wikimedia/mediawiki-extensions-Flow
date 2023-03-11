@@ -33,7 +33,7 @@ class EmptyNodeFixerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 1, $notemptyLink->childNodes->length, 'non-empty link has one child after fixer' );
 		$this->assertSame( 1, $emptyLink->childNodes->length, 'empty link has one child after fixer' );
-		$this->assertEquals( $emptyLink->childNodes->item( 0 )->nodeType, XML_TEXT_NODE, 'empty link child is a text node' );
+		$this->assertEquals( XML_TEXT_NODE, $emptyLink->childNodes->item( 0 )->nodeType, 'empty link child is a text node' );
 		$this->assertSame( '', $emptyLink->childNodes->item( 0 )->data, 'empty link child text node is empty' );
 		$this->assertSame( 1, $imageLink->childNodes->length, 'image link has one child after fixer' );
 		$this->assertSame( 0, $imageNode->childNodes->length, 'img has no children after fixer' );
