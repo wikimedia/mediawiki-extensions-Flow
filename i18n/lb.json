@@ -4,7 +4,8 @@
 			"Les Meloures",
 			"Nnemo",
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"enablestructureddiscussions": "Flow aktivéieren",
@@ -180,7 +181,7 @@
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|huet}} een neie Sujet iwwer $2 ugeluecht",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Een neie Sujet|100=99 oder méi nei Sujeten}} op $2",
 	"echo-category-title-flow-discussion": "Strukturéiert Diskussioun",
-	"echo-pref-tooltip-flow-discussion": "Mech informéiere iwwer Aktivitéit op Sujeten oder Säiten Aktiounen déi ech iwwerwaachen.",
+	"echo-pref-tooltip-flow-discussion": "Mech informéieren iwwer Aktivitéit op Sujeten oder Säiten, déi ech iwwerwaachen.",
 	"flow-link-topic": "Thema",
 	"flow-link-history": "Versiounen",
 	"flow-link-post-revision": "Versioun vun der Matdeelung",
