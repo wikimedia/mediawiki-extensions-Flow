@@ -23,7 +23,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.38.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"callback": "Flow\\Hooks::registerExtension",
 	"APIModules": {
@@ -621,7 +621,9 @@
 			"images": {
 				"newestTopics": {
 					"file": "styles/flow/images/newestTopics.svg",
-					"variants": [ "progressive" ]
+					"variants": [
+						"progressive"
+					]
 				},
 				"topicCollapse": {
 					"file": {
