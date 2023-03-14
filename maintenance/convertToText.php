@@ -112,6 +112,9 @@ class ConvertToText extends Maintenance {
 			'page' => $title->getPrefixedText(),
 		] );
 
+		if ( isset( $result['error'] ) ) {
+			$this->fatalError( $result['error']['info'] );
+		}
 		return $result['flow'][$submodule]['result'];
 	}
 
