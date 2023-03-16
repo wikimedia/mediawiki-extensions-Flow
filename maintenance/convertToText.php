@@ -83,7 +83,7 @@ class ConvertToText extends Maintenance {
 			if ( isset( $topicListBlock['links']['pagination'] ) ) {
 				$paginationLinks = $topicListBlock['links']['pagination'];
 				if ( isset( $paginationLinks['fwd'] ) ) {
-					list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
+					[ $junk, $query ] = explode( '?', $paginationLinks['fwd']['url'] );
 					$queryParams = wfCgiToArray( $query );
 
 					$pagerParams = [
@@ -227,20 +227,18 @@ class ConvertToText extends Maintenance {
 		$nickname = $this->getOption( 'remoteapi' ) ? null : false;
 		$fancysig = $this->getOption( 'remoteapi' ) ? false : null;
 
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		// Parser::getUserSig can end calling `getCleanSignatures` on
 		// mOptions, which may not be set. Set a dummy options object so it
 		// doesn't fail (it'll initialise the requested value from a global
 		// anyway)
 		$options = ParserOptions::newFromAnon();
-		$old = $parser->getOptions();
 		$parser->startExternalParse( $this->pageTitle, $options, Parser::OT_WIKI );
 		$signature = $parser->getUserSig( $user, $nickname, $fancysig );
 		$signature = $parser->getStripState()->unstripBoth( $signature );
 		if ( $timestamp ) {
 			$signature .= ' ' . $this->formatTimestamp( $timestamp );
 		}
-		$parser->setOptions( $old );
 		return $signature;
 	}
 
