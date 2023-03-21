@@ -11,7 +11,8 @@
 			"Macofe",
 			"Nnemo",
 			"Stephanecbisson",
-			"Tarjeimo"
+			"Tarjeimo",
+			"EdoAug"
 		]
 	},
 	"enablestructureddiscussions": "Aktiver Flow",
@@ -94,7 +95,7 @@
 	"flow-newtopic-start-placeholder": "Start en ny sak",
 	"flow-newtopic-first-heading": "Start en ny sak på «$1»",
 	"flow-summarize-topic-placeholder": "Sammenfatt denne diskusjonen",
-	"flow-reply-topic-placeholder": "{{GENDER:$1|Kommentér}} på «$2»",
+	"flow-reply-topic-placeholder": "{{GENDER:$1|Kommenter}} på «$2»",
 	"flow-reply-topic-title-placeholder": "Svar på «$1»",
 	"flow-reply-link": "{{GENDER:$1|Svar}}",
 	"flow-reply-link-anonymously": "Svar anonymt",
