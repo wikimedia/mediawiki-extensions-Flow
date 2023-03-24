@@ -342,19 +342,11 @@
 				"flow-wikitext-editor-help-and-preview",
 				"flow-wikitext-editor-help-uses-wikitext",
 				"flow-wikitext-editor-help-preview-the-result"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.mediawiki.ui.form": {
 			"styles": [
 				"styles/mediawiki.ui/forms.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.styles.base": {
@@ -378,10 +370,6 @@
 				"styles/board/topic/post.less",
 				"styles/board/topic/summary.less",
 				"styles/board/topic/watchlist.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"mediawiki.template.handlebars": {
@@ -393,10 +381,6 @@
 			],
 			"dependencies": [
 				"mediawiki.template"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.components": {
@@ -418,10 +402,6 @@
 				"mediawiki.user",
 				"mediawiki.Uri",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.ui": {
@@ -524,10 +504,6 @@
 				"mediawiki.editfont.styles",
 				"mediawiki.jqueryMsg",
 				"ext.visualEditor.supportCheck"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow": {
@@ -567,10 +543,6 @@
 				"mw-ui-unsubmitted-confirm",
 				"flow-reply-link",
 				"flow-reply-link-anonymously"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.visualEditor": {
@@ -610,8 +582,7 @@
 				"flow-ve-mention-inspector-invalid-user",
 				"flow-ve-mention-placeholder",
 				"flow-ve-mention-tool-title"
-			],
-			"targets": [ "desktop" ]
+			]
 		},
 		"ext.flow.visualEditor.icons": {
 			"class": "ResourceLoaderImageModule",
@@ -644,19 +615,11 @@
 		"ext.flow.jquery.conditionalScroll": {
 			"scripts": [
 				"engine/misc/jquery.conditionalScroll.js"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.flow.jquery.findWithParent": {
 			"scripts": [
 				"engine/misc/jquery.findWithParent.js"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		}
 	},
