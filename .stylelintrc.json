@@ -4,7 +4,6 @@
 		"no-descending-specificity": null,
 		"selector-no-vendor-prefix": null,
 		"value-keyword-case": null,
-		"declaration-property-unit-disallowed-list": null,
-		"selector-pseudo-element-colon-notation": null
+		"declaration-property-unit-disallowed-list": null
 	}
 }
