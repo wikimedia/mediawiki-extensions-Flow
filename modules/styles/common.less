@@ -92,7 +92,7 @@
 
 /* Decorate as a pipelist, ex: (foo | bar | baz) */
 .flow-pipelist {
-	span ~ span:before {
+	span ~ span::before {
 		content: ' | ';
 	}
 }
@@ -182,7 +182,7 @@
 			box-shadow: none;
 		}
 
-		.flow-board-header:before {
+		.flow-board-header::before {
 			content: '';
 			display: block;
 			position: absolute;
@@ -226,7 +226,7 @@
 			}
 		}
 
-		.flow-board-header:before {
+		.flow-board-header::before {
 			width: 30px;
 		}
 
@@ -278,16 +278,16 @@
 			&:first-of-type {
 				border-top: 0;
 
-				&:before {
+				&::before {
 					content: '(';
 				}
 			}
 
-			& + li:before {
+			& + li::before {
 				content: ' | ';
 			}
 
-			&:last-of-type:after {
+			&:last-of-type::after {
 				content: ')';
 			}
 		}
@@ -325,21 +325,21 @@ body.ns-3 {
 	min-width: @mw-ui-icon-size-flow;
 	min-height: @mw-ui-icon-size-flow;
 
-	&.mw-ui-icon-before:before {
+	&.mw-ui-icon-before::before {
 		width: @mw-ui-icon-size-flow;
 		min-height: @mw-ui-icon-size-flow;
 		margin-right: 0.5em;
 	}
 
-	&.mw-ui-icon-before:after {
+	&.mw-ui-icon-before::after {
 		margin-left: 0.5em;
 	}
 
-	&.mw-ui-icon-before.mw-ui-icon-only:before {
+	&.mw-ui-icon-before.mw-ui-icon-only::before {
 		margin-right: 0;
 	}
 
-	&.mw-ui-icon-before.mw-ui-icon-only:after {
+	&.mw-ui-icon-before.mw-ui-icon-only::after {
 		margin-left: 0;
 	}
 }

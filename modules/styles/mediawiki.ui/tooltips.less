@@ -49,7 +49,7 @@ Styleguide 4.0.
 		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
 
-		&:after {
+		&::after {
 			content: '';
 			position: absolute;
 			z-index: 1;
@@ -104,7 +104,7 @@ Styleguide 4.0.
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( horizontal, top );
 
-			&:after {
+			&::after {
 				top: 0.5em;
 				/* @noflip */
 				left: 0.5em;
@@ -121,7 +121,7 @@ Styleguide 4.0.
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( horizontal, bottom );
 
-			&:after {
+			&::after {
 				top: -0.5em;
 				/* @noflip */
 				left: 0.5em;
@@ -139,7 +139,7 @@ Styleguide 4.0.
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( vertical, left );
 
-			&:after {
+			&::after {
 				margin-top: -1px;
 				top: 0.5em;
 				/* @noflip */
@@ -158,7 +158,7 @@ Styleguide 4.0.
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( vertical, right );
 
-			&:after {
+			&::after {
 				margin-top: -1px;
 				top: 0.5em;
 				/* @noflip */
@@ -176,21 +176,21 @@ Styleguide 4.0.
 		box-shadow: 0 2px 0 0 @backgroundColorDarkened;
 		color: #fff;
 
-		.flow-ui-tooltip-triangle:after {
+		.flow-ui-tooltip-triangle::after {
 			background: @backgroundColor;
 		}
 
-		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle:after {
+		&.flow-ui-tooltip-down .flow-ui-tooltip-triangle::after {
 			/* @noflip */
 			box-shadow: 0 -2px 0 2px @backgroundColorDarkened;
 		}
 
-		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle:after {
+		&.flow-ui-tooltip-left .flow-ui-tooltip-triangle::after {
 			/* @noflip */
 			box-shadow: 2px 0 0 2px @backgroundColorDarkened;
 		}
 
-		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle:after {
+		&.flow-ui-tooltip-right .flow-ui-tooltip-triangle::after {
 			/* @noflip */
 			box-shadow: 0 2px 0 2px @backgroundColorDarkened;
 		}
