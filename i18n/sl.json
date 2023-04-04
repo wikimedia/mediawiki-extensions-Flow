@@ -40,7 +40,7 @@
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 je znova {{GENDER:$2|odprl|odprla|odprl_a}} temo na strani [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] na strani [[$3]] je bila uvožena iz Tekočih niti v Strukturirane razprave",
 	"abusefilter-edit-builder-vars-board-id": "ID strani panela Strukturiranih razprav",
-	"abusefilter-edit-builder-vars-board-namespace": "Imenski prostor strani Strukturiranih razprav",
+	"abusefilter-edit-builder-vars-board-namespace": "Imenski prostor panela Strukturiranih razprav",
 	"abusefilter-edit-builder-vars-board-title": "Naslov (brez imenskega prostora) panela Strukturiranih razprav",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Celotni naslov strani Strukturiranih razprav",
 	"flow-user-moderated": "Moderirani uporabnik",
