@@ -402,7 +402,7 @@
 	"flow-revision-permalink-warning-postsummary-first": "此頁為此貼文摘要第一個版本的靜態連結。\n您可以於 [$4 貼文歷史頁面] 檢視之後的版本。",
 	"flow-revision-permalink-warning-header": "此頁為描述單一版本的靜態連結。此版本來自$1。您可以查看[$3 與先前版本的差異]，或於[$2 討論板歷史頁面]檢視其他的版本。",
 	"flow-revision-permalink-warning-header-first": "此頁為描述第一個版本的靜態連結。\n您可以於 [$2 留言板歷史頁面] 檢視之後的版本。",
-	"flow-compare-revisions-revision-header": "版本由 {{GENDER:$2|$2}} 完成於 $1",
+	"flow-compare-revisions-revision-header": "{{GENDER:$2|$2}}發布於$1的版本",
 	"flow-compare-revisions-header-post": "此頁面顯示由 $3 於 [$4 $1] 發表的 \"[$5 $2]\" 話題兩個版本之間的變更。\n您可以於 [$6 歷史頁面] 查閱此貼文的其他版本。",
 	"flow-compare-revisions-header-postsummary": "此頁面顯示於 [$3 $1] 的話題 \"[$4 $2]\" 中摘要兩個版本之間的變更。\n您可以於話題的[$5 歷史頁面]查看此話題摘要的其他版本。",
 	"flow-compare-revisions-header-header": "此頁面顯示於 [$3 $1] 中描述兩個版本之間的{{GENDER:$2|變更}}。\n您可以於 [$4 歷史頁面] 查看該描述的其他版本。",
