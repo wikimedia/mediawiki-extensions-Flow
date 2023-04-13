@@ -596,7 +596,9 @@
 			"images": {
 				"newestTopics": {
 					"file": "styles/flow/images/newestTopics.svg",
-					"variants": [ "progressive" ]
+					"variants": [
+						"progressive"
+					]
 				},
 				"topicCollapse": {
 					"file": {

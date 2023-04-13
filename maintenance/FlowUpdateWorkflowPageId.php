@@ -13,11 +13,11 @@ use Flow\OccupationController;
 use Language;
 use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubUserLang;
 use RawMessage;
 use RowUpdateGenerator;
 use Status;
 use stdClass;
-use StubUserLang;
 use Title;
 use WikiMap;
 
