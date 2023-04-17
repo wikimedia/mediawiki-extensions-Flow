@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"IND-ANP",
 			"Proabscorp!"
 		]
 	},
-	"flow-topic-action-update-topic-summary": "सारांश अपडेट करौ"
+	"flow-topic-action-update-topic-summary": "सारांश अपडेट करौ",
+	"flow-terms-of-use-reply": "\"{{int:flow-reply-link}}\" प क्लिक करी क तोंय हैय विकि केरौ उपयोग केरौ शर्त सिनी क स्वीकार करी रहलौ छौ।"
 }
