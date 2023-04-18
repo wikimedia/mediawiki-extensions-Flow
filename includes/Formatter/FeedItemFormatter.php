@@ -2,9 +2,9 @@
 
 namespace Flow\Formatter;
 
-use FeedItem;
 use Flow\Exception\FlowException;
 use IContextSource;
+use MediaWiki\Feed\FeedItem;
 
 class FeedItemFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
