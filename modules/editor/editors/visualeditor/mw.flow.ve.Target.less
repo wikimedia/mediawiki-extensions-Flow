@@ -1,12 +1,11 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
-@import '../../../styles/flow.variables';
+@import '../../../styles/flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 // TODO most of this should move to EditorWidget.less once the old editor system
 // has been removed
 .flow-component {
 	.ve-init-target {
-		border: 1px solid #c8ccd1;
+		border: @border-subtle;
 	}
 
 	.ve-ce-documentNode,

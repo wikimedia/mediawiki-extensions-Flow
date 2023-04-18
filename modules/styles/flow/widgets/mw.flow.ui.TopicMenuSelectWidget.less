@@ -1,3 +1,6 @@
+@import '../../flow.colors.less';
+@import '../../flow.variables.less';
+
 .flow-ui-topicMenuSelectWidget {
 	position: relative;
 	overflow-y: auto;
@@ -8,7 +11,7 @@
 	}
 
 	// Override border-color and margin-top from OOUI MenuSelectWidget
-	border-color: #c8ccd1;
+	border-color: @border-color-subtle;
 	margin-top: 0;
 
 	// Override hidden scrollbars configuration in OS X users

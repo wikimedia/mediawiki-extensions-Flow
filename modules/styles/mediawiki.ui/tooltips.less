@@ -1,5 +1,6 @@
-@import 'mediawiki.mixins';
-@import '../flow.colors';
+@import '../flow.colors.less';
+@import '../flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 /*
 Tooltips
@@ -17,7 +18,7 @@ Styleguide 4.0.
  */
 .flow-ui-tooltip {
 	background-color: @background-color-base;
-	color: @colorText;
+	color: @color-base;
 	position: relative;
 	top: 1px;
 	display: inline-block;
@@ -109,7 +110,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				box-shadow: 0 0 1px 0 @colorGray12;
+				box-shadow: 0 0 1px 0 #c8ccd1;
 			}
 		}
 	}
@@ -126,7 +127,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: 0.5em;
 				/* @noflip */
-				box-shadow: 0 -1.5px 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
+				box-shadow: 0 -1.5px 0 1.5px #c8ccd1, 0 0 1px 0 #c8ccd1;
 			}
 		}
 	}
@@ -145,7 +146,7 @@ Styleguide 4.0.
 				/* @noflip */
 				right: -0.5em;
 				/* @noflip */
-				box-shadow: 1.5px 0 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
+				box-shadow: 1.5px 0 0 1.5px #c8ccd1, 0 0 1px 0 #c8ccd1;
 			}
 		}
 	}
@@ -164,7 +165,7 @@ Styleguide 4.0.
 				/* @noflip */
 				left: -0.5em;
 				/* @noflip */
-				box-shadow: 0 1.5px 0 1.5px @colorGray12, 0 0 1px 0 @colorGray12;
+				box-shadow: 0 1.5px 0 1.5px #c8ccd1, 0 0 1px 0 #c8ccd1;
 			}
 		}
 	}
@@ -205,19 +206,19 @@ Styleguide 4.0.
 	// Don't apply these classes on IE6
 	&[ class ] {
 		&.mw-ui-progressive {
-			.flow-ui-tooltip-color( @colorProgressive );
+			.flow-ui-tooltip-color( @color-progressive );
 
 			.mw-ui-icon {
-				fill: @colorProgressive;
+				fill: @color-progressive;
 			}
 		}
 
 		&.mw-ui-destructive {
-			.flow-ui-tooltip-color( @colorDestructive );
+			.flow-ui-tooltip-color( @color-destructive );
 
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover,
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:focus span {
-				fill: @colorDestructive;
+				fill: @color-destructive;
 			}
 		}
 

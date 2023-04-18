@@ -1,5 +1,6 @@
-@import 'mediawiki.mixins';
-@import '../flow.colors';
+@import '../flow.colors.less';
+@import '../flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 .flow-ui-modal {
 	box-sizing: border-box;
@@ -42,9 +43,9 @@
 	max-height: 97%;
 	// box styling
 	position: relative;
-	box-shadow: 0 4px 0 0 @colorGray12, 0 0 0 1px @colorGray12;
+	box-shadow: 0 4px 0 0 #c8ccd1, 0 0 0 1px #c8ccd1;
 	border-radius: @border-radius-base;
-	color: @colorText;
+	color: @color-base;
 	text-align: left;
 }
 
@@ -53,9 +54,9 @@
 	margin: 0.3em 0.3em 0;
 	padding: 0 0.3em;
 	font-weight: bold;
-	color: @colorText;
+	color: @color-base;
 	line-height: 2.2;
-	border-bottom: 1px solid @colorGray12;
+	border-bottom: @border-subtle;
 }
 
 .flow-ui-modal-heading-prev {
@@ -63,8 +64,8 @@
 	padding: 0 0.3em;
 	margin: 0 0.6em 0 -0.3em;
 	height: 100%;
-	border-right: 1px solid @colorGray12;
-	color: @colorTextLight;
+	border-right: @border-subtle;
+	color: @color-subtle;
 }
 
 .flow-ui-modal-heading-next {
@@ -72,8 +73,8 @@
 	padding: 0 0.3em;
 	margin: 0 -0.3em 0 0.6em;
 	height: 100%;
-	border-left: 1px solid @colorGray12;
-	color: @colorTextLight;
+	border-left: @border-subtle;
+	color: @color-subtle;
 }
 
 .flow-ui-modal-content {

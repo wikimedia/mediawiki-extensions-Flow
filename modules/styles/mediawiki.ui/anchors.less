@@ -1,5 +1,6 @@
+@import '../flow.colors.less';
+@import '../flow.variables.less';
 @import 'mediawiki.mixins.less';
-@import '../flow.colors';
 
 // Helpers
 .mixin-mw-ui-anchor-styles( @mainColor ) {
@@ -12,7 +13,7 @@
 	&:focus,
 	&:active {
 		color: darken( @mainColor, @colorDarkenPercentage );
-		outline: 0;
+		outline: @outline-base--focus;
 	}
 
 	// Quiet mode is gray at first
@@ -38,11 +39,11 @@ Markup:
 // Setup compound anchor selectors (such as .mw-ui-anchor.mw-ui-progressive)
 .mw-ui-anchor {
 	&.mw-ui-progressive {
-		.mixin-mw-ui-anchor-styles( @colorProgressive );
+		.mixin-mw-ui-anchor-styles( @color-progressive );
 	}
 
 	&.mw-ui-destructive {
-		.mixin-mw-ui-anchor-styles( @colorDestructive );
+		.mixin-mw-ui-anchor-styles( @color-destructive );
 	}
 }
 

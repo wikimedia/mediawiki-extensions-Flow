@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins';
-@import '../flow.colors';
-@import '../flow.variables';
+@import '../flow.colors.less';
+@import '../flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 // Top board navigation bar
 .flow-board-navigation {
@@ -14,7 +14,7 @@
 
 	.flow-board-navigation-inner {
 		overflow: hidden;
-		border-bottom: 1px solid @colorGray12;
+		border-bottom: @border-subtle;
 		white-space: nowrap;
 	}
 
@@ -29,7 +29,7 @@
 		&:link,
 		&:visited {
 			padding: 0.25em 0.75em;
-			color: @colorTextLight;
+			color: @color-subtle;
 		}
 
 		&:hover,

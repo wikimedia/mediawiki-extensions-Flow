@@ -1,6 +1,6 @@
-@import 'mediawiki.mixins';
-@import '../../flow.colors';
-@import '../../flow.variables';
+@import 'mediawiki.mixins.less';
+@import '../../flow.colors.less';
+@import '../../flow.variables.less';
 
 /* Use value that results in exact pixels to avoid scrollbar flicker. T178685 */
 @highlightedIndent: (3em/14);
@@ -18,7 +18,7 @@ form.flow-post {
 
 .flow-post {
 	position: relative;
-	color: @colorText;
+	color: @color-base;
 	word-wrap: break-word;
 
 	&.flow-post-highlight-newer {
@@ -56,7 +56,7 @@ form.flow-post {
 		font-size: 0.875em;
 		line-height: 1.2;
 		display: inline-block;
-		color: @colorText;
+		color: @color-base;
 		word-wrap: break-word;
 
 		.mw-userlink {
@@ -84,7 +84,7 @@ form.flow-post {
 			/* @noflip */
 			padding-left: 0.5em;
 			/* @noflip */
-			border-left: 1px solid @colorGray12;
+			border-left: @border-subtle;
 		}
 
 		&.flow-post-max-depth .flow-replies {
@@ -138,7 +138,7 @@ form.flow-post {
 			/* @noflip */
 			padding-right: 0.5em;
 			/* @noflip */
-			border-right: 1px solid @colorGray12;
+			border-right: @border-subtle;
 		}
 
 		&.flow-post-max-depth .flow-replies {
@@ -185,7 +185,7 @@ form.flow-post {
 // Comment metadata
 .flow-post-meta {
 	// @todo needs overflow: hidden but crops button border at bottom
-	color: @colorGray7;
+	color: #72777d;
 	font-size: 0.875em;
 
 	.mw-content-ltr & {
@@ -216,7 +216,7 @@ form.flow-post {
 			padding: 0 8px;
 			text-decoration: none;
 			display: inline-block;
-			color: @colorGray7;
+			color: #72777d;
 		}
 
 		&:last-child {

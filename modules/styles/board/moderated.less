@@ -1,17 +1,19 @@
-@import 'mediawiki.mixins';
-@import '../flow.colors';
+
+@import '../flow.colors.less';
+@import '../flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 // Visually mark locked topics
 .flow-topic-moderatestate-lock {
 	.flow-topic-titlebar {
-		background-color: @colorGray15;
+		background-color: #f8f9fa;
 	}
 }
 
 // Entire moderated post element
 .flow-post-moderated .flow-author a,
 .flow-moderated-post-content {
-	color: @colorTextLight;
+	color: @color-subtle;
 }
 
 // hide posts of collapsed topics

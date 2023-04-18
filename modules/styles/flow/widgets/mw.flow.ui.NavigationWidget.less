@@ -1,5 +1,6 @@
-@import 'mediawiki.mixins';
-@import 'mediawiki.ui/variables';
+@import '../../flow.colors.less';
+@import '../../flow.variables.less';
+@import 'mediawiki.mixins.less';
 
 // This should be replaced completely by the navigation widget
 .flow-board-navigation {
@@ -12,7 +13,7 @@
 	width: 100%;
 	z-index: 1;
 	position: relative;
-	border-bottom: 1px solid #c8ccd1;
+	border-bottom: @border-subtle;
 
 	.flow-ui-tocWidget {
 		float: left;
