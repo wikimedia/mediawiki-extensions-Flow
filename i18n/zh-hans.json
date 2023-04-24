@@ -40,7 +40,8 @@
 			"Winston Sung",
 			"SolidBlock",
 			"Diskdance",
-			"Stang"
+			"Stang",
+			"GuoPC"
 		]
 	},
 	"enablestructureddiscussions": "启用结构式讨论",
@@ -417,7 +418,7 @@
 	"flow-revision-permalink-warning-postsummary-first": "这是此帖子摘要的第一个版本的固定链接。您可通过[$4 历史页面]查看其它版本。",
 	"flow-revision-permalink-warning-header": "这是一个指向某个版本的描述的固定链接。版本号从$1中提取。您可以在[$3 这里]看到与上一个版本的不同，或者在[$2 历史记录]中查看其他版本。",
 	"flow-revision-permalink-warning-header-first": "这是此描述的第一个版本的固定链接。您可通过[$2 历史页面]查看其他版本。",
-	"flow-compare-revisions-revision-header": "版本由{{GENDER:$2|$2}}从$1生成",
+	"flow-compare-revisions-revision-header": "{{GENDER:$2|$2}}发布于$1的版本",
 	"flow-compare-revisions-header-post": "此页面显示由$3于[$4 $1]在话题“[$5 $2]”发布帖子的两个版本之间的{{GENDER:$3|更改}}。您可在它的[$6 历史页面]查看此帖子的其它版本。",
 	"flow-compare-revisions-header-postsummary": "本页面显示在[$3 $1]的话题“[$4 $2]”摘要两个版本之间的更改。您可以在话题的[$5 历史页面]查看此话题摘要的其他版本。",
 	"flow-compare-revisions-header-header": "此页面显示[$3 $1]上两个描述版本间的{{GENDER:$2|更改}}。您可通过它的[$4 历史页面]查看其它版本。",

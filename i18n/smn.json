@@ -6,6 +6,7 @@
 			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
+	"flow-board-expand-description": "Čääiti kuvvim",
 	"flow-topic-moderated-reason-prefix": "Suijâ:",
 	"flow-hide-header-content": "{{GENDER:$1|Čiehâm}} $2",
 	"flow-cancel": "Jooskâ",
@@ -44,5 +45,6 @@
 	"flow-moderation-confirmation-hide-post": "Viestâ čiehui.\n{{GENDER:$2|Kuorâttâl}} macâttâs adelem kevttei $1 taan viestâst.",
 	"flow-moderation-confirmation-hide-topic": "Taat fáddá lii čiehhum.",
 	"flow-load-more": "Luođii lase",
-	"flow-ve-mention-inspector-remove-label": "Siho"
+	"flow-ve-mention-inspector-remove-label": "Siho",
+	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Čääiti}} savâstâllâmsiijđo"
 }
