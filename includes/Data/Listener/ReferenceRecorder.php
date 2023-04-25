@@ -14,8 +14,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceExtractor;
 use Flow\Repository\TreeRepository;
+use MediaWiki\WikiMap\WikiMap;
 use SplQueue;
-use WikiMap;
 
 /**
  * Listens for new revisions to be inserted.  Calculates the difference in

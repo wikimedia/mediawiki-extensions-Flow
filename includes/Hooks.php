@@ -49,6 +49,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MessageLocalizer;
 use MWException;
@@ -65,7 +66,6 @@ use stdClass;
 use Title;
 use User;
 use WikiImporter;
-use WikiMap;
 use WikiPage;
 use XMLReader;
 

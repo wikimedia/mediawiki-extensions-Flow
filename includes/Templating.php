@@ -10,7 +10,7 @@ use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
 use Flow\Repository\UserNameBatch;
 use Linker;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * This class is slowly being deprecated. It used to house a minimalist

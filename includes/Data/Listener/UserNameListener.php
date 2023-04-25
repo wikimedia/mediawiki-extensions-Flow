@@ -6,7 +6,7 @@
 namespace Flow\Data\Listener;
 
 use Flow\Repository\UserNameBatch;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Listen for loaded objects and pre-load their user id fields into

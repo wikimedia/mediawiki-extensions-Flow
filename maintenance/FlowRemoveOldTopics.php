@@ -15,7 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Maintenance;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

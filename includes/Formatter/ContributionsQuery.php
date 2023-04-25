@@ -13,7 +13,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use MediaWiki\User\UserIdentityLookup;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ContributionsQuery extends AbstractQuery {

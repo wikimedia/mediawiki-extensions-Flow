@@ -13,10 +13,10 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
 use Maintenance;
+use MediaWiki\WikiMap\WikiMap;
 use ReflectionClass;
 use ReflectionMethod;
 use UnifiedDiffFormatter;
-use WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

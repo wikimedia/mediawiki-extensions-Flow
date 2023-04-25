@@ -19,10 +19,10 @@ use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWTimestamp;
 use RowUpdateGenerator;
 use stdClass;
-use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 

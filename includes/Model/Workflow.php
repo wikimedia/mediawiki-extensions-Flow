@@ -8,11 +8,11 @@ use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
 use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWTimestamp;
 use RequestContext;
 use Title;
 use User;
-use WikiMap;
 
 class Workflow {
 

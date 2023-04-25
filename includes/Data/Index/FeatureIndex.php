@@ -13,7 +13,7 @@ use Flow\Data\ObjectStorage;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use FormatJson;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Index objects with equal features($indexedColumns) into the same buckets.

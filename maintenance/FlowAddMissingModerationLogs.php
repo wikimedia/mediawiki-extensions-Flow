@@ -8,7 +8,7 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use LoggedUpdateMaintenance;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

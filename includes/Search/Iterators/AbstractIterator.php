@@ -8,8 +8,8 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;
+use MediaWiki\WikiMap\WikiMap;
 use stdClass;
-use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 

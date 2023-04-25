@@ -18,9 +18,9 @@ use Flow\OccupationController;
 use MediaWiki\Extension\CentralAuth\CentralAuthServices;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use WikiImporter;
-use WikiMap;
 use XMLReader;
 
 class Importer {

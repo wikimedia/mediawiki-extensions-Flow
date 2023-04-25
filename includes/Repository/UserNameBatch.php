@@ -8,8 +8,8 @@ namespace Flow\Repository;
 use Flow\Model\UserTuple;
 use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use User;
-use WikiMap;
 
 /**
  * Batch together queries for a bunch of wiki+userid -> username

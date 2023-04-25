@@ -7,7 +7,7 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
 use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

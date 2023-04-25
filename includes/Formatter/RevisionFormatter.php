@@ -23,9 +23,9 @@ use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use User;
-use WikiMap;
 use Wikimedia\Timestamp\TimestampException;
 
 /**

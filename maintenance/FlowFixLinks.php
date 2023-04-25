@@ -9,7 +9,7 @@ use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

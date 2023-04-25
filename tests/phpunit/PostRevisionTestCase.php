@@ -15,9 +15,9 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use SplQueue;
 use User;
-use WikiMap;
 use Wikimedia\TestingAccessWrapper;
 
 /**

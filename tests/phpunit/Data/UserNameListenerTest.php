@@ -5,8 +5,8 @@ namespace Flow\Tests\Data;
 use Flow\Data\Listener\UserNameListener;
 use Flow\Repository\UserNameBatch;
 use Flow\Tests\FlowTestCase;
+use MediaWiki\WikiMap\WikiMap;
 use ReflectionClass;
-use WikiMap;
 
 /**
  * @covers \Flow\Data\Listener\AbstractListener

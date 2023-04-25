@@ -7,8 +7,8 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use User;
-use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

@@ -11,10 +11,10 @@ use Flow\DbFactory;
 use Flow\Model\UUID;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use RowUpdateGenerator;
 use stdClass;
-use WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

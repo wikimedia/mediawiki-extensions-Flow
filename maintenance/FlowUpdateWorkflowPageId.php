@@ -14,12 +14,12 @@ use Language;
 use LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\WikiMap\WikiMap;
 use RawMessage;
 use RowUpdateGenerator;
 use Status;
 use stdClass;
 use Title;
-use WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
