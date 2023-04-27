@@ -15,6 +15,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\Notifications\Controller\ModerationController;
 use MediaWiki\Extension\Notifications\Mapper\EventMapper;
 use MediaWiki\MediaWikiServices;
@@ -33,11 +34,19 @@ class Controller {
 	 */
 	protected $treeRepository;
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'FlowNotificationTruncateLength'
+	];
+	private ?int $truncateLength = null;
+
 	/**
+	 * @param ServiceOptions $options
 	 * @param Language $language
 	 * @param TreeRepository $treeRepository
 	 */
-	public function __construct( Language $language, TreeRepository $treeRepository ) {
+	public function __construct( ServiceOptions $options, Language $language, TreeRepository $treeRepository ) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->truncateLength = $options->get( 'FlowNotificationTruncateLength' );
 		$this->language = $language;
 		$this->treeRepository = $treeRepository;
 	}
@@ -115,7 +124,7 @@ class Controller {
 		$user = $revision->getUser();
 		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 
-		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['collection-id'] = $revision->getCollectionId();
 		$extraData['target-page'] = $boardWorkflow->getArticleTitle()->getArticleID();
@@ -205,7 +214,7 @@ class Controller {
 			case 'flow-post-reply':
 				$extraData += [
 					'reply-to' => $revision->getReplyToId(),
-					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
 					'topic-title' => $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
 				];
 
@@ -244,7 +253,7 @@ class Controller {
 				break;
 			case 'flow-post-edited':
 				$extraData += [
-					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
 					'topic-title' => $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
 				];
 				break;
@@ -313,7 +322,7 @@ class Controller {
 		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData = [];
-		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language );
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
@@ -402,7 +411,7 @@ class Controller {
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
 				'topic-title' => $this->language->truncateForVisual( $topicTitle->getContent( 'topic-title-plaintext' ), 200 ),
 				'content' => $firstPost
-					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
+					? Utils::htmlToPlaintext( $firstPost->getContent(), $this->truncateLength, $this->language )
 					: null,
 				// Force a read from primary database since this could be a new page
 				'target-page' => [
@@ -532,7 +541,8 @@ class Controller {
 		$extraData['mentioned-users'] = $mentionedUsers;
 		$extraData['target-page'] = $workflow->getArticleTitle()->getArticleID();
 		// don't include topic content again if the notification IS in the title
-		$extraData['content'] = $content === $topic ? '' : Utils::htmlToPlaintext( $content->getContent(), 200, $this->language );
+		$extraData['content'] = $content === $topic ? '' :
+			Utils::htmlToPlaintext( $content->getContent(), $this->truncateLength, $this->language );
 		// lets us differentiate between different revision types
 		$extraData['revision-type'] = $content->getRevisionType();
 

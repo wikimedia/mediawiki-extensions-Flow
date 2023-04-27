@@ -88,18 +88,19 @@ abstract class Utils {
 	 * @param Language|null $lang Language to use for truncation.  Defaults to $wgLang
 	 * @return string plaintext
 	 */
-	public static function htmlToPlaintext( $html, $truncateLength = null, Language $lang = null ) {
+	public static function htmlToPlaintext( $html, ?int $truncateLength = null, Language $lang = null ) {
 		/** @var Language $wgLang */
 		global $wgLang;
 
 		$plain = trim( Sanitizer::stripAllTags( $html ) );
 
+		// Fallback to some large-ish value for truncation.
 		if ( $truncateLength === null ) {
-			return $plain;
-		} else {
-			$lang = $lang ?: $wgLang;
-			return $lang->truncateForVisual( $plain, $truncateLength );
+			$truncateLength = 10000;
 		}
+
+		$lang = $lang ?: $wgLang;
+		return $lang->truncateForVisual( $plain, $truncateLength );
 	}
 
 	/**

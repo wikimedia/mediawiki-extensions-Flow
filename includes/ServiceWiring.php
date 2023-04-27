@@ -9,6 +9,7 @@ use Flow\Notifications\Controller as NotificationsController;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\TemplateHelper;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
@@ -62,6 +63,7 @@ return [
 		MediaWikiServices $services
 	): NotificationsController {
 		return new NotificationsController(
+			new ServiceOptions( NotificationsController::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getService( 'FlowTreeRepository' )
 		);
