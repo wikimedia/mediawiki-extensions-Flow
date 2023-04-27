@@ -12,7 +12,6 @@ use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Hooks;
 use Html;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
@@ -156,7 +155,7 @@ class View extends ContextSource {
 		// Add Parsoid modules if necessary
 		Conversion\Utils::onFlowAddModules( $out );
 		// Allow other extensions to add modules
-		Hooks::run( 'FlowAddModules', [ $out ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run( 'FlowAddModules', [ $out ] );
 	}
 
 	protected function handleSubmit( WorkflowLoader $loader, $action, array $parameters ) {

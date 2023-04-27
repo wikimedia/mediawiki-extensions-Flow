@@ -6,7 +6,6 @@ use ApiBase;
 use ApiMain;
 use ApiModuleManager;
 use Flow\Container;
-use Hooks;
 use MediaWiki\MediaWikiServices;
 use Title;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -100,7 +99,7 @@ class ApiFlow extends ApiBase {
 			$module->setPage( $this->getPage( $params ) );
 		}
 		$module->execute();
-		Hooks::run( 'APIFlowAfterExecute', [ $module ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run( 'APIFlowAfterExecute', [ $module ] );
 	}
 
 	/**

@@ -7,7 +7,6 @@ use Flow\Conversion\Utils;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
-use Hooks;
 use MediaWiki\MediaWikiServices;
 use RecentChange;
 use Sanitizer;
@@ -409,7 +408,8 @@ abstract class AbstractRevision {
 		$sourceFormat = $this->getContentFormat();
 		if ( $this->xssCheck === null && $sourceFormat === 'html' ) {
 			// returns true if no handler aborted the hook
-			$this->xssCheck = Hooks::run( 'FlowCheckHtmlContentXss', [ $raw ] );
+			$this->xssCheck = MediaWikiServices::getInstance()->getHookContainer()
+				->run( 'FlowCheckHtmlContentXss', [ $raw ] );
 			if ( !$this->xssCheck ) {
 				wfDebugLog( 'Flow', __METHOD__ . ': XSS check prevented display of revision ' .
 					$this->revId->getAlphadecimal() );
