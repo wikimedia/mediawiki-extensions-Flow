@@ -6,6 +6,8 @@
 	},
 	"flow-cancel": "Pasahakan",
 	"flow-newtopic-save": "Tambah tupik",
+	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Batarima kasih}}}}",
+	"flow-thank-link-title": "{{GENDER:$1|{{GENDER:$2|Batarima kasih}}}} sacara publik ka pangirim",
 	"flow-history-action-undelete-post": "Pasahakan mahapus",
 	"flow-history-action-unhide-post": "Pasahakan manyuhuk",
 	"flow-post-action-unsuppress-post": "Pasah tikin",
