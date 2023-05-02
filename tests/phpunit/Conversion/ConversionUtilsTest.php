@@ -209,7 +209,9 @@ class ConversionUtilsTest extends FlowTestCase {
 	 * @dataProvider provideDecodeHeadInfo
 	 */
 	public function testDecodeHeadInfo( $message, $input, $expectedOutput ) {
-		$this->assertEquals( $expectedOutput, Utils::decodeHeadInfo( $input ), $message );
+		$actual = Utils::decodeHeadInfo( $input );
+		$actual = str_replace( '/>', '>', $actual );
+		$this->assertSame( $expectedOutput, $actual, $message );
 	}
 
 	public static function provideDecodeHeadInfo() {
@@ -217,7 +219,7 @@ class ConversionUtilsTest extends FlowTestCase {
 			[
 				'Body tag with base-url',
 				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><p>Hello</p></body>',
-				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><p>Hello</p></body></html>'
+				'<html><head><base href="//en.wikipedia.org/wiki/"></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><p>Hello</p></body></html>'
 			],
 			[
 				'Body tag without base-url',
@@ -237,22 +239,22 @@ class ConversionUtilsTest extends FlowTestCase {
 			[
 				'Body tag with style tag',
 				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
-				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+				'<html><head><base href="//en.wikipedia.org/wiki/"></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
 			],
 			[
 				'Body tag with style tag and attributes',
 				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style typeof="mw:Extension/templatestyles mw:Transclusion">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
-				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style typeof="mw:Extension/templatestyles mw:Transclusion">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+				'<html><head><base href="//en.wikipedia.org/wiki/"></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style typeof="mw:Extension/templatestyles mw:Transclusion">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
 			],
 			[
 				'Body tag with multiple style tags',
 				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p><style>.mw-parser-output { background-color: gray; }</style></body>',
-				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p><style>.mw-parser-output { background-color: gray; }</style></body></html>'
+				'<html><head><base href="//en.wikipedia.org/wiki/"></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style>.mw-parser-output { background-color: gray; }</style><p>Hello</p><style>.mw-parser-output { background-color: gray; }</style></body></html>'
 			],
 			[
 				'Body tag with style tag',
 				'<body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style test=">">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body>',
-				'<html><head><base href="//en.wikipedia.org/wiki/"/></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style test="&gt;">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
+				'<html><head><base href="//en.wikipedia.org/wiki/"></head><body base-url="//en.wikipedia.org/wiki/" parsoid-version="0.1.2"><style test="&gt;">.mw-parser-output { background-color: gray; }</style><p>Hello</p></body></html>'
 			],
 		];
 	}
