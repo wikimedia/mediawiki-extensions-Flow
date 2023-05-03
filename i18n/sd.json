@@ -30,6 +30,7 @@
 	"flow-link-topic": "موضوع",
 	"flow-moderation-confirm-hide-post": "لڪايو",
 	"flow-moderation-confirm-hide-topic": "لڪايو",
+	"flow-compare-revisions-revision-header": "$1 کان {{GENDER:$2|$2}} پاران ورزن",
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\" کي ڪلڪ ڪرڻ سان، توھان ھن وڪيءَ جي استعمال جي شرطن سان راضپو ڏيکاريو ٿا.",
 	"flow-terms-of-use-reply": "\"{{int:flow-reply-link}}\" کي ڪلڪ ڪرڻ سان، توھان ھن وڪيءَ جي استعمال جي شرطن سان راضپو ڏيکاريو ٿا.",
 	"flow-load-more": "وڌيڪ لاھيو",
