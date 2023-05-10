@@ -4,11 +4,13 @@
 			"Aefgh39622",
 			"Ans",
 			"Geonuch",
-			"Patsagorn Y."
+			"Patsagorn Y.",
+			"Ekminarin"
 		]
 	},
 	"flow-desc": "ระบบการอภิปราย",
 	"flow-board-header-browse-topics-link": "เรียกดูหัวข้อ",
+	"flow-board-header": "เกี่ยวกับบอร์ดนี้",
 	"flow-board-collapse-description": "ซ่อนคำอธิบาย",
 	"flow-board-expand-description": "แสดงคำอธิบาย",
 	"flow-edit-header-link": "แก้ไขคำอธิบาย",
