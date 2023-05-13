@@ -26,8 +26,8 @@ class ViewAction extends FlowAction {
 		parent::showForAction( $action, $output );
 
 		$title = $this->context->getTitle();
-		$watchlistNotificationManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		$watchlistNotificationManager->clearTitleUserNotifications( $this->context->getUser(), $title );
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchlistManager->clearTitleUserNotifications( $this->context->getUser(), $title );
 
 		$output ??= $this->context->getOutput();
 		$output->addCategoryLinks( $this->getCategories( $title ) );
