@@ -8,6 +8,9 @@
 			"Tweety"
 		]
 	},
+	"enablestructureddiscussions": "منظم گفتگوئن کي فعال ڪريو",
+	"notification-dynamic-actions-flow-board-unwatch": "\"$1\" تي نئين سرگرميءَ کي نظر۾رکڻ {{GENDER:$3|بند ڪريو}}",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "صفحو \"$1\" ھاڻي {{GENDER:$3|توھان}} جي نظر۾ نہ آھي",
 	"flow-topic-collapse-siderail": "پوري ويڪر تي پڙھو",
 	"flow-topic-expand-siderail": "مقرر ڪيل ويڪر تي پڙھو",
 	"flow-post-actions": "عمل",

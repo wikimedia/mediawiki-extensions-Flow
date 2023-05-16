@@ -180,7 +180,7 @@
 	"flow-error-no-existing-workflow": "Iste fluxo de travalio non existe ancora.",
 	"flow-error-not-a-post": "Le titulo del topico non pote esser salveguardate como un message.",
 	"flow-error-missing-header-content": "Tu debe submitter un description.",
-	"flow-error-missing-prev-revision-identifier": "Le identificator del version precedente es mancante.",
+	"flow-error-missing-prev-revision-identifier": "Le identificator del version precedente manca.",
 	"flow-error-prev-revision-mismatch": "Un altere usator ha justo modificate iste message alcun secundas retro. Es {{GENDER:$3|tu}} secur de voler superscriber iste modification recente?",
 	"flow-error-prev-revision-does-not-exist": "Impossibile trovar le version precedente.",
 	"flow-error-core-topic-deletion": "Pro deler un topico, usa le menu … sur le tabuliero Discussiones Structurate o sur le [$1 pagina del topico]. Non visitar directemente action=delete pro le topico.",
