@@ -7,7 +7,7 @@ use ApiMain;
 use ApiMessage;
 use ApiUsageException;
 use Exception;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
 use RequestContext;
 use User;
 
