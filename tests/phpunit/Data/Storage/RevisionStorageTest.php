@@ -195,7 +195,7 @@ class RevisionStorageTest extends FlowTestCase {
 		);
 	}
 
-	public function isUpdatingExistingRevisionContentAllowedProvider() {
+	public static function isUpdatingExistingRevisionContentAllowedProvider() {
 		return [
 			[ true ],
 			[ false ]

@@ -121,7 +121,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	 *
 	 * @return array
 	 */
-	public function permissionsProvider() {
+	public static function permissionsProvider() {
 		return [
 			// anon users can submit content, but not moderate
 			[ 'anonUser', null, 'create-header', true ],

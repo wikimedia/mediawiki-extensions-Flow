@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class WatchedTopicItemsTest extends FlowTestCase {
 
-	public function provideDataGetWatchStatus() {
+	public static function provideDataGetWatchStatus() {
 		// number of test cases
 		$testCount = 10;
 		$tests = [];

@@ -39,7 +39,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	 */
 	private const WHITELIST = [ 'a5b\.sytes\.net' ];
 
-	public function spamProvider() {
+	public static function spamProvider() {
 		return [
 			'default new topic title revision - no spam' => [
 				[],

@@ -20,7 +20,7 @@ use User;
  */
 class RecentChangesListenerTest extends \MediaWikiIntegrationTestCase {
 
-	public function somethingProvider() {
+	public static function somethingProvider() {
 		return [
 			[
 				'Reply recent change goes to the topic',

@@ -37,7 +37,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		'(board_prefixedtitle === "BadBoard" & board_prefixedtitle === board_prefixedtext)' => 'disallow',
 	];
 
-	public function spamProvider() {
+	public static function spamProvider() {
 		$goodTopicTitle = Title::newFromText( 'Topic:Tnpn1618hctgeguu' );
 		$goodOwnerTitle = Title::newFromText( 'UTPage' );
 

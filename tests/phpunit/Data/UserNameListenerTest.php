@@ -17,7 +17,7 @@ use ReflectionClass;
  */
 class UserNameListenerTest extends FlowTestCase {
 
-	public function onAfterLoadDataProvider() {
+	public static function onAfterLoadDataProvider() {
 		return [
 			[ [ 'user_id' => '1', 'user_wiki' => 'frwiki' ], [ 'user_id' => 'user_wiki' ], 'frwiki', 'enwiki' ],
 			[ [ 'user_id' => '2' ], [ 'user_id' => null ], 'enwiki', 'enwiki' ],

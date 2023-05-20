@@ -14,7 +14,7 @@ use Flow\Repository\RootPostLoader;
  */
 class BlockFactoryTest extends FlowTestCase {
 
-	public function provideDataCreateBlocks() {
+	public static function provideDataCreateBlocks() {
 		return [
 			[
 				'discussion',

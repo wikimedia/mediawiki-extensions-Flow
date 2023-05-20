@@ -15,7 +15,7 @@ use User;
  */
 class ContentLengthFilterTest extends \MediaWikiIntegrationTestCase {
 
-	public function filterValidationProvider() {
+	public static function filterValidationProvider() {
 		yield 'With content shorter than max length allow through filter' => [
 			'expected' => true,
 			'content' => 'blah',

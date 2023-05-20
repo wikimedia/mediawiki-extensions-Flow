@@ -31,7 +31,7 @@ class UUIDTest extends FlowTestCase {
 		$this->assertEquals( $uuid->getAlphadecimal(), $fixed->getAlphadecimal() );
 	}
 
-	public function invalidInputProvider() {
+	public static function invalidInputProvider() {
 		$valid = 'u9pdkbdvsgz206kh';
 
 		return [

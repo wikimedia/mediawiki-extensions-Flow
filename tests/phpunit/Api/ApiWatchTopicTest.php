@@ -15,7 +15,7 @@ use User;
  */
 class ApiWatchTopicTest extends ApiTestCase {
 
-	public function watchTopicProvider() {
+	public static function watchTopicProvider() {
 		return [
 			[
 				'Watch a topic',

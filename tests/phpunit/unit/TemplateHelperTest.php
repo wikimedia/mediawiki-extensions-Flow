@@ -13,7 +13,7 @@ use MediaWikiUnitTestCase;
  */
 class TemplateHelperTest extends MediaWikiUnitTestCase {
 
-	public function provideTraversalAttackFilenames() {
+	public static function provideTraversalAttackFilenames() {
 		return array_map(
 			static function ( $x ) {
 				return [ $x ];

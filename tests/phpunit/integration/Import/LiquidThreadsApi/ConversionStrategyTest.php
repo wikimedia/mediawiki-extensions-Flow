@@ -83,7 +83,7 @@ class ConversionStrategyTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideArchiveCleanupRevisionContent() {
+	public static function provideArchiveCleanupRevisionContent() {
 		// @todo superm401 suggested finding library that lets us control time during tests,
 		// would probably be better
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );

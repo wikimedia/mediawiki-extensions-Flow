@@ -10,7 +10,7 @@ use Flow\Tests\FlowTestCase;
  */
 class FlowNothingTest extends FlowTestCase {
 
-	public function sortArrayByKeysProvider() {
+	public static function sortArrayByKeysProvider() {
 		return [
 
 			[

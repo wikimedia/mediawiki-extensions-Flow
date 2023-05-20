@@ -22,7 +22,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->urlGenerator = Container::get( 'url_generator' );
 	}
 
-	public function provideDataBoardLink() {
+	public static function provideDataBoardLink() {
 		return [
 			[
 				Title::makeTitle( NS_MAIN, 'Test' ),
@@ -67,7 +67,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		}
 	}
 
-	public function provideDataWatchTopicLink() {
+	public static function provideDataWatchTopicLink() {
 		return [
 			[
 				Title::makeTitle( NS_MAIN, 'Test' ),

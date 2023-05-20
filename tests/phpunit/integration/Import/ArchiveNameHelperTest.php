@@ -12,7 +12,7 @@ use Title;
  */
 class ArchiveNameHelperTest extends \MediaWikiIntegrationTestCase {
 
-	public function decideArchiveTitleProvider() {
+	public static function decideArchiveTitleProvider() {
 		return [
 			[
 				'Selects the first pattern if n=1 does exist',
@@ -70,7 +70,7 @@ class ArchiveNameHelperTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expect, $result, $message );
 	}
 
-	public function findLatestArchiveTitleProvider() {
+	public static function findLatestArchiveTitleProvider() {
 		return [
 			[
 				'Returns false if no archive exist',

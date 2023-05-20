@@ -71,7 +71,7 @@ class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $user->getName(), $revision->getAuthor() );
 	}
 
-	public function getHeaderProvider() {
+	public static function getHeaderProvider() {
 		$now = new DateTime( "now", new DateTimeZone( "GMT" ) );
 		$date = $now->format( 'Y-m-d' );
 

@@ -11,7 +11,7 @@ use Flow\Model\UserTuple;
  */
 class UserTupleTest extends \MediaWikiUnitTestCase {
 
-	public function invalidInputProvider() {
+	public static function invalidInputProvider() {
 		return [
 			[ 'foo', 0, '' ],
 			[ 'foo', 1234, '127.0.0.1' ],
@@ -31,7 +31,7 @@ class UserTupleTest extends \MediaWikiUnitTestCase {
 		new UserTuple( $wiki, $id, $ip );
 	}
 
-	public function validInputProvider() {
+	public static function validInputProvider() {
 		return [
 			[ 'foo', 42, null ],
 			[ 'foo', 42, '' ],

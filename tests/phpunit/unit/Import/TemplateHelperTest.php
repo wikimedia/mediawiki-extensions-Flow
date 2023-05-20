@@ -11,7 +11,7 @@ use Flow\Import\TemplateHelper;
  */
 class TemplateHelperTest extends \MediaWikiUnitTestCase {
 
-	public function removeFromHtmlDataProvider() {
+	public static function removeFromHtmlDataProvider() {
 		return [
 			[ // the template is NOT in the html
 				'<body data-parsoid="{stuff}"><p name="asdf">hi there</p></body>',

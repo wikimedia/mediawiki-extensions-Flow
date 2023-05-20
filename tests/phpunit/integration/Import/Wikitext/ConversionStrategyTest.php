@@ -164,7 +164,7 @@ class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideMeetsSubpageRequirements() {
+	public static function provideMeetsSubpageRequirements() {
 		return [
 			[
 				'Talk:Some ConversionStrategyTest page',

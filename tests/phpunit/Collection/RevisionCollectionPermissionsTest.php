@@ -108,7 +108,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 *
 	 * @return array
 	 */
-	public function permissionsProvider() {
+	public static function permissionsProvider() {
 		return [
 			// irregardless of current status, if a user has no permissions for
 			// a specific revision, he can't see it

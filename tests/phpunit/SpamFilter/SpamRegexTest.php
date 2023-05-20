@@ -21,7 +21,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 	 */
 	private $spamFilter;
 
-	public function spamProvider() {
+	public static function spamProvider() {
 		return [
 			[
 				// default new topic title revision - no spam
