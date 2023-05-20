@@ -14,7 +14,7 @@
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.0.1",
 		"grunt-stylelint": "0.18.0",
-		"grunt-tyops": "0.1.0",
+		"grunt-tyops": "0.1.1",
 		"stylelint-config-wikimedia": "0.14.0"
 	}
 }
