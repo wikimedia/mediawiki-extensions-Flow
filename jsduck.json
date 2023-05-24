@@ -7,7 +7,6 @@
 	"--tags": "jsduck_custom_tags.rb",
 	"--": [
 		"jsduck.external.js",
-		"modules",
-		"tests"
+		"modules"
 	]
 }
