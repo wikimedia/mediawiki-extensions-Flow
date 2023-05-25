@@ -33,4 +33,18 @@ describe( 'Flow conversion utilities API', () => {
 		assert.match( output.content, / id="mw/ );
 		assert.match( output.content, / data-mw-section-id=/ );
 	} );
+
+	it( 'will convert from HTML to wikitext', async () => {
+		const input = '<h2>Foobar</h2>';
+		const result = await alice.action(
+			'flow-parsoid-utils',
+			{ title, from: 'html', to: 'wikitext', content: input }
+		);
+
+		assert.nestedProperty( result, 'flow-parsoid-utils' );
+		const output = result[ 'flow-parsoid-utils' ];
+
+		assert.equal( output.format, 'wikitext' );
+		assert.equal( output.content, '== Foobar ==' );
+	} );
 } );
