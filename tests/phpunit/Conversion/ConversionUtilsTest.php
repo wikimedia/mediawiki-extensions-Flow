@@ -258,4 +258,42 @@ class ConversionUtilsTest extends FlowTestCase {
 			],
 		];
 	}
+
+	public static function provideTransformationFormats() {
+		return [
+			[
+				'from' => 'topic-title-wikitext',
+				'to' => 'topic-title-plaintext',
+				'content' => 'Foobar',
+				'expected' => 'Foobar'
+			],
+			[
+				'from' => 'wikitext',
+				'to' => 'wikitext',
+				'content' => '== Foobar ==',
+				'expected' => '== Foobar =='
+			],
+			[
+				'from' => 'wikitext',
+				'to' => 'html',
+				'content' => '',
+				'expected' => ''
+			],
+			[
+				'from' => 'html',
+				'to' => 'html',
+				'content' => '<h2>Foobar</h2>',
+				'expected' => '<h2>Foobar</h2>'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTransformationFormats
+	 */
+	public function testConvert( $from, $to, $content, $expected ) {
+		$title = $this->createNoOpMock( Title::class );
+		$actual = Utils::convert( $from, $to, $content, $title );
+		$this->assertSame( $expected, $actual );
+	}
 }
