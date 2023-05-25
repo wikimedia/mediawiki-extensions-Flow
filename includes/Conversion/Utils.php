@@ -5,6 +5,7 @@ namespace Flow\Conversion;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
+use ExtensionRegistry;
 use FauxResponse;
 use Flow\Container;
 use Flow\Exception\FlowException;
@@ -301,7 +302,13 @@ abstract class Utils {
 	private static function makeVRSObject() {
 		global $wgVirtualRestConfig, $wgFlowParsoidURL, $wgFlowParsoidPrefix,
 			$wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
-			$wgFlowParsoidHTTPProxy;
+			$wgFlowParsoidHTTPProxy, $wgServer, $wgDBname, $wgRestPath;
+
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			// HACK: We can't use parsoid through the web API in PHPUnit tests.
+			// This will go away when we switch to calling Parsoid directly as a PHP class.
+			throw new NoParserException( 'Parsoid disabled for PHPUnit' );
+		}
 
 		// the params array to create the service object with
 		$params = [];
@@ -322,16 +329,26 @@ abstract class Utils {
 			$params = $vrs['modules']['parsoid'];
 			$params['restbaseCompat'] = true;
 		} else {
-			// no global modules defined, fall back to old defaults
-			if ( !$wgFlowParsoidURL ) {
-				throw new NoParserException( 'Flow Parsoid configuration is unavailable', 'process-wikitext' );
+			// No global VRS modules defined, try to auto-detect
+			$restURL = $wgFlowParsoidURL;
+
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
+				// The parsoid extension exposes the expected endpoints
+				$restURL = "$wgServer$wgRestPath/";
 			}
+
+			if ( !$restURL ) {
+				// We don't know where to find the Parsoid API.
+				throw new NoParserException( 'Parsoid not found, set $wgFlowParsoidURL or enable the Parsoid extension' );
+			}
+
 			$params = [
-				'URL' => $wgFlowParsoidURL,
-				'prefix' => $wgFlowParsoidPrefix,
+				'url' => $restURL,
+				'prefix' => $wgFlowParsoidPrefix ?: $wgDBname,
 				'timeout' => $wgFlowParsoidTimeout,
 				'HTTPProxy' => $wgFlowParsoidHTTPProxy,
-				'forwardCookies' => $wgFlowParsoidForwardCookies
+				'forwardCookies' => $wgFlowParsoidForwardCookies,
+				'restbaseCompat' => true,
 			];
 		}
 		// merge the global and service-specific params
