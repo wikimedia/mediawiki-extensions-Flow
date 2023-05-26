@@ -61,22 +61,46 @@ abstract class Utils {
 			$from = 'wikitext';
 		}
 
-		if ( $from === 'wikitext' || $from === 'html' ) {
-			if ( $to === 'wikitext' || $to === 'html' ) {
-				if ( self::isParsoidConfigured() ) {
-					return self::parsoid( $from, $to, $content, $title );
-				} else {
-					return self::parser( $from, $to, $content, $title );
-				}
-			} else {
-				throw new WikitextException( "Conversion from '$from' to '$to' was requested, " .
-					"but this is not supported." );
-			}
-		} elseif ( $from === 'topic-title-wikitext' && ( $to === 'topic-title-html' || $to === 'topic-title-plaintext' ) ) {
+		if ( $from == 'wikitext' && $to == 'html' ) {
+			return self::wikitextToHTML( $content, $title );
+		} elseif ( $from == 'html' && $to == 'wikitext' ) {
+			return self::htmlToWikitext( $content, $title );
+		} elseif ( $from === 'topic-title-wikitext' &&
+			( $to === 'topic-title-html' || $to === 'topic-title-plaintext' ) ) {
 			// FIXME: links need to be proceed by findVariantLinks or equivant function
 			return self::getLanguageConverter()->convert( self::commentParser( $from, $to, $content ) );
 		} else {
 			return self::commentParser( $from, $to, $content );
+		}
+	}
+
+	/**
+	 * Converts wikitext to HTML.
+	 *
+	 * @param string $wikitext The wikitext content to convert.
+	 * @param Title $title
+	 * @return string The converted HTML content.
+	 */
+	private static function wikitextToHTML( $wikitext, Title $title ) {
+		if ( self::isParsoidConfigured() ) {
+			return self::parsoid( 'wikitext', 'html', $wikitext, $title );
+		} else {
+			return self::parser( 'wikitext', 'html', $wikitext, $title );
+		}
+	}
+
+	/**
+	 * Converts HTML to wikitext.
+	 *
+	 * @param string $html The HTML content to convert.
+	 * @param Title $title
+	 * @return string The converted wikitext content.
+	 */
+	private static function htmlToWikitext( $html, Title $title ) {
+		if ( self::isParsoidConfigured() ) {
+			return self::parsoid( 'html', 'wikitext', $html, $title );
+		} else {
+			return self::parser( 'html', 'wikitext', $html, $title );
 		}
 	}
 
