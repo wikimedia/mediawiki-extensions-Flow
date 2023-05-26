@@ -75,28 +75,32 @@ abstract class Utils {
 	}
 
 	/**
-	 * Converts wikitext to HTML.
-	 *
-	 * @param string $wikitext The wikitext content to convert.
+	 * @param string $wikitext
 	 * @param Title $title
-	 * @return string The converted HTML content.
+	 *
+	 * @return string The converted wikitext to HTML
 	 */
-	private static function wikitextToHTML( $wikitext, Title $title ) {
-		if ( self::isParsoidConfigured() ) {
-			return self::parsoid( 'wikitext', 'html', $wikitext, $title );
-		} else {
-			return self::parser( 'wikitext', 'html', $wikitext, $title );
-		}
+	private static function wikitextToHTML( string $wikitext, Title $title ) {
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setRenderReason( __METHOD__ );
+
+		$parserFactory = MediaWikiServices::getInstance()->getParsoidParserFactory()->create();
+		$parserOutput = $parserFactory->parse( $wikitext, $title, $parserOptions );
+
+		// $parserOutput->getText() will strip off the body tag, but we want to retain here.
+		// So we'll call ->getRawText() here and modify the HTML by ourselves.
+		preg_match( "#<body[^>]*>(.*?)</body>#", $parserOutput->getRawText(), $html );
+
+		return $html[0];
 	}
 
 	/**
-	 * Converts HTML to wikitext.
-	 *
-	 * @param string $html The HTML content to convert.
+	 * @param string $html
 	 * @param Title $title
-	 * @return string The converted wikitext content.
+	 *
+	 * @return string The converted HTML to Wikitext
 	 */
-	private static function htmlToWikitext( $html, Title $title ) {
+	private static function htmlToWikitext( string $html, Title $title ) {
 		if ( self::isParsoidConfigured() ) {
 			return self::parsoid( 'html', 'wikitext', $html, $title );
 		} else {
