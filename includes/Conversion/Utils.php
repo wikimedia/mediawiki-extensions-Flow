@@ -21,8 +21,10 @@ use OutputPage;
 use ParserOptions;
 use RequestContext;
 use Sanitizer;
+use TextContent;
 use Title;
 use VirtualRESTServiceClient;
+use WikitextContent;
 
 abstract class Utils {
 
@@ -99,13 +101,25 @@ abstract class Utils {
 	 * @param Title $title
 	 *
 	 * @return string The converted HTML to Wikitext
+	 * @throws WikitextException When the conversion is unsupported
 	 */
 	private static function htmlToWikitext( string $html, Title $title ) {
-		if ( self::isParsoidConfigured() ) {
-			return self::parsoid( 'html', 'wikitext', $html, $title );
-		} else {
-			return self::parser( 'html', 'wikitext', $html, $title );
+		$transform = MediaWikiServices::getInstance()->getHtmlTransformFactory()
+			->getHtmlToContentTransform( $html, $title );
+
+		$transform->setOptions( [
+			'contentmodel' => CONTENT_MODEL_WIKITEXT,
+			'offsetType' => 'byte'
+		] );
+
+		/** @var TextContent $content */
+		$content = $transform->htmlToContent();
+
+		if ( !$content instanceof WikitextContent ) {
+			throw new WikitextException( 'Conversion to Wikitext failed' );
 		}
+
+		return trim( $content->getTextForSearchIndex() );
 	}
 
 	/**
