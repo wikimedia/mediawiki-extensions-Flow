@@ -64,7 +64,7 @@
 	"apihelp-flow+view-topiclist-description": "話題の一覧を閲覧します。",
 	"apihelp-flow+view-topiclist-param-offset-dir": "話題の並び順指定です。",
 	"apihelp-flow+view-topiclist-param-sortby": "話題の並べ替えのオプションです。either <kbd>updated</kbd> (ordered by topic update time), or <kbd>newest</kbd> (ordered by topic creation time).",
-	"apihelp-flow+view-topiclist-param-savesortby": "設定すると、ユーザー好みに並べ替えのオプションを保存します。",
+	"apihelp-flow+view-topiclist-param-savesortby": "設定すると、利用者好みに並べ替えのオプションを保存します。",
 	"apihelp-flow+view-topiclist-param-offset-id": "話題の取得を開始するオフセット値 (UUID 形式) です; <kbd>最新の</kbd> オーダリングとだけで使われます。",
 	"apihelp-flow+view-topiclist-param-offset": "話題の取得を開始するオフセット値(話題の更新のタイムスタンプ、 <code>TS_MW</code> 形式 (<code>YYYYMMDDHHMMSS</code>))です。; used only with <kbd>updated</kbd> ordering",
 	"apihelp-flow+view-topiclist-param-limit": "取得する話題の件数です。",
