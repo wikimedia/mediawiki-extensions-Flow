@@ -548,7 +548,7 @@
 	"flow-mark-revision-patrolled-link-title": "Marquer cette page comme relue",
 	"flow-mark-diff-patrolled-link-text": "Marquer comme relue",
 	"flow-mark-diff-patrolled-link-title": "Marquer comme relue",
-	"flow-talk-page-beta-feature-message": "Discussions structurées sur la page de discussion de l’utilisateur",
+	"flow-talk-page-beta-feature-message": "Discussions structurées sur votre page de discussion",
 	"flow-talk-page-beta-feature-description": "Active un nouveau système de discussion structurée sur {{GENDER:|}}votre page de discussion utilisateur. Les Discussions structurées simplifient les discussions de la page avec des emplacements clairs pour écrire et répondre, et permettent des notifications au niveau de la conversation. Cette fonctionnalité n’est pas activée automatiquement ; les utilisateurs devront l’activer séparément.<br /><br />Les discussions existantes en wikitexte sont déplacées dans une archive. Désactiver cette fonctionnalité déplacera le flux de discussion Discussions Structurées dans une sous-page et désarchivera la page de discussion précédente. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|En savoir plus sur l’activation]].",
 	"flow-notification-link-text-enabled-on-talkpage": "Afficher {{GENDER:|}}ma page de discussion",
 	"flow-beta-feature-add-archive-template-edit-summary": "Ajout du modèle d’archivage",
