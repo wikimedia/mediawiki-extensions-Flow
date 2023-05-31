@@ -4,6 +4,7 @@
 
 namespace Flow\Tests\Conversion;
 
+use DOMDocument;
 use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 use Flow\Tests\FlowTestCase;
@@ -33,7 +34,7 @@ class ConversionUtilsTest extends FlowTestCase {
 	 * @dataProvider createDomProvider
 	 */
 	public function testCreateDomErrorModes( $message, $content ) {
-		$this->assertInstanceOf( \DOMDocument::class, Utils::createDOM( $content ), $message );
+		$this->assertInstanceOf( DOMDocument::class, Utils::createDOM( $content ), $message );
 	}
 
 	public static function createRelativeTitleProvider() {
@@ -295,5 +296,25 @@ class ConversionUtilsTest extends FlowTestCase {
 		$title = $this->createNoOpMock( Title::class );
 		$actual = Utils::convert( $from, $to, $content, $title );
 		$this->assertSame( $expected, $actual );
+	}
+
+	public function testGetInnerHtml() {
+		$dom = new DOMDocument();
+		$dom->loadHTML( '<div><p>Test content "Foobar" </p></div>' );
+
+		$divNode = $dom->getElementsByTagName( 'div' )->item( 0 );
+
+		$innerHtml = Utils::getInnerHtml( $divNode );
+
+		$expectedInnerHtml = '<p>Test content "Foobar" </p>';
+		$this->assertEquals( $expectedInnerHtml, $innerHtml );
+	}
+
+	public function testGetParsoidVersion() {
+		$html = '<body parsoid-version="1.2.3">Test content "Foobar" </body>';
+
+		$version = Utils::getParsoidVersion( $html );
+		$expectedVersion = '1.2.3';
+		$this->assertEquals( $expectedVersion, $version );
 	}
 }
