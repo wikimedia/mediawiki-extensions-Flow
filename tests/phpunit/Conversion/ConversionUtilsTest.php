@@ -40,23 +40,22 @@ class ConversionUtilsTest extends FlowTestCase {
 	public static function createRelativeTitleProvider() {
 		return [
 			[
-				'strips leading ./ and treats as non-relative',
-				// expect
-				Title::newFromText( 'File:Foo.jpg' ),
-				// input text
-				'./File:Foo.jpg',
-				// relative to title
-				Title::newMainPage()
+				'message' => 'strips leading ./ and treats as non-relative',
+				'expectedTitleText' => 'Foo.jpg',
+				'inputText' => './File:Foo.jpg',
+				'inputTitleText' => 'Main_Page',
 			],
-
 			[
-				'two level upwards traversal',
-				// expect
-				Title::newFromText( 'File:Bar.jpg' ),
-				// input text
-				'../../File:Bar.jpg',
-				// relative to title
-				Title::newFromText( 'Main_Page/And/Subpage' ),
+				'message' => 'two level upwards traversal',
+				'expectedTitleText' => 'Bar.jpg',
+				'inputText' => '../../File:Bar.jpg',
+				'inputTitleText' => 'Main_Page/And/Subpage',
+			],
+			[
+				'message' => 'appends non-relative text to the title',
+				'expectedTitleText' => 'Main_Page/Image.jpg',
+				'inputText' => '/Image.jpg',
+				'inputTitleText' => 'File:Main_Page',
 			],
 		];
 	}
@@ -64,16 +63,19 @@ class ConversionUtilsTest extends FlowTestCase {
 	/**
 	 * @dataProvider createRelativeTitleProvider
 	 */
-	public function testResolveSubpageTraversal( $message, $expect, $text, Title $title ) {
-		$result = Utils::createRelativeTitle( $text, $title );
+	public function testResolveSubpageTraversal( $message, $expectedTitleText, $inputText, $inputTitleText ) {
+		$expectTitle = Title::makeTitle( NS_FILE, $expectedTitleText );
+		$title = Title::newFromText( $inputTitleText );
 
-		if ( $expect === null ) {
-			$this->assertNull( $expect, $message );
-		} elseif ( $expect instanceof Title ) {
+		$result = Utils::createRelativeTitle( $inputText, $title );
+
+		if ( $expectTitle === null ) {
+			$this->assertNull( $expectTitle, $message );
+		} elseif ( $expectTitle instanceof Title ) {
 			$this->assertInstanceOf( Title::class, $result, $message );
-			$this->assertEquals( $expect->getPrefixedText(), $result->getPrefixedText(), $message );
+			$this->assertEquals( $expectTitle->getPrefixedText(), $result->getPrefixedText(), $message );
 		} else {
-			$this->assertEquals( $expect, $result, $message );
+			$this->assertEquals( $expectTitle, $result, $message );
 		}
 	}
 
