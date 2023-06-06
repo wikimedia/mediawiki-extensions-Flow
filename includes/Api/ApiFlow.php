@@ -6,6 +6,7 @@ use ApiBase;
 use ApiMain;
 use ApiModuleManager;
 use Flow\Container;
+use Flow\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
 use Title;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -65,9 +66,6 @@ class ApiFlow extends ApiBase {
 		return $this->moduleManager;
 	}
 
-	/**
-	 * @suppress PhanUndeclaredMethod Phan doesn't infer $module is ApiFlowBase
-	 */
 	public function execute() {
 		// To avoid API warning, register the parameter used to bust browser cache
 		$this->getMain()->getVal( '_' );
@@ -75,6 +73,7 @@ class ApiFlow extends ApiBase {
 		$params = $this->extractRequestParams();
 		/** @var $module ApiFlowBase */
 		$module = $this->moduleManager->getModule( $params['submodule'], 'submodule' );
+		'@phan-var ApiFlowBase $module';
 
 		// The checks for POST and tokens are the same as ApiMain.php
 		$wasPosted = $this->getRequest()->wasPosted();
@@ -99,7 +98,7 @@ class ApiFlow extends ApiBase {
 			$module->setPage( $this->getPage( $params ) );
 		}
 		$module->execute();
-		MediaWikiServices::getInstance()->getHookContainer()->run( 'APIFlowAfterExecute', [ $module ] );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onAPIFlowAfterExecute( $module );
 	}
 
 	/**

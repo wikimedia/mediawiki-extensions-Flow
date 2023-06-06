@@ -8,6 +8,7 @@ use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
 use Flow\Exception\InvalidActionException;
+use Flow\Hooks\HookRunner;
 use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
@@ -154,7 +155,7 @@ class View extends ContextSource {
 		// Add Parsoid modules if necessary
 		Conversion\Utils::onFlowAddModules( $out );
 		// Allow other extensions to add modules
-		MediaWikiServices::getInstance()->getHookContainer()->run( 'FlowAddModules', [ $out ] );
+		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onFlowAddModules( $out );
 	}
 
 	protected function handleSubmit( WorkflowLoader $loader, $action, array $parameters ) {

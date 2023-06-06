@@ -20,6 +20,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Formatter\CheckUserQuery;
+use Flow\Hooks\HookRunner;
 use Flow\Import\OptInController;
 use Flow\Maintenance\FlowCreateTemplates;
 use Flow\Maintenance\FlowFixLinks;
@@ -2070,8 +2071,8 @@ class Hooks {
 			'unlock-topic' => [ 'flow-terms-of-use-unlock-topic' ],
 		];
 
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->run( 'FlowTermsOfUseMessages', [ &$messages, $context, $config ] );
+		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$hookRunner->onFlowTermsOfUseMessages( $messages, $context, $config );
 
 		return $messages;
 	}
