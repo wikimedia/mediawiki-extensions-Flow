@@ -4,5 +4,14 @@
 			"Ajiniyaz Nurniyazov"
 		]
 	},
-	"flow-newtopic-save": "Tema qosıw"
+	"flow-newtopic-save": "Tema qosıw",
+	"notification-header-flow-post-reply-user-talk": "$1 <strong>siziń talqılaw betińizdegi</strong> «<strong>$4</strong>» temasında juwap {{GENDER:$2|jazdı}}.",
+	"notification-bundle-header-flow-post-reply-user-talk": "<strong>Talqılaw betińizdegi</strong> «<strong>$3</strong>» temasında {{PLURAL:$1|bir jańa juwap|$1 jańa juwap|100=99+ jańa juwap}} bar.",
+	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|Siziń}} talqılaw betińizdegi</strong> «<strong>$1</strong>» temasındaǵı post redaktorlandı.",
+	"notification-bundle-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|Siziń talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasındaǵı post birneshe márte redaktorlandı.",
+	"notification-header-flow-topic-renamed-user-talk": "<strong>Siziń talqılaw betińizdegi</strong> «<strong>$1</strong>» temasınıń atı «<strong>$2</strong>» bolıp ózgertildi.",
+	"notification-header-flow-summary-edited-user-talk": "<strong>{{GENDER:$2|Siziń}} talqılaw betińizdegi</strong> «<strong>$1</strong>» temasındaǵı qısqasha túsindirme jańalandı.",
+	"notification-header-flow-summary-edited-first-user-talk": "<strong>{{GENDER:$2|Talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasına qısqasha túsindirme qosıldı.",
+	"notification-bundle-header-flow-summary-edited-user-talk": "<strong>{{GENDER:$2|Talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasındaǵı qısqasha túsindirme birneshe márte jańalandı.",
+	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}"
 }
