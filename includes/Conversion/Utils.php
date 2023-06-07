@@ -89,7 +89,7 @@ abstract class Utils {
 
 		// $parserOutput->getText() will strip off the body tag, but we want to retain here.
 		// So we'll call ->getRawText() here and modify the HTML by ourselves.
-		preg_match( "#<body[^>]*>(.*?)</body>#", $parserOutput->getRawText(), $html );
+		preg_match( "#<body[^>]*>(.*?)</body>#s", $parserOutput->getRawText(), $html );
 
 		return $html[0];
 	}
