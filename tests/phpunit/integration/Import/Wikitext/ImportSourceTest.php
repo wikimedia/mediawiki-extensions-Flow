@@ -25,6 +25,11 @@ class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];
 
 	protected function setUp(): void {
+		// https://gerrit.wikimedia.org/r/c/mediawiki/extensions/Flow/+/927619 needs to be merged
+		// but until then, skip this test unconditionally.
+		// TODO: remove the below line once the above patch is merged.
+		$this->markTestSkipped( 'Until Ifb85f4733be3b43b71b111df0cd3d88281101153 gets merged' );
+
 		parent::setUp();
 
 		// Check for Parsoid
