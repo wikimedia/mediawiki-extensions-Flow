@@ -15,7 +15,6 @@ use EnhancedChangesList;
 use Exception;
 use ExtensionRegistry;
 use Flow\Collection\PostCollection;
-use Flow\Conversion\Utils;
 use Flow\Data\Listener\RecentChangesListener;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
@@ -173,17 +172,11 @@ class Hooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgFlowContentFormat, $wgFlowAbuseFilterGroup;
+		global $wgFlowAbuseFilterGroup;
 
 		// necessary to provide flow options in abuse filter on-wiki pages
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
-		}
-
-		if ( $wgFlowContentFormat === 'html' && !Utils::isParsoidConfigured() ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Warning: $wgFlowContentFormat was set to \'html\', ' .
-				'but you do not have Parsoid enabled.  Changing $wgFlowContentFormat to \'wikitext\'' );
-			$wgFlowContentFormat = 'wikitext';
 		}
 	}
 

@@ -5,10 +5,6 @@ namespace Flow\Conversion;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
-use ExtensionRegistry;
-use FauxResponse;
-use Flow\Container;
-use Flow\Exception\FlowException;
 use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
@@ -19,26 +15,14 @@ use Language;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use ParserOptions;
-use RequestContext;
 use Sanitizer;
 use TextContent;
 use Title;
-use VirtualRESTServiceClient;
 use WikitextContent;
 
 abstract class Utils {
 
 	public const PARSOID_VERSION = '2.0.0';
-
-	/**
-	 * @var VirtualRESTServiceClient
-	 */
-	protected static $serviceClient = null;
-
-	/**
-	 * @var \VirtualRESTService
-	 */
-	protected static $vrsObject = null;
 
 	/**
 	 * Convert from/to wikitext <=> html or topic-title-wikitext => topic-title-html.
@@ -147,91 +131,6 @@ abstract class Utils {
 	}
 
 	/**
-	 * Convert from/to wikitext/html via Parsoid/RESTBase.
-	 *
-	 * This will assume Parsoid/RESTBase is installed and configured.
-	 *
-	 * @param string $from Format of content to convert: html|wikitext
-	 * @param string $to Format to convert to: html|wikitext
-	 * @param string $content
-	 * @param Title $title
-	 * @return string
-	 * @throws NoParserException When Parsoid/RESTBase operation fails
-	 * @throws WikitextException When conversion is unsupported
-	 */
-	protected static function parsoid( $from, $to, $content, Title $title ) {
-		$serviceClient = self::getServiceClient();
-
-		if ( $from !== 'html' && $from !== 'wikitext' ) {
-			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
-		}
-
-		$prefixedDbTitle = $title->getPrefixedDBkey();
-		$params = [
-			$from => $content
-		];
-		if ( $from === 'html' ) {
-			$params['scrub_wikitext'] = 'true';
-		}
-		$url = '/restbase/local/v1/transform/' . $from . '/to/' . $to . '/' .
-			urlencode( $prefixedDbTitle );
-		$request = [
-			'method' => 'POST',
-			'url' => $url,
-			'body' => $params,
-			'headers' => [
-				'Accept' =>
-					sprintf(
-						'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/%s"',
-						self::PARSOID_VERSION
-					),
-				'User-Agent' => 'Flow-MediaWiki/' . MW_VERSION,
-			],
-		];
-		$response = $serviceClient->run( $request );
-		if ( $response['code'] !== 200 ) {
-			if ( $response['error'] !== '' ) {
-				$statusMsg = $response['error'];
-			} else {
-				$statusMsg = $response['code'];
-			}
-			$vrsInfo = $serviceClient->getMountAndService( '/restbase/' );
-			$serviceName = $vrsInfo[1] ? $vrsInfo[1]->getName() : 'VRS service';
-			$msg = "Request to " . $serviceName . " for \"$from\" to \"$to\" conversion of " .
-				"content connected to title \"$prefixedDbTitle\" failed: $statusMsg";
-			Container::get( 'default_logger' )->error(
-				'Request to {service} for "{sourceFormat}" to "{targetFormat}" conversion of " .
-					"content connected to title "{title}" failed.  Code: {code}, " .
-					"Reason: "{reason}", Body: "{body}", Error: "{error}"',
-				[
-					'service' => $serviceName,
-					'sourceFormat' => $from,
-					'targetFormat' => $to,
-					'title' => $prefixedDbTitle,
-					'code' => $response['code'],
-					'reason' => $response['reason'],
-					'error' => $response['error'], // This is sometimes/always empty string
-					'headers' => $response['headers'],
-					'body' => $response['body'],
-					'response' => $response,
-				]
-			);
-			throw new NoParserException( $msg, 'process-wikitext' );
-		}
-
-		// Add attributes for parsoid version and base url if converting to HTML.
-		$content = $response['body'];
-		if ( $to === 'html' ) {
-			$content = self::encodeHeadInfo( $content );
-		}
-		// HACK remove trailing newline inserted by Parsoid (T106925)
-		if ( $to === 'wikitext' ) {
-			$content = preg_replace( '/\\n$/', '', $content );
-		}
-		return $content;
-	}
-
-	/**
 	 * Convert from/to topic-title-wikitext/topic-title-html using
 	 * MediaWiki\CommentFormatter\CommentFormatter::formatLinks
 	 *
@@ -257,162 +156,6 @@ abstract class Utils {
 		} else {
 			return $html;
 		}
-	}
-
-	/**
-	 * Convert from/to wikitext/html using Parser.
-	 *
-	 * This only supports wikitext to HTML.
-	 *
-	 * @param string $from Format of content to convert: wikitext
-	 * @param string $to Format to convert to: html
-	 * @param string $content
-	 * @param Title $title
-	 * @return string
-	 * @throws WikitextException When the conversion is unsupported
-	 */
-	protected static function parser( $from, $to, $content, Title $title ) {
-		if ( $from !== 'wikitext' || $to !== 'html' ) {
-			throw new WikitextException( "Conversion from '$from' to '$to' was requested, but " .
-				"core's Parser only supports 'wikitext' to 'html' conversion", 'process-wikitext' );
-		}
-
-		$options = ParserOptions::newFromAnon();
-
-		$output = MediaWikiServices::getInstance()->getParser()
-			->parse( $content, $title, $options );
-		return $output->getText( [ 'enableSectionEditLinks' => false ] );
-	}
-
-	/**
-	 * Check to see whether a Parsoid or RESTBase service is configured.
-	 *
-	 * @return bool
-	 */
-	public static function isParsoidConfigured() {
-		try {
-			self::getVRSObject();
-			return true;
-		} catch ( NoParserException $e ) {
-			return false;
-		}
-	}
-
-	/**
-	 * Returns Flow's Virtual REST Service for Parsoid/RESTBase.
-	 * The Parsoid/RESTBase service will be mounted at /restbase/
-	 * and will answer RESTBase v1 API requests.
-	 *
-	 * @return VirtualRESTServiceClient
-	 * @throws NoParserException When Parsoid/RESTBase is unconfigured
-	 */
-	protected static function getServiceClient() {
-		if ( self::$serviceClient === null ) {
-			$sc = new VirtualRESTServiceClient(
-				MediaWikiServices::getInstance()->getHttpRequestFactory()->createMultiClient()
-			);
-			$sc->mount( '/restbase/', self::getVRSObject() );
-			self::$serviceClient = $sc;
-		}
-		return self::$serviceClient;
-	}
-
-	/**
-	 * @return \VirtualRESTService
-	 * @throws NoParserException
-	 */
-	private static function getVRSObject() {
-		if ( !self::$vrsObject ) {
-			self::$vrsObject = self::makeVRSObject();
-		}
-		return self::$vrsObject;
-	}
-
-	/**
-	 * Creates the Virtual REST Service object to be used in Flow's
-	 * API calls.  The method determines whether to instantiate a
-	 * ParsoidVirtualRESTService or a RestbaseVirtualRESTService
-	 * object based on configuration directives: if
-	 * `$wgVirtualRestConfig['modules']['restbase']` is defined,
-	 * RESTBase is chosen; otherwise Parsoid is used.
-	 * For backwards compatibility, $wgFlowParsoid* variables are used
-	 * to specify a Parsoid configuration as a fall back.
-	 *
-	 * @return \VirtualRESTService the VirtualRESTService object to use
-	 * @throws NoParserException When Parsoid/RESTBase is not configured
-	 */
-	private static function makeVRSObject() {
-		global $wgVirtualRestConfig, $wgFlowParsoidURL, $wgFlowParsoidPrefix,
-			$wgFlowParsoidTimeout, $wgFlowParsoidForwardCookies,
-			$wgFlowParsoidHTTPProxy, $wgServer, $wgDBname, $wgRestPath;
-
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			// HACK: We can't use parsoid through the web API in PHPUnit tests.
-			// This will go away when we switch to calling Parsoid directly as a PHP class.
-			throw new NoParserException( 'Parsoid disabled for PHPUnit' );
-		}
-
-		// the params array to create the service object with
-		$params = [];
-		// the VRS class to use; defaults to Parsoid
-		$class = 'ParsoidVirtualRESTService';
-		// the global virtual rest service config object, if any
-		$vrs = $wgVirtualRestConfig;
-		// HACK: don't use RESTbase because it'll drop data-parsoid, see T115236
-		/*if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['restbase'] ) ) {
-			// if restbase is available, use it
-			$params = $vrs['modules']['restbase'];
-			$params['parsoidCompat'] = false; // backward compatibility
-			$class = 'RestbaseVirtualRESTService';
-		} else
-		*/
-		if ( isset( $vrs['modules'] ) && isset( $vrs['modules']['parsoid'] ) ) {
-			// there's a global parsoid config, use it next
-			$params = $vrs['modules']['parsoid'];
-			$params['restbaseCompat'] = true;
-		} else {
-			// No global VRS modules defined, try to auto-detect
-			$restURL = $wgFlowParsoidURL;
-
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
-				// The parsoid extension exposes the expected endpoints
-				$restURL = "$wgServer$wgRestPath/";
-			}
-
-			if ( !$restURL ) {
-				// We don't know where to find the Parsoid API.
-				throw new NoParserException( 'Parsoid not found, set $wgFlowParsoidURL or enable the Parsoid extension' );
-			}
-
-			$params = [
-				'url' => $restURL,
-				'prefix' => $wgFlowParsoidPrefix ?: $wgDBname,
-				'timeout' => $wgFlowParsoidTimeout,
-				'HTTPProxy' => $wgFlowParsoidHTTPProxy,
-				'forwardCookies' => $wgFlowParsoidForwardCookies,
-				'restbaseCompat' => true,
-			];
-		}
-		// merge the global and service-specific params
-		if ( isset( $vrs['global'] ) ) {
-			$params = array_merge( $vrs['global'], $params );
-		}
-		// set up cookie forwarding
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
-		if ( $params['forwardCookies'] &&
-				!MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( 'read' )
-		) {
-			if ( PHP_SAPI === 'cli' ) {
-				// From the command line we need to generate a cookie
-				$params['forwardCookies'] = self::generateForwardedCookieForCli();
-			} else {
-				$params['forwardCookies'] = RequestContext::getMain()->getRequest()->getHeader( 'Cookie' );
-			}
-		} else {
-			$params['forwardCookies'] = false;
-		}
-		// create the VRS object and return it
-		return new $class( $params );
 	}
 
 	/**
@@ -507,15 +250,13 @@ abstract class Utils {
 	 * @return bool
 	 */
 	public static function onFlowAddModules( OutputPage $out ) {
-		if ( self::isParsoidConfigured() ) {
-			// The module is only necessary when we are using parsoid.
-			// XXX We only need the Parsoid CSS if some content being
-			// rendered has getContentFormat() === 'html'.
-			$out->addModuleStyles( [
-				'mediawiki.skinning.content.parsoid',
-				'ext.cite.style',
-			] );
-		}
+		// The module is only necessary when we are using parsoid.
+		// XXX We only need the Parsoid CSS if some content being
+		// rendered has getContentFormat() === 'html'.
+		$out->addModuleStyles( [
+			'mediawiki.skinning.content.parsoid',
+			'ext.cite.style',
+		] );
 
 		return true;
 	}
@@ -656,33 +397,6 @@ abstract class Utils {
 		}
 
 		return Title::newFromText( $text );
-	}
-
-	/**
-	 * @todo move into FauxRequest
-	 * @return string
-	 */
-	public static function generateForwardedCookieForCli() {
-		global $wgCookiePrefix;
-
-		$user = Container::get( 'occupation_controller' )->getTalkpageManager();
-		// This takes a request object, but doesnt set the cookies against it.
-		// patch at https://gerrit.wikimedia.org/r/177403
-		$user->setCookies( null, null, /* rememberMe */ true );
-		$response = RequestContext::getMain()->getRequest()->response();
-		if ( !$response instanceof FauxResponse ) {
-			throw new FlowException( 'Expected a FauxResponse in CLI environment' );
-		}
-		$cookies = $response->getCookies();
-
-		// now we need to convert the array into the cookie format of
-		// foo=bar; baz=bang
-		$output = [];
-		foreach ( $cookies as $key => $value ) {
-			$output[] = "$wgCookiePrefix$key={$value['value']}";
-		}
-
-		return implode( '; ', $output );
 	}
 
 	/**
