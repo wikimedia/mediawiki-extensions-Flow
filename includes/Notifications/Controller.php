@@ -519,7 +519,6 @@ class Controller {
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
 	 * @return bool|EchoEvent[]
 	 * @throws \Flow\Exception\InvalidDataException
-	 * @throws \MWException
 	 */
 	protected function generateMentionEvents(
 		AbstractRevision $content,

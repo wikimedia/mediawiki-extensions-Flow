@@ -9,6 +9,7 @@ use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Exception\DataPersistenceException;
 use Flow\Model\UUID;
+use InvalidArgumentException;
 
 /**
  * Standard backing store for data model with no special cases which is stored
@@ -124,13 +125,12 @@ class BasicDbStorage extends DbStorage {
 	 * @param array $options
 	 * @return array Empty array means no result.  Array with results is success.
 	 * @throws DataModelException On query failure
-	 * @throws \MWException
 	 */
 	public function find( array $attributes, array $options = [] ) {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( !$this->validateOptions( $options ) ) {
-			throw new \MWException( "Validation error in database options" );
+			throw new InvalidArgumentException( "Validation error in database options" );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
@@ -169,8 +169,6 @@ class BasicDbStorage extends DbStorage {
 	 * @param array $options
 	 * @return array
 	 * @throws DataModelException
-	 * @throws \Wikimedia\Rdbms\DBUnexpectedError
-	 * @throws \MWException
 	 */
 	public function findMulti( array $queries, array $options = [] ) {
 		$keys = array_keys( reset( $queries ) );

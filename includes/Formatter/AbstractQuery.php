@@ -11,6 +11,8 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
+use InvalidArgumentException;
+use RuntimeException;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -279,7 +281,6 @@ abstract class AbstractQuery {
 	/**
 	 * @param AbstractRevision $revision
 	 * @return Workflow
-	 * @throws \MWException
 	 */
 	protected function getWorkflow( AbstractRevision $revision ) {
 		if ( $revision instanceof PostRevision ) {
@@ -290,7 +291,7 @@ abstract class AbstractQuery {
 		} elseif ( $revision instanceof PostSummary ) {
 			return $this->getWorkflowById( $revision->getCollection()->getWorkflowId() );
 		} else {
-			throw new \MWException( 'Unsupported revision type ' . get_class( $revision ) );
+			throw new InvalidArgumentException( 'Unsupported revision type ' . get_class( $revision ) );
 		}
 	}
 
@@ -350,7 +351,6 @@ abstract class AbstractQuery {
 	 * Retrieves the root post for a given PostRevision
 	 * @param PostRevision $revision The revision to retrieve the root post for.
 	 * @return PostRevision PostRevision of the root post.
-	 * @throws \MWException
 	 */
 	protected function getRootPost( PostRevision $revision ) {
 		if ( $revision->isTopicTitle() ) {
@@ -359,15 +359,15 @@ abstract class AbstractQuery {
 		$rootPostId = $this->getRootPostId( $revision );
 
 		if ( !isset( $this->postCache[$rootPostId->getAlphadecimal()] ) ) {
-			throw new \MWException( 'Did not load root post ' . $rootPostId->getAlphadecimal() );
+			throw new RuntimeException( 'Did not load root post ' . $rootPostId->getAlphadecimal() );
 		}
 
 		$rootPost = $this->postCache[$rootPostId->getAlphadecimal()];
 		if ( !$rootPost ) {
-			throw new \MWException( 'Did not locate root post ' . $rootPostId->getAlphadecimal() );
+			throw new RuntimeException( 'Did not locate root post ' . $rootPostId->getAlphadecimal() );
 		}
 		if ( !$rootPost->isTopicTitle() ) {
-			throw new \MWException( "Not a topic title: " . $rootPost->getRevisionId()->getAlphadecimal() );
+			throw new RuntimeException( "Not a topic title: " . $rootPost->getRevisionId()->getAlphadecimal() );
 		}
 
 		return $rootPost;
@@ -377,7 +377,6 @@ abstract class AbstractQuery {
 	 * Gets the root post ID for a given PostRevision
 	 * @param PostRevision $revision The revision to get the root post ID for.
 	 * @return UUID The UUID for the root post.
-	 * @throws \MWException
 	 */
 	protected function getRootPostId( PostRevision $revision ) {
 		$postId = $revision->getPostId();
@@ -386,7 +385,7 @@ abstract class AbstractQuery {
 		} elseif ( isset( $this->rootPostIdCache[$postId->getAlphadecimal()] ) ) {
 			return $this->rootPostIdCache[$postId->getAlphadecimal()];
 		} else {
-			throw new \MWException( "Unable to find root post ID for post " . $postId->getAlphadecimal() );
+			throw new RuntimeException( "Unable to find root post ID for post " . $postId->getAlphadecimal() );
 		}
 	}
 

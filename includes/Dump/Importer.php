@@ -23,7 +23,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
+use RuntimeException;
 use WikiImporter;
 use XMLReader;
 
@@ -140,7 +140,7 @@ class Importer {
 		$occupationController = Container::get( 'occupation_controller' );
 		$creationStatus = $occupationController->safeAllowCreation( $title, $occupationController->getTalkpageManager() );
 		if ( !$creationStatus->isOK() ) {
-			throw new MWException( $creationStatus->getWikiText() );
+			throw new RuntimeException( $creationStatus->__toString() );
 		}
 
 		$ensureStatus = $occupationController->ensureFlowRevision(
@@ -148,7 +148,7 @@ class Importer {
 			$this->boardWorkflow
 		);
 		if ( !$ensureStatus->isOK() ) {
-			throw new MWException( $ensureStatus->getWikiText() );
+			throw new RuntimeException( $ensureStatus->__toString() );
 		}
 
 		$this->put( $this->boardWorkflow, [] );
@@ -203,7 +203,7 @@ class Importer {
 			$occupationController->getTalkpageManager()
 		);
 		if ( !$creationStatus->isOK() ) {
-			throw new MWException( $creationStatus->getWikiText() );
+			throw new RuntimeException( $creationStatus->__toString() );
 		}
 
 		$ensureStatus = $occupationController->ensureFlowRevision(
@@ -212,7 +212,7 @@ class Importer {
 			$this->topicWorkflow
 		);
 		if ( !$ensureStatus->isOK() ) {
-			throw new MWException( $ensureStatus->getWikiText() );
+			throw new RuntimeException( $ensureStatus->__toString() );
 		}
 
 		$this->put( $this->topicWorkflow, $metadata );

@@ -66,7 +66,6 @@ interface OccupationController {
 	 * Gives a user object used to manage talk pages
 	 *
 	 * @return User User to manage talkpages
-	 * @throws \MWException If a user cannot be created.
 	 */
 	public function getTalkpageManager();
 }

@@ -9,7 +9,7 @@ use Flow\Data\Utils\ResultDuplicator;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
-use MWException;
+use InvalidArgumentException;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -122,13 +122,12 @@ abstract class RevisionStorage extends DbStorage {
 	 * @param array $options
 	 * @return array
 	 * @throws DataModelException
-	 * @throws MWException
 	 */
 	protected function findInternal( array $attributes, array $options = [] ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
 		if ( !$this->validateOptions( $options ) ) {
-			throw new MWException( "Validation error in database options" );
+			throw new InvalidArgumentException( "Validation error in database options" );
 		}
 
 		// Add rev_type if rev_type_id exists in query condition
