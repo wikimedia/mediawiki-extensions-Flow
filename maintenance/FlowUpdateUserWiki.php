@@ -7,7 +7,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use LoggedUpdateMaintenance;
-use MWException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -47,7 +46,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	 * add a check user_id != 0 and user_ip is not null to the query, but this will
 	 * result in more db queries
 	 * @return true
-	 * @throws \MWException
 	 */
 	protected function doDBUpdates() {
 		$id = '';
@@ -73,23 +71,19 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[ 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $batchSize ]
 			);
-			if ( $res ) {
-				foreach ( $res as $row ) {
-					$count++;
-					$id = $row->workflow_id;
-					$uuid = UUID::create( $row->workflow_id );
-					$workflow = Container::get( 'storage.workflow' )->get( $uuid );
-					if ( $workflow ) {
-						// definition type 'topic' is always under a 'discussion' and they
-						// will be handled while processing 'discussion'
-						if ( $row->workflow_type == 'discussion' ) {
-							$this->updateHeader( $workflow, $row->workflow_wiki );
-							$this->updateTopicList( $workflow, $row->workflow_wiki );
-						}
+			foreach ( $res as $row ) {
+				$count++;
+				$id = $row->workflow_id;
+				$uuid = UUID::create( $row->workflow_id );
+				$workflow = Container::get( 'storage.workflow' )->get( $uuid );
+				if ( $workflow ) {
+					// definition type 'topic' is always under a 'discussion' and they
+					// will be handled while processing 'discussion'
+					if ( $row->workflow_type == 'discussion' ) {
+						$this->updateHeader( $workflow, $row->workflow_wiki );
+						$this->updateTopicList( $workflow, $row->workflow_wiki );
 					}
 				}
-			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 
@@ -120,19 +114,14 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[ 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $batchSize ]
 			);
-			if ( $res ) {
-				foreach ( $res as $row ) {
-					$count++;
-					$id = $row->rev_id;
-					$revision = Container::get( 'storage.header' )->get( UUID::create( $row->rev_id ) );
-					if ( $revision ) {
-						$this->updateRevision( $revision, $wiki );
-					}
+			foreach ( $res as $row ) {
+				$count++;
+				$id = $row->rev_id;
+				$revision = Container::get( 'storage.header' )->get( UUID::create( $row->rev_id ) );
+				if ( $revision ) {
+					$this->updateRevision( $revision, $wiki );
 				}
-			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
-
 		}
 	}
 
@@ -159,19 +148,15 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[ 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $batchSize ]
 			);
-			if ( $res ) {
-				$index = 0;
-				foreach ( $res as $row ) {
-					$count++;
-					$index++;
-					$id = $row->topic_id;
-					$post = Container::get( 'loader.root_post' )->get( UUID::create( $row->topic_id ) );
-					if ( $post ) {
-						$this->updatePost( $post, $wiki );
-					}
+			$index = 0;
+			foreach ( $res as $row ) {
+				$count++;
+				$index++;
+				$id = $row->topic_id;
+				$post = Container::get( 'loader.root_post' )->get( UUID::create( $row->topic_id ) );
+				if ( $post ) {
+					$this->updatePost( $post, $wiki );
 				}
-			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 	}
@@ -216,7 +201,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		$type = $revision->getRevisionType();
 
 		$dbw = Container::get( 'db.factory' )->getDB( DB_PRIMARY );
-		$res = $dbw->update(
+		$dbw->update(
 			'flow_revision',
 			[
 				'rev_user_wiki' => $wiki,
@@ -228,13 +213,10 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			],
 			__METHOD__
 		);
-		if ( !$res ) {
-			throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
-		}
 		$this->checkForReplica();
 
 		if ( $type === 'post' ) {
-			$res = $dbw->update(
+			$dbw->update(
 				'flow_tree_revision',
 				[
 					'tree_orig_user_wiki' => $wiki,
@@ -244,9 +226,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				],
 				__METHOD__
 			);
-			if ( !$res ) {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
-			}
 			$this->checkForReplica();
 		}
 	}

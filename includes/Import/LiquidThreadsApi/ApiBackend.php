@@ -4,6 +4,7 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use ApiBase;
 use Flow\Import\ImportException;
+use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -75,13 +76,13 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	/**
 	 * Retrieves data about a set of pages from the API
 	 *
-	 * @param int[] $pageIds Page IDs to return data for.
+	 * @param int[] $pageIds Page IDs to return data for. There must be at least one element.
+	 * @phan-param non-empty-list<int> $pageIds
 	 * @return array The query.pages part of the API response.
-	 * @throws \MWException
 	 */
 	public function retrievePageDataById( array $pageIds ) {
 		if ( !$pageIds ) {
-			throw new \MWException( 'At least one page id must be provided' );
+			throw new InvalidArgumentException( 'At least one page id must be provided' );
 		}
 
 		return $this->retrievePageData(
@@ -95,14 +96,14 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 * Retrieves data about the latest revision of the titles
 	 * from the API
 	 *
-	 * @param string[] $titles Titles to return data for
-	 * @return array The query.pages prt of the API response.
-	 * @throws \MWException
+	 * @param string[] $titles Titles to return data for. There must be at least one element.
+	 * @phan-param non-empty-list<string> $titles
+	 * @return array The query.pages part of the API response.
 	 * @throws ImportException
 	 */
 	public function retrieveTopRevisionByTitle( array $titles ) {
 		if ( !$titles ) {
-			throw new \MWException( 'At least one title must be provided' );
+			throw new InvalidArgumentException( 'At least one title must be provided' );
 		}
 
 		return $this->retrievePageData(

@@ -6,7 +6,6 @@ use Flow\Hooks;
 use LoggedUpdateMaintenance;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MWException;
 use WikitextContent;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -107,7 +106,6 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	 * @param Title $title
 	 * @param WikitextContent $content
 	 * @return Status
-	 * @throws MWException
 	 */
 	protected function create( Title $title, WikitextContent $content ) {
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );

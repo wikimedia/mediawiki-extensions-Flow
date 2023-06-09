@@ -452,9 +452,6 @@ class Controller {
 	 * @param string $type flow-topic-resolved|flow-topic-reopened
 	 * @param array $data
 	 * @return array
-	 * @throws \Flow\Exception\InvalidDataException
-	 * @throws FlowException
-	 * @throws \MWException
 	 */
 	public function notifyTopicLocked( $type, $data = [] ) {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {

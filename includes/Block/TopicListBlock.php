@@ -120,8 +120,6 @@ class TopicListBlock extends AbstractBlock {
 	 * * $this->topicTitle
 	 * * $this->firstPost
 	 *
-	 * @throws \MWException
-	 * @throws FailCommitException
 	 * @return array Array of [$topicWorkflow, $topicListEntry, $topicTitle, $firstPost]
 	 */
 	protected function create() {
@@ -311,7 +309,6 @@ class TopicListBlock extends AbstractBlock {
 	 *
 	 * @param array $options
 	 * @return array
-	 * @throws \MWException
 	 */
 	protected function preloadTexts( $options ) {
 		if ( isset( $options['preload'] ) && !empty( $options['preload'] ) ) {

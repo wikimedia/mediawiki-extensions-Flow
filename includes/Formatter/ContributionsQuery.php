@@ -10,6 +10,7 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use InvalidArgumentException;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\User\UserIdentityLookup;
@@ -80,9 +81,6 @@ class ContributionsQuery extends AbstractQuery {
 		foreach ( $types as $revisionClass => $blockType ) {
 			// query DB for requested revisions
 			$rows = $this->queryRevisions( $conditions, $limit, $revisionClass );
-			if ( !$rows ) {
-				continue;
-			}
 
 			// turn DB data into revision objects
 			$revisions = $this->loadRevisions( $rows, $revisionClass );
@@ -185,8 +183,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param array $conditions
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
-	 * @return IResultWrapper|false false on failure
-	 * @throws \MWException
+	 * @return IResultWrapper
 	 */
 	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
@@ -268,7 +265,7 @@ class ContributionsQuery extends AbstractQuery {
 				);
 
 			default:
-				throw new \MWException( 'Unsupported revision type ' . $revisionClass );
+				throw new InvalidArgumentException( 'Unsupported revision type ' . $revisionClass );
 		}
 	}
 

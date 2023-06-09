@@ -5,7 +5,6 @@ namespace Flow\Maintenance;
 use Flow\Container;
 use Flow\DbFactory;
 use LoggedUpdateMaintenance;
-use MWException;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -59,21 +58,17 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 				]
 			);
 
-			if ( $res ) {
-				foreach ( $res as $row ) {
-					$count++;
-					$revId = $row->rev_id;
-					switch ( $row->rev_type ) {
-						case 'header':
-							$this->updateRevision( $dbw, $row->rev_id, $row->header_workflow_id );
-							break;
-						case 'post':
-							$this->updateRevision( $dbw, $row->rev_id, $row->tree_rev_descendant_id );
-							break;
-					}
+			foreach ( $res as $row ) {
+				$count++;
+				$revId = $row->rev_id;
+				switch ( $row->rev_type ) {
+					case 'header':
+						$this->updateRevision( $dbw, $row->rev_id, $row->header_workflow_id );
+						break;
+					case 'post':
+						$this->updateRevision( $dbw, $row->rev_id, $row->tree_rev_descendant_id );
+						break;
 				}
-			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 			$dbFactory->waitForReplicas();
 		}
@@ -95,15 +90,12 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 			return;
 		}
 
-		$res = $dbw->update(
+		$dbw->update(
 			'flow_revision',
 			[ 'rev_type_id' => $revTypeId ],
 			[ 'rev_id' => $revId ],
 			__METHOD__
 		);
-		if ( !$res ) {
-			throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
-		}
 	}
 
 	/**

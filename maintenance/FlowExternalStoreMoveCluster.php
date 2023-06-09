@@ -12,8 +12,8 @@ use Flow\Model\UUID;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use RowUpdateGenerator;
+use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -235,12 +235,11 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	 * @param string $url
 	 * @param array $flags
 	 * @return string
-	 * @throws MWException
 	 */
 	public function read( $url, array $flags = [] ) {
 		$content = ExternalStore::fetchFromURL( $url );
 		if ( $content === false ) {
-			throw new MWException( "Failed to fetch content from URL: $url" );
+			throw new RuntimeException( "Failed to fetch content from URL: $url" );
 		}
 
 		$content = MediaWikiServices::getInstance()
@@ -248,7 +247,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 			->newSqlBlobStore()
 			->decompressData( $content, $flags );
 		if ( $content === false ) {
-			throw new MWException( "Failed to decompress content from URL: $url" );
+			throw new RuntimeException( "Failed to decompress content from URL: $url" );
 		}
 
 		return $content;
@@ -258,7 +257,6 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	 * @param string $content
 	 * @param array $flags
 	 * @return array New ExternalStore data in the form of ['content' => ..., 'flags' => [ ... ]]
-	 * @throws MWException
 	 */
 	protected function write( $content, array $flags = [] ) {
 		// external, utf-8 & gzip flags are no longer valid at this point
@@ -286,7 +284,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 		}
 		$url = ExternalStore::insertWithFallback( $stores, $content );
 		if ( $url === false ) {
-			throw new MWException( 'Failed to write content to stores ' . json_encode( $stores ) );
+			throw new RuntimeException( 'Failed to write content to stores ' . json_encode( $stores ) );
 		}
 
 		// add flag indicating content is external again, and restore unrelated flags

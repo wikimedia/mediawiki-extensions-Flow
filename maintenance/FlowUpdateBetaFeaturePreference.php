@@ -4,7 +4,6 @@ namespace Flow\Maintenance;
 
 use LoggedUpdateMaintenance;
 use MediaWiki\User\UserArray;
-use MWException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -35,7 +34,6 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 	 * and user talk page state are in sync.
 	 *
 	 * @return bool
-	 * @throws MWException
 	 */
 	protected function doDBUpdates() {
 		global $wgFlowEnableOptInBetaFeature;

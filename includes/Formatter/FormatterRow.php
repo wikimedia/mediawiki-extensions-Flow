@@ -5,6 +5,7 @@ namespace Flow\Formatter;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
+use LogicException;
 
 /**
  * Helper class represents a row of data from AbstractQuery
@@ -35,7 +36,7 @@ class FormatterRow {
 	 * @return never
 	 */
 	public function __get( $attribute ) {
-		throw new \MWException( "Accessing non-existent parameter: $attribute" );
+		throw new LogicException( "Accessing non-existent parameter: $attribute" );
 	}
 
 	/**
@@ -45,6 +46,6 @@ class FormatterRow {
 	 * @return never
 	 */
 	public function __set( $attribute, $value ) {
-		throw new \MWException( "Accessing non-existent parameter: $attribute" );
+		throw new LogicException( "Accessing non-existent parameter: $attribute" );
 	}
 }

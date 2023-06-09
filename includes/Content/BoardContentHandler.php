@@ -15,20 +15,20 @@ use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use FormatJson;
 use IContextSource;
+use InvalidArgumentException;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MWException;
 use ParserOutput;
 use RequestContext;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {
 		if ( $modelId !== CONTENT_MODEL_FLOW_BOARD ) {
-			throw new MWException( __CLASS__ . " initialised for invalid content model" );
+			throw new InvalidArgumentException( __CLASS__ . " initialised for invalid content model" );
 		}
 
 		parent::__construct( CONTENT_MODEL_FLOW_BOARD, [ CONTENT_FORMAT_JSON ] );
@@ -56,11 +56,10 @@ class BoardContentHandler extends \ContentHandler {
 	 * @param \Content $content The Content object to serialize
 	 * @param string|null $format The desired serialization format
 	 * @return string Serialized form of the content
-	 * @throws MWException
 	 */
 	public function serializeContent( \Content $content, $format = null ) {
 		if ( !$content instanceof BoardContent ) {
-			throw new MWException( "Expected a BoardContent object, got a " . get_class( $content ) );
+			throw new InvalidArgumentException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}
 
 		$info = [];

@@ -484,7 +484,7 @@ class TopicBlock extends AbstractBlock {
 				// @todo make more explicit
 				try {
 					$newRevision->getChildren();
-				} catch ( \MWException $e ) {
+				} catch ( DataModelException $e ) {
 					$newRevision->setChildren( [] );
 				}
 

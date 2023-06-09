@@ -310,7 +310,6 @@ class OptInController {
 	 * @param string $contentText
 	 * @param string $summary
 	 * @throws ImportException
-	 * @throws \MWException
 	 * @param-taint $contentText escapes_escaped
 	 */
 	private function createRevision( Title $title, $contentText, $summary ) {
@@ -429,7 +428,6 @@ class OptInController {
 	/**
 	 * @param Title $title
 	 * @return string
-	 * @throws \MWException
 	 */
 	private function getContent( Title $title ) {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );

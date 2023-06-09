@@ -13,7 +13,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\User;
-use MWException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -200,7 +199,6 @@ class FlowRestoreLQT extends Maintenance {
 	 * @param Title $flow Title of the Flow board
 	 * @param int $logId Log id for when LQT board was moved by import
 	 * @return Status
-	 * @throws MWException
 	 */
 	protected function restoreLQTPage( Title $lqt, Title $flow, $logId ) {
 		if ( $lqt->equals( $flow ) ) {
@@ -313,7 +311,6 @@ class FlowRestoreLQT extends Maintenance {
 	 * @param int $pageId
 	 * @param int $nextRevisionId Revision of the first *bad* revision
 	 * @return Status
-	 * @throws MWException
 	 */
 	protected function restorePageRevision( $pageId, $nextRevisionId ) {
 		global $wgLang;

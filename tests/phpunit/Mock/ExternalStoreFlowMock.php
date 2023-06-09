@@ -15,7 +15,7 @@ class ExternalStoreFlowMock extends ExternalStoreMemory {
 	}
 
 	public function fetchFromURL( $url ) {
-		throw new MWException( 'The mock does not support ' . __FUNCTION__ . '.' );
+		throw new LogicException( 'The mock does not support ' . __FUNCTION__ . '.' );
 	}
 
 	public function store( $location, $data ) {
