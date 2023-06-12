@@ -12,5 +12,6 @@
 	"notification-header-flow-topic-renamed-user-talk": "<strong>Siziń talqılaw betińizdegi</strong> «<strong>$1</strong>» temasınıń atı «<strong>$2</strong>» bolıp ózgertildi.",
 	"notification-header-flow-summary-edited-user-talk": "<strong>{{GENDER:$2|Siziń}} talqılaw betińizdegi</strong> «<strong>$1</strong>» temasındaǵı qısqasha túsindirme jańalandı.",
 	"notification-header-flow-summary-edited-first-user-talk": "<strong>{{GENDER:$2|Talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasına qısqasha túsindirme qosıldı.",
-	"notification-bundle-header-flow-summary-edited-user-talk": "<strong>{{GENDER:$2|Talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasındaǵı qısqasha túsindirme birneshe márte jańalandı."
+	"notification-bundle-header-flow-summary-edited-user-talk": "<strong>{{GENDER:$2|Talqılaw betińizdegi}}</strong> «<strong>$1</strong>» temasındaǵı qısqasha túsindirme birneshe márte jańalandı.",
+	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}"
 }
