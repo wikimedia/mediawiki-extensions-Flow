@@ -4,8 +4,8 @@ namespace Flow\Model;
 
 use ApiSerializable;
 use Html;
+use MediaWiki\Language\RawMessage;
 use Message;
-use RawMessage;
 use Title;
 
 /**

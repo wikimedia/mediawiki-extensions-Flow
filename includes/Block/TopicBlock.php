@@ -23,6 +23,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Notifications\Controller;
 use Flow\Repository\RootPostLoader;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use Message;
 
@@ -960,7 +961,7 @@ class TopicBlock extends AbstractBlock {
 
 				// check if there were any log extracts
 				if ( $entries ) {
-					$message = new \RawMessage( '$1' );
+					$message = new RawMessage( '$1' );
 					return $message->rawParams( $output->getHTML() );
 				}
 			}
