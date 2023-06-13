@@ -19,6 +19,7 @@
 	"flow-topic-action-watchlist-remove": "Heaitte diŋgomis",
 	"flow-error-protected-unknown-reason": "Dovdameahttun",
 	"flow-history-day": "Odne",
+	"flow-comment-hidden": "Čihkkon kommeanta",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čájet}} siiddu",
 	"flow-moderation-confirm-delete-post": "Sihko",
 	"flow-moderation-confirm-hide-post": "Čiega",
