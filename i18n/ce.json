@@ -3,6 +3,7 @@
 		"authors": [
 			"Macofe",
 			"Matiia",
+			"Абдуллах Саад",
 			"Исмаил Садуев",
 			"Умар"
 		]
@@ -22,7 +23,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] [[$3]] чу импорт йина LiquidThreads чура Эхаран чу",
 	"flow-user-moderated": "Декъашхочун модераци йина",
 	"flow-board-header-browse-topics-link": "Хьедаршка хьажар",
-	"flow-board-header": "ХӀокху унах лаьцна",
+	"flow-board-header": "ХӀокху уьнах лаьцна",
 	"flow-board-collapse-description": "Къайлабаккха хаам",
 	"flow-board-expand-description": "Гайта хаам",
 	"flow-edit-header-link": "Нисбе хаам",

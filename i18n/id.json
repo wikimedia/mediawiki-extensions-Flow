@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agam Riyandana",
 			"Ahdan",
 			"Arief",
 			"Beeyan",
@@ -460,7 +461,7 @@
 	"flow-topic-undo-hide": "batal sembunyikan",
 	"flow-topic-undo-delete": "batal hapus",
 	"flow-topic-undo-suppress": "batal beredel",
-	"flow-importer-lqt-moved-thread-template": "Rintisan utas LQT Moved yang dikonversi ke Pembicaraan Terstruktur",
+	"flow-importer-lqt-moved-thread-template": "LQT Memindahkan rintisan utas yang diubah menjadi Aliran",
 	"flow-importer-lqt-moved-thread-template-content": "Kiriman oleh {{{author}}} ini dipindahkan pada {{{date}}}. Anda dapat menemukannya di [[{{{title}}}]].",
 	"flow-importer-lqt-converted-template": "Halaman LQT yang dikonversi ke Pembicaraan Terstruktur",
 	"flow-importer-lqt-converted-template-content": "Riwayat halaman sebelumnya diarsipkan untuk alasan pencadangan di <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> pada {{#time: Y-m-d|{{{date}}}}}.",
