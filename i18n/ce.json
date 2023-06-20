@@ -4,7 +4,8 @@
 			"Macofe",
 			"Matiia",
 			"Исмаил Садуев",
-			"Умар"
+			"Умар",
+			"Абдуллах Саад"
 		]
 	},
 	"enablestructureddiscussions": "Латаде структурйина дийцар",
@@ -22,7 +23,7 @@
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] [[$3]] чу импорт йина LiquidThreads чура Эхаран чу",
 	"flow-user-moderated": "Декъашхочун модераци йина",
 	"flow-board-header-browse-topics-link": "Хьедаршка хьажар",
-	"flow-board-header": "ХӀокху унах лаьцна",
+	"flow-board-header": "ХӀокху уьнах лаьцна",
 	"flow-board-collapse-description": "Къайлабаккха хаам",
 	"flow-board-expand-description": "Гайта хаам",
 	"flow-edit-header-link": "Нисбе хаам",
@@ -37,8 +38,8 @@
 	"flow-hide-title-content": "ХӀара тема хьулдина {{GENDER:$1|декъашхочо}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|Декъашхочо}} $2 къайладаьккхина",
 	"flow-delete-post-content": "ХӀара къамел дӀадаьккхина {{GENDER:$1|декъашхочо}} $1",
-	"flow-post-actions": "Дийраш",
-	"flow-topic-actions": "Дийраш",
+	"flow-post-actions": "Ардамаш",
+	"flow-topic-actions": "Ардамаш",
 	"flow-cancel": "Цаоьшу",
 	"flow-skip-summary": "Дехьа гӀо",
 	"flow-show-change": "Гайта хийцам",
