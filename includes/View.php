@@ -132,7 +132,6 @@ class View extends ContextSource {
 		} else {
 			$out->addModuleStyles( [
 				'mediawiki.ui',
-				'mediawiki.ui.anchor',
 				'mediawiki.ui.button',
 				'mediawiki.ui.input',
 				'mediawiki.ui.icon',
