@@ -6,6 +6,5 @@
 	},
 	"apihelp-flow+edit-post-param-postId": "ID del messatge.",
 	"apihelp-flow+edit-post-param-content": "Contengut pel messatge.",
-	"apihelp-flow+new-topic-example-1": "Crear un novèl subjècte sus [[Talk:Sandbox]]",
-	"apihelp-flow+view-post-description": "Afichar un messatge."
+	"apihelp-flow+new-topic-example-1": "Crear un novèl subjècte sus [[Talk:Sandbox]]"
 }
