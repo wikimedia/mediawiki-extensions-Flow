@@ -5,6 +5,9 @@
 		]
 	},
 	"flow-newtopic-save": "Tema qosıw",
+	"flow-reply-topic-title-placeholder": "«$1» temasında juwap jazıw",
+	"flow-topic-action-watchlist-remove": "Jazılıwdı biykarlaw",
+	"notification-header-flow-post-reply": "$1 paydalanıwshı «<strong>$4</strong>» temasında {{GENDER:$2|juwap jazdı}}.",
 	"notification-header-flow-post-reply-user-talk": "$1 <strong>siziń talqılaw betińizdegi</strong> «<strong>$4</strong>» temasında juwap {{GENDER:$2|jazdı}}.",
 	"notification-bundle-header-flow-post-reply-user-talk": "<strong>Talqılaw betińizdegi</strong> «<strong>$3</strong>» temasında {{PLURAL:$1|bir jańa juwap|$1 jańa juwap|100=99+ jańa juwap}} bar.",
 	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|Siziń}} talqılaw betińizdegi</strong> «<strong>$1</strong>» temasındaǵı post redaktorlandı.",
@@ -16,5 +19,6 @@
 	"notification-header-flow-mention-post": "$1 paydalanıwshı «<strong>$5</strong>» temasında {{GENDER:$4|sizdi}} {{GENDER:$2|atap ótti}}.",
 	"notification-header-flow-mention-header": "$1 paydalanıwshı <strong>$3</strong> sıpatlamasında {{GENDER:$4|sizdi}} {{GENDER:$2|atap ótti}}.",
 	"notification-header-flow-mention-post-summary": "$1 paydalanıwshı «<strong>$5</strong>» temasında {{GENDER:$4|sizdi}} {{GENDER:$2|atap ótti}}.",
-	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}"
+	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}",
+	"flow-notification-reply-email-batch-body": "$1 paydalanıwshı $3 betindegi «$2» temasında {{GENDER:$1|juwap jazdı}}"
 }
