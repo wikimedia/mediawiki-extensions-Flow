@@ -19,7 +19,10 @@
 			"زكريا",
 			"علاء",
 			"محمد أحمد عبد الفتاح",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"Alshamiri1",
+			"FShbib",
+			"أيوب"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -307,7 +310,7 @@
 	"notification-header-flow-mention-post-summary": "{{GENDER:$2|أشار|أشارت}} $1 {{GENDER:$4|إليك}} في  \"<strong>$5</strong>\".",
 	"notification-header-flow-enabled-on-talkpage": "تم تمكين نظام مناقشة جديد على <strong>{{GENDER:$2|صفحة نقاشك}} كمستخدم</strong>.",
 	"notification-header-flow-description-edited": "عُدل وصف <strong>$1</strong>.",
-	"notification-header-flow-description-edited-user-talk": "الوصف تم تعديله على <strong>{{GENDER:$2|صفحة نقاشك}}</strong>.",
+	"notification-header-flow-description-edited-user-talk": "عُدل الوصف على <strong>{{GENDER:$2|صفحة نقاشك}}</strong>.",
 	"notification-bundle-header-flow-description-edited": "وصف </strong>$1</strong> عُدل عدة مرات.",
 	"notification-bundle-header-flow-description-edited-user-talk": "تم تحرير الوصف عدة مرات على <strong>{{GENDER:$2|صفحة نقاشك}} </strong>.",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|اعرض}} الصفحة",
