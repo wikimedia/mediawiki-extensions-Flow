@@ -3,7 +3,6 @@
 namespace Flow\Maintenance;
 
 use BatchRowIterator;
-use Diff;
 use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
@@ -16,7 +15,8 @@ use Maintenance;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionClass;
 use ReflectionMethod;
-use UnifiedDiffFormatter;
+use Wikimedia\Diff\Diff;
+use Wikimedia\Diff\UnifiedDiffFormatter;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
