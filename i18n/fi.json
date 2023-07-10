@@ -19,7 +19,8 @@
 			"Stryn",
 			"Valtlait",
 			"BaRaN6161 TURK",
-			"Valtlai"
+			"Valtlai",
+			"Kyykaarme"
 		]
 	},
 	"enablestructureddiscussions": "Ota Jäsennetyt keskustelut käyttöön",
@@ -457,7 +458,7 @@
 	"flow-beta-feature-add-archive-template-edit-summary": "Lisätään arkistomalline.",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Poistetaan arkistomalline",
 	"flow-dialog-cancelconfirm-title": "Oletko varma?",
-	"flow-dialog-cancelconfirm-message": "Oletko varma että haluat peruuttaa ennen kuin olet tallentanut?",
+	"flow-dialog-cancelconfirm-message": "Oletko varma, että haluat peruuttaa ennen kuin olet tallentanut?",
 	"flow-dialog-cancelconfirm-keep": "Jatka muokkaamista",
 	"flow-dialog-cancelconfirm-discard": "Hylkää muutokset",
 	"flow-optin-archive-wikitext": "Siirrä wikitekstisivu tehdäksesi tilaa keskustelupalstalle.",
