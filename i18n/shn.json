@@ -6,10 +6,16 @@
 			"Saosukham"
 		]
 	},
+	"flow-board-collapse-description": "သိူင်ႇ ၶေႃႈသပ်းလႅင်း",
+	"flow-edit-header-link": "မႄးထတ်း ၶေႃႈသပ်းလႅင်း",
 	"flow-show-change": "ၼႄလွင်ႈလႅၵ်ႈလၢႆႈ",
 	"flow-post-action-edit-post-submit": "သိမ်းလွင်ႈလႅၵ်ႈလၢႆႈ",
 	"flow-post-action-edit-post-submit-publish": "ပိုတ်ႇဢွၵ်ႇ လွင်ႈလႅၵ်ႈလၢႆႈ",
+	"flow-error-missing-header-content": "ၸဝ်ႈၵဝ်ႇ တေလႆႈသူင်ႇ ၶေႃႈသပ်းလႅင်း။",
+	"flow-edit-header-submit": "သိမ်း ၶေႃႈသပ်းလႅင်း",
+	"flow-edit-header-submit-publish": "ပိုၼ်ဢွၵ်ႇ ၶေႃႈသပ်းလႅင်း",
 	"flow-edit-post-submit": "သူင်ႇ လွင်ႈလႅၵ်ႈလၢႆႈ",
+	"flow-rev-message-create-header": "$1 {{GENDER:$2|သၢင်ႈဝႆႉ}} ၶေႃႈသပ်းလႅင်း",
 	"flow-ve-mention-template-title": "ၸွမ်းဢၼ်ၼႄဝႆႉ",
 	"flow-wikitext-editor-help-preview-the-result": "တူၺ်းတူဝ်ယၢင်ႇ ၽွၼ်းလႆႈ",
 	"flow-dialog-cancelconfirm-discard": "ယႃႉပႅတ်ႈ လွင်ႈလႅၵ်ႈလၢႆႈ"
