@@ -62,6 +62,7 @@
 	"flow-topic-action-unsuppress-topic": "موضوع توں دباؤ ہٹاؤ",
 	"flow-topic-action-restore-topic": "موضوع بحال کرو",
 	"flow-topic-action-undo-moderation": "واپس",
+	"flow-topic-action-watchlist-remove": "اݨ سبسکرائب کرو",
 	"flow-error-missing-summary": "تہاکوں خلاصہ لکھݨاں پوسی۔",
 	"flow-error-protected-unknown-reason": "اݨ سونہاں",
 	"flow-error-not-allowed-hide": "ایہ موضوع لکا ہویا ہے۔",

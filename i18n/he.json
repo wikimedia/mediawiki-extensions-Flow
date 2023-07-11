@@ -14,7 +14,8 @@
 			"YaronSh",
 			"דגש",
 			"לואיקה",
-			"ערן"
+			"ערן",
+			"Neriah"
 		]
 	},
 	"enablestructureddiscussions": "הפעלת דיונים מבניים",
@@ -87,7 +88,7 @@
 	"flow-summary-authored": "סיכום מאת $1",
 	"flow-summary-edited": "הסיכום נערך בפעם האחרונה על־ידי $1",
 	"flow-show-change": "הצגת שינויים",
-	"flow-last-modified-by": "שוּנה לאחרונה על־ידי $1",
+	"flow-last-modified-by": "שונה לאחרונה על־ידי $1",
 	"flow-stub-post-content": "<em>בשל בעיה טכנית, לא ניתן לאחזר את התוכן הזה.</em>",
 	"flow-newtopic-title-placeholder": "נושא חדש",
 	"flow-newtopic-content-placeholder": "שליחת הודעה חדשה בדף \"$1\"",
@@ -271,7 +272,7 @@
 	"flow-comment-deleted": "תגובה מחוקה",
 	"flow-comment-hidden": "תגובה מוסתרת",
 	"flow-comment-moderated": "תגובה מפוקחת",
-	"flow-last-modified": "שוּנה לאחרונה $1",
+	"flow-last-modified": "שונה לאחרונה $1",
 	"flow-workflow": "זרימת עבודה",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|הגיב|הגיבה}} בדף <strong>$4</strong>.",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 ועוד {{PLURAL:$5|מישהו|$5 אנשים אחרים|יותר מ־99 אנשים אחרים}} {{GENDER:$1|השיבו}} בדף <strong>$3</strong>.",
