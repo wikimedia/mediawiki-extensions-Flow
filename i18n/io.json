@@ -72,6 +72,7 @@
 	"notification-header-flow-description-edited": "La deskripto pri <strong>$1</strong> redaktesis.",
 	"notification-bundle-header-flow-description-edited": "La deskripto pri <strong>$1</strong> redaktesis multafoye.",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Vidar}} pagino",
+	"flow-notification-link-text-view-topics": "Vidar temi",
 	"flow-notification-newtopic-email-subject": "$1 {{GENDER:$1|kreis}} nova temo en $2",
 	"echo-category-title-flow-discussion": "Strukturigata diskuto",
 	"flow-link-topic": "temo",
