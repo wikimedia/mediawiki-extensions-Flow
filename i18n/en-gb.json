@@ -6,10 +6,13 @@
 			"Aursani",
 			"Caliburn",
 			"Mdann52",
+			"Reedy",
 			"Shirayuki"
 		]
 	},
 	"flow-summarize-topic-placeholder": "Please summarise this discussion",
 	"flow-topic-action-summarize-topic": "Summarise",
-	"flow-error-no-render": "The specified action was not recognised."
+	"flow-error-no-render": "The specified action was not recognised.",
+	"notification-header-flow-summary-edited-first": "The topic \"<strong>$1</strong>\" was summarised.",
+	"notification-header-flow-summary-edited-first-user-talk": "The topic \"<strong>$1</strong>\" was summarised on <strong>{{GENDER:$2|your}} talk page</strong>."
 }
