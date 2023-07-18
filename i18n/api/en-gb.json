@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piano1forte2"
+		]
+	},
+	"apihelp-flow+close-open-topic-summary": "Deprecated in favour of [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]]."
+}
