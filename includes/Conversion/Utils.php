@@ -255,7 +255,7 @@ abstract class Utils {
 		// rendered has getContentFormat() === 'html'.
 		$out->addModuleStyles( [
 			'mediawiki.skinning.content.parsoid',
-			'ext.cite.style',
+			'ext.cite.parsoid.styles',
 		] );
 
 		return true;
