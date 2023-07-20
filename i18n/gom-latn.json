@@ -78,6 +78,8 @@
 	"flow-history-action-suppress-post": "vogllai",
 	"flow-history-action-delete-post": "kadun udoi",
 	"flow-history-action-hide-post": "lipoi",
+	"flow-history-action-unsuppress-post": "vogllavop rod'd kor",
+	"flow-history-action-undelete-post": "portun hadd",
 	"flow-history-action-restore-post": "porot hadd",
 	"flow-history-action-lock-topic": "sodoi",
 	"flow-history-action-unlock-topic": "porot ugod",
