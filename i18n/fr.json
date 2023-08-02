@@ -479,7 +479,6 @@
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Message",
 	"flow-special-type-workflow": "Flux de travail",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Impossible de trouver un contenu correspondant au type et à l’UUID.",
 	"flow-special-enableflow-legend": "Activer les Discussions structurées sur une nouvelle page",
 	"flow-special-enableflow-page": "Page sur laquelle activer les Discussions structurées",

@@ -439,7 +439,6 @@
 	"flow-special-type": "סוג",
 	"flow-special-type-post": "רשומה",
 	"flow-special-type-workflow": "זרימת עבודה",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "לא נמצא תוכן שמתאים לסוג ול־UUID.",
 	"flow-special-enableflow-legend": "הפעלת דיונים מבניים בדף חדש",
 	"flow-special-enableflow-page": "באילו דפים להפעיל את דיונים מבניים",

@@ -434,7 +434,6 @@
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Објава",
 	"flow-special-type-workflow": "Работен тек",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Не можев да пронајдам содржини што одговараат на дадениот тип и UUID.",
 	"flow-special-enableflow-legend": "Вклучи ги Структурираните дискусии на нова страница",
 	"flow-special-enableflow-page": "На која страница да се вклучат Структурираните дискусии",

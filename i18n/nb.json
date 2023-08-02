@@ -439,7 +439,6 @@
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Innlegg",
 	"flow-special-type-workflow": "Arbeidsflyt",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Kunne ikke finne innhold som matchet typen og UUID-en.",
 	"flow-special-enableflow-legend": "Aktiver strukturert diskusjon på en ny side",
 	"flow-special-enableflow-page": "Side som strukturerte diskusjoner skal aktiveres for",

@@ -463,7 +463,6 @@
 	"flow-special-type": "Tipo",
 	"flow-special-type-post": "Publicación",
 	"flow-special-type-workflow": "Flujo de trabajo",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "No se ha encontrado contenido que coincida con el tipo y el UUID indicados.",
 	"flow-special-enableflow-legend": "Activar Discusiones estructuradas en una página nueva",
 	"flow-special-enableflow-page": "Página en la que activar Discusiones estructuradas",

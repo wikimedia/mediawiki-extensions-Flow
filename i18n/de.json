@@ -439,7 +439,6 @@
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Beitrag",
 	"flow-special-type-workflow": "Workflow",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Es konnte kein Inhalt mit dem Typ und der UUID gefunden werden.",
 	"flow-special-enableflow-legend": "Strukturierte Diskussionen auf einer neuen Seite aktivieren",
 	"flow-special-enableflow-page": "Seite, auf der strukturierte Diskussionen aktiviert werden sollen",

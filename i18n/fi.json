@@ -391,7 +391,6 @@
 	"flow-special-type": "Tyyppi",
 	"flow-special-type-post": "Viesti",
 	"flow-special-type-workflow": "Workflow",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Ei löydetty tyyppiä tai UUID:tä vastaavaa sisältöä.",
 	"flow-special-enableflow-legend": "Ota käyttöön Jäsennetyt keskustelut uudella sivulla",
 	"flow-special-enableflow-page": "Sivu jolla Jäsennetyt keskustelut otetaan käyttöön",

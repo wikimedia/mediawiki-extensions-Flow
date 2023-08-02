@@ -462,7 +462,6 @@
 	"flow-special-type": "类型",
 	"flow-special-type-post": "帖子",
 	"flow-special-type-workflow": "工作流",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "无法找到与指定类型和UUID匹配的内容。",
 	"flow-special-enableflow-legend": "在一个新页面启用结构式讨论",
 	"flow-special-enableflow-page": "要启用结构式讨论的页面",

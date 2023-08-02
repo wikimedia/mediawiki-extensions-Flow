@@ -445,7 +445,6 @@
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Post",
 	"flow-special-type-workflow": "Cykl pracy",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Nie udało się znaleźć zawartości pasującej do typu i UUID.",
 	"flow-special-enableflow-legend": "Włącz Dyskusje Strukturalne na nowej stronie",
 	"flow-special-enableflow-page": "Strona, na której włączyć Dyskusje Strukturalne",

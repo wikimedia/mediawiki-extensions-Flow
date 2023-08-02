@@ -312,7 +312,6 @@
 	"flow-special-type": "Τύπος",
 	"flow-special-type-post": "Καταχώριση",
 	"flow-special-type-workflow": "Διάγραμμα Ροής",
-	"flow-special-uuid": "UUID",
 	"flow-conversion-archive-page-name-format": "%s/Αρχείο %d\n%s/Αρχείο%d\n%s/αρχείο %d\n%s/αρχείο%d",
 	"flow-post-undo-hide": "αναίρεση απόκρυψης",
 	"flow-post-undo-delete": "αναίρεση διαγραφής",

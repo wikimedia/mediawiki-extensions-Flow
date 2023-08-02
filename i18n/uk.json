@@ -445,7 +445,6 @@
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Допис",
 	"flow-special-type-workflow": "Робочий процес",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Не вдалося знайти вміст, що відповідає типу та UUID.",
 	"flow-special-enableflow-legend": "Увімкнути структуровані обговорення на новій сторінці",
 	"flow-special-enableflow-page": "Сторінка, на якій слід увімкнути структуровані обговорення",

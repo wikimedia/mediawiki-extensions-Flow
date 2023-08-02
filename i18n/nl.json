@@ -440,7 +440,6 @@
 	"flow-special-type": "Type",
 	"flow-special-type-post": "Bericht",
 	"flow-special-type-workflow": "Workflow",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Er was geen inhoud die overeenkomt met het type en het UUID.",
 	"flow-special-enableflow-legend": "Schakel Gestructureerde Discussies in op een nieuwe pagina",
 	"flow-special-enableflow-page": "Pagina om Gestructureerde Discussies op in te schakelen",

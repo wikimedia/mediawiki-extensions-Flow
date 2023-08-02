@@ -443,7 +443,6 @@
 	"flow-special-type": "Tür",
 	"flow-special-type-post": "Gönder",
 	"flow-special-type-workflow": "İş akışı",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Tür ve UUID ile eşleşen içerik bulunamadı.",
 	"flow-special-enableflow-legend": "Yeni bir sayfada Yapısal Tartışmaları etkinleştir",
 	"flow-special-enableflow-page": "Hakkında Yapılandırılmış Tartışmalar etkinleştirilecek sayfa",

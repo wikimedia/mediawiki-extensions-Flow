@@ -394,7 +394,6 @@
 	"flow-special-type": "種類",
 	"flow-special-type-post": "投稿",
 	"flow-special-type-workflow": "ワークフロー",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "タイプとUUIDに一致するコンテンツが見つかりませんでした。",
 	"flow-special-enableflow-page": "Flow を有効にするページ",
 	"flow-special-enableflow-header": "Structured Discussions ボードの初期説明（ウィキテキスト）",

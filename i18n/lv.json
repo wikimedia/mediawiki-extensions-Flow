@@ -252,7 +252,6 @@
 	"flow-special-type": "Veids",
 	"flow-special-type-post": "Ieraksts",
 	"flow-special-type-workflow": "Darbplūsma",
-	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-header": "Sākotnējais lapas apraksts (vikiteksts)",
 	"flow-special-enableflow-board-creation-not-allowed": "Tev nav atļauts izveidot Flow lapu [[:$1]].",
 	"flow-special-enableflow-confirmation": "Tu esi veiksmīgi izveidojis Flow lapu [[:$1]].",
