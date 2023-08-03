@@ -6,6 +6,7 @@
 	},
 	"flow-topic-moderated-reason-prefix": "Себеп:",
 	"flow-cancel": "Жокко чыгаруу",
+	"flow-newtopic-save": "Тема кошуу",
 	"flow-reply-link": "{{GENDER:$1|Жооп берүү}}",
 	"flow-history-action-hide-post": "Жашыруу",
 	"flow-history-action-restore-post": "калыбына келтирүү",
