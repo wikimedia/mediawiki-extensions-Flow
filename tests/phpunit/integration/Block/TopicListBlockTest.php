@@ -8,15 +8,15 @@ use Flow\Hooks;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
 use Title;
-use User;
 
 /**
  * @covers \Flow\Block\TopicListBlock
+ * @group Database
  */
 class TopicListBlockTest extends \MediaWikiIntegrationTestCase {
 
 	public function testSortByOption() {
-		$user = User::newFromId( 1 );
+		$user = $this->getTestUser()->getUser();
 		$this->getServiceContainer()->getUserOptionsManager()
 			->setOption( $user, 'flow-topiclist-sortby', '' );
 
