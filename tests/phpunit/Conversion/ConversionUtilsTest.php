@@ -14,6 +14,7 @@ use Title;
  * @covers \Flow\Conversion\Utils
  *
  * @group Flow
+ * @group Database
  */
 class ConversionUtilsTest extends FlowTestCase {
 

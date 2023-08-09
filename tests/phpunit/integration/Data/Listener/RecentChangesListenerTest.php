@@ -17,6 +17,7 @@ use User;
  * @covers \Flow\Data\Listener\RecentChangesListener
  *
  * @group Flow
+ * @group Database
  */
 class RecentChangesListenerTest extends \MediaWikiIntegrationTestCase {
 

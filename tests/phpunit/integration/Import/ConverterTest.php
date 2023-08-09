@@ -31,7 +31,7 @@ class ConverterTest extends \MediaWikiIntegrationTestCase {
 		IConversionStrategy $strategy = null
 	) {
 		return new Converter(
-			$dbw ?: wfGetDB( DB_PRIMARY ),
+			$dbw ?: $this->createMock( IDatabase::class ),
 			$importer ?: $this->createMock( Importer::class ),
 			$logger ?: new NullLogger,
 			$user ?: User::newFromId( 1 ),

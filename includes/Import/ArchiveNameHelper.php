@@ -3,6 +3,7 @@
 namespace Flow\Import;
 
 use Flow\Repository\TitleRepository;
+use MediaWiki\MediaWikiServices;
 use Title;
 
 class ArchiveNameHelper {
@@ -55,8 +56,9 @@ class ArchiveNameHelper {
 
 		$format = false;
 		$text = $source->getPrefixedText();
+		$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
 		foreach ( $formats as $potential ) {
-			$title = Title::newFromText( sprintf( $potential, $text, 1 ) );
+			$title = $titleFactory->newFromText( sprintf( $potential, $text, 1 ) );
 			if ( $title && $titleRepo->exists( $title ) ) {
 				$format = $potential;
 				break;

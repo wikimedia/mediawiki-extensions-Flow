@@ -8,6 +8,7 @@ use Flow\Container;
  * @covers \Flow\Container
  *
  * @group Flow
+ * @group Database
  */
 class ContainerTest extends FlowTestCase {
 

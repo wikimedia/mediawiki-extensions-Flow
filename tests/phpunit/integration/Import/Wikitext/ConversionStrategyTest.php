@@ -22,6 +22,7 @@ use WikitextContent;
  * @covers \Flow\Import\Wikitext\ConversionStrategy
  *
  * @group Flow
+ * @group Database
  */
 class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;

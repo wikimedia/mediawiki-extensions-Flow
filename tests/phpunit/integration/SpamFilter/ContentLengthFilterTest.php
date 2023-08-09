@@ -12,6 +12,7 @@ use User;
  * @covers \Flow\SpamFilter\ContentLengthFilter
  *
  * @group Flow
+ * @group Database
  */
 class ContentLengthFilterTest extends \MediaWikiIntegrationTestCase {
 

@@ -27,8 +27,9 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	public function testSuccessfulInsert() {
-		$cache = $this->getCache();
-		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache );
+		$dbFactory = $this->mockDbFactory( true );
+		$cache = $this->getCache( $dbFactory );
+		$treeRepository = new TreeRepository( $dbFactory, $cache );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 	}
 
@@ -45,6 +46,7 @@ class TreeRepositoryTest extends FlowTestCase {
 			->willReturn( $dbResult );
 		$db->method( 'addQuotes' )
 			->willReturn( '' );
+		$db->method( 'getSessionLagStatus' )->willReturn( [ 'lag' => 0, 'since' => 0 ] );
 		return $db;
 	}
 

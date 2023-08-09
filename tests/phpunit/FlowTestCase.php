@@ -5,6 +5,7 @@ namespace Flow\Tests;
 use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\FlowObjectCache;
+use Flow\DbFactory;
 use Flow\Model\UUID;
 use HashBagOStuff;
 use MediaWikiIntegrationTestCase;
@@ -30,14 +31,14 @@ class FlowTestCase extends MediaWikiIntegrationTestCase {
 		return parent::dataToString( $data );
 	}
 
-	protected function getCache() {
+	protected function getCache( DbFactory $dbFactory = null ) {
 		global $wgFlowCacheTime;
 		$wanCache = new WANObjectCache( [
 			'cache' => new HashBagOStuff(),
 			'pool' => 'testcache-hash',
 		] );
 
-		return new FlowObjectCache( $wanCache, Container::get( 'db.factory' ), $wgFlowCacheTime );
+		return new FlowObjectCache( $wanCache, $dbFactory ?? Container::get( 'db.factory' ), $wgFlowCacheTime );
 	}
 
 	protected function resetPermissions() {

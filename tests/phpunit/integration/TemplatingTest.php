@@ -17,6 +17,7 @@ use User;
  * @covers \Flow\Templating
  *
  * @group Flow
+ * @group Database
  */
 class TemplatingTest extends MediaWikiIntegrationTestCase {
 

@@ -14,6 +14,7 @@ use Flow\Tests\FlowTestCase;
  * @covers \Flow\Data\Index\UniqueFeatureIndex
  *
  * @group Flow
+ * @group Database
  */
 class IndexTest extends FlowTestCase {
 

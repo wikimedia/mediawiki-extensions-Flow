@@ -13,6 +13,7 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Notifications\Controller;
 use Flow\UrlGenerator;
+use MediaWiki\Title\TitleFactory;
 use Title;
 use User;
 use Wikimedia\Rdbms\IDatabase;
@@ -73,12 +74,20 @@ class ConversionStrategyTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testDecidesArchiveTitle() {
-		// we don't have control of the Title::exists() calls that are made here,
-		// so just assume the page doesn't exist and we get format = 0 n = 1
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'newFromText' )->willReturnCallback( static function () {
+			$ret = Title::newFromText( ...func_get_args() );
+			// Mark the page as nonexisting, so that we get format = 0 n = 1
+			$ret->resetArticleID( 0 );
+			return $ret;
+		} );
+		$this->setService( 'TitleFactory', $titleFactory );
+
+		$titleText = 'TestDecidesArchiveTitle';
 		$this->assertEquals(
-			'Talk:Blue birds/LQT Archive 1',
+			"Talk:$titleText/LQT Archive 1",
 			$this->createStrategy()
-				->decideArchiveTitle( Title::newFromText( 'Talk:Blue_birds' ) )
+				->decideArchiveTitle( Title::makeTitle( NS_TALK, $titleText ) )
 				->getPrefixedText()
 		);
 	}
@@ -164,7 +173,7 @@ EOD
 		ApiBackend $api = null
 	) {
 		return new ConversionStrategy(
-			$dbr ?: wfGetDB( DB_REPLICA ),
+			$dbr ?: $this->createMock( IDatabase::class ),
 			$sourceStore ?: new NullImportSourceStore,
 			$api ?: $this->createMock( ApiBackend::class ),
 			$this->createMock( UrlGenerator::class ),

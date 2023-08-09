@@ -2,7 +2,6 @@
 
 namespace Flow\Tests\Formatter;
 
-use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Formatter\FormatterRow;
@@ -57,12 +56,9 @@ class FormatterTest extends FlowTestCase {
 	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
 		global $wgLang;
 
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'CheckUser' ) ) {
-			$this->markTestSkipped( 'CheckUser is not available' );
-			return;
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 
-		$title = Title::newFromText( 'Test', NS_USER_TALK );
+		$title = Title::makeTitle( NS_USER_TALK, 'TestCheckUserFormatter' );
 		$row = new FormatterRow;
 		$row->workflow = $this->mockWorkflow( $workflowId, $title );
 		$row->revision = $this->mockRevision( $action, $revId, $postId );

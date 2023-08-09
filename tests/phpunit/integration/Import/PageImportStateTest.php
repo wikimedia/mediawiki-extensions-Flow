@@ -19,6 +19,7 @@ use User;
  * @covers \Flow\Import\PageImportState
  *
  * @group Flow
+ * @group Database
  */
 class PageImportStateTest extends \MediaWikiIntegrationTestCase {
 

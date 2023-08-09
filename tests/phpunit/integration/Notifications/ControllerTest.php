@@ -12,6 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Flow\Notifications\Controller
  *
  * @group Flow
+ * @group Database
  */
 class ControllerTest extends \MediaWikiIntegrationTestCase {
 
