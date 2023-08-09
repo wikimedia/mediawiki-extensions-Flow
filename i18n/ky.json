@@ -12,6 +12,7 @@
 	"flow-history-action-hide-post": "Жашыруу",
 	"flow-history-action-restore-post": "калыбына келтирүү",
 	"flow-post-action-hide-post": "Жашыруу",
+	"flow-post-action-edit-post": "Түзөтүү",
 	"flow-post-action-edit-post-submit-publish": "Өзгөртүүлөрдү жырыялоо",
 	"flow-post-action-restore-post": "Калыбына келтирүү",
 	"flow-post-action-undo-moderation": "Жокко чыгаруу",
@@ -23,5 +24,6 @@
 	"flow-moderation-confirm-hide-topic": "Жашыруу",
 	"structureddiscussions": "Түзүмдөлгөн талкуулар",
 	"flow-edited": "Түзөтүлгөн",
-	"flow-undo": "жокко чыгаруу"
+	"flow-undo": "жокко чыгаруу",
+	"flow-ve-mention-placeholder": "Колдонуучунун ысымы"
 }
