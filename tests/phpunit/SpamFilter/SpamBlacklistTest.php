@@ -64,7 +64,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	 */
 	public function testSpam( $newRevisionRow, ?PostRevision $oldRevision, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
-		$title = Title::newFromText( 'UTPage' );
+		$title = Title::makeTitle( NS_MAIN, 'SpamBlacklistTest TestSpam' );
 		$ctx = $this->createMock( IContextSource::class );
 		$ctx->method( 'getUser' )->willReturn( $this->createMock( \User::class ) );
 

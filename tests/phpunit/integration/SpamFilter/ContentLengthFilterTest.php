@@ -33,7 +33,7 @@ class ContentLengthFilterTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider filterValidationProvider
 	 */
 	public function testFilterValidation( $expected, $content, $maxLength ) {
-		$ownerTitle = Title::newFromText( 'UTPage' );
+		$ownerTitle = Title::makeTitle( NS_MAIN, 'TestFilterValidation' );
 		$title = Title::newFromText( 'Topic:Tnprd6ksfu1v1nme' );
 		$user = User::newFromName( '127.0.0.1', false );
 		$workflow = Workflow::create( 'topic', $title );

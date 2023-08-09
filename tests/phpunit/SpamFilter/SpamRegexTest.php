@@ -43,7 +43,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 	 */
 	public function testSpam( $newRevisionRow, ?PostRevision $oldRevision, $expected ) {
 		$newRevision = $this->generateObject( $newRevisionRow );
-		$title = Title::newFromText( 'UTPage' );
+		$title = Title::makeTitle( NS_MAIN, 'SpamRegexTest TestSpam' );
 
 		$status = $this->spamFilter->validate( $this->createMock( \IContextSource::class ), $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );

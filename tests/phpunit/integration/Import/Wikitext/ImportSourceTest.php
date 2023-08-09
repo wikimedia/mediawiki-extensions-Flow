@@ -34,7 +34,7 @@ class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 
 		// Check for Parsoid
 		try {
-			Utils::convert( 'html', 'wikitext', 'Foo', Title::newFromText( 'UTPage' ) );
+			Utils::convert( 'html', 'wikitext', 'Foo', Title::makeTitle( NS_MAIN, 'ImportSourceTest' ) );
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}

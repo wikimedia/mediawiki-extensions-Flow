@@ -39,7 +39,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 
 	public static function spamProvider() {
 		$goodTopicTitle = Title::newFromText( 'Topic:Tnpn1618hctgeguu' );
-		$goodOwnerTitle = Title::newFromText( 'UTPage' );
+		$goodOwnerTitle = Title::newFromText( 'AbuseFilterTest GoodOwnerTitle' );
 
 		$badTopicTitle = Title::newFromText( self::BAD_TOPIC_TITLE_TEXT );
 		$badOwnerTitle = Title::newFromText( self::BAD_OWNER_TITLE_TEXT );

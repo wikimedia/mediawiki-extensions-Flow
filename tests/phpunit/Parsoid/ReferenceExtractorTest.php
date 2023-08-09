@@ -27,7 +27,7 @@ class ReferenceExtractorTest extends FlowTestCase {
 
 		// Check for Parsoid
 		try {
-			Utils::convert( 'html', 'wikitext', 'Foo', Title::newFromText( 'UTPage' ) );
+			Utils::convert( 'html', 'wikitext', 'Foo', Title::makeTitle( NS_MAIN, 'ReferenceExtractorTestCase' ) );
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
@@ -66,9 +66,9 @@ class ReferenceExtractorTest extends FlowTestCase {
 				// expected type
 				'link',
 				// expected target
-				'title:Talk:UTPage/Subpage',
-				// ???
-				'Talk:UTPage',
+				'title:Talk:TestReferenceExtractor/Subpage',
+				// page
+				'Talk:TestReferenceExtractor',
 			],
 			[
 				'External link',
@@ -149,7 +149,7 @@ class ReferenceExtractorTest extends FlowTestCase {
 		$expectedClass,
 		$expectedType,
 		$expectedTarget,
-		$page = 'UTPage'
+		$page = 'TestReferenceExtractor'
 	) {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 

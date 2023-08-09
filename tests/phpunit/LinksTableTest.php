@@ -114,7 +114,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	protected static function getTestTitle() {
-		return Title::newFromText( 'UTPage' );
+		return Title::makeTitle( NS_MAIN, 'LinksTableTest' );
 	}
 
 	public static function provideGetReferencesFromRevisionContent() {
