@@ -14,8 +14,9 @@ use Title;
 /**
  * @group Database
  * @group Flow
+ * @covers \Flow\Parsoid\ReferenceExtractor
  */
-class ReferenceExtractorTestCase extends FlowTestCase {
+class ReferenceExtractorTest extends FlowTestCase {
 	protected function setUp(): void {
 		// https://gerrit.wikimedia.org/r/c/mediawiki/extensions/Flow/+/927619 needs to be merged
 		// but until then, skip this test unconditionally.
