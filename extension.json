@@ -686,7 +686,7 @@
 		"AbuseFilter-builder": "Flow\\Hooks::onAbuseFilterBuilder",
 		"AbuseFilter-deprecatedVariables": "Flow\\Hooks::onAbuseFilterDeprecatedVariables",
 		"AbuseFilter-computeVariable": "Flow\\Hooks::onAbuseFilterComputeVariable",
-		"AbuseFilter-generateVarsForRecentChange": "AbuseFilter",
+		"AbuseFilterGenerateVarsForRecentChange": "AbuseFilter",
 		"AbortEmailNotification": "Flow\\Hooks::onAbortEmailNotification",
 		"BeforeDisplayOrangeAlert": "Flow\\Hooks::onBeforeDisplayOrangeAlert",
 		"EchoAbortEmailNotification": "Flow\\Hooks::onEchoAbortEmailNotification",
