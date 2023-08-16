@@ -125,7 +125,7 @@ class PermissionsTest extends PostRevisionTestCase {
 		return [
 			// anon users can submit content, but not moderate
 			[ 'anonUser', null, 'create-header', true ],
-			// array( 'anonUser', 'header', 'edit-header', true ),
+			// [ 'anonUser', 'header', 'edit-header', true ],
 			[ 'anonUser', 'topic', 'edit-title', true ],
 			[ 'anonUser', null, 'new-post', true ],
 			[ 'anonUser', 'post', 'edit-post', false ],
@@ -144,7 +144,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// unconfirmed users can also hide posts...
 			[ 'unconfirmedUser', null, 'create-header', true ],
-			// array( 'unconfirmedUser', 'header', 'edit-header', true ),
+			// [ 'unconfirmedUser', 'header', 'edit-header', true ],
 			[ 'unconfirmedUser', 'topic', 'edit-title', true ],
 			[ 'unconfirmedUser', null, 'new-post', true ],
 			[ 'unconfirmedUser', 'post', 'edit-post', true ], // can edit own post
@@ -173,7 +173,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// confirmed users are the same as unconfirmed users, in terms of permissions
 			[ 'confirmedUser', null, 'create-header', true ],
-			// array( 'confirmedUser', 'header', 'edit-header', true ),
+			// [ 'confirmedUser', 'header', 'edit-header', true ],
 			[ 'confirmedUser', 'topic', 'edit-title', true ],
 			[ 'confirmedUser', null, 'new-post', true ],
 			[ 'confirmedUser', 'post', 'edit-post', false ],
@@ -198,7 +198,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// sysops can do all (incl. editing posts) but suppressing
 			[ 'sysopUser', null, 'create-header', true ],
-			// array( 'sysopUser', 'header', 'edit-header', true ),
+			// [ 'sysopUser', 'header', 'edit-header', true ],
 			[ 'sysopUser', 'topic', 'edit-title', true ],
 			[ 'sysopUser', null, 'new-post', true ],
 			[ 'sysopUser', 'post', 'edit-post', true ],
@@ -223,7 +223,7 @@ class PermissionsTest extends PostRevisionTestCase {
 
 			// suppressors can do everything + suppress (but not edit!)
 			[ 'suppressUser', null, 'create-header', true ],
-			// array( 'suppressUser', 'header', 'edit-header', true ),
+			// [ 'suppressUser', 'header', 'edit-header', true ],
 			[ 'suppressUser', 'topic', 'edit-title', true ],
 			[ 'suppressUser', null, 'new-post', true ],
 			[ 'suppressUser', 'post', 'edit-post', false ],

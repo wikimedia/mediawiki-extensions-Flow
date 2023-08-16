@@ -206,12 +206,12 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 	public function write( array $updates ) {
 		/*
 		 * from:
-		 * array(
-		 *     'primaryKey' => array( 'workflow_id' => $id ),
-		 *     'updates' => array( 'workflow_last_update_timestamp' => $timestamp ),
-		 * )
+		 * [
+		 *     'primaryKey' => [ 'workflow_id' => $id ],
+		 *     'updates' => [ 'workflow_last_update_timestamp' => $timestamp ],
+		 * ]
 		 * to:
-		 * array( $id => $timestamp );
+		 * [ $id => $timestamp ]
 		 */
 		$timestamps = array_combine(
 			$this->arrayColumn( $this->arrayColumn( $updates, 'primaryKey' ), 'workflow_id' ),

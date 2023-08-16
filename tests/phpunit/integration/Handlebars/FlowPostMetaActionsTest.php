@@ -17,59 +17,59 @@ class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 	 * uuid's we use in the test.
 	 */
 	public function timestampEditedProvider() {
-		return array(
-			array(
+		return [
+			[
 				'never been edited',
 				// expected
 				'02:52, 1 October 2014',
 				// args
-				array(
+				[
 					'isOriginalContent' => true,
 					'author' => 'creator',
 					'creator' => 'creator',
 					'lastEditUser' => null,
-				),
-			),
+				],
+			],
 
-			array(
+			[
 				'last edited by post creator',
 				// expected
 				'Edited 04:21, 9 October 2014',
 				// args
-				array(
+				[
 					'isOriginalContent' => false,
 					'author' => 'creator',
 					'creator' => 'creator',
 					'lastEditUser' => 'creator',
-				),
-			),
+				],
+			],
 
-			array(
+			[
 				'last edited by other than post creator',
 				// expected
 				'Edited by author 04:21, 9 October 2014',
 				// args
-				array(
+				[
 					'isOriginalContent' => false,
 					'author' => 'author',
 					'creator' => 'creator',
 					'lastEditUser' => 'author',
-				),
-			),
+				],
+			],
 
-			array(
+			[
 				'most recent revision not a content edit',
 				// expected
 				'Edited 04:21, 9 October 2014',
 				// args
-				array(
+				[
 					'isOriginalContent' => false,
 					'author' => 'author',
 					'creator' => 'creator',
 					'lastEditUser' => 'creator',
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 
 	/**
@@ -83,21 +83,21 @@ class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 
 		$crawler = $this->renderTemplate(
 			'flow_post_meta_actions.partial',
-			array(
-				'actions' => array(),
+			[
+				'actions' => [],
 				'postId' => 's3chebds95i0atkw',
 				'lastEditId' => 's3ufwcms95i0atkw',
 				'isOriginalContent' => $args['isOriginalContent'],
-				'author' => array(
+				'author' => [
 					'name' => $args['author'],
-				),
-				'creator' => array(
+				],
+				'creator' => [
 					'name' => $args['creator'],
-				),
-				'lastEditUser' => array(
+				],
+				'lastEditUser' => [
 					'name' => $args['lastEditUser'],
-				),
-			)
+				],
+			]
 		);
 
 		$text = $crawler->filter( '.flow-post-timestamp' )->text();
@@ -106,7 +106,7 @@ class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 		$this->assertStringStartsWith( $expect, $text, $message );
 	}
 
-	protected function renderTemplate( $templateName, array $args = array() ) {
+	protected function renderTemplate( $templateName, array $args = [] ) {
 		/** @var \Flow\TemplateHelper $lc */
 		$lc = Container::get( 'lightncandy' );
 		$filenames = $lc->getTemplateFilenames( $templateName );

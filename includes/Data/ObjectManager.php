@@ -32,7 +32,7 @@ use SplObjectStorage;
  *        new Flow\Data\Storage\BasicDbStorage(
  *            $dbFactory,
  *            'my_model_table',
- *            array( 'my_primary_key' )
+ *            [ 'my_primary_key' ]
  *        )
  *   );
  *

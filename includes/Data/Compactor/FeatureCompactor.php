@@ -57,7 +57,7 @@ class FeatureCompactor implements Compactor {
 	 * The $cached array is three dimensional.  Each top level key is a cache key
 	 * and contains an array of rows.  Each row is an array representing a single data model.
 	 *
-	 * $cached = array( $cacheKey => array( array( 'rev_id' => 123, ... ), ... ), ... )
+	 * $cached = [ $cacheKey => [ [ 'rev_id' => 123, ... ], ... ], ... ]
 	 *
 	 * The $keyToQuery array maps from cache key to the values that were used to build the cache key.
 	 * These values are re-added to the results found in memcache.

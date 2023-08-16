@@ -7,7 +7,7 @@ namespace Flow\Data\Utils;
  * Always sorts in ascending order.  array_reverse to get all descending.
  * For varied asc/desc needs implementation changes.
  *
- * usage: usort( $array, new SortArrayByKeys( array( 'c1', 'c2' ) ) );
+ * usage: usort( $array, new SortArrayByKeys( [ 'c1', 'c2' ] ) );
  */
 class SortArrayByKeys {
 	/** @var array */

@@ -11,8 +11,8 @@ use RecursiveIteratorIterator;
  * Usage:
  *
  *   $arr = new Flow\Data\MultiDimArray;
- *   $arr[array(1,2,3)] = 4;
- *   $arr[array(2,3,4)] = 5;
+ *   $arr[[1,2,3]] = 4;
+ *   $arr[[2,3,4]] = 5;
  *   var_export( $arr->all() );
  *
  *   array (
