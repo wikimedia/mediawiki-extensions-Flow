@@ -18,7 +18,7 @@
 	"flow-reply-link": "{{GENDER:$1|Respondo}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Dankar}}}}",
 	"flow-history-action-suppress-post": "eliminar",
-	"flow-history-action-delete-post": "efacar",
+	"flow-history-action-delete-post": "efacez",
 	"flow-history-action-hide-post": "celez",
 	"flow-history-action-unsuppress-post": "restaurez",
 	"flow-history-action-undelete-post": "restaurez",
