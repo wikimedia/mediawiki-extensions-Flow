@@ -29,7 +29,7 @@ class LinksTableUpdater {
 		$title = $workflow->getArticleTitle();
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
-		$page->doSecondaryDataUpdates( [ 'defer' => DeferredUpdates::PRESEND ] );
+		$page->doSecondaryDataUpdates( [ 'defer' => DeferredUpdates::PRESEND, 'causeAction' => 'flow' ] );
 	}
 
 	/**
