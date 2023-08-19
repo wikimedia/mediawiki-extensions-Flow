@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use MovePage;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use RequestContext;
