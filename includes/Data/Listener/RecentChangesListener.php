@@ -10,6 +10,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use RecentChange;
 
@@ -139,7 +140,7 @@ class RecentChangesListener extends AbstractListener {
 	/**
 	 * @param Workflow $workflow
 	 * @param string $action
-	 * @return \Title
+	 * @return Title
 	 */
 	public function getRcTitle( Workflow $workflow, $action ) {
 		if ( $this->actions->getValue( $action, 'rc_title' ) === 'owner' ) {

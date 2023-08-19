@@ -6,7 +6,7 @@ use DOMElement;
 use DOMNode;
 use Flow\Conversion\Utils;
 use Flow\Parsoid\Fixer;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Parsoid ignores bad_image_list. With good reason: bad images should only be

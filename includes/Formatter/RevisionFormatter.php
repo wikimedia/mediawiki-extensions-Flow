@@ -22,6 +22,7 @@ use GenderCache;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
@@ -400,7 +401,7 @@ class RevisionFormatter {
 		}
 
 		$talkPageTitle = null;
-		$userTitle = \Title::newFromText( $name, NS_USER );
+		$userTitle = Title::newFromText( $name, NS_USER );
 		if ( $userTitle ) {
 			$talkPageTitle = $userTitle->getTalkPage();
 		}

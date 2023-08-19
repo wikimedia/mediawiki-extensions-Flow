@@ -9,8 +9,8 @@ use Flow\Container;
 use Flow\Model\AbstractRevision;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use MediaWiki\Title\Title;
 use Status;
-use Title;
 
 abstract class ApiFlowBase extends ApiBase {
 

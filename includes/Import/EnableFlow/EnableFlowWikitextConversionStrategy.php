@@ -3,7 +3,7 @@
 namespace Flow\Import\EnableFlow;
 
 use Flow\Import\Wikitext\ConversionStrategy;
-use Title;
+use MediaWiki\Title\Title;
 
 class EnableFlowWikitextConversionStrategy extends ConversionStrategy {
 	/**

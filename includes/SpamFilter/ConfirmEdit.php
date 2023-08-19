@@ -8,9 +8,9 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use SimpleCaptcha;
 use Status;
-use Title;
 
 class ConfirmEdit implements SpamFilter {
 	/**

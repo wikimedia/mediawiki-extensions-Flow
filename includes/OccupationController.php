@@ -3,8 +3,8 @@
 namespace Flow;
 
 use Flow\Model\Workflow;
+use MediaWiki\Title\Title;
 use Status;
-use Title;
 use User;
 use WikiPage;
 

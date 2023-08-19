@@ -9,8 +9,8 @@ use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use FormSpecialPage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Status;
-use Title;
 
 /**
  * A special page that allows users with the flow-create-board right to create

@@ -12,7 +12,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 
 /**

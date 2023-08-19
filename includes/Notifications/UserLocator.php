@@ -8,7 +8,7 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 class UserLocator extends EchoUserLocator {

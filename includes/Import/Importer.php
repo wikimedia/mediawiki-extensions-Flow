@@ -9,10 +9,10 @@ use Flow\Import\Postprocessor\ProcessorGroup;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
+use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SplQueue;
-use Title;
 use User;
 
 /**

@@ -9,10 +9,10 @@ use Html;
 use LightnCandy\LightnCandy;
 use LightnCandy\SafeString;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MWTimestamp;
 use OOUI\IconWidget;
 use RequestContext;
-use Title;
 
 class TemplateHelper {
 

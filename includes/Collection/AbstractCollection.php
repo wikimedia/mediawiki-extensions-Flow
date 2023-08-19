@@ -10,7 +10,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Title;
+use MediaWiki\Title\Title;
 
 abstract class AbstractCollection {
 	/**

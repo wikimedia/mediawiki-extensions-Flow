@@ -9,6 +9,7 @@ use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Maintenance;
+use MediaWiki\Title\Title;
 use Psr\Log\LogLevel;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -75,7 +76,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 
 		$logger->info( "Starting LQT conversion of page $srcPageName" );
 
-		$srcTitle = \Title::newFromText( $srcPageName );
+		$srcTitle = Title::newFromText( $srcPageName );
 		$converter->convertAll( [
 			$srcTitle,
 		] );

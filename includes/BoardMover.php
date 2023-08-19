@@ -6,8 +6,8 @@ use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\Model\Header;
 use Flow\Model\Workflow;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Title;
 use User;
 use Wikimedia\Rdbms\IDatabase;
 

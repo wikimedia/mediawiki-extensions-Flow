@@ -15,11 +15,11 @@ use LoggedUpdateMaintenance;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use RowUpdateGenerator;
 use Status;
 use stdClass;
-use Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

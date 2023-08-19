@@ -14,7 +14,7 @@ use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceFactory;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Data\Listener\ReferenceRecorder

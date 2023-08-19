@@ -3,8 +3,8 @@
 namespace Flow\Model;
 
 use Flow\Exception\InvalidInputException;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Title;
 
 class WikiReference extends Reference {
 	public const TYPE_FILE = 'file';

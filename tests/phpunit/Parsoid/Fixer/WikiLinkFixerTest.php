@@ -7,7 +7,7 @@ namespace Flow\Tests\Parsoid\Fixer;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\WikiLinkFixer;
 use Flow\Tests\PostRevisionTestCase;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Model\AbstractRevision

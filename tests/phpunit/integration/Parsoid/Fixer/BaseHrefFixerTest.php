@@ -6,7 +6,7 @@ namespace Flow\Tests\Parsoid;
 
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BaseHrefFixer;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Parsoid\Fixer\BaseHrefFixer

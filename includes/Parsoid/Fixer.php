@@ -3,7 +3,7 @@
 namespace Flow\Parsoid;
 
 use DOMNode;
-use Title;
+use MediaWiki\Title\Title;
 
 interface Fixer {
 	/**

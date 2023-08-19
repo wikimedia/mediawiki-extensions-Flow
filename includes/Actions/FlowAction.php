@@ -14,8 +14,8 @@ use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use IContextSource;
+use MediaWiki\Title\Title;
 use OutputPage;
-use Title;
 use WebRequest;
 
 class FlowAction extends Action {

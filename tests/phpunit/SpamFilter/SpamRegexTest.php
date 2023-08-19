@@ -5,7 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamRegex;
 use Flow\Tests\PostRevisionTestCase;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Model\AbstractRevision

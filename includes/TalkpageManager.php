@@ -9,10 +9,10 @@ use Flow\Model\Workflow;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
 use Status;
-use Title;
 use User;
 use WikiPage;
 

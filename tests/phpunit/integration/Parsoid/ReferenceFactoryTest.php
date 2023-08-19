@@ -5,7 +5,7 @@ namespace Flow\Tests\Parsoid;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Flow\Parsoid\ReferenceFactory;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Parsoid\ReferenceFactory

@@ -18,6 +18,7 @@ use Flow\OccupationController;
 use MediaWiki\Extension\CentralAuth\CentralAuthServices;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use WikiImporter;
@@ -119,7 +120,7 @@ class Importer {
 		$this->importer->debug( 'Enter board handler for ' . $id );
 
 		$uuid = UUID::create( $id );
-		$title = \Title::newFromDBkey( $this->importer->nodeAttribute( 'title' ) );
+		$title = Title::newFromDBkey( $this->importer->nodeAttribute( 'title' ) );
 
 		$this->boardWorkflow = Workflow::fromStorageRow( [
 			'workflow_id' => $uuid->getAlphadecimal(),

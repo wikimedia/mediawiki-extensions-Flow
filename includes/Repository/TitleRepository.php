@@ -2,7 +2,7 @@
 
 namespace Flow\Repository;
 
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Abstraction for calling stateful methods of the title class. Allows

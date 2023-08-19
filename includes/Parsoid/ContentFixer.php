@@ -7,7 +7,7 @@ use DOMXPath;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
-use Title;
+use MediaWiki\Title\Title;
 
 class ContentFixer {
 	/**

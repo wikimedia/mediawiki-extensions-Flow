@@ -8,7 +8,7 @@ use DOMDocument;
 use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 use Flow\Tests\FlowTestCase;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Conversion\Utils

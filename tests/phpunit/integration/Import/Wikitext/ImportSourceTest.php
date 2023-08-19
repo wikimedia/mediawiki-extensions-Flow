@@ -9,8 +9,8 @@ use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 use Flow\Import\IObjectRevision;
 use Flow\Import\Wikitext\ImportSource;
+use MediaWiki\Title\Title;
 use Parser;
-use Title;
 use WikitextContent;
 
 /**

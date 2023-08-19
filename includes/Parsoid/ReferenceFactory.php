@@ -7,7 +7,7 @@ use Flow\Model\URLReference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
-use Title;
+use MediaWiki\Title\Title;
 
 class ReferenceFactory {
 	/**

@@ -3,7 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Exception\InvalidReferenceException;
-use Title;
+use MediaWiki\Title\Title;
 
 class URLReference extends Reference {
 	/** @var string */

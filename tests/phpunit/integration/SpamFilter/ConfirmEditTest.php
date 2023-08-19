@@ -6,8 +6,8 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
 use GlobalVarConfig;
+use MediaWiki\Title\Title;
 use ParserOptions;
-use Title;
 use User;
 
 /**

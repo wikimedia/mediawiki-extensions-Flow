@@ -12,8 +12,8 @@ use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
 use LoggedUpdateMaintenance;
+use MediaWiki\Title\Title;
 use MWEchoDbFactory;
-use Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

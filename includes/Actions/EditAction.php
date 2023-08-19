@@ -4,7 +4,7 @@ namespace Flow\Actions;
 
 use Article;
 use IContextSource;
-use Title;
+use MediaWiki\Title\Title;
 
 class EditAction extends FlowAction {
 

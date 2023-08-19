@@ -18,11 +18,11 @@ use IContextSource;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 use MWException;
 use OutputPage;
 use ParserOutput;
 use RequestContext;
-use Title;
 use User;
 
 class BoardContentHandler extends \ContentHandler {
@@ -117,10 +117,10 @@ class BoardContentHandler extends \ContentHandler {
 	 *   default).  In such a namespace, non-existent pages are created as Flow.
 	 * * explicitly allowed for a user, requiring special permissions
 	 *
-	 * @param \Title $title
+	 * @param Title $title
 	 * @return bool
 	 */
-	public function canBeUsedOn( \Title $title ) {
+	public function canBeUsedOn( Title $title ) {
 		/** @var \Flow\TalkpageManager $manager */
 		$manager = Container::get( 'occupation_controller' );
 

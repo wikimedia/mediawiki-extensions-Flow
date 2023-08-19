@@ -20,9 +20,9 @@ use Flow\Tests\Mock\MockImportRevision;
 use Flow\Tests\Mock\MockImportSource;
 use Flow\Tests\Mock\MockImportSummary;
 use Flow\Tests\Mock\MockImportTopic;
+use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
 use SplQueue;
-use Title;
 use User;
 
 /**

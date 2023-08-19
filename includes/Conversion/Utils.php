@@ -13,11 +13,11 @@ use Html;
 use ILanguageConverter;
 use Language;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use OutputPage;
 use ParserOptions;
 use Sanitizer;
 use TextContent;
-use Title;
 use WikitextContent;
 
 abstract class Utils {

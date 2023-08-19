@@ -16,9 +16,9 @@ use Flow\Model\Workflow;
 use Html;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
 use OutputPage;
-use Title;
 
 class View extends ContextSource {
 	/**

@@ -9,9 +9,9 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use RecentChange;
 use Sanitizer;
-use Title;
 use User;
 
 abstract class AbstractRevision {

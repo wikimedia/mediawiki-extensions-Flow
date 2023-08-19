@@ -4,7 +4,7 @@ namespace Flow\Import;
 
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\SourceStore\SourceStoreInterface;
-use Title;
+use MediaWiki\Title\Title;
 use WikitextContent;
 
 /**

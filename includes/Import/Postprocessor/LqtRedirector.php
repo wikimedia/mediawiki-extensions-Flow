@@ -13,7 +13,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 use WikitextContent;
 

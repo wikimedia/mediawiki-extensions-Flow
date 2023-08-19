@@ -7,7 +7,7 @@ use Flow\Container;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 abstract class FlowPresentationModel extends EchoEventPresentationModel {
 

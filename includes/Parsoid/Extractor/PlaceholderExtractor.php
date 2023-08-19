@@ -8,8 +8,8 @@ use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ParserOptions;
-use Title;
 
 /*
  * phpcs:disable Generic.Files.LineLength

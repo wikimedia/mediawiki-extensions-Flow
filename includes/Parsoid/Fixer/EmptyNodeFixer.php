@@ -3,6 +3,7 @@
 namespace Flow\Parsoid\Fixer;
 
 use Flow\Parsoid\Fixer;
+use MediaWiki\Title\Title;
 
 /**
  * We use saveXML() instead of saveHTML() to serialize our HTML DOMs, to work around bugs
@@ -36,9 +37,9 @@ class EmptyNodeFixer implements Fixer {
 	 * Adds an empty text node to an element.
 	 *
 	 * @param \DOMNode $node
-	 * @param \Title $title
+	 * @param Title $title
 	 */
-	public function apply( \DOMNode $node, \Title $title ) {
+	public function apply( \DOMNode $node, Title $title ) {
 		if ( !$node instanceof \DOMElement ) {
 			return;
 		}

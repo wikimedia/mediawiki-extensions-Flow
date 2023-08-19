@@ -3,6 +3,7 @@
 namespace Flow\Parsoid\Fixer;
 
 use Flow\Parsoid\Fixer;
+use MediaWiki\Title\Title;
 
 /**
  * Parsoid markup didn't always contain class="external" and rel="nofollow" where appropriate.
@@ -23,9 +24,9 @@ class ExtLinkFixer implements Fixer {
 	 * Adds class="external" & rel="nofollow" to external links.
 	 *
 	 * @param \DOMNode $node Link
-	 * @param \Title $title
+	 * @param Title $title
 	 */
-	public function apply( \DOMNode $node, \Title $title ) {
+	public function apply( \DOMNode $node, Title $title ) {
 		if ( !$node instanceof \DOMElement ) {
 			return;
 		}

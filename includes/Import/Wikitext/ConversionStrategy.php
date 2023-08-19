@@ -9,10 +9,10 @@ use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Parser;
 use Psr\Log\LoggerInterface;
 use StubObject;
-use Title;
 use User;
 use WikitextContent;
 

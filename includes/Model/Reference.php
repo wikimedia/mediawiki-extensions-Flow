@@ -3,7 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Exception\InvalidParameterException;
-use Title;
+use MediaWiki\Title\Title;
 
 abstract class Reference {
 	public const TYPE_LINK = 'link';

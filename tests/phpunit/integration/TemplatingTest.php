@@ -9,8 +9,8 @@ use Flow\Repository\UserName\UserNameQuery;
 use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use Title;
 use User;
 
 /**

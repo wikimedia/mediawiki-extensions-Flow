@@ -5,7 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ContentLengthFilter;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 /**

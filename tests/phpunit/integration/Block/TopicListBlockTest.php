@@ -7,7 +7,7 @@ use Flow\Container;
 use Flow\Hooks;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Block\TopicListBlock

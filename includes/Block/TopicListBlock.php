@@ -16,6 +16,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use UserOptionsUpdateJob;
 
 class TopicListBlock extends AbstractBlock {
@@ -313,7 +314,7 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected function preloadTexts( $options ) {
 		if ( isset( $options['preload'] ) && !empty( $options['preload'] ) ) {
-			$title = \Title::newFromText( $options['preload'] );
+			$title = Title::newFromText( $options['preload'] );
 			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 			$page = $wikiPageFactory->newFromTitle( $title );
 			if ( $page->isRedirect() ) {

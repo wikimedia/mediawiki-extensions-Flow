@@ -7,8 +7,8 @@ use Flow\Exception\CrossWikiException;
 use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Title;
 
 class ReferenceClarifier {
 	/** @var ManagerGroup */

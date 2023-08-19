@@ -8,7 +8,7 @@ use ApiModuleManager;
 use Flow\Container;
 use Flow\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlow extends ApiBase {

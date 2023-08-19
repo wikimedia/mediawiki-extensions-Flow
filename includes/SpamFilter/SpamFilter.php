@@ -4,8 +4,8 @@ namespace Flow\SpamFilter;
 
 use Flow\Model\AbstractRevision;
 use IContextSource;
+use MediaWiki\Title\Title;
 use Status;
-use Title;
 
 interface SpamFilter {
 	/**

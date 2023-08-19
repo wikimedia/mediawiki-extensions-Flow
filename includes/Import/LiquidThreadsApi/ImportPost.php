@@ -7,7 +7,7 @@ use ArrayIterator;
 use Flow\Import\IImportPost;
 use Flow\Import\IObjectRevision;
 use Iterator;
-use Title;
+use MediaWiki\Title\Title;
 
 class ImportPost extends PageRevisionedObject implements IImportPost {
 

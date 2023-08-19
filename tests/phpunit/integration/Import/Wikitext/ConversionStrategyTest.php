@@ -13,9 +13,9 @@ use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
 use LinkCacheTestTrait;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Parser;
-use Title;
 use WikitextContent;
 
 /**

@@ -7,7 +7,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 /**

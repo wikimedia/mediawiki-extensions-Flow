@@ -6,8 +6,8 @@ use BatchRowIterator;
 use EchoCallbackIterator;
 use Iterator;
 use IteratorAggregate;
+use MediaWiki\Title\Title;
 use RecursiveIteratorIterator;
-use Title;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

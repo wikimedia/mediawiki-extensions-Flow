@@ -19,8 +19,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\Notifications\Controller\ModerationController;
 use MediaWiki\Extension\Notifications\Mapper\EventMapper;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ParserOptions;
-use Title;
 use User;
 
 class Controller {

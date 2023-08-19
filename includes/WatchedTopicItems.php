@@ -3,7 +3,7 @@
 namespace Flow;
 
 use Flow\Exception\DataModelException;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 use Wikimedia\Rdbms\IDatabase;
 

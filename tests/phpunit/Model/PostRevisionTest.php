@@ -6,7 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Tests\PostRevisionTestCase;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 /**

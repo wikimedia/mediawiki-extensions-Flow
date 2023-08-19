@@ -5,8 +5,8 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\TalkpageManager;
 use HashConfig;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use Title;
 use User;
 use WikitextContent;
 

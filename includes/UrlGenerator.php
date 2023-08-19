@@ -12,10 +12,10 @@ use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use MediaWiki\Title\Title;
 use RecentChange;
 use RequestContext;
 use SpecialPage;
-use Title;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an

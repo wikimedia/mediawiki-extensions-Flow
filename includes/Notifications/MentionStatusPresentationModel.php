@@ -2,7 +2,7 @@
 
 namespace Flow\Notifications;
 
-use Title;
+use MediaWiki\Title\Title;
 
 class MentionStatusPresentationModel extends \EchoMentionStatusPresentationModel {
 

@@ -3,6 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Container
@@ -13,7 +14,7 @@ use Flow\Container;
 class ContainerTest extends FlowTestCase {
 
 	public function testInstantiateAll() {
-		$this->setMwGlobals( 'wgTitle', \Title::newMainPage() );
+		$this->setMwGlobals( 'wgTitle', Title::newMainPage() );
 		$container = Container::getContainer();
 
 		foreach ( $container->keys() as $key ) {

@@ -3,6 +3,7 @@
 namespace Flow\Parsoid\Fixer;
 
 use Flow\Parsoid\Fixer;
+use MediaWiki\Title\Title;
 
 /**
  * Parsoid markup expects a <base href> of //domain/wiki/ .
@@ -41,9 +42,9 @@ class BaseHrefFixer implements Fixer {
 	 * Prefixes the href with base href.
 	 *
 	 * @param \DOMNode $node Link
-	 * @param \Title $title
+	 * @param Title $title
 	 */
-	public function apply( \DOMNode $node, \Title $title ) {
+	public function apply( \DOMNode $node, Title $title ) {
 		if ( !$node instanceof \DOMElement ) {
 			return;
 		}

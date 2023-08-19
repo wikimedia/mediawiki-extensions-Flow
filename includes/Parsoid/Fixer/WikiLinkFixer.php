@@ -9,7 +9,7 @@ use Flow\Parsoid\Fixer;
 use HtmlArmor;
 use LinkBatch;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Parsoid ignores red links. With good reason: redlinks should only be

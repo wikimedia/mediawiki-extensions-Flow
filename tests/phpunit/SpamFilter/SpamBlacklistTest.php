@@ -8,7 +8,7 @@ use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Model\AbstractRevision

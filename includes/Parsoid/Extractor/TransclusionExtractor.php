@@ -7,7 +7,7 @@ use Flow\Model\WikiReference;
 use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Finds and creates References for transclusions in parsoid HTML

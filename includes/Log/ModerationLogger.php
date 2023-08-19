@@ -9,7 +9,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use ManualLogEntry;
-use Title;
+use MediaWiki\Title\Title;
 
 class ModerationLogger {
 	/**

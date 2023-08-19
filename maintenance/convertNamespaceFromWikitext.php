@@ -10,7 +10,7 @@ use Flow\Import\Wikitext\ConversionStrategy;
 use Flow\Utils\NamespaceIterator;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

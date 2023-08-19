@@ -7,7 +7,7 @@ use Flow\Container;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Repository\TreeRepository;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 class PostRevision extends AbstractRevision {

@@ -9,7 +9,7 @@ use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 /**

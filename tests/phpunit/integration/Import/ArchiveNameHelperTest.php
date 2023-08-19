@@ -3,7 +3,7 @@
 namespace Flow\Tests\Import;
 
 use Flow\Import\ArchiveNameHelper;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Import\ArchiveNameHelper

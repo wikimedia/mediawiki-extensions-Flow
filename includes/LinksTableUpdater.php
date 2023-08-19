@@ -9,9 +9,9 @@ use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use ParserOutput;
-use Title;
 
 class LinksTableUpdater {
 

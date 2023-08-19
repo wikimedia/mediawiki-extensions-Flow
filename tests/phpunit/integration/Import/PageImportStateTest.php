@@ -10,9 +10,9 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
 use SplQueue;
-use Title;
 use User;
 
 /**

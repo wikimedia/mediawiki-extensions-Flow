@@ -12,9 +12,9 @@ use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use RecentChange;
 use Status;
-use Title;
 use User;
 
 class AbuseFilter implements SpamFilter {

@@ -4,7 +4,7 @@ namespace Flow\Import;
 
 use Flow\Repository\TitleRepository;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 class ArchiveNameHelper {
 

@@ -8,8 +8,8 @@ use Flow\Exception\WikitextException;
 use Flow\Model\UUID;
 use Flow\Parsoid\ReferenceFactory;
 use Flow\Tests\FlowTestCase;
+use MediaWiki\Title\Title;
 use ReflectionMethod;
-use Title;
 
 /**
  * @group Database

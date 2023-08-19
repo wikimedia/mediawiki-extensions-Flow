@@ -13,8 +13,8 @@ use Flow\Exception\UnknownWorkflowIdException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Title;
 
 class WorkflowLoaderFactory {
 	/**

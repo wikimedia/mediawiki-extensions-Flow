@@ -2,8 +2,8 @@
 
 namespace Flow\Log;
 
+use MediaWiki\Title\Title;
 use Message;
-use Title;
 
 class LqtImportFormatter extends \LogFormatter {
 

@@ -3,7 +3,7 @@
 namespace Flow\Tests\Api;
 
 use Flow\Model\UUID;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \Flow\Api\ApiFlowBase

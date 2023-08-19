@@ -11,9 +11,9 @@ use Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MWException;
 use Status;
-use Title;
 use User;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

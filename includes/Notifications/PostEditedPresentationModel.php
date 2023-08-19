@@ -4,7 +4,7 @@ namespace Flow\Notifications;
 
 use Flow\Container;
 use Flow\UrlGenerator;
-use Title;
+use MediaWiki\Title\Title;
 
 class PostEditedPresentationModel extends FlowPresentationModel {
 

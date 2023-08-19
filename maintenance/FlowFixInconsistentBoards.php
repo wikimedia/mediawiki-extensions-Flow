@@ -14,8 +14,8 @@ use Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

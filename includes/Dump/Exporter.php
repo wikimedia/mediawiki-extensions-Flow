@@ -21,6 +21,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionProperty;
 use TitleParser;
@@ -172,7 +173,7 @@ class Exporter extends WikiExporter {
 		if ( $pages ) {
 			$pageConds = [];
 			foreach ( $pages as $page ) {
-				$title = \Title::newFromDBkey( $page );
+				$title = Title::newFromDBkey( $page );
 				$pageConds[] = $dbr->makeList(
 					[
 						'workflow_namespace' => $title->getNamespace(),

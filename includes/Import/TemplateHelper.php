@@ -6,7 +6,7 @@ use DOMDocument;
 use DOMElement;
 use DOMXPath;
 use Flow\Conversion\Utils;
-use Title;
+use MediaWiki\Title\Title;
 
 class TemplateHelper {
 
