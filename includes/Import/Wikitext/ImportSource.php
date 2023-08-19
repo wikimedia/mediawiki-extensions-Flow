@@ -11,11 +11,11 @@ use Flow\Import\TemplateHelper;
 use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use MWTimestamp;
 use Parser;
 use ParserOptions;
-use StubObject;
 use User;
 use WikitextContent;
 
