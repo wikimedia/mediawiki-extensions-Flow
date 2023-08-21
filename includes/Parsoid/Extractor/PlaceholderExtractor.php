@@ -54,7 +54,7 @@ class PlaceholderExtractor implements Extractor {
 		if ( !$file ) {
 			return null;
 		}
-		// $file looks like array( 'Foo.jpg' => 1 )
+		// $file looks like [ 'Foo.jpg' => 1 ]
 		$image = Title::newFromText( key( $file ), NS_FILE );
 
 		return $factory->createWikiReference( WikiReference::TYPE_FILE, $image->getPrefixedDBkey() );

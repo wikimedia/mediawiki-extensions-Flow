@@ -30,14 +30,14 @@ require_once "$IP/maintenance/Maintenance.php";
 abstract class ExternalStoreMoveCluster extends Maintenance {
 	/**
 	 * Must return an array in the form:
-	 * array(
+	 * [
 	 * 	'dbr' => IDatabase object,
 	 * 	'dbw' => IDatabase object,
 	 * 	'table' => 'flow_revision',
 	 * 	'pk' => 'rev_id',
 	 * 	'content' => 'rev_content',
 	 * 	'flags' => 'rev_flags',
-	 * )
+	 * ]
 	 *
 	 * It will roughly translate into these queries, where PK is the
 	 * unique key to control batching & updates, content & flags are
@@ -257,7 +257,7 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	/**
 	 * @param string $content
 	 * @param array $flags
-	 * @return array New ExternalStore data in the form of ['content' => ..., 'flags' => array( ... )]
+	 * @return array New ExternalStore data in the form of ['content' => ..., 'flags' => [ ... ]]
 	 * @throws MWException
 	 */
 	protected function write( $content, array $flags = [] ) {

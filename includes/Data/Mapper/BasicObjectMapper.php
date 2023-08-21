@@ -12,8 +12,8 @@ use Flow\Data\ObjectMapper;
  * within the model as so:
  *
  * $userMapper = new BasicObjectMapper(
- *     array( 'User', 'toStorageRow' ),
- *     array( 'User', 'fromStorageRow' ),
+ *     [ 'User', 'toStorageRow' ],
+ *     [ 'User', 'fromStorageRow' ],
  * );
  */
 class BasicObjectMapper implements ObjectMapper {
