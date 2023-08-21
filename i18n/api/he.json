@@ -37,7 +37,7 @@
 	"apihelp-flow+edit-topic-summary-example-1": "עריכת הסיכום של [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+lock-topic-summary": "נעילה או פתיחת נעילה של נושא בדיונים מבניים.",
 	"apihelp-flow+lock-topic-param-moderationState": "באיזה מצב לשים את הנושא, <kbd>lock</kbd> או לא <kbd>unlock</kbd>.",
-	"apihelp-flow+lock-topic-param-reason": "סיבה לנעילה או פתיחת נעילה של נושא. לתשומת לבך, לקוח דיונים מבניים קורא לזה \"סימון בתור פתור\" ומוסיף מידע לסיכום.",
+	"apihelp-flow+lock-topic-param-reason": "סיבה לנעילה או פתיחת נעילה של נושא. לתשומת ליבך, לקוח דיונים מבניים קורא לזה \"סימון בתור פתור\" ומוסיף מידע לסיכום.",
 	"apihelp-flow+lock-topic-example-1": "נעילת [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-summary": "פיקוח על רשומת דיונים מבניים.",
 	"apihelp-flow+moderate-post-param-moderationState": "באיזו רמה לפקח.",
