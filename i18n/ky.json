@@ -34,5 +34,6 @@
 	"flow-moderation-confirm-hide-topic": "Жашыруу",
 	"structureddiscussions": "Түзүмдөлгөн талкуулар",
 	"flow-edited": "Түзөтүлгөн",
-	"flow-undo": "жокко чыгаруу"
+	"flow-undo": "жокко чыгаруу",
+	"flow-dialog-cancelconfirm-title": "{{GENDER:|Аракетиңизди}} ырастаңыз"
 }
