@@ -33,6 +33,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Siz}} artık \"$1\" konuyu izlemiyorsunuz",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Siz}}, istediğiniz zaman [$2 bu konuyu] izleyebilirsiniz.",
 	"flow-desc": "Tartışma sistemi",
+	"nstab-topic": "Konu",
 	"flow-talk-taken-over-comment": "/* Bu sayfa Yapısal Tartışmalar panosuna dönüştürüldü */",
 	"log-name-flow": "Yapısal Tartışmalar etkinlik günlüğü",
 	"logentry-delete-flow-delete-post": "$1, [[$6]] panosunda \"[[$3|$5]]\" konuda [$4 gönderiyi] {{GENDER:$2|sildi}}",
