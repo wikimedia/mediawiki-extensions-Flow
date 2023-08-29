@@ -478,7 +478,8 @@
 			return this.input.getValue() !== this.originalContent;
 		}
 
-		return this.target && this.target.getSurface().getModel().hasBeenModified();
+		return this.target && this.target.getSurface() &&
+			this.target.getSurface().getModel().hasBeenModified();
 	};
 
 	/**
