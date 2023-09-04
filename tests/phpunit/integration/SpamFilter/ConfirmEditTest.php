@@ -31,6 +31,7 @@ class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 
 		$user = User::newFromName( '127.0.0.1', false );
 		$title = Title::newFromText( 'Topic:Tnprd6ksfu1v1nme' );
+		$title->resetArticleID( 0 ); // avoid database access
 		$ownerTitle = Title::newMainPage();
 		$workflow = Workflow::create( 'topic', $title );
 
