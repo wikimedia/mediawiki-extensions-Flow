@@ -111,7 +111,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		$workflow = $this->generateWorkflow( [ 'workflow_type' => 'topic' ] );
 		$uuidRevision = UUID::create();
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		$tuple = UserTuple::newFromUser( $user );
 
 		return $row + [

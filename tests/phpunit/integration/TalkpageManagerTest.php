@@ -89,10 +89,7 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ),
 			'Correct error thrown when user does not have flow-create-board right' );
 
-		$adminUser = User::newFromName( 'UTSysop' );
-		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
-		$userGroupManager->addUserToGroup( $adminUser, 'flow-bot' );
-
+		$adminUser = $this->getTestUser( [ 'sysop', 'flow-bot' ] )->getUser();
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User:Test123' ), $adminUser );
 		$this->assertTrue( $permissionStatus->isOK(),
