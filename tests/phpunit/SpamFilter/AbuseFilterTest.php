@@ -8,7 +8,6 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
 use MediaWiki\Title\Title;
-use User;
 
 /**
  * @covers \Flow\Model\AbstractRevision
@@ -92,7 +91,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 
 		$context = $this->createMock( IContextSource::class );
 		$context->method( 'getUser' )
-				->willReturn( User::newFromName( 'UTSysop' ) );
+				->willReturn( $this->getTestSysop()->getUser() );
 
 		$status = $this->spamFilter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
 		$this->assertEquals( $expected, $status->isOK() );
@@ -111,7 +110,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		// and bails.
 		\RequestContext::getMain()->setTitle( Title::newMainPage() );
 
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestSysop()->getUser();
 		\RequestContext::getMain()->setUser( $user );
 
 		$this->spamFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
@@ -145,7 +144,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 */
 	protected function createFilter( $pattern, $action = 'disallow' ) {
 		global $wgFlowAbuseFilterGroup;
-		$user = User::newFromName( 'UTSysop' );
+		$user = $this->getTestUser()->getUser();
 
 		$this->db->startAtomic( __METHOD__ );
 		$this->db->insert(
