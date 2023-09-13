@@ -22,7 +22,8 @@
 			"أَحمد",
 			"Alshamiri1",
 			"FShbib",
-			"أيوب"
+			"أيوب",
+			"Hubaishan"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -514,7 +515,7 @@
 	"flow-mark-revision-patrolled-link-title": "علم هذه الصفحة كمراجعة",
 	"flow-mark-diff-patrolled-link-text": "علم كمراجعة",
 	"flow-mark-diff-patrolled-link-title": "علم كمراجعة",
-	"flow-talk-page-beta-feature-message": "نقاشات هيكلية على نقاش المستخدم",
+	"flow-talk-page-beta-feature-message": "نقاشات هيكلية على نقاش المستخدم (غير مستحسن)",
 	"flow-talk-page-beta-feature-description": "يفعل نظام نقاش هيكلي جديد على صفحة {{GENDER:|نقاشك}}. النقاشات الهيكلية تبسط نقاشات صفحات النقاش مع أماكن محددة للكتابة والرد، وتسمح بالإخطارات على مستوى الحوار. هذه الخاصية ليست مفعلة تلقائيا؛ المستخدمون سيتعين عليهم تفعيلها بشكل منفصل.<br /><br />نقاشات نص الويكي الموجودة سيتم نقلها لأرشيف. تعطيل هذه الخاصية سينقل لوحة النقاشات الهيكلية إلى صفحة فرعية وسيسترجع أرشفة صفحة النقاش السابقة.\n[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|معرفة المزيد حول التنشيط]].",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|شاهد}} صفحة نقاش المستخدم",
 	"flow-beta-feature-add-archive-template-edit-summary": "إضافة قالب أرشيف",
