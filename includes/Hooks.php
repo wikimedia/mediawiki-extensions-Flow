@@ -507,8 +507,14 @@ class Hooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( AbstractCheckUserPager $pager, $row, &$links ) {
+		// TODO: Replace accesses to $row properties with the prefix "cuc_" to
+		// remove the need for this aliasing.
 		if ( isset( $row->type ) ) {
 			$row->cuc_type = $row->type;
+		}
+		if ( isset( $row->comment_text ) ) {
+			$row->cuc_comment_text = $row->comment_text;
+			$row->cuc_comment_data = $row->comment_data;
 		}
 
 		if ( $row->cuc_type != RC_FLOW ) {
@@ -528,8 +534,14 @@ class Hooks {
 	}
 
 	public static function onCheckUserFormatRow( IContextSource $context, $row, &$rowItems ) {
+		// TODO: Replace accesses to $row properties with the prefix "cuc_" to
+		// remove the need for this aliasing.
 		if ( isset( $row->type ) ) {
 			$row->cuc_type = $row->type;
+		}
+		if ( isset( $row->comment_text ) ) {
+			$row->cuc_comment_text = $row->comment_text;
+			$row->cuc_comment_data = $row->comment_data;
 		}
 
 		if ( $row->cuc_type != RC_FLOW ) {
