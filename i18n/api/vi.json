@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Minh Nguyen",
 			"NguoiDungKhongDinhDanh",
 			"Vinhtantran"
@@ -90,7 +91,7 @@
 	"apihelp-flow+view-topiclist-param-toconly": "Có phải chỉ phản hồi với thông tin cần thiết cho Mục lục.",
 	"apihelp-flow+view-topiclist-param-format": "Định dạng để trả về nội dung.",
 	"apihelp-flow+view-topiclist-example-1": "Liệt kê các đề tài trên [[Talk:Sandbox]]",
-	"apihelp-flow-parsoid-utils-summary": "Chuyển đổi văn bản giữa mã wiki và  HTML.",
+	"apihelp-flow-parsoid-utils-summary": "Chuyển đổi văn bản giữa mã wiki và HTML.",
 	"apihelp-flow-parsoid-utils-param-from": "Định dạng gốc để chuyển đổi nội dung.",
 	"apihelp-flow-parsoid-utils-param-to": "Định dạng đích để chuyển đổi nội dung.",
 	"apihelp-flow-parsoid-utils-param-content": "Nội dung để chuyển đổi.",
