@@ -5,18 +5,19 @@
 			"Азат Хәлилов",
 			"Айсар",
 			"Ләйсән",
-			"Янмурза Баки"
+			"Янмурза Баки",
+			"З. ӘЙЛЕ"
 		]
 	},
 	"flow-error-protected-unknown-reason": "Билдәһеҙ",
-	"flow-topic-comments": "{{PLURAL:$1|$1 аңлатма|0={{GENDER:$2|Беренсе булып}} аңлатма ҡалдыр!}}",
-	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|яуап бирҙе|яуап бирҙе}} на <strong>$4</strong>.",
-	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и {{PLURAL:$5|$5 башҡа берәү яуап бирҙе{{GENDER:$1||а}}|$5 башҡа кеше яуап бирҙе|100=99+ икенсе кеше яуап бирҙе}} битте '''$3'''.",
-	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|$1 яңы тема}} бында <strong>$3</strong>",
-	"notification-header-flow-post-reply": "$1 {{GENDER:$2|replied}} in \"<strong>$4</strong>\".",
-	"notification-bundle-header-flow-post-reply-v2": "{{PLURAL:$1|Яңы тема}} бында \"<strong>$3</strong>\".",
-	"notification-header-flow-mention-post": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"<strong>$5</strong>\".",
-	"notification-header-flow-mention-post-summary": "$1 {{GENDER:$2|mentioned}} {{GENDER:$4|you}} in \"<strong>$5</strong>\".",
-	"flow-moderation-confirmation-undelete-post": "Өҫтә күрһәтелгән хәбәрҙе юйыуҙы юҡҡа сығарҙығыҙ.",
-	"flow-action-not-page": "Был нөсхәлә объект битенең класы дөрөҫ түгел"
+	"flow-topic-comments": "{{PLURAL:$1|$1 комментарий|0={{GENDER:$2|Беренсе булып}} комментарий ҡалдыр!}}",
+	"flow-notification-reply": "<strong>$4</strong> битендә <span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|яуап бирҙе|яуап бирҙе}}.",
+	"flow-notification-reply-bundle": "<strong>$3</strong> битендә <span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 и {{PLURAL:$5|$5 башҡа берәү яуап бирҙе{{GENDER:$1||а}}|$5 башҡа кеше яуап бирҙе|100=99+ икенсе кеше яуап бирҙе}}.",
+	"notification-bundle-header-flow-new-topic": "<strong>$3</strong> битендә {{PLURAL:$1|$1 яңы тема|100=99+ яңы тема}}.",
+	"notification-header-flow-post-reply": "<strong>$4</strong>\" битендә $1 {{GENDER:$2|яуап бирҙе}}.",
+	"notification-bundle-header-flow-post-reply-v2": "\"<strong>$3</strong>\" битендә {{PLURAL:$1|яңы тема}}.",
+	"notification-header-flow-mention-post": "\"<strong>$5</strong>\" темаһында {{GENDER:$4|һеҙҙе}} $1 {{GENDER:$2|телгә алды}}.",
+	"notification-header-flow-mention-post-summary": "\"<strong>$5</strong>\" темһында  $1 {{GENDER:$4|һеҙҙе}}{{GENDER:$2|телгә алды}}.",
+	"flow-moderation-confirmation-undelete-post": "Өҫтә күрһәтелгән хәбәрҙе юйыуҙы кире алдығыҙ.",
+	"flow-action-not-page": "Объект бите - дөрөҫ булмаған класс өлгөһө"
 }
