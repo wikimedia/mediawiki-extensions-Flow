@@ -244,7 +244,7 @@ class ChangesListFormatter extends AbstractFormatter {
 	protected function formatFlags( $flags ) {
 		$flagKeys = array_keys( array_filter( $flags ) );
 		if ( $flagKeys ) {
-			$formattedFlags = array_map( 'ChangesList::flag', $flagKeys );
+			$formattedFlags = array_map( [ ChangesList::class, 'flag' ], $flagKeys );
 			return implode( ' ', $formattedFlags ) . ' ';
 		}
 		return '';
