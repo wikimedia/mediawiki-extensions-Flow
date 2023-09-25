@@ -3,7 +3,8 @@
 		"authors": [
 			"Dbc334",
 			"Janezdrilc",
-			"Eleassar"
+			"Eleassar",
+			"Amire80"
 		]
 	},
 	"apihelp-flow-description": "Dovoli dejanja na straneh Strukturiranih pogovorov.",
@@ -77,7 +78,7 @@
 	"apihelp-flow+view-post-summary": "Prikaži sporočilo.",
 	"apihelp-flow+view-post-param-postId": "ID sporočila za prikaz.",
 	"apihelp-flow+view-post-param-format": "Format, v katerem je vsebina vrnjena.",
-	"apihelp-flow+view-post-example-1": "Pridobi vsebino objave v [[Topic:S2tycnas4hcucw8w]]  kot vikibesedilo",
+	"apihelp-flow+view-post-example-1": "Pridobi vsebino objave v [[Topic:S2tycnas4hcucw8w]] kot vikibesedilo",
 	"apihelp-flow+view-post-history-description": "Prikaži zgodovino redakcij sporočila.",
 	"apihelp-flow+view-post-history-summary": "Prikaži zgodovino redakcij sporočila.",
 	"apihelp-flow+view-post-history-param-postId": "ID sporočila za prikaz zgodovine redakcij.",
@@ -102,7 +103,7 @@
 	"apihelp-flow+view-topiclist-param-sortby": "Možnosti razvrščanja tem, lahko <kbd>posodobljene</kbd> (razvrščene po času posodobitve) ali <kbd>najnovejše</kbd> (razvrščene po času ustvaritve).",
 	"apihelp-flow+view-topiclist-param-savesortby": "Shrani možnost razvrščanja v uporabnikove Nastavitve, če je nastavljena.",
 	"apihelp-flow+view-topiclist-param-offset-id": "Vrednost odmika (v zapisu UUID) za začetek pridobivanja tem; uporablja se samo z razvrščanjem <kbd>newest</kbd>",
-	"apihelp-flow+view-topiclist-param-offset": "Vrednost odmika (kot časovni žig posodobitve teme, v zapisu <code>TS_MW</code>  (<code>YYYYMMDDHHMMSS</code>)) za začetek pridobivanja tem; uporablja se samo z razvrščanjem <kbd>updated</kbd>",
+	"apihelp-flow+view-topiclist-param-offset": "Vrednost odmika (kot časovni žig posodobitve teme, v zapisu <code>TS_MW</code> (<code>YYYYMMDDHHMMSS</code>)) za začetek pridobivanja tem; uporablja se samo z razvrščanjem <kbd>updated</kbd>",
 	"apihelp-flow+view-topiclist-param-include-offset": "V zadetke vključi tudi predmet v odmiku.",
 	"apihelp-flow+view-topiclist-param-limit": "Število tem za pridobitev.",
 	"apihelp-flow+view-topiclist-param-toconly": "Ali naj odgovori samo z informacijami, ki so potrebne za prikaz povzetka.",

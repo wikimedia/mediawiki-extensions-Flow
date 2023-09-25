@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bjankuloski06",
-			"Quiddity"
+			"Quiddity",
+			"Amire80"
 		]
 	},
 	"apihelp-flow-description": "Овозможува вршење дејства брз страници со Структурирани разговори.",
@@ -89,7 +90,7 @@
 	"apihelp-flow+view-topic-history-description": "Преглед на историјата на преработките на една тема.",
 	"apihelp-flow+view-topic-history-summary": "Преглед на историјата на преработките на една тема.",
 	"apihelp-flow+view-topic-history-param-format": "Во кој формат да се даде содржината.",
-	"apihelp-flow+view-topic-history-example-1": "Добијте ги преработките на објавите на  [[Topic:S2tycnas4hcucw8w]] како викитекст",
+	"apihelp-flow+view-topic-history-example-1": "Добијте ги преработките на објавите на [[Topic:S2tycnas4hcucw8w]] како викитекст",
 	"apihelp-flow+view-topic-summary-description": "Погл. опис на темата.",
 	"apihelp-flow+view-topic-summary-summary": "Погл. опис на темата.",
 	"apihelp-flow+view-topic-summary-param-format": "Во кој формат да се даде содржината.",
