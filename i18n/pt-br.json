@@ -466,7 +466,7 @@
 	"flow-conversion-archive-flow-page-name-format": "%s/Arquivo de conversas estruturadas %d\n%s/Arquivo de conversas estruturadas%d\n%s/Flow Archive %d\n%s/FlowArchive%d",
 	"flow-spam-confirmedit-form": "Por favor, confirme que você é um ser humano resolvendo o código CAPTCHA abaixo: $1",
 	"flow-spam-confirmedit-using-failure": "Ocorreu um erro técnico com o CAPTCHA. Se você não conseguir enviar sua alteração, copie seu texto, recarregue a página e tente novamente.",
-	"flow-embedding-unsupported": "As discussões ainda não podem ser incorporadas.",
+	"flow-embedding-unsupported": "Os quadros StructuredDiscussions não podem ser transcluídos.",
 	"mw-ui-unsubmitted-confirm": "Você possui alterações não salvas nesta página. Tem certeza de que deseja continuar a navegar e perder todo o seu trabalho?",
 	"flow-post-undo-hide": "desfazer ocultar",
 	"flow-post-undo-delete": "desfazer excluir",
