@@ -245,7 +245,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 
 		$url = 'unset';
 		$query = 'unset';
-		Hooks::onIRCLineURL( $url, $query, $rc );
+		( new Hooks )->onIRCLineURL( $url, $query, $rc );
 		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
 		$parts = parse_url( $url );
