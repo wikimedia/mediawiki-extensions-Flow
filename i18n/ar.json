@@ -23,7 +23,8 @@
 			"Alshamiri1",
 			"FShbib",
 			"أيوب",
-			"Hubaishan"
+			"Hubaishan",
+			"أبو هشام"
 		]
 	},
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
@@ -144,7 +145,7 @@
 	"flow-topic-action-history": "تاريخ",
 	"flow-topic-action-hide-topic": "أخف الموضوع",
 	"flow-topic-action-delete-topic": "حذف الموضوع",
-	"flow-topic-action-lock-topic": "علّم كمحلول",
+	"flow-topic-action-lock-topic": "عُلّم محلولًا",
 	"flow-topic-action-unlock-topic": "أعد فتح الموضوع",
 	"flow-topic-action-summarize-topic": "لخص",
 	"flow-topic-action-resummarize-topic": "عدل ملخص الموضوع",
@@ -259,7 +260,7 @@
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|حذف|حذفت}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|طمس|طمست}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
 	"flow-rev-message-locked-topic": "$1 {{GENDER:$2|علَّم|علَّمت}} [$4 الموضوع] \"$6\" كمحلول (<em>$5</em>)",
-	"flow-rev-message-lock-topic-reason": "عُلم كمبتوت فيه",
+	"flow-rev-message-lock-topic-reason": "بُتّ فيه",
 	"flow-rev-message-restore-topic-reason": "إعادة فتح",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|استعاد|استعادت}} [$4 الموضوع] \"$6\" (<em>$5</em>)",
 	"flow-rc-topic-of-board": "$1 على $2",
