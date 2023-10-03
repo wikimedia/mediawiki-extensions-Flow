@@ -58,7 +58,7 @@
 '.$sp.'			</div>
 '.$sp.'			<div class="flow-form-actions flow-form-collapsible">
 '.$sp.'				<button data-role="submit"
-'.$sp.'					class="mw-ui-button mw-ui-progressive mw-ui-flush-right">'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq', $in)).'</button>
+'.$sp.'					class="mw-ui-button mw-ui-progressive">'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-newtopic-save'),array()), 'encq', $in)).'</button>
 '.$sp.'				<small class="flow-terms-of-use plainlinks">'.LR::encq($cx, LR::hbch($cx, 'l10nParseFlowTermsOfUse', array(array('new-topic'),array()), 'encq', $in)).'</small>
 '.$sp.'			</div>
 '.$sp.'' : '').'	</form>
