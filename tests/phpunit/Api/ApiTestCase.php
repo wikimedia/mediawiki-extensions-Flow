@@ -5,7 +5,6 @@ namespace Flow\Tests\Api;
 use Flow\Container;
 use Flow\Hooks;
 use HashConfig;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use User;
 
@@ -104,7 +103,7 @@ abstract class ApiTestCase extends \ApiTestCase {
 		global $wgFlowCacheTime;
 		Container::reset();
 		$container = Container::getContainer();
-		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$wanCache = $this->getServiceContainer()->getMainWANObjectCache();
 
 		$mock = $this->getMockBuilder( \Flow\Data\FlowObjectCache::class )
 			->setConstructorArgs( [ $wanCache, $container['db.factory'], $wgFlowCacheTime ] )

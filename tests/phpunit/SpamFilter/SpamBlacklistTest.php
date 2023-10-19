@@ -7,7 +7,6 @@ use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -87,7 +86,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 
 		BaseBlacklist::clearInstanceCache();
 
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 		$this->insertPage( 'MediaWiki:Spam-blacklist', implode( "\n", self::BLACKLIST ) );
 		$this->insertPage( 'MediaWiki:Spam-whitelist', implode( "\n", self::WHITELIST ) );
 
@@ -99,7 +98,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	}
 
 	protected function tearDown(): void {
-		MediaWikiServices::getInstance()->getMessageCache()->disable();
+		$this->getServiceContainer()->getMessageCache()->disable();
 		parent::tearDown();
 	}
 }

@@ -12,7 +12,6 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
 use LinkCacheTestTrait;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Parser;
@@ -199,7 +198,7 @@ class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 		SourceStoreInterface $sourceStore = null
 	) {
 		return new ConversionStrategy(
-			$parser ?: MediaWikiServices::getInstance()->getParser(),
+			$parser ?: $this->getServiceContainer()->getParser(),
 			$sourceStore ?: new NullImportSourceStore,
 			Container::get( 'default_logger' ),
 			Container::get( 'occupation_controller' )->getTalkpageManager()

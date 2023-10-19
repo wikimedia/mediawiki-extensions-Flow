@@ -7,7 +7,6 @@ use ExtensionRegistry;
 use Flow\Container;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
-use MediaWiki\MediaWikiServices;
 use User;
 
 /**
@@ -67,7 +66,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		/** @var User $user */
 		$user = $data['user'];
 
-		MediaWikiServices::getInstance()->getWatchlistManager()->addWatch(
+		$this->getServiceContainer()->getWatchlistManager()->addWatch(
 			$user,
 			$data['topicWorkflow']->getArticleTitle()
 		);
@@ -107,7 +106,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		/** @var User $user */
 		$user = $data['user'];
 
-		MediaWikiServices::getInstance()->getWatchlistManager()->addWatch(
+		$this->getServiceContainer()->getWatchlistManager()->addWatch(
 			$user,
 			$data['boardWorkflow']->getArticleTitle()
 		);
