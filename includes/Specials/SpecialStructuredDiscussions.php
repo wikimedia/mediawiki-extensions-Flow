@@ -79,7 +79,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 				'type' => 'select',
 				'label-message' => 'flow-special-type',
 				'options' => $this->getTypes(),
-				'default' => empty( $this->type ) ? 'post' : $this->type,
+				'default' => $this->type === '' ? 'post' : $this->type,
 			],
 			'uuid' => [
 				'id' => 'mw-flow-special-uuid',
@@ -177,7 +177,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 		}
 
 		// Assume no data has been passed in if there is no UUID.
-		if ( empty( $this->uuid ) ) {
+		if ( $this->uuid === null ) {
 			return false; // Display the form.
 		}
 
