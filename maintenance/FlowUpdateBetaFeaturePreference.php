@@ -3,7 +3,6 @@
 namespace Flow\Maintenance;
 
 use LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use MWException;
 use UserArray;
 
@@ -74,7 +73,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			]
 		);
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$userOptionsManager = $services->getUserOptionsManager();
 

@@ -8,7 +8,6 @@ use Flow\DbFactory;
 use Flow\Hooks;
 use Flow\Import\ArchiveNameHelper;
 use Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -87,7 +86,7 @@ class FlowRestoreLQT extends Maintenance {
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			$startId = 0;
@@ -156,7 +155,7 @@ class FlowRestoreLQT extends Maintenance {
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			$startId = 0;
@@ -267,7 +266,7 @@ class FlowRestoreLQT extends Maintenance {
 					"'{$lqt->getPrefixedDBkey()}' there.\n" );
 
 				if ( !$this->dryRun ) {
-					$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $flow );
+					$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $flow );
 					$page->doDeleteArticleReal(
 						'/* Make place to restore LQT board */',
 						$this->talkpageManagerUser,
@@ -295,7 +294,7 @@ class FlowRestoreLQT extends Maintenance {
 	protected function movePage( Title $from, Title $to, $reason ) {
 		$this->output( "	Moving '{$from->getPrefixedDBkey()}' to '{$to->getPrefixedDBkey()}'.\n" );
 
-		$movePage = MediaWikiServices::getInstance()
+		$movePage = $this->getServiceContainer()
 			->getMovePageFactory()
 			->newMovePage( $from, $to );
 		$status = $movePage->isValidMove();
@@ -319,8 +318,8 @@ class FlowRestoreLQT extends Maintenance {
 	protected function restorePageRevision( $pageId, $nextRevisionId ) {
 		global $wgLang;
 
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $pageId );
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromID( $pageId );
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
 		$revision = $revisionLookup->getPreviousRevision( $nextRevision );
 		$mainContent = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );

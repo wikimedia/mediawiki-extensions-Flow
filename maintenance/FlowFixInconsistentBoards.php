@@ -11,7 +11,6 @@ use Flow\DbFactory;
 use Flow\Exception\UnknownWorkflowIdException;
 use Flow\WorkflowLoaderFactory;
 use Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -123,7 +122,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 			foreach ( $rows as $row ) {
 				$checkedCount++;
 				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionById( $row->page_latest );
+				$revision = $this->getServiceContainer()->getRevisionLookup()->getRevisionById( $row->page_latest );
 				$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				if ( !$content instanceof BoardContent ) {
 					$actualClass = ( is_object( $content ) ? get_class( $content ) : gettype( $content ) );

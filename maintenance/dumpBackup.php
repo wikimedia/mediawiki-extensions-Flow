@@ -5,7 +5,6 @@ namespace Flow\Maintenance;
 use BackupDumper;
 use Flow\Container;
 use Flow\Dump\Exporter;
-use MediaWiki\MediaWikiServices;
 use WikiExporter;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -83,7 +82,7 @@ TEXT
 
 		$db = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$exporter = new Exporter(
 			$db,
 			$services->getCommentStore(),

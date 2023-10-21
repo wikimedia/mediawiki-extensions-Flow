@@ -13,7 +13,6 @@ use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use Maintenance;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\IDatabase;
@@ -108,7 +107,7 @@ class ConvertAllLqtPages extends Maintenance {
 		$iterator->append( $withProperty->getIterator() );
 
 		if ( $wgLqtTalkPages ) {
-			foreach ( MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkNamespaces() as $ns ) {
+			foreach ( $this->getServiceContainer()->getNamespaceInfo()->getTalkNamespaces() as $ns ) {
 				$logger->info( "Considering for conversion: pages in namespace $ns" );
 				$it = new NamespaceIterator( $dbw, $ns );
 				$iterator->append( $it->getIterator() );

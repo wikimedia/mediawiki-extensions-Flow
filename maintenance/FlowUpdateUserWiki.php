@@ -7,7 +7,6 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use MWException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -257,7 +256,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 		$this->updatedCount++;
 		if ( $this->updatedCount > $this->getBatchSize() ) {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 			$lbFactory->waitForReplication( [ 'cluster' => $wgFlowCluster ] );
 			$this->updatedCount = 0;
 		}

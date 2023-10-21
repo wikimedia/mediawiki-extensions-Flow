@@ -8,7 +8,6 @@ use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 use LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -77,7 +76,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$iterator->addConditions( [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ] );
 		$iterator->setCaller( __METHOD__ );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		$count = 0;
 		foreach ( $iterator as $rows ) {

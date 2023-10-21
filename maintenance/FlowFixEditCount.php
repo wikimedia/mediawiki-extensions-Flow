@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use User;
 use Wikimedia\Rdbms\IDatabase;
@@ -57,7 +56,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		$continue = UUID::getComparisonUUID( $this->getOption( 'start', '20130710230511' ) );
 		$stop = UUID::getComparisonUUID( $this->getOption( 'stop', time() ) );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		while ( $continue !== false ) {
 			$continue = $this->refreshBatch( $dbr, $continue, $countableActions, $stop );
@@ -98,7 +97,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 			return false;
 		}
 
-		$userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
+		$userEditTracker = $this->getServiceContainer()->getUserEditTracker();
 		foreach ( $rows as $row ) {
 			// UserEditTracker::incrementUserEditCount only allows for edit count to be
 			// increased 1 at a time. It'd be better to immediately be able to increase
