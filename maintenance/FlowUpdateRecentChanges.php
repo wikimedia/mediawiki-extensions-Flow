@@ -4,7 +4,6 @@ namespace Flow\Maintenance;
 
 use Flow\Data\Listener\RecentChangesListener;
 use LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -41,7 +40,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 
 		$continue = 0;
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		while ( $continue !== null ) {
 			$continue = $this->refreshBatch( $dbw, $continue );

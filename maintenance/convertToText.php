@@ -7,7 +7,6 @@ use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Model\AbstractRevision;
 use Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MWTimestamp;
 use Parser;
@@ -227,7 +226,7 @@ class ConvertToText extends Maintenance {
 		$nickname = $this->getOption( 'remoteapi' ) ? null : false;
 		$fancysig = $this->getOption( 'remoteapi' ) ? false : null;
 
-		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
+		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		// Parser::getUserSig can end calling `getCleanSignatures` on
 		// mOptions, which may not be set. Set a dummy options object so it
 		// doesn't fail (it'll initialise the requested value from a global
@@ -260,7 +259,7 @@ class ConvertToText extends Maintenance {
 			$tzMsg = $msg->text();
 		}
 
-		return MediaWikiServices::getInstance()->getContentLanguage()
+		return $this->getServiceContainer()->getContentLanguage()
 			->timeanddate( $ts, false, false ) . " ($tzMsg)";
 	}
 
@@ -363,7 +362,7 @@ class ConvertToText extends Maintenance {
 			$signatures = array_map( [ $this, 'getSignature' ], $otherContributors );
 			$formattedAuthors .= ( $sigForFirstAuthor ? ' ' : '' ) . '(' .
 				wfMessage( $msg )->inContentLanguage()->params(
-					MediaWikiServices::getInstance()->getContentLanguage()->commaList( $signatures )
+					$this->getServiceContainer()->getContentLanguage()->commaList( $signatures )
 				)->text() . ')';
 		}
 
