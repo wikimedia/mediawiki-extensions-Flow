@@ -418,7 +418,7 @@ abstract class RevisionStorage extends DbStorage {
 		$diff = array_diff( $requiredColumnNames, $this->allowedUpdateColumns );
 
 		// we're able to update all columns we need: go ahead!
-		if ( empty( $diff ) ) {
+		if ( !$diff ) {
 			return true;
 		}
 

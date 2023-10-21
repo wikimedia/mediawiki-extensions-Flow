@@ -109,7 +109,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				]
 			);
 
-			if ( empty( $revisions ) ) {
+			if ( !$revisions ) {
 				break;
 			}
 
@@ -148,7 +148,7 @@ class FlowRemoveOldTopics extends Maintenance {
 
 			// by now, there may be nothing left to remove, so move on to the
 			// next batch...
-			if ( empty( $uuids ) ) {
+			if ( !$uuids ) {
 				continue;
 			}
 
@@ -178,7 +178,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				$this->dbFactory->getDB( DB_PRIMARY )->commit( __METHOD__ );
 				$this->dbFactory->waitForReplicas();
 			}
-		} while ( !empty( $revisions ) );
+		} while ( $revisions );
 	}
 
 	/**
@@ -207,7 +207,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				]
 			);
 
-			if ( empty( $workflows ) ) {
+			if ( !$workflows ) {
 				break;
 			}
 
@@ -218,7 +218,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->output( 'Removing ' . count( $workflows ) .
 				' topic workflows (up to ' . $startId->getTimestamp() . ")\n" );
 			$this->removeWorkflows( $workflows );
-		} while ( !empty( $workflows ) );
+		} while ( $workflows );
 	}
 
 	/**
@@ -267,7 +267,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				]
 			);
 
-			if ( empty( $workflowIds ) ) {
+			if ( !$workflowIds ) {
 				break;
 			}
 
@@ -280,7 +280,7 @@ class FlowRemoveOldTopics extends Maintenance {
 			$this->output( 'Removing ' . count( $workflows ) . ' topic workflows with recent ' .
 				'Flow updates (up to ' . $batchStartId->getTimestamp() . ")\n" );
 			$this->removeWorkflows( $workflows );
-		} while ( !empty( $workflows ) );
+		} while ( $workflows );
 	}
 
 	/**

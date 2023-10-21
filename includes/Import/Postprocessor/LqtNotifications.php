@@ -113,7 +113,7 @@ class LqtNotifications implements Postprocessor {
 		if ( !$topic instanceof ImportTopic ) {
 			return;
 		}
-		if ( empty( $this->postsImported ) ) {
+		if ( !$this->postsImported ) {
 			// nothing was imported in this topic
 			return;
 		}
