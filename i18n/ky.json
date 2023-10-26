@@ -35,6 +35,7 @@
 	"structureddiscussions": "Түзүмдөлгөн талкуулар",
 	"flow-edited": "Түзөтүлгөн",
 	"flow-undo": "жокко чыгаруу",
-	"flow-ve-mention-placeholder": "Колдонуучунун ысымы",
+	"flow-ve-mention-placeholder": "Колдонуучунун аты",
+	"flow-ve-mention-tool-title": "Колдонуучуну кабарлоо",
 	"flow-dialog-cancelconfirm-title": "{{GENDER:|Аракетиңизди}} ырастаңыз"
 }
