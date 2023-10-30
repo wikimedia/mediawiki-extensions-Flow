@@ -7,7 +7,8 @@
 			"Quiddity",
 			"Stephanecbisson",
 			"Xuacu",
-			"Fitoschido"
+			"Fitoschido",
+			"YoaR"
 		]
 	},
 	"enablestructureddiscussions": "Activar Flow",
@@ -73,7 +74,7 @@
 	"flow-suppress-usertext": "<em>Nome d'usuariu suprimíu</em>",
 	"flow-post-actions": "Aiciones",
 	"flow-topic-actions": "Aiciones",
-	"flow-cancel": "Encaboxar",
+	"flow-cancel": "Zarrar",
 	"flow-skip-summary": "Saltar",
 	"flow-edit-summary-placeholder": "Describa brevemente'l resultáu d'esti alderique",
 	"flow-summary-authored": "Resume de $1",
@@ -504,7 +505,7 @@
 	"flow-beta-feature-remove-archive-template-edit-summary": "Desaniciando la plantía d'archivu",
 	"flow-beta-feature-add-current-template-edit-summary": "Añadiendo la plantía actual",
 	"flow-dialog-cancelconfirm-title": "¿Tas {{GENDER:|seguru|segura}}?",
-	"flow-dialog-cancelconfirm-message": "¿Tas {{GENDER:|seguru|segura}} de que quies encaboxar ensin guardar primero?",
+	"flow-dialog-cancelconfirm-message": "¿Tas {{GENDER:|seguru|segura}} de que quies zarrar ensin guardar primero?",
 	"flow-dialog-cancelconfirm-keep": "Siguir editando",
 	"flow-dialog-cancelconfirm-discard": "Descartar los cambios",
 	"flow-optin-archive-wikitext": "Treslládase la páxina en testu wiki pa dexar sitiu pa un tableru d'alderique.",
