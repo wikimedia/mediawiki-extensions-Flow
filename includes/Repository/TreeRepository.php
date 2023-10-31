@@ -7,7 +7,6 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DBQueryError;
 
 /*
@@ -103,7 +102,7 @@ class TreeRepository {
 		$ok = true;
 		if ( $ancestor !== null ) {
 			try {
-				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw instanceof DatabaseMysqlBase ) {
+				if ( defined( 'MW_PHPUNIT_TEST' ) && $dbw->getType() == 'mysql' ) {
 					/*
 					 * Combination of MW unit tests + MySQL DB is known to cause
 					 * query failures of code 1137, so instead of executing a
