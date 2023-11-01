@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"John Reid"
+			"John Reid",
+			"CiphriusKane"
 		]
 	},
 	"flow-post-moderated-toggle-hide-show": "Shaw comment {{GENDER:$1|skauk't}} bi $2",
@@ -15,7 +16,7 @@
 	"flow-post-action-unsuppress-post": "Onsuppress",
 	"flow-post-action-undelete-post": "Ondelyte",
 	"flow-post-action-unhide-post": "Onskauk",
-	"flow-topic-action-history": "Histerie",
+	"flow-topic-action-history": "History",
 	"flow-topic-action-unhide-topic": "Onskauk topíc",
 	"flow-topic-action-undelete-topic": "Ondelyte topíc",
 	"flow-topic-action-unsuppress-topic": "Onsuppress topíc",
