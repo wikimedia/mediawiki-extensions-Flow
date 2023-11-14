@@ -19,7 +19,8 @@
 			"Ricordisamoa",
 			"Rosh",
 			"Statix64",
-			"^musaz"
+			"^musaz",
+			"Pierpao"
 		]
 	},
 	"enablestructureddiscussions": "Attiva discussioni strutturate",
@@ -155,7 +156,7 @@
 	"flow-board-notification-subscribe-title": "Ti sei {{GENDER:$1|iscritto|iscritta}} a questa bacheca di discussione!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Riceverai}} una notifica quando un nuovo argomento verrà creato su questa bacheca.",
 	"flow-topic-action-watchlist-add": "Iscriviti a questo argomento",
-	"flow-topic-action-watchlist-remove": "Cancella l'iscrizione",
+	"flow-topic-action-watchlist-remove": "Annulla iscrizione",
 	"flow-error-allowcreation-already-exists": "La pagina già esiste nella destinazione, perciò una bacheca di discussioni strutturate non può essere spostata lì.",
 	"flow-error-allowcreation-flow-create-board": "L'utente non ha l'autorizzazione \"{{int:right-flow-create-board}}\"",
 	"flow-error-can-not-edit-logged-out": "Al momento non puoi partecipare. Prova ad accedere.",
