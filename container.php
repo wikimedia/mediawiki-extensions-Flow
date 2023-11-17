@@ -107,8 +107,9 @@ $c['flowcache'] = static function ( $c ) {
 // Batched username loader
 $c['repository.username'] = static function ( $c ) {
 	return new Flow\Repository\UserNameBatch(
-		new Flow\Repository\UserName\TwoStepUserNameQuery(
-			$c['db.factory']
+		new Flow\Repository\UserName\OneStepUserNameQuery(
+			$c['db.factory'],
+			MediaWikiServices::getInstance()->getHideUserUtils()
 		)
 	);
 };

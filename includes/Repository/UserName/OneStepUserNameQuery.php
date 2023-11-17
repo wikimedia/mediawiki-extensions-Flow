@@ -3,6 +3,7 @@
 namespace Flow\Repository\UserName;
 
 use Flow\DbFactory;
+use MediaWiki\Block\HideUserUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -16,10 +17,16 @@ class OneStepUserNameQuery implements UserNameQuery {
 	protected $dbFactory;
 
 	/**
+	 * @var HideUserUtils
+	 */
+	protected $hideUserUtils;
+
+	/**
 	 * @param DbFactory $dbFactory
 	 */
-	public function __construct( DbFactory $dbFactory ) {
+	public function __construct( DbFactory $dbFactory, HideUserUtils $hideUserUtils ) {
 		$this->dbFactory = $dbFactory;
+		$this->hideUserUtils = $hideUserUtils;
 	}
 
 	/**
@@ -32,23 +39,12 @@ class OneStepUserNameQuery implements UserNameQuery {
 	 */
 	public function execute( $wiki, array $userIds ) {
 		$dbr = $this->dbFactory->getWikiDB( DB_REPLICA, $wiki );
-		return $dbr->select(
-			/* table */ [ 'user', 'ipblocks' ],
-			/* select */ [ 'user_id', 'user_name' ],
-			/* conds */ [
-				'user_id' => $userIds,
-				// only accept records that did not match ipblocks
-				'ipb_deleted is null'
-			],
-			__METHOD__,
-			/* options */ [],
-			/* join_conds */ [
-				'ipblocks' => [ 'LEFT OUTER', [
-					'ipb_user' => 'user_id',
-					// match only deleted users
-					'ipb_deleted' => 1,
-				] ]
-			]
-		);
+		return $dbr->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_name' ] )
+			->from( 'user' )
+			->where( [ 'user_id' => $userIds ] )
+			->andWhere( $this->hideUserUtils->getExpression( $dbr ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 	}
 }
