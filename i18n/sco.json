@@ -28,7 +28,7 @@
 	"flow-rev-message-create-header": "$1 {{GENDER:$2|makit}} the heider.",
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|eidited}} the heider.",
 	"flow-rev-message-hid-post": "$1 {{GENDER:$2|skaukt}} ae [$4 comment] oan \"$6\" (<em>$5</em>).",
-	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|delytit}} ae [$4 comment] oan \"$6\" (<em>$5</em>).",
+	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|deletit}} ae [$4 comment] on \"$6\" (<em>$5</em>).",
 	"flow-rev-message-suppressed-post": "$1 {{GENDER:$2|suppresst}} ae [$4 comment] oan \"$6\" (<em>$5</em>).",
 	"flow-rev-message-restored-post": "$1 {{GENDER:$2|restored}} ae [$4 comment] oan \"$6\" (<em>$5</em>).",
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|skaukt}} the [$4 topeec] \"$6\" (<em>$5</em>).",
