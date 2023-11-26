@@ -55,7 +55,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 			'action' => 'flow',
 			'submodule' => 'view-topic',
 			'vtformat' => 'html',
-		], null, false, self::$users['sysop']->getUser() );
+		], null, false, $this->getTestSysop()->getUser() );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
