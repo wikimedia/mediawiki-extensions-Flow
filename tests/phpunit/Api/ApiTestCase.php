@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\Hooks;
 use HashConfig;
 use MediaWiki\Permissions\Authority;
-use User;
 
 /**
  * @group Flow
@@ -43,19 +42,7 @@ abstract class ApiTestCase extends \ApiTestCase {
 			'NamespaceContentModels' => $namespaceContentModels
 		] ) );
 
-		$this->setCurrentUser( self::$users['sysop']->getUser() );
-	}
-
-	/**
-	 * Set $user in the Flow container
-	 * WARNING: This resets your container and
-	 *          gets rid of anything you may have mocked.
-	 * @param User $user
-	 */
-	protected function setCurrentUser( User $user ) {
-		Container::reset();
-		$container = Container::getContainer();
-		$container['user'] = $user;
+		$this->clearHooks();
 	}
 
 	protected function doApiRequest(

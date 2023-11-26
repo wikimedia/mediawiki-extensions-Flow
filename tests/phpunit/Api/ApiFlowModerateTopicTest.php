@@ -50,14 +50,12 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 
 		$revisionId = $data[0]['flow']['moderate-topic']['committed']['topic']['post-revision-id'];
 
-		// need to reset the container and set the current user here
-		$this->setCurrentUser( self::$users['sysop']->getUser() );
 		$data = $this->doApiRequest( [
 			'page' => $topic['topic-page'],
 			'action' => 'flow',
 			'submodule' => 'view-topic',
 			'vtformat' => 'html',
-		] );
+		], null, false, self::$users['sysop']->getUser() );
 
 		$debug = json_encode( $data );
 		$revision = $data[0]['flow']['view-topic']['result']['topic']['revisions'][$revisionId];
