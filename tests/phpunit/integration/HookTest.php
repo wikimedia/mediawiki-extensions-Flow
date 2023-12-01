@@ -17,7 +17,7 @@ use RecentChange;
 use User;
 
 /**
- * @covers Hooks
+ * @covers \Flow\Hooks
  *
  * @group Flow
  * @group Database
