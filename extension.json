@@ -585,7 +585,7 @@
 			]
 		},
 		"ext.flow.visualEditor.icons": {
-			"class": "ResourceLoaderImageModule",
+			"class": "MediaWiki\\ResourceLoader\\ImageModule",
 			"selectorWithoutVariant": ".oo-ui-icon-{name}",
 			"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
 			"variants": {
