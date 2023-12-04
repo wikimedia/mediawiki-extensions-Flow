@@ -5,10 +5,10 @@
 			"John Reid"
 		]
 	},
-	"flow-post-moderated-toggle-hide-show": "Shaw comment {{GENDER:$1|skauk't}} bi $2",
+	"flow-post-moderated-toggle-hide-show": "Shaw post {{GENDER:$1|hidden}} bi $2",
 	"flow-post-moderated-toggle-delete-show": "Shaw comment {{GENDER:$1|deletit}} bi $2",
 	"flow-post-moderated-toggle-suppress-show": "Shaw comment {{GENDER:$1|suppressed}} bi $2",
-	"flow-post-moderated-toggle-hide-hide": "Skauk comment {{GENDER:$1|skauk't}} bi $2",
+	"flow-post-moderated-toggle-hide-hide": "Hide post {{GENDER:$1|hidden}} bi $2",
 	"flow-post-moderated-toggle-delete-hide": "Hide comment {{GENDER:$1|deletit}} bi $2",
 	"flow-post-moderated-toggle-suppress-hide": "Skauk comment {{GENDER:$1|suppressed}} bi $2",
 	"flow-post-action-post-history": "History",
