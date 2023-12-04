@@ -661,7 +661,10 @@
 			"class": "MediaWiki\\Extension\\StructuredDiscussions\\Hooks\\AbuseFilterHandler"
 		},
 		"main": {
-			"class": "Flow\\Hooks"
+			"class": "Flow\\Hooks",
+			"services": [
+				"UserOptionsLookup"
+			]
 		},
 		"schema": {
 			"class": "Flow\\SchemaHooks"
@@ -728,7 +731,7 @@
 		"LiquidThreadsIsLqtPage": "Flow\\Hooks::onIsLiquidThreadsPage",
 		"BeforeCreateEchoEvent": "Flow\\Notifications\\Controller::onBeforeCreateEchoEvent",
 		"EchoGetBundleRules": "Flow\\Notifications\\Controller::onEchoGetBundleRules",
-		"GetBetaFeaturePreferences": "Flow\\Hooks::onGetBetaFeaturePreferences",
+		"GetBetaFeaturePreferences": "main",
 		"SaveUserOptions": "main",
 		"NukeGetNewPages": "Flow\\Hooks::onNukeGetNewPages",
 		"NukeDeletePage": "Flow\\Hooks::onNukeDeletePage",
