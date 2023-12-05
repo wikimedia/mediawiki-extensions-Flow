@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Patriot Kur",
-			"Patriot Kor"
+			"Patriot Kor",
+			"Гусейн"
 		]
 	},
 	"nstab-topic": "Mıvzo",
@@ -10,7 +11,7 @@
 	"flow-newtopic-header": "Nuyə mıvzo əlovə bıkə",
 	"flow-newtopic-save": "Mıvzo əlovə bıkə",
 	"flow-post-action-hide-post": "Niyon bıkə",
-	"flow-post-action-edit-post": "Sərosti bıkə",
+	"flow-post-action-edit-post": "Sərost bykə",
 	"flow-history-day": "Imruj",
 	"flow-link-topic": "mıvzo",
 	"flow-moderation-confirm-hide-topic": "Niyon bıkə"
