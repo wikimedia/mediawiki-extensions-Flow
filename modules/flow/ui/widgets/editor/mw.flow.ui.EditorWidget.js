@@ -656,7 +656,7 @@
 		}
 
 		if ( this.target && this.target.getSurface() ) {
-			this.target.getSurface().getModel().selectLastContentOffset();
+			this.target.getSurface().getView().selectLastSelectableContentOffset();
 		}
 	};
 
