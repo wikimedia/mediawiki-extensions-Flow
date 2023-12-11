@@ -2,8 +2,8 @@
 
 namespace Flow\Exception;
 
+use MediaWiki\Output\OutputPage;
 use MWException;
-use OutputPage;
 use RequestContext;
 
 /**

@@ -4,7 +4,7 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use Flow\Import\IImportObject;
 use Flow\Import\IObjectRevision;
-use User;
+use MediaWiki\User\User;
 
 /*
  * Represents a revision the script makes on its own behalf, using a script user

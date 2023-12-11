@@ -10,8 +10,9 @@ use Flow\Formatter\PostHistoryQuery;
 use Flow\Formatter\TopicHistoryQuery;
 use Flow\Model\UUID;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\ReverseChronologicalPager;
 
-class HistoryPager extends \ReverseChronologicalPager {
+class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * @var BoardHistoryQuery|TopicHistoryQuery|PostHistoryQuery
 	 */

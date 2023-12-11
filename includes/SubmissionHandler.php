@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use DeferredUpdates;
 use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Data\ManagerGroup;
@@ -12,6 +11,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\Workflow;
 use FormatJson;
 use IContextSource;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use SplQueue;

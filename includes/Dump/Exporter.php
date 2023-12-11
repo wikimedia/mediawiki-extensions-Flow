@@ -22,10 +22,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionProperty;
-use TitleParser;
-use User;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
@@ -83,7 +84,7 @@ class Exporter extends WikiExporter {
 	/**
 	 * To convert between local and global user ids
 	 *
-	 * @var \CentralIdLookup|null
+	 * @var CentralIdLookup|null
 	 */
 	protected $lookup;
 
@@ -456,7 +457,7 @@ class Exporter extends WikiExporter {
 					$user = User::newFromId( (int)$attribs[ $userIdField ] );
 					$globalUserId = $this->lookup->centralIdFromLocalUser(
 						$user,
-						\CentralIdLookup::AUDIENCE_RAW
+						CentralIdLookup::AUDIENCE_RAW
 					);
 					if ( $globalUserId ) {
 						$attribs[ 'global' . $userIdField ] = $globalUserId;

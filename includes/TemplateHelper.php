@@ -5,12 +5,12 @@ namespace Flow;
 use Closure;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use Html;
 use LightnCandy\LightnCandy;
 use LightnCandy\SafeString;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use OOUI\IconWidget;
 use RequestContext;
 

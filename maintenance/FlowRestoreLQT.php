@@ -2,7 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use ActorMigration;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Hooks;
@@ -10,10 +9,11 @@ use Flow\Import\ArchiveNameHelper;
 use Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ActorMigration;
+use MediaWiki\User\User;
 use MWException;
-use Status;
-use User;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

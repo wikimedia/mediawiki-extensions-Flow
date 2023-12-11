@@ -7,10 +7,10 @@ use Flow\Container;
 use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
-use FormSpecialPage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 
 /**
  * A special page that allows users with the flow-create-board right to create

@@ -10,10 +10,10 @@ use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SplQueue;
-use User;
 
 /**
  * The import system uses a TalkpageImportOperation class.

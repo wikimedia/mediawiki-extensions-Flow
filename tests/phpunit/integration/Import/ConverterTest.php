@@ -5,9 +5,9 @@ namespace Flow\Tests\Import;
 use Flow\Import\Converter;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\Importer;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

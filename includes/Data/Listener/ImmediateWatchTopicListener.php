@@ -5,7 +5,7 @@ namespace Flow\Data\Listener;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
 use MediaWiki\MediaWikiServices;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Class to immediately subscribe users to the article title when one of the

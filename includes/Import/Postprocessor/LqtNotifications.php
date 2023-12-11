@@ -14,8 +14,8 @@ use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 use Flow\Notifications\Controller;
+use MediaWiki\User\User;
 use RecursiveIteratorIterator;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

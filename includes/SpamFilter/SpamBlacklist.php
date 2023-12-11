@@ -7,9 +7,9 @@ use Flow\Model\AbstractRevision;
 use IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use ParserOptions;
-use Status;
 
 class SpamBlacklist implements SpamFilter {
 	/**

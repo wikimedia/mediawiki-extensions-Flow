@@ -15,7 +15,7 @@ use Flow\Notifications\Controller;
 use Flow\UrlGenerator;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use User;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 use WikitextContent;
 

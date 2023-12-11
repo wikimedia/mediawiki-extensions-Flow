@@ -2,7 +2,6 @@
 
 namespace Flow\Tests;
 
-use DeferredUpdates;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
@@ -14,9 +13,10 @@ use Flow\Model\UserTuple;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use SplQueue;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

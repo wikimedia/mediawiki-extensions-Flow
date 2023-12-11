@@ -8,10 +8,10 @@ use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Model\AbstractRevision;
 use Maintenance;
 use MediaWiki\Title\Title;
-use MWTimestamp;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use Parser;
 use ParserOptions;
-use User;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

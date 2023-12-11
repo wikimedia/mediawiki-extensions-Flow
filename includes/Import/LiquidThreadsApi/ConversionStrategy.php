@@ -13,8 +13,8 @@ use Flow\UrlGenerator;
 use LqtDispatch;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MWTimestamp;
-use User;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\IDatabase;
 use WikitextContent;
 

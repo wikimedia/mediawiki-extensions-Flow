@@ -12,9 +12,9 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
-use FormSpecialPage;
 use HTMLForm;
-use Status;
+use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\Status\Status;
 
 class SpecialStructuredDiscussions extends FormSpecialPage {
 

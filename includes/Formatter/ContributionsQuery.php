@@ -2,8 +2,6 @@
 
 namespace Flow\Formatter;
 
-use ContribsPager;
-use DeletedContribsPager;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Storage\RevisionStorage;
 use Flow\DbFactory;
@@ -12,6 +10,8 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use MediaWiki\Pager\ContribsPager;
+use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IResultWrapper;

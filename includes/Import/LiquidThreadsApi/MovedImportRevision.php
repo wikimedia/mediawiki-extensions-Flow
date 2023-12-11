@@ -4,7 +4,7 @@ namespace Flow\Import\LiquidThreadsApi;
 
 use Flow\Import\ImportException;
 use MediaWiki\MediaWikiServices;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 
 class MovedImportRevision extends ImportRevision {
 	/**

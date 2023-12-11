@@ -19,6 +19,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use Message;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -416,9 +417,9 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param \OutputPage $out
+	 * @param OutputPage $out
 	 */
-	public function setPageTitle( \OutputPage $out ) {
+	public function setPageTitle( OutputPage $out ) {
 		$topic = $this->findTopicTitle();
 		$title = $this->workflow->getOwnerTitle();
 		$convertedTitle = Utils::getConvertedTitle( $title );

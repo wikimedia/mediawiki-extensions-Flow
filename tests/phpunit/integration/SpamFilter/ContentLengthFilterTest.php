@@ -6,7 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ContentLengthFilter;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\SpamFilter\ContentLengthFilter

@@ -13,12 +13,13 @@ use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Html;
 use IContextSource;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use Message;
-use OutputPage;
 
 class View extends ContextSource {
 	/**
@@ -206,7 +207,7 @@ class View extends ContextSource {
 			// We need to store the link to the Special:Categories page from the
 			// back end php script, because there is no way in JS front end to
 			// get the localized link of a special page
-			'specialCategoryLink' => \SpecialPage::getTitleFor( 'Categories' )->getLocalURL(),
+			'specialCategoryLink' => SpecialPage::getTitleFor( 'Categories' )->getLocalURL(),
 			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => [],
 			// see https://phabricator.wikimedia.org/T223165
@@ -246,7 +247,7 @@ class View extends ContextSource {
 		if ( count( $linkedCategories ) > 0 && isset( $apiResponse['blocks']['header'] ) ) {
 			$apiResponse['blocks']['header']['categories'] = [
 				'link' => MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-						\SpecialPage::getTitleFor( 'Categories' ),
+						SpecialPage::getTitleFor( 'Categories' ),
 						$this->msg( 'pagecategories' )->params( count( $linkedCategories ) )->text()
 					) . $this->msg( 'colon-separator' )->escaped(),
 				'items' => $linkedCategories

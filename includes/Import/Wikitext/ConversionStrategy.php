@@ -11,9 +11,9 @@ use Flow\Import\SourceStore\SourceStoreInterface;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Parser;
 use Psr\Log\LoggerInterface;
-use User;
 use WikitextContent;
 
 /**

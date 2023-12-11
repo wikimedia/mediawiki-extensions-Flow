@@ -16,12 +16,13 @@ use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Controller\ModerationController;
 use MediaWiki\Extension\Notifications\Mapper\EventMapper;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use ParserOptions;
-use User;
 
 class Controller {
 	/**
@@ -893,7 +894,7 @@ class Controller {
 
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
-		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $moderated ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $moderated ) {
 			$eventMapper = new EventMapper();
 			$eventIds = $eventMapper->fetchIdsByPage( $pageId );
 
@@ -917,7 +918,7 @@ class Controller {
 
 		$title = Title::makeTitle( NS_TOPIC, ucfirst( $topicId->getAlphadecimal() ) );
 		$pageId = $title->getArticleID();
-		\DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $postId, $moderated ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $pageId, $postId, $moderated ) {
 			$eventMapper = new EventMapper();
 			$moderatedPostIdAlpha = $postId->getAlphadecimal();
 			$eventIds = [];

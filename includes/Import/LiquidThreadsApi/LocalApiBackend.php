@@ -8,8 +8,8 @@ use ApiMessage;
 use ApiUsageException;
 use Exception;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\User\User;
 use RequestContext;
-use User;
 
 class LocalApiBackend extends ApiBackend {
 	/**

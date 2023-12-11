@@ -4,10 +4,10 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\TalkpageManager;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use User;
 use WikitextContent;
 
 /**

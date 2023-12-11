@@ -4,7 +4,7 @@ namespace Flow\Tests\Api;
 
 use Flow\Container;
 use Flow\Hooks;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Permissions\Authority;
 
 /**

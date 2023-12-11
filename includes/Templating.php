@@ -9,7 +9,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\ContentFixer;
 use Flow\Repository\UserNameBatch;
-use Linker;
+use MediaWiki\Linker\Linker;
 use MediaWiki\WikiMap\WikiMap;
 
 /**

@@ -7,7 +7,7 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidParameterException;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\TimestampException;
 

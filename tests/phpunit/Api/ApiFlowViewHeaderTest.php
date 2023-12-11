@@ -2,7 +2,7 @@
 
 namespace Flow\Tests\Api;
 
-use Sanitizer;
+use MediaWiki\Parser\Sanitizer;
 
 /**
  * @covers \Flow\Api\ApiFlowBase

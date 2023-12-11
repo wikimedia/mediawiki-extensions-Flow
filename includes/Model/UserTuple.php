@@ -5,8 +5,8 @@ namespace Flow\Model;
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use User;
 
 /**
  * Small value object holds the values necessary to uniquely identify

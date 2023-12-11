@@ -15,6 +15,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use UserOptionsUpdateJob;
@@ -494,9 +495,9 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param \OutputPage $out
+	 * @param OutputPage $out
 	 */
-	public function setPageTitle( \OutputPage $out ) {
+	public function setPageTitle( OutputPage $out ) {
 		if ( $this->action !== 'new-topic' ) {
 			// Only new-topic should override page title, rest should default
 			parent::setPageTitle( $out );

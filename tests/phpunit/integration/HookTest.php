@@ -12,9 +12,9 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
-use User;
 
 /**
  * @covers \Flow\Hooks

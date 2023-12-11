@@ -3,7 +3,7 @@
 namespace Flow\Model;
 
 use ApiSerializable;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Title\Title;
 use Message;

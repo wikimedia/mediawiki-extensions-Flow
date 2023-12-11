@@ -8,7 +8,7 @@ use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\WatchedTopicItems;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Auto-watch topics when the user performs one of the actions specified

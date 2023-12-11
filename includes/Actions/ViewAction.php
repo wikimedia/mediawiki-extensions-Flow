@@ -5,8 +5,8 @@ namespace Flow\Actions;
 use Article;
 use IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
-use OutputPage;
 
 class ViewAction extends FlowAction {
 

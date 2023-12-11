@@ -9,10 +9,10 @@ use Flow\Exception\InvalidDataException;
 use Flow\Exception\PermissionException;
 use Flow\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use RecentChange;
-use Sanitizer;
-use User;
 
 abstract class AbstractRevision {
 	public const MODERATED_NONE = '';
@@ -582,7 +582,7 @@ abstract class AbstractRevision {
 				$format, $storageFormat, $content, $title );
 		}
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped Seems a false positive
+		// @phan-suppress-next-line SecurityCheckMulti Seems a false positive
 		$this->setContentRaw( $this->convertedContent );
 	}
 

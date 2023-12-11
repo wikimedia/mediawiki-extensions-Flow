@@ -7,8 +7,8 @@ use Flow\FlowActions;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use Html;
 use IContextSource;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use Message;
 

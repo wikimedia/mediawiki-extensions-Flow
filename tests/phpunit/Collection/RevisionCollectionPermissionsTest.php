@@ -9,7 +9,7 @@ use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Flow\Tests\PostRevisionTestCase;
 use MediaWiki\Block\DatabaseBlock;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\Model\AbstractRevision

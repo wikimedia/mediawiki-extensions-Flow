@@ -21,9 +21,9 @@ use Flow\Tests\Mock\MockImportSource;
 use Flow\Tests\Mock\MockImportSummary;
 use Flow\Tests\Mock\MockImportTopic;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use SplQueue;
-use User;
 
 /**
  * @covers \Flow\Import\TalkpageImportOperation

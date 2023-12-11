@@ -7,8 +7,8 @@ use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
-use Html;
 use IContextSource;
+use MediaWiki\Html\Html;
 
 class ContributionsFormatter extends AbstractFormatter {
 	protected function getHistoryType() {

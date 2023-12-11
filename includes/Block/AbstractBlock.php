@@ -11,6 +11,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\RevisionActionPermissions;
 use IContextSource;
+use MediaWiki\Output\OutputPage;
 
 abstract class AbstractBlock implements Block {
 
@@ -273,9 +274,9 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * @param \OutputPage $out
+	 * @param OutputPage $out
 	 */
-	public function setPageTitle( \OutputPage $out ) {
+	public function setPageTitle( OutputPage $out ) {
 		if ( $out->getPageTitle() ) {
 			// Don't override page title if another block has already set it.
 			// If this should *really* be done, the specific block extending

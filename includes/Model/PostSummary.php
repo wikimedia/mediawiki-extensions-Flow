@@ -4,7 +4,7 @@ namespace Flow\Model;
 
 use Flow\Collection\PostSummaryCollection;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 class PostSummary extends AbstractSummary {
 

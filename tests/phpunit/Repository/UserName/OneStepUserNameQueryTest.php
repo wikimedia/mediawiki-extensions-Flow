@@ -5,7 +5,7 @@ namespace Flow\Tests\Repository\UserName;
 use Flow\Container;
 use Flow\Repository\UserName\OneStepUserNameQuery;
 use MediaWiki\Block\DatabaseBlock;
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @group Database

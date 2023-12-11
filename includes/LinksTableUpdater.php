@@ -2,12 +2,12 @@
 
 namespace Flow;
 
-use DeferredUpdates;
 use Flow\Data\ManagerGroup;
 use Flow\Model\Reference;
 use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;

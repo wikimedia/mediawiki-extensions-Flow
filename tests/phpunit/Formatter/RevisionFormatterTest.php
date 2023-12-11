@@ -15,8 +15,8 @@ use Flow\Templating;
 use Flow\Tests\PostRevisionTestCase;
 use Flow\UrlGenerator;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use RequestContext;
-use User;
 
 /**
  * @covers \Flow\Formatter\RevisionFormatter

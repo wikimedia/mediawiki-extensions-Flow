@@ -13,10 +13,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
-use MWTimestamp;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use Parser;
 use ParserOptions;
-use User;
 use WikitextContent;
 
 /**

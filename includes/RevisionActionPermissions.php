@@ -11,7 +11,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\Workflow;
 use MediaWiki\MediaWikiServices;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Role based security for revisions based on moderation state

@@ -3,8 +3,8 @@
 namespace Flow\Maintenance;
 
 use LoggedUpdateMaintenance;
+use MediaWiki\User\UserArray;
 use MWException;
-use UserArray;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

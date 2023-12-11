@@ -10,7 +10,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\Data\Listener\AbstractListener

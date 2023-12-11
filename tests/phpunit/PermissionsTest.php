@@ -7,7 +7,7 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\Model\AbstractRevision

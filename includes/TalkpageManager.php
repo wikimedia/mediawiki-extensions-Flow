@@ -9,11 +9,11 @@ use Flow\Model\Workflow;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
-use Status;
-use User;
 use WikiPage;
 
 class TalkpageManager implements OccupationController {

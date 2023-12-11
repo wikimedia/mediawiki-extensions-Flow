@@ -2,7 +2,7 @@
 
 namespace Flow\Hooks;
 
-use Config;
+use MediaWiki\Config\Config;
 use MessageLocalizer;
 
 /**

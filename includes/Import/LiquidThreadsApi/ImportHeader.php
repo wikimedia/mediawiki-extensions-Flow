@@ -6,7 +6,7 @@ use ArrayIterator;
 use Flow\Import\IImportHeader;
 use Flow\Import\IObjectRevision;
 use MediaWiki\Title\Title;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 
 class ImportHeader extends PageRevisionedObject implements IImportHeader {
 	/** @var ApiBackend */

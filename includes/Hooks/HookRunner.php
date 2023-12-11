@@ -2,11 +2,11 @@
 
 namespace Flow\Hooks;
 
-use Config;
 use Flow\Api\ApiFlowBase;
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Output\OutputPage;
 use MessageLocalizer;
-use OutputPage;
 
 /**
  * This is a hook runner class, see docs/Hooks.md in core.

@@ -3,7 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Collection\HeaderCollection;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @todo Header is just a summary to the discussion workflow, it could be just

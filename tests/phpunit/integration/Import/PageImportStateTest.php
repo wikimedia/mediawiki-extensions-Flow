@@ -11,9 +11,9 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use SplQueue;
-use User;
 
 /**
  * @covers \Flow\Import\PageImportState

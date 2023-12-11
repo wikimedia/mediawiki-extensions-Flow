@@ -7,7 +7,7 @@ use ExtensionRegistry;
 use Flow\Container;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\Notifications\FlowPresentationModel

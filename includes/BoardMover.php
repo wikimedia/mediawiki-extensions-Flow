@@ -7,8 +7,8 @@ use Flow\Exception\FlowException;
 use Flow\Model\Header;
 use Flow\Model\Workflow;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 
 class BoardMover {

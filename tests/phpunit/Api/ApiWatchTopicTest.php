@@ -4,7 +4,7 @@ namespace Flow\Tests\Api;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 /**
  * @covers Flow\Hooks

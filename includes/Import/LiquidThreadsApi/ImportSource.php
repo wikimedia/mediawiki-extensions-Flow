@@ -3,7 +3,7 @@
 namespace Flow\Import\LiquidThreadsApi;
 
 use Flow\Import\IImportSource;
-use User;
+use MediaWiki\User\User;
 
 class ImportSource implements IImportSource {
 	// Thread types defined by LQT which are returned via api

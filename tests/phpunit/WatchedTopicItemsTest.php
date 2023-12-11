@@ -4,7 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Model\UUID;
 use Flow\WatchedTopicItems;
-use User;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

@@ -9,7 +9,7 @@ use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 use ManualLogEntry;
-use User;
+use MediaWiki\User\User;
 
 /**
  * Records topic imports to Special:Log.

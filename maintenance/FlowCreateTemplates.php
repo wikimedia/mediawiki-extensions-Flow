@@ -4,9 +4,9 @@ namespace Flow\Maintenance;
 
 use Flow\Hooks;
 use LoggedUpdateMaintenance;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWException;
-use Status;
 use WikitextContent;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

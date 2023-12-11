@@ -7,6 +7,7 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use FormatJson;
+use MediaWiki\User\User;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
@@ -146,7 +147,7 @@ class RootPostLoader {
 			foreach ( $missingUUID as $postId ) {
 				$content = wfMessage( 'flow-stub-post-content' )->text();
 				$username = wfMessage( 'flow-system-usertext' )->text();
-				$user = \User::newFromName( $username );
+				$user = User::newFromName( $username );
 
 				// create a stub post instead of failing completely
 				$post = PostRevision::newFromId( $postId, $user, $content, 'wikitext' );

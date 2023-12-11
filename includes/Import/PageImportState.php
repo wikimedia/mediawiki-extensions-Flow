@@ -2,7 +2,6 @@
 
 namespace Flow\Import;
 
-use DeferredUpdates;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Import\Postprocessor\Postprocessor;
@@ -11,10 +10,11 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use ReflectionProperty;
 use SplQueue;
-use User;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 

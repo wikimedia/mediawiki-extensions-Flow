@@ -4,7 +4,6 @@ namespace Flow\Import;
 
 use DateTime;
 use DateTimeZone;
-use DeferredUpdates;
 use DerivativeContext;
 use Exception;
 use Flow\Block\AbstractBlock;
@@ -20,15 +19,16 @@ use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use FormatJson;
 use IContextSource;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use RequestContext;
-use User;
 use WikiPage;
 use WikitextContent;
 

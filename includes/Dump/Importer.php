@@ -15,10 +15,13 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Extension\CentralAuth\CentralAuthServices;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use WikiImporter;
@@ -57,7 +60,7 @@ class Importer {
 	/**
 	 * To convert between global and local user ids
 	 *
-	 * @var \CentralIdLookup|null
+	 * @var CentralIdLookup|null
 	 */
 	protected $lookup;
 
@@ -306,7 +309,7 @@ class Importer {
 				if ( isset( $attribs[ $globalUserIdField ] ) ) {
 					$localUser = $this->lookup->localUserFromCentralId(
 						(int)$attribs[ $globalUserIdField ],
-						\CentralIdLookup::AUDIENCE_RAW
+						CentralIdLookup::AUDIENCE_RAW
 					);
 					if ( !$localUser ) {
 						$localUser = $this->createLocalUser( (int)$attribs[ $globalUserIdField ] );
@@ -386,7 +389,7 @@ class Importer {
 	 * Create a local user corresponding to a global id
 	 *
 	 * @param int $globalUserId
-	 * @return \User Local user
+	 * @return User Local user
 	 * @throws ImportException
 	 */
 	private function createLocalUser( $globalUserId ) {
@@ -395,7 +398,7 @@ class Importer {
 		}
 
 		$globalUser = CentralAuthUser::newFromId( $globalUserId );
-		$localUser = \User::newFromName( $globalUser->getName() );
+		$localUser = User::newFromName( $globalUser->getName() );
 
 		if ( $localUser->getId() ) {
 			throw new ImportException( "User '{$localUser->getName()}' already exists" );
@@ -409,7 +412,7 @@ class Importer {
 		}
 
 		# Update user count
-		$ssUpdate = \SiteStatsUpdate::factory( [ 'users' => 1 ] );
+		$ssUpdate = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 		$ssUpdate->doUpdate();
 
 		return $localUser;

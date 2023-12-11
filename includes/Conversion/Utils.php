@@ -9,14 +9,14 @@ use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\EmptyNodeFixer;
-use Html;
 use ILanguageConverter;
 use Language;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
-use OutputPage;
 use ParserOptions;
-use Sanitizer;
 use TextContent;
 use WikitextContent;
 

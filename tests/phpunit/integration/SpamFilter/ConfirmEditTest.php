@@ -5,10 +5,12 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
-use GlobalVarConfig;
+use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use ParserOptions;
-use User;
 
 /**
  * @covers \Flow\SpamFilter\ConfirmEdit
@@ -38,7 +40,7 @@ class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 		$oldRevision = PostRevision::createTopicPost( $workflow, $user, 'foo' );
 		$newRevision = $oldRevision->newNextRevision( $user, 'bar', 'topic-title-wikitext', 'edit-title', $title );
 
-		$request = $this->createMock( \WebRequest::class );
+		$request = $this->createMock( WebRequest::class );
 		$request->method( 'wasPosted' )
 			->willReturn( true );
 
@@ -55,7 +57,7 @@ class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $request );
 
 		$status = $filter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
-		$this->assertInstanceOf( \Status::class, $status );
+		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isGood() );
 	}
 }

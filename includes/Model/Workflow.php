@@ -9,10 +9,10 @@ use Flow\Exception\InvalidInputException;
 use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
-use MWTimestamp;
 use RequestContext;
-use User;
 
 class Workflow {
 
@@ -327,7 +327,7 @@ class Workflow {
 	}
 
 	/**
-	 * @return \MWTimestamp
+	 * @return MWTimestamp
 	 */
 	public function getLastUpdatedObj() {
 		return new MWTimestamp( $this->lastUpdated );

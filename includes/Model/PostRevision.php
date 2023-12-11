@@ -8,7 +8,7 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Repository\TreeRepository;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 
 class PostRevision extends AbstractRevision {
 	public const MAX_TOPIC_LENGTH = 260;

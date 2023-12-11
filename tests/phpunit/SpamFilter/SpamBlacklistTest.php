@@ -8,6 +8,7 @@ use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 /**
  * @covers \Flow\Model\AbstractRevision
@@ -65,7 +66,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::makeTitle( NS_MAIN, 'SpamBlacklistTest TestSpam' );
 		$ctx = $this->createMock( IContextSource::class );
-		$ctx->method( 'getUser' )->willReturn( $this->createMock( \User::class ) );
+		$ctx->method( 'getUser' )->willReturn( $this->createMock( User::class ) );
 
 		$status = $this->spamFilter->validate( $ctx, $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );

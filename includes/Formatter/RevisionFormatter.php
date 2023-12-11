@@ -22,11 +22,12 @@ use GenderCache;
 use IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
-use User;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -406,9 +407,9 @@ class RevisionFormatter {
 			$talkPageTitle = $userTitle->getTalkPage();
 		}
 
-		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
+		$blockTitle = SpecialPage::getTitleFor( 'Block', $name );
 
-		$userContribsTitle = \SpecialPage::getTitleFor( 'Contributions', $name );
+		$userContribsTitle = SpecialPage::getTitleFor( 'Contributions', $name );
 		$userLinksBCBools = [
 			'_BC_bools' => [
 				'exists',

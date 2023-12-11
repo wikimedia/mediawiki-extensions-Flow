@@ -5,8 +5,8 @@ namespace Flow\SpamFilter;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use IContextSource;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use Status;
 
 class Controller {
 	/**

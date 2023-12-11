@@ -14,6 +14,7 @@ use Flow\UrlGenerator;
 use LogEntry;
 use LogFormatter;
 use LogPage;
+use MediaWiki\Html\Html;
 use Message;
 
 class ActionFormatter extends LogFormatter {
@@ -142,7 +143,7 @@ class ActionFormatter extends LogFormatter {
 
 		$message->parse();
 
-		return \Html::rawElement(
+		return Html::rawElement(
 			'span',
 			[ 'class' => 'plainlinks' ],
 			$message->parse()

@@ -12,8 +12,8 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MWTimestamp;
-use User;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 
 class TalkpageImportOperation {
 	/**

@@ -14,7 +14,7 @@ use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use User;
+use MediaWiki\User\User;
 use WikitextContent;
 
 class LqtRedirector implements Postprocessor {

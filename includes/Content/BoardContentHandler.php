@@ -17,13 +17,13 @@ use FormatJson;
 use IContextSource;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MWException;
-use OutputPage;
 use ParserOutput;
 use RequestContext;
-use User;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {

@@ -25,6 +25,7 @@ use Flow\Notifications\Controller;
 use Flow\Repository\RootPostLoader;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use Message;
 
 class TopicBlock extends AbstractBlock {
@@ -1043,12 +1044,12 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	/**
-	 * @param \OutputPage $out
+	 * @param OutputPage $out
 	 *
 	 * @todo Provide more informative page title for actions other than view,
 	 *       e.g. "Hide post in <TITLE>", "Unlock <TITLE>", etc.
 	 */
-	public function setPageTitle( \OutputPage $out ) {
+	public function setPageTitle( OutputPage $out ) {
 		$topic = $this->loadTopicTitle( $this->action === 'history' ? 'history' : 'view' );
 		if ( !$topic ) {
 			return;
