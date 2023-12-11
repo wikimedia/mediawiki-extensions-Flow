@@ -360,7 +360,7 @@ class View extends ContextSource {
 
 			// Always add mw-content-{ltr,rtl} class
 			$title = Title::newFromText( $apiResponse['title'] );
-			$classes[] = 'mw-content-' . $title->getPageViewLanguage()->getDir();
+			$classes[] = 'mw-content-' . $title->getPageLanguage()->getDir();
 
 			$action = $this->getRequest()->getVal( 'action', 'view' );
 			$classes[] = "flow-action-$action";
