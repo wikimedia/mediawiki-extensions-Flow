@@ -4,7 +4,7 @@ namespace Flow\Tests\Api;
 
 use Flow\Container;
 use Flow\Hooks;
-use MediaWiki\Config\HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 
 /**
@@ -35,12 +35,9 @@ abstract class ApiTestCase extends \ApiTestCase {
 			NS_TOPIC => CONTENT_MODEL_FLOW_BOARD,
 		];
 
-		// TODO: remove this once core no longer accesses wgNamespaceContentModels directly.
-		$this->setMwGlobals( 'wgNamespaceContentModels', $namespaceContentModels );
-
-		$this->overrideMwServices( new HashConfig( [
-			'NamespaceContentModels' => $namespaceContentModels
-		] ) );
+		$this->overrideConfigValues( [
+			MainConfigNames::NamespaceContentModels => $namespaceContentModels
+		] );
 
 		$this->clearHooks();
 	}

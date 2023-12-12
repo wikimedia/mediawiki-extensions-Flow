@@ -4,7 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\TalkpageManager;
-use MediaWiki\Config\HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -66,16 +66,13 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 
 		$unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 
-		// TODO: remove this once core no longer accesses wgNamespaceContentModels directly.
 		$this->setMwGlobals( [
-			'wgNamespaceContentModels' => $tempModels,
 			'wgFlowReadOnly' => false,
 		] );
 
-		$this->overrideMwServices( new HashConfig( [
-			'wgNamespaceContentModels' => $tempModels,
-			'wgFlowReadOnly' => false,
-		] ) );
+		$this->overrideConfigValues( [
+			MainConfigNames::NamespaceContentModels => $tempModels,
+		] );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User talk:Test123' ), $unconfirmedUser );
