@@ -426,8 +426,6 @@
 	"flow-no-more-fwd": "Não existem tópicos antigos",
 	"flow-newest-topics": "Tópicos mais recentes",
 	"flow-recent-topics": "Últimos tópicos ativos",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Está}} a ler primeiro os novos tópicos. Clique para mais opções de ordenação.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Está}} a ler primeiro os tópicos ativos mais recentes. Clique para mais opções de ordenação.",
 	"flow-toggle-small-topics": "Alterar para modo de tópicos pequenos",
 	"flow-toggle-topics": "Alternar para modo apenas de tópicos",
 	"flow-toggle-topics-posts": "Alterar para modo de tópicos e mensagens",

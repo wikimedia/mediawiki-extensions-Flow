@@ -438,8 +438,6 @@
 	"flow-no-more-fwd": "Er zijn geen oudere onderwerpen",
 	"flow-newest-topics": "Nieuwste onderwerpen",
 	"flow-recent-topics": "Recent actieve onderwerpen",
-	"flow-sorting-tooltip-newest": "{{GENDER:|U}} leest op het moment de nieuwste onderwerpen eerst. Klik voor meer sorteeropties.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|U}} leest op het moment de laatst actieve onderwerpen eerst. Klik voor meer sorteeropties.",
 	"flow-toggle-small-topics": "Kleine onderwerpen weergeven",
 	"flow-toggle-topics": "Alleen onderwerpen weergeven",
 	"flow-toggle-topics-posts": "Onderwerpen en berichten weergeven",

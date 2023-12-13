@@ -423,8 +423,6 @@
 	"flow-no-more-fwd": "Det finnes ingen eldre emner",
 	"flow-newest-topics": "Nyeste emner",
 	"flow-recent-topics": "Emner med nylig aktivitet",
-	"flow-sorting-tooltip-newest": "De nyeste emnene vises først. Klikk for flere sorteringsmuligheter.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Du}} leser nå det nyeste aktive emnet. Klikk for flere sorteringsmuligheter.",
 	"flow-toggle-small-topics": "Bytt til kompakt visning av emnene",
 	"flow-toggle-topics": "Bytt til visning av kun emner",
 	"flow-toggle-topics-posts": "Bytt til visning av emner og innlegg",

@@ -375,8 +375,6 @@
 	"flow-no-more-fwd": "Ei vanhempia aiheita",
 	"flow-newest-topics": "Uusimmat aiheet",
 	"flow-recent-topics": "Viimeksi kommentoidut aiheet",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Näet}} tällä hetkellä uusimmat aiheet ylimpänä. Napsauta saadaksesi lisää lajitteluvaihtoehtoja.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Näet}} tällä hetkellä viimeksi aktiiviset aiheet ylimpänä. Napsauta saadaksesi lisää lajitteluvaihtoehtoja.",
 	"flow-toggle-small-topics": "Vaihda näkymään pienet aiheet",
 	"flow-toggle-topics": "Vaihda näkymään vain aiheet",
 	"flow-toggle-topics-posts": "Vaihda näkymään aiheet ja viestit",

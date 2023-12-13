@@ -463,8 +463,6 @@
 	"flow-no-more-fwd": "Il n’y a aucun sujet plus ancien",
 	"flow-newest-topics": "Sujets les plus récents",
 	"flow-recent-topics": "Sujets actifs récemment",
-	"flow-sorting-tooltip-newest": "{{GENDER:|}}Vous lisez les sujets les plus récents d’abord. Cliquez pour plus d’options de tri.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|}}Vous lisez actuellement les sujets les plus récemment actifs en premier. Cliquez pour plus d’options de tri.",
 	"flow-toggle-small-topics": "Basculer vers l’affichage des titres uniquement",
 	"flow-toggle-topics": "Basculer vers l’affichage des sujets uniquement",
 	"flow-toggle-topics-posts": "Basculer vers l’affichage des sujets et des messages",

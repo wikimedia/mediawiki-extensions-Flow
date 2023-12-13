@@ -437,8 +437,6 @@
 	"flow-no-more-fwd": "Não há tópicos mais antigos",
 	"flow-newest-topics": "Tópicos recentes",
 	"flow-recent-topics": "Tópicos recentemente ativos",
-	"flow-sorting-tooltip-newest": "Atualmente, {{GENDER:|você}} está lendo os novos tópicos em primeiro lugar. Clique para mais opções de ordenação.",
-	"flow-sorting-tooltip-recent": "Atualmente, {{GENDER:|você}} está lendo os tópicos ativos mais recentes em primeiro lugar. Clique para mais opções de ordenação.",
 	"flow-toggle-small-topics": "Mudar visualização para pequenos tópicos",
 	"flow-toggle-topics": "Mudar visualização para apenas tópicos",
 	"flow-toggle-topics-posts": "Mudar visualização para tópicos e publicações",

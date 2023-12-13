@@ -445,8 +445,6 @@
 	"flow-no-more-fwd": "Нет старых тем",
 	"flow-newest-topics": "Новейшие темы",
 	"flow-recent-topics": "Недавно активные темы",
-	"flow-sorting-tooltip-newest": "Сейчас {{GENDER:|вы}} читаете сначала новейшие темы. Нажмите для выбора параметров сортировки.",
-	"flow-sorting-tooltip-recent": "Сейчас {{GENDER:|вы}} читаете сначала самые активные темы. Нажмите для выбора параметров сортировки.",
 	"flow-toggle-small-topics": "Переключиться в режим малых тем",
 	"flow-toggle-topics": "Переключиться в режим только тем",
 	"flow-toggle-topics-posts": "Переключитесь в режим тем и сообщений",

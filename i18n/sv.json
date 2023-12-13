@@ -426,8 +426,6 @@
 	"flow-no-more-fwd": "Det finns inga äldre ämnen",
 	"flow-newest-topics": "Nyaste ämnen",
 	"flow-recent-topics": "Senaste aktiva ämnen",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Du}} läser just nu det nyaste ämnet först. Klicka för fler sorteringsalternativ.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Du}} läser för tillfället de allra senaste aktiva ämnena först. Klicka för fler sorteringsalternativ.",
 	"flow-toggle-small-topics": "Byt till liten ämnesvy",
 	"flow-toggle-topics": "Byt till enbart ämnesvy",
 	"flow-toggle-topics-posts": "Byt till ämnes- och inläggsvy",

@@ -392,8 +392,6 @@
 	"flow-no-more-fwd": "Nema starijih tema",
 	"flow-newest-topics": "Najnovije teme",
 	"flow-recent-topics": "Nedavno aktivne teme",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Trenutno}} čitate najnovije teme. Kliknite za više opcija sortiranja.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Trenutno}} čitate najaktivnije teme. Kliknite za više opcija sortiranja.",
 	"flow-toggle-small-topics": "Prebaci na umanjeni pregled tema",
 	"flow-toggle-topics": "Prebaci na sâm pregled tema",
 	"flow-toggle-topics-posts": "Prebaci na pregled tema i objava",

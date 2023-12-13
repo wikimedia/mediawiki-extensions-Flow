@@ -406,8 +406,6 @@
 	"flow-no-more-fwd": "Di argomenti ciu vegi no ghe n'è",
 	"flow-newest-topics": "Argomenti ciù noeuvi",
 	"flow-recent-topics": "Urtimi argomenti attivi",
-	"flow-sorting-tooltip-newest": "Oua {{GENDER:|}} t'ê aproeuv'à leze i argomenti ciù noeuvi. Clicca pe ciu opsioin d'amersamento.",
-	"flow-sorting-tooltip-recent": "Oua {{GENDER:|}} t'ê aproeuv'à leze i argomenti ciù attivi urtimamente. Clicca pe ciu opsioin d'amersamento.",
 	"flow-toggle-small-topics": "Passa a-a vixon picin-a",
 	"flow-toggle-topics": "Passa a-a vixon di argomenti sensa detalli",
 	"flow-toggle-topics-posts": "Passa a-a vista di argomenti e di messaggi",

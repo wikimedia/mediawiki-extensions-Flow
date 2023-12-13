@@ -383,8 +383,6 @@
 	"flow-no-more-fwd": "Cap més tema anterior",
 	"flow-newest-topics": "Temes més recents",
 	"flow-recent-topics": "Temes amb activitat més recent",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Esteu}} veient primer els temes més recents. Cliqueu per altres opcions d'ordenació.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Esteu}} veient primer els temes amb activitat més recent. Cliqueu per altres opcions d'ordenació.",
 	"flow-toggle-small-topics": "Canvia a la vista reduïda de temes",
 	"flow-toggle-topics": "Canvia a la vista plegada de temes",
 	"flow-toggle-topics-posts": "Canvia a la vista de temes i apunts",

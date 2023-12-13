@@ -447,8 +447,6 @@
 	"flow-no-more-fwd": "No hay temas más antiguos",
 	"flow-newest-topics": "Temas nuevos",
 	"flow-recent-topics": "Temas con actividad más reciente",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Estás}} leyendo los temas creados más recientemente primero. Haz clic para ver más opciones de clasificación.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Estás}} leyendo los temas que han tenido actividad más recientemente primero. Haz clic para ver más opciones de clasificación.",
 	"flow-toggle-small-topics": "Cambiar a la vista de temas pequeños",
 	"flow-toggle-topics": "Cambiar a la vista de solo temas",
 	"flow-toggle-topics-posts": "Cambiar a la vista de temas y publicaciones",

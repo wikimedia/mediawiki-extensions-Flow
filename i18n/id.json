@@ -423,8 +423,6 @@
 	"flow-no-more-fwd": "Tidak ada topik yang lebih lama",
 	"flow-newest-topics": "Topik terbaru",
 	"flow-recent-topics": "Topik aktif terkini",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Anda}} sedang membaca dengan urutan yang pertama adalah topik terbaru. Klik untuk menemukan opsi pengurutan lainnya.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Anda}} sedang membaca dengan urutan yang pertama adalah topik aktif terbaru. Klik untuk menemukan opsi pengurutan lainnya.",
 	"flow-toggle-small-topics": "Ganti ke tampilan kecil topik",
 	"flow-toggle-topics": "Ganti ke tampilan topik saja",
 	"flow-toggle-topics-posts": "Ganti ke tampilan topik dan kiriman",

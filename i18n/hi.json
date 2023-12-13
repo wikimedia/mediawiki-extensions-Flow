@@ -419,8 +419,6 @@
 	"flow-no-more-fwd": "यहाँ कोई पुराना विषय नहीं है",
 	"flow-newest-topics": "नए विषय",
 	"flow-recent-topics": "हाल में सक्रिय विषय",
-	"flow-sorting-tooltip-newest": "{{GENDER:|आप}} इस समय सबसे नए विषय पढ़ रहे हैं। छाँटने के अधिक विकल्प पाने के लिए क्लिक करें।",
-	"flow-sorting-tooltip-recent": "{{GENDER:|आप}} इस समय हाल में सक्रिय विषय पढ़ रहे हैं। छाँटने के अधिक विकल्प पाने के लिए क्लिक करें।",
 	"flow-toggle-small-topics": "छोटे-विषय दृश्य पर जाएँ",
 	"flow-toggle-topics": "केवल-विषय दृश्य में जाएँ",
 	"flow-toggle-topics-posts": "विषय और पोस्ट दृश्य में जाएँ",

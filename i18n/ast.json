@@ -411,8 +411,6 @@
 	"flow-no-more-fwd": "Nun hai temes más antigües",
 	"flow-newest-topics": "Temes nueves",
 	"flow-recent-topics": "Temes con actividá más recién",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Tas}} lleyendo les temes creaes más apocayá primero. Fai clic pa ver más opciones d'ordenación.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Tas}} lleyendo les temes que tuvieron actividá más apocayá primeru. Fai clic pa ver más opciones d'ordenación.",
 	"flow-toggle-small-topics": "Camudar a la vista de temes amenorgada",
 	"flow-toggle-topics": "Camudar a la vista de sólo temes",
 	"flow-toggle-topics-posts": "Camudar a la vista de temes y publicaciones",

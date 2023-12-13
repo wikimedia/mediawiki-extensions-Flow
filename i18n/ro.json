@@ -406,8 +406,6 @@
 	"flow-no-more-fwd": "Nu există subiecte mai vechi",
 	"flow-newest-topics": "Cele mai noi subiecte",
 	"flow-recent-topics": "Subiecte active recent",
-	"flow-sorting-tooltip-newest": "{{GENDER:|Dvs.}} citiți acum prima dată cele mai noi subiecte. Apăsați pentru mai multe opțiuni de sortare.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|Dvs.}} citiți acum prima dată subiectele active recent cel mai mult. Apăsați pentru mai multe opțiuni de sortare.",
 	"flow-toggle-small-topics": "Treci la vizualizarea mică a subiectelor",
 	"flow-toggle-topics": "Treci la vizualizarea numai a subiectelor",
 	"flow-toggle-topics-posts": "Treci la vizualizarea subiectelor și mesajelor",

@@ -429,8 +429,6 @@
 	"flow-no-more-fwd": "더 이상 예전의 주제가 없습니다.",
 	"flow-newest-topics": "새로 올라온 주제",
 	"flow-recent-topics": "최근 대화한 주제",
-	"flow-sorting-tooltip-newest": "{{GENDER:|당신은}} 새로 올라온 주제를 먼저 읽고 있습니다. 다른 정렬 설정을 보려면 클릭하세요.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|당신은}} 최근 대화한 주제를 먼저 읽고 있습니다. 다른 정렬 설정을 보려면 클릭하세요.",
 	"flow-toggle-small-topics": "작은 주제 뷰로 전환",
 	"flow-toggle-topics": "주제 전용 뷰로 전환",
 	"flow-toggle-topics-posts": "주제 및 게시물 뷰로 전환",

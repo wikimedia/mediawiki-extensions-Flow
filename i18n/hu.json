@@ -407,8 +407,6 @@
 	"flow-no-more-fwd": "Nincsenek régebbi témák",
 	"flow-newest-topics": "Legújabb témák",
 	"flow-recent-topics": "Nemrég aktív témák",
-	"flow-sorting-tooltip-newest": "Jelenleg a legújabb témákat olvasod először. Kattints ide további rendezési lehetőségekért.",
-	"flow-sorting-tooltip-recent": "Jelenleg a legutóbb aktív témákat olvasod először. Kattints ide további rendezési lehetőségekért.",
 	"flow-toggle-small-topics": "Átváltás kis téma nézetre",
 	"flow-toggle-topics": "Átváltás csak téma nézetre",
 	"flow-toggle-topics-posts": "Átváltás téma-és-hozzászólás nézetre",

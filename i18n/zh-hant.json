@@ -434,8 +434,6 @@
 	"flow-no-more-fwd": "沒有更早的話題",
 	"flow-newest-topics": "最新話題",
 	"flow-recent-topics": "近期活躍的話題",
-	"flow-sorting-tooltip-newest": "{{GENDER:|您}}目前的排序方式為最新的話題優先，點選此處以使用更多的排序選項。",
-	"flow-sorting-tooltip-recent": "{{GENDER:|您}}目前的排序方式為最近活動的話題優先。點選此處以使用更多的排序選項。",
 	"flow-toggle-small-topics": "切換成檢視小話題",
 	"flow-toggle-topics": "切換成只檢視話題",
 	"flow-toggle-topics-posts": "切換成檢視話題與貼文",

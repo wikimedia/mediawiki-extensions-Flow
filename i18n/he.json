@@ -423,8 +423,6 @@
 	"flow-no-more-fwd": "אין נושאים ישנים יותר",
 	"flow-newest-topics": "הנושאים החדשים ביותר",
 	"flow-recent-topics": "נושאים פעילים לאחרונה",
-	"flow-sorting-tooltip-newest": "{{GENDER:|אתה קורא|את קוראת}} עכשיו את הנושאים החדשים ביותר תחילה. נא ללחוץ כאן לאפשרויות מיון נוספות.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|אתה קורא|את קוראת}} עכשיו תחילה את הנושאים שהיו פעילים לאחרונה. {{GENDER:|לחץ|לחצי|ניתן ללחוץ}} לאפשרויות מיון אחרות.",
 	"flow-toggle-small-topics": "מעבר לתצוגת נושאים קטנה",
 	"flow-toggle-topics": "מעבר לתצוגת נושאים בלבד",
 	"flow-toggle-topics-posts": "מעבר לתצוגת נושאים ורשומות",

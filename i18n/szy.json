@@ -319,8 +319,6 @@
 	"flow-no-more-fwd": "inayi’ ku malumanay sasakamuen",
 	"flow-newest-topics": "sabaluhay sasakamuen",
 	"flow-recent-topics": "capi tanitik a sasakamuen",
-	"flow-sorting-tooltip-newest": "{{GENDER:|kisu}} ayzaay kasatisil sasakawawen u sabaluhay maluayaw sasakamuen, sapecec itiniay pisaungay yadah ku kasatisil a syinsiang.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|kisu}} ayzaay kasalaylay sasakawawen micapi demiad saungay nu binawlan a sasakamuen maluayaw. sapecec tina i pisaungay yadahay kasalaylay syinsiang.",
 	"flow-toggle-small-topics": "ketun mibalic miciwsace adidi’ay a sasakamuen",
 	"flow-toggle-topics": "ketun mibalic miciwsace  sasakamuen a cacay",
 	"flow-toggle-topics-posts": "ketun mibalic tu ciwsace sasakamuen atu pazepit tu nisulitan",

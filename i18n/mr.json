@@ -307,8 +307,6 @@
 	"flow-no-more-fwd": "जूने विषय नाहीत",
 	"flow-newest-topics": "नविनतम विषय",
 	"flow-recent-topics": "सध्या सक्रिय असलेले विषय",
-	"flow-sorting-tooltip-newest": "{{GENDER:|आपण}} सध्या नविनतम विषयांचे वाचन करीत आहात. अधिक पृथक-पर्याय निवडण्यासाठी टिचका.",
-	"flow-sorting-tooltip-recent": "{{GENDER:|आपण}} सध्या अलीकडील सर्वात सक्रिय विषयांचे वाचन करीत आहात. अधिक पृथक-पर्याय निवडण्यासाठी टिचका.",
 	"flow-terms-of-use-summarize": "\"{{int:flow-topic-action-update-topic-summary}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
 	"flow-terms-of-use-lock-topic": "\"{{int:flow-topic-action-lock-topic}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
 	"flow-terms-of-use-unlock-topic": "\"{{int:flow-topic-action-unlock-topic}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
