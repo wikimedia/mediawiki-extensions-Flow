@@ -2,49 +2,33 @@
 
 namespace Flow\Exception;
 
-use RequestContext;
+use ErrorPageError;
 
 /**
  * Category: invalid action exception
  */
-class InvalidActionException extends FlowException {
+class InvalidActionException extends ErrorPageError {
+
+	public function __construct( $message, $code = 'default' ) {
+		$list = $this->getErrorCodeList();
+		if ( !in_array( $code, $list ) ) {
+			$code = 'default';
+		}
+		parent::__construct( 'nosuchaction', "flow-error-$code" );
+	}
+
 	protected function getErrorCodeList() {
-		// flow-error-invalid-action
-		return [ 'invalid-action' ];
+		// Comments are i18n messages, for grepping
+		return [
+			'invalid-action',
+			// flow-error-invalid-action
+		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function getPageTitle() {
-		return $this->parsePageTitle( 'nosuchaction' );
+	public function report( $action = ErrorPageError::SEND_OUTPUT ) {
+		global $wgOut;
+		$wgOut->setStatusCode( 400 );
+		parent::report( $action );
 	}
 
-	/**
-	 * Bad request
-	 * @return int
-	 */
-	public function getStatusCode() {
-		return 400;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getHTML() {
-		// we only want a nice error message here, no stack trace
-		$rc = new RequestContext();
-		$output = $rc->getOutput();
-		$output->showErrorPage( $this->getPageTitle(), $this->getErrorCode() );
-
-		return $output->getHTML();
-	}
-
-	/**
-	 * Do not log exception resulting from input error
-	 * @return bool
-	 */
-	public function isLoggable() {
-		return false;
-	}
 }

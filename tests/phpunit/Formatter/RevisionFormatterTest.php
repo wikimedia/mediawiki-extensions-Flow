@@ -214,7 +214,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId ) {
 		/** @var RevisionFormatter $formatter */
 		list( $formatter ) = $this->makeFormatter();
-		$this->expectException( \Flow\Exception\FlowException::class );
+		$this->expectException( \Flow\Exception\InvalidInputException::class );
 		$formatter->setContentFormat( $requestedFormat, $revisionId );
 	}
 

@@ -2,6 +2,8 @@
 
 namespace Flow\Exception;
 
+use ErrorPageError;
+
 /**
  * Category: invalid input exception
  *
@@ -11,7 +13,16 @@ namespace Flow\Exception;
  * If it is a logic error (including a missing or incorrect parameter not directly caused
  * by user input), or another kind of failure, another (loggable) exception must be used.
  */
-class InvalidInputException extends FlowException {
+class InvalidInputException extends ErrorPageError {
+
+	public function __construct( $message, $code = 'default' ) {
+		$list = $this->getErrorCodeList();
+		if ( !in_array( $code, $list ) ) {
+			$code = 'default';
+		}
+		parent::__construct( 'errorpagetitle', "flow-error-$code" );
+	}
+
 	protected function getErrorCodeList() {
 		// Comments are i18n messages, for grepping
 		return [
@@ -26,19 +37,10 @@ class InvalidInputException extends FlowException {
 		];
 	}
 
-	/**
-	 * Bad request
-	 * @return int
-	 */
-	public function getStatusCode() {
-		return 400;
+	public function report( $action = ErrorPageError::SEND_OUTPUT ) {
+		global $wgOut;
+		$wgOut->setStatusCode( 400 );
+		parent::report( $action );
 	}
 
-	/**
-	 * Do not log exception resulting from input error
-	 * @return bool
-	 */
-	public function isLoggable() {
-		return false;
-	}
 }
