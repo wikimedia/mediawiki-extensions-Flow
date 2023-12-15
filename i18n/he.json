@@ -508,7 +508,7 @@
 	"flow-mark-diff-patrolled-link-text": "סימון השינוי כבדוק",
 	"flow-mark-diff-patrolled-link-title": "סימון השינוי כבדוק",
 	"flow-talk-page-beta-feature-message": "דיונים מבניים בדף השיחה",
-	"flow-talk-page-beta-feature-description": "הפעלת מערכת דיונים מבניים חדשה בדף שיחת המשתמש שלך. מערכת הדיונים המבניים מפשטת את הדיונים בדפי השיחה עם מקומות ברורים לכתיבה ולתגובה ומאפשרת התראות ברמת שיחה. האפשרות הזאת לא מופעלת באופן אוטומטי; משתמשים יצטרכו להפעיל אותה באופן פרטני.<br /><br />דיונים קיימים בקוד ויקי מועברים לארכיון. כיבוי האפשרות הזאת יעביר את לוח הדיונים המבניים לדף־משנה ויוציא את דף השיחה הקודם מהארכיון. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|מידע נוסף על הפעלה]].",
+	"flow-talk-page-beta-feature-description": "אפשרה לך להפעיל מערכת דיונים מבניים בדף שיחת המשתמש שלך. הדיונים המבניים הוצעו בתור אפשרות בטא, אבל [[mw:Special:MyLanguage/Structured_Discussions/Deprecation|היא תוסר מאתרי הוויקי]]. אנחנו מזמינים אותך לכבות את האפשרות הזאת בעצמך.<br /><br />כיבוי האפשרות הזאת יעביר את לוח הדיונים המבניים לדף־משנה ויוציא את דף השיחה הקודם מהארכיון. [[mw:Special:MyLanguage/Help:Structured_Discussions/Activation#deactivate|מידע נוסף על כיבוי.]] [[mw:Special:MyLanguage/Talk:Structured_Discussions/Deprecation| {{GENDER:|צור|צרי}} איתנו קשר אם {{GENDER:|אתה|את}} חווה בעיות כלשהן.]]",
 	"flow-notification-link-text-enabled-on-talkpage": "הצגת דף שיחת המשתמש",
 	"flow-beta-feature-add-archive-template-edit-summary": "הוספת תבנית ארכיון",
 	"flow-beta-feature-remove-archive-template-edit-summary": "הסרת תבנית ארכיון",
