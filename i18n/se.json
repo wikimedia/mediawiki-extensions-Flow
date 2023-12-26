@@ -5,6 +5,13 @@
 			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
+	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Heaitte}} ođđa doaimmaid čuovvumis siiddus \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Don it}} šat čuovo siiddu \"$1\"",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Dát ii váikkut ovttaskas fáttáide, maid {{GENDER:$3|don}} čuovut. Don sáhtát čuovvut [$2 dán siiddu] goas ihkinassii.",
+	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Heaitte}} dán fáttá čuovvumis",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Don it}} šat čuovo fáttá \"$1\"",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Don sáhtát}} čuovvut [$2 dán fáttá] goas ihkinassii.",
+	"flow-board-collapse-description": "Čiega govvádusa",
 	"flow-board-expand-description": "Čájet govvádusa",
 	"flow-cancel": "Gaskkalduhte",
 	"flow-show-change": "Čájet rievdadusaid",
@@ -20,7 +27,8 @@
 	"flow-topic-action-watchlist-remove": "Heaitte diŋgomis",
 	"flow-error-protected-unknown-reason": "Dovdameahttun",
 	"flow-history-day": "Odne",
-	"flow-comment-hidden": "Čihkkon kommeanta",
+	"flow-hide-comments-title": "Čiega {{PLURAL:$1|kommentára|kommentáraid}}",
+	"flow-comment-hidden": "Čihkkon kommentára",
 	"notification-links-flow-description-edited-view-page": "{{GENDER:$1|Čájet}} siiddu",
 	"flow-moderation-confirm-delete-post": "Sihko",
 	"flow-moderation-confirm-hide-post": "Čiega",
