@@ -171,7 +171,7 @@
 	"flow-topic-action-watchlist-remove": "Uitschrijven",
 	"flow-error-allowcreation-already-exists": "Er bestaat al een pagina op het doel, dus kan een Gestructureerde Discussiebord hier niet naar toe verplaatst worden.",
 	"flow-error-allowcreation-flow-create-board": "De gebruiker heeft het \"{{int:right-flow-create-board}}\" recht niet",
-	"flow-error-can-not-edit-logged-out": "U bent momenteel niet in staat om deel te nemen. U kunt proberen in te loggen.",
+	"flow-error-can-not-edit-logged-out": "U bent momenteel niet in staat om deel te nemen. U kunt proberen zich aan te melden.",
 	"flow-error-can-not-edit-logged-in": "U kunt momenteel niet deelnemen, omdat u niet de vereiste rechten hebt.",
 	"flow-error-http": "Er is een fout opgetreden in het contact met de server.",
 	"flow-error-external": "Er is een fout opgetreden. De foutmelding is: $1",
