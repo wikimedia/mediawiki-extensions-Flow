@@ -153,7 +153,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 				'af_pattern' => $pattern,
 				'af_user' => $user->getId(),
 				'af_user_text' => $user->getName(),
-				'af_timestamp' => wfTimestampNow(),
+				'af_timestamp' => $this->db->timestamp(),
 				'af_enabled' => 1,
 				'af_comments' => null,
 				'af_public_comments' => 'Test filter',
