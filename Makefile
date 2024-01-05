@@ -51,9 +51,6 @@ else
 	@${PHP} ../../maintenance/checkLess.php
 endif
 
-jsduck:
-	jsduck
-
 ###
 # Testing
 ###
