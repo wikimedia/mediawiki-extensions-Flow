@@ -5,8 +5,7 @@
 	"description": "Build tools for Flow.",
 	"scripts": {
 		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
-		"test": "grunt test",
-		"doc": "jsduck"
+		"test": "grunt test"
 	},
 	"devDependencies": {
 		"api-testing": "1.6.0",
