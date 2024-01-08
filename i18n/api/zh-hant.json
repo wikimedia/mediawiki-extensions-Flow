@@ -9,7 +9,8 @@
 			"Kly",
 			"LNDDYL",
 			"Tranve",
-			"Xiplus"
+			"Xiplus",
+			"列维劳德"
 		]
 	},
 	"apihelp-flow-description": "允許對結構式討論頁面執行操作。",
@@ -85,8 +86,8 @@
 	"apihelp-flow+view-post-param-format": "回傳內容的格式。",
 	"apihelp-flow+view-post-example-1": "索取在 [[Topic:S2tycnas4hcucw8w]] 以 wikitext 的的貼文內容",
 	"apihelp-flow+view-post-history-description": "檢視貼文的修訂歷史。",
-	"apihelp-flow+view-post-history-summary": "檢視貼文的修訂歷史。",
-	"apihelp-flow+view-post-history-param-postId": "檢視修訂歷史的貼文 ID。",
+	"apihelp-flow+view-post-history-summary": "檢視貼文的修訂紀錄。",
+	"apihelp-flow+view-post-history-param-postId": "檢視修訂紀錄對應的貼文 ID。",
 	"apihelp-flow+view-post-history-param-format": "回傳內容的格式。",
 	"apihelp-flow+view-post-history-example-1": "索取在 [[Topic:S2tycnas4hcucw8w]] 以 wikitext 的的貼文修訂",
 	"apihelp-flow+view-topic-description": "檢視話題。",
@@ -94,7 +95,7 @@
 	"apihelp-flow+view-topic-param-format": "回傳內容的格式。",
 	"apihelp-flow+view-topic-example-1": "檢視 [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+view-topic-history-description": "檢視話題的修訂歷史。",
-	"apihelp-flow+view-topic-history-summary": "檢視話題的修訂歷史。",
+	"apihelp-flow+view-topic-history-summary": "檢視話題的修訂紀錄。",
 	"apihelp-flow+view-topic-history-param-format": "回傳內容的格式。",
 	"apihelp-flow+view-topic-history-example-1": "檢視在 [[Topic:S2tycnas4hcucw8w]] 以 wikitext 的的貼文修訂",
 	"apihelp-flow+view-topic-summary-description": "檢視話題摘要。",
