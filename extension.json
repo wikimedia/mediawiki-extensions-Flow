@@ -659,10 +659,7 @@
 			"class": "MediaWiki\\Extension\\StructuredDiscussions\\Hooks\\AbuseFilterHandler"
 		},
 		"main": {
-			"class": "Flow\\Hooks",
-			"services": [
-				"UserOptionsLookup"
-			]
+			"class": "Flow\\Hooks"
 		},
 		"schema": {
 			"class": "Flow\\SchemaHooks"
