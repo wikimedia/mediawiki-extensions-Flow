@@ -12,7 +12,6 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
@@ -247,7 +246,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 		$url = 'unset';
 		$query = 'unset';
 
-		( new Hooks( new StaticUserOptionsLookup( [] ) ) )->onIRCLineURL( $url, $query, $rc );
+		( new Hooks )->onIRCLineURL( $url, $query, $rc );
 		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
 		$parts = parse_url( $url );
