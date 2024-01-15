@@ -519,7 +519,7 @@
 	"flow-mark-diff-patrolled-link-text": "標記為已巡查",
 	"flow-mark-diff-patrolled-link-title": "標記為已巡查",
 	"flow-talk-page-beta-feature-message": "於使用者討論頁上啟用結構式討論",
-	"flow-talk-page-beta-feature-description": "於{{GENDER:|您的}}使用者對話頁面開啟新結構式討論系統。結構式討論透過簡潔的方式提供發表與回覆的功能來簡化對話頁面的討論方式，並允許對話層級的通知。此功能不會自動開啟，使用者需要手動開啟。<br /><br />已存在的維基文字討論內容將會移動至存檔頁面。關閉此功能將會移動結構式討論版至子頁面並且還原先前對話頁面的存檔。[[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|了解更多有關啟用的資訊]]。",
+	"flow-talk-page-beta-feature-description": "允許{{GENDER:|您}}在自己的使用者討論頁啟用新的結構式討論系統。結構式討論作為測試版功能提供，但[[mw:Special:MyLanguage/Structured_Discussions/Deprecation|此功能即將從wiki中移除]]。我們希望{{GENDER:|您}}考慮主動禁用此功能。<br /><br />禁用此功能將會把結構式討論版塊移動至一個子頁面，並從存檔中抽回之前的討論頁。[[mw:Special:MyLanguage/Help:Structured_Discussions/Activation#deactivate|了解更多有關停用的資訊]]。此外，[[mw:Special:MyLanguage/Talk:Structured_Discussions/Deprecation|如果{{GENDER:|您}}遇到任何問題，請與我們聯絡]]。",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|檢視}}使用者對話頁面",
 	"flow-beta-feature-add-archive-template-edit-summary": "正在加入存檔模板",
 	"flow-beta-feature-remove-archive-template-edit-summary": "正在移除存檔模板",
