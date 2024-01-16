@@ -2,15 +2,15 @@
 
 namespace Flow\SpamFilter;
 
-use ConfirmEditHooks;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use IContextSource;
+use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
+use MediaWiki\Extension\ConfirmEdit\SimpleCaptcha\SimpleCaptcha;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use SimpleCaptcha;
 
 class ConfirmEdit implements SpamFilter {
 	/**
