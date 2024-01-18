@@ -88,7 +88,6 @@ use MediaWiki\Storage\Hook\ArticleEditUpdateNewTalkHook;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Hook\UserGetReservedNamesHook;
 use MediaWiki\User\Options\Hook\SaveUserOptionsHook;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
@@ -164,15 +163,6 @@ class Hooks implements
 	 * @var AbuseFilter|null Initialized during extension initialization
 	 */
 	protected static $abuseFilter;
-
-	private UserOptionsLookup $userOptionsLookup;
-
-	/**
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
-	public function __construct( UserOptionsLookup $userOptionsLookup ) {
-		$this->userOptionsLookup = $userOptionsLookup;
-	}
 
 	public static function registerExtension() {
 		require_once dirname( __DIR__ ) . '/defines.php';
@@ -1761,23 +1751,17 @@ class Hooks implements
 	}
 
 	/**
-	 * Check if the user already enabled Structured discussions on their
-	 * talk page.
-	 * @param UserIdentity $user
-	 * @return bool
-	 */
-	private function isBetaFeatureEnabledInTalkPage( UserIdentity $user ): bool {
-		return $this->userOptionsLookup->getOption( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE, false );
-	}
-
-	/**
 	 * @param User $user
 	 * @param array &$prefs
 	 */
 	public function onGetBetaFeaturePreferences( $user, &$prefs ) {
 		global $wgExtensionAssetsPath;
 
-		if ( !self::isBetaFeatureAvailable() || !self::isBetaFeatureEnabledInTalkPage( $user ) ) {
+		if ( !self::isBetaFeatureAvailable() ) {
+			return;
+		}
+		// Do not allow users to opt-in for Flow as preliminary sunset step
+		if ( !BetaFeatures::isFeatureEnabled( $user, BETA_FEATURE_FLOW_USER_TALK_PAGE ) ) {
 			return;
 		}
 
