@@ -21,9 +21,6 @@ use WikitextContent;
  */
 class ImportSourceTest extends \MediaWikiIntegrationTestCase {
 
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'page', 'revision', 'ip_changes' ];
-
 	protected function setUp(): void {
 		// https://gerrit.wikimedia.org/r/c/mediawiki/extensions/Flow/+/927619 needs to be merged
 		// but until then, skip this test unconditionally.

@@ -18,9 +18,6 @@ use MediaWiki\User\User;
  * @group Flow
  */
 class PermissionsTest extends PostRevisionTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'user', 'user_groups' ];
-
 	/**
 	 * @var FlowActions
 	 */

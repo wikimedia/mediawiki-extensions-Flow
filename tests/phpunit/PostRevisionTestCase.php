@@ -24,19 +24,6 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class PostRevisionTestCase extends FlowTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [
-		'flow_revision',
-		'flow_topic_list',
-		'flow_tree_node',
-		'flow_tree_revision',
-		'flow_workflow',
-		'page',
-		'revision',
-		'ip_changes',
-		'text',
-	];
-
 	/**
 	 * @var PostRevision[]
 	 */
@@ -198,8 +185,6 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	/**
 	 * Saves a PostRevision to storage.
-	 * Be sure to add the required tables to $tablesUsed and add @group Database
-	 * to the class' phpDoc.
 	 *
 	 * @param PostRevision $revision
 	 */

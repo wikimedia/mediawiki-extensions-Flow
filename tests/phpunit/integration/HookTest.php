@@ -23,19 +23,6 @@ use RecentChange;
  * @group Database
  */
 class HookTest extends MediaWikiIntegrationTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [
-		'flow_revision',
-		'flow_topic_list',
-		'flow_tree_node',
-		'flow_tree_revision',
-		'flow_workflow',
-		'page',
-		'revision',
-		'ip_changes',
-		'text',
-	];
-
 	public static function onIRCLineURLProvider() {
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we

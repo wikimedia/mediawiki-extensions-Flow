@@ -25,12 +25,6 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->talkpageManager = Container::get( 'occupation_controller' );
-
-		$this->tablesUsed = array_merge( $this->tablesUsed, [
-			'page',
-			'revision',
-			'ip_changes',
-		] );
 	}
 
 	public function testCheckIfCreationIsPossible() {

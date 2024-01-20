@@ -12,9 +12,6 @@ use MediaWiki\WikiMap\WikiMap;
  * @covers \Flow\Repository\UserName\OneStepUserNameQuery
  */
 class OneStepUserNameQueryTest extends \MediaWikiIntegrationTestCase {
-	/** @var string[] */
-	protected $tablesUsed = [ 'user', 'ipblocks' ];
-
 	public function testExecute() {
 		$query = new OneStepUserNameQuery(
 			Container::get( 'db.factory' ),

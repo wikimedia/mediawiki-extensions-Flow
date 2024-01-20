@@ -32,15 +32,6 @@ use SplQueue;
  * @group Database
  */
 class TalkpageImportOperationTest extends \MediaWikiIntegrationTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [
-		// importer will ensureFlowRevision(), which will insert into these core tables
-		'page',
-		'revision',
-		'ip_changes',
-		'text',
-	];
-
 	protected function setUp(): void {
 		parent::setUp();
 

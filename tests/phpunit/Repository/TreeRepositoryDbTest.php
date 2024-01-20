@@ -13,9 +13,6 @@ use Flow\Tests\FlowTestCase;
  * @group Database
  */
 class TreeRepositoryDbTest extends FlowTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'flow_tree_node' ];
-
 	public function testSomething() {
 		// meaningless set of ids used for repeatability
 		$ids = array_map( [ \Flow\Model\UUID::class, 'create' ], [

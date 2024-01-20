@@ -26,9 +26,6 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 */
 	private $spamFilter;
 
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'abuse_filter', 'abuse_filter_action', 'abuse_filter_history', 'abuse_filter_log' ];
-
 	private const FILTERS = [
 		// no CSS screen hijack
 		'(new_wikitext rlike "position\s*:\s*(fixed|absolute)|style\s*=\s*\"[a-z0-9:;\s]*&|z-index\s*:\s*\d|\|([4-9]\d{3}|\d{5,})px")' => 'disallow',
@@ -126,13 +123,6 @@ class AbuseFilterTest extends PostRevisionTestCase {
 
 		foreach ( self::FILTERS as $pattern => $action ) {
 			$this->createFilter( $pattern, $action );
-		}
-	}
-
-	protected function tearDown(): void {
-		parent::tearDown();
-		foreach ( $this->tablesUsed as $table ) {
-			$this->db->delete( $table, '*', __METHOD__ );
 		}
 	}
 

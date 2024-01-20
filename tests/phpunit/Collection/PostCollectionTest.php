@@ -17,9 +17,6 @@ use Flow\Tests\PostRevisionTestCase;
  * @group Database
  */
 class PostCollectionTest extends PostRevisionTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'flow_revision', 'flow_tree_revision' ];
-
 	protected function setUp(): void {
 		parent::setUp();
 

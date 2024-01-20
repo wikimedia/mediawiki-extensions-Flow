@@ -14,22 +14,6 @@ use Flow\Model\AbstractRevision;
  * @group Database
  */
 class ApiFlowModerateTopicTest extends ApiTestCase {
-	/** @inheritDoc */
-	protected $tablesUsed = [
-		'flow_ext_ref',
-		'flow_revision',
-		'flow_topic_list',
-		'flow_tree_node',
-		'flow_tree_revision',
-		'flow_wiki_ref',
-		'flow_workflow',
-		'page',
-		'revision',
-		'ip_changes',
-		'text',
-		'logging',
-	];
-
 	/**
 	 * @group Broken
 	 */
