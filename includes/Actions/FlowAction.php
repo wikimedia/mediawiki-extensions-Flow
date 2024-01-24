@@ -17,6 +17,7 @@ use IContextSource;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MWExceptionRenderer;
 
 class FlowAction extends Action {
 	/**
@@ -107,11 +108,7 @@ class FlowAction extends Action {
 			// looking at the production logs.
 			// The actual fix would be to prevent users from getting in a stuck
 			// position with their user talk pages.
-			$output->setPageTitle( $e->getPageTitle() );
-			$output->addHTML( $e->getHTML() );
-		} catch ( FlowException $e ) {
-			$e->setOutput( $output );
-			throw $e;
+			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
 		}
 	}
 

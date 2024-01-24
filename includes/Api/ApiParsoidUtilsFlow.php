@@ -23,7 +23,7 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		} catch ( WikitextException $e ) {
 			$code = $e->getErrorCode();
 			$this->dieWithError( $code, $code,
-				[ 'detail' => $e->getMessage() ], $e->getStatusCode()
+				[ 'detail' => $e->getMessage() ]
 			);
 		}
 
