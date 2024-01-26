@@ -1350,9 +1350,11 @@ class Hooks implements
 				$title->getPrefixedText() );
 			return;
 		}
+
+		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$urls = array_merge(
 			$urls,
-			$workflow->getOwnerTitle()->getCdnUrls()
+			$htmlCache->getUrls( $workflow->getOwnerTitle() )
 		);
 	}
 
