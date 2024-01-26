@@ -3,6 +3,7 @@
 namespace Flow\Import;
 
 use Flow\Exception\FlowException;
+use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -12,7 +13,6 @@ use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Traversable;
 use Wikimedia\Rdbms\IDatabase;
-use WikiPage;
 use WikitextContent;
 
 /**
@@ -281,7 +281,7 @@ class Converter {
 	protected function createArchiveCleanupRevision( Title $title, Title $archiveTitle ) {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $archiveTitle );
 		// doUserEditContent will do this anyway, but we need to now for the revision.
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$revision = $page->getRevisionRecord();
 		if ( $revision === null ) {
 			throw new ImportException( "Expected a revision at {$archiveTitle}" );

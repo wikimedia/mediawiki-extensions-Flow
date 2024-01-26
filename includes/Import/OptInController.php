@@ -19,6 +19,7 @@ use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use FormatJson;
 use IContextSource;
+use IDBAccessObject;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -29,7 +30,6 @@ use MediaWiki\User\User;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use RequestContext;
-use WikiPage;
 use WikitextContent;
 
 /**
@@ -431,7 +431,7 @@ class OptInController {
 	 */
 	private function getContent( Title $title ) {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-		$page->loadPageData( WikiPage::READ_LATEST );
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
 		$revision = $page->getRevisionRecord();
 		if ( $revision ) {
 			$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
