@@ -153,9 +153,10 @@ class SubmissionHandler {
 
 		try {
 			$dbw->startAtomic( __METHOD__ );
+			$services = MediaWikiServices::getInstance();
 			// Create the occupation page/revision if needed
 			$occupationController->ensureFlowRevision(
-				MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title ),
+				$services->getWikiPageFactory()->newFromTitle( $title ),
 				$workflow
 			);
 			// Create/modify each Flow block as requested
@@ -168,7 +169,8 @@ class SubmissionHandler {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				DeferredUpdates::addCallableUpdate( $this->deferredQueue->dequeue() );
 			}
-			$workflow->getArticleTitle()->purgeSquid();
+			$htmlCache = $services->getHtmlCacheUpdater();
+			$htmlCache->purgeTitleUrls( $workflow->getArticleTitle(), $htmlCache::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $results;
 		} finally {
