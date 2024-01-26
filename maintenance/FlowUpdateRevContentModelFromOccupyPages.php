@@ -2,6 +2,7 @@
 
 namespace Flow\Maintenance;
 
+use IDBAccessObject;
 use Maintenance;
 use MediaWiki\Title\Title;
 
@@ -52,7 +53,7 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 			while ( $overallInd < $pageCount && $batchInd < $batchSize ) {
 				$pageName = $wgFlowOccupyPages[$overallInd];
 				$title = Title::newFromTextThrow( $pageName );
-				$revId = $title->getLatestRevID( Title::GAID_FOR_UPDATE );
+				$revId = $title->getLatestRevID( IDBAccessObject::READ_LATEST );
 				if ( $revId !== 0 ) {
 					$dbw->update(
 						'revision',

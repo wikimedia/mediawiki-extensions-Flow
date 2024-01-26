@@ -154,7 +154,7 @@ class OptInController {
 		// archive existing wikitext talk page
 		$currentTemplate = null;
 		$templatesFromTalkpage = null;
-		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
+		if ( $title->exists( IDBAccessObject::READ_LATEST ) ) {
 			$templatesFromTalkpage = $this->extractTemplatesAboveFirstSection( $title );
 			$wikitextTalkpageArchiveTitle = $this->archiveExistingTalkpage( $title );
 			$currentTemplate = $this->getFormattedCurrentTemplate( $wikitextTalkpageArchiveTitle );
@@ -206,7 +206,7 @@ class OptInController {
 	 * @return bool
 	 */
 	private function isFlowBoard( Title $title ) {
-		return $title->getContentModel( Title::GAID_FOR_UPDATE ) === CONTENT_MODEL_FLOW_BOARD;
+		return $title->getContentModel( IDBAccessObject::READ_LATEST ) === CONTENT_MODEL_FLOW_BOARD;
 	}
 
 	/**
@@ -226,8 +226,10 @@ class OptInController {
 		 * Article IDs are cached inside title objects. Since we'll be
 		 * reusing these objects, we have to make sure they reflect the
 		 * correct IDs.
-		 * We could just Title::GAID_FOR_UPDATE everywhere, but that would
+		 *
+		 * We could just IDBAccessObject::READ_LATEST everywhere, but that would
 		 * result in a lot of unneeded calls to primary database.
+		 *
 		 * If these IDs are wrong, we could end up associating workflows
 		 * with an incorrect page (that was just moved)
 		 *
@@ -242,7 +244,7 @@ class OptInController {
 		 * Force id cached inside $title to be updated, as well as info
 		 * inside LinkCache.
 		 */
-		$to->getArticleID( Title::GAID_FOR_UPDATE );
+		$to->getArticleID( IDBAccessObject::READ_LATEST );
 	}
 
 	/**

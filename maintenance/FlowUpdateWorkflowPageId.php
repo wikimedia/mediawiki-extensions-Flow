@@ -10,6 +10,7 @@ use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use IDBAccessObject;
 use Language;
 use LoggedUpdateMaintenance;
 use MediaWiki\Language\RawMessage;
@@ -169,7 +170,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 
 		if ( $status->isGood() ) {
 			// force article id to be refetched from db
-			$title->getArticleID( Title::GAID_FOR_UPDATE );
+			$title->getArticleID( IDBAccessObject::READ_LATEST );
 		}
 
 		return $status;

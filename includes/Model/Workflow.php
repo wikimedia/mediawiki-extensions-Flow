@@ -6,6 +6,7 @@ use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
+use IDBAccessObject;
 use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -117,7 +118,7 @@ class Workflow {
 
 			// store ID of newly created page & reset exists status
 			$title = $obj->getOwnerTitle();
-			$obj->pageId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+			$obj->pageId = $title->getArticleID( IDBAccessObject::READ_LATEST );
 			$obj->exists = null;
 
 			if ( $obj->pageId === 0 ) {
@@ -301,7 +302,7 @@ class Workflow {
 			// recent changes event can propagate.
 			$this->exists = Title::newFromID(
 				$this->pageId,
-				RequestContext::getMain()->getRequest()->wasPosted() ? Title::GAID_FOR_UPDATE : 0
+				RequestContext::getMain()->getRequest()->wasPosted() ? IDBAccessObject::READ_LATEST : 0
 			) !== null;
 		}
 

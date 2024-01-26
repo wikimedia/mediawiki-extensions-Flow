@@ -6,6 +6,7 @@ use ExtensionRegistry;
 use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
+use IDBAccessObject;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
@@ -97,7 +98,7 @@ class TalkpageManager implements OccupationController {
 	public function checkIfCreationIsPossible( Title $title, $mustNotExist = true, $forWrite = true ) {
 		// Only allow converting a non-existent page to Flow
 		if ( $mustNotExist ) {
-			if ( $title->exists( $forWrite ? Title::GAID_FOR_UPDATE : 0 ) ) {
+			if ( $title->exists( $forWrite ? IDBAccessObject::READ_LATEST : 0 ) ) {
 				return Status::newFatal( 'flow-error-allowcreation-already-exists' );
 			}
 		}

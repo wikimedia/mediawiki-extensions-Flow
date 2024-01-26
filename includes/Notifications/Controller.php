@@ -14,6 +14,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
+use IDBAccessObject;
 use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -416,8 +417,8 @@ class Controller {
 					: null,
 				// Force a read from primary database since this could be a new page
 				'target-page' => [
-					$topicWorkflow->getOwnerTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
-					$topicWorkflow->getArticleTitle()->getArticleID( Title::GAID_FOR_UPDATE ),
+					$topicWorkflow->getOwnerTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
+					$topicWorkflow->getArticleTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
 				],
 				// pass along mentioned users to other notification, so it knows who to ignore
 				// also look at users mentioned in first post: if there are any, this

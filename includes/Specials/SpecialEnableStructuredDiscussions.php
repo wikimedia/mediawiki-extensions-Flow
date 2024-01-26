@@ -7,6 +7,7 @@ use Flow\Container;
 use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
+use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
@@ -97,7 +98,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 
 		$status = Status::newGood();
 
-		if ( $title->exists( Title::GAID_FOR_UPDATE ) ) {
+		if ( $title->exists( IDBAccessObject::READ_LATEST ) ) {
 			if ( ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) && \LqtDispatch::isLqtPage( $title ) ) {
 				return Status::newFatal( 'flow-special-enableflow-page-is-liquidthreads', $page );
 			}
