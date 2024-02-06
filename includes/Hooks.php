@@ -774,6 +774,8 @@ class Hooks implements
 			/** @var Formatter\ContributionsFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
+		} catch ( PermissionException $e ) {
+			$line = false;
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' .
 				json_encode( $row ) . ': ' . $e->getMessage() );
@@ -831,6 +833,8 @@ class Hooks implements
 			/** @var Formatter\FeedItemFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions.feeditem' );
 			$result = $formatter->format( $row, $ctx );
+		} catch ( PermissionException $e ) {
+			return false;
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' .
 				json_encode( $row ) . ': ' . $e->getMessage() );

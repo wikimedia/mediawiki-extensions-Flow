@@ -10,13 +10,4 @@ class PermissionException extends FlowException {
 		// flow-error-insufficient-permission
 		return [ 'insufficient-permission' ];
 	}
-
-	/**
-	 * Do not log exception resulting from user requesting
-	 * disallowed content.
-	 * @return bool
-	 */
-	public function isLoggable() {
-		return false;
-	}
 }
