@@ -12,6 +12,8 @@ use User;
 
 /**
  * @covers \Flow\SpamFilter\ConfirmEdit
+ * @group Database
+ * @group medium
  */
 class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 
