@@ -47,7 +47,7 @@
 	"flow-show-change": "Гайта хийцам",
 	"flow-last-modified-by": "ТӀаьххьара бина {{GENDER:$1|хийцам}} цу $1",
 	"flow-newtopic-title-placeholder": "Керла тема",
-	"flow-newtopic-content-placeholder": "ДӀбазбе керла хаам «$1» чохь",
+	"flow-newtopic-content-placeholder": "ДӀабазбе керла хаам «$1» чохь",
 	"flow-newtopic-header": "Керла тема тӀетоха",
 	"flow-newtopic-save": "Тема тӀетоха",
 	"flow-newtopic-save-anonymously": "Анонимно тема тӀетоха",
