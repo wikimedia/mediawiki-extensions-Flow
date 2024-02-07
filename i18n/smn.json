@@ -14,6 +14,7 @@
 	"flow-cancel": "Jooskâ",
 	"flow-show-change": "Čääiti nubástusâid",
 	"flow-newtopic-first-heading": "Aalgât uđđâ fáádá siijđost $1",
+	"flow-reply-link": "{{GENDER:$1|Västid}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Kijte}}}}",
 	"flow-history-action-delete-post": "siho",
 	"flow-history-action-hide-post": "čievâ",

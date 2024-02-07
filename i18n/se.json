@@ -15,6 +15,7 @@
 	"flow-board-expand-description": "Čájet govvádusa",
 	"flow-cancel": "Gaskkalduhte",
 	"flow-show-change": "Čájet rievdadusaid",
+	"flow-reply-link": "{{GENDER:$1|Vástit}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Giitte}}}}",
 	"flow-history-action-delete-post": "sihko",
 	"flow-history-action-hide-post": "čiega",
