@@ -11,6 +11,7 @@
 	"flow-cancel": "Jõõsk",
 	"flow-show-change": "Čuäʹjet muttsid",
 	"flow-newtopic-save": "Lââʹzzet teeʹm",
+	"flow-reply-link": "{{GENDER:$1|Vaʹstted}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Späʹssbõõžž}}}}",
 	"flow-history-action-delete-post": "jaukkâd",
 	"flow-history-action-hide-post": "čiõǥǥ",
