@@ -8,6 +8,7 @@ use Flow\Exception\InvalidReferenceException;
 use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use LogicException;
 use RuntimeException;
 
 /**
@@ -44,7 +45,7 @@ class ReferenceExtractor {
 				$text
 			);
 		} else {
-			throw new \Exception( "No extractors available for $objectType" );
+			throw new LogicException( "No extractors available for $objectType" );
 		}
 	}
 

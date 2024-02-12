@@ -7,6 +7,7 @@ use Flow\Model\WikiReference;
 use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
 use FormatJson;
+use LogicException;
 use MediaWiki\Title\Title;
 
 /**
@@ -27,7 +28,7 @@ class TransclusionExtractor implements Extractor {
 		$orig = $element->getAttribute( 'data-mw' );
 		$data = FormatJson::decode( $orig );
 		if ( !isset( $data->parts ) || !is_array( $data->parts ) ) {
-			throw new \Exception( "Missing template target: $orig" );
+			throw new LogicException( "Missing template target: $orig" );
 		}
 		$target = null;
 		foreach ( $data->parts as $part ) {
@@ -37,7 +38,7 @@ class TransclusionExtractor implements Extractor {
 			}
 		}
 		if ( $target === null ) {
-			throw new \Exception( "Missing template target: $orig" );
+			throw new LogicException( "Missing template target: $orig" );
 		}
 		$templateTarget = Title::newFromText( $target, NS_TEMPLATE );
 

@@ -20,6 +20,7 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use RowUpdateGenerator;
+use RuntimeException;
 use stdClass;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -108,7 +109,7 @@ class WorkflowPageIdUpdateGenerator implements RowUpdateGenerator {
 	public function update( $row ) {
 		$title = Title::makeTitleSafe( $row->workflow_namespace, $row->workflow_title_text );
 		if ( $title === null ) {
-			throw new Exception( sprintf(
+			throw new RuntimeException( sprintf(
 				'Could not create title for %s at %s:%s',
 				UUID::create( $row->workflow_id )->getAlphadecimal(),
 				$this->lang->getNsText( $row->workflow_namespace ) ?: $row->workflow_namespace,
