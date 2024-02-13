@@ -293,6 +293,7 @@
 	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-invalid-title": "Dil'lem panachem nanv chukichem asa",
 	"flow-special-enableflow-board-creation-not-allowed": "Tuka [[:$1]] panacher Manddlele Bhasabhas follo rochpak porvangi na.",
+	"flow-embedding-unsupported": "Mandlele Bhasabhasachea folleacho sondorbh-aspav korunk zaina.",
 	"flow-post-undo-hide": "lipovop rod'd kor",
 	"flow-post-undo-delete": "kadun udovop rod'd kor",
 	"flow-post-undo-suppress": "vogllavop rod'd kor",
