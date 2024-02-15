@@ -1118,11 +1118,23 @@ class Hooks implements
 	}
 
 	/**
-	 * @param RecentChange $rc
-	 * @param array &$rcRow
+	 * Provide detail about the Flow edit for checkusers using Special:CheckUser / Special:Investigate
+	 *
+	 * @param string &$ip
+	 * @param string|false &$xff
+	 * @param array &$row The row to be inserted (before defaults are applied)
+	 * @param UserIdentity $user
+	 * @param ?RecentChange $rc If triggered by a RecentChange, then this is the associated
+	 *   RecentChange object. Null if not triggered by a RecentChange.
 	 */
-	public static function onCheckUserInsertForRecentChange( RecentChange $rc, array &$rcRow ) {
-		if ( $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
+	public static function onCheckUserInsertChangesRow(
+		string &$ip,
+		&$xff,
+		array &$row,
+		UserIdentity $user,
+		?RecentChange $rc
+	) {
+		if ( $rc === null || $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
 			return;
 		}
 
@@ -1135,7 +1147,7 @@ class Hooks implements
 		$comment .= ',' . $change['workflow'];
 		$comment .= ',' . $change['revision'];
 
-		$rcRow['cuc_comment'] = $comment;
+		$row['cuc_comment'] = $comment;
 	}
 
 	public function onIRCLineURL( &$url, &$query, $rc ) {
