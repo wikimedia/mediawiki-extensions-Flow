@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Serkanland",
-			"Wertuose"
+			"Wertuose",
+			"NMW03"
 		]
 	},
+	"log-name-flow": "Strukturlaşdırılmış Müzakirələr fəaliyyəti jurnalı",
 	"flow-post-action-undelete-post": "Bərpa et",
 	"flow-error-missing-summary": "Siz mütləq şərh əlavə etməlisiniz.",
 	"flow-error-missing-header-content": "Siz mütləq izah əlavə etməlisiniz.",
