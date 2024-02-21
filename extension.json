@@ -699,7 +699,7 @@
 		"InfoAction": "main",
 		"CheckUserFormatRow": "Flow\\Hooks::onCheckUserFormatRow",
 		"SpecialCheckUserGetLinksFromRow": "Flow\\Hooks::onSpecialCheckUserGetLinksFromRow",
-		"CheckUserInsertForRecentChange": "Flow\\Hooks::onCheckUserInsertForRecentChange",
+		"CheckUserInsertChangesRow": "Flow\\Hooks::onCheckUserInsertChangesRow",
 		"IRCLineURL": "main",
 		"WhatLinksHereProps": "main",
 		"ShowMissingArticle": "main",

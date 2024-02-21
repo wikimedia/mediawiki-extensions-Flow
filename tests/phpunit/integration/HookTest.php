@@ -4,15 +4,18 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Data\Listener\RecentChangesListener;
+use Flow\Formatter\CheckUserQuery;
 use Flow\Hooks;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\CheckUser\Hook\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
 
@@ -243,5 +246,31 @@ class HookTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $value, $queryParts[$key], "Query part $key" );
 		}
 		$this->assertSame( '', $query, $message );
+	}
+
+	public function testOnCheckUserInsertChangesRow() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
+		// Tests that the hook correctly modifies the cu_changes row when a Flow change is made
+		// and that the hook is run when the hook is simulated to be run.
+		$rc = new RecentChange;
+		$rc->setAttribs( [
+			'rc_source' => RecentChangesListener::SRC_FLOW,
+			'rc_params' => serialize( [ 'flow-workflow-change' => [
+				'action' => 'action',
+				'workflow' => 'workflow',
+				'revision' => 'revision',
+			] ] ),
+		] );
+		// $row, $ip, and $xff are passed by reference.
+		$row = [];
+		$ip = 'unused';
+		$xff = 'unused';
+		( new HookRunner( $this->getServiceContainer()->getHookContainer() ) )
+			->onCheckUserInsertChangesRow( $ip, $xff, $row, UserIdentityValue::newAnonymous( '127.0.0.1' ), $rc );
+		// Verify that the $row now has the expected cuc_comment value.
+		$this->assertArrayEquals(
+			[ 'cuc_comment' => CheckUserQuery::VERSION_PREFIX . ',action,workflow,revision' ], $row, true, true,
+			'The $row argument passed by reference was not as expected after the hook was run.'
+		);
 	}
 }
