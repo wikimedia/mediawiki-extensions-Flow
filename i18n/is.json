@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"nstab-topic": "Umfjöllunarefni",
@@ -61,7 +62,7 @@
 	"flow-history-last4": "Síðustu 4 klst.",
 	"flow-history-day": "Í dag",
 	"flow-history-week": "Síðustu viku",
-	"flow-workflow": "vinnuferli",
+	"flow-workflow": "vinnuflæði",
 	"flow-notification-reply-email-subject": "$2 á $3",
 	"flow-link-post": "framlag",
 	"flow-link-topic": "umfjöllunarefni",
