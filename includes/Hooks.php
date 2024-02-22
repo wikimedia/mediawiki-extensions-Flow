@@ -1658,6 +1658,10 @@ class Hooks implements
 	 * @param array $restoredPages
 	 */
 	public function onArticleUndelete( $title, $create, $comment, $oldPageId, $restoredPages ) {
+		// Avoid CI errors when other ArticleUndelete implementations are present, see: T356704
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			return;
+		}
 		$boardMover = Container::get( 'board_mover' );
 		$boardMover->commit();
 	}
