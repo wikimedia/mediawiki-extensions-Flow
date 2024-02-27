@@ -39,11 +39,13 @@ Markup:
 // Setup compound anchor selectors (such as .mw-ui-anchor.mw-ui-progressive)
 .mw-ui-anchor {
 	&.mw-ui-progressive {
-		.mixin-mw-ui-anchor-styles( @color-progressive );
+		// Use hardcoded values rather than `@color-progressive` to workaround T357740.
+		.mixin-mw-ui-anchor-styles( #36c );
 	}
 
 	&.mw-ui-destructive {
-		.mixin-mw-ui-anchor-styles( @color-destructive );
+		// Use hardcoded values rather than `@color-destructive` to workaround T357740.
+		.mixin-mw-ui-anchor-styles( #d73333 );
 	}
 }
 
