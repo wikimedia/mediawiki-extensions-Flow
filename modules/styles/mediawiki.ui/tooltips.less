@@ -206,7 +206,8 @@ Styleguide 4.0.
 	// Don't apply these classes on IE6
 	&[ class ] {
 		&.mw-ui-progressive {
-			.flow-ui-tooltip-color( @color-progressive );
+			// Use hardcoded values rather than `@color-progressive` to workaround T357740.
+			.flow-ui-tooltip-color( #36c );
 
 			.mw-ui-icon {
 				fill: @color-progressive;
@@ -214,7 +215,8 @@ Styleguide 4.0.
 		}
 
 		&.mw-ui-destructive {
-			.flow-ui-tooltip-color( @color-destructive );
+			// Use hardcoded values rather than `@color-destructive` to workaround T357740.
+			.flow-ui-tooltip-color( #d73333 );
 
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:hover,
 			.mw-ui-button.mw-ui-destructive.mw-ui-quiet:focus span {
