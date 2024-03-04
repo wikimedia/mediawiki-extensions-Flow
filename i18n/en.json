@@ -14,6 +14,7 @@
 			"Amir E. Aharoni"
 		]
 	},
+	"content-model-flow-board": "Structured Discussions board",
 	"enablestructureddiscussions": "Enable Structured Discussions",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} watching new activity on \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|You}} are no longer watching the page \"$1\"",

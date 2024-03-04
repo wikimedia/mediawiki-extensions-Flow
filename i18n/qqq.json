@@ -33,6 +33,7 @@
 			"Zoranzoki21"
 		]
 	},
+	"content-model-flow-board": "Name for the Flow content model. Used when describing what type of content a page contains.",
 	"enablestructureddiscussions": "{{doc-special|EnableFlow}}",
 	"notification-dynamic-actions-flow-board-unwatch": "Text for the action offering the user to unwatch a board from within a notification.\n\nParameters:\n* $1 - Board name\n* $2 - Board URL\n\n{{related|Notification-dynamic}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Title for the confirmation text for unwatching a board from within a notification.\n\nParameters:\n* $1 - Board name\n* $2 - Board URL\n\n{{related|Notification-dynamic}}",
