@@ -11,6 +11,7 @@
 			"Vlad5250"
 		]
 	},
+	"content-model-flow-board": "Структурирана разговорница",
 	"enablestructureddiscussions": "Вклучи го Тек",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Престанете}} со набљудување на новите активности на „$1“",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Повеќе не ја {{GENDER:$3|набљудувате}} страницата „$1“",

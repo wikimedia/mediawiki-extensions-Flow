@@ -18,6 +18,7 @@
 			"Umherirrender"
 		]
 	},
+	"content-model-flow-board": "Strukturierte-Diskussionen-Board",
 	"enablestructureddiscussions": "Strukturierte Diskussionen aktivieren",
 	"notification-dynamic-actions-flow-board-unwatch": "Mit dem Beobachten neuer Aktivitäten zu „$1“ {{GENDER:$3|aufhören}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} beobachtest nicht mehr die Seite „$1“",
