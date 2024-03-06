@@ -8,6 +8,7 @@
 			"Yerpo"
 		]
 	},
+	"content-model-flow-board": "Panel Strukturiranih razprav",
 	"enablestructureddiscussions": "Vklopi Strukturirane razprave",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Prenehanje}} opazovanja nove dejavnosti na panelu »$1«",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Strani »$1« ne {{GENDER:$3|opazujete}} več",
