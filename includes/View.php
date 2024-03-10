@@ -140,7 +140,7 @@ class View extends ContextSource {
 				'mediawiki.special.changeslist',
 				'mediawiki.interface.helpers.styles',
 				'mediawiki.editfont.styles',
-				'ext.flow.styles.base' ,
+				'ext.flow.styles.base',
 				'ext.flow.mediawiki.ui.form',
 				'oojs-ui.styles.icons-alerts',
 				'oojs-ui.styles.icons-content',
@@ -412,7 +412,7 @@ class View extends ContextSource {
 			// between urls only allowing [-_.] as unencoded special chars and
 			// php mangling all of those into '_', we have to split on '_'
 			if ( strpos( $name, '_' ) !== false ) {
-				list( $block, $var ) = explode( '_', $name, 2 );
+				[ $block, $var ] = explode( '_', $name, 2 );
 				// flow_xxx is global data for all blocks
 				if ( $block === 'flow' ) {
 					$globalData[$var] = $value;

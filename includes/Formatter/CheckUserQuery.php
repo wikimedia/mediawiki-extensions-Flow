@@ -35,7 +35,7 @@ class CheckUserQuery extends AbstractQuery {
 			}
 
 			/** @noinspection PhpUnusedLocalVariableInspection */
-			list( $action, $workflowId, $revisionId ) = $ids;
+			[ $action, $workflowId, $revisionId ] = $ids;
 
 			switch ( $action ) {
 				case 'create-topic-summary':

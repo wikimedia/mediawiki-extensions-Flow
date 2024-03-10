@@ -51,7 +51,7 @@ class HistoricalUIDGenerator {
 	 * @throws RuntimeException
 	 */
 	protected static function millisecondsSinceEpochBinary( array $time ) {
-		list( $sec, $msec ) = $time;
+		[ $sec, $msec ] = $time;
 		$ts = 1000 * $sec + $msec;
 		if ( $ts > 2 ** 52 ) {
 			throw new RuntimeException(

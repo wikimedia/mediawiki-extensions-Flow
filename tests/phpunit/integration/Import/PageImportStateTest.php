@@ -52,7 +52,7 @@ class PageImportStateTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetsWorkflowIdByTimestamp() {
-		list( $state, $workflow ) = $this->createState( true );
+		[ $state, $workflow ] = $this->createState( true );
 		$now = time();
 		$state->setWorkflowTimestamp( $workflow, $now - 123456 );
 		$this->assertEquals(

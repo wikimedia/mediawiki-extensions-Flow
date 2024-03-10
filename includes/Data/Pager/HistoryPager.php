@@ -83,7 +83,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		if ( $this->mIsBackwards ) {
 			// swap values if we're going backwards
-			list( $this->mIsFirst, $this->mIsLast ) = [ $this->mIsLast, $this->mIsFirst ];
+			[ $this->mIsFirst, $this->mIsLast ] = [ $this->mIsLast, $this->mIsFirst ];
 
 			// id of the overfetched entry, used to build new links starting at
 			// this offset

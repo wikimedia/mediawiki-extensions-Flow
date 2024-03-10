@@ -255,7 +255,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 		/** @var HeaderViewQuery $query */
 		$query = Container::get( 'query.header.view' );
-		list( $new, $old ) = $query->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
+		[ $new, $old ] = $query->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 		/** @var RevisionDiffViewFormatter $formatter */
 		$formatter = Container::get( 'formatter.revision.diff.view' );
 

@@ -359,28 +359,29 @@ class ObjectLocator {
 	protected function convertToDbQueries( array $queries, array $options ) {
 		if ( isset( $options['offset-id'] ) &&
 			isset( $options['sort'] ) && count( $options['sort'] ) === 1 &&
-			preg_match( '/_id$/', $options['sort'][0] ) ) {
-				if ( !$options['offset-id'] instanceof UUID ) {
-					$options['offset-id'] = UUID::create( $options['offset-id'] );
-				}
+			preg_match( '/_id$/', $options['sort'][0] )
+		) {
+			if ( !$options['offset-id'] instanceof UUID ) {
+				$options['offset-id'] = UUID::create( $options['offset-id'] );
+			}
 
-				if ( $options['order'] === 'ASC' ) {
-					$operator = '>';
-				} else {
-					$operator = '<';
-				}
+			if ( $options['order'] === 'ASC' ) {
+				$operator = '>';
+			} else {
+				$operator = '<';
+			}
 
-				if ( isset( $options['offset-include'] ) && $options['offset-include'] ) {
-					$operator .= '=';
-				}
+			if ( isset( $options['offset-include'] ) && $options['offset-include'] ) {
+				$operator .= '=';
+			}
 
-				$dbr = $this->dbFactory->getDB( DB_REPLICA );
-				$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' .
-					$dbr->addQuotes( $options['offset-id']->getBinary() ) );
+			$dbr = $this->dbFactory->getDB( DB_REPLICA );
+			$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' .
+				$dbr->addQuotes( $options['offset-id']->getBinary() ) );
 
-				foreach ( $queries as &$query ) {
-					$query[] = $condition;
-				}
+			foreach ( $queries as &$query ) {
+				$query[] = $condition;
+			}
 		}
 
 		return $queries;

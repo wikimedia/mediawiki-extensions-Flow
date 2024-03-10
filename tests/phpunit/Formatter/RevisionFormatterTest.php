@@ -49,7 +49,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		AbstractRevision $revision
 	) {
 		/** @var RevisionFormatter $formatter */
-		list( $formatter ) = $this->makeFormatter();
+		[ $formatter ] = $this->makeFormatter();
 		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
 
 		$this->assertEquals(
@@ -168,7 +168,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	 */
 	public function testDecideContentInvalidFormat( $setContentRequestedFormat, $setContentRevisionId, $revision ) {
 		/** @var RevisionFormatter $formatter */
-		list( $formatter ) = $this->makeFormatter();
+		[ $formatter ] = $this->makeFormatter();
 		$formatter->setContentFormat( $setContentRequestedFormat, $setContentRevisionId );
 		$this->expectException( \Flow\Exception\FlowException::class );
 		$formatter->decideContentFormat( $revision );
@@ -213,7 +213,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 	 */
 	public function testSetContentFormatInvalidProvider( $requestedFormat, $revisionId ) {
 		/** @var RevisionFormatter $formatter */
-		list( $formatter ) = $this->makeFormatter();
+		[ $formatter ] = $this->makeFormatter();
 		$this->expectException( \Flow\Exception\InvalidInputException::class );
 		$formatter->setContentFormat( $requestedFormat, $revisionId );
 	}
@@ -235,7 +235,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 	public function testMockFormatterBasicallyWorks() {
 		/** @var RevisionFormatter $formatter */
-		list( $formatter, $ctx ) = $this->makeFormatter();
+		[ $formatter, $ctx ] = $this->makeFormatter();
 		$result = $formatter->formatApi( $this->generateFormatterRow( 'my new topic' ), $ctx );
 		$this->assertEquals( 'new-post', $result['changeType'] );
 		$this->assertEquals( 'my new topic', $result['content']['content'] );
@@ -243,7 +243,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 
 	public function testFormattingEditedTitle() {
 		/** @var RevisionFormatter $formatter */
-		list( $formatter, $ctx ) = $this->makeFormatter();
+		[ $formatter, $ctx ] = $this->makeFormatter();
 		$row = $this->generateFormatterRow();
 		$row->previousRevision = $row->revision;
 		$row->revision = $row->revision->newNextRevision(
@@ -263,7 +263,7 @@ class RevisionFormatterTest extends PostRevisionTestCase {
 		$nextContent = 'ברוכים הבאים לוויקיפדיה!';
 
 		/** @var RevisionFormatter $formatter */
-		list( $formatter, $ctx ) = $this->makeFormatter();
+		[ $formatter, $ctx ] = $this->makeFormatter();
 
 		$row = $this->generateFormatterRow( $content );
 		$result = $formatter->formatApi( $row, $ctx );

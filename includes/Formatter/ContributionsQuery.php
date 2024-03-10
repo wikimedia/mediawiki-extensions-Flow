@@ -237,7 +237,7 @@ class ContributionsQuery extends AbstractQuery {
 					[
 						'flow_workflow' => [
 							'INNER JOIN',
-							[ 'workflow_id = rev_type_id' , 'rev_type' => 'header' ]
+							[ 'workflow_id = rev_type_id', 'rev_type' => 'header' ]
 						],
 					]
 				);

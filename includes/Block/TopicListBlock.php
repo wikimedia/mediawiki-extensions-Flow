@@ -103,7 +103,7 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		// creates Workflow, Revision & TopicListEntry objects to be inserted into storage
-		list( $this->topicWorkflow, $this->topicListEntry, $this->topicTitle, $this->firstPost ) = $this->create();
+		[ $this->topicWorkflow, $this->topicListEntry, $this->topicTitle, $this->firstPost ] = $this->create();
 
 		if ( !$this->checkSpamFilters( null, $this->topicTitle ) ) {
 			return;

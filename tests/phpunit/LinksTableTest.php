@@ -241,7 +241,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideGetExistingReferences
 	 */
 	public function testGetExistingReferences( array $references ) {
-		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
+		[ $workflow, $revision, $title ] = $this->getBlandTestObjects();
 
 		$references = $this->expandReferences( $workflow, $revision, $references );
 
@@ -326,13 +326,13 @@ class LinksTableTest extends PostRevisionTestCase {
 		if ( $globals ) {
 			$this->setMwGlobals( $globals );
 		}
-		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
+		[ $workflow, $revision, $title ] = $this->getBlandTestObjects();
 
 		foreach ( [ 'old', 'new', 'expectedAdded', 'expectedRemoved' ] as $varName ) {
 			$$varName = $this->expandReferences( $workflow, $revision, $$varName );
 		}
 
-		list( $added, $removed ) = $this->recorder->referencesDifference( $old, $new );
+		[ $added, $removed ] = $this->recorder->referencesDifference( $old, $new );
 
 		$this->assertReferenceListsEqual( $added, $expectedAdded );
 		$this->assertReferenceListsEqual( $removed, $expectedRemoved );
@@ -392,7 +392,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideMutateParserOutput
 	 */
 	public function testMutateParserOutput( array $references, array $expectedItems ) {
-		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
+		[ $workflow, $revision, $title ] = $this->getBlandTestObjects();
 
 		/*
 		 * Because the data provider is static, we can't access $this->workflow

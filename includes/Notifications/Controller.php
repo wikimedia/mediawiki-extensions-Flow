@@ -124,7 +124,7 @@ class Controller {
 		}
 
 		$user = $revision->getUser();
-		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
+		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -202,7 +202,7 @@ class Controller {
 		}
 
 		$user = $revision->getUser();
-		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
+		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $revision );
 		$title = $topicWorkflow->getOwnerTitle();
 
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -228,7 +228,7 @@ class Controller {
 					// that they weren't also mentioned in the topic title (in
 					// which case they would get 2 notifications...)
 					if ( $mentionedUsers ) {
-						list( $mentionedInTitle, $mentionsSkippedInTitle ) =
+						[ $mentionedInTitle, $mentionsSkippedInTitle ] =
 							$this->getMentionedUsersAndSkipState( $topicRevision );
 						$mentionedUsers = array_diff_key( $mentionedUsers, $mentionedInTitle );
 						$mentionsSkipped = $mentionsSkipped || $mentionsSkippedInTitle;
@@ -321,7 +321,7 @@ class Controller {
 		}
 
 		$user = $revision->getUser();
-		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $revision );
+		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData = [];
 		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
@@ -400,7 +400,7 @@ class Controller {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
 		}
 
-		list( $mentionedUsers, $mentionsSkipped ) = $this->getMentionedUsersAndSkipState( $topicTitle );
+		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $topicTitle );
 
 		$title = $boardWorkflow->getArticleTitle();
 		$events = [];

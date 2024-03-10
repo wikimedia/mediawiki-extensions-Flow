@@ -30,7 +30,7 @@ class ManagerGroupTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testClearOnlyCallsRequestedManagers() {
-		list( $storage, $container ) = $this->mockStorage();
+		[ $storage, $container ] = $this->mockStorage();
 		$container['A']->expects( $this->never() )->method( 'clear' );
 		$container['B']->expects( $this->once() )->method( 'clear' );
 		$container['C']->expects( $this->never() )->method( 'clear' );
@@ -41,7 +41,7 @@ class ManagerGroupTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testClearCallsNoManagersWhenUnused() {
-		list( $storage, $container ) = $this->mockStorage();
+		[ $storage, $container ] = $this->mockStorage();
 		$container['A']->expects( $this->never() )->method( 'clear' );
 		$container['B']->expects( $this->never() )->method( 'clear' );
 		$container['C']->expects( $this->never() )->method( 'clear' );
@@ -53,7 +53,7 @@ class ManagerGroupTest extends \MediaWikiUnitTestCase {
 	public function testCachePurgeCallsAppropriateManager() {
 		$object = new \stdClass;
 
-		list( $storage, $container ) = $this->mockStorage();
+		[ $storage, $container ] = $this->mockStorage();
 		$container['A']->expects( $this->never() )->method( 'clear' );
 		$container['B']->expects( $this->never() )->method( 'clear' );
 		$container['C']->expects( $this->never() )->method( 'clear' );

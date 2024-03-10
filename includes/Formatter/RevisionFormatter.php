@@ -756,7 +756,7 @@ class RevisionFormatter {
 				case 'post':
 					if ( !$postId ) {
 						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
-					break;
+						break;
 					}
 					$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
 					break;
@@ -769,7 +769,7 @@ class RevisionFormatter {
 				case 'topic-revision':
 					if ( !$postId ) {
 						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
-					break;
+						break;
 					}
 
 					$links['topic-revision'] = $this->urlGenerator
@@ -779,7 +779,7 @@ class RevisionFormatter {
 				case 'post-revision':
 					if ( !$postId ) {
 						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
-					break;
+						break;
 					}
 
 					$links['post-revision'] = $this->urlGenerator
@@ -794,7 +794,7 @@ class RevisionFormatter {
 				case 'post-history':
 					if ( !$postId ) {
 						wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
-					break;
+						break;
 					}
 					$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
 					break;
@@ -812,7 +812,7 @@ class RevisionFormatter {
 				case 'diff-header':
 					$diffCallback ??= [ $this->urlGenerator, 'diffHeaderLink' ];
 					// don't break, diff links are rendered below
-				/** @noinspection PhpMissingBreakStatementInspection */
+					/** @noinspection PhpMissingBreakStatementInspection */
 				case 'diff-post':
 					$diffCallback ??= [ $this->urlGenerator, 'diffPostLink' ];
 					// don't break, diff links are rendered below

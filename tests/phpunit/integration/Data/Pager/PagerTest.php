@@ -388,9 +388,9 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 
 		if ( $found ) {
 			$om->method( 'find' )
-				->will( $this->onConsecutiveCalls(
+				->willReturnOnConsecutiveCalls(
 					...array_map( [ $this, 'returnValue' ], $found )
-				) );
+				);
 		}
 
 		return $om;

@@ -20,7 +20,7 @@ class HeaderIterator extends AbstractIterator {
 			[
 				'flow_workflow' => [
 					'INNER JOIN',
-					[ 'workflow_id = rev_type_id' , 'rev_type' => 'header' ]
+					[ 'workflow_id = rev_type_id', 'rev_type' => 'header' ]
 				],
 			]
 		);

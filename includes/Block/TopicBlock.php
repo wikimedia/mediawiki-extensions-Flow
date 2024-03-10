@@ -620,7 +620,7 @@ class TopicBlock extends AbstractBlock {
 		if ( isset( $options['oldRevision'] ) ) {
 			$oldRevision = $options['oldRevision'];
 		}
-		list( $new, $old ) = Container::get( 'query.post.view' )
+		[ $new, $old ] = Container::get( 'query.post.view' )
 			->getDiffViewResult( UUID::create( $options['newRevision'] ), UUID::create( $oldRevision ) );
 
 		return [
@@ -799,7 +799,7 @@ class TopicBlock extends AbstractBlock {
 		$serializer = $this->getRevisionFormatter( $format );
 		$serializer->setIncludeHistoryProperties( true );
 
-		list( $limit, /* $offset */ ) = $wgRequest->getLimitOffsetForUser(
+		[ $limit, /* $offset */ ] = $wgRequest->getLimitOffsetForUser(
 			$this->context->getUser()
 		);
 		// don't use offset from getLimitOffset - that assumes an int, which our

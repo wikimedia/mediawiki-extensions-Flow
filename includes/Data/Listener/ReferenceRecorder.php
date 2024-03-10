@@ -78,9 +78,9 @@ class ReferenceRecorder extends AbstractListener {
 		$workflow = $metadata['workflow'];
 
 		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
-			list( $added, $removed ) = $this->calculateChangesFromTopic( $workflow, $revision );
+			[ $added, $removed ] = $this->calculateChangesFromTopic( $workflow, $revision );
 		} else {
-			list( $added, $removed ) = $this->calculateChangesFromExisting( $workflow, $revision );
+			[ $added, $removed ] = $this->calculateChangesFromExisting( $workflow, $revision );
 		}
 
 		$this->storage->multiPut( $added );
@@ -153,7 +153,7 @@ class ReferenceRecorder extends AbstractListener {
 		$added = [];
 		$removed = [];
 		foreach ( $revisions as $revision ) {
-			list( $add, $remove ) = $this->calculateChangesFromExisting( $workflow, $revision, $current );
+			[ $add, $remove ] = $this->calculateChangesFromExisting( $workflow, $revision, $current );
 			$added = array_merge( $added, $add );
 			$removed = array_merge( $removed, $remove );
 		}

@@ -172,7 +172,7 @@ class SubmissionHandler {
 			$htmlCache = $services->getHtmlCacheUpdater();
 			$htmlCache->purgeTitleUrls( $workflow->getArticleTitle(), $htmlCache::PURGE_INTENT_TXROUND_REFLECTED );
 
-		return $results;
+			return $results;
 		} finally {
 			while ( !$this->deferredQueue->isEmpty() ) {
 				$this->deferredQueue->dequeue();

@@ -60,7 +60,7 @@ class WatchedTopicItemsTest extends FlowTestCase {
 		// give it a fake user id
 		$watchedTopicItems = new WatchedTopicItems( User::newFromId( 1 ), $this->mockDb( $dbResult ) );
 		$res = $watchedTopicItems->getWatchStatus( $uuids );
-		$this->assertCount( count( $res ), $result );
+		$this->assertSameSize( $res, $result );
 		foreach ( $res as $key => $value ) {
 			$this->assertArrayHasKey( $key, $result );
 			$this->assertEquals( $value, $result[$key] );
