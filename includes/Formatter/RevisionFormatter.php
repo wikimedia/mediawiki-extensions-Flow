@@ -807,12 +807,9 @@ class RevisionFormatter {
 					$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
 					break;
 
-				/** @noinspection PhpMissingBreakStatementInspection */
-				// phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
 				case 'diff-header':
 					$diffCallback ??= [ $this->urlGenerator, 'diffHeaderLink' ];
 					// don't break, diff links are rendered below
-					/** @noinspection PhpMissingBreakStatementInspection */
 				case 'diff-post':
 					$diffCallback ??= [ $this->urlGenerator, 'diffPostLink' ];
 					// don't break, diff links are rendered below
