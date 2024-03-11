@@ -15,6 +15,7 @@
 			"Tarjeimo"
 		]
 	},
+	"content-model-flow-board": "Strukturert diskusjonstavle",
 	"enablestructureddiscussions": "Aktiver Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Slutt}} å følge med på ny aktivitet på «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} følger ikke lenger siden «$1»",

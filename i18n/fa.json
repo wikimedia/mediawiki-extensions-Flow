@@ -31,6 +31,7 @@
 			"درفش کاویانی"
 		]
 	},
+	"content-model-flow-board": "تابلوی بحث‌های ساختارمند",
 	"enablestructureddiscussions": "فعال‌سازی فلو",
 	"notification-dynamic-actions-flow-board-unwatch": "پیگیری فعالیت‌ها در «$1» را {{GENDER:$3|متوقف کن}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "شما دیگر صفحهٔ «$1» را پیگیری {{GENDER:$3|نمی‌کنید}}",
