@@ -5,6 +5,7 @@
 			"Nnemo"
 		]
 	},
+	"content-model-flow-board": "Tabuliero de discussiones structurate",
 	"enablestructureddiscussions": "Activar le discussiones structurate",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Cessar}} de observar le nove activitate sur \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Tu}} non plus observa le pagina \"$1\"",

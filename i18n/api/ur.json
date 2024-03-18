@@ -4,6 +4,7 @@
 			"Muhammad Shuaib"
 		]
 	},
+	"apihelp-flow-summary": "مرتب گفتگو کے صفحات پر کارروائیاں کرنے کی اجازت دیتا ہے۔",
 	"apihelp-flow+edit-post-param-postId": "شناخت مراسلہ۔",
 	"apihelp-flow+edit-title-param-content": "عنوان کا مواد۔",
 	"apihelp-flow+moderate-post-param-reason": "وجہ نگرانی۔",
@@ -11,5 +12,6 @@
 	"apihelp-flow+new-topic-param-topic": "موضوع کے نئے عنوان کے لیے متن۔",
 	"apihelp-flow+new-topic-example-1": "[[Talk:Sandbox]] میں نیا موضوع شروع کریں",
 	"apihelp-flow+reply-example-1": "[[Topic:S2tycnas4hcucw8w]] پر مراسلہ کا جواب دیں",
-	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] کا خلاصہ ترمیم ویکی متن کے طور پر دیکھیں"
+	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] کا خلاصہ ترمیم ویکی متن کے طور پر دیکھیں",
+	"apihelp-flow-parsoid-utils-summary": "ویکی متن کو ایچ ٹی ایم ایل میں اور ایچ ٹی ایم ایل کو ویکی متن میں تبدیل کرتا ہے۔"
 }
