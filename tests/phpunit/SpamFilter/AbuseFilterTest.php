@@ -7,6 +7,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
 use IContextSource;
+use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -134,28 +135,27 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 */
 	protected function createFilter( $pattern, $action = 'disallow' ) {
 		global $wgFlowAbuseFilterGroup;
-		$user = $this->getTestUser()->getUser();
+		$row = [
+			'af_pattern' => $pattern,
+			'af_timestamp' => $this->db->timestamp(),
+			'af_enabled' => 1,
+			'af_comments' => null,
+			'af_public_comments' => 'Test filter',
+			'af_hidden' => 0,
+			'af_hit_count' => 0,
+			'af_throttled' => 0,
+			'af_deleted' => 0,
+			'af_actions' => $action,
+			'af_group' => $wgFlowAbuseFilterGroup,
+		];
+		$row += AbuseFilterServices::getActorMigration()->getInsertValues(
+			$this->db,
+			'af_user',
+			$this->getTestUser()->getUserIdentity()
+		);
 
 		$this->db->startAtomic( __METHOD__ );
-		$this->db->insert(
-			'abuse_filter',
-			[
-				'af_pattern' => $pattern,
-				'af_user' => $user->getId(),
-				'af_user_text' => $user->getName(),
-				'af_timestamp' => $this->db->timestamp(),
-				'af_enabled' => 1,
-				'af_comments' => null,
-				'af_public_comments' => 'Test filter',
-				'af_hidden' => 0,
-				'af_hit_count' => 0,
-				'af_throttled' => 0,
-				'af_deleted' => 0,
-				'af_actions' => $action,
-				'af_group' => $wgFlowAbuseFilterGroup,
-			],
-			__METHOD__
-		);
+		$this->db->insert( 'abuse_filter', $row, __METHOD__ );
 
 		$this->db->insert(
 			'abuse_filter_action',
