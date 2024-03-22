@@ -95,7 +95,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		] );
 		$this->block->insert();
 		// ensure that block made it into the database
-		wfGetDB( DB_PRIMARY )->commit( __METHOD__, 'flush' );
+		$this->getDb()->commit( __METHOD__, 'flush' );
 	}
 
 	/**

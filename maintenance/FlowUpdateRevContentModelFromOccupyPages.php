@@ -39,7 +39,7 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 	public function execute() {
 		global $wgFlowOccupyPages;
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$pageCount = count( $wgFlowOccupyPages );
 		$overallInd = 0;

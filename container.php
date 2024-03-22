@@ -62,7 +62,8 @@ $c['url_generator'] = static function ( $c ) {
 $c['watched_items'] = static function ( $c ) {
 	return new Flow\WatchedTopicItems(
 		$c['user'],
-		wfGetDB( DB_REPLICA, 'watchlist' )
+		MediaWikiServices::getInstance()->getConnectionProvider()
+			->getReplicaDatabase( false, 'watchlist' )
 	);
 };
 

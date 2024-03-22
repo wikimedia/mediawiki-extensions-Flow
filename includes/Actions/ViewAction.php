@@ -39,7 +39,7 @@ class ViewAction extends FlowAction {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$res = $dbr->select(
 			/* from */ 'categorylinks',
 			/* select */ [ 'cl_to', 'cl_sortkey' ],

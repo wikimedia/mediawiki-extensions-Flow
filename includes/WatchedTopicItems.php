@@ -5,7 +5,7 @@ namespace Flow;
 use Flow\Exception\DataModelException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Is there a core object for retrieving multiple watchlist items?
@@ -14,12 +14,12 @@ class WatchedTopicItems {
 
 	/** @var User */
 	protected $user;
-	/** @var IDatabase */
+	/** @var IReadableDatabase */
 	protected $watchListDb;
 	/** @var true[][] */
 	protected $overrides = [];
 
-	public function __construct( User $user, IDatabase $watchListDb ) {
+	public function __construct( User $user, IReadableDatabase $watchListDb ) {
 		$this->user = $user;
 		$this->watchListDb = $watchListDb;
 	}
@@ -91,7 +91,7 @@ class WatchedTopicItems {
 	}
 
 	/**
-	 * @return IDatabase
+	 * @return IReadableDatabase
 	 */
 	public function getWatchlistDb() {
 		return $this->watchListDb;

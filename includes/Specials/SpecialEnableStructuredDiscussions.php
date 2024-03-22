@@ -106,7 +106,7 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 			$logger = Container::get( 'default_logger' );
 
 			$converter = new Converter(
-				wfGetDB( DB_PRIMARY ),
+				MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase(),
 				Container::get( 'importer' ),
 				$logger,
 				$this->getUser(),

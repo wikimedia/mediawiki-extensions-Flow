@@ -36,7 +36,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$continue = 0;
 

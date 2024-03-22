@@ -904,7 +904,7 @@ abstract class AbstractRevision {
 		];
 		$options = [ 'USE INDEX' => [ 'recentchanges' => 'rc_timestamp' ] ];
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$rcQuery = RecentChange::getQueryInfo();
 		$rows = $dbr->select(
 			$rcQuery['tables'],

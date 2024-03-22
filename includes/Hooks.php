@@ -701,12 +701,14 @@ class Hooks implements
 		/** @var FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
 
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+
 		foreach ( $actions->getActions() as $action ) {
 			foreach ( $logTypes as $logType ) {
 				// Check if Flow actions are defined for the requested log types
 				// and make sure they're ignored.
 				if ( isset( $wgLogActionsHandlers["$logType/flow-$action"] ) ) {
-					$conds[] = "log_action != " . wfGetDB( DB_REPLICA )->addQuotes( "flow-$action" );
+					$conds[] = "log_action != " . $dbr->addQuotes( "flow-$action" );
 				}
 			}
 		}
