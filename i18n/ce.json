@@ -52,7 +52,7 @@
 	"flow-newtopic-save": "Тема тӀетоха",
 	"flow-newtopic-save-anonymously": "Анонимно тема тӀетоха",
 	"flow-newtopic-start-placeholder": "Йолайе керла тема",
-	"flow-reply-topic-title-placeholder": "«$1» жоп далар",
+	"flow-reply-topic-title-placeholder": "«$1» жоп",
 	"flow-reply-link": "{{GENDER:$1|Жоп}}",
 	"flow-thank-link": "{{GENDER:$1|Баркалла аьлла}}",
 	"flow-thank-link-title": "Массарна гуш {{GENDER:$1|{{GENDER:$2|баркалла ала}}}} хӀара хаам битанчуна",

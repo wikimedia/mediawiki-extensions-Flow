@@ -4,6 +4,7 @@
 			"Muhammad Shuaib"
 		]
 	},
+	"apihelp-flow-summary": "مرتب گفتگو کے صفحات پر کارروائیاں کرنے کی اجازت دیتا ہے۔",
 	"apihelp-flow+edit-post-param-postId": "شناخت مراسلہ۔",
 	"apihelp-flow+edit-title-param-content": "عنوان کا مواد۔",
 	"apihelp-flow+lock-topic-description": "فلو موضوع کو مقفل یا غیر مقفل کریں۔",
@@ -18,5 +19,6 @@
 	"apihelp-flow+view-topic-description": "موضوع دیکھیں۔",
 	"apihelp-flow+view-topic-summary-description": "خلاصہ موضوع دیکھیں۔",
 	"apihelp-flow+view-topic-summary-example-1": "[[Topic:S2tycnas4hcucw8w]] کا خلاصہ ترمیم ویکی متن کے طور پر دیکھیں",
-	"apihelp-flow+view-topiclist-description": "موضوعات کی فہرست دیکھیں۔"
+	"apihelp-flow+view-topiclist-description": "موضوعات کی فہرست دیکھیں۔",
+	"apihelp-flow-parsoid-utils-summary": "ویکی متن کو ایچ ٹی ایم ایل میں اور ایچ ٹی ایم ایل کو ویکی متن میں تبدیل کرتا ہے۔"
 }
