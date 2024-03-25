@@ -209,7 +209,7 @@ class ConversionStrategy implements IConversionStrategy {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$batch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch( $this->noConvertTemplates );
 		$result = $dbr->select(
 			'templatelinks',

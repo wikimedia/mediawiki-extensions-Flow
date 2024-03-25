@@ -45,7 +45,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$logFilename = $this->getOption( 'logfile' );
 		$sourceStore = new FileImportSourceStore( $logFilename );
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 
 		$logger = new MaintenanceDebugLogger( $this );
 		if ( $this->getOption( 'debug' ) ) {
