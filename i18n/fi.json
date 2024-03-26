@@ -20,7 +20,8 @@
 			"Stryn",
 			"Valtlai",
 			"Valtlait",
-			"Kyykaarme"
+			"Kyykaarme",
+			"Samoasambia"
 		]
 	},
 	"enablestructureddiscussions": "Ota Jäsennetyt keskustelut käyttöön",
@@ -30,6 +31,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch": "{{GENDER:$3|Lopeta}} aiheen tarkkailu",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "Aihe \"$1\" on poistettu tarkkailulistaltasi",
 	"flow-desc": "Keskustelujärjestelmä",
+	"nstab-topic": "Aihe",
 	"flow-talk-taken-over-comment": "/* Tämä sivu on muunnettu käyttämään Jäsennetyt keskustelut -palstaa */",
 	"log-name-flow": "Jäsennetyt keskustelut -tapahtumaloki",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|poisti}} [$4 viestin] aiheessa ”[[$3|$5]]” kohteessa [[$6]]",
