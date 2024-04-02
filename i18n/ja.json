@@ -26,7 +26,8 @@
 			"Yamagata Yusuke",
 			"Yusuke1109",
 			"つぶあん派",
-			"Ryoya3"
+			"Ryoya3",
+			"Chqaz"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -401,6 +402,7 @@
 	"flow-special-enableflow-header": "Structured Discussions ボードの初期説明（ウィキテキスト）",
 	"flow-special-enableflow-confirmation": "[[$1]] に Structured Discussions ボードを作成しました。",
 	"flow-spam-confirmedit-using-failure": "これは CAPTCHA の技術的なエラーによるものです。あなたの行った変更が投稿できていないようであれば、変更したテキストの内容を別の場所にコピーし、ページを開き直して再度試してください。",
+	"flow-post-undo-delete": "削除を取り消し",
 	"flow-importer-lqt-moved-thread-template-content": "この投稿は{{{author}}}によって{{{date}}}上に移動されました。それを[[{{{title}}}]]で発見できます。",
 	"flow-importer-lqt-converted-template-content": "バックアップのため、以前のページの履歴は {{#time: Y-m-d|{{{date}}}}} に <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> に保存されました。",
 	"flow-importer-lqt-converted-archive-template-content": "このページは過去ログ化された LiquidThreads ページです。 <strong>このページの内容は編集しないでください</strong>。 追加のコメントは[[{{{from}}}|現在のトーク ページ]]に投稿してください。",
