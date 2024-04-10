@@ -27,7 +27,8 @@
 			"Yamagata Yusuke",
 			"Yusuke1109",
 			"つぶあん派",
-			"Chqaz"
+			"Chqaz",
+			"Salvare"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -374,6 +375,7 @@
 	"right-flow-delete": "構造化された議論の話題や投稿を削除",
 	"action-flow-edit-post": "構造化された議論での他の利用者の投稿の編集",
 	"right-flow-edit-post": "構造化された議論の他の利用者の投稿を編集",
+	"right-flow-edit-title": "他のユーザーによる構造化されたディスカッションのトピックのタイトルを編集する",
 	"action-flow-suppress": "構造化された議論での話題や投稿の秘匿",
 	"right-flow-suppress": "構造化された議論の話題や投稿を秘匿",
 	"flow-terms-of-use-new-topic": "「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
@@ -418,7 +420,7 @@
 	"flow-undo-your-text": "編集中の文章",
 	"flow-undo-edit-header": "説明を編集",
 	"flow-undo-edit-post": "投稿を編集",
-	"group-flow-bot": "Structured Discussions ボット",
+	"group-flow-bot": "構造化された議論ボット",
 	"group-flow-bot-member": "Flowボット",
 	"grouppage-flow-bot": "Project:Structured Discussions ボット",
 	"flow-ve-mention-context-item-label": "言及",
