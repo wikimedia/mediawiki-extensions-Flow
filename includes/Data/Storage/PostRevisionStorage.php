@@ -106,13 +106,12 @@ class PostRevisionStorage extends RevisionStorage {
 	 * The post will *always* exist in the tree structure, its just a tree
 	 * and we aren't going to re-parent its children;
 	 * @param array $row
-	 * @return bool|\Wikimedia\Rdbms\IResultWrapper
 	 */
 	protected function removeRelated( array $row ) {
-		return $this->dbFactory->getDB( DB_PRIMARY )->delete(
-			$this->joinTable(),
-			$this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] ),
-			__METHOD__
-		);
+		$this->dbFactory->getDB( DB_PRIMARY )->newDeleteQueryBuilder()
+			->deleteFrom( $this->joinTable() )
+			->where( $this->preprocessSqlArray( [ $this->joinField() => $row['rev_id'] ] ) )
+			->caller( __METHOD__ )
+			->execute();
 	}
 }

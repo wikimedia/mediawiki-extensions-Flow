@@ -83,10 +83,8 @@ abstract class RevisionStorage extends DbStorage {
 	/**
 	 * Remove from joinTable upone revision delete
 	 * @param array $row
-	 * @return bool
 	 */
 	protected function removeRelated( array $row ) {
-		return true;
 	}
 
 	/**
@@ -542,18 +540,14 @@ abstract class RevisionStorage extends DbStorage {
 	 * The post will *always* exist in the tree structure, it will just show up as
 	 * [deleted] or something
 	 * @param array $row
-	 * @return bool
 	 */
 	public function remove( array $row ) {
-		$res = $this->dbFactory->getDB( DB_PRIMARY )->delete(
-			'flow_revision',
-			$this->preprocessSqlArray( [ 'rev_id' => $row['rev_id'] ] ),
-			__METHOD__
-		);
-		if ( !$res ) {
-			return false;
-		}
-		return $this->removeRelated( $row );
+		$this->dbFactory->getDB( DB_PRIMARY )->newDeleteQueryBuilder()
+			->deleteFrom( 'flow_revision' )
+			->where( $this->preprocessSqlArray( [ 'rev_id' => $row['rev_id'] ] ) )
+			->caller( __METHOD__ )
+			->execute();
+		$this->removeRelated( $row );
 	}
 
 	/**

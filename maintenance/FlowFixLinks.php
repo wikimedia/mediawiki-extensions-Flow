@@ -87,13 +87,41 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 				$id = $workflow->getArticleTitle()->getArticleID();
 
 				// delete existing links from DB
-				$dbw->delete( 'pagelinks', [ 'pl_from' => $id ], __METHOD__ );
-				$dbw->delete( 'imagelinks', [ 'il_from' => $id ], __METHOD__ );
-				$dbw->delete( 'categorylinks', [ 'cl_from' => $id ], __METHOD__ );
-				$dbw->delete( 'templatelinks', [ 'tl_from' => $id ], __METHOD__ );
-				$dbw->delete( 'externallinks', [ 'el_from' => $id ], __METHOD__ );
-				$dbw->delete( 'langlinks', [ 'll_from' => $id ], __METHOD__ );
-				$dbw->delete( 'iwlinks', [ 'iwl_from' => $id ], __METHOD__ );
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'pagelinks' )
+					->where( [ 'pl_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'imagelinks' )
+					->where( [ 'il_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'categorylinks' )
+					->where( [ 'cl_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'templatelinks' )
+					->where( [ 'tl_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'externallinks' )
+					->where( [ 'el_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'langlinks' )
+					->where( [ 'll_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'iwlinks' )
+					->where( [ 'iwl_from' => $id ] )
+					->caller( __METHOD__ )
+					->execute();
 
 				// regenerate & store those links
 				$linksTableUpdater->doUpdate( $workflow );
