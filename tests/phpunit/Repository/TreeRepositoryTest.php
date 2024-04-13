@@ -7,6 +7,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 
 /**
  * @covers \Flow\Repository\TreeRepository
@@ -47,6 +48,9 @@ class TreeRepositoryTest extends FlowTestCase {
 		$db->method( 'addQuotes' )
 			->willReturn( '' );
 		$db->method( 'getSessionLagStatus' )->willReturn( [ 'lag' => 0, 'since' => 0 ] );
+		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( static function () use ( $db ) {
+			return new InsertQueryBuilder( $db );
+		} );
 		return $db;
 	}
 

@@ -384,12 +384,14 @@ abstract class RevisionStorage extends DbStorage {
 			$revisions[$key] = $this->splitUpdate( $row, 'rev' );
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$dbw->insert(
-			'flow_revision',
-			$this->preprocessNestedSqlArray( $revisions ),
-			__METHOD__
-		);
+		if ( $revisions ) {
+			$dbw = $this->dbFactory->getDB( DB_PRIMARY );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'flow_revision' )
+				->rows( $this->preprocessNestedSqlArray( $revisions ) )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		return $this->insertRelated( $rows );
 	}

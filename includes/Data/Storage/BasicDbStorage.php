@@ -57,15 +57,15 @@ class BasicDbStorage extends DbStorage {
 		if ( is_array( reset( $rows ) ) ) {
 			$insertRows = $this->preprocessNestedSqlArray( $rows );
 		} else {
-			$insertRows = $this->preprocessSqlArray( $rows );
+			$insertRows = [ $this->preprocessSqlArray( $rows ) ];
 		}
 
 		// insert returns boolean true/false
-		$this->dbFactory->getDB( DB_PRIMARY )->insert(
-			$this->table,
-			$insertRows,
-			__METHOD__ . " ({$this->table})"
-		);
+		$this->dbFactory->getDB( DB_PRIMARY )->newInsertQueryBuilder()
+			->insertInto( $this->table )
+			->rows( $insertRows )
+			->caller( __METHOD__ . " ({$this->table})" )
+			->execute();
 
 		return $rows;
 	}

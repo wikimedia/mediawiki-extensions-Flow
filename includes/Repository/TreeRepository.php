@@ -89,15 +89,15 @@ class TreeRepository {
 		$this->deleteSubtreeCache( $descendant, $path );
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$dbw->insert(
-			$this->tableName,
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( $this->tableName )
+			->row( [
 				'tree_descendant_id' => $descendant->getBinary(),
 				'tree_ancestor_id' => $descendant->getBinary(),
 				'tree_depth' => 0,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$ok = true;
 		if ( $ancestor !== null ) {
@@ -147,15 +147,15 @@ class TreeRepository {
 
 					if ( $rows ) {
 						foreach ( $rows as $row ) {
-							$dbw->insert(
-								$this->tableName,
-								[
+							$dbw->newInsertQueryBuilder()
+								->insertInto( $this->tableName )
+								->row( [
 									'tree_descendant_id' => $descendant->getBinary(),
 									'tree_ancestor_id' => $row->tree_ancestor_id,
 									'tree_depth' => $row->tree_depth + 1,
-								],
-								__METHOD__
-							);
+								] )
+								->caller( __METHOD__ )
+								->execute();
 						}
 					}
 				} else {

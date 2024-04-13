@@ -155,17 +155,21 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		);
 
 		$this->db->startAtomic( __METHOD__ );
-		$this->db->insert( 'abuse_filter', $row, __METHOD__ );
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'abuse_filter' )
+			->row( $row )
+			->caller( __METHOD__ )
+			->execute();
 
-		$this->db->insert(
-			'abuse_filter_action',
-			[
+		$this->db->newInsertQueryBuilder()
+			->insertInto( 'abuse_filter_action' )
+			->row( [
 				'afa_filter' => $this->db->insertId(),
 				'afa_consequence' => $action,
 				'afa_parameters' => '',
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->db->endAtomic( __METHOD__ );
 	}
 }

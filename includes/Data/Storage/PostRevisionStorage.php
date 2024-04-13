@@ -53,12 +53,14 @@ class PostRevisionStorage extends RevisionStorage {
 			$trees[$key] = $this->splitUpdate( $row, 'tree' );
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$dbw->insert(
-			$this->joinTable(),
-			$this->preprocessNestedSqlArray( $trees ),
-			__METHOD__
-		);
+		if ( $trees ) {
+			$dbw = $this->dbFactory->getDB( DB_PRIMARY );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( $this->joinTable() )
+				->rows( $this->preprocessNestedSqlArray( $trees ) )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// If this is a brand new root revision it needs to be added to the tree
 		// If it has a rev_parent_id then its already a part of the tree
