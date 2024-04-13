@@ -90,12 +90,12 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 			return;
 		}
 
-		$dbw->update(
-			'flow_revision',
-			[ 'rev_type_id' => $revTypeId ],
-			[ 'rev_id' => $revId ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'flow_revision' )
+			->set( [ 'rev_type_id' => $revTypeId ] )
+			->where( [ 'rev_id' => $revId ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

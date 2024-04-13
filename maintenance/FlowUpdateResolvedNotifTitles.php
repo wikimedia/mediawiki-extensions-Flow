@@ -85,12 +85,12 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 				} catch ( Exception $e ) {
 				}
 				if ( $boardTitle ) {
-					$dbw->update(
-						'echo_event',
-						[ 'event_page_id' => $boardTitle->getArticleID() ],
-						[ 'event_id' => $row->event_id ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'echo_event' )
+						->set( [ 'event_page_id' => $boardTitle->getArticleID() ] )
+						->where( [ 'event_id' => $row->event_id ] )
+						->caller( __METHOD__ )
+						->execute();
 					$processed += $dbw->affectedRows();
 				} else {
 					$this->output( "Could not find board for topic: " . $topicTitle->getPrefixedText() . "\n" );

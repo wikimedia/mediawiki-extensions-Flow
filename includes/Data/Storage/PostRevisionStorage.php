@@ -91,12 +91,12 @@ class PostRevisionStorage extends RevisionStorage {
 		}
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$dbw->update(
-			$this->joinTable(),
-			$this->preprocessSqlArray( $treeChanges ),
-			[ 'tree_rev_id' => $old['tree_rev_id'] ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( $this->joinTable() )
+			->set( $this->preprocessSqlArray( $treeChanges ) )
+			->where( [ 'tree_rev_id' => $old['tree_rev_id'] ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return $changes;
 	}

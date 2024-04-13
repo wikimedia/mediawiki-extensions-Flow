@@ -10,6 +10,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
  * @covers \Flow\Data\Storage\DbStorage
@@ -170,14 +171,17 @@ class RevisionStorageTest extends FlowTestCase {
 		$old['rev_id'] = $id->getBinary();
 		$new['rev_id'] = $id->getBinary();
 
+		$uqb = $this->createMock( UpdateQueryBuilder::class );
+		$uqb->expects( $this->once() )->method( 'update' )
+			->with( 'flow_revision' )->willReturnSelf();
+		$uqb->expects( $this->once() )->method( 'set' )
+			->with( $expectedUpdateValues )->willReturnSelf();
+		$uqb->expects( $this->once() )->method( 'where' )
+			->with( [ 'rev_id' => $id->getBinary() ] )->willReturnSelf();
+		$uqb->expects( $this->once() )->method( 'caller' )->willReturnSelf();
 		$dbw->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				'flow_revision',
-				$expectedUpdateValues,
-				[ 'rev_id' => $id->getBinary() ]
-			)
-			->willReturn( true );
+			->method( 'newUpdateQueryBuilder' )
+			->willReturn( $uqb );
 		$dbw->method( 'affectedRows' )
 			->willReturn( 1 );
 

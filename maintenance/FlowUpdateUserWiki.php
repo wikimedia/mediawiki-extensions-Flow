@@ -201,31 +201,31 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		$type = $revision->getRevisionType();
 
 		$dbw = Container::get( 'db.factory' )->getDB( DB_PRIMARY );
-		$dbw->update(
-			'flow_revision',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'flow_revision' )
+			->set( [
 				'rev_user_wiki' => $wiki,
 				'rev_mod_user_wiki' => $wiki,
 				'rev_edit_user_wiki' => $wiki,
-			],
-			[
+			] )
+			->where( [
 				'rev_id' => $revision->getRevisionId()->getBinary(),
-			],
-			__METHOD__
-		);
+			] )
+			->where( __METHOD__ )
+			->execute();
 		$this->checkForReplica();
 
 		if ( $type === 'post' ) {
-			$dbw->update(
-				'flow_tree_revision',
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'flow_tree_revision' )
+				->set( [
 					'tree_orig_user_wiki' => $wiki,
-				],
-				[
+				] )
+				->where( [
 					'tree_rev_id' => $revision->getRevisionId()->getBinary(),
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 			$this->checkForReplica();
 		}
 	}
