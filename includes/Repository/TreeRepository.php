@@ -182,29 +182,24 @@ class TreeRepository {
 	 * Deletes a descendant from the tree repo.
 	 *
 	 * @param UUID $descendant
-	 * @return bool
 	 */
 	public function delete( UUID $descendant ) {
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$res = $dbw->delete(
-			$this->tableName,
-			[
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( $this->tableName )
+			->where( [
 				'tree_descendant_id' => $descendant->getBinary(),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
-		if ( $res ) {
-			$subtreeKey = $this->cacheKey( 'subtree', $descendant );
-			$parentKey = $this->cacheKey( 'parent', $descendant );
-			$pathKey = $this->cacheKey( 'rootpath', $descendant );
+		$subtreeKey = $this->cacheKey( 'subtree', $descendant );
+		$parentKey = $this->cacheKey( 'parent', $descendant );
+		$pathKey = $this->cacheKey( 'rootpath', $descendant );
 
-			$this->cache->delete( $subtreeKey );
-			$this->cache->delete( $parentKey );
-			$this->cache->delete( $pathKey );
-		}
-
-		return $res;
+		$this->cache->delete( $subtreeKey );
+		$this->cache->delete( $parentKey );
+		$this->cache->delete( $pathKey );
 	}
 
 	public function findParent( UUID $descendant ) {

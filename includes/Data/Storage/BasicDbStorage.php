@@ -116,8 +116,12 @@ class BasicDbStorage extends DbStorage {
 		$pk = $this->preprocessSqlArray( $pk );
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$res = $dbw->delete( $this->table, $pk, __METHOD__ . " ({$this->table})" );
-		return $res && $dbw->affectedRows();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( $this->table )
+			->where( $pk )
+			->caller( __METHOD__ . " ({$this->table})" )
+			->execute();
+		return (bool)$dbw->affectedRows();
 	}
 
 	/**

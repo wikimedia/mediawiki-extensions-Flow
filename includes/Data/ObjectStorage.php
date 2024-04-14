@@ -55,7 +55,6 @@ interface ObjectStorage {
 	 * Remove the specified row from the data store.
 	 *
 	 * @param array $row Map of columns to values.  Must contain the primary key columns.
-	 * @return bool true when the row is successfully removed
 	 */
 	public function remove( array $row );
 
