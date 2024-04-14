@@ -161,12 +161,12 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			unset( $params['flow-workflow-change']['type'] );
 
 			// update log entry
-			$dbw->update(
-				'recentchanges',
-				[ 'rc_params' => serialize( $params ) ],
-				[ 'rc_id' => $row->rc_id ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'recentchanges' )
+				->set( [ 'rc_params' => serialize( $params ) ] )
+				->where( [ 'rc_id' => $row->rc_id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->completeCount++;
 		}

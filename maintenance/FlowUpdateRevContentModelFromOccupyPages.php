@@ -55,15 +55,14 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 				$title = Title::newFromTextThrow( $pageName );
 				$revId = $title->getLatestRevID( IDBAccessObject::READ_LATEST );
 				if ( $revId !== 0 ) {
-					$dbw->update(
-						'revision',
-						[
-							'rev_content_model' =>
-							CONTENT_MODEL_FLOW_BOARD
-						],
-						[ 'rev_id' => $revId ],
-						__METHOD__
-					);
+					$dbw->newUpdateQueryBuilder()
+						->update( 'revision' )
+						->set( [
+							'rev_content_model' => CONTENT_MODEL_FLOW_BOARD
+						] )
+						->where( [ 'rev_id' => $revId ] )
+						->caller( __METHOD__ )
+						->execute();
 					$updatedCount++;
 					$this->output( "Set content model for \"{$title->getPrefixedDBkey()}\"\n" );
 				} else {

@@ -93,12 +93,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 
 		foreach ( $rows as $row ) {
 			$continue = $row->workflow_id;
-			$dbw->update(
-				/* table */'flow_workflow',
-				/* update */[ 'workflow_user_ip' => $row->workflow_user_text ],
-				/* conditions */[ 'workflow_id' => $row->workflow_id ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'flow_workflow' )
+				->set( [ 'workflow_user_ip' => $row->workflow_user_text ] )
+				->where( [ 'workflow_id' => $row->workflow_id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->completeCount++;
 		}
@@ -122,12 +122,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		$continue = null;
 		foreach ( $rows as $row ) {
 			$continue = $row->tree_rev_id;
-			$dbw->update(
-				/* table */'flow_tree_revision',
-				/* update */[ 'tree_orig_user_ip' => $row->tree_orig_user_text ],
-				/* conditions */[ 'tree_rev_id' => $row->tree_rev_id ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'flow_tree_revision' )
+				->set( [ 'tree_orig_user_ip' => $row->tree_orig_user_text ] )
+				->where( [ 'tree_rev_id' => $row->tree_rev_id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$this->completeCount++;
 		}
@@ -170,12 +170,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				$updates['rev_edit_user_ip'] = $row->rev_edit_user_text;
 			}
 			if ( $updates ) {
-				$dbw->update(
-					/* table */ 'flow_revision',
-					/* update */ $updates,
-					/* conditions */ [ 'rev_id' => $row->rev_id ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( 'flow_revision' )
+					->set( $updates )
+					->where( [ 'rev_id' => $row->rev_id ] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 

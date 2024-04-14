@@ -96,7 +96,12 @@ class BasicDbStorage extends DbStorage {
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		// update returns boolean true/false as $res
-		$dbw->update( $this->table, $updates, $pk, __METHOD__ . " ({$this->table})" );
+		$dbw->newUpdateQueryBuilder()
+			->update( $this->table )
+			->set( $updates )
+			->where( $pk )
+			->caller( __METHOD__ . " ({$this->table})" )
+			->execute();
 		// we also want to check that $pk actually selected a row to update
 		return $dbw->affectedRows() ? true : false;
 	}

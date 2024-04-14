@@ -106,12 +106,12 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		if ( !$ids ) {
 			return null;
 		}
-		$dbw->update(
-			/* table */'flow_tree_revision',
-			/* update */[ 'tree_orig_user_ip' => null ],
-			/* conditions */[ 'tree_rev_id' => $ids ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'flow_tree_revision' )
+			->set( [ 'tree_orig_user_ip' => null ] )
+			->where( [ 'tree_rev_id' => $ids ] )
+			->caller( __METHOD__ )
+			->execute();
 		foreach ( $objs as $obj ) {
 			$om->cachePurge( $obj );
 		}
@@ -152,12 +152,12 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 			return null;
 		}
 
-		$dbw->update(
-			/* table */ 'flow_revision',
-			/* update */ [ "{$columnPrefix}_ip" => null ],
-			/* conditions */ [ 'rev_id' => $ids ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'flow_revision' )
+			->set( [ "{$columnPrefix}_ip" => null ] )
+			->where( [ 'rev_id' => $ids ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		foreach ( $objs as $obj ) {
 			$this->storage->cachePurge( $obj );
