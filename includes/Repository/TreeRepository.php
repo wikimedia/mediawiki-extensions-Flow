@@ -145,18 +145,16 @@ class TreeRepository {
 						__METHOD__
 					);
 
-					if ( $rows ) {
-						foreach ( $rows as $row ) {
-							$dbw->newInsertQueryBuilder()
-								->insertInto( $this->tableName )
-								->row( [
-									'tree_descendant_id' => $descendant->getBinary(),
-									'tree_ancestor_id' => $row->tree_ancestor_id,
-									'tree_depth' => $row->tree_depth + 1,
-								] )
-								->caller( __METHOD__ )
-								->execute();
-						}
+					foreach ( $rows as $row ) {
+						$dbw->newInsertQueryBuilder()
+							->insertInto( $this->tableName )
+							->row( [
+								'tree_descendant_id' => $descendant->getBinary(),
+								'tree_ancestor_id' => $row->tree_ancestor_id,
+								'tree_depth' => $row->tree_depth + 1,
+							] )
+							->caller( __METHOD__ )
+							->execute();
 					}
 				} else {
 					$ok = false;
@@ -252,7 +250,7 @@ class TreeRepository {
 			__METHOD__
 		);
 
-		if ( !$res || $res->numRows() === 0 ) {
+		if ( $res->numRows() === 0 ) {
 			return $cacheValues;
 		}
 
@@ -417,13 +415,6 @@ class TreeRepository {
 			],
 			__METHOD__
 		);
-		if ( $res === false ) {
-			wfDebugLog( 'Flow', __METHOD__ . ': Failure fetching node list from database' );
-			return false;
-		}
-		if ( !$res ) {
-			return [];
-		}
 		$nodes = [];
 		foreach ( $res as $node ) {
 			$ancestor = UUID::create( $node->tree_ancestor_id );
@@ -466,9 +457,6 @@ class TreeRepository {
 			],
 			__METHOD__
 		);
-		if ( !$res ) {
-			return [];
-		}
 		$result = [];
 		foreach ( $res as $node ) {
 			if ( isset( $result[$node->tree_descendant_id] ) ) {

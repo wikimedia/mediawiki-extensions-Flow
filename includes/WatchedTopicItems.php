@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use Flow\Exception\DataModelException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -37,7 +36,6 @@ class WatchedTopicItems {
 	/**
 	 * @param string[] $titles Array of UUID strings
 	 * @return array
-	 * @throws \Flow\Exception\DataModelException
 	 */
 	public function getWatchStatus( array $titles ) {
 		$titles = array_unique( $titles );
@@ -74,9 +72,6 @@ class WatchedTopicItems {
 			],
 			__METHOD__
 		);
-		if ( !$res ) {
-			throw new DataModelException( 'query failure', 'process-data' );
-		}
 		foreach ( $res as $row ) {
 			$result[strtolower( $row->wl_title )] = true;
 		}

@@ -93,7 +93,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		);
 
 		// end of data
-		if ( !$rows || $rows->numRows() === 0 ) {
+		if ( $rows->numRows() === 0 ) {
 			return false;
 		}
 

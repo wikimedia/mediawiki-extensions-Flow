@@ -119,7 +119,6 @@ abstract class RevisionStorage extends DbStorage {
 	 * @param array $attributes
 	 * @param array $options
 	 * @return array
-	 * @throws DataModelException
 	 */
 	protected function findInternal( array $attributes, array $options = [] ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
@@ -141,10 +140,6 @@ abstract class RevisionStorage extends DbStorage {
 		$res = $dbr->select(
 			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
 		);
-		if ( $res === false ) {
-			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
-				'process-data' );
-		}
 
 		$retval = [];
 		foreach ( $res as $row ) {
@@ -255,10 +250,6 @@ abstract class RevisionStorage extends DbStorage {
 			__METHOD__,
 			[ 'GROUP BY' => 'rev_type_id' ]
 		);
-		if ( $res === false ) {
-			throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
-				'process-data' );
-		}
 
 		$revisionIds = [];
 		foreach ( $res as $row ) {
@@ -275,7 +266,6 @@ abstract class RevisionStorage extends DbStorage {
 	 * @param ResultDuplicator $duplicator
 	 * @param array $revisionIds Binary strings representing revision uuid's
 	 * @return array
-	 * @throws DataModelException
 	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
@@ -299,10 +289,6 @@ abstract class RevisionStorage extends DbStorage {
 				[],
 				$joins
 			);
-			if ( $res === false ) {
-				throw new DataModelException( __METHOD__ . ': Query failed: ' . $dbr->lastError(),
-					'process-data' );
-			}
 
 			foreach ( $res as $row ) {
 				$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );

@@ -915,10 +915,6 @@ abstract class AbstractRevision {
 			$rcQuery['joins']
 		);
 
-		if ( $rows === false ) {
-			return null;
-		}
-
 		if ( $rows->numRows() === 1 ) {
 			return RecentChange::newFromRow( $rows->fetchObject() );
 		}
