@@ -6,6 +6,7 @@ use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 
@@ -51,6 +52,8 @@ class TreeRepositoryTest extends FlowTestCase {
 		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( static function () use ( $db ) {
 			return new InsertQueryBuilder( $db );
 		} );
+		$db->method( 'select' )
+			->willReturn( new FakeResultWrapper( [] ) );
 		return $db;
 	}
 
