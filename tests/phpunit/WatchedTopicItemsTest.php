@@ -5,6 +5,7 @@ namespace Flow\Tests;
 use Flow\Model\UUID;
 use Flow\WatchedTopicItems;
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -48,8 +49,7 @@ class WatchedTopicItemsTest extends FlowTestCase {
 			$uuid = UUID::create()->getAlphadecimal();
 			$dbResult[] = (object)[ 'wl_title' => $uuid ];
 		}
-		$dbResult = new \ArrayObject( $dbResult );
-		$tests[] = [ $uuids, $dbResult->getIterator(), $result ];
+		$tests[] = [ $uuids, $dbResult, $result ];
 		return $tests;
 	}
 
@@ -76,7 +76,7 @@ class WatchedTopicItemsTest extends FlowTestCase {
 	protected function mockDb( $dbResult ) {
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'select' )
-			->willReturn( $dbResult );
+			->willReturn( new FakeResultWrapper( $dbResult ) );
 		return $db;
 	}
 }

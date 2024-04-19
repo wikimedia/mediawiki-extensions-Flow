@@ -9,6 +9,7 @@ use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
@@ -346,7 +347,7 @@ class RevisionStorageTest extends FlowTestCase {
 		// this expect is the assertion for the test
 		$factory->getDB( null )->expects( $this->exactly( $count ) )
 			->method( 'select' )
-			->willReturn( $result );
+			->willReturn( new FakeResultWrapper( $result ) );
 
 		$storage = new PostRevisionStorage(
 			$factory,
@@ -361,9 +362,9 @@ class RevisionStorageTest extends FlowTestCase {
 		$factory = $this->mockDbFactory();
 		$factory->getDB( null )->expects( $this->once() )
 			->method( 'select' )
-			->willReturn( [
+			->willReturn( new FakeResultWrapper( [
 				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]
-			] );
+			] ) );
 
 		$storage = new PostRevisionStorage(
 			$factory,
