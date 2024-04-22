@@ -13,6 +13,8 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Don sáhtát}} čuovvut [$2 dán fáttá] goas ihkinassii.",
 	"flow-board-collapse-description": "Čiega govvádusa",
 	"flow-board-expand-description": "Čájet govvádusa",
+	"flow-post-actions": "Doaimmat",
+	"flow-topic-actions": "Doaimmat",
 	"flow-cancel": "Gaskkalduhte",
 	"flow-show-change": "Čájet rievdadusaid",
 	"flow-reply-link": "{{GENDER:$1|Vástit}}",
