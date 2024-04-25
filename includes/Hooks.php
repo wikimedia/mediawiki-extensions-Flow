@@ -969,7 +969,7 @@ class Hooks implements
 		&$result
 	) {
 		// fetch all lazy-load methods
-		$methods = self::$abuseFilter->lazyLoadMethods();
+		$methods = self::getAbuseFilter()->lazyLoadMethods();
 
 		// method isn't known here
 		if ( !isset( $methods[$method] ) ) {
