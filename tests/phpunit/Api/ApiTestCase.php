@@ -13,6 +13,7 @@ use MediaWiki\Permissions\Authority;
  */
 abstract class ApiTestCase extends \ApiTestCase {
 	protected function setUp(): void {
+		Container::reset();
 		parent::setUp();
 
 		$namespaceContentModels = [
