@@ -29,6 +29,7 @@
 			"飞舞回堂前"
 		]
 	},
+	"content-model-flow-board": "結構化討論板",
 	"enablestructureddiscussions": "啟用結構式討論",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}監視「$1」上的新活動",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|您}}已不再監視頁面「$1」",
