@@ -46,17 +46,16 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 
 		while ( $count == $batchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ],
-				[ 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ],
-				[ 'rev_id > ' . $dbr->addQuotes( $revId ) ],
-				__METHOD__,
-				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $batchSize ],
-				[
-					'flow_tree_revision' => [ 'LEFT JOIN', 'rev_id=tree_rev_id' ],
-					'flow_header_revision' => [ 'LEFT JOIN', 'rev_id=header_rev_id' ]
-				]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ] )
+				->from( 'flow_revision' )
+				->leftJoin( 'flow_tree_revision', null, 'rev_id=tree_rev_id' )
+				->leftJoin( 'flow_header_revision', null, 'rev_id=header_rev_id' )
+				->where( $dbr->expr( 'rev_id', '>', $revId ) )
+				->orderBy( 'rev_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				$count++;

@@ -79,17 +79,18 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	}
 
 	public function updateTreeRevision( IDatabase $dbw, $continue = null ) {
-		$rows = $dbw->select(
-			/* table */'flow_tree_revision',
-			/* select */[ 'tree_rev_id' ],
-			[
-				'tree_rev_id > ' . $dbw->addQuotes( $continue ),
-				'tree_orig_user_ip IS NOT NULL',
-				'tree_orig_user_id > 0',
-			],
-			__METHOD__,
-			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'tree_rev_id' ]
-		);
+		$rows = $dbw->newSelectQueryBuilder()
+			->select( [ 'tree_rev_id' ] )
+			->from( 'flow_tree_revision' )
+			->where( [
+				$dbw->expr( 'tree_rev_id', '>', $continue ),
+				$dbw->expr( 'tree_orig_user_ip', '!=', null ),
+				$dbw->expr( 'tree_orig_user_id', '>', 0 ),
+			] )
+			->caller( __METHOD__ )
+			->limit( $this->getBatchSize() )
+			->orderBy( 'tree_rev_id' )
+			->fetchResultSet();
 
 		$om = Container::get( 'storage' )->getStorage( 'PostRevision' );
 		$objs = $ids = [];
@@ -122,17 +123,18 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 	}
 
 	public function updateRevision( $columnPrefix, IDatabase $dbw, $continue = null ) {
-		$rows = $dbw->select(
-			/* table */'flow_revision',
-			/* select */[ 'rev_id', 'rev_type' ],
-			/* conditions */ [
-				'rev_id > ' . $dbw->addQuotes( $continue ),
-				"{$columnPrefix}_id > 0",
-				"{$columnPrefix}_ip IS NOT NULL",
-			],
-			__METHOD__,
-			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'rev_id' ]
-		);
+		$rows = $dbw->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_type' ] )
+			->from( 'flow_revision' )
+			->where( [
+				$dbw->expr( 'rev_id', '>', $continue ),
+				$dbw->expr( "{$columnPrefix}_id", '>', 0 ),
+				$dbw->expr( "{$columnPrefix}_ip", '!=', null ),
+			] )
+			->caller( __METHOD__ )
+			->limit( $this->getBatchSize() )
+			->orderBy( 'rev_id' )
+			->fetchResultSet();
 
 		$ids = $objs = [];
 		foreach ( $rows as $row ) {

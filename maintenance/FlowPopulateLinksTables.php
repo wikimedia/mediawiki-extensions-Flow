@@ -52,13 +52,17 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$dbr = $dbf->getDB( DB_REPLICA );
 		while ( $count === $batchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_revision' ],
-				[ 'rev_type_id' ],
-				[ 'rev_type' => 'header', 'rev_type_id > ' . $dbr->addQuotes( $id ) ],
-				__METHOD__,
-				[ 'ORDER BY' => 'rev_type_id ASC', 'LIMIT' => $batchSize ]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'rev_type_id' ] )
+				->from( 'flow_revision' )
+				->where( [
+					'rev_type' => 'header',
+					$dbr->expr( 'rev_type_id', '>', $id ),
+				] )
+				->orderBy( 'rev_type_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$count++;
 				$id = $row->rev_type_id;
@@ -87,16 +91,17 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		while ( $count === $batchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_tree_revision' ],
-				[ 'tree_rev_id' ],
-				[
-					'tree_parent_id IS NOT NULL',
-					'tree_rev_id > ' . $dbr->addQuotes( $id ),
-				],
-				__METHOD__,
-				[ 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $batchSize ]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'tree_rev_id' ] )
+				->from( 'flow_tree_revision' )
+				->where( [
+					$dbr->expr( 'tree_parent_id', '!=', null ),
+					$dbr->expr( 'tree_rev_id', '>', $id ),
+				] )
+				->caller( __METHOD__ )
+				->orderBy( 'tree_rev_id' )
+				->limit( $batchSize )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$count++;
 				$id = $row->tree_rev_id;

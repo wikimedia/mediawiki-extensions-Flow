@@ -58,13 +58,17 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	 * @return int|null Start id for the next batch
 	 */
 	public function refreshBatch( IDatabase $dbw, $continue = null ) {
-		$rows = $dbw->select(
-			/* table */'recentchanges',
-			/* select */[ 'rc_id', 'rc_params' ],
-			/* conds */[ "rc_id > $continue", 'rc_source' => RecentChangesListener::SRC_FLOW ],
-			__METHOD__,
-			/* options */[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'rc_id' ]
-		);
+		$rows = $dbw->newSelectQueryBuilder()
+			->select( [ 'rc_id', 'rc_params' ] )
+			->from( 'recentchanges' )
+			->where( [
+				$dbw->expr( 'rc_id', '>', $continue ),
+				'rc_source' => RecentChangesListener::SRC_FLOW
+			] )
+			->limit( $this->getBatchSize() )
+			->orderBy( 'rc_id' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$continue = null;
 

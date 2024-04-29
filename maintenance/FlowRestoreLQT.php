@@ -92,38 +92,30 @@ class FlowRestoreLQT extends Maintenance {
 			do {
 				// fetch all LQT boards that have been moved out of the way,
 				// with their original title & their current title
-				$rows = $dbr->select(
-					[ 'logging', 'page', 'revision' ] + $revWhere['tables'],
+				$rows = $dbr->newSelectQueryBuilder()
 					// log_namespace & log_title will be the original location
 					// page_namespace & page_title will be the current location
 					// rev_id is the first Flow talk page manager edit id
 					// log_id is the log entry for when importer moved LQT page
-					[ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title',
-						'rev_id' => 'MIN(rev_id)', 'log_id' ],
-					[
+					->select( [ 'log_namespace', 'log_title', 'page_id', 'page_namespace', 'page_title',
+						'rev_id' => 'MIN(rev_id)', 'log_id' ] )
+					->from( 'logging' )
+					->join( 'page', null, 'page_id = log_page' )
+					->join( 'revision', null, 'rev_page = log_page' )
+					->tables( $revWhere['tables'] )
+					->where( [
 						'log_actor' => $this->talkpageManagerUser->getActorId(),
 						'log_type' => 'move',
 						'page_content_model' => 'wikitext',
-						'page_id > ' . $dbr->addQuotes( $startId ),
+						$dbr->expr( 'page_id', '>', $startId ),
 						$revCond,
-					],
-					__METHOD__,
-					[
-						'GROUP BY' => 'rev_page',
-						'LIMIT' => $batchSize,
-						'ORDER BY' => 'log_id ASC',
-					],
-					[
-						'page' => [
-							'INNER JOIN',
-							[ 'page_id = log_page' ],
-						],
-						'revision' => [
-							'INNER JOIN',
-							[ 'rev_page = log_page' ],
-						],
-					] + $revWhere['joins']
-				);
+					] )
+					->groupBy( 'rev_page' )
+					->limit( $batchSize )
+					->orderBy( 'log_id' )
+					->joinConds( $revWhere['joins'] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 
 				foreach ( $rows as $row ) {
 					$from = Title::newFromText( $row->page_title, $row->page_namespace );
@@ -161,27 +153,22 @@ class FlowRestoreLQT extends Maintenance {
 			do {
 				// for every LQT post, find the first edit by Flow talk page manager
 				// (to redirect to the new Flow copy)
-				$rows = $dbr->select(
-					[ 'page', 'revision' ] + $revWhere['tables'],
-					[ 'rev_page', 'rev_id' => ' MIN(rev_id)' ],
-					[
+				$rows = $dbr->newSelectQueryBuilder()
+					->select( [ 'rev_page', 'rev_id' => ' MIN(rev_id)' ] )
+					->from( 'page' )
+					->join( 'revision', null, 'rev_page = page_id' )
+					->tables( $revWhere['tables'] )
+					->where( [
 						'page_namespace' => [ NS_LQT_THREAD, NS_LQT_SUMMARY ],
 						$revCond,
-						'page_id > ' . $dbr->addQuotes( $startId ),
-					],
-					__METHOD__,
-					[
-						'GROUP BY' => 'page_id',
-						'LIMIT' => $batchSize,
-						'ORDER BY' => 'page_id ASC',
-					],
-					[
-						'revision' => [
-							'INNER JOIN',
-							[ 'rev_page = page_id' ],
-						],
-					] + $revWhere['joins']
-				);
+						$dbr->expr( 'page_id', '>', $startId ),
+					] )
+					->groupBy( 'page_id' )
+					->limit( $batchSize )
+					->orderBy( 'page_id' )
+					->joinConds( $revWhere['joins'] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 
 				foreach ( $rows as $row ) {
 					// undo #REDIRECT edit
@@ -230,16 +217,16 @@ class FlowRestoreLQT extends Maintenance {
 				 * won't have to do the complex moves.
 				 */
 				$dbr = $this->dbFactory->getWikiDB( DB_REPLICA );
-				$count = $dbr->selectRowCount(
-					[ 'logging' ],
-					'*',
-					[
+				$count = $dbr->newSelectQueryBuilder()
+					->select( '*' )
+					->from( 'logging' )
+					->where( [
 						'log_page' => $lqt->getArticleID(),
 						'log_type' => 'move',
-						'log_id > ' . $dbr->addQuotes( $logId ),
-					],
-					__METHOD__
-				);
+						$dbr->expr( 'log_id', '>', $logId ),
+					] )
+					->caller( __METHOD__ )
+					->fetchRowCount();
 
 				if ( $count > 0 ) {
 					$this->output( "Ensuring LQT board '{$lqt->getPrefixedDBkey()}' is " .

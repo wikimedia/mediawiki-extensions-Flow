@@ -238,34 +238,30 @@ class FlowRemoveOldTopics extends Maintenance {
 		$cutoffStartId = UUID::getComparisonUUID( $timestamp );
 
 		do {
-			$workflowIds = $dbr->selectFieldValues(
-				[ 'flow_workflow', 'flow_tree_node', 'flow_revision' ],
-				'workflow_id',
-				[
+			$workflowIds = $dbr->newSelectQueryBuilder()
+				->select( 'workflow_id' )
+				->from( 'flow_workflow' )
+				->join( 'flow_tree_node', null, 'tree_ancestor_id = workflow_id' )
+				->join( 'flow_revision', null, 'rev_type_id = tree_descendant_id' )
+				->where( [
 					// revisions more recent than cutoff time
-					'rev_id > ' . $dbr->addQuotes( $cutoffStartId->getBinary() ),
+					$dbr->expr( 'rev_id', '>', $cutoffStartId->getBinary() ),
 					// workflow_id condition is only used to batch, the exact
 					// $batchStartId otherwise doesn't matter (unlike rev_id)
-					'workflow_id > ' . $dbr->addQuotes( $batchStartId->getBinary() ),
+					$dbr->expr( 'workflow_id', '>', $batchStartId->getBinary() ),
 					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
-					'workflow_last_update_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) ),
-				],
-				__METHOD__,
-				[
-					'LIMIT' => $batchSize,
-					'ORDER BY' => 'workflow_id ASC',
-					// we only want to find topics that were only altered by talk
-					// page manager: as long as anyone else edited any post, we're
-					// not interested in it
-					'GROUP BY' => 'workflow_id',
-					'HAVING' => [ 'GROUP_CONCAT(DISTINCT rev_user_id)' => $talkpageManager->getId() ],
-				],
-				[
-					'flow_tree_node' => [ 'INNER JOIN', [ 'tree_ancestor_id = workflow_id' ] ],
-					'flow_revision' => [ 'INNER JOIN', [ 'rev_type_id = tree_descendant_id' ] ],
-				]
-			);
+					$dbr->expr( 'workflow_last_update_timestamp', '>=', $dbr->timestamp( $timestamp ) ),
+				] )
+				->limit( $batchSize )
+				->orderBy( 'workflow_id' )
+				// we only want to find topics that were only altered by talk
+				// page manager: as long as anyone else edited any post, we're
+				// not interested in it
+				->groupBy( 'workflow_id' )
+				->having( 'GROUP_CONCAT(DISTINCT rev_user_id) = ' . $talkpageManager->getId() )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			if ( !$workflowIds ) {
 				break;

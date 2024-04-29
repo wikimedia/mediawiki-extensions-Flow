@@ -43,33 +43,29 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 
 		$db = $this->getDB( DB_PRIMARY );
 
-		$innerQuery = $db->selectSQLText(
-			'user_properties',
-			'up_user',
-			[
+		$innerQuery = $db->newSelectQueryBuilder()
+			->select( 'up_user' )
+			->from( 'user_properties' )
+			->where( [
 				// It works because this beta feature is exempted from auto-enroll.
 				'up_property' => BETA_FEATURE_FLOW_USER_TALK_PAGE,
 				'up_value' => 1
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ );
 
-		$result = $db->select(
-			[ 'page', 'user' ],
-			'user_id',
-			[
+		$result = $db->newSelectQueryBuilder()
+			->select( 'user_id' )
+			->from( 'page' )
+			->join( 'user', null, [
+				'page_namespace' => NS_USER_TALK,
+				"page_title = REPLACE(user_name, ' ', '_')"
+			] )
+			->where( [
 				'page_content_model' => CONTENT_MODEL_FLOW_BOARD,
-				"user_id NOT IN($innerQuery)"
-			],
-			__METHOD__,
-			[],
-			[
-				'user' => [ 'JOIN', [
-					'page_namespace' => NS_USER_TALK,
-					"page_title = REPLACE(user_name, ' ', '_')"
-				] ],
-			]
-		);
+				'user_id NOT IN(' . $innerQuery->getSQL() . ')',
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$services = $this->getServiceContainer();
 		$lbFactory = $services->getDBLoadBalancerFactory();

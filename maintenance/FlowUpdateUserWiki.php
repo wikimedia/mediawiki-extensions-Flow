@@ -62,15 +62,14 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_workflow' ],
-				[ 'workflow_wiki', 'workflow_id', 'workflow_type' ],
-				[
-					'workflow_id > ' . $dbr->addQuotes( $id ),
-				],
-				__METHOD__,
-				[ 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $batchSize ]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'workflow_wiki', 'workflow_id', 'workflow_type' ] )
+				->from( 'flow_workflow' )
+				->where( $dbr->expr( 'workflow_id', '>', $id ) )
+				->orderBy( 'workflow_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$count++;
 				$id = $row->workflow_id;
@@ -103,17 +102,18 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 		while ( $count == $batchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_header_revision', 'flow_revision' ],
-				[ 'rev_id', 'rev_type' ],
-				[
-					'rev_id > ' . $dbr->addQuotes( $id ),
-					'header_rev_id = rev_id',
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'rev_id', 'rev_type' ] )
+				->from( 'flow_header_revision' )
+				->join( 'flow_revision', null, 'header_rev_id = rev_id' )
+				->where( [
+					$dbr->expr( 'rev_id', '>', $id ),
 					'header_workflow_id' => $workflow->getId()->getBinary()
-				],
-				__METHOD__,
-				[ 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $batchSize ]
-			);
+				] )
+				->orderBy( 'header_rev_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultset();
 			foreach ( $res as $row ) {
 				$count++;
 				$id = $row->rev_id;
@@ -138,16 +138,17 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 		while ( $count == $batchSize ) {
 			$count = 0;
-			$res = $dbr->select(
-				[ 'flow_topic_list' ],
-				[ 'topic_id' ],
-				[
+			$res = $dbr->newSelectQueryBuilder()
+				->select( 'topic_id' )
+				->from( 'flow_topic_list' )
+				->where( [
 					'topic_list_id' => $workflow->getId()->getBinary(),
-					'topic_id > ' . $dbr->addQuotes( $id ),
-				],
-				__METHOD__,
-				[ 'ORDER BY' => 'topic_id ASC', 'LIMIT' => $batchSize ]
-			);
+					$dbr->expr( 'topic_id', '>', $id ),
+				] )
+				->orderBy( 'topic_id' )
+				->limit( $batchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			$index = 0;
 			foreach ( $res as $row ) {
 				$count++;

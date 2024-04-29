@@ -75,22 +75,20 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	}
 
 	public function refreshBatch( IDatabase $dbr, UUID $continue, array $countableActions, UUID $stop ) {
-		$rows = $dbr->select(
-			'flow_revision',
-			[ 'rev_id', 'rev_user_id' ],
-			[
-				'rev_id > ' . $dbr->addQuotes( $continue->getBinary() ),
-				'rev_id <= ' . $dbr->addQuotes( $stop->getBinary() ),
-				'rev_user_id > 0',
+		$rows = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_user_id' ] )
+			->from( 'flow_revision' )
+			->where( [
+				$dbr->expr( 'rev_id', '>', $continue->getBinary() ),
+				$dbr->expr( 'rev_id', '<=', $stop->getBinary() ),
+				$dbr->expr( 'rev_user_id', '>', 0 ),
 				'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 				'rev_change_type' => $countableActions,
-			],
-			__METHOD__,
-			[
-				'ORDER BY' => 'rev_id ASC',
-				'LIMIT' => $this->getBatchSize(),
-			]
-		);
+			] )
+			->orderBy( 'rev_id' )
+			->limit( $this->getBatchSize() )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// end of data
 		if ( $rows->numRows() === 0 ) {
