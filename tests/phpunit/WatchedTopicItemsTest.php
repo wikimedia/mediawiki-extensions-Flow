@@ -7,6 +7,7 @@ use Flow\WatchedTopicItems;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers \Flow\WatchedTopicItems
@@ -74,9 +75,13 @@ class WatchedTopicItemsTest extends FlowTestCase {
 	}
 
 	protected function mockDb( $dbResult ) {
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'select' )
+		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
+		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'where', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( $dbResult ) );
+		$db = $this->createMock( IDatabase::class );
+		$db->method( 'newSelectQueryBuilder' )
+			->willReturn( $queryBuilder );
 		return $db;
 	}
 }

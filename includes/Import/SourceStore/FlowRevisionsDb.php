@@ -84,32 +84,24 @@ class FlowRevisionsDb implements SourceStoreInterface {
 		// flow_revision will LEFT JOIN against flow_tree_revision, meaning that
 		// we'll also have info about the parent; or it can just be ignored if
 		// there is no parent
-		$rows = $this->dbr->select(
-			[ 'flow_revision', 'flow_tree_revision' ],
-			[ 'rev_type_id' ],
-			array_merge(
-				[
-					'rev_type_id >= ' . $this->dbr->addQuotes( $range[0]->getBinary() ),
-					'rev_type_id < ' . $this->dbr->addQuotes( $range[1]->getBinary() ),
-				],
-				$tuple->toArray( 'rev_user_' ),
-				$conds
-			),
-			__METHOD__,
-			[ 'LIMIT' => 1 ],
-			[
-				'flow_tree_revision' => [
-					'LEFT OUTER JOIN',
-					[ 'tree_rev_descendant_id = rev_type_id' ]
-				],
-			]
-		);
+		$rev_type_id = $this->dbr->newSelectQueryBuilder()
+			->select( 'rev_type_id' )
+			->from( 'flow_revision' )
+			->leftJoin( 'flow_tree_revision', null, 'tree_rev_descendant_id = rev_type_id' )
+			->where( [
+				$this->dbr->expr( 'rev_type_id', '>=', $range[0]->getBinary() ),
+				$this->dbr->expr( 'rev_type_id', '<', $range[1]->getBinary() ),
+			] )
+			->andWhere( $tuple->toArray( 'rev_user_' ) )
+			->andWhere( $conds )
+			->caller( __METHOD__ )
+			->fetchField();
 
-		if ( $rows->numRows() === 0 ) {
+		if ( $rev_type_id === false ) {
 			return false;
 		}
 
-		return UUID::create( $rows->fetchObject()->rev_type_id );
+		return UUID::create( $rev_type_id );
 	}
 
 	/**

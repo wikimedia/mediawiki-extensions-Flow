@@ -11,6 +11,7 @@ use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UpdateQueryBuilder;
 
 /**
@@ -345,9 +346,13 @@ class RevisionStorageTest extends FlowTestCase {
 
 		$factory = $this->mockDbFactory();
 		// this expect is the assertion for the test
-		$factory->getDB( null )->expects( $this->exactly( $count ) )
-			->method( 'select' )
+		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
+		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'join', 'where', 'andWhere', 'groupBy', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( $result ) );
+		$factory->getDB( null )->expects( $this->exactly( $count ) )
+			->method( 'newSelectQueryBuilder' )
+			->willReturn( $queryBuilder );
 
 		$storage = new PostRevisionStorage(
 			$factory,
@@ -359,12 +364,16 @@ class RevisionStorageTest extends FlowTestCase {
 	}
 
 	public function testPartialResult() {
-		$factory = $this->mockDbFactory();
-		$factory->getDB( null )->expects( $this->once() )
-			->method( 'select' )
+		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
+		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'join', 'where', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( [
 				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]
 			] ) );
+		$factory = $this->mockDbFactory();
+		$factory->getDB( null )->expects( $this->once() )
+			->method( 'newSelectQueryBuilder' )
+			->willReturn( $queryBuilder );
 
 		$storage = new PostRevisionStorage(
 			$factory,

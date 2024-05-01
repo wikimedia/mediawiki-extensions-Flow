@@ -9,6 +9,7 @@ use Flow\Tests\FlowTestCase;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers \Flow\Repository\TreeRepository
@@ -43,6 +44,10 @@ class TreeRepositoryTest extends FlowTestCase {
 	}
 
 	private function mockDb( $dbResult ) {
+		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
+		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'where', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( 'fetchResultSet' )
+			->willReturn( new FakeResultWrapper( [] ) );
 		$db = $this->createMock( IDatabase::class );
 		$db->method( $this->logicalOr( 'insert', 'insertSelect' ) )
 			->willReturn( $dbResult );
@@ -52,8 +57,8 @@ class TreeRepositoryTest extends FlowTestCase {
 		$db->method( 'newInsertQueryBuilder' )->willReturnCallback( static function () use ( $db ) {
 			return new InsertQueryBuilder( $db );
 		} );
-		$db->method( 'select' )
-			->willReturn( new FakeResultWrapper( [] ) );
+		$db->method( 'newSelectQueryBuilder' )
+			->willReturn( $queryBuilder );
 		return $db;
 	}
 
