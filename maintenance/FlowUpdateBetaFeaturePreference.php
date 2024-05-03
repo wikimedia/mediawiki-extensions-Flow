@@ -49,7 +49,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			->where( [
 				// It works because this beta feature is exempted from auto-enroll.
 				'up_property' => BETA_FEATURE_FLOW_USER_TALK_PAGE,
-				'up_value' => 1
+				'up_value' => '1',
 			] )
 			->caller( __METHOD__ );
 
