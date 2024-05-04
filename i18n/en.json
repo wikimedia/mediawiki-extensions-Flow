@@ -71,6 +71,7 @@
 	"flow-hide-title-content": "This topic was {{GENDER:$1|hidden}} by $1",
 	"flow-hide-header-content": "{{GENDER:$1|Hidden}} by $2",
 	"flow-hide-usertext": "$1",
+	"flow-invalid-topic-did-you-mean": "Did you mean \"[[$1]]\"?",
 	"flow-delete-post-content": "This post was {{GENDER:$1|deleted}} by $1 ([$2 history])",
 	"flow-delete-title-content": "This topic was {{GENDER:$1|deleted}} by $1",
 	"flow-delete-header-content": "{{GENDER:$1|Deleted}} by $2",
