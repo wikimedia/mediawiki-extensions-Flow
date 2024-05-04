@@ -1357,7 +1357,6 @@ class Hooks implements
 		try {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 		} catch ( InvalidInputException $e ) {
-			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return;
 		}
