@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
 use Flow\Exception\FailCommitException;
-use Flow\Exception\FlowException;
 use Flow\Formatter\TocTopicListFormatter;
 use Flow\Formatter\TopicListFormatter;
 use Flow\Formatter\TopicListQuery;
@@ -14,6 +13,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
@@ -389,7 +389,10 @@ class TopicListBlock extends AbstractBlock {
 				] + $findOptions;
 
 				if ( $requestOptions['offset-id'] ) {
-					throw new FlowException( 'The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.' );
+					$requestOptions['offset-id'] = null;
+					$this->context->getOutput()->addHTML(
+						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-id-for-updated' ) )
+					);
 				}
 				break;
 
@@ -403,7 +406,10 @@ class TopicListBlock extends AbstractBlock {
 				] + $findOptions;
 
 				if ( $requestOptions['offset'] ) {
-					throw new FlowException( 'The `newest` sort order does not allow the `offset` parameter.  Please use `offset-id`.' );
+					$requestOptions['offset'] = null;
+					$this->context->getOutput()->addHTML(
+						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-for-newest' ) )
+					);
 				}
 		}
 
