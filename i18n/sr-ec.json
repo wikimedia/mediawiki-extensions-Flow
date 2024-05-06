@@ -41,6 +41,7 @@
 	"flow-hide-post-content": "Ову објаву је {{GENDER:$1|сакрио|сакрила}} $1 ([$2 историја])",
 	"flow-hide-title-content": "Ову тему је {{GENDER:$1|сакрио|сакрила}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|Сакрио|Сакрила}} $2",
+	"flow-invalid-topic-did-you-mean": "Да ли сте мислили „[[$1]]”?",
 	"flow-delete-post-content": "Ову објаву је {{GENDER:$1|избрисао|избрисала}} $1 ([$2 историја])",
 	"flow-delete-title-content": "$1 је {{GENDER:$1|избрисао|избрисала}} ову тему",
 	"flow-delete-header-content": "{{GENDER:$1Избрисао|Избрисала}} $2",

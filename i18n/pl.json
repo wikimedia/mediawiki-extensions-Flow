@@ -89,6 +89,7 @@
 	"flow-hide-post-content": "Ten wpis został {{GENDER:$1|ukryty}} przez $1 ([$2 historia])",
 	"flow-hide-title-content": "Ten wątek został {{GENDER:$1|ukryty}} przez $1",
 	"flow-hide-header-content": "{{GENDER:$1|Ukryty}} przez $2",
+	"flow-invalid-topic-did-you-mean": "Czy miałeś na myśli \"[[$1]]\"?",
 	"flow-delete-post-content": "Ten wpis został {{GENDER:$1|usunięty}} przez $1 ([$2 historia])",
 	"flow-delete-title-content": "Ten wątek został {{GENDER:$1|usunięty}} przez $1",
 	"flow-delete-header-content": "{{GENDER:$1|Usunięty}} przez $2",
