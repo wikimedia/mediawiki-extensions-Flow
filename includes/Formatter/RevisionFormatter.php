@@ -223,7 +223,7 @@ class RevisionFormatter {
 				__METHOD__ . ': Permission denied for user on action {action}',
 				[
 					'action' => $action,
-					'revision_id' => $row->revision->getRevisionId(),
+					'revision_id' => $row->revision->getRevisionId()->getAlphadecimal(),
 					'user_id' => $ctx->getUser()->getId(),
 				]
 			);
