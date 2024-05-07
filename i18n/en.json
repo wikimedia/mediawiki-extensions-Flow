@@ -72,6 +72,8 @@
 	"flow-hide-header-content": "{{GENDER:$1|Hidden}} by $2",
 	"flow-hide-usertext": "$1",
 	"flow-invalid-topic-did-you-mean": "Did you mean \"[[$1]]\"?",
+	"flow-invalid-param-offset-id-for-updated": "The `updated` sort order does not allow the `offset-id` parameter. Please use `offset`.",
+	"flow-invalid-param-offset-for-newest": "The `newest` sort order does not allow the `offset` parameter. Please use `offset-id`.",
 	"flow-delete-post-content": "This post was {{GENDER:$1|deleted}} by $1 ([$2 history])",
 	"flow-delete-title-content": "This topic was {{GENDER:$1|deleted}} by $1",
 	"flow-delete-header-content": "{{GENDER:$1|Deleted}} by $2",
