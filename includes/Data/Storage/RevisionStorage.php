@@ -130,17 +130,16 @@ abstract class RevisionStorage extends DbStorage {
 		// Add rev_type if rev_type_id exists in query condition
 		$attributes = $this->addRevTypeToQuery( $attributes );
 
-		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( '*' )
-			->from( 'flow_revision' )
-			->where( $this->preprocessSqlArray( $attributes ) )
-			->options( $options )
-			->caller( __METHOD__ );
+		$tables = [ 'rev' => 'flow_revision' ];
+		$joins = [];
 		if ( $this->joinTable() ) {
-			$queryBuilder->join( $this->joinTable(), null, $this->joinField() . ' = rev_id' );
+			$tables[] = $this->joinTable();
+			$joins = [ 'rev' => [ 'JOIN', $this->joinField() . ' = rev_id' ] ];
 		}
 
-		$res = $queryBuilder->fetchResultSet();
+		$res = $dbr->select(
+			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
+		);
 
 		$retval = [];
 		foreach ( $res as $row ) {
@@ -243,16 +242,14 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'rev_id' => "MAX( 'rev_id' )" ] )
-			->from( 'flow_revision' )
-			->where( [ 'rev_type' => $this->getRevType() ] )
-			->andWhere( $this->preprocessSqlArray(
-				$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() )
-			) )
-			->groupBy( 'rev_type_id' )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+		$res = $dbr->select(
+			[ 'flow_revision' ],
+			[ 'rev_id' => "MAX( 'rev_id' )" ],
+			[ 'rev_type' => $this->getRevType() ] + $this->preprocessSqlArray(
+				$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
+			__METHOD__,
+			[ 'GROUP BY' => 'rev_type_id' ]
+		);
 
 		$revisionIds = [];
 		foreach ( $res as $row ) {
@@ -277,16 +274,21 @@ abstract class RevisionStorage extends DbStorage {
 			// WHERE rev_id IN (...)
 			$dbr = $this->dbFactory->getDB( DB_REPLICA );
 
-			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->select( '*' )
-				->from( 'flow_revision' )
-				->where( [ 'rev_id' => $revisionIds ] )
-				->caller( __METHOD__ );
+			$tables = [ 'flow_revision' ];
+			$joins  = [];
 			if ( $this->joinTable() ) {
-				$queryBuilder->join( $this->joinTable(), null, $this->joinField() );
+				$tables['rev'] = $this->joinTable();
+				$joins = [ 'rev' => [ 'JOIN', "rev_id = " . $this->joinField() ] ];
 			}
 
-			$res = $queryBuilder->fetchResultSet();
+			$res = $dbr->select(
+				$tables,
+				'*',
+				[ 'rev_id' => $revisionIds ],
+				__METHOD__,
+				[],
+				$joins
+			);
 
 			foreach ( $res as $row ) {
 				$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );

@@ -102,7 +102,6 @@ use Skin;
 use SkinTemplate;
 use stdClass;
 use WikiImporter;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikiPage;
 use XMLReader;
 
@@ -1953,25 +1952,32 @@ class Hooks implements
 		$rcTimeLimit = UUID::getComparisonUUID( strtotime( "-$wgRCMaxAge seconds" ) );
 
 		// get latest revision id for each topic
-		$result = $dbr->newSelectQueryBuilder()
-			->select( [
+		$result = $dbr->select(
+			[
+				'r' => 'flow_revision',
+				'flow_tree_revision',
+				'flow_workflow',
+			],
+			[
 				'revId' => 'MAX(r.rev_id)',
 				'userIp' => "tree_orig_user_ip",
 				'userId' => "tree_orig_user_id",
-			] )
-			->from( 'flow_revision', 'r' )
-			->join( 'flow_tree_revision', null, 'r.rev_type_id=tree_rev_descendant_id' )
-			->join( 'flow_workflow', null, 'r.rev_type_id=workflow_id' )
-			->where( [
+			],
+			array_merge( [
 				'tree_parent_id' => null,
 				'r.rev_type' => 'post',
 				'workflow_wiki' => WikiMap::getCurrentWikiId(),
-				$dbr->expr( 'workflow_id', '>', $rcTimeLimit->getBinary() )
-			] )
-			->andWhere( $userWhere )
-			->groupBy( 'r.rev_type_id' )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+				'workflow_id > ' . $dbr->addQuotes( $rcTimeLimit->getBinary() )
+			], $userWhere ),
+			__METHOD__,
+			[
+				'GROUP BY' => 'r.rev_type_id'
+			],
+			[
+				'flow_tree_revision' => [ 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ],
+				'flow_workflow' => [ 'INNER JOIN', 'r.rev_type_id=workflow_id' ],
+			]
+		);
 
 		if ( $result->numRows() < 1 ) {
 			return true;
@@ -1983,20 +1989,22 @@ class Hooks implements
 		}
 
 		// get non-moderated revisions (but include hidden ones for T180607)
-		$result = $dbr->newSelectQueryBuilder()
-			->select( [
+		$result = $dbr->select(
+			'flow_revision',
+			[
 				'topicId' => 'rev_type_id',
 				'revId' => 'rev_id'
-			] )
-			->from( 'flow_revision' )
-			->where( [
+			],
+			[
 				'rev_mod_state' => [ '', 'hide' ],
 				'rev_id' => array_keys( $revIds )
-			] )
-			->limit( $newLimit )
-			->orderBy( 'rev_type_id', SelectQueryBuilder::SORT_DESC )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			],
+			__METHOD__,
+			[
+				'LIMIT' => $newLimit,
+				'ORDER BY' => 'rev_type_id DESC'
+			]
+		);
 
 		// all topics previously found appear to be moderated
 		if ( $result->numRows() < 1 ) {
@@ -2017,11 +2025,11 @@ class Hooks implements
 			$userMap = [];
 			if ( $userIds ) {
 				$wikiDbr = $dbFactory->getWikiDB( DB_REPLICA );
-				$result = $wikiDbr->newSelectQueryBuilder()
-					->select( [ 'user_id', 'user_name' ] )
-					->from( 'user' )
-					->where( [ 'user_id' => array_values( $userIds ) ] )
-					->fetchResultSet();
+				$result = $wikiDbr->select(
+					'user',
+					[ 'user_id', 'user_name' ],
+					[ 'user_id' => array_values( $userIds ) ]
+				);
 				foreach ( $result as $r ) {
 					$userMap[$r->user_id] = $r->user_name;
 				}

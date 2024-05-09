@@ -16,7 +16,6 @@ use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class ContributionsQuery extends AbstractQuery {
 
@@ -191,48 +190,79 @@ class ContributionsQuery extends AbstractQuery {
 
 		switch ( $revisionClass ) {
 			case 'PostRevision':
-				return $dbr->newSelectQueryBuilder()
-					->select( '*' )
-					// revisions to find
-					->from( 'flow_revision' )
-					// resolve to post id
-					->join( 'flow_tree_revision', null, 'tree_rev_id = rev_id' )
-					// resolve to root post (topic title)
-					->join( 'flow_tree_node', null, [
-						'tree_descendant_id = tree_rev_descendant_id'
-						// the one with max tree_depth will be root,
-						// which will have the matching workflow id
-					] )
-					// resolve to workflow, to test if in correct wiki/namespace
-					->join( 'flow_workflow', null, 'workflow_id = tree_ancestor_id' )
-					->where( $conditions )
-					->limit( $limit )
-					->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC )
-					->caller( __METHOD__ )
-					->fetchResultSet();
+				return $dbr->select(
+					[
+						'flow_revision', // revisions to find
+						'flow_tree_revision', // resolve to post id
+						'flow_tree_node', // resolve to root post (topic title)
+						'flow_workflow', // resolve to workflow, to test if in correct wiki/namespace
+					],
+					[ '*' ],
+					$conditions,
+					__METHOD__,
+					[
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					],
+					[
+						'flow_tree_revision' => [
+							'INNER JOIN',
+							[ 'tree_rev_id = rev_id' ]
+						],
+						'flow_tree_node' => [
+							'INNER JOIN',
+							[
+								'tree_descendant_id = tree_rev_descendant_id',
+								// the one with max tree_depth will be root,
+								// which will have the matching workflow id
+							]
+						],
+						'flow_workflow' => [
+							'INNER JOIN',
+							[ 'workflow_id = tree_ancestor_id' ]
+						],
+					]
+				);
 
 			case 'Header':
-				return $dbr->newSelectQueryBuilder()
-					->select( '*' )
-					->from( 'flow_revision' )
-					->join( 'flow_workflow', null, [ 'workflow_id = rev_type_id', 'rev_type' => 'header' ] )
-					->where( $conditions )
-					->limit( $limit )
-					->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC )
-					->caller( __METHOD__ )
-					->fetchResultSet();
+				return $dbr->select(
+					[ 'flow_revision', 'flow_workflow' ],
+					[ '*' ],
+					$conditions,
+					__METHOD__,
+					[
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					],
+					[
+						'flow_workflow' => [
+							'INNER JOIN',
+							[ 'workflow_id = rev_type_id', 'rev_type' => 'header' ]
+						],
+					]
+				);
 
 			case 'PostSummary':
-				return $dbr->newSelectQueryBuilder()
-					->select( '*' )
-					->from( 'flow_revision' )
-					->join( 'flow_tree_node', null, [ 'tree_descendant_id = rev_type_id', 'rev_type' => 'post-summary' ] )
-					->join( 'flow_workflow', null, [ 'workflow_id = tree_ancestor_id' ] )
-					->where( $conditions )
-					->limit( $limit )
-					->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC )
-					->caller( __METHOD__ )
-					->fetchResultSet();
+				return $dbr->select(
+					[ 'flow_revision', 'flow_tree_node', 'flow_workflow' ],
+					[ '*' ],
+					$conditions,
+					__METHOD__,
+					[
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					],
+					[
+						'flow_tree_node' => [
+							'INNER JOIN',
+							[ 'tree_descendant_id = rev_type_id', 'rev_type' => 'post-summary' ]
+						],
+						'flow_workflow' => [
+							'INNER JOIN',
+							[ 'workflow_id = tree_ancestor_id' ]
+						]
+					]
+				);
 
 			default:
 				throw new InvalidArgumentException( 'Unsupported revision type ' . $revisionClass );

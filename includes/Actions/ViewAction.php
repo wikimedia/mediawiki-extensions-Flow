@@ -40,12 +40,12 @@ class ViewAction extends FlowAction {
 		}
 
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'cl_to', 'cl_sortkey' ] )
-			->from( 'categorylinks' )
-			->where( [ 'cl_from' => $id ] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+		$res = $dbr->select(
+			/* from */ 'categorylinks',
+			/* select */ [ 'cl_to', 'cl_sortkey' ],
+			/* conditions */ [ 'cl_from' => $id ],
+			__METHOD__
+		);
 
 		$categories = [];
 		foreach ( $res as $row ) {
