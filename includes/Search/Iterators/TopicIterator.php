@@ -92,19 +92,22 @@ class TopicIterator extends AbstractIterator {
 	 */
 	protected function query() {
 		if ( $this->orderByUUID ) {
-			$order = 'workflow_id';
+			$order = 'workflow_id ASC';
 		} else {
-			$order = 'workflow_last_update_timestamp';
+			$order = 'workflow_last_update_timestamp ASC';
 		}
-		return $this->dbr->newSelectQueryBuilder()
+		return $this->dbr->select(
+			[ 'flow_workflow' ],
 			// for root post (topic title), workflow_id is the same as its rev_type_id
-			->select( [ 'workflow_id', 'workflow_last_update_timestamp' ] )
-			->from( 'flow_workflow' )
-			->where( [ 'workflow_type' => 'topic' ] )
-			->andWhere( $this->conditions )
-			->orderBy( $order )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			[ 'workflow_id', 'workflow_last_update_timestamp' ],
+			[
+				'workflow_type' => 'topic'
+			] + $this->conditions,
+			__METHOD__,
+			[
+				'ORDER BY' => $order,
+			]
+		);
 	}
 
 	/**
