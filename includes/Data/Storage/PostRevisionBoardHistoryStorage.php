@@ -14,17 +14,18 @@ class PostRevisionBoardHistoryStorage extends BoardHistoryStorage {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
-		$res = $dbr->newSelectQueryBuilder()
-			->select( '*' )
-			->from( 'flow_topic_list' )
-			->join( 'flow_tree_node', null, 'topic_id = tree_ancestor_id' )
-			->join( 'flow_tree_revision', null, 'tree_descendant_id = tree_rev_descendant_id' )
-			->join( 'flow_revision', null, 'tree_rev_id = rev_id' )
-			->where( [ 'rev_type' => 'post' ] )
-			->andWhere( $attributes )
-			->options( $options )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+		$res = $dbr->select(
+			[ 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ],
+			[ '*' ],
+			array_merge( [
+				'rev_type' => 'post',
+				'topic_id = tree_ancestor_id',
+				'tree_descendant_id = tree_rev_descendant_id',
+				'tree_rev_id = rev_id',
+			], $attributes ),
+			__METHOD__,
+			$options
+		);
 
 		$retval = [];
 		foreach ( $res as $row ) {

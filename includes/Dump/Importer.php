@@ -372,12 +372,12 @@ class Importer {
 	private function checkTransWikiMode( $boardWorkflowId, $title ) {
 		/** @var DbFactory $dbFactory */
 		$dbFactory = Container::get( 'db.factory' );
-		$workflowExist = (bool)$dbFactory->getDB( DB_PRIMARY )->newSelectQueryBuilder()
-			->select( 'workflow_id' )
-			->from( 'flow_workflow' )
-			->where( [ 'workflow_id' => UUID::create( $boardWorkflowId )->getBinary() ] )
-			->caller( __METHOD__ )
-			->fetchField();
+		$workflowExist = (bool)$dbFactory->getDB( DB_PRIMARY )->selectField(
+			'flow_workflow',
+			'workflow_id',
+			[ 'workflow_id' => UUID::create( $boardWorkflowId )->getBinary() ],
+			__METHOD__
+		);
 
 		if ( $workflowExist ) {
 			$this->importer->debug( "$title will be imported in trans-wiki mode" );

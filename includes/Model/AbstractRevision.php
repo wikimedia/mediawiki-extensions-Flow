@@ -897,20 +897,23 @@ abstract class AbstractRevision {
 		}
 		$namespace = $title->getNamespace();
 
+		$conditions = [
+			'rc_title' => $title->getDBkey(),
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $namespace
+		];
+		$options = [ 'USE INDEX' => [ 'recentchanges' => 'rc_timestamp' ] ];
+
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$rcQuery = RecentChange::getQueryInfo();
-		$rows = $dbr->newSelectQueryBuilder()
-			->tables( $rcQuery['tables'] )
-			->fields( $rcQuery['fields'] )
-			->where( [
-				'rc_title' => $title->getDBkey(),
-				'rc_timestamp' => $timestamp,
-				'rc_namespace' => $namespace,
-			] )
-			->useIndex( [ 'recentchanges' => 'rc_timestamp' ] )
-			->joinConds( $rcQuery['joins'] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+		$rows = $dbr->select(
+			$rcQuery['tables'],
+			$rcQuery['fields'],
+			$conditions,
+			__METHOD__,
+			$options,
+			$rcQuery['joins']
+		);
 
 		if ( $rows->numRows() === 1 ) {
 			return RecentChange::newFromRow( $rows->fetchObject() );

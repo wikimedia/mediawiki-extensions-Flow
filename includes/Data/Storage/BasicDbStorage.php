@@ -156,13 +156,13 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	protected function doFindQuery( array $preprocessedAttributes, array $options = [] ) {
-		return $this->dbFactory->getDB( DB_REPLICA )->newSelectQueryBuilder()
-			->select( '*' )
-			->from( $this->table )
-			->where( $preprocessedAttributes )
-			->caller( __METHOD__ . " ({$this->table})" )
-			->options( $options )
-			->fetchResultSet();
+		return $this->dbFactory->getDB( DB_REPLICA )->select(
+			$this->table,
+			'*',
+			$preprocessedAttributes,
+			__METHOD__ . " ({$this->table})",
+			$options
+		);
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
