@@ -86,8 +86,7 @@ class PostRevision extends AbstractRevision {
 	 * via a workflow, ...
 	 *
 	 * The only reasons we have this method are for creating root posts
-	 * (called from PostRevision->create), and so when failing to load a
-	 * post, we can create a stub object.
+	 * (called from PostRevision->create).
 	 *
 	 * @param UUID $uuid
 	 * @param User $user

@@ -7,7 +7,6 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use FormatJson;
-use MediaWiki\User\User;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
@@ -128,34 +127,10 @@ class RootPostLoader {
 		}
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
-			// convert string uuid's into UUID objects
-			/** @var UUID[] $missingUUID */
-			$missingUUID = array_map( [ UUID::class, 'create' ], $missing );
-
-			// we'll need to know parents to add stub post correctly in post hierarchy
-			$parents = $this->treeRepo->fetchParentMap( $missingUUID );
-			$missingParents = array_diff( $missing, array_keys( $parents ) );
-			if ( $missingParents ) {
-				// if we can't fetch a post's original position in the tree
-				// hierarchy, we can't create a stub post to display, so bail
-				throw new InvalidDataException(
-					'Missing Posts & parents: ' . json_encode( $missingParents ),
-					'fail-load-data'
-				);
-			}
-
-			foreach ( $missingUUID as $postId ) {
-				$content = wfMessage( 'flow-stub-post-content' )->text();
-				$username = wfMessage( 'flow-system-usertext' )->text();
-				$user = User::newFromName( $username );
-
-				// create a stub post instead of failing completely
-				$post = PostRevision::newFromId( $postId, $user, $content, 'wikitext' );
-				$post->setReplyToId( $parents[$postId->getAlphadecimal()] );
-				$posts[$postId->getAlphadecimal()] = $post;
-
-				wfDebugLog( 'Flow', __METHOD__ . ': Missing posts: ' . FormatJson::encode( $missing ) );
-			}
+			throw new InvalidDataException(
+				'Missing posts: ' . FormatJson::encode( $missing ),
+				'fail-load-data'
+			);
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );

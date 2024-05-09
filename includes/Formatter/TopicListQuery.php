@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
@@ -12,7 +13,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\WatchedTopicItems;
-use MediaWiki\User\User;
+use FormatJson;
 
 class TopicListQuery extends AbstractQuery {
 
@@ -55,15 +56,10 @@ class TopicListQuery extends AbstractQuery {
 			array_keys( $posts )
 		);
 		if ( $missing ) {
-			$needed = [];
-			foreach ( $missing as $alpha ) {
-				wfDebugLog( 'Flow', __METHOD__ .
-					': Failed to load latest revision for post ID ' . $alpha );
-
-				// convert alpha back into UUID object
-				$needed[] = $allPostIds[$alpha];
-			}
-			$posts += $this->createFakePosts( $needed );
+			throw new InvalidDataException(
+				'Failed to load latest revision for post IDs: ' . FormatJson::encode( $missing ),
+				'fail-load-data'
+			);
 		}
 
 		$this->loadMetadataBatch( $posts );
@@ -228,31 +224,5 @@ class TopicListQuery extends AbstractQuery {
 	 */
 	protected function getCurrentRevision( AbstractRevision $revision ) {
 		return $revision;
-	}
-
-	/**
-	 * @param UUID[] $missing
-	 * @return PostRevision[]
-	 */
-	protected function createFakePosts( array $missing ) {
-		$parents = $this->treeRepository->fetchParentMap( $missing );
-		$posts = [];
-		foreach ( $missing as $uuid ) {
-			$alpha = $uuid->getAlphadecimal();
-			if ( !isset( $parents[$alpha] ) ) {
-				wfDebugLog( 'Flow', __METHOD__ . ": Unable not locate parent for postid $alpha" );
-				continue;
-			}
-			$content = wfMessage( 'flow-stub-post-content' )->text();
-			$username = wfMessage( 'flow-system-usertext' )->text();
-			$user = User::newFromName( $username );
-
-			// create a stub post instead of failing completely
-			$post = PostRevision::newFromId( $uuid, $user, $content, 'wikitext' );
-			$post->setReplyToId( $parents[$alpha] );
-			$posts[$alpha] = $post;
-		}
-
-		return $posts;
 	}
 }
