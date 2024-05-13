@@ -138,12 +138,12 @@ class TreeRepository {
 				 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
 				 */
 				if ( $e->errno === 1137 ) {
-					$rows = $dbw->select(
-						$this->tableName,
-						[ 'tree_depth', 'tree_ancestor_id' ],
-						[ 'tree_descendant_id' => $ancestor->getBinary() ],
-						__METHOD__
-					);
+					$rows = $dbw->newSelectQueryBuilder()
+						->select( [ 'tree_depth', 'tree_ancestor_id' ] )
+						->from( $this->tableName )
+						->where( [ 'tree_descendant_id' => $ancestor->getBinary() ] )
+						->caller( __METHOD__ )
+						->fetchResultSet();
 
 					foreach ( $rows as $row ) {
 						$dbw->newInsertQueryBuilder()
@@ -241,14 +241,14 @@ class TreeRepository {
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
-		$res = $dbr->select(
-			$this->tableName,
-			[ 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ],
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ] )
+			->from( $this->tableName )
+			->where( [
 				'tree_descendant_id' => $missingValues,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		if ( $res->numRows() === 0 ) {
 			return $cacheValues;
@@ -407,14 +407,14 @@ class TreeRepository {
 	}
 
 	public function fetchSubtreeNodeListFromDb( array $roots ) {
-		$res = $this->dbFactory->getDB( DB_REPLICA )->select(
-			$this->tableName,
-			[ 'tree_ancestor_id', 'tree_descendant_id' ],
-			[
+		$res = $this->dbFactory->getDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'tree_ancestor_id', 'tree_descendant_id' ] )
+			->from( $this->tableName )
+			->where( [
 				'tree_ancestor_id' => UUID::convertUUIDs( $roots ),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$nodes = [];
 		foreach ( $res as $node ) {
 			$ancestor = UUID::create( $node->tree_ancestor_id );
@@ -448,15 +448,15 @@ class TreeRepository {
 	public function fetchParentMapFromDb( array $nodes ) {
 		// Find out who the parent is for those nodes
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
-		$res = $dbr->select(
-			$this->tableName,
-			[ 'tree_ancestor_id', 'tree_descendant_id' ],
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'tree_ancestor_id', 'tree_descendant_id' ] )
+			->from( $this->tableName )
+			->where( [
 				'tree_descendant_id' => UUID::convertUUIDs( $nodes ),
 				'tree_depth' => 1,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$result = [];
 		foreach ( $res as $node ) {
 			if ( isset( $result[$node->tree_descendant_id] ) ) {

@@ -13,6 +13,7 @@ use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Traversable;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikitextContent;
 
 /**
@@ -213,22 +214,19 @@ class Converter {
 	 * @return Title|null
 	 */
 	protected function getPageMovedFrom( Title $title ) {
-		$row = $this->dbw->selectRow(
-			[ 'logging', 'page' ],
-			[ 'log_namespace', 'log_title' ],
-			[
+		$row = $this->dbw->newSelectQueryBuilder()
+			->select( [ 'log_namespace', 'log_title' ] )
+			->from( 'logging' )
+			->join( 'page', null, 'log_page = page_id' )
+			->where( [
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 				'log_type' => 'move',
 				'log_actor' => $this->user->getActorId()
-			],
-			__METHOD__,
-			[
-				'LIMIT' => 1,
-				'ORDER BY' => 'log_timestamp DESC'
-			],
-			[ 'page' => [ 'JOIN', 'log_page = page_id' ] ]
-		);
+			] )
+			->caller( __METHOD__ )
+			->orderBy( 'log_timestamp', SelectQueryBuilder::SORT_DESC )
+			->fetchRow();
 
 		// The page has never been moved or the most recent move was not by our user
 		if ( !$row ) {

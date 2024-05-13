@@ -62,16 +62,16 @@ class WatchedTopicItems {
 			return $result;
 		}
 
-		$res = $this->watchListDb->select(
-			[ 'watchlist' ],
-			[ 'wl_title' ],
-			[
+		$res = $this->watchListDb->newSelectQueryBuilder()
+			->select( 'wl_title' )
+			->from( 'watchlist' )
+			->where( [
 				'wl_user' => $this->user->getId(),
 				'wl_namespace' => NS_TOPIC,
 				'wl_title' => $queryTitles
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		foreach ( $res as $row ) {
 			$result[strtolower( $row->wl_title )] = true;
 		}
