@@ -74,6 +74,7 @@ use MediaWiki\Page\Hook\RevisionUndeletedHook;
 use MediaWiki\Page\Hook\ShowMissingArticleHook;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\DeletedContribsPager;
+use MediaWiki\Pager\IndexPager;
 use MediaWiki\Permissions\Hook\GetUserPermissionsErrorsHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
@@ -863,7 +864,7 @@ class Hooks implements
 	 * @see onContributionsQuery
 	 *
 	 * @param array &$data
-	 * @param ContribsPager|DeletedContribsPager $pager
+	 * @param IndexPager $pager
 	 * @param string $offset
 	 * @param int $limit
 	 * @param bool $descending
@@ -871,6 +872,13 @@ class Hooks implements
 	 * @return bool
 	 */
 	private static function getContributionsQuery( &$data, $pager, $offset, $limit, $descending, $rangeOffsets = [] ) {
+		if (
+			!( $pager instanceof ContribsPager ) &&
+			!( $pager instanceof DeletedContribsPager )
+		) {
+			return false;
+		}
+
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
 			/** @var Formatter\ContributionsQuery $query */
