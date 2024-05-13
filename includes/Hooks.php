@@ -896,13 +896,7 @@ class Hooks implements
 	/**
 	 * Adds Flow contributions to the DeletedContributions special page
 	 *
-	 * @param array &$data an array of results of all contribs queries, to be
-	 *  merged to form all contributions data
-	 * @param ContribsPager|DeletedContribsPager $pager Object hooked into
-	 * @param string $offset Index offset, inclusive
-	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return bool
+	 * @inheritDoc
 	 */
 	public function onDeletedContribsPager__reallyDoQuery( &$data, $pager, $offset, $limit, $descending ) {
 		return self::getContributionsQuery( $data, $pager, $offset, $limit, $descending, [ $pager->getEndOffset() ] );
@@ -911,13 +905,7 @@ class Hooks implements
 	/**
 	 * Adds Flow contributions to the Contributions special page
 	 *
-	 * @param array &$data an array of results of all contribs queries, to be
-	 *  merged to form all contributions data
-	 * @param ContribsPager $pager Object hooked into
-	 * @param string $offset Index offset, inclusive
-	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return bool
+	 * @inheritDoc
 	 */
 	public function onContribsPager__reallyDoQuery( &$data, $pager, $offset, $limit, $descending ) {
 		// Flow has nothing to do with the tag filter, so ignore tag searches
