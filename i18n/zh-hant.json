@@ -25,7 +25,9 @@
 			"Winston Sung",
 			"Xiplus",
 			"飞舞回堂前",
-			"捍粵者"
+			"捍粵者",
+			"Cookai1205",
+			"H78c67c"
 		]
 	},
 	"enablestructureddiscussions": "啟用結構式討論",
@@ -70,7 +72,7 @@
 	"flow-board-description-can-not-edit": "不可編輯",
 	"flow-board-collapse-description": "隱藏描述",
 	"flow-board-expand-description": "顯示描述",
-	"flow-topic-collapse-siderail": "全部寬度閱讀",
+	"flow-topic-collapse-siderail": "全螢幕寬度閱讀",
 	"flow-topic-expand-siderail": "固定寬度閱讀",
 	"flow-edit-header-link": "編輯描述",
 	"flow-post-moderated-toggle-hide-show": "顯示已由$2{{GENDER:$1|隱藏}}的貼文",
