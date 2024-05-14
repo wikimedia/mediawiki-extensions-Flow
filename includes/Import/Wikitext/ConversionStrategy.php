@@ -211,17 +211,15 @@ class ConversionStrategy implements IConversionStrategy {
 
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$batch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch( $this->noConvertTemplates );
-		$result = $dbr->select(
-			'templatelinks',
-			'tl_from',
-			[
+		return (bool)$dbr->newSelectQueryBuilder()
+			->select( 'tl_from' )
+			->from( 'templatelinks' )
+			->where( [
 				'tl_from' => $sourceTitle->getArticleID(),
 				$batch->constructSet( 'tl', $dbr )
-			],
-			__METHOD__,
-			[ 'LIMIT' => 1 ]
-		);
-		return $result->numRows() > 0;
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
 	}
 
 	/**
