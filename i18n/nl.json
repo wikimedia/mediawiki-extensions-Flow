@@ -33,6 +33,7 @@
 			"TBloemink"
 		]
 	},
+	"content-model-flow-board": "Gestructureerd discussiebord",
 	"enablestructureddiscussions": "Gestructureerde Discussies inschakelen",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} volgen van nieuwe activiteit op \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|U}} volgt de pagina \"$1\" niet meer",
@@ -88,6 +89,7 @@
 	"flow-hide-post-content": "Dit bericht is {{GENDER:$1|verborgen}} door $1 ([$2 geschiedenis])",
 	"flow-hide-title-content": "Dit onderwerp is {{GENDER:$1|verborgen}} door $1",
 	"flow-hide-header-content": "{{GENDER:$1|Verborgen}} door $2",
+	"flow-invalid-topic-did-you-mean": "Bedoelde u “[[$1]]”?",
 	"flow-delete-post-content": "Dit bericht is {{GENDER:$1|verwijderd}} door $1 ([$2 geschiedenis])",
 	"flow-delete-title-content": "Dit onderwerp is {{GENDER:$1|verwijderd}} door $1",
 	"flow-delete-header-content": "{{GENDER:$1|Verwijderd}} door $2",
