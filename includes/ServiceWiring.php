@@ -8,6 +8,7 @@ use Flow\FlowActions;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
+use Flow\TalkpageManager;
 use Flow\TemplateHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
@@ -92,6 +93,10 @@ return [
 			$services->getService( 'FlowPostRevisionStorage' ),
 			$services->getService( 'FlowTreeRepository' )
 		);
+	},
+
+	'FlowTalkpageManager' => static function ( MediaWikiServices $services ): TalkpageManager {
+		return new TalkpageManager( $services->getUserGroupManager() );
 	},
 
 	'FlowTemplateHandler' => static function ( MediaWikiServices $services ): TemplateHelper {
