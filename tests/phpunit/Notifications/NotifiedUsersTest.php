@@ -2,11 +2,11 @@
 
 namespace Flow\Tests;
 
-use EchoNotificationController;
 use ExtensionRegistry;
 use Flow\Container;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
+use MediaWiki\Extension\Notifications\Controller\NotificationController;
 use MediaWiki\User\User;
 
 /**
@@ -110,7 +110,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	protected function assertNotifiedUser( array $events, User $notifiedUser, User $notNotifiedUser ) {
 		$users = [];
 		foreach ( $events as $event ) {
-			$iterator = EchoNotificationController::getUsersToNotifyForEvent( $event );
+			$iterator = NotificationController::getUsersToNotifyForEvent( $event );
 			foreach ( $iterator as $user ) {
 				$users[] = $user;
 			}
