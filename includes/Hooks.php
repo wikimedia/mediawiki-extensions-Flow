@@ -224,7 +224,7 @@ class Hooks implements
 	 */
 	public static function getOccupationController() {
 		if ( self::$occupationController === null ) {
-			self::$occupationController = new TalkpageManager( MediaWikiServices::getInstance()->getUserGroupManager() );
+			self::$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 		}
 		return self::$occupationController;
 	}
