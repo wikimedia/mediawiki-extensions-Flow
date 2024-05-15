@@ -423,7 +423,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		$topic = $this->findTopicTitle();
 		$title = $this->workflow->getOwnerTitle();
 		$convertedTitle = Utils::getConvertedTitle( $title );
-		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $convertedTitle ) );
+		$out->setPageTitleMsg( $out->msg( 'flow-topic-first-heading', $convertedTitle ) );
 		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
 			if ( $this->action === 'undo-edit-topic-summary' ) {
 				$key = 'flow-undo-edit-topic-summary';

@@ -1057,7 +1057,7 @@ class TopicBlock extends AbstractBlock {
 
 		$title = $this->workflow->getOwnerTitle();
 		$convertedTitle = Utils::getConvertedTitle( $title );
-		$out->setPageTitle( $out->msg( 'flow-topic-first-heading', $convertedTitle ) );
+		$out->setPageTitleMsg( $out->msg( 'flow-topic-first-heading', $convertedTitle ) );
 		if ( $this->permissions->isAllowed( $topic, 'view' ) ) {
 			if ( $this->action === 'undo-edit-post' ) {
 				$key = 'flow-undo-edit-post';
