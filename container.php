@@ -105,6 +105,10 @@ $c['flowcache'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowCache' );
 };
 
+$c['flowtalkpagemanager'] = static function ( $c ) {
+	return MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+};
+
 // Batched username loader
 $c['repository.username'] = static function ( $c ) {
 	return new Flow\Repository\UserNameBatch(
@@ -644,7 +648,9 @@ $c['factory.loader.workflow'] = static function ( $c ) {
 // Initialized in Flow\Hooks to facilitate only loading the flow container
 // when flow is specifically requested to run. Extension initialization
 // must always happen before calling flow code.
-$c['occupation_controller'] = Flow\Hooks::getOccupationController();
+$c['occupation_controller'] = static function ( $c ) {
+	return Flow\Hooks::getOccupationController();
+};
 
 $c['controller.opt_in'] = static function ( $c ) {
 	$archiveNameHelper = new Flow\Import\ArchiveNameHelper();
