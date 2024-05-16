@@ -33,6 +33,7 @@
 			"TBloemink"
 		]
 	},
+	"content-model-flow-board": "Gestructureerd discussiebord",
 	"enablestructureddiscussions": "Gestructureerde Discussies inschakelen",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Stop}} volgen van nieuwe activiteit op \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|U}} volgt de pagina \"$1\" niet meer",

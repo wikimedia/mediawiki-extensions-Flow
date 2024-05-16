@@ -37,9 +37,11 @@
 			"Sethladan",
 			"Themasterriot",
 			"Tiberius1701",
-			"Vfrico"
+			"Vfrico",
+			"No se"
 		]
 	},
+	"content-model-flow-board": "Panel de debates estructurados",
 	"enablestructureddiscussions": "Activar discusiones estructuradas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Dejar}} de vigilar nueva actividad en «$1»",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "Ya no {{GENDER:$3|vigilas}} la página «$1»",
