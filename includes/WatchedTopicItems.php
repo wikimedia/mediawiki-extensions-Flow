@@ -53,7 +53,7 @@ class WatchedTopicItems {
 				if ( isset( $this->overrides[$obj->getNamespace()][$key] ) ) {
 					$result[strtolower( $key )] = true;
 				} else {
-					$queryTitles[$key] = $obj->getDBkey();
+					$queryTitles[] = $obj->getDBkey();
 				}
 			}
 		}
