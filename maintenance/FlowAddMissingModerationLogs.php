@@ -72,13 +72,13 @@ class FlowAddMissingModerationLogs extends LoggedUpdateMaintenance {
 		$start = $this->getOption( 'start' );
 		$startId = UUID::create( $start );
 		$rowIterator->addConditions( [
-			'rev_id > ' . $dbw->addQuotes( $startId->getBinary() ),
+			$dbw->expr( 'rev_id', '>', $startId->getBinary() ),
 		] );
 
 		$stop = $this->getOption( 'stop' );
 		$stopId = UUID::create( $stop );
 		$rowIterator->addConditions( [
-			'rev_id < ' . $dbw->addQuotes( $stopId->getBinary() ),
+			$dbw->expr( 'rev_id', '<', $stopId->getBinary() ),
 		] );
 
 		$rowIterator->setCaller( __METHOD__ );

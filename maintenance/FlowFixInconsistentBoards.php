@@ -108,7 +108,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 			] );
 		} else {
 			$iterator->addConditions( [
-				'page_namespace != ' . NS_TOPIC,
+				$wikiDbw->expr( 'page_namespace', '!=', NS_TOPIC ),
 			] );
 		}
 

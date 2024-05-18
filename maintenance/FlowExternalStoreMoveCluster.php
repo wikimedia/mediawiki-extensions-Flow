@@ -16,6 +16,8 @@ use RowUpdateGenerator;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -93,11 +95,12 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 
 		$clusterConditions = [];
 		foreach ( $from as $cluster ) {
-			$clusterConditions[] = $schema['content'] . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
+			$clusterConditions[] = $dbr->expr( $schema['content'], IExpression::LIKE,
+				new LikeValue( "DB://$cluster/", $dbr->anyString() ) );
 		}
 		$iterator->addConditions( [
 			$schema['wiki'] => WikiMap::getCurrentWikiId(),
-			$schema['flags'] . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+			$dbr->expr( $schema['flags'], IExpression::LIKE, new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() ) ),
 			$dbr->makeList( $clusterConditions, LIST_OR ),
 		] );
 
