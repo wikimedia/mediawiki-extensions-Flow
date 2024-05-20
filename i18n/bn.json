@@ -12,7 +12,8 @@
 			"Tauhid16",
 			"Yahya",
 			"আফতাবুজ্জামান",
-			"Aishik Rehman"
+			"Aishik Rehman",
+			"MdsShakil"
 		]
 	},
 	"enablestructureddiscussions": "কাঠামোবদ্ধ আলোচনা সক্রিয় করুন",
@@ -73,6 +74,7 @@
 	"flow-reply-topic-title-placeholder": "\"$1\"-এ উত্তর দিন",
 	"flow-reply-link": "{{GENDER:$1|উত্তর}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|ধন্যবাদ}}}}",
+	"flow-history-action-suppress-post": "গোপন",
 	"flow-history-action-delete-post": "অপসারণ",
 	"flow-history-action-hide-post": "আড়াল করো",
 	"flow-history-action-undelete-post": "পুনরুদ্ধার",
