@@ -738,7 +738,6 @@ class Hooks implements
 		foreach ( $permissions as $permission ) {
 			$names[] = "msg:flow-$permission-usertext";
 		}
-		$names[] = 'msg:flow-system-usertext';
 
 		// Reserve the bot account we use during content model changes & LQT conversion
 		$names[] = FLOW_TALK_PAGE_MANAGER_USER;
