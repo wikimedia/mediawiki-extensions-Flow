@@ -70,28 +70,7 @@ $c['lightncandy'] = static function ( $c ) {
 };
 
 $c['templating'] = static function ( $c ) {
-	global $wgArticlePath;
-
-	$wikiLinkFixer = new Flow\Parsoid\Fixer\WikiLinkFixer(
-		MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch()
-	);
-	$badImageRemover = new Flow\Parsoid\Fixer\BadImageRemover(
-		[ MediaWikiServices::getInstance()->getBadFileLookup(), 'isBadFile' ]
-	);
-	$baseHrefFixer = new Flow\Parsoid\Fixer\BaseHrefFixer( $wgArticlePath );
-	$extLinkFixer = new Flow\Parsoid\Fixer\ExtLinkFixer();
-	$contextFixer = new Flow\Parsoid\ContentFixer(
-		$wikiLinkFixer,
-		$badImageRemover,
-		$baseHrefFixer,
-		$extLinkFixer
-	);
-
-	return new Flow\Templating(
-		$c['repository.username'],
-		$contextFixer,
-		$c['permissions']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTemplating' );
 };
 
 // New Storage Impl

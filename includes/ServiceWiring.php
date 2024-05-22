@@ -9,12 +9,18 @@ use Flow\DbFactory;
 use Flow\FlowActions;
 use Flow\Formatter\CategoryViewerFormatter;
 use Flow\Notifications\Controller as NotificationsController;
+use Flow\Parsoid\ContentFixer;
+use Flow\Parsoid\Fixer\BadImageRemover;
+use Flow\Parsoid\Fixer\BaseHrefFixer;
+use Flow\Parsoid\Fixer\ExtLinkFixer;
+use Flow\Parsoid\Fixer\WikiLinkFixer;
 use Flow\Repository\TreeRepository;
 use Flow\Repository\UserName\OneStepUserNameQuery;
 use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\TalkpageManager;
 use Flow\TemplateHelper;
+use Flow\Templating;
 use Flow\UrlGenerator;
 use Flow\WatchedTopicItems;
 use MediaWiki\Config\ServiceOptions;
@@ -133,6 +139,29 @@ return [
 		return new TemplateHelper(
 			__DIR__ . '/../handlebars',
 			$services->getMainConfig()->get( 'FlowServerCompileTemplates' )
+		);
+	},
+
+	'FlowTemplating' => static function ( MediaWikiServices $services ): Templating {
+		global $wgArticlePath;
+
+		$wikiLinkFixer = new WikiLinkFixer(
+			$services->getLinkBatchFactory()->newLinkBatch()
+		);
+		$badImageRemover = new BadImageRemover(
+			[ $services->getBadFileLookup(), 'isBadFile' ]
+		);
+		$contextFixer = new ContentFixer(
+			$wikiLinkFixer,
+			$badImageRemover,
+			new BaseHrefFixer( $wgArticlePath ),
+			new ExtLinkFixer()
+		);
+
+		return new Templating(
+			$services->getService( 'FlowUserNameRepository' ),
+			$contextFixer,
+			$services->getService( 'FlowPermissions' )
 		);
 	},
 
