@@ -60,11 +60,7 @@ $c['url_generator'] = static function ( $c ) {
 };
 
 $c['watched_items'] = static function ( $c ) {
-	return new Flow\WatchedTopicItems(
-		$c['user'],
-		MediaWikiServices::getInstance()->getConnectionProvider()
-			->getReplicaDatabase( false, 'watchlist' )
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowWatchedTopicItems' );
 };
 
 $c['permissions'] = static function ( $c ) {
@@ -111,12 +107,7 @@ $c['flowtalkpagemanager'] = static function ( $c ) {
 
 // Batched username loader
 $c['repository.username'] = static function ( $c ) {
-	return new Flow\Repository\UserNameBatch(
-		new Flow\Repository\UserName\OneStepUserNameQuery(
-			$c['db.factory'],
-			MediaWikiServices::getInstance()->getHideUserUtils()
-		)
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowUserNameRepository' );
 };
 $c['collection.cache'] = static function ( $c ) {
 	return new Flow\Collection\CollectionCache();
@@ -697,9 +688,7 @@ $c['query.categoryviewer'] = static function ( $c ) {
 	);
 };
 $c['formatter.categoryviewer'] = static function ( $c ) {
-	return new Flow\Formatter\CategoryViewerFormatter(
-		$c['permissions']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowCategoryViewerFormatter' );
 };
 $c['query.singlepost'] = static function ( $c ) {
 	return new Flow\Formatter\SinglePostQuery(
@@ -1053,7 +1042,7 @@ $c['importer'] = static function ( $c ) {
 };
 
 $c['listener.editcount'] = static function ( $c ) {
-	return new \Flow\Data\Listener\EditCountListener( $c['flow_actions'] );
+	return MediaWikiServices::getInstance()->getService( 'FlowEditCountListener' );
 };
 
 $c['formatter.undoedit'] = static function ( $c ) {
