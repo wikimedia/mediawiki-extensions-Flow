@@ -588,7 +588,7 @@ $c['loader.root_post'] = static function ( $c ) {
 // Queue of callbacks to run by DeferredUpdates, but only
 // on successful commit
 $c['deferred_queue'] = static function ( $c ) {
-	return new SplQueue;
+	return MediaWikiServices::getInstance()->getService( 'FlowDeferredQueue' );
 };
 
 $c['factory.loader.workflow'] = static function ( $c ) {

@@ -121,6 +121,12 @@ return [
 		return LoggerFactory::getInstance( 'Flow' );
 	},
 
+	'FlowDeferredQueue' => static function ( MediaWikiServices $services ): SplQueue {
+		// Queue of callbacks to run by DeferredUpdates, but only
+		// on successful commit
+		return new SplQueue;
+	},
+
 	'FlowEditCountListener' => static function ( MediaWikiServices $services ): EditCountListener {
 		return new EditCountListener(
 			$services->getService( 'FlowActions' )
