@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use MediaWiki\Title\Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Flow\Container
@@ -24,7 +25,9 @@ class ContainerTest extends FlowTestCase {
 
 	public static function objectManagerKeyProvider() {
 		$tests = [];
-		foreach ( array_unique( Container::get( 'storage.manager_list' ) ) as $key ) {
+		$storage = Container::get( 'storage' );
+		$managerList = TestingAccessWrapper::newFromObject( $storage )->classMap;
+		foreach ( array_unique( $managerList ) as $key ) {
 			$tests[] = [ $key ];
 		}
 		return $tests;
