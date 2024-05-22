@@ -80,7 +80,7 @@
 	"abusefilter-edit-builder-vars-board-id": "Идентификатор страницы доски «Структурированных обсуждений»",
 	"abusefilter-edit-builder-vars-board-namespace": "Пространство имён доски «Структурированных обсуждений»",
 	"abusefilter-edit-builder-vars-board-title": "Заголовок (без пространства имён) доски «Структурированных обсуждений»",
-	"abusefilter-edit-builder-vars-board-prefixedtitle": "Полный заголовок доски «Структурированных обсуждений»",
+	"abusefilter-edit-builder-vars-board-prefixedtitle": "Полный заголовок доски «Структурированных обсуждений» ($1)",
 	"flow-user-moderated": "Участник промодерирован",
 	"flow-board-header-browse-topics-link": "Обзор тем",
 	"flow-board-header": "Об этой доске",
