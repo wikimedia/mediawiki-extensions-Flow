@@ -54,9 +54,7 @@ $c['repository.tree'] = static function ( $c ) {
 };
 
 $c['url_generator'] = static function ( $c ) {
-	return new Flow\UrlGenerator(
-		$c['storage.workflow.mapper']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowUrlGenerator' );
 };
 
 $c['watched_items'] = static function ( $c ) {
@@ -114,10 +112,7 @@ $c['collection.cache'] = static function ( $c ) {
 };
 // Individual workflow instances
 $c['storage.workflow.mapper'] = static function ( $c ) {
-	return CachingObjectMapper::model(
-		\Flow\Model\Workflow::class,
-		[ 'workflow_id' ]
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowStorage.WorkflowMapper' );
 };
 $c['storage.workflow'] = static function ( $c ) {
 	$workflowBackend = new BasicDbStorage(

@@ -2,6 +2,7 @@
 
 use Flow\Data\FlowObjectCache;
 use Flow\Data\Listener\EditCountListener;
+use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
@@ -14,6 +15,7 @@ use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\TalkpageManager;
 use Flow\TemplateHelper;
+use Flow\UrlGenerator;
 use Flow\WatchedTopicItems;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
@@ -114,6 +116,15 @@ return [
 		);
 	},
 
+	'FlowStorage.WorkflowMapper' => static function (
+		MediaWikiServices $services
+	): CachingObjectMapper {
+		return CachingObjectMapper::model(
+			\Flow\Model\Workflow::class,
+			[ 'workflow_id' ]
+		);
+	},
+
 	'FlowTalkpageManager' => static function ( MediaWikiServices $services ): TalkpageManager {
 		return new TalkpageManager( $services->getUserGroupManager() );
 	},
@@ -130,6 +141,12 @@ return [
 		return new TreeRepository(
 			$services->getService( 'FlowDbFactory' ),
 			$services->getService( 'FlowCache' )
+		);
+	},
+
+	'FlowUrlGenerator' => static function ( MediaWikiServices $services ): UrlGenerator {
+		return new UrlGenerator(
+			$services->getService( 'FlowStorage.WorkflowMapper' )
 		);
 	},
 
