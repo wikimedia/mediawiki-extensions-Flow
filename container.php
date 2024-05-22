@@ -333,16 +333,6 @@ $c['storage.post_summary.mapper'] = static function ( $c ) {
 		[ 'rev_id' ]
 	);
 };
-$c['storage.post_summary.listeners.username'] = static function ( $c ) {
-	return new Flow\Data\Listener\UserNameListener(
-		$c['repository.username'],
-		[
-			'rev_user_id' => 'rev_user_wiki',
-			'rev_mod_user_id' => 'rev_mod_user_wiki',
-			'rev_edit_user_id' => 'rev_edit_user_wiki'
-		]
-	);
-};
 $c['storage.post_summary'] = static function ( $c ) {
 	global $wgFlowExternalStore;
 	$postSummaryBackend = new PostSummaryRevisionStorage(
@@ -376,9 +366,17 @@ $c['storage.post_summary'] = static function ( $c ) {
 		$postSummaryPrimaryIndex,
 		$postSummaryTopicLookupIndex,
 	];
+	$userNameListener = new Flow\Data\Listener\UserNameListener(
+		$c['repository.username'],
+		[
+			'rev_user_id' => 'rev_user_wiki',
+			'rev_mod_user_id' => 'rev_mod_user_wiki',
+			'rev_edit_user_id' => 'rev_edit_user_wiki'
+		]
+	);
 	$listeners = [
 		'listener.recentchanges' => $c['listener.recentchanges'],
-		'storage.post_summary.listeners.username' => $c['storage.post_summary.listeners.username'],
+		'storage.post_summary.listeners.username' => $userNameListener,
 		'listeners.notification' => $c['listeners.notification'],
 		'storage.post_summary_board_history.indexes.primary' => $c['storage.post_summary_board_history.indexes.primary'],
 		'listener.editcount' => $c['listener.editcount'],
