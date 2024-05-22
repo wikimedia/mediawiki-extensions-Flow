@@ -1,15 +1,20 @@
 <?php
 
 use Flow\Data\FlowObjectCache;
+use Flow\Data\Listener\EditCountListener;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
 use Flow\FlowActions;
+use Flow\Formatter\CategoryViewerFormatter;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\Repository\TreeRepository;
+use Flow\Repository\UserName\OneStepUserNameQuery;
+use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\TalkpageManager;
 use Flow\TemplateHelper;
+use Flow\WatchedTopicItems;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -48,6 +53,14 @@ return [
 		);
 	},
 
+	'FlowCategoryViewerFormatter' => static function (
+		MediaWikiServices $services
+	): CategoryViewerFormatter {
+		return new CategoryViewerFormatter(
+			$services->getService( 'FlowPermissions' )
+		);
+	},
+
 	'FlowDbFactory' => static function ( MediaWikiServices $services ): DbFactory {
 		// Always returns the correct database for flow storage
 		$config = $services->getMainConfig();
@@ -59,6 +72,12 @@ return [
 
 	'FlowDefaultLogger' => static function ( MediaWikiServices $services ): LoggerInterface {
 		return LoggerFactory::getInstance( 'Flow' );
+	},
+
+	'FlowEditCountListener' => static function ( MediaWikiServices $services ): EditCountListener {
+		return new EditCountListener(
+			$services->getService( 'FlowActions' )
+		);
 	},
 
 	'FlowNotificationsController' => static function (
@@ -121,4 +140,22 @@ return [
 			return RequestContext::getMain()->getUser();
 		}
 	},
+
+	'FlowUserNameRepository' => static function ( MediaWikiServices $services ): UserNameBatch {
+		return new UserNameBatch(
+			new OneStepUserNameQuery(
+				$services->getService( 'FlowDbFactory' ),
+				$services->getHideUserUtils()
+			)
+		);
+	},
+
+	'FlowWatchedTopicItems' => static function ( MediaWikiServices $services ): WatchedTopicItems {
+		return new Flow\WatchedTopicItems(
+			$services->getService( 'FlowUser' ),
+			$services->getConnectionProvider()
+				->getReplicaDatabase( false, 'watchlist' )
+		);
+	},
+
 ];
