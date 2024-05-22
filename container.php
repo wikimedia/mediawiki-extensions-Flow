@@ -678,29 +678,17 @@ $c['query.checkuser'] = static function ( $c ) {
 };
 
 $c['formatter.irclineurl'] = static function ( $c ) {
-	return new Flow\Formatter\IRCLineUrlFormatter(
-		$c['permissions'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowIRCLineUrlFormatter' );
 };
 
 $c['formatter.checkuser'] = static function ( $c ) {
-	return new Flow\Formatter\CheckUserFormatter(
-		$c['permissions'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowCheckUserFormatter' );
 };
 $c['formatter.revisionview'] = static function ( $c ) {
-	return new Flow\Formatter\RevisionViewFormatter(
-		$c['url_generator'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowRevisionViewFormatter' );
 };
 $c['formatter.revision.diff.view'] = static function ( $c ) {
-	return new Flow\Formatter\RevisionDiffViewFormatter(
-		$c['formatter.revisionview'],
-		$c['url_generator']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowRevisionDiffViewFormatter' );
 };
 $c['query.topiclist'] = static function ( $c ) {
 	return new Flow\Formatter\TopicListQuery(
@@ -763,10 +751,7 @@ $c['query.postsummary.view'] = static function ( $c ) {
 	);
 };
 $c['formatter.changeslist'] = static function ( $c ) {
-	return new Flow\Formatter\ChangesListFormatter(
-		$c['permissions'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowChangesListFormatter' );
 };
 
 $c['query.contributions'] = static function ( $c ) {
@@ -779,16 +764,10 @@ $c['query.contributions'] = static function ( $c ) {
 	);
 };
 $c['formatter.contributions'] = static function ( $c ) {
-	return new Flow\Formatter\ContributionsFormatter(
-		$c['permissions'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowContributionsFormatter' );
 };
 $c['formatter.contributions.feeditem'] = static function ( $c ) {
-	return new Flow\Formatter\FeedItemFormatter(
-		$c['permissions'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowFeedItemFormatter' );
 };
 $c['query.board.history'] = static function ( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
@@ -802,21 +781,13 @@ $c['formatter.revision.factory'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowRevisionFormatterFactory' );
 };
 $c['formatter.topiclist'] = static function ( $c ) {
-	return new Flow\Formatter\TopicListFormatter(
-		$c['url_generator'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTopicListFormatter' );
 };
 $c['formatter.topiclist.toc'] = static function ( $c ) {
-	return new Flow\Formatter\TocTopicListFormatter(
-		$c['templating']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTocTopicListFormatter' );
 };
 $c['formatter.topic'] = static function ( $c ) {
-	return new Flow\Formatter\TopicFormatter(
-		$c['url_generator'],
-		$c['formatter.revision.factory']->create()
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowTopicFormatter' );
 };
 
 $c['search.index.iterators.header'] = static function ( $c ) {
@@ -1012,9 +983,7 @@ $c['listener.editcount'] = static function ( $c ) {
 };
 
 $c['formatter.undoedit'] = static function ( $c ) {
-	return new Flow\Formatter\RevisionUndoViewFormatter(
-		$c['formatter.revisionview']
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowRevisionUndoViewFormatter' );
 };
 
 $c['board_mover'] = static function ( $c ) {

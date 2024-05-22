@@ -8,7 +8,18 @@ use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
 use Flow\FlowActions;
 use Flow\Formatter\CategoryViewerFormatter;
+use Flow\Formatter\ChangesListFormatter;
+use Flow\Formatter\CheckUserFormatter;
+use Flow\Formatter\ContributionsFormatter;
+use Flow\Formatter\FeedItemFormatter;
+use Flow\Formatter\IRCLineUrlFormatter;
+use Flow\Formatter\RevisionDiffViewFormatter;
 use Flow\Formatter\RevisionFormatterFactory;
+use Flow\Formatter\RevisionUndoViewFormatter;
+use Flow\Formatter\RevisionViewFormatter;
+use Flow\Formatter\TocTopicListFormatter;
+use Flow\Formatter\TopicFormatter;
+use Flow\Formatter\TopicListFormatter;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BadImageRemover;
@@ -70,6 +81,33 @@ return [
 		);
 	},
 
+	'FlowChangesListFormatter' => static function (
+		MediaWikiServices $services
+	): ChangesListFormatter {
+		return new ChangesListFormatter(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowCheckUserFormatter' => static function (
+		MediaWikiServices $services
+	): CheckUserFormatter {
+		return new CheckUserFormatter(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowContributionsFormatter' => static function (
+		MediaWikiServices $services
+	): ContributionsFormatter {
+		return new ContributionsFormatter(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
 	'FlowDbFactory' => static function ( MediaWikiServices $services ): DbFactory {
 		// Always returns the correct database for flow storage
 		$config = $services->getMainConfig();
@@ -86,6 +124,24 @@ return [
 	'FlowEditCountListener' => static function ( MediaWikiServices $services ): EditCountListener {
 		return new EditCountListener(
 			$services->getService( 'FlowActions' )
+		);
+	},
+
+	'FlowFeedItemFormatter' => static function (
+		MediaWikiServices $services
+	): FeedItemFormatter {
+		return new FeedItemFormatter(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowIRCLineUrlFormatter' => static function (
+		MediaWikiServices $services
+	): IRCLineUrlFormatter {
+		return new IRCLineUrlFormatter(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
 		);
 	},
 
@@ -123,6 +179,15 @@ return [
 		);
 	},
 
+	'FlowRevisionDiffViewFormatter' => static function (
+		MediaWikiServices $services
+	): RevisionDiffViewFormatter {
+		return new RevisionDiffViewFormatter(
+			$services->getService( 'FlowRevisionViewFormatter' ),
+			$services->getService( 'FlowUrlGenerator' )
+		);
+	},
+
 	'FlowRevisionFormatterFactory' => static function (
 		MediaWikiServices $services
 	): RevisionFormatterFactory {
@@ -134,6 +199,23 @@ return [
 			$services->getService( 'FlowUrlGenerator' ),
 			$services->getService( 'FlowUserNameRepository' ),
 			$wgFlowMaxThreadingDepth
+		);
+	},
+
+	'FlowRevisionUndoViewFormatter' => static function (
+		MediaWikiServices $services
+	): RevisionUndoViewFormatter {
+		return new RevisionUndoViewFormatter(
+			$services->getService( 'FlowRevisionViewFormatter' )
+		);
+	},
+
+	'FlowRevisionViewFormatter' => static function (
+		MediaWikiServices $services
+	): RevisionViewFormatter {
+		return new RevisionViewFormatter(
+			$services->getService( 'FlowUrlGenerator' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
 		);
 	},
 
@@ -177,6 +259,32 @@ return [
 			$services->getService( 'FlowUserNameRepository' ),
 			$contextFixer,
 			$services->getService( 'FlowPermissions' )
+		);
+	},
+
+	'FlowTocTopicListFormatter' => static function (
+		MediaWikiServices $services
+	): TocTopicListFormatter {
+		return new TocTopicListFormatter(
+			$services->getService( 'FlowTemplating' )
+		);
+	},
+
+	'FlowTopicFormatter' => static function (
+		MediaWikiServices $services
+	): TopicFormatter {
+		return new TopicFormatter(
+			$services->getService( 'FlowUrlGenerator' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowTopicListFormatter' => static function (
+		MediaWikiServices $services
+	): TopicListFormatter {
+		return new TopicListFormatter(
+			$services->getService( 'FlowUrlGenerator' ),
+			$services->getService( 'FlowRevisionFormatterFactory' )->create()
 		);
 	},
 
