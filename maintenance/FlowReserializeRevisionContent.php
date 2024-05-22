@@ -17,6 +17,8 @@ use ReflectionClass;
 use ReflectionMethod;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -95,7 +97,7 @@ class FlowReserializeRevisionContent extends Maintenance {
 		$iterator = new BatchRowIterator( $dbw, 'flow_revision', 'rev_id', $this->getBatchSize() );
 		$iterator->addConditions( [
 			'rev_user_wiki' => WikiMap::getCurrentWikiId(),
-			'rev_flags' . $dbr->buildLike( $dbr->anyString(), 'html', $dbr->anyString() ),
+			$dbr->expr( 'rev_flags', IExpression::LIKE, new LikeValue( $dbr->anyString(), 'html', $dbr->anyString() ) ),
 		] );
 		$iterator->setFetchColumns( [ 'rev_id', 'rev_type', 'rev_content', 'rev_flags' ] );
 		$iterator->setCaller( __METHOD__ );
