@@ -799,15 +799,7 @@ $c['query.board.history'] = static function ( $c ) {
 };
 
 $c['formatter.revision.factory'] = static function ( $c ) {
-	global $wgFlowMaxThreadingDepth;
-
-	return new Flow\Formatter\RevisionFormatterFactory(
-		$c['permissions'],
-		$c['templating'],
-		$c['url_generator'],
-		$c['repository.username'],
-		$wgFlowMaxThreadingDepth
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowRevisionFormatterFactory' );
 };
 $c['formatter.topiclist'] = static function ( $c ) {
 	return new Flow\Formatter\TopicListFormatter(

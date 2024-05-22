@@ -8,6 +8,7 @@ use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
 use Flow\FlowActions;
 use Flow\Formatter\CategoryViewerFormatter;
+use Flow\Formatter\RevisionFormatterFactory;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BadImageRemover;
@@ -119,6 +120,20 @@ return [
 		return new PostRevisionTopicHistoryStorage(
 			$services->getService( 'FlowPostRevisionStorage' ),
 			$services->getService( 'FlowTreeRepository' )
+		);
+	},
+
+	'FlowRevisionFormatterFactory' => static function (
+		MediaWikiServices $services
+	): RevisionFormatterFactory {
+		global $wgFlowMaxThreadingDepth;
+
+		return new RevisionFormatterFactory(
+			$services->getService( 'FlowPermissions' ),
+			$services->getService( 'FlowTemplating' ),
+			$services->getService( 'FlowUrlGenerator' ),
+			$services->getService( 'FlowUserNameRepository' ),
+			$wgFlowMaxThreadingDepth
 		);
 	},
 
