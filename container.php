@@ -577,8 +577,8 @@ $c['storage.post_topic_history'] = static function ( $c ) {
 	);
 };
 
-$c['storage.manager_list'] = static function ( $c ) {
-	return [
+$c['storage'] = static function ( $c ) {
+	$managerList = [
 		\Flow\Model\Workflow::class => 'storage.workflow',
 		'Workflow' => 'storage.workflow',
 
@@ -609,11 +609,10 @@ $c['storage.manager_list'] = static function ( $c ) {
 		\Flow\Model\URLReference::class => 'storage.url_reference',
 		'URLReference' => 'storage.url_reference',
 	];
-};
-$c['storage'] = static function ( $c ) {
+
 	return new \Flow\Data\ManagerGroup(
 		$c,
-		$c['storage.manager_list']
+		$managerList
 	);
 };
 $c['loader.root_post'] = static function ( $c ) {
