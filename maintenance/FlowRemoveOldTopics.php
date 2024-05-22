@@ -4,7 +4,6 @@ namespace Flow\Maintenance;
 
 use Flow\Container;
 use Flow\Data\ManagerGroup;
-use Flow\Data\Utils\RawSql;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
 use Flow\Hooks;
@@ -96,8 +95,8 @@ class FlowRemoveOldTopics extends Maintenance {
 				[
 					'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 					'rev_type' => 'header',
-					new RawSql( 'rev_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
-					new RawSql( 'rev_id < ' . $dbr->addQuotes( $endId->getBinary() ) ),
+					$dbr->expr( 'rev_id', '>', $startId->getBinary() ),
+					$dbr->expr( 'rev_id', '<', $endId->getBinary() ),
 					// only fetch original post at this point: we still need to
 					// narrow down the results
 					'rev_parent_id' => null,
@@ -130,7 +129,7 @@ class FlowRemoveOldTopics extends Maintenance {
 				$conds[] = [
 					'rev_user_wiki' => WikiMap::getCurrentWikiId(),
 					'rev_type' => 'header',
-					new RawSql( 'rev_id >= ' . $dbr->addQuotes( $endId->getBinary() ) ),
+					$dbr->expr( 'rev_id', '>=', $endId->getBinary() ),
 					'rev_type_id' => $revision->getCollectionId()->getBinary(),
 				];
 			}
@@ -195,10 +194,10 @@ class FlowRemoveOldTopics extends Maintenance {
 			$workflows = $this->storage->find(
 				'Workflow',
 				[
-					new RawSql( 'workflow_id > ' . $dbr->addQuotes( $startId->getBinary() ) ),
+					$dbr->expr( 'workflow_id', '>', $startId->getBinary() ),
 					'workflow_wiki' => WikiMap::getCurrentWikiId(),
 					'workflow_type' => 'topic',
-					new RawSql( 'workflow_last_update_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) ) ),
+					$dbr->expr( 'workflow_last_update_timestamp', '<', $dbr->timestamp( $timestamp ) ),
 				],
 				[
 					'limit' => $batchSize,

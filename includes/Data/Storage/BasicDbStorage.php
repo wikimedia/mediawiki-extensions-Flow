@@ -4,12 +4,12 @@ namespace Flow\Data\Storage;
 
 use Flow\Data\ObjectManager;
 use Flow\Data\Utils\MultiDimArray;
-use Flow\Data\Utils\RawSql;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Exception\DataPersistenceException;
 use Flow\Model\UUID;
 use InvalidArgumentException;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * Standard backing store for data model with no special cases which is stored
@@ -195,7 +195,7 @@ class BasicDbStorage extends DbStorage {
 		$conds = $dbr->makeList( $conds, LIST_OR );
 
 		// options can be ignored for primary key search
-		$res = $this->find( [ new RawSql( $conds ) ] );
+		$res = $this->find( [ new RawSQLExpression( $conds ) ] );
 
 		// create temp array with pk value (usually uuid) as key and full db row
 		// as value

@@ -2,7 +2,6 @@
 
 namespace Flow\Data;
 
-use Flow\Data\Utils\RawSql;
 use Flow\DbFactory;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
@@ -376,8 +375,7 @@ class ObjectLocator {
 			}
 
 			$dbr = $this->dbFactory->getDB( DB_REPLICA );
-			$condition = new RawSql( $options['sort'][0] . ' ' . $operator . ' ' .
-				$dbr->addQuotes( $options['offset-id']->getBinary() ) );
+			$condition = $dbr->expr( $options['sort'][0], $operator, $options['offset-id']->getBinary() );
 
 			foreach ( $queries as &$query ) {
 				$query[] = $condition;
