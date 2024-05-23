@@ -29,9 +29,11 @@
 			"Ysjbserver",
 			"관인생략",
 			"렌즈",
-			"아라"
+			"아라",
+			"Suleiman the Magnificent Television"
 		]
 	},
+	"content-model-flow-board": "구조화된 토론위원회",
 	"enablestructureddiscussions": "구조화된 토론 활성화",
 	"notification-dynamic-actions-flow-board-unwatch": "\"$1\"의 새로운 활동 주시를 {{GENDER:$3|해제}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|당신은}} 더 이상 \"$1\" 문서를 주시하지 않습니다",
@@ -168,6 +170,7 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|당신은}} 새 주제가 이 게시판에 만들어질 때 알림을 받을 것입니다.",
 	"flow-topic-action-watchlist-add": "주제를 구독",
 	"flow-topic-action-watchlist-remove": "구독 해지",
+	"flow-error-allowcreation-already-exists": "페이지가 이미 목적지에 존재하기 때문에 구조화된 토론 게시판을 이동할 수 없습니다.",
 	"flow-error-allowcreation-flow-create-board": "사용자에게 \"{{int:right-flow-create-board}}\" 권한이 없습니다",
 	"flow-error-can-not-edit-logged-out": "현재 참여할 수 없습니다. 로그인을 시도할 수 있습니다.",
 	"flow-error-can-not-edit-logged-in": "필요한 권한이 없기 때문에 참여할 수 없습니다.",
