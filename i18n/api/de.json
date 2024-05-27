@@ -8,7 +8,8 @@
 			"Predatorix",
 			"Quiddity",
 			"Tiin",
-			"Brettchenweber"
+			"Brettchenweber",
+			"Justman10000"
 		]
 	},
 	"apihelp-flow-description": "Erlaubt auszuführende Aktionen auf Strukturierte-Diskussionen-Seiten.",
@@ -107,6 +108,7 @@
 	"apihelp-flow+view-topiclist-param-savesortby": "Speichert die Sortieroption in den Benutzereinstellungen, falls festgelegt.",
 	"apihelp-flow+view-topiclist-param-include-offset": "Bezieht auch das Versatzelement in die Ergebnisse mit ein.",
 	"apihelp-flow+view-topiclist-param-limit": "Anzahl der abzurufenden Themen.",
+	"apihelp-flow+view-topiclist-param-toconly": "Ob du nur mit den für das TOC erforderlichen Informationen antworten willst.",
 	"apihelp-flow+view-topiclist-param-format": "Format, in dem der Inhalt zurückgegeben werden soll.",
 	"apihelp-flow+view-topiclist-example-1": "Themen zu [[Talk:Sandbox]] auflisten",
 	"apihelp-flow-parsoid-utils-description": "Konvertiert Text zwischen Wikitext und HTML.",
