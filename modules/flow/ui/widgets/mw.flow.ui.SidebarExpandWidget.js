@@ -7,9 +7,9 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration object
-	 * @cfg {boolean} [collapsed=false] Start as collapsed
-	 * @cfg {string} [expandedButtonTitle] Title for the button when expanded
-	 * @cfg {string} [collapsedButtonTitle] Title for the button when collapsed
+	 * @param {boolean} [config.collapsed=false] Start as collapsed
+	 * @param {string} [config.expandedButtonTitle] Title for the button when expanded
+	 * @param {string} [config.collapsedButtonTitle] Title for the button when collapsed
 	 */
 	mw.flow.ui.SidebarExpandWidget = function mwFlowUiSidebarExpandWidget( config ) {
 		config = config || {};

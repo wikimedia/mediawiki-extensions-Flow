@@ -9,7 +9,7 @@
 	 * @param {string} page The page name, including namespace, that the
 	 *  board of this topic belongs to.
 	 * @param {Object} [config] Configuration object
-	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
+	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.NewTopicWidget = function mwFlowUiNewTopicWidget( page, config ) {
 		var title,

@@ -8,7 +8,7 @@
 	 * @constructor
 	 * @param {string} topicId The id of the topic that has the summary we want to edit
 	 * @param {Object} [config] Configuration object
-	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
+	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditTopicSummaryWidget = function mwFlowUiEditTopicSummaryWidget( topicId, config ) {
 		config = config || {};

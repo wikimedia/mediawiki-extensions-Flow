@@ -9,7 +9,7 @@
 	 * @param {string} topicId The id of the topic
 	 * @param {string} postId The id of the post to edit
 	 * @param {Object} [config] Configuration object
-	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
+	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditPostWidget = function mwFlowUiEditPostWidget( topicId, postId, config ) {
 		var msgKey;

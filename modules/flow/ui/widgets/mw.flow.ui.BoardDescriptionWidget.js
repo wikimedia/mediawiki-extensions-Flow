@@ -8,10 +8,10 @@
 	 * @constructor
 	 * @param {mw.flow.dm.Board} boardModel The board model
 	 * @param {Object} [config]
-	 * @cfg {jQuery} [$existing] A jQuery object of the existing contents of the board description
-	 * @cfg {string} [specialPageCategoryLink] Link to the localized Special:Categories page
-	 * @cfg {jQuery} [$categories] A jQuery object of the existing board categories
-	 * @cfg {Object} [editor] Config options to pass to mw.flow.ui.EditorWidget
+	 * @param {jQuery} [config.$existing] A jQuery object of the existing contents of the board description
+	 * @param {string} [config.specialPageCategoryLink] Link to the localized Special:Categories page
+	 * @param {jQuery} [config.$categories] A jQuery object of the existing board categories
+	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
 		var msgKey,

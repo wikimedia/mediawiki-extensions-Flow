@@ -8,10 +8,10 @@
 	 * @param {string} page Full page name with its namespace;
 	 *  for example: "User_talk:Foo"
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Object} [currentRevision] Current revision Id. Mostly used
+	 * @param {Object} [config.currentRevision] Current revision Id. Mostly used
 	 *  for edit conflict check.
-	 * @cfg {Object} [apiConstructorParams] Parameters for mw.Api()
-	 * @cfg {Object} [requestParams] Parameters for the request
+	 * @param {Object} [config.apiConstructorParams] Parameters for mw.Api()
+	 * @param {Object} [config.requestParams] Parameters for the request
 	 */
 	mw.flow.dm.APIHandler = function FlowDmAPIHandler( page, config ) {
 		config = config || {};
@@ -128,11 +128,11 @@
 	 *
 	 * @param {string} orderType Sort order type, 'newest' or 'updated'
 	 * @param {Object} config Configuration
-	 * @cfg {string} [offset] Topic offset id or timestamp offset
+	 * @param {string} [config.offset] Topic offset id or timestamp offset
 	 *  if given, the topic list will be returned with topics that
 	 *  are after (and including) the topic with the given uuid or
 	 *  after the given timestamp.
-	 * @cfg {string} [toconly] Receive a stripped reply that fits the ToC. For more information
+	 * @param {string} [config.toconly] Receive a stripped reply that fits the ToC. For more information
 	 *  see 'toconly' in the API documentation.
 	 * @return {jQuery.Promise} Promise that is resolved with the topiclist response
 	 */

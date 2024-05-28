@@ -8,16 +8,16 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [placeholder] Placeholder text to use for the editor when empty
-	 * @cfg {string} [termsKey='edit'] terms-of-use message key for the footer message
-	 * @cfg {string} [saveMsgKey='flow-newtopic-save'] i18n message key for the save button
-	 * @cfg {string} [cancelMsgKey='flow-cancel'] i18n message key for the cancel button
-	 * @cfg {boolean} [autoFocus=true] Automatically focus after switching editors
-	 * @cfg {boolean} [confirmLeave=true] Pop up a confirmation dialog if the user attempts
+	 * @param {string} [config.placeholder] Placeholder text to use for the editor when empty
+	 * @param {string} [config.termsKey='edit'] terms-of-use message key for the footer message
+	 * @param {string} [config.saveMsgKey='flow-newtopic-save'] i18n message key for the save button
+	 * @param {string} [config.cancelMsgKey='flow-cancel'] i18n message key for the cancel button
+	 * @param {boolean} [config.autoFocus=true] Automatically focus after switching editors
+	 * @param {boolean} [config.confirmLeave=true] Pop up a confirmation dialog if the user attempts
 	 *  to navigate away when there are changes in the editor.
-	 * @cfg {Function} [leaveCallback] Function to call when the user attempts to navigate away.
+	 * @param {Function} [config.leaveCallback] Function to call when the user attempts to navigate away.
 	 *  If this function returns false, a confirmation dialog will be popped up.
-	 * @cfg {boolean} [saveable=true] Initial state of whether editor is saveable
+	 * @param {boolean} [config.saveable=true] Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
 		var widget = this;

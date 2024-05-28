@@ -9,7 +9,7 @@
 	 * @constructor
 	 * @param {mw.flow.dm.CategoryItem} categoryModel Category item model
 	 * @param {Object} [config]
-	 * @cfg {boolean} [exists] Category page exists on this wiki
+	 * @param {boolean} [config.exists] Category page exists on this wiki
 	 */
 	mw.flow.ui.CategoryItemWidget = function mwFlowUiCategoryItemWidget( categoryModel, config ) {
 		var prefixedCleanName, $link;

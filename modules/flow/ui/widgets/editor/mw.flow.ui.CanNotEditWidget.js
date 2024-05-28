@@ -9,10 +9,10 @@
 	 * @constructor
 	 * @param {mw.flow.dm.APIHandler} api API handler
 	 * @param {Object} [config] Configuration options
-	 * @cfg {Array} [userGroups=[]] Current user's groups
-	 * @cfg {Array} [restrictionEdit] List of groups that are allowed to edit, or empty
+	 * @param {Array} [config.userGroups=[]] Current user's groups
+	 * @param {Array} [config.restrictionEdit] List of groups that are allowed to edit, or empty
 	 *   array for no restrictions.
-	 * @cfg {boolean} [isProbablyEditable=true] Whether the user probably has the right to
+	 * @param {boolean} [config.isProbablyEditable=true] Whether the user probably has the right to
 	 *   edit this page.  If true, they may be able to post.  If false, they can not.
 	 *   For performance reasons to avoid pre-computing with 100% accuracy.
 	 */

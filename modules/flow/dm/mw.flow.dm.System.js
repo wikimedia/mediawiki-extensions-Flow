@@ -7,14 +7,14 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {mw.Title} [pageTitle] Board page title. Defaults to current page title
-	 * @cfg {number} [tocPostsLimit=10] Post count for the table of contents. This is also
+	 * @param {mw.Title} [config.pageTitle] Board page title. Defaults to current page title
+	 * @param {number} [config.tocPostsLimit=10] Post count for the table of contents. This is also
 	 *  used as the number of posts to fetch when more posts are requested for the table
 	 *  of contents.
-	 * @cfg {number} [renderedTopics=tocPostsLimit] Number of visible posts on the page. This is also
+	 * @param {number} [config.renderedTopics=tocPostsLimit] Number of visible posts on the page. This is also
 	 *  used as the number of posts to fetch when more posts are requested on scrolling
 	 *  the page. Defaults to the tocPostsLimit
-	 * @cfg {string} [defaultSort] The current default sort order for topic list
+	 * @param {string} [config.defaultSort] The current default sort order for topic list
 	 */
 	mw.flow.dm.System = function mwFlowDmSystem( config ) {
 		config = config || {};

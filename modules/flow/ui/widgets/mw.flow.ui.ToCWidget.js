@@ -8,7 +8,7 @@
 	 *
 	 * @param {mw.flow.dm.System} system System model
 	 * @param {Object} [config]
-	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
+	 * @param {number} [config.tocPostLimit=50] The number of topics in the ToC per API request
 	 */
 	mw.flow.ui.ToCWidget = function mwFlowUiToCWidget( system, config ) {
 		config = config || {};

@@ -7,7 +7,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [isProbablyEditable=true] Whether the content seems to be editable
+	 * @param {boolean} [config.isProbablyEditable=true] Whether the content seems to be editable
 	 */
 	mw.flow.ui.AnonWarningWidget = function mwFlowUiAnonWarningWidget( config ) {
 		var returnTo, labelHtml, isProbablyEditable,

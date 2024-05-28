@@ -7,8 +7,8 @@
 	 * @constructor
 	 * @param {mw.flow.dm.System} system System model
 	 * @param {Object} [config]
-	 * @cfg {number} [tocPostLimit=50] The number of topics in the ToC per API request
-	 * @cfg {string} [defaultSort='newest'] The current default topic sort order
+	 * @param {number} [config.tocPostLimit=50] The number of topics in the ToC per API request
+	 * @param {string} [config.defaultSort='newest'] The current default topic sort order
 	 */
 	mw.flow.ui.NavigationWidget = function mwFlowUiNavigationWidget( system, config ) {
 		config = config || {};

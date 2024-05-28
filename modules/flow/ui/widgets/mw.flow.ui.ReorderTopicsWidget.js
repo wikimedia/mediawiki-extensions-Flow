@@ -7,7 +7,7 @@
  * @constructor
  * @param {mw.flow.dm.Board} board Board model
  * @param {Object} [config] Configuration object
- * @cfg {string} [defaultSort='newest'] The current default topic sort order
+ * @param {string} [config.defaultSort='newest'] The current default topic sort order
  */
 mw.flow.ui.ReorderTopicsWidget = function mwFlowUiReorderTopicsWidget( board, config ) {
 	config = config || {};
