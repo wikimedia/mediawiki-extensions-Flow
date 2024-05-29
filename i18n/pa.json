@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Babanwalia",
+			"Cabal",
 			"Jimidar",
 			"Satdeep gill",
 			"Tow",
@@ -28,7 +29,7 @@
 	"flow-post-action-edit-post-submit": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
 	"flow-topic-action-view": "ਪੱਕੀ ਕੜੀ",
 	"flow-topic-action-watchlist": "ਨਿਗਰਾਨ-ਸੂਚੀ",
-	"flow-topic-action-history": "ਅਤੀਤ",
+	"flow-topic-action-history": "ਪੁਰਾਣਾ",
 	"flow-topic-action-summarize-topic": "ਸਾਰ ਕੱਢੋ",
 	"flow-topic-action-undo-moderation": "ਅਣਕੀਤਾ ਕਰੋ",
 	"flow-error-protected-unknown-reason": "ਅਣਪਛਾਤਾ",
