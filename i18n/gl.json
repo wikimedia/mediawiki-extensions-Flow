@@ -14,6 +14,7 @@
 			"Toliño"
 		]
 	},
+	"content-model-flow-board": "Taboleiro de conversas estruturadas",
 	"enablestructureddiscussions": "Activar as conversas estruturadas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vixiar nova actividade en \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Xa}} non está a vixiar a páxina \"$1\"",

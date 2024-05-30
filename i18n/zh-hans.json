@@ -43,7 +43,8 @@
 			"御坂美琴",
 			"神樂坂秀吉",
 			"范",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"LittlePaw365"
 		]
 	},
 	"enablestructureddiscussions": "启用结构式讨论",
@@ -353,7 +354,7 @@
 	"flow-notification-edit-email-batch-body": "$1{{GENDER:$1|编辑}}了$3上话题“$2”中的一个帖子",
 	"flow-notification-edit-email-batch-bundle-body": "$1和{{PLURAL:$4|其他|$4位其他|100=超过99位其他}}用户在$3上的“$2”{{GENDER:$1|编辑}}了一个帖子",
 	"flow-notification-newtopic-email-subject": "$1在$2{{GENDER:$1|创建了}}新话题",
-	"flow-notification-newtopic-email-batch-body": "$1在$3创建了一个新话题，标题为“$2”",
+	"flow-notification-newtopic-email-batch-body": "$1在$3{{GENDER:$1|创建了}}标题为“$2”的新话题",
 	"flow-notification-newtopic-email-batch-bundle-body": "$2上的{{PLURAL:$1|$1个|100=超过99个}}新话题",
 	"echo-category-title-flow-discussion": "结构式讨论",
 	"echo-pref-tooltip-flow-discussion": "通知我有关我正在关注的话题中或页面上的活动。",
@@ -470,7 +471,7 @@
 	"flow-special-enableflow-invalid-title": "提供了一个无效的页面标题",
 	"flow-special-enableflow-board-creation-not-allowed": "您不被允许在[[:$1]]创建一个结构式讨论版块。",
 	"flow-special-enableflow-page-is-liquidthreads": "在[[:$1]]有一个LiquidThreads页面。",
-	"flow-special-enableflow-confirmation": "您已在[[$1]]创建一个结构式讨论版块。",
+	"flow-special-enableflow-confirmation": "您已创建结构化讨论版块[[$1]]。",
 	"flow-conversion-archive-page-name-format": "%s/存档 %d\n%s/存档%d\n%s/存档 %d\n%s/存档%d",
 	"flow-conversion-archive-flow-page-name-format": "%s/结构式讨论 存档 %d\n%s/结构式讨论存档%d\n%s/Flow 存档 %d\n%s/Flow存档%d",
 	"flow-spam-confirmedit-form": "请输入下面的验证码以确认您是真人：$1",
