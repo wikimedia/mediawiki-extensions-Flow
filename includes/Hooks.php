@@ -2016,6 +2016,7 @@ class Hooks implements
 					->select( [ 'user_id', 'user_name' ] )
 					->from( 'user' )
 					->where( [ 'user_id' => array_values( $userIds ) ] )
+					->caller( __METHOD__ )
 					->fetchResultSet();
 				foreach ( $result as $r ) {
 					$userMap[$r->user_id] = $r->user_name;
