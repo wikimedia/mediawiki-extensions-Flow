@@ -212,7 +212,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			->where( [
 				'rev_id' => $revision->getRevisionId()->getBinary(),
 			] )
-			->where( __METHOD__ )
+			->caller( __METHOD__ )
 			->execute();
 		$this->checkForReplica();
 
