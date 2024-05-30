@@ -52,7 +52,7 @@ class FlowRevisionsDb implements SourceStoreInterface {
 		} elseif ( $object instanceof IImportTopic ) {
 			$conds = [ 'rev_type' => 'post', 'tree_parent_id' => null ];
 		} elseif ( $object instanceof IImportPost ) {
-			$conds = [ 'rev_type' => 'post', 'tree_parent_id IS NOT NULL' ];
+			$conds = [ 'rev_type' => 'post', $this->dbr->expr( 'tree_parent_id', '!=', null ) ];
 		} else {
 			throw new Exception( 'Import object of type ' . get_class( $object ) . ' not supported.' );
 		}

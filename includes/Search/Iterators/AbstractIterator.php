@@ -93,7 +93,7 @@ abstract class AbstractIterator implements Iterator {
 
 		unset( $this->conditions[0] );
 		if ( $revId !== null ) {
-			$this->conditions[0] = 'rev_id >= ' . $this->dbr->addQuotes( $revId->getBinary() );
+			$this->conditions[0] = $this->dbr->expr( 'rev_id', '>=', $revId->getBinary() );
 		}
 	}
 
@@ -107,7 +107,7 @@ abstract class AbstractIterator implements Iterator {
 
 		unset( $this->conditions[1] );
 		if ( $revId !== null ) {
-			$this->conditions[1] = 'rev_id < ' . $this->dbr->addQuotes( $revId->getBinary() );
+			$this->conditions[1] = $this->dbr->expr( 'rev_id', '<', $revId->getBinary() );
 		}
 	}
 

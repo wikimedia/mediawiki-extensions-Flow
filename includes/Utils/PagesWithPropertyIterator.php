@@ -64,10 +64,10 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 
 		$conditions = [ 'pp_propname' => $this->propName ];
 		if ( $this->startId !== null ) {
-			$conditions[] = 'pp_page >= ' . $this->db->addQuotes( $this->startId );
+			$conditions[] = $this->db->expr( 'pp_page', '>=', $this->startId );
 		}
 		if ( $this->stopId !== null ) {
-			$conditions[] = 'pp_page < ' . $this->db->addQuotes( $this->stopId );
+			$conditions[] = $this->db->expr( 'pp_page', '<', $this->stopId );
 		}
 		$it->addConditions( $conditions );
 

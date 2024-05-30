@@ -710,7 +710,7 @@ class Hooks implements
 				// Check if Flow actions are defined for the requested log types
 				// and make sure they're ignored.
 				if ( isset( $wgLogActionsHandlers["$logType/flow-$action"] ) ) {
-					$conds[] = "log_action != " . $dbr->addQuotes( "flow-$action" );
+					$conds[] = $dbr->expr( 'log_action', '!=', "flow-$action" );
 				}
 			}
 		}
