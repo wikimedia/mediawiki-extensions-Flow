@@ -4,7 +4,7 @@
 	 *
 	 * @class
 	 * @extends mw.flow.dm.Item
-	 * @mixins mw.flow.dm.List
+	 * @mixes mw.flow.dm.List
 	 *
 	 * @constructor
 	 * @param {Object} data API data to build board with

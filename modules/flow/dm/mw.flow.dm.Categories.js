@@ -3,8 +3,8 @@
 	 * Flow Board
 	 *
 	 * @class
-	 * @mixins mw.flow.dm.List
-	 * @mixins OO.EventEmitter
+	 * @mixes mw.flow.dm.List
+	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options

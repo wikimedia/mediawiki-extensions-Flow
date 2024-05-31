@@ -11,13 +11,13 @@
 	 *
 	 * @param {jQuery} $container
 	 * @extends FlowBoardAndHistoryComponentBase
-	 * @mixins FlowComponentEventsMixin
-	 * @mixins FlowComponentEnginesMixin
-	 * @mixins FlowBoardComponentApiEventsMixin
-	 * @mixins FlowBoardComponentInteractiveEventsMixin
-	 * @mixins FlowBoardComponentLoadEventsMixin
-	 * @mixins FlowBoardComponentLoadMoreFeatureMixin
-	 * @mixins FlowBoardComponentVisualEditorFeatureMixin
+	 * @mixes FlowComponentEventsMixin
+	 * @mixes FlowComponentEnginesMixin
+	 * @mixes FlowBoardComponentApiEventsMixin
+	 * @mixes FlowBoardComponentInteractiveEventsMixin
+	 * @mixes FlowBoardComponentLoadEventsMixin
+	 * @mixes FlowBoardComponentLoadMoreFeatureMixin
+	 * @mixes FlowBoardComponentVisualEditorFeatureMixin
 	 *
 	 * @constructor
 	 */
