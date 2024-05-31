@@ -225,7 +225,7 @@ abstract class RevisionStorage extends DbStorage {
 			$query = UUID::convertUUIDs( (array)$query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 			$id = $query['rev_id'];
-			$pks[$id] = UUID::create( $id )->getBinary();
+			$pks[] = UUID::create( $id )->getBinary();
 		}
 
 		return $this->findRevIdReal( $duplicator, $pks );
