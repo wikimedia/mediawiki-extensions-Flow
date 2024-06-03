@@ -10,9 +10,9 @@
 	 *
 	 * @class FlowComponent
 	 * @param {jQuery} $container
-	 * @mixins FlowComponentEventsMixin
-	 * @mixins FlowComponentEnginesMixin
-	 * @mixins FlowComponentMenusFeatureMixin
+	 * @mixes FlowComponentEventsMixin
+	 * @mixes FlowComponentEnginesMixin
+	 * @mixes FlowComponentMenusFeatureMixin
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {

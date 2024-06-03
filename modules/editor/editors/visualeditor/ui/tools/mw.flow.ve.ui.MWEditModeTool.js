@@ -34,7 +34,7 @@ mw.flow.ve.ui.MWEditModeTool.prototype.isModeAvailable = function () {
  *
  * @class
  * @extends mw.libs.ve.MWEditModeSourceTool
- * @mixins mw.flow.ve.ui.MWEditModeTool
+ * @mixes mw.flow.ve.ui.MWEditModeTool
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
  * @param {Object} [config] Config options
@@ -58,7 +58,7 @@ ve.ui.toolFactory.register( mw.flow.ve.ui.MWEditModeSourceTool );
  *
  * @class
  * @extends mw.libs.ve.MWEditModeVisualTool
- * @mixins mw.flow.ve.ui.MWEditModeTool
+ * @mixes mw.flow.ve.ui.MWEditModeTool
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
  * @param {Object} [config] Config options

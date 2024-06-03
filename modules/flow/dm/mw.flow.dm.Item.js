@@ -3,7 +3,7 @@
 	 * Flow Item
 	 *
 	 * @abstract
-	 * @mixins OO.EventEmitter
+	 * @mixes OO.EventEmitter
 	 *
 	 * @constructor
 	 */

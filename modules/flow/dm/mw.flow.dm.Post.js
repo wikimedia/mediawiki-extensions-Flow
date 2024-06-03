@@ -4,7 +4,7 @@
 	 *
 	 * @class
 	 * @extends mw.flow.dm.ModeratedRevisionedContent
-	 * @mixins mw.flow.dm.List
+	 * @mixes mw.flow.dm.List
 	 *
 	 * @constructor
 	 * @param {string} id Post Id
