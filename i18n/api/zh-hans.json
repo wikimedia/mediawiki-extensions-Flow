@@ -69,7 +69,7 @@
 	"apihelp-flow+new-topic-param-topic": "用于新话题标题的文字。",
 	"apihelp-flow+new-topic-param-content": "用于话题的最初回复的内容。",
 	"apihelp-flow+new-topic-param-format": "新话题首次回复的格式(wikitext|html)",
-	"apihelp-flow+new-topic-example-1": "在[[Talk:Sandbox]]创建一个新话题",
+	"apihelp-flow+new-topic-example-1": "在[[Talk:Sandbox]]创建新话题",
 	"apihelp-flow+reply-description": "回复一个帖子。",
 	"apihelp-flow+reply-summary": "回复一个帖子。",
 	"apihelp-flow+reply-param-replyTo": "要回复的ID。",
