@@ -59,7 +59,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 		);
 		$iterator->addConditions( [
 			'event_type' => 'flow-topic-resolved',
-			'event_page_id IS NOT NULL',
+			$dbr->expr( 'event_page_id', '!=', null ),
 		] );
 		$iterator->setFetchColumns( [ 'event_page_id' ] );
 		$iterator->setCaller( __METHOD__ );

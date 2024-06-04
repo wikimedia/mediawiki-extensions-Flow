@@ -187,21 +187,21 @@ class Exporter extends WikiExporter {
 			$iterator->addConditions( [ $dbr->makeList( $pageConds, LIST_OR ) ] );
 		}
 		if ( $startId ) {
-			$iterator->addConditions( [ 'workflow_page_id >= ' . $dbr->addQuotes( $startId ) ] );
+			$iterator->addConditions( [ $dbr->expr( 'workflow_page_id', '>=', $startId ) ] );
 		}
 		if ( $endId ) {
-			$iterator->addConditions( [ 'workflow_page_id < ' . $dbr->addQuotes( $endId ) ] );
+			$iterator->addConditions( [ $dbr->expr( 'workflow_page_id', '<', $endId ) ] );
 		}
 
 		if ( $workflowStartId ) {
 			$tempUUID = UUID::create( $workflowStartId );
 			$decodedId = $tempUUID->getBinary();
-			$iterator->addConditions( [ 'workflow_id >= ' . $dbr->addQuotes( $decodedId ) ] );
+			$iterator->addConditions( [ $dbr->expr( 'workflow_id', '>=', $decodedId ) ] );
 		}
 		if ( $workflowEndId ) {
 			$tempUUID = UUID::create( $workflowEndId );
 			$decodedId = $tempUUID->getBinary();
-			$iterator->addConditions( [ 'workflow_id < ' . $dbr->addQuotes( $decodedId ) ] );
+			$iterator->addConditions( [ $dbr->expr( 'workflow_id', '<', $decodedId ) ] );
 		}
 		return $iterator;
 	}
