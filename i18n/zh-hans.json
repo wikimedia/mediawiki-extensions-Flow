@@ -44,9 +44,12 @@
 			"神樂坂秀吉",
 			"范",
 			"飞舞回堂前",
-			"LittlePaw365"
+			"LittlePaw365",
+			"Anterdc99",
+			"列维劳德"
 		]
 	},
+	"content-model-flow-board": "结构式讨论板",
 	"enablestructureddiscussions": "启用结构式讨论",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|停止}}关注“$1”上新活动",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|您}}已不再监视页面“$1”",
@@ -55,6 +58,7 @@
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|您}}已不再监视“$1”",
 	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|您}}可以随时监视[$2 此话题]。",
 	"flow-desc": "讨论系统",
+	"nstab-topic": "话题",
 	"flow-talk-taken-over-comment": "/* 已将此页面转换为结构式讨论板块 */",
 	"log-name-flow": "结构式讨论活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除了}}在[[$6]]中“[[$3|$5]]”的一个[$4 帖子]",
@@ -435,6 +439,8 @@
 	"right-flow-delete": "删除结构式讨论话题和帖子",
 	"action-flow-edit-post": "编辑其它用户的结构式讨论帖子",
 	"right-flow-edit-post": "编辑其它用户的结构式讨论帖子",
+	"right-flow-edit-title": "编辑其它用户所发起的的结构式讨论的话题标题",
+	"action-flow-edit-title": "编辑其它用户所发起的结构式讨论的话题标题",
 	"action-flow-suppress": "屏蔽结构式讨论话题和帖子",
 	"right-flow-suppress": "屏蔽结构式讨论话题和帖子",
 	"flow-terms-of-use-new-topic": "点击“{{int:flow-newtopic-save}}”，即表示您认同本wiki的使用条款。",
