@@ -13,6 +13,7 @@
 		"no-underscore-dangle": "off",
 		"camelcase": "off",
 		"max-len": "off",
-		"no-shadow": "warn"
+		"no-shadow": "warn",
+		"no-jquery/no-extend": "warn"
 	}
 }

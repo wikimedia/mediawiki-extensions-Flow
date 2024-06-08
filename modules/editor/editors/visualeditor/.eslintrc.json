@@ -1,5 +1,8 @@
 {
 	"globals": {
 		"ve": false
+	},
+	"rules": {
+		"no-jquery/no-extend": "warn"
 	}
 }
