@@ -8,7 +8,6 @@ use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -148,12 +147,9 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			'af_deleted' => 0,
 			'af_actions' => $action,
 			'af_group' => $wgFlowAbuseFilterGroup,
+			'af_actor' => $this->getServiceContainer()->getActorNormalization()
+				->acquireActorId( $this->getTestUser()->getUserIdentity(), $this->db ),
 		];
-		$row += AbuseFilterServices::getActorMigration()->getInsertValues(
-			$this->db,
-			'af_user',
-			$this->getTestUser()->getUserIdentity()
-		);
 
 		$this->db->startAtomic( __METHOD__ );
 		$this->db->newInsertQueryBuilder()
