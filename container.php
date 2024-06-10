@@ -615,16 +615,7 @@ $c['occupation_controller'] = static function ( $c ) {
 };
 
 $c['controller.opt_in'] = static function ( $c ) {
-	$archiveNameHelper = new Flow\Import\ArchiveNameHelper();
-	return new Flow\Import\OptInController(
-		$c['occupation_controller'],
-		$c['controller.notification'],
-		$archiveNameHelper,
-		$c['db.factory'],
-		$c['default_logger'],
-		$c['occupation_controller']->getTalkpageManager()
-
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowOptInController' );
 };
 
 $c['controller.notification'] = static function ( $c ) {
