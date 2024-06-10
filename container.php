@@ -631,11 +631,6 @@ $c['controller.notification'] = static function ( $c ) {
 	return MediaWikiServices::getInstance()->getService( 'FlowNotificationsController' );
 };
 
-// Initialized in Flow\Hooks to faciliate only loading the flow container
-// when flow is specifically requested to run. Extension initialization
-// must always happen before calling flow code.
-$c['controller.abusefilter'] = Flow\Hooks::getAbuseFilter();
-
 $c['controller.spamfilter'] = static function ( $c ) {
 	global $wgMaxArticleSize;
 
@@ -646,12 +641,15 @@ $c['controller.spamfilter'] = static function ( $c ) {
 
 	$contentLengthFilter = new Flow\SpamFilter\ContentLengthFilter( $maxCharCount );
 
+	// Abuse filter control is initialized in Flow\Hooks to faciliate only loading the
+	// flow container when flow is specifically requested to run. Extension initialization
+	// must always happen before calling flow code.
 	return new Flow\SpamFilter\Controller(
 		$contentLengthFilter,
 		new Flow\SpamFilter\SpamRegex,
 		new Flow\SpamFilter\RateLimits,
 		new Flow\SpamFilter\SpamBlacklist,
-		$c['controller.abusefilter'],
+		Flow\Hooks::getAbuseFilter(),
 		new Flow\SpamFilter\ConfirmEdit
 	);
 };
