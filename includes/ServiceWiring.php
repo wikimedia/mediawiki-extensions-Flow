@@ -1,8 +1,12 @@
 <?php
 
 use Flow\Data\FlowObjectCache;
+use Flow\Data\Index\TopKIndex;
 use Flow\Data\Listener\EditCountListener;
+use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
+use Flow\Data\ObjectManager;
+use Flow\Data\Storage\BasicDbStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
 use Flow\DbFactory;
@@ -238,6 +242,126 @@ return [
 		return new RevisionViewFormatter(
 			$services->getService( 'FlowUrlGenerator' ),
 			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowStorage.UrlReference' => static function ( MediaWikiServices $services ): ObjectManager {
+		$urlReferenceMapper = BasicObjectMapper::model(
+			\Flow\Model\URLReference::class
+		);
+		$urlReferenceBackend = new BasicDbStorage(
+			// factory and table
+			$services->getService( 'FlowDbFactory' ),
+			'flow_ext_ref',
+			[
+				'ref_src_wiki',
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_src_object_id',
+				'ref_type',
+				'ref_target',
+			]
+		);
+		$urlReferenceSourceLookupIndex = new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$urlReferenceBackend,
+			$urlReferenceMapper,
+			'flow_ref:url:by-source:v3',
+			[
+				'ref_src_wiki',
+				'ref_src_namespace',
+				'ref_src_title',
+			],
+			[
+				'order' => 'ASC',
+				'sort' => 'ref_src_object_id',
+			]
+		);
+		$urlReferenceRevisionLookupIndex = new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$urlReferenceBackend,
+			$urlReferenceMapper,
+			'flow_ref:url:by-revision:v3',
+			[
+				'ref_src_wiki',
+				'ref_src_object_type',
+				'ref_src_object_id',
+			],
+			[
+				'order' => 'ASC',
+				'sort' => [ 'ref_target' ],
+			]
+		);
+		$indexes = [
+			$urlReferenceSourceLookupIndex,
+			$urlReferenceRevisionLookupIndex,
+		];
+		return new ObjectManager(
+			$urlReferenceMapper,
+			$urlReferenceBackend,
+			$services->getService( 'FlowDbFactory' ),
+			$indexes,
+			[]
+		);
+	},
+
+	'FlowStorage.WikiReference' => static function ( MediaWikiServices $services ): ObjectManager {
+		$wikiReferenceMapper = BasicObjectMapper::model(
+			\Flow\Model\WikiReference::class
+		);
+		$wikiReferenceBackend = new BasicDbStorage(
+			$services->getService( 'FlowDbFactory' ),
+			'flow_wiki_ref',
+			[
+				'ref_src_wiki',
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_src_object_id',
+				'ref_type',
+				'ref_target_namespace',
+				'ref_target_title'
+			]
+		);
+		$wikiReferenceSourceLookupIndex = new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$wikiReferenceBackend,
+			$wikiReferenceMapper,
+			'flow_ref:wiki:by-source:v3',
+			[
+				'ref_src_wiki',
+				'ref_src_namespace',
+				'ref_src_title',
+			],
+			[
+				'order' => 'ASC',
+				'sort' => 'ref_src_object_id',
+			]
+		);
+		$wikiReferenceRevisionLookupIndex = new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$wikiReferenceBackend,
+			$wikiReferenceMapper,
+			'flow_ref:wiki:by-revision:v3',
+			[
+				'ref_src_wiki',
+				'ref_src_object_type',
+				'ref_src_object_id',
+			],
+			[
+				'order' => 'ASC',
+				'sort' => [ 'ref_target_namespace', 'ref_target_title' ],
+			]
+		);
+		$indexes = [
+			$wikiReferenceSourceLookupIndex,
+			$wikiReferenceRevisionLookupIndex,
+		];
+		return new ObjectManager(
+			$wikiReferenceMapper,
+			$wikiReferenceBackend,
+			$services->getService( 'FlowDbFactory' ),
+			$indexes,
+			[]
 		);
 	},
 
