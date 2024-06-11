@@ -2,6 +2,7 @@
 
 use Flow\Data\FlowObjectCache;
 use Flow\Data\Index\TopKIndex;
+use Flow\Data\Index\UniqueFeatureIndex;
 use Flow\Data\Listener\EditCountListener;
 use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
@@ -9,6 +10,7 @@ use Flow\Data\ObjectManager;
 use Flow\Data\Storage\BasicDbStorage;
 use Flow\Data\Storage\PostRevisionStorage;
 use Flow\Data\Storage\PostRevisionTopicHistoryStorage;
+use Flow\Data\Storage\TopicListStorage;
 use Flow\DbFactory;
 use Flow\FlowActions;
 use Flow\Formatter\CategoryViewerFormatter;
@@ -242,6 +244,70 @@ return [
 		return new RevisionViewFormatter(
 			$services->getService( 'FlowUrlGenerator' ),
 			$services->getService( 'FlowRevisionFormatterFactory' )->create()
+		);
+	},
+
+	'FlowStorage.TopicList' => static function ( MediaWikiServices $services ): ObjectManager {
+		// Lookup from topic_id to its owning board id
+		$topicListPrimaryIndex = new UniqueFeatureIndex(
+			$services->getService( 'FlowCache' ),
+			$services->getService( 'FlowStorage.TopicList.Backend' ),
+			$services->getService( 'FlowStorage.TopicList.Mapper' ),
+			'flow_topic_list:topic',
+			[ 'topic_id' ]
+		);
+		// Lookup from board to contained topics
+		// In reverse order by topic_id
+		$topicListReverseLookupIndex = new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$services->getService( 'FlowStorage.TopicList.Backend' ),
+			$services->getService( 'FlowStorage.TopicList.Mapper' ),
+			'flow_topic_list:list',
+			[ 'topic_list_id' ],
+			[ 'sort' => 'topic_id' ]
+		);
+		$indexes = [
+			$topicListPrimaryIndex,
+			$topicListReverseLookupIndex,
+			$services->getService( 'FlowStorage.TopicList.LastUpdatedIndex' )
+		];
+		return new ObjectManager(
+			$services->getService( 'FlowStorage.TopicList.Mapper' ),
+			$services->getService( 'FlowStorage.TopicList.Backend' ),
+			$services->getService( 'FlowDbFactory' ),
+			$indexes
+		);
+	},
+
+	'FlowStorage.TopicList.Backend' => static function ( MediaWikiServices $services ): TopicListStorage {
+		return new TopicListStorage(
+			// factory and table
+			$services->getService( 'FlowDbFactory' ),
+			'flow_topic_list',
+			[ 'topic_list_id', 'topic_id' ]
+		);
+	},
+
+	'FlowStorage.TopicList.LastUpdatedIndex' => static function ( MediaWikiServices $services ): TopKIndex {
+		// In reverse order by topic last_updated
+		return new TopKIndex(
+			$services->getService( 'FlowCache' ),
+			$services->getService( 'FlowStorage.TopicList.Backend' ),
+			$services->getService( 'FlowStorage.TopicList.Mapper' ),
+			'flow_topic_list_last_updated:list',
+			[ 'topic_list_id' ],
+			[
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc'
+			]
+		);
+	},
+
+	'FlowStorage.TopicList.Mapper' => static function ( MediaWikiServices $services ): BasicObjectMapper {
+		// Must be BasicObjectMapper, due to variance in when
+		// we have workflow_last_update_timestamp
+		return BasicObjectMapper::model(
+			\Flow\Model\TopicListEntry::class
 		);
 	},
 

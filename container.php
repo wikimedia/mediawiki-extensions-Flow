@@ -5,7 +5,6 @@ use Flow\Data\Index\PostRevisionTopicHistoryIndex;
 use Flow\Data\Index\PostSummaryRevisionBoardHistoryIndex;
 use Flow\Data\Index\TopKIndex;
 use Flow\Data\Index\UniqueFeatureIndex;
-use Flow\Data\Mapper\BasicObjectMapper;
 use Flow\Data\Mapper\CachingObjectMapper;
 use Flow\Data\ObjectLocator;
 use Flow\Data\ObjectManager;
@@ -14,7 +13,6 @@ use Flow\Data\Storage\HeaderRevisionStorage;
 use Flow\Data\Storage\PostRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionBoardHistoryStorage;
 use Flow\Data\Storage\PostSummaryRevisionStorage;
-use Flow\Data\Storage\TopicListStorage;
 use MediaWiki\MediaWikiServices;
 
 // This lets the index handle the initial query from HistoryPager,
@@ -357,64 +355,17 @@ $c['storage.post_summary'] = static function ( $c ) {
 };
 
 $c['storage.topic_list.mapper'] = static function ( $c ) {
-	// Must be BasicObjectMapper, due to variance in when
-	// we have workflow_last_update_timestamp
-	return BasicObjectMapper::model(
-		\Flow\Model\TopicListEntry::class
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowStorage.TopicList.Mapper' );
 };
 $c['storage.topic_list.backend'] = static function ( $c ) {
-	return new TopicListStorage(
-		// factory and table
-		$c['db.factory'],
-		'flow_topic_list',
-		[ 'topic_list_id', 'topic_id' ]
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowStorage.TopicList.Backend' );
 };
 /// In reverse order by topic last_updated
 $c['storage.topic_list.indexes.last_updated'] = static function ( $c ) {
-	return new TopKIndex(
-		$c['flowcache'],
-		$c['storage.topic_list.backend'],
-		$c['storage.topic_list.mapper'],
-		'flow_topic_list_last_updated:list',
-		[ 'topic_list_id' ],
-		[
-			'sort' => 'workflow_last_update_timestamp',
-			'order' => 'desc'
-		]
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowStorage.TopicList.LastUpdatedIndex' );
 };
 $c['storage.topic_list'] = static function ( $c ) {
-	// Lookup from topic_id to its owning board id
-	$topicListPrimaryIndex = new UniqueFeatureIndex(
-		$c['flowcache'],
-		$c['storage.topic_list.backend'],
-		$c['storage.topic_list.mapper'],
-		'flow_topic_list:topic',
-		[ 'topic_id' ]
-	);
-	// Lookup from board to contained topics
-	// In reverse order by topic_id
-	$topicListReverseLookupIndex = new TopKIndex(
-		$c['flowcache'],
-		$c['storage.topic_list.backend'],
-		$c['storage.topic_list.mapper'],
-		'flow_topic_list:list',
-		[ 'topic_list_id' ],
-		[ 'sort' => 'topic_id' ]
-	);
-	$indexes = [
-		$topicListPrimaryIndex,
-		$topicListReverseLookupIndex,
-		$c['storage.topic_list.indexes.last_updated'],
-	];
-	return new ObjectManager(
-		$c['storage.topic_list.mapper'],
-		$c['storage.topic_list.backend'],
-		$c['db.factory'],
-		$indexes
-	);
+	return MediaWikiServices::getInstance()->getService( 'FlowStorage.TopicList' );
 };
 $c['storage.post.mapper'] = static function ( $c ) {
 	return CachingObjectMapper::model(
