@@ -14,9 +14,9 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Tests\PostRevisionTestCase;
 use Flow\UrlGenerator;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use RequestContext;
 
 /**
  * @covers \Flow\Formatter\RevisionFormatter

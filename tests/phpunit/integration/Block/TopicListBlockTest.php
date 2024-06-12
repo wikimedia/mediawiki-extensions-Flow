@@ -6,6 +6,7 @@ use Flow\Block\TopicListBlock;
 use Flow\Container;
 use Flow\Hooks;
 use Flow\Model\Workflow;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 
 /**
@@ -26,7 +27,7 @@ class TopicListBlockTest extends \MediaWikiIntegrationTestCase {
 		$container = Container::getContainer();
 		$container['user'] = $user;
 
-		$ctx = $this->createMock( \IContextSource::class );
+		$ctx = $this->createMock( IContextSource::class );
 		$ctx->method( 'getUser' )
 			->willReturn( $user );
 

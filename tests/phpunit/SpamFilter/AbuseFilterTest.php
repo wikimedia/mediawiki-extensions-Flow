@@ -6,7 +6,8 @@ namespace Flow\Tests\SpamFilter;
 
 use Flow\SpamFilter\AbuseFilter;
 use Flow\Tests\PostRevisionTestCase;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Title\Title;
 
@@ -106,10 +107,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		// Needed because abuse filter tries to read the title out and then
 		// set it back.  If we never provide one it tries to set a null title
 		// and bails.
-		\RequestContext::getMain()->setTitle( Title::newMainPage() );
+		RequestContext::getMain()->setTitle( Title::newMainPage() );
 
 		$user = $this->getTestSysop()->getUser();
-		\RequestContext::getMain()->setUser( $user );
+		RequestContext::getMain()->setUser( $user );
 
 		$this->spamFilter = new AbuseFilter( $wgFlowAbuseFilterGroup );
 		if ( !$this->spamFilter->enabled() ) {

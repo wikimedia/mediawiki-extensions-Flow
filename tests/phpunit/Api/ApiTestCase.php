@@ -11,7 +11,7 @@ use MediaWiki\Permissions\Authority;
  * @group Flow
  * @group medium
  */
-abstract class ApiTestCase extends \ApiTestCase {
+abstract class ApiTestCase extends \MediaWiki\Tests\Api\ApiTestCase {
 	protected function setUp(): void {
 		Container::reset();
 		parent::setUp();

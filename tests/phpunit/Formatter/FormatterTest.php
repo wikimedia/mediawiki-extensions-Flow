@@ -12,6 +12,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 
@@ -64,7 +65,7 @@ class FormatterTest extends FlowTestCase {
 		$row->revision = $this->mockRevision( $action, $revId, $postId );
 		$row->currentRevision = $row->revision;
 
-		$ctx = $this->createMock( \IContextSource::class );
+		$ctx = $this->createMock( IContextSource::class );
 		$ctx->method( 'getLanguage' )
 			->willReturn( $wgLang );
 		$ctx->method( 'msg' )

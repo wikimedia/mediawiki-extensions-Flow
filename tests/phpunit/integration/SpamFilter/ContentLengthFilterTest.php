@@ -5,6 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ContentLengthFilter;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -41,7 +42,7 @@ class ContentLengthFilterTest extends \MediaWikiIntegrationTestCase {
 		$reply = $topic->reply( $workflow, $user, $content, 'wikitext' );
 
 		$filter = new ContentLengthFilter( $maxLength );
-		$status = $filter->validate( $this->createMock( \IContextSource::class ), $reply, null, $title, $ownerTitle );
+		$status = $filter->validate( $this->createMock( IContextSource::class ), $reply, null, $title, $ownerTitle );
 		$this->assertSame( $expected, $status->isOK() );
 	}
 }

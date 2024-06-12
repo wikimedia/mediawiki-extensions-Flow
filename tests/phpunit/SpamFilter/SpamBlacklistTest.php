@@ -5,7 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamBlacklist;
 use Flow\Tests\PostRevisionTestCase;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

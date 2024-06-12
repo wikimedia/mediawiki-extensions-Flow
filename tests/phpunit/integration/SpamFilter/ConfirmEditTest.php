@@ -6,6 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
 use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -46,7 +47,7 @@ class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 		$request->method( 'wasPosted' )
 			->willReturn( true );
 
-		$context = $this->createMock( \IContextSource::class );
+		$context = $this->createMock( IContextSource::class );
 
 		$context->method( 'getUser' )
 			->willReturn( $user );

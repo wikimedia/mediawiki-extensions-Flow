@@ -5,6 +5,7 @@ namespace Flow\Tests\SpamFilter;
 use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamRegex;
 use Flow\Tests\PostRevisionTestCase;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
 
 /**
@@ -45,7 +46,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 		$newRevision = $this->generateObject( $newRevisionRow );
 		$title = Title::makeTitle( NS_MAIN, 'SpamRegexTest TestSpam' );
 
-		$status = $this->spamFilter->validate( $this->createMock( \IContextSource::class ), $newRevision, $oldRevision, $title, $title );
+		$status = $this->spamFilter->validate( $this->createMock( IContextSource::class ), $newRevision, $oldRevision, $title, $title );
 		$this->assertEquals( $expected, $status->isOK() );
 	}
 

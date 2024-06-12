@@ -14,6 +14,7 @@ use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceFactory;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 
 /**
@@ -411,7 +412,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		$reflectionProperty->setValue( $workflow, $title );
 
 		$references = $this->expandReferences( $workflow, $revision, $references );
-		$parserOutput = new \ParserOutput;
+		$parserOutput = new ParserOutput;
 
 		// Clear the LinksUpdate to allow clean testing
 		foreach ( array_keys( $expectedItems ) as $fieldName ) {

@@ -7,6 +7,7 @@ namespace Flow\Tests\Parsoid\Fixer;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\WikiLinkFixer;
 use Flow\Tests\PostRevisionTestCase;
+use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Title\Title;
 
 /**
@@ -71,7 +72,7 @@ class WikiLinkFixerTest extends PostRevisionTestCase {
 	 * @dataProvider redLinkProvider
 	 */
 	public function testAppliesRedLinks( $message, $anchor, $expect ) {
-		$fixer = new ContentFixer( new WikiLinkFixer( $this->createMock( \LinkBatch::class ) ) );
+		$fixer = new ContentFixer( new WikiLinkFixer( $this->createMock( LinkBatch::class ) ) );
 		$result = $fixer->apply( $anchor, Title::newMainPage() );
 		$this->assertStringContainsString( $expect, $result, $message );
 	}
