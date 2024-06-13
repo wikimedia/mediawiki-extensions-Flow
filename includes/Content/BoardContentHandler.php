@@ -4,7 +4,6 @@ namespace Flow\Content;
 
 use Article;
 use Content;
-use DerivativeContext;
 use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\Diff\FlowBoardContentDiffView;
@@ -14,16 +13,17 @@ use Flow\Model\UUID;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
 use FormatJson;
-use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use ParserOutput;
-use RequestContext;
 
 class BoardContentHandler extends \ContentHandler {
 	public function __construct( $modelId ) {

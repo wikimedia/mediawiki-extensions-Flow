@@ -3,8 +3,6 @@
 namespace Flow\Import\Postprocessor;
 
 use BatchRowIterator;
-use EchoCallbackIterator;
-use EchoEvent;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
@@ -14,6 +12,8 @@ use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 use Flow\Notifications\Controller;
+use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\User\User;
 use RecursiveIteratorIterator;
 use Wikimedia\Rdbms\IDatabase;
@@ -68,19 +68,19 @@ class LqtNotifications implements Postprocessor {
 		// Overrides existing user-locators, because we don't want unintended
 		// notifications to go out here.
 		$wgEchoNotifications['flow-post-reply']['user-locators'] = [
-			function ( EchoEvent $event ) {
+			function ( Event $event ) {
 				return $this->locateUsersWithPendingLqtNotifications( $event );
 			}
 		];
 	}
 
 	/**
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @param int $batchSize
 	 * @throws ImportException
-	 * @return EchoCallbackIterator
+	 * @return CallbackIterator
 	 */
-	public function locateUsersWithPendingLqtNotifications( EchoEvent $event, $batchSize = 500 ) {
+	public function locateUsersWithPendingLqtNotifications( Event $event, $batchSize = 500 ) {
 		$activeThreadId = $event->getExtraParam( 'lqtThreadId' );
 		if ( $activeThreadId === null ) {
 			throw new ImportException( 'No active thread!' );
@@ -102,7 +102,7 @@ class LqtNotifications implements Postprocessor {
 		$it = new RecursiveIteratorIterator( $it );
 
 		// add callback to convert user id to user objects
-		$it = new EchoCallbackIterator( $it, static function ( $row ) {
+		$it = new CallbackIterator( $it, static function ( $row ) {
 			return User::newFromId( $row->ums_user );
 		} );
 

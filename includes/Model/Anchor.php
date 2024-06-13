@@ -5,8 +5,8 @@ namespace Flow\Model;
 use ApiSerializable;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
-use Message;
 
 /**
  * Represents a mutable anchor as a Message instance along with

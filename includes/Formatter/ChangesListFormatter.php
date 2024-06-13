@@ -9,7 +9,7 @@ use Flow\Exception\FlowException;
 use Flow\Exception\PermissionException;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 
 class ChangesListFormatter extends AbstractFormatter {

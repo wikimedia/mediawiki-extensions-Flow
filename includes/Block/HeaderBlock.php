@@ -15,7 +15,7 @@ use Flow\Model\Header;
 use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\UrlGenerator;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class HeaderBlock extends AbstractBlock {
 	/**

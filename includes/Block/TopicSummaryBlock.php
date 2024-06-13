@@ -17,10 +17,10 @@ use Flow\Formatter\RevisionViewQuery;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
-use Message;
 
 class TopicSummaryBlock extends AbstractBlock {
 	/**

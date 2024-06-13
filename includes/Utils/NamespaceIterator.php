@@ -3,9 +3,9 @@
 namespace Flow\Utils;
 
 use BatchRowIterator;
-use EchoCallbackIterator;
 use Iterator;
 use IteratorAggregate;
+use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Title\Title;
 use RecursiveIteratorIterator;
 use Wikimedia\Rdbms\IDatabase;
@@ -52,7 +52,7 @@ class NamespaceIterator implements IteratorAggregate {
 		$it = new RecursiveIteratorIterator( $it );
 
 		$namespace = $this->namespace;
-		return new EchoCallbackIterator( $it, static function ( $row ) use ( $namespace ) {
+		return new CallbackIterator( $it, static function ( $row ) use ( $namespace ) {
 			return Title::makeTitle( $namespace, $row->page_title );
 		} );
 	}

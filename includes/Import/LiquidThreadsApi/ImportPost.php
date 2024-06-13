@@ -7,6 +7,7 @@ use ArrayIterator;
 use Flow\Import\IImportPost;
 use Flow\Import\IObjectRevision;
 use Iterator;
+use MediaWiki\Extension\Notifications\DiscussionParser;
 use MediaWiki\Title\Title;
 
 class ImportPost extends PageRevisionedObject implements IImportPost {
@@ -50,7 +51,7 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	 * @return string|null Returns username, IP, or null if none could be detected
 	 */
 	public static function extractUserFromSignature( $signatureText ) {
-		$users = \EchoDiscussionParser::extractUsersFromLine( $signatureText );
+		$users = DiscussionParser::extractUsersFromLine( $signatureText );
 
 		if ( count( $users ) > 0 ) {
 			return $users[0];

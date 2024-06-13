@@ -23,10 +23,11 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Notifications\Controller;
 use Flow\Repository\RootPostLoader;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
-use Message;
 
 class TopicBlock extends AbstractBlock {
 
@@ -932,7 +933,7 @@ class TopicBlock extends AbstractBlock {
 				// LogEventsList::showLogExtract will write to OutputPage, but we
 				// actually just want that text, to write it ourselves wherever we want,
 				// so let's create an OutputPage object to then get the content from.
-				$rc = new \RequestContext();
+				$rc = new RequestContext();
 				$output = $rc->getOutput();
 
 				// get log extract

@@ -3,7 +3,7 @@
 namespace Flow\SpamFilter;
 
 use Flow\Model\AbstractRevision;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 

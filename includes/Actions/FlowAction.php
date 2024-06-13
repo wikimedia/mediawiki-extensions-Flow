@@ -13,7 +13,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;

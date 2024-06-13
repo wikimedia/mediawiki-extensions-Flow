@@ -7,7 +7,7 @@ use DOMNode;
 use Flow\Conversion\Utils;
 use Flow\Parsoid\Fixer;
 use HtmlArmor;
-use LinkBatch;
+use MediaWiki\Cache\LinkBatch;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

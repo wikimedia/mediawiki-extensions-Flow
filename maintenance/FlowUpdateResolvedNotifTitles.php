@@ -12,8 +12,8 @@ use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
 use LoggedUpdateMaintenance;
+use MediaWiki\Extension\Notifications\DbFactory;
 use MediaWiki\Title\Title;
-use MWEchoDbFactory;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -44,7 +44,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 	}
 
 	public function doDBUpdates() {
-		$dbFactory = MWEchoDbFactory::newFromDefault();
+		$dbFactory = DbFactory::newFromDefault();
 		$dbw = $dbFactory->getEchoDb( DB_PRIMARY );
 		$dbr = $dbFactory->getEchoDb( DB_REPLICA );
 		// We can't join echo_event with page, because those tables can be on different

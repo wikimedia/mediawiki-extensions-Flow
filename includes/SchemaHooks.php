@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use DatabaseUpdater;
 use Flow\Maintenance\FlowCreateTemplates;
 use Flow\Maintenance\FlowFixLinks;
 use Flow\Maintenance\FlowFixLog;
@@ -14,6 +13,7 @@ use Flow\Maintenance\FlowUpdateRecentChanges;
 use Flow\Maintenance\FlowUpdateRevisionTypeId;
 use Flow\Maintenance\FlowUpdateUserWiki;
 use Flow\Maintenance\FlowUpdateWorkflowPageId;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 class SchemaHooks implements LoadExtensionSchemaUpdatesHook {

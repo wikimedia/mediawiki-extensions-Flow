@@ -4,7 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class RevisionDiffViewFormatter {
 

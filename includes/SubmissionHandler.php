@@ -10,7 +10,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\Workflow;
 use FormatJson;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;

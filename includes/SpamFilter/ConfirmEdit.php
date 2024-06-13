@@ -5,7 +5,7 @@ namespace Flow\SpamFilter;
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
 use MediaWiki\Extension\ConfirmEdit\SimpleCaptcha\SimpleCaptcha;
 use MediaWiki\MediaWikiServices;

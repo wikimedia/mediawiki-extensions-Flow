@@ -10,12 +10,12 @@ use Flow\Import\Plain\ObjectRevision;
 use Flow\Import\TemplateHelper;
 use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use Parser;
 use ParserOptions;
 use WikitextContent;
 

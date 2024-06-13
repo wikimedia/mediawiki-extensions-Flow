@@ -8,7 +8,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Utils\MWTimestamp;
 
 class RevisionViewFormatter {

@@ -15,7 +15,7 @@ use LogEntry;
 use LogFormatter;
 use LogPage;
 use MediaWiki\Html\Html;
-use Message;
+use MediaWiki\Message\Message;
 
 class ActionFormatter extends LogFormatter {
 	/**

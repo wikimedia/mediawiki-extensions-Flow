@@ -3,9 +3,9 @@
 namespace Flow\Utils;
 
 use BatchRowIterator;
-use EchoCallbackIterator;
 use Iterator;
 use IteratorAggregate;
+use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Title\Title;
 use RecursiveIteratorIterator;
 use Wikimedia\Rdbms\IDatabase;
@@ -79,7 +79,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 
 		$it = new RecursiveIteratorIterator( $it );
 
-		return new EchoCallbackIterator( $it, static function ( $row ) {
+		return new CallbackIterator( $it, static function ( $row ) {
 			return Title::makeTitle( $row->page_namespace, $row->page_title );
 		} );
 	}

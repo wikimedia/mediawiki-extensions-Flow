@@ -2,9 +2,10 @@
 
 namespace Flow\Notifications;
 
+use MediaWiki\Extension\Notifications\Formatters\EchoMentionStatusPresentationModel;
 use MediaWiki\Title\Title;
 
-class MentionStatusPresentationModel extends \EchoMentionStatusPresentationModel {
+class MentionStatusPresentationModel extends EchoMentionStatusPresentationModel {
 
 	/** @inheritDoc */
 	public function getPrimaryLink() {

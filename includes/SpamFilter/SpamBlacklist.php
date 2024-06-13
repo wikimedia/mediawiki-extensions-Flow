@@ -4,7 +4,7 @@ namespace Flow\SpamFilter;
 
 use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;

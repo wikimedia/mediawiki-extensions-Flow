@@ -2,10 +2,10 @@
 
 namespace Flow\Notifications;
 
-use EchoEventPresentationModel;
 use Flow\Container;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

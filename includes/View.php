@@ -3,7 +3,6 @@
 namespace Flow;
 
 use Article;
-use ContextSource;
 use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
@@ -13,13 +12,14 @@ use Flow\Model\Anchor;
 use Flow\Model\HtmlRenderingInformation;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use IContextSource;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use Message;
 
 class View extends ContextSource {
 	/**

@@ -7,7 +7,7 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;

@@ -2,26 +2,25 @@
 
 namespace Flow\Notifications;
 
-use EchoEvent;
-use EchoUserLocator;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
-class UserLocator extends EchoUserLocator {
+class UserLocator extends \MediaWiki\Extension\Notifications\UserLocator {
 	/**
 	 * Return all users watching the topic the event was for.
 	 *
 	 * The echo job queue must be enabled to prevent timeouts submitting to
 	 * heavily watched pages when this is used.
 	 *
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @return User[]
 	 */
-	public static function locateUsersWatchingTopic( EchoEvent $event ) {
+	public static function locateUsersWatchingTopic( Event $event ) {
 		$workflowId = $event->getExtraParam( 'topic-workflow' );
 		if ( !$workflowId instanceof UUID ) {
 			// something wrong; don't notify anyone
@@ -52,10 +51,10 @@ class UserLocator extends EchoUserLocator {
 	}
 
 	/**
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @return User[]
 	 */
-	public static function locatePostAuthors( EchoEvent $event ) {
+	public static function locatePostAuthors( Event $event ) {
 		$extra = $event->getExtra();
 		$postId = $extra['reply-to'] ?? $extra['post-id'];
 
@@ -68,10 +67,10 @@ class UserLocator extends EchoUserLocator {
 	}
 
 	/**
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @return array
 	 */
-	public static function locateMentionedUsers( EchoEvent $event ) {
+	public static function locateMentionedUsers( Event $event ) {
 		$userIds = $event->getExtraParam( 'mentioned-users', [] );
 		return array_map( [ 'User', 'newFromId' ], $userIds );
 	}

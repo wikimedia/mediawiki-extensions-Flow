@@ -7,7 +7,7 @@ use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 
 class ContributionsFormatter extends AbstractFormatter {

@@ -8,12 +8,12 @@ use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidInputException;
 use IDBAccessObject;
 use MapCacheLRU;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
-use RequestContext;
 
 class Workflow {
 

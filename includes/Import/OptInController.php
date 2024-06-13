@@ -4,7 +4,6 @@ namespace Flow\Import;
 
 use DateTime;
 use DateTimeZone;
-use DerivativeContext;
 use Exception;
 use Flow\Block\AbstractBlock;
 use Flow\Collection\HeaderCollection;
@@ -18,8 +17,10 @@ use Flow\OccupationController;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
 use FormatJson;
-use IContextSource;
 use IDBAccessObject;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -29,7 +30,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
-use RequestContext;
 use WikitextContent;
 
 /**

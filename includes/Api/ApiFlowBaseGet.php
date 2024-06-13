@@ -5,7 +5,7 @@ namespace Flow\Api;
 use Flow\Block\AbstractBlock;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
-use Message;
+use MediaWiki\Message\Message;
 
 abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {

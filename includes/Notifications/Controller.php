@@ -2,7 +2,6 @@
 
 namespace Flow\Notifications;
 
-use EchoEvent;
 use ExtensionRegistry;
 use Flow\Container;
 use Flow\Conversion\Utils;
@@ -20,6 +19,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Controller\ModerationController;
 use MediaWiki\Extension\Notifications\Mapper\EventMapper;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -104,7 +104,7 @@ class Controller {
 	 * * board-workflow: The Workflow object for the board. Always required.
 	 * * timestamp: Original event timestamp, for imports. Optional.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return array Array of created EchoEvent objects.
+	 * @return array Array of created Event objects.
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifyHeaderChange( $data = [] ) {
@@ -145,9 +145,9 @@ class Controller {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		$events = [ EchoEvent::create( [ 'type' => 'flow-description-edited' ] + $info ) ];
+		$events = [ Event::create( [ 'type' => 'flow-description-edited' ] + $info ) ];
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = EchoEvent::create( [ 'type' => 'flowusertalk-description-edited' ] + $info );
+			$events[] = Event::create( [ 'type' => 'flowusertalk-description-edited' ] + $info );
 		}
 		if ( $mentionedUsers ) {
 			$mentionEvents = $this->generateMentionEvents(
@@ -178,7 +178,7 @@ class Controller {
 	 * * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames.
 	 * * old-subject: The old subject of a Topic. Required for topic renames.
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
-	 * @return array Array of created EchoEvent objects.
+	 * @return array Array of created Event objects.
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifyPostChange( $eventName, $data = [] ) {
@@ -272,10 +272,10 @@ class Controller {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		$events = [ EchoEvent::create( [ 'type' => $eventName ] + $info ) ];
+		$events = [ Event::create( [ 'type' => $eventName ] + $info ) ];
 		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$usertalkEvent = str_replace( 'flow-', 'flowusertalk-', $eventName );
-			$events[] = EchoEvent::create( [ 'type' => $usertalkEvent ] + $info );
+			$events[] = Event::create( [ 'type' => $usertalkEvent ] + $info );
 		}
 		if ( $mentionedUsers ) {
 			$mentionEvents = $this->generateMentionEvents(
@@ -299,7 +299,7 @@ class Controller {
 	 * * topic-title: The PostRevision object for the topic title. Always required.
 	 * * topic-workflow: The Workflow object for the board. Always required.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return array Array of created EchoEvent objects.
+	 * @return array Array of created Event objects.
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifySummaryChange( $data = [] ) {
@@ -345,9 +345,9 @@ class Controller {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		$events = [ EchoEvent::create( [ 'type' => 'flow-summary-edited' ] + $info ) ];
+		$events = [ Event::create( [ 'type' => 'flow-summary-edited' ] + $info ) ];
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = EchoEvent::create( [ 'type' => 'flowusertalk-summary-edited' ] + $info );
+			$events[] = Event::create( [ 'type' => 'flowusertalk-summary-edited' ] + $info );
 		}
 		if ( $mentionedUsers ) {
 			$mentionEvents = $this->generateMentionEvents(
@@ -373,7 +373,7 @@ class Controller {
 	 *    title.
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
-	 * @return array Array of created EchoEvent objects.
+	 * @return array Array of created Event objects.
 	 * @throws FlowException When $params contains unexpected types/values
 	 */
 	public function notifyNewTopic( $params ) {
@@ -427,9 +427,9 @@ class Controller {
 				'mentioned-users' => $mentionedUsers,
 			]
 		];
-		$events[] = EchoEvent::create( [ 'type' => 'flow-new-topic' ] + $eventData );
+		$events[] = Event::create( [ 'type' => 'flow-new-topic' ] + $eventData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = EchoEvent::create( [ 'type' => 'flowusertalk-new-topic' ] + $eventData );
+			$events[] = Event::create( [ 'type' => 'flowusertalk-new-topic' ] + $eventData );
 		}
 
 		if ( $mentionedUsers ) {
@@ -488,9 +488,9 @@ class Controller {
 			$info['timestamp'] = $data['timestamp'];
 		}
 
-		$events = [ EchoEvent::create( [ 'type' => 'flow-topic-resolved' ] + $info ) ];
+		$events = [ Event::create( [ 'type' => 'flow-topic-resolved' ] + $info ) ];
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = EchoEvent::create( [ 'type' => 'flowusertalk-topic-resolved' ] + $info );
+			$events[] = Event::create( [ 'type' => 'flowusertalk-topic-resolved' ] + $info );
 		}
 		return $events;
 	}
@@ -502,7 +502,7 @@ class Controller {
 		}
 
 		$events = [];
-		$events[] = EchoEvent::create( [
+		$events[] = Event::create( [
 			'type' => 'flow-enabled-on-talkpage',
 			'agent' => $user,
 			'title' => $user->getTalkPage(),
@@ -518,7 +518,7 @@ class Controller {
 	 * @param User $user User who created the new post
 	 * @param array $mentionedUsers
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
-	 * @return bool|EchoEvent[]
+	 * @return bool|Event[]
 	 * @throws \Flow\Exception\InvalidDataException
 	 */
 	protected function generateMentionEvents(
@@ -555,7 +555,7 @@ class Controller {
 		}
 
 		$events = [];
-		$events[] = EchoEvent::create( [
+		$events[] = Event::create( [
 			'type' => 'flow-mention',
 			'title' => $workflow->getOwnerTitle(),
 			'extra' => $extraData,
@@ -572,7 +572,7 @@ class Controller {
 			if ( $content->getRevisionType() === 'post' ) {
 				$extra['post-id'] = $content->getCollection()->getId();
 			}
-			$events[] = EchoEvent::create( [
+			$events[] = Event::create( [
 				'type' => 'flow-mention-failure-too-many',
 				'title' => $workflow->getOwnerTitle(),
 				'extra' => $extra,
@@ -688,7 +688,7 @@ class Controller {
 	/**
 	 * Handler for EchoGetBundleRule hook, which defines the bundle rules for each notification
 	 *
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @param string &$bundleString Determines how the notification should be bundled
 	 * @return bool True for success
 	 */
@@ -785,7 +785,7 @@ class Controller {
 	 * This is the lowest-number post, numbering them using a pre-order depth-first
 	 *  search
 	 *
-	 * @param EchoEvent[] $bundledEvents
+	 * @param Event[] $bundledEvents
 	 * @return UUID|null Post ID, or null on failure
 	 */
 	public function getTopmostPostId( array $bundledEvents ) {

@@ -3,7 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Model\UUID;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 interface Block {
 	/**

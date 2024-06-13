@@ -7,10 +7,10 @@ use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Model\AbstractRevision;
 use Maintenance;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use Parser;
 use ParserOptions;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

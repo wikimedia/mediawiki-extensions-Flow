@@ -7,10 +7,10 @@ use Flow\FlowActions;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * This is a "utility" class that might come in useful to generate

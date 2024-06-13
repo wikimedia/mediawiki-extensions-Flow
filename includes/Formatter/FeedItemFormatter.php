@@ -3,7 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Feed\FeedItem;
 
 class FeedItemFormatter extends AbstractFormatter {

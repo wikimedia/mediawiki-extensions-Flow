@@ -7,12 +7,12 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use LightnCandy\LightnCandy;
 use LightnCandy\SafeString;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use OOUI\IconWidget;
-use RequestContext;
 
 class TemplateHelper {
 

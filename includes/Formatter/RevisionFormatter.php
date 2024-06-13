@@ -18,16 +18,16 @@ use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
-use GenderCache;
-use IContextSource;
+use MediaWiki\Cache\GenderCache;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
-use Message;
 use Wikimedia\Timestamp\TimestampException;
 
 /**

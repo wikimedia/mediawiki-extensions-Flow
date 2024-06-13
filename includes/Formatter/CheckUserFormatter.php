@@ -2,7 +2,7 @@
 
 namespace Flow\Formatter;
 
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class CheckUserFormatter extends AbstractFormatter {
 	protected function getHistoryType() {

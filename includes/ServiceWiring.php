@@ -36,6 +36,7 @@ use Flow\Templating;
 use Flow\UrlGenerator;
 use Flow\WatchedTopicItems;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;

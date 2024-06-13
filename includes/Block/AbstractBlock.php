@@ -10,7 +10,8 @@ use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\RevisionActionPermissions;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 
 abstract class AbstractBlock implements Block {
@@ -180,7 +181,7 @@ abstract class AbstractBlock implements Block {
 
 	/**
 	 * @param string $type
-	 * @return \Message
+	 * @return Message
 	 */
 	public function getErrorMessage( $type ) {
 		return $this->errors[$type]['message'] ?? null;
@@ -196,10 +197,10 @@ abstract class AbstractBlock implements Block {
 
 	/**
 	 * @param string $type
-	 * @param \Message $message
+	 * @param Message $message
 	 * @param mixed|null $extra
 	 */
-	public function addError( $type, \Message $message, $extra = null ) {
+	public function addError( $type, Message $message, $extra = null ) {
 		$this->errors[$type] = [
 			'message' => $message,
 			'extra' => $extra,

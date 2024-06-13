@@ -7,9 +7,9 @@ use ApiMain;
 use ApiMessage;
 use ApiUsageException;
 use Exception;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\User;
-use RequestContext;
 
 class LocalApiBackend extends ApiBackend {
 	/**

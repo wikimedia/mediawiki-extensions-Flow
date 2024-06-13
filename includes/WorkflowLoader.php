@@ -4,7 +4,7 @@ namespace Flow;
 
 use Flow\Block\AbstractBlock;
 use Flow\Model\Workflow;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class WorkflowLoader {
 	/**

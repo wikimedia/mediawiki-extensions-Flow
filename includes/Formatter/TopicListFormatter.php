@@ -6,7 +6,7 @@ use Flow\Data\Pager\PagerPage;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 
 class TopicListFormatter extends BaseTopicListFormatter {
 	/**
