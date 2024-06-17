@@ -14,7 +14,7 @@
 	"apihelp-flow-param-token": "אוחזר אסימון מ־[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"apihelp-flow-example-1": "עריכת התיאור של \"[[Talk:Sandbox]]\"",
 	"apihelp-flow+close-open-topic-description": "הוכרז כמיושן לטובת [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
-	"apihelp-flow+close-open-topic-summary": "לא בשימוש יותר, הוחלף על־ידי [[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
+	"apihelp-flow+close-open-topic-summary": "הוכרז כמיושן והוחלף ב־[[Special:ApiHelp/flow+lock-topic|action=flow&submodule=lock-topic]].",
 	"apihelp-flow+close-open-topic-param-moderationState": "באיזה מצב לשים את הנושא, \"lock\" או \"unlock\".",
 	"apihelp-flow+close-open-topic-param-reason": "סיבה לנעילה או פתיחת נעילה של נושא.",
 	"apihelp-flow+edit-header-description": "עריכת תיאור לוח.",
