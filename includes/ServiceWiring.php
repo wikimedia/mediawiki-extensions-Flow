@@ -20,6 +20,8 @@ use Flow\Formatter\RevisionViewFormatter;
 use Flow\Formatter\TocTopicListFormatter;
 use Flow\Formatter\TopicFormatter;
 use Flow\Formatter\TopicListFormatter;
+use Flow\Import\ArchiveNameHelper;
+use Flow\Import\OptInController;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BadImageRemover;
@@ -159,6 +161,20 @@ return [
 			new ServiceOptions( NotificationsController::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getService( 'FlowTreeRepository' )
+		);
+	},
+
+	'FlowOptInController' => static function (
+		MediaWikiServices $services
+	): OptInController {
+		$archiveNameHelper = new ArchiveNameHelper();
+		return new OptInController(
+			$services->getService( 'FlowTalkpageManager' ),
+			$services->getService( 'FlowNotificationsController' ),
+			$archiveNameHelper,
+			$services->getService( 'FlowDbFactory' ),
+			$services->getService( 'FlowDefaultLogger' ),
+			$services->getService( 'FlowTalkpageManager' )->getTalkpageManager()
 		);
 	},
 
