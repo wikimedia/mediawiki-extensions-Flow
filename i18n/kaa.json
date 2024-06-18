@@ -8,6 +8,7 @@
 	"flow-cancel": "Biykar etiw",
 	"flow-newtopic-save": "Tema qosıw",
 	"flow-reply-topic-title-placeholder": "«$1» temasında juwap jazıw",
+	"flow-reply-link": "Juwap beriw",
 	"flow-topic-action-watchlist-remove": "Jazılıwdı biykarlaw",
 	"notification-header-flow-post-reply": "$1 paydalanıwshı «<strong>$4</strong>» temasında {{GENDER:$2|juwap jazdı}}.",
 	"notification-header-flow-post-reply-user-talk": "$1 <strong>siziń talqılaw betińizdegi</strong> «<strong>$4</strong>» temasında juwap {{GENDER:$2|jazdı}}.",
@@ -22,5 +23,9 @@
 	"notification-header-flow-mention-header": "$1 paydalanıwshı <strong>$3</strong> sıpatlamasında {{GENDER:$4|sizdi}} {{GENDER:$2|atap ótti}}.",
 	"notification-header-flow-mention-post-summary": "$1 paydalanıwshı «<strong>$5</strong>» temasında {{GENDER:$4|sizdi}} {{GENDER:$2|atap ótti}}.",
 	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}",
-	"flow-notification-reply-email-batch-body": "$1 paydalanıwshı $3 betindegi «$2» temasında {{GENDER:$1|juwap jazdı}}"
+	"flow-notification-reply-email-batch-body": "$1 paydalanıwshı $3 betindegi «$2» temasında {{GENDER:$1|juwap jazdı}}",
+	"flow-terms-of-use-new-topic": "«{{int:flow-newtopic-save}}» túymesin basıw arqalı siz usı wikidiń paydalanıw shártlerine kelisim bergen bolasız.",
+	"flow-terms-of-use-reply": "«{{int:flow-reply-link}}» túymesin basıw arqalı siz usı wikidiń paydalanıw shártlerine kelisim bergen bolasız.",
+	"flow-mark-diff-patrolled-link-text": "Tekserildi dep belgilew",
+	"flow-mark-diff-patrolled-link-title": "Tekserildi dep belgilew"
 }

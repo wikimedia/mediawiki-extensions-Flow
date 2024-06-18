@@ -12,7 +12,7 @@
 	"flow-desc": "Эхаран белхан урхаллин система",
 	"nstab-topic": "Тема",
 	"flow-talk-taken-over-comment": "ХӀокху агӀонах эхаран дийцарийн у дина */",
-	"log-name-flow": "Эхаран жигараллин тептар",
+	"log-name-flow": "«Структурйина дийцарийн» жигараллин журнал",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|дӀабаьккхина}} [$4 хаам] «[[$3|$5]]» чохь [[$6]] тӀера",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|меттахӀоттина}} [$4 хаам] «[[$3|$5]]» чохь [[$6]] тӀера",
 	"logentry-suppress-flow-suppress-post": "$1 {{GENDER:$2|бохийна}} [$4 хаам] «[[$3|$5]]» чохь [[$6]] тӀера",
@@ -206,7 +206,7 @@
 	"flow-special-type-post": "Хаам",
 	"flow-special-type-workflow": "Белхан эхар",
 	"flow-special-uuid": "UUID",
-	"flow-spam-confirmedit-form": "Сурт тӀера йоза лаха йаздехьа, нагахь хьо робот вацахь: $1",
+	"flow-spam-confirmedit-form": "Хьо робот ца хилар бакъдан, лахара капча йина: $1",
 	"flow-post-undo-delete": "дӀайаккхар сацаде",
 	"flow-topic-undo-hide": "схьайеллар йухадаккхар",
 	"flow-edited": "Хийцам бина",
@@ -214,7 +214,7 @@
 	"flow-previous-diff": "← Хьалхара нисдар",
 	"flow-next-diff": "РогӀера нисдар →",
 	"flow-undo": "йохо",
-	"flow-undo-your-text": "Хьан йоза",
+	"flow-undo-your-text": "Хьан текст",
 	"group-flow-bot": "Flow-боташ",
 	"group-flow-bot-member": "Flow-бот",
 	"grouppage-flow-bot": "Project:Flow bots",
@@ -224,5 +224,5 @@
 	"flow-ve-mention-placeholder": "Декъашхочун цӀе",
 	"flow-ve-mention-tool-title": "Декъашхо хьахо",
 	"flow-ve-mention-inspector-invalid-user": "«$1» аккаунт дӀайазйина йац.",
-	"flow-wikitext-editor-help": "Вики-йоза $1."
+	"flow-wikitext-editor-help": "Вики-текст $1."
 }
