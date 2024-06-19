@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Extension\Notifications\AttributeManager;
+use MediaWiki\Extension\Notifications\UserLocator;
+
 $notificationTemplate = [
 	'category' => 'flow-discussion',
 	'group' => 'other',
@@ -62,160 +65,160 @@ $topicResolvedNotification = [
 $notifications = [
 	'flow-new-topic' => [
 		'section' => 'message',
-		'user-locators' => [
-			'EchoUserLocator::locateUsersWatchingTitle',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateUsersWatchingTitle' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $newTopicNotification,
 	'flowusertalk-new-topic' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $newTopicNotification,
 	'flow-post-reply' => [
 		'section' => 'message',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateUsersWatchingTopic' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $postReplyNotification,
 	'flowusertalk-post-reply' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $postReplyNotification,
 	'flow-post-edited' => [
 		'section' => 'alert',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locatePostAuthors',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locatePostAuthors' ] ],
 		],
-		'user-filters' => [
-			'EchoUserLocator::locateTalkPageOwner',
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $postEditedNotification,
 	'flowusertalk-post-edited' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $postEditedNotification,
 	'flow-topic-renamed' => [
 		'section' => 'message',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateUsersWatchingTopic' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $topicRenamedNotification,
 	'flowusertalk-topic-renamed' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $topicRenamedNotification,
 	'flow-summary-edited' => [
 		'section' => 'message',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateUsersWatchingTopic' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $summaryEditedNotification,
 	'flowusertalk-summary-edited' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $summaryEditedNotification,
 	'flow-description-edited' => [
 		'section' => 'message',
-		'user-locators' => [
-			'EchoUserLocator::locateUsersWatchingTitle',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateUsersWatchingTitle' ] ],
 		],
-		'user-filters' => [
-			'EchoUserLocator::locateTalkPageOwner',
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $descriptionEditedNotification,
 	'flowusertalk-description-edited' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
-		'user-filters' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $descriptionEditedNotification,
 	'flow-mention' => [
 		'category' => 'mention',
 		'presentation-model' => \Flow\Notifications\MentionPresentationModel::class,
 		'section' => 'alert',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locateMentionedUsers',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateMentionedUsers' ] ],
 		],
 	] + $notificationTemplate,
 	'flow-enabled-on-talkpage' => [
 		'category' => 'system',
 		'presentation-model' => \Flow\Notifications\FlowEnabledOnTalkpagePresentationModel::class,
 		'section' => 'message',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner'
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 		'canNotifyAgent' => true,
 	] + $notificationTemplate,
 	'flow-topic-resolved' => [
 		'section' => 'message',
-		'user-locators' => [
-			'Flow\\Notifications\\UserLocator::locateUsersWatchingTopic',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ \Flow\Notifications\UserLocator::class, 'locateUsersWatchingTopic' ] ],
 		],
-		'user-filters' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_FILTERS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $topicResolvedNotification,
 	'flowusertalk-topic-resolved' => [
 		'category' => 'edit-user-talk',
 		'section' => 'alert',
-		'user-locators' => [
-			'EchoUserLocator::locateTalkPageOwner',
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateTalkPageOwner' ] ],
 		],
 	] + $topicResolvedNotification,
 	'flow-mention-failure-too-many' => [
-		'user-locators' => [
-			'EchoUserLocator::locateEventAgent'
+		AttributeManager::ATTR_LOCATORS => [
+			[ [ UserLocator::class, 'locateEventAgent' ] ],
 		],
 		'canNotifyAgent' => true,
 		'section' => 'alert',
