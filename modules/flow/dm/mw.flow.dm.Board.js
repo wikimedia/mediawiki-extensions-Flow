@@ -75,7 +75,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.dm.Board.prototype.getHashObject = function () {
-		return $.extend(
+		return Object.assign(
 			{
 				isDeleted: this.isDeleted(),
 				pagePrefixedDb: this.getPageTitle().getPrefixedDb(),

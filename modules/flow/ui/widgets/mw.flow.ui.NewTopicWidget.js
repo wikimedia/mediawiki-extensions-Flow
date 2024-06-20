@@ -55,7 +55,7 @@
 		this.title.$input
 			.attr( 'aria-label', mw.msg( 'flow-newtopic-start-placeholder' ) );
 
-		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
+		this.editor = new mw.flow.ui.EditorWidget( Object.assign( {
 			placeholder: mw.msg( 'flow-newtopic-content-placeholder', this.page ),
 			saveMsgKey: mw.user.isAnon() ? 'flow-newtopic-save-anonymously' : 'flow-newtopic-save',
 			autoFocus: false,

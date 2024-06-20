@@ -17,14 +17,14 @@
 		// Parent constructor
 		mw.flow.ve.ui.MentionTargetInputWidget.super.call(
 			this,
-			$.extend(
+			Object.assign(
 				{ placeholder: mw.msg( 'flow-ve-mention-placeholder' ) },
 				config
 			)
 		);
 
 		// Mixin constructor
-		OO.ui.mixin.LookupElement.call( this, $.extend( { allowSuggestionsWhenEmpty: true }, config ) );
+		OO.ui.mixin.LookupElement.call( this, Object.assign( { allowSuggestionsWhenEmpty: true }, config ) );
 
 		// Properties
 		this.username = null;

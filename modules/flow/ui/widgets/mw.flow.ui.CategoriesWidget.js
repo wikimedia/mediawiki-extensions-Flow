@@ -21,7 +21,7 @@
 		mw.flow.ui.CategoriesWidget.super.call( this, config );
 
 		// Mixin constructor
-		OO.ui.mixin.GroupElement.call( this, $.extend( { $group: $categoryList }, config ) );
+		OO.ui.mixin.GroupElement.call( this, Object.assign( { $group: $categoryList }, config ) );
 
 		this.model = model;
 		this.model.connect( this, {

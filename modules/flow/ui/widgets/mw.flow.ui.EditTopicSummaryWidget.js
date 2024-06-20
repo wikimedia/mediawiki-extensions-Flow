@@ -18,7 +18,7 @@
 		// Parent constructor
 		mw.flow.ui.EditTopicSummaryWidget.super.call( this, config );
 
-		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
+		this.editor = new mw.flow.ui.EditorWidget( Object.assign( {
 			saveMsgKey: 'flow-topic-action-update-topic-summary',
 			classes: [ 'flow-ui-editTopicSummaryWidget-editor' ],
 			placeholder: mw.msg( 'flow-edit-summary-placeholder' ),

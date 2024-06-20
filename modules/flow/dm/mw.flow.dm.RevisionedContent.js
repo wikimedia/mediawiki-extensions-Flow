@@ -80,7 +80,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getHashObject = function () {
-		return $.extend( {
+		return Object.assign( {
 			content: this.getContent(),
 			author: this.getAuthor(),
 			creator: this.getCreator(),

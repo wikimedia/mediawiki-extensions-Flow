@@ -174,7 +174,7 @@
 	 */
 	mw.flow.ui.ReplyWidget.prototype.initializeEditor = function () {
 		if ( !this.editor ) {
-			this.editor = new mw.flow.ui.EditorWidget( $.extend( {
+			this.editor = new mw.flow.ui.EditorWidget( Object.assign( {
 				placeholder: this.placeholder,
 				saveMsgKey: mw.user.isAnon() ? 'flow-reply-link-anonymously' : 'flow-reply-link',
 				classes: [ 'flow-ui-replyWidget-editor' ],

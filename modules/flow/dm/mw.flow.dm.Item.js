@@ -68,7 +68,7 @@
 	 * be stored
 	 */
 	mw.flow.dm.Item.prototype.storeComparableHash = function ( hash ) {
-		this.comparableHash = hash || $.extend( {}, this.getHashObject() );
+		this.comparableHash = hash || Object.assign( {}, this.getHashObject() );
 	};
 
 	/**

@@ -16,7 +16,7 @@
 	mw.flow.dm.APIHandler = function FlowDmAPIHandler( page, config ) {
 		config = config || {};
 
-		this.apiConstructorParams = $.extend( {
+		this.apiConstructorParams = Object.assign( {
 			ajax: {
 				timeout: 5 * 1000, // 5 seconds
 				cache: false
@@ -26,7 +26,7 @@
 		this.page = page;
 		this.setCurrentRevision( config.currentRevision );
 
-		this.requestParams = $.extend( {
+		this.requestParams = Object.assign( {
 			action: 'flow',
 			uselang: mw.config.get( 'wgUserLanguage' )
 		}, config.requestParams );
@@ -54,7 +54,7 @@
 	 */
 	mw.flow.dm.APIHandler.prototype.get = function ( submodule, requestParams ) {
 		var xhr,
-			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+			params = Object.assign( { submodule: submodule }, this.requestParams, requestParams );
 
 		xhr = ( new mw.Api() ).get( params );
 		return xhr
@@ -74,7 +74,7 @@
 	 */
 	mw.flow.dm.APIHandler.prototype.postEdit = function ( submodule, requestParams ) {
 		var api = new mw.Api(),
-			params = $.extend( { submodule: submodule }, this.requestParams, requestParams );
+			params = Object.assign( { submodule: submodule }, this.requestParams, requestParams );
 
 		return api.postWithToken( 'csrf', api.assertCurrentUser( params ) );
 	};
@@ -94,7 +94,7 @@
 			gcllimit: 'max'
 		};
 
-		return ( new mw.Api() ).get( $.extend( {}, this.requestParams, params ) )
+		return ( new mw.Api() ).get( Object.assign( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response, 'query', 'pages' );
 			} );
@@ -117,7 +117,7 @@
 			lelimit: 1
 		};
 
-		return ( new mw.Api() ).get( $.extend( {}, this.requestParams, params ) )
+		return ( new mw.Api() ).get( Object.assign( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response, 'query', 'logevents', 0, 'parsedcomment' );
 			} );
@@ -211,7 +211,7 @@
 		params = api.assertCurrentUser( params );
 		this.addCaptcha( params, captcha );
 
-		return api.postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
+		return api.postWithToken( 'csrf', Object.assign( {}, this.requestParams, params ) )
 			.then( function ( data ) {
 				return data.flow.reply.workflow;
 			} );
@@ -239,7 +239,7 @@
 		params = api.assertCurrentUser( params );
 		this.addCaptcha( params, captcha );
 
-		return api.postWithToken( 'csrf', $.extend( {}, this.requestParams, params ) )
+		return api.postWithToken( 'csrf', Object.assign( {}, this.requestParams, params ) )
 			.then( function ( response ) {
 				return OO.getProp( response.flow, 'new-topic', 'committed', 'topiclist', 'topic-id' );
 			} );
