@@ -89,7 +89,7 @@
 	} );
 
 	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', function ( assert ) {
-		var opts = $.extend( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
+		var opts = Object.assign( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
 			$div = $( document.createElement( 'div' ) );
 
 		// Render script tag

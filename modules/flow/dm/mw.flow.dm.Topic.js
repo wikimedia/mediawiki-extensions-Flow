@@ -95,7 +95,7 @@
 	 * @return {Object} Hash object
 	 */
 	mw.flow.dm.Topic.prototype.getHashObject = function () {
-		return $.extend(
+		return Object.assign(
 			{
 				stub: this.isStub(),
 				summary: this.getSummary()

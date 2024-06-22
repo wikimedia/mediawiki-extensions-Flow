@@ -30,7 +30,7 @@
 				'flow-post-action-edit-post-submit';
 		}
 
-		this.editor = new mw.flow.ui.EditorWidget( $.extend( {
+		this.editor = new mw.flow.ui.EditorWidget( Object.assign( {
 			saveMsgKey: msgKey,
 			classes: [ 'flow-ui-editPostWidget-editor' ],
 			id: 'edit/' + postId

@@ -14,6 +14,7 @@
 		"camelcase": "off",
 		"max-len": "off",
 		"no-shadow": "warn",
-		"no-jquery/no-extend": "warn"
+		"no-jquery/no-extend": "warn",
+		"es-x/no-object-assign": "warn"
 	}
 }

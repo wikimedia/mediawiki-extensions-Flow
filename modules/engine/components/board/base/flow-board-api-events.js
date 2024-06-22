@@ -60,7 +60,7 @@
 		 * be properly applied for the respective API call; e.g.
 		 * epprev_revision (for edit post)
 		 */
-		return $.extend( {}, queryMap, {
+		return Object.assign( {}, queryMap, {
 			flow_prev_revision: prevRevisionId
 		} );
 	};

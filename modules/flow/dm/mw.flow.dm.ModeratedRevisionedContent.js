@@ -37,7 +37,7 @@
 	 * @inheritdoc
 	 */
 	mw.flow.dm.ModeratedRevisionedContent.prototype.getHashObject = function () {
-		return $.extend( {
+		return Object.assign( {
 			moderated: this.isModerated(),
 			moderationReason: this.getModerationReason(),
 			moderationState: this.getModerationState(),
