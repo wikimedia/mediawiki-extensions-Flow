@@ -25,5 +25,7 @@
 	"notification-links-flow-description-edited-view-page": "Betti {{GENDER:$1|kóriw}}",
 	"flow-notification-reply-email-batch-body": "$1 paydalanıwshı $3 betindegi «$2» temasında {{GENDER:$1|juwap jazdı}}",
 	"flow-terms-of-use-new-topic": "«{{int:flow-newtopic-save}}» túymesin basıw arqalı siz usı wikidiń paydalanıw shártlerine kelisim bergen bolasız.",
-	"flow-terms-of-use-reply": "«{{int:flow-reply-link}}» túymesin basıw arqalı siz usı wikidiń paydalanıw shártlerine kelisim bergen bolasız."
+	"flow-terms-of-use-reply": "«{{int:flow-reply-link}}» túymesin basıw arqalı siz usı wikidiń paydalanıw shártlerine kelisim bergen bolasız.",
+	"flow-mark-diff-patrolled-link-text": "Tekserildi dep belgilew",
+	"flow-mark-diff-patrolled-link-title": "Tekserildi dep belgilew"
 }
