@@ -167,15 +167,11 @@ EOD
 		);
 	}
 
-	protected function createStrategy(
-		IDatabase $dbr = null,
-		SourceStoreInterface $sourceStore = null,
-		ApiBackend $api = null
-	) {
+	private function createStrategy() {
 		return new ConversionStrategy(
-			$dbr ?: $this->createMock( IDatabase::class ),
-			$sourceStore ?: new NullImportSourceStore,
-			$api ?: $this->createMock( ApiBackend::class ),
+			$this->createMock( IDatabase::class ),
+			new NullImportSourceStore(),
+			$this->createMock( ApiBackend::class ),
 			$this->createMock( UrlGenerator::class ),
 			$this->createMock( User::class ),
 			$this->createMock( Controller::class )
