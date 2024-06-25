@@ -8,7 +8,6 @@ use Flow\SpamFilter\ConfirmEdit;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use ParserOptions;
@@ -60,7 +59,6 @@ class ConfirmEditTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $request );
 
 		$status = $filter->validate( $context, $newRevision, $oldRevision, $title, $ownerTitle );
-		$this->assertInstanceOf( Status::class, $status );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 }

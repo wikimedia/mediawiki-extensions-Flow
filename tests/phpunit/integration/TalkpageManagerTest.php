@@ -40,15 +40,11 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$existTrueStatus = $this->talkpageManager->checkIfCreationIsPossible( $existentTitle, /*mustNotExist*/ true );
-		$this->assertTrue( $existTrueStatus->hasMessage( 'flow-error-allowcreation-already-exists' ),
-			'Error when page already exists and mustNotExist true was passed' );
-		$this->assertFalse( $existTrueStatus->isOK(),
+		$this->assertStatusError( 'flow-error-allowcreation-already-exists', $existTrueStatus,
 			'Error when page already exists and mustNotExist true was passed' );
 
 		$existFalseStatus = $this->talkpageManager->checkIfCreationIsPossible( $existentTitle, /*mustNotExist*/ false );
-		$this->assertFalse( $existFalseStatus->hasMessage( 'flow-error-allowcreation-already-exists' ),
-			'No error when page already exists and mustNotExist false was passed' );
-		$this->assertTrue( $existFalseStatus->isOK(),
+		$this->assertStatusGood( $existFalseStatus,
 			'No error when page already exists and mustNotExist false was passed' );
 	}
 
@@ -70,20 +66,18 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User talk:Test123' ), $unconfirmedUser );
-		$this->assertTrue( $permissionStatus->isOK(),
+		$this->assertStatusGood( $permissionStatus,
 			'No error when enabling Flow board in default-Flow namespace' );
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User:Test123' ), $unconfirmedUser );
-		$this->assertFalse( $permissionStatus->isOK(),
-			'Error when user without flow-create-board enables Flow board in non-default-Flow namespace' );
-		$this->assertTrue( $permissionStatus->hasMessage( 'flow-error-allowcreation-flow-create-board' ),
+		$this->assertStatusError( 'flow-error-allowcreation-flow-create-board', $permissionStatus,
 			'Correct error thrown when user does not have flow-create-board right' );
 
 		$adminUser = $this->getTestUser( [ 'sysop', 'flow-bot' ] )->getUser();
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User:Test123' ), $adminUser );
-		$this->assertTrue( $permissionStatus->isOK(),
+		$this->assertStatusGood( $permissionStatus,
 			'No error when user with flow-create-board enables Flow board in non-default-Flow namespace' );
 	}
 }
