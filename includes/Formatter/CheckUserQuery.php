@@ -119,7 +119,7 @@ class CheckUserQuery extends AbstractQuery {
 
 		// anything not prefixed v1 is a pre-versioned check user comment
 		// if it changes again the prefix can be updated.
-		if ( strpos( $comment, self::VERSION_PREFIX ) !== 0 ) {
+		if ( !str_starts_with( $comment, self::VERSION_PREFIX ) ) {
 			return false;
 		}
 

@@ -93,11 +93,11 @@ class ContentFixer {
 		 // The body tag is required otherwise <meta> tags at the top are
 		 // magic'd into <head> rather than kept with the content.
 		if (
-			substr( $content, 0, 5 ) !== '<body'
-			&& substr( $content, 0, 9 ) !== '<!DOCTYPE'
+			!str_starts_with( $content, '<body' )
+			&& !str_starts_with( $content, '<!DOCTYPE' )
 			// We might have set the html/head/base href in AbstractRevision#getContent, so
 			// make one more check before body wrapping the content.
-			&& substr( $content, 0, 12 ) !== '<html><head>'
+			&& !str_starts_with( $content, '<html><head>' )
 		) {
 			// BC: content currently comes from parsoid and is stored
 			// wrapped in <body> tags, but prior to I0d9659f we were

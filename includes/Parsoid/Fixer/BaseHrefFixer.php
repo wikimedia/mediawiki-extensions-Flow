@@ -50,7 +50,7 @@ class BaseHrefFixer implements Fixer {
 		}
 
 		$href = $node->getAttribute( 'href' );
-		if ( strpos( $href, './' ) !== 0 ) {
+		if ( !str_starts_with( $href, './' ) ) {
 			// If we need to handle more complex cases, we should resolve it
 			// with a library like Net_URL2. This check will then be
 			// unnecessary.
