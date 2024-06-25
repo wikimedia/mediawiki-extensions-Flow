@@ -4,7 +4,6 @@ namespace Flow\Tests\Import\LiquidThreadsApi;
 
 use DateTime;
 use DateTimeZone;
-use ExtensionRegistry;
 use Flow\Import\IImportSource;
 use Flow\Import\LiquidThreadsApi\ApiBackend;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
@@ -146,9 +145,7 @@ EOD
 	 * @dataProvider provideArchiveCleanupRevisionContent
 	 */
 	public function testCreateArchiveCleanupRevisionContent( $message, $expect, $content ) {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
-			$this->markTestSkipped( 'LiquidThreads not enabled' );
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'Liquid Threads' );
 
 		$result = $this->createStrategy()->createArchiveCleanupRevisionContent(
 			new WikitextContent( $content ),

@@ -2,7 +2,6 @@
 
 namespace Flow\Tests;
 
-use ExtensionRegistry;
 use Flow\Container;
 use Flow\Model\UserTuple;
 use Flow\Model\UUID;
@@ -23,10 +22,7 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			$this->markTestSkipped();
-			return;
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'Echo' );
 	}
 
 	/**

@@ -4,7 +4,6 @@ namespace Flow\Tests\Import\Wikitext;
 
 use DateTime;
 use DateTimeZone;
-use ExtensionRegistry;
 use Flow\Container;
 use Flow\Hooks;
 use Flow\Import\IImportSource;
@@ -103,9 +102,7 @@ class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 	 * @group Broken
 	 */
 	public function testShouldConvertLqt() {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Liquid Threads' ) ) {
-			$this->markTestSkipped( 'LiquidThreads not enabled' );
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'Liquid Threads' );
 
 		$strategy = $this->createStrategy();
 
