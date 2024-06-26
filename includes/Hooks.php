@@ -155,11 +155,6 @@ class Hooks implements
 	GetUserPermissionsErrorsHook
 {
 	/**
-	 * @var OccupationController|null Initialized during extension initialization
-	 */
-	protected static $occupationController;
-
-	/**
 	 * @var AbuseFilter|null Initialized during extension initialization
 	 */
 	protected static $abuseFilter;
@@ -219,14 +214,9 @@ class Hooks implements
 	/**
 	 * Constructed outside of the container so that non-flow pages
 	 * don't load the container
-	 *
-	 * @return OccupationController
 	 */
-	public static function getOccupationController() {
-		if ( self::$occupationController === null ) {
-			self::$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
-		}
-		return self::$occupationController;
+	public static function getOccupationController(): OccupationController {
+		return MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 	}
 
 	/**
@@ -271,7 +261,6 @@ class Hooks implements
 	 */
 	public static function resetFlowExtension() {
 		self::$abuseFilter = null;
-		self::$occupationController = null;
 	}
 
 	/**
