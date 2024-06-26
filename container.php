@@ -558,11 +558,9 @@ $c['factory.loader.workflow'] = static function ( $c ) {
 		$submissionHandler
 	);
 };
-// Initialized in Flow\Hooks to facilitate only loading the flow container
-// when flow is specifically requested to run. Extension initialization
-// must always happen before calling flow code.
+
 $c['occupation_controller'] = static function ( $c ) {
-	return Flow\Hooks::getOccupationController();
+	return MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 };
 
 $c['controller.opt_in'] = static function ( $c ) {
