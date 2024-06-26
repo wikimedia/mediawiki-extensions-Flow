@@ -6,6 +6,7 @@ use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Hooks;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
@@ -36,6 +37,7 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		Hooks::resetFlowExtension();
 
 		// Revisions must be blanked here otherwise phpunit run with --repeat will remember
 		// ths revision list between multiple invocations of the test causing issues.
