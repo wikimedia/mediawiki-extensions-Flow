@@ -4,9 +4,10 @@ namespace Flow\Maintenance;
 
 use Flow\Container;
 use Flow\DbFactory;
-use Flow\Hooks;
 use Flow\Import\ArchiveNameHelper;
+use Flow\OccupationController;
 use Maintenance;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
@@ -58,7 +59,9 @@ class FlowRestoreLQT extends Maintenance {
 	}
 
 	public function execute() {
-		$this->talkpageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$this->talkpageManagerUser = $occupationController->getTalkpageManager();
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->dryRun = $this->getOption( 'dryrun', false );
 		$this->overwrite = $this->getOption( 'overwrite-flow', false );

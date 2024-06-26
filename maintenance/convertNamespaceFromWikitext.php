@@ -3,12 +3,13 @@
 namespace Flow\Maintenance;
 
 use Flow\Container;
-use Flow\Hooks;
 use Flow\Import\Converter;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\Wikitext\ConversionStrategy;
+use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
 use Maintenance;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -81,7 +82,9 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 		$logger = new MaintenanceDebugLogger( $this );
 
 		$dbw = $this->getPrimaryDB();
-		$talkpageManager = Hooks::getOccupationController()->getTalkpageManager();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$talkpageManager = $occupationController->getTalkpageManager();
 		$converter = new Converter(
 			$dbw,
 			Container::get( 'importer' ),

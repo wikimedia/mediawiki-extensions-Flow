@@ -4,11 +4,12 @@ namespace Flow\Maintenance;
 
 use Flow\Container;
 use Flow\Exception\FlowException;
-use Flow\Hooks;
 use Flow\Import\LiquidThreadsApi\ImportSource;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
+use Flow\OccupationController;
 use Maintenance;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Psr\Log\LogLevel;
 
@@ -54,7 +55,9 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$importer = Container::get( 'importer' );
 		$importer->setAllowUnknownUsernames( true );
 
-		$talkPageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$talkPageManagerUser = $occupationController->getTalkpageManager();
 
 		$srcPageName = $this->getOption( 'srcpage' );
 		if ( $this->hasOption( 'dstpage' ) ) {

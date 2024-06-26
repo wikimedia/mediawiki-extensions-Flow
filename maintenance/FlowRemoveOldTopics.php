@@ -6,14 +6,15 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Exception\FlowException;
-use Flow\Hooks;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\OccupationController;
 use Flow\Repository\TreeRepository;
 use Maintenance;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
@@ -228,7 +229,9 @@ class FlowRemoveOldTopics extends Maintenance {
 	protected function removeTopicsWithFlowUpdates( $timestamp ) {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$batchSize = $this->getBatchSize();
-		$talkpageManager = Hooks::getOccupationController()->getTalkpageManager();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$talkpageManager = $occupationController->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that
 		$batchStartId = UUID::getComparisonUUID( '1' );

@@ -214,14 +214,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Constructed outside of the container so that non-flow pages
-	 * don't load the container
-	 */
-	public static function getOccupationController(): OccupationController {
-		return MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
-	}
-
-	/**
 	 * Initialized during extension initialization rather than
 	 * in container so that non-flow pages don't load the container.
 	 *
@@ -1291,7 +1283,8 @@ class Hooks implements
 			return false;
 		}
 
-		$occupationController = self::getOccupationController();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 		$flowStatus = $occupationController->checkIfCreationIsPossible( $newTitle, /*mustNotExist*/ true );
 		$status->merge( $flowStatus );
 
@@ -1321,8 +1314,8 @@ class Hooks implements
 			return;
 		}
 
-		$occupationController = self::getOccupationController();
-
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 		$permissionStatus = $occupationController->checkIfUserHasPermission(
 			$newTitle,
 			$user

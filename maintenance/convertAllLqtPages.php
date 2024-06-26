@@ -4,15 +4,16 @@ namespace Flow\Maintenance;
 
 use AppendIterator;
 use Flow\Container;
-use Flow\Hooks;
 use Flow\Import\Converter;
 use Flow\Import\LiquidThreadsApi\ConversionStrategy;
 use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\Import\SourceStore\FlowRevisionsDb;
+use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use Maintenance;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\IDatabase;
@@ -65,7 +66,9 @@ class ConvertAllLqtPages extends Maintenance {
 		}
 
 		$importer = Container::get( 'importer' );
-		$talkpageManagerUser = Hooks::getOccupationController()->getTalkpageManager();
+		/** @var OccupationController $occupationController */
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$talkpageManagerUser = $occupationController->getTalkpageManager();
 
 		$dbw = $this->getPrimaryDB();
 		$strategy = new ConversionStrategy(
