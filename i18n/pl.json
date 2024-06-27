@@ -278,7 +278,7 @@
 	"flow-history-week": "Ostatni tydzień",
 	"flow-history-pages-topic": "Występuje w [$1 „$2”]",
 	"flow-history-pages-post": "Występuje w [$1 $2]",
-	"flow-topic-comments": "{{PLURAL:$1|$1 komentarz|$1 komentarze|$1 komentarzy|0=Skomentuj jako{{GENDER:$2|pierwszy|pierwsza}}!}}",
+	"flow-topic-comments": "{{PLURAL:$1|$1 komentarz|$1 komentarze|$1 komentarzy|0=Skomentuj jako {{GENDER:$2|pierwszy|pierwsza}}!}}",
 	"flow-show-comments-title": "{{PLURAL:$1|Zobacz komentarz|Zobacz komentarze}}",
 	"flow-hide-comments-title": "{{PLURAL:$1|Ukryj komentarz|Ukryj komentarze}}",
 	"flow-comment-restored": "Komentarz przywrócony",
