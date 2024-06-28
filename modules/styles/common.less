@@ -343,3 +343,25 @@ body.ns-3 {
 		margin-left: 0;
 	}
 }
+
+/* Makes Flow boards readable in dark mode in the quickest possible way (T357600). */
+.flow-dark-mode-fix() {
+	.flow-topic-titlebar,
+	.flow-ui-editorWidget > .flow-ui-editorWidget-editor {
+		background: transparent;
+	}
+
+	.flow-board-header * {
+		color: #000;
+	}
+}
+
+html.skin-theme-clientpref-night {
+	.flow-dark-mode-fix();
+}
+
+@media ( prefers-color-scheme: dark ) {
+	html.skin-theme-clientpref-os {
+		.flow-dark-mode-fix();
+	}
+}
