@@ -461,7 +461,7 @@ class TopicBlock extends AbstractBlock {
 					$this->workflow->updateLastUpdated( $this->newRevision->getRevisionId() );
 					$this->storage->put( $this->workflow, $metadata );
 
-					if ( strpos( $this->action, 'moderate-' ) === 0 ) {
+					if ( str_starts_with( $this->action, 'moderate-' ) ) {
 						$topicId = $this->newRevision->getCollection()->getRoot()->getId();
 
 						$moderate = $this->newRevision->isModerated()

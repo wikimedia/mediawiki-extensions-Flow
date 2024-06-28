@@ -53,15 +53,15 @@ class TemplateHelper {
 		// Prevent upwards directory traversal using same methods as Title::secureAndSplit,
 		// which is implemented in MediaWikiTitleCodec::splitTitleString.
 		if (
-			strpos( $templateName, '.' ) !== false &&
+			str_contains( $templateName, '.' ) &&
 			(
 				$templateName === '.' || $templateName === '..' ||
-				strpos( $templateName, './' ) === 0 ||
-				strpos( $templateName, '../' ) === 0 ||
-				strpos( $templateName, '/./' ) !== false ||
-				strpos( $templateName, '/../' ) !== false ||
-				substr( $templateName, -2 ) === '/.' ||
-				substr( $templateName, -3 ) === '/..'
+				str_starts_with( $templateName, './' ) ||
+				str_starts_with( $templateName, '../' ) ||
+				str_contains( $templateName, '/./' ) ||
+				str_contains( $templateName, '/../' ) ||
+				str_ends_with( $templateName, '/.' ) ||
+				str_ends_with( $templateName, '/..' )
 			)
 		) {
 			throw new FlowException( "Malformed \$templateName: $templateName" );
