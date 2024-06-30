@@ -3,6 +3,7 @@
 namespace Flow\Api;
 
 use ApiQueryBase;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 
 class ApiQueryPropFlowInfo extends ApiQueryBase {
@@ -21,9 +22,9 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 
 	public function execute() {
 		$pageSet = $this->getPageSet();
-		/** @var Title $title */
-		foreach ( $pageSet->getGoodTitles() as $pageid => $title ) {
-			$pageInfo = $this->getPageInfo( $title );
+		/** @var PageIdentity $title */
+		foreach ( $pageSet->getGoodPages() as $pageid => $title ) {
+			$pageInfo = $this->getPageInfo( Title::newFromPageIdentity( $title ) );
 			$this->addPageSubItems( $pageid, $pageInfo );
 		}
 	}
