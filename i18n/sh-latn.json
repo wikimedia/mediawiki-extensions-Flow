@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"BadDog"
 		]
 	},
 	"enablestructureddiscussions": "Omogući Flow",
@@ -44,8 +45,8 @@
 	"flow-newtopic-title-placeholder": "Nova tema",
 	"flow-newtopic-content-placeholder": "Napišite novu poruku na \"$1\"",
 	"flow-newtopic-header": "Dodaj novu temu",
-	"flow-newtopic-save": "Dodaj temu",
-	"flow-newtopic-save-anonymously": "Anonimno dodaj temu",
+	"flow-newtopic-save": "Započni temu",
+	"flow-newtopic-save-anonymously": "Anonimno započni temu",
 	"flow-newtopic-start-placeholder": "Započni novu temu",
 	"flow-newtopic-first-heading": "Započni novu temu na $1",
 	"flow-summarize-topic-placeholder": "Molimo da rezimirate ovu raspravu",
