@@ -15,7 +15,8 @@
 	}
 
 	// Undo .mw-body-content font-size (0.875em) and apply font-size matching OOUI theme (0.8em)
-	@uiFontSize: 0.8em/0.625/1.27; /* 0.8em / x-small / 127% */
+	// = 0.8em / x-small / 127%
+	@uiFontSize: (0.8em / 0.625 / 1.27);
 
 	.ve-ui-overlay {
 		font-size: @uiFontSize;
