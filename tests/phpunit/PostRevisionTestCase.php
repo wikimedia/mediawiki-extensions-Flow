@@ -15,8 +15,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use RuntimeException;
 use SplQueue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -214,7 +214,7 @@ class PostRevisionTestCase extends FlowTestCase {
 		$found = $this->getStorage()->find( 'TopicListEntry', [ 'topic_id' => $topicWorkflow->getId() ] );
 		if ( !$found ) {
 			$title = $boardWorkflow->getOwnerTitle();
-			$user = User::newFromName( '127.0.0.1', false );
+			$user = $this->getTestUser( [ 'autoconfirmed' ] )->getUser();
 
 			/** @var OccupationController $occupationController */
 			$occupationController = Container::get( 'occupation_controller' );
@@ -224,10 +224,15 @@ class PostRevisionTestCase extends FlowTestCase {
 				array_merge( $permissionManager->getUserPermissions( $user ), [ 'flow-create-board' ] )
 			);
 			$occupationController->safeAllowCreation( $title, $user );
-			$occupationController->ensureFlowRevision(
-				$this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title ),
+			$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+			$ensureStatus = $occupationController->ensureFlowRevision(
+				$wikiPage,
 				$boardWorkflow
 			);
+			if ( !$ensureStatus->isOK() ) {
+				// This should help devs understand what's going on in the CI
+				throw new RuntimeException( $ensureStatus->__toString() );
+			}
 
 			$topicListEntry = TopicListEntry::create( $boardWorkflow, $topicWorkflow );
 

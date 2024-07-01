@@ -2120,6 +2120,20 @@ class Hooks implements
 
 	public function onGetUserPermissionsErrors( $title, $user, $action, &$result ) {
 		global $wgFlowReadOnly;
+
+		$tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
+		// Flow has no support for temp accounts. If temp accounts are
+		// known on the wiki, don't let anonymous users edit, and
+		// don't let temporary users edit either.
+		if (
+			$tempUserConfig->isKnown() && !$user->isNamed() &&
+			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
+			$action !== 'read'
+		) {
+			$result = 'flow-error-protected-readonly';
+			return false;
+		}
+
 		if ( !$wgFlowReadOnly ) {
 			return;
 		}

@@ -215,7 +215,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider onIRCLineUrlProvider
 	 */
 	public function testOnIRCLineUrl( $message, $metadataGen, $expectedQuery ) {
-		$user = User::newFromName( '127.0.0.1', false );
+		$user = $this->getTestUser()->getUser();
 
 		// reset flow state, so everything ($container['permissions'])
 		// uses this particular $user

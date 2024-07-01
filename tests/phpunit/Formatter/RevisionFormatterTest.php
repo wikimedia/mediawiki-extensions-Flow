@@ -15,6 +15,7 @@ use Flow\Templating;
 use Flow\Tests\PostRevisionTestCase;
 use Flow\UrlGenerator;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -27,11 +28,17 @@ use MediaWiki\User\User;
  * @group Database
  */
 class RevisionFormatterTest extends PostRevisionTestCase {
+
+	use TempUserTestTrait;
+
 	/** @var User */
 	private $user;
 
 	protected function setUp(): void {
 		parent::setUp();
+		// Tests would need reworking to run with temp accounts enabled; instead
+		// just disable temp accounts for these tests.
+		$this->disableAutoCreateTempUser();
 
 		$this->user = User::newFromName( '127.0.0.1', false );
 
