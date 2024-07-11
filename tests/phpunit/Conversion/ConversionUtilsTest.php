@@ -8,6 +8,7 @@ use DOMDocument;
 use Flow\Conversion\Utils;
 use Flow\Exception\WikitextException;
 use Flow\Tests\FlowTestCase;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
@@ -126,7 +127,7 @@ class ConversionUtilsTest extends FlowTestCase {
 	 * @dataProvider topicTitleProvider
 	 */
 	public function testTopicTitle( $message, $wikitext, $expectedHtml, $expectedPlaintext ) {
-		$this->setMwGlobals( 'wgScript', '/w/index.php' );
+		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 
 		$html = Utils::convert( 'topic-title-wikitext', 'topic-title-html', $wikitext, Title::newMainPage() );
 		$this->assertEquals( $expectedHtml, $html, "$message: html" );

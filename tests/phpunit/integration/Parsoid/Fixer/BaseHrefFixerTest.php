@@ -6,6 +6,7 @@ namespace Flow\Tests\Parsoid;
 
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BaseHrefFixer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
@@ -16,7 +17,7 @@ use MediaWiki\Title\Title;
 class BaseHrefFixerTest extends \MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgServer', 'http://mywiki' );
+		$this->overrideConfigValue( MainConfigNames::Server, 'http://mywiki' );
 	}
 
 	public static function baseHrefProvider() {

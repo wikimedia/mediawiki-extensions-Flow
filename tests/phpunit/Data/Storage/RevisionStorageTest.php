@@ -9,6 +9,7 @@ use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Tests\FlowTestCase;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -65,9 +66,9 @@ class RevisionStorageTest extends FlowTestCase {
 	];
 
 	protected function setUp(): void {
-		$this->setMwGlobals( [
-			'wgExternalStores' => [ 'FlowMock' ],
-			'wgDefaultExternalStore' => [ 'FlowMock://location1' ]
+		$this->overrideConfigValues( [
+			MainConfigNames::ExternalStores => [ 'FlowMock' ],
+			MainConfigNames::DefaultExternalStore => [ 'FlowMock://location1' ]
 		] );
 
 		\ExternalStoreFlowMock::$isUsed = false;

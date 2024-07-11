@@ -30,7 +30,7 @@ class ConversionStrategyTest extends \MediaWikiIntegrationTestCase {
 		// Stash existing $wgEchoNotifications and provide a dummy for these
 		// tests:  LqtNotifications::overrideUsersToNotify will override it
 		global $wgEchoNotifications;
-		$this->setMwGlobals( 'wgEchoNotifications', $wgEchoNotifications );
+		$this->overrideConfigValue( 'EchoNotifications', $wgEchoNotifications );
 	}
 
 	public function testCanConstruct() {

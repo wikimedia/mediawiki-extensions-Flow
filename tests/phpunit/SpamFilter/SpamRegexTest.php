@@ -6,6 +6,7 @@ use Flow\Model\PostRevision;
 use Flow\SpamFilter\SpamRegex;
 use Flow\Tests\PostRevisionTestCase;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
@@ -54,7 +55,7 @@ class SpamRegexTest extends PostRevisionTestCase {
 		parent::setUp();
 
 		// create a dummy filter
-		$this->setMwGlobals( 'wgSpamRegex', [ '/http:\/\/spam/' ] );
+		$this->overrideConfigValue( MainConfigNames::SpamRegex, [ '/http:\/\/spam/' ] );
 
 		// create spam filter
 		$this->spamFilter = new SpamRegex;

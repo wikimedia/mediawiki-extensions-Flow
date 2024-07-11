@@ -58,7 +58,6 @@ class FlowTestCase extends MediaWikiIntegrationTestCase {
 			unset( $perms[$registry::MERGE_STRATEGY] );
 		}
 
-		global $wgGroupPermissions;
-		$this->setMwGlobals( 'wgGroupPermissions', wfArrayPlus2d( $perms, $wgGroupPermissions ) );
+		$this->setGroupPermissions( $perms );
 	}
 }

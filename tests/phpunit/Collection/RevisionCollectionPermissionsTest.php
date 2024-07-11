@@ -81,7 +81,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// When external store is used, data is written to "blobs" table, which
 		// by default doesn't exist - let's just not use externalstorage in test
-		$this->setMwGlobals( 'wgFlowExternalStore', false );
+		$this->overrideConfigValue( 'FlowExternalStore', false );
 
 		// load actions object
 		$this->actions = Container::get( 'flow_actions' );

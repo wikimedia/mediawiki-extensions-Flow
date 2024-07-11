@@ -56,11 +56,8 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 
 		$unconfirmedUser = User::newFromName( 'UTFlowUnconfirmed' );
 
-		$this->setMwGlobals( [
-			'wgFlowReadOnly' => false,
-		] );
-
 		$this->overrideConfigValues( [
+			'FlowReadOnly' => false,
 			MainConfigNames::NamespaceContentModels => $tempModels,
 		] );
 

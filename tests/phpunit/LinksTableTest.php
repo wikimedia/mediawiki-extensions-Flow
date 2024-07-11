@@ -14,6 +14,7 @@ use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Parsoid\ReferenceFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 
@@ -299,7 +300,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				[
 				],
 				[ // test is only valid if Foo and foo are same page
-					'wgCapitalLinks' => true,
+					MainConfigNames::CapitalLinks => true,
 				]
 			],
 			// Inequality robustness
@@ -324,9 +325,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideReferenceDiff
 	 */
 	public function testReferenceDiff( array $old, array $new, array $expectedAdded, array $expectedRemoved, array $globals = [] ) {
-		if ( $globals ) {
-			$this->setMwGlobals( $globals );
-		}
+		$this->overrideConfigValues( $globals );
 		[ $workflow, $revision, $title ] = $this->getBlandTestObjects();
 
 		foreach ( [ 'old', 'new', 'expectedAdded', 'expectedRemoved' ] as $varName ) {

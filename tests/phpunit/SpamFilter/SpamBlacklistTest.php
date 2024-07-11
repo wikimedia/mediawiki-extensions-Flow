@@ -81,7 +81,7 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 			$this->markTestSkipped( 'SpamBlacklist not enabled' );
 		}
 
-		$this->setMwGlobals( 'wgBlacklistSettings', [
+		$this->overrideConfigValue( 'BlacklistSettings', [
 			'files' => [],
 		] );
 

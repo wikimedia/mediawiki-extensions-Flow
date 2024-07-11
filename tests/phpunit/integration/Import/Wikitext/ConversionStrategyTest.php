@@ -107,9 +107,9 @@ class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 		$strategy = $this->createStrategy();
 
 		$lqtPagesName = 'Talk:Some ConversionStrategyTest LQT page';
-		$this->setMwGlobals( [
-			'wgLqtNamespaces' => [ NS_HELP_TALK ],
-			'wgLqtPages' => [ $lqtPagesName ],
+		$this->overrideConfigValues( [
+			'LqtNamespaces' => [ NS_HELP_TALK ],
+			'LqtPages' => [ $lqtPagesName ],
 		] );
 
 		// Not subpage, not LQT
