@@ -3,7 +3,6 @@
 namespace Flow\Api;
 
 use ApiQueryBase;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 
 class ApiQueryPropFlowInfo extends ApiQueryBase {
@@ -22,25 +21,13 @@ class ApiQueryPropFlowInfo extends ApiQueryBase {
 
 	public function execute() {
 		$pageSet = $this->getPageSet();
-		/** @var PageIdentity $title */
-		foreach ( $pageSet->getGoodPages() as $pageid => $title ) {
-			$pageInfo = $this->getPageInfo( Title::newFromPageIdentity( $title ) );
-			$this->addPageSubItems( $pageid, $pageInfo );
+		foreach ( $pageSet->getGoodPages() as $pageId => $page ) {
+			$pageInfo = [ 'flow' => [] ];
+			if ( Title::newFromPageIdentity( $page )->hasContentModel( CONTENT_MODEL_FLOW_BOARD ) ) {
+				$pageInfo['flow']['enabled'] = '';
+			}
+			$this->addPageSubItems( $pageId, $pageInfo );
 		}
-	}
-
-	/**
-	 * In the future we can add more Flow related info here
-	 * @param Title $title
-	 * @return array
-	 */
-	protected function getPageInfo( Title $title ) {
-		$result = [ 'flow' => [] ];
-		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			$result['flow']['enabled'] = '';
-		}
-
-		return $result;
 	}
 
 	/**
