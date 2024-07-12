@@ -125,9 +125,7 @@ class Workflow {
 				throw new FailCommitException( 'No page for workflow: ' . serialize( $obj ) );
 			}
 		}
-		$dbr = MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getConnection( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 		return [
 			'workflow_id' => $obj->id->getAlphadecimal(),

@@ -66,9 +66,7 @@ class TopicListEntry {
 			'topic_id' => $obj->topicId->getAlphadecimal(),
 		];
 		if ( $obj->topicWorkflowLastUpdated ) {
-			$dbr = MediaWikiServices::getInstance()
-				->getDBLoadBalancer()
-				->getConnection( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 			$row['workflow_last_update_timestamp'] = $dbr->timestamp( $obj->topicWorkflowLastUpdated );
 		}
 		return $row;
