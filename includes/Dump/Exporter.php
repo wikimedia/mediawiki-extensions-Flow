@@ -28,7 +28,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionProperty;
 use WikiExporter;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
 use Xml;
 
@@ -162,7 +162,7 @@ class Exporter extends WikiExporter {
 	 */
 	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null,
 		$workflowStartId = null, $workflowEndId = null ) {
-		/** @var IDatabase $dbr */
+		/** @var IReadableDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 
 		$iterator = new BatchRowIterator( $dbr, 'flow_workflow', 'workflow_id', 300 );

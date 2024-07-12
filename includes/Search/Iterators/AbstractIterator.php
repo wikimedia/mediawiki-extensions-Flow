@@ -10,12 +10,12 @@ use Flow\Model\UUID;
 use Iterator;
 use MediaWiki\WikiMap\WikiMap;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 abstract class AbstractIterator implements Iterator {
 	/**
-	 * @var IDatabase
+	 * @var IReadableDatabase
 	 */
 	protected $dbr;
 

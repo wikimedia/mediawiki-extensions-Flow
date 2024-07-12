@@ -6,7 +6,7 @@ use Flow\Model\UUID;
 use Flow\WatchedTopicItems;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -79,7 +79,7 @@ class WatchedTopicItemsTest extends FlowTestCase {
 		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'where', 'caller' ) )->willReturnSelf();
 		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( $dbResult ) );
-		$db = $this->createMock( IDatabase::class );
+		$db = $this->createMock( IReadableDatabase::class );
 		$db->method( 'newSelectQueryBuilder' )
 			->willReturn( $queryBuilder );
 		return $db;

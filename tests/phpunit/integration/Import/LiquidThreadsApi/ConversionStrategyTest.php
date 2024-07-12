@@ -15,7 +15,7 @@ use Flow\UrlGenerator;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use WikitextContent;
 
 /**
@@ -166,7 +166,7 @@ EOD
 
 	private function createStrategy() {
 		return new ConversionStrategy(
-			$this->createMock( IDatabase::class ),
+			$this->createMock( IReadableDatabase::class ),
 			new NullImportSourceStore(),
 			$this->createMock( ApiBackend::class ),
 			$this->createMock( UrlGenerator::class ),

@@ -8,7 +8,7 @@ use IteratorAggregate;
 use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Title\Title;
 use RecursiveIteratorIterator;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Iterates over all titles within the specified namespace. Batches
@@ -16,7 +16,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class NamespaceIterator implements IteratorAggregate {
 	/**
-	 * @var IDatabase A wiki database to read from
+	 * @var IReadableDatabase A wiki database to read from
 	 */
 	protected $db;
 
@@ -26,10 +26,10 @@ class NamespaceIterator implements IteratorAggregate {
 	protected $namespace;
 
 	/**
-	 * @param IDatabase $db A wiki database to read from
+	 * @param IReadableDatabase $db A wiki database to read from
 	 * @param int $namespace An NS_* namespace to iterate over
 	 */
-	public function __construct( IDatabase $db, $namespace ) {
+	public function __construct( IReadableDatabase $db, $namespace ) {
 		$this->db = $db;
 		$this->namespace = $namespace;
 	}

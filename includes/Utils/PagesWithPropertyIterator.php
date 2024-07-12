@@ -8,14 +8,14 @@ use IteratorAggregate;
 use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Title\Title;
 use RecursiveIteratorIterator;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Iterates over all titles that have the specified page property
  */
 class PagesWithPropertyIterator implements IteratorAggregate {
 	/**
-	 * @var IDatabase
+	 * @var IReadableDatabase
 	 */
 	protected $db;
 
@@ -39,12 +39,12 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	protected $stopId = null;
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string $propName
 	 * @param int|null $startId Page id to start at (inclusive)
 	 * @param int|null $stopId Page id to stop at (exclusive)
 	 */
-	public function __construct( IDatabase $db, $propName, $startId = null, $stopId = null ) {
+	public function __construct( IReadableDatabase $db, $propName, $startId = null, $stopId = null ) {
 		$this->db = $db;
 		$this->propName = $propName;
 		$this->startId = $startId;

@@ -16,7 +16,7 @@ use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\User\User;
 use RecursiveIteratorIterator;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Converts LQT unread notifications into Echo notifications after a topic is imported
@@ -28,19 +28,16 @@ class LqtNotifications implements Postprocessor {
 	 */
 	protected $controller;
 
-	/**
-	 * @var IDatabase
-	 */
-	protected $dbw;
+	protected IReadableDatabase $dbr;
 
 	/**
 	 * @var PostRevision[] Array of imported replies
 	 */
 	protected $postsImported = [];
 
-	public function __construct( Controller $controller, IDatabase $dbw ) {
+	public function __construct( Controller $controller, IReadableDatabase $dbr ) {
 		$this->controller = $controller;
-		$this->dbw = $dbw;
+		$this->dbr = $dbr;
 		$this->overrideUsersToNotify();
 	}
 
@@ -87,7 +84,7 @@ class LqtNotifications implements Postprocessor {
 		}
 
 		$it = new BatchRowIterator(
-			$this->dbw,
+			$this->dbr,
 			/* table = */ 'user_message_state',
 			/* primary keys */ [ 'ums_user' ],
 			$batchSize
