@@ -10,7 +10,7 @@ use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use InvalidArgumentException;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Abstract storage implementation for models extending from AbstractRevision
@@ -332,7 +332,7 @@ abstract class RevisionStorage extends DbStorage {
 		);
 	}
 
-	protected function buildCompositeInCondition( IDatabase $dbr, array $queries ) {
+	protected function buildCompositeInCondition( IReadableDatabase $dbr, array $queries ) {
 		$keys = array_keys( reset( $queries ) );
 		$conditions = [];
 		if ( count( $keys ) === 1 ) {

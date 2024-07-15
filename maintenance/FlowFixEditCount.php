@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 use LoggedUpdateMaintenance;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -48,7 +48,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		/** @var IDatabase $dbr */
+		/** @var IReadableDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		$countableActions = $this->getCountableActions();
 
@@ -74,7 +74,7 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	public function refreshBatch( IDatabase $dbr, UUID $continue, array $countableActions, UUID $stop ) {
+	public function refreshBatch( IReadableDatabase $dbr, UUID $continue, array $countableActions, UUID $stop ) {
 		$rows = $dbr->newSelectQueryBuilder()
 			->select( [ 'rev_id', 'rev_user_id' ] )
 			->from( 'flow_revision' )

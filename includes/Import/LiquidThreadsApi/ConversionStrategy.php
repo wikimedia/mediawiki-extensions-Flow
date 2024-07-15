@@ -15,7 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use WikitextContent;
 
 /**
@@ -29,11 +29,8 @@ use WikitextContent;
  * archive version of the page.
  */
 class ConversionStrategy implements IConversionStrategy {
-	/**
-	 * @var IDatabase Primary database for the current wiki
-	 */
-	protected $dbw;
 
+	protected IReadableDatabase $dbr;
 	/**
 	 * @var SourceStoreInterface
 	 */
@@ -60,14 +57,14 @@ class ConversionStrategy implements IConversionStrategy {
 	protected $notificationController;
 
 	public function __construct(
-		IDatabase $dbw,
+		IReadableDatabase $dbr,
 		SourceStoreInterface $sourceStore,
 		ApiBackend $api,
 		UrlGenerator $urlGenerator,
 		User $talkpageUser,
 		Controller $notificationController
 	) {
-		$this->dbw = $dbw;
+		$this->dbr = $dbr;
 		$this->sourceStore = $sourceStore;
 		$this->api = $api;
 		$this->urlGenerator = $urlGenerator;
@@ -141,7 +138,7 @@ class ConversionStrategy implements IConversionStrategy {
 	public function getPostprocessor() {
 		$group = new ProcessorGroup;
 		$group->add( new LqtRedirector( $this->urlGenerator, $this->talkpageUser ) );
-		$group->add( new LqtNotifications( $this->notificationController, $this->dbw ) );
+		$group->add( new LqtNotifications( $this->notificationController, $this->dbr ) );
 
 		return $group;
 	}

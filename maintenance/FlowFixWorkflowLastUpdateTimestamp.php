@@ -23,7 +23,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use RowUpdateGenerator;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -98,16 +98,11 @@ class UpdateWorkflowLastUpdateTimestampGenerator implements RowUpdateGenerator {
 	protected $rootPostLoader;
 
 	/**
-	 * @var IDatabase
+	 * @var IReadableDatabase
 	 */
 	protected $db;
 
-	/**
-	 * @param ManagerGroup $storage
-	 * @param RootPostLoader $rootPostLoader
-	 * @param IDatabase $db
-	 */
-	public function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, IDatabase $db ) {
+	public function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, IReadableDatabase $db ) {
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
 		$this->db = $db;

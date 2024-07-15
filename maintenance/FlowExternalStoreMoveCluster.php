@@ -17,6 +17,7 @@ use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -33,7 +34,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	/**
 	 * Must return an array in the form:
 	 * [
-	 * 	'dbr' => IDatabase object,
+	 * 	'dbr' => IReadableDatabase object,
 	 * 	'dbw' => IDatabase object,
 	 * 	'table' => 'flow_revision',
 	 * 	'pk' => 'rev_id',
@@ -57,7 +58,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	 * SET <content> = ..., <flags> = ...
 	 * WHERE <pk> = ...;
 	 *
-	 * @return array
+	 * @return array{dbr:IReadableDatabase,dbw:IDatabase,table:string,pk:string,content:string,flags:string,wiki:string}
 	 */
 	abstract protected function schema();
 
@@ -85,7 +86,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$to = explode( ',', $this->getOption( 'to' ) );
 
 		$schema = $this->schema();
-		/** @var IDatabase $dbr */
+		/** @var IReadableDatabase $dbr */
 		$dbr = $schema['dbr'];
 		/** @var IDatabase $dbw */
 		$dbw = $schema['dbw'];

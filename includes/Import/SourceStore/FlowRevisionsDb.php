@@ -14,7 +14,7 @@ use Flow\Model\UUID;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -29,14 +29,11 @@ use Wikimedia\Timestamp\TimestampException;
  */
 class FlowRevisionsDb implements SourceStoreInterface {
 	/**
-	 * @var IDatabase
+	 * @var IReadableDatabase
 	 */
 	protected $dbr;
 
-	/**
-	 * @param IDatabase $dbr
-	 */
-	public function __construct( IDatabase $dbr ) {
+	public function __construct( IReadableDatabase $dbr ) {
 		$this->dbr = $dbr;
 	}
 
