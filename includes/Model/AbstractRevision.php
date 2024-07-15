@@ -208,9 +208,7 @@ abstract class AbstractRevision {
 	 * @return array
 	 */
 	public static function toStorageRow( $obj ) {
-		$dbr = MediaWikiServices::getInstance()
-			->getDBLoadBalancer()
-			->getConnection( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		return [
 			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->user->id,
