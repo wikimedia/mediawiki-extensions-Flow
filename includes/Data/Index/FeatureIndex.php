@@ -72,13 +72,6 @@ abstract class FeatureIndex implements Index {
 	abstract public function queryOptions();
 
 	/**
-	 * @todo this doesn't need to be abstract
-	 * @param array $values The current contents of a single feature bucket
-	 * @return array $values trimmed to respect self::getLimit()
-	 */
-	abstract public function limitIndexSize( array $values );
-
-	/**
 	 * @todo Similar, Could the cache key be passed in instead of $indexed?
 	 * @param array $indexed The portion of $row that makes up the cache key
 	 * @param array $row A single row of data to remove from its related feature bucket
