@@ -4,6 +4,7 @@ namespace Flow\Tests\Formatter;
 
 use Flow\Container;
 use Flow\Data\Mapper\CachingObjectMapper;
+use Flow\Formatter\CheckUserFormatter;
 use Flow\Formatter\FormatterRow;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\UUID;
@@ -74,7 +75,7 @@ class FormatterTest extends FlowTestCase {
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
 		AtEase::suppressWarnings();
-		$links = $this->createFormatter( \Flow\Formatter\CheckUserFormatter::class )->format( $row, $ctx );
+		$links = $this->createFormatter()->format( $row, $ctx );
 		AtEase::restoreWarnings();
 		$test( $this, $message, $links );
 	}
@@ -101,7 +102,7 @@ class FormatterTest extends FlowTestCase {
 		return $revision;
 	}
 
-	private function createFormatter( $class ) {
+	private function createFormatter() {
 		$permissions = $this->createMock( RevisionActionPermissions::class );
 		$permissions->method( 'isAllowed' )
 			->willReturn( true );
@@ -118,7 +119,7 @@ class FormatterTest extends FlowTestCase {
 			$wgFlowMaxThreadingDepth
 		);
 
-		return new $class( $permissions, $serializer );
+		return new CheckUserFormatter( $permissions, $serializer );
 	}
 
 	protected function dataToString( $data ) {
