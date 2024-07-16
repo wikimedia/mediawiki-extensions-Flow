@@ -929,6 +929,9 @@ class RevisionFormatter {
 		IContextSource $ctx,
 		FormatterRow $row = null
 	) {
+		$isWikiText = str_ends_with( $param, 'wikitext' );
+		$format = $isWikiText ? $revision->getWikitextFormat() : $revision->getHtmlFormat();
+
 		switch ( $param ) {
 			case 'creator-text':
 				if ( $revision instanceof PostRevision ) {
@@ -960,13 +963,15 @@ class RevisionFormatter {
 				return Message::plaintextParam( $content );
 
 			case 'wikitext':
+			case 'plaintext':
 				if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
 					return '';
 				}
 
-				$format = $revision->getWikitextFormat();
-
 				$content = $this->templating->getContent( $revision, $format );
+				if ( !$isWikiText ) {
+					$content = Utils::htmlToPlaintext( $content );
+				}
 				// This must be escaped and marked raw to prevent special chars in
 				// content, like $1, from changing the i18n result
 				return Message::plaintextParam( $content );
@@ -974,37 +979,6 @@ class RevisionFormatter {
 			// This is potentially two networked round trips, much too expensive for
 			// the rendering loop
 			case 'prev-wikitext':
-				if ( $revision->isFirstRevision() ) {
-					return '';
-				}
-				if ( $row === null ) {
-					$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
-				} else {
-					$previousRevision = $row->previousRevision;
-				}
-				if ( !$previousRevision ) {
-					return '';
-				}
-				if ( !$this->permissions->isAllowed( $previousRevision, 'view' ) ) {
-					return '';
-				}
-
-				$format = $revision->getWikitextFormat();
-
-				$content = $this->templating->getContent( $previousRevision, $format );
-				return Message::plaintextParam( $content );
-			case 'plaintext':
-				if ( !$this->permissions->isAllowed( $revision, 'view' ) ) {
-					return '';
-				}
-
-				$format = $revision->getHtmlFormat();
-
-				$content = Utils::htmlToPlaintext( $this->templating->getContent( $revision, $format ) );
-				return Message::plaintextParam( $content );
-
-			// This is potentially two networked round trips, much too expensive for
-			// the rendering loop
 			case 'prev-plaintext':
 				if ( $revision->isFirstRevision() ) {
 					return '';
@@ -1021,9 +995,10 @@ class RevisionFormatter {
 					return '';
 				}
 
-				$format = $revision->getHtmlFormat();
-
-				$content = Utils::htmlToPlaintext( $this->templating->getContent( $previousRevision, $format ) );
+				$content = $this->templating->getContent( $previousRevision, $format );
+				if ( !$isWikiText ) {
+					$content = Utils::htmlToPlaintext( $content );
+				}
 				return Message::plaintextParam( $content );
 
 			case 'workflow-url':
