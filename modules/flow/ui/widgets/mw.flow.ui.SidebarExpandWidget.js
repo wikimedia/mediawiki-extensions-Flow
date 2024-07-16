@@ -45,7 +45,7 @@
 	/**
 	 * Toggle collapsed state
 	 *
-	 * @param {boolean} collapse Widget is collapsed
+	 * @param {boolean} [collapse] Widget is collapsed
 	 */
 	mw.flow.ui.SidebarExpandWidget.prototype.toggleCollapsed = function ( collapse ) {
 		var siderailState;

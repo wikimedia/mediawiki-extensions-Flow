@@ -156,7 +156,7 @@
 	/**
 	 * Expand the widget and make it ready to create a new topic
 	 *
-	 * @param {Object} content Content to preload into the editor
+	 * @param {Object} [content] Content to preload into the editor
 	 * @param {string} content.content Content
 	 * @param {string} content.format Format of content ('html' or 'wikitext')
 	 */
