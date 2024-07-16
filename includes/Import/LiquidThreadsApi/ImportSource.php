@@ -173,14 +173,10 @@ class ImportSource implements IImportSource {
 	 * Parameters: Zero or more strings that uniquely represent the object
 	 * for this ImportSource
 	 *
+	 * @param mixed ...$args
 	 * @return string Unique key
 	 */
-	public function getObjectKey( /* $args */ ) {
-		$components = array_merge(
-			[ 'lqt-api', $this->getApiKey() ],
-			func_get_args()
-		);
-
-		return implode( ':', $components );
+	public function getObjectKey( ...$args ): string {
+		return implode( ':', [ 'lqt-api', $this->getApiKey(), ...$args ] );
 	}
 }
