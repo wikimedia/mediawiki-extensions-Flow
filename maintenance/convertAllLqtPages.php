@@ -15,7 +15,7 @@ use Flow\Utils\PagesWithPropertyIterator;
 use Maintenance;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -94,22 +94,23 @@ class ConvertAllLqtPages extends Maintenance {
 
 	/**
 	 * @param AbstractLogger $logger
-	 * @param IDatabase $dbw
+	 * @param IReadableDatabase $db
+	 *
 	 * @return AppendIterator
 	 */
-	private function buildIterator( $logger, $dbw ) {
+	private function buildIterator( $logger, $db ) {
 		global $wgLqtTalkPages;
 
 		$iterator = new AppendIterator();
 
 		$logger->info( "Considering for conversion: pages with the 'use-liquid-threads' property" );
-		$withProperty = new PagesWithPropertyIterator( $dbw, 'use-liquid-threads' );
+		$withProperty = new PagesWithPropertyIterator( $db, 'use-liquid-threads' );
 		$iterator->append( $withProperty->getIterator() );
 
 		if ( $wgLqtTalkPages ) {
 			foreach ( $this->getServiceContainer()->getNamespaceInfo()->getTalkNamespaces() as $ns ) {
 				$logger->info( "Considering for conversion: pages in namespace $ns" );
-				$it = new NamespaceIterator( $dbw, $ns );
+				$it = new NamespaceIterator( $db, $ns );
 				$iterator->append( $it->getIterator() );
 			}
 		}
