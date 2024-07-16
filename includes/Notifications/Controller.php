@@ -3,7 +3,6 @@
 namespace Flow\Notifications;
 
 use ExtensionRegistry;
-use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -39,7 +38,7 @@ class Controller {
 	public const CONSTRUCTOR_OPTIONS = [
 		'FlowNotificationTruncateLength'
 	];
-	private ?int $truncateLength = null;
+	private ?int $truncateLength;
 
 	/**
 	 * @param ServiceOptions $options
@@ -104,10 +103,10 @@ class Controller {
 	 * * board-workflow: The Workflow object for the board. Always required.
 	 * * timestamp: Original event timestamp, for imports. Optional.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return array Array of created Event objects.
+	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifyHeaderChange( $data = [] ) {
+	public function notifyHeaderChange( array $data ): array {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
@@ -178,10 +177,10 @@ class Controller {
 	 * * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames.
 	 * * old-subject: The old subject of a Topic. Required for topic renames.
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
-	 * @return array Array of created Event objects.
+	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifyPostChange( $eventName, $data = [] ) {
+	public function notifyPostChange( $eventName, array $data ): array {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
@@ -299,10 +298,10 @@ class Controller {
 	 * * topic-title: The PostRevision object for the topic title. Always required.
 	 * * topic-workflow: The Workflow object for the board. Always required.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return array Array of created Event objects.
+	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifySummaryChange( $data = [] ) {
+	public function notifySummaryChange( array $data ): array {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
@@ -373,10 +372,10 @@ class Controller {
 	 *    title.
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
-	 * @return array Array of created Event objects.
+	 * @return Event[]
 	 * @throws FlowException When $params contains unexpected types/values
 	 */
-	public function notifyNewTopic( $params ) {
+	public function notifyNewTopic( array $params ): array {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			// Nothing to do here.
 			return [];
@@ -452,9 +451,9 @@ class Controller {
 	 *
 	 * @param string $type flow-topic-resolved|flow-topic-reopened
 	 * @param array $data
-	 * @return array
+	 * @return Event[]
 	 */
-	public function notifyTopicLocked( $type, $data = [] ) {
+	public function notifyTopicLocked( $type, array $data ): array {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return [];
 		}
@@ -516,9 +515,9 @@ class Controller {
 	 * @param PostRevision|null $topic Topic PostRevision object, if relevant (e.g. not for Header)
 	 * @param Workflow $workflow
 	 * @param User $user User who created the new post
-	 * @param array $mentionedUsers
+	 * @param int[] $mentionedUsers
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
-	 * @return bool|Event[]
+	 * @return Event[]
 	 * @throws \Flow\Exception\InvalidDataException
 	 */
 	protected function generateMentionEvents(
@@ -528,11 +527,11 @@ class Controller {
 		User $user,
 		array $mentionedUsers,
 		$mentionsSkipped
-	) {
+	): array {
 		global $wgEchoMentionStatusNotifications, $wgFlowMaxMentionCount;
 
 		if ( count( $mentionedUsers ) === 0 ) {
-			return false;
+			return [];
 		}
 
 		$extraData = [];
@@ -723,31 +722,6 @@ class Controller {
 				break;
 		}
 		return true;
-	}
-
-	/**
-	 * Get the owner of the page if the workflow belongs to a talk page
-	 *
-	 * @param string $topicId Topic workflow UUID
-	 * @return array Map from userid to User object
-	 */
-	protected static function getTalkPageOwner( $topicId ) {
-		$talkUser = [];
-		// Owner of talk page should always get a reply notification
-		/** @var Workflow|null $workflow */
-		$workflow = Container::get( 'storage' )
-			->getStorage( 'Workflow' )
-			->get( UUID::create( $topicId ) );
-		if ( $workflow ) {
-			$title = $workflow->getOwnerTitle();
-			if ( $title->isTalkPage() ) {
-				$user = User::newFromName( $title->getDBkey() );
-				if ( $user && $user->getId() ) {
-					$talkUser[$user->getId()] = $user;
-				}
-			}
-		}
-		return $talkUser;
 	}
 
 	/**
