@@ -215,7 +215,7 @@ class UUID implements ApiSerializable {
 	}
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
 	public function serializeForApiResult() {
 		return $this->getAlphadecimal();

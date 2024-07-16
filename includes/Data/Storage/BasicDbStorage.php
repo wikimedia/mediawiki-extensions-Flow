@@ -103,7 +103,7 @@ class BasicDbStorage extends DbStorage {
 			->caller( __METHOD__ . " ({$this->table})" )
 			->execute();
 		// we also want to check that $pk actually selected a row to update
-		return $dbw->affectedRows() ? true : false;
+		return (bool)$dbw->affectedRows();
 	}
 
 	/**

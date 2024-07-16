@@ -142,12 +142,11 @@ class ContributionsQuery extends AbstractQuery {
 		if ( $userIdentity && $userIdentity->isRegistered() ) {
 			$conditions['rev_user_id'] = $userIdentity->getId();
 			$conditions['rev_user_ip'] = null;
-			$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 		} else {
 			$conditions['rev_user_id'] = 0;
 			$conditions['rev_user_ip'] = $pager->getTarget();
-			$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 		}
+		$conditions['rev_user_wiki'] = WikiMap::getCurrentWikiId();
 
 		if ( $isContribsPager && $pager->isNewOnly() ) {
 			$conditions['rev_parent_id'] = null;

@@ -346,7 +346,7 @@ class Hooks implements
 	 * line with meta info (old changes), or simply updates the link to
 	 * the topic (enhanced).
 	 *
-	 * @param ChangesList &$changesList
+	 * @param ChangesList $changesList
 	 * @param string &$s
 	 * @param RecentChange $rc
 	 * @param array|null &$classes
@@ -354,7 +354,7 @@ class Hooks implements
 	 * @return bool
 	 */
 	protected static function processRecentChangesLine(
-		ChangesList &$changesList,
+		ChangesList $changesList,
 		&$s,
 		RecentChange $rc,
 		&$classes = null,
@@ -2118,6 +2118,10 @@ class Hooks implements
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @return false|void
+	 */
 	public function onGetUserPermissionsErrors( $title, $user, $action, &$result ) {
 		global $wgFlowReadOnly;
 		if ( !$wgFlowReadOnly ) {

@@ -68,6 +68,9 @@ class FlowFixInconsistentBoards extends Maintenance {
 		$this->requireExtension( 'Flow' );
 	}
 
+	/**
+	 * @return false|void
+	 */
 	public function execute() {
 		global $wgLang;
 

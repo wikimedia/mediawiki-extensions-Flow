@@ -185,7 +185,7 @@ class UpdateWorkflowLastUpdateTimestampWriter extends BatchRowWriter {
 
 	/**
 	 * @param ManagerGroup $storage
-	 * @param bool $clusterName
+	 * @param string|false $clusterName
 	 */
 	public function __construct( ManagerGroup $storage, $clusterName = false ) {
 		$this->storage = $storage;

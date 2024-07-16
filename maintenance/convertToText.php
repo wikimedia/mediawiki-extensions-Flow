@@ -82,7 +82,7 @@ class ConvertToText extends Maintenance {
 			if ( isset( $topicListBlock['links']['pagination'] ) ) {
 				$paginationLinks = $topicListBlock['links']['pagination'];
 				if ( isset( $paginationLinks['fwd'] ) ) {
-					[ $junk, $query ] = explode( '?', $paginationLinks['fwd']['url'] );
+					[ , $query ] = explode( '?', $paginationLinks['fwd']['url'] );
 					$queryParams = wfCgiToArray( $query );
 
 					$pagerParams = [

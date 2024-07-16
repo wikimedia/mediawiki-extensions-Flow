@@ -155,7 +155,7 @@ class ApiFlow extends ApiBase {
 		// and we'd error out because the submodule parameter isn't set.
 		$moduleName = $this->getMain()->getVal( 'submodule' );
 		$module = $this->moduleManager->getModule( $moduleName, 'submodule' );
-		return $module ? $module->isWriteMode() : false;
+		return $module && $module->isWriteMode();
 	}
 
 	public function getHelpUrls() {

@@ -132,13 +132,11 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		$user = $ctx->getUser();
 
 		$replies = -1;
-		$authors = [];
 		$stack = new \SplStack;
 		$stack->push( $revisions[$posts[$postAlphaId][0]] );
 		do {
 			$data = $stack->pop();
 			$replies++;
-			$authors[] = $data['creator']['name'];
 			foreach ( $data['replies'] as $postId ) {
 				$stack->push( $revisions[$posts[$postId][0]] );
 			}
