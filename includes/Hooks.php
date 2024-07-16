@@ -1503,10 +1503,10 @@ class Hooks implements
 		if ( !$uuid ) {
 			return;
 		}
-		/** @var Formatter\CategoryViewerQuery */
+		/** @var Formatter\CategoryViewerQuery $query */
 		$query = Container::get( 'query.categoryviewer' );
 		$row = $query->getResult( $uuid );
-		/** @var Formatter\CategoryViewerFormatter */
+		/** @var Formatter\CategoryViewerFormatter $formatter */
 		$formatter = Container::get( 'formatter.categoryviewer' );
 		$result = $formatter->format( $row );
 		if ( $result ) {

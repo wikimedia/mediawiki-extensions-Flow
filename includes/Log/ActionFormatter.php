@@ -67,7 +67,7 @@ class ActionFormatter extends LogFormatter {
 		 */
 		static $loaded = false;
 		if ( !$loaded ) {
-			/** @var ManagerGroup storage */
+			/** @var ManagerGroup $storage */
 			$storage = Container::get( 'storage' );
 			/** @var TreeRepository $treeRepository */
 			$treeRepository = Container::get( 'repository.tree' );

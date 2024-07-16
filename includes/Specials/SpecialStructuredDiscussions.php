@@ -12,6 +12,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
+use Flow\UrlGenerator;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;

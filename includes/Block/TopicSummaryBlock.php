@@ -401,7 +401,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			throw new InvalidInputException( 'Both startId and endId must be provided' );
 		}
 
-		/** @var RevisionViewQuery */
+		/** @var RevisionViewQuery $query */
 		$query = Container::get( 'query.postsummary.view' );
 		$rows = $query->getUndoDiffResult( $options['startId'], $options['endId'] );
 		if ( !$rows ) {

@@ -71,7 +71,7 @@ class ApiFlow extends ApiBase {
 		$this->getMain()->getVal( '_' );
 
 		$params = $this->extractRequestParams();
-		/** @var $module ApiFlowBase */
+		/** @var ApiFlowBase $module */
 		$module = $this->moduleManager->getModule( $params['submodule'], 'submodule' );
 		'@phan-var ApiFlowBase $module';
 
