@@ -178,7 +178,6 @@ return [
 			$services->getService( 'FlowTalkpageManager' ),
 			$services->getService( 'FlowNotificationsController' ),
 			$archiveNameHelper,
-			$services->getService( 'FlowDbFactory' ),
 			$services->getService( 'FlowDefaultLogger' ),
 			$services->getService( 'FlowTalkpageManager' )->getTalkpageManager()
 		);

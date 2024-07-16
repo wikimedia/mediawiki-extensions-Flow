@@ -10,7 +10,6 @@ use Flow\Collection\HeaderCollection;
 use Flow\Container;
 use Flow\Content\BoardContent;
 use Flow\Conversion\Utils;
-use Flow\DbFactory;
 use Flow\Exception\InvalidDataException;
 use Flow\Notifications\Controller;
 use Flow\OccupationController;
@@ -55,11 +54,6 @@ class OptInController {
 	private $archiveNameHelper;
 
 	/**
-	 * @var DbFactory
-	 */
-	private $dbFactory;
-
-	/**
 	 * @var LoggerInterface
 	 */
 	private $logger;
@@ -78,7 +72,6 @@ class OptInController {
 	 * @param OccupationController $occupationController
 	 * @param Controller $notificationController
 	 * @param ArchiveNameHelper $archiveNameHelper
-	 * @param DbFactory $dbFactory
 	 * @param LoggerInterface $logger Logger for errors and exceptions
 	 * @param User $scriptUser User that takes actions, such as creating the board or
 	 *   editing descriptions
@@ -87,14 +80,12 @@ class OptInController {
 		OccupationController $occupationController,
 		Controller $notificationController,
 		ArchiveNameHelper $archiveNameHelper,
-		DbFactory $dbFactory,
 		LoggerInterface $logger,
 		User $scriptUser
 	) {
 		$this->occupationController = $occupationController;
 		$this->notificationController = $notificationController;
 		$this->archiveNameHelper = $archiveNameHelper;
-		$this->dbFactory = $dbFactory;
 		$this->logger = $logger;
 		$this->user = $scriptUser;
 		$this->context = new DerivativeContext( RequestContext::getMain() );
