@@ -82,7 +82,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	 * @fixme this looks slow, likely a better way
 	 */
 	protected function serializeRcRevision( RecentChange $rc, IContextSource $ctx ) {
-		/** @var RecentChangesQuery $query */
+		/** @var ChangesListQuery $query */
 		$query = Container::get( 'query.changeslist' );
 		$query->loadMetadataBatch( [ (object)$rc->getAttributes() ] );
 		$rcRow = $query->getResult( null, $rc );
