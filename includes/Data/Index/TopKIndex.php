@@ -7,7 +7,6 @@ use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
-use Flow\Data\Utils\SortArrayByKeys;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidParameterException;
 
@@ -214,56 +213,6 @@ class TopKIndex extends FeatureIndex {
 
 	protected function removeFromIndex( array $indexed, array $row ) {
 		$this->cache->delete( $this->cacheKey( $indexed ) );
-	}
-
-	/**
-	 * In order to be able to reliably find a row in an array of
-	 * cached rows, we need to normalize those to make sure the
-	 * columns match: they may be outdated.
-	 *
-	 * INTERNAL: in 5.4 it can be protected.
-	 *
-	 * @param array $row Array in [column => value] format
-	 * @param array $schema Array of column names to be present in $row
-	 * @return array
-	 */
-	public function normalizeCompressed( array $row, array $schema ) {
-		$schema = array_fill_keys( $schema, null );
-
-		// add null value for columns currently in cache
-		$row = array_merge( $schema, $row );
-
-		// remove unknown columns from the row
-		$row = array_intersect_key( $row, $schema );
-
-		return $row;
-	}
-
-	/**
-	 * INTERNAL: in 5.4 it can be protected.
-	 *
-	 * @param array $values
-	 * @return array
-	 */
-	public function sortIndex( array $values ) {
-		// I don't think this is a valid way to sort a 128bit integer string
-		$callback = new SortArrayByKeys( $this->options['sort'], true );
-		/** @noinspection PhpParamsInspection */
-		usort( $values, $callback );
-		if ( $this->options['order'] === 'DESC' ) {
-			$values = array_reverse( $values );
-		}
-		return $values;
-	}
-
-	/**
-	 * INTERNAL: in 5.4 it can be protected.
-	 *
-	 * @param array $values
-	 * @return array
-	 */
-	public function limitIndexSize( array $values ) {
-		return array_slice( $values, 0, $this->options['limit'] );
 	}
 
 	/**
