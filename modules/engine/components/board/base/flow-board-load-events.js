@@ -6,7 +6,6 @@
 	/**
 	 * Binds element load handlers for FlowBoardComponent
 	 *
-	 * @param {jQuery} $container
 	 * @extends FlowComponent
 	 * @constructor
 	 */

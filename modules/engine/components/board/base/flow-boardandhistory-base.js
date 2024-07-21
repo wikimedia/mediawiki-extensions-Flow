@@ -7,7 +7,6 @@
 	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
 
 	/**
-	 * @param {jQuery} $container
 	 * @constructor
 	 */
 	function FlowBoardAndHistoryComponentBase() {

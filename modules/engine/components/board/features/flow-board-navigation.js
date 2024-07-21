@@ -8,7 +8,6 @@
 	 *
 	 * @class
 	 * @constructor
-	 * @param {jQuery} $container
 	 * @this FlowComponent
 	 */
 	function FlowBoardComponentBoardHeaderFeatureMixin() {

@@ -11,7 +11,6 @@
 	/**
 	 * Bind UI events and infinite scroll handler for load more and titles list functionality.
 	 *
-	 * @param {jQuery} $container
 	 * @this FlowBoardComponent
 	 * @constructor
 	 */
@@ -189,8 +188,6 @@
 	 * @param {string} info.status "done" or "fail"
 	 * @param {jQuery} info.$target
 	 * @param {FlowBoardComponent} info.component
-	 * @param {Object} data
-	 * @param {jQuery.jqXHR} jqxhr
 	 */
 	function flowBoardComponentLoadMoreFeatureBoardApiCallback( info ) {
 		if ( info.status !== 'done' ) {
@@ -213,7 +210,6 @@
 	 * @param {jQuery} info.$target
 	 * @param {FlowBoardComponent} info.component
 	 * @param {Object} data
-	 * @param {jQuery.jqXHR} jqxhr
 	 * @return {jQuery.Promise}
 	 */
 	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data ) {

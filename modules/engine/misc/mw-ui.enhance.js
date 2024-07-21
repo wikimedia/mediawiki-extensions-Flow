@@ -355,8 +355,6 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Event handler for mouse entering on a .flow-ui-tooltip-target
-		 *
-		 * @param {jQuery.Event} event
 		 */
 		function onMwUiTooltipFocus() {
 			mw.tooltip.show( this );
@@ -364,8 +362,6 @@ mw.flow.ui.enhance = {};
 
 		/**
 		 * Event handler for mouse leaving a .flow-ui-tooltip-target
-		 *
-		 * @param {jQuery.Event} event
 		 */
 		function onMwUiTooltipBlur() {
 			mw.tooltip.hide( this );

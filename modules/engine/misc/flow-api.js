@@ -284,7 +284,6 @@
 	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
 	 *
 	 * @param {HTMLElement} node
-	 * @param {Object} queryMap
 	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromNode( node ) {

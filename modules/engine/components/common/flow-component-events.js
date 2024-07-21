@@ -569,8 +569,6 @@
 
 	/**
 	 * When the whole class has been instantiated fully (after every constructor has been called).
-	 *
-	 * @param {FlowComponent} component
 	 */
 	function flowEventsMixinInstantiationComplete() {
 		$( window ).trigger( 'scroll.flow-window-scroll' );

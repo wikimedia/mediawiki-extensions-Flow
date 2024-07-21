@@ -369,7 +369,6 @@
 	 * Example: `{{block this}}`
 	 *
 	 * @param {Object} context
-	 * @param {Object} options
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.workflowBlock = function ( context ) {
@@ -384,7 +383,6 @@
 	 *
 	 * @param {Object} context
 	 * @param {Object} revision
-	 * @param {Object} options
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.postBlock = function ( context, revision ) {

@@ -66,7 +66,6 @@
 	 * Get an array of topic objects from a topiclist api response.
 	 *
 	 * @param {Object} topiclist API data for topiclist
-	 * @param {string} topicId Topic id
 	 * @return {mw.flow.dm.Topic[]} Array of topic models
 	 */
 	mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
