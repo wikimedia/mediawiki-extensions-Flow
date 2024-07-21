@@ -247,9 +247,7 @@ abstract class RevisionStorage extends DbStorage {
 			->select( [ 'rev_id' => "MAX( 'rev_id' )" ] )
 			->from( 'flow_revision' )
 			->where( [ 'rev_type' => $this->getRevType() ] )
-			->andWhere( $this->preprocessSqlArray(
-				$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() )
-			) )
+			->andWhere( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) )
 			->groupBy( 'rev_type_id' )
 			->caller( __METHOD__ )
 			->fetchResultSet();
@@ -341,13 +339,13 @@ abstract class RevisionStorage extends DbStorage {
 			foreach ( $queries as $query ) {
 				$conditions[$key][] = reset( $query );
 			}
-			return $conditions;
+			return $this->preprocessSqlArray( $conditions );
 		} else {
 			// composite in condition: ( foo = 1 AND bar = 2 ) OR ( foo = 1 AND bar = 3 )...
 			// Could be more efficient if composed as a range scan, but seems more complex than
 			// its benefit.
 			foreach ( $queries as $query ) {
-				$conditions[] = $dbr->makeList( $query, LIST_AND );
+				$conditions[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
 			}
 			return $dbr->makeList( $conditions, LIST_OR );
 		}
