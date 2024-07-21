@@ -5,6 +5,7 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\Model\Anchor;
 use Flow\Model\UUID;
+use Flow\UrlGenerator;
 use MediaWiki\Title\Title;
 
 /**

@@ -9,6 +9,7 @@ use Flow\Data\Pager\Pager;
 use Flow\Data\Pager\PagerPage;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers \Flow\Data\Pager\Pager
@@ -372,7 +373,7 @@ class PagerTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @param array[] $found
 	 *
-	 * @return ObjectManager
+	 * @return ObjectManager&MockObject
 	 */
 	private function mockObjectManager( array $found = [] ) {
 		$index = $this->createMock( Index::class );
