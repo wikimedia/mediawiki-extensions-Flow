@@ -12,7 +12,7 @@ use MediaWiki\User\User;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Traversable;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikitextContent;
 
@@ -34,10 +34,10 @@ use WikitextContent;
  */
 class Converter {
 	/**
-	 * @var IDatabase Primary database of the current wiki. Required
+	 * @var IReadableDatabase Primary database of the current wiki. Required
 	 *  to lookup past page moves.
 	 */
-	protected $dbw;
+	protected $db;
 
 	/**
 	 * @var Importer Service capable of turning an IImportSource into
@@ -64,15 +64,16 @@ class Converter {
 	protected $strategy;
 
 	/**
-	 * @param IDatabase $dbw Primary wiki database to read from
+	 * @param IReadableDatabase $db Primary wiki database to read from
 	 * @param Importer $importer
 	 * @param LoggerInterface $logger
 	 * @param User $user User for moves and edits related to the conversion process
 	 * @param IConversionStrategy $strategy
+	 *
 	 * @throws ImportException When $user does not have an Id
 	 */
 	public function __construct(
-		IDatabase $dbw,
+		IReadableDatabase $db,
 		Importer $importer,
 		LoggerInterface $logger,
 		User $user,
@@ -81,7 +82,7 @@ class Converter {
 		if ( !$user->getId() ) {
 			throw new ImportException( 'User must have id' );
 		}
-		$this->dbw = $dbw;
+		$this->db = $db;
 		$this->importer = $importer;
 		$this->logger = $logger;
 		$this->user = $user;
@@ -214,7 +215,7 @@ class Converter {
 	 * @return Title|null
 	 */
 	protected function getPageMovedFrom( Title $title ) {
-		$row = $this->dbw->newSelectQueryBuilder()
+		$row = $this->db->newSelectQueryBuilder()
 			->select( [ 'log_namespace', 'log_title' ] )
 			->from( 'logging' )
 			->join( 'page', null, 'log_page = page_id' )

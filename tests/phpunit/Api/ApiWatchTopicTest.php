@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
 /**
- * @covers Flow\Hooks
+ * @covers \Flow\Hooks
  *
  * @group Flow
  * @group medium
