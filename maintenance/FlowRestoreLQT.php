@@ -185,7 +185,7 @@ class FlowRestoreLQT extends Maintenance {
 	 * @param Title $lqt Title of the LQT board
 	 * @param Title $flow Title of the Flow board
 	 * @param int $logId Log id for when LQT board was moved by import
-	 * @return Status
+	 * @return Status|void
 	 */
 	protected function restoreLQTPage( Title $lqt, Title $flow, $logId ) {
 		if ( $lqt->equals( $flow ) ) {

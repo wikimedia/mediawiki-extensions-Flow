@@ -41,9 +41,7 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 			return;
 		}
 
-		/** @var $title Title */
-		$title = $workflow->getArticleTitle();
-		if ( !$title ) {
+		if ( !$workflow->getArticleTitle() ) {
 			return;
 		}
 

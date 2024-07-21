@@ -92,9 +92,7 @@ class ChangesListFormatter extends AbstractFormatter {
 		$prefix = $ctx->msg( 'autocomment-prefix' )->inContentLanguage()->escaped();
 		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 			$row->workflow->getOwnerTitle(),
-			$ctx->getLanguage()->getArrow( 'backwards' ),
-			[],
-			[]
+			$ctx->getLanguage()->getArrow( 'backwards' )
 		);
 		$summary = '<span class="autocomment">' . $msg->text() . '</span>';
 

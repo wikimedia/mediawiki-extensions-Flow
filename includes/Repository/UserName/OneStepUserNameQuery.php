@@ -21,9 +21,6 @@ class OneStepUserNameQuery implements UserNameQuery {
 	 */
 	protected $hideUserUtils;
 
-	/**
-	 * @param DbFactory $dbFactory
-	 */
 	public function __construct( DbFactory $dbFactory, HideUserUtils $hideUserUtils ) {
 		$this->dbFactory = $dbFactory;
 		$this->hideUserUtils = $hideUserUtils;

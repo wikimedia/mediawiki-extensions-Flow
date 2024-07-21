@@ -396,12 +396,10 @@ abstract class AbstractQuery {
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {
 		$alpha = $workflowId->getAlphadecimal();
-		if ( isset( $this->workflowCache[$alpha] ) ) {
-			return $this->workflowCache[$alpha];
-		} else {
+		if ( !isset( $this->workflowCache[$alpha] ) ) {
 			$this->workflowCache[$alpha] = $this->storage->get( 'Workflow', $workflowId );
-			return $this->workflowCache[$alpha];
 		}
+		return $this->workflowCache[$alpha];
 	}
 
 	/**

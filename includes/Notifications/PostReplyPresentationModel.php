@@ -82,14 +82,12 @@ class PostReplyPresentationModel extends FlowPresentationModel {
 
 			// Repeat is B/C until unused parameter is removed from translations
 			$msg->numParams( $count, $count );
-			$msg->plaintextParams( $this->getTopicTitle() );
-			return $msg;
 		} else {
 			$msg = parent::getHeaderMessage();
 			$msg->params( $this->getTruncatedTitleText( $this->event->getTitle(), true ) );
-			$msg->plaintextParams( $this->getTopicTitle() );
-			return $msg;
 		}
+		$msg->plaintextParams( $this->getTopicTitle() );
+		return $msg;
 	}
 
 	/** @inheritDoc */

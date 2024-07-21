@@ -44,7 +44,7 @@ class ActionFormatter extends LogFormatter {
 
 		$params = $this->entry->getParameters();
 		// serialized topicId or postId can be stored
-		foreach ( $params as $key => $value ) {
+		foreach ( $params as $value ) {
 			if ( $value instanceof UUID ) {
 				static::$uuids[$value->getAlphadecimal()] = $value;
 			}
