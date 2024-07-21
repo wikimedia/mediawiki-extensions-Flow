@@ -29,6 +29,7 @@ use Flow\Formatter\TopicListFormatter;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\OptInController;
 use Flow\Notifications\Controller as NotificationsController;
+use Flow\OccupationController;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\BadImageRemover;
 use Flow\Parsoid\Fixer\BaseHrefFixer;
@@ -173,13 +174,15 @@ return [
 	'FlowOptInController' => static function (
 		MediaWikiServices $services
 	): OptInController {
+		/** @var OccupationController $occupationController */
+		$occupationController = $services->getService( 'FlowTalkpageManager' );
 		$archiveNameHelper = new ArchiveNameHelper();
 		return new OptInController(
-			$services->getService( 'FlowTalkpageManager' ),
+			$occupationController,
 			$services->getService( 'FlowNotificationsController' ),
 			$archiveNameHelper,
 			$services->getService( 'FlowDefaultLogger' ),
-			$services->getService( 'FlowTalkpageManager' )->getTalkpageManager()
+			$occupationController->getTalkpageManager()
 		);
 	},
 
@@ -440,7 +443,7 @@ return [
 		);
 	},
 
-	'FlowTalkpageManager' => static function ( MediaWikiServices $services ): TalkpageManager {
+	'FlowTalkpageManager' => static function ( MediaWikiServices $services ): OccupationController {
 		return new TalkpageManager( $services->getUserGroupManager() );
 	},
 
