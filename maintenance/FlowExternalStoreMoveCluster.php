@@ -102,7 +102,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 		$iterator->addConditions( [
 			$schema['wiki'] => WikiMap::getCurrentWikiId(),
 			$dbr->expr( $schema['flags'], IExpression::LIKE, new LikeValue( $dbr->anyString(), 'external', $dbr->anyString() ) ),
-			$dbr->makeList( $clusterConditions, LIST_OR ),
+			$dbr->orExpr( $clusterConditions ),
 		] );
 
 		$iterator->setCaller( __METHOD__ );

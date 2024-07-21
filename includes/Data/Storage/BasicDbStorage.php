@@ -9,7 +9,6 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\DataPersistenceException;
 use Flow\Model\UUID;
 use InvalidArgumentException;
-use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * Standard backing store for data model with no special cases which is stored
@@ -188,14 +187,12 @@ class BasicDbStorage extends DbStorage {
 		$conds = [];
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		foreach ( $queries as $query ) {
-			$conds[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
+			$conds[] = $dbr->andExpr( $this->preprocessSqlArray( $query ) );
 		}
 		unset( $query );
 
-		$conds = $dbr->makeList( $conds, LIST_OR );
-
 		// options can be ignored for primary key search
-		$res = $this->find( [ new RawSQLExpression( $conds ) ] );
+		$res = $this->find( [ $dbr->orExpr( $conds ) ] );
 
 		// create temp array with pk value (usually uuid) as key and full db row
 		// as value

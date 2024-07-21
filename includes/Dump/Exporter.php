@@ -175,16 +175,13 @@ class Exporter extends WikiExporter {
 			$pageConds = [];
 			foreach ( $pages as $page ) {
 				$title = Title::newFromDBkey( $page );
-				$pageConds[] = $dbr->makeList(
-					[
-						'workflow_namespace' => $title->getNamespace(),
-						'workflow_title_text' => $title->getDBkey()
-					],
-					LIST_AND
-				);
+				$pageConds[] = $dbr->andExpr( [
+					'workflow_namespace' => $title->getNamespace(),
+					'workflow_title_text' => $title->getDBkey()
+				] );
 			}
 
-			$iterator->addConditions( [ $dbr->makeList( $pageConds, LIST_OR ) ] );
+			$iterator->addConditions( [ $dbr->orExpr( $pageConds ) ] );
 		}
 		if ( $startId ) {
 			$iterator->addConditions( [ $dbr->expr( 'workflow_page_id', '>=', $startId ) ] );

@@ -345,9 +345,9 @@ abstract class RevisionStorage extends DbStorage {
 			// Could be more efficient if composed as a range scan, but seems more complex than
 			// its benefit.
 			foreach ( $queries as $query ) {
-				$conditions[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
+				$conditions[] = $dbr->andExpr( $this->preprocessSqlArray( $query ) );
 			}
-			return $dbr->makeList( $conditions, LIST_OR );
+			return $dbr->orExpr( $conditions );
 		}
 	}
 

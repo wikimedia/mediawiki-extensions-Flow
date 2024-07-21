@@ -2107,7 +2107,8 @@ class Hooks implements
 			$hidePageEdits = true;
 		}
 		if ( $hidePageEdits ) {
-			$conds[] = 'rc_type != ' . RC_FLOW;
+			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+			$conds[] = $dbr->expr( 'rc_type', '!=', RC_FLOW );
 		}
 	}
 
