@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"TayfunEt."
+			"TayfunEt.",
+			"Don Alessandro",
+			"Zolgoyo"
 		]
 	},
-	"flow-newtopic-save": "Qonu ekle",
-	"notification-bundle-header-flow-new-topic-user-talk": "{{PLURAL:$1|Yañı bir qonu|$1 yañı qonu|100=99+ yañı qonu}} <strong>sizin muzakere saifeñizde tapıla</strong>."
+	"flow-newtopic-save": "Mevzu qoş",
+	"notification-bundle-header-flow-new-topic-user-talk": "<strong>Siziñ muzakere saifeñizde</strong> {{PLURAL:$1|Yañı bir mevzu|$1 yañı mevzu|100=99+ yañı mevzu}} bar."
 }
