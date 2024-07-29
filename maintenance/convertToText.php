@@ -36,8 +36,8 @@ class ConvertToText extends Maintenance {
 		parent::__construct();
 		$this->addDescription( "Converts a specific Flow page to text" );
 
-		$this->addOption( 'page', 'The page to convert', true /*required*/ );
-		$this->addOption( 'remoteapi', 'The api of the wiki to convert the page from (or nothing, for local wiki)', false /*required*/ );
+		$this->addOption( 'page', 'The page to convert', true, true );
+		$this->addOption( 'remoteapi', 'URL to api.php (leave unset for local wiki)', false, true );
 
 		$this->requireExtension( 'Flow' );
 	}
