@@ -493,7 +493,7 @@
 	"flow-ve-mention-inspector-title": "Mención",
 	"flow-ve-mention-inspector-remove-label": "Eliminar",
 	"flow-ve-mention-placeholder": "Nome de usuario",
-	"flow-ve-mention-tool-title": "Mencionar a un usuario",
+	"flow-ve-mention-tool-title": "Mencionar un usuario",
 	"flow-ve-mention-template-title": "MenciónFlow",
 	"flow-ve-mention-inspector-invalid-user": "O nome de usuario \"$1\" non está rexistrado.",
 	"flow-wikitext-editor-help": "O texto wiki $1.",
