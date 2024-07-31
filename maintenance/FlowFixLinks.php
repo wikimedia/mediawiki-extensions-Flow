@@ -76,8 +76,6 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 		$iterator->addConditions( [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ] );
 		$iterator->setCaller( __METHOD__ );
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-
 		$count = 0;
 		foreach ( $iterator as $rows ) {
 			$this->beginTransaction( $dbw, __METHOD__ );
@@ -131,7 +129,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 
 			$count += count( $rows );
 			$this->output( "Rebuilt links for " . $count . " workflows...\n" );
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 	}
 }

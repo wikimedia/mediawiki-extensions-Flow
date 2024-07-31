@@ -40,11 +40,9 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 
 		$continue = 0;
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-
 		while ( $continue !== null ) {
 			$continue = $this->refreshBatch( $dbw, $continue );
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 
 		return true;
