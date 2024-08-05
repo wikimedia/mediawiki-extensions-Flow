@@ -68,7 +68,6 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			->fetchResultSet();
 
 		$services = $this->getServiceContainer();
-		$lbFactory = $services->getDBLoadBalancerFactory();
 		$userOptionsManager = $services->getUserOptionsManager();
 
 		$i = 0;
@@ -80,7 +79,7 @@ class FlowUpdateBetaFeaturePreference extends LoggedUpdateMaintenance {
 			$userOptionsManager->saveOptions( $user );
 
 			if ( ++$i % $batchSize === 0 ) {
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 

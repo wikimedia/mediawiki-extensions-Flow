@@ -56,13 +56,11 @@ class FlowFixEditCount extends LoggedUpdateMaintenance {
 		$continue = UUID::getComparisonUUID( $this->getOption( 'start', '20130710230511' ) );
 		$stop = UUID::getComparisonUUID( $this->getOption( 'stop', time() ) );
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-
 		while ( $continue !== false ) {
 			$continue = $this->refreshBatch( $dbr, $continue, $countableActions, $stop );
 
 			// wait for core (we're updating user table) replicas to catch up
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 
 		$this->output( "Done increasing edit counts. Increased:\n" );

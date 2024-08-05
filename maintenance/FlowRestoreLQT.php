@@ -88,8 +88,6 @@ class FlowRestoreLQT extends Maintenance {
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			$startId = 0;
 			do {
@@ -132,7 +130,7 @@ class FlowRestoreLQT extends Maintenance {
 					$startId = $row->page_id;
 				}
 
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			} while ( $rows->numRows() >= $batchSize );
 		}
 	}
@@ -148,8 +146,6 @@ class FlowRestoreLQT extends Maintenance {
 
 		$revWhere = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $this->talkpageManagerUser );
-
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 
 		foreach ( $revWhere['orconds'] as $revCond ) {
 			$startId = 0;
@@ -179,7 +175,7 @@ class FlowRestoreLQT extends Maintenance {
 					$startId = $row->rev_page;
 				}
 
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			} while ( $rows->numRows() >= $batchSize );
 		}
 	}
