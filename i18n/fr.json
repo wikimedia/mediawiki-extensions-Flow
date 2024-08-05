@@ -52,7 +52,8 @@
 			"Wladek92",
 			"Wyz",
 			"Yodaspirine",
-			"Zebulon84"
+			"Zebulon84",
+			"SleaY"
 		]
 	},
 	"enablestructureddiscussions": "Activer les Discussions structurées",
@@ -246,7 +247,7 @@
 	"flow-error-revision-comparison": "Une visualisation des différences ne peut être faite que pour deux révisions appartenant au même message.",
 	"flow-error-missing-topic-title": "Impossible de trouver le titre du sujet pour le flux de travail actuel.",
 	"flow-error-missing-metadata": "Les métadonnées requises pour cette révision n’ont pas pu être trouvées.",
-	"flow-error-different-page": "Le processus de Discussions Structurées n’est pas associé avec cette page.",
+	"flow-error-different-page": "Le processus de Discussions Structurées n’est pas associé à cette page.",
 	"flow-error-fail-load-data": "Échec au chargement des données demandées.",
 	"flow-error-invalid-workflow": "Impossible de trouver le flux de travail demandé.",
 	"flow-error-process-data": "Une erreur s’est produite lors du traitement des données dans votre requête.",
