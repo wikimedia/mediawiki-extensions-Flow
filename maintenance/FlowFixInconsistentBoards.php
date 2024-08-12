@@ -128,7 +128,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 				$revision = $this->getServiceContainer()->getRevisionLookup()->getRevisionById( $row->page_latest );
 				$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				if ( !$content instanceof BoardContent ) {
-					$actualClass = ( is_object( $content ) ? get_class( $content ) : gettype( $content ) );
+					$actualClass = get_debug_type( $content );
 					$this->error( "ERROR: '$coreTitle' content is a '$actualClass', but should be '"
 						. BoardContent::class . "'." );
 					continue;

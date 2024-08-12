@@ -35,7 +35,7 @@ class MultiGetList {
 			} elseif ( is_scalar( $id ) ) {
 				$cacheId = UUID::create( $id );
 			} else {
-				$type = is_object( $id ) ? get_class( $id ) : gettype( $id );
+				$type = get_debug_type( $id );
 				throw new InvalidParameterException( "Not scalar: $type" );
 			}
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
