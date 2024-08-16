@@ -135,9 +135,10 @@ class AbuseFilterTest extends PostRevisionTestCase {
 	 */
 	protected function createFilter( $pattern, $action = 'disallow' ) {
 		global $wgFlowAbuseFilterGroup;
+		$db = $this->getDb();
 		$row = [
 			'af_pattern' => $pattern,
-			'af_timestamp' => $this->db->timestamp(),
+			'af_timestamp' => $db->timestamp(),
 			'af_enabled' => 1,
 			'af_comments' => null,
 			'af_public_comments' => 'Test filter',
@@ -148,25 +149,25 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			'af_actions' => $action,
 			'af_group' => $wgFlowAbuseFilterGroup,
 			'af_actor' => $this->getServiceContainer()->getActorNormalization()
-				->acquireActorId( $this->getTestUser()->getUserIdentity(), $this->db ),
+				->acquireActorId( $this->getTestUser()->getUserIdentity(), $db ),
 		];
 
-		$this->db->startAtomic( __METHOD__ );
-		$this->db->newInsertQueryBuilder()
+		$db->startAtomic( __METHOD__ );
+		$db->newInsertQueryBuilder()
 			->insertInto( 'abuse_filter' )
 			->row( $row )
 			->caller( __METHOD__ )
 			->execute();
 
-		$this->db->newInsertQueryBuilder()
+		$db->newInsertQueryBuilder()
 			->insertInto( 'abuse_filter_action' )
 			->row( [
-				'afa_filter' => $this->db->insertId(),
+				'afa_filter' => $db->insertId(),
 				'afa_consequence' => $action,
 				'afa_parameters' => '',
 			] )
 			->caller( __METHOD__ )
 			->execute();
-		$this->db->endAtomic( __METHOD__ );
+		$db->endAtomic( __METHOD__ );
 	}
 }
