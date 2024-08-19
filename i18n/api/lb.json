@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"apihelp-flow-example-1": "Ännert d'Beschreiwung vun ''[[Talk:Sandbox]]''",
@@ -14,6 +15,6 @@
 	"apihelp-flow+edit-topic-summary-example-1": "Ännert de Resumé vu(n) [[Topic:S2tycnas4hcucw8w]]",
 	"apihelp-flow+moderate-post-param-reason": "Grond fir Moderatioun.",
 	"apihelp-flow+view-topic-description": "En Thema weisen.",
-	"apihelp-flow+view-topic-summary": "En Thema weisen.",
+	"apihelp-flow+view-topic-summary": "En Theema weisen.",
 	"apihelp-flow-parsoid-utils-param-to": "Format an deen den Inhalt ëmgewandelt soll ginn."
 }
