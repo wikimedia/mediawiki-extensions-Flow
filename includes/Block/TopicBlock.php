@@ -110,7 +110,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			throw new DataModelException(
 				'Expected PostRevision or RootPostLoader, received: ' .
-					( is_object( $root ) ? get_class( $root ) : gettype( $root ) ),
+					get_debug_type( $root ),
 				'invalid-input'
 			);
 		}

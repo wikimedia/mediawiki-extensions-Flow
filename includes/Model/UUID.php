@@ -201,7 +201,7 @@ class UUID implements ApiSerializable {
 		} elseif ( $input === null ) {
 			return null;
 		} else {
-			throw new InvalidParameterException( 'Unknown input type to UUID class: ' . gettype( $input ) );
+			throw new InvalidParameterException( 'Unknown input type to UUID class: ' . get_debug_type( $input ) );
 		}
 	}
 
