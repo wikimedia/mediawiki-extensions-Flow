@@ -6,11 +6,17 @@
 			"Satdeep gill",
 			"Tow",
 			"ਪ੍ਰਚਾਰਕ",
-			"Cabal"
+			"Cabal",
+			"Kuldeepburjbhalaike"
 		]
 	},
-	"enablestructureddiscussions": "ਫਲੋ ਲਾਗੂ ਕਰੋ",
-	"flow-board-description-can-not-edit": "ਸੰਪਾਦਤ ਹੋਣ ਯੋਗ ਨਹੀਂ",
+	"enablestructureddiscussions": "ਸੰਗਠਿਤ ਚਰਚਾ ਯੋਗ ਕਰੋ",
+	"flow-desc": "ਚਰਚਾ ਪ੍ਰਣਾਲੀ",
+	"nstab-topic": "ਵਿਸ਼ਾ",
+	"flow-talk-taken-over-comment": "/* ਇਸ ਸਫ਼ੇ ਨੂੰ ਇੱਕ ਸੰਗਠਿਤ ਚਰਚਾ ਬੋਰਡ ਵਿੱਚ ਤਬਦੀਲ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ */",
+	"log-name-flow": "ਸੰਗਠਿਤ ਚਰਚਾ ਗਤੀਵਿਧੀ ਲੌਗ",
+	"flow-board-header": "ਇਸ ਬੋਰਡ ਬਾਰੇ",
+	"flow-board-description-can-not-edit": "ਸੋਧ ਯੋਗ ਨਹੀਂ",
 	"flow-board-collapse-description": "ਵੇਰਵਾ ਲੁਕਾਓ",
 	"flow-board-expand-description": "ਵੇਰਵਾ ਵਿਖਾਓ",
 	"flow-edit-header-link": "ਵੇਰਵਾ ਸੋਧੋ",
