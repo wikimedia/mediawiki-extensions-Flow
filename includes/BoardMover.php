@@ -75,7 +75,11 @@ class BoardMover {
 			'workflow_page_id' => $oldPageId,
 		] );
 		if ( !$found ) {
-			throw new FlowException( "Could not locate workflow for page ID $oldPageId" );
+			throw new FlowException(
+				"Could not locate workflow for page ID {oldPageId}",
+				'default',
+				[ 'oldPageId' => $oldPageId ]
+			);
 		}
 
 		$discussionWorkflow = null;
@@ -87,7 +91,11 @@ class BoardMover {
 			$this->storage->put( $workflow, [] );
 		}
 		if ( $discussionWorkflow === null ) {
-			throw new FlowException( "Main discussion workflow for page ID $oldPageId not found" );
+			throw new FlowException(
+				"Main discussion workflow for page ID {oldPageId} not found",
+				'default',
+				[ 'oldPageId' => $oldPageId ]
+			);
 		}
 
 		/** @var Header[] $found */
