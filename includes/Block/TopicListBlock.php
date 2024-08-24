@@ -391,7 +391,7 @@ class TopicListBlock extends AbstractBlock {
 				if ( $requestOptions['offset-id'] ) {
 					$requestOptions['offset-id'] = null;
 					$this->context->getOutput()->addHTML(
-						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-id-for-updated' ) )
+						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-id-for-updated' )->parse() )
 					);
 				}
 				break;
@@ -408,7 +408,7 @@ class TopicListBlock extends AbstractBlock {
 				if ( $requestOptions['offset'] ) {
 					$requestOptions['offset'] = null;
 					$this->context->getOutput()->addHTML(
-						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-for-newest' ) )
+						Html::warningBox( $this->context->msg( 'flow-invalid-param-offset-for-newest' )->parse() )
 					);
 				}
 		}
