@@ -208,8 +208,11 @@ abstract class AbstractQuery {
 
 		$workflow = $this->getWorkflow( $revision );
 		if ( !$workflow ) {
-			throw new FlowException( "could not locate workflow for revision " .
-				$revision->getRevisionId()->getAlphadecimal() );
+			throw new FlowException(
+				"could not locate workflow for revision {revisionId}",
+				'default',
+				[ 'revisionId' => $revision->getRevisionId()->getAlphadecimal() ]
+			);
 		}
 
 		$row = $row ?: new FormatterRow;

@@ -2,13 +2,13 @@
 
 namespace Flow\Exception;
 
-use Exception;
 use MessageSpecifier;
+use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * Flow base exception
  */
-class FlowException extends Exception implements MessageSpecifier {
+class FlowException extends NormalizedException implements MessageSpecifier {
 
 	/**
 	 * Flow exception error code
@@ -17,11 +17,12 @@ class FlowException extends Exception implements MessageSpecifier {
 	protected $code;
 
 	/**
-	 * @param string $message The message from exception, used for debugging error
+	 * @param string $message The message from exception, used for debugging error, with PSR-3 style placeholders.
 	 * @param string $code The error code used to display error message
+	 * @param array $context Message context, with values for the placeholders.
 	 */
-	public function __construct( $message, $code = 'default' ) {
-		parent::__construct( $message );
+	public function __construct( $message, $code = 'default', $context = [] ) {
+		parent::__construct( $message, $context );
 		$this->code = $code;
 	}
 
