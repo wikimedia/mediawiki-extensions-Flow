@@ -7,13 +7,14 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidParameterException;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Immutable class modeling timestamped UUID's from
- * the core UIDGenerator.
+ * the core GlobalIdGenerator.
  *
  * @todo probably should be UID since these dont match the UUID standard
  */
@@ -155,7 +156,8 @@ class UUID implements ApiSerializable {
 		if ( is_string( $input ) || is_int( $input ) || $input === false ) {
 			if ( $input === false ) {
 				// new uuid in base 16 and pad to HEX_LEN with 0's
-				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ),
+				$gen = MediaWikiServices::getInstance()->getGlobalIdGenerator();
+				$hexValue = str_pad( $gen->newTimestampedUID88( 16 ),
 					self::HEX_LEN, '0', STR_PAD_LEFT );
 				return new static( $hexValue, static::INPUT_HEX );
 			} else {
@@ -430,7 +432,7 @@ class UUID implements ApiSerializable {
 
 	/**
 	 * Converts a binary uuid into a MWTimestamp. This UUID must have
-	 * been generated with \UIDGenerator::newTimestampedUID88.
+	 * been generated with GlobalIdGenerator::newTimestampedUID88.
 	 *
 	 * @param string $hex
 	 * @return int Number of seconds since epoch

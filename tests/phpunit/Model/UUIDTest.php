@@ -51,7 +51,7 @@ class UUIDTest extends FlowTestCase {
 	}
 
 	public static function uuidConversionProvider() {
-		// sample uuid from UIDGenerator::newTimestampedUID128()
+		// sample uuid from GlobalIdGenerator::newTimestampedUID128()
 		$numeric_128 = '6709199728898751234959525538795913762';
 		$hex_128 = \Wikimedia\base_convert( $numeric_128, 10, 16, 32 );
 
