@@ -155,7 +155,7 @@
 	"flow-topic-action-undo-moderation": "取り消す",
 	"flow-topic-notification-subscribe-title": "この話題を{{GENDER:$1|}}ウォッチリストに追加しました。",
 	"flow-topic-notification-subscribe-description": "この話題に関する全ての活動の通知が{{GENDER:$1|あなた}}に届きます。",
-	"flow-board-notification-subscribe-title": "{{GENDER:$1|あなたは}}、この議論ボードに記名されています。",
+	"flow-board-notification-subscribe-title": "この議論ボードを購読しました。",
 	"flow-board-notification-subscribe-description": "この掲示板で新しい話題が立ち上がった時には{{GENDER:$1|あなた}}に通知が届きます。",
 	"flow-topic-action-watchlist-add": "この話題を購読",
 	"flow-topic-action-watchlist-remove": "購読解除",
