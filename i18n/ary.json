@@ -5,6 +5,8 @@
 			"Ideophagous"
 		]
 	},
+	"flow-newtopic-header": "زيد موضوع جديد",
+	"flow-newtopic-start-placeholder": "بدا موضوع جديد",
 	"flow-post-action-hide-post": "خبّي",
 	"flow-comment-restored": "ترجاع",
 	"notification-header-flow-mention-post": "{{GENDER:$2|نغز|نغزات}} $1 {{GENDER:$4|ليك}} ف \"<strong>$5</strong>\".",
