@@ -182,7 +182,7 @@
 
 	/**
 	 * @see mw.flow.dm.Content
-	 * @param {string} format
+	 * @param {string} [format]
 	 * @return {string}
 	 */
 	mw.flow.dm.RevisionedContent.prototype.getContent = function ( format ) {
@@ -191,7 +191,7 @@
 
 	/**
 	 * @see mw.flow.dm.Content
-	 * @param {Object} representations
+	 * @param {Object} [representations]
 	 */
 	mw.flow.dm.RevisionedContent.prototype.setContent = function ( representations ) {
 		this.content.set( representations );

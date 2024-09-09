@@ -138,7 +138,7 @@
 	 * Add items
 	 *
 	 * @param {mw.flow.dm.Item[]} items Items to add
-	 * @param {number} index Index to add items at
+	 * @param {number} [index] Index to add items at
 	 * @chainable
 	 * @fires add
 	 */
