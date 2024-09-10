@@ -4,6 +4,7 @@ namespace Flow\Parsoid\Fixer;
 
 use Flow\Parsoid\Fixer;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * Parsoid markup didn't always contain class="external" and rel="nofollow" where appropriate.
@@ -11,6 +12,13 @@ use MediaWiki\Title\Title;
  * so we add them here if they are missing.
  */
 class ExtLinkFixer implements Fixer {
+
+	private UrlUtils $urlUtils;
+
+	public function __construct( UrlUtils $urlUtils ) {
+		$this->urlUtils = $urlUtils;
+	}
+
 	/**
 	 * Returns XPath matching elements that need to be transformed
 	 *
@@ -37,7 +45,10 @@ class ExtLinkFixer implements Fixer {
 		}
 
 		global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
-		if ( $wgNoFollowLinks && !wfMatchesDomainList( $node->getAttribute( 'href' ), $wgNoFollowDomainExceptions ) ) {
+		if (
+			$wgNoFollowLinks &&
+			!$this->urlUtils->matchesDomainList( $node->getAttribute( 'href' ), $wgNoFollowDomainExceptions )
+		) {
 			$oldRel = $node->getAttribute( 'rel' );
 			if ( strpos( ' ' . $oldRel . ' ', ' nofollow ' ) === false ) {
 				$node->setAttribute( 'rel', 'nofollow' . ( $oldRel !== '' ? ' ' . $oldRel : '' ) );

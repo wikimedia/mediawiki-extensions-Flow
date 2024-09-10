@@ -44,7 +44,8 @@ class BaseHrefFixerTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider baseHrefProvider
 	 */
 	public function testBaseHrefFixer( $message, $expectedAfter, $before ) {
-		$fixer = new ContentFixer( new BaseHrefFixer( '/wiki/$1' ) );
+		$urlUtils = $this->getServiceContainer()->getUrlUtils();
+		$fixer = new ContentFixer( new BaseHrefFixer( '/wiki/$1', $urlUtils ) );
 		$result = $fixer->apply( $before, Title::newMainPage() );
 		$this->assertEquals( $expectedAfter, $result, $message );
 	}
