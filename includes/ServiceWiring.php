@@ -466,8 +466,8 @@ return [
 		$contextFixer = new ContentFixer(
 			$wikiLinkFixer,
 			$badImageRemover,
-			new BaseHrefFixer( $wgArticlePath ),
-			new ExtLinkFixer()
+			new BaseHrefFixer( $wgArticlePath, $services->getUrlUtils() ),
+			new ExtLinkFixer( $services->getUrlUtils() )
 		);
 
 		return new Templating(
