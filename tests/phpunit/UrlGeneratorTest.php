@@ -7,6 +7,7 @@ use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * @covers \Flow\UrlGenerator
@@ -18,9 +19,12 @@ class UrlGeneratorTest extends FlowTestCase {
 	/** @var UrlGenerator */
 	private $urlGenerator;
 
+	private UrlUtils $urlUtils;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->urlGenerator = Container::get( 'url_generator' );
+		$this->urlUtils = $this->getServiceContainer()->getUrlUtils();
 	}
 
 	public static function provideDataBoardLink() {
@@ -56,7 +60,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( Anchor::class, $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = wfParseUrl( $link );
+		$option = $this->urlUtils->parse( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 
@@ -97,7 +101,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( Anchor::class, $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = wfParseUrl( $link );
+		$option = $this->urlUtils->parse( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 		$this->assertEquals( 'watch', $query['action'] );
@@ -111,7 +115,7 @@ class UrlGeneratorTest extends FlowTestCase {
 		$this->assertInstanceOf( Anchor::class, $anchor );
 
 		$link = $anchor->getFullURL();
-		$option = wfParseUrl( $link );
+		$option = $this->urlUtils->parse( $link );
 		$this->assertArrayHasKey( 'query', $option );
 		parse_str( $option['query'], $query );
 		$this->assertEquals( 'unwatch', $query['action'] );

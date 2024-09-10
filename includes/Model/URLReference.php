@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Exception\InvalidReferenceException;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 class URLReference extends Reference {
@@ -23,7 +24,8 @@ class URLReference extends Reference {
 	public function __construct( UUID $id, $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
 		$this->url = $url;
 
-		if ( !is_array( wfParseUrl( $url ) ) ) {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		if ( !is_array( $urlUtils->parse( $url ) ) ) {
 			throw new InvalidReferenceException(
 				"Invalid URL $url specified for reference " . get_class( $this )
 			);
