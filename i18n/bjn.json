@@ -20,5 +20,6 @@
 	"flow-terms-of-use-reply": "Lawan manikin \"{{int:flow-reply-link}}\", Pian hakun lawan katantuan pamakaian gasan wiki ngini.",
 	"flow-terms-of-use-edit": "Lawan manabun paubahan Pian, Pian hakun lawan katantuan pamakaian wiki ngini.",
 	"flow-terms-of-use-summarize": "Lawan manikin \"{{int:flow-topic-action-update-topic-summary}}\", Pian hakun lawan katantuan pamakaian gasan wiki ngini.",
-	"flow-terms-of-use-lock-topic": "Lawan manikin \"{{int:flow-topic-action-lock-topic}}\", Pian hakun lawan katantuan pamakaian wiki ngini."
+	"flow-terms-of-use-lock-topic": "Lawan manikin \"{{int:flow-topic-action-lock-topic}}\", Pian hakun lawan katantuan pamakaian wiki ngini.",
+	"flow-undo-latest-revision": "Ralatan pahanyarnya"
 }

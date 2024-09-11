@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"امین اکبر"
+		]
+	},
+	"flow-history-action-hide-post": "لھکوؤ",
+	"flow-post-action-hide-post": "لھکوؤ",
+	"flow-moderation-confirm-hide-post": "لھکوؤ",
+	"flow-moderation-confirm-hide-topic": "لھکوؤ"
+}
