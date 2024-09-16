@@ -241,7 +241,7 @@
 	"flow-rev-message-lock-topic-reason": "merkitty loppuunkäsitellyksi",
 	"flow-rev-message-restore-topic-reason": "avattu uudelleen",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|palautti käsiteltäväksi}} [$4 aiheen] ”$6” (<em>$5</em>)",
-	"flow-rc-topic-of-board": "$1 palstalla $2",
+	"flow-rc-topic-of-board": "Aihe $1 palstalla $2",
 	"flow-board-history": "Sivun ”$1” historia",
 	"flow-board-history-empty": "Tällä palstalla ei ole historiaa.",
 	"flow-topic-history": "Aiheen ”$1” historia",

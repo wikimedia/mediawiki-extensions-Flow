@@ -133,6 +133,7 @@
 	"flow-edit-title-submit-anonymously": "ବେନାମୀ ଭାବରେ ଶିରୋନାମ ବଦଳାନ୍ତୁ",
 	"flow-edit-post-submit": "ବଦଳ ପଠାନ୍ତୁ",
 	"flow-edit-post-submit-anonymously": "ବଦଳସବୁ ବେନାମୀ ଭାବେ ପ୍ରକାଶ କରନ୍ତୁ",
+	"flow-rev-message-edit-title": "$1 ବିଷୟ ଶୀର୍ଷକ \"$5\"ରୁ \"[$3 $4]\"କୁ {{GENDER:$2|ବଦଳାଇଲେ}}",
 	"flow-rev-message-lock-topic-reason": "ସମାଧାନ ହୋଇଛି ବୋଲି ଚିହ୍ନିତ କରନ୍ତୁ",
 	"flow-rev-message-restore-topic-reason": "ପୁଣିଥରେ ଖୋଲାହେଲା",
 	"flow-history-day": "ଆଜି",
