@@ -324,7 +324,11 @@ abstract class RevisionStorage extends DbStorage {
 		return Merger::mergeMulti(
 			$cacheResult,
 			/* fromKey = */ 'rev_content_url',
-			/* callable = */ [ 'ExternalStore', 'batchFetchFromURLs' ],
+			static function ( array $urls ) {
+				return MediaWikiServices::getInstance()
+					->getExternalStoreAccess()
+					->fetchFromURLs( $urls );
+			},
 			/* name = */ 'rev_content',
 			/* default = */ ''
 		);
