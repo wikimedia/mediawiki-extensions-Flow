@@ -286,7 +286,9 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 		foreach ( $this->stores as $store ) {
 			$stores[] = 'DB://' . $store;
 		}
-		$url = ExternalStore::insertWithFallback( $stores, $content );
+		$url = MediaWikiServices::getInstance()
+			->getExternalStoreAccess()
+			->insert( $content, [], $stores );
 		if ( $url === false ) {
 			throw new RuntimeException( 'Failed to write content to stores ' . json_encode( $stores ) );
 		}

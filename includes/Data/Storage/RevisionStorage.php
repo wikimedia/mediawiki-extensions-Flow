@@ -2,7 +2,6 @@
 
 namespace Flow\Data\Storage;
 
-use ExternalStore;
 use Flow\Data\ObjectManager;
 use Flow\Data\Utils\Merger;
 use Flow\Data\Utils\ResultDuplicator;
@@ -11,6 +10,7 @@ use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -444,7 +444,9 @@ abstract class RevisionStorage extends DbStorage {
 		if ( $row['rev_content'] === null ) {
 			throw new DataModelException( "Must have data to write to external storage", 'process-data' );
 		}
-		$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
+		$url = MediaWikiServices::getInstance()
+			->getExternalStoreAccess()
+			->insert( $row['rev_content'], [], $this->externalStore );
 		if ( !$url ) {
 			throw new DataModelException( "Unable to store text to external storage", 'process-data' );
 		}
