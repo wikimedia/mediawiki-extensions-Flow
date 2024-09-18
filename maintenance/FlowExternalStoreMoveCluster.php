@@ -5,7 +5,7 @@ namespace Flow\Maintenance;
 use BatchRowIterator;
 use BatchRowUpdate;
 use BatchRowWriter;
-use ExternalStore;
+use ExternalStoreException;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
@@ -241,7 +241,14 @@ class ExternalStoreUpdateGenerator implements RowUpdateGenerator {
 	 * @return string
 	 */
 	public function read( $url, array $flags = [] ) {
-		$content = ExternalStore::fetchFromURL( $url );
+		try {
+			$content = MediaWikiServices::getInstance()
+				->getExternalStoreAccess()
+				->fetchFromURL( $url );
+		} catch ( ExternalStoreException ) {
+			$content = false;
+		}
+
 		if ( $content === false ) {
 			throw new RuntimeException( "Failed to fetch content from URL: $url" );
 		}
