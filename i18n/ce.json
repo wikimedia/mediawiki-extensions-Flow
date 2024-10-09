@@ -115,7 +115,7 @@
 	"flow-rev-message-new-post": "$1 {{GENDER:$2|кхоьллина}} тема ''[$3 $4]''.",
 	"flow-rev-message-new-post-recentchanges-summary": "{{GENDER:$2|Кхоьллина}} керла тема",
 	"flow-rev-message-edit-title": "$1 {{GENDER:$2|хийцина}} хьедаран цӀе «$5» → «[$3 $4]»",
-	"flow-rev-message-create-header": "$1 {{GENDER:$2|кхоьллина}} цунах лаьцна.",
+	"flow-rev-message-create-header": "$1 {{GENDER:$2|кхоьллина}} цуьнах лаьцна.",
 	"flow-rev-message-edit-header": "$1 {{GENDER:$2|табина}} хаам.",
 	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|кхоьллина}} доца хьедарах «$3» лаьцна",
 	"flow-rev-message-edit-topic-summary": "$1 {{GENDER:$2|табина}} «$3» хьедаран боца чулацам",
