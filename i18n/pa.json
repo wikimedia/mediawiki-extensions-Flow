@@ -42,7 +42,7 @@
 	"flow-topic-action-history": "ਪੁਰਾਣਾ",
 	"flow-topic-action-summarize-topic": "ਸਾਰ ਕੱਢੋ",
 	"flow-topic-action-unhide-topic": "ਵਿਸ਼ਾ ਮੁੜ-ਵਿਖਾਓ",
-	"flow-topic-action-undo-moderation": "ਅਣਕੀਤਾ ਕਰੋ",
+	"flow-topic-action-undo-moderation": "ਰੱਦ ਕਰੋ",
 	"flow-error-protected-unknown-reason": "ਅਣਪਛਾਤਾ",
 	"flow-notification-link-text-view-topics": "ਵਿਸ਼ੇ ਦੇਖੋ",
 	"flow-notification-reply-email-subject": "$3 'ਤੇ $2",
@@ -60,7 +60,7 @@
 	"structureddiscussions": "ਫਲੋ",
 	"flow-special-type": "ਕਿਸਮ",
 	"flow-undo-your-text": "ਤੁਹਾਡੀ ਲਿਖਤ",
-	"group-flow-bot": "ਫਲੋ ਬੌਟਸ",
-	"group-flow-bot-member": "ਫਲੋ ਬੌਟ",
-	"grouppage-flow-bot": "ਯੋਜਨਾ:ਫਲੋ ਬੌਟਸ"
+	"group-flow-bot": "ਸੰਗਠਿਤ ਚਰਚਾ ਬੋਟਾਂ ਬਾਰੇ",
+	"group-flow-bot-member": "ਸੰਗਠਿਤ ਚਰਚਾ ਬੋਟ ਬਾਰੇ",
+	"grouppage-flow-bot": "Project:ਸੰਗਠਿਤ ਚਰਚਾ ਬੋਟਾਂ ਬਾਰੇ"
 }
