@@ -167,7 +167,7 @@
 	"flow-topic-action-watchlist-add": "訂閱這個主題",
 	"flow-topic-action-watchlist-remove": "取消訂閱",
 	"flow-error-allowcreation-already-exists": "頁面已存在於目標中，因此結構式討論版塊不能移動至此。",
-	"flow-error-allowcreation-flow-create-board": "使用者沒有 \"{{int:right-flow-create-board}}\" 權限",
+	"flow-error-allowcreation-flow-create-board": "使用者沒有「{{int:right-flow-create-board}}」權限",
 	"flow-error-can-not-edit-logged-out": "您當前無法參與討論。您可以嘗試登入。",
 	"flow-error-can-not-edit-logged-in": "您當前無法參與討論，因為您沒有所需權限。",
 	"flow-error-http": "與伺服器連線時發生錯誤。",
