@@ -316,6 +316,14 @@ class OptInController {
 		);
 
 		if ( !$status->isGood() ) {
+			$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()->getStatusFormatter(
+				$this->context
+			);
+			$this->logger->error( 'Failed creating revision at {title} because {status}', [
+				'title' => $title->getPrefixedText(),
+				'status' => $statusFormatter->getWikiText( $status, [ 'lang' => 'en' ] ),
+				'exception' => new \RuntimeException(),
+			] );
 			throw new ImportException( "Failed creating revision at {$title}" );
 		}
 	}
