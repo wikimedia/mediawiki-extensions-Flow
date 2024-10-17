@@ -1895,7 +1895,7 @@ class Hooks implements
 
 		// Remove any pre-existing Topic pages.
 		// They are coming from the recentchanges table.
-		// Most likely the filters were not applied correctly.
+		// The most likely case is that the filters were not applied correctly.
 		$pages = array_filter( $pages, static function ( $entry ) {
 			/** @var Title $title */
 			$title = $entry[0];
@@ -1914,7 +1914,7 @@ class Hooks implements
 			return true;
 		}
 
-		// how many are we allowed to retrieve now
+		// how many revisions are we allowed to retrieve now
 		$newLimit = $limit - count( $pages );
 
 		// we can't add anything
@@ -1941,7 +1941,7 @@ class Hooks implements
 		global $wgRCMaxAge;
 		$rcTimeLimit = UUID::getComparisonUUID( strtotime( "-$wgRCMaxAge seconds" ) );
 
-		// get latest revision id for each topic
+		// get the latest revision id for each topic
 		$result = $dbr->select(
 			[
 				'r' => 'flow_revision',
@@ -1961,7 +1961,7 @@ class Hooks implements
 			], $userWhere ),
 			__METHOD__,
 			[
-				'GROUP BY' => 'r.rev_type_id'
+				'GROUP BY' => [ 'r.rev_type_id', 'tree_orig_user_ip' ]
 			],
 			[
 				'flow_tree_revision' => [ 'INNER JOIN', 'r.rev_type_id=tree_rev_descendant_id' ],
@@ -2038,6 +2038,7 @@ class Hooks implements
 				}
 			}
 		}
+		unset( $userInfo );
 
 		// add results to the list of pages to nuke
 		foreach ( $limitedRevIds as $topicId => $userInfo ) {
