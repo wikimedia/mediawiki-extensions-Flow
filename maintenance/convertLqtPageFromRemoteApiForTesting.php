@@ -8,7 +8,7 @@ use Flow\Import\LiquidThreadsApi\ImportSource;
 use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\OccupationController;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Psr\Log\LogLevel;

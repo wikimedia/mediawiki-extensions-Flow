@@ -3,7 +3,7 @@
 namespace Flow\Maintenance;
 
 use Flow\Data\Listener\RecentChangesListener;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 

@@ -2,9 +2,9 @@
 
 namespace Flow\Maintenance;
 
-use IDBAccessObject;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

@@ -5,7 +5,7 @@ namespace Flow\Maintenance;
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\UUID;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IReadableDatabase;

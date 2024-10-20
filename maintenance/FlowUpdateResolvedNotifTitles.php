@@ -11,8 +11,8 @@ use BatchRowIterator;
 use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
-use LoggedUpdateMaintenance;
 use MediaWiki\Extension\Notifications\DbFactory;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\Title\Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

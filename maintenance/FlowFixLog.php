@@ -11,7 +11,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use RowUpdateGenerator;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

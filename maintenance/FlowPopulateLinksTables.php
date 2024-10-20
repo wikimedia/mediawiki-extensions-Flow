@@ -5,7 +5,7 @@ namespace Flow\Maintenance;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

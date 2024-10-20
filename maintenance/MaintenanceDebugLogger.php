@@ -3,7 +3,7 @@
 namespace Flow\Maintenance;
 
 use Flow\Exception\FlowException;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 

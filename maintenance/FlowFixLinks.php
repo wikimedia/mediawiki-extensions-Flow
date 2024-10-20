@@ -7,7 +7,7 @@ use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

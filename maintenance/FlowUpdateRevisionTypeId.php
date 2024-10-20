@@ -4,7 +4,7 @@ namespace Flow\Maintenance;
 
 use Flow\Container;
 use Flow\DbFactory;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

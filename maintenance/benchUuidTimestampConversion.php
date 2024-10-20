@@ -2,8 +2,8 @@
 
 namespace Flow\Maintenance;
 
-use Benchmarker;
 use Flow\Model\UUID;
+use MediaWiki\Maintenance\Benchmarker;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

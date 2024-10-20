@@ -6,7 +6,8 @@ use Flow\Container;
 use Flow\DbFactory;
 use Flow\Import\ArchiveNameHelper;
 use Flow\OccupationController;
-use Maintenance;
+use MediaWiki\Content\Content;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -306,7 +307,7 @@ class FlowRestoreLQT extends Maintenance {
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
 		$revision = $revisionLookup->getPreviousRevision( $nextRevision );
 		$mainContent = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
-		'@phan-var \Content $mainContent';
+		'@phan-var Content $mainContent';
 
 		if ( $page->getContent()->equals( $mainContent ) ) {
 			// has correct content already (probably a rerun of this script)

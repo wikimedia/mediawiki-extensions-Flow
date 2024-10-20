@@ -8,7 +8,7 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\Wikitext\ConversionStrategy;
 use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

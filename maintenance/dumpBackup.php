@@ -2,9 +2,9 @@
 
 namespace Flow\Maintenance;
 
-use BackupDumper;
 use Flow\Container;
 use Flow\Dump\Exporter;
+use MediaWiki\Maintenance\BackupDumper;
 use WikiExporter;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

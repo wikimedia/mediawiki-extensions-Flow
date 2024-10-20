@@ -13,7 +13,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Flow\Repository\TreeRepository;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DBUnexpectedError;

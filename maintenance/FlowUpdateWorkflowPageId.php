@@ -10,10 +10,9 @@ use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
-use IDBAccessObject;
-use Language;
-use LoggedUpdateMaintenance;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubUserLang;
@@ -22,6 +21,7 @@ use MediaWiki\WikiMap\WikiMap;
 use RowUpdateGenerator;
 use RuntimeException;
 use stdClass;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

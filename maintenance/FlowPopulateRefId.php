@@ -5,7 +5,7 @@ namespace Flow\Maintenance;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

@@ -11,7 +11,7 @@ use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionClass;
 use ReflectionMethod;

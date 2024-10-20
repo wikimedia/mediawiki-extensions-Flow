@@ -2,7 +2,7 @@
 
 namespace Flow\Maintenance;
 
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\User\UserArray;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

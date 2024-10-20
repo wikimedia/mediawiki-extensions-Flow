@@ -12,7 +12,7 @@ use Flow\Import\SourceStore\FlowRevisionsDb;
 use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;

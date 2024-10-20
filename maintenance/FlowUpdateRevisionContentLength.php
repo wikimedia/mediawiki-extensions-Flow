@@ -8,7 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionProperty;
 

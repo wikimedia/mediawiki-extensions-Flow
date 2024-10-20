@@ -3,11 +3,11 @@
 namespace Flow\Maintenance;
 
 use Flow\OccupationController;
-use LoggedUpdateMaintenance;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use WikitextContent;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

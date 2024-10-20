@@ -10,7 +10,7 @@ use Flow\Data\ManagerGroup;
 use Flow\DbFactory;
 use Flow\Exception\UnknownWorkflowIdException;
 use Flow\WorkflowLoaderFactory;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;

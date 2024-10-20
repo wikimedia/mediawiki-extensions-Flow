@@ -9,7 +9,7 @@ use ExternalStore;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use RowUpdateGenerator;
