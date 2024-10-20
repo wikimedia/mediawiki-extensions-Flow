@@ -2,11 +2,11 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ApiErrorFormatter;
-use ApiMain;
-use ApiMessage;
-use ApiUsageException;
 use Exception;
+use MediaWiki\Api\ApiErrorFormatter;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\User;

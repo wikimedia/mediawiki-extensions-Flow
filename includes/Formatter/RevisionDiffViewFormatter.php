@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
 
 class RevisionDiffViewFormatter {
@@ -43,8 +44,8 @@ class RevisionDiffViewFormatter {
 		$differenceEngine = new \DifferenceEngine();
 
 		$differenceEngine->setContent(
-			new \TextContent( $oldContent ),
-			new \TextContent( $newContent )
+			new TextContent( $oldContent ),
+			new TextContent( $newContent )
 		);
 
 		if ( $oldRow->revision->isFirstRevision() ) {

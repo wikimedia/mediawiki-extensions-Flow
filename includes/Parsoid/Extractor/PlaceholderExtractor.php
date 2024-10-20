@@ -6,10 +6,10 @@ use DOMElement;
 use Flow\Model\WikiReference;
 use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
-use ParserOptions;
 
 /*
  * phpcs:disable Generic.Files.LineLength

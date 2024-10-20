@@ -2,11 +2,11 @@
 
 namespace Flow\Api;
 
-use ApiBase;
-use ApiMain;
-use ApiModuleManager;
 use Flow\Container;
 use Flow\Hooks\HookRunner;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiModuleManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;

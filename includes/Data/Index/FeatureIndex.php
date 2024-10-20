@@ -12,7 +12,7 @@ use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectStorage;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\WikiMap\WikiMap;
 
 /**

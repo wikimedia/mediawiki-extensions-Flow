@@ -6,8 +6,8 @@ use DOMElement;
 use Flow\Model\WikiReference;
 use Flow\Parsoid\Extractor;
 use Flow\Parsoid\ReferenceFactory;
-use FormatJson;
 use LogicException;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Title\Title;
 
 /**

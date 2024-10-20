@@ -3,8 +3,8 @@
 namespace Flow\Formatter;
 
 use DifferenceEngine;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
-use TextContent;
 
 class RevisionUndoViewFormatter {
 	/** @var RevisionViewFormatter */

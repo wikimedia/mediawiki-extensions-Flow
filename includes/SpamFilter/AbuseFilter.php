@@ -2,7 +2,6 @@
 
 namespace Flow\SpamFilter;
 
-use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
@@ -12,6 +11,7 @@ use MediaWiki\Extension\AbuseFilter\AbuseFilterServices;
 use MediaWiki\Extension\AbuseFilter\VariableGenerator\RCVariableGenerator;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

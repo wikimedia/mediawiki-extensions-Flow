@@ -2,8 +2,8 @@
 
 namespace Flow\Diff;
 
-use Content;
 use DifferenceEngine;
+use MediaWiki\Content\Content;
 
 /**
  * Provides a mechanism for handling diffs of Flow posts without throwing exceptions.

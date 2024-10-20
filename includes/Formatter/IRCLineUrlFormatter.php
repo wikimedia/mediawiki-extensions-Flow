@@ -4,11 +4,11 @@ namespace Flow\Formatter;
 
 use Flow\Container;
 use Flow\RevisionActionPermissions;
-use FormatJson;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
-use RCFeedFormatter;
+use MediaWiki\RCFeed\RCFeedFormatter;
 use RecentChange;
 use SplObjectStorage;
 

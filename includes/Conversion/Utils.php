@@ -9,16 +9,16 @@ use Flow\Exception\NoParserException;
 use Flow\Exception\WikitextException;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\EmptyNodeFixer;
-use ILanguageConverter;
-use Language;
+use MediaWiki\Content\TextContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
-use ParserOptions;
-use TextContent;
-use WikitextContent;
 
 abstract class Utils {
 

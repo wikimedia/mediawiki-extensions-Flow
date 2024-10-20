@@ -13,7 +13,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\WatchedTopicItems;
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 
 class TopicListQuery extends AbstractQuery {
 

@@ -2,7 +2,7 @@
 
 namespace Flow\Model;
 
-use ApiSerializable;
+use MediaWiki\Api\ApiSerializable;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;

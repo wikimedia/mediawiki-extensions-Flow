@@ -10,6 +10,7 @@ use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use InvalidArgumentException;
+use MediaWiki\Json\FormatJson;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -212,7 +213,7 @@ abstract class RevisionStorage extends DbStorage {
 				. ': Unoptimizable query for keys: '
 				. implode( ',', array_keys( $queriedKeys ) )
 				. ' with options '
-				. \FormatJson::encode( $options )
+				. FormatJson::encode( $options )
 			);
 			return $this->fallbackFindMulti( $queries, $options );
 		}

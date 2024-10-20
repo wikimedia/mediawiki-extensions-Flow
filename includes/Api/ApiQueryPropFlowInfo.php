@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiQueryBase;
+use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Title\Title;
 
 class ApiQueryPropFlowInfo extends ApiQueryBase {

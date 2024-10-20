@@ -2,7 +2,7 @@
 
 namespace Flow\Model;
 
-use ApiSerializable;
+use MediaWiki\Api\ApiSerializable;
 
 /**
  * Represents an HTML snippet, and associated information needed to render it

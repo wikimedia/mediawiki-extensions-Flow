@@ -3,7 +3,6 @@
 namespace Flow\Content;
 
 use Article;
-use Content;
 use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\Diff\FlowBoardContentDiffView;
@@ -12,12 +11,14 @@ use Flow\LinksTableUpdater;
 use Flow\Model\UUID;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
-use FormatJson;
 use InvalidArgumentException;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutput;
@@ -25,7 +26,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
-class BoardContentHandler extends \ContentHandler {
+class BoardContentHandler extends ContentHandler {
 	public function __construct( $modelId ) {
 		if ( $modelId !== CONTENT_MODEL_FLOW_BOARD ) {
 			throw new InvalidArgumentException( __CLASS__ . " initialised for invalid content model" );
@@ -53,11 +54,11 @@ class BoardContentHandler extends \ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param \Content $content The Content object to serialize
+	 * @param Content $content The Content object to serialize
 	 * @param string|null $format The desired serialization format
 	 * @return string Serialized form of the content
 	 */
-	public function serializeContent( \Content $content, $format = null ) {
+	public function serializeContent( Content $content, $format = null ) {
 		if ( !$content instanceof BoardContent ) {
 			throw new InvalidArgumentException( "Expected a BoardContent object, got a " . get_class( $content ) );
 		}

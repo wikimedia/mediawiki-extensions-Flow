@@ -2,9 +2,9 @@
 
 namespace Flow\Import\LiquidThreadsApi;
 
-use ApiBase;
 use Flow\Import\ImportException;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiBase;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

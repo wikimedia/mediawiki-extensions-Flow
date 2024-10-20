@@ -2,13 +2,13 @@
 
 namespace Flow\SpamFilter;
 
-use ExtensionRegistry;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
 use MediaWiki\Extension\ConfirmEdit\SimpleCaptcha\SimpleCaptcha;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 

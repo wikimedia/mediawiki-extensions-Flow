@@ -12,10 +12,10 @@ use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use WikitextContent;
 
 class LqtRedirector implements Postprocessor {
 	/** @var UrlGenerator */

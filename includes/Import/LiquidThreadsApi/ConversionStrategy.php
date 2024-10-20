@@ -11,12 +11,12 @@ use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Notifications\Controller;
 use Flow\UrlGenerator;
 use LqtDispatch;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\IReadableDatabase;
-use WikitextContent;
 
 /**
  * Converts LiquidThreads pages on a wiki to Flow. This converter is idempotent

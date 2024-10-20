@@ -2,13 +2,13 @@
 
 namespace Flow\Api;
 
-use ApiBase;
-use ApiMessage;
 use Flow\Block\AbstractBlock;
 use Flow\Container;
 use Flow\Model\AbstractRevision;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 

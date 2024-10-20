@@ -3,7 +3,7 @@
 namespace Flow\Import;
 
 use Flow\Exception\FlowException;
-use IDBAccessObject;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -12,9 +12,9 @@ use MediaWiki\User\User;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Traversable;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use WikitextContent;
 
 /**
  * Converts provided titles to Flow. This converter is idempotent when

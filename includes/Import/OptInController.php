@@ -15,21 +15,21 @@ use Flow\Notifications\Controller;
 use Flow\OccupationController;
 use Flow\WorkflowLoader;
 use Flow\WorkflowLoaderFactory;
-use FormatJson;
-use IDBAccessObject;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
-use WikitextContent;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Entry point for enabling Flow on a page.

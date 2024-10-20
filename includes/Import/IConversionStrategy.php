@@ -4,8 +4,8 @@ namespace Flow\Import;
 
 use Flow\Import\Postprocessor\Postprocessor;
 use Flow\Import\SourceStore\SourceStoreInterface;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Title\Title;
-use WikitextContent;
 
 /**
  * Interface between the Converter and an implementation of IImportSource.

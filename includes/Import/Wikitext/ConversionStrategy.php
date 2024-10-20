@@ -4,17 +4,17 @@ namespace Flow\Import\Wikitext;
 
 use DateTime;
 use DateTimeZone;
-use ExtensionRegistry;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
-use WikitextContent;
 
 /**
  * Does not really convert. Archives wikitext pages out of the way and puts

@@ -3,7 +3,7 @@
 namespace Flow\Data;
 
 use Flow\DbFactory;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 
 class FlowObjectCache {

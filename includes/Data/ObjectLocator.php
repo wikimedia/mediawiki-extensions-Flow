@@ -5,7 +5,7 @@ namespace Flow\Data;
 use Flow\DbFactory;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 
 /**
  * Denormalized indexes that are query-only.  The indexes used here must

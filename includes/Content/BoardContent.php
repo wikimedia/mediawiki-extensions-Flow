@@ -2,10 +2,11 @@
 
 namespace Flow\Content;
 
-use Content;
 use Flow\Model\UUID;
+use MediaWiki\Content\AbstractContent;
+use MediaWiki\Content\Content;
 
-class BoardContent extends \AbstractContent {
+class BoardContent extends AbstractContent {
 	/** @var UUID|null */
 	protected $workflowId;
 

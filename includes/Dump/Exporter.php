@@ -26,11 +26,11 @@ use MediaWiki\Title\TitleParser;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\Xml\Xml;
 use ReflectionProperty;
 use WikiExporter;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
-use Xml;
 
 class Exporter extends WikiExporter {
 	/**

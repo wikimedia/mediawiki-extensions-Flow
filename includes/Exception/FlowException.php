@@ -2,7 +2,7 @@
 
 namespace Flow\Exception;
 
-use MessageSpecifier;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NormalizedException\NormalizedException;
 
 /**

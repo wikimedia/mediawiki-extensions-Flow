@@ -2,11 +2,11 @@
 
 namespace Flow\Model;
 
-use ApiSerializable;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidParameterException;
+use MediaWiki\Api\ApiSerializable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\Blob;

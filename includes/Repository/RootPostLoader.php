@@ -6,7 +6,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic

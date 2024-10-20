@@ -2,8 +2,6 @@
 
 namespace Flow\Formatter;
 
-use ApiResult;
-use ExtensionRegistry;
 use Flow\Collection\PostCollection;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
@@ -18,11 +16,13 @@ use Flow\Repository\UserNameBatch;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
