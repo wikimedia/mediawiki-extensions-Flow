@@ -12,11 +12,11 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Notifications\Controller;
 use Flow\UrlGenerator;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IReadableDatabase;
-use WikitextContent;
 
 /**
  * @covers \Flow\Import\LiquidThreadsApi\ConversionStrategy

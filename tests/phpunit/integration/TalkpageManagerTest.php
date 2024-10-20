@@ -4,11 +4,11 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\TalkpageManager;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use WikitextContent;
 
 /**
  * @covers \Flow\TalkpageManager

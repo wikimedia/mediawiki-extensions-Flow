@@ -11,10 +11,10 @@ use Flow\Import\SourceStore\NullImportSourceStore;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use Flow\Import\Wikitext\ConversionStrategy;
 use LinkCacheTestTrait;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use WikitextContent;
 
 /**
  * @covers \Flow\Import\Wikitext\ConversionStrategy

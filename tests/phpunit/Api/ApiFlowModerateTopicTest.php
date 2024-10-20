@@ -3,6 +3,7 @@
 namespace Flow\Tests\Api;
 
 use Flow\Model\AbstractRevision;
+use MediaWiki\Api\ApiUsageException;
 
 /**
  * @covers \Flow\Api\ApiFlowBase
@@ -71,7 +72,7 @@ class ApiFlowModerateTopicTest extends ApiTestCase {
 	}
 
 	/**
-	 * @throws \ApiUsageException
+	 * @throws ApiUsageException
 	 * @group Broken
 	 */
 	public function testModerateLockedTopic() {

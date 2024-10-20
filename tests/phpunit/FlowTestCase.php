@@ -2,14 +2,14 @@
 
 namespace Flow\Tests;
 
-use ExtensionRegistry;
 use Flow\Container;
 use Flow\Data\FlowObjectCache;
 use Flow\DbFactory;
 use Flow\Model\UUID;
-use HashBagOStuff;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWikiIntegrationTestCase;
-use WANObjectCache;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 class FlowTestCase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {

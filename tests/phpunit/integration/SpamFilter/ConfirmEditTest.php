@@ -7,10 +7,10 @@ use Flow\Model\Workflow;
 use Flow\SpamFilter\ConfirmEdit;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use ParserOptions;
 
 /**
  * @covers \Flow\SpamFilter\ConfirmEdit
