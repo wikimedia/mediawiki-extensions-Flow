@@ -28,6 +28,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\ParamType;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -372,9 +374,16 @@ class RevisionFormatter {
 				);
 
 				// moderated posts won't have that property
-				if ( isset( $res['properties']['topic-of-post-text-from-html']['plaintext'] ) ) {
+				// FIXME: This shouldn't depend on Message implementation details.
+				// You're not really supposed to know how Message represents the
+				// parameters internally.
+				if (
+					isset( $res['properties']['topic-of-post-text-from-html'] ) &&
+					$res['properties']['topic-of-post-text-from-html'] instanceof MessageParam &&
+					$res['properties']['topic-of-post-text-from-html']->getType() === ParamType::PLAINTEXT
+				) {
 					$res['content']['plaintext'] =
-						$res['properties']['topic-of-post-text-from-html']['plaintext'];
+						$res['properties']['topic-of-post-text-from-html']->getValue();
 				}
 			}
 
@@ -918,7 +927,7 @@ class RevisionFormatter {
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param IContextSource $ctx
 	 * @param FormatterRow|null $row
-	 * @return mixed A valid parameter for a core Message instance. These
+	 * @return string|MessageParam A valid parameter for a core Message instance. These
 	 *  parameters will be used with Message::parse
 	 * @throws FlowException
 	 */
