@@ -254,7 +254,7 @@ class View extends ContextSource {
 			];
 		}
 
-		if ( isset( $topicListBlock ) && isset( $parameters['topiclist'] ) ) {
+		if ( $topicListBlock !== null && isset( $parameters['topiclist'] ) ) {
 			$apiResponse['toc'] = $topicListBlock->renderTocApi(
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypePossiblyInvalidDimOffset
 				$apiResponse['blocks']['topiclist'],
