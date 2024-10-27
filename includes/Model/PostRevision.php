@@ -95,7 +95,7 @@ class PostRevision extends AbstractRevision {
 	 * @param Title|null $title
 	 * @return PostRevision
 	 */
-	public static function newFromId( UUID $uuid, User $user, $content, $format, Title $title = null ) {
+	public static function newFromId( UUID $uuid, User $user, $content, $format, ?Title $title = null ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
@@ -260,7 +260,7 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * @param UUID|null $id
 	 */
-	public function setReplyToId( UUID $id = null ) {
+	public function setReplyToId( ?UUID $id = null ) {
 		$this->replyToId = $id;
 	}
 

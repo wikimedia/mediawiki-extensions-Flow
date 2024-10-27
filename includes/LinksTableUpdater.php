@@ -37,7 +37,7 @@ class LinksTableUpdater {
 	 * @param ParserOutput $parserOutput
 	 * @param Reference[]|null $references
 	 */
-	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, array $references = null ) {
+	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, ?array $references = null ) {
 		$references ??= $this->getReferencesForTitle( $title );
 
 		$linkBatch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch();

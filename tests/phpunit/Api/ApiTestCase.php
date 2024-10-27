@@ -30,9 +30,9 @@ abstract class ApiTestCase extends \MediaWiki\Tests\Api\ApiTestCase {
 
 	protected function doApiRequest(
 		array $params,
-		array $session = null,
+		?array $session = null,
 		$appendModule = false,
-		Authority $performer = null,
+		?Authority $performer = null,
 		$tokenType = null,
 		$paramPrefix = null
 	) {

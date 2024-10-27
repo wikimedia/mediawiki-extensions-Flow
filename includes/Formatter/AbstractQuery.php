@@ -202,7 +202,7 @@ abstract class AbstractQuery {
 	 * @return FormatterRow
 	 * @throws FlowException
 	 */
-	protected function buildResult( AbstractRevision $revision, $indexField, FormatterRow $row = null ) {
+	protected function buildResult( AbstractRevision $revision, $indexField, ?FormatterRow $row = null ) {
 		$uuid = $revision->getRevisionId();
 		$timestamp = $uuid->getTimestamp();
 

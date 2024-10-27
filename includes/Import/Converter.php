@@ -173,7 +173,7 @@ class Converter {
 		return $this->strategy->shouldConvert( $title );
 	}
 
-	protected function doConversion( Title $title, Title $movedFrom = null ) {
+	protected function doConversion( Title $title, ?Title $movedFrom = null ) {
 		if ( $movedFrom ) {
 			// If the page is moved but has not completed conversion that
 			// means the previous import failed to complete. Try again.

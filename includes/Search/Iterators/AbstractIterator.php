@@ -88,7 +88,7 @@ abstract class AbstractIterator implements Iterator {
 	 *
 	 * @param UUID|null $revId
 	 */
-	public function setFrom( UUID $revId = null ) {
+	public function setFrom( ?UUID $revId = null ) {
 		$this->results = null;
 
 		unset( $this->conditions[0] );
@@ -102,7 +102,7 @@ abstract class AbstractIterator implements Iterator {
 	 *
 	 * @param UUID|null $revId
 	 */
-	public function setTo( UUID $revId = null ) {
+	public function setTo( ?UUID $revId = null ) {
 		$this->results = null;
 
 		unset( $this->conditions[1] );

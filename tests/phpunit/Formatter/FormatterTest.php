@@ -55,7 +55,7 @@ class FormatterTest extends FlowTestCase {
 	 * @dataProvider checkUserProvider
 	 * @group Broken
 	 */
-	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
+	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, ?UUID $postId = null ) {
 		global $wgLang;
 
 		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
@@ -89,7 +89,7 @@ class FormatterTest extends FlowTestCase {
 		return $workflow;
 	}
 
-	private function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
+	private function mockRevision( $changeType, UUID $revId, ?UUID $postId = null ) {
 		$revision = $this->createMock( $postId ? \Flow\Model\PostRevision::class : \Flow\Model\Header::class );
 		$revision->method( 'getChangeType' )
 			->willReturn( $changeType );

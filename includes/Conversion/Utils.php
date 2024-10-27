@@ -115,7 +115,7 @@ abstract class Utils {
 	 * @param Language|null $lang Language to use for truncation.  Defaults to $wgLang
 	 * @return string plaintext
 	 */
-	public static function htmlToPlaintext( $html, ?int $truncateLength = null, Language $lang = null ) {
+	public static function htmlToPlaintext( $html, ?int $truncateLength = null, ?Language $lang = null ) {
 		/** @var Language $wgLang */
 		global $wgLang;
 
@@ -269,7 +269,7 @@ abstract class Utils {
 	 * @param DOMNode|null $node the specific node to save
 	 * @return string HTML
 	 */
-	public static function saferSaveXML( DOMDocument $doc, DOMNode $node = null ) {
+	public static function saferSaveXML( DOMDocument $doc, ?DOMNode $node = null ) {
 		$html = $doc->saveXML( $node );
 		// This regex is only safe as long as attribute values get escaped > chars
 		// This is checked by the testcases
@@ -283,7 +283,7 @@ abstract class Utils {
 	 * @param DOMNode|null $node
 	 * @return string html of the nodes children
 	 */
-	public static function getInnerHtml( DOMNode $node = null ) {
+	public static function getInnerHtml( ?DOMNode $node = null ) {
 		$html = '';
 		if ( $node ) {
 			$dom = $node instanceof DOMDocument ? $node : $node->ownerDocument;

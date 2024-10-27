@@ -31,7 +31,7 @@ class FlowTestCase extends MediaWikiIntegrationTestCase {
 		return parent::dataToString( $data );
 	}
 
-	protected function getCache( DbFactory $dbFactory = null ) {
+	protected function getCache( ?DbFactory $dbFactory = null ) {
 		global $wgFlowCacheTime;
 		$wanCache = new WANObjectCache( [
 			'cache' => new HashBagOStuff(),

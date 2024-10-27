@@ -17,7 +17,7 @@ class LocalApiBackend extends ApiBackend {
 	 */
 	protected $user;
 
-	public function __construct( User $user = null ) {
+	public function __construct( ?User $user = null ) {
 		parent::__construct();
 		$this->user = $user;
 	}

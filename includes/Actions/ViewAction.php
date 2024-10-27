@@ -22,7 +22,7 @@ class ViewAction extends FlowAction {
 		return false;
 	}
 
-	public function showForAction( $action, OutputPage $output = null ) {
+	public function showForAction( $action, ?OutputPage $output = null ) {
 		parent::showForAction( $action, $output );
 
 		$title = $this->context->getTitle();

@@ -155,7 +155,7 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	protected function updateRevision( AbstractRevision $revision, AbstractRevision $previous = null ) {
+	protected function updateRevision( AbstractRevision $revision, ?AbstractRevision $previous = null ) {
 		$this->contentLengthProperty->setValue(
 			$revision,
 			$this->calcContentLength( $revision )

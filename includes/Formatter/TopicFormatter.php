@@ -23,7 +23,7 @@ class TopicFormatter {
 		$this->serializer = $serializer;
 	}
 
-	public function setContentFormat( $contentFormat, UUID $revisionId = null ) {
+	public function setContentFormat( $contentFormat, ?UUID $revisionId = null ) {
 		$this->serializer->setContentFormat( $contentFormat, $revisionId );
 	}
 

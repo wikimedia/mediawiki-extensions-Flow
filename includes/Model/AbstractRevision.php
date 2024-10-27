@@ -528,7 +528,7 @@ abstract class AbstractRevision {
 	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setContent( $content, $format, Title $title = null ) {
+	protected function setContent( $content, $format, ?Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'TODO: Cannot change content of restricted revision',
 				'process-data' );
@@ -623,7 +623,7 @@ abstract class AbstractRevision {
 	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setNextContent( User $user, $content, $format, Title $title = null ) {
+	protected function setNextContent( User $user, $content, $format, ?Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'Cannot change content of restricted revision', 'process-data' );
 		}

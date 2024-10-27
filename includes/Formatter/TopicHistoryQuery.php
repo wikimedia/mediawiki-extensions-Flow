@@ -15,7 +15,7 @@ class TopicHistoryQuery extends HistoryQuery {
 	 * @param string $direction 'rev' or 'fwd'
 	 * @return FormatterRow[]
 	 */
-	public function getResults( UUID $topicRootId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
+	public function getResults( UUID $topicRootId, $limit = 50, ?UUID $offset = null, $direction = 'fwd' ) {
 		$options = $this->getOptions( $direction, $limit, $offset );
 
 		$topicPostHistory = $this->getTopicPostResults( $topicRootId, $options ) ?: [];
