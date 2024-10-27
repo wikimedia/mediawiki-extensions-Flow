@@ -84,7 +84,7 @@ class ConversionStrategy implements IConversionStrategy {
 		return "LQT to Flow conversion";
 	}
 
-	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
+	public function isConversionFinished( Title $title, ?Title $movedFrom = null ) {
 		if ( LqtDispatch::isLqtPage( $title ) ) {
 			return false;
 		} else {

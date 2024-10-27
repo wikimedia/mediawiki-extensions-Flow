@@ -107,7 +107,7 @@ class ReferenceRecorder extends AbstractListener {
 	protected function calculateChangesFromExisting(
 		Workflow $workflow,
 		AbstractRevision $revision,
-		PostRevision $root = null
+		?PostRevision $root = null
 	) {
 		$prevReferences = $this->getExistingReferences(
 			$revision->getRevisionType(),
@@ -213,7 +213,7 @@ class ReferenceRecorder extends AbstractListener {
 	public function getReferencesFromRevisionContent(
 		Workflow $workflow,
 		AbstractRevision $revision,
-		PostRevision $root = null
+		?PostRevision $root = null
 	) {
 		// Locked is the only moderated state we still collect references for.
 		if ( self::isHidden( $revision ) ) {

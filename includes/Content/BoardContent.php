@@ -10,7 +10,7 @@ class BoardContent extends AbstractContent {
 	/** @var UUID|null */
 	protected $workflowId;
 
-	public function __construct( $contentModel = CONTENT_MODEL_FLOW_BOARD, UUID $workflowId = null ) {
+	public function __construct( $contentModel = CONTENT_MODEL_FLOW_BOARD, ?UUID $workflowId = null ) {
 		parent::__construct( $contentModel );
 		$this->workflowId = $workflowId;
 	}

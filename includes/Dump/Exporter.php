@@ -160,7 +160,7 @@ class Exporter extends WikiExporter {
 	 * @param string|null $workflowEndId wokflow_id, b36-encoded, to end (exclusive)
 	 * @return BatchRowIterator
 	 */
-	public function getWorkflowIterator( array $pages = null, $startId = null, $endId = null,
+	public function getWorkflowIterator( ?array $pages = null, $startId = null, $endId = null,
 		$workflowStartId = null, $workflowEndId = null ) {
 		/** @var IReadableDatabase $dbr */
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );

@@ -15,7 +15,7 @@ class BoardHistoryQuery extends HistoryQuery {
 	 * @param string $direction 'rev' or 'fwd'
 	 * @return FormatterRow[]
 	 */
-	public function getResults( UUID $boardWorkflowId, $limit = 50, UUID $offset = null, $direction = 'fwd' ) {
+	public function getResults( UUID $boardWorkflowId, $limit = 50, ?UUID $offset = null, $direction = 'fwd' ) {
 		$options = $this->getOptions( $direction, $limit, $offset );
 
 		$headerHistory = $this->getHeaderResults( $boardWorkflowId, $options ) ?: [];

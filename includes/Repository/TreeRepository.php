@@ -75,7 +75,7 @@ class TreeRepository {
 	 * @return true
 	 * @throws DataModelException
 	 */
-	public function insert( UUID $descendant, UUID $ancestor = null ) {
+	public function insert( UUID $descendant, ?UUID $ancestor = null ) {
 		$this->cache->delete( $this->cacheKey( 'subtree', $descendant ) );
 		$this->cache->delete( $this->cacheKey( 'parent', $descendant ) );
 		$this->cache->delete( $this->cacheKey( 'rootpath', $descendant ) );

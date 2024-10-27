@@ -42,7 +42,7 @@ class RevisionActionPermissions {
 	 * @param AbstractRevision|null $revision The revision to check permissions against
 	 * @return array Array of action names that are allowed
 	 */
-	public function getAllowedActions( AbstractRevision $revision = null ) {
+	public function getAllowedActions( ?AbstractRevision $revision = null ) {
 		$allowed = [];
 		foreach ( array_keys( $this->actions->getActions() ) as $action ) {
 			if ( $this->isAllowedAny( $revision, $action ) ) {

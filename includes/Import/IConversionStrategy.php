@@ -41,7 +41,7 @@ interface IConversionStrategy {
 	 * @return bool True when the conversion is complete and nothing
 	 *  more can be done
 	 */
-	public function isConversionFinished( Title $title, Title $movedFrom = null );
+	public function isConversionFinished( Title $title, ?Title $movedFrom = null );
 
 	/**
 	 * Create an ImportSource implementation for the provided Title.

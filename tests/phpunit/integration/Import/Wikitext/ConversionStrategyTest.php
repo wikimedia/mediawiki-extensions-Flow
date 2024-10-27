@@ -191,8 +191,8 @@ class ConversionStrategyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function createStrategy(
-		Parser $parser = null,
-		SourceStoreInterface $sourceStore = null
+		?Parser $parser = null,
+		?SourceStoreInterface $sourceStore = null
 	) {
 		return new ConversionStrategy(
 			$parser ?: $this->getServiceContainer()->getParser(),

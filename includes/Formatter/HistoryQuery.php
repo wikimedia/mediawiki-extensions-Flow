@@ -56,7 +56,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @param UUID|null $offset UUID to use as offset (optional)
 	 * @return array Associative array of options for query
 	 */
-	protected function getOptions( $direction, $limit, UUID $offset = null ) {
+	protected function getOptions( $direction, $limit, ?UUID $offset = null ) {
 		return [
 			'sort' => 'rev_id',
 			'order' => $direction === 'fwd' ? 'DESC' : 'ASC',

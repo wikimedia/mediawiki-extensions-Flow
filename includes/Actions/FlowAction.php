@@ -56,7 +56,7 @@ class FlowAction extends Action {
 	 * @throws ErrorPageError
 	 * @throws FlowException
 	 */
-	public function showForAction( $action, OutputPage $output = null ) {
+	public function showForAction( $action, ?OutputPage $output = null ) {
 		$container = Container::getContainer();
 		$output ??= $this->context->getOutput();
 		$title = $this->getTitle();
