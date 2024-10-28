@@ -192,7 +192,7 @@ class RevisionFormatter {
 	 * @throws FlowException
 	 * @throws InvalidInputException
 	 */
-	public function setContentFormat( $format, UUID $revisionId = null ) {
+	public function setContentFormat( $format, ?UUID $revisionId = null ) {
 		if ( !in_array( $format, $this->allowedContentFormats ) ) {
 			throw new InvalidInputException( "Unknown content format: $format" );
 		}
@@ -894,7 +894,7 @@ class RevisionFormatter {
 		UUID $workflowId,
 		AbstractRevision $revision,
 		IContextSource $ctx,
-		FormatterRow $row = null
+		?FormatterRow $row = null
 	) {
 		if ( $this->includeProperties === false ) {
 			return [];
@@ -936,7 +936,7 @@ class RevisionFormatter {
 		$revision,
 		UUID $workflowId,
 		IContextSource $ctx,
-		FormatterRow $row = null
+		?FormatterRow $row = null
 	) {
 		$isWikiText = str_ends_with( $param, 'wikitext' );
 		$format = $isWikiText ? $revision->getWikitextFormat() : $revision->getHtmlFormat();

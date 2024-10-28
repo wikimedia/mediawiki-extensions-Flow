@@ -31,7 +31,7 @@ class RevisionViewFormatter {
 		$this->serializer = $serializer;
 	}
 
-	public function setContentFormat( $format, UUID $revisionId = null ) {
+	public function setContentFormat( $format, ?UUID $revisionId = null ) {
 		$this->serializer->setContentFormat( $format, $revisionId );
 	}
 

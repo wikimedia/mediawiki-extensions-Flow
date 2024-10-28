@@ -68,7 +68,7 @@ class LqtRedirector implements Postprocessor {
 		$this->redirectsToDo = [];
 	}
 
-	protected function doRedirect( Title $fromTitle, UUID $toTopic, UUID $toPost = null ) {
+	protected function doRedirect( Title $fromTitle, UUID $toTopic, ?UUID $toPost = null ) {
 		if ( $toPost ) {
 			$redirectAnchor = $this->urlGenerator->postLink( null, $toTopic, $toPost );
 		} else {

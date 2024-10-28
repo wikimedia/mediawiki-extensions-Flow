@@ -125,7 +125,7 @@ class ConversionStrategy implements IConversionStrategy {
 	/**
 	 * @inheritDoc
 	 */
-	public function isConversionFinished( Title $title, Title $movedFrom = null ) {
+	public function isConversionFinished( Title $title, ?Title $movedFrom = null ) {
 		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			// page is a flow board already
 			return true;

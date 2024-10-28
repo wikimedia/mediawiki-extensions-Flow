@@ -47,7 +47,7 @@ class TopicIterator extends AbstractIterator {
 	 *
 	 * @param UUID|null $revId
 	 */
-	public function setFrom( UUID $revId = null ) {
+	public function setFrom( ?UUID $revId = null ) {
 		$this->results = null;
 
 		unset( $this->conditions[0] );
@@ -71,7 +71,7 @@ class TopicIterator extends AbstractIterator {
 	 *
 	 * @param UUID|null $revId
 	 */
-	public function setTo( UUID $revId = null ) {
+	public function setTo( ?UUID $revId = null ) {
 		$this->results = null;
 
 		unset( $this->conditions[1] );

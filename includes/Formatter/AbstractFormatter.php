@@ -114,7 +114,7 @@ abstract class AbstractFormatter {
 	protected function formatAnchorsAsPipeList(
 		array $links,
 		IContextSource $ctx,
-		array $request = null
+		?array $request = null
 	) {
 		if ( $request === null ) {
 			$request = array_keys( $links );

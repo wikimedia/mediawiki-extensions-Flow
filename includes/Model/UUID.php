@@ -365,7 +365,7 @@ class UUID implements ApiSerializable {
 	 * @param UUID|null $other
 	 * @return bool
 	 */
-	public function equals( UUID $other = null ) {
+	public function equals( ?UUID $other = null ) {
 		return $other && $other->getAlphadecimal() === $this->getAlphadecimal();
 	}
 
