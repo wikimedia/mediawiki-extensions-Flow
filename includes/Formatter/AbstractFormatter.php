@@ -248,7 +248,7 @@ abstract class AbstractFormatter {
 			$msg = $ctx->msg( $key );
 		}
 
-		return $msg->params( $this->getDescriptionParams( $data, $actions, $changeType ) );
+		return $msg->params( ...$this->getDescriptionParams( $data, $actions, $changeType ) );
 	}
 
 	/**
