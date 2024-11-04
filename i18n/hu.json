@@ -423,7 +423,6 @@
 	"flow-special-type": "Típus",
 	"flow-special-type-post": "Hozzászólás",
 	"flow-special-type-workflow": "Munkafolyamat",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Nincs a típusnak és UUID-nak megfelelő nézet.",
 	"flow-special-enableflow-legend": "Rendezett beszélgetés engedélyezése egy új lapon",
 	"flow-special-enableflow-page": "Strukturált beszélgetések engedélyezése a következő oldalon",

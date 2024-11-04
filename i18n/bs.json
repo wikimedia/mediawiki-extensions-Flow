@@ -408,7 +408,6 @@
 	"flow-special-type": "Vrsta",
 	"flow-special-type-post": "Objava",
 	"flow-special-type-workflow": "Rasprava",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Ne mogu pronaći sadržaj kojem odgovara ova vrsta i UUID.",
 	"flow-special-enableflow-legend": "Uključi Flow na novoj stranici",
 	"flow-special-enableflow-page": "Stranice na koje se uključuje Flow",

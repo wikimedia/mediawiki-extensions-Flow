@@ -376,7 +376,6 @@
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Příspěvek",
 	"flow-special-type-workflow": "Workflow",
-	"flow-special-uuid": "UUID",
 	"flow-conversion-archive-flow-page-name-format": "%s/Archiv Strukturovaných diskusí %d\n%s/ArchivStrukturovanýchdiskusí%d\n%s/Archiv Strukturovaných diskusí%d\n%s/ArchivStrukturovanýchdiskusí%d",
 	"mw-ui-unsubmitted-confirm": "Na této stránce máte neuložené změny. Opravdu chcete odejít a zahodit svou práci?",
 	"flow-post-undo-delete": "vrátit smazání",

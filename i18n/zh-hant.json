@@ -449,7 +449,6 @@
 	"flow-special-type": "類型",
 	"flow-special-type-post": "貼文",
 	"flow-special-type-workflow": "工作流程",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "查無符合該類型與 UUID 的內容。",
 	"flow-special-enableflow-legend": "在新頁面開啟結構式討論",
 	"flow-special-enableflow-page": "要開啟結構式討論的頁面",

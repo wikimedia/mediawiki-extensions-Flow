@@ -439,7 +439,6 @@
 	"flow-special-type": "Jenis",
 	"flow-special-type-post": "Kiriman",
 	"flow-special-type-workflow": "Alur kerja",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Tidak dapat menemukan isi yang sesuai dengan jenis dan UUID.",
 	"flow-special-enableflow-legend": "Aktifkan Pembicaraan Terstruktur di halaman baru",
 	"flow-special-enableflow-page": "Halaman tempat Pembicaraan Terstruktur akan diaktifkan",

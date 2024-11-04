@@ -430,7 +430,6 @@
 	"flow-special-type": "Kiểu",
 	"flow-special-type-post": "Bài đăng",
 	"flow-special-type-workflow": "Luồng làm việc",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID.",
 	"flow-special-enableflow-legend": "Kích hoạt Thảo luận Cấu trúc trên một trang mới",
 	"flow-special-enableflow-page": "Trang để kích hoạt Thảo luận Cấu trúc",

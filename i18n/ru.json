@@ -41,7 +41,8 @@
 			"Дмитрий",
 			"Максим777",
 			"Туллук",
-			"Ядерный Трамвай"
+			"Ядерный Трамвай",
+			"Dirruw'o"
 		]
 	},
 	"enablestructureddiscussions": "Включить «Cтруктурированные обсуждения»",
@@ -461,7 +462,6 @@
 	"flow-special-type": "Тип",
 	"flow-special-type-post": "Сообщение",
 	"flow-special-type-workflow": "Поток",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Не удалось найти содержимое, соответствующее типу и UUID.",
 	"flow-special-enableflow-legend": "Включить «Структурированные обсуждения» на новой странице",
 	"flow-special-enableflow-page": "Страница, на которой нужно включить «Структурированные обсуждения»",

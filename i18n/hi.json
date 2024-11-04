@@ -435,7 +435,6 @@
 	"flow-special-type": "प्रकार",
 	"flow-special-type-post": "पोस्ट",
 	"flow-special-type-workflow": "वर्कफ्लो",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "प्रकार और UUID से मेल खाने वाली सामग्री नहीं मिली।",
 	"flow-special-enableflow-legend": "नए पृष्ठ पर संरचित चर्चा सक्षम करें।",
 	"flow-special-enableflow-page": "संरचित चर्चा सक्षम करने के लिए पृष्ठ",

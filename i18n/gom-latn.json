@@ -290,7 +290,6 @@
 	"structureddiscussions": "Flow",
 	"flow-special-type": "Prokar",
 	"flow-special-type-post": "Prokasnni",
-	"flow-special-uuid": "UUID",
 	"flow-special-enableflow-invalid-title": "Dil'lem panachem nanv chukichem asa",
 	"flow-special-enableflow-board-creation-not-allowed": "Tuka [[:$1]] panacher Manddlele Bhasabhas follo rochpak porvangi na.",
 	"flow-post-undo-hide": "lipovop rod'd kor",

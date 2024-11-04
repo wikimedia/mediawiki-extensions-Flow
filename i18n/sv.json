@@ -440,7 +440,6 @@
 	"flow-special-type": "Typ",
 	"flow-special-type-post": "Inlägg",
 	"flow-special-type-workflow": "Arbetsflöde",
-	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Kunde inte hitta innehåll som matchar typen och UUID:et.",
 	"flow-special-enableflow-legend": "Aktivera strukturerade diskussioner på en ny sida",
 	"flow-special-enableflow-page": "Sida att aktivera strukturerade diskussioner på",
