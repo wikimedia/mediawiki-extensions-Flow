@@ -92,7 +92,7 @@
 	"flow-suppress-usertext": "<em>اسم مستخدم تم طمسه</em>",
 	"flow-post-actions": "الإجراءات",
 	"flow-topic-actions": "الإجراءات",
-	"flow-cancel": "ألغ",
+	"flow-cancel": "إلغاء",
 	"flow-skip-summary": "تجاوز",
 	"flow-edit-summary-placeholder": "وصف موجز لنتائج هذه المناقشة",
 	"flow-summary-authored": "{{GENDER:$1|لخّص|لخّصت}} $1 هذا الموضوع",
