@@ -497,9 +497,8 @@ class TemplateHelper {
 	 */
 	public static function l10n( ...$args ) {
 		$options = array_pop( $args );
-		$str = array_shift( $args );
-
-		return wfMessage( $str )->params( $args )->text();
+		// @phan-suppress-next-line PhanParamTooFewUnpack
+		return wfMessage( ...$args )->text();
 	}
 
 	/**
@@ -509,8 +508,8 @@ class TemplateHelper {
 	 */
 	public static function l10nParse( ...$args ) {
 		$options = array_pop( $args );
-		$str = array_shift( $args );
-		return new SafeString( wfMessage( $str, $args )->parse() );
+		// @phan-suppress-next-line PhanParamTooFewUnpack
+		return new SafeString( wfMessage( ...$args )->parse() );
 	}
 
 	/**
