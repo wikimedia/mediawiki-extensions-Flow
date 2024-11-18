@@ -55,7 +55,6 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 
 		$this->dbFactory = Container::get( 'db.factory' );
 
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 		$movePageFactory = MediaWikiServices::getInstance()->getMovePageFactory();
 		$moveUser = User::newSystemUser( FLOW_TALK_PAGE_MANAGER_USER, [ 'steal' => true ] );
 
@@ -105,26 +104,23 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 				$checkedCount++;
 				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-				if ( $coreTitle->isSubpage() ) {
+				if ( str_contains( $coreTitle->getText(), '/' ) ) {
 					// Don't try to act on subpages
+					// $coreTitle->isSubpage() only works on namespaces with subpages enabled, which
+					// we don't care about for this check.
 					$this->output( "Skipped '$coreTitle' as it is already a subpage\n" );
 					continue;
 				}
 				// $row / $coreTitle is a page with the flow board content model, and isn't a subpage
 
-				$subpageTitle = $coreTitle->getSubpage( $subpage );
+				$creationStatus = $this->findValidSubpage( $coreTitle, $subpage, $moveUser );
 
-				$creationStatus = $occupationController->safeAllowCreation(
-					$subpageTitle,
-					$moveUser,
-					/* $mustNotExist = */ true,
-					/* $forWrite = */ true
-				);
-
-				if ( !$creationStatus->isGood() ) {
-					$this->error( "Cannot move '$coreTitle' to '$subpageTitle': " . $creationStatus->getMessage()->text() . "\n" );
+				if ( !$creationStatus->isOk() ) {
+					$this->error( "Cannot move '$coreTitle': " . $creationStatus->getMessage()->text() . "\n" );
 					continue;
 				}
+
+				$subpageTitle = $creationStatus->getValue();
 
 				if ( $dryRun ) {
 					$moveCount++;
@@ -165,6 +161,40 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * Checks for a valid subpage to move a board into
+	 *
+	 * @param Title $coreTitle Previous location of the page, before moving
+	 * @param string $subpage Name stem for the subpages
+	 * @param User $moveUser User to make the move
+	 * @return Status Contains subpage as value
+	 */
+	protected function findValidSubpage( Title $coreTitle, string $subpage, User $moveUser ) {
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+
+		$status = Status::newGood();
+
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$subpageTitle = $coreTitle->getSubpage( $subpage . ( $i > 1 ? $i : '' ) );
+
+			$creationStatus = $occupationController->safeAllowCreation(
+				$subpageTitle,
+				$moveUser,
+				/* $mustNotExist = */ true,
+				/* $forWrite = */ true
+			);
+
+			if ( $creationStatus->isGood() ) {
+				$status->setResult( true, $subpageTitle );
+				return $status;
+			}
+
+			$status->merge( $creationStatus );
+		}
+
+		return $status;
 	}
 
 	/**
