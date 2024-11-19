@@ -28,6 +28,7 @@
 			"مشعل الحربي"
 		]
 	},
+	"content-model-flow-board": "لوحة المناقشات المنظمة",
 	"enablestructureddiscussions": "تفعيل النقاشات الهيكلية",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|توقف|توقفي}} عن مراقبة النشاط الجديد على \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|أنت}} لم تعد تراقب الصفحة \"$1\"",
