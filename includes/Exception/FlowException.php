@@ -51,7 +51,7 @@ class FlowException extends NormalizedException implements MessageSpecifier {
 	 * Implement MessageSpecifier interface to add a more human-friendly error message.
 	 * @inheritDoc
 	 */
-	final public function getKey() {
+	final public function getKey(): string {
 		return $this->getErrorCode();
 	}
 
@@ -59,7 +59,7 @@ class FlowException extends NormalizedException implements MessageSpecifier {
 	 * Implement MessageSpecifier interface to add a more human-friendly error message.
 	 * @inheritDoc
 	 */
-	final public function getParams() {
+	final public function getParams(): array {
 		return [];
 	}
 
