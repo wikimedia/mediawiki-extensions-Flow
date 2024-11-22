@@ -84,6 +84,7 @@
 	"flow-hide-post-content": "{{GENDER:$1|أخفى}} $1 هذا التعليق ([$2 التاريخ])",
 	"flow-hide-title-content": "هذا الموضوع  {{GENDER:$1|أخفاه|أخفته}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|أخفي}} بواسطة $2",
+	"flow-invalid-topic-did-you-mean": "هل تقصد \"[[$1]]\"؟",
 	"flow-delete-post-content": "{{GENDER:$1|قام|قامت}} $1 بحذف هذا التعليق ([$2 تاريخ])",
 	"flow-delete-title-content": "هذا الموضوع {{GENDER:$1|حذف}} بواسطة $1",
 	"flow-delete-header-content": "{{GENDER:$1|حذف}} بواسطة $2",
