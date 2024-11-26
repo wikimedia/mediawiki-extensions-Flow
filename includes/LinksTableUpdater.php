@@ -11,6 +11,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
 
 class LinksTableUpdater {
@@ -93,12 +94,8 @@ class LinksTableUpdater {
 		foreach ( $templates as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
-			if ( !isset( $parserOutput->getTemplates()[$ns] ) ) {
-				$parserOutput->getTemplates()[$ns] = [];
-			}
-
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
-			$parserOutput->getTemplates()[$ns][$dbk] = $id;
+			$parserOutput->addTemplate( new TitleValue( $ns, $dbk ), $id, $title->getLatestRevID() );
 		}
 	}
 
