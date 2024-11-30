@@ -148,19 +148,17 @@ class Controller {
 		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$events[] = Event::create( [ 'type' => 'flowusertalk-description-edited' ] + $info );
 		}
-		if ( $mentionedUsers ) {
-			$mentionEvents = $this->generateMentionEvents(
+		return [
+			...$events,
+			...$this->generateMentionEvents(
 				$revision,
 				null,
 				$boardWorkflow,
 				$user,
 				$mentionedUsers,
 				$mentionsSkipped
-			);
-			$events = array_merge( $events, $mentionEvents );
-		}
-
-		return $events;
+			)
+		];
 	}
 
 	/**
@@ -276,19 +274,17 @@ class Controller {
 			$usertalkEvent = str_replace( 'flow-', 'flowusertalk-', $eventName );
 			$events[] = Event::create( [ 'type' => $usertalkEvent ] + $info );
 		}
-		if ( $mentionedUsers ) {
-			$mentionEvents = $this->generateMentionEvents(
+		return [
+			...$events,
+			...$this->generateMentionEvents(
 				$revision,
 				$topicRevision,
 				$topicWorkflow,
 				$user,
 				$mentionedUsers,
 				$mentionsSkipped
-			);
-			$events = array_merge( $events, $mentionEvents );
-		}
-
-		return $events;
+			)
+		];
 	}
 
 	/**
@@ -348,19 +344,17 @@ class Controller {
 		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$events[] = Event::create( [ 'type' => 'flowusertalk-summary-edited' ] + $info );
 		}
-		if ( $mentionedUsers ) {
-			$mentionEvents = $this->generateMentionEvents(
+		return [
+			...$events,
+			...$this->generateMentionEvents(
 				$revision,
 				$topicRevision,
 				$topicWorkflow,
 				$user,
 				$mentionedUsers,
 				$mentionsSkipped
-			);
-			$events = array_merge( $events, $mentionEvents );
-		}
-
-		return $events;
+			)
+		];
 	}
 
 	/**
@@ -431,19 +425,17 @@ class Controller {
 			$events[] = Event::create( [ 'type' => 'flowusertalk-new-topic' ] + $eventData );
 		}
 
-		if ( $mentionedUsers ) {
-			$mentionEvents = $this->generateMentionEvents(
+		return [
+			...$events,
+			...$this->generateMentionEvents(
 				$topicTitle,
 				$topicTitle,
 				$topicWorkflow,
 				$user,
 				$mentionedUsers,
 				$mentionsSkipped
-			);
-			$events = array_merge( $events, $mentionEvents );
-		}
-
-		return $events;
+			)
+		];
 	}
 
 	/**
@@ -530,7 +522,7 @@ class Controller {
 	): array {
 		global $wgEchoMentionStatusNotifications, $wgFlowMaxMentionCount;
 
-		if ( count( $mentionedUsers ) === 0 ) {
+		if ( !$mentionedUsers ) {
 			return [];
 		}
 
