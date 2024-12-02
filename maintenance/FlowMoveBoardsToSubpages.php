@@ -5,13 +5,13 @@ namespace Flow\Maintenance;
 use BatchRowIterator;
 use Flow\Container;
 use Flow\DbFactory;
-use IDBAccessObject;
-use Maintenance;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use WikitextContent;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
