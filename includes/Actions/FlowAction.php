@@ -8,7 +8,6 @@ use ErrorPageError;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
-use Flow\Exception\InvalidDataException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
@@ -17,7 +16,6 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
-use MWExceptionRenderer;
 
 class FlowAction extends Action {
 	/**
@@ -90,26 +88,16 @@ class FlowAction extends Action {
 		}
 
 		$action = $request->getVal( 'action', 'view' );
-		try {
-			/** @var WorkflowLoaderFactory $factory */
-			$factory = $container['factory.loader.workflow'];
-			$loader = $factory->createWorkflowLoader( $title );
+		/** @var WorkflowLoaderFactory $factory */
+		$factory = $container['factory.loader.workflow'];
+		$loader = $factory->createWorkflowLoader( $title );
 
-			if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
-				// @todo better error handling
-				throw new FlowException( 'Invalid title: uuid is not a topic' );
-			}
-
-			$view->show( $loader, $action );
-		} catch ( InvalidDataException $e ) {
-			// FIXME: This isn't a real solution to the problem.
-			// Pretend that we aren't generating 500 errors here by swallowing the
-			// error, removing some log spam and avoiding pings to SRE and others
-			// looking at the production logs.
-			// The actual fix would be to prevent users from getting in a stuck
-			// position with their user talk pages.
-			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
+			// @todo better error handling
+			throw new FlowException( 'Invalid title: uuid is not a topic' );
 		}
+
+		$view->show( $loader, $action );
 	}
 
 	/**
