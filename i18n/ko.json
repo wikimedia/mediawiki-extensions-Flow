@@ -89,6 +89,7 @@
 	"flow-hide-post-content": "이 게시글은 $1님에 의해 {{GENDER:$1|숨겨졌}}습니다 ([$2 기록])",
 	"flow-hide-title-content": "이 주제는 $1님에 의해 {{GENDER:$1|숨겨졌}}습니다",
 	"flow-hide-header-content": "$2님이 {{GENDER:$1|숨김}}",
+	"flow-invalid-topic-did-you-mean": "\"[[$1]]\" 항목을 찾으셨나요?",
 	"flow-delete-post-content": "이 게시글은 $1님에 의해 {{GENDER:$1|삭제}}되었습니다 ([$2 기록])",
 	"flow-delete-title-content": "이 주제는 $1님에 의해 {{GENDER:$1|삭제}}되었습니다",
 	"flow-delete-header-content": "$2님이 {{GENDER:$1|삭제함}}",

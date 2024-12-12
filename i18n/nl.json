@@ -89,6 +89,7 @@
 	"flow-hide-post-content": "Dit bericht is {{GENDER:$1|verborgen}} door $1 ([$2 geschiedenis])",
 	"flow-hide-title-content": "Dit onderwerp is {{GENDER:$1|verborgen}} door $1",
 	"flow-hide-header-content": "{{GENDER:$1|Verborgen}} door $2",
+	"flow-invalid-topic-did-you-mean": "Bedoelde u “[[$1]]”?",
 	"flow-delete-post-content": "Dit bericht is {{GENDER:$1|verwijderd}} door $1 ([$2 geschiedenis])",
 	"flow-delete-title-content": "Dit onderwerp is {{GENDER:$1|verwijderd}} door $1",
 	"flow-delete-header-content": "{{GENDER:$1|Verwijderd}} door $2",

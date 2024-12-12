@@ -71,6 +71,7 @@
 	"flow-hide-post-content": "Denne posten ble {{GENDER:$1|skjult}} av $1 ([$2 historikk])",
 	"flow-hide-title-content": "Dette emnet ble {{GENDER:$1|skjult}} av $1",
 	"flow-hide-header-content": "{{GENDER:$1|Skjult}} av $2",
+	"flow-invalid-topic-did-you-mean": "Mente du «[[$1]]»?",
 	"flow-delete-post-content": "Denne posten ble {{GENDER:$1|slettet}} av $1 ([$2 historikk])",
 	"flow-delete-title-content": "Dette emnet ble {{GENDER:$1|slettet}} av $1",
 	"flow-delete-header-content": "{{GENDER:$1|Slettet}} av $2",

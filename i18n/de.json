@@ -74,6 +74,7 @@
 	"flow-hide-post-content": "Dieser Beitrag wurde von $1 {{GENDER:$1|versteckt}} ([$2 Verlauf])",
 	"flow-hide-title-content": "Dieses Thema wurde {{GENDER:$1|versteckt}} von $1",
 	"flow-hide-header-content": "{{GENDER:$1|Versteckt}} von $2",
+	"flow-invalid-topic-did-you-mean": "Meintest du „[[$1]]“?",
 	"flow-delete-post-content": "Dieser Beitrag wurde von $1 {{GENDER:$1|gelöscht}} ([$2 Verlauf])",
 	"flow-delete-title-content": "Dieses Thema wurde {{GENDER:$1|gelöscht}} von $1",
 	"flow-delete-header-content": "{{GENDER:$1|Gelöscht}} von $2",

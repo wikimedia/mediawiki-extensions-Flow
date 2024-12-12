@@ -74,6 +74,7 @@
 	"flow-hide-post-content": "$1 {{GENDER:$1|הסתיר|הסתירה}} את הרשומה הזאת ([$2 היסטוריה])",
 	"flow-hide-title-content": "$1 {{GENDER:$1|הסתיר|הסתירה}} את הנושא הזה",
 	"flow-hide-header-content": "$2 {{GENDER:$1|הסתיר|הסתירה}} את זה",
+	"flow-invalid-topic-did-you-mean": "האם התכוונת לכתוב \"[[$1]]\"?",
 	"flow-delete-post-content": "$1 {{GENDER:$1|מחק|מחקה}} את הרשומה הזאת ([$2 היסטוריה])",
 	"flow-delete-title-content": "$1 {{GENDER:$1|מחק|מחקה}} את הנושא הזה",
 	"flow-delete-header-content": "$2 {{GENDER:$1|מחק|מחקה}} את זה",

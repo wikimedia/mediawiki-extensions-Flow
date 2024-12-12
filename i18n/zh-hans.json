@@ -105,6 +105,7 @@
 	"flow-hide-post-content": "此帖子已被$1{{GENDER:$1|隐藏}}（[$2 历史]）",
 	"flow-hide-title-content": "此话题已被$1{{GENDER:$1|隐藏}}",
 	"flow-hide-header-content": "被$2{{GENDER:$1|隐藏}}",
+	"flow-invalid-topic-did-you-mean": "您是找“[[$1]]”吗？",
 	"flow-delete-post-content": "此帖子已被$1{{GENDER:$1|删除}}（[$2 历史]）",
 	"flow-delete-title-content": "此话题已被$1{{GENDER:$1|删除}}",
 	"flow-delete-header-content": "已被$2{{GENDER:$1|删除}}",

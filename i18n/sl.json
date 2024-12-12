@@ -64,6 +64,7 @@
 	"flow-hide-post-content": "To sporočilo je {{GENDER:$1|skril|skrila|skril_a}} $1 ([$2 zgodovina])",
 	"flow-hide-title-content": "To temo je {{GENDER:$1|skril|skrila|skril_a}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|Skril|Skrila|Skril_a}} $2",
+	"flow-invalid-topic-did-you-mean": "Ste mislili »[[$1]]«?",
 	"flow-delete-post-content": "To sporočilo je {{GENDER:$1|izbrisal|izbrisala|izbrisal_a}} $1 ([$2 zgodovina])",
 	"flow-delete-title-content": "To temo je {{GENDER:$1|izbrisal|izbrisala|izbrisal_a}} $1",
 	"flow-delete-header-content": "{{GENDER:$1|Izbrisal|Izbrisala|Izbrisal_a}} $2",

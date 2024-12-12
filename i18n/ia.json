@@ -61,6 +61,7 @@
 	"flow-hide-post-content": "Iste message ha essite {{GENDER:$1|celate}} per $1 ([$2 historia])",
 	"flow-hide-title-content": "Iste topico ha essite celate per $1",
 	"flow-hide-header-content": "{{GENDER:$1|Celate}} per $2",
+	"flow-invalid-topic-did-you-mean": "Vole tu dicer “[[$1]]”?",
 	"flow-delete-post-content": "Iste message ha essite {{GENDER:$1|delite}} per $1 ([$2 historia])",
 	"flow-delete-title-content": "Iste topico ha essite delite per $1",
 	"flow-delete-header-content": "{{GENDER:$1|Delite}} per $2",

@@ -86,6 +86,7 @@
 	"flow-hide-post-content": "此貼文已由$1{{GENDER:$1|隱藏}}（[$2 歷史]）",
 	"flow-hide-title-content": "此話題已由 $1 {{GENDER:$1|隱藏}}",
 	"flow-hide-header-content": "已由 $2 {{GENDER:$1|隱藏}}",
+	"flow-invalid-topic-did-you-mean": "您是指「[[$1]]」嗎？",
 	"flow-delete-post-content": "此貼文已由$1{{GENDER:$1|刪除}} ([$2 歷史])",
 	"flow-delete-title-content": "此話題已由 $1 {{GENDER:$1|刪除}}",
 	"flow-delete-header-content": "已由 $2 {{GENDER:$1|刪除}}",

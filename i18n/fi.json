@@ -75,6 +75,7 @@
 	"flow-hide-post-content": "Tämän viestin on {{GENDER:$1|piilottanut}} käyttäjä $1  ([$2 historia])",
 	"flow-hide-title-content": "Käyttäjä $1 on {{GENDER:$1|piilottanut}} tämän aiheen",
 	"flow-hide-header-content": "{{GENDER:$1|Piilottanut}} $2",
+	"flow-invalid-topic-did-you-mean": "Tarkoititko ”[[$1]]”?",
 	"flow-delete-post-content": "Tämän viestin on käyttäjä $1 {{GENDER:$1|poistanut}} ([$2 historia])",
 	"flow-delete-title-content": "Käyttäjä $1 on {{GENDER:$1|poistanut}} tämän aiheen",
 	"flow-delete-header-content": "{{GENDER:$1|Poistanut}} $2",

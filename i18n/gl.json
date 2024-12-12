@@ -70,6 +70,7 @@
 	"flow-hide-post-content": "Este publicación foi {{GENDER:$1|agochada}} por $1 ([$2 historial])",
 	"flow-hide-title-content": "Este tema foi {{GENDER:$1|agochado}} por $1",
 	"flow-hide-header-content": "{{GENDER:$1|Agochado}} por $2",
+	"flow-invalid-topic-did-you-mean": "Querías dicir \"[[$1]]\"?",
 	"flow-delete-post-content": "Esta publicación foi {{GENDER:$1|borrada}} por $1 ([$2 historial])",
 	"flow-delete-title-content": "Este tema foi {{GENDER:$1|borrado}} por $1",
 	"flow-delete-header-content": "{{GENDER:$1|Borrado}} por $2",

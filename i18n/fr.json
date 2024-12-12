@@ -113,6 +113,7 @@
 	"flow-hide-post-content": "Ce message a été caché par {{GENDER:$1|}}$1 ([$2 historique])",
 	"flow-hide-title-content": "Ce sujet a été caché par {{GENDER:$1|}}$1",
 	"flow-hide-header-content": "Caché par {{GENDER:$1|}}$2",
+	"flow-invalid-topic-did-you-mean": "Vouliez-vous dire « [[$1]] » ?",
 	"flow-delete-post-content": "Ce message a été supprimé par {{GENDER:$1|}}$1 ([$2 historique])",
 	"flow-delete-title-content": "Ce sujet a été supprimé par {{GENDER:$1|}}$1",
 	"flow-delete-header-content": "Supprimé par {{GENDER:$1|}}$2",

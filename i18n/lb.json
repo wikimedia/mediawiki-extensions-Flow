@@ -52,6 +52,7 @@
 	"flow-hide-post-content": "Dëse Bäitrag gouf {{GENDER:$1|vum}} $1 verstoppt ([$2 Versiounen])",
 	"flow-hide-title-content": "Dëse Sujet gouf {{GENDER:$1|vum}} $1 verstoppt",
 	"flow-hide-header-content": "Verstoppt {{GENDER:$1|vum}} $2",
+	"flow-invalid-topic-did-you-mean": "Mengt Dir „[[$1]]“?",
 	"flow-delete-post-content": "Dëse Bäitrag gouf {{GENDER:$1|vum}} $1 geläscht ([$2 Versiounen])",
 	"flow-delete-title-content": "Dëse Sujet gouf {{GENDER:$1|vum}} $1 geläscht",
 	"flow-delete-header-content": "Geläscht {{GENDER:$1|vum}} $2",

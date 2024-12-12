@@ -63,6 +63,7 @@
 	"flow-hide-post-content": "ଏ ପୋଷ୍ଟଟି $1 ([$2 ଇତିହାସ]) {{GENDER:$1|ଲୁଚାଇଦେଇଥିଲେ}}",
 	"flow-hide-title-content": "ଏ ବିଷୟଟି $1 {{GENDER:$1|ଲୁଚାଇଥିଲେ}}",
 	"flow-hide-header-content": "$2ଙ୍କଦ୍ୱାରା {{GENDER:$1|ଲୁଚାଗଲା}}",
+	"flow-invalid-topic-did-you-mean": "ଆପଣ \"[[$1]]\" ମନେକଲେ କି?",
 	"flow-delete-title-content": "ଏ ବିଷୟଟି $1 {{GENDER:$1|ଲିଭାଇଦେଲେ}}",
 	"flow-post-actions": "କାର୍ଯ୍ୟକ୍ରମ",
 	"flow-topic-actions": "କାର୍ଯ୍ୟକ୍ରମ",
