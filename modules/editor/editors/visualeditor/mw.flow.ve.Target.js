@@ -81,14 +81,14 @@
 	mw.flow.ve.Target.static.importRules = ve.copy( mw.flow.ve.Target.static.importRules );
 	mw.flow.ve.Target.static.importRules.external.blacklist[ 'link/mwExternal' ] = false;
 
+	mw.flow.ve.Target.static.allowTabFocusChange = true;
+
 	// Methods
 
 	mw.flow.ve.Target.prototype.addSurface = function ( dmDoc, config ) {
 		config = ve.extendObject( {
 			// eslint-disable-next-line no-jquery/no-global-selector
-			$overlayContainer: $( '#content' ),
-			// Disable to allow Tab/Shift+Tab to move focus out of the widget (T172694)
-			excludeCommands: [ 'indent', 'outdent' ]
+			$overlayContainer: $( '#content' )
 		}, config );
 		// Parent method
 		return mw.flow.ve.Target.super.prototype.addSurface.call( this, dmDoc, config );
