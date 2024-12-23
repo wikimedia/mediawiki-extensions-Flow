@@ -443,7 +443,7 @@
 	"flow-whatlinkshere-header": "من [$1 الوصف]",
 	"flow-whatlinkshere-post-summary": "من [ملخص $1]",
 	"structureddiscussions": "نقاشات هيكلية",
-	"flow-special-desc": "هذه الصفحة تحول إلى workflow للنقاشات الهيكليةأو post للنقاشات الهيكلية مع إعطاء UUID.",
+	"flow-special-desc": "تعمل هذه الصفحة الخاصة على التحويل إلى سير عمل النقاشات الهيكلية أو منشور النقاشات الهيكلية مع إعطاء UUID.",
 	"flow-special-type": "نوع",
 	"flow-special-type-post": "نشر",
 	"flow-special-type-workflow": "سير عمل التدفق",
