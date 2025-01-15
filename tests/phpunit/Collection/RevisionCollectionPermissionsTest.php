@@ -93,7 +93,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			'by' => $this->getTestSysop()->getUser(),
 			'user' => $blockedUser->getId()
 		] );
-		$this->block->insert();
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlock( $this->block );
 		// ensure that block made it into the database
 		$this->getDb()->commit( __METHOD__, 'flush' );
 	}
