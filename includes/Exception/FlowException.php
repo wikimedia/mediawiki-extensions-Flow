@@ -3,12 +3,11 @@
 namespace Flow\Exception;
 
 use Wikimedia\Message\MessageSpecifier;
-use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * Flow base exception
  */
-class FlowException extends NormalizedException implements MessageSpecifier {
+class FlowException extends FlowBaseException implements MessageSpecifier {
 
 	/**
 	 * Flow exception error code
