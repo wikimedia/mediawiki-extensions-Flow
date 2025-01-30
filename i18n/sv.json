@@ -21,6 +21,7 @@
 			"WikiPhoenix"
 		]
 	},
+	"content-model-flow-board": "Strukturerat diskussionsforum",
 	"enablestructureddiscussions": "Aktivera Flow",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Sluta}} bevaka ny aktivitet på \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Du}} bevakar inte längre sidan \"$1\"",
@@ -76,6 +77,7 @@
 	"flow-hide-post-content": "Detta inlägg {{GENDER:$1|doldes}} av $1 ([$2 historik])",
 	"flow-hide-title-content": "Detta ämne {{GENDER:$1|doldes}} av $1",
 	"flow-hide-header-content": "{{GENDER:$1|Dold}} av $2",
+	"flow-invalid-topic-did-you-mean": "Menade du \"[[$1]]\"?",
 	"flow-delete-post-content": "Detta inlägg {{GENDER:$1|raderades}} av $1 ([$2 historik])",
 	"flow-delete-title-content": "Detta ämne {{GENDER:$1|raderades}} av $1",
 	"flow-delete-header-content": "{{GENDER:$1|Raderad}} av $2",
