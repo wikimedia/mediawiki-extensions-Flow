@@ -104,14 +104,25 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 				$checkedCount++;
 				$coreTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 
-				if ( str_contains( $coreTitle->getText(), '/' ) ) {
+				if ( preg_match( "/\/([Ff]low|[Aa]rchive|StructuredDiscussions).*/", $coreTitle->getText() ) ) {
 					// Don't try to act on subpages
 					// $coreTitle->isSubpage() only works on namespaces with subpages enabled, which
 					// we don't care about for this check.
-					$this->output( "Skipped '$coreTitle' as it is already a subpage\n" );
+					$this->output( "Skipped '$coreTitle' as it is already an archived page\n" );
 					continue;
 				}
-				// $row / $coreTitle is a page with the flow board content model, and isn't a subpage
+				// $row / $coreTitle is a page with the flow board content model, and isn't an archived page
+
+				$subject = $coreTitle->getSubjectPage();
+				if ( !$subject || !$subject->exists() ) {
+					$this->output( "Skipped '$coreTitle' as it has no associated subject page\n" );
+					continue;
+				}
+
+				if ( $coreTitle->equals( $subject ) ) {
+					$this->output( "Skipped '$coreTitle' as it is a standalone Flow page\n" );
+					continue;
+				}
 
 				$creationStatus = $this->findValidSubpage( $coreTitle, $subpage, $moveUser );
 
