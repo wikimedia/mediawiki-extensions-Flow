@@ -48,7 +48,7 @@
 	"logentry-delete-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|відновив|відновила}} тему на сторінці [[$3]]",
 	"logentry-suppress-flow-suppress-topic": "$1 {{GENDER:$2|прибрав|прибрала}} тему «[[$3|$5]]» на [[$6]]",
 	"logentry-suppress-flow-suppress-topic-topic-title-not-visible": "$1 {{GENDER:$2|приховав|приховала}} тему на сторінці [[$3]]",
-	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|вилучив|вилучила}} тему «[[$3|$5]]» на [[$6]]",
+	"logentry-suppress-flow-restore-topic": "$1 {{GENDER:$2|відновив|відновила}} тему «[[$3|$5]]» на [[$6]]",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|вилучив|вилучила}} тему на сторінці [[$3]]",
 	"logentry-lock-flow-lock-topic": "$1 {{GENDER:$2|позначив|позначила}} тему «[[$3|$5]]» як вирішену на [[$6]]",
 	"logentry-lock-flow-lock-topic-topic-title-not-visible": "$1 {{GENDER:$2|позначив|позначила}} тему як вирішену на сторінці [[$3]]",
