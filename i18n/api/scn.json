@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"apihelp-flow-example-1": "Cancia la discrizzioni di \"[[Talk:Sandbox]]\"",
@@ -33,6 +34,6 @@
 	"apihelp-flow+view-topic-summary-description": "Talìa lu riassuntu di n'argumentu.",
 	"apihelp-flow+view-topic-summary-summary": "Talìa lu riassuntu di n'argumentu.",
 	"apihelp-flow+view-topiclist-description": "Talìa n'elencu d'argumenti.",
-	"apihelp-flow+view-topiclist-summary": "Talìa n'elencu d'argumenti.",
-	"apihelp-flow+view-topiclist-example-1": "Elencu argumenti supra [[Talk:Sandbox]]"
+	"apihelp-flow+view-topiclist-summary": "Talìa na lista di temi.",
+	"apihelp-flow+view-topiclist-example-1": "Lista li temi nni [[Talk:Sandbox]]"
 }

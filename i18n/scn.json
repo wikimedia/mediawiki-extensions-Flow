@@ -4,7 +4,8 @@
 			"Ajeje Brazorf",
 			"Gmelfi",
 			"Pippinu",
-			"Sarvaturi"
+			"Sarvaturi",
+			"GianAntonucci"
 		]
 	},
 	"flow-desc": "Sistema di discussioni",
@@ -44,7 +45,7 @@
 	"flow-rev-message-deleted-post": "$1 {{GENDER:$2|cancillau}} nu [$4 cummentu] supra \"$6\" (<em>$5</em>).",
 	"flow-rev-message-hid-topic": "$1 {{GENDER:$2|ammucciau}} l'[$4 argumentu] \"$6\" (<em>$5</em>).",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|cancillau}} l'[$4 argumentu] \"$6\" (<em>$5</em>).",
-	"flow-history-day": "Oi",
+	"flow-history-day": "Oji",
 	"flow-history-week": "Ùrtima simana",
 	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|canciau}} lu tò <span class=\"plainlinks\">[$5 cummentu]</span> supra [[$3|$4]].",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|N'argumentu novu|$1 argumenti novi|100=Cchiù di 99 argumenti novi}} supra <strong>$3</strong>.",
