@@ -472,7 +472,7 @@
 	"flow-topic-undo-delete": "تراجع عن الحذف",
 	"flow-topic-undo-suppress": "تراجع عن الحذف/الطمس",
 	"flow-importer-lqt-moved-thread-template": "الخيوط السائلة نقل بذرة الخيط المحول إلى التدفق",
-	"flow-importer-lqt-moved-thread-template-content": "هذا المنشور قد تم نقله بواسطة {{{author}}} في {{{date}}}، ويمكنك إيجاده هنا [[{{{title}}}]].",
+	"flow-importer-lqt-moved-thread-template-content": "هذا المنشور نُقل بواسطة {{{author}}} في {{{date}}}، ويمكنك إيجاده هنا [[{{{title}}}]].",
 	"flow-importer-lqt-converted-template": "صفحة LQT تم تحويلها إلى التدفق",
 	"flow-importer-lqt-converted-template-content": "صفحة التاريخ السابق قد تم أرشفتها لأغراض النسخ الاحتياطي في <span class='flow-link-to-archive'>[[{{{archive}}}]]</span> في {{#time: Y-m-d|{{{date}}}}}.",
 	"flow-importer-lqt-converted-archive-template": "أرشفة لصفحة LQT محولة",
