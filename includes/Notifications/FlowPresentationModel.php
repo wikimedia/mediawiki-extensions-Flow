@@ -134,7 +134,7 @@ abstract class FlowPresentationModel extends EchoEventPresentationModel {
 	}
 
 	protected function getTopicTitle( $extraParamName = 'topic-title' ) {
-		$topicTitle = $this->event->getExtraParam( $extraParamName );
+		$topicTitle = $this->event->getExtraParam( $extraParamName, '' );
 		return $this->truncateTopicTitle( $topicTitle );
 	}
 
