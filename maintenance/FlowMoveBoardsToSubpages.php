@@ -41,6 +41,7 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 		$this->addOption( 'limit', 'Limit of inconsistent pages to identify (and fix if not a dry ' .
 			'run). Defaults to no limit', false, true );
 		$this->addOption( 'subpage', 'Name of subpage to create. Defaults to "Flow"', false, true );
+		$this->addOption( 'always-number', 'Always number an archive page, even when it\'s the first one' );
 
 		$this->setBatchSize( 300 );
 
@@ -187,8 +188,11 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 
 		$status = Status::newGood();
 
-		for ( $i = 1; $i <= 3; $i++ ) {
-			$subpageTitle = $coreTitle->getSubpage( $subpage . ( $i > 1 ? $i : '' ) );
+		$alwaysNumber = $this->getOption( 'always-number' );
+
+		for ( $i = 1; $i <= 9; $i++ ) {
+			$suffix = ( $alwaysNumber || $i > 1 ) ? $i : '';
+			$subpageTitle = $coreTitle->getSubpage( $subpage . $suffix );
 
 			$creationStatus = $occupationController->safeAllowCreation(
 				$subpageTitle,
