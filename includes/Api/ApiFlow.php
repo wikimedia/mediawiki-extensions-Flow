@@ -3,6 +3,7 @@
 namespace Flow\Api;
 
 use Flow\Container;
+use Flow\Exception\UnknownWorkflowIdException;
 use Flow\Hooks\HookRunner;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
@@ -97,7 +98,11 @@ class ApiFlow extends ApiBase {
 		if ( $module->needsPage() ) {
 			$module->setPage( $this->getPage( $params ) );
 		}
-		$module->execute();
+		try {
+			$module->execute();
+		} catch ( UnknownWorkflowIdException $e ) {
+			$this->dieWithError( $e->getMessage(), null, null, 404 );
+		}
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onAPIFlowAfterExecute( $module );
 	}
 
