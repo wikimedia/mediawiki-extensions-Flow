@@ -9,6 +9,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Iterator;
 use MediaWiki\WikiMap\WikiMap;
+use ReturnTypeWillChange;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -114,6 +115,7 @@ abstract class AbstractIterator implements Iterator {
 	/**
 	 * @return AbstractRevision|null The most recently fetched revision object
 	 */
+	#[ReturnTypeWillChange]
 	public function current() {
 		return $this->current;
 	}
@@ -121,6 +123,7 @@ abstract class AbstractIterator implements Iterator {
 	/**
 	 * @return int 0-indexed count of the page number fetched
 	 */
+	#[\ReturnTypeWillChange]
 	public function key() {
 		return $this->key;
 	}
@@ -128,9 +131,10 @@ abstract class AbstractIterator implements Iterator {
 	/**
 	 * Reset the iterator to the beginning of the table.
 	 */
-	public function rewind() {
+	public function rewind(): void {
 		$this->results = null;
-		$this->key = -1; // self::next() will turn this into 0
+		// self::next() will turn this into 0
+		$this->key = -1;
 		$this->current = null;
 		$this->next();
 	}
@@ -138,14 +142,14 @@ abstract class AbstractIterator implements Iterator {
 	/**
 	 * @return bool True when the iterator is in a valid state
 	 */
-	public function valid() {
+	public function valid(): bool {
 		return (bool)$this->current;
 	}
 
 	/**
 	 * Fetch the next set of rows from the database.
 	 */
-	public function next() {
+	public function next(): void {
 		if ( $this->results === null ) {
 			$this->results = $this->query();
 		}
