@@ -76,6 +76,7 @@ use MediaWiki\Page\Hook\ShowMissingArticleHook;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Pager\IndexPager;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Hook\GetUserPermissionsErrorsHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -1717,8 +1718,9 @@ class Hooks implements
 		$emptyContent = $services->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
 		$contentRenderer = $services->getContentRenderer();
-		$parserOutput = $contentRenderer->getParserOutput( $emptyContent, $article->getTitle() );
-		$article->getContext()->getOutput()->addParserOutput( $parserOutput );
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOutput = $contentRenderer->getParserOutput( $emptyContent, $article->getTitle(), null, $parserOptions );
+		$article->getContext()->getOutput()->addParserOutput( $parserOutput, $parserOptions );
 
 		return false;
 	}
