@@ -68,7 +68,7 @@ class TalkpageManagerTest extends MediaWikiIntegrationTestCase {
 
 		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			Title::newFromText( 'User:Test123' ), $unconfirmedUser );
-		$this->assertStatusError( 'flow-error-allowcreation-flow-create-board', $permissionStatus,
+		$this->assertStatusError( 'badaccess-groups', $permissionStatus,
 			'Correct error thrown when user does not have flow-create-board right' );
 
 		$adminUser = $this->getTestUser( [ 'sysop', 'flow-bot' ] )->getUser();

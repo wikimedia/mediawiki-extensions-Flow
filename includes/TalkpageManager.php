@@ -114,17 +114,15 @@ class TalkpageManager implements OccupationController {
 		if (
 			// If the title is default-Flow, the user always has permission
 			$services->getSlotRoleRegistry()->getRoleHandler( SlotRecord::MAIN )
-				->getDefaultModel( $title ) === CONTENT_MODEL_FLOW_BOARD ||
-
-			// Gate this on the flow-create-board right, essentially giving
-			// wiki communities control over if Flow board creation is allowed
-			// to everyone or just a select few.
-			$services->getPermissionManager()
-				->userCan( 'flow-create-board', $user, $title )
+				->getDefaultModel( $title ) === CONTENT_MODEL_FLOW_BOARD
 		) {
 			return Status::newGood();
 		} else {
-			return Status::newFatal( 'flow-error-allowcreation-flow-create-board' );
+			// Gate this on the flow-create-board right, essentially giving
+			// wiki communities control over if Flow board creation is allowed
+			// to everyone or just a select few.
+			return Status::wrap( $services->getPermissionManager()
+				->getPermissionStatus( 'flow-create-board', $user, $title ) );
 		}
 	}
 
