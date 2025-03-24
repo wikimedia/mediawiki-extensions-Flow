@@ -34,6 +34,10 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 	 * @return array [title i18n key => content callback]
 	 */
 	protected function getTemplates() {
+		if ( defined( 'MW_QUIBBLE_CI' ) ) {
+			// Avoid slowing down CI with these templates, as they're not used in any tests (T389894)
+			return [];
+		}
 		return [
 			// Template:FlowMention, used to render mentions in Flow's Visual Editor
 			'flow-ve-mention-template-title' => function ( Title $title ) {
