@@ -55,8 +55,9 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 
 		$this->dbFactory = Container::get( 'db.factory' );
 
+		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
 		$movePageFactory = MediaWikiServices::getInstance()->getMovePageFactory();
-		$moveUser = User::newSystemUser( FLOW_TALK_PAGE_MANAGER_USER, [ 'steal' => true ] );
+		$moveUser = $occupationController->getTalkpageManager();
 
 		$dryRun = $this->hasOption( 'dry-run' );
 
