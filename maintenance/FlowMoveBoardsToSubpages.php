@@ -112,16 +112,19 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 					continue;
 				}
 				// $row / $coreTitle is a page with the flow board content model, and isn't an archived page
+				if ( !$coreTitle->inNamespace( NS_USER_TALK ) ) {
+					// Skip pages whose non-talk namespace counterpart doesn't exist, assuming they're archives
+					// but don't skip user talk pages, since having a redlinked user page isn't indicative of anything
+					$subject = $coreTitle->getSubjectPage();
+					if ( !$subject || !$subject->exists() ) {
+						$this->output( "Skipped '$coreTitle' as it has no associated subject page\n" );
+						continue;
+					}
 
-				$subject = $coreTitle->getSubjectPage();
-				if ( !$subject || !$subject->exists() ) {
-					$this->output( "Skipped '$coreTitle' as it has no associated subject page\n" );
-					continue;
-				}
-
-				if ( $coreTitle->equals( $subject ) ) {
-					$this->output( "Skipped '$coreTitle' as it is a standalone Flow page\n" );
-					continue;
+					if ( $coreTitle->equals( $subject ) ) {
+						$this->output( "Skipped '$coreTitle' as it is a standalone Flow page\n" );
+						continue;
+					}
 				}
 
 				$creationStatus = $this->findValidSubpage( $coreTitle, $subpage, $moveUser );
