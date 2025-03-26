@@ -76,7 +76,7 @@
 	"flow-post-moderated-toggle-hide-hide": "Gönderiyi $2 tarafından {{GENDER:$1|gizlenmiş}} olarak gizle",
 	"flow-post-moderated-toggle-delete-hide": "Gönderiyi $2 tarafından {{GENDER:$1|silinmiş}} olarak gizle",
 	"flow-post-moderated-toggle-suppress-hide": "Gönderiyi $2 tarafından {{GENDER:$1|gizlendi}} olarak gizle",
-	"flow-topic-moderated-reason-prefix": "Sebep:",
+	"flow-topic-moderated-reason-prefix": "Gerekçe:",
 	"flow-hide-post-content": "Bu gönderiyi $1 tarafından {{GENDER:$1|gizlendi}} ([$2 geçmiş])",
 	"flow-hide-title-content": "Bu konu $1 tarafından {{GENDER:$1|gizlendi}}",
 	"flow-hide-header-content": "$2 tarafından {{GENDER:$1|gizlendi}}",
