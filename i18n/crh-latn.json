@@ -6,6 +6,10 @@
 			"Don Alessandro"
 		]
 	},
+	"nstab-topic": "Mevzu",
+	"flow-newtopic-title-placeholder": "Yañı mevzu",
+	"flow-newtopic-header": "Yañı bir mevzu qoş",
 	"flow-newtopic-save": "Mevzu qoş",
-	"notification-bundle-header-flow-new-topic-user-talk": "<strong>Siziñ muzakere saifeñizde</strong> {{PLURAL:$1|Yañı bir mevzu|$1 yañı mevzu|100=99+ yañı mevzu}} bar."
+	"notification-bundle-header-flow-new-topic-user-talk": "<strong>Siziñ muzakere saifeñizde</strong> {{PLURAL:$1|Yañı bir mevzu|$1 yañı mevzu|100=99+ yañı mevzu}} bar.",
+	"flow-mark-revision-patrolled-link-text": "Teşkerilgen olaraq belgile"
 }
