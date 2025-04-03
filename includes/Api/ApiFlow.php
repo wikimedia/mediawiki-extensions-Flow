@@ -3,7 +3,7 @@
 namespace Flow\Api;
 
 use Flow\Container;
-use Flow\Exception\UnknownWorkflowIdException;
+use Flow\Exception\InvalidInputException;
 use Flow\Hooks\HookRunner;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
@@ -100,8 +100,8 @@ class ApiFlow extends ApiBase {
 		}
 		try {
 			$module->execute();
-		} catch ( UnknownWorkflowIdException $e ) {
-			$this->dieWithError( $e->getMessage(), null, null, 404 );
+		} catch ( InvalidInputException $e ) {
+			$this->dieWithError( $e->getMessageObject(), null, null, 400 );
 		}
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onAPIFlowAfterExecute( $module );
 	}
