@@ -142,6 +142,7 @@ class AbuseFilter implements SpamFilter {
 			->addUserVars( $recentChange->getPerformerIdentity() )
 			->addTitleVars( $title, 'page' )
 			->addTitleVars( $rev->getCollection()->getWorkflow()->getOwnerTitle(), 'board' )
+			->addGenericVars()
 			->addEditVars( MediaWikiServices::getInstance()->getWikiPageFactory()
 				->newFromTitle( $title ), $contextUser );
 	}
