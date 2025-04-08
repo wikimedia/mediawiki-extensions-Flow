@@ -141,7 +141,7 @@
 	"flow-topic-action-unsuppress-topic": "Odukini temo",
 	"flow-topic-action-restore-topic": "Obnovi temo",
 	"flow-topic-action-undo-moderation": "Razveljavi",
-	"flow-topic-notification-subscribe-title": "Ta tema je bila dodana na {{GENDER:$1|vaš}} spisek nadzorov.",
+	"flow-topic-notification-subscribe-title": "Ta tema je bila dodana na {{GENDER:$1|vaš}} nadzorni seznam.",
 	"flow-topic-notification-subscribe-description": "O vseh aktivnostih te teme boste {{GENDER:$1|prejeli}} obvestilo.",
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|Naročeni}} ste na ta razpravni panel!",
 	"flow-board-notification-subscribe-description": "Ob odprtju nove teme na tem panelu boste {{GENDER:$1|prejeli}} obvestilo.",
