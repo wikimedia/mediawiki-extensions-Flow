@@ -198,4 +198,14 @@ class UUIDTest extends FlowTestCase {
 
 		$this->assertEquals( $expect->fetch(), $new->getBinary()->fetch() );
 	}
+
+	public function testJSONCodecSerialization() {
+		$uuid = UUID::create();
+		$codec = $this->getServiceContainer()->getJsonCodec();
+		$serialized = $codec->serialize( $uuid );
+
+		$deserialized = $codec->deserialize( $serialized );
+		$this->assertTrue( $uuid->equals( $deserialized ) );
+	}
+
 }

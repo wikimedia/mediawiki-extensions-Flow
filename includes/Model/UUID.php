@@ -9,6 +9,8 @@ use Flow\Exception\InvalidParameterException;
 use MediaWiki\Api\ApiSerializable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -18,7 +20,9 @@ use Wikimedia\Timestamp\TimestampException;
  *
  * @todo probably should be UID since these dont match the UUID standard
  */
-class UUID implements ApiSerializable {
+class UUID implements ApiSerializable, JsonCodecable {
+	use JsonCodecableTrait;
+
 	/**
 	 * @var UUID[][]
 	 */
@@ -214,6 +218,16 @@ class UUID implements ApiSerializable {
 		wfWarn( __METHOD__ . ': UUID __toString auto-converted to alphaDecimal; please do manually.' );
 
 		return $this->getAlphadecimal();
+	}
+
+	public function toJsonArray(): array {
+		return [
+			'alnum' => $this->getAlphadecimal()
+		];
+	}
+
+	public static function newFromJsonArray( array $json ) {
+		return new UUID( $json['alnum'], self::INPUT_ALNUM );
 	}
 
 	/**
