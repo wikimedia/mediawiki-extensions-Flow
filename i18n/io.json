@@ -87,6 +87,7 @@
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|kreis}} nova temo kun titulo \"$2\" che $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|1 temo nova|$1 nova temi|100=99+ nova temi}} che $2",
 	"echo-category-title-flow-discussion": "Strukturigata diskuto",
+	"echo-pref-tooltip-flow-discussion": "Informez me pri agadi en temi oe en pagini quin me surveyas.",
 	"flow-link-topic": "temo",
 	"flow-link-history": "kronologio",
 	"flow-moderation-title-suppress-post": "Ka supresar redakto?",
