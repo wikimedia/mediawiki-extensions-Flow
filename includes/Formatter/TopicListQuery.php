@@ -13,6 +13,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\WatchedTopicItems;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Json\FormatJson;
 
 class TopicListQuery extends AbstractQuery {
@@ -90,7 +91,7 @@ class TopicListQuery extends AbstractQuery {
 				}
 				$results[] = $row;
 			} catch ( FlowException $e ) {
-				\MWExceptionHandler::logException( $e );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 

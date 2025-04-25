@@ -2,7 +2,7 @@
 
 namespace Flow\Exception;
 
-use ErrorPageError;
+use MediaWiki\Exception\ErrorPageError;
 
 /**
  * Category: invalid action exception

@@ -10,9 +10,9 @@ use Flow\Exception\PermissionException;
 use Flow\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use RecentChange;
 
 abstract class AbstractRevision {
 	public const MODERATED_NONE = '';

@@ -4,12 +4,12 @@ namespace Flow\Import;
 
 use Flow\Exception\FlowException;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
 use Traversable;
 use Wikimedia\Rdbms\IDBAccessObject;

@@ -2,8 +2,8 @@
 
 namespace Flow\Actions;
 
-use Article;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Page\Article;
 use MediaWiki\Title\Title;
 
 class EditAction extends FlowAction {

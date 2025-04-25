@@ -13,9 +13,9 @@ use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use RecentChange;
 
 /**
  * Provides url generation capabilities for Flow. Ties together an

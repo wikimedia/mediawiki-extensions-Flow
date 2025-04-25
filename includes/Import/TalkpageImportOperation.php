@@ -10,6 +10,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -116,7 +117,7 @@ class TalkpageImportOperation {
 			throw $e;
 		} catch ( \Exception $e ) {
 			$state->rollback();
-			\MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e );
 			$state->logger->error( 'Failed importing header: ' . $header->getObjectKey() );
 			$state->logger->error( (string)$e );
 			$failed++;
@@ -141,7 +142,7 @@ class TalkpageImportOperation {
 				throw $e;
 			} catch ( \Exception $e ) {
 				$state->rollback();
-				\MWExceptionHandler::logException( $e );
+				MWExceptionHandler::logException( $e );
 				$state->logger->error( 'Failed importing topic: ' . $topic->getObjectKey() );
 				$state->logger->error( (string)$e );
 				$failed++;

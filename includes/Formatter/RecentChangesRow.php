@@ -2,7 +2,7 @@
 
 namespace Flow\Formatter;
 
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 class RecentChangesRow extends FormatterRow {
 	/**

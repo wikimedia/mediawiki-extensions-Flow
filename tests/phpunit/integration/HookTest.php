@@ -13,11 +13,11 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use MediaWiki\CheckUser\Hook\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use RecentChange;
 
 /**
  * @covers \Flow\Hooks

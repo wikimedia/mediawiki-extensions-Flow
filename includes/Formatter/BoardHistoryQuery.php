@@ -5,7 +5,7 @@ namespace Flow\Formatter;
 use Flow\Data\Utils\SortRevisionsByRevisionId;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use MWExceptionHandler;
+use MediaWiki\Exception\MWExceptionHandler;
 
 class BoardHistoryQuery extends HistoryQuery {
 	/**

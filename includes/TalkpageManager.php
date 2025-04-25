@@ -7,6 +7,7 @@ use Flow\Exception\InvalidInputException;
 use Flow\Model\Workflow;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
@@ -15,7 +16,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
-use WikiPage;
 
 class TalkpageManager implements OccupationController {
 	/**

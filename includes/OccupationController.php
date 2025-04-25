@@ -3,10 +3,10 @@
 namespace Flow;
 
 use Flow\Model\Workflow;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use WikiPage;
 
 interface OccupationController {
 	/**

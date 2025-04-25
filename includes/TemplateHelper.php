@@ -10,6 +10,7 @@ use LightnCandy\SafeString;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use OOUI\IconWidget;
@@ -409,7 +410,7 @@ class TemplateHelper {
 	 * @return SafeString
 	 */
 	public static function showCharacterDifference( $old, $new ) {
-		return new SafeString( \ChangesList::showCharacterDifference( (int)$old, (int)$new ) );
+		return new SafeString( ChangesList::showCharacterDifference( (int)$old, (int)$new ) );
 	}
 
 	/**

@@ -5,6 +5,7 @@ namespace Flow\Data;
 use Flow\DbFactory;
 use Flow\Exception\NoIndexException;
 use Flow\Model\UUID;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Json\FormatJson;
 
 /**
@@ -101,7 +102,7 @@ class ObjectLocator {
 					. json_encode( $options ) . ' : '
 					. json_encode( array_map( 'get_class', $this->indexes ) )
 				);
-				\MWExceptionHandler::logException( $e );
+				MWExceptionHandler::logException( $e );
 			} else {
 				wfDebugLog( 'FlowDebug', __METHOD__ . ': ' . $e->getMessage() );
 			}

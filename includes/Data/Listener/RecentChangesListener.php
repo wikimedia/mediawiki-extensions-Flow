@@ -10,9 +10,9 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use RecentChange;
 
 /**
  * Inserts mw recentchange rows for flow AbstractRevision instances.

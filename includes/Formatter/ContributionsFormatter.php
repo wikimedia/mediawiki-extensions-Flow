@@ -2,13 +2,13 @@
 
 namespace Flow\Formatter;
 
-use ChangesList;
 use Flow\Conversion\Utils;
 use Flow\Exception\FlowException;
 use Flow\Model\Anchor;
 use Flow\Model\PostRevision;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\RecentChanges\ChangesList;
 
 class ContributionsFormatter extends AbstractFormatter {
 	protected function getHistoryType() {

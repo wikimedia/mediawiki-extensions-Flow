@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use MediaWiki\Exception\MWExceptionHandler;
 
 class PostHistoryQuery extends HistoryQuery {
 
@@ -36,7 +37,7 @@ class PostHistoryQuery extends HistoryQuery {
 				$results[] = $row = new FormatterRow;
 				$this->buildResult( $revision, null, $row );
 			} catch ( FlowException $e ) {
-				\MWExceptionHandler::logException( $e );
+				MWExceptionHandler::logException( $e );
 			}
 		}
 

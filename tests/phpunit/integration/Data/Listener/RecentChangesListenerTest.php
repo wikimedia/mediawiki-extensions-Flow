@@ -9,6 +9,7 @@ use Flow\Formatter\IRCLineUrlFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\UserNameBatch;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -43,7 +44,7 @@ class RecentChangesListenerTest extends \MediaWikiIntegrationTestCase {
 			->method( 'newFromRow' )
 			->willReturnCallback( function ( $obj ) use ( &$ref ) {
 				$ref = $obj;
-				return $this->createMock( \RecentChange::class );
+				return $this->createMock( RecentChange::class );
 			} );
 
 		$rc = new RecentChangesListener(

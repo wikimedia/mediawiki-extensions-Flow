@@ -11,6 +11,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use InvalidArgumentException;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\User\UserIdentityLookup;
@@ -111,7 +112,7 @@ class ContributionsQuery extends AbstractQuery {
 
 					$results[] = $result;
 				} catch ( FlowException $e ) {
-					\MWExceptionHandler::logException( $e );
+					MWExceptionHandler::logException( $e );
 				}
 			}
 		}

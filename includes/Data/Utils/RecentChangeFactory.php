@@ -2,7 +2,7 @@
 
 namespace Flow\Data\Utils;
 
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 use stdClass;
 
 /**

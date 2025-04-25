@@ -2,10 +2,10 @@
 
 namespace Flow\Actions;
 
-use Article;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Title\Title;
 
 class ViewAction extends FlowAction {

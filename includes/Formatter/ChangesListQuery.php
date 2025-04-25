@@ -9,7 +9,7 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use MediaWiki\Logger\LoggerFactory;
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 class ChangesListQuery extends AbstractQuery {
 

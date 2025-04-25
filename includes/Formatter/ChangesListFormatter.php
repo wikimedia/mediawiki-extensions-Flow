@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use ChangesList;
 use Flow\Conversion\Utils;
 use Flow\Data\Listener\RecentChangesListener;
 use Flow\Exception\FlowException;
@@ -11,6 +10,8 @@ use Flow\Model\Anchor;
 use Flow\Model\UUID;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\RCCacheEntry;
 
 class ChangesListFormatter extends AbstractFormatter {
 	protected function getHistoryType() {
@@ -173,7 +174,7 @@ class ChangesListFormatter extends AbstractFormatter {
 	/**
 	 * @param RecentChangesRow $row
 	 * @param IContextSource $ctx
-	 * @param \RCCacheEntry[] $block
+	 * @param RCCacheEntry[] $block
 	 * @param array $links
 	 * @return array|false Links array, or false on failure
 	 * @throws FlowException

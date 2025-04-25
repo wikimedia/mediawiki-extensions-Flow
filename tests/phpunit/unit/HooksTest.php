@@ -5,9 +5,9 @@ namespace Flow\Tests\Unit;
 use Flow\Data\Listener\RecentChangesListener;
 use Flow\Formatter\CheckUserQuery;
 use Flow\Hooks;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use RecentChange;
 
 /**
  * @covers \Flow\Hooks

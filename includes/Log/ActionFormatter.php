@@ -11,10 +11,10 @@ use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
-use LogEntry;
-use LogFormatter;
-use LogPage;
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\LogEntry;
+use MediaWiki\Logging\LogFormatter;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
 
 class ActionFormatter extends LogFormatter {

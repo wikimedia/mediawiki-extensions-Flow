@@ -9,7 +9,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\RCFeed\RCFeedFormatter;
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 use SplObjectStorage;
 
 /**

@@ -25,6 +25,8 @@ use Flow\Notifications\Controller;
 use Flow\Repository\RootPostLoader;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
@@ -924,9 +926,9 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		// Show a snippet of the relevant log entry if available.
-		if ( \LogPage::isLogType( $state ) ) {
+		if ( LogPage::isLogType( $state ) ) {
 			// check if user has sufficient permissions to see log
-			$logPage = new \LogPage( $state );
+			$logPage = new LogPage( $state );
 			if ( MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $this->context->getUser(), $logPage->getRestriction() )
 			) {
@@ -937,7 +939,7 @@ class TopicBlock extends AbstractBlock {
 				$output = $rc->getOutput();
 
 				// get log extract
-				$entries = \LogEventsList::showLogExtract(
+				$entries = LogEventsList::showLogExtract(
 					$output,
 					[ $state ],
 					$this->workflow->getArticleTitle()->getPrefixedText(),

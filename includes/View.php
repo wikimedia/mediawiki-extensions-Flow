@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use Article;
 use Flow\Block\AbstractBlock;
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
@@ -18,6 +17,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 

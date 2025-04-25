@@ -2,13 +2,13 @@
 
 namespace Flow\Formatter;
 
-use ChangesList;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Utils\MWTimestamp;
 
 class RevisionViewFormatter {

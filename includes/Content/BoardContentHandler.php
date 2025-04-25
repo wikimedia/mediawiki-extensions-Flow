@@ -2,7 +2,6 @@
 
 namespace Flow\Content;
 
-use Article;
 use Flow\Actions\FlowAction;
 use Flow\Container;
 use Flow\Diff\FlowBoardContentDiffView;
@@ -21,6 +20,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;

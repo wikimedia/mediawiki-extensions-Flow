@@ -2,9 +2,6 @@
 
 namespace Flow\Actions;
 
-use Action;
-use Article;
-use ErrorPageError;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
@@ -12,8 +9,11 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\View;
 use Flow\WorkflowLoaderFactory;
+use MediaWiki\Actions\Action;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 

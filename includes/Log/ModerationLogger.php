@@ -8,7 +8,7 @@ use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Title\Title;
 
 class ModerationLogger {

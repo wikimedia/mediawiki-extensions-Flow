@@ -8,7 +8,7 @@ use Flow\Import\IImportTopic;
 use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\User\User;
 
 /**
