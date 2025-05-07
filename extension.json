@@ -701,7 +701,6 @@
 		"SpecialCheckUserGetLinksFromRow": "Flow\\Hooks::onSpecialCheckUserGetLinksFromRow",
 		"CheckUserInsertChangesRow": "Flow\\Hooks::onCheckUserInsertChangesRow",
 		"IRCLineURL": "main",
-		"WhatLinksHereProps": "main",
 		"ShowMissingArticle": "main",
 		"WatchArticle": "main",
 		"UnwatchArticle": "main",

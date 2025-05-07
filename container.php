@@ -747,10 +747,6 @@ $c['reference.updater.links-tables'] = static function ( $c ) {
 	return new Flow\LinksTableUpdater( $c['storage'] );
 };
 
-$c['reference.clarifier'] = static function ( $c ) {
-	return new Flow\ReferenceClarifier( $c['storage'], $c['url_generator'] );
-};
-
 $c['reference.extractor'] = static function ( $c ) {
 	$default = [
 		new Flow\Parsoid\Extractor\ImageExtractor,

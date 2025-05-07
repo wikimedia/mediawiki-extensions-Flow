@@ -57,7 +57,6 @@ use MediaWiki\Hook\UnwatchArticleHook;
 use MediaWiki\Hook\WatchArticleHook;
 use MediaWiki\Hook\WatchlistEditorBeforeFormRenderHook;
 use MediaWiki\Hook\WatchlistEditorBuildRemoveLineHook;
-use MediaWiki\Hook\WhatLinksHerePropsHook;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Logging\LogEntry;
@@ -134,7 +133,6 @@ class Hooks implements
 	ArticleEditUpdateNewTalkHook,
 	InfoActionHook,
 	IRCLineURLHook,
-	WhatLinksHerePropsHook,
 	ShowMissingArticleHook,
 	WatchArticleHook,
 	UnwatchArticleHook,
@@ -1153,27 +1151,6 @@ class Hooks implements
 		if ( $result !== null ) {
 			$url = $result;
 			$query = '';
-		}
-	}
-
-	public function onWhatLinksHereProps( $row, $title, $target, &$props ) {
-		set_error_handler( new RecoverableErrorHandler, -1 );
-		try {
-			/** @var ReferenceClarifier $clarifier */
-			$clarifier = Container::get( 'reference.clarifier' );
-			$newProps = $clarifier->getWhatLinksHereProps( $row, $title, $target );
-
-			$props = array_merge( $props, $newProps );
-		} catch ( Exception $e ) {
-			wfDebugLog( 'Flow', sprintf(
-				'%s: Failed formatting WhatLinksHere for %s to %s',
-				__METHOD__,
-				$title->getFullText(),
-				$target->getFullText()
-			) );
-			MWExceptionHandler::logException( $e );
-		} finally {
-			restore_error_handler();
 		}
 	}
 
