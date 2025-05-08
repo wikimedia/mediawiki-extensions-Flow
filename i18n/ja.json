@@ -391,8 +391,6 @@
 	"flow-toggle-topics": "話題のみの表示に切り替える",
 	"flow-toggle-topics-posts": "話題と投稿の表示に切り替える",
 	"flow-terms-of-use-summarize": "「{{int:flow-topic-action-update-topic-summary}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
-	"flow-whatlinkshere-post": "[$1 投稿]から",
-	"flow-whatlinkshere-header": "[$1 説明]から",
 	"structureddiscussions": "Structured Discussions",
 	"flow-special-desc": "この特別ページは、構造化された議論のワークフローまたはUUIDが与えられた構造化議論の投稿に転送されます。",
 	"flow-special-type": "種類",

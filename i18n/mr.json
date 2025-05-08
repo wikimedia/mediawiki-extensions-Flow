@@ -310,8 +310,6 @@
 	"flow-terms-of-use-summarize": "\"{{int:flow-topic-action-update-topic-summary}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
 	"flow-terms-of-use-lock-topic": "\"{{int:flow-topic-action-lock-topic}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
 	"flow-terms-of-use-unlock-topic": "\"{{int:flow-topic-action-unlock-topic}}\" हे टिचकण्याने आपण या विकिकरीता असलेल्या वापराच्या अटी मान्य करता.",
-	"flow-whatlinkshere-header": "[$1 वर्णना] मधून",
-	"flow-whatlinkshere-post-summary": "[$1 सारांशा] मधून",
 	"structureddiscussions": "प्रवाह",
 	"flow-special-desc": "हे विशेष पान, प्रवाहाच्या कार्यप्रवाहास किंवा, जर यूयूआयडी (UUID) दिली असल्यास, प्रवाह टपालनास पुनर्निर्देशित करते.",
 	"flow-special-type": "प्रकार",

@@ -106,7 +106,6 @@
 	"flow-terms-of-use-summarize": "เมื่อกดปุ่ม \"{{int:flow-topic-action-update-topic-summary}}\" ถือว่าคุณยอมรับข้อกำหนดการใช้งานสำหรับวิกินี้",
 	"flow-terms-of-use-lock-topic": "เมื่อกดปุ่ม \"{{int:flow-topic-action-lock-topic}}\" ถือว่าคุณยอมรับข้อกำหนดการใช้งานสำหรับวิกินี้",
 	"flow-terms-of-use-unlock-topic": "เมื่อกดปุ่ม \"{{int:flow-topic-action-unlock-topic}}\" ถือว่าคุณยอมรับข้อกำหนดการใช้งานสำหรับวิกินี้",
-	"flow-whatlinkshere-header": "จาก[$1 คำอธิบาย]",
 	"structureddiscussions": "Structured Discussions",
 	"flow-special-type": "ประเภท",
 	"flow-special-type-workflow": "เวิร์กโฟลว์",

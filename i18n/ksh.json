@@ -235,8 +235,6 @@
 	"flow-newest-topics": "Neuste Tehme",
 	"flow-recent-topics": "Tehme, wo zeläz zoh jeschrevve wohd",
 	"flow-terms-of-use-summarize": "Wann De op „{{int:flow-topic-action-update-topic-summary}}“ kleks, schtemmps De dä Bedengonge för de Benözong för heh dat Wikki zoh.",
-	"flow-whatlinkshere-header": "vun dä [$1 Övverschreff]",
-	"flow-whatlinkshere-post-summary": "vun de [$1 Zersammefaßong]",
 	"flow-special-type": "Zoot",
 	"flow-special-type-workflow": "Afflouf",
 	"flow-special-enableflow-invalid-title": "The provided page is not a valid page title\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-special-enableflow-invalid-title/en\n-->",

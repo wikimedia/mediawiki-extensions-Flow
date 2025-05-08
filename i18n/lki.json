@@ -17,7 +17,6 @@
 	"flow-rev-message-edit-header": "$1 سرفصل صفحه را {{GENDER:$2|ویرایش کرد}}",
 	"flow-link-header-revision": "نسخهٔ توضیحات",
 	"flow-moderation-confirmation-delete-topic": "اێ تاپیکە پاک بیەسا",
-	"flow-whatlinkshere-header": "از [$1 توضیحات]",
 	"flow-special-enableflow-header": "توضیحات اولیه از تخت جریان (ویکی‌متن)",
 	"flow-undo-edit-header": "در حال ویرایش توضیحات"
 }
