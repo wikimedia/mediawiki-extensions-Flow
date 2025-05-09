@@ -3,11 +3,31 @@
 		"authors": [
 			"AryanSogd",
 			"DannyS712",
+			"Farorud",
 			"ToJack"
 		]
 	},
+	"content-model-flow-board": "Тахтаи баҳсҳои сохторманд",
+	"enablestructureddiscussions": "Фаъолсозии Баҳсҳои сохторманд",
+	"notification-dynamic-actions-flow-board-unwatch": "Бас кардани {{GENDER:$3|пайгирии}} саҳифаҳо дар $1.",
+	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Шумо}} саҳифаи \"$1\"-ро пайгирӣ намекунед.",
+	"notification-dynamic-actions-flow-topic-unwatch": "Пайгирии ин мавзӯъро {{GENDER:$3|хотима додан}}.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation": "{{GENDER:$3|Шумо}} саҳифаи \"$1\"-ро пайгирӣ намекунед.",
+	"notification-dynamic-actions-flow-topic-unwatch-confirmation-description": "{{GENDER:$3|Шумо}} метавонед [$2 ин мавзӯъро] ҳар вақте пайгирӣ кунед.",
+	"flow-desc": "Системаи баҳс",
+	"nstab-topic": "Мавзӯъ",
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|пок}} мавзӯъ оид ба [[$3]]",
+	"flow-post-actions": "Амалҳо",
+	"flow-topic-actions": "Амалҳо",
+	"flow-cancel": "Лағв",
+	"flow-skip-summary": "Гузашта рафтан",
+	"flow-edit-summary-placeholder": "Кутоҳ карда хулосаи баҳсро нависед",
+	"flow-summary-authored": "Хулоса аз ҷониби $1",
 	"flow-show-change": "Намоиши тағйирот",
+	"flow-newtopic-title-placeholder": "Мавзӯи нав",
+	"flow-newtopic-content-placeholder": "Паёми навро дар $1 нашр кардан",
+	"flow-newtopic-header": "Иловаи мавзӯи нав",
+	"flow-newtopic-save": "Иловаи унвон",
 	"flow-thank-link": "Ташаккур",
 	"flow-ve-mention-placeholder": "Номи корбар"
 }
