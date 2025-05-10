@@ -208,8 +208,8 @@ class PageImportState {
 		// We don't set the topic title postId as it was inherited from the workflow.  We only set the
 		// postId for first revisions because further revisions inherit it from the parent which was
 		// set appropriately.
-		if ( $revision instanceof PostRevision && $revision->isFirstRevision(
-			) && !$revision->isTopicTitle()
+		if ( $revision instanceof PostRevision && $revision->isFirstRevision()
+			&& !$revision->isTopicTitle()
 		) {
 			$this->postIdProperty->setValue( $revision, $uid );
 		}

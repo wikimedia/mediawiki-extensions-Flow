@@ -54,8 +54,8 @@ abstract class ApiBackend implements LoggerAwareInterface {
 				throw new ApiNotFoundException( $message );
 			} else {
 				$this->logger->error(
-					__METHOD__ . ': Failed API call against ' . $this->getKey(
-					) . ' with conditions : ' . json_encode( $conditions )
+					__METHOD__ . ': Failed API call against ' . $this->getKey() .
+					' with conditions : ' . json_encode( $conditions )
 				);
 				throw new ImportException(
 					"Null response from API module:" . json_encode( $data )
@@ -149,8 +149,8 @@ abstract class ApiBackend implements LoggerAwareInterface {
 				throw new ApiNotFoundException( $message );
 			} else {
 				$this->logger->error(
-					__METHOD__ . ': Failed API call against ' . $this->getKey(
-					) . ' with conditions : ' . json_encode( $conditions )
+					__METHOD__ . ': Failed API call against ' . $this->getKey() .
+					' with conditions : ' . json_encode( $conditions )
 				);
 				throw new ImportException(
 					"Null response from API module: " . json_encode( $data )

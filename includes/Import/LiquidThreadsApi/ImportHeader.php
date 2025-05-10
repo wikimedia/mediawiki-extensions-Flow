@@ -63,8 +63,7 @@ class ImportHeader extends PageRevisionedObject implements IImportHeader {
 		// nowiki, etc.  It also ignores case and spaces in places where it doesn't
 		// matter.
 		$newWikitext = ConversionStrategy::removeLqtMagicWord( $wikitextForLastRevision );
-		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage(
-		)->plain();
+		$templateName = wfMessage( 'flow-importer-lqt-converted-template' )->inContentLanguage()->plain();
 		$arguments = implode(
 			'|',
 			[

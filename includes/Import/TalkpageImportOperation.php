@@ -239,8 +239,7 @@ class TalkpageImportOperation {
 		$topicState = $this->getExistingTopicState( $state, $importTopic );
 		if ( $topicState ) {
 			$state->logger->info(
-				'Continuing import to ' . $topicState->topicWorkflow->getArticleTitle(
-				)->getPrefixedText()
+				'Continuing import to ' . $topicState->topicWorkflow->getArticleTitle()->getPrefixedText()
 			);
 
 			return $topicState;
