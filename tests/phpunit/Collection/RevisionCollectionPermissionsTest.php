@@ -8,7 +8,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Flow\Tests\PostRevisionTestCase;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\User\User;
 
 /**
@@ -65,11 +64,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	 */
 	private $suppressUser;
 
-	/**
-	 * @var DatabaseBlock
-	 */
-	private $block;
-
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -88,13 +82,12 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 		// block a user
 		$blockedUser = $this->blockedUser();
-		$this->block = new DatabaseBlock( [
-			'address' => $blockedUser->getName(),
-			'by' => $this->getTestSysop()->getUser(),
-			'user' => $blockedUser->getId()
-		] );
 		$this->getServiceContainer()->getDatabaseBlockStore()
-			->insertBlock( $this->block );
+			->insertBlockWithParams( [
+				'targetUser' => $blockedUser,
+				'by' => $this->getTestSysop()->getUser(),
+				'user' => $blockedUser->getId()
+			] );
 		// ensure that block made it into the database
 		$this->getDb()->commit( __METHOD__, 'flush' );
 	}

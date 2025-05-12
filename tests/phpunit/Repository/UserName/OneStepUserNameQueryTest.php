@@ -4,7 +4,6 @@ namespace Flow\Tests\Repository\UserName;
 
 use Flow\Container;
 use Flow\Repository\UserName\OneStepUserNameQuery;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
@@ -23,14 +22,13 @@ class OneStepUserNameQueryTest extends \MediaWikiIntegrationTestCase {
 		$u1 = $this->getMutableTestUser()->getUser();
 		$u2 = $this->getMutableTestUser()->getUser();
 		$u3 = $this->getMutableTestUser()->getUser();
-		$u4 = $this->getMutableTestUser()->getUser();
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( new DatabaseBlock( [
-			'address' => $u2,
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $u2,
 			'by' => $admin,
 			'hideName' => true
-		] ) );
+		] );
 
 		$result = $query->execute(
 			WikiMap::getCurrentWikiId(), [
