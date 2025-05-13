@@ -4,7 +4,7 @@
  */
 
 ( function () {
-	var inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
+	const inTopicNamespace = mw.config.get( 'wgNamespaceNumber' ) === mw.config.get( 'wgNamespaceIds' ).topic;
 
 	/**
 	 * @constructor
@@ -62,7 +62,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
-		var $form,
+		let $form,
 			$this = $( this ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $this ),
 			// hide, delete, suppress
@@ -115,7 +115,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardAndHistoryComponentBase.UI.events.interactiveHandlers.cancelForm = function ( event ) {
-		var target = this,
+		let target = this,
 			$form = $( this ).closest( 'form' ),
 			flowComponent = mw.flow.getPrototypeMethod( 'boardAndHistoryBase', 'getInstanceByElement' )( $form ),
 			$fields = $form.find( 'textarea, [type=text]' ),
@@ -159,7 +159,7 @@
 		flowComponent.emitWithReturn( 'removeError', $form );
 
 		// Trigger the cancel callback
-		callbacks.forEach( function ( fn ) {
+		callbacks.forEach( ( fn ) => {
 			fn.call( target, event );
 		} );
 

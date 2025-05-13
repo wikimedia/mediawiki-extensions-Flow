@@ -35,7 +35,7 @@
 	 * @return {string} captcha.answer CAPTCHA answer (user-provided)
 	 */
 	mw.flow.ui.CaptchaWidget.prototype.getResponse = function () {
-		var $captchaField = this.$element.find( '[name="wpCaptchaWord"]' ),
+		let $captchaField = this.$element.find( '[name="wpCaptchaWord"]' ),
 			captcha = null;
 
 		if ( $captchaField.length > 0 ) {
@@ -61,7 +61,7 @@
 	 *   strings)
 	 */
 	mw.flow.ui.CaptchaWidget.prototype.onUpdate = function ( isRequired, renderingInformation ) {
-		var modules, moduleStyles, allModules;
+		let modules, moduleStyles, allModules;
 
 		if ( isRequired ) {
 			if ( renderingInformation.headitems ) {
@@ -72,12 +72,12 @@
 			modules = renderingInformation.modules || [];
 
 			allModules = moduleStyles.concat( modules );
-			mw.loader.using( allModules ).fail( function () {
+			mw.loader.using( allModules ).fail( () => {
 				OO.ui.alert( mw.message( 'flow-spam-confirmedit-using-failure' ).text() );
-			} ).always( function () {
+			} ).always( () => {
 				this.setLabel( renderingInformation.html );
 				this.toggle( true );
-			}.bind( this ) );
+			} );
 		} else {
 			this.toggle( false );
 			this.setLabel( '' );

@@ -2,8 +2,8 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Content' );
 
 /* Tests */
 
-QUnit.test( 'Stores different content representations (formats)', function ( assert ) {
-	var content = new mw.flow.dm.Content( {
+QUnit.test( 'Stores different content representations (formats)', ( assert ) => {
+	const content = new mw.flow.dm.Content( {
 		content: 'content in default format (wikitext, for instance)',
 		format: 'wikitext',
 		html: 'content in html format',
@@ -17,8 +17,8 @@ QUnit.test( 'Stores different content representations (formats)', function ( ass
 	assert.strictEqual( content.get( 'unknown format' ), null );
 } );
 
-QUnit.test( 'Behaves when empty', function ( assert ) {
-	var content = new mw.flow.dm.Content();
+QUnit.test( 'Behaves when empty', ( assert ) => {
+	const content = new mw.flow.dm.Content();
 
 	assert.strictEqual( content.get(), null );
 	assert.strictEqual( content.get( 'whatever format' ), null );

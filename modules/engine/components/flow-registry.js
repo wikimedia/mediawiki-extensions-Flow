@@ -13,7 +13,7 @@
  */
 
 ( function () {
-	var _componentRegistry = new OO.Registry();
+	const _componentRegistry = new OO.Registry();
 
 	/** @class mw.flow */
 	mw.flow = mw.flow || {}; // create mw.flow globally
@@ -28,7 +28,7 @@
 	 *  array of FlowComponent instances, or boolean false in case of an error.
 	 */
 	function initFlowComponent( $container ) {
-		var a, i, componentName, componentBase;
+		let a, i, componentName, componentBase;
 
 		/**
 		 * @private
@@ -37,7 +37,7 @@
 		 * @return {FlowComponent}
 		 */
 		function _RecursiveConstructor() {
-			var constructors = [],
+			let constructors = [],
 				parent = this.constructor.super,
 				i, j, parentReturn;
 
@@ -135,7 +135,7 @@
 	 * @return {Function}
 	 */
 	function getFlowPrototypeMethod( className, methodName, context ) {
-		var registeredClass = _componentRegistry.lookup( className ),
+		let registeredClass = _componentRegistry.lookup( className ),
 			method;
 
 		if ( !registeredClass ) {
@@ -160,7 +160,7 @@
 	 * @param {Function} mixinClass Class with extension to add to target
 	 */
 	function mixinFlowComponent( targetName, mixinClass ) {
-		var registeredClass = _componentRegistry.lookup( targetName );
+		const registeredClass = _componentRegistry.lookup( targetName );
 
 		if ( !registeredClass ) {
 			mw.flow.debug( 'Failed to find FlowComponent to extend.', arguments );

@@ -10,7 +10,7 @@
 	 * @param {Object} [config]
 	 */
 	mw.flow.ui.TopicTitleWidget = function mwFlowUiTopicTitleWidget( topicId, config ) {
-		var widget = this;
+		const widget = this;
 
 		// Parent constructor
 		mw.flow.ui.TopicTitleWidget.super.call( this, config );
@@ -85,19 +85,19 @@
 
 		this.pushPending();
 		this.api.getPost( topicId, topicId, 'wikitext' ).then(
-			function ( topic ) {
-				var content = OO.getProp( topic, 'content', 'content' ),
+			( topic ) => {
+				const content = OO.getProp( topic, 'content', 'content' ),
 					currentRevisionId = topic.revisionId;
 
 				widget.api.setCurrentRevision( currentRevisionId );
 				widget.input.setValue( mw.storage.session.get( widget.id + '/title' ) || content );
 			},
-			function ( error ) {
+			( error ) => {
 				widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
 				widget.error.toggle( true );
 			}
 		).always(
-			function () {
+			() => {
 				widget.popPending();
 				widget.input.moveCursorToEnd().focus();
 				// Connect change listener after widget has been populated
@@ -114,16 +114,16 @@
 	/* Methods */
 
 	mw.flow.ui.TopicTitleWidget.prototype.onSaveButtonClick = function () {
-		var content = this.input.getValue(),
+		const content = this.input.getValue(),
 			captcha = this.captchaWidget.getResponse(),
 			widget = this;
 
 		widget.pushPending();
 		this.api.saveTopicTitle( this.topicId, content, captcha ).then(
-			function ( workflowId ) {
+			( workflowId ) => {
 				widget.emit( 'saveContent', workflowId );
 			},
-			function ( errorCode, errorObj ) {
+			( errorCode, errorObj ) => {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
@@ -131,7 +131,7 @@
 				}
 			}
 		).always(
-			function () {
+			() => {
 				widget.popPending();
 				mw.storage.session.remove( widget.id + '/title' );
 			}

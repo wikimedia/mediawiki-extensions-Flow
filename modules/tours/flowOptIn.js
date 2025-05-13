@@ -1,6 +1,6 @@
 ( function () {
 	// eslint-disable-next-line no-jquery/no-global-selector
-	var archiveLinkExists = $( '.flow-link-to-archive' ).length,
+	const archiveLinkExists = $( '.flow-link-to-archive' ).length,
 		// eslint-disable-next-line no-jquery/no-global-selector
 		isVectorCompactPersonalToolbar = $( '.vector-user-links' ).length,
 		tour = new mw.guidedTour.TourBuilder( {

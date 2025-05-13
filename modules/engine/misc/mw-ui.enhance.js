@@ -14,7 +14,7 @@ mw.flow.ui.enhance = {};
 	 * @param {jQuery} $form jQuery object corresponding to a form element.
 	 */
 	function enableFormWithRequiredFields( $form ) {
-		var
+		let
 			$fields = $form.find( 'input, textarea' ).filter( '[required]' ),
 			ready = true;
 
@@ -36,7 +36,7 @@ mw.flow.ui.enhance = {};
 	 * Disable / enable submit buttons without/with text in field.
 	 * Usage: field needs required attribute
 	 */
-	$( function () {
+	$( () => {
 		// We should probably not use this change detection method for VE
 		//
 		// Also, consider using the input event (which I think can replace all of these
@@ -48,9 +48,9 @@ mw.flow.ui.enhance = {};
 			'keyup.flow-actions-disabler cut.flow-actions-disabler paste.flow-actions-disabler',
 			'.mw-ui-input, .oo-ui-textInputWidget input, .oo-ui-textInputWidget textarea',
 			function () {
-				var $el = $( this );
+				const $el = $( this );
 
-				setTimeout( function () {
+				setTimeout( () => {
 					enableFormWithRequiredFields( $el.closest( 'form' ) );
 				} );
 			}
@@ -61,8 +61,8 @@ mw.flow.ui.enhance = {};
 	 * mw-ui-tooltip
 	 * Renders tooltips on over, and also via mw.tooltip.
 	 */
-	$( function () {
-		var $tooltipTemplate = $( '<span>' )
+	$( () => {
+		let $tooltipTemplate = $( '<span>' )
 				.addClass( 'flow-ui-tooltip flow-ui-tooltip-left' )
 				.append(
 					$( '<span>' ).addClass( 'flow-ui-tooltip-content' ),
@@ -88,7 +88,7 @@ mw.flow.ui.enhance = {};
 		 * @return {jQuery}
 		 */
 		function mwUiTooltipShow( target, content, options ) {
-			var $target = $( target ),
+			let $target = $( target ),
 				// Find previous tooltip for this el
 				$tooltip = $target.data( '$tooltip' ),
 
@@ -296,7 +296,7 @@ mw.flow.ui.enhance = {};
 		 * @param {HTMLElement|jQuery} target
 		 */
 		function mwUiTooltipHide( target ) {
-			var $target = $( target ),
+			const $target = $( target ),
 				$tooltip = $target.data( '$tooltip' ),
 				tooltipTitle = $target.data( 'tooltipTitle' );
 
@@ -323,7 +323,7 @@ mw.flow.ui.enhance = {};
 			clearTimeout( _mwUiTooltipExpireTimer );
 
 			$activeTooltips.each( function () {
-				var $this = $( this ),
+				const $this = $( this ),
 					$target = $this.data( '$target' );
 
 				// Remove the tooltip if this tooltip has been removed,

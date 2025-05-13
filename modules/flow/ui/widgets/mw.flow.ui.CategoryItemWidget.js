@@ -12,7 +12,7 @@
 	 * @param {boolean} [config.exists] Category page exists on this wiki
 	 */
 	mw.flow.ui.CategoryItemWidget = function mwFlowUiCategoryItemWidget( categoryModel, config ) {
-		var prefixedCleanName, $link;
+		let prefixedCleanName, $link;
 
 		// Parent constructor
 		mw.flow.ui.CategoryItemWidget.super.call( this, config );

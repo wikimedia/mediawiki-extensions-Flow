@@ -48,7 +48,7 @@
 	 * @param {boolean} [collapse] Widget is collapsed
 	 */
 	mw.flow.ui.SidebarExpandWidget.prototype.toggleCollapsed = function ( collapse ) {
-		var siderailState;
+		let siderailState;
 
 		collapse = collapse !== undefined ? collapse : !this.collapsed;
 

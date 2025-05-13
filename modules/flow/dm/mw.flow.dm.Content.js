@@ -61,7 +61,7 @@
 	 * @fires contentChange
 	 */
 	mw.flow.dm.Content.prototype.set = function ( representations ) {
-		var format;
+		let format;
 		this.defaultFormat = null;
 		this.contentRepresentations = {};
 

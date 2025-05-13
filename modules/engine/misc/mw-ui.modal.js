@@ -135,7 +135,7 @@
 	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.open = function ( contents ) {
-		var $node = this.getNode(),
+		let $node = this.getNode(),
 			$contentNode = this.getContentNode(),
 			$fields;
 
@@ -190,7 +190,7 @@
 	 * @return {MwUiModal}
 	 */
 	MwUiModal.prototype.setTitle = function ( title ) {
-		var $heading = this.getNode().find( this.headingSelector ),
+		let $heading = this.getNode().find( this.headingSelector ),
 			$children;
 
 		title = title || '';
@@ -240,7 +240,7 @@
 	 * @return {jQuery}
 	 */
 	MwUiModal.prototype.getNode = function () {
-		var self = this,
+		let self = this,
 			$node = this.$node;
 
 		// Create our template instance
@@ -332,7 +332,7 @@
 	 * @return {MwUiModal|boolean} false if no next step and no button to click, MwUiModal on success
 	 */
 	MwUiModal.prototype.nextOrSubmit = function () {
-		var $button;
+		let $button;
 
 		if ( this.next() === false && this.$node ) {
 			// Find an anchor or button with role=primary
@@ -407,9 +407,9 @@
 	};
 
 	// Transforms: automatically map these functions to call their mw.Modal methods globally, on any active instance
-	[ 'close', 'getName', 'prev', 'next', 'prevOrClose', 'nextOrSubmit', 'go' ].forEach( function ( fn ) {
+	[ 'close', 'getName', 'prev', 'next', 'prevOrClose', 'nextOrSubmit', 'go' ].forEach( ( fn ) => {
 		mw.Modal[ fn ] = function () {
-			var args = Array.prototype.splice.call( arguments, 0, arguments.length - 1 ),
+			let args = Array.prototype.splice.call( arguments, 0, arguments.length - 1 ),
 				node = arguments[ arguments.length - 1 ],
 				modal;
 

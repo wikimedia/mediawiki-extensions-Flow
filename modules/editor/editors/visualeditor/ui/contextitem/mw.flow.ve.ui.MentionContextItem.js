@@ -48,7 +48,7 @@
 	 * @return {string} User name
 	 */
 	mw.flow.ve.ui.MentionContextItem.prototype.getDescription = function () {
-		var key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;
+		const key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;
 
 		// Is there a more intuitive way to do this?
 		return this.model.element.attributes.mw.parts[ 0 ].template.params[ key ].wt;

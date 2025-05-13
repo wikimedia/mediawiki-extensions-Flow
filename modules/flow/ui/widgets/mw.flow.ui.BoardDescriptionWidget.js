@@ -14,7 +14,7 @@
 	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.BoardDescriptionWidget = function mwFlowUiBoardDescriptionWidget( boardModel, config ) {
-		var msgKey,
+		let msgKey,
 			$content = $();
 
 		config = config || {};
@@ -163,7 +163,7 @@
 	 * Respond to edit button click. Switch to the editor widget
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditButtonClick = function () {
-		var widget = this,
+		const widget = this,
 			contentFormat = this.editor.getPreferredFormat();
 
 		// Hide the edit button, any errors, and the content
@@ -180,8 +180,8 @@
 		// Get the description from the API
 		this.api.getDescription( contentFormat )
 			.then(
-				function ( desc ) {
-					var contentToLoad,
+				( desc ) => {
+					let contentToLoad,
 						content = OO.getProp( desc, 'content', 'content' ),
 						format = OO.getProp( desc, 'content', 'format' );
 
@@ -196,7 +196,7 @@
 					return widget.editor.activate( contentToLoad );
 				},
 				// Error fetching description
-				function ( error ) {
+				( error ) => {
 					// Display error
 					widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
 					widget.error.toggle( true );
@@ -205,7 +205,7 @@
 					widget.showContent( false );
 				}
 			)
-			.always( function () {
+			.always( () => {
 				// Unset pending editor
 				widget.editor.popPending();
 				// Focus again: pending editors are disabled and can't be focused
@@ -232,7 +232,7 @@
 	 * @fires saveContent
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.onEditorSaveContent = function ( content, format ) {
-		var widget = this,
+		let widget = this,
 			captchaResponse;
 
 		this.editor.pushPending();
@@ -243,7 +243,7 @@
 		this.error.toggle( false );
 
 		this.api.saveDescription( content, format, captchaResponse )
-			.then( function ( newRevisionId ) {
+			.then( ( newRevisionId ) => {
 				widget.captchaWidget.toggle( false );
 
 				// Update revisionId in the API
@@ -252,17 +252,17 @@
 				// The widget should update automatically by its events
 				return widget.api.getDescription( 'html' );
 			} )
-			.then( function ( description ) {
+			.then( ( description ) => {
 				// Update the model
 				widget.model.populate( description );
 				return widget.api.getDescription( 'fixed-html' );
 			} )
-			.then( function ( desc ) {
+			.then( ( desc ) => {
 				// Change the actual content
 				widget.$content.empty().append( $.parseHTML( desc.content.content ) );
 				widget.emit( 'saveContent' );
 			} )
-			.catch( function ( errorCode, errorObj ) {
+			.catch( ( errorCode, errorObj ) => {
 				errorObj = errorObj || {};
 				if ( errorCode instanceof Error ) {
 					errorObj.exception = errorCode.toString();
@@ -277,8 +277,8 @@
 			} )
 			// Get the new categories
 			.then( this.api.getCategories.bind( this.api ) )
-			.then( function ( catObject ) {
-				var cat, title,
+			.then( ( catObject ) => {
+				let cat, title,
 					categories = {};
 
 				for ( cat in catObject ) {
@@ -290,11 +290,11 @@
 				widget.board.setCategoriesFromObject( categories );
 			} )
 			// Remove the editor and show content
-			.then( function () {
+			.then( () => {
 				widget.showContent( true );
 			} )
 			// Always pop pending for the editor
-			.always( function () {
+			.always( () => {
 				widget.editor.popPending();
 			} );
 	};
@@ -307,7 +307,7 @@
 	 * @param {jQuery} [$categoriesWrapper] Categories div wrapper
 	 */
 	mw.flow.ui.BoardDescriptionWidget.prototype.addCategoriesFromDom = function ( $categoriesWrapper ) {
-		var categories = {};
+		const categories = {};
 
 		$categoriesWrapper.find( '.flow-board-header-category-item a' ).each( function () {
 			categories[ $( this ).text() ] = {

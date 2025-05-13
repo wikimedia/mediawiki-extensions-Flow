@@ -15,7 +15,7 @@
 		// We queue this to happen on the element, because we need to wait for it to finish performing its own
 		// animations (eg. it might be doing a slideDown), even though THIS actual animation occurs on body.
 		this.queue( function () {
-			var $this = $( this ),
+			let $this = $( this ),
 				viewportY = $( window ).scrollTop(),
 				viewportHeight = $( window ).height(),
 				elOffset = $this.offset(),
@@ -39,7 +39,7 @@
 			if ( scrollTo > -1 ) {
 				// Scroll the viewport to display this element
 				// eslint-disable-next-line no-jquery/no-global-selector
-				$( 'html, body' ).animate( { scrollTop: scrollTo }, speed, function () {
+				$( 'html, body' ).animate( { scrollTop: scrollTo }, speed, () => {
 					// Fire off the next fx queue on the main element when we finish scrolling the window
 					$this.dequeue();
 				} );

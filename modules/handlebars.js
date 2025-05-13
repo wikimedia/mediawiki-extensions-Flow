@@ -4,7 +4,7 @@
 	 * @class HandlebarsTemplateCompiler
 	 * @singleton
 	 */
-	var handlebars = {
+	const handlebars = {
 		/*
 		 * Compiler source code into a template object
 		 *

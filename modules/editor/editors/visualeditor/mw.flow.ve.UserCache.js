@@ -20,7 +20,7 @@
 	/* Static methods */
 
 	mw.flow.ve.UserCache.static.normalizeTitle = function ( title ) {
-		var titleObj = mw.Title.newFromText( title, mw.config.get( 'wgNamespaceIds' ).user );
+		const titleObj = mw.Title.newFromText( title, mw.config.get( 'wgNamespaceIds' ).user );
 		if ( !titleObj ) {
 			return title;
 		}
@@ -38,7 +38,7 @@
 	/* Methods */
 
 	mw.flow.ve.UserCache.prototype.getRequestPromise = function ( subqueue ) {
-		var xhr = new mw.Api().get(
+		const xhr = new mw.Api().get(
 			{
 				action: 'query',
 				list: 'users',
@@ -47,9 +47,9 @@
 			{ type: 'POST' }
 		);
 		return xhr
-			.then( function ( data ) {
+			.then( ( data ) => {
 				// The parent class wants data like { query: { pages: { userid: { data } } } }
-				var i, len, user, newData = {};
+				let i, len, user, newData = {};
 
 				if ( !data.query || !data.query.users ) {
 					return data;
@@ -72,7 +72,7 @@
 	 * @param {Object} apiData API data for a single item
 	 */
 	mw.flow.ve.UserCache.prototype.setFromApiData = function ( apiData ) {
-		var cacheData = {};
+		const cacheData = {};
 		cacheData[ apiData.name ] = this.constructor.static.processPage( apiData );
 		this.set( cacheData );
 	};
@@ -83,7 +83,7 @@
 	 * @param {string|string[]} usernames One or more user names
 	 */
 	mw.flow.ve.UserCache.prototype.setAsExisting = function ( usernames ) {
-		var i, len, cacheData = {};
+		let i, len, cacheData = {};
 		if ( typeof usernames === 'string' ) {
 			usernames = [ usernames ];
 		}

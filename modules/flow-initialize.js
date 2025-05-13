@@ -7,8 +7,8 @@
 	 * Now do stuff
 	 * @todo not like this
 	 */
-	$( function () {
-		var flowBoard,
+	$( () => {
+		let flowBoard,
 			// eslint-disable-next-line no-jquery/no-global-selector
 			$component = $( '.flow-component' ),
 			// eslint-disable-next-line no-jquery/no-global-selector
@@ -20,7 +20,7 @@
 				$board: $board
 			} );
 
-		mw.hook( 'wikipage.content' ).add( function ( $content ) {
+		mw.hook( 'wikipage.content' ).add( ( $content ) => {
 			// Mark content that has been initialized by wikipage.content hook
 			$content.find( '.mw-parser-output' ).addBack( '.mw-parser-output' ).data( 'flow-wikipage-content-fired', true );
 		} );

@@ -2,8 +2,8 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Topic' );
 
 /* Tests */
 
-QUnit.test( 'Load topics', function ( assert ) {
-	var i, j, ilen, jlen, topic, result, operation, cases,
+QUnit.test( 'Load topics', ( assert ) => {
+	let i, j, ilen, jlen, topic, result, operation, cases,
 		executeOperation = function ( obj, operation, params ) {
 			return obj[ operation ].apply( obj, params );
 		};

@@ -46,7 +46,7 @@
 	 * @return {Object} Revision data
 	 */
 	mw.flow.dm.Post.static.getPostRevision = function ( topiclist, postId ) {
-		var pid = OO.getProp( topiclist, 'posts', postId );
+		const pid = OO.getProp( topiclist, 'posts', postId );
 
 		if ( pid[ 0 ] ) {
 			return topiclist.revisions[ pid[ 0 ] ];
@@ -62,7 +62,7 @@
 	 * @return {mw.flow.dm.Post[]} Array of posts
 	 */
 	mw.flow.dm.Post.static.createTopicReplyTree = function ( topiclist, parentReplyIds ) {
-		var i, len, post, postRevision, replies,
+		let i, len, post, postRevision, replies,
 			result = [];
 
 		for ( i = 0, len = parentReplyIds.length; i < len; i++ ) {

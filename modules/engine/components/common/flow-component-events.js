@@ -14,7 +14,7 @@
  */
 
 ( function () {
-	var _isGlobalBound;
+	let _isGlobalBound;
 
 	/**
 	 * This implements functionality for being able to capture the return value from a called event.
@@ -26,7 +26,7 @@
 	 * @param {jQuery} $container Container
 	 */
 	function FlowComponentEventsMixin( $container ) {
-		var self = this;
+		const self = this;
 
 		/**
 		 * Stores event callbacks.
@@ -119,7 +119,7 @@
 	 * @return {Array}
 	 */
 	function emitWithReturn( event, args ) {
-		var i, len, binding, bindings, method, retVal,
+		let i, len, binding, bindings, method, retVal,
 			returns = [];
 
 		if ( event in this.bindings ) {
@@ -160,11 +160,11 @@
 	 * @param {Object} handlers
 	 */
 	function bindFlowComponentHandlers( handlers ) {
-		var self = this;
+		const self = this;
 
 		// Bind class event handlers, triggered by .emit
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( handlers, function ( key, fn ) {
+		$.each( handlers, ( key, fn ) => {
 			self.on( key, function () {
 				// Trigger callback with class instance context
 				try {
@@ -184,14 +184,14 @@
 	 * @param {Object} handlers
 	 */
 	function bindFlowNodeHandlers( handlers ) {
-		var self = this;
+		const self = this;
 
 		// eg. { interactiveHandlers: { foo: Function } }
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( handlers, function ( type, callbacks ) {
+		$.each( handlers, ( type, callbacks ) => {
 			// eg. { foo: Function }
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( callbacks, function ( name, fn ) {
+			$.each( callbacks, ( name, fn ) => {
 				// First time for this callback name, instantiate the callback list
 				if ( !self.UI.events[ type ][ name ] ) {
 					self.UI.events[ type ][ name ] = [];
@@ -218,10 +218,10 @@
 	 * @private
 	 */
 	function flowComponentGetDispatchCallback( name ) {
-		var context = this;
+		const context = this;
 
 		return function () {
-			var args = Array.prototype.slice.call( arguments, 0 );
+			const args = Array.prototype.slice.call( arguments, 0 );
 
 			// Add event name as first arg of emit
 			args.unshift( name );
@@ -269,7 +269,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowEventsMixinApiRequestInteractiveHandler( event ) {
-		var deferred = $.Deferred(),
+		let deferred = $.Deferred(),
 			deferreds = [ deferred ],
 			$target,
 			self = event.currentTarget || event.delegateTarget || event.target,
@@ -307,16 +307,16 @@
 
 		// chain apiPreHandler callbacks
 		preHandlers = _getApiPreHandlers( self, handlerName );
-		preHandlers.forEach( function ( callback ) {
+		preHandlers.forEach( ( callback ) => {
 			deferred = deferred.then( callback );
 		} );
 
 		// mark the element as "in progress" (we're only doing this after running
 		// preHandlers since they may reject the API call)
-		deferred = deferred.then( function ( args ) {
+		deferred = deferred.then( ( args ) => {
 			// Protect against repeated or nested API calls for the same handler
-			var inProgress = $target.data( 'inProgress' ) || [];
-			if ( inProgress.indexOf( handlerName ) !== -1 ) {
+			const inProgress = $target.data( 'inProgress' ) || [];
+			if ( inProgress.includes( handlerName ) ) {
 				return $.Deferred().reject( 'fail-api-inprogress', { error: { info: 'apiRequest already in progress' } } );
 			}
 			inProgress.push( handlerName );
@@ -333,13 +333,13 @@
 		} );
 
 		// execute API call
-		deferred = deferred.then( function ( args ) {
-			var queryMap = args[ 2 ];
+		deferred = deferred.then( ( args ) => {
+			const queryMap = args[ 2 ];
 			return flowComponent.Api.requestFromNode( self, queryMap ).then(
 				// alter API response: apiHandler expects a 1st param info (that
 				// includes 'status') & `this` being the target element
 				function () {
-					var args = Array.prototype.slice.call( arguments, 0 );
+					const args = Array.prototype.slice.call( arguments, 0 );
 					info.status = 'done';
 					args.unshift( info );
 					return $.Deferred().resolveWith( self, args );
@@ -347,7 +347,7 @@
 				// failure: display the error message to end-user & turn the rejected
 				// deferred back into resolve: apiHandlers may want to wrap up
 				function ( code, result ) {
-					var errorMsg,
+					let errorMsg,
 						args = Array.prototype.slice.call( arguments, 0 ),
 						$form = $this.closest( 'form' );
 
@@ -393,7 +393,7 @@
 		// chain apiHandler callbacks (it can distinguish in how it needs to wrap up
 		// depending on info.status)
 		if ( flowComponent.UI.events.apiHandlers[ handlerName ] ) {
-			flowComponent.UI.events.apiHandlers[ handlerName ].forEach( function ( callback ) {
+			flowComponent.UI.events.apiHandlers[ handlerName ].forEach( ( callback ) => {
 				/*
 				 * apiHandlers will return promises that won't resolve until
 				 * the apiHandler has completed all it needs to do.
@@ -409,14 +409,14 @@
 		}
 
 		// all-purpose error handling: whichever step in this chain rejects, we'll send it to console
-		deferred.fail( function ( code, result ) {
-			var errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
+		deferred.fail( ( code, result ) => {
+			const errorMsg = flowComponent.constructor.static.getApiErrorMessage( code, result );
 			flowComponent.debug( false, errorMsg, handlerName, args );
 		} );
 
 		// cleanup after successfully completing the request & handler(s)
-		return $.when.apply( $, deferreds ).done( function () {
-			var inProgress = $target.data( 'inProgress' ) || [];
+		return $.when.apply( $, deferreds ).done( () => {
+			const inProgress = $target.data( 'inProgress' ) || [];
 			inProgress.splice( inProgress.indexOf( handlerName ), 1 );
 			$target.data( 'inProgress', inProgress );
 
@@ -437,7 +437,7 @@
 	 * @todo Perhaps use name="flow-load-handler" for performance in older browsers
 	 */
 	function flowMakeContentInteractiveCallback( $container ) {
-		var component, $content;
+		let component, $content;
 
 		if ( !$container.jquery ) {
 			$container = $container.$container;
@@ -453,7 +453,7 @@
 
 		// Find all load-handlers and trigger them
 		$container.find( '.flow-load-interactive' ).add( $container.filter( '.flow-load-interactive' ) ).each( function () {
-			var $this = $( this ),
+			const $this = $( this ),
 				handlerName = $this.data( 'flow-load-handler' );
 
 			if ( $this.data( 'flow-load-handler-called' ) ) {
@@ -485,7 +485,7 @@
 		context = context || this;
 
 		if ( this.UI.events.loadHandlers[ handlerName ] ) {
-			this.UI.events.loadHandlers[ handlerName ].forEach( function ( fn ) {
+			this.UI.events.loadHandlers[ handlerName ].forEach( ( fn ) => {
 				fn.apply( context, args );
 			} );
 		}
@@ -501,16 +501,16 @@
 	 * @param {string} apiHandlerName
 	 */
 	function flowExecuteInteractiveHandler( args, $context, interactiveHandlerName, apiHandlerName ) {
-		var promises = [];
+		const promises = [];
 
 		// Call any matching interactive handlers
 		if ( this.UI.events.interactiveHandlers[ interactiveHandlerName ] ) {
-			this.UI.events.interactiveHandlers[ interactiveHandlerName ].forEach( function ( fn ) {
+			this.UI.events.interactiveHandlers[ interactiveHandlerName ].forEach( ( fn ) => {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( this.UI.events.apiHandlers[ apiHandlerName ] ) {
 			// Call any matching API handlers
-			this.UI.events.interactiveHandlers.apiRequest.forEach( function ( fn ) {
+			this.UI.events.interactiveHandlers.apiRequest.forEach( ( fn ) => {
 				promises.push( fn.apply( $context[ 0 ], args ) );
 			} );
 		} else if ( interactiveHandlerName ) {
@@ -534,7 +534,7 @@
 	 * @param {string} [extraParameters.apiHandler]
 	 */
 	function flowInteractiveHandlerCallback( event, extraParameters ) {
-		var args, $context, interactiveHandlerName, apiHandlerName;
+		let args, $context, interactiveHandlerName, apiHandlerName;
 
 		// Only trigger with enter key & no modifier keys, if keypress
 		if ( event.type === 'keypress' && ( event.charCode !== 13 || event.metaKey || event.shiftKey || event.ctrlKey || event.altKey ) ) {
@@ -558,7 +558,7 @@
 	 * @param {Event} event
 	 */
 	function flowInteractiveHandlerFocusCallback( event ) {
-		var args = Array.prototype.slice.call( arguments, 0 ),
+		const args = Array.prototype.slice.call( arguments, 0 ),
 			$context = $( event.currentTarget || event.delegateTarget || event.target ),
 			interactiveHandlerName = $context.data( 'flow-interactive-handler-focus' ),
 			apiHandlerName = $context.data( 'flow-api-handler-focus' );
@@ -595,7 +595,7 @@
 	 * @todo Move this to a separate file
 	 */
 	function flowEventsMixinFocusField( event ) {
-		var $context = $( event.currentTarget || event.delegateTarget || event.target ),
+		const $context = $( event.currentTarget || event.delegateTarget || event.target ),
 			component = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $context );
 
 		// Show the form
@@ -621,7 +621,7 @@
 	 * @param {Function} callback
 	 */
 	function flowEventsMixinAddFormCancelCallback( $form, callback ) {
-		var fns = $form.data( 'flow-cancel-callback' ) || [];
+		const fns = $form.data( 'flow-cancel-callback' ) || [];
 		fns.push( callback );
 		$form.data( 'flow-cancel-callback', fns );
 	}
@@ -640,7 +640,7 @@
 	 * @param {string} msg The error that occurred. Currently hardcoded.
 	 */
 	function flowEventsMixinShowError( $node, msg ) {
-		var fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors.partial', { errors: [ { message: msg } ] } );
+		const fragment = mw.flow.TemplateEngine.processTemplate( 'flow_errors.partial', { errors: [ { message: msg } ] } );
 
 		if ( !$node.jquery ) {
 			$node = $node.$container;
@@ -681,7 +681,7 @@
 		);
 
 		// Hide after 5s
-		setTimeout( function () {
+		setTimeout( () => {
 			mw.tooltip.hide( $tooltipTarget );
 		}, 5000 );
 	}
@@ -694,7 +694,7 @@
 	 * @param {HTMLElement|jQuery} formElement
 	 */
 	function flowEventsMixinCancelForm( formElement ) {
-		var $form = $( formElement ),
+		const $form = $( formElement ),
 			$button = $form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' );
 
 		if ( $button.length ) {
@@ -725,7 +725,7 @@
 	 */
 	function _flowFindUpward( $node, selector ) {
 		// first check if result can already be found inside $node
-		var $result = $node.find( selector );
+		let $result = $node.find( selector );
 
 		// then keep looking up the tree until a result is found
 		while ( $result.length === 0 && $node.length !== 0 ) {
@@ -743,27 +743,27 @@
 	 * @private
 	 */
 	function _getApiPreHandlers( target, handlerName ) {
-		var flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( target ) ),
+		let flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $( target ) ),
 			preHandlers = [];
 
 		// Compile a list of all preHandlers to be run
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( flowComponent.UI.events.globalApiPreHandlers, function ( key, callbackArray ) {
+		$.each( flowComponent.UI.events.globalApiPreHandlers, ( key, callbackArray ) => {
 			Array.prototype.push.apply( preHandlers, callbackArray );
 		} );
 		if ( flowComponent.UI.events.apiPreHandlers[ handlerName ] ) {
 			Array.prototype.push.apply( preHandlers, flowComponent.UI.events.apiPreHandlers[ handlerName ] );
 		}
 
-		preHandlers = preHandlers.map( function ( callback ) {
+		preHandlers = preHandlers.map(
 			/*
 			 * apiPreHandlers aren't properly set up to serve as chained promise
 			 * callbacks (they'll return false instead of returning a rejected
 			 * promise, the incoming & outgoing params don't line up)
 			 * This will wrap all those callbacks into callbacks we can chain.
 			 */
-			return function ( args ) {
-				var queryMap = callback.apply( target, args );
+			( callback ) => function ( args ) {
+				const queryMap = callback.apply( target, args );
 				if ( queryMap === false ) {
 					return $.Deferred().reject( 'fail-prehandler', { error: { info: 'apiPreHandler returned false' } } );
 				}
@@ -773,8 +773,8 @@
 				}
 
 				return args;
-			};
-		} );
+			}
+		);
 
 		return preHandlers;
 	}

@@ -12,7 +12,7 @@
 	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.EditPostWidget = function mwFlowUiEditPostWidget( topicId, postId, config ) {
-		var msgKey;
+		let msgKey;
 
 		config = config || {};
 
@@ -94,7 +94,7 @@
 	 * Activate the widget.  These needs to be called when it's visible and in the body.
 	 */
 	mw.flow.ui.EditPostWidget.prototype.activate = function () {
-		var widget, contentFormat;
+		let widget, contentFormat;
 
 		this.editor.pushPending();
 		this.editor.load();
@@ -104,8 +104,8 @@
 		contentFormat = this.editor.getPreferredFormat();
 
 		this.api.getPost( this.topicId, this.postId, contentFormat ).then(
-			function ( post ) {
-				var content = OO.getProp( post, 'content', 'content' ),
+			( post ) => {
+				const content = OO.getProp( post, 'content', 'content' ),
 					format = OO.getProp( post, 'content', 'format' );
 
 				if ( content !== undefined && format !== undefined ) {
@@ -118,12 +118,12 @@
 
 			},
 			// Error fetching description
-			function ( error ) {
+			( error ) => {
 				// Display error
 				widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
 				widget.error.toggle( true );
 			}
-		).always( function () {
+		).always( () => {
 			// Unset pending editor
 			widget.editor.popPending();
 			// Focus again: pending editors are disabled and can't be focused
@@ -145,7 +145,7 @@
 	 * @param {string} format Format
 	 */
 	mw.flow.ui.EditPostWidget.prototype.onEditorSaveContent = function ( content, format ) {
-		var widget = this,
+		let widget = this,
 			captchaResponse;
 
 		captchaResponse = this.captchaWidget.getResponse();
@@ -155,19 +155,19 @@
 
 		this.editor.pushPending();
 		this.api.savePost( this.topicId, this.postId, content, format, captchaResponse )
-			.then( function ( workflow ) {
+			.then( ( workflow ) => {
 				widget.captchaWidget.toggle( false );
 
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
-			.catch( function ( errorCode, errorObj ) {
+			.catch( ( errorCode, errorObj ) => {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
 			} )
-			.always( function () {
+			.always( () => {
 				widget.editor.popPending();
 			} );
 	};

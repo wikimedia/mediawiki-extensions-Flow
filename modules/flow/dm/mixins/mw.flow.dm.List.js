@@ -93,7 +93,7 @@
 	 * @throws {Error} An error is thrown if aggregation already exists.
 	 */
 	mw.flow.dm.List.prototype.aggregate = function ( events ) {
-		var i, len, item, add, remove, itemEvent, groupEvent;
+		let i, len, item, add, remove, itemEvent, groupEvent;
 
 		for ( itemEvent in events ) {
 			groupEvent = events[ itemEvent ];
@@ -143,7 +143,7 @@
 	 * @fires add
 	 */
 	mw.flow.dm.List.prototype.addItems = function ( items, index ) {
-		var i, len, item, event, events, currentIndex, existingItem, at;
+		let i, len, item, event, events, currentIndex, existingItem, at;
 
 		if ( items.length === 0 ) {
 			return this;
@@ -200,7 +200,7 @@
 	 * @fires remove
 	 */
 	mw.flow.dm.List.prototype.removeItems = function ( items ) {
-		var i, len, item, index, remove, itemEvent,
+		let i, len, item, index, remove, itemEvent,
 			removed = [];
 
 		if ( items.length === 0 ) {
@@ -239,7 +239,7 @@
 	 * @fires clear
 	 */
 	mw.flow.dm.List.prototype.clearItems = function () {
-		var i, len, item, remove, itemEvent;
+		let i, len, item, remove, itemEvent;
 
 		// Remove all items
 		for ( i = 0, len = this.items.length; i < len; i++ ) {

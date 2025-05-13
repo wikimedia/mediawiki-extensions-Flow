@@ -1,8 +1,8 @@
-$( function () {
+$( () => {
 	QUnit.module( 'jquery: findWithParent' );
 
-	QUnit.test( 'jQueryFindWithParent', function ( assert ) {
-		var $html = $( '<main id="wrapper"><pre class="no-margin"><div><p></p></div></pre></main>' );
+	QUnit.test( 'jQueryFindWithParent', ( assert ) => {
+		const $html = $( '<main id="wrapper"><pre class="no-margin"><div><p></p></div></pre></main>' );
 
 		assert.strictEqual(
 			$html.findWithParent( 'p < div' )[ 0 ].tagName, 'DIV',

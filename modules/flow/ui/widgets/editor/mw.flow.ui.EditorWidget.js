@@ -20,7 +20,7 @@
 	 * @param {boolean} [config.saveable=true] Initial state of whether editor is saveable
 	 */
 	mw.flow.ui.EditorWidget = function mwFlowUiEditorWidget( config ) {
-		var widget = this;
+		const widget = this;
 
 		config = config || {};
 
@@ -110,7 +110,7 @@
 			save: 'onEditorControlsWidgetSave'
 		} );
 
-		this.$element.on( 'keydown', function ( e ) {
+		this.$element.on( 'keydown', ( e ) => {
 			if ( e.which === OO.ui.Keys.ESCAPE ) {
 				widget.onEditorControlsWidgetCancel();
 				e.preventDefault();
@@ -168,7 +168,7 @@
 	 * @return {jQuery.Promise} Promise that resolves when the VisualEditor modules have been loaded
 	 */
 	mw.flow.ui.EditorWidget.static.preload = function () {
-		var conf, modules;
+		let conf, modules;
 		if ( !this.preloadPromise ) {
 			if ( this.isVisualEditorSupported() ) {
 				conf = mw.config.get( 'wgVisualEditorConfig' );
@@ -178,12 +178,8 @@
 				this.preloadPromise =
 					mw.loader.using( conf.preloadModules )
 						// If these fail, we still want to continue loading, so convert failure to success
-						.catch( function () {
-							return $.Deferred().resolve();
-						} )
-						.then( function () {
-							return mw.loader.using( modules );
-						} );
+						.catch( () => $.Deferred().resolve() )
+						.then( () => mw.loader.using( modules ) );
 			} else {
 				this.preloadPromise = $.Deferred().resolve().promise();
 			}
@@ -203,13 +199,13 @@
 	 * @return {jQuery.Promise} Promise resolved when this.target has been created.
 	 */
 	mw.flow.ui.EditorWidget.prototype.load = function () {
-		var widget = this;
+		const widget = this;
 		if ( !this.useVE ) {
 			return $.Deferred().resolve().promise();
 		}
 		if ( !this.loadPromise ) {
 			this.loadPromise = this.constructor.static.preload()
-				.then( function () {
+				.then( () => {
 					widget.target = ve.init.mw.targetFactory.create( 'flow', { id: widget.id } );
 					widget.target.connect( widget, {
 						surfaceReady: 'onTargetSurfaceReady',
@@ -232,7 +228,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	mw.flow.ui.EditorWidget.prototype.activate = function ( content ) {
-		var widget = this;
+		const widget = this;
 		if ( !this.useVE ) {
 			// FIXME doesn't work with HTML, figure out if that can even ever be passed in
 			this.originalContent = content && content.content || '';
@@ -246,15 +242,15 @@
 		this.error.toggle( false );
 		return this.load()
 			.then( this.createSurface.bind( this, content ) )
-			.then( function () {
+			.then( () => {
 				widget.bindBeforeUnloadHandler();
 				widget.maybeAutoFocus();
 				widget.wikitextHelpLabel.toggle( widget.target.getDefaultMode() === 'source' );
-			}, function ( error ) {
+			}, ( error ) => {
 				widget.error.setLabel( $( '<span>' ).text( error || mw.msg( 'flow-error-default' ) ) );
 				widget.error.toggle( true );
 			} )
-			.always( function () {
+			.always( () => {
 				widget.popPending();
 			} );
 	};
@@ -269,7 +265,7 @@
 	 * @return {jQuery.Promise} Promise which resolves when the surface is ready
 	 */
 	mw.flow.ui.EditorWidget.prototype.createSurface = function ( content ) {
-		var contentToLoad,
+		let contentToLoad,
 			contentFormat,
 			deferred = $.Deferred();
 
@@ -282,7 +278,7 @@
 		}
 		this.target.setDefaultMode( contentFormat === 'html' ? 'visual' : 'source' );
 		this.target.loadContent( contentToLoad );
-		this.target.once( 'surfaceReady', function () {
+		this.target.once( 'surfaceReady', () => {
 			deferred.resolve();
 		} );
 		return deferred.promise();
@@ -362,7 +358,7 @@
 	 * @private
 	 */
 	mw.flow.ui.EditorWidget.prototype.onTargetSurfaceReady = function () {
-		var surface = this.target.getSurface();
+		const surface = this.target.getSurface();
 
 		surface.setPlaceholder( this.placeholder );
 		surface.getModel().connect( this, { documentUpdate: 'onSurfaceDocumentUpdate' } );
@@ -381,7 +377,7 @@
 	 */
 	mw.flow.ui.EditorWidget.prototype.onSurfaceDocumentUpdate = function () {
 		// Update the user's preferred editor
-		var currentEditor = this.target.getDefaultMode() === 'source' ? 'wikitext' : 'visualeditor';
+		const currentEditor = this.target.getDefaultMode() === 'source' ? 'wikitext' : 'visualeditor';
 		if ( mw.user.options.get( 'flow-editor' ) !== currentEditor ) {
 			if ( !mw.user.isAnon() ) {
 				new mw.Api().saveOption( 'flow-editor', currentEditor );
@@ -401,10 +397,10 @@
 	 * @fires cancel
 	 */
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetCancel = function () {
-		var widget = this;
+		const widget = this;
 
 		if ( this.hasBeenChanged() ) {
-			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' ).closed.then( function ( data ) {
+			mw.flow.ui.windowManager.openWindow( 'cancelconfirm' ).closed.then( ( data ) => {
 				if ( data && data.action === 'discard' ) {
 					// Remove content
 					widget.clearContent();
@@ -426,7 +422,7 @@
 	 * @return {string} return.format 'html' or 'wikitext'
 	 */
 	mw.flow.ui.EditorWidget.prototype.getContent = function () {
-		var dom, content, format;
+		let dom, content, format;
 
 		if ( !this.useVE ) {
 			return {
@@ -488,7 +484,7 @@
 	 * @return {string} 'html' or 'wikitext'
 	 */
 	mw.flow.ui.EditorWidget.prototype.getPreferredFormat = function () {
-		var vePref = mw.user.options.get( 'visualeditor-tabs' );
+		const vePref = mw.user.options.get( 'visualeditor-tabs' );
 		// If VE isn't available, we don't have much of a choice
 		if ( !this.useVE ) {
 			return 'wikitext';
@@ -514,19 +510,19 @@
 	 * @fires switch
 	 */
 	mw.flow.ui.EditorWidget.prototype.onTargetSwitchMode = function ( promise, newMode ) {
-		var widget = this;
+		const widget = this;
 		this.pushPending();
 		this.error.toggle( false );
 		promise
-			.done( function () {
+			.done( () => {
 				widget.maybeAutoFocus();
 				widget.wikitextHelpLabel.toggle( newMode === 'source' );
 			} )
-			.fail( function ( error ) {
+			.fail( ( error ) => {
 				widget.error.setLabel( $( '<span>' ).text( error || mw.msg( 'flow-error-default' ) ) );
 				widget.error.toggle( true );
 			} )
-			.always( function () {
+			.always( () => {
 				widget.popPending();
 			} );
 	};
@@ -547,7 +543,7 @@
 	 * @fires saveContent
 	 */
 	mw.flow.ui.EditorWidget.prototype.onEditorControlsWidgetSave = function () {
-		var content = this.getContent();
+		const content = this.getContent();
 		this.unbindBeforeUnloadHandler();
 		this.emit(
 			'saveContent',

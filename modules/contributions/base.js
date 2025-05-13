@@ -4,7 +4,7 @@
  */
 ( function () {
 	function clickedFlowLink( event ) {
-		var $container = $( event.delegateTarget ),
+		const $container = $( event.delegateTarget ),
 			onComplete = function () {
 				$( event.target ).trigger( 'click' );
 			};
@@ -25,7 +25,7 @@
 		);
 	}
 
-	$( function () {
+	$( () => {
 		// eslint-disable-next-line no-jquery/no-global-selector
 		$( '#bodyContent' ).one( 'click', '.flow-click-interactive', clickedFlowLink );
 	} );

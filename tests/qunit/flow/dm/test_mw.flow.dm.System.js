@@ -2,8 +2,8 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.System' );
 
 /* Tests */
 
-QUnit.test( 'Initialize flow system', function ( assert ) {
-	var i, len, j, jlen, system, op, result, ops,
+QUnit.test( 'Initialize flow system', ( assert ) => {
+	let i, len, j, jlen, system, op, result, ops,
 		executeOperation = function ( obj, operation, params ) {
 			return obj[ operation ].apply( obj, params );
 		},
@@ -318,7 +318,7 @@ QUnit.test( 'Initialize flow system', function ( assert ) {
 	for ( i = 0, len = cases.length; i < len; i++ ) {
 		op = cases[ i ];
 
-		if ( op.method.indexOf( '.' ) > -1 ) {
+		if ( op.method.includes( '.' ) ) {
 			// Nested operations
 			ops = op.method.split( '.' );
 			result = system;

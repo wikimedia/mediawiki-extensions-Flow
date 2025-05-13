@@ -59,7 +59,7 @@
 	 * Handle changes to the input widget
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.onTargetInputChange = function () {
-		var templateModel, parameterModel, key, value, inspector;
+		let templateModel, parameterModel, key, value, inspector;
 
 		this.hideErrors();
 
@@ -68,7 +68,7 @@
 		inspector = this;
 
 		this.pushPending();
-		this.targetInput.isValid().done( function ( isValid ) {
+		this.targetInput.isValid().done( ( isValid ) => {
 			if ( isValid ) {
 				// After the updates are done, we'll get onTransclusionModelChange
 				templateModel = inspector.transclusionModel.getParts()[ 0 ];
@@ -87,7 +87,7 @@
 				// Disable save button
 				inspector.setApplicableStatus();
 			}
-		} ).always( function () {
+		} ).always( () => {
 			inspector.popPending();
 		} );
 	};
@@ -96,7 +96,7 @@
 	 * Handle the transclusion becoming ready
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.onTransclusionReady = function () {
-		var templateModel, key;
+		let templateModel, key;
 
 		key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey;
 
@@ -127,7 +127,7 @@
 	 * If it's empty or invalid, it can not be inserted or updated.
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.setApplicableStatus = function () {
-		var parts = this.transclusionModel.getParts(),
+		const parts = this.transclusionModel.getParts(),
 			templateModel = parts[ 0 ],
 			key = mw.flow.ve.ui.MentionInspector.static.templateParameterKey,
 			inspector = this;
@@ -139,9 +139,9 @@
 		// to cancel, but not save.
 		if ( templateModel.hasParameter( key ) ) {
 			this.pushPending();
-			this.targetInput.isValid().done( function ( isValid ) {
+			this.targetInput.isValid().done( ( isValid ) => {
 				inspector.actions.setAbilities( { done: isValid } );
-			} ).always( function () {
+			} ).always( () => {
 				inspector.popPending();
 			} );
 		} else {
@@ -153,7 +153,7 @@
 	 * Initialize UI of inspector
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.initialize = function () {
-		var flowBoard, overlay, iconWidget;
+		let flowBoard, overlay, iconWidget;
 
 		// Parent method
 		mw.flow.ve.ui.MentionInspector.super.prototype.initialize.apply( this, arguments );
@@ -196,15 +196,15 @@
 	};
 
 	mw.flow.ve.ui.MentionInspector.prototype.getActionProcess = function ( action ) {
-		var deferred, inspector,
+		let deferred, inspector,
 			surfaceModel = this.getFragment().getSurface();
 
 		if ( action === 'done' ) {
 			deferred = $.Deferred();
 			inspector = this;
 
-			this.targetInput.isValid().done( function ( isValid ) {
-				var transclusionModelPlain;
+			this.targetInput.isValid().done( ( isValid ) => {
+				let transclusionModelPlain;
 
 				if ( isValid ) {
 					transclusionModelPlain = inspector.transclusionModel.getPlainObject();
@@ -251,7 +251,7 @@
 	// maybe a mixin for inline errors next to form elements).
 
 	mw.flow.ve.ui.MentionInspector.prototype.showErrors = function ( errors ) {
-		var errorText;
+		let errorText;
 
 		if ( errors instanceof OO.ui.Error ) {
 			errors = [ errors ];
@@ -280,7 +280,7 @@
 		// Parent method
 		return mw.flow.ve.ui.MentionInspector.super.prototype.getSetupProcess.apply( this, arguments )
 			.next( function () {
-				var templateModel, promise, atFragment;
+				let templateModel, promise, atFragment;
 
 				this.loaded = false;
 				this.altered = false;
@@ -364,7 +364,7 @@
 	 */
 	mw.flow.ve.ui.MentionInspector.prototype.getSelectedNode = function () {
 		// Parent method
-		var node = mw.flow.ve.ui.MentionInspector.super.prototype.getSelectedNode.apply( this, arguments );
+		const node = mw.flow.ve.ui.MentionInspector.super.prototype.getSelectedNode.apply( this, arguments );
 		// Checks the model class
 		if ( node && node.isSingleTemplate( mw.flow.ve.ui.MentionInspector.static.template ) ) {
 			return node;

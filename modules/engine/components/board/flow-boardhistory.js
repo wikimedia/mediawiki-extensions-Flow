@@ -32,7 +32,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowBoardHistoryModerationCallback( info ) {
-		var flowBoardHistory;
+		let flowBoardHistory;
 
 		if ( info.status !== 'done' ) {
 			// Error will be displayed by default, nothing else to wrap up

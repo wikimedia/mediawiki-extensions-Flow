@@ -2,8 +2,8 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Post' );
 
 /* Tests */
 
-QUnit.test( 'Hierarchical post structure', function ( assert ) {
-	var topic, posts, replies, subreplies, subsubreplies, topicRevisionData,
+QUnit.test( 'Hierarchical post structure', ( assert ) => {
+	let topic, posts, replies, subreplies, subsubreplies, topicRevisionData,
 		truncatedApiData = {
 			type: 'topic',
 			roots: [

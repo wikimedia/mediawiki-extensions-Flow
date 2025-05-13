@@ -93,7 +93,7 @@
 	 * @param {Object} categories Categories object
 	 */
 	mw.flow.dm.Board.prototype.setCategoriesFromObject = function ( categories ) {
-		var cat,
+		let cat,
 			categoryDMs = [];
 
 		// Add
@@ -229,7 +229,7 @@
 	 * @return {string}
 	 */
 	mw.flow.dm.Board.prototype.getOffsetId = function () {
-		var topics = this.getItems();
+		const topics = this.getItems();
 
 		return topics.length > 0 ?
 			topics[ topics.length - 1 ].getId() :
@@ -242,7 +242,7 @@
 	 * @return {number}
 	 */
 	mw.flow.dm.Board.prototype.getOffset = function () {
-		var topics = this.getItems();
+		const topics = this.getItems();
 
 		return topics.length > 0 ?
 			topics[ topics.length - 1 ].getLastUpdate() :

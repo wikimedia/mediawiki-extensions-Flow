@@ -73,7 +73,7 @@
 	 * Respond to window scroll
 	 */
 	mw.flow.ui.NavigationWidget.prototype.onWindowScroll = function () {
-		var scrollTop, isScrolledDown, topicId,
+		let scrollTop, isScrolledDown, topicId,
 			/*!
 			 * Check if element is in the viewport.
 			 *
@@ -81,7 +81,7 @@
 			 * @return {boolean} Element is in screen
 			 */
 			isElementInView = function ( $el ) {
-				var scrollTop, containerHeight,
+				let scrollTop, containerHeight,
 					height = $el.height(),
 					top = $el.offset().top,
 					bottom = top + height;

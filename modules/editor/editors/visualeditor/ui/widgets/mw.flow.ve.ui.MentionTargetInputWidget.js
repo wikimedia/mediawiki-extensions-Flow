@@ -29,9 +29,7 @@
 		// Properties
 		this.username = null;
 		// Exclude anonymous users, since they do not receive pings.
-		this.loggedInTopicPosters = ( config.topicPosters || [] ).filter( function ( poster ) {
-			return !mw.util.isIPAddress( poster );
-		} );
+		this.loggedInTopicPosters = ( config.topicPosters || [] ).filter( ( poster ) => !mw.util.isIPAddress( poster ) );
 		// TODO do this in a more sensible place in the future
 		mw.flow.ve.userCache.setAsExisting( this.loggedInTopicPosters );
 
@@ -55,7 +53,7 @@
 	 * @return {jQuery.Promise} Promise resolved with true or false
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.isValid = function () {
-		var username = this.value,
+		const username = this.value,
 			userNamespace = mw.config.get( 'wgNamespaceIds' ).user,
 			title = mw.Title.newFromText( username, userNamespace );
 		// First check username is valid (can possibly exist)
@@ -64,17 +62,14 @@
 		}
 		// Then check the user exists
 		return mw.flow.ve.userCache.get( this.value ).then(
-			function ( user ) {
-				return !user.missing && !user.invalid;
-			},
-			function () {
-				// If the API is down or behaving strangely, we shouldn't prevent
-				// people from inserting mentions, so if the existence check fails
-				// to produce a result, return true so as to not hold things up.
-				// We can't get here due to invalid input, because we already checked
-				// for that above.
-				return $.Deferred().resolve( true ).promise();
-			} );
+			( user ) => !user.missing && !user.invalid,
+			// If the API is down or behaving strangely, we shouldn't prevent
+			// people from inserting mentions, so if the existence check fails
+			// to produce a result, return true so as to not hold things up.
+			// We can't get here due to invalid input, because we already checked
+			// for that above.
+			() => $.Deferred().resolve( true ).promise()
+		);
 	};
 
 	/**
@@ -86,7 +81,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupRequest = function () {
-		var xhr,
+		let xhr,
 			widget = this,
 			value = this.value;
 
@@ -104,15 +99,13 @@
 			rawcontinue: 1
 		} );
 		return xhr
-			.then( function ( data ) {
-				var allUsers = ( OO.getProp( data, 'query', 'allusers' ) || [] ).map( function ( user ) {
+			.then( ( data ) => {
+				const allUsers = ( OO.getProp( data, 'query', 'allusers' ) || [] ).map( ( user ) => {
 					mw.flow.ve.userCache.setFromApiData( user );
 					return user.name;
 				} );
 				// Append prefix-matches from the topic list
-				return OO.unique( widget.loggedInTopicPosters.filter( function ( poster ) {
-					return poster.indexOf( value ) === 0;
-				} ).concat( allUsers ) );
+				return OO.unique( widget.loggedInTopicPosters.filter( ( poster ) => poster.indexOf( value ) === 0 ).concat( allUsers ) );
 			} )
 			.promise( { abort: xhr.abort } );
 	};
@@ -128,17 +121,15 @@
 	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		return data.map( function ( username ) {
-			return new OO.ui.MenuOptionWidget( {
-				data: username,
-				label: username
-			} );
-		} );
+		return data.map( ( username ) => new OO.ui.MenuOptionWidget( {
+			data: username,
+			label: username
+		} ) );
 	};
 
 	// Based on ve.ui.MWLinkTargetInputWidget.prototype.initializeLookupMenuSelection
 	mw.flow.ve.ui.MentionTargetInputWidget.prototype.initializeLookupMenuSelection = function () {
-		var item;
+		let item;
 		if ( this.username ) {
 			this.lookupMenu.selectItem( this.lookupMenu.findItemFromData( this.username ) );
 		}

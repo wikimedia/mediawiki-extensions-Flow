@@ -86,7 +86,7 @@
 	 *  more topics exist or not.
 	 */
 	mw.flow.dm.System.prototype.fetchMoreTopics = function () {
-		var system = this,
+		const system = this,
 			sortOrder = this.board.getSortOrder();
 
 		if ( this.fetchPromise ) {
@@ -105,8 +105,8 @@
 					this.board.getOffset(),
 				toconly: true
 			} )
-			.then( function ( topicList ) {
-				var topics = mw.flow.dm.Topic.static.extractTopicsFromAPI( topicList );
+			.then( ( topicList ) => {
+				const topics = mw.flow.dm.Topic.static.extractTopicsFromAPI( topicList );
 				// Add the topics to the data model
 				system.board.addItems( topics );
 				system.moreTopicsExistInApi = length === system.tocPostLimit;
@@ -135,7 +135,7 @@
 	 *  board is populated
 	 */
 	mw.flow.dm.System.prototype.populateBoardFromApi = function ( sortBy ) {
-		var system = this,
+		let system = this,
 			apiParams = {
 				action: 'flow',
 				submodule: 'view-topiclist',
@@ -152,8 +152,8 @@
 
 		requests = [
 			( new mw.Api() ).get( apiParams )
-				.then( function ( data ) {
-					var result = data.flow[ 'view-topiclist' ].result;
+				.then( ( data ) => {
+					const result = data.flow[ 'view-topiclist' ].result;
 					system.populateBoardTopicsFromJson( result.topiclist );
 					// HACK: This return value should go away. It is only
 					// here so that we can initialize the board with
@@ -165,17 +165,15 @@
 				submodule: 'view-header',
 				page: system.getPageTitle().getPrefixedDb()
 			} )
-				.then( function ( result ) {
-					var headerData = OO.getProp( result.flow, 'view-header', 'result', 'header' );
+				.then( ( result ) => {
+					const headerData = OO.getProp( result.flow, 'view-header', 'result', 'header' );
 					system.populateBoardDescriptionFromJson( headerData );
 				} )
 		];
 
 		return $.when.apply( $, requests )
 			// HACK: This should go away, see hack comment above
-			.then( function ( resultTopicList ) {
-				return resultTopicList;
-			} );
+			.then( ( resultTopicList ) => resultTopicList );
 
 	};
 
@@ -201,7 +199,7 @@
 	 * @fires populate
 	 */
 	mw.flow.dm.System.prototype.populateBoardTopicsFromJson = function ( topiclist, index ) {
-		var i, len, topicId, revisionData, topic, posts,
+		let i, len, topicId, revisionData, topic, posts,
 			topicTitlesById = {},
 			updateTimestampsByTopicId = {},
 			topics = [];
@@ -263,12 +261,12 @@
 	 * @fires resetBoardEnd
 	 */
 	mw.flow.dm.System.prototype.resetBoard = function ( sortBy ) {
-		var system = this;
+		const system = this;
 
 		this.emit( 'resetBoardStart' );
 
 		return this.populateBoardFromApi( sortBy )
-			.then( function ( result ) {
+			.then( ( result ) => {
 				// HACK: This parameter should go away. It is only
 				// here so that we can initialize the board with
 				// handlebars while we migrate things to ooui

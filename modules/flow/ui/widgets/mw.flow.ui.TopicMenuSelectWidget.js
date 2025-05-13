@@ -66,7 +66,7 @@
 	 * @param {mw.flow.dm.Topic} topic Topic
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.onTopicContentChange = function ( topic ) {
-		var topicWidget = this.topics[ topic.getId() ];
+		const topicWidget = this.topics[ topic.getId() ];
 
 		if ( topicWidget ) {
 			topicWidget.setLabel( topic.getContent( 'plaintext' ) );
@@ -80,7 +80,7 @@
 	 * @return {boolean} False to prevent default event
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.onMenuScroll = function () {
-		var actualHeight, naturalHeight, scrollTop, isNearBottom;
+		let actualHeight, naturalHeight, scrollTop, isNearBottom;
 
 		// Do nothing if we're already fetching topics
 		// or if there are no more topics to fetch
@@ -105,7 +105,7 @@
 	 * @fires topic
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.onTopicChoose = function ( item ) {
-		var topic = item.getData(),
+		const topic = item.getData(),
 			topicId = topic && topic.getId();
 
 		if ( topicId ) {
@@ -121,18 +121,18 @@
 	 *  flow.dm.Board
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.getMoreTopics = function () {
-		var widget = this;
+		const widget = this;
 
 		this.loadingMoreTopics = true;
 		return this.system.fetchMoreTopics()
-			.then( function ( hasMoreTopicsInApi ) {
+			.then( ( hasMoreTopicsInApi ) => {
 				widget.noMoreTopics = !hasMoreTopicsInApi;
 				if ( widget.noMoreTopics ) {
 					// Remove the load more widget
 					widget.removeItems( [ widget.loadingMoreOptionWidget ] );
 				}
 			} )
-			.always( function () {
+			.always( () => {
 				widget.loadingMoreTopics = false;
 			} );
 	};
@@ -144,7 +144,7 @@
 	 * @param {number} index Location to add
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.addTopics = function ( items, index ) {
-		var i, len, optionWidget,
+		let i, len, optionWidget,
 			widgets = [];
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
@@ -183,7 +183,7 @@
 	 * @param {mw.flow.dm.Topic[]} items Topic data items to remove
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.removeTopics = function ( items ) {
-		var i, len, itemId, optionWidget,
+		let i, len, itemId, optionWidget,
 			widgets = [];
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
@@ -202,7 +202,7 @@
 	 * @param {number} [index] Index to insert items after
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.addItems = function ( items ) {
-		var i, len;
+		let i, len;
 
 		if ( !items || !items.length ) {
 			return this;
@@ -224,7 +224,7 @@
 	 * @param {OO.ui.OptionWidget[]} items Items to remove
 	 */
 	mw.flow.ui.TopicMenuSelectWidget.prototype.removeItems = function ( items ) {
-		var i, len;
+		let i, len;
 
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			if ( items[ i ].getData() ) {

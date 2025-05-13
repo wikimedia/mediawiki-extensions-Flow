@@ -21,13 +21,11 @@
 	 * @return {string[]} List of usernames
 	 */
 	function flowVisualEditorGetTopicPosters( $node ) {
-		var $topic = $node.closest( '.flow-topic' ),
+		let $topic = $node.closest( '.flow-topic' ),
 			duplicatedArray;
 
 		// Could use a data attribute to avoid trim.
-		duplicatedArray = $topic.find( '.flow-author .mw-userlink' ).get().map( function ( el ) {
-			return $( el ).text().trim();
-		} );
+		duplicatedArray = $topic.find( '.flow-author .mw-userlink' ).get().map( ( el ) => $( el ).text().trim() );
 		return OO.unique( duplicatedArray );
 	}
 

@@ -74,7 +74,7 @@
 	 */
 	mw.flow.ui.ToCWidget.prototype.onTopicSelectTopic = function ( topicId ) {
 		// TODO: This should be changed when the board is widgetized
-		var $topic = $( document.getElementById( 'flow-topic-' + topicId ) );
+		const $topic = $( document.getElementById( 'flow-topic-' + topicId ) );
 
 		// TODO: Ideally, we should be able to do this by checking whether the
 		// topic is a stub or not. Right now that's not possible because when we
@@ -98,7 +98,7 @@
 	 * @param {string} topicId Topic Id
 	 */
 	mw.flow.ui.ToCWidget.prototype.updateSelection = function ( topicId ) {
-		var item = this.board.getItemById( topicId ),
+		const item = this.board.getItemById( topicId ),
 			label = item && item.getContent( 'plaintext' );
 
 		this.topicSelect.selectItemByData( item );

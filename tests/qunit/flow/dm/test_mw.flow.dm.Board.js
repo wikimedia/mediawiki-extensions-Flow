@@ -2,8 +2,8 @@ QUnit.module( 'ext.flow.dm mw.flow.dm.Board' );
 
 /* Tests */
 
-QUnit.test( 'Create board', function ( assert ) {
-	var i, ilen, result, board,
+QUnit.test( 'Create board', ( assert ) => {
+	let i, ilen, result, board,
 		executeOperation = function ( obj, operation, params ) {
 			return obj[ operation ].apply( obj, params );
 		},

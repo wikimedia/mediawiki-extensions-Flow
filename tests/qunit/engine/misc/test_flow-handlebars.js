@@ -1,7 +1,7 @@
 ( function () {
 	QUnit.module( 'ext.flow: Handlebars helpers', {
 		beforeEach: function () {
-			var stub = this.sandbox.stub( mw.template, 'get' ),
+			let stub = this.sandbox.stub( mw.template, 'get' ),
 				stubUser;
 
 			stub.withArgs( 'ext.flow.templating', 'foo.handlebars' ).returns( {
@@ -51,7 +51,7 @@
 	} );
 
 	QUnit.test( 'Handlebars.prototype.eachPost', function ( assert ) {
-		var ctx = {
+		const ctx = {
 			posts: {
 				1: [ 300 ],
 				// Purposely points to a missing revision to deal with edge case
@@ -89,7 +89,7 @@
 	} );
 
 	QUnit.test( 'Handlebars.prototype.progressiveEnhancement', function ( assert ) {
-		var opts = Object.assign( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
+		const opts = Object.assign( { hash: { type: 'insert', target: 'abc', id: 'def' } }, this.opts ),
 			$div = $( document.createElement( 'div' ) );
 
 		// Render script tag

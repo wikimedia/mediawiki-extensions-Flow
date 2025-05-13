@@ -12,7 +12,7 @@
 	 * @param {Object} [config.editor] Config options to pass to mw.flow.ui.EditorWidget
 	 */
 	mw.flow.ui.NewTopicWidget = function mwFlowUiNewTopicWidget( page, config ) {
-		var title,
+		let title,
 			widget = this;
 
 		config = config || {};
@@ -84,11 +84,11 @@
 			saveContent: 'onEditorSaveContent',
 			cancel: 'onEditorCancel'
 		} );
-		this.editor.once( 'switch', function ( promise ) {
+		this.editor.once( 'switch', ( promise ) => {
 			// Listen to editor switch event and re-enable auto-focus.
 			// This is done so that in the first construction of the widget the
 			// focus stays in the title widget and is not stolen by the editor.
-			promise.always( function () {
+			promise.always( () => {
 				widget.editor.toggleAutoFocus( true );
 			} );
 		} );
@@ -130,7 +130,7 @@
 	 * @private
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.updateFormState = function () {
-		var isDisabled = this.isExpanded() && !this.isProbablyEditable;
+		const isDisabled = this.isExpanded() && !this.isProbablyEditable;
 
 		this.title.setDisabled( isDisabled );
 		this.editor.setDisabled( isDisabled );
@@ -161,12 +161,12 @@
 	 * @param {string} content.format Format of content ('html' or 'wikitext')
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.activate = function ( content ) {
-		var widget = this;
+		const widget = this;
 		if ( !this.isExpanded() ) {
 			// Expand the editor
 			this.toggleExpanded( true );
 			this.editor.toggleAutoFocus( false );
-			this.editor.activate( content ).then( function () {
+			this.editor.activate( content ).then( () => {
 				widget.updateFormState();
 				widget.title.focus();
 				widget.editor.toggleAutoFocus( true );
@@ -211,7 +211,7 @@
 	 * @param {string} format Content format
 	 */
 	mw.flow.ui.NewTopicWidget.prototype.onEditorSaveContent = function ( content, format ) {
-		var widget = this,
+		let widget = this,
 			title = this.title.getValue(),
 			captchaResponse;
 
@@ -225,13 +225,13 @@
 		this.error.toggle( false );
 
 		this.api.saveNewTopic( title, content, format, captchaResponse )
-			.then( function ( topicId ) {
+			.then( ( topicId ) => {
 				widget.captchaWidget.toggle( false );
 
 				widget.toggleExpanded( false );
 				widget.emit( 'save', topicId );
 			} )
-			.catch( function ( errorCode, errorObj ) {
+			.catch( ( errorCode, errorObj ) => {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
@@ -240,12 +240,12 @@
 				// Prevent the promise from becoming resolved after this step
 				return $.Deferred().reject().promise();
 			} )
-			.always( function () {
+			.always( () => {
 				widget.editor.popPending();
 				widget.title.popPending();
 				widget.title.setDisabled( false );
 			} )
-			.done( function () {
+			.done( () => {
 				// Clear for next use
 				widget.title.setValue( '' );
 				widget.editor.clearContent();

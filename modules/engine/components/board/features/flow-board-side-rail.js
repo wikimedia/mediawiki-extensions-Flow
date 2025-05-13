@@ -48,7 +48,7 @@
 	 */
 	function FlowBoardComponentSideRailFeatureMixinToggleCallback() {
 		// eslint-disable-next-line no-jquery/no-global-selector, no-jquery/no-class-state
-		var boardIsExpanded = $( '.flow-component' ).toggleClass( 'expanded' ).hasClass( 'expanded' ),
+		const boardIsExpanded = $( '.flow-component' ).toggleClass( 'expanded' ).hasClass( 'expanded' ),
 			sideRailState = boardIsExpanded ? 'collapsed' : 'expanded';
 
 		if ( !mw.user.isAnon() ) {

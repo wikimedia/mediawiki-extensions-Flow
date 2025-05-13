@@ -1,5 +1,5 @@
 ( function () {
-	var apiTransformMap = {
+	const apiTransformMap = {
 		// Map of API submodule name, block name, and prefix name
 		'moderate-post': [ 'topic_', 'mp' ],
 		'new-topic': [ 'topiclist_', 'nt' ],
@@ -39,7 +39,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		function flowApiCall( params, method ) {
-			var mwApi, tokenType,
+			let mwApi, tokenType,
 				$deferred = $.Deferred(),
 				ajaxTimeoutSec = mw.config.get( 'wgFlowAjaxTimeout' ),
 				apiConstructorParams = { ajax: {} };
@@ -122,7 +122,7 @@
 	 * @return {Object}
 	 */
 	function flowApiTransformMap( queryMap ) {
-		var key,
+		let key,
 			map = apiTransformMap[ queryMap.submodule ];
 		if ( !map ) {
 			return queryMap;
@@ -162,7 +162,7 @@
 	 * @return {Object}
 	 */
 	function flowApiGetQueryMap( url, queryMap ) {
-		var uri,
+		let uri,
 			queryKey,
 			queryValue,
 			i = 0,
@@ -253,7 +253,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromForm( button, queryMap ) {
-		var $button = $( button ),
+		const $button = $( button ),
 			method = $button.closest( 'form' ).attr( 'method' ) || 'GET';
 
 		// Cancel any old form request, and also trigger a new one
@@ -271,7 +271,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromAnchor( anchor, queryMap ) {
-		var $anchor = $( anchor ),
+		const $anchor = $( anchor ),
 			method = $anchor.data( 'flow-api-method' ) || 'GET';
 
 		// Abort any old requests, and have it issue a new one via GET or POST
@@ -287,7 +287,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowApiRequestFromNode( node ) {
-		var $node = $( node );
+		const $node = $( node );
 
 		if ( $node.is( 'a' ) ) {
 			return this.requestFromAnchor.apply( this, arguments );
@@ -310,7 +310,7 @@
 	 * @return {undefined|jQuery.Promise}
 	 */
 	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod ) {
-		var str, prevApiCall, newApiCall;
+		let str, prevApiCall, newApiCall;
 
 		$node = $( $node );
 
@@ -344,7 +344,7 @@
 			);
 
 			// Remove the request on success
-			newApiCall.always( function () {
+			newApiCall.always( () => {
 				$node.removeData( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
 			} );
 

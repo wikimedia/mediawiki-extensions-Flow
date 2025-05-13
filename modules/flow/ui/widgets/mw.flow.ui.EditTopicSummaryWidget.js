@@ -82,7 +82,7 @@
 	 * Activate the widget.  These needs to be called when it's visible and in the body.
 	 */
 	mw.flow.ui.EditTopicSummaryWidget.prototype.activate = function () {
-		var widget, contentFormat;
+		let widget, contentFormat;
 
 		// Load the editor
 		this.editor.pushPending();
@@ -93,8 +93,8 @@
 		contentFormat = this.editor.getPreferredFormat();
 
 		this.api.getTopicSummary( this.topicId, contentFormat ).then(
-			function ( topicSummary ) {
-				var contentToLoad,
+			( topicSummary ) => {
+				let contentToLoad,
 					content = OO.getProp( topicSummary, 'content', 'content' ),
 					format = OO.getProp( topicSummary, 'content', 'format' );
 
@@ -110,12 +110,12 @@
 
 			},
 			// Error fetching description
-			function ( error ) {
+			( error ) => {
 				// Display error
 				widget.error.setLabel( mw.msg( 'flow-error-external', error ) );
 				widget.error.toggle( true );
 			}
-		).always( function () {
+		).always( () => {
 			// Unset pending editor
 			widget.editor.popPending();
 			// Focus again: pending editors are disabled and can't be focused
@@ -137,7 +137,7 @@
 	 * @param {string} format Format
 	 */
 	mw.flow.ui.EditTopicSummaryWidget.prototype.onEditorSaveContent = function ( content, format ) {
-		var widget = this,
+		let widget = this,
 			captchaResponse;
 
 		captchaResponse = this.captchaWidget.getResponse();
@@ -147,19 +147,19 @@
 
 		this.editor.pushPending();
 		this.api.saveTopicSummary( this.topicId, content, format, captchaResponse )
-			.then( function ( workflow ) {
+			.then( ( workflow ) => {
 				widget.captchaWidget.toggle( false );
 
 				widget.emit( 'saveContent', workflow, content, format );
 			} )
-			.catch( function ( errorCode, errorObj ) {
+			.catch( ( errorCode, errorObj ) => {
 				widget.captcha.update( errorCode, errorObj );
 				if ( !widget.captcha.isRequired() ) {
 					widget.error.setLabel( new OO.ui.HtmlSnippet( errorObj.error && errorObj.error.info || errorObj.exception ) );
 					widget.error.toggle( true );
 				}
 			} )
-			.always( function () {
+			.always( () => {
 				widget.editor.popPending();
 			} );
 	};

@@ -41,9 +41,7 @@
 			ntcontent: body,
 			ntformat: 'wikitext'
 		} ) ).catch(
-			function ( code, details ) {
-				return $.Deferred().reject( 'api-fail', code, details );
-			}
+			( code, details ) => $.Deferred().reject( 'api-fail', code, details )
 		).promise();
 	};
 

@@ -3,7 +3,7 @@
  */
 
 ( function () {
-	var _totalInstanceCount = 0;
+	let _totalInstanceCount = 0;
 
 	/**
 	 * Inherited base class. Stores the instance in the class's instance registry.
@@ -16,7 +16,7 @@
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
-		var parent = this.constructor.super;
+		let parent = this.constructor.super;
 
 		// Run progressive enhancements if any are needed by this container
 		mw.flow.TemplateEngine.processProgressiveEnhancement( $container );
@@ -58,7 +58,7 @@
 	 * @param {boolean} [isError=true]
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( isError ) {
-		var args;
+		let args;
 		/* eslint-disable no-console */
 		if ( window.console ) {
 			args = Array.prototype.slice.call( arguments, 0 );
@@ -92,11 +92,11 @@
 	 */
 	mw.flow.uuidToTime = FlowComponent.prototype.uuidToTime = function ( uuid ) {
 
-		var timestamp,
+		let timestamp,
 			_expandScientificNotation = function ( timestamp ) {
-				var parts, first, zeroes;
+				let parts, first, zeroes;
 
-				if ( timestamp.indexOf( 'e' ) !== -1 ) {
+				if ( timestamp.includes( 'e' ) ) {
 					parts = timestamp.split( '(e+' );
 					first = parts[ 0 ].replace( '.', '' );
 					zeroes = parseInt( parts[ 1 ], 10 ) - ( first.length - 1 );
@@ -136,7 +136,7 @@
 	 * @return {FlowComponent|boolean}
 	 */
 	FlowComponent.prototype.getInstanceByElement = function ( $el ) {
-		var $container = $el.closest( '.flow-component' ),
+		let $container = $el.closest( '.flow-component' ),
 			context = this.constructor.super || this, // Use the correct context (instance vs prototype)
 			id;
 
@@ -184,7 +184,7 @@
 			'*',
 			{ flowSpawnedBy: this.$container, flowSpawnedFrom: $el },
 			function ( event ) {
-				var i, $nodes;
+				let i, $nodes;
 				// Let's forward these events in an unusual way, similar to how jQuery propagates events...
 				// First, only take the very first, top-level event, as the rest of the propagation is handled elsewhere
 				if ( event.target === this ) {
@@ -222,7 +222,7 @@
 	 * @private
 	 */
 	function _eventForwardDispatch( event, container ) {
-		var i, ret, handleObj, matched, j,
+		let i, ret, handleObj, matched, j,
 			args, handlers, special,
 			handlerQueue = [];
 

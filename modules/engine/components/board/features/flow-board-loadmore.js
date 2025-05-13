@@ -47,11 +47,11 @@
 	 * @param {string} topicId
 	 */
 	function flowBoardComponentLoadMoreFeatureJumpTo( topicId ) {
-		var apiParameters,
+		let apiParameters,
 			flowBoard = this,
 			// Scrolls to the given topic, but disables infinite scroll loading while doing so
 			_scrollWithoutInfinite = function () {
-				var $renderedTopic = flowBoard.renderedTopics[ topicId ];
+				const $renderedTopic = flowBoard.renderedTopics[ topicId ];
 
 				if ( $renderedTopic && $renderedTopic.length ) {
 					flowBoard.infiniteScrollDisabled = true;
@@ -75,7 +75,7 @@
 					 * let's only re-enable infinite scroll until we're sure
 					 * that event has been fired.
 					 */
-					setTimeout( function () {
+					setTimeout( () => {
 						delete flowBoard.infiniteScrollDisabled;
 					}, 1 );
 				} else {
@@ -119,13 +119,13 @@
 		flowBoard.Api.apiCall( apiParameters )
 			// TODO: Finish this error handling or remove the empty functions.
 			// Remove the load indicator
-			.always( function () {
+			.always( () => {
 				// @todo support for multiple indicators on same target
 				// $target.removeClass( 'flow-api-inprogress' );
 				// $this.removeClass( 'flow-api-inprogress' );
 			} )
 			// On success, render the topic
-			.done( function ( data ) {
+			.done( ( data ) => {
 				_flowBoardComponentLoadMoreFeatureRenderTopics(
 					flowBoard,
 					data.flow[ 'view-topiclist' ].result.topiclist,
@@ -139,7 +139,7 @@
 				_scrollWithoutInfinite();
 			} )
 			// On fail, render an error
-			.fail( function ( code ) {
+			.fail( ( code ) => {
 				flowBoard.debug( true, 'Failed to load topics: ' + code );
 				// Failed fetching the new data to be displayed.
 				// @todo render the error at topic position and scroll to it
@@ -213,7 +213,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowBoardComponentLoadMoreFeatureTopicsApiCallback( info, data ) {
-		var scrollTarget,
+		let scrollTarget,
 			$scrollTarget,
 			$scrollContainer,
 			topicsData,
@@ -291,7 +291,7 @@
 	 * @param {jQuery} $button
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadCallback( $button ) {
-		var scrollTargetSelector = $button.data( 'flow-scroll-target' ),
+		let scrollTargetSelector = $button.data( 'flow-scroll-target' ),
 			$target,
 			scrollContainerSelector = $button.data( 'flow-scroll-container' ),
 			$scrollContainer = $.findWithParent( $button, scrollContainerSelector ),
@@ -303,7 +303,7 @@
 		} else {
 			// Remove any loadMore nodes that are no longer in the body
 			this.$loadMoreNodes = this.$loadMoreNodes.filter( function () {
-				var $this = $( this );
+				const $this = $( this );
 
 				// @todo unbind scroll handlers
 				if ( !$this.closest( 'body' ).length ) {
@@ -328,12 +328,12 @@
 
 		// Bind the event for this
 		if ( scrollTargetSelector === 'window' ) {
-			this.on( 'windowScroll', function () {
+			this.on( 'windowScroll', () => {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $( window ) );
 			} );
 		} else {
 			$target = $.findWithParent( $button, scrollTargetSelector );
-			$target.on( 'scroll.flow-load-more', mw.util.throttle( function () {
+			$target.on( 'scroll.flow-load-more', mw.util.throttle( () => {
 				_flowBoardComponentLoadMoreFeatureInfiniteScrollCheck.call( board, $scrollContainer, $target );
 			}, 50 ) );
 		}
@@ -346,7 +346,7 @@
 	 * @param {jQuery} $topic
 	 */
 	function flowBoardComponentLoadMoreFeatureElementLoadTopic( $topic ) {
-		var self = this,
+		const self = this,
 			currentTopicId = $topic.data( 'flow-id' );
 
 		// Store this topic by ID
@@ -354,7 +354,7 @@
 
 		// Remove any topics that are no longer on the page, just in case
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.renderedTopics, function ( topicId, $topic ) {
+		$.each( this.renderedTopics, ( topicId, $topic ) => {
 			if ( !$topic.closest( self.$board ).length ) {
 				delete self.renderedTopics[ topicId ];
 			}
@@ -383,7 +383,7 @@
 	 */
 	function _flowBoardTopicIdGenerateSortRecentlyActive( board ) {
 		return function ( a, b ) {
-			var aTimestamp = board.updateTimestampsByTopicId[ a ],
+			const aTimestamp = board.updateTimestampsByTopicId[ a ],
 				bTimestamp = board.updateTimestampsByTopicId[ b ];
 
 			if ( aTimestamp === undefined && bTimestamp === undefined ) {
@@ -404,7 +404,7 @@
 	 * @param {Object} flowBoard
 	 */
 	function _flowBoardSortTopicIds( flowBoard ) {
-		var topicIdSortCallback;
+		let topicIdSortCallback;
 
 		if ( flowBoard.topicIdSort === 'updated' ) {
 			topicIdSortCallback = _flowBoardTopicIdGenerateSortRecentlyActive( flowBoard );
@@ -430,7 +430,7 @@
 	 * @param {jQuery} $calculationContainer Container to do scroll calculations on (height, scrollTop, offset, etc.)
 	 */
 	function _flowBoardComponentLoadMoreFeatureInfiniteScrollCheck( $searchContainer, $calculationContainer ) {
-		var calculationContainerHeight, calculationContainerScroll;
+		let calculationContainerHeight, calculationContainerScroll;
 		if ( this.infiniteScrollDisabled ) {
 			// This happens when the topic navigation is used to jump to a topic
 			// We should not infinite-load anything when we are scrolling to a topic
@@ -443,7 +443,7 @@
 		// Find load more buttons within our search container, and they must be visible
 		// eslint-disable-next-line no-jquery/no-sizzle
 		$searchContainer.find( this.$loadMoreNodes ).filter( ':visible' ).each( function () {
-			var $this = $( this ),
+			const $this = $( this ),
 				nodeOffset = $this.offset().top,
 				nodeHeight = $this.outerHeight( true );
 
@@ -477,7 +477,7 @@
 	 * @private
 	 */
 	function _flowBoardComponentLoadMoreFeatureRenderTopics( flowBoard, topicsData, forceShowLoadMore, $insertAt, scrollTarget, scrollContainer, scrollTemplate ) {
-		var i, j, $topic, topicId,
+		let i, j, $topic, topicId,
 			$allRendered = $( [] ),
 			toInsert = [];
 
@@ -544,7 +544,7 @@
 		 * @private
 		 */
 		function _render( toRender ) {
-			var rootsBackup = topicsData.roots,
+			let rootsBackup = topicsData.roots,
 				$newTopics;
 
 			// Temporarily set roots to our subset to be rendered
@@ -572,7 +572,7 @@
 				flowBoard.renderedTopics[ topicId ] = _render( [ topicId ] );
 				$allRendered.push( flowBoard.renderedTopics[ topicId ][ 0 ] );
 				toInsert.push( topicId );
-				if ( flowBoard.orderedTopicIds.indexOf( topicId ) === -1 ) {
+				if ( !flowBoard.orderedTopicIds.includes( topicId ) ) {
 					flowBoard.orderedTopicIds.push( topicId );
 				}
 				// @todo this is already done elsewhere, but it runs after insert
@@ -591,7 +591,7 @@
 			// initial page load starts at the begining.
 			for ( i = 1; i < flowBoard.orderedTopicIds.length; i++ ) {
 				// topic is not to be inserted yet.
-				if ( toInsert.indexOf( flowBoard.orderedTopicIds[ i ] ) === -1 ) {
+				if ( !toInsert.includes( flowBoard.orderedTopicIds[ i ] ) ) {
 					continue;
 				}
 

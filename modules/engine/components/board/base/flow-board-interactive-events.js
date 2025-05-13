@@ -31,10 +31,10 @@
 	 * @return {jQuery.Promise}
 	 */
 	FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers.collapserCollapsibleToggle = function ( event ) {
-		var $target = $( this ).closest( '.flow-element-collapsible' ),
+		const $target = $( this ).closest( '.flow-element-collapsible' ),
 			$deferred = $.Deferred(),
 			updateTitle = function ( element, state ) {
-				var titleDataAttribute = state + '-title',
+				const titleDataAttribute = state + '-title',
 					$element = $( element ),
 					title = $element.data( titleDataAttribute );
 
@@ -65,7 +65,7 @@
 	};
 
 	// @todo remove these data-flow handler forwarder callbacks when data-mwui handlers are implemented
-	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( function ( i, fn ) {
+	$( [ 'close', 'prevOrClose', 'nextOrSubmit', 'prev', 'next' ] ).each( ( i, fn ) => {
 		// Assigns each handler with the prefix 'modal', eg. 'close' becomes 'modalClose'
 		FlowBoardComponentInteractiveEventsMixin.UI.events.interactiveHandlers[ 'modal' + fn.charAt( 0 ).toUpperCase() + fn.slice( 1 ) ] = function ( event ) {
 			event.preventDefault();

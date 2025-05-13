@@ -59,7 +59,7 @@
 	 * @param {Object} board flowBoard _RecursiveConstructor
 	 */
 	mw.flow.Initializer.prototype.setBoardObject = function ( board ) {
-		var self = this;
+		const self = this;
 
 		this.flowBoard = board;
 
@@ -76,7 +76,7 @@
 			},
 			// HACK: Update the DM when topic is refreshed
 			refreshTopic: function ( workflowId, topicData ) {
-				var revisionId, revision,
+				let revisionId, revision,
 					topic = self.board.getItemById( workflowId ),
 					data = topicData.flow[ 'view-topic' ].result.topic;
 
@@ -109,7 +109,7 @@
 	 * Set up the sidebar widget if needed
 	 */
 	mw.flow.Initializer.prototype.setupSidebarWidget = function () {
-		var sidebarExpandWidget,
+		let sidebarExpandWidget,
 			self = this;
 
 		if (
@@ -129,7 +129,7 @@
 			sidebarExpandWidget.$element.insertAfter( this.$board );
 
 			// Events
-			sidebarExpandWidget.on( 'toggle', function ( collapsed ) {
+			sidebarExpandWidget.on( 'toggle', ( collapsed ) => {
 				self.$board.toggleClass( 'flow-board-expanded', collapsed );
 			} );
 		}
@@ -197,7 +197,7 @@
 	 * @param {Object} config Configuration options for the mw.flow.dm.System
 	 */
 	mw.flow.Initializer.prototype.initDataModel = function ( config ) {
-		var self = this;
+		const self = this;
 
 		this.system = new mw.flow.dm.System( config );
 		this.board = this.system.getBoard();
@@ -208,13 +208,13 @@
 		// Events
 		this.board.connect( this, {
 			add: function ( newItems ) {
-				var i, len, item, itemId;
+				let i, len, item, itemId;
 
 				for ( i = 0, len = newItems.length; i < len; i++ ) {
 					item = newItems[ i ];
 					itemId = item.getId();
 
-					if ( self.flowBoard.orderedTopicIds.indexOf( itemId ) === -1 ) {
+					if ( !self.flowBoard.orderedTopicIds.includes( itemId ) ) {
 						self.flowBoard.orderedTopicIds.push( itemId );
 					}
 
@@ -248,7 +248,7 @@
 	 * @param {Object} dataBlob Data blob to populate the system with
 	 */
 	mw.flow.Initializer.prototype.populateDataModel = function ( dataBlob ) {
-		var preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
+		const preloadTopic = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'topic' ),
 			preloadContent = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'content' ),
 			preloadFormat = OO.getProp( dataBlob, 'blocks', 'topiclist', 'submitted', 'format' );
 
@@ -275,7 +275,7 @@
 	 * @param {jQuery} $navDom Navigation widget DOM element
 	 */
 	mw.flow.Initializer.prototype.setupNavigationWidget = function ( $navDom ) {
-		var self = this;
+		const self = this;
 
 		if ( !$navDom.length ) {
 			return;
@@ -312,7 +312,7 @@
 				self.navWidget.$element.detach();
 			},
 			resetBoardEnd: function ( data ) {
-				var $rendered;
+				let $rendered;
 
 				// populateBoardFromApi uses the larger TOC limit so the TOC can
 				// be fully populated on re-sort.  To avoid two requests
@@ -338,8 +338,8 @@
 				).children();
 				// Run this on a short timeout so that the other board handler in FlowBoardComponentLoadMoreFeatureMixin can run
 				// TODO: Using a timeout doesn't seem like the right way to do this.
-				setTimeout( function () {
-					var boardEl = $rendered[ 1 ];
+				setTimeout( () => {
+					const boardEl = $rendered[ 1 ];
 
 					// Since we've replaced the entire board, we need to reinitialize
 					// it. This also takes away the original navWidget, so we need to
@@ -365,7 +365,7 @@
 	 * @param {jQuery} $form New topic form DOM element
 	 */
 	mw.flow.Initializer.prototype.setupNewTopicWidget = function ( $form ) {
-		var self = this;
+		const self = this;
 
 		this.newTopicWidget = new mw.flow.ui.NewTopicWidget( this.pageTitle.getPrefixedDb(), {
 			editor: {
@@ -377,7 +377,7 @@
 		this.newTopicWidget.connect( this, {
 			save: function ( newTopicId ) {
 				// Display the new topic with the old system
-				var $stub = $( '<div>' ).addClass( 'flow-topic' ).append( $( '<div>' ) ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
+				const $stub = $( '<div>' ).addClass( 'flow-topic' ).append( $( '<div>' ) ).prependTo( self.flowBoard.$container.find( '.flow-topics' ) );
 				return this.flowBoard.flowBoardComponentRefreshTopic( $stub.find( 'div' ), newTopicId );
 			}
 		} ).once( 'save', this.reloadOnCreate ); // Reload page if board is new so we get page actions at top
@@ -400,7 +400,7 @@
 	 * @param {jQuery} $element Description DOM element
 	 */
 	mw.flow.Initializer.prototype.setupDescriptionWidget = function ( $element ) {
-		var initializer = this;
+		const initializer = this;
 		if ( !$element.length ) {
 			return;
 		}
@@ -414,7 +414,7 @@
 		} )
 			// Reload page if board is new so we get page actions at top
 			.once( 'saveContent', this.reloadOnCreate )
-			.on( 'saveContent', function () {
+			.on( 'saveContent', () => {
 				mw.hook( 'wikipage.content' ).fire( initializer.descriptionWidget.$content );
 			} );
 
@@ -452,14 +452,14 @@
 	 * @param {jQuery} $element The element to conduct the replacements in
 	 */
 	mw.flow.Initializer.prototype.replaceReplyForms = function ( $element ) {
-		var self = this;
+		const self = this;
 
 		if ( !$element || !$element.length ) {
 			return;
 		}
 
 		$element.find( '.flow-post.flow-reply-form' ).each( function () {
-			var $topic = $( this ).parent(),
+			const $topic = $( this ).parent(),
 				placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
 				replyTo = $( this ).find( 'input[name="topic_replyTo"]' ).val(),
 				replyWidget = new mw.flow.ui.ReplyWidget( $topic.data( 'flowId' ), replyTo, {
@@ -469,8 +469,8 @@
 					}
 				} );
 
-			replyWidget.on( 'saveContent', function ( workflow ) {
-				replyWidget.destroy().then( function () {
+			replyWidget.on( 'saveContent', ( workflow ) => {
+				replyWidget.destroy().then( () => {
 					replyWidget.$element.remove();
 
 					// HACK: get the old system to rerender the topic
@@ -493,7 +493,7 @@
 	 */
 	mw.flow.Initializer.prototype.setupEditPostAction = function () {
 		this.$component.on( 'click', '.flow-ui-edit-post-link', function ( event ) {
-			var editPostWidget,
+			let editPostWidget,
 				$topic = $( this ).closest( '.flow-topic' ),
 				topicId = $topic.data( 'flow-id' ),
 				$post = $( this ).closest( '.flow-post' ),
@@ -508,8 +508,8 @@
 				}
 			} );
 			editPostWidget
-				.on( 'saveContent', function ( workflow ) {
-					editPostWidget.destroy().then( function () {
+				.on( 'saveContent', ( workflow ) => {
+					editPostWidget.destroy().then( () => {
 						editPostWidget.$element.remove();
 
 						// HACK get the old system to rerender the topic
@@ -519,8 +519,8 @@
 						);
 					} );
 				} )
-				.on( 'cancel', function () {
-					editPostWidget.destroy().then( function () {
+				.on( 'cancel', () => {
+					editPostWidget.destroy().then( () => {
 						editPostWidget.$element.replaceWith( $postMain );
 					} );
 				} );
@@ -540,7 +540,7 @@
 	mw.flow.Initializer.prototype.reopenEditPostWidgets = function ( $container ) {
 		// Re-open widgets with stored data
 		$container.find( '.flow-ui-edit-post-link' ).each( function () {
-			var $post = $( this ).closest( '.flow-post' ),
+			const $post = $( this ).closest( '.flow-post' ),
 				postId = $post.data( 'flow-id' );
 
 			if ( mw.storage.session.get( 'edit/' + postId + '/ve-docstate' ) ) {
@@ -554,12 +554,12 @@
 	 * This is delegated, so it applies to all future links as well.
 	 */
 	mw.flow.Initializer.prototype.setupEditTopicSummaryAction = function () {
-		var self = this;
+		const self = this;
 
 		this.$component
 			// Summarize action
 			.on( 'click', '.flow-ui-summarize-topic-link', function ( event ) {
-				var $topic = $( this ).closest( '.flow-topic' ),
+				const $topic = $( this ).closest( '.flow-topic' ),
 					topicId = $topic.data( 'flow-id' );
 
 				self.startEditTopicSummary( true, topicId );
@@ -567,7 +567,7 @@
 			} )
 			// Lock action
 			.on( 'click', '.flow-ui-topicmenu-lock', function () {
-				var promise,
+				let promise,
 					action = $( this ).data( 'role' ),
 					$topic = $( this ).closest( '.flow-topic' ),
 					topicId = $topic.data( 'flow-id' ),
@@ -580,14 +580,12 @@
 				}
 
 				promise
-					.then( function ( workflow ) {
-						return self.flowBoard.flowBoardComponentRefreshTopic(
-							$topic,
-							workflow
-						);
-					} )
-					.then( function ( data ) {
-						var revisionId = data.topic.posts[ topicId ],
+					.then( ( workflow ) => self.flowBoard.flowBoardComponentRefreshTopic(
+						$topic,
+						workflow
+					) )
+					.then( ( data ) => {
+						const revisionId = data.topic.posts[ topicId ],
 							revision = data.topic.revisions[ revisionId ],
 							summaryContent = OO.getProp( revision, 'summary', 'revision', 'content', 'content' ),
 							skipSummarize = action === 'unlock' && !summaryContent;
@@ -596,8 +594,8 @@
 							self.startEditTopicSummary( true, topicId, action );
 						}
 					} )
-					.fail( function ( code, result ) {
-						var errorMsg = self.flowBoard.constructor.static.getApiErrorMessage( code, result );
+					.fail( ( code, result ) => {
+						const errorMsg = self.flowBoard.constructor.static.getApiErrorMessage( code, result );
 
 						self.flowBoard.emit( 'removeError', $topic );
 						self.flowBoard.emit( 'showError', $topic, errorMsg );
@@ -615,7 +613,7 @@
 	 */
 	mw.flow.Initializer.prototype.reopenEditTopicSummaryWidget = function ( $container ) {
 		$container.find( '.flow-ui-summarize-topic-link' ).each( function () {
-			var $topic = $( this ).closest( '.flow-topic' ),
+			const $topic = $( this ).closest( '.flow-topic' ),
 				topicId = $topic.data( 'flow-id' );
 
 			if ( mw.storage.session.get( 'edit-summary/' + topicId + '/ve-docstate' ) ) {
@@ -629,11 +627,11 @@
 	 * This is delegated, so it applies to all future links as well.
 	 */
 	mw.flow.Initializer.prototype.setupEditTopicTitleAction = function () {
-		var self = this;
+		const self = this;
 
 		this.$component
 			.on( 'click', 'a.flow-ui-edit-title-link', function ( event ) {
-				var $topic = $( this ).closest( '.flow-topic' ),
+				let $topic = $( this ).closest( '.flow-topic' ),
 					topicId = $topic.data( 'flow-id' ),
 					$container = $topic.find( '.flow-topic-titlebar-container' ),
 					$topicTitleViewMode = $container.find( 'h2.flow-topic-title' ),
@@ -651,7 +649,7 @@
 					}
 				} );
 				widget
-					.on( 'saveContent', function ( workflow ) {
+					.on( 'saveContent', ( workflow ) => {
 						widget.$element.remove();
 
 						return self.flowBoard.flowBoardComponentRefreshTopic(
@@ -659,7 +657,7 @@
 							workflow
 						);
 					} )
-					.on( 'cancel', function () {
+					.on( 'cancel', () => {
 						widget.$element.remove();
 						$container.prepend( $topicTitleViewMode );
 					} );
@@ -678,7 +676,7 @@
 	 */
 	mw.flow.Initializer.prototype.reopenTopicTitleWidgets = function ( $container ) {
 		$container.find( 'a.flow-ui-edit-title-link' ).each( function () {
-			var $topic = $( this ).closest( '.flow-topic' ),
+			const $topic = $( this ).closest( '.flow-topic' ),
 				topicId = $topic.data( 'flow-id' );
 
 			if ( mw.storage.session.get( 'edit-topic/' + topicId + '/title' ) ) {
@@ -692,12 +690,12 @@
 	 * so it applies to current and future links.
 	 */
 	mw.flow.Initializer.prototype.setupReplyLinkActions = function () {
-		var self = this;
+		const self = this;
 
 		// Replace the handler used for reply links.
 		this.$component.on( 'click', 'a.flow-reply-link', function () {
 			// Store the needed details so we can get rid of the URL in JS mode
-			var replyWidget,
+			let replyWidget,
 				existingWidget,
 				href = $( this ).attr( 'href' ),
 				uri = new mw.Uri( href ),
@@ -734,8 +732,8 @@
 			replyWidget.activateEditor();
 
 			replyWidget
-				.on( 'saveContent', function ( workflow ) {
-					replyWidget.destroy().then( function () {
+				.on( 'saveContent', ( workflow ) => {
+					replyWidget.destroy().then( () => {
 						replyWidget.$element.remove();
 
 						// HACK get the old system to rerender the topic
@@ -745,8 +743,8 @@
 						);
 					} );
 				} )
-				.on( 'cancel', function () {
-					replyWidget.destroy().then( function () {
+				.on( 'cancel', () => {
+					replyWidget.destroy().then( () => {
 						replyWidget.$element.remove();
 					} );
 				} );
@@ -761,10 +759,10 @@
 	 * @param {jQuery} $container
 	 */
 	mw.flow.Initializer.prototype.reopenReplyWidgets = function ( $container ) {
-		var queuedClicks = {};
+		const queuedClicks = {};
 
 		$container.find( 'a.flow-reply-link' ).each( function () {
-			var href = $( this ).attr( 'href' ),
+			const href = $( this ).attr( 'href' ),
 				uri = new mw.Uri( href ),
 				replyTo = uri.query.topic_postId;
 
@@ -776,7 +774,7 @@
 			}
 		} );
 
-		Object.keys( queuedClicks ).forEach( function ( replyTo ) {
+		Object.keys( queuedClicks ).forEach( ( replyTo ) => {
 			$( queuedClicks[ replyTo ] ).trigger( 'click' );
 		} );
 	};
@@ -790,7 +788,7 @@
 	 *  is assumed as summary only.
 	 */
 	mw.flow.Initializer.prototype.startEditTopicSummary = function ( isFullBoard, topicId, action ) {
-		var editTopicSummaryWidget,
+		let editTopicSummaryWidget,
 			self = this,
 			$topic = $( '#flow-topic-' + topicId ),
 			$summaryContainer = $topic.find( '.flow-topic-summary-container' ),
@@ -817,8 +815,8 @@
 
 		editTopicSummaryWidget = new mw.flow.ui.EditTopicSummaryWidget( topicId, { editor: editorOptions } );
 		editTopicSummaryWidget
-			.on( 'saveContent', function ( workflow ) {
-				editTopicSummaryWidget.destroy().then( function () {
+			.on( 'saveContent', ( workflow ) => {
+				editTopicSummaryWidget.destroy().then( () => {
 					editTopicSummaryWidget.$element.remove();
 
 					if ( isFullBoard ) {
@@ -833,8 +831,8 @@
 					}
 				} );
 			} )
-			.on( 'cancel', function () {
-				editTopicSummaryWidget.destroy().then( function () {
+			.on( 'cancel', () => {
+				editTopicSummaryWidget.destroy().then( () => {
 					editTopicSummaryWidget.$element.remove();
 					if ( isFullBoard ) {
 						$summaryContainer.append( $topicSummary );
@@ -856,13 +854,13 @@
 	 * @param {jQuery} $element The element to conduct the replacements in
 	 */
 	mw.flow.Initializer.prototype.replaceNoJSEditor = function ( $element ) {
-		var editPostWidget,
+		let editPostWidget,
 			$post = $element.parent(),
 			$topic = $post.closest( '.flow-topic' ),
 			self = this;
 
 		function saveOrCancelHandler( workflow ) {
-			editPostWidget.destroy().then( function () {
+			editPostWidget.destroy().then( () => {
 				editPostWidget.$element.remove();
 
 				// HACK get the old system to rerender the topic
@@ -907,7 +905,7 @@
 	 * @return {mw.flow.ui.EditorWidget}
 	 */
 	mw.flow.Initializer.prototype.createEditorWidget = function ( $domToReplace, content, saveMsgKey, id ) {
-		var $wrapper,
+		let $wrapper,
 			$messages = $( '<div>' ).addClass( 'flow-ui-editorContainerWidget-messages' ),
 			isProbablyEditable = mw.config.get( 'wgIsProbablyEditable' ),
 			anonWarning = new mw.flow.ui.AnonWarningWidget( {
@@ -961,13 +959,13 @@
 		// Prepare the editor
 		editor.pushPending();
 		editor.activate( { content: content || '', format: 'wikitext' } )
-			.then( function () {
+			.then( () => {
 				editor.popPending();
 			} );
 
 		editor
-			.on( 'saveContent', function ( content, contentFormat ) {
-				var captchaResponse;
+			.on( 'saveContent', ( content, contentFormat ) => {
+				let captchaResponse;
 
 				editor.pushPending();
 
@@ -981,7 +979,7 @@
 				// uses, especially for the APIhandler in different cases
 				editor.emit( 'afterSaveContent', content, contentFormat, captchaResponse, handleFailure );
 			} )
-			.on( 'cancel', function () {
+			.on( 'cancel', () => {
 				editor.pushPending();
 				editor.emit( 'afterCancel' );
 				// returnToBoard();
@@ -1000,7 +998,7 @@
 	};
 
 	mw.flow.Initializer.prototype.setupUndoPage = function () {
-		var $undoForm = $( 'form[data-module="topic"], form[data-module="header"], form[data-module="topicsummary"]' ),
+		let $undoForm = $( 'form[data-module="topic"], form[data-module="header"], form[data-module="topicsummary"]' ),
 			undoType = $undoForm.attr( 'data-module' ),
 			pageName = mw.config.get( 'wgPageName' ),
 			title = mw.Title.newFromText( pageName ),
@@ -1009,7 +1007,7 @@
 			prevRevId = $undoForm.find( 'input[name="' + undoType + '_prev_revision"]' ).val(),
 			content = $undoForm.find( 'textarea' ).val(),
 			returnToTitle = function () {
-				var url;
+				let url;
 				if ( undoType === 'topic' ) {
 					// If we're undoing a post edit, redirect to the topic page with the right parameter
 					// and fragment to highlight the post
@@ -1058,7 +1056,7 @@
 			saveMsgKey += '-publish';
 		}
 		editor
-			.on( 'afterSaveContent', function ( content, contentFormat, captcha, handleFailure ) {
+			.on( 'afterSaveContent', ( content, contentFormat, captcha, handleFailure ) => {
 				save( content, contentFormat, captcha )
 					.then(
 						// Success

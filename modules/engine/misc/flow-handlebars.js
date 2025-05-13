@@ -3,7 +3,7 @@
  */
 
 ( function () {
-	var _tplcache = {},
+	const _tplcache = {},
 		_timestamp = {
 			list: [],
 			currentIndex: 0
@@ -71,7 +71,7 @@
 	 * @return {DocumentFragment}
 	 */
 	FlowHandlebars.prototype.processTemplateGetFragment = function ( templateName, args ) {
-		var fragment = document.createDocumentFragment(),
+		let fragment = document.createDocumentFragment(),
 			div = document.createElement( 'div' );
 
 		div.innerHTML = FlowHandlebars.prototype.processTemplate( templateName, args );
@@ -95,7 +95,7 @@
 	 * @return {Mixed}
 	 */
 	FlowHandlebars.prototype.callHelper = function ( helperName ) {
-		var result = this[ helperName ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
+		const result = this[ helperName ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		if ( result && result.string ) {
 			return result.string;
 		}
@@ -112,7 +112,7 @@
 	 */
 	FlowHandlebars.prototype.processProgressiveEnhancement = function ( target ) {
 		$( target ).find( 'script' ).addBack( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
-			var $this = $( this ),
+			let $this = $( this ),
 				data = $this.data(),
 				target = data.target && data.target.trim(),
 				$target = $this,
@@ -180,9 +180,7 @@
 	 * @return {Array}
 	 */
 	function flowNormalizeL10nParameters( parameters ) {
-		return parameters.map( function ( arg ) {
-			return arg ? ( arg.raw || arg.plaintext || arg ) : '';
-		} );
+		return parameters.map( ( arg ) => arg ? ( arg.raw || arg.plaintext || arg ) : '' );
 	}
 
 	/**
@@ -198,7 +196,7 @@
 	 */
 	FlowHandlebars.prototype.l10n = function ( str /* , args..., options */ ) {
 		// chop off str and options leaving just args
-		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
+		const args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
 		// eslint-disable-next-line mediawiki/msg-doc
 		return mw.message( str ).params( args ).text();
@@ -211,7 +209,7 @@
 	 * @return {string|Handlebars.SafeString}
 	 */
 	FlowHandlebars.prototype.l10nParse = function ( str /* , args..., options */ ) {
-		var args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
+		const args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
 		return FlowHandlebars.prototype.html(
 			// eslint-disable-next-line mediawiki/msg-doc
@@ -224,7 +222,7 @@
 	 * @return {string|Handlebars.SafeString}
 	 */
 	FlowHandlebars.prototype.l10nParseFlowTermsOfUse = function ( key ) {
-		var flowTermsOfUse = require( './flowTermsOfUse.json' );
+		const flowTermsOfUse = require( './flowTermsOfUse.json' );
 		return FlowHandlebars.prototype.html( flowTermsOfUse[ key ] );
 	};
 
@@ -238,7 +236,7 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, timeAgoOnly ) {
-		var timestamp = mw.flow.uuidToTime( uuid );
+		const timestamp = mw.flow.uuidToTime( uuid );
 
 		return FlowHandlebars.prototype.timestamp( timestamp, timeAgoOnly );
 	};
@@ -252,7 +250,7 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.timestamp = function ( timestamp ) {
-		var guid, formatter;
+		let guid, formatter;
 
 		if ( isNaN( timestamp ) ) {
 			mw.flow.debug( '[timestamp] Invalid arguments', arguments );
@@ -289,7 +287,7 @@
 	 * @todo Maybe updating elements every few seconds is distracting? Think about this.
 	 */
 	function timestampAutoUpdate() {
-		var arrayItem, $ago, failed, secondsAgo, text, formatter,
+		let arrayItem, $ago, failed, secondsAgo, text, formatter,
 			currentTime = Date.now() / 1000;
 
 		// Only update elements that need updating (eg. only update minutes every 60s)
@@ -405,7 +403,7 @@
 	 * @todo support multiple postIds in an array
 	 */
 	FlowHandlebars.prototype.eachPost = function ( context, postId, options ) {
-		var revId = ( context.posts && context.posts[ postId ] && context.posts[ postId ][ 0 ] ),
+		const revId = ( context.posts && context.posts[ postId ] && context.posts[ postId ][ 0 ] ),
 			revision = ( context.revisions && context.revisions[ revId ] ) || { content: null };
 
 		if ( revision.content === null ) {
@@ -437,7 +435,7 @@
 	 * @todo Implement support for full functionality, perhaps revisit the implementation.
 	 */
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
-		var hash = options.hash,
+		const hash = options.hash,
 			// Replace nested script tag with placeholder tag for
 			// recursive progresiveEnhancement
 			inner = options.fn( this ).replace( /<\/script>/g, '</flowprogressivescript>' );
@@ -517,7 +515,7 @@
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.tooltip = function ( options ) {
-		var params = options.hash;
+		const params = options.hash;
 
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
 			'flow_tooltip',
@@ -587,11 +585,11 @@
 
 	// Load partials
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( mw.templates.get(), function ( moduleName, moduleTemplates ) {
+	$.each( mw.templates.get(), ( moduleName, moduleTemplates ) => {
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( moduleTemplates, function ( name ) {
+		$.each( moduleTemplates, ( name ) => {
 			// remove extension
-			var partialMatch, partialName;
+			let partialMatch, partialName;
 
 			partialMatch = name.match( /handlebars\/(.*)\.partial\.handlebars$/ );
 			if ( partialMatch ) {

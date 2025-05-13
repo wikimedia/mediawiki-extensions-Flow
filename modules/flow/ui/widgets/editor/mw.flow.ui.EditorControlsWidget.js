@@ -13,7 +13,7 @@
 	 * @param {boolean} [config.saveable=true] Initial state of saveable flag
 	 */
 	mw.flow.ui.EditorControlsWidget = function mwFlowUiEditorControlsWidget( config ) {
-		var $buttons = $( '<div>' ).addClass( 'flow-ui-editorControlsWidget-buttons' ),
+		const $buttons = $( '<div>' ).addClass( 'flow-ui-editorControlsWidget-buttons' ),
 			widget = this;
 
 		config = config || {};
@@ -43,7 +43,7 @@
 
 		// Keyboard shortcut messages are provided by VE, so only do this when VE is installed
 		if ( mw.loader.getState( 'ext.visualEditor.mwcore' ) ) {
-			mw.loader.using( 'ext.visualEditor.mwcore' ).then( function () {
+			mw.loader.using( 'ext.visualEditor.mwcore' ).then( () => {
 				widget.cancelButton.setTitle(
 					widget.cancelButton.getLabel() +
 					// eslint-disable-next-line no-undef

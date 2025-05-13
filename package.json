@@ -9,7 +9,7 @@
 	},
 	"devDependencies": {
 		"api-testing": "1.6.0",
-		"eslint-config-wikimedia": "0.28.2",
+		"eslint-config-wikimedia": "0.29.1",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-contrib-watch": "1.1.0",

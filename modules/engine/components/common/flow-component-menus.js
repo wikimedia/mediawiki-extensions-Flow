@@ -45,7 +45,7 @@
 	 * @param {Event} event
 	 */
 	function flowComponentMenusFeatureMixinToggleHoverMenuCallback( event ) {
-		var $this = $( event.target ),
+		const $this = $( event.target ),
 			$menu = $this.closest( '.flow-menu' );
 
 		if ( event.type === 'click' ) {
@@ -61,7 +61,7 @@
 				}
 			} else if ( $this.is( 'a, button' ) ) {
 				// Remove the focus from the menu so it can hide after clicking on a link or button
-				setTimeout( function () {
+				setTimeout( () => {
 					if ( $this.is( ':focus' ) ) {
 						$this.trigger( 'blur' );
 					}
@@ -80,7 +80,7 @@
 			$menu.addClass( 'focus' );
 		} else if ( event.type === 'focusout' && !$menu.find( 'a' ).filter( ':focus' ).length ) {
 			// If we lost focus, make sure no other element in this menu has focus, and then hide the menu
-			setTimeout( function () {
+			setTimeout( () => {
 				if ( !$menu.data( 'mousedown' ) && !$menu.find( 'a' ).filter( ':focus' ).length ) {
 					$menu.removeClass( 'focus' );
 				}
@@ -101,7 +101,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function flowComponentMenusFeatureElementMenuToggleCallback( event ) {
-		var $this = $( this ),
+		const $this = $( this ),
 			flowComponent = mw.flow.getPrototypeMethod( 'component', 'getInstanceByElement' )( $this ),
 			target = $this.data( 'flowMenuTarget' ),
 			$target = $.findWithParent( $this, target ),

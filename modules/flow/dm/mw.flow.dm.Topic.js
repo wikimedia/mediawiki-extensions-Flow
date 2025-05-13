@@ -57,7 +57,7 @@
 	 * @return {Object} Revision data
 	 */
 	mw.flow.dm.Topic.static.getTopicRevisionFromApi = function ( topiclist, topicId ) {
-		var revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
+		const revisionId = topiclist.posts[ topicId ] && topiclist.posts[ topicId ][ 0 ];
 
 		return topiclist.revisions[ revisionId ];
 	};
@@ -69,7 +69,7 @@
 	 * @return {mw.flow.dm.Topic[]} Array of topic models
 	 */
 	mw.flow.dm.Topic.static.extractTopicsFromAPI = function ( topiclist ) {
-		var i, len, topicId,
+		let i, len, topicId,
 			topics = [];
 
 		for ( i = 0, len = topiclist.roots.length; i < len; i++ ) {

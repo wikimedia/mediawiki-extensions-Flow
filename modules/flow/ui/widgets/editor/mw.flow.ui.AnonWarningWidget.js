@@ -10,7 +10,7 @@
 	 * @param {boolean} [config.isProbablyEditable=true] Whether the content seems to be editable
 	 */
 	mw.flow.ui.AnonWarningWidget = function mwFlowUiAnonWarningWidget( config ) {
-		var returnTo, labelHtml, isProbablyEditable,
+		let returnTo, labelHtml, isProbablyEditable,
 			widget = this,
 			shouldDisplay;
 
@@ -32,7 +32,7 @@
 		this.label = new OO.ui.LabelWidget();
 
 		// HACK: Theme styles get recalculated after timeout
-		setTimeout( ( function () {
+		setTimeout( ( () => {
 			widget.icon.$element.addClass( 'oo-ui-image-invert' );
 		} ) );
 

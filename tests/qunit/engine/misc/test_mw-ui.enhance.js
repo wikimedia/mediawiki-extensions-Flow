@@ -1,8 +1,8 @@
 ( function () {
 	QUnit.module( 'ext.flow: mediawiki.ui.enhance' );
 
-	QUnit.test( 'Forms with required fields have certain buttons disabled by default', function ( assert ) {
-		var forms = [
+	QUnit.test( 'Forms with required fields have certain buttons disabled by default', ( assert ) => {
+		const forms = [
 			$( '<form><input class="mw-ui-input" required><button data-role="action" class="mw-ui-button">go</button></form>' ),
 			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' ),
 			$( '<form><textarea class="mw-ui-input"></textarea><input class="mw-ui-input"><button data-role="submit" class="mw-ui-button">go</button></form>' ),
@@ -11,7 +11,7 @@
 			$( '<form><textarea class="mw-ui-input" required>foo</textarea><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' )
 		];
 
-		forms.forEach( function ( $form ) {
+		forms.forEach( ( $form ) => {
 			mw.flow.ui.enhance.enableFormWithRequiredFields( $form );
 		} );
 
@@ -29,8 +29,8 @@
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
-	QUnit.test( 'mw-ui-tooltip', function ( assert ) {
-		var $body = $( document.body );
+	QUnit.test( 'mw-ui-tooltip', ( assert ) => {
+		const $body = $( document.body );
 
 		assert.true( typeof mw.tooltip === 'object', 'mw.tooltip exists' );
 
@@ -46,8 +46,8 @@
 		$body.attr( 'title', '' );
 	} );
 
-	QUnit.test( 'mw-ui-modal', function ( assert ) {
-		var modal, $node;
+	QUnit.test( 'mw-ui-modal', ( assert ) => {
+		let modal, $node;
 
 		assert.true( typeof mw.Modal === 'function', 'mw.Modal exists' );
 
@@ -69,11 +69,11 @@
 			'Modal heading should be hidden with no title' );
 
 		modal = mw.Modal( { title: 'titlefoo' } );
-		assert.true( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlefoo' ) !== -1,
+		assert.true( modal.getNode().find( modal.headingSelector ).text().includes( 'titlefoo' ),
 			'Modal instantiation sets title to "titlefoo"' );
 
 		modal.setTitle( 'titlebaz' );
-		assert.true( modal.getNode().find( modal.headingSelector ).text().indexOf( 'titlebaz' ) !== -1,
+		assert.true( modal.getNode().find( modal.headingSelector ).text().includes( 'titlebaz' ),
 			'Modal setTitle to "titlebaz"' );
 
 		// Content at instantiation

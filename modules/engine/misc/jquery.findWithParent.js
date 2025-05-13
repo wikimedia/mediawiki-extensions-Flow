@@ -13,7 +13,7 @@
 	 * @return {jQuery}
 	 */
 	function jQueryFindWithParent( $context, selector ) {
-		var matches;
+		let matches;
 
 		$context = $( $context );
 		selector = selector.trim();
@@ -44,11 +44,11 @@
 	 * @see jQuery#findWithParent
 	 */
 	$.fn.findWithParent = function ( selector ) {
-		var selectors = selector.split( ',' ),
+		let selectors = selector.split( ',' ),
 			$elements = $(),
 			self = this;
 
-		selectors.forEach( function ( selector ) {
+		selectors.forEach( ( selector ) => {
 			$elements = $elements.add( jQueryFindWithParent( self, selector ) );
 		} );
 
