@@ -28,7 +28,8 @@
 			"Kokage si",
 			"Ryoya3",
 			"Chqaz",
-			"Salvare"
+			"Salvare",
+			"Shulmj"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -392,7 +393,7 @@
 	"flow-terms-of-use-summarize": "「{{int:flow-topic-action-update-topic-summary}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
 	"flow-whatlinkshere-header": "[$1 説明]から",
-	"structureddiscussions": "Structured Discussions",
+	"structureddiscussions": "構造化された議論",
 	"flow-special-desc": "この特別ページは、構造化された議論のワークフローまたはUUIDが与えられた構造化議論の投稿に転送されます。",
 	"flow-special-type": "種類",
 	"flow-special-type-post": "投稿",
