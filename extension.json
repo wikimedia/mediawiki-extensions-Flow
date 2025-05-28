@@ -398,7 +398,6 @@
 				"mediawiki.api",
 				"mediawiki.Title",
 				"mediawiki.user",
-				"mediawiki.Uri",
 				"mediawiki.util"
 			]
 		},
