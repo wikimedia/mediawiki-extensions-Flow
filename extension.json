@@ -691,7 +691,6 @@
 		"AbuseFilter-deprecatedVariables": "Flow\\Hooks::onAbuseFilterDeprecatedVariables",
 		"AbuseFilter-computeVariable": "Flow\\Hooks::onAbuseFilterComputeVariable",
 		"AbuseFilterGenerateVarsForRecentChange": "AbuseFilter",
-		"AbortEmailNotification": "main",
 		"BeforeDisplayOrangeAlert": "main",
 		"EchoAbortEmailNotification": "Flow\\Hooks::onEchoAbortEmailNotification",
 		"BeforeEchoEventInsert": "Flow\\Hooks::onBeforeEchoEventInsert",
@@ -731,6 +730,15 @@
 		"NukeDeletePage": "Flow\\Hooks::onNukeDeletePage",
 		"getUserPermissionsErrors": "main"
 	},
+	"NotificationMiddleware": [
+		{
+			"class": "Flow\\Notifications\\FilterFlowNotificationsMiddleware",
+			"services": [
+				"MainConfig",
+				"WatchedItemStore"
+			]
+		}
+	],
 	"namespaces": [
 		{
 			"id": 2600,

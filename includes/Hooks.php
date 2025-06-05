@@ -30,7 +30,6 @@ use MediaWiki\Extension\GuidedTour\GuidedTourLauncher;
 use MediaWiki\Extension\Notifications\Hooks\BeforeDisplayOrangeAlertHook;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Feed\FeedItem;
-use MediaWiki\Hook\AbortEmailNotificationHook;
 use MediaWiki\Hook\CategoryViewer__doCategoryQueryHook;
 use MediaWiki\Hook\CategoryViewer__generateLinkHook;
 use MediaWiki\Hook\ChangesListInitRowsHook;
@@ -128,7 +127,6 @@ class Hooks implements
 	ContributionsLineEndingHook,
 	DeletedContributionsLineEndingHook,
 	ApiFeedContributions__feedItemHook,
-	AbortEmailNotificationHook,
 	BeforeDisplayOrangeAlertHook,
 	ArticleEditUpdateNewTalkHook,
 	InfoActionHook,
@@ -955,42 +953,6 @@ class Hooks implements
 		// fetch variable result from lazy-load method
 		$result = $methods[$method]( $vars, $parameters );
 		return false;
-	}
-
-	/**
-	 * Abort notifications regarding occupied pages coming from the RecentChange class.
-	 * Flow has its own notifications through Echo.
-	 *
-	 * Also don't notify for actions made by the talk page manager.
-	 *
-	 * @param User $editor
-	 * @param Title $title
-	 * @param RecentChange $rc
-	 * @return bool false to abort email notification
-	 */
-	public function onAbortEmailNotification( $editor, $title, $rc ) {
-		if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
-			// Since we are aborting the notification we need to manually update the watchlist
-			$config = RequestContext::getMain()->getConfig();
-			if ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) ) {
-				MediaWikiServices::getInstance()->getWatchedItemStore()->updateNotificationTimestamp(
-					$editor,
-					$title,
-					wfTimestampNow()
-				);
-			}
-			return false;
-		}
-
-		if ( !$editor instanceof UserIdentity ) {
-			return true;
-		}
-
-		if ( self::isTalkpageManagerUser( $editor ) ) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
