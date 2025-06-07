@@ -698,8 +698,7 @@
 			let replyWidget,
 				existingWidget,
 				href = $( this ).attr( 'href' ),
-				uri = new mw.Uri( href ),
-				replyTo = uri.query.topic_postId,
+				replyTo = mw.util.getParamValue( 'topic_postId', href ),
 				$topic = $( this ).closest( '.flow-topic' ),
 				placeholder = mw.msg( 'flow-reply-topic-title-placeholder', $topic.find( '.flow-topic-title' ).text().trim() ),
 				// replyTo can refer to a post ID or a topic ID
@@ -763,8 +762,7 @@
 
 		$container.find( 'a.flow-reply-link' ).each( function () {
 			const href = $( this ).attr( 'href' ),
-				uri = new mw.Uri( href ),
-				replyTo = uri.query.topic_postId;
+				replyTo = mw.util.getParamValue( 'topic_postId', href );
 
 			if ( mw.storage.session.get( 'reply/' + replyTo + '/ve-docstate' ) ) {
 				// There can be multiple links to reply to a given topicId. They all behave

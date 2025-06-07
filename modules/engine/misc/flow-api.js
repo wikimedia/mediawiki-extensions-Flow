@@ -162,31 +162,25 @@
 	 * @return {Object}
 	 */
 	function flowApiGetQueryMap( url, queryMap ) {
-		let uri,
-			queryKey,
-			queryValue,
-			i = 0,
-			$node, $form, formData;
-
 		queryMap = queryMap || {};
 
 		// If URL is an Element...
 		if ( typeof url !== 'string' ) {
-			$node = $( url );
+			const $node = $( url );
 
 			// Get the data-flow-api-action override from the node itself
 			queryMap.submodule = $node.data( 'flow-api-action' );
 
 			if ( $node.is( 'form, input, button, textarea, select, option' ) ) {
 				// We are processing a form
-				$form = $node.closest( 'form' );
-				formData = $form.serializeArray();
+				const $form = $node.closest( 'form' );
+				const formData = $form.serializeArray();
 
 				// Get the data-flow-api-action override from the form
 				queryMap.submodule = queryMap.submodule || $form.data( 'flow-api-action' );
 
 				// Build the queryMap manually from a serialized form
-				for ( i = 0; i < formData.length; i++ ) {
+				for ( let i = 0; i < formData.length; i++ ) {
 					// skip wpEditToken, its handle independently
 					if ( formData[ i ].name !== 'wpEditToken' ) {
 						queryMap[ formData[ i ].name ] = formData[ i ].value;
@@ -210,10 +204,9 @@
 		}
 
 		// Parse the URL query params
-		uri = new mw.Uri( url );
+		const uri = new URL( url, location.href );
 
-		for ( queryKey in uri.query ) {
-			queryValue = uri.query[ queryKey ];
+		for ( let [ queryKey, queryValue ] of uri.searchParams.entries() ) {
 			if ( queryKey === 'action' ) {
 				// Submodule is the action
 				queryKey = 'submodule';

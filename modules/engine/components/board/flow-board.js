@@ -22,8 +22,7 @@
 	 * @constructor
 	 */
 	function FlowBoardComponent( $container ) {
-		let uri = new mw.Uri( location.href ),
-			anchorUid = String( location.hash.match( /[0-9a-z]{16,19}$/i ) || '' ),
+		let anchorUid = String( location.hash.match( /[0-9a-z]{16,19}$/i ) || '' ),
 			highlightUid;
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
@@ -38,8 +37,8 @@
 		// Handle URL parameters.  If topic_showPostId is used, there should also be an
 		// anchor.
 		if ( anchorUid ) {
-			if ( uri.query.fromnotif ) {
-				highlightUid = uri.query.topic_showPostId;
+			if ( mw.util.getParamValue( 'fromnotif' ) ) {
+				highlightUid = mw.util.getParamValue( 'topic_showPostId' );
 				_flowHighlightPost( $container, highlightUid, 'newer' );
 			} else {
 				highlightUid = anchorUid;
