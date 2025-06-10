@@ -4,11 +4,12 @@
 			"Af420",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Amjad Khan",
-			"Baloch Khan"
+			"Baloch Khan",
+			"شاه زمان پټان"
 		]
 	},
 	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",
-	"flow-delete-post-content": "دا تبصره د $1 لخوا {{GENDER:$1|ړنگه شوې}} ([$2 پېښليک])",
+	"flow-delete-post-content": "دا پوسټ د $1 لهٔ خوا {{GENDER:$1|ړنگه شوې}} ([$2 پېښليک])",
 	"flow-delete-title-content": "{{GENDER:$1|ړنگ شو}} د $1 لخوا",
 	"flow-delete-header-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
 	"flow-cancel": "ناگارل",
@@ -17,17 +18,17 @@
 	"flow-history-action-unlock-topic": "بيا پرانيستل",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",
 	"flow-post-action-edit-post": "سمول",
-	"flow-topic-action-watchlist-add": "دا سرليک خپل کتنلړ کې ورگډول",
-	"flow-topic-action-watchlist-remove": "همدا سرليک خپل کتنلړ څخه لرې کول",
+	"flow-topic-action-watchlist-add": "دې سکالو کې گډون‌کول",
+	"flow-topic-action-watchlist-remove": "گډون‌پرېښودل",
 	"flow-error-protected-unknown-reason": "ناجوت",
 	"flow-rev-message-restore-topic-reason": "بيا پرانيستل",
 	"flow-board-history": "\"$1\" پېښليک",
 	"flow-history-day": "نن",
-	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 پر '''$4''' {{GENDER:$1|ځواب ورکړ}}.",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2] <br />$1 پر <strong>$4</strong> {{GENDER:$1|ځواب ورکړ}}",
 	"flow-notification-link-text-view-topics": "موضوعگانې کتل",
 	"flow-notification-reply-email-subject": "$2 پر $3",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",
-	"echo-category-title-flow-discussion": "بهاو",
+	"echo-category-title-flow-discussion": "جوړښتي شننه",
 	"flow-link-history": "پېښليک",
 	"flow-moderation-title-delete-post": "پوسټ ړنگول؟",
 	"flow-topic-count": "سرليکونه $1",
@@ -47,5 +48,5 @@
 	"flow-mark-diff-patrolled-link-text": "څارل شوی په نخښه کول",
 	"flow-mark-diff-patrolled-link-title": "څارل شوی په نخښه کول",
 	"flow-notification-link-text-enabled-on-talkpage": "د کار د خبرو اترو مخ {{GENDER:|کتل}}",
-	"flow-dialog-cancelconfirm-title": "آيا تاسې ډاډه ياست؟"
+	"flow-dialog-cancelconfirm-title": "آيا {{GENDER:|تاسو}} ډاډه ياست؟"
 }
