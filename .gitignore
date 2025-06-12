@@ -12,3 +12,4 @@ vendor/
 # Ignore preferences for editors
 /.idea
 /.code
+/.stylelintcache
