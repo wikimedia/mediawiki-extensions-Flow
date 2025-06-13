@@ -5,14 +5,10 @@ namespace Flow\Import\LiquidThreadsApi;
 use Iterator;
 
 class ReplyIterator implements Iterator {
-	/** @var ImportPost */
-	protected $post;
-	/** @var array Array of thread IDs */
-	protected $threadReplies;
-	/** @var int */
-	protected $replyIndex;
-	/** @var ImportPost|null */
-	protected $current;
+	protected ImportPost $post;
+	protected array $threadReplies;
+	protected int $replyIndex;
+	protected ?ImportPost $current;
 
 	public function __construct( ImportPost $post ) {
 		$this->post = $post;
@@ -25,18 +21,18 @@ class ReplyIterator implements Iterator {
 	/**
 	 * @return ImportPost|null
 	 */
-	public function current() {
+	public function current(): ?ImportPost {
 		return $this->current;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function key() {
+	public function key(): int {
 		return $this->replyIndex;
 	}
 
-	public function next() {
+	public function next(): void {
 		while ( ++$this->replyIndex < count( $this->threadReplies ) ) {
 			try {
 				$replyId = $this->threadReplies[$this->replyIndex]['id'];
@@ -52,12 +48,12 @@ class ReplyIterator implements Iterator {
 		$this->current = null;
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		$this->replyIndex = -1;
 		$this->next();
 	}
 
-	public function valid() {
+	public function valid(): bool {
 		return $this->current !== null;
 	}
 }

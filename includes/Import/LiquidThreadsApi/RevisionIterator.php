@@ -13,8 +13,7 @@ class RevisionIterator implements Iterator {
 	/** @var array */
 	protected $pageData;
 
-	/** @var int */
-	protected $pointer;
+	protected int $pointer;
 
 	/** @var IImportObject */
 	protected $parent;
@@ -37,23 +36,23 @@ class RevisionIterator implements Iterator {
 		}
 	}
 
-	public function valid() {
+	public function valid(): bool {
 		return $this->pointer < $this->getRevisionCount();
 	}
 
-	public function next() {
+	public function next(): void {
 		++$this->pointer;
 	}
 
-	public function key() {
+	public function key(): int {
 		return $this->pointer;
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		$this->pointer = 0;
 	}
 
-	public function current() {
+	public function current(): mixed {
 		return ( $this->factory )( $this->pageData['revisions'][$this->pointer], $this->parent );
 	}
 }

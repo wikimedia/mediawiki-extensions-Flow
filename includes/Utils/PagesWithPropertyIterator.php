@@ -54,7 +54,7 @@ class PagesWithPropertyIterator implements IteratorAggregate {
 	/**
 	 * @return Iterator<Title>
 	 */
-	public function getIterator() {
+	public function getIterator(): Iterator {
 		$it = new BatchRowIterator(
 			$this->db,
 			/* tables */ [ 'page_props', 'page' ],
