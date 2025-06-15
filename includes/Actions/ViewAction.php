@@ -3,6 +3,7 @@
 namespace Flow\Actions;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
@@ -39,11 +40,24 @@ class ViewAction extends FlowAction {
 			return [];
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'cl_to', 'cl_sortkey' ] )
-			->from( 'categorylinks' )
-			->where( [ 'cl_from' => $id ] )
+		$services = MediaWikiServices::getInstance();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
+
+		$migrationStage = $services->getMainConfig()->get(
+			MainConfigNames::CategoryLinksSchemaMigrationStage
+		);
+
+		$qb = $dbr->newSelectQueryBuilder()
+			->from( 'categorylinks' );
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$qb->select( [ 'cl_to', 'cl_sortkey' ] );
+		} else {
+			$qb->select( [ 'cl_to' => 'lt_title', 'cl_sortkey' ] );
+			$qb->join( 'linktarget', null, 'lt_id = cl_target_id' );
+		}
+
+		$res = $qb->where( [ 'cl_from' => $id ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
