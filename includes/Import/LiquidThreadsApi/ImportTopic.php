@@ -6,6 +6,7 @@ use ArrayIterator;
 use Flow\Import\IImportSummary;
 use Flow\Import\IImportTopic;
 use Flow\Import\IObjectRevision;
+use MediaWiki\MediaWikiServices;
 
 /**
  * This is a bit of a weird model, acting as a revision of itself.
@@ -84,5 +85,11 @@ class ImportTopic extends ImportPost implements IImportTopic, IObjectRevision {
 
 	public function getLqtThreadId() {
 		return $this->apiResponse['id'];
+	}
+
+	public function isRedirectToFlow(): bool {
+		$lookup = MediaWikiServices::getInstance()->getRedirectLookup();
+		$redirectTarget = $lookup->getRedirectTarget( $this->getTitle() );
+		return $redirectTarget && $redirectTarget->inNamespace( NS_TOPIC );
 	}
 }

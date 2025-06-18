@@ -99,7 +99,13 @@ class ImportSource implements IImportSource {
 		switch ( $data['type'] ) {
 			// Standard thread
 			case self::THREAD_TYPE_NORMAL:
-				return new ImportTopic( $this, $data );
+				$topic = new ImportTopic( $this, $data );
+				if ( $topic->isRedirectToFlow() ) {
+					// This topic is was already imported in a previous run
+					// so don't try to import it again
+					return null;
+				}
+				return $topic;
 
 			// The topic no longer exists at the queried location, but
 			// a stub was left behind pointing to it. This modified
