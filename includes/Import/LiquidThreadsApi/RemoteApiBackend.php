@@ -31,6 +31,7 @@ class RemoteApiBackend extends ApiBackend {
 
 	public function apiCall( array $params, $retry = 1 ) {
 		$params['format'] = 'json';
+		$params['formatversion'] = 2;
 		$url = wfAppendQuery( $this->apiUrl, $params );
 		$file = $this->cacheDir . '/' . md5( $url ) . '.cache';
 		$this->logger->debug( __METHOD__ . ": $url" );

@@ -48,29 +48,29 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		$data = $this->apiCall( $params + $conditions );
 
 		if ( !isset( $data['query']['threads'] ) ) {
-			if ( $this->isNotFoundError( $data ) ) {
-				$message = "Did not find thread with conditions: " . json_encode( $conditions );
-				$this->logger->debug( __METHOD__ . ": $message" );
-				throw new ApiNotFoundException( $message );
-			} else {
-				$this->logger->error(
-					__METHOD__ . ': Failed API call against ' . $this->getKey() .
-					' with conditions : ' . json_encode( $conditions )
-				);
-				throw new ImportException(
-					"Null response from API module:" . json_encode( $data )
-				);
-			}
+			$this->logger->error(
+				__METHOD__ . ': Failed API call against ' . $this->getKey() .
+				' with conditions : ' . json_encode( $conditions )
+			);
+			throw new ImportException(
+				"Null response from API module:" . json_encode( $data )
+			);
 		}
 
-		$firstThread = reset( $data['query']['threads'] );
+		$threads = $data['query']['threads'];
+		if ( !$threads ) {
+			$message = "Did not find thread with conditions: " . json_encode( $conditions );
+			$this->logger->debug( __METHOD__ . ": $message" );
+			throw new ApiNotFoundException( $message );
+		}
+		$firstThread = reset( $threads );
 		if ( !isset( $firstThread['replies'] ) ) {
 			throw new ImportException(
 				"Foreign API does not support reply exporting:" . json_encode( $data )
 			);
 		}
 
-		return $data['query']['threads'];
+		return $threads;
 	}
 
 	/**
@@ -143,19 +143,13 @@ abstract class ApiBackend implements LoggerAwareInterface {
 		$data = $this->apiCall( $conditions );
 
 		if ( !isset( $data['query'] ) ) {
-			if ( $this->isNotFoundError( $data ) ) {
-				$message = "Did not find pages: " . json_encode( $conditions );
-				$this->logger->debug( __METHOD__ . ": $message" );
-				throw new ApiNotFoundException( $message );
-			} else {
-				$this->logger->error(
-					__METHOD__ . ': Failed API call against ' . $this->getKey() .
-					' with conditions : ' . json_encode( $conditions )
-				);
-				throw new ImportException(
-					"Null response from API module: " . json_encode( $data )
-				);
-			}
+			$this->logger->error(
+				__METHOD__ . ': Failed API call against ' . $this->getKey() .
+				' with conditions : ' . json_encode( $conditions )
+			);
+			throw new ImportException(
+				"Null response from API module: " . json_encode( $data )
+			);
 		} elseif ( !$expectContinue && isset( $data['continue'] ) ) {
 			throw new ImportException(
 				"More revisions than can be retrieved for conditions, import would" . " be incomplete: " . json_encode(
@@ -163,8 +157,18 @@ abstract class ApiBackend implements LoggerAwareInterface {
 				)
 			);
 		}
-
-		return $data['query']['pages'];
+		if ( !$data['query']['pages'] ) {
+			$message = "Did not find pages: " . json_encode( $conditions );
+			$this->logger->debug( __METHOD__ . ": $message" );
+			throw new ApiNotFoundException( $message );
+		}
+		$dataProcessed = [];
+		// Reprocess to a formatversion=1-esque format for compatibility
+		// with the CachedData structure
+		foreach ( $data['query']['pages'] as $page ) {
+			$dataProcessed[(int)$page['pageid']] = $page;
+		}
+		return $dataProcessed;
 	}
 
 	/**
@@ -180,16 +184,4 @@ abstract class ApiBackend implements LoggerAwareInterface {
 	 * @return string A unique identifier for this backend.
 	 */
 	abstract public function getKey();
-
-	/**
-	 * @param array $apiResponse
-	 * @return bool
-	 */
-	protected function isNotFoundError( $apiResponse ) {
-		// LQT has some bugs where not finding the requested item in the database
-		// returns this exception.
-		$expect = 'Exception Caught: Wikimedia\\Rdbms\\Database::makeList: empty input for field thread_parent';
-
-		return strpos( $apiResponse['error']['info'], $expect ) !== false;
-	}
 }

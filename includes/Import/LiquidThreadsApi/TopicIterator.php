@@ -55,24 +55,18 @@ class TopicIterator implements Iterator {
 		$this->rewind();
 	}
 
-	/**
-	 * @return ImportTopic|null
-	 */
-	public function current() {
+	public function current(): ?ImportTopic {
 		if ( $this->current === false ) {
 			return null;
 		}
 		return $this->currentTopic;
 	}
 
-	/**
-	 * @return int
-	 */
-	public function key() {
+	public function key(): mixed {
 		return $this->current;
 	}
 
-	public function next() {
+	public function next(): void {
 		if ( !$this->valid() ) {
 			return;
 		}
@@ -104,16 +98,13 @@ class TopicIterator implements Iterator {
 		$this->current = false;
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		$this->current = null;
 		$this->topicIdIterator->rewind();
 		$this->next();
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function valid() {
+	public function valid(): bool {
 		return $this->current !== false;
 	}
 
