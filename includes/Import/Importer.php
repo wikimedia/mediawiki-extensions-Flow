@@ -11,6 +11,7 @@ use Flow\OccupationController;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SplQueue;
@@ -20,7 +21,7 @@ use SplQueue;
  * This class is essentially a factory class that makes the
  * dependency injection less inconvenient for callers.
  */
-class Importer {
+class Importer implements LoggerAwareInterface {
 	/** @var ManagerGroup */
 	protected $storage;
 	/** @var WorkflowLoaderFactory */
@@ -66,10 +67,7 @@ class Importer {
 		return $this->postprocessors;
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
 	}
 

@@ -53,7 +53,7 @@ class MaintenanceDebugLogger extends AbstractLogger {
 	/**
 	 * @inheritDoc
 	 */
-	public function log( $level, $message, array $context = [] ) {
+	public function log( $level, $message, array $context = [] ): void {
 		$position = $this->logLevelPosition[$level];
 		if ( $position > $this->maxLevel ) {
 			return;
