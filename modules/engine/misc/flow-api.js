@@ -204,7 +204,7 @@
 		}
 
 		// Parse the URL query params
-		const uri = new URL( url, location.href );
+		const uri = new URL( url, location.origin );
 
 		for ( let [ queryKey, queryValue ] of uri.searchParams.entries() ) {
 			if ( queryKey === 'action' ) {
