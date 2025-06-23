@@ -164,6 +164,7 @@
 	"flow-error-missing-summary": "Sinun täytyy antaa yhteenveto.",
 	"flow-error-missing-title": "Aiheella ei ole otsikkoa. Aiheen otsikko on välttämätön, jotta aihe voidaan tallentaa.",
 	"flow-error-parsoid-failure": "Ei voi jäsentää sisältöä, koska tapahtui Parsoid-virhe.",
+	"flow-error-protected-readonly": "Jäsennetyt keskustelut on poistettu käytöstä tässä wikissä. Palstoja, aiheita tai viestejä ei pysty luomaan tai muokkaamaan.",
 	"flow-error-protected-unknown-reason": "Tuntematon",
 	"flow-error-missing-replyto": "Parametria ”replyTo” ei sisällytetty. Parametri vaaditaan ”vastaa”-toimintoon.",
 	"flow-error-missing-postId": "Parametria ”postId” ei annettu. Parametri tarvitaan viestin poistamiseen tai palauttamiseen.",
