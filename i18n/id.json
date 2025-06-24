@@ -17,7 +17,8 @@
 			"Rex",
 			"Sumbukompor",
 			"Veracious",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Rachmat04"
 		]
 	},
 	"enablestructureddiscussions": "Aktifkan Pembicaraan Terstruktur",
@@ -30,7 +31,7 @@
 	"flow-desc": "Sistem pembicaraan",
 	"nstab-topic": "Topik",
 	"flow-talk-taken-over-comment": "/* Halaman ini telah dikonversi menjadi forum Pembicaraan Terstruktur */",
-	"log-name-flow": "Catatan aktivitas Pembicaraan Terstruktur",
+	"log-name-flow": "Log aktivitas Pembicaraan Terstruktur",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|menghapus}} sebuah [$4 kiriman] di \"[[$3|$5]]\" di [[$6]]",
 	"logentry-delete-flow-delete-post-topic-title-not-visible": "$1 {{GENDER:$2|menghapus}} sebuah kiriman di suatu topik di [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|memulihkan}} sebuah [$4 kiriman] di \"[[$3|$5]]\" di [[$6]]",
