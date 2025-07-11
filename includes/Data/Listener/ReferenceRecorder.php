@@ -233,7 +233,7 @@ class ReferenceRecorder extends AbstractListener {
 				} elseif ( $revision instanceof PostSummary ) {
 					$root = $revision->getCollection()->getPost()->getRoot()->getLastRevision();
 				}
-			} catch ( FlowException $e ) {
+			} catch ( FlowException ) {
 				// Do nothing - we're likely in a unit test where no root can
 				// be resolved because the revision is created on the fly
 			}

@@ -95,7 +95,7 @@ class DbFactory {
 				'cluster' => $this->cluster,
 				'ifWritesSince' => false
 			] );
-		} catch ( DBReplicationWaitError $e ) {
+		} catch ( DBReplicationWaitError ) {
 		}
 	}
 

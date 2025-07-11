@@ -373,7 +373,7 @@ class Hooks implements
 			/** @var Formatter\ChangesListFormatter $formatter */
 			$formatter = Container::get( 'formatter.changeslist' );
 			$line = $formatter->format( $row, $changesList, $topicOnly );
-		} catch ( PermissionException $pe ) {
+		} catch ( PermissionException ) {
 			// It is expected that some rows won't be formatted because the current user
 			// doesn't have permission to see some of the data they contain.
 			return false;
@@ -503,7 +503,7 @@ class Hooks implements
 				$formatter->getFlags( $row, $changesList )
 			);
 			$classes[] = 'mw-changeslist-src-mw-edit';
-		} catch ( PermissionException $e ) {
+		} catch ( PermissionException ) {
 			return false;
 		}
 
@@ -755,7 +755,7 @@ class Hooks implements
 			/** @var Formatter\ContributionsFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions' );
 			$line = $formatter->format( $row, $pager );
-		} catch ( PermissionException $e ) {
+		} catch ( PermissionException ) {
 			$line = false;
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' .
@@ -814,7 +814,7 @@ class Hooks implements
 			/** @var Formatter\FeedItemFormatter $formatter */
 			$formatter = Container::get( 'formatter.contributions.feeditem' );
 			$result = $formatter->format( $row, $ctx );
-		} catch ( PermissionException $e ) {
+		} catch ( PermissionException ) {
 			return false;
 		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting contribution ' .
@@ -1273,7 +1273,7 @@ class Hooks implements
 		}
 		try {
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
-		} catch ( InvalidInputException $e ) {
+		} catch ( InvalidInputException ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Invalid title ' . $title->getPrefixedText() );
 			return;
 		}
@@ -1334,7 +1334,7 @@ class Hooks implements
 			$uuid = WorkflowLoaderFactory::uuidFromTitle( $title );
 			$collection = PostCollection::newFromId( $uuid );
 			$revision = $collection->getLastRevision();
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			wfWarn( __METHOD__ . ': Failed to locate revision for: ' . $title->getDBkey() );
 			return;
 		}
@@ -1360,7 +1360,7 @@ class Hooks implements
 			try {
 				$uuid = WorkflowLoaderFactory::uuidFromTitlePair( NS_TOPIC, $id );
 				$queries[] = [ 'rev_type_id' => $uuid ];
-			} catch ( Exception $e ) {
+			} catch ( Exception ) {
 				// invalid id
 				unset( $watchlistInfo[NS_TOPIC][$id] );
 			}
@@ -2044,7 +2044,7 @@ class Hooks implements
 	) {
 		try {
 			$hidePageEdits = $opts->getValue( 'hidepageedits' );
-		} catch ( MWException $e ) {
+		} catch ( MWException ) {
 			// If not set, assume they should be hidden.
 			$hidePageEdits = true;
 		}

@@ -487,7 +487,7 @@ class TopicBlock extends AbstractBlock {
 				// @todo make more explicit
 				try {
 					$newRevision->getChildren();
-				} catch ( DataModelException $e ) {
+				} catch ( DataModelException ) {
 					$newRevision->setChildren( [] );
 				}
 

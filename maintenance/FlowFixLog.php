@@ -133,7 +133,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 			// log_namespace & log_title used to be board, should be topic
 			$updates['log_namespace'] = $topic->getTitle()->getNamespace();
 			$updates['log_title'] = $topic->getTitle()->getDBkey();
-		} catch ( \Exception $e ) {
+		} catch ( \Exception ) {
 			$this->maintenance->error( "Couldn't load Title for log_id $logId" );
 			$updates = [];
 		}
@@ -183,7 +183,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 			// this fails (likely will for old data), catch will be invoked
 			$collection->getLastRevision();
 			return $collection;
-		} catch ( InvalidDataException $e ) {
+		} catch ( InvalidDataException ) {
 			// posts used to mistakenly store revision ID instead of post ID
 
 			/** @var ManagerGroup $storage */

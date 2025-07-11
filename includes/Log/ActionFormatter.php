@@ -185,7 +185,7 @@ class ActionFormatter extends LogFormatter {
 			// see if this post is valid
 			$collection->getLastRevision();
 			return $collection;
-		} catch ( \Exception $e ) {
+		} catch ( \Exception ) {
 			// failed finding the expected data in storage
 			wfWarn( __METHOD__ . ': Failed to locate root for: ' . serialize( $params ) .
 				' (potentially storage issue)' );

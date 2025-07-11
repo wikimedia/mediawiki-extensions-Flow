@@ -116,7 +116,7 @@ class CachingObjectMapper implements ObjectMapper {
 		}
 		try {
 			return $this->loaded[$primaryKey];
-		} catch ( OutOfBoundsException $e ) {
+		} catch ( OutOfBoundsException ) {
 			return null;
 		}
 	}

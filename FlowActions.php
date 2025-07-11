@@ -794,7 +794,7 @@ return [
 							$previousCollectionId = null;
 							return '';
 						}
-					} catch ( Exception $e ) {
+					} catch ( Exception ) {
 						// nothing to do here; if fetching last revision failed,
 						// we're just not testing any stored revision; that's ok
 					}

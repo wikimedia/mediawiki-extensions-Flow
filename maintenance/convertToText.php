@@ -124,7 +124,7 @@ class ConvertToText extends Maintenance {
 	 */
 	private function processTopic( array $context, array $revision ) {
 		$topicOutput = $this->processTopicTitle( $revision );
-		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $context, $revision['summary'] ) : '';
+		$summaryOutput = isset( $revision['summary'] ) ? $this->processSummary( $revision['summary'] ) : '';
 		$postsOutput = $this->processPostCollection( $context, $revision['replies'] ) . "\n\n";
 		$resolved = isset( $revision['moderateState'] ) && $revision['moderateState'] === AbstractRevision::MODERATED_LOCKED;
 
@@ -154,11 +154,10 @@ class ConvertToText extends Maintenance {
 	}
 
 	/**
-	 * @param array $context
 	 * @param array $summary
 	 * @return string
 	 */
-	private function processSummary( array $context, array $summary ) {
+	private function processSummary( array $summary ) {
 		$topicTitle = Title::newFromText( $summary['revision']['articleTitle'] );
 		return $this->processMultiRevisions(
 			$this->getAllRevisions( $topicTitle, 'view-topic-summary', 'vts', 'topicsummary' )

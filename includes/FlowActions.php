@@ -36,7 +36,7 @@ class FlowActions {
 		$arguments = func_get_args();
 		try {
 			return isset( $this->actions[$arguments] );
-		} catch ( \OutOfBoundsException $e ) {
+		} catch ( \OutOfBoundsException ) {
 			// Do nothing; the whole remainder of this method is fail-case.
 		}
 
@@ -52,7 +52,7 @@ class FlowActions {
 				$arguments[0] = $referencedAction;
 				return isset( $this->actions[$arguments] );
 			}
-		} catch ( \OutOfBoundsException $e ) {
+		} catch ( \OutOfBoundsException ) {
 			// Do nothing; the whole remainder of this method is fail-case.
 		}
 
@@ -71,7 +71,7 @@ class FlowActions {
 
 		try {
 			return $this->actions[$arguments];
-		} catch ( \OutOfBoundsException $e ) {
+		} catch ( \OutOfBoundsException ) {
 			// Do nothing; the whole remainder of this method is fail-case.
 		}
 
@@ -88,7 +88,7 @@ class FlowActions {
 
 				return $this->getValue( $referencedAction, ...$arguments );
 			}
-		} catch ( \OutOfBoundsException $e ) {
+		} catch ( \OutOfBoundsException ) {
 			// Do nothing; the whole remainder of this method is fail-case.
 		}
 

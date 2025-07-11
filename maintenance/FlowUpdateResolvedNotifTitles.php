@@ -82,7 +82,7 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 					if ( $workflow ) {
 						$boardTitle = $workflow->getOwnerTitle();
 					}
-				} catch ( Exception $e ) {
+				} catch ( Exception ) {
 				}
 				if ( $boardTitle ) {
 					$dbw->newUpdateQueryBuilder()

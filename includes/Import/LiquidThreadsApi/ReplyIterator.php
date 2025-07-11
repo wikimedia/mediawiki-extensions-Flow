@@ -39,7 +39,7 @@ class ReplyIterator implements Iterator {
 				$this->current = $this->post->getSource()->getPost( $replyId );
 
 				return;
-			} catch ( ApiNotFoundException $e ) {
+			} catch ( ApiNotFoundException ) {
 				// while loop fall-through handles our error case
 			}
 		}

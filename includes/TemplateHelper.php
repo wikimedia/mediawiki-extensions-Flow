@@ -111,7 +111,7 @@ class TemplateHelper {
 
 		/** @var callable $renderer */
 		$renderer = require $filenames['compiled'];
-		$this->renderers[$templateName] = static function ( $args, array $scopes = [] ) use ( $templateName, $renderer ) {
+		$this->renderers[$templateName] = static function ( $args, array $scopes = [] ) use ( $renderer ) {
 			return $renderer( $args, $scopes );
 		};
 		return $this->renderers[$templateName];

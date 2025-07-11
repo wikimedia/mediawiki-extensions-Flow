@@ -272,7 +272,7 @@ class Exporter extends WikiExporter {
 			$summary = $summaryCollection->getLastRevision();
 			'@phan-var PostSummary $summary';
 			$this->formatSummary( $summary );
-		} catch ( \Exception $e ) {
+		} catch ( \Exception ) {
 			// no summary - that's ok!
 		}
 

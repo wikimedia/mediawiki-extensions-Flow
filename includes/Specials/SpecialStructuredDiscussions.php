@@ -135,7 +135,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 			} else {
 				return null;
 			}
-		} catch ( FlowException $e ) {
+		} catch ( FlowException ) {
 			return null; // The UUID is invalid or has no root post.
 		}
 	}
@@ -160,7 +160,7 @@ class SpecialStructuredDiscussions extends FormSpecialPage {
 			} else {
 				return null;
 			}
-		} catch ( FlowException $e ) {
+		} catch ( FlowException ) {
 			return null; // The UUID is invalid or has no root post.
 		}
 	}

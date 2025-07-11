@@ -192,7 +192,7 @@ class BoardContentHandler extends ContentHandler {
 					->getUserFactory()
 					->newFromUserIdentity( $parserOptions->getUserIdentity() );
 				$this->generateHtml( $title, $user, $content, $output );
-			} catch ( \Exception $e ) {
+			} catch ( \Exception ) {
 				// Workflow does not yet exist (may be in the process of being created)
 				$output->setText( '' );
 			}

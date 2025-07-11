@@ -242,7 +242,7 @@ class RevisionActionPermissions {
 		} elseif ( $revision instanceof PostRevision && !$revision->isTopicTitle() ) {
 			try {
 				$topicId = $revision->getCollection()->getWorkflowId();
-			} catch ( DataModelException $e ) {
+			} catch ( DataModelException ) {
 				// failed to locate root post (most likely in unit tests, where
 				// we didn't store the tree)
 				return $revision;

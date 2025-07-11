@@ -73,7 +73,7 @@ class ReferenceExtractor {
 			foreach ( $elements as $element ) {
 				try {
 					$ref = $extractor->perform( $factory, $element );
-				} catch ( InvalidReferenceException $e ) {
+				} catch ( InvalidReferenceException ) {
 					wfDebugLog( 'Flow', 'Invalid reference detected, skipping element' );
 					$ref = null;
 				}

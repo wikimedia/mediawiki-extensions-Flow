@@ -115,7 +115,7 @@ class TopicIterator implements Iterator {
 		try {
 			// + 1 to not return the existing max topic
 			$output = $this->threadData->getFromPage( $this->pageName, $this->maxId + 1 );
-		} catch ( ApiNotFoundException $e ) {
+		} catch ( ApiNotFoundException ) {
 			// No more results, end loop
 			return false;
 		}

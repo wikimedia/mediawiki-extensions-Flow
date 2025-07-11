@@ -148,7 +148,7 @@ class FlowFixInconsistentBoards extends Maintenance {
 
 				try {
 					$workflow = $this->workflowLoaderFactory->loadWorkflowById( false, $workflowId );
-				} catch ( UnknownWorkflowIdException $ex ) {
+				} catch ( UnknownWorkflowIdException ) {
 					// This is a different error (a core page refers to
 					// a non-existent workflow), which this script can not fix.
 					$this->error( "ERROR: '$coreTitle' refers to workflow ID " .

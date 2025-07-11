@@ -64,7 +64,7 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 		// Find users defined for this action, in FlowActions.php
 		try {
 			$users = $actions->getValue( $changeType, 'watch', $watchType );
-		} catch ( \Exception $e ) {
+		} catch ( \Exception ) {
 			return [];
 		}
 
