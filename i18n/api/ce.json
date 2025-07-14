@@ -4,5 +4,15 @@
 			"Умар"
 		]
 	},
-	"apihelp-flow-example-1": "«[[Talk:Sandbox]]» лаьцна хаам нисъбе"
+	"apihelp-flow-example-1": "«[[Talk:Sandbox]]» лаьцна хаам нисъбе",
+	"apihelp-flow+edit-post-param-postId": "Хааман идентификатор.",
+	"apihelp-flow+edit-post-param-content": "Хаамийн чулацам.",
+	"apihelp-flow+edit-post-example-1": "Нисбе хаам [[Topic:S2tycnas4hcucw8w]] чохь",
+	"apihelp-flow+edit-title-summary": "Темин цӀе хуьйцу.",
+	"apihelp-flow+edit-topic-summary-param-summary": "Чулацаман боца чулацам.",
+	"apihelp-flow+moderate-post-param-reason": "Модерацин бахьана.",
+	"apihelp-flow+moderate-post-param-postId": "Модерацин хаамийн ID.",
+	"apihelp-flow+moderate-post-example-1": "Дхабаккха хаам [[Topic:S2tycnas4hcucw8w]] темера",
+	"apihelp-flow+moderate-topic-param-reason": "Модерацин бахьана.",
+	"apihelp-flow+new-topic-param-topic": "Керлачу темин цӀеран текст."
 }
