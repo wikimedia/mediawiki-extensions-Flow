@@ -4,9 +4,10 @@ namespace Flow\Notifications;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Notification\Middleware\FilterMiddleware;
+use MediaWiki\Notification\Middleware\FilterMiddlewareAction;
 use MediaWiki\Notification\NotificationEnvelope;
+use MediaWiki\RecentChanges\RecentChangeNotification;
 use MediaWiki\Title\Title;
-use MediaWiki\Watchlist\RecentChangeNotification;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 
 /**
@@ -35,7 +36,7 @@ class FilterFlowNotificationsMiddleware extends FilterMiddleware {
 		}
 	}
 
-	protected function filter( NotificationEnvelope $envelope ): bool {
+	protected function filter( NotificationEnvelope $envelope ): FilterMiddlewareAction {
 		$notification = $envelope->getNotification();
 
 		if ( $notification instanceof RecentChangeNotification ) {
@@ -44,13 +45,13 @@ class FilterFlowNotificationsMiddleware extends FilterMiddleware {
 			if ( $title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 				// Since we are aborting the notification we need to manually update the watchlist
 				$this->updateWatchlistTimestamp( $notification );
-				return self::REMOVE;
+				return FilterMiddlewareAction::REMOVE;
 			}
 			if ( $notification->getAgent()->getName() === FLOW_TALK_PAGE_MANAGER_USER ) {
-				return self::REMOVE;
+				return FilterMiddlewareAction::REMOVE;
 			}
 		}
-		return self::KEEP;
+		return FilterMiddlewareAction::KEEP;
 	}
 
 }
