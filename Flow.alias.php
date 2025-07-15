@@ -112,10 +112,16 @@ $specialPageAliases['vi'] = [
 	'EnableStructuredDiscussions' => [ 'Kích_hoạt_Flow' ],
 ];
 
+/** Chinese (中文) */
+$specialPageAliases['zh'] = [
+	'StructuredDiscussions' => [ 'StructuredDiscussions' ],
+	'EnableStructuredDiscussions' => [ 'EnableStructuredDiscussions' ],
+];
+
 /** Simplified Chinese (中文（简体）) */
 $specialPageAliases['zh-hans'] = [
-	'StructuredDiscussions' => [ '结构式讨论', '結構式討論' ],
-	'EnableStructuredDiscussions' => [ '启用结构式讨论', '启用Flow', '啟用結構式討論', '啟用Flow' ],
+	'StructuredDiscussions' => [ '结构式讨论' ],
+	'EnableStructuredDiscussions' => [ '启用结构式讨论', '启用Flow' ],
 ];
 
 /** Traditional Chinese (中文（繁體）) */
