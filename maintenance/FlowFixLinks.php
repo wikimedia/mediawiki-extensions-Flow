@@ -7,6 +7,7 @@ use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
+use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -83,6 +84,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 			foreach ( $rows as $row ) {
 				$workflow = Workflow::fromStorageRow( (array)$row );
 				$id = $workflow->getArticleTitle()->getArticleID();
+				$dbProvider = $this->getServiceContainer()->getConnectionProvider();
 
 				// delete existing links from DB
 				$dbw->newDeleteQueryBuilder()
@@ -105,7 +107,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 					->where( [ 'tl_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbw->newDeleteQueryBuilder()
+				$dbProvider->getPrimaryDatabase( ExternalLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
 					->deleteFrom( 'externallinks' )
 					->where( [ 'el_from' => $id ] )
 					->caller( __METHOD__ )
