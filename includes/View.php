@@ -256,13 +256,12 @@ class View extends ContextSource {
 
 		if ( $topicListBlock !== null && isset( $parameters['topiclist'] ) ) {
 			$apiResponse['toc'] = $topicListBlock->renderTocApi(
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypePossiblyInvalidDimOffset
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$apiResponse['blocks']['topiclist'],
 				$parameters['topiclist']
 			);
 		}
 
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		if ( count( $apiResponse['blocks'] ) === 0 ) {
 			throw new InvalidActionException( "No blocks accepted action: $action", 'invalid-action' );
 		}
