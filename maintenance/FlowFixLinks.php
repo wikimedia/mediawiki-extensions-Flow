@@ -8,6 +8,7 @@ use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -102,7 +103,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 					->where( [ 'cl_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbw->newDeleteQueryBuilder()
+				$dbProvider->getPrimaryDatabase( TemplateLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
 					->deleteFrom( 'templatelinks' )
 					->where( [ 'tl_from' => $id ] )
 					->caller( __METHOD__ )

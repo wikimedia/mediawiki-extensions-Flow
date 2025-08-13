@@ -8,6 +8,7 @@ use Flow\Import\ArchiveNameHelper;
 use Flow\Import\IConversionStrategy;
 use Flow\Import\SourceStore\SourceStoreInterface;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -209,7 +210,9 @@ class ConversionStrategy implements IConversionStrategy {
 			return false;
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase(
+			TemplateLinksTable::VIRTUAL_DOMAIN
+		);
 		$batch = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch( $this->noConvertTemplates );
 		return (bool)$dbr->newSelectQueryBuilder()
 			->select( 'tl_from' )
