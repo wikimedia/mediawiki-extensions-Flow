@@ -96,7 +96,6 @@ class RecentChangesListener extends AbstractListener {
 			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
-			'rc_new' => 0,
 			'rc_patrolled' => $autopatrolAllowed ? RecentChange::PRC_AUTOPATROLLED : RecentChange::PRC_UNPATROLLED,
 			'rc_old_len' => $revision->getPreviousContentLength(),
 			'rc_new_len' => $revision->getContentLength(),
