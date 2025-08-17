@@ -349,13 +349,7 @@ class Hooks implements
 		&$classes = null,
 		$topicOnly = false
 	) {
-		$source = $rc->getAttribute( 'rc_source' );
-		if ( $source === null ) {
-			$rcType = (int)$rc->getAttribute( 'rc_type' );
-			if ( $rcType !== RC_FLOW ) {
-				return true;
-			}
-		} elseif ( $source !== RecentChangesListener::SRC_FLOW ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== RecentChangesListener::SRC_FLOW ) {
 			return true;
 		}
 
@@ -516,13 +510,7 @@ class Hooks implements
 	 * @return bool
 	 */
 	private static function isFlow( $rc ) {
-		$source = $rc->getAttribute( 'rc_source' );
-		if ( $source === null ) {
-			$rcType = (int)$rc->getAttribute( 'rc_type' );
-			return $rcType === RC_FLOW;
-		} else {
-			return $source === RecentChangesListener::SRC_FLOW;
-		}
+		return $rc->getAttribute( 'rc_source' ) === RecentChangesListener::SRC_FLOW;
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( AbstractCheckUserPager $pager, $row, &$links ) {
