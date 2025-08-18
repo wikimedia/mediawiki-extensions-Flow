@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yueman"
+		]
+	},
+	"flow-post-actions": "動作",
+	"flow-topic-actions": "動作",
+	"flow-cancel": "取消",
+	"flow-newtopic-save": "加主題",
+	"flow-history-day": "今日"
+}
