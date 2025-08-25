@@ -43,7 +43,8 @@
 			"Туллук",
 			"Ядерный Трамвай",
 			"Dirruw'o",
-			"Rairakkumee"
+			"Rairakkumee",
+			"Умар"
 		]
 	},
 	"enablestructureddiscussions": "Включить «Cтруктурированные обсуждения»",
@@ -551,7 +552,7 @@
 	"flow-optin-restore-flow-board": "Восстановить архивированную доску обсуждений.",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро пожаловать}} на {{GENDER:$1|вашу}} новую страницу обсуждения участни{{GENDER:$1|ка|цы}}",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница обсуждения — это место, где другие редакторы могут связаться с {{GENDER:$1|вами}}. Со Структурированными обсуждениями легче начинать новые темы и продолжать отслеживать разговоры.",
-	"flow-guidedtour-optin-find-old-conversations": "Найти {{GENDER:$1|ваш}} старые разговоры",
+	"flow-guidedtour-optin-find-old-conversations": "Найти {{GENDER:$1|ваши}} старые разговоры",
 	"flow-guidedtour-optin-find-old-conversations-description": "Предыдущие разговоры были перемещены на архивную страницу.",
 	"flow-guidedtour-optin-feedback": "Оправьте нам {{GENDER:$1|ваши}} отзывы и предложения!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Вы}} можете получить более подробную информацию, отправить отзыв и предложение или отключить эту новую систему в любое время в разделе настроек «бета-функции».",
