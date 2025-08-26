@@ -43,7 +43,8 @@
 			"Максим777",
 			"Туллук",
 			"Ядерный Трамвай",
-			"Rairakkumee"
+			"Rairakkumee",
+			"Умар"
 		]
 	},
 	"content-model-flow-board": "Структурированная доска обсуждений",
@@ -538,7 +539,7 @@
 	"flow-mark-diff-patrolled-link-text": "Отметить как проверенную",
 	"flow-mark-diff-patrolled-link-title": "Отметить как проверенную",
 	"flow-talk-page-beta-feature-message": "Структурированные обсуждения на странице обсуждения участника",
-	"flow-talk-page-beta-feature-description": "Разрешено пользователю {{GENDER:|you}} включить структурированную систему обсуждения на странице обсуждения пользователя {{GENDER:|your}}. Структурированные обсуждения предлагались в качестве бета-функции, но [https://www.mediawiki.org/wiki/Special:MyLanguage/Structured_Discussions/Deprecation эта функция будет удалена из вики]. Мы приглашаем {{GENDER:|you}} заранее рассмотреть возможность отключения этой функции.<br /><br /> Отключение этой функции приведет к перемещению структурированной доски обсуждений на подстраницу и разархивированию предыдущей страницы обсуждения. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Structured_Discussions/Activation#deactivate Узнайте больше о деактивации.] [https://www.mediawiki.org/wiki/Special:MyLanguage/Talk:Structured_Discussions /Устарело Свяжитесь с нами, если у {{GENDER:|you}} возникнут какие-либо проблемы.]",
+	"flow-talk-page-beta-feature-description": "Разрешено пользователю для {{GENDER:|вас}} включить структурированную систему обсуждения на странице обсуждения {{GENDER:|пользователя}}. Структурированные обсуждения предлагались в качестве бета-функции, но [https://www.mediawiki.org/wiki/Special:MyLanguage/Structured_Discussions/Deprecation эта функция будет удалена из вики]. Мы приглашаем {{GENDER:|вас}} заранее рассмотреть возможность отключения этой функции.<br /><br /> Отключение этой функции приведет к перемещению структурированной доски обсуждений на подстраницу и разархивированию предыдущей страницы обсуждения. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Structured_Discussions/Activation#deactivate Узнайте больше о деактивации.] [https://www.mediawiki.org/wiki/Special:MyLanguage/Talk:Structured_Discussions /Устарело Свяжитесь с нами, если у {{GENDER:|вас}} возникнут какие-либо проблемы.]",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Посмотреть}} страницу обсуждения участника",
 	"flow-beta-feature-add-archive-template-edit-summary": "Добавление шаблона архива",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Удаление шаблона архива",
@@ -553,7 +554,7 @@
 	"flow-optin-restore-flow-board": "Восстановить архивированную доску обсуждений.",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Добро пожаловать}} на {{GENDER:$1|вашу}} новую страницу обсуждения участни{{GENDER:$1|ка|цы}}",
 	"flow-guidedtour-optin-welcome-description": "{{GENDER:$1|Ваша}} страница обсуждения — это место, где другие редакторы могут связаться с {{GENDER:$1|вами}}. Со Структурированными обсуждениями легче начинать новые темы и продолжать отслеживать разговоры.",
-	"flow-guidedtour-optin-find-old-conversations": "Найти {{GENDER:$1|ваш}} старые разговоры",
+	"flow-guidedtour-optin-find-old-conversations": "Найти {{GENDER:$1|ваши}} старые разговоры",
 	"flow-guidedtour-optin-find-old-conversations-description": "Предыдущие разговоры были перемещены на архивную страницу.",
 	"flow-guidedtour-optin-feedback": "Оправьте нам {{GENDER:$1|ваши}} отзывы и предложения!",
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Вы}} можете получить более подробную информацию, отправить отзыв и предложение или отключить эту новую систему в любое время в разделе настроек «бета-функции».",
