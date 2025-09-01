@@ -852,5 +852,10 @@
 	},
 	"TestAutoloadNamespaces": {
 		"Flow\\Tests\\": "tests/phpunit/"
+	},
+	"RecentChangeSources": {
+		"flow": {
+			"primary": true
+		}
 	}
 }
