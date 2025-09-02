@@ -3,10 +3,12 @@
 		"authors": [
 			"Ammartivari",
 			"Gertakapllani",
-			"Vanished 456321456"
+			"Vanished 456321456",
+			"Xhulianoo"
 		]
 	},
 	"flow-topic-moderated-reason-prefix": "Arsyeja:",
 	"flow-error-no-commit": "veprimi specifik nuk mund te ruhet",
+	"flow-terms-of-use-new-topic": "Duke klikuar \"{{int:flow-newtopic-save}}\", ti pranon kushtet e përdorimit për këtë wiki.",
 	"flow-spam-confirmedit-form": "Ju lutem konfirmoni se ju jeni njeri duke zgjidhur në captcha më poshtë: $1"
 }
