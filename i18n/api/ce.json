@@ -4,6 +4,8 @@
 			"Умар"
 		]
 	},
+	"apihelp-flow-summary": "Структурйина дийцарийн агӀонаш тӀехь ардамаш бан аьтто бо.",
+	"apihelp-flow-param-submodule": "Структурйина дийцарийн кхойкхуш йолу бухара модуль.",
 	"apihelp-flow-example-1": "«[[Talk:Sandbox]]» лаьцна хаам нисъбе",
 	"apihelp-flow+edit-post-param-postId": "Хааман идентификатор.",
 	"apihelp-flow+edit-post-param-content": "Хаамийн чулацам.",
