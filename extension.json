@@ -678,7 +678,6 @@
 		"ChangesListSpecialPageQuery": "main",
 		"SkinTemplateNavigation::Universal": "main",
 		"Article::MissingArticleConditions": "main",
-		"SpecialWatchlistGetNonRevisionTypes": "main",
 		"UserGetReservedNames": "main",
 		"ResourceLoaderGetConfigVars": "main",
 		"ContribsPager::reallyDoQuery": "main",

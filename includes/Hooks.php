@@ -49,7 +49,6 @@ use MediaWiki\Hook\MovePageIsValidMoveHook;
 use MediaWiki\Hook\OldChangesListRecentChangesLineHook;
 use MediaWiki\Hook\PageMoveCompletingHook;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
-use MediaWiki\Hook\SpecialWatchlistGetNonRevisionTypesHook;
 use MediaWiki\Hook\TitleMoveStartingHook;
 use MediaWiki\Hook\TitleSquidURLsHook;
 use MediaWiki\Hook\UnwatchArticleHook;
@@ -119,7 +118,6 @@ class Hooks implements
 	ChangesListSpecialPageQueryHook,
 	SkinTemplateNavigation__UniversalHook,
 	Article__MissingArticleConditionsHook,
-	SpecialWatchlistGetNonRevisionTypesHook,
 	UserGetReservedNamesHook,
 	ResourceLoaderGetConfigVarsHook,
 	ContribsPager__reallyDoQueryHook,
@@ -680,15 +678,6 @@ class Hooks implements
 				}
 			}
 		}
-	}
-
-	/**
-	 * Adds Flow entries to watchlists
-	 *
-	 * @param array &$types Type array to modify
-	 */
-	public function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
-		$types[] = RC_FLOW;
 	}
 
 	/**
