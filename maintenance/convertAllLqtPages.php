@@ -40,6 +40,7 @@ class ConvertAllLqtPages extends Maintenance {
 			'option can be set to attempt to map threads to topics that have already been ' .
 			'imported to prevent doubles.' );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
+		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -89,9 +90,11 @@ class ConvertAllLqtPages extends Maintenance {
 		);
 
 		$titles = $this->buildIterator( $logger, $dbw );
+		$dryRun = $this->getOption( 'dryrun', false );
 
 		$logger->info( "Starting full wiki LQT conversion of all LiquidThreads pages" );
-		$converter->convertAll( $titles );
+		$converter->convertAll( $titles, $dryRun );
+
 		$logger->info( "Finished conversion" );
 	}
 
