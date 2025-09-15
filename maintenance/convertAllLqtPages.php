@@ -41,10 +41,23 @@ class ConvertAllLqtPages extends Maintenance {
 			'imported to prevent doubles.' );
 		$this->addOption( 'debug', 'Include debug information with progress report' );
 		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
+		$this->addOption( 'ignoreflowreadonly', 'Ignore $wgFlowReadOnly if set, allowing boards to be created.' );
 		$this->requireExtension( 'Flow' );
 	}
 
 	public function execute() {
+		global $wgFlowReadOnly;
+
+		if ( $wgFlowReadOnly ) {
+			if ( $this->getOption( 'ignoreflowreadonly', false ) ) {
+				// Make Flow writable for the duration of the script
+				$wgFlowReadOnly = false;
+			} else {
+				$this->error( 'Flow is in read-only mode. Use --ignoreflowreadonly to continue.' );
+				return;
+			}
+		}
+
 		$logfile = $this->getOption( 'logfile' );
 		if ( $logfile ) {
 			$sourceStore = new FileImportSourceStore( $logfile );
