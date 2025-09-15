@@ -33,6 +33,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$this->addOption( 'debug', 'Include debug information to progress report' );
 		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
 		$this->addOption( 'ignoreflowreadonly', 'Ignore $wgFlowReadOnly if set, allowing boards to be created.' );
+		$this->addOption( 'convertempty', 'Convert pages even if they have no threads.' );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -95,8 +96,9 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 
 		$srcTitle = Title::newFromText( $srcPageName );
 		$dryRun = $this->getOption( 'dryrun', false );
+		$convertEmpty = $this->getOption( 'convertempty', false );
 
-		$converter->convertAll( [ $srcTitle ], $dryRun );
+		$converter->convertAll( [ $srcTitle ], $dryRun, $convertEmpty );
 
 		$logger->info( "Finished LQT conversion of page $srcPageName" );
 	}

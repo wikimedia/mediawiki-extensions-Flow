@@ -42,6 +42,7 @@ class ConvertAllLqtPages extends Maintenance {
 		$this->addOption( 'debug', 'Include debug information with progress report' );
 		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
 		$this->addOption( 'ignoreflowreadonly', 'Ignore $wgFlowReadOnly if set, allowing boards to be created.' );
+		$this->addOption( 'convertempty', 'Convert pages even if they have no threads.' );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -104,9 +105,10 @@ class ConvertAllLqtPages extends Maintenance {
 
 		$titles = $this->buildIterator( $logger, $dbw );
 		$dryRun = $this->getOption( 'dryrun', false );
+		$convertEmpty = $this->getOption( 'convertempty', false );
 
 		$logger->info( "Starting full wiki LQT conversion of all LiquidThreads pages" );
-		$converter->convertAll( $titles, $dryRun );
+		$converter->convertAll( $titles, $dryRun, $convertEmpty );
 
 		$logger->info( "Finished conversion" );
 	}

@@ -6,6 +6,7 @@ use Flow\Exception\FlowException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -103,12 +104,13 @@ class Converter {
 	 *
 	 * @param Traversable<Title>|array $titles
 	 * @param bool $dryRun If true, will not make any changes
+	 * @param bool $convertEmpty Convert pages with no threads
 	 */
-	public function convertAll( $titles, $dryRun = false ) {
+	public function convertAll( $titles, $dryRun = false, $convertEmpty = false ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			try {
-				$this->convert( $title, $dryRun );
+				$this->convert( $title, $dryRun, $convertEmpty );
 			} catch ( \Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->error( "Exception while importing: {$title}" );
@@ -122,9 +124,10 @@ class Converter {
 	 *
 	 * @param Title $title
 	 * @param bool $dryRun If true, will not make any changes
+	 * @param bool $convertEmpty Convert pages with no threads
 	 * @throws FlowException
 	 */
-	public function convert( Title $title, $dryRun = false ) {
+	public function convert( Title $title, $dryRun = false, $convertEmpty = false ) {
 		/*
 		 * $title is the title we're currently considering to import.
 		 * It could be a page we need to import, but could also e.g.
@@ -138,6 +141,16 @@ class Converter {
 
 		if ( !$this->isAllowed( $title ) ) {
 			throw new FlowException( "Not allowed to convert: {$title}" );
+		}
+
+		if ( !$convertEmpty ) {
+			$article = new Article( $title );
+			$pager = new \LqtDiscussionPager( $article, \TalkpageView::LQT_NEWEST_CHANGES );
+			$pager->setLimit( 1 );
+			if ( !$pager->getNumRows() ) {
+				$this->logger->info( "Skipping {$title} as it has no LiquidThreads content" );
+				return;
+			}
 		}
 
 		if ( !$dryRun ) {
