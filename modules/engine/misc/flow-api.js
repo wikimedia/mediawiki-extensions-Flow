@@ -129,11 +129,11 @@
 		}
 		for ( key in queryMap ) {
 			if ( Object.prototype.hasOwnProperty.call( queryMap, key ) ) {
-				if ( key.indexOf( map[ 0 ] ) === 0 ) {
+				if ( key.startsWith( map[ 0 ] ) ) {
 					queryMap[ key.replace( map[ 0 ], map[ 1 ] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
 				}
-				if ( key.indexOf( 'flow_' ) === 0 ) {
+				if ( key.startsWith( 'flow_' ) ) {
 					queryMap[ key.replace( 'flow_', map[ 1 ] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
 				}
