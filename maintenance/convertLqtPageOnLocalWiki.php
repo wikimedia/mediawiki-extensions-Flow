@@ -31,6 +31,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$this->addOption( 'srcpage', 'Page name of the source page to import from.', true, true );
 		$this->addOption( 'logfile', 'File to read and store associations between imported items and their sources', true, true );
 		$this->addOption( 'debug', 'Include debug information to progress report' );
+		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
 		$this->requireExtension( 'Flow' );
 	}
 
@@ -80,9 +81,9 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$logger->info( "Starting LQT conversion of page $srcPageName" );
 
 		$srcTitle = Title::newFromText( $srcPageName );
-		$converter->convertAll( [
-			$srcTitle,
-		] );
+		$dryRun = $this->getOption( 'dryrun', false );
+
+		$converter->convertAll( [ $srcTitle ], $dryRun );
 
 		$logger->info( "Finished LQT conversion of page $srcPageName" );
 	}

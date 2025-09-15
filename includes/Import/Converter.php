@@ -102,12 +102,13 @@ class Converter {
 	 * Converts multiple pages into Flow boards
 	 *
 	 * @param Traversable<Title>|array $titles
+	 * @param bool $dryRun If true, will not make any changes
 	 */
-	public function convertAll( $titles ) {
+	public function convertAll( $titles, $dryRun = false ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			try {
-				$this->convert( $title );
+				$this->convert( $title, $dryRun );
 			} catch ( \Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->error( "Exception while importing: {$title}" );
@@ -120,9 +121,10 @@ class Converter {
 	 * Converts a page into a Flow board
 	 *
 	 * @param Title $title
+	 * @param bool $dryRun If true, will not make any changes
 	 * @throws FlowException
 	 */
-	public function convert( Title $title ) {
+	public function convert( Title $title, $dryRun = false ) {
 		/*
 		 * $title is the title we're currently considering to import.
 		 * It could be a page we need to import, but could also e.g.
@@ -138,7 +140,11 @@ class Converter {
 			throw new FlowException( "Not allowed to convert: {$title}" );
 		}
 
-		$this->doConversion( $title, $movedFrom );
+		if ( !$dryRun ) {
+			$this->doConversion( $title, $movedFrom );
+		} else {
+			$this->logger->info( "Dry run: Would convert $title" );
+		}
 	}
 
 	/**
