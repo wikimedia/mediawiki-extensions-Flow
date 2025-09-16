@@ -419,7 +419,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		$parserOutput = new ParserOutput;
 
 		// Clear the LinksUpdate to allow clean testing
-		foreach ( array_keys( $expectedItems ) as $fieldName ) {
+		foreach ( $expectedItems as $fieldName => $_ ) {
 			$parserOutput->$fieldName = [];
 		}
 

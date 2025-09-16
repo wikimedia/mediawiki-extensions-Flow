@@ -122,9 +122,7 @@ abstract class Utils {
 		$plain = trim( Sanitizer::stripAllTags( $html ) );
 
 		// Fallback to some large-ish value for truncation.
-		if ( $truncateLength === null ) {
-			$truncateLength = 10000;
-		}
+		$truncateLength ??= 10000;
 
 		$lang = $lang ?: $wgLang;
 		return $lang->truncateForVisual( $plain, $truncateLength );

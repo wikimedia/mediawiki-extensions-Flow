@@ -37,11 +37,7 @@ class WorkflowTopicListListener extends AbstractListener {
 		$list = $this->topicListStorage->find( [ 'topic_id' => $workflowId ] );
 
 		// One topic maps to only one topic list now
-		if ( $list ) {
-			return reset( $list );
-		} else {
-			return false;
-		}
+		return $list ? reset( $list ) : false;
 	}
 
 	/**

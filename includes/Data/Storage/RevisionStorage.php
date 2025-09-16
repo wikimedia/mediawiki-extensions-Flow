@@ -557,18 +557,17 @@ abstract class RevisionStorage extends DbStorage {
 	 * Gets all columns from $row that start with a given prefix and omits other
 	 * columns.
 	 *
-	 * @param array $row Rows to split
-	 * @param string $prefix
-	 * @return array Remaining rows
+	 * @param array<string,mixed> $row
+	 * @param string $prefix Defaults to "rev"
+	 * @return array<string,mixed>
 	 */
-	protected function splitUpdate( array $row, $prefix = 'rev' ) {
-		$rev = [];
-		foreach ( $row as $key => $value ) {
-			$keyPrefix = strstr( $key, '_', true );
-			if ( $keyPrefix === $prefix ) {
-				$rev[$key] = $value;
-			}
-		}
-		return $rev;
+	protected function splitUpdate( array $row, string $prefix = 'rev' ): array {
+		$prefix .= '_';
+		return array_filter(
+			$row,
+			static fn ( string $key ) => str_starts_with( $key, $prefix ),
+			ARRAY_FILTER_USE_KEY
+		);
 	}
+
 }

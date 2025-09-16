@@ -34,13 +34,9 @@
 		const $target = $( this ).closest( '.flow-element-collapsible' ),
 			$deferred = $.Deferred(),
 			updateTitle = function ( element, state ) {
-				const titleDataAttribute = state + '-title',
-					$element = $( element ),
-					title = $element.data( titleDataAttribute );
-
-				if ( title ) {
-					$element.attr( 'title', title );
-				}
+				const $element = $( element );
+				// In case the correct title cannot be found the wrong one must be removed
+				$element.attr( 'title', $element.data( state + '-title' ) || null );
 			};
 
 		// Ignore clicks on links inside of collapsible areas
@@ -53,13 +49,10 @@
 			return $deferred.resolve().promise();
 		}
 
-		if ( $target.is( '.flow-element-collapsed' ) ) {
-			$target.removeClass( 'flow-element-collapsed' ).addClass( 'flow-element-expanded' );
-			updateTitle( this, 'expanded' );
-		} else {
-			$target.addClass( 'flow-element-collapsed' ).removeClass( 'flow-element-expanded' );
-			updateTitle( this, 'collapsed' );
-		}
+		const expand = $target.is( '.flow-element-collapsed' );
+		$target.toggleClass( 'flow-element-collapsed', !expand )
+			.toggleClass( 'flow-element-expanded', expand );
+		updateTitle( this, expand ? 'expanded' : 'collapsed' );
 
 		return $deferred.resolve().promise();
 	};

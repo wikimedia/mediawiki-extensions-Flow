@@ -64,11 +64,7 @@ class RevisionUndoViewFormatter {
 		} else {
 			// 3-way merge
 			$ok = wfMerge( $stopContent, $startContent, $currentContent, $result );
-			if ( $ok ) {
-				return $result;
-			} else {
-				return false;
-			}
+			return $ok ? $result : false;
 		}
 	}
 }

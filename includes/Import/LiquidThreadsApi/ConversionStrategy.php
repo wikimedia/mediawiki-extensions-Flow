@@ -85,11 +85,7 @@ class ConversionStrategy implements IConversionStrategy {
 	}
 
 	public function isConversionFinished( Title $title, ?Title $movedFrom = null ) {
-		if ( LqtDispatch::isLqtPage( $title ) ) {
-			return false;
-		} else {
-			return true;
-		}
+		return !LqtDispatch::isLqtPage( $title );
 	}
 
 	public function createImportSource( Title $title ) {
