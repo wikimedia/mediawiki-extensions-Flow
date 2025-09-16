@@ -27,10 +27,6 @@ class RevisionActionPermissions {
 	 */
 	protected $user;
 
-	/**
-	 * @param FlowActions $actions
-	 * @param User $user
-	 */
 	public function __construct( FlowActions $actions, User $user ) {
 		$this->user = $user;
 		$this->actions = $actions;
@@ -270,9 +266,6 @@ class RevisionActionPermissions {
 		return $this->actions;
 	}
 
-	/**
-	 * @param User $user
-	 */
 	public function setUser( User $user ) {
 		$this->user = $user;
 	}

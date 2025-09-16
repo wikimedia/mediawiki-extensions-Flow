@@ -77,9 +77,6 @@ class UserNameBatch {
 		}
 	}
 
-	/**
-	 * @param UserTuple $tuple
-	 */
 	public function addFromTuple( UserTuple $tuple ) {
 		$this->add( $tuple->wiki, $tuple->id, $tuple->ip );
 	}

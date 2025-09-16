@@ -57,8 +57,6 @@ interface OccupationController {
 	 * checkIfCreationIsPossible *MUST* be called earlier, and
 	 * checkIfUserHasPermission *MUST* be called earlier except when permission checks
 	 * are deliberately being bypassed (very rare cases like global rename)
-	 *
-	 * @param Title $title
 	 */
 	public function forceAllowCreation( Title $title );
 

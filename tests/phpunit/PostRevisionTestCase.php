@@ -187,8 +187,6 @@ class PostRevisionTestCase extends FlowTestCase {
 
 	/**
 	 * Saves a PostRevision to storage.
-	 *
-	 * @param PostRevision $revision
 	 */
 	protected function store( PostRevision $revision ) {
 		if ( $revision->isTopicTitle() ) {

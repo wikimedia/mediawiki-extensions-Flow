@@ -24,10 +24,6 @@ class WorkflowTopicListListener extends AbstractListener {
 	 */
 	protected $topicListLastUpdatedIndex;
 
-	/**
-	 * @param ObjectManager $topicListStorage
-	 * @param TopKIndex $topicListLastUpdatedIndex
-	 */
 	public function __construct( ObjectManager $topicListStorage, TopKIndex $topicListLastUpdatedIndex ) {
 		$this->topicListStorage = $topicListStorage;
 		$this->topicListLastUpdatedIndex = $topicListLastUpdatedIndex;

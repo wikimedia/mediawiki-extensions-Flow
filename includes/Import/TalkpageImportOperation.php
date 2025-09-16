@@ -153,10 +153,6 @@ class TalkpageImportOperation {
 		return $failed === 0;
 	}
 
-	/**
-	 * @param PageImportState $pageState
-	 * @param IImportHeader $importHeader
-	 */
 	public function importHeader( PageImportState $pageState, IImportHeader $importHeader ) {
 		$pageState->logger->info( 'Importing header' );
 		if ( !$importHeader->getRevisions()->valid() ) {
@@ -211,10 +207,6 @@ class TalkpageImportOperation {
 		$pageState->logger->info( 'Imported ' . count( $revisions ) . ' revisions for header' );
 	}
 
-	/**
-	 * @param TopicImportState $topicState
-	 * @param IImportTopic $importTopic
-	 */
 	public function importTopic( TopicImportState $topicState, IImportTopic $importTopic ) {
 		$summary = $importTopic->getTopicSummary();
 		if ( $summary ) {
@@ -331,10 +323,6 @@ class TalkpageImportOperation {
 		return null;
 	}
 
-	/**
-	 * @param TopicImportState $state
-	 * @param IImportSummary $importSummary
-	 */
 	public function importSummary( TopicImportState $state, IImportSummary $importSummary ) {
 		$state->parent->logger->info( "Importing summary" );
 		$existingId = $state->parent->getImportedId( $importSummary );

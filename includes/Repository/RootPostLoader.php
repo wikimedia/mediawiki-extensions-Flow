@@ -25,10 +25,6 @@ class RootPostLoader {
 	 */
 	protected $treeRepo;
 
-	/**
-	 * @param ManagerGroup $storage
-	 * @param TreeRepository $treeRepo
-	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
 		$this->storage = $storage;
 		$this->treeRepo = $treeRepo;

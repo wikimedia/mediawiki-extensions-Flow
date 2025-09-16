@@ -10,9 +10,6 @@ class FlowActions {
 	 */
 	protected $actions;
 
-	/**
-	 * @param array $actions
-	 */
 	public function __construct( array $actions ) {
 		$this->actions = new MultiDimArray();
 		$this->actions[] = $actions;

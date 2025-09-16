@@ -26,9 +26,6 @@ class WikiLinkFixer implements Fixer {
 	 */
 	protected $batch;
 
-	/**
-	 * @param LinkBatch $batch
-	 */
 	public function __construct( LinkBatch $batch ) {
 		$this->batch = $batch;
 	}

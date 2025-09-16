@@ -11,9 +11,6 @@ class MockImportRevision implements IObjectRevision {
 	 */
 	private $attribs;
 
-	/**
-	 * @param array $attribs
-	 */
 	public function __construct( array $attribs = [] ) {
 		$this->attribs = $attribs + [
 			'text' => 'dvorak',

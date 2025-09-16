@@ -10,10 +10,6 @@ use MediaWiki\Title\Title;
 
 class ViewAction extends FlowAction {
 
-	/**
-	 * @param Article $article
-	 * @param IContextSource $context
-	 */
 	public function __construct( Article $article, IContextSource $context ) {
 		parent::__construct( $article, $context, 'view' );
 	}

@@ -132,10 +132,6 @@ class OptInController {
 		);
 	}
 
-	/**
-	 * @param Title $title
-	 * @param User $user
-	 */
 	public function enable( Title $title, User $user ) {
 		if ( $this->isFlowBoard( $title ) ) {
 			// already a Flow board
@@ -161,9 +157,6 @@ class OptInController {
 		}
 	}
 
-	/**
-	 * @param Title $title
-	 */
 	public function disable( Title $title ) {
 		if ( !$this->isFlowBoard( $title ) ) {
 			return;
@@ -690,9 +683,6 @@ class OptInController {
 		return $flowArchiveTitle;
 	}
 
-	/**
-	 * @param array $blocks
-	 */
 	private function logBlockErrors( array $blocks ) {
 		$errors = [];
 		/** @var AbstractBlock $block */

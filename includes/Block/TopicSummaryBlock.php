@@ -416,9 +416,6 @@ class TopicSummaryBlock extends AbstractBlock {
 		return 'topicsummary';
 	}
 
-	/**
-	 * @param OutputPage $out
-	 */
 	public function setPageTitle( OutputPage $out ) {
 		$topic = $this->findTopicTitle();
 		$title = $this->workflow->getOwnerTitle();

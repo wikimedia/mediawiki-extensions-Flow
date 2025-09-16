@@ -33,9 +33,6 @@ class ActionFormatter extends LogFormatter {
 	 */
 	protected $templating;
 
-	/**
-	 * @param LogEntry $entry
-	 */
 	public function __construct( LogEntry $entry ) {
 		parent::__construct( $entry );
 

@@ -178,8 +178,6 @@ class TreeRepository {
 
 	/**
 	 * Deletes a descendant from the tree repo.
-	 *
-	 * @param UUID $descendant
 	 */
 	public function delete( UUID $descendant ) {
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );

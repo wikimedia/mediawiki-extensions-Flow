@@ -26,10 +26,6 @@ class UserMerger {
 	 */
 	protected $config;
 
-	/**
-	 * @param DbFactory $dbFactory
-	 * @param ManagerGroup $storage
-	 */
 	public function __construct( DbFactory $dbFactory, ManagerGroup $storage ) {
 		$this->dbFactory = $dbFactory;
 		$this->storage = $storage;

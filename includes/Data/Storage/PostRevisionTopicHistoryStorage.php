@@ -22,10 +22,6 @@ class PostRevisionTopicHistoryStorage implements ObjectStorage {
 	 */
 	protected $treeRepository;
 
-	/**
-	 * @param ObjectStorage $postRevisionStorage
-	 * @param TreeRepository $treeRepo
-	 */
 	public function __construct( ObjectStorage $postRevisionStorage, TreeRepository $treeRepo ) {
 		$this->postRevisionStorage = $postRevisionStorage;
 		$this->treeRepository = $treeRepo;

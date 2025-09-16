@@ -97,9 +97,6 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 	 */
 	protected $maintenance;
 
-	/**
-	 * @param FlowFixLog $maintenance
-	 */
 	public function __construct( FlowFixLog $maintenance ) {
 		$this->maintenance = $maintenance;
 	}

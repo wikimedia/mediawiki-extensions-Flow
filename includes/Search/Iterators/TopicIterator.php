@@ -24,10 +24,6 @@ class TopicIterator extends AbstractIterator {
 	 */
 	public $orderByUUID = false;
 
-	/**
-	 * @param DbFactory $dbFactory
-	 * @param RootPostLoader $rootPostLoader
-	 */
 	public function __construct( DbFactory $dbFactory, RootPostLoader $rootPostLoader ) {
 		parent::__construct( $dbFactory );
 		$this->rootPostLoader = $rootPostLoader;

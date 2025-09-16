@@ -55,9 +55,6 @@ abstract class ApiFlowBase extends ApiBase {
 		return true;
 	}
 
-	/**
-	 * @param Title $page
-	 */
 	public function setPage( Title $page ) {
 		$this->page = $page;
 	}

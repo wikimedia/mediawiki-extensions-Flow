@@ -22,10 +22,6 @@ class RevisionViewFormatter {
 	 */
 	protected $serializer;
 
-	/**
-	 * @param UrlGenerator $urlGenerator
-	 * @param RevisionFormatter $serializer
-	 */
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;

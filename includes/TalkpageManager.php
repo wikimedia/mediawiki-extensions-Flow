@@ -34,9 +34,6 @@ class TalkpageManager implements OccupationController {
 	 */
 	protected $talkPageManagerUser;
 
-	/**
-	 * @param UserGroupManager $userGroupManager
-	 */
 	public function __construct( UserGroupManager $userGroupManager ) {
 		$this->userGroupManager = $userGroupManager;
 	}

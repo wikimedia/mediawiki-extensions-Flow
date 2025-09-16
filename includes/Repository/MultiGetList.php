@@ -13,9 +13,6 @@ class MultiGetList {
 	 */
 	protected $cache;
 
-	/**
-	 * @param FlowObjectCache $cache
-	 */
 	public function __construct( FlowObjectCache $cache ) {
 		$this->cache = $cache;
 	}

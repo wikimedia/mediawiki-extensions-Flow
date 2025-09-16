@@ -107,7 +107,6 @@ class PostRevisionStorage extends RevisionStorage {
 	 * this doesn't delete the whole post, it just deletes the revision.
 	 * The post will *always* exist in the tree structure, its just a tree
 	 * and we aren't going to re-parent its children;
-	 * @param array $row
 	 */
 	protected function removeRelated( array $row ) {
 		$this->dbFactory->getDB( DB_PRIMARY )->newDeleteQueryBuilder()

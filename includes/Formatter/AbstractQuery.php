@@ -64,10 +64,6 @@ abstract class AbstractQuery {
 	/** @var array */
 	protected $identityMap = [];
 
-	/**
-	 * @param ManagerGroup $storage
-	 * @param TreeRepository $treeRepository
-	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository ) {
 		$this->storage = $storage;
 		$this->treeRepository = $treeRepository;

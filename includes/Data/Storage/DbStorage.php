@@ -38,9 +38,6 @@ abstract class DbStorage implements ObjectStorage {
 	 */
 	protected $obsoleteUpdateColumns = [];
 
-	/**
-	 * @param DbFactory $dbFactory
-	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbFactory = $dbFactory;
 	}

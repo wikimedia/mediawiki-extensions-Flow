@@ -71,9 +71,6 @@ class Importer {
 	 */
 	protected $transWikiMode = false;
 
-	/**
-	 * @param WikiImporter $importer
-	 */
 	public function __construct( WikiImporter $importer ) {
 		$this->importer = $importer;
 		try {
@@ -85,9 +82,6 @@ class Importer {
 		}
 	}
 
-	/**
-	 * @param ManagerGroup $storage
-	 */
 	public function setStorage( ManagerGroup $storage ) {
 		$this->storage = $storage;
 	}

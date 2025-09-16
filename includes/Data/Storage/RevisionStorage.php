@@ -83,7 +83,6 @@ abstract class RevisionStorage extends DbStorage {
 
 	/**
 	 * Remove from joinTable upone revision delete
-	 * @param array $row
 	 */
 	protected function removeRelated( array $row ) {
 	}
@@ -524,7 +523,6 @@ abstract class RevisionStorage extends DbStorage {
 	 * Also note this doesnt delete the whole post, it just deletes the revision.
 	 * The post will *always* exist in the tree structure, it will just show up as
 	 * [deleted] or something
-	 * @param array $row
 	 */
 	public function remove( array $row ) {
 		$this->dbFactory->getDB( DB_PRIMARY )->newDeleteQueryBuilder()

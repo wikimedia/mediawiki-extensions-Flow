@@ -274,9 +274,6 @@ abstract class AbstractBlock implements Block {
 		return $this->context->getUser()->getEditToken();
 	}
 
-	/**
-	 * @param OutputPage $out
-	 */
 	public function setPageTitle( OutputPage $out ) {
 		if ( $out->getPageTitle() ) {
 			// Don't override page title if another block has already set it.

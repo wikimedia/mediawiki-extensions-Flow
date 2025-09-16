@@ -497,9 +497,6 @@ class TopicListBlock extends AbstractBlock {
 		} );
 	}
 
-	/**
-	 * @param OutputPage $out
-	 */
 	public function setPageTitle( OutputPage $out ) {
 		if ( $this->action !== 'new-topic' ) {
 			// Only new-topic should override page title, rest should default

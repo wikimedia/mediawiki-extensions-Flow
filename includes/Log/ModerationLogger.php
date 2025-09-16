@@ -17,9 +17,6 @@ class ModerationLogger {
 	 */
 	protected $actions;
 
-	/**
-	 * @param FlowActions $actions
-	 */
 	public function __construct( FlowActions $actions ) {
 		$this->actions = $actions;
 	}

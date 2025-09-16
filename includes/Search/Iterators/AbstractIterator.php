@@ -47,9 +47,6 @@ abstract class AbstractIterator implements Iterator {
 	 */
 	protected $key;
 
-	/**
-	 * @param DbFactory $dbFactory
-	 */
 	public function __construct( DbFactory $dbFactory ) {
 		$this->dbr = $dbFactory->getDB( DB_REPLICA );
 		$this->conditions = [ 'workflow_wiki' => WikiMap::getCurrentWikiId() ];

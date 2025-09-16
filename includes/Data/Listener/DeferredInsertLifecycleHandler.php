@@ -16,10 +16,6 @@ class DeferredInsertLifecycleHandler implements LifecycleHandler {
 	 */
 	protected $nested;
 
-	/**
-	 * @param SplQueue $queue
-	 * @param LifecycleHandler $nested
-	 */
 	public function __construct( SplQueue $queue, LifecycleHandler $nested ) {
 		$this->queue = $queue;
 		$this->nested = $nested;

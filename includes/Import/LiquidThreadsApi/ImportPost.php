@@ -17,10 +17,6 @@ class ImportPost extends PageRevisionedObject implements IImportPost {
 	 */
 	protected $apiResponse;
 
-	/**
-	 * @param ImportSource $source
-	 * @param array $apiResponse
-	 */
 	public function __construct( ImportSource $source, array $apiResponse ) {
 		parent::__construct( $source, $apiResponse['rootid'] );
 		$this->apiResponse = $apiResponse;
