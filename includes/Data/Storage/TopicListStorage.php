@@ -22,7 +22,7 @@ class TopicListStorage extends BasicDbStorage {
 	 * We need workflow_last_update_timestamp for updating
 	 * the ordering in cache
 	 * @param array $rows
-	 * @return array|false
+	 * @return array
 	 */
 	public function insert( array $rows ) {
 		$updateRows = [];
@@ -32,12 +32,7 @@ class TopicListStorage extends BasicDbStorage {
 			unset( $row['workflow_last_update_timestamp'] );
 			$updateRows[$i] = $row;
 		}
-		$res = parent::insert( $updateRows );
-		if ( $res ) {
-			return $rows;
-		} else {
-			return false;
-		}
+		return parent::insert( $updateRows );
 	}
 
 }
