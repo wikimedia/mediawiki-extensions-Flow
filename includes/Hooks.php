@@ -1550,9 +1550,10 @@ class Hooks implements
 			// location and rendered it doesn't throw an error about the wrong title
 			Container::get( 'factory.loader.workflow' )->pageMoveInProgress();
 
-			$title = Title::newFromLinkTarget( $revisionRecord->getPageAsLinkTarget() );
+			$title = Title::newFromPageIdentity( $revisionRecord->getPage() );
 
 			// Reassociate the Flow board associated with this undeleted revision.
+			/** @var BoardMover $boardMover */
 			$boardMover = Container::get( 'board_mover' );
 			$boardMover->move( intval( $oldPageId ), $title );
 		}
