@@ -9,7 +9,7 @@ use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use Wikimedia\Rdbms\DBQueryError;
 
-/*
+/**
  * In SQL
  *
  * CREATE TABLE flow_tree_node (
@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\DBQueryError;
  * Not sure how to handle topic splits with caching yet, i can imagine
  * a number of potential race conditions for writing root paths and sub trees
  * during a topic split
-*/
+ */
 class TreeRepository {
 
 	/**
@@ -316,12 +316,13 @@ class TreeRepository {
 		// of caching our own value
 		$path = $this->findRootPath( $descendant );
 		if ( !$path ) {
-			throw new DataModelException( $descendant->getAlphadecimal() . ' has no root post. Probably is a root post.', 'process-data' );
+			throw new DataModelException(
+				$descendant->getAlphadecimal() . ' has no root post. Probably is a root post.',
+				'process-data'
+			);
 		}
 
-		$root = array_shift( $path );
-
-		return $root;
+		return array_shift( $path );
 	}
 
 	/**

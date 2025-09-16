@@ -40,6 +40,7 @@ class ApiFlowEditHeader extends ApiFlowBasePost {
 	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			'action=flow&submodule=edit-header&page=Talk:Sandbox&ehprev_revision=???&ehcontent=Nice%20to&20meet%20you&ehformat=wikitext'
 				=> 'apihelp-flow+edit-header-example-1',

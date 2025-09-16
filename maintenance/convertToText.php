@@ -374,7 +374,9 @@ class ConvertToText extends Maintenance {
 	 */
 	private function getAllPostRevisions( array $revision ) {
 		$topicTitle = Title::newFromText( $revision['articleTitle'] );
-		$response = $this->flowApi( $topicTitle, 'view-post-history', [ 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ] );
+		$response = $this->flowApi( $topicTitle, 'view-post-history',
+			[ 'vphpostId' => $revision['postId'], 'vphformat' => 'wikitext' ]
+		);
 		return $response['topic']['revisions'];
 	}
 

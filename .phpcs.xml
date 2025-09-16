@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="MediaWiki.Commenting.CommentBeforeClass.SpacingAfter" />
-		<exclude name="MediaWiki.Commenting.CommentBeforeClass.StrayStyle" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam" />
@@ -13,7 +11,7 @@
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<property name="lineLimit" value="140" />
+			<property name="lineLimit" value="130" />
 		</properties>
 	</rule>
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">

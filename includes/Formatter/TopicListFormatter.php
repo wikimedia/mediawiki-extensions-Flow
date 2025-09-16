@@ -127,7 +127,13 @@ class TopicListFormatter extends BaseTopicListFormatter {
 		return $actions;
 	}
 
-	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $postAlphaId, IContextSource $ctx ) {
+	protected function generateTopicMetadata(
+		array $posts,
+		array $revisions,
+		array $workflows,
+		$postAlphaId,
+		IContextSource $ctx
+	) {
 		$language = $ctx->getLanguage();
 		$user = $ctx->getUser();
 

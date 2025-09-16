@@ -214,7 +214,9 @@ class Controller {
 				$extraData += [
 					'reply-to' => $revision->getReplyToId(),
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
-					'topic-title' => $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
+					'topic-title' => $this->language->truncateForVisual(
+						$topicRevision->getContent( 'topic-title-plaintext' ), 200
+					),
 				];
 
 				// if we're looking at the initial post (submitted along with the topic
@@ -246,14 +248,20 @@ class Controller {
 			case 'flow-topic-renamed':
 				$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 				$extraData += [
-					'old-subject' => $this->language->truncateForVisual( $previousRevision->getContent( 'topic-title-plaintext' ), 200 ),
-					'new-subject' => $this->language->truncateForVisual( $revision->getContent( 'topic-title-plaintext' ), 200 ),
+					'old-subject' => $this->language->truncateForVisual(
+						$previousRevision->getContent( 'topic-title-plaintext' ), 200
+					),
+					'new-subject' => $this->language->truncateForVisual(
+						$revision->getContent( 'topic-title-plaintext' ), 200
+					),
 				];
 				break;
 			case 'flow-post-edited':
 				$extraData += [
 					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
-					'topic-title' => $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 ),
+					'topic-title' => $this->language->truncateForVisual(
+						$topicRevision->getContent( 'topic-title-plaintext' ), 200
+					),
 				];
 				break;
 		}
@@ -323,7 +331,9 @@ class Controller {
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
-		$extraData['topic-title'] = $this->language->truncateForVisual( $topicRevision->getContent( 'topic-title-plaintext' ), 200 );
+		$extraData['topic-title'] = $this->language->truncateForVisual(
+			$topicRevision->getContent( 'topic-title-plaintext' ), 200
+		);
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
 		// pass along mentioned users to other notification, so it knows who to ignore
 		$extraData['mentioned-users'] = $mentionedUsers;

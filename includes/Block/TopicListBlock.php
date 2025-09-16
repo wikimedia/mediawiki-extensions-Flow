@@ -291,7 +291,9 @@ class TopicListBlock extends AbstractBlock {
 				$workflowsByWorkflowId[$alphaWorkflowId] = $workflow;
 			}
 
-			return $response + $serializer->formatApi( $this->workflow, $topicRootRevisionsByWorkflowId, $workflowsByWorkflowId, $page );
+			return $response + $serializer->formatApi(
+				$this->workflow, $topicRootRevisionsByWorkflowId, $workflowsByWorkflowId, $page
+			);
 		}
 
 		/** @var TopicListQuery $query */

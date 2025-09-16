@@ -6,9 +6,11 @@ use Flow\Data\Pager\PagerPage;
 use Flow\Model\Workflow;
 use Flow\Templating;
 
-// The output of this is a strict subset of TopicListFormatter.
-// Anything accessible from the output of this should be accessible with the same path
-// from the output of TopicListFormatter.  However, this output is much more minimal.
+/**
+ * The output of this is a strict subset of TopicListFormatter.
+ * Anything accessible from the output of this should be accessible with the same path
+ * from the output of TopicListFormatter.  However, this output is much more minimal.
+ */
 class TocTopicListFormatter extends BaseTopicListFormatter {
 	/**
 	 * @var Templating
@@ -31,7 +33,12 @@ class TocTopicListFormatter extends BaseTopicListFormatter {
 	 *
 	 * @return array Array formatted for response
 	 */
-	public function formatApi( Workflow $listWorkflow, $topicRootRevisionsByWorkflowId, $workflowsByWorkflowId, PagerPage $page ) {
+	public function formatApi(
+		Workflow $listWorkflow,
+		array $topicRootRevisionsByWorkflowId,
+		array $workflowsByWorkflowId,
+		PagerPage $page
+	): array {
 		$result = $this->buildEmptyResult( $listWorkflow );
 
 		foreach ( $topicRootRevisionsByWorkflowId as $topicId => $postRevision ) {

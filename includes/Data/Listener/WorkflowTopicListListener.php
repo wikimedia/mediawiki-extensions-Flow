@@ -62,6 +62,7 @@ class WorkflowTopicListListener extends AbstractListener {
 		}
 	}
 
+	/** @inheritDoc */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {

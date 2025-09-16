@@ -244,7 +244,7 @@ class ContributionsQuery extends AbstractQuery {
 	 *
 	 * @param IResultWrapper $rows
 	 * @param string $revisionClass Class of revision object to build: PostRevision|Header
-	 * @return array
+	 * @return AbstractRevision[]
 	 */
 	protected function loadRevisions( IResultWrapper $rows, $revisionClass ) {
 		$revisions = [];

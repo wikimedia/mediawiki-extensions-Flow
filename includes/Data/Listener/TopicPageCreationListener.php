@@ -26,10 +26,12 @@ class TopicPageCreationListener extends AbstractListener {
 		$this->deferredQueue = $deferredQueue;
 	}
 
+	/** @inheritDoc */
 	public function onAfterLoad( $object, array $old ) {
 		// Nothing
 	}
 
+	/** @inheritDoc */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		if ( !$object instanceof Workflow ) {
 			return;

@@ -9,8 +9,10 @@ use Flow\Import\PageImportState;
 use Flow\Import\TopicImportState;
 use Flow\Model\PostRevision;
 
-// We might want to implement a no-op AbstractPostprocessor, so you can extend that and
-// implement what you want, without 'not a thing to do yet'
+/**
+ * We might want to implement a no-op AbstractPostprocessor, so you can extend that and implement
+ * what you want, without "not a thing to do yet".
+ */
 interface Postprocessor {
 	/**
 	 * Called after the successful commit of a header. This is

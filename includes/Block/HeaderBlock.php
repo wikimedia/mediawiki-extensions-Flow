@@ -107,11 +107,13 @@ class HeaderBlock extends AbstractBlock {
 			$this->addError( 'prev_revision', $this->context->msg( 'flow-error-missing-prev-revision-identifier' ) );
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
-			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
-			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
+			// This is a reasonably effective way to ensure prev revision matches, but for
+			// guarantees against race conditions there also exists a unique index on
+			// rev_prev_revision in mysql, meaning if someone else inserts against the
 			// parent we and the submitter think is the latest, our insert will fail.
-			// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
-			// handing user back to specific dialog indicating race condition
+			// TODO: Catch whatever exception happens there, make sure the most recent revision is
+			// the one in the cache before handing user back to specific dialog indicating race
+			// condition.
 			$this->addError(
 				'prev_revision',
 				$this->context->msg( 'flow-error-prev-revision-mismatch' )->params(

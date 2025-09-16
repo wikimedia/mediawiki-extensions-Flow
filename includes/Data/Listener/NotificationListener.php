@@ -19,6 +19,7 @@ class NotificationListener extends AbstractListener {
 		$this->notificationController = $notificationController;
 	}
 
+	/** @inheritDoc */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( !$object instanceof AbstractRevision ) {
 			return;

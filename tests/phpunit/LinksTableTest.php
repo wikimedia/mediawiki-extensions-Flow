@@ -324,7 +324,13 @@ class LinksTableTest extends PostRevisionTestCase {
 	/**
 	 * @dataProvider provideReferenceDiff
 	 */
-	public function testReferenceDiff( array $old, array $new, array $expectedAdded, array $expectedRemoved, array $globals = [] ) {
+	public function testReferenceDiff(
+		array $old,
+		array $new,
+		array $expectedAdded,
+		array $expectedRemoved,
+		array $globals = []
+	) {
 		$this->overrideConfigValues( $globals );
 		[ $workflow, $revision, $title ] = $this->getBlandTestObjects();
 

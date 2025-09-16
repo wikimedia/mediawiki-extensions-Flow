@@ -21,11 +21,7 @@ class DeferredInsertLifecycleHandler implements LifecycleHandler {
 		$this->nested = $nested;
 	}
 
-	/**
-	 * @param object $object
-	 * @param array $new
-	 * @param array $metadata
-	 */
+	/** @inheritDoc */
 	public function onAfterInsert( $object, array $new, array $metadata ) {
 		$nested = $this->nested;
 		$this->queue->enqueue( static function () use ( $nested, $object, $new, $metadata ) {
@@ -33,29 +29,17 @@ class DeferredInsertLifecycleHandler implements LifecycleHandler {
 		} );
 	}
 
-	/**
-	 * @param object $object
-	 * @param array $old
-	 * @param array $new
-	 * @param array $metadata
-	 */
+	/** @inheritDoc */
 	public function onAfterUpdate( $object, array $old, array $new, array $metadata ) {
 		$this->nested->onAfterUpdate( $object, $old, $new, $metadata );
 	}
 
-	/**
-	 * @param object $object
-	 * @param array $old
-	 * @param array $metadata
-	 */
+	/** @inheritDoc */
 	public function onAfterRemove( $object, array $old, array $metadata ) {
 		$this->nested->onAfterRemove( $object, $old, $metadata );
 	}
 
-	/**
-	 * @param object $object
-	 * @param array $old
-	 */
+	/** @inheritDoc */
 	public function onAfterLoad( $object, array $old ) {
 		$this->nested->onAfterLoad( $object, $old );
 	}

@@ -27,7 +27,8 @@ class FlowUpdateRevContentModelFromOccupyPages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->addDescription( 'Sets rev_content_model from wgFlowOccupyPages, in preparation for dropping that config variable.' );
+		$this->addDescription( 'Sets rev_content_model from wgFlowOccupyPages, ' .
+			'in preparation for dropping that config variable.' );
 
 		$this->requireExtension( 'Flow' );
 

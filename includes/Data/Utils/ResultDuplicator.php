@@ -5,11 +5,13 @@ namespace Flow\Data\Utils;
 use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidParameterException;
 
-// Better name?
-// Add query arrays with a multi-dimensional position
-// Merge results with their query value
-// Get back result array with same positions as the original query
-// Maintains merge ordering
+/**
+ * Better name?
+ * Add query arrays with a multi-dimensional position
+ * Merge results with their query value
+ * Get back result array with same positions as the original query
+ * Maintains merge ordering
+ */
 class ResultDuplicator {
 	/**
 	 * Maps from the query array to its position in the query array

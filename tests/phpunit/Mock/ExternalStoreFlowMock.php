@@ -1,8 +1,10 @@
 <?php
 
-// The primary purpose of this is to check whether ExternalStore is used, to verify that it
-// doesn't insert rows that are not later used.
-// This is not in Flow\Tests\Mock since ExternalStore expects it in the global namespace.
+/**
+ * The primary purpose of this is to check whether {@see ExternalStore} is used, to verify that it
+ * doesn't insert rows that are not later used.
+ * This is not in Flow\Tests\Mock since ExternalStore expects it in the global namespace.
+ */
 class ExternalStoreFlowMock extends ExternalStoreMemory {
 	/**
 	 * @var bool

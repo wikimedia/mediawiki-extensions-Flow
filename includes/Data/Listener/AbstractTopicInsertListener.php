@@ -21,6 +21,7 @@ abstract class AbstractTopicInsertListener extends AbstractListener {
 	 */
 	abstract protected function onAfterInsertExpectedChange( $changeType, Workflow $workflow );
 
+	/** @inheritDoc */
 	public function onAfterInsert( $object, array $row, array $metadata ) {
 		if ( !$object instanceof PostRevision ) {
 			wfWarn( __METHOD__ . ': Object is no PostRevision instance' );

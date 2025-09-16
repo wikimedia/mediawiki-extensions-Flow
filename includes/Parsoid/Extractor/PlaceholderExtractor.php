@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 
-/*
+/**
  * phpcs:disable Generic.Files.LineLength
  * Parsoid currently returns images that don't exist like:
  * <meta typeof="mw:Placeholder" data-parsoid='{"src":"[[File:Image.png|25px]]","optList":[{"ck":"width","ak":"25px"}],"dsr":[0,23,null,null]}'>

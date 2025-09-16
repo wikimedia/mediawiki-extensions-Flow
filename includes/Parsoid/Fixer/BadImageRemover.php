@@ -22,7 +22,6 @@ use RuntimeException;
  *	// Before outputting content
  *	$content = $badImageRemover->apply( $foo->getContent(), $title );
  */
-
 class BadImageRemover implements Fixer {
 	/**
 	 * @var callable

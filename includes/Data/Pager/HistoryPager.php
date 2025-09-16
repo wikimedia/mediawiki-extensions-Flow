@@ -36,7 +36,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->query = $query;
 		$this->id = $id;
 
-		$this->mDefaultLimit = MediaWikiServices::getInstance()->getUserOptionsLookup()->getIntOption( $this->getUser(), 'rclimit' );
+		$this->mDefaultLimit = MediaWikiServices::getInstance()->getUserOptionsLookup()
+			->getIntOption( $this->getUser(), 'rclimit' );
 		$this->mIsBackwards = $this->getRequest()->getVal( 'dir' ) == 'prev';
 	}
 
@@ -79,7 +80,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$nextOffset = UUID::create( $nextOffset[0] );
 		$reverseDirection = $this->mIsBackwards ? 'fwd' : 'rev';
 		$this->mIsLast = !$overfetched;
-		$this->mIsFirst = !$this->mOffset || count( $this->query->getResults( $this->id, 1, $nextOffset, $reverseDirection ) ) === 0;
+		$this->mIsFirst = !$this->mOffset ||
+			!$this->query->getResults( $this->id, 1, $nextOffset, $reverseDirection );
 
 		if ( $this->mIsBackwards ) {
 			// swap values if we're going backwards

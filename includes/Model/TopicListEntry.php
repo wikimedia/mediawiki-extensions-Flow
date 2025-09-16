@@ -5,7 +5,9 @@ namespace Flow\Model;
 use Flow\Exception\DataModelException;
 use MediaWiki\MediaWikiServices;
 
-// TODO: We shouldn't need this class
+/**
+ * TODO: We shouldn't need this class
+ */
 class TopicListEntry {
 
 	/**

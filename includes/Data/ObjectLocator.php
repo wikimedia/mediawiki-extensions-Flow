@@ -76,7 +76,7 @@ class ObjectLocator {
 	 * array_map, maintaining order and key relationship between input $queries
 	 * and $result.
 	 *
-	 * @param array $queries
+	 * @param array[] $queries
 	 * @param array $options
 	 * @return array[]
 	 */

@@ -408,7 +408,8 @@ class OptInController {
 				$templateName = wfMessage( 'flow-importer-wt-converted-archive-template' )->inContentLanguage()->plain();
 				$content = TemplateHelper::removeFromHtml( $content, $templateName );
 				if ( $currentTemplate ) {
-					$content = Utils::convert( 'wikitext', 'html', $currentTemplate, $archivedFlowPage ) . "<br/><br/>" . $content;
+					$content = Utils::convert( 'wikitext', 'html', $currentTemplate, $archivedFlowPage ) .
+						'<br/><br/>' . $content;
 				}
 				return $content;
 			},
