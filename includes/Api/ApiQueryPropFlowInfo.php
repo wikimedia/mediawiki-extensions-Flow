@@ -2,12 +2,13 @@
 
 namespace Flow\Api;
 
+use ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Title\Title;
 
 class ApiQueryPropFlowInfo extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, string $moduleName ) {
 		parent::__construct( $query, $moduleName, 'fli' );
 	}
 

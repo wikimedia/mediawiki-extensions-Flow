@@ -55,7 +55,7 @@ class TalkpageManager implements OccupationController {
 	 *
 	 * @param WikiPage $page
 	 * @param Workflow $workflow
-	 * @return Status Status for revision creation; On success (including if it already
+	 * @return Status<array> Status for revision creation; On success (including if it already
 	 *  had a top-most Flow revision), it will return a good status with an associative
 	 *  array value.  $status->getValue()['revision-record'] will be a RevisionRecord
 	 *  $status->getValue()['already-existed'] will be set to true if no revision needed

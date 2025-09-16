@@ -12,7 +12,7 @@ interface OccupationController {
 	/**
 	 * @param WikiPage $wikipage
 	 * @param Workflow $workflow
-	 * @return Status
+	 * @return Status<array>
 	 */
 	public function ensureFlowRevision( WikiPage $wikipage, Workflow $workflow );
 
