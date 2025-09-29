@@ -492,7 +492,7 @@
 	"flow-beta-feature-add-archive-template-edit-summary": "Архиван кеп тӀетохар",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Архиван кеп дӀайаккхар",
 	"flow-beta-feature-add-current-template-edit-summary": "Карара кеп тӀетохар",
-	"flow-dialog-cancelconfirm-title": "Лаьий {{GENDER:|хьуна}}?",
+	"flow-dialog-cancelconfirm-title": "Бакъалла а лаьий {{GENDER:|хьуна}}?",
 	"flow-dialog-cancelconfirm-message": "{{GENDER:|Бакъалла а}}, Ӏалаш а ца йеш, дӀайаккха лаьий хьуна?",
 	"flow-dialog-cancelconfirm-keep": "Кхин дӀа тайе",
 	"flow-dialog-cancelconfirm-discard": "Йухабаха хийцамаш",
