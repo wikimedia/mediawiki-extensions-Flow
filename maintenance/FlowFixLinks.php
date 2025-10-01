@@ -10,6 +10,7 @@ use Flow\Model\Workflow;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
+use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
@@ -90,7 +91,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 				$dbProvider = $this->getServiceContainer()->getConnectionProvider();
 
 				// delete existing links from DB
-				$dbw->newDeleteQueryBuilder()
+				$dbProvider->getPrimaryDatabase( PageLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
 					->deleteFrom( 'pagelinks' )
 					->where( [ 'pl_from' => $id ] )
 					->caller( __METHOD__ )
