@@ -7,6 +7,7 @@ use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
 use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
 use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
@@ -101,7 +102,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 					->where( [ 'il_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbw->newDeleteQueryBuilder()
+				$dbProvider->getPrimaryDatabase( CategoryLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
 					->deleteFrom( 'categorylinks' )
 					->where( [ 'cl_from' => $id ] )
 					->caller( __METHOD__ )

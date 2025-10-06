@@ -3,6 +3,7 @@
 namespace Flow\Actions;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
@@ -35,7 +36,9 @@ class ViewAction extends FlowAction {
 			return [];
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$dbr = MediaWikiServices::getInstance()
+			->getConnectionProvider()
+			->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'lt_title', 'cl_sortkey' ] )
