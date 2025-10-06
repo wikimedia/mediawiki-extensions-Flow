@@ -9,6 +9,7 @@ use Flow\Parsoid\ReferenceFactory;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
 
 /**
@@ -50,12 +51,11 @@ class PlaceholderExtractor implements Extractor {
 			ParserOptions::newFromAnon()
 		);
 
-		$file = $output->getImages();
+		$file = $output->getLinkList( ParserOutputLinkTypes::MEDIA );
 		if ( !$file ) {
 			return null;
 		}
-		// $file looks like [ 'Foo.jpg' => 1 ]
-		$image = Title::newFromText( key( $file ), NS_FILE );
+		$image = Title::newFromLinkTarget( $file[0]['link'] );
 
 		return $factory->createWikiReference( WikiReference::TYPE_FILE, $image->getPrefixedDBkey() );
 	}
