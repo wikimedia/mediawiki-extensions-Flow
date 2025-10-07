@@ -194,7 +194,7 @@ class BoardContentHandler extends ContentHandler {
 				$this->generateHtml( $title, $user, $content, $output );
 			} catch ( \Exception ) {
 				// Workflow does not yet exist (may be in the process of being created)
-				$output->setText( '' );
+				$output->setContentHolderText( '' );
 			}
 		}
 
@@ -246,7 +246,7 @@ class BoardContentHandler extends ContentHandler {
 		$view->show( $loader, 'view' );
 
 		// Extract data from derivative context
-		$output->setText( $childContext->getOutput()->getHTML() );
+		$output->setContentHolderText( $childContext->getOutput()->getHTML() );
 		$output->addModules( $childContext->getOutput()->getModules() );
 		$output->addModuleStyles( $childContext->getOutput()->getModuleStyles() );
 	}
