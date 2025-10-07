@@ -208,7 +208,7 @@ class BoardContentHandler extends ContentHandler {
 				->getTimestampFromId( $revId );
 		}
 
-		$output->setTimestamp( $timestamp );
+		$output->setRevisionTimestamp( $timestamp );
 
 		/** @var LinksTableUpdater $updater */
 		$updater = Container::get( 'reference.updater.links-tables' );
