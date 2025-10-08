@@ -161,7 +161,6 @@ class ReferenceExtractorTest extends FlowTestCase {
 		$factory = new ReferenceFactory( $workflow, 'foo', UUID::create() );
 
 		$reflMethod = new ReflectionMethod( $referenceExtractor, 'extractReferences' );
-		$reflMethod->setAccessible( true );
 
 		$reflProperty = new \ReflectionProperty( $referenceExtractor, 'extractors' );
 		$reflProperty->setAccessible( true );
