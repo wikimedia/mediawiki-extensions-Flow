@@ -179,7 +179,6 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$secondPost = $topicTitle->reply( $topicWorkflow, $agent, 'lorem ipsum', 'wikitext' );
 		$newId = UUID::getComparisonUUID( (int)$secondPost->getPostId()->getTimestamp( TS_UNIX ) + 2 );
 		$reflection = new \ReflectionProperty( $secondPost, 'postId' );
-		$reflection->setAccessible( true );
 		$reflection->setValue( $secondPost, $newId );
 		$this->store( $secondPost );
 

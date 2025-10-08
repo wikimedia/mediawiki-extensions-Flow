@@ -413,7 +413,6 @@ class LinksTableTest extends PostRevisionTestCase {
 		$title = static::getTestTitle();
 		$reflectionWorkflow = new \ReflectionObject( $workflow );
 		$reflectionProperty = $reflectionWorkflow->getProperty( 'title' );
-		$reflectionProperty->setAccessible( true );
 		$reflectionProperty->setValue( $workflow, $title );
 
 		$references = $this->expandReferences( $workflow, $revision, $references );

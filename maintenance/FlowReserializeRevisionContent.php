@@ -65,12 +65,10 @@ class FlowReserializeRevisionContent extends Maintenance {
 		// Do reflection hackery to unblock updates to rev_content
 		$omClass = new ReflectionClass( get_class( $om ) );
 		$storageProp = $omClass->getProperty( 'storage' );
-		$storageProp->setAccessible( true );
 		$storageObj = $storageProp->getValue( $om );
 
 		$storageClass = new ReflectionClass( get_class( $storageObj ) );
 		$allowedUpdateColumnsProp = $storageClass->getProperty( 'allowedUpdateColumns' );
-		$allowedUpdateColumnsProp->setAccessible( true );
 		$allowedUpdateColumnsValue = $allowedUpdateColumnsProp->getValue( $storageObj );
 
 		$newAllowedUpdateColumnsValue = array_unique( array_merge( $allowedUpdateColumnsValue, [

@@ -78,12 +78,10 @@ class FlowUpdateRevisionContentLength extends LoggedUpdateMaintenance {
 			AbstractRevision::class,
 			'contentLength'
 		);
-		$this->contentLengthProperty->setAccessible( true );
 		$this->previousContentLengthProperty = new ReflectionProperty(
 			AbstractRevision::class,
 			'previousContentLength'
 		);
-		$this->previousContentLengthProperty->setAccessible( true );
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		// Walk through the flow_revision table

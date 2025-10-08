@@ -100,15 +100,11 @@ class PageImportState {
 
 		// Get our workflow UUID property
 		$this->workflowIdProperty = new ReflectionProperty( Workflow::class, 'id' );
-		$this->workflowIdProperty->setAccessible( true );
 
 		// Get our revision UUID properties
 		$this->postIdProperty = new ReflectionProperty( PostRevision::class, 'postId' );
-		$this->postIdProperty->setAccessible( true );
 		$this->revIdProperty = new ReflectionProperty( AbstractRevision::class, 'revId' );
-		$this->revIdProperty->setAccessible( true );
 		$this->lastEditIdProperty = new ReflectionProperty( AbstractRevision::class, 'lastEditId' );
-		$this->lastEditIdProperty->setAccessible( true );
 	}
 
 	/**
