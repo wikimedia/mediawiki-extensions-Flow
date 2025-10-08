@@ -667,13 +667,9 @@ class Controller {
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $wikitext, $title, $options );
 
-		$links = $output->getLinkList( ParserOutputLinkTypes::LOCAL );
-
 		$users = [];
-		foreach ( $links as [ 'link' => $link ] ) {
-			if ( $link->getNamespace() !== NS_USER ) {
-				continue;
-			}
+		foreach ( $output->getLinkList( ParserOutputLinkTypes::LOCAL, NS_USER )
+				  as [ 'link' => $link ] ) {
 			$user = User::newFromName( $link->getDBkey() );
 			if ( !$user || !$user->isRegistered() ) {
 				continue;
