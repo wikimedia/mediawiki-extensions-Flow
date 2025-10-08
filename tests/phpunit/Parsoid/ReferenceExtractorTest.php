@@ -163,7 +163,6 @@ class ReferenceExtractorTest extends FlowTestCase {
 		$reflMethod = new ReflectionMethod( $referenceExtractor, 'extractReferences' );
 
 		$reflProperty = new \ReflectionProperty( $referenceExtractor, 'extractors' );
-		$reflProperty->setAccessible( true );
 		$extractors = $reflProperty->getValue( $referenceExtractor );
 
 		$html = Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );

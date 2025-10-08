@@ -94,7 +94,6 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 		// That only works if the spam blacklist is really reset
 		$instance = BaseBlacklist::getSpamBlacklist();
 		$reflProp = new \ReflectionProperty( $instance, 'regexes' );
-		$reflProp->setAccessible( true );
 		$reflProp->setValue( $instance, false );
 	}
 

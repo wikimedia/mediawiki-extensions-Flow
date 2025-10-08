@@ -41,7 +41,6 @@ class UserNameListenerTest extends FlowTestCase {
 
 		$reflection = new ReflectionClass( $batch );
 		$prop = $reflection->getProperty( 'queued' );
-		$prop->setAccessible( true );
 		$queued = $prop->getValue( $batch );
 
 		if ( is_callable( $expectedWiki ) ) {

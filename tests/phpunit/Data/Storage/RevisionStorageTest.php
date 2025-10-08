@@ -239,7 +239,6 @@ class RevisionStorageTest extends FlowTestCase {
 	private function setWhetherContentUpdatingAllowed( $revisionStorage, $allowContentUpdates ) {
 		$klass = new \ReflectionClass( HeaderRevisionStorage::class );
 		$allowedUpdateColumnsProp = $klass->getProperty( 'allowedUpdateColumns' );
-		$allowedUpdateColumnsProp->setAccessible( true );
 
 		$allowedUpdateColumns = $allowedUpdateColumnsProp->getValue( $revisionStorage );
 
