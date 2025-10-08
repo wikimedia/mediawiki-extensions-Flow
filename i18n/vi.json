@@ -14,7 +14,8 @@
 			"Phjtieudoc",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
-			"Withoutaname"
+			"Withoutaname",
+			"Nvdtn19"
 		]
 	},
 	"enablestructureddiscussions": "Kích hoạt Thảo luận Cấu trúc",
@@ -480,7 +481,7 @@
 	"flow-undo-edit-topic-summary": "Sửa tóm lược đề tài",
 	"flow-undo-edit-post": "Sửa đổi bài đăng",
 	"flow-undo-edit-content": "Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại các sửa đổi.",
-	"flow-undo-edit-failure": "Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.",
+	"flow-undo-edit-failure": "Không thể lùi lại sửa đổi này vì đã có những sửa đổi mới ở sau.",
 	"group-flow-bot": "Bot Thảo luận Cấu trúc",
 	"group-flow-bot-member": "bot Thảo luận Cấu trúc",
 	"grouppage-flow-bot": "Project:Bot Thảo luận Cấu trúc",
