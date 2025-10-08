@@ -39,7 +39,6 @@ class TopicImportState {
 		$this->topicTitle = $topicTitle;
 
 		$this->workflowUpdatedProperty = new ReflectionProperty( Workflow::class, 'lastUpdated' );
-		$this->workflowUpdatedProperty->setAccessible( true );
 
 		$this->lastUpdated = '';
 		$this->recordUpdateTime( $topicWorkflow->getId() );

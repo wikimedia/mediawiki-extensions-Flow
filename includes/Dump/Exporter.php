@@ -112,10 +112,8 @@ class Exporter extends WikiExporter {
 			$limitNamespaces
 		);
 		$this->prevRevisionProperty = new ReflectionProperty( AbstractRevision::class, 'prevRevision' );
-		$this->prevRevisionProperty->setAccessible( true );
 
 		$this->changeTypeProperty = new ReflectionProperty( AbstractRevision::class, 'changeType' );
-		$this->changeTypeProperty->setAccessible( true );
 
 		try {
 			$this->lookup = MediaWikiServices::getInstance()
