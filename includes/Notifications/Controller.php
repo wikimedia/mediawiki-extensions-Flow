@@ -19,6 +19,7 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -666,16 +667,14 @@ class Controller {
 		$output = MediaWikiServices::getInstance()->getParser()
 			->parse( $wikitext, $title, $options );
 
-		$links = $output->getLinks();
-
-		if ( !isset( $links[NS_USER] ) || !is_array( $links[NS_USER] ) ) {
-			// Nothing
-			return [];
-		}
+		$links = $output->getLinkList( ParserOutputLinkTypes::LOCAL );
 
 		$users = [];
-		foreach ( $links[NS_USER] as $dbk => $page_id ) {
-			$user = User::newFromName( $dbk );
+		foreach ( $links as [ 'link' => $link ] ) {
+			if ( $link->getNamespace() !== NS_USER ) {
+				continue;
+			}
+			$user = User::newFromName( $link->getDBkey() );
 			if ( !$user || !$user->isRegistered() ) {
 				continue;
 			}
