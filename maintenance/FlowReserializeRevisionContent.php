@@ -85,7 +85,6 @@ class FlowReserializeRevisionContent extends Maintenance {
 	public function execute() {
 		// Reflection hackery: make setContentRaw() callable
 		$this->setContentRawMethod = new ReflectionMethod( AbstractRevision::class, 'setContentRaw' );
-		$this->setContentRawMethod->setAccessible( true );
 
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->storage = Container::get( 'storage' );
