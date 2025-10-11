@@ -658,6 +658,9 @@
 		"AbuseFilter": {
 			"class": "MediaWiki\\Extension\\StructuredDiscussions\\Hooks\\AbuseFilterHandler"
 		},
+		"Echo": {
+			"class": "Flow\\EchoHooks"
+		},
 		"main": {
 			"class": "Flow\\Hooks"
 		},
@@ -692,9 +695,9 @@
 		"AbuseFilter-computeVariable": "Flow\\Hooks::onAbuseFilterComputeVariable",
 		"AbuseFilterGenerateVarsForRecentChange": "AbuseFilter",
 		"AbortEmailNotification": "main",
-		"BeforeDisplayOrangeAlert": "main",
-		"EchoAbortEmailNotification": "Flow\\Hooks::onEchoAbortEmailNotification",
-		"BeforeEchoEventInsert": "Flow\\Hooks::onBeforeEchoEventInsert",
+		"BeforeDisplayOrangeAlert": "Echo",
+		"EchoAbortEmailNotification": "Echo",
+		"BeforeEchoEventInsert": "Echo",
 		"ArticleEditUpdateNewTalk": "main",
 		"InfoAction": "main",
 		"CheckUserFormatRow": "Flow\\Hooks::onCheckUserFormatRow",
