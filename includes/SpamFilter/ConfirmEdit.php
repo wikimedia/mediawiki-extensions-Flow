@@ -44,7 +44,7 @@ class ConfirmEdit implements SpamFilter {
 			// getting here means we submitted bad content without good captcha
 			// result (or any captcha result at all) - let's get the captcha
 			// information (HTML, modules, etc.) to display as error message!
-			$captchaInfo = $captcha->getFormInformation( 1, $context->getOutput() );
+			$captchaInfo = $captcha->getFormInformation();
 			$captchaRenderingInfo = HtmlRenderingInformation::fromArray(
 				$captchaInfo
 			);
