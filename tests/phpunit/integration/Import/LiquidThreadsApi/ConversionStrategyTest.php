@@ -158,6 +158,9 @@ EOD
 	}
 
 	public function testGetPostprocessor() {
+		// The PostProcessor converts LQT notifications to Echo ones.
+		$this->markTestSkippedIfExtensionNotLoaded( 'Echo' );
+
 		$this->assertInstanceOf(
 			Postprocessor::class,
 			$this->createStrategy()->getPostprocessor()
