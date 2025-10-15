@@ -366,11 +366,22 @@ abstract class RevisionStorage extends DbStorage {
 
 		if ( $revisions ) {
 			$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-			$dbw->newInsertQueryBuilder()
+			$queryBuilder = $dbw->newInsertQueryBuilder()
 				->insertInto( 'flow_revision' )
 				->rows( $this->preprocessNestedSqlArray( $revisions ) )
-				->caller( __METHOD__ )
-				->execute();
+				->caller( __METHOD__ );
+			if ( MW_ENTRY_POINT === 'cli' ) {
+				// Check if the command line script passed the --insert-ignore flag
+				// HACK: Read the global $argv as this method is too deep in the call stack to
+				// pass the option through properly.
+				global $argv;
+				$ignoreInsertErrors = in_array( '--insert-ignore', $argv, true );
+				// If set, ignore insert duplicate key errors
+				if ( $ignoreInsertErrors ) {
+					$queryBuilder->ignore();
+				}
+			}
+			$queryBuilder->execute();
 		}
 
 		return $this->insertRelated( $rows );

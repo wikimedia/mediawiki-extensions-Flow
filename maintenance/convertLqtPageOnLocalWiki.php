@@ -34,6 +34,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		$this->addOption( 'dryrun', 'Show what would be converted, but do not make any changes.' );
 		$this->addOption( 'ignoreflowreadonly', 'Ignore $wgFlowReadOnly if set, allowing boards to be created.' );
 		$this->addOption( 'convertempty', 'Convert pages even if they have no threads.' );
+		$this->addOption( 'insert-ignore', 'Ignore duplicate key insert errors.' );
 		$this->requireExtension( 'Flow' );
 	}
 
