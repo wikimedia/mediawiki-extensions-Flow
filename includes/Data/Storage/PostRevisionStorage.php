@@ -55,11 +55,12 @@ class PostRevisionStorage extends RevisionStorage {
 
 		if ( $trees ) {
 			$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-			$dbw->newInsertQueryBuilder()
+			$queryBuilder = $dbw->newInsertQueryBuilder()
 				->insertInto( $this->joinTable() )
 				->rows( $this->preprocessNestedSqlArray( $trees ) )
-				->caller( __METHOD__ )
-				->execute();
+				->caller( __METHOD__ );
+			DbStorage::maybeSetInsertIgnore( $queryBuilder );
+			$queryBuilder->execute();
 		}
 
 		// If this is a brand new root revision it needs to be added to the tree

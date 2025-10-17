@@ -4,6 +4,7 @@ namespace Flow\Repository;
 
 use Flow\Data\FlowObjectCache;
 use Flow\Data\ObjectManager;
+use Flow\Data\Storage\DbStorage;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
@@ -89,15 +90,16 @@ class TreeRepository {
 		$this->deleteSubtreeCache( $descendant, $path );
 
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
-		$dbw->newInsertQueryBuilder()
+		$queryBuilder = $dbw->newInsertQueryBuilder()
 			->insertInto( $this->tableName )
 			->row( [
 				'tree_descendant_id' => $descendant->getBinary(),
 				'tree_ancestor_id' => $descendant->getBinary(),
 				'tree_depth' => 0,
 			] )
-			->caller( __METHOD__ )
-			->execute();
+			->caller( __METHOD__ );
+		DbStorage::maybeSetInsertIgnore( $queryBuilder );
+		$queryBuilder->execute();
 
 		$ok = true;
 		if ( $ancestor !== null ) {
@@ -146,15 +148,16 @@ class TreeRepository {
 						->fetchResultSet();
 
 					foreach ( $rows as $row ) {
-						$dbw->newInsertQueryBuilder()
+						$queryBuilder = $dbw->newInsertQueryBuilder()
 							->insertInto( $this->tableName )
 							->row( [
 								'tree_descendant_id' => $descendant->getBinary(),
 								'tree_ancestor_id' => $row->tree_ancestor_id,
 								'tree_depth' => $row->tree_depth + 1,
 							] )
-							->caller( __METHOD__ )
-							->execute();
+							->caller( __METHOD__ );
+						DbStorage::maybeSetInsertIgnore( $queryBuilder );
+						$queryBuilder->execute();
 					}
 				} else {
 					$ok = false;
