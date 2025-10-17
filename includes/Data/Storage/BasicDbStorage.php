@@ -58,12 +58,12 @@ class BasicDbStorage extends DbStorage {
 		} else {
 			$insertRows = [ $this->preprocessSqlArray( $rows ) ];
 		}
-
-		$this->dbFactory->getDB( DB_PRIMARY )->newInsertQueryBuilder()
+		$queryBuilder = $this->dbFactory->getDB( DB_PRIMARY )->newInsertQueryBuilder()
 			->insertInto( $this->table )
 			->rows( $insertRows )
-			->caller( __METHOD__ . " ({$this->table})" )
-			->execute();
+			->caller( __METHOD__ . " ({$this->table})" );
+		DbStorage::maybeSetInsertIgnore( $queryBuilder );
+		$queryBuilder->execute();
 
 		return $rows;
 	}
