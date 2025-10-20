@@ -114,6 +114,8 @@ class TreeRepository {
 					throw new DBQueryError( $dbw, 'Prevented execution of known bad query', 1137, '', __METHOD__ );
 				}
 
+				$insertOptions = DbStorage::useInsertIgnore() ? [ 'IGNORE' ] : [];
+
 				$dbw->insertSelect(
 					$this->tableName,
 					$this->tableName,
@@ -125,7 +127,8 @@ class TreeRepository {
 					[
 						'tree_descendant_id' => $ancestor->getBinary(),
 					],
-					__METHOD__
+					__METHOD__,
+					$insertOptions
 				);
 			} catch ( DBQueryError $e ) {
 				/*

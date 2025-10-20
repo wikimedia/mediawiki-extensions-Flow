@@ -180,21 +180,30 @@ abstract class DbStorage implements ObjectStorage {
 	}
 
 	/**
+	 * Checks if the --insert-ignore flag is set.
+	 *
+	 * @return bool
+	 */
+	public static function useInsertIgnore(): bool {
+		if ( MW_ENTRY_POINT !== 'cli' ) {
+			return false;
+		}
+		// Check if the command line script passed the --insert-ignore flag
+		// HACK: Read the global $argv as this method is too deep in the call stack to
+		// pass the option through properly.
+		global $argv;
+		return in_array( '--insert-ignore', $argv, true );
+	}
+
+	/**
 	 * If running in CLI and the --insert-ignore flag is set, modify the query builder
 	 * to ignore duplicate key insert errors.
 	 *
 	 * @param InsertQueryBuilder $queryBuilder
 	 */
 	public static function maybeSetInsertIgnore( InsertQueryBuilder $queryBuilder ): void {
-		if ( MW_ENTRY_POINT === 'cli' ) {
-			// Check if the command line script passed the --insert-ignore flag
-			// HACK: Read the global $argv as this method is too deep in the call stack to
-			// pass the option through properly.
-			global $argv;
-			if ( in_array( '--insert-ignore', $argv, true ) ) {
-				// If set, ignore insert duplicate key errors
-				$queryBuilder->ignore();
-			}
+		if ( self::useInsertIgnore() ) {
+			$queryBuilder->ignore();
 		}
 	}
 }
