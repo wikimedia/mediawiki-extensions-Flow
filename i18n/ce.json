@@ -5,7 +5,8 @@
 			"Matiia",
 			"Исмаил Садуев",
 			"Умар",
-			"Абдуллах Саад"
+			"Абдуллах Саад",
+			"SaldırganSincap"
 		]
 	},
 	"enablestructureddiscussions": "Латаде структурйина дийцар",
@@ -277,7 +278,7 @@
 	"notification-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|Хьан}} дийцарийн агӀонан</strong> тӀера «<strong>$1</strong>» темера хаамна хийцам бина.",
 	"notification-bundle-header-flow-post-edited-user-talk": "<strong>{{GENDER:$2|Хьан}} дийцарийн агӀонан тӀера</strong> «<strong>$1</strong>» темера хаамна масийттаза хийцам бина.",
 	"notification-header-flow-topic-renamed-v2": "«<strong>$1</strong>» темин цӀе хийцина «<strong>$2</strong>» аьлла.",
-	"notification-header-flow-topic-renamed-user-talk": "<strong>{{GENDER:$3|Хьан}} дийцарийн агӀонан тӀера «<strong>$1</strong>» темин цӀе хийцина «<strong>$2</strong>» аьлла.",
+	"notification-header-flow-topic-renamed-user-talk": "<strong>{{GENDER:$3|Хьан}} дийцарийн</strong> агӀонан тӀера «<strong>$1</strong>» темин цӀе хийцина «<strong>$2</strong>» аьлла.",
 	"notification-header-flow-summary-edited": "«<strong>$1</strong>» леррина резюме карлайаьккхина.",
 	"notification-header-flow-summary-edited-first": "Цуьнах лаьцна тӀетоьхна «<strong>$1</strong>» темина.",
 	"notification-bundle-header-flow-summary-edited": "«<strong>$1</strong>» темех лаьцна хаамна маситтазза хийцам бина.",

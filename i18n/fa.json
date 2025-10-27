@@ -29,7 +29,8 @@
 			"Saeidpourbabak",
 			"درفش کاویانی",
 			"Darafsh",
-			"Ebrahim"
+			"Ebrahim",
+			"LordProfo"
 		]
 	},
 	"enablestructureddiscussions": "فعال‌سازی فلو",
@@ -106,7 +107,7 @@
 	"flow-stub-post-content": "<em>به دلیل یک خطای فنی، این ارسال قابل بازیابی نیست.<em>",
 	"flow-newtopic-title-placeholder": "مبحث جدید",
 	"flow-newtopic-content-placeholder": "یک پیام تازه به «$1» ارسال کنید",
-	"flow-newtopic-header": "اضافه کردن یک مبحث جدید",
+	"flow-newtopic-header": "افزودن یک مبحث جدید",
 	"flow-newtopic-save": "افزودن مبحث",
 	"flow-newtopic-save-anonymously": "افزودن یک مبحث به صورت گمنام",
 	"flow-newtopic-start-placeholder": "آغاز مبحث جدید",
@@ -168,7 +169,7 @@
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|شما}} به طور خودکار هنگامی که مبحثی جدید در این تالار ایجاد شود آگاه‌سازی دریافت خواهید کرد.",
 	"flow-topic-action-watchlist-add": "اشتراک در این مبحث",
 	"flow-topic-action-watchlist-remove": "لغو اشتراک",
-	"flow-error-allowcreation-already-exists": "صفحه در حال حاضر در مقصد وجود دارد، لذا یک صفحهٔ بحث ساختارمند را نمی‌توان به آنجا منتقل کرد.",
+	"flow-error-allowcreation-already-exists": "صفحه از پیش در مقصد وجود دارد، بنابراین نمی‌توان یک انجمن گفتگوی ساختاریافته را به آنجا منتقل کرد.",
 	"flow-error-allowcreation-flow-create-board": "کاربر دسترسی «{{int:right-flow-create-board}}» ندارد",
 	"flow-error-can-not-edit-logged-out": "امکان مشارکت برای شما وجود ندارد. باید به سامانه وارد شوید.",
 	"flow-error-can-not-edit-logged-in": "امکان مشارکت برای شما وجود ندارد چون شما امتیاز لازم را ندارید.",
@@ -533,8 +534,8 @@
 	"flow-dialog-cancelconfirm-message": "مطمئنید که {{GENDER:|می‌خواهید}} بدون این که اول ذخیره کنید، لغو کنید؟",
 	"flow-dialog-cancelconfirm-keep": "ادامه دادن به ویرایش",
 	"flow-dialog-cancelconfirm-discard": "دور ریختن تغییرات",
-	"flow-optin-archive-wikitext": "انتقال صفحهٔ ویکی‌متن به منظور جا باز کردن برای تالار گفتگو.",
-	"flow-optin-archive-flow-board": "انتقال تالار گفتگو به منظور جا باز کردن برای صفحهٔ ویکی‌متن.",
+	"flow-optin-archive-wikitext": "انتقال صفحهٔ ویکی‌متن تا برای تالار گفتگو جا باز شود.",
+	"flow-optin-archive-flow-board": "انتقال تالار گفتگو تا برای صفحهٔ ویکی‌متن جا باز شود.",
 	"flow-optin-restore-wikitext": "احیای صفحهٔ ویکی‌متن بایگانی‌شده.",
 	"flow-optin-restore-flow-board": "احیای تالار گفتگوی بایگانی‌شده.",
 	"flow-guidedtour-optin-welcome": "به صفحهٔ بحث جدیدتان {{GENDER:$1|خوش آمدید}}",
