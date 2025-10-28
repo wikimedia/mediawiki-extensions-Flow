@@ -537,8 +537,7 @@ return [
 	'FlowWatchedTopicItems' => static function ( MediaWikiServices $services ): WatchedTopicItems {
 		return new Flow\WatchedTopicItems(
 			$services->getService( 'FlowUser' ),
-			$services->getConnectionProvider()
-				->getReplicaDatabase( false, 'watchlist' )
+			$services->getConnectionProvider()->getReplicaDatabase()
 		);
 	},
 
