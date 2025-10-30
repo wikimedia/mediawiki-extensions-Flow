@@ -37,7 +37,12 @@ class InvalidTopicUuidException extends InvalidInputException {
 		if ( $this->invalidTopic !== null && str_ends_with( $this->invalidTopic, '/' ) ) {
 			global $wgOut;
 			$maybeCorrectTitle = Title::newFromText( rtrim( $this->invalidTopic, '/' ), NS_TOPIC );
-			$wgOut->addHTML( wfMessage( 'flow-invalid-topic-did-you-mean', $maybeCorrectTitle->getPrefixedText() ) );
+			if ( $maybeCorrectTitle ) {
+				$wgOut->addHTML( wfMessage(
+					'flow-invalid-topic-did-you-mean',
+					$maybeCorrectTitle->getPrefixedText()
+				) );
+			}
 		}
 	}
 }
