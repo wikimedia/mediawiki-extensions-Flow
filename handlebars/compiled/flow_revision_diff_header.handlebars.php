@@ -4,7 +4,7 @@
             'enablePatrollingLink' => 'Flow\TemplateHelper::enablePatrollingLink',
 );
     $partials = array('flow_patrol_diff' => function ($cx, $in, $sp) {$inary=is_array($in);return ''.$sp.''.((LR::ifvar($cx, ((isset($in['revision']['rev_view_links']) && is_array($in['revision']['rev_view_links']) && isset($in['revision']['rev_view_links']['markPatrolled'])) ? $in['revision']['rev_view_links']['markPatrolled'] : null), false)) ? '<div>
-'.$sp.'        <span class="patrollink" data-mw="interface">
+'.$sp.'        <span class="patrollink" data-mw-interface>
 '.$sp.'            [<a class="mw-ui-quiet"
 '.$sp.'               href="'.LR::encq($cx, ((isset($in['revision']['rev_view_links']['markPatrolled']) && is_array($in['revision']['rev_view_links']['markPatrolled']) && isset($in['revision']['rev_view_links']['markPatrolled']['url'])) ? $in['revision']['rev_view_links']['markPatrolled']['url'] : null)).'"
 '.$sp.'               title="'.LR::encq($cx, LR::hbch($cx, 'l10n', array(array('flow-mark-diff-patrolled-link-title'),array()), 'encq', $in)).'"
