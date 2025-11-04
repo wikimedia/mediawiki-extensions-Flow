@@ -5,7 +5,8 @@
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Amjad Khan",
 			"Baloch Khan",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"SaldırganSincap"
 		]
 	},
 	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",
@@ -24,7 +25,7 @@
 	"flow-rev-message-restore-topic-reason": "بيا پرانيستل",
 	"flow-board-history": "\"$1\" پېښليک",
 	"flow-history-day": "نن",
-	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2] <br />$1 پر <strong>$4</strong> {{GENDER:$1|ځواب ورکړ}}",
+	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />پر <strong>$4</strong> {{GENDER:$1|ځواب ورکړ}}",
 	"flow-notification-link-text-view-topics": "موضوعگانې کتل",
 	"flow-notification-reply-email-subject": "$2 پر $3",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",

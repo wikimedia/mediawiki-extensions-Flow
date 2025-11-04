@@ -87,7 +87,7 @@
 	"flow-summary-authored": "Tóm lược của $1",
 	"flow-summary-edited": "Tóm lược được {{GENDER:$1}}sửa đổi lần cuối bởi $1",
 	"flow-show-change": "Xem thay đổi",
-	"flow-last-modified-by": "Sửa đổi lần cuối cùng bởi $1",
+	"flow-last-modified-by": "Sửa đổi lần cuối bởi $1",
 	"flow-stub-post-content": "<em>Không thể tải nội dung này do một lỗi kỹ thuật.</em>",
 	"flow-newtopic-title-placeholder": "Đề tài mới",
 	"flow-newtopic-content-placeholder": "Nhắn tin mới tại “$1”",
