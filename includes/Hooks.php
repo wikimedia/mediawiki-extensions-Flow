@@ -1060,7 +1060,7 @@ class Hooks implements
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param WikiPage $page
 	 * @param Status &$status
 	 * @return bool
@@ -1090,7 +1090,7 @@ class Hooks implements
 	/**
 	 * Don't watch a non-existing flow topic
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param WikiPage $page
 	 * @param Status &$status
 	 * @param string|null $expiry
@@ -1103,7 +1103,7 @@ class Hooks implements
 	/**
 	 * Don't unwatch a non-existing flow topic
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param WikiPage $page
 	 * @param Status &$status
 	 * @return bool
