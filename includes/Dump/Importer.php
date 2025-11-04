@@ -398,7 +398,7 @@ class Importer {
 			throw new ImportException( "User '{$localUser->getName()}' already exists" );
 		}
 
-		$status = CentralAuthServices::getUtilityService()->autoCreateUser( $localUser );
+		$status = CentralAuthServices::getUtilityService()->autoCreateUser( $localUser, true, $localUser );
 		if ( !$status->isGood() ) {
 			throw new ImportException(
 				"autoCreateUser failed for {$localUser->getName()}: " . print_r( $status->getErrors(), true )
