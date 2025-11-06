@@ -87,6 +87,7 @@ class TopicIterator implements Iterator {
 				if ( $topicId <= $lastOffset ) {
 					continue;
 				}
+				$lastOffset = $topicId;
 
 				// hidden and deleted threads come back as null
 				$topic = $this->importSource->getTopic( $topicId );
