@@ -1,7 +1,8 @@
 <?php
 
-// Constants
-define( 'RC_FLOW', 142 ); // Random number chosen.  Can be replaced with rc_source; see bug 72157.
+// Can be replaced with rc_source; see T74157.  Currently only used by the CheckUser integration (cuc_type).
+define( 'RC_FLOW', 142 );
+
 if ( !defined( 'NS_TOPIC' ) ) {
 	define( 'NS_TOPIC', 2600 );
 }

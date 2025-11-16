@@ -92,7 +92,6 @@ class RecentChangesListener extends AbstractListener {
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
 			'rc_user_text' => $this->usernames->get( WikiMap::getCurrentWikiId(), $row['rev_user_id'], $row['rev_user_ip'] ),
-			'rc_type' => RC_FLOW,
 			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot

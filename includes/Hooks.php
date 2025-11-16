@@ -1966,7 +1966,7 @@ class Hooks implements
 		}
 		if ( $hidePageEdits ) {
 			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-			$conds[] = $dbr->expr( 'rc_type', '!=', RC_FLOW );
+			$conds[] = $dbr->expr( 'rc_source', '!=', RecentChangesListener::SRC_FLOW );
 		}
 	}
 
