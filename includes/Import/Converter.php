@@ -244,6 +244,8 @@ class Converter {
 				'log_type' => 'move',
 				'log_actor' => $this->user->getActorId()
 			] )
+			// Ugly hack for some 2015 brokenness on ptwikibooks (T402549)
+			->where( 'log_title != page_title' )
 			->caller( __METHOD__ )
 			->orderBy( 'log_timestamp', SelectQueryBuilder::SORT_DESC )
 			->fetchRow();
