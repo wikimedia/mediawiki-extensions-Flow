@@ -35,7 +35,7 @@ abstract class PageRevisionedObject implements IRevisionableObject {
 			if ( isset( $value['texthidden'] ) ) {
 				unset( $pageData['revisions'][$key] );
 			}
-			if ( $value['user'] == 'Flow talk page manager' ) {
+			if ( ( $value['user'] ?? null ) === 'Flow talk page manager' ) {
 				// Ignore revs by Flow talk page manager (caused by screwups in earlier imports)
 				unset( $pageData['revisions'][$key] );
 			}
