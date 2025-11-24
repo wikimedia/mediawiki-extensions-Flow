@@ -143,12 +143,17 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 					$this->output( "Would move '$coreTitle' to '$subpageTitle'\n" );
 				} else {
 					$mp = $movePageFactory->newMovePage( $coreTitle, $subpageTitle );
-
-					$status = $mp->move(
-						/* user */ $moveUser,
-						/* reason */ "Flow archival",
-						/* create redirect */ false
-					);
+					try {
+						$status = $mp->move(
+							/* user */ $moveUser,
+							/* reason */ "Flow archival",
+							/* create redirect */ false
+						);
+					} catch ( \Throwable $e ) {
+						$this->error( "Exception while moving '$coreTitle' to '$subpageTitle': " . $e->getMessage() . "\n" );
+						$this->error( $e->getTraceAsString() . "\n" );
+						continue;
+					}
 
 					if ( $status->isGood() ) {
 						$moveCount++;
