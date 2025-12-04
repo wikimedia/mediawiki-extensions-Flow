@@ -1888,7 +1888,11 @@ class Hooks implements
 				$dbr->expr( 'workflow_id', '>', $rcTimeLimit->getBinary() )
 			] )
 			->andWhere( $userWhere )
-			->groupBy( [ 'r.rev_type_id', 'tree_orig_user_ip' ] )
+			->groupBy( [
+				'r.rev_type_id',
+				'tree_orig_user_ip',
+				'tree_orig_user_id',
+			] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
