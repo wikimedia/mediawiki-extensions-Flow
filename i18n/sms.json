@@ -10,6 +10,8 @@
 	"flow-topic-moderated-reason-prefix": "Mäinn:",
 	"flow-cancel": "Jõõsk",
 	"flow-show-change": "Čuäʹjet muttsid",
+	"flow-newtopic-title-placeholder": "Ođđ teeʹmm",
+	"flow-newtopic-header": "Lââʹzzet ođđ teeʹm",
 	"flow-newtopic-save": "Lââʹzzet teeʹm",
 	"flow-reply-link": "{{GENDER:$1|Vaʹstted}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Späʹssbõõžž}}}}",
