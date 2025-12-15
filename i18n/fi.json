@@ -21,7 +21,8 @@
 			"Valtlait",
 			"Valtlai",
 			"Kyykaarme",
-			"Samoasambia"
+			"Samoasambia",
+			"Yupik"
 		]
 	},
 	"enablestructureddiscussions": "Ota Jäsennetyt keskustelut käyttöön",
@@ -431,7 +432,7 @@
 	"flow-special-enableflow-board-creation-not-allowed": "Sinulla ei ole oikeutta luoda Jäsennetyt keskustelut -palstaa sivulle [[:$1]].",
 	"flow-special-enableflow-page-is-liquidthreads": "Sivulla [[:$1]] on LiquidThreads-sivu.",
 	"flow-special-enableflow-confirmation": "Olet luonut Jäsennetyt keskustelut -palstan sivulle [[$1]].",
-	"flow-conversion-archive-page-name-format": "%s/Arkisto %d\n%s/arkisto%d\n%s/arkisto %d\n%s/arkisto%d",
+	"flow-conversion-archive-page-name-format": "%s/Arkisto %d\n%s/Arkisto%d\n%s/arkisto %d\n%s/arkisto%d",
 	"flow-conversion-archive-flow-page-name-format": "%s/Jäsennetyt keskustelut -arkisto %d\n%s/Jäsennetyt keskustelut -arkisto%d\n%s/Flow-arkisto %d\n%s/Flow-arkisto%d",
 	"flow-spam-confirmedit-form": "Todista olevasi ihminen ratkomalla allaoleva CAPTCHA: $1",
 	"flow-embedding-unsupported": "Keskusteluja ei voi vielä upottaa.",

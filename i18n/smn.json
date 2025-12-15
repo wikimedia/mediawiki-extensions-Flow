@@ -13,6 +13,8 @@
 	"flow-topic-actions": "Tooimah",
 	"flow-cancel": "Jooskâ",
 	"flow-show-change": "Čääiti nubástusâid",
+	"flow-newtopic-title-placeholder": "Uđđâ fáddá",
+	"flow-newtopic-header": "Lasseet uđđâ fáádá",
 	"flow-newtopic-first-heading": "Aalgât uđđâ fáádá siijđost $1",
 	"flow-reply-link": "{{GENDER:$1|Västid}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Kijte}}}}",
@@ -49,6 +51,7 @@
 	"flow-moderation-confirmation-hide-post": "Viestâ čiehui.\n{{GENDER:$2|Kuorâttâl}} macâttâs adelem kevttei $1 taan viestâst.",
 	"flow-moderation-confirmation-hide-topic": "Taat fáddá lii čiehhum.",
 	"flow-load-more": "Luođii lase",
+	"flow-conversion-archive-page-name-format": "%s/Arkkâdâh %d\n%s/Arkkâdâh%d\n%s/arkkâdâh %d\n%s/arkkâdâh%d",
 	"flow-ve-mention-inspector-remove-label": "Siho",
 	"flow-ve-mention-placeholder": "Kevtteenommâ",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Čääiti}} savâstâllâmsiijđo"
