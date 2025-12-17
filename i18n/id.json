@@ -18,10 +18,11 @@
 			"Sumbukompor",
 			"Veracious",
 			"William Surya Permana",
-			"Rachmat04"
+			"Rachmat04",
+			"Penyuwangi"
 		]
 	},
-	"enablestructureddiscussions": "Aktifkan Pembicaraan Terstruktur",
+	"enablestructureddiscussions": "Nyalakan Pembicaraan Terstruktur",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Berhenti}} memantau aktivitas baru pada \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Anda}} tidak lagi memantau halaman \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Hal ini tidak akan memengaruhi masing-masing topik yang {{GENDER:$3|Anda}} pantau. Anda dapat memantau [$2 halaman ini] kapan saja.",
@@ -168,7 +169,7 @@
 	"flow-error-missing-content": "Kiriman tidak memiliki isi. Harus ada isinya untuk menyimpan kiriman.",
 	"flow-error-missing-summary": "Anda harus mengirimkan ringkasan.",
 	"flow-error-missing-title": "Topik tidak memiliki judul. Judul wajib diisi untuk menyimpan topik.",
-	"flow-error-parsoid-failure": "Tidak dapat mentransfer isi: Galat menghubungi peladen untuk mengkonversi teks wiki dengan HTML. Silakan periksa koneksi internet Anda atau coba lagi jika kendala berlanjut. Jika Anda tetap mendapati galat ini, silakan berkaskan kekutu.",
+	"flow-error-parsoid-failure": "Tidak dapat mentransfer isi: Galat menghubungi peladen untuk mengonversi teks wiki dengan HTML. Silakan periksa sambungan internet Anda atau coba lagi jika kendala berlanjut. Jika Anda tetap mendapati galat ini, silakan berkaskan kekutu.",
 	"flow-error-protected-autoconfirmed-logged-in": "Forum ini dilindungi. Hanya pengguna terkonfirmasi otomatis yang dapat berpartisipasi. Alasan: $1",
 	"flow-error-protected-autoconfirmed-logged-out": "Forum ini dilindungi. Hanya pengguna masuk log yang terkonfirmasi otoamtis yang dapat berpartisipasi. Alasan: $1",
 	"flow-error-protected-readonly": "Pembicaraan Terstruktur telah dinonaktifkan di wiki ini. Tidak ada forum, topik, maupun kiriman yang dapat dibuat maupun disunting.",
@@ -439,7 +440,7 @@
 	"flow-special-type-post": "Kiriman",
 	"flow-special-type-workflow": "Alur kerja",
 	"flow-special-invalid-uuid": "Tidak dapat menemukan isi yang sesuai dengan jenis dan UUID.",
-	"flow-special-enableflow-legend": "Aktifkan Pembicaraan Terstruktur di halaman baru",
+	"flow-special-enableflow-legend": "Nyalakan Pembicaraan Terstruktur di halaman baru",
 	"flow-special-enableflow-page": "Halaman tempat Pembicaraan Terstruktur akan diaktifkan",
 	"flow-special-enableflow-header": "Keterangan awal forum Pembicaraan Terstruktur (teks wiki)",
 	"flow-special-enableflow-board-already-exists": "Telah terdapat forum Pembicaraan Terstruktur di [[$1]].",
@@ -530,5 +531,5 @@
 	"flow-guidedtour-optin-feedback-description": "{{GENDER:$1|Anda}} dapat mendapatkan informasi lebih lengkap, memberi umpan balik, atau menonaktifkan sistem baru ini kapan saja dari bagian fitur Beta.",
 	"flow-action-not-page": "Objek halaman merupakan turunan dari kelas yang salah.",
 	"flow-action-wrong-title-content-model": "Halaman ini ditangani oleh Pembicaraan Terstruktur, namun kelas Judul mengindikasikan bahwa model isi adalah '$1'. Ini merupakan kesalahan konfigurasi atau keadaan yang tidak konsisten. Contohnya, bisa jadi ini merupakan halaman non-Pembicaraan Terstruktur yang berada dalam ruang nama Pembicaraan Terstruktur, dengan <code>rev_content_model</code> tidak dipopulasikan.",
-	"flow-preference-visualeditor": "Aktifkan mode penyunting visual dan teks wiki yang baru di Pembicaraan Terstruktur"
+	"flow-preference-visualeditor": "Nyalakan mode penyunting visual dan teks wiki yang baru di Pembicaraan Terstruktur"
 }

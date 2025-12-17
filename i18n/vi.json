@@ -406,7 +406,7 @@
 	"right-flow-suppress": "Niêm phong các đề tài và bài đăng Thảo luận Cấu trúc",
 	"flow-terms-of-use-new-topic": "Với việc bấm “{{int:flow-newtopic-save}}”, bạn chấp nhận các điều khoản sử dụng của wiki này.",
 	"flow-terms-of-use-reply": "Với việc bấm “{{int:flow-reply-link}}”, bạn chấp nhận các điều khoản sử dụng của wiki này.",
-	"flow-terms-of-use-edit": "Với việc lưu các thay đổi của bạn, bạn chấp nhận các điều khoản sử dụng của wiki này.",
+	"flow-terms-of-use-edit": "Khi lưu thay đổi, bạn chấp nhận điều khoản sử dụng của wiki này.",
 	"flow-anon-warning": "Bạn chưa đăng nhập. Để được ghi công với tên mình thay vì một địa chỉ IP, hãy [$1 đăng nhập] hoặc [$2 mở tài khoản mới].",
 	"flow-cancel-warning": "Bạn đã nhập văn bản vào biểu mẫu này. Bạn có chắc chắn muốn bỏ nó?",
 	"flow-topic-first-heading": "Đề tài trên $1",
