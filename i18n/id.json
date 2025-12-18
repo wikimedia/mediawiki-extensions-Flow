@@ -414,7 +414,7 @@
 	"action-flow-suppress": "memberedel topik dan kiriman Pembicaraan Terstruktur",
 	"right-flow-suppress": "Memberedel topik dan kiriman Pembicaraan Terstruktur",
 	"flow-terms-of-use-new-topic": "Dengan mengeklik \"{{int:flow-newtopic-save}}\", Anda menyetujui syarat penggunaan wiki ini.",
-	"flow-terms-of-use-reply": "Dengan mengeklik \"{{int:flow-reply-link}}\", Anda menyetujui syarat penggunaan wiki ini.",
+	"flow-terms-of-use-reply": "Dengan mengklik \"{{int:flow-reply-link}}\", Anda menyetujui ketentuan penggunaan wiki ini.",
 	"flow-terms-of-use-edit": "Dengan menyimpan perubahan ini, Anda setuju dengan syarat penggunaan wiki ini.",
 	"flow-anon-warning": "Anda belum masuk log. Untuk mencantumkan nama Anda alih-alih alamat IP Anda, Anda dapat [$1 masuk log] atau [$2 buat akun baru].",
 	"flow-cancel-warning": "Anda telah memasukkan tulisan di formulir ini. Apakah Anda yakin membuang tulisan ini?",
