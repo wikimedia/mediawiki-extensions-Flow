@@ -17,6 +17,8 @@
 	"flow-topic-actions": "Doaimmat",
 	"flow-cancel": "Gaskkalduhte",
 	"flow-show-change": "Čájet rievdadusaid",
+	"flow-newtopic-title-placeholder": "Ođđa fáddá",
+	"flow-newtopic-header": "Lasit ođđa fáttá",
 	"flow-reply-link": "{{GENDER:$1|Vástit}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Giitte}}}}",
 	"flow-history-action-delete-post": "sihko",
