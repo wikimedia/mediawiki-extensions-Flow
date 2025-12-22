@@ -399,7 +399,7 @@
 	"flow-special-type-post": "投稿",
 	"flow-special-type-workflow": "ワークフロー",
 	"flow-special-invalid-uuid": "タイプとUUIDに一致するコンテンツが見つかりませんでした。",
-	"flow-special-enableflow-page": "Flow を有効にするページ",
+	"flow-special-enableflow-page": "Structured Discussions を有効にするページ",
 	"flow-special-enableflow-header": "Structured Discussions ボードの初期説明（ウィキテキスト）",
 	"flow-special-enableflow-confirmation": "[[$1]] に Structured Discussions ボードを作成しました。",
 	"flow-spam-confirmedit-using-failure": "これは CAPTCHA の技術的なエラーによるものです。あなたの行った変更が投稿できていないようであれば、変更したテキストの内容を別の場所にコピーし、ページを開き直して再度試してください。",
