@@ -193,7 +193,7 @@
 	"flow-error-missing-prev-revision-identifier": "Thiếu định danh phiên bản trước.",
 	"flow-error-prev-revision-mismatch": "Một người dùng khác vừa sửa đổi bài đăng này cách đây vài giây. {{GENDER:$3}}Bạn có chắc chắn muốn ghi đè lên thay đổi đó?",
 	"flow-error-prev-revision-does-not-exist": "Không tìm thấy phiên bản trước.",
-	"flow-error-core-topic-deletion": "Để xóa đề tài, mở trình đơn … trên bảng tin Thảo luận Cấu trúc hoặc [$1 trang đề tài]. Xin đừng mở trang action=delete của đề tài một cách trực tiếp.",
+	"flow-error-core-topic-deletion": "Để xóa đề tài, mở bảng chọn … trên bảng tin Thảo luận Cấu trúc hoặc [$1 trang đề tài]. Xin đừng mở trang action=delete của đề tài một cách trực tiếp.",
 	"flow-error-default": "Đã xuất hiện lỗi.",
 	"flow-error-invalid-input": "Đã cung cấp một giá trị không hợp lệ khi tải nội dung Thảo luận Cấu trúc.",
 	"flow-error-invalid-title": "Đã cung cấp tên trang không hợp lệ.",
