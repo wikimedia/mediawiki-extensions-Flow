@@ -16,6 +16,7 @@
 			"Nnemo",
 			"Platinawolf",
 			"Rockyfelle",
+			"Stefan2255",
 			"Stens51",
 			"Tobulos1",
 			"WikiPhoenix"
@@ -510,7 +511,7 @@
 	"flow-mark-diff-patrolled-link-text": "Märk som patrullerad",
 	"flow-mark-diff-patrolled-link-title": "Märk som patrullerad",
 	"flow-talk-page-beta-feature-message": "Strukturerade diskussioner på användardiskussioner",
-	"flow-talk-page-beta-feature-description": "Möjliggör ett nytt strukturerat diskussionssystem på {{GENDER:|din}} användardiskussionssida. Strukturerade diskussioner förenklar diskussioner genom tydliga platser för att skriva och svara, och tillåter notifieringar på konversationsnivå. Befintliga wikitext-diskussioner flyttas till ett arkiv. Den här funktionen är inte automatiskt aktiverad, användare måste aktivera den separat. Inaktivering av den här funktionen kommer att flytta strukturerade diskussionerna till en undersida och oarkivera föregående diskussionssida. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|Läs mer om aktivering]].",
+	"flow-talk-page-beta-feature-description": "Tillät {{GENDER:|dig}} att aktivera ett strukturerat diskussionssystem på {{GENDER:|din}} användardiskussionssida. Strukturerade diskussioner erbjöds som en betafunktion, men [https://www.mediawiki.org/wiki/Special:MyLanguage/Structured_Discussions/Deprecation denna funktion kommer att tas bort från wikis]. Vi uppmanar {{GENDER:|dig}} att överväga att inaktivera den här funktionen proaktivt.<br /><br /> Om du inaktiverar den här funktionen flyttas det strukturerade diskussionsforumet till en undersida och den föregående diskussionssidan avarkiveras. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Structured_Discussions/Activation#deactivate Läs mer om inaktivering.] [https://www.mediawiki.org/wiki/Special:MyLanguage/Talk:Structured_Discussions/Deprecation Kontakta oss om du upplever problem.]",
 	"flow-notification-link-text-enabled-on-talkpage": "{{GENDER:|Visa}} användardiskussionssida",
 	"flow-beta-feature-add-archive-template-edit-summary": "Lägger till arkivmall",
 	"flow-beta-feature-remove-archive-template-edit-summary": "Tar bort arkivmall",
