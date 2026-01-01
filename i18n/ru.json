@@ -44,7 +44,8 @@
 			"Максим777",
 			"Туллук",
 			"Умар",
-			"Ядерный Трамвай"
+			"Ядерный Трамвай",
+			"Vonavy"
 		]
 	},
 	"content-model-flow-board": "Структурированная доска обсуждений",
@@ -80,9 +81,9 @@
 	"logentry-lock-flow-restore-topic": "$1 переоткрыл{{GENDER:$2||а}} тему «[[$3|$5]]» на [[$6]]",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 переоткрыл{{GENDER:$2||а}} тему на [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] в [[$3]] была импортирована из LiquidThreads в Структурированные обсуждения",
-	"abusefilter-edit-builder-vars-board-id": "Идентификатор страницы доски «Структурированных обсуждений»",
-	"abusefilter-edit-builder-vars-board-namespace": "Пространство имён доски «Структурированных обсуждений»",
-	"abusefilter-edit-builder-vars-board-title": "Заголовок (без пространства имён) доски «Структурированных обсуждений»",
+	"abusefilter-edit-builder-vars-board-id": "Идентификатор страницы доски «Структурированных обсуждений» ($1)",
+	"abusefilter-edit-builder-vars-board-namespace": "Пространство имён доски «Структурированных обсуждений» ($1)",
+	"abusefilter-edit-builder-vars-board-title": "Заголовок (без пространства имён) доски «Структурированных обсуждений» ($1)",
 	"abusefilter-edit-builder-vars-board-prefixedtitle": "Полный заголовок доски «Структурированных обсуждений» ($1)",
 	"flow-user-moderated": "Участник промодерирован",
 	"flow-board-header-browse-topics-link": "Обзор тем",
@@ -529,7 +530,7 @@
 	"flow-ve-mention-inspector-invalid-user": "Участник «$1» не зарегистрирован.",
 	"flow-wikitext-editor-help": "Вики-текст $1.",
 	"flow-wikitext-editor-help-and-preview": "Вики-текст $1, и вы можете $2 в любое время.",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|использует разметку]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Formatting использует разметку]",
 	"flow-wikitext-editor-help-preview-the-result": "предварительно просмотреть результат",
 	"flow-mark-revision-patrolled-link-text": "Отметить эту страницу как проверенную",
 	"flow-mark-revision-patrolled-link-title": "Отметить эту страницу как проверенную",
