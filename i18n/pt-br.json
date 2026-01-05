@@ -31,8 +31,8 @@
 			"Walesson"
 		]
 	},
-	"content-model-flow-board": "Quadro de Discussões Estruturadas",
-	"enablestructureddiscussions": "Ativar Discussões Estruturadas",
+	"content-model-flow-board": "Quadro de discussões estruturadas",
+	"enablestructureddiscussions": "Ativar discussões estruturadas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vigiar nova atividade em \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Você}} não está mais vigiando a página \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isso não afetará tópicos individuais que {{GENDER:$3|você}} está vigiando. Você pode vigiar [$2 esta página] a qualquer momento.",
@@ -65,9 +65,9 @@
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 {{GENDER:$2|reabriu}} um tópico em [[$3]]",
 	"logentry-import-lqt-to-flow-topic": "[[$1|$2]] em [[$3]] foi importado do LiquidThreads para as conversas estruturadas",
 	"abusefilter-edit-builder-vars-board-id": "Identificador de página do espaço de discussões estruturadas ($1)",
-	"abusefilter-edit-builder-vars-board-namespace": "Espaço nominal das Discussões Estruturadas ($1)",
+	"abusefilter-edit-builder-vars-board-namespace": "Espaço nominal das discussões estruturadas ($1)",
 	"abusefilter-edit-builder-vars-board-title": "Título (sem o espaço nominal) do quadro de Discussões Estruturadas ($1)",
-	"abusefilter-edit-builder-vars-board-prefixedtitle": "Título completo do quadro de Discussões Estruturadas ($1)",
+	"abusefilter-edit-builder-vars-board-prefixedtitle": "Título completo do quadro de discussões estruturadas ($1)",
 	"flow-user-moderated": "Usuário Moderado",
 	"flow-board-header-browse-topics-link": "Navegar pelos tópicos",
 	"flow-board-header": "Sobre esta discussão",
