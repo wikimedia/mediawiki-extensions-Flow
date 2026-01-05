@@ -27,10 +27,11 @@
 			"Tuliouel",
 			"Walesson",
 			"Re demz",
-			"EGobi"
+			"EGobi",
+			"Fúlvio"
 		]
 	},
-	"enablestructureddiscussions": "Ativar o Flow",
+	"enablestructureddiscussions": "Ativar Discussões Estruturadas",
 	"notification-dynamic-actions-flow-board-unwatch": "{{GENDER:$3|Parar}} de vigiar nova atividade em \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "{{GENDER:$3|Você}} não está mais vigiando a página \"$1\"",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "Isso não afetará tópicos individuais que {{GENDER:$3|você}} está vigiando. Você pode vigiar [$2 esta página] a qualquer momento.",
