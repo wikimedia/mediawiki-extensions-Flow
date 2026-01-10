@@ -119,7 +119,7 @@ class Exporter extends WikiExporter {
 			$this->lookup = MediaWikiServices::getInstance()
 				->getCentralIdLookupFactory()
 				->getLookup( 'CentralAuth' );
-		} catch ( \Throwable $unused ) {
+		} catch ( \Throwable ) {
 			$this->lookup = null;
 		}
 	}
