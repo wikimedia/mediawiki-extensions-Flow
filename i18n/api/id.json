@@ -1,8 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kenrick95"
+			"Kenrick95",
+			"Penyuwangi"
 		]
 	},
-	"apihelp-flow-parsoid-utils-param-content": "Isi yang akan dikonversi."
+	"apihelp-flow-summary": "Memungkinkan tindakan dilakukan pada halaman Perbincangan Terstruktur.",
+	"apihelp-flow-param-submodule": "Submodul Perbincangan Terstruktur yang akan dipanggil.",
+	"apihelp-flow+lock-topic-summary": "Mengunci atau membuka kunci sebuah topik Perbincangan Terstruktur.",
+	"apihelp-flow+lock-topic-param-reason": "Alasan penguncian atau pembukaan kunci topik. Catatan, kelayan Perbincangan Terstruktur di wiki menggunakan \"Ditandai sebagai terselesaikan\" di sini, dan menambahkan informasi tambahan opsional dalam ringkasan.",
+	"apihelp-flow+moderate-post-summary": "Memoderasi kiriman Perbincangan Terstruktur.",
+	"apihelp-flow+moderate-topic-summary": "Memoderasi topik Perbincangan Terstruktur.",
+	"apihelp-flow+new-topic-summary": "Membuat topik Perbincangan Terstruktur baru pada alur kerja yang diberikan.",
+	"apihelp-flow-parsoid-utils-param-content": "Isi yang akan dikonversi.",
+	"apihelp-query+flowinfo-summary": "Dapatkan informasi dasar Perbincangan Terstruktur tentang sebuah halaman.",
+	"apihelp-query+flowinfo-example-1": "Ambil informasi Perbincangan Terstruktur tentang [[Talk:Sandbox]], [[Main Page]], dan [[Talk:Structured Discussions]]",
+	"apierror-flow-safeallowcreationfailed": "Halaman yang diberikan tidak menyalakan Perbincangan Terstruktur dan safeAllowCreation gagal dengan: $1",
+	"apierror-flow-notenabled": "Halaman yang diberikan tidak menyalakan Perbincangan Terstruktur."
 }
