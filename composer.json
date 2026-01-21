@@ -3,7 +3,7 @@
 	"description": "Discussion and collaboration system extension for MediaWiki",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"pimple/pimple": "3.5.0",
+		"pimple/pimple": "3.6.1",
 		"psr/container": "1.* || 2.*"
 	},
 	"require-dev": {
