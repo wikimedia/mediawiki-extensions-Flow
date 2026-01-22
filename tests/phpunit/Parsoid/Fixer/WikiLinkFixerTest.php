@@ -7,7 +7,7 @@ namespace Flow\Tests\Parsoid\Fixer;
 use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\WikiLinkFixer;
 use Flow\Tests\PostRevisionTestCase;
-use MediaWiki\Cache\LinkBatch;
+use MediaWiki\Page\LinkBatch;
 use MediaWiki\Title\Title;
 
 /**
