@@ -31,7 +31,8 @@
 			"관인생략",
 			"렌즈",
 			"아라",
-			"Aspere"
+			"Aspere",
+			"Tensama0415"
 		]
 	},
 	"content-model-flow-board": "구조화된 토론위원회",
@@ -521,7 +522,7 @@
 	"flow-mark-diff-patrolled-link-title": "점검한 문서로 표시",
 	"flow-talk-page-beta-feature-message": "사용자토론의 구조화된 토론",
 	"flow-talk-page-beta-feature-description": "{{GENDER:|사용자의}} 사용자 토론 문서에 새 구조화된 토론을 활성화합니다. 구조화된 토론은 글을 쓰고 답변하는 장소가 명료해지는 것과 더불어 토론 문서의 토론을 단순하게 만들어 주며, 대화 단위의 알림을 가능하게 합니다. 이 기능은 자동으로 활성화되지 않으므로 사용자는 직접 이 기능을 활성화해야 합니다. <br /><br />기존의 위키텍스트 토론들은 보존 문서로 이동됩니다.  이 기능을 사용하지 않으면 구조화된 토론 게시판을 하위 문서로 이동하고 이전의 토론 문서의 보관을 해제합니다. [[mw:Special:MyLanguage/Help:Structured Discussions/Activation#Activate|활성화에 대해 알아보기]]",
-	"flow-notification-link-text-enabled-on-talkpage": "사용자토론 문서 {{GENDER:|보기}}",
+	"flow-notification-link-text-enabled-on-talkpage": "사용자 토론 문서 {{GENDER:|보기}}",
 	"flow-beta-feature-add-archive-template-edit-summary": "보존 틀 추가",
 	"flow-beta-feature-remove-archive-template-edit-summary": "보존 틀 제거",
 	"flow-beta-feature-add-current-template-edit-summary": "현존하는 틀을 추가함",
@@ -532,7 +533,7 @@
 	"flow-optin-archive-wikitext": "토론 게시판을 위한 공간을 만들기 위해 위키텍스트 문서를 이동합니다.",
 	"flow-optin-restore-wikitext": "보존된 위키텍스트 문서를 복구합니다.",
 	"flow-optin-restore-flow-board": "보존된 토론 게시판을 복구합니다.",
-	"flow-guidedtour-optin-welcome": "{{GENDER:$1|당신의}} 새 사용자토론 문서에 오신 것을 {{GENDER:$1|환영합니다}}",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|당신의}} 새 사용자 토론 문서에 오신 것을 {{GENDER:$1|환영합니다}}",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|나의}} 오래된 대화 찾기",
 	"flow-guidedtour-optin-find-old-conversations-description": "이전 대화는 보존 문서로 이동되었습니다.",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|여러분의}} 의견을 주세요!",
