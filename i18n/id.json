@@ -461,7 +461,7 @@
 	"mw-ui-unsubmitted-confirm": "Anda memiliki perubahan yang belum dikirim di halaman ini. Apakah Anda yakin ingin beranjak pergi dan kehilangan apa yang Anda kerjakan?",
 	"flow-post-undo-hide": "batal sembunyikan",
 	"flow-post-undo-delete": "batal hapus",
-	"flow-post-undo-suppress": "batal sembunyikan (supresi)",
+	"flow-post-undo-suppress": "batal beredel",
 	"flow-topic-undo-hide": "batal sembunyikan",
 	"flow-topic-undo-delete": "batal hapus",
 	"flow-topic-undo-suppress": "batal sembunyikan (supresi)",

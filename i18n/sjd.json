@@ -6,5 +6,6 @@
 	},
 	"flow-newtopic-title-placeholder": "О̄дт те̄ма",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Па̄ссьпушшэ}}}}",
-	"flow-topic-action-watchlist-add": "Кырьйхуввэ тэнн те̄ма э̄л"
+	"flow-topic-action-watchlist-add": "Кырьйхуввэ тэнн те̄ма э̄л",
+	"flow-load-more": "Вя̄л лоа̄дтэ"
 }
