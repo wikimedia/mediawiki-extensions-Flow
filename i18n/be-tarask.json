@@ -2,13 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Red Winged Duck",
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
 	"content-model-flow-board": "Форум структураваных абмеркаваньняў",
 	"enablestructureddiscussions": "Уключыць структураваныя абмеркаваньні",
 	"flow-post-actions": "Дзеяньні",
 	"flow-topic-actions": "Дзеяньні",
+	"flow-cancel": "Скасаваць",
 	"echo-category-title-flow-discussion": "Структураваная дыскусія",
 	"echo-pref-tooltip-flow-discussion": "Паведамляць мне пра актыўнасьць у тэмах і на старонках, за якімі я сачу.",
 	"right-flow-hide": "Хаваць тэмы і паведамленьні структураваных дыскусіяў",
