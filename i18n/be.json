@@ -6,7 +6,8 @@
 			"Kareyac",
 			"Tīgelika",
 			"ZlyiLev",
-			"Дзяніс Тутэйшы"
+			"Дзяніс Тутэйшы",
+			"Ucukor"
 		]
 	},
 	"nstab-topic": "Тэма",
@@ -17,6 +18,7 @@
 	"flow-topic-moderated-reason-prefix": "Прычына:",
 	"flow-post-actions": "Дзеянні",
 	"flow-topic-actions": "Дзеянні",
+	"flow-cancel": "Скасаваць",
 	"flow-reply-topic-title-placeholder": "Адказаць на «$1»",
 	"flow-reply-link": "{{GENDER:$1|Адказаць}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Падзякаваць}}}}",
