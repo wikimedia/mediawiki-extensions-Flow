@@ -4,7 +4,6 @@ namespace Flow\Maintenance;
 
 use Flow\Data\Listener\RecentChangesListener;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -74,9 +73,8 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$continue = $row->rc_id;
 
 			// build params
-			AtEase::suppressWarnings();
-			$params = unserialize( $row->rc_params );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$params = @unserialize( $row->rc_params );
 			if ( !$params ) {
 				$params = [];
 			}
