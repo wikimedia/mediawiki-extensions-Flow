@@ -15,7 +15,6 @@ use Flow\Tests\FlowTestCase;
 use Flow\UrlGenerator;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Title\Title;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * @group Flow
@@ -72,11 +71,7 @@ class FormatterTest extends FlowTestCase {
 		$ctx->method( 'msg' )
 			->willReturnCallback( 'wfMessage' );
 
-		// Code uses wfWarn as a louder wfDebugLog in error conditions.
-		// but phpunit considers a warning a fail.
-		AtEase::suppressWarnings();
 		$links = $this->createFormatter()->format( $row, $ctx );
-		AtEase::restoreWarnings();
 		$test( $this, $message, $links );
 	}
 

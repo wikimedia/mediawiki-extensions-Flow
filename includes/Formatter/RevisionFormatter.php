@@ -28,6 +28,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\WikiMap\WikiMap;
+use RuntimeException;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Timestamp\TimestampException;
@@ -1087,8 +1088,7 @@ class RevisionFormatter {
 				return Message::numParam( count( $revision ) );
 
 			default:
-				wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
-				return '';
+				throw new RuntimeException( __METHOD__ . ': Unknown formatter parameter: ' . $param );
 		}
 	}
 
