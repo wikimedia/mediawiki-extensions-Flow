@@ -2,13 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Red Winged Duck",
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
 	"content-model-flow-board": "Форум структураваных абмеркаваньняў",
 	"enablestructureddiscussions": "Уключыць структураваныя абмеркаваньні",
 	"flow-post-actions": "Дзеяньні",
 	"flow-topic-actions": "Дзеяньні",
+	"flow-cancel": "Скасаваць",
+	"flow-error-fail-load-history": "Не ўдалося заладаваць гістарычны зьмест.",
+	"flow-error-fail-load-data": "Не ўдалося заладаваць запытаныя зьвесткі.",
 	"echo-category-title-flow-discussion": "Структураваная дыскусія",
 	"echo-pref-tooltip-flow-discussion": "Паведамляць мне пра актыўнасьць у тэмах і на старонках, за якімі я сачу.",
 	"right-flow-hide": "Хаваць тэмы і паведамленьні структураваных дыскусіяў",
@@ -16,5 +20,6 @@
 	"right-flow-delete": "Выдаленьне тэмаў і запісаў структураваных дыскусіяў",
 	"right-flow-edit-post": "Рэдагаваць запісы іншых удзельнікаў у структураваных дыскусіях",
 	"right-flow-suppress": "Хаваньне тэмаў і запісаў структураваных дыскусіяў",
+	"flow-load-more": "Ладаваць болей",
 	"flow-special-type": "Тып"
 }
