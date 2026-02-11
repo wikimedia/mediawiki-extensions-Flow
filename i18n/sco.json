@@ -12,7 +12,7 @@
 	"flow-post-moderated-toggle-delete-hide": "Hide comment {{GENDER:$1|deletit}} bi $2",
 	"flow-post-moderated-toggle-suppress-hide": "Skauk comment {{GENDER:$1|suppressed}} bi $2",
 	"flow-post-action-post-history": "History",
-	"flow-post-action-edit-post": "Eidit",
+	"flow-post-action-edit-post": "Edit",
 	"flow-post-action-unsuppress-post": "Onsuppress",
 	"flow-post-action-undelete-post": "Undelete",
 	"flow-post-action-unhide-post": "Onskauk",
