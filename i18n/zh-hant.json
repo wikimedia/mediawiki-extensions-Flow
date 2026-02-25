@@ -27,7 +27,8 @@
 			"Winston Sung",
 			"Xiplus",
 			"捍粵者",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"ShuQizhe"
 		]
 	},
 	"content-model-flow-board": "結構式討論板",
@@ -182,7 +183,7 @@
 	"flow-error-parsoid-failure": "無法轉移內容：用於wikitext與HTML之間轉換的伺服器連線時出錯。請檢查您的網際網路連結，或如果問題持續，可稍後再試。如果您仍然收到該錯誤，請提報臭蟲",
 	"flow-error-protected-autoconfirmed-logged-in": "此版塊已被保護。只有自動確認使用者可以參與討論。原因：$1",
 	"flow-error-protected-autoconfirmed-logged-out": "此版塊已被保護。只有已自動確認的登入使用者可以參與討論。原因：$1",
-	"flow-error-protected-readonly": "結構式討論已在此 wiki 禁用。沒有可以建立或編輯的版塊、話題或貼文。",
+	"flow-error-protected-readonly": "結構式討論已在此 wiki 停用。沒有可以建立或編輯的版塊、話題或貼文。",
 	"flow-error-protected-sysop-logged-in": "此版塊已被保護。只有擁有管理員權限的使用者可以參與討論。原因：$1",
 	"flow-error-protected-sysop-logged-out": "此版塊已被保護。只有擁有管理員權限的登入使用者可以參與討論。原因：$1",
 	"flow-error-protected-unknown-reason": "不明",
