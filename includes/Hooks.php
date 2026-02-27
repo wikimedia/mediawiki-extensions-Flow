@@ -20,7 +20,6 @@ use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\Extension\BetaFeatures\BetaFeatures;
@@ -1962,12 +1961,7 @@ class Hooks implements
 		$name, &$tables, &$fields, &$conds,
 		&$query_options, &$join_conds, $opts
 	) {
-		try {
-			$hidePageEdits = $opts->getValue( 'hidepageedits' );
-		} catch ( MWException ) {
-			// If not set, assume they should be hidden.
-			$hidePageEdits = true;
-		}
+		$hidePageEdits = $opts->getValue( 'hidepageedits' );
 		if ( $hidePageEdits ) {
 			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 			$conds[] = $dbr->expr( 'rc_source', '!=', RecentChangesListener::SRC_FLOW );
