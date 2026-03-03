@@ -81,6 +81,7 @@
 	"flow-hide-post-content": "Цей допис був прихований {{GENDER:$1|користувачем|користувачкою}} $1 ([$2 історія])",
 	"flow-hide-title-content": "Ця тема була прихована {{GENDER:$1|користувачем|користувачкою}} $1",
 	"flow-hide-header-content": "{{GENDER:$1|Приховано}} $2",
+	"flow-invalid-topic-did-you-mean": "Ви мали на увазі «[[$1]]»?",
 	"flow-delete-post-content": "Цей допис був вилучений {{GENDER:$1|користувачем|користувачкою}} $1 ([$2 история])",
 	"flow-delete-title-content": "$1 {{GENDER:$1|вилучив|вилучила}} цю тему",
 	"flow-delete-header-content": "{{GENDER:$1|Вилучено}} $2",
