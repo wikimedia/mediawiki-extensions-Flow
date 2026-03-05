@@ -357,6 +357,8 @@
 	"right-flow-lock": "Označit témata Strukturovaných diskusí jako vyřešená",
 	"right-flow-delete": "Mazání témat a příspěvků Strukturovaných diskusí",
 	"right-flow-edit-post": "Editovat příspěvky do Strukturovaných diskusí od ostatních uživatelů",
+	"right-flow-edit-title": "Editace názvů témat Strukturovaných diskusí jiných uživatelů",
+	"action-flow-edit-title": "editovat názvy témat Strukturovaných diskusí jiných uživatelů",
 	"right-flow-suppress": "Utajit sekce a příspěvky Strukturovaných diskusí",
 	"flow-cancel-warning": "Do tohoto formuláře jste vložili text. Jste si jisti, že ho chcete zahodit?",
 	"flow-topic-first-heading": "Téma na diskusi $1",
