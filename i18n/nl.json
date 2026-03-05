@@ -30,7 +30,8 @@
 			"Siebrand",
 			"Sjoerddebruin",
 			"Southparkfan",
-			"TBloemink"
+			"TBloemink",
+			"Erik Baas"
 		]
 	},
 	"content-model-flow-board": "Gestructureerd discussiebord",
@@ -218,7 +219,7 @@
 	"flow-error-invalid-input": "Er is een ongeldige waarde opgegeven voor het laden van inhoud van Gestructureerde Discussies.",
 	"flow-error-invalid-title": "Er is een ongeldige paginanaam opgegeven.",
 	"flow-error-invalid-parameter": "Ontbrekende of ongeldige parameter voor methode-aanroep",
-	"flow-error-fail-load-history": "Het laden de geschiedenis is mislukt.",
+	"flow-error-fail-load-history": "Het laden van de geschiedenis is mislukt.",
 	"flow-error-missing-revision": "Er is geen versie gevonden om inhoud van Gestructureerde Discussies van te downloaden.",
 	"flow-error-fail-commit": "Het opslaan van de inhoud van de Gestructureerde Discussies is mislukt.",
 	"flow-error-insufficient-permission": "Onvoldoende rechten om de inhoud te kunnen bekijken.",
