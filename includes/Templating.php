@@ -69,7 +69,7 @@ class Templating {
 		// displayed, since it will be the moderator user
 		static $cache = [];
 		$userid = $revision->getUserId();
-		$userip = $revision->getUserIp();
+		$userip = $revision->getUserIp() ?? '';
 		if ( isset( $cache[$userid][$userip] ) ) {
 			return $cache[$userid][$userip];
 		}
