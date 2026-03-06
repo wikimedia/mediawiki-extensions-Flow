@@ -77,7 +77,7 @@ class TopicListQuery extends AbstractQuery {
 				$replyToId = $revision->getReplyToId();
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
 				$postId = $revision->getPostId()->getAlphadecimal();
-				$replies[$replyToId] = $postId;
+				$replies[$replyToId ?? ''] = $postId;
 				if ( $post->isTopicTitle() ) {
 					// Attach the summary
 					if ( isset( $topicSummary[$postId] ) ) {
