@@ -75,7 +75,7 @@ class PageImportState {
 	private $sourceStore;
 
 	/**
-	 * @var \Wikimedia\Rdbms\IMaintainableDatabase
+	 * @var IDatabase
 	 */
 	private $dbw;
 

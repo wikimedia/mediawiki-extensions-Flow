@@ -229,7 +229,7 @@ class ObjectLocator {
 	 * Determining if a find() has not yet been resolved may be useful so that
 	 * additional data may be loaded at once.
 	 *
-	 * @param string|int $id Id to get()
+	 * @param UUID $id Id to get()
 	 * @return bool
 	 */
 	public function got( $id ) {
@@ -243,7 +243,7 @@ class ObjectLocator {
 	 * Determining if a find() has not yet been resolved may be useful so that
 	 * additional data may be loaded at once.
 	 *
-	 * @param array $objectIds Ids to getMulti()
+	 * @param UUID[] $objectIds Ids to getMulti()
 	 * @return bool
 	 */
 	public function gotMulti( array $objectIds ) {

@@ -345,6 +345,7 @@ class Hooks implements
 			return true;
 		}
 
+		$line = false;
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
 			/** @var Formatter\ChangesListQuery $query */
@@ -406,6 +407,7 @@ class Hooks implements
 			return true;
 		}
 
+		$logTextLinks = false;
 		set_error_handler( new RecoverableErrorHandler, -1 );
 		try {
 			/** @var Formatter\ChangesListQuery $query */

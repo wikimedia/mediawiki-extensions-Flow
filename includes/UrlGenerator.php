@@ -875,11 +875,10 @@ class UrlGenerator {
 	}
 
 	public function thankAction( UUID $postId ) {
-		$sender = RequestContext::getMain()->getUser();
-		$recipient = $sender; // Default to current user's gender if we can't find the recipient
+		$sender = RequestContext::getMain()->getUser()->getName();
 		$postCollection = PostCollection::newFromId( $postId );
 		$postRevision = $postCollection->getLastRevision();
-		$recipient = $postRevision->getCreatorTuple()->createUser();
+		$recipient = $postRevision->getCreatorTuple()->createUser()->getName();
 
 		return new Anchor(
 			wfMessage( 'flow-thank-link', $sender, $recipient )->text(),

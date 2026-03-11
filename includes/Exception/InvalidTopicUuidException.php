@@ -41,7 +41,7 @@ class InvalidTopicUuidException extends InvalidInputException {
 				$wgOut->addHTML( wfMessage(
 					'flow-invalid-topic-did-you-mean',
 					$maybeCorrectTitle->getPrefixedText()
-				) );
+				)->parse() );
 			}
 		}
 	}

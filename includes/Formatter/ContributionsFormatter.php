@@ -73,7 +73,6 @@ class ContributionsFormatter extends AbstractFormatter {
 			return '';
 		}
 
-		// @phan-suppress-next-line PhanUndeclaredMethod Phan doesn't infer $row->revision is PostRevision
 		$type = $row->revision->isTopicTitle() ? 'topic' : 'post';
 
 		if ( isset( $data['actions']['hide'] ) ) {

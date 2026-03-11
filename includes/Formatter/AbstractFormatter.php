@@ -308,7 +308,6 @@ abstract class AbstractFormatter {
 		$topic = $data['links']['topic'];
 
 		// generated link has generic link text, should be actual topic title
-		// @phan-suppress-next-line PhanUndeclaredMethod $row->revision being PostRevision is not inferred
 		$root = $row->revision->getRootPost();
 		if ( $root && $this->permissions->isAllowed( $root, 'view' ) ) {
 			$topicDisplayText = Container::get( 'templating' )

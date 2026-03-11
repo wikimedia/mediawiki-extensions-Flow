@@ -687,7 +687,7 @@ class TopicBlock extends AbstractBlock {
 	 * To generate forms with validation errors in the non-javascript renders we
 	 * need to add something to this output, but not sure what yet
 	 * @param array $options
-	 * @param string $postId
+	 * @param UUID|string $postId
 	 * @return null|array[]
 	 * @throws FlowException
 	 */
@@ -808,7 +808,7 @@ class TopicBlock extends AbstractBlock {
 		// don't use offset from getLimitOffset - that assumes an int, which our
 		// UUIDs are not
 		$offset = $wgRequest->getText( 'offset' );
-		$offset = $offset ? UUID::create( $offset ) : null;
+		$offset = $offset ? (string)UUID::create( $offset ) : null;
 
 		$pager = new HistoryPager( $query, $uuid );
 		$pager->setLimit( $limit );
@@ -857,7 +857,7 @@ class TopicBlock extends AbstractBlock {
 
 	/**
 	 * @param string $action Permissions action to require to return revision
-	 * @return AbstractRevision|null
+	 * @return PostRevision|null
 	 * @throws InvalidDataException
 	 */
 	public function loadTopicTitle( $action = 'view' ) {
@@ -1027,9 +1027,7 @@ class TopicBlock extends AbstractBlock {
 			$post->setRootPost( $found['root'] );
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			&& $this->permissions->isAllowed( $post, 'view' ) ) {
 			return $post;
 		}

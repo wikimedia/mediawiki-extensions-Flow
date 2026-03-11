@@ -129,14 +129,14 @@ class ActionFormatter extends LogFormatter {
 
 		if ( $isTopicTitleVisible ) {
 			$message->params( [
-				$title, // Title of topic
+				(string)$title, // Title of topic
 				$title->getFullURL(), // Full URL of topic, with highlighted post if applicable
 			] );
 
 			$message->plaintextParams( $this->templating->getContent( $rootLastRevision, 'topic-title-plaintext' ) );
 		}
 
-		$message->params( $root->getWorkflow()->getOwnerTitle() ); // board title object
+		$message->params( (string)$root->getWorkflow()->getOwnerTitle() ); // board title object
 
 		$message->parse();
 

@@ -216,7 +216,6 @@ class RevisionFormatter {
 	 * @throws \Exception
 	 * @throws \Flow\Exception\InvalidInputException
 	 * @throws TimestampException
-	 * @suppress PhanUndeclaredMethod Phan doesn't infer types from the instanceofs
 	 */
 	public function formatApi( FormatterRow $row, IContextSource $ctx, $action = 'view' ) {
 		$this->permissions->setUser( $ctx->getUser() );

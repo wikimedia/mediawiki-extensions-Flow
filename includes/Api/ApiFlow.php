@@ -137,7 +137,6 @@ class ApiFlow extends ApiBase {
 			}
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $page;
 	}
 

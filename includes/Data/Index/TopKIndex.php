@@ -126,7 +126,7 @@ class TopKIndex extends FeatureIndex {
 			} else {
 				$startPos = $offset + 1;
 			}
-		} elseif ( $dir === 'rev' ) {
+		} else {
 			$startPos = $offset - $limit;
 			if ( $includeOffset ) {
 				$startPos++;
@@ -142,8 +142,6 @@ class TopKIndex extends FeatureIndex {
 				}
 				$startPos = 0;
 			}
-		} else {
-			$startPos = 0;
 		}
 
 		return [ $startPos, $limit ];

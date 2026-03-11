@@ -93,7 +93,6 @@ class RevisionViewFormatter {
 			$links['single-view'] = $this->urlGenerator->postRevisionLink(
 				$title,
 				$workflowId,
-				// @phan-suppress-next-line PhanUndeclaredMethod Type not correctly inferred
 				$row->revision->getPostId(),
 				$row->revision->getRevisionId()
 			);
