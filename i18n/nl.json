@@ -30,7 +30,9 @@
 			"Siebrand",
 			"Sjoerddebruin",
 			"Southparkfan",
-			"TBloemink"
+			"TBloemink",
+			"Elphie",
+			"Erik Baas"
 		]
 	},
 	"content-model-flow-board": "Gestructureerd discussiebord",
@@ -218,7 +220,7 @@
 	"flow-error-invalid-input": "Er is een ongeldige waarde opgegeven voor het laden van inhoud van Gestructureerde Discussies.",
 	"flow-error-invalid-title": "Er is een ongeldige paginanaam opgegeven.",
 	"flow-error-invalid-parameter": "Ontbrekende of ongeldige parameter voor methode-aanroep",
-	"flow-error-fail-load-history": "Het laden de geschiedenis is mislukt.",
+	"flow-error-fail-load-history": "Het laden van de geschiedenis is mislukt.",
 	"flow-error-missing-revision": "Er is geen versie gevonden om inhoud van Gestructureerde Discussies van te downloaden.",
 	"flow-error-fail-commit": "Het opslaan van de inhoud van de Gestructureerde Discussies is mislukt.",
 	"flow-error-insufficient-permission": "Onvoldoende rechten om de inhoud te kunnen bekijken.",
@@ -307,8 +309,8 @@
 	"notification-bundle-header-flow-post-edited-v2": "{{GENDER:$2|Uw}} bericht in <strong>$1</strong> is meerdere keren bewerkt.",
 	"notification-header-flow-post-edited-user-talk": "Een bericht in \"<strong>$1</strong>\" op <strong>{{GENDER:$2|uw}} overlegpagina</strong> is bewerkt.",
 	"notification-bundle-header-flow-post-edited-user-talk": "Een bericht in \"<strong>$1</strong>\" op <strong>{{GENDER:$2|uw}} overlegpagina</strong> is bewerkt.",
-	"notification-header-flow-topic-renamed-v2": "Het onderwerp “<strong>$1</strong>“ is hernoemd tot “<strong>$2</strong>”.",
-	"notification-header-flow-topic-renamed-user-talk": "Het onderwerp “<strong>$1</strong>” op <strong>{{GENDER:$3|uw}} overlegpagina</strong> is hernoemd tot “<strong>$2</strong>”.",
+	"notification-header-flow-topic-renamed-v2": "Het onderwerp “<strong>$1</strong>“ is hernoemd naar “<strong>$2</strong>”.",
+	"notification-header-flow-topic-renamed-user-talk": "Het onderwerp “<strong>$1</strong>” op <strong>{{GENDER:$3|uw}} overlegpagina</strong> is hernoemd naar “<strong>$2</strong>”.",
 	"notification-header-flow-summary-edited": "De samenvatting voor \"<strong>$1</strong>\" is bijgewerkt.",
 	"notification-header-flow-summary-edited-first": "Er is een samenvatting gemaakt voor het onderwerp \"<strong>$1</strong>\".",
 	"notification-bundle-header-flow-summary-edited": "De samenvatting voor  \"<strong>$1</strong>\" is meerdere keren bijgewerkt.",
