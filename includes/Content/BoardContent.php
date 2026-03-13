@@ -76,8 +76,10 @@ class BoardContent extends AbstractContent {
 	 *    anything, really.
 	 *
 	 * @note Caller must be aware of content model!
+	 * @deprecated since 1.33; use ::getWorkflowId() instead.
 	 */
 	public function getNativeData() {
+		wfDeprecated( __METHOD__, '1.33' );
 		return $this->getWorkflowId();
 	}
 
