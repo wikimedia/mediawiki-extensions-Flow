@@ -1200,7 +1200,7 @@ class Hooks implements
 			return;
 		}
 
-		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$htmlCache = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$urls = array_merge(
 			$urls,
 			$htmlCache->getUrls( $workflow->getOwnerTitle() )
@@ -1468,7 +1468,7 @@ class Hooks implements
 					}
 				}
 
-				$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+				$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 				$hcu->purgeTitleUrls( $topicTitles, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 			} );
 		}
