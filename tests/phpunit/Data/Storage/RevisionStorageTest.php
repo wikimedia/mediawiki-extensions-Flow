@@ -347,8 +347,9 @@ class RevisionStorageTest extends FlowTestCase {
 		$factory = $this->mockDbFactory();
 		// this expect is the assertion for the test
 		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'join', 'where', 'andWhere', 'groupBy', 'caller' ) )
-			->willReturnSelf();
+		$queryBuilder->method( $this->logicalOr( ...array_map( $this->identicalTo( ... ), [
+			'select', 'from', 'join', 'where', 'andWhere', 'groupBy', 'caller'
+		] ) ) )->willReturnSelf();
 		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( $result ) );
 		$factory->getDB( null )->expects( $this->exactly( $count ) )
@@ -366,7 +367,9 @@ class RevisionStorageTest extends FlowTestCase {
 
 	public function testPartialResult() {
 		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'join', 'where', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( $this->logicalOr( ...array_map( $this->identicalTo( ... ), [
+			'select', 'from', 'join', 'where', 'caller'
+		] ) ) )->willReturnSelf();
 		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( [
 				(object)[ 'rev_id' => 42, 'rev_flags' => '' ]

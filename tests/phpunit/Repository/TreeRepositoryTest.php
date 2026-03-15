@@ -45,11 +45,15 @@ class TreeRepositoryTest extends FlowTestCase {
 
 	private function mockDb( $dbResult ) {
 		$queryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$queryBuilder->method( $this->logicalOr( 'select', 'from', 'where', 'caller' ) )->willReturnSelf();
+		$queryBuilder->method( $this->logicalOr( ...array_map( $this->identicalTo( ... ), [
+			'select', 'from', 'where', 'caller'
+		] ) ) )->willReturnSelf();
 		$queryBuilder->method( 'fetchResultSet' )
 			->willReturn( new FakeResultWrapper( [] ) );
 		$db = $this->createMock( IDatabase::class );
-		$db->method( $this->logicalOr( 'insert', 'insertSelect' ) )
+		$db->method( 'insert' )
+			->willReturn( $dbResult );
+		$db->method( 'insertSelect' )
 			->willReturn( $dbResult );
 		$db->method( 'addQuotes' )
 			->willReturn( '' );
