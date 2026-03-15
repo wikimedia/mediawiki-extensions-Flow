@@ -14,6 +14,7 @@ use Flow\Model\Workflow;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
@@ -307,7 +308,7 @@ class View extends ContextSource {
 		// Add JSON blob for OOUI widgets
 		$out->addJsConfigVars( 'wgFlowData', $jsonBlobResponse );
 		$out->addJsConfigVars( 'wgEditSubmitButtonLabelPublish',
-			$config->get( 'EditSubmitButtonLabelPublish' ) );
+			$config->get( MainConfigNames::EditSubmitButtonLabelPublish ) );
 
 		$renderedBlocks = [];
 		foreach ( $apiResponse['blocks'] as $block ) {

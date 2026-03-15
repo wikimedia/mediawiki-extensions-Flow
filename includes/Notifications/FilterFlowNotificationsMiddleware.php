@@ -3,6 +3,7 @@
 namespace Flow\Notifications;
 
 use MediaWiki\Config\Config;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Notification\Middleware\FilterMiddleware;
 use MediaWiki\Notification\Middleware\FilterMiddlewareAction;
 use MediaWiki\Notification\NotificationEnvelope;
@@ -27,7 +28,9 @@ class FilterFlowNotificationsMiddleware extends FilterMiddleware {
 	}
 
 	private function updateWatchlistTimestamp( RecentChangeNotification $notification ) {
-		if ( $this->config->get( 'EnotifWatchlist' ) || $this->config->get( 'ShowUpdatedMarker' ) ) {
+		if ( $this->config->get( MainConfigNames::EnotifWatchlist ) ||
+			$this->config->get( MainConfigNames::ShowUpdatedMarker )
+		) {
 			$this->watchedItemStore->updateNotificationTimestamp(
 				$notification->getAgent(),
 				$notification->getTitle(),
