@@ -29,9 +29,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return false;
-				}
+				static fn () => false
 			],
 
 			[
@@ -41,9 +39,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return false;
-				}
+				static fn () => false
 			],
 
 			[
@@ -53,9 +49,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><figure-inline class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></figure-inline> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return false;
-				}
+				static fn () => false
 			],
 
 			[
@@ -65,9 +59,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
-				static function () {
-					return false;
-				}
+				static fn () => false
 			],
 
 			[
@@ -77,9 +69,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<meta typeof="mw:Placeholder" data-parsoid="...">',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 
 			[
@@ -89,9 +79,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 
 			[
@@ -101,9 +89,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:100%25.jpg"><img resource="./File:100%25.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/100%25.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 
 			[
@@ -113,9 +99,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<p><span class="mw-default-size" typeof="mw:File"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a></span> and other stuff</p>',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 
 			[
@@ -125,9 +109,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 
 			[
@@ -137,9 +119,7 @@ class BadImageRemoverTest extends \MediaWikiIntegrationTestCase {
 				// input html
 				'<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Image.jpg"><img resource="./File:Image.jpg" src="//upload.wikimedia.org/wikipedia/commons/7/78/Image.jpg" height="500" width="500"></a><figcaption>Blah blah</figcaption></figure>',
 				// accept/decline callback
-				static function () {
-					return true;
-				}
+				static fn () => true
 			],
 		];
 	}

@@ -458,14 +458,11 @@ class OptInController {
 	 * @return string
 	 */
 	private function formatTemplate( $name, array $args ) {
-		$arguments = implode( '|',
-			array_map(
-				static function ( $key, $value ) {
-					return "$key=$value";
-				},
-				array_keys( $args ),
-				array_values( $args ) )
-		);
+		$arguments = implode( '|', array_map(
+			static fn ( $k, $v ) => "$k=$v",
+			array_keys( $args ),
+			array_values( $args )
+		) );
 		return "{{{$name}|$arguments}}";
 	}
 

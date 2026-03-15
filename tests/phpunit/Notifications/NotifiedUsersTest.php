@@ -107,18 +107,11 @@ class NotifiedUsersTest extends PostRevisionTestCase {
 		$users = [];
 		foreach ( $events as $event ) {
 			$iterator = NotificationController::getUsersToNotifyForEvent( $event );
-			foreach ( $iterator as $user ) {
-				$users[] = $user;
-			}
+			array_push( $users, ...iterator_to_array( $iterator ) );
 		}
 
 		// convert user objects back into user ids to simplify assertion
-		$users = array_map(
-			static function ( $user ) {
-				return $user->getId();
-			},
-			$users
-		);
+		$users = array_map( static fn ( $user ) => $user->getId(), $users );
 
 		$this->assertContains( $notifiedUser->getId(), $users );
 		$this->assertNotContains( $notNotifiedUser->getId(), $users );

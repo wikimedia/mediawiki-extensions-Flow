@@ -24,9 +24,7 @@ class UserNameListenerTest extends FlowTestCase {
 			[ [ 'user_id' => '3' ], [ 'user_id' => 'user_wiki' ], null ],
 			// Use closure because WikiMap::getCurrentWikiId() in testxxx() functions appends -unittest_ at the end
 			[ [ 'user_id' => '4' ], [ 'user_id' => null ],
-				static function () {
-					return WikiMap::getCurrentWikiId();
-				}
+				WikiMap::getCurrentWikiId( ... )
 			],
 		];
 	}
