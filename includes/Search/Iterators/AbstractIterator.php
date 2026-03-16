@@ -82,34 +82,6 @@ abstract class AbstractIterator implements Iterator {
 	}
 
 	/**
-	 * Define where to start iterating (inclusive)
-	 *
-	 * @param UUID|null $revId
-	 */
-	public function setFrom( ?UUID $revId = null ) {
-		$this->results = null;
-
-		unset( $this->conditions[0] );
-		if ( $revId !== null ) {
-			$this->conditions[0] = $this->dbr->expr( 'rev_id', '>=', $revId->getBinary() );
-		}
-	}
-
-	/**
-	 * Define where to stop iterating (exclusive)
-	 *
-	 * @param UUID|null $revId
-	 */
-	public function setTo( ?UUID $revId = null ) {
-		$this->results = null;
-
-		unset( $this->conditions[1] );
-		if ( $revId !== null ) {
-			$this->conditions[1] = $this->dbr->expr( 'rev_id', '<', $revId->getBinary() );
-		}
-	}
-
-	/**
 	 * @return AbstractRevision|null The most recently fetched revision object
 	 */
 	#[ReturnTypeWillChange]

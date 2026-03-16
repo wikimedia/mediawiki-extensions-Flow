@@ -30,54 +30,6 @@ class TopicIterator extends AbstractIterator {
 	}
 
 	/**
-	 * Define where to start iterating (inclusive)
-	 *
-	 * We'll be querying the workflow table instead of the revisions table.
-	 * Because it's possible to request only a couple of revisions (in between
-	 * certain ids), we'll need to override the parent buildQueryConditions
-	 * method to also work on the workflow table.
-	 * A topic workflow is updated with a workflow_last_update_timestamp for
-	 * every change made in the topic. Our UUIDs are sequential & time-based,
-	 * so we can just query for workflows with a timestamp higher than the
-	 * timestamp derived from the starting UUID and lower than the end UUID.
-	 *
-	 * @param UUID|null $revId
-	 */
-	public function setFrom( ?UUID $revId = null ) {
-		$this->results = null;
-
-		unset( $this->conditions[0] );
-		if ( $revId !== null ) {
-			$this->conditions[0] = $this->dbr->expr( 'workflow_last_update_timestamp', '>=',
-				$this->dbr->timestamp( $revId->getBinary() ) );
-		}
-	}
-
-	/**
-	 * Define where to stop iterating (exclusive)
-	 *
-	 * We'll be querying the workflow table instead of the revisions table.
-	 * Because it's possible to request only a couple of revisions (in between
-	 * certain ids), we'll need to override the parent buildQueryConditions
-	 * method to also work on the workflow table.
-	 * A topic workflow is updated with a workflow_last_update_timestamp for
-	 * every change made in the topic. Our UUIDs are sequential & time-based,
-	 * so we can just query for workflows with a timestamp higher than the
-	 * timestamp derived from the starting UUID and lower than the end UUID.
-	 *
-	 * @param UUID|null $revId
-	 */
-	public function setTo( ?UUID $revId = null ) {
-		$this->results = null;
-
-		unset( $this->conditions[1] );
-		if ( $revId !== null ) {
-			$this->conditions[1] = $this->dbr->expr( 'workflow_last_update_timestamp', '<',
-				$this->dbr->timestamp( $revId->getBinary() ) );
-		}
-	}
-
-	/**
 	 * Instead of querying for revisions (which is what we actually need), we'll
 	 * just query the workflow table, which will save us some complicated joins.
 	 * The workflow_id for a topic title (aka root post) is the same as its
