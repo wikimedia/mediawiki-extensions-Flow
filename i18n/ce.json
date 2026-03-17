@@ -146,7 +146,7 @@
 	"flow-board-notification-subscribe-title": "{{GENDER:$1|ХӀо}} хӀокху дийцарийн у тӀе йазвела(йела)!",
 	"flow-board-notification-subscribe-description": "{{GENDER:$1|Хьоьга}} хаам бийр бу керла тема хӀокху у тӀе хӀоттийча.",
 	"flow-topic-action-watchlist-add": "ХӀокху темин тӀе йазло",
-	"flow-topic-action-watchlist-remove": "Йаздалар дӀадаккха",
+	"flow-topic-action-watchlist-remove": "ТӀейаздалар дӀадаккха",
 	"flow-error-allowcreation-already-exists": "Ӏалашонан агӀо хӀинцале а йу, цундела «Структурйина дийцарийн» у дӀасадаккха йиш йац.",
 	"flow-error-allowcreation-flow-create-board": "Декъашхочун бакъо йац «{{int:right-flow-create-board}}»",
 	"flow-error-can-not-edit-logged-out": "Дийцарехь дакъалаца йиш йац хьан. Вики тӀехь авторизаци йан хьажа.",
