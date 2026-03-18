@@ -37,8 +37,6 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	public function renderApi( array $options ) {
-		global $wgRequest;
-
 		if ( $this->workflow->isNew() ) {
 			return [
 				'type' => $this->getName(),
@@ -54,12 +52,12 @@ class BoardHistoryBlock extends AbstractBlock {
 		$formatter = Container::get( 'formatter.revision.factory' )->create();
 		$formatter->setIncludeHistoryProperties( true );
 
-		[ $limit, /* $offset */ ] = $wgRequest->getLimitOffsetForUser(
+		[ $limit, /* $offset */ ] = $this->context->getRequest()->getLimitOffsetForUser(
 			$this->context->getUser()
 		);
 		// don't use offset from getLimitOffset - that assumes an int, which our
 		// UUIDs are not
-		$offset = $wgRequest->getText( 'offset' );
+		$offset = $this->context->getRequest()->getText( 'offset' );
 		$offset = $offset ?: null;
 
 		$pager = new HistoryPager( $query, $this->workflow->getId() );

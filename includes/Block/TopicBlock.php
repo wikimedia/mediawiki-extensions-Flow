@@ -796,18 +796,16 @@ class TopicBlock extends AbstractBlock {
 		$options,
 		$navbar = true
 	) {
-		global $wgRequest;
-
 		$format = $options['format'] ?? 'fixed-html';
 		$serializer = $this->getRevisionFormatter( $format );
 		$serializer->setIncludeHistoryProperties( true );
 
-		[ $limit, /* $offset */ ] = $wgRequest->getLimitOffsetForUser(
+		[ $limit, /* $offset */ ] = $this->context->getRequest()->getLimitOffsetForUser(
 			$this->context->getUser()
 		);
 		// don't use offset from getLimitOffset - that assumes an int, which our
 		// UUIDs are not
-		$offset = $wgRequest->getText( 'offset' );
+		$offset = $this->context->getRequest()->getText( 'offset' );
 		$offset = $offset ? (string)UUID::create( $offset ) : null;
 
 		$pager = new HistoryPager( $query, $uuid );
