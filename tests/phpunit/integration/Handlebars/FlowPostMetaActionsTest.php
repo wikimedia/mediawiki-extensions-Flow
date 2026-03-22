@@ -16,7 +16,7 @@ class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 	 * in particular, they just match the post and last edit
 	 * uuid's we use in the test.
 	 */
-	public function timestampEditedProvider() {
+	public static function timestampEditedProvider() {
 		return [
 			[
 				'never been edited',
