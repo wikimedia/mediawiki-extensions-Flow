@@ -11,6 +11,7 @@ use Flow\Parsoid\ContentFixer;
 use Flow\Parsoid\Fixer\EmptyNodeFixer;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
@@ -111,20 +112,16 @@ abstract class Utils {
 	 * and other places where a roundtrip is undesired.
 	 *
 	 * @param string $html
+	 * @param Language $lang Language to use for truncation.
 	 * @param int|null $truncateLength Maximum length in characters (including ellipses) or null for whole string.
-	 * @param Language|null $lang Language to use for truncation.  Defaults to $wgLang
 	 * @return string plaintext
 	 */
-	public static function htmlToPlaintext( $html, ?int $truncateLength = null, ?Language $lang = null ) {
-		/** @var Language $wgLang */
-		global $wgLang;
-
+	public static function htmlToPlaintext( $html, Language $lang, ?int $truncateLength = null ) {
 		$plain = trim( Sanitizer::stripAllTags( $html ) );
 
 		// Fallback to some large-ish value for truncation.
 		$truncateLength ??= 10000;
 
-		$lang = $lang ?: $wgLang;
 		return $lang->truncateForVisual( $plain, $truncateLength );
 	}
 
@@ -150,7 +147,8 @@ abstract class Utils {
 		$html = MediaWikiServices::getInstance()->getCommentFormatter()
 			->formatLinks( Sanitizer::escapeHtmlAllowEntities( $content ) );
 		if ( $to === 'topic-title-plaintext' ) {
-			return self::htmlToPlaintext( $html );
+			$lang = RequestContext::getMain()->getLanguage();
+			return self::htmlToPlaintext( $html, $lang );
 		} else {
 			return $html;
 		}

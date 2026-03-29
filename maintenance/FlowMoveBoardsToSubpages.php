@@ -53,8 +53,6 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 	 * @return false|void
 	 */
 	public function execute() {
-		global $wgLang;
-
 		$this->dbFactory = Container::get( 'db.factory' );
 
 		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
@@ -93,7 +91,8 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 		} else {
 			if ( $this->hasOption( 'namespaceName' ) ) {
 				$namespaceName = $this->getOption( 'namespaceName' );
-				$namespaceId = $wgLang->getNsIndex( $namespaceName );
+				$lang = $this->getServiceContainer()->getContentLanguage();
+				$namespaceId = $lang->getNsIndex( $namespaceName );
 
 				if ( !$namespaceId ) {
 					$this->error( "'$namespaceName' is not a valid namespace name" );

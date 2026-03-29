@@ -72,8 +72,6 @@ class FlowFixInconsistentBoards extends Maintenance {
 	 * @return false|void
 	 */
 	public function execute() {
-		global $wgLang;
-
 		$this->dbFactory = Container::get( 'db.factory' );
 		$this->workflowLoaderFactory = Container::get( 'factory.loader.workflow' );
 		$this->boardMover = Container::get( 'board_mover' );
@@ -94,7 +92,8 @@ class FlowFixInconsistentBoards extends Maintenance {
 
 		if ( $this->hasOption( 'namespaceName' ) ) {
 			$namespaceName = $this->getOption( 'namespaceName' );
-			$namespaceId = $wgLang->getNsIndex( $namespaceName );
+			$lang = $this->getServiceContainer()->getContentLanguage();
+			$namespaceId = $lang->getNsIndex( $namespaceName );
 
 			if ( !$namespaceId ) {
 				$this->error( "'$namespaceName' is not a valid namespace name" );

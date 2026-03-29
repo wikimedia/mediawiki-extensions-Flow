@@ -55,8 +55,6 @@ class FormatterTest extends FlowTestCase {
 	 * @group Broken
 	 */
 	public function testCheckUserFormatter( $message, $test, $action, UUID $workflowId, UUID $revId, ?UUID $postId = null ) {
-		global $wgLang;
-
 		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 
 		$title = Title::makeTitle( NS_USER_TALK, 'TestCheckUserFormatter' );
@@ -67,7 +65,7 @@ class FormatterTest extends FlowTestCase {
 
 		$ctx = $this->createMock( IContextSource::class );
 		$ctx->method( 'getLanguage' )
-			->willReturn( $wgLang );
+			->willReturn( RequestContext::getMain()->getLanguage() );
 		$ctx->method( 'msg' )
 			->willReturnCallback( 'wfMessage' );
 

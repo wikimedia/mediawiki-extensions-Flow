@@ -228,7 +228,7 @@ class TemplateHelper {
 	 * @return SafeString|null
 	 */
 	protected static function timestamp( $timestamp ) {
-		global $wgLang;
+		$lang = RequestContext::getMain()->getLanguage();
 
 		if ( !$timestamp ) {
 			return null;
@@ -242,8 +242,8 @@ class TemplateHelper {
 			'timestamp',
 			[
 				'time_iso' => $timestamp,
-				'time_ago' => $wgLang->getHumanTimestamp( $ts ),
-				'time_readable' => $wgLang->userTimeAndDate(
+				'time_ago' => $lang->getHumanTimestamp( $ts ),
+				'time_readable' => $lang->userTimeAndDate(
 					$timestamp,
 					RequestContext::getMain()->getUser()
 				),

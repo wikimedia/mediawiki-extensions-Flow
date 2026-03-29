@@ -57,7 +57,7 @@ class ContributionsFormatter extends AbstractFormatter {
 			$separator .
 			$flags .
 			$this->getTitleLink( $data, $row, $ctx ) .
-			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
+			( Utils::htmlToPlaintext( $description, $ctx->getLanguage() ) ? $separator . $description : '' ) .
 			$this->getHideUnhide( $data, $row, $ctx );
 	}
 

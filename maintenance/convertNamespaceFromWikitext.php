@@ -47,15 +47,14 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLang;
-
+		$lang = $this->getServiceContainer()->getContentLanguage();
 		$provided = $this->getArg( 0 );
-		$namespace = $wgLang->getNsIndex( $provided );
+		$namespace = $lang->getNsIndex( $provided );
 		if ( !$namespace ) {
 			$this->error( "Invalid namespace provided: $provided" );
 			return;
 		}
-		$namespaceName = $wgLang->getNsText( $namespace );
+		$namespaceName = $lang->getNsText( $namespace );
 		if ( !$this->getServiceContainer()->getNamespaceInfo()->hasSubpages( $namespace ) ) {
 			$this->error( "Subpages are not enabled in the $namespaceName namespace." );
 			$this->error( "In order to convert this namespace to Flow, you must enable subpages using:" );

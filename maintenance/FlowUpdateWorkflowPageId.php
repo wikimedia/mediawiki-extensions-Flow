@@ -50,7 +50,7 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 	 * @return true
 	 */
 	public function doDbUpdates() {
-		global $wgFlowCluster, $wgLang;
+		global $wgFlowCluster;
 
 		$dbw = Container::get( 'db.factory' )->getDB( DB_PRIMARY );
 
@@ -66,7 +66,8 @@ class FlowUpdateWorkflowPageId extends LoggedUpdateMaintenance {
 		] );
 		$it->setCaller( __METHOD__ );
 
-		$gen = new WorkflowPageIdUpdateGenerator( $wgLang );
+		$lang = $this->getServiceContainer()->getContentLanguage();
+		$gen = new WorkflowPageIdUpdateGenerator( $lang );
 		$writer = new BatchRowWriter( $dbw, 'flow_workflow', $wgFlowCluster );
 		$writer->setCaller( __METHOD__ );
 		$updater = new BatchRowUpdate( $it, $writer, $gen );

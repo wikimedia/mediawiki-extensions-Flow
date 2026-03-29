@@ -300,8 +300,7 @@ class FlowRestoreLQT extends Maintenance {
 	 * @return Status
 	 */
 	protected function restorePageRevision( $pageId, $nextRevisionId ) {
-		global $wgLang;
-
+		$lang = $this->getServiceContainer()->getContentLanguage();
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromID( $pageId );
 		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$nextRevision = $revisionLookup->getRevisionById( $nextRevisionId );
@@ -315,7 +314,7 @@ class FlowRestoreLQT extends Maintenance {
 		}
 
 		$content = $mainContent->serialize();
-		$content = $wgLang->truncateForVisual( $content, 150 );
+		$content = $lang->truncateForVisual( $content, 150 );
 		$content = str_replace( "\n", '\n', $content );
 		$this->output( "Restoring revision {$revision->getId()} for LQT page {$pageId}: {$content}\n" );
 

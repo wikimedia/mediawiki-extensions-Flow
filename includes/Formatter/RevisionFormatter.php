@@ -968,7 +968,7 @@ class RevisionFormatter {
 				 */
 				$content = $this->templating->getContent( $revision, 'fixed-html' );
 				// strip html tags and decode to plaintext
-				$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
+				$content = Utils::htmlToPlaintext( $content, $ctx->getLanguage(), 140 );
 				return Message::plaintextParam( $content );
 
 			case 'wikitext':
@@ -979,7 +979,7 @@ class RevisionFormatter {
 
 				$content = $this->templating->getContent( $revision, $format );
 				if ( !$isWikiText ) {
-					$content = Utils::htmlToPlaintext( $content );
+					$content = Utils::htmlToPlaintext( $content, $ctx->getLanguage() );
 				}
 				// This must be escaped and marked raw to prevent special chars in
 				// content, like $1, from changing the i18n result
@@ -1006,7 +1006,7 @@ class RevisionFormatter {
 
 				$content = $this->templating->getContent( $previousRevision, $format );
 				if ( !$isWikiText ) {
-					$content = Utils::htmlToPlaintext( $content );
+					$content = Utils::htmlToPlaintext( $content, $ctx->getLanguage() );
 				}
 				return Message::plaintextParam( $content );
 

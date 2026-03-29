@@ -156,7 +156,8 @@ class ActionFormatter extends LogFormatter {
 	public function getActionText() {
 		if ( $this->canView( LogPage::DELETED_ACTION ) ) {
 			$text = $this->getActionMessage();
-			return $this->plaintext ? Utils::htmlToPlaintext( $text ) : $text;
+			$lang = $this->context->getLanguage();
+			return $this->plaintext ? Utils::htmlToPlaintext( $text, $lang ) : $text;
 		} else {
 			return parent::getActionText();
 		}

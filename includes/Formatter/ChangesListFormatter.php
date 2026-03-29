@@ -62,7 +62,7 @@ class ChangesListFormatter extends AbstractFormatter {
 				$data['size']['new'],
 				$ctx
 			) .
-			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' ) .
+			( Utils::htmlToPlaintext( $description, $ctx->getLanguage() ) ? $separator . $description : '' ) .
 			$this->getEditSummary( $row, $ctx, $data );
 	}
 

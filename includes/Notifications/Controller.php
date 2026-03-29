@@ -126,7 +126,7 @@ class Controller {
 		$user = $revision->getUser();
 		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $revision );
 
-		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->language, $this->truncateLength );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['collection-id'] = $revision->getCollectionId();
 		$extraData['target-page'] = $boardWorkflow->getArticleTitle()->getArticleID();
@@ -214,7 +214,7 @@ class Controller {
 			case 'flow-post-reply':
 				$extraData += [
 					'reply-to' => $revision->getReplyToId(),
-					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->language, $this->truncateLength ),
 					'topic-title' => $this->language->truncateForVisual(
 						$topicRevision->getContent( 'topic-title-plaintext' ), 200
 					),
@@ -259,7 +259,7 @@ class Controller {
 				break;
 			case 'flow-post-edited':
 				$extraData += [
-					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), $this->language, $this->truncateLength ),
 					'topic-title' => $this->language->truncateForVisual(
 						$topicRevision->getContent( 'topic-title-plaintext' ), 200
 					),
@@ -328,7 +328,7 @@ class Controller {
 		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $revision );
 
 		$extraData = [];
-		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->truncateLength, $this->language );
+		$extraData['content'] = Utils::htmlToPlaintext( $revision->getContent(), $this->language, $this->truncateLength );
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['prev-revision-id'] = $revision->getPrevRevisionId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
@@ -417,7 +417,7 @@ class Controller {
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
 				'topic-title' => $this->language->truncateForVisual( $topicTitle->getContent( 'topic-title-plaintext' ), 200 ),
 				'content' => $firstPost
-					? Utils::htmlToPlaintext( $firstPost->getContent(), $this->truncateLength, $this->language )
+					? Utils::htmlToPlaintext( $firstPost->getContent(), $this->language, $this->truncateLength )
 					: null,
 				// Force a read from primary database since this could be a new page
 				'target-page' => [
@@ -472,7 +472,7 @@ class Controller {
 
 		$extraData = [];
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
-		$extraData['topic-title'] = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), 200, $this->language );
+		$extraData['topic-title'] = Utils::htmlToPlaintext( $revision->getContent( 'topic-title-html' ), $this->language, 200 );
 		$extraData['target-page'] = $topicWorkflow->getArticleTitle()->getArticleID();
 		// I'll treat resolve & reopen as the same notification type, but pass the
 		// different type so presentation models can differentiate
@@ -542,7 +542,7 @@ class Controller {
 		$extraData['target-page'] = $workflow->getArticleTitle()->getArticleID();
 		// don't include topic content again if the notification IS in the title
 		$extraData['content'] = $content === $topic ? '' :
-			Utils::htmlToPlaintext( $content->getContent(), $this->truncateLength, $this->language );
+			Utils::htmlToPlaintext( $content->getContent(), $this->language, $this->truncateLength );
 		// lets us differentiate between different revision types
 		$extraData['revision-type'] = $content->getRevisionType();
 
