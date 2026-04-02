@@ -324,7 +324,7 @@
 	"flow-notification-newtopic-email-batch-body": "$1 {{GENDER:$1|loi}} loi uuden aiheen otsikolla ”$2” sivulla $3",
 	"flow-notification-newtopic-email-batch-bundle-body": "{{PLURAL:$1|Yksi uusi aihe|$1 uutta aihetta|100=Yli 99 uutta aihetta}} sivulla $2",
 	"echo-category-title-flow-discussion": "Jäsennetyt keskustelut -keskustelu",
-	"echo-pref-tooltip-flow-discussion": "Ilmoita minulle tapahtumista seuraamillani palstoilla ja aiheissa.",
+	"echo-pref-tooltip-flow-discussion": "Ilmoita tapahtumista seuraamillani palstoilla ja aiheissa.",
 	"flow-link-post": "viesti",
 	"flow-link-topic": "aihe",
 	"flow-link-history": "historia",

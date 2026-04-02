@@ -95,7 +95,7 @@
 	"flow-error-missing-replyto": "Nije naveden parametar \"replyTo\". Ovaj parametar se zahtjeva za odgovor.",
 	"flow-error-missing-postId": "Nije pronađen parametar \"postId\". Ovaj parametar se zahtjeva za rad sa objavom.",
 	"flow-error-invalid-postId": "Parametar \"postId\" nije ispravan. Navedena objava ($1) ne može se pronaći.",
-	"flow-error-invalid-moderation-state": "Izvršniku za Strukturirane rasprave poslana je neispravna vrijednost za parametar ('moderationState').",
+	"flow-error-invalid-moderation-state": "API-ju za Strukturirane rasprave poslana je neispravna vrijednost za parametar ('moderationState').",
 	"flow-error-invalid-moderation-reason": "Navedite razlog za moderaciju.",
 	"flow-error-not-allowed": "Nedovoljna dopuštenja za izvršenje ove radnje",
 	"flow-error-not-allowed-hide": "Ova je tema sakrivena.",

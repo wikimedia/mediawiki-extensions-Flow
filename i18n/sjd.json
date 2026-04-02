@@ -5,7 +5,10 @@
 		]
 	},
 	"flow-newtopic-title-placeholder": "О̄дт те̄ма",
+	"flow-newtopic-header": "Лажьхэ о̄дт те̄ма",
+	"flow-newtopic-save": "Лажьхэ те̄ма",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Па̄ссьпушшэ}}}}",
 	"flow-topic-action-watchlist-add": "Кырьйхуввэ тэнн те̄ма э̄л",
-	"flow-load-more": "Вя̄л лоа̄дтэ"
+	"flow-load-more": "Вя̄л лоа̄дтэ",
+	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Пӯррь пуэдтҍмушш}} {{GENDER:$1|то̄н}} о̄дт оаннӭй соа̄рнънэмлысста"
 }
