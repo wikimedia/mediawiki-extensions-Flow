@@ -46,7 +46,7 @@ class ContributionsFormatter extends AbstractFormatter {
 
 		$flags = '';
 		if ( $isNewPage ) {
-			$flags .= ChangesList::flag( 'newpage' ) . ' ';
+			$flags .= ChangesList::flag( 'newpage', $ctx ) . ' ';
 		}
 
 		// Put it all together

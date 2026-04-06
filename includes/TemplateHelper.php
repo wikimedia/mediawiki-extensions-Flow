@@ -410,7 +410,8 @@ class TemplateHelper {
 	 * @return SafeString
 	 */
 	public static function showCharacterDifference( $old, $new ) {
-		return new SafeString( ChangesList::showCharacterDifference( (int)$old, (int)$new ) );
+		$ctx = RequestContext::getMain();
+		return new SafeString( ChangesList::showCharacterDifference( (int)$old, (int)$new, $ctx ) );
 	}
 
 	/**
