@@ -7,12 +7,7 @@ use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
-use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ExternalLinksTable;
-use MediaWiki\Deferred\LinksUpdate\ImageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\InterwikiLinksTable;
-use MediaWiki\Deferred\LinksUpdate\PageLinksTable;
-use MediaWiki\Deferred\LinksUpdate\TemplateLinksTable;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -72,7 +67,8 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 	}
 
 	protected function rebuildCoreTables() {
-		$dbw = $this->getPrimaryDB();
+		$dbProvider = $this->getServiceContainer()->getConnectionProvider();
+		$dbw = $dbProvider->getPrimaryDatabase( LinksTable::VIRTUAL_DOMAIN );
 		$dbr = Container::get( 'db.factory' )->getDB( DB_REPLICA );
 		/** @var LinksTableUpdater $linksTableUpdater */
 		$linksTableUpdater = Container::get( 'reference.updater.links-tables' );
@@ -89,30 +85,29 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 			foreach ( $rows as $row ) {
 				$workflow = Workflow::fromStorageRow( (array)$row );
 				$id = $workflow->getArticleTitle()->getArticleID();
-				$dbProvider = $this->getServiceContainer()->getConnectionProvider();
 
 				// delete existing links from DB
-				$dbProvider->getPrimaryDatabase( PageLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'pagelinks' )
 					->where( [ 'pl_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbProvider->getPrimaryDatabase( ImageLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'imagelinks' )
 					->where( [ 'il_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbProvider->getPrimaryDatabase( CategoryLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'categorylinks' )
 					->where( [ 'cl_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbProvider->getPrimaryDatabase( TemplateLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'templatelinks' )
 					->where( [ 'tl_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbProvider->getPrimaryDatabase( ExternalLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'externallinks' )
 					->where( [ 'el_from' => $id ] )
 					->caller( __METHOD__ )
@@ -122,7 +117,7 @@ class FlowFixLinks extends LoggedUpdateMaintenance {
 					->where( [ 'll_from' => $id ] )
 					->caller( __METHOD__ )
 					->execute();
-				$dbProvider->getPrimaryDatabase( InterwikiLinksTable::VIRTUAL_DOMAIN )->newDeleteQueryBuilder()
+				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'iwlinks' )
 					->where( [ 'iwl_from' => $id ] )
 					->caller( __METHOD__ )
