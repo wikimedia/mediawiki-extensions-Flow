@@ -195,7 +195,7 @@ class Hooks implements
 			ExtensionRegistry::getInstance()->isLoaded( 'GuidedTour' )
 		) {
 			// Activate tour
-			GuidedTourLauncher::launchTourByCookie( 'flowOptIn', 'newTopic' );
+			GuidedTourLauncher::launchTourByCookie( $out, 'flowOptIn', 'newTopic' );
 
 			// Destroy Flow cookie
 			$out->getRequest()->response()->setCookie( 'Flow_optIn_guidedTour', '', time() - 3600 );
