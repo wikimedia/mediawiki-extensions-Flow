@@ -134,7 +134,6 @@ class View extends ContextSource {
 			$out->addModuleStyles( $this->actions->getValue( $action, 'moduleStyles' ) );
 		} else {
 			$out->addModuleStyles( [
-				'mediawiki.ui',
 				'mediawiki.ui.button',
 				'mediawiki.ui.input',
 				'mediawiki.ui.icon',
