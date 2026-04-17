@@ -353,6 +353,8 @@
 				"styles/errors.less",
 				"styles/history/history-line.less",
 				"styles/mediawiki.ui/anchors.less",
+				"styles/mediawiki.ui/button.less",
+				"styles/mediawiki.ui/input.less",
 				"styles/board/header.less",
 				"styles/board/menu.less",
 				"styles/board/navigation.less",

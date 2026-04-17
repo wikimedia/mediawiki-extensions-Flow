@@ -114,8 +114,6 @@ return [
 		'editcount' => true,
 		// theis modules/moduleStyles is repeated in all the undo-* actions. Find a way to share.
 		'moduleStyles' => [
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
 			'ext.flow.styles.base',
 		],
 	],
@@ -380,8 +378,6 @@ return [
 		],
 		'editcount' => true,
 		'moduleStyles' => [
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
 			'ext.flow.styles.base',
 		],
 	],
