@@ -8,6 +8,7 @@ use Flow\Model\UUID;
 use LightnCandy\LightnCandy;
 use LightnCandy\SafeString;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Diff\DifferenceEngine;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\ChangesList;
@@ -552,7 +553,7 @@ class TemplateHelper {
 	 * @return SafeString
 	 */
 	public static function diffRevision( $data ) {
-		$differenceEngine = new \DifferenceEngine();
+		$differenceEngine = new DifferenceEngine();
 		$notice = '';
 		if ( $data['diff_content'] === '' ) {
 			$notice .= '<div class="mw-diff-empty">' .
@@ -585,7 +586,7 @@ class TemplateHelper {
 	}
 
 	public static function diffUndo( $diffContent ) {
-		$differenceEngine = new \DifferenceEngine();
+		$differenceEngine = new DifferenceEngine();
 		$notice = '';
 		if ( $diffContent === '' ) {
 			$notice = '<div class="mw-diff-empty">' .

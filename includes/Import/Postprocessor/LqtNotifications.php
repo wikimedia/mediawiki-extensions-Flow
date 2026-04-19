@@ -2,7 +2,6 @@
 
 namespace Flow\Import\Postprocessor;
 
-use BatchRowIterator;
 use Flow\Import\IImportHeader;
 use Flow\Import\IImportPost;
 use Flow\Import\IImportTopic;
@@ -15,6 +14,7 @@ use Flow\Notifications\Controller;
 use MediaWiki\Extension\Notifications\Iterator\CallbackIterator;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\User\User;
+use MediaWiki\Utils\BatchRowIterator;
 use RecursiveIteratorIterator;
 use Wikimedia\Rdbms\IReadableDatabase;
 

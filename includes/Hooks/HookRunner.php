@@ -5,8 +5,8 @@ namespace Flow\Hooks;
 use Flow\Api\ApiFlowBase;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Output\OutputPage;
-use MessageLocalizer;
 
 /**
  * This is a hook runner class, see docs/Hooks.md in core.

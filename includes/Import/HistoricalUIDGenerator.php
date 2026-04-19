@@ -2,7 +2,7 @@
 
 namespace Flow\Import;
 
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 use RuntimeException;
 
 /**

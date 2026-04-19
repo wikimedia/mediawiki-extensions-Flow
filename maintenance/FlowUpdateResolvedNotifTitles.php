@@ -7,13 +7,13 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
 use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
 use MediaWiki\Extension\Notifications\DbFactory;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\BatchRowIterator;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

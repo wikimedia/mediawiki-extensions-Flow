@@ -2,17 +2,17 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
-use BatchRowUpdate;
-use BatchRowWriter;
-use ExternalStoreException;
 use Flow\Container;
 use Flow\DbFactory;
 use Flow\Model\UUID;
+use MediaWiki\ExternalStore\ExternalStoreException;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\BatchRowIterator;
+use MediaWiki\Utils\BatchRowUpdate;
+use MediaWiki\Utils\BatchRowWriter;
+use MediaWiki\Utils\RowUpdateGenerator;
 use MediaWiki\WikiMap\WikiMap;
-use RowUpdateGenerator;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;

@@ -6,10 +6,10 @@
 namespace Flow\Repository;
 
 use Flow\Model\UserTuple;
-use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\ObjectCache\MapCacheLRU;
 
 /**
  * Batch together queries for a bunch of wiki+userid -> username

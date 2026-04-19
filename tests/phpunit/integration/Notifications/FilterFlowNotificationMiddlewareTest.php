@@ -7,9 +7,9 @@ use MediaWiki\Notification\NotificationEnvelope;
 use MediaWiki\Notification\NotificationsBatch;
 use MediaWiki\Notification\RecipientSet;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangeNotification;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\Watchlist\RecentChangeNotification;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 
 /**

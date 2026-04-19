@@ -2,7 +2,7 @@
 
 namespace Flow\Api;
 
-use ApiQuery;
+use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Title\Title;
 

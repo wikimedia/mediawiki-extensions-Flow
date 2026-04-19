@@ -2,13 +2,13 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\LinksTableUpdater;
 use Flow\Model\Workflow;
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

@@ -18,7 +18,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
-use UserOptionsUpdateJob;
+use MediaWiki\User\Options\UserOptionsUpdateJob;
 
 class TopicListBlock extends AbstractBlock {
 

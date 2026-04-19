@@ -6,6 +6,7 @@ use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Diff\DifferenceEngine;
 
 class RevisionDiffViewFormatter {
 
@@ -41,7 +42,7 @@ class RevisionDiffViewFormatter {
 		$oldContent = $oldRow->revision->getContentInWikitext();
 		$newContent = $newRow->revision->getContentInWikitext();
 
-		$differenceEngine = new \DifferenceEngine();
+		$differenceEngine = new DifferenceEngine();
 
 		$differenceEngine->setContent(
 			new TextContent( $oldContent ),

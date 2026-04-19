@@ -6,6 +6,7 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

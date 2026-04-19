@@ -4,7 +4,7 @@ namespace Flow\Collection;
 
 use Flow\Data\Listener\AbstractListener;
 use Flow\Model\AbstractRevision;
-use MapCacheLRU;
+use Wikimedia\ObjectCache\MapCacheLRU;
 
 /**
  * Cache any useful collection data. Listens to lifecycle events for

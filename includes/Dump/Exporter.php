@@ -2,7 +2,6 @@
 
 namespace Flow\Dump;
 
-use BatchRowIterator;
 use Exception;
 use Flow\Collection\PostSummaryCollection;
 use Flow\Container;
@@ -18,6 +17,7 @@ use Flow\Search\Iterators\AbstractIterator;
 use Flow\Search\Iterators\HeaderIterator;
 use Flow\Search\Iterators\TopicIterator;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Export\WikiExporter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
@@ -25,10 +25,10 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
+use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
 use ReflectionProperty;
-use WikiExporter;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
 

@@ -2,7 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
 use Flow\Container;
 use Flow\Conversion\Utils;
 use Flow\Data\ManagerGroup;
@@ -12,6 +11,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Parsoid\ContentFixer;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\WikiMap\WikiMap;
 use ReflectionClass;
 use ReflectionMethod;

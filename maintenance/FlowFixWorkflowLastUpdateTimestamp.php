@@ -2,9 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
-use BatchRowUpdate;
-use BatchRowWriter;
 use Exception;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
@@ -19,9 +16,12 @@ use Flow\Model\Workflow;
 use Flow\Repository\RootPostLoader;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Utils\BatchRowIterator;
+use MediaWiki\Utils\BatchRowUpdate;
+use MediaWiki\Utils\BatchRowWriter;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Utils\RowUpdateGenerator;
 use MediaWiki\WikiMap\WikiMap;
-use RowUpdateGenerator;
 use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;

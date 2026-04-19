@@ -2,9 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
-use BatchRowUpdate;
-use BatchRowWriter;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
@@ -12,7 +9,10 @@ use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
-use RowUpdateGenerator;
+use MediaWiki\Utils\BatchRowIterator;
+use MediaWiki\Utils\BatchRowUpdate;
+use MediaWiki\Utils\BatchRowWriter;
+use MediaWiki\Utils\RowUpdateGenerator;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

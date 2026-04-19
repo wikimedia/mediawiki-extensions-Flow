@@ -6,10 +6,10 @@ use DOMElement;
 use DOMNode;
 use Flow\Conversion\Utils;
 use Flow\Parsoid\Fixer;
-use HtmlArmor;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\LinkBatch;
 use MediaWiki\Title\Title;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * Parsoid ignores red links. With good reason: redlinks should only be

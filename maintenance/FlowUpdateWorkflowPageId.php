@@ -2,9 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
-use BatchRowUpdate;
-use BatchRowWriter;
 use Exception;
 use Flow\Container;
 use Flow\Model\UUID;
@@ -17,8 +14,11 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\BatchRowIterator;
+use MediaWiki\Utils\BatchRowUpdate;
+use MediaWiki\Utils\BatchRowWriter;
+use MediaWiki\Utils\RowUpdateGenerator;
 use MediaWiki\WikiMap\WikiMap;
-use RowUpdateGenerator;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDBAccessObject;

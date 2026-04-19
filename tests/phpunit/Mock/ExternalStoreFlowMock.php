@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\ExternalStore\ExternalStoreMemory;
+
 /**
  * The primary purpose of this is to check whether {@see ExternalStore} is used, to verify that it
  * doesn't insert rows that are not later used.

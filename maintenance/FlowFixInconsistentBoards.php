@@ -2,7 +2,6 @@
 
 namespace Flow\Maintenance;
 
-use BatchRowIterator;
 use Flow\BoardMover;
 use Flow\Container;
 use Flow\Content\BoardContent;
@@ -14,6 +13,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\WikiMap\WikiMap;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
