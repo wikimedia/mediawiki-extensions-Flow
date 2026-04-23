@@ -35,10 +35,15 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 	protected $page = '';
 
 	public function __construct() {
-		parent::__construct( 'EnableStructuredDiscussions', 'flow-create-board' );
+		parent::__construct( 'EnableStructuredDiscussions' );
 
 		$this->loaderFactory = Container::get( 'factory.loader.workflow' );
 		$this->occupationController = Container::get( 'occupation_controller' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'flow-create-board';
 	}
 
 	public function execute( $par ) {
