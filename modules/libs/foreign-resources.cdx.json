@@ -2,13 +2,13 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:f4d32027-d8da-4a08-98e7-023781e80da0",
+	"serialNumber": "urn:uuid:efdc4040-739e-4434-84be-d5d6fa635fc0",
 	"version": 1,
 	"components": [
 		{
 			"type": "library",
 			"name": "handlebars",
-			"version": "3.0.0",
+			"version": "4.7.9",
 			"licenses": [
 				{
 					"license": {
