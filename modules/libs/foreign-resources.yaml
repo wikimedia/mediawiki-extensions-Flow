@@ -1,0 +1,11 @@
+handlebars:
+  homepage: https://handlebarsjs.com/
+  license: MIT
+  authors: Yehuda Katz
+  version: 3.0.0
+  type: tar
+  src: https://registry.npmjs.org/handlebars/-/handlebars-3.0.0.tgz
+  integrity: sha512-Qk1V768egy6xX2dBoaqhE/DmPDDQuC23lPjM+cW7qpZ0vW16+LrKr2ugPpBY80Q/p81aiX6CSf0MvWLmPYursA==
+  dest:
+    package/dist/handlebars.js: .
+    package/LICENSE: .

@@ -126,6 +126,7 @@
 		"FlowNamespaces": "Flow.namespaces.php",
 		"FlowAlias": "Flow.alias.php"
 	},
+	"ForeignResourcesDir": "modules/libs",
 	"ResourceModules": {
 		"ext.flow.contributions": {
 			"scripts": [
@@ -376,7 +377,7 @@
 			"localBasePath": "",
 			"remoteExtPath": "Flow",
 			"scripts": [
-				"modules/libs/handlebars-v3.0.0.js",
+				"modules/libs/handlebars/handlebars.js",
 				"modules/handlebars.js"
 			],
 			"dependencies": [
