@@ -4,6 +4,7 @@
 			"咽頭べさ"
 		]
 	},
+	"flow-reply-link": "{{GENDER:$1|မကလေၚ်သွဟ်}}",
 	"flow-history-action-hide-post": "ပၞုက်",
 	"flow-post-action-hide-post": "ပၞုက်",
 	"flow-moderation-confirm-hide-post": "ပၞုက်",
