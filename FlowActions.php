@@ -216,8 +216,6 @@ return [
 		'handler-class' => \Flow\Actions\FlowAction::class,
 		'editcount' => true,
 		'moduleStyles' => [
-			'mediawiki.ui.button',
-			'mediawiki.ui.input',
 			'ext.flow.styles.base',
 		],
 	],
