@@ -75,8 +75,8 @@ abstract class Utils {
 		$parserOutput = $parserFactory->parse( $wikitext, $title, $parserOptions );
 
 		// $parserOutput->getText() will strip off the body tag, but we want to retain here.
-		// So we'll call ->getRawText() here and modify the HTML by ourselves.
-		preg_match( "#<body[^>]*>(.*?)</body>#s", $parserOutput->getRawText(), $html );
+		// So we'll call ->getContentHolderText() here and modify the HTML by ourselves.
+		preg_match( "#<body[^>]*>(.*?)</body>#s", $parserOutput->getContentHolderText(), $html );
 
 		return $html[0];
 	}
