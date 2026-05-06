@@ -117,13 +117,13 @@
 					}
 
 					// Message keys are documented above
-					// eslint-disable-next-line mediawiki/msg-doc
+
 					message = mw.message( messageKey, $( $.parseHTML( reason ) ) );
 
 					dfd.resolve( message );
 				} ).fail( () => {
 					// Message keys are documented above
-					// eslint-disable-next-line mediawiki/msg-doc
+
 					message = mw.message( messageKey, mw.message( 'flow-error-protected-unknown-reason' ).text() );
 
 					dfd.resolve( message );

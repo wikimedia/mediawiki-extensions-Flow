@@ -198,7 +198,6 @@
 		// chop off str and options leaving just args
 		const args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
-		// eslint-disable-next-line mediawiki/msg-doc
 		return mw.message( str ).params( args ).text();
 	};
 
@@ -212,7 +211,7 @@
 		const args = flowNormalizeL10nParameters( Array.prototype.slice.call( arguments, 1, -1 ) );
 
 		return FlowHandlebars.prototype.html(
-			// eslint-disable-next-line mediawiki/msg-doc
+
 			mw.message( str ).params( args ).parse()
 		);
 	};

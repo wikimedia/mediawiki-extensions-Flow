@@ -28,7 +28,7 @@
 
 		this.saveButton = new OO.ui.ButtonWidget( {
 			flags: [ 'primary', 'progressive' ],
-			// eslint-disable-next-line mediawiki/msg-doc
+
 			label: mw.msg( config.saveMsgKey || 'flow-newtopic-save' ),
 			classes: [ 'flow-ui-editorControlsWidget-saveButton' ]
 		} );
@@ -36,7 +36,7 @@
 		this.cancelButton = new OO.ui.ButtonWidget( {
 			flags: 'destructive',
 			framed: false,
-			// eslint-disable-next-line mediawiki/msg-doc
+
 			label: mw.msg( config.cancelMsgKey || 'flow-cancel' ),
 			classes: [ 'flow-ui-editorControlsWidget-cancelButton' ]
 		} );
