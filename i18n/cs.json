@@ -182,7 +182,7 @@
 	"flow-error-not-allowed-reply-to-delete-topic-extract": "Na tento příspěvek není možné odpovědět, protože sekce byla smazána. Níže je pro přehled zobrazen poslední protokolovací záznam.",
 	"flow-error-not-allowed-suppress-extract": "Tato sekce byla smazána. Níže je pro přehled zobrazen poslední protokolovací záznam.",
 	"flow-error-not-allowed-reply-to-suppress-topic-extract": "Na tento příspěvek není možné odpovědět, protože sekce byla utajena. Níže je pro přehled zobrazen poslední protokolovací záznam.",
-	"flow-error-title-too-long": "Názvy témat jsou omezeny na $1 {{PLURAL:$1|byte|byty|bytů}}.",
+	"flow-error-title-too-long": "Názvy témat jsou omezeny na $1 {{PLURAL:$1|bajt|bajty|bajtů}}.",
 	"flow-error-missing-header-content": "Musíte odeslat popis.",
 	"flow-error-prev-revision-mismatch": "Tento příspěvek před chvíli editoval jiný uživatel. Jste si {{GENDER:$3|jistý|jistá|jisti}}, že chcete přepsat nejnovější změnu?",
 	"flow-error-default": "Došlo k chybě.",
