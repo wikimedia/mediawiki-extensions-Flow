@@ -8,6 +8,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * @group Flow
+ * @coversNothing
  */
 class FlowPostMetaActionsTest extends \MediaWikiIntegrationTestCase {
 

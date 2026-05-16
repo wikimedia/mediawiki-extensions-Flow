@@ -29,6 +29,6 @@
 	<file>.</file>
 	<arg name="extensions" value="php"/>
 	<arg name="encoding" value="UTF-8"/>
-	<exclude-pattern>handlebars</exclude-pattern>
+	<exclude-pattern type="relative">^handlebars/*</exclude-pattern>
 	<exclude-pattern>.phan/stubs</exclude-pattern>
 </ruleset>
