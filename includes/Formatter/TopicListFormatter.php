@@ -74,7 +74,9 @@ class TopicListFormatter extends BaseTopicListFormatter {
 			}
 			$revisions[$serialized['revisionId']] = $serialized;
 			$posts[$serialized['postId']][] = $serialized['revisionId'];
-			$replies[$serialized['replyToId']][] = $serialized['postId'];
+			if ( $serialized['replyToId'] ) {
+				$replies[$serialized['replyToId']][] = $serialized['postId'];
+			}
 		}
 
 		foreach ( $revisions as $i => $serialized ) {
