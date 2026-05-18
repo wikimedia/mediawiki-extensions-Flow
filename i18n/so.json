@@ -4,5 +4,11 @@
 			"AhmedG612"
 		]
 	},
-	"flow-post-action-edit-post-submit-publish": "Daabac isbeddellada"
+	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 ayaa {{GENDER:$2|tirtiray}} mawduuc ku saabsan [[$3]]",
+	"flow-newtopic-save": "Ku dar mawduuc",
+	"flow-reply-link": "Jawaab",
+	"flow-post-action-edit-post-submit-publish": "Daabac isbeddellada",
+	"flow-topic-action-unlock-topic": "Fur mawduuca mar kale",
+	"flow-topic-action-update-topic-summary": "Cusboonaysii kooban",
+	"flow-terms-of-use-summarize": "Markaad gujiso \"{{int:flow-topic-action-update-topic-summary}}\", waxaad oggolaanaysaa shuruudaha isticmaalka ee wiki-kan."
 }
