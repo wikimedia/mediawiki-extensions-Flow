@@ -414,7 +414,7 @@
 	"flow-revision-permalink-warning-header-first": "Dit is een permanente koppeling naar de eerste versie van deze koptekst.\nU kunt nieuwere versies bekijken op de [$2 geschiedenispagina van dit discussiebord].",
 	"flow-compare-revisions-revision-header": "Version van $1 door {{GENDER:$2|$2}}",
 	"flow-compare-revisions-header-post": "Op deze pagina worden de verschillen tussen twee versies weergegeven van een bericht van {{GENDER:$3|$3}} in het onderwerp \"[$5 $2]\" op [$4 $1].\nU kunt de andere versie van dit bericht bekijken op de [$6 geschiedenispagina].",
-	"flow-compare-revisions-header-postsummary": "Deze pagina toont de verschillen tussen twee versies van het overzicht van het onderwerp \"[$4 $2]\" op [$3 $1].\nU kunt andere versies van dit onderwerpsoverzicht bekijken op de [$5 geschiedenispagina] van het onderwerp.",
+	"flow-compare-revisions-header-postsummary": "Deze pagina geeft de verschillen weer tussen twee versies van het overzicht van het onderwerp \"[$4 $2]\" op [$3 $1].\nU kunt andere versies van dit onderwerpsoverzicht bekijken op de [$5 geschiedenispagina] van het onderwerp.",
 	"flow-compare-revisions-header-header": "Op deze pagina worden de {{GENDER:$2|verschillen}} tussen twee versies weergegeven van de koptekst op [$3 $1].\nU kunt de andere versie van de kop bekijken op de [$4 geschiedenispagina].",
 	"action-flow-create-board": "Gestructureerde Discussieborden aanmaken op alle pagina's",
 	"right-flow-create-board": "Gestructureerde Discussieborden aanmaken op alle pagina's",
