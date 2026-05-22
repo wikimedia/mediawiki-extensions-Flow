@@ -5,8 +5,7 @@ namespace Flow\SpamFilter;
 use Flow\Model\AbstractRevision;
 use Flow\Model\HtmlRenderingInformation;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\ConfirmEdit\Hooks as ConfirmEditHooks;
-use MediaWiki\Extension\ConfirmEdit\SimpleCaptcha\SimpleCaptcha;
+use MediaWiki\Extension\ConfirmEdit\Services\CaptchaFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Status\Status;
@@ -31,9 +30,11 @@ class ConfirmEdit implements SpamFilter {
 		$newContent = $newRevision->getContentInWikitext();
 		$oldContent = ( $oldRevision !== null ) ? $oldRevision->getContentInWikitext() : '';
 
-		/** @var SimpleCaptcha $captcha */
-		$captcha = ConfirmEditHooks::getInstance();
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+		$services = MediaWikiServices::getInstance();
+		/** @var CaptchaFactory $captchaFactory */
+		$captchaFactory = $services->get( 'ConfirmEditCaptchaFactory' );
+		$captcha = $captchaFactory->getGlobalInstance();
+		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $title );
 
 		// first check if the submitted content is offensive (as flagged by
 		// ConfirmEdit), next check for a (valid) captcha to have been entered
