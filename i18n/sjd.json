@@ -7,8 +7,18 @@
 	"flow-newtopic-title-placeholder": "О̄дт те̄ма",
 	"flow-newtopic-header": "Лажьхэ о̄дт те̄ма",
 	"flow-newtopic-save": "Лажьхэ те̄ма",
+	"flow-reply-link": "{{GENDER:$1|Вуэсстлэ}}",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Па̄ссьпушшэ}}}}",
+	"flow-topic-action-lock-topic": "Луэпьтхэ",
+	"flow-topic-action-unlock-topic": "О̄дтсэ те̄ма а̄ввьдэ",
+	"flow-topic-action-update-topic-summary": "О̄дтлаһтӭ оанҍхэсь оа̄нтшаһтҍмуж",
 	"flow-topic-action-watchlist-add": "Кырьйхуввэ тэнн те̄ма э̄л",
+	"flow-terms-of-use-new-topic": "“{{int:flow-newtopic-save}}” э̄л те̄ннҍтлэмэнҍ, то̄нн шӣтак тэнн вики оаннӭм вӯйкнэгэгуэйм.",
+	"flow-terms-of-use-reply": "“{{int:flow-reply-link}}” э̄л те̄ннҍтлэмэнҍ, то̄нн шӣтак тэнн вики оаннӭм вӯйкнэгэгуэйм.",
 	"flow-load-more": "Вя̄л лоа̄дтэ",
+	"flow-terms-of-use-summarize": "“{{int:flow-topic-action-update-topic-summary}}” э̄л те̄ннҍтлэмэнҍ, то̄нн шӣтак тэнн вики оаннӭм вӯйкнэгэгуэйм.",
+	"flow-terms-of-use-lock-topic": "“{{int:flow-topic-action-lock-topic}}” э̄л те̄ннҍтлэмэнҍ, то̄нн шӣтак тэнн вики оаннӭм вӯйкнэгэгуэйм.",
+	"flow-terms-of-use-unlock-topic": "“{{int:flow-topic-action-unlock-topic}}” э̄л те̄ннҍтлэмэнҍ, то̄нн шӣтак тэнн вики оаннӭм вӯйкнэгэгуэйм.",
+	"flow-ve-mention-tool-title": "Муштче оаннӭй",
 	"flow-guidedtour-optin-welcome": "{{GENDER:$1|Пӯррь пуэдтҍмушш}} {{GENDER:$1|то̄н}} о̄дт оаннӭй соа̄рнънэмлысста"
 }
