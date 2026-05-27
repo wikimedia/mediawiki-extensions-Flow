@@ -10,5 +10,6 @@
 	"flow-post-action-edit-post-submit-publish": "Daabac isbeddellada",
 	"flow-topic-action-unlock-topic": "Fur mawduuca mar kale",
 	"flow-topic-action-update-topic-summary": "Cusboonaysii kooban",
+	"flow-compare-revisions-header-postsummary": "Boggan wuxuu muujinayaa isbeddellada u dhexeeya laba nooc oo kooban ee mawduuca \"[$4 $2]\" ee [$3 $1].\nWaxaad ka arki kartaa noocyada kale ee kooban ee mawduucan boggiisa [$5 bogga taariikhda].",
 	"flow-terms-of-use-summarize": "Markaad gujiso \"{{int:flow-topic-action-update-topic-summary}}\", waxaad oggolaanaysaa shuruudaha isticmaalka ee wiki-kan."
 }
