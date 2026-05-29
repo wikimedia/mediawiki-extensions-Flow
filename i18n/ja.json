@@ -29,7 +29,8 @@
 			"Whym",
 			"Yamagata Yusuke",
 			"Yusuke1109",
-			"つぶあん派"
+			"つぶあん派",
+			"Tensama0415"
 		]
 	},
 	"enablestructureddiscussions": "Structured Discussions の有効化",
@@ -63,7 +64,7 @@
 	"logentry-lock-flow-lock-topic-topic-title-not-visible": "$1 が [[$3]] の話題に解決済みとして{{GENDER:$2|印をつけました}}",
 	"logentry-lock-flow-restore-topic-topic-title-not-visible": "$1 が [[$3]] の話題を{{GENDER:$2|再開しました}}",
 	"logentry-import-lqt-to-flow-topic": "[[$3]] の [[$1|$2]] は LiquidThreads から Structured Discussions に取り込まれました。",
-	"abusefilter-edit-builder-vars-board-id": "Wikiの構造化議論の掲示板のページID",
+	"abusefilter-edit-builder-vars-board-id": "Wikiの構造化議論の掲示板のページID ($1)",
 	"flow-board-header-browse-topics-link": "話題を参照",
 	"flow-board-header": "このボードについて",
 	"flow-board-description-can-not-edit": "編集できません",
@@ -428,7 +429,7 @@
 	"flow-ve-mention-placeholder": "利用者名",
 	"flow-ve-mention-tool-title": "ある利用者にメンション",
 	"flow-wikitext-editor-help-and-preview": "ウィキテキストは$1、また、いつでも$2できます。",
-	"flow-wikitext-editor-help-uses-wikitext": "[[mw:Special:MyLanguage/Help:Formatting|マークアップを使用]]",
+	"flow-wikitext-editor-help-uses-wikitext": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Formatting マークアップを使用]",
 	"flow-wikitext-editor-help-preview-the-result": "結果をプレビュー",
 	"flow-mark-revision-patrolled-link-text": "このページを巡回済みにする",
 	"flow-mark-revision-patrolled-link-title": "このページを巡回済みにする",
