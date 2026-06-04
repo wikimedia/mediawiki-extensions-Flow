@@ -237,7 +237,7 @@
 	"notification-header-flow-description-edited": "D'Beschreiwung vu(n) <strong>$1</strong> gouf geännert.",
 	"notification-header-flow-description-edited-user-talk": "D'Beschreiwung gouf op <strong>{{GENDER:$2|Ärer}} Diskussiounssäit</strong> geännert.",
 	"notification-bundle-header-flow-description-edited": "D'Beschreiwung vu(n) <strong>$1</strong> gouf e puer Mol geännert.",
-	"notification-bundle-header-flow-description-edited-user-talk": "D'Beschreiwung gouf e puer Mol op <strong>{{GENDER:$2|Ärer}} Diskussiounssäit</strong> geännert.",
+	"notification-bundle-header-flow-description-edited-user-talk": "D'Beschreiwung gouf e puermol op <strong>{{GENDER:$2|Ärer}} Diskussiounssäit</strong> geännert.",
 	"notification-links-flow-description-edited-view-page": "Säit {{GENDER:$1|weisen}}",
 	"notification-email-subject-flow-description-edited": "{{GENDER:$2|De(n) $1|D'$1|De Benotzer $1}} huet d'Beschreiwung op $2 geännert.",
 	"notification-email-batch-body-flow-description-edited": "{{GENDER:$2|De(n) $1|D'$1|De Benotzer $1}} huet d'Beschreiwung op $2 geännert.",
