@@ -6,7 +6,7 @@
 	},
 	"logentry-suppress-flow-restore-topic-topic-title-not-visible": "$1 ayaa {{GENDER:$2|tirtiray}} mawduuc ku saabsan [[$3]]",
 	"flow-newtopic-save": "Ku dar mawduuc",
-	"flow-reply-link": "Jawaab",
+	"flow-reply-link": "{{GENDER:$1|Jawaab}}",
 	"flow-post-action-edit-post-submit-publish": "Daabac isbeddellada",
 	"flow-topic-action-unlock-topic": "Fur mawduuca mar kale",
 	"flow-topic-action-update-topic-summary": "Cusboonaysii kooban",
