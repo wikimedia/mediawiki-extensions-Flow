@@ -415,6 +415,8 @@
 	"right-flow-delete": "Yapısal Tartışmalar konularını ve gönderileri sil",
 	"action-flow-edit-post": "diğer kullanıcıların gönderdiği Yapısal Tartışmalar gönderilerini düzenle",
 	"right-flow-edit-post": "Diğer kullanıcıların gönderdiği Yapısal Tartışmalar gönderilerini düzenle",
+	"right-flow-edit-title": "Diğer kullanıcıların Yapılandırılmış Tartışma konularının başlığını düzenle",
+	"action-flow-edit-title": "diğer kullanıcıların Yapılandırılmış Tartışma konularının başlığını düzenleme",
 	"action-flow-suppress": "Yapısal Tartışmalar konularını ve gönderilerini gözetleyin",
 	"right-flow-suppress": "Yapısal Tartışmalar konularını ve gönderilerini gözetleyin",
 	"flow-terms-of-use-new-topic": "\"{{int:flow-newtopic-save}}\" düğmesini tıklayarak bu vikinin kullanım şartlarını kabul etmiş olursunuz.",
