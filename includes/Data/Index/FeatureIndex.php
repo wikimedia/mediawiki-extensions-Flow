@@ -486,6 +486,9 @@ abstract class FeatureIndex implements Index {
 	protected function cacheKey( array $attributes ) {
 		global $wgFlowCacheVersion;
 		foreach ( $attributes as $key => $attr ) {
+			if ( $attr === null ) {
+				continue;
+			}
 			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getAlphadecimal();
 			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
