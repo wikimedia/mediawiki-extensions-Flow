@@ -51,7 +51,7 @@ class ChangesListFormatter extends AbstractFormatter {
 
 		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
 			$separator .
-			$this->formatFlags( $flags ) .
+			$this->formatFlags( $flags, $ctx ) .
 			$this->getTitleLink( $data, $row, $ctx ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .
 			' ' .
@@ -223,7 +223,7 @@ class ChangesListFormatter extends AbstractFormatter {
 	/**
 	 * @param RecentChangesRow $row
 	 * @param IContextSource $ctx
-	 * @return array
+	 * @return array<string,bool>
 	 */
 	public function getFlags( RecentChangesRow $row, IContextSource $ctx ) {
 		return [
@@ -235,15 +235,18 @@ class ChangesListFormatter extends AbstractFormatter {
 	}
 
 	/**
-	 * @param array $flags
+	 * @param array<string,bool> $flags
+	 * @param IContextSource $ctx
 	 * @return string
 	 */
-	protected function formatFlags( $flags ) {
-		$flagKeys = array_keys( array_filter( $flags ) );
-		if ( $flagKeys ) {
-			$formattedFlags = array_map( [ ChangesList::class, 'flag' ], $flagKeys );
-			return implode( ' ', $formattedFlags ) . ' ';
+	protected function formatFlags( $flags, IContextSource $ctx ) {
+		$formattedFlags = [];
+		foreach ( $flags as $flag => $value ) {
+			if ( !$value ) {
+				continue;
+			}
+			$formattedFlags[] = ChangesList::flag( $flag, $ctx );
 		}
-		return '';
+		return $formattedFlags ? implode( ' ', $formattedFlags ) . ' ' : '';
 	}
 }
