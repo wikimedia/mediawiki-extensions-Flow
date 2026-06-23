@@ -18,6 +18,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 
@@ -74,9 +75,14 @@ abstract class Utils {
 		$parserFactory = MediaWikiServices::getInstance()->getParsoidParserFactory()->create();
 		$parserOutput = $parserFactory->parse( $wikitext, $title, $parserOptions );
 
-		// $parserOutput->getText() will strip off the body tag, but we want to retain here.
-		// So we'll call ->getContentHolder()->getAsRawHtmlString() here and modify the HTML by ourselves.
-		preg_match( "#<body[^>]*>(.*?)</body>#s", $parserOutput->getContentHolder()->getAsRawHtmlString() ?? '', $html );
+		// $parserOutput is body-only, but we want to retain a <body> wrapper
+		// So we'll convert to full-document form and modify the HTML ourselves
+		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$parserOutput,
+			MediaWikiServices::getInstance()->getParsoidSiteConfig(),
+			bodyOnly: false,
+		);
+		preg_match( "#<body[^>]*>(.*?)</body>#s", $pb->html, $html );
 
 		return $html[0];
 	}
