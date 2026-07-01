@@ -136,7 +136,7 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 						$this->output( "New external store content matches old external store content\n" );
 					} else {
 						$revIdStr = UUID::create( $row->rev_id )->getAlphadecimal();
-						$this->error( "New content for ID $revIdStr does not match prior content.\n" .
+						$this->fatalError( "New content for ID $revIdStr does not match prior content.\n" .
 							"New content: $newContent\nOld content: $oldContent\n\nTerminating dry run.\n",
 							1
 						);
@@ -178,10 +178,9 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 	 * outside is to make it public.
 	 *
 	 * @param string $err
-	 * @param int $die
 	 */
-	public function error( $err, $die = 0 ) {
-		parent::error( $err, $die );
+	public function error( $err ) {
+		parent::error( $err );
 	}
 }
 

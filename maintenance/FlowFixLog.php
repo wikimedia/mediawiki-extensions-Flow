@@ -84,10 +84,9 @@ class FlowFixLog extends LoggedUpdateMaintenance {
 	 * outside is to make it public.
 	 *
 	 * @param string $err
-	 * @param int $die
 	 */
-	public function error( $err, $die = 0 ) {
-		parent::error( $err, $die );
+	public function error( $err ) {
+		parent::error( $err );
 	}
 }
 
