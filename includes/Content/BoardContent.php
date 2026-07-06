@@ -66,24 +66,6 @@ class BoardContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns native representation of the data. Interpretation depends on
-	 * the data model used, as given by getDataModel().
-	 *
-	 * @since 1.21
-	 *
-	 * @return UUID|null The native representation of the content. Could be a
-	 *    string, a nested array structure, an object, a binary blob...
-	 *    anything, really.
-	 *
-	 * @note Caller must be aware of content model!
-	 * @deprecated since 1.33; use ::getWorkflowId() instead.
-	 */
-	public function getNativeData() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->getWorkflowId();
-	}
-
-	/**
 	 * Returns the content's nominal size in bogo-bytes.
 	 *
 	 * @return int
