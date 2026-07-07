@@ -50,7 +50,7 @@
 	"apihelp-flow+moderate-topic-summary": "구조화된 토론 게시물을 중재합니다.",
 	"apihelp-flow+moderate-topic-param-moderationState": "어느 수준으로 중재할지 입니다.",
 	"apihelp-flow+moderate-topic-param-reason": "중재 이유입니다.",
-	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] 주제를 지우기",
+	"apihelp-flow+moderate-topic-example-1": "[[Topic:S2tycnas4hcucw8w]] 주제를 삭제하기",
 	"apihelp-flow+new-topic-summary": "지정된 워크플로에서 구조화된 토론 주제를 새로 만듭니다.",
 	"apihelp-flow+new-topic-param-topic": "새 주제 제목의 텍스트입니다.",
 	"apihelp-flow+new-topic-param-content": "해당 주제의 첫 번째 답변에 대한 내용입니다.",
