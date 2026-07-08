@@ -450,5 +450,5 @@
 	"flow-optin-restore-flow-board": "アーカイブ化された議論ボードを復元",
 	"flow-guidedtour-optin-find-old-conversations": "{{GENDER:$1|あなた}}の過去の会話を探す",
 	"flow-guidedtour-optin-feedback": "{{GENDER:$1|あなた}}のフィードバックをください。",
-	"flow-preference-visualeditor": "構造化された議論でビジュアルエディタと新しいウィキテキストモードを有効にする"
+	"flow-preference-visualeditor": "構造化された議論でビジュアルエディターと新しいウィキテキストモードを有効にする"
 }
