@@ -15,6 +15,7 @@
 	"flow-post-action-edit-post": "Рэдагаваць",
 	"flow-error-fail-load-history": "Не ўдалося заладаваць гістарычны зьмест.",
 	"flow-error-fail-load-data": "Не ўдалося заладаваць запытаныя зьвесткі.",
+	"flow-topic-comments": "{{PLURAL:$1|Адзін камэнтар|$1 камэнтары|$1 камэнтароў|0={{GENDER:$2|Зрабіце}} першы камэнтар!}}",
 	"echo-category-title-flow-discussion": "Структураваная дыскусія",
 	"echo-pref-tooltip-flow-discussion": "Абвяшчаць мяне пра актыўнасьць у тэмах і на старонках, за якімі я сьляджу.",
 	"flow-moderation-confirm-suppress-topic": "Прыхаваць",

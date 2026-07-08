@@ -66,6 +66,7 @@
 	"flow-history-last4": "గత 4 గంటల్లో",
 	"flow-history-day": "నేడు",
 	"flow-history-week": "క్రిందటి వారం",
+	"notification-bundle-header-flow-summary-edited": "\"<strong>$1</strong>\" సారాంశాన్ని పలుమార్లు తాజాకరించారు.",
 	"echo-category-title-flow-discussion": "ఫ్లో",
 	"echo-pref-tooltip-flow-discussion": "ఫ్లోలో నాకు సంబంధించిన విషయాలేమైనా ఉంటే నాకు కబురుపెట్టు",
 	"flow-link-post": "పంపించు",
