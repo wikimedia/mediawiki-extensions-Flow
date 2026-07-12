@@ -125,6 +125,7 @@ return [
 		// Always returns the correct database for flow storage
 		$config = $services->getMainConfig();
 		return new DbFactory(
+			$services->getDBLoadBalancerFactory(),
 			$config->get( 'FlowDefaultWikiDb' ),
 			$config->get( 'FlowCluster' )
 		);

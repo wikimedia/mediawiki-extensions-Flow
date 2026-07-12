@@ -2,10 +2,10 @@
 
 namespace Flow;
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBReplicationWaitError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * All classes within Flow that need to access the Flow db will go through
@@ -36,10 +36,15 @@ class DbFactory {
 	protected $forcePrimary = false;
 
 	/**
+	 * @param LBFactory $lbFactory
 	 * @param string|false $wiki Wiki ID, or false for the current wiki
 	 * @param string|false $cluster External storage cluster, or false for core
 	 */
-	public function __construct( $wiki, $cluster ) {
+	public function __construct(
+		private readonly LBFactory $lbFactory,
+		$wiki,
+		$cluster,
+	) {
 		$this->wiki = $wiki;
 		$this->cluster = $cluster;
 
@@ -69,11 +74,10 @@ class DbFactory {
 	 * @return \Wikimedia\Rdbms\ILoadBalancer
 	 */
 	private function getLB() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		if ( $this->cluster !== false ) {
-			return $lbFactory->getExternalLB( $this->cluster );
+			return $this->lbFactory->getExternalLB( $this->cluster );
 		} else {
-			return $lbFactory->getMainLB( $this->wiki );
+			return $this->lbFactory->getMainLB( $this->wiki );
 		}
 	}
 
@@ -85,17 +89,15 @@ class DbFactory {
 	 * @return IDatabase|IReadableDatabase
 	 */
 	public function getWikiDB( $db, $wiki = false ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		return $lbFactory->getMainLB( $wiki )->getConnection( $this->forcePrimary ? DB_PRIMARY : $db, [], $wiki );
+		return $this->lbFactory->getMainLB( $wiki )->getConnection( $this->forcePrimary ? DB_PRIMARY : $db, [], $wiki );
 	}
 
 	/**
 	 * Wait for the replicas of the Flow database
 	 */
 	public function waitForReplicas() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		try {
-			$lbFactory->waitForReplication( [
+			$this->lbFactory->waitForReplication( [
 				'wiki' => $this->wiki,
 				'cluster' => $this->cluster,
 				'ifWritesSince' => false
