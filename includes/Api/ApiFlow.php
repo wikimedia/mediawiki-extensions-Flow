@@ -8,8 +8,9 @@ use Flow\Hooks\HookRunner;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiModuleManager;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Title\Title;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class ApiFlow extends ApiBase {
@@ -47,15 +48,16 @@ class ApiFlow extends ApiBase {
 		'view-topic-summary' => \Flow\Api\ApiFlowViewTopicSummary::class,
 	];
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 */
-	public function __construct( $main, $action ) {
+	public function __construct(
+		ApiMain $main,
+		string $action,
+		private readonly HookContainer $hookContainer,
+		ObjectFactory $objectFactory,
+	) {
 		parent::__construct( $main, $action );
 		$this->moduleManager = new ApiModuleManager(
 			$this,
-			MediaWikiServices::getInstance()->getObjectFactory()
+			$objectFactory
 		);
 
 		$enabledModules = self::ALWAYS_ENABLED_MODULES;
@@ -103,7 +105,7 @@ class ApiFlow extends ApiBase {
 		} catch ( InvalidInputException $e ) {
 			$this->dieWithError( $e->getMessageObject(), null, null, 400 );
 		}
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onAPIFlowAfterExecute( $module );
+		( new HookRunner( $this->hookContainer ) )->onAPIFlowAfterExecute( $module );
 	}
 
 	/**

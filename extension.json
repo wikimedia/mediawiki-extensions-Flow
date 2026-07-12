@@ -28,7 +28,13 @@
 	"callback": "Flow\\Hooks::registerExtension",
 	"APIModules": {
 		"flow-parsoid-utils": "Flow\\Api\\ApiParsoidUtilsFlow",
-		"flow": "Flow\\Api\\ApiFlow"
+		"flow": {
+			"class": "Flow\\Api\\ApiFlow",
+			"services": [
+				"HookContainer",
+				"ObjectFactory"
+			]
+		}
 	},
 	"APIPropModules": {
 		"flowinfo": "Flow\\Api\\ApiQueryPropFlowInfo"
