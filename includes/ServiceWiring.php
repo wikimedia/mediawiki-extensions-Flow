@@ -28,6 +28,10 @@ use Flow\Formatter\TopicFormatter;
 use Flow\Formatter\TopicListFormatter;
 use Flow\Import\ArchiveNameHelper;
 use Flow\Import\OptInController;
+use Flow\Model\TopicListEntry;
+use Flow\Model\URLReference;
+use Flow\Model\WikiReference;
+use Flow\Model\Workflow;
 use Flow\Notifications\Controller as NotificationsController;
 use Flow\OccupationController;
 use Flow\Parsoid\ContentFixer;
@@ -310,13 +314,13 @@ return [
 		// Must be BasicObjectMapper, due to variance in when
 		// we have workflow_last_update_timestamp
 		return BasicObjectMapper::model(
-			\Flow\Model\TopicListEntry::class
+			TopicListEntry::class
 		);
 	},
 
 	'FlowStorage.UrlReference' => static function ( MediaWikiServices $services ): ObjectManager {
 		$urlReferenceMapper = BasicObjectMapper::model(
-			\Flow\Model\URLReference::class
+			URLReference::class
 		);
 		$urlReferenceBackend = new BasicDbStorage(
 			// factory and table
@@ -376,7 +380,7 @@ return [
 
 	'FlowStorage.WikiReference' => static function ( MediaWikiServices $services ): ObjectManager {
 		$wikiReferenceMapper = BasicObjectMapper::model(
-			\Flow\Model\WikiReference::class
+			WikiReference::class
 		);
 		$wikiReferenceBackend = new BasicDbStorage(
 			$services->getService( 'FlowDbFactory' ),
@@ -438,7 +442,7 @@ return [
 		MediaWikiServices $services
 	): CachingObjectMapper {
 		return CachingObjectMapper::model(
-			\Flow\Model\Workflow::class,
+			Workflow::class,
 			[ 'workflow_id' ]
 		);
 	},
@@ -535,7 +539,7 @@ return [
 	},
 
 	'FlowWatchedTopicItems' => static function ( MediaWikiServices $services ): WatchedTopicItems {
-		return new Flow\WatchedTopicItems(
+		return new WatchedTopicItems(
 			$services->getService( 'FlowUser' ),
 			$services->getConnectionProvider()->getReplicaDatabase()
 		);
