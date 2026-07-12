@@ -14,7 +14,6 @@ use Flow\Model\Workflow;
 use Flow\OccupationController;
 use Flow\Repository\TreeRepository;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
@@ -230,7 +229,7 @@ class FlowRemoveOldTopics extends Maintenance {
 		$dbr = $this->dbFactory->getDB( DB_REPLICA );
 		$batchSize = $this->getBatchSize();
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$talkpageManager = $occupationController->getTalkpageManager();
 
 		// start from around unix epoch - there can be no Flow data before that

@@ -9,7 +9,6 @@ use Flow\Import\LiquidThreadsApi\LocalApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\OccupationController;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Psr\Log\LogLevel;
 
@@ -52,7 +51,7 @@ class ConvertLqtPageOnLocalWiki extends Maintenance {
 		}
 
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$talkPageManagerUser = $occupationController->getTalkpageManager();
 
 		$api = new LocalApiBackend( $talkPageManagerUser );

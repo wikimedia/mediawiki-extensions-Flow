@@ -9,7 +9,6 @@ use Flow\Import\LiquidThreadsApi\RemoteApiBackend;
 use Flow\Import\SourceStore\FileImportSourceStore;
 use Flow\OccupationController;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Psr\Log\LogLevel;
 
@@ -60,7 +59,7 @@ class ConvertLqtPageFromRemoteApiForTesting extends Maintenance {
 		$importer->setAllowUnknownUsernames( true );
 
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$talkPageManagerUser = $occupationController->getTalkpageManager();
 
 		$srcPageName = $this->getOption( 'srcpage' );

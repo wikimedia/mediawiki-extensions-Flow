@@ -33,7 +33,7 @@ class ImplementLqtFixes extends Maintenance {
 		}
 
 		// Use FlowTalkpageManager user for edits, as in convertLqtPageOnLocalWiki.php
-		$occupationController = \MediaWiki\MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$user = $occupationController->getTalkpageManager();
 		$summary = 'Automated LQT porting fix';
 
@@ -49,7 +49,7 @@ class ImplementLqtFixes extends Maintenance {
 				continue;
 			}
 
-			$wikiPage = \MediaWiki\MediaWikiServices::getInstance()
+			$wikiPage = $this->getServiceContainer()
 				->getWikiPageFactory()
 				->newFromTitle( $title );
 			$dbPageId = $wikiPage->getId();

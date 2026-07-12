@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\DbFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -55,8 +54,8 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 	public function execute() {
 		$this->dbFactory = Container::get( 'db.factory' );
 
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
-		$movePageFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
+		$movePageFactory = $this->getServiceContainer()->getMovePageFactory();
 		$moveUser = $occupationController->getTalkpageManager();
 
 		$dryRun = $this->hasOption( 'dry-run' );
@@ -214,7 +213,7 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 	 * @return Status Contains subpage as value
 	 */
 	protected function findValidSubpage( Title $coreTitle, string $subpage, User $moveUser ) {
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 
 		$status = Status::newGood();
 
@@ -251,7 +250,7 @@ class FlowMoveBoardsToSubpages extends Maintenance {
 	 * @return Status
 	 */
 	protected function createStubPage( Title $title, Title $archiveTitle, User $user ) {
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		// doUserEditContent will do this anyway, but we need to now for the revision.
 		$page->loadPageData( IDBAccessObject::READ_LATEST );
 

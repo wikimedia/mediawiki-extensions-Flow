@@ -13,7 +13,6 @@ use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
 use Flow\Utils\PagesWithPropertyIterator;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -83,7 +82,7 @@ class ConvertAllLqtPages extends Maintenance {
 
 		$importer = Container::get( 'importer' );
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$talkpageManagerUser = $occupationController->getTalkpageManager();
 
 		$dbw = $this->getPrimaryDB();

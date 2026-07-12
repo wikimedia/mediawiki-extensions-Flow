@@ -9,7 +9,6 @@ use Flow\Import\Wikitext\ConversionStrategy;
 use Flow\OccupationController;
 use Flow\Utils\NamespaceIterator;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
@@ -82,7 +81,7 @@ class ConvertNamespaceFromWikitext extends Maintenance {
 
 		$dbw = $this->getPrimaryDB();
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		$talkpageManager = $occupationController->getTalkpageManager();
 		$converter = new Converter(
 			$dbw,

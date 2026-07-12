@@ -5,7 +5,6 @@ namespace Flow\Maintenance;
 use Flow\OccupationController;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
@@ -121,7 +120,7 @@ class FlowCreateTemplates extends LoggedUpdateMaintenance {
 		}
 
 		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
+		$occupationController = $this->getServiceContainer()->getService( 'FlowTalkpageManager' );
 		return $page->doUserEditContent(
 			$content,
 			$occupationController->getTalkpageManager(),
