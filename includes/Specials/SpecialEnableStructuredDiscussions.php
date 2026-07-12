@@ -7,11 +7,12 @@ use Flow\Import\Converter;
 use Flow\Import\EnableFlow\EnableFlowWikitextConversionStrategy;
 use Flow\Import\SourceStore\NullImportSourceStore;
 use MediaWiki\Exception\MWExceptionHandler;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -34,7 +35,10 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 	 */
 	protected $page = '';
 
-	public function __construct() {
+	public function __construct(
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly ParserFactory $parserFactory,
+	) {
 		parent::__construct( 'EnableStructuredDiscussions' );
 
 		$this->loaderFactory = Container::get( 'factory.loader.workflow' );
@@ -112,12 +116,12 @@ class SpecialEnableStructuredDiscussions extends FormSpecialPage {
 			$logger = Container::get( 'default_logger' );
 
 			$converter = new Converter(
-				MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase(),
+				$this->connectionProvider->getPrimaryDatabase(),
 				Container::get( 'importer' ),
 				$logger,
 				$this->getUser(),
 				new EnableFlowWikitextConversionStrategy(
-					MediaWikiServices::getInstance()->getParser(),
+					$this->parserFactory->getInstance(),
 					new NullImportSourceStore(),
 					$logger,
 					$this->getUser(),

@@ -120,7 +120,13 @@
 	},
 	"SpecialPages": {
 		"StructuredDiscussions": "Flow\\Specials\\SpecialStructuredDiscussions",
-		"EnableStructuredDiscussions": "Flow\\Specials\\SpecialEnableStructuredDiscussions"
+		"EnableStructuredDiscussions": {
+			"class": "Flow\\Specials\\SpecialEnableStructuredDiscussions",
+			"services": [
+				"ConnectionProvider",
+				"ParserFactory"
+			]
+		}
 	},
 	"MessagesDirs": {
 		"Flow": [
