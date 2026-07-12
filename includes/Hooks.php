@@ -17,10 +17,13 @@ use MediaWiki\Actions\Hook\InfoActionHook;
 use MediaWiki\Actions\Hook\UnwatchArticleHook;
 use MediaWiki\Actions\Hook\WatchArticleHook;
 use MediaWiki\Api\Hook\ApiFeedContributions__feedItemHook;
+use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Category\Hook\CategoryViewerGenerateLinkHook;
 use MediaWiki\CheckUser\CheckUser\Pagers\AbstractCheckUserPager;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -40,6 +43,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Import\Hook\ImportHandleToplevelXMLTagHook;
 use MediaWiki\Import\WikiImporter;
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -94,10 +98,13 @@ use MediaWiki\Storage\Hook\ArticleEditUpdateNewTalkHook;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Hook\UserGetReservedNamesHook;
 use MediaWiki\User\Options\Hook\SaveUserOptionsHook;
+use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use stdClass;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use XMLReader;
 
@@ -146,6 +153,18 @@ class Hooks implements
 	SaveUserOptionsHook,
 	GetUserPermissionsErrorsHook
 {
+	public function __construct(
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly ContentRenderer $contentRenderer,
+		private readonly OccupationController $talkpageManager,
+		private readonly HTMLCacheUpdater $htmlCache,
+		private readonly LinkRenderer $linkRenderer,
+		private readonly RealTempUserConfig $tempUserConfig,
+		private readonly UserFactory $userFactory,
+	) {
+	}
+
 	/**
 	 * @var AbuseFilter|null Initialized during extension initialization
 	 */
@@ -664,7 +683,7 @@ class Hooks implements
 		/** @var FlowActions $actions */
 		$actions = Container::get( 'flow_actions' );
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 
 		foreach ( $actions->getActions() as $action ) {
 			foreach ( $logTypes as $logType ) {
@@ -1140,9 +1159,7 @@ class Hooks implements
 			return false;
 		}
 
-		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
-		$flowStatus = $occupationController->checkIfCreationIsPossible( $newTitle, /*mustNotExist*/ true );
+		$flowStatus = $this->talkpageManager->checkIfCreationIsPossible( $newTitle, /*mustNotExist*/ true );
 		$status->merge( $flowStatus );
 
 		return true;
@@ -1171,9 +1188,7 @@ class Hooks implements
 			return;
 		}
 
-		/** @var OccupationController $occupationController */
-		$occupationController = MediaWikiServices::getInstance()->getService( 'FlowTalkpageManager' );
-		$permissionStatus = $occupationController->checkIfUserHasPermission(
+		$permissionStatus = $this->talkpageManager->checkIfUserHasPermission(
 			$newTitle,
 			$user
 		);
@@ -1203,10 +1218,9 @@ class Hooks implements
 			return;
 		}
 
-		$htmlCache = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$urls = array_merge(
 			$urls,
-			$htmlCache->getUrls( $workflow->getOwnerTitle() )
+			$this->htmlCache->getUrls( $workflow->getOwnerTitle() )
 		);
 	}
 
@@ -1257,7 +1271,7 @@ class Hooks implements
 		}
 
 		$content = $revision->getContent( 'topic-title-plaintext' );
-		$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink( $title, $content );
+		$link = $this->linkRenderer->makeLink( $title, $content );
 	}
 
 	/**
@@ -1460,7 +1474,7 @@ class Hooks implements
 			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD ) {
 			$storage = Container::get( 'storage' );
 
-			DeferredUpdates::addCallableUpdate( static function () use ( $storage, $articleId ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $storage, $articleId ) {
 				/** @var Model\Workflow[] $workflows */
 				$workflows = $storage->find( 'Workflow', [
 					'workflow_wiki' => WikiMap::getCurrentWikiId(),
@@ -1477,8 +1491,7 @@ class Hooks implements
 					}
 				}
 
-				$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
-				$hcu->purgeTitleUrls( $topicTitles, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
+				$this->htmlCache->purgeTitleUrls( $topicTitles, HTMLCacheUpdater::PURGE_INTENT_TXROUND_REFLECTED );
 			} );
 		}
 	}
@@ -1577,12 +1590,10 @@ class Hooks implements
 			throw new FlowException( 'Non-existent topic' );
 		}
 
-		$services = MediaWikiServices::getInstance();
-		$emptyContent = $services->getContentHandlerFactory()
+		$emptyContent = $this->contentHandlerFactory
 			->getContentHandler( CONTENT_MODEL_FLOW_BOARD )->makeEmptyContent();
-		$contentRenderer = $services->getContentRenderer();
 		$parserOptions = ParserOptions::newFromAnon();
-		$parserOutput = $contentRenderer->getParserOutput( $emptyContent, $article->getTitle(), null, $parserOptions );
+		$parserOutput = $this->contentRenderer->getParserOutput( $emptyContent, $article->getTitle(), null, $parserOptions );
 		$article->getContext()->getOutput()->addParserOutput( $parserOutput, $parserOptions );
 
 		return false;
@@ -1665,7 +1676,7 @@ class Hooks implements
 		$action = null;
 
 		$optInController = Container::get( 'controller.opt_in' );
-		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
+		$user = $this->userFactory->newFromUserIdentity( $user );
 		if ( !$before && $after ) {
 			$action = OptInController::ENABLE;
 			// Check if the user had a flow board
@@ -1972,7 +1983,7 @@ class Hooks implements
 	) {
 		$hidePageEdits = $opts->getValue( 'hidepageedits' );
 		if ( $hidePageEdits ) {
-			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+			$dbr = $this->connectionProvider->getReplicaDatabase();
 			$conds[] = $dbr->expr( 'rc_source', '!=', RecentChangesListener::SRC_FLOW );
 		}
 	}
@@ -1984,12 +1995,11 @@ class Hooks implements
 	public function onGetUserPermissionsErrors( $title, $user, $action, &$result ) {
 		global $wgFlowReadOnly;
 
-		$tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
 		// Flow has no support for temp accounts. If temp accounts are
 		// known on the wiki, don't let anonymous users edit, and
 		// don't let temporary users edit either.
 		if (
-			$tempUserConfig->isKnown() && !$user->isNamed() &&
+			$this->tempUserConfig->isKnown() && !$user->isNamed() &&
 			$title->getContentModel() === CONTENT_MODEL_FLOW_BOARD &&
 			$action !== 'read'
 		) {

@@ -26,6 +26,20 @@ use MediaWikiIntegrationTestCase;
  * @group Database
  */
 class HookTest extends MediaWikiIntegrationTestCase {
+	private function newHooks() {
+		$services = $this->getServiceContainer();
+		return new Hooks(
+			$services->getConnectionProvider(),
+			$services->getContentHandlerFactory(),
+			$services->getContentRenderer(),
+			$services->getService( 'FlowTalkpageManager' ),
+			$services->getHTMLCacheUpdater(),
+			$services->getLinkRenderer(),
+			$services->getTempUserConfig(),
+			$services->getUserFactory(),
+		);
+	}
+
 	public static function onIRCLineURLProvider() {
 		// data providers do not run in the same context as the actual test, as such we
 		// can't create Title objects because they can have the wrong wikiID.  Instead we
@@ -236,7 +250,7 @@ class HookTest extends MediaWikiIntegrationTestCase {
 		$url = 'unset';
 		$query = 'unset';
 
-		( new Hooks )->onIRCLineURL( $url, $query, $rc );
+		( $this->newHooks() )->onIRCLineURL( $url, $query, $rc );
 		$expectedQuery['title'] = $metadata['workflow']->getArticleTitle()->getPrefixedDBkey();
 
 		$parts = parse_url( $url );

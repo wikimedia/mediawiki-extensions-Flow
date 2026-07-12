@@ -664,7 +664,17 @@
 			"class": "Flow\\EchoHooks"
 		},
 		"main": {
-			"class": "Flow\\Hooks"
+			"class": "Flow\\Hooks",
+			"services": [
+				"ConnectionProvider",
+				"ContentHandlerFactory",
+				"ContentRenderer",
+				"FlowTalkpageManager",
+				"HTMLCacheUpdater",
+				"LinkRenderer",
+				"TempUserConfig",
+				"UserFactory"
+			]
 		},
 		"schema": {
 			"class": "Flow\\SchemaHooks"
