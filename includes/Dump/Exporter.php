@@ -19,11 +19,11 @@ use Flow\Search\Iterators\TopicIterator;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Export\WikiExporter;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\User;
 use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\WikiMap\WikiMap;
@@ -94,6 +94,7 @@ class Exporter extends WikiExporter {
 	public function __construct(
 		$db,
 		CommentStore $commentStore,
+		CentralIdLookupFactory $centralIdLookupFactory,
 		HookContainer $hookContainer,
 		RevisionStore $revisionStore,
 		TitleParser $titleParser,
@@ -116,9 +117,7 @@ class Exporter extends WikiExporter {
 		$this->changeTypeProperty = new ReflectionProperty( AbstractRevision::class, 'changeType' );
 
 		try {
-			$this->lookup = MediaWikiServices::getInstance()
-				->getCentralIdLookupFactory()
-				->getLookup( 'CentralAuth' );
+			$this->lookup = $centralIdLookupFactory->getLookup( 'CentralAuth' );
 		} catch ( \Throwable ) {
 			$this->lookup = null;
 		}

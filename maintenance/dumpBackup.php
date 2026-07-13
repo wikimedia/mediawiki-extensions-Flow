@@ -86,6 +86,7 @@ TEXT
 		$exporter = new Exporter(
 			$db,
 			$services->getCommentStore(),
+			$services->getCentralIdLookupFactory(),
 			$services->getHookContainer(),
 			$services->getRevisionStore(),
 			$services->getTitleParser(),
