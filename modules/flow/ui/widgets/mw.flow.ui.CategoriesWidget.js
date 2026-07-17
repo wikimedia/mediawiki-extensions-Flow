@@ -45,7 +45,7 @@
 					.prop( 'id', 'mw-normal-catlinks' )
 					.append(
 						this.$categoriesLabel,
-						mw.msg( 'colon-separator' ),
+						mw.message( 'colon-separator' ).escaped(),
 						this.$group
 					)
 					.addClass( 'mw-normal-catlinks flow-board-header-category-view' )
