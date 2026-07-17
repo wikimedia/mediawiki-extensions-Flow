@@ -13,7 +13,7 @@
 			.append(
 				$( '<div>' )
 					.addClass( 'flow-guidedtour-optin-firststep-description-image' ),
-				mw.msg( 'flow-guidedtour-optin-welcome-description' )
+				mw.message( 'flow-guidedtour-optin-welcome-description' ).escaped()
 			);
 
 	tour
