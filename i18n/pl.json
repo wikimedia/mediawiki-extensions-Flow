@@ -30,7 +30,8 @@
 			"Vuh",
 			"WTM",
 			"Wiochman",
-			"Woytecr"
+			"Woytecr",
+			"PanWor"
 		]
 	},
 	"enablestructureddiscussions": "Włącz Flow",
@@ -289,7 +290,7 @@
 	"flow-workflow": "cykl pracy",
 	"flow-notification-reply": "<span class=\"plainlinks mw-echo-title-heading\">[$5 $2]</span><br />$1 {{GENDER:$1|odpowiedział|odpowiedziała|odpowiedział(a)}} na <strong>$4</strong>..",
 	"flow-notification-reply-bundle": "<span class=\"plainlinks mw-echo-title-heading\">[$4 $2]</span><br />$1 i {{PLURAL:$5|jeden inny|$5 innych|100=99+ innych}} {{PLURAL:$5|{{GENDER:$1|odpowiedział|odpowiedziała}}|odpowiedzieli}} na '''$3'''.",
-	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|edytował|edytowała}} twój <span class=\"plainlinks\">[$5 post]</span> na [[$3|$4]].",
+	"flow-notification-edit": "<span class=\"plainlinks mw-echo-title-heading\">[$6 $2]</span><br />$1 {{GENDER:$1|edytował|edytowała|edytował(a)}} Twój <span class=\"plainlinks\">[$5 post]</span> na [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 i {{PLURAL:$5|jeden inny|$5 innych|100=99+ innych}} {{PLURAL:$5|{{GENDER:$1|edytował|edytowała}}|edytowali}} <span class=\"plainlinks\">[$4 post]</span> w „$2” na $3.",
 	"notification-header-flow-new-topic-v2": "Utworzono nowy wątek w <strong>$3</strong>: <bdi>„<strong>$4</strong>”</bdi>.",
 	"notification-bundle-header-flow-new-topic": "{{PLURAL:$1|Jeden nowy wątek|$1 nowe wątki|$1 nowych wątków|100=Ponad 99 nowych wątków}} na stronie <strong>$3</strong>.",
@@ -503,8 +504,8 @@
 	"flow-ve-mention-tool-title": "Oznacz użytkownika",
 	"flow-ve-mention-template-title": "FlowMention",
 	"flow-ve-mention-inspector-invalid-user": "Nazwa użytkownika \"$1\" nie jest zarejestrowana.",
-	"flow-wikitext-editor-help": "Wikitekst $1.",
-	"flow-wikitext-editor-help-and-preview": "Wikitekst $1. W każdej chwili możesz zobaczyć $2.",
+	"flow-wikitext-editor-help": "Wikikod $1.",
+	"flow-wikitext-editor-help-and-preview": "Wikikod $1. W każdej chwili możesz zobaczyć $2.",
 	"flow-wikitext-editor-help-uses-wikitext": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Formatting korzysta ze znaczników]",
 	"flow-wikitext-editor-help-preview-the-result": "podgląd wyniku",
 	"flow-mark-revision-patrolled-link-text": "Oznacz tę stronę jako „sprawdzoną”",
