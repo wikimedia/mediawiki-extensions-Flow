@@ -1,8 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
-	"apihelp-flow+new-topic-param-topic": "د نوې موضوع د سرليک متن."
+	"apihelp-flow-param-page": "هغه مخ چې چاره بايد پرې ترسره شي.",
+	"apihelp-flow+edit-header-summary": "د جرگې څرگنداوی سمول.",
+	"apihelp-flow+edit-header-param-content": "د څرگنداوي منځپانگه.",
+	"apihelp-flow+edit-title-summary": "د سکالو سرليک سمول.",
+	"apihelp-flow+new-topic-param-topic": "د نوې موضوع د سرليک متن.",
+	"apihelp-flow+view-header-summary": "د جرگې څرگنداوی کتل.",
+	"apihelp-flow+view-topiclist-summary": "د سکالوگانو لړليک کتل.",
+	"apihelp-flow+undo-edit-topic-summary-param-startId": "د بياليدنې پېژند چې ناکړ ترې پيلېږي."
 }
