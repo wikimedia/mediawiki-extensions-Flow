@@ -28,7 +28,8 @@
 			"Tuliouel",
 			"Walesson",
 			"EGobi",
-			"Fúlvio"
+			"Fúlvio",
+			"NenhumaFênix"
 		]
 	},
 	"content-model-flow-board": "Quadro de discussões estruturadas",
@@ -118,7 +119,7 @@
 	"flow-reply-link": "{{GENDER:$1|Responder}}",
 	"flow-reply-link-anonymously": "Responder anonimamente",
 	"flow-thank-link": "{{GENDER:$1|{{GENDER:$2|Agradecer}}}}",
-	"flow-thank-link-title": "{{GENDER:$1|Agradecer}} publicamente {{GENDER:$2|ao editor|à autora}}",
+	"flow-thank-link-title": "{{GENDER:$1|Agradecer}} publicamente {{GENDER:$2|ao editor|à autora|a editor(a)}}",
 	"flow-history-action-suppress-post": "suprimir",
 	"flow-history-action-delete-post": "excluir",
 	"flow-history-action-hide-post": "ocultar",
