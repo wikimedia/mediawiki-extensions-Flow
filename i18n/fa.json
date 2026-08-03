@@ -487,7 +487,7 @@
 	"flow-importer-lqt-suppressed-user-template-content": "این نسخه از ال‌کیوتی با یک کاربر فرونشانده درون‌ریزی شد و به کاربر فعلی منصوب شده است.",
 	"flow-importer-lqt-different-author-signature-template": "ارسال ال‌کیوتی درون‌ریزی شده با کاربری با امضای متفاوت",
 	"flow-importer-lqt-different-author-signature-template-content": "<em>این ارسال توسط [[User:{{{authorUser}}}|{{{authorUser}}}]] فرستاده شده بود، اما امضای [[User:{{{signatureUser}}}|{{{signatureUser}}}]] را داشت.</em>",
-	"flow-edited": "ویرایش شده",
+	"flow-edited": "ویرایش‌شده",
 	"flow-edited-by": "ویرایش شده توسط $1",
 	"flow-edited-by-header": "توضیحات تالار توسط $1 ویرایش شد",
 	"flow-edited-by-topic-title": "عنوان مبحث توسط $1 ویرایش شد",
