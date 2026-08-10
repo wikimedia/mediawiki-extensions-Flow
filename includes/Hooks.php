@@ -17,6 +17,7 @@ use MediaWiki\Actions\Hook\InfoActionHook;
 use MediaWiki\Actions\Hook\UnwatchArticleHook;
 use MediaWiki\Actions\Hook\WatchArticleHook;
 use MediaWiki\Api\Hook\ApiFeedContributions__feedItemHook;
+use MediaWiki\Category\Hook\CategoryViewerGenerateLinkHook;
 use MediaWiki\CheckUser\CheckUser\Pagers\AbstractCheckUserPager;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\Content;
@@ -29,7 +30,6 @@ use MediaWiki\Extension\BetaFeatures\BetaFeatures;
 use MediaWiki\Extension\GuidedTour\GuidedTourLauncher;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Hook\CategoryViewer__doCategoryQueryHook;
-use MediaWiki\Hook\CategoryViewer__generateLinkHook;
 use MediaWiki\Hook\MovePageCheckPermissionsHook;
 use MediaWiki\Hook\MovePageIsValidMoveHook;
 use MediaWiki\Hook\PageMoveCompletingHook;
@@ -53,6 +53,7 @@ use MediaWiki\Page\Hook\ArticleDeleteHook;
 use MediaWiki\Page\Hook\ArticleUndeleteHook;
 use MediaWiki\Page\Hook\RevisionUndeletedHook;
 use MediaWiki\Page\Hook\ShowMissingArticleHook;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Pager\IndexPager;
 use MediaWiki\Parser\ParserOptions;
@@ -134,7 +135,7 @@ class Hooks implements
 	WatchlistEditorBuildRemoveLineHook,
 	WatchlistEditorBeforeFormRenderHook,
 	CategoryViewer__doCategoryQueryHook,
-	CategoryViewer__generateLinkHook,
+	CategoryViewerGenerateLinkHook,
 	ArticleConfirmDeleteHook,
 	ArticleDeleteHook,
 	ArticleDeleteCompleteHook,
@@ -1344,11 +1345,17 @@ class Hooks implements
 		$query->loadMetadataBatch( $res );
 	}
 
-	public function onCategoryViewer__generateLink( $type, $title, $html, &$link ) {
-		if ( $type !== 'page' || $title->getNamespace() !== NS_TOPIC ) {
+	public function onCategoryViewerGenerateLink(
+		IContextSource $context,
+		string $type,
+		PageReference $page,
+		string $html,
+		?string &$link,
+	) {
+		if ( $type !== 'page' || $page->getNamespace() !== NS_TOPIC ) {
 			return;
 		}
-		$uuid = UUID::create( strtolower( $title->getDBkey() ) );
+		$uuid = UUID::create( strtolower( $page->getDBkey() ) );
 		if ( !$uuid ) {
 			return;
 		}

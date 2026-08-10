@@ -715,7 +715,7 @@
 		"WatchlistEditorBuildRemoveLine": "main",
 		"WatchlistEditorBeforeFormRender": "main",
 		"CategoryViewer::doCategoryQuery": "main",
-		"CategoryViewer::generateLink": "main",
+		"CategoryViewerGenerateLink": "main",
 		"ArticleConfirmDelete": "main",
 		"ArticleDelete": "main",
 		"ArticleDeleteComplete": "main",
