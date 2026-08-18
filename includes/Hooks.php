@@ -1349,7 +1349,7 @@ class Hooks implements
 		IContextSource $context,
 		string $type,
 		PageReference $page,
-		string $html,
+		?string $html,
 		?string &$link,
 	) {
 		if ( $type !== 'page' || $page->getNamespace() !== NS_TOPIC ) {
