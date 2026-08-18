@@ -10,7 +10,7 @@ namespace Flow\Maintenance;
 use Exception;
 use Flow\Container;
 use Flow\WorkflowLoaderFactory;
-use MediaWiki\Extension\Notifications\DbFactory;
+use MediaWiki\Extension\Notifications\DbDomains;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\BatchRowIterator;
@@ -44,9 +44,9 @@ class FlowUpdateResolvedNotifTitles extends LoggedUpdateMaintenance {
 	}
 
 	public function doDBUpdates() {
-		$dbFactory = DbFactory::newFromDefault();
-		$dbw = $dbFactory->getEchoDb( DB_PRIMARY );
-		$dbr = $dbFactory->getEchoDb( DB_REPLICA );
+		$dbProvider = $this->getServiceContainer()->getConnectionProvider();
+		$dbw = $dbProvider->getPrimaryDatabase( DbDomains::VIRTUAL_DOMAIN );
+		$dbr = $dbProvider->getReplicaDatabase( DbDomains::VIRTUAL_DOMAIN );
 		// We can't join echo_event with page, because those tables can be on different
 		// DB clusters. If we had been able to do that, we could have added
 		// wHERE page_namespace=NS_TOPIC, but instead we have to examine all rows
