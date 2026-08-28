@@ -31,11 +31,12 @@
 			"Rtemis",
 			"Saeidpourbabak",
 			"درفش کاویانی",
-			"LProfo"
+			"LProfo",
+			"Mohammad ebz"
 		]
 	},
 	"content-model-flow-board": "تابلوی بحث‌های ساختارمند",
-	"enablestructureddiscussions": "فعال‌سازی فلو",
+	"enablestructureddiscussions": "فعال‌سازی بحث‌های ساختارمند",
 	"notification-dynamic-actions-flow-board-unwatch": "پیگیری فعالیت‌ها در «$1» را {{GENDER:$3|متوقف کن}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation": "شما دیگر صفحهٔ «$1» را پیگیری {{GENDER:$3|نمی‌کنید}}",
 	"notification-dynamic-actions-flow-board-unwatch-confirmation-description": "این روی تک تک مبحث‌هایی که پیگیری {{GENDER:$3|می‌کنید}} تأثیر نمی‌گذارد. شما می‌توانید هر زمان خواستید این صفحه را [$2 پیگیری کنید].",
@@ -447,7 +448,7 @@
 	"flow-terms-of-use-summarize": "شما با کلیک بر روی «{{int:flow-topic-action-update-topic-summary}}»، با شرایط استفاده برای این ویکی، موافقت می‌کنید.",
 	"flow-terms-of-use-lock-topic": "شما با کلیک بر روی «{{int:flow-topic-action-lock-topic}}»، با شرایط استفاده برای این ویکی، موافقت می‌کنید.",
 	"flow-terms-of-use-unlock-topic": "شما با کلیک بر روی «{{int:flow-topic-action-unlock-topic}}»، با شرایط استفاده برای این ویکی، موافقت می‌کنید.",
-	"structureddiscussions": "فلو",
+	"structureddiscussions": "بحث‌های ساختارمند",
 	"flow-special-desc": "این صفحهٔ ویژه، به جریان کاری بحث ساختارمند یا پست بحث ساختارمند که شناسهٔ UUID آن داده شود تغییر مسیر می‌یابد.",
 	"flow-special-type": "نوع",
 	"flow-special-type-post": "ارسال",
