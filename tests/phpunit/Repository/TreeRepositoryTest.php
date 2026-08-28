@@ -31,7 +31,7 @@ class TreeRepositoryTest extends FlowTestCase {
 
 	public function testSuccessfulInsert() {
 		$dbFactory = $this->mockDbFactory( true );
-		$cache = $this->getCache( $dbFactory );
+		$cache = $this->getCache();
 		$treeRepository = new TreeRepository( $dbFactory, $cache );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 	}

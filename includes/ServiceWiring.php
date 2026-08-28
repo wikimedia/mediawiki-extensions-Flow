@@ -82,7 +82,6 @@ return [
 		// New storage implementation
 		return new FlowObjectCache(
 			$services->getMainWANObjectCache(),
-			$services->getService( 'FlowDbFactory' ),
 			$services->getMainConfig()->get( 'FlowCacheTime' )
 		);
 	},

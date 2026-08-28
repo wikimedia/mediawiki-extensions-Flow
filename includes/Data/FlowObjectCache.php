@@ -2,9 +2,7 @@
 
 namespace Flow\Data;
 
-use Flow\DbFactory;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 
 class FlowObjectCache {
 	/**
@@ -18,19 +16,12 @@ class FlowObjectCache {
 	protected $ttl = 0;
 
 	/**
-	 * @var array
-	 */
-	protected $setOptions;
-
-	/**
 	 * @param WANObjectCache $cache The cache implementation to back this buffer with
-	 * @param DbFactory $dbFactory
 	 * @param int $ttl The default length of time to cache data. 0 for LRU.
 	 */
-	public function __construct( WANObjectCache $cache, DbFactory $dbFactory, $ttl = 0 ) {
+	public function __construct( WANObjectCache $cache, $ttl = 0 ) {
 		$this->ttl = $ttl;
 		$this->cache = $cache;
-		$this->setOptions = Database::getCacheSetOptions( $dbFactory->getDB( DB_REPLICA ) );
 	}
 
 	/**
@@ -55,7 +46,7 @@ class FlowObjectCache {
 	 * @return bool
 	 */
 	public function set( $key, $value ) {
-		return $this->cache->set( $key, $value, $this->ttl, $this->setOptions );
+		return $this->cache->set( $key, $value, $this->ttl );
 	}
 
 	/**
