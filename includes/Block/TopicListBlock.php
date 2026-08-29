@@ -316,9 +316,11 @@ class TopicListBlock extends AbstractBlock {
 		if ( isset( $options['preload'] ) && !empty( $options['preload'] ) ) {
 			$title = Title::newFromText( $options['preload'] );
 			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
-			$page = $wikiPageFactory->newFromTitle( $title );
-			if ( $page->isRedirect() ) {
-				$title = $page->getRedirectTarget();
+			$redirectLookup = MediaWikiServices::getInstance()->getRedirectLookup();
+			$redirectTarget = $redirectLookup->getRedirectTarget( $title );
+			if ( $redirectTarget ) {
+				$page = $wikiPageFactory->newFromLinkTarget( $redirectTarget );
+			} else {
 				$page = $wikiPageFactory->newFromTitle( $title );
 			}
 
