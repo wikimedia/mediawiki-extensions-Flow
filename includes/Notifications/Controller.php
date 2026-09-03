@@ -18,6 +18,8 @@ use MediaWiki\Extension\Notifications\Mapper\EventMapper;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Notification\RecipientSet;
+use MediaWiki\Notification\Types\WikiNotification;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -51,6 +53,17 @@ class Controller {
 		$this->truncateLength = $options->get( 'FlowNotificationTruncateLength' );
 		$this->language = $language;
 		$this->treeRepository = $treeRepository;
+	}
+
+	/**
+	 * The actual recipients are resolved by Echo via each notification type's own
+	 * user-locators config (see Notifications.php).
+	 */
+	private function createNotification( string $type, Title $title, User $agent, array $extra ): void {
+		MediaWikiServices::getInstance()->getNotificationService()->notify(
+			new WikiNotification( $type, $title, $agent, $extra ),
+			new RecipientSet( [] )
+		);
 	}
 
 	public static function onBeforeCreateEchoEvent( &$notifs, &$categories, &$icons ) {
@@ -102,16 +115,12 @@ class Controller {
 	 * @param array $data Associative array of parameters.
 	 * * revision: The PostRevision created by the action. Always required.
 	 * * board-workflow: The Workflow object for the board. Always required.
-	 * * timestamp: Original event timestamp, for imports. Optional.
+	 * * timestamp: Original event timestamp, for imports. Optional. Not currently honored;
+	 *   the notification will be timestamped with the time it's actually sent.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifyHeaderChange( array $data ): array {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			return [];
-		}
-
+	public function notifyHeaderChange( array $data ): void {
 		$extraData = $data['extra-data'] ?? [];
 
 		$revision = $data['revision'];
@@ -134,32 +143,18 @@ class Controller {
 		$extraData['mentioned-users'] = $mentionedUsers;
 		$title = $boardWorkflow->getOwnerTitle();
 
-		$info = [
-			'agent' => $user,
-			'title' => $title,
-			'extra' => $extraData,
-		];
-
-		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ) {
-			$info['timestamp'] = $data['timestamp'];
-		}
-
-		$events = [ Event::create( [ 'type' => 'flow-description-edited' ] + $info ) ];
+		$this->createNotification( 'flow-description-edited', $title, $user, $extraData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = Event::create( [ 'type' => 'flowusertalk-description-edited' ] + $info );
+			$this->createNotification( 'flowusertalk-description-edited', $title, $user, $extraData );
 		}
-		return [
-			...$events,
-			...$this->generateMentionEvents(
-				$revision,
-				null,
-				$boardWorkflow,
-				$user,
-				$mentionedUsers,
-				$mentionsSkipped
-			)
-		];
+		$this->generateMentionEvents(
+			$revision,
+			null,
+			$boardWorkflow,
+			$user,
+			$mentionedUsers,
+			$mentionsSkipped
+		);
 	}
 
 	/**
@@ -176,14 +171,9 @@ class Controller {
 	 * * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames.
 	 * * old-subject: The old subject of a Topic. Required for topic renames.
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
-	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifyPostChange( $eventName, array $data ): array {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			return [];
-		}
-
+	public function notifyPostChange( $eventName, array $data ): void {
 		$extraData = $data['extra-data'] ?? [];
 
 		$revision = $data['revision'];
@@ -235,7 +225,7 @@ class Controller {
 						$extraData['mentioned-users'] = $mentionedUsers;
 					}
 
-					return $this->generateMentionEvents(
+					$this->generateMentionEvents(
 						$revision,
 						$topicRevision,
 						$topicWorkflow,
@@ -243,6 +233,7 @@ class Controller {
 						$mentionedUsers,
 						$mentionsSkipped
 					);
+					return;
 				}
 
 				break;
@@ -267,33 +258,19 @@ class Controller {
 				break;
 		}
 
-		$info = [
-			'agent' => $user,
-			'title' => $title,
-			'extra' => $extraData,
-		];
-
-		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ) {
-			$info['timestamp'] = $data['timestamp'];
-		}
-
-		$events = [ Event::create( [ 'type' => $eventName ] + $info ) ];
+		$this->createNotification( $eventName, $title, $user, $extraData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$usertalkEvent = str_replace( 'flow-', 'flowusertalk-', $eventName );
-			$events[] = Event::create( [ 'type' => $usertalkEvent ] + $info );
+			$this->createNotification( $usertalkEvent, $title, $user, $extraData );
 		}
-		return [
-			...$events,
-			...$this->generateMentionEvents(
-				$revision,
-				$topicRevision,
-				$topicWorkflow,
-				$user,
-				$mentionedUsers,
-				$mentionsSkipped
-			)
-		];
+		$this->generateMentionEvents(
+			$revision,
+			$topicRevision,
+			$topicWorkflow,
+			$user,
+			$mentionedUsers,
+			$mentionsSkipped
+		);
 	}
 
 	/**
@@ -303,14 +280,9 @@ class Controller {
 	 * * topic-title: The PostRevision object for the topic title. Always required.
 	 * * topic-workflow: The Workflow object for the board. Always required.
 	 * * extra-data: Additional data to pass along to Event extra.
-	 * @return Event[]
 	 * @throws FlowException When $data contains unexpected types/values
 	 */
-	public function notifySummaryChange( array $data ): array {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			return [];
-		}
-
+	public function notifySummaryChange( array $data ): void {
 		$revision = $data['revision'];
 		if ( !$revision instanceof PostSummary ) {
 			throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
@@ -340,32 +312,18 @@ class Controller {
 		$extraData['mentioned-users'] = $mentionedUsers;
 		$title = $topicWorkflow->getOwnerTitle();
 
-		$info = [
-			'agent' => $user,
-			'title' => $title,
-			'extra' => $extraData,
-		];
-
-		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ) {
-			$info['timestamp'] = $data['timestamp'];
-		}
-
-		$events = [ Event::create( [ 'type' => 'flow-summary-edited' ] + $info ) ];
+		$this->createNotification( 'flow-summary-edited', $title, $user, $extraData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = Event::create( [ 'type' => 'flowusertalk-summary-edited' ] + $info );
+			$this->createNotification( 'flowusertalk-summary-edited', $title, $user, $extraData );
 		}
-		return [
-			...$events,
-			...$this->generateMentionEvents(
-				$revision,
-				$topicRevision,
-				$topicWorkflow,
-				$user,
-				$mentionedUsers,
-				$mentionsSkipped
-			)
-		];
+		$this->generateMentionEvents(
+			$revision,
+			$topicRevision,
+			$topicWorkflow,
+			$user,
+			$mentionedUsers,
+			$mentionsSkipped
+		);
 	}
 
 	/**
@@ -377,15 +335,9 @@ class Controller {
 	 *    title.
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
-	 * @return Event[]
 	 * @throws FlowException When $params contains unexpected types/values
 	 */
-	public function notifyNewTopic( array $params ): array {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			// Nothing to do here.
-			return [];
-		}
-
+	public function notifyNewTopic( array $params ): void {
 		$topicWorkflow = $params['topic-workflow'];
 		if ( !$topicWorkflow instanceof Workflow ) {
 			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
@@ -407,46 +359,38 @@ class Controller {
 		[ $mentionedUsers, $mentionsSkipped ] = $this->getMentionedUsersAndSkipState( $topicTitle );
 
 		$title = $boardWorkflow->getArticleTitle();
-		$events = [];
-		$eventData = [
-			'agent' => $user,
-			'title' => $title,
-			'extra' => [
-				'board-workflow' => $boardWorkflow->getId(),
-				'topic-workflow' => $topicWorkflow->getId(),
-				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $this->language->truncateForVisual( $topicTitle->getContent( 'topic-title-plaintext' ), 200 ),
-				'content' => $firstPost
-					? Utils::htmlToPlaintext( $firstPost->getContent(), $this->language, $this->truncateLength )
-					: null,
-				// Force a read from primary database since this could be a new page
-				'target-page' => [
-					$topicWorkflow->getOwnerTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
-					$topicWorkflow->getArticleTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
-				],
-				// pass along mentioned users to other notification, so it knows who to ignore
-				// also look at users mentioned in first post: if there are any, this
-				// (flow-new-topic) notification shouldn't go through (because they'll
-				// already receive the mention notification)
-				'mentioned-users' => $mentionedUsers,
-			]
+		$extraData = [
+			'board-workflow' => $boardWorkflow->getId(),
+			'topic-workflow' => $topicWorkflow->getId(),
+			'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
+			'topic-title' => $this->language->truncateForVisual( $topicTitle->getContent( 'topic-title-plaintext' ), 200 ),
+			'content' => $firstPost
+				? Utils::htmlToPlaintext( $firstPost->getContent(), $this->language, $this->truncateLength )
+				: null,
+			// Force a read from primary database since this could be a new page
+			'target-page' => [
+				$topicWorkflow->getOwnerTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
+				$topicWorkflow->getArticleTitle()->getArticleID( IDBAccessObject::READ_LATEST ),
+			],
+			// pass along mentioned users to other notification, so it knows who to ignore
+			// also look at users mentioned in first post: if there are any, this
+			// (flow-new-topic) notification shouldn't go through (because they'll
+			// already receive the mention notification)
+			'mentioned-users' => $mentionedUsers,
 		];
-		$events[] = Event::create( [ 'type' => 'flow-new-topic' ] + $eventData );
+		$this->createNotification( 'flow-new-topic', $title, $user, $extraData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = Event::create( [ 'type' => 'flowusertalk-new-topic' ] + $eventData );
+			$this->createNotification( 'flowusertalk-new-topic', $title, $user, $extraData );
 		}
 
-		return [
-			...$events,
-			...$this->generateMentionEvents(
-				$topicTitle,
-				$topicTitle,
-				$topicWorkflow,
-				$user,
-				$mentionedUsers,
-				$mentionsSkipped
-			)
-		];
+		$this->generateMentionEvents(
+			$topicTitle,
+			$topicTitle,
+			$topicWorkflow,
+			$user,
+			$mentionedUsers,
+			$mentionsSkipped
+		);
 	}
 
 	/**
@@ -454,13 +398,8 @@ class Controller {
 	 *
 	 * @param string $type flow-topic-resolved|flow-topic-reopened
 	 * @param array $data
-	 * @return Event[]
 	 */
-	public function notifyTopicLocked( $type, array $data ): array {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			return [];
-		}
-
+	public function notifyTopicLocked( $type, array $data ): void {
 		$revision = $data['revision'];
 		if ( !$revision instanceof PostRevision ) {
 			throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
@@ -478,39 +417,16 @@ class Controller {
 		// different type so presentation models can differentiate
 		$extraData['type'] = $type;
 		$title = $topicWorkflow->getOwnerTitle();
+		$agent = $revision->getUser();
 
-		$info = [
-			'agent' => $revision->getUser(),
-			'title' => $title,
-			'extra' => $extraData,
-		];
-
-		// Allow a specific timestamp to be set - useful when importing existing data
-		if ( isset( $data['timestamp'] ) ) {
-			$info['timestamp'] = $data['timestamp'];
-		}
-
-		$events = [ Event::create( [ 'type' => 'flow-topic-resolved' ] + $info ) ];
+		$this->createNotification( 'flow-topic-resolved', $title, $agent, $extraData );
 		if ( $title->getNamespace() === NS_USER_TALK ) {
-			$events[] = Event::create( [ 'type' => 'flowusertalk-topic-resolved' ] + $info );
+			$this->createNotification( 'flowusertalk-topic-resolved', $title, $agent, $extraData );
 		}
-		return $events;
 	}
 
-	public function notifyFlowEnabledOnTalkpage( User $user ) {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			// Nothing to do here.
-			return [];
-		}
-
-		$events = [];
-		$events[] = Event::create( [
-			'type' => 'flow-enabled-on-talkpage',
-			'agent' => $user,
-			'title' => $user->getTalkPage(),
-		] );
-
-		return $events;
+	public function notifyFlowEnabledOnTalkpage( User $user ): void {
+		$this->createNotification( 'flow-enabled-on-talkpage', $user->getTalkPage(), $user, [] );
 	}
 
 	/**
@@ -520,7 +436,6 @@ class Controller {
 	 * @param User $user User who created the new post
 	 * @param int[] $mentionedUsers
 	 * @param bool $mentionsSkipped Were mentions skipped due to too many mentions being attempted?
-	 * @return Event[]
 	 * @throws \Flow\Exception\InvalidDataException
 	 */
 	protected function generateMentionEvents(
@@ -530,11 +445,11 @@ class Controller {
 		User $user,
 		array $mentionedUsers,
 		$mentionsSkipped
-	): array {
+	): void {
 		global $wgEchoMentionStatusNotifications, $wgFlowMaxMentionCount;
 
 		if ( !$mentionedUsers ) {
-			return [];
+			return;
 		}
 
 		$extraData = [];
@@ -556,13 +471,7 @@ class Controller {
 			$extraData['topic-title'] = $this->language->truncateForVisual( $topic->getContent( 'topic-title-plaintext' ), 200 );
 		}
 
-		$events = [];
-		$events[] = Event::create( [
-			'type' => 'flow-mention',
-			'title' => $workflow->getOwnerTitle(),
-			'extra' => $extraData,
-			'agent' => $user,
-		] );
+		$this->createNotification( 'flow-mention', $workflow->getOwnerTitle(), $user, $extraData );
 		if ( $wgEchoMentionStatusNotifications && $mentionsSkipped ) {
 			$extra = [
 				'topic-workflow' => $workflow->getId(),
@@ -574,14 +483,8 @@ class Controller {
 			if ( $content->getRevisionType() === 'post' ) {
 				$extra['post-id'] = $content->getCollection()->getId();
 			}
-			$events[] = Event::create( [
-				'type' => 'flow-mention-failure-too-many',
-				'title' => $workflow->getOwnerTitle(),
-				'extra' => $extra,
-				'agent' => $user,
-			] );
+			$this->createNotification( 'flow-mention-failure-too-many', $workflow->getOwnerTitle(), $user, $extra );
 		}
-		return $events;
 	}
 
 	/**
