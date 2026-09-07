@@ -3,6 +3,7 @@
 namespace Flow\Maintenance;
 
 use Flow\Data\Listener\RecentChangesListener;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -72,12 +73,8 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 		foreach ( $rows as $row ) {
 			$continue = $row->rc_id;
 
-			// build params
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$params = @unserialize( $row->rc_params );
-			if ( !$params ) {
-				$params = [];
-			}
+			$params = LogEntryBase::extractParams( $row->rc_params,
+				$row->rc_log_type . '/' . $row->rc_log_action ) ?: [];
 
 			// Don't fix entries that have been dealt with already
 			if ( !isset( $params['flow-workflow-change']['type'] ) ) {

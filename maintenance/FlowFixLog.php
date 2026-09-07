@@ -8,6 +8,7 @@ use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\Utils\BatchRowIterator;
 use MediaWiki\Utils\BatchRowUpdate;
@@ -104,7 +105,7 @@ class LogRowUpdateGenerator implements RowUpdateGenerator {
 		$updates = [];
 		$logId = (int)$row->log_id;
 
-		$params = unserialize( $row->log_params );
+		$params = LogEntryBase::extractParams( $row->log_params, $row->log_type . '/' . $row->log_action );
 		if ( !$params ) {
 			$this->maintenance->error( "Failed to unserialize log_params for log_id $logId" );
 			return [];

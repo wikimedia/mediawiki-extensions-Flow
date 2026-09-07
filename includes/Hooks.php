@@ -1014,7 +1014,7 @@ class Hooks implements
 			return;
 		}
 
-		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
+		$params = $rc->parseParams();
 		$change = $params['flow-workflow-change'];
 
 		// don't forget to increase the version number when data format changes

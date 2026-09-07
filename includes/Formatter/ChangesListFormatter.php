@@ -193,7 +193,7 @@ class ChangesListFormatter extends AbstractFormatter {
 		} );
 		$oldestRow = end( $flowRows ) ?? $row->recentChange;
 
-		$old = unserialize( $oldestRow->getAttribute( 'rc_params' ) );
+		$old = $oldestRow->parseParams();
 		$oldId = $old ? UUID::create( $old['flow-workflow-change']['revision'] ) : $row->revision->getRevisionId();
 
 		if ( isset( $data['links']['topic'] ) ) {
