@@ -9,6 +9,7 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\RecentChanges\RecentChange;
 
 class ChangesListQuery extends AbstractQuery {
@@ -57,7 +58,7 @@ class ChangesListQuery extends AbstractQuery {
 				wfDebugLog( 'Flow', __METHOD__ . ': Bad row without rc_params passed in $rows' );
 				continue;
 			}
-			$params = unserialize( $row->rc_params );
+			$params = LogEntryBase::extractParams( $row->rc_params, $row->rc_log_type . '/' . $row->rc_log_action );
 			if ( !$params ) {
 				wfDebugLog( 'Flow', __METHOD__ . ": rc_params does not contain serialized content: {$row->rc_params}" );
 				continue;
@@ -123,10 +124,10 @@ class ChangesListQuery extends AbstractQuery {
 	 * @throws FlowException
 	 */
 	public function getResult( $cl, RecentChange $rc, $isWatchlist = false ) {
-		$rcParams = $rc->getAttribute( 'rc_params' );
-		$params = unserialize( $rcParams );
+		$params = $rc->parseParams();
 		if ( !$params ) {
-			throw new FlowException( 'rc_params does not contain serialized content: ' . $rcParams );
+			throw new FlowException( 'rc_params does not contain serialized content: '
+				. $rc->getAttribute( 'rc_params' ) );
 		}
 		$changeData = $params['flow-workflow-change'];
 
@@ -158,7 +159,7 @@ class ChangesListQuery extends AbstractQuery {
 				'Revision not found in revisionCache: {alpha}',
 				[
 					'alpha' => $alpha,
-					'rcParams' => $rcParams,
+					'rcParams' => $rc->getAttribute( 'rc_params' ),
 				]
 			);
 			return false;

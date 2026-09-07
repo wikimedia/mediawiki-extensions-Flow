@@ -7,12 +7,13 @@ use Flow\Formatter\CheckUserQuery;
 use Flow\Hooks;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiUnitTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \Flow\Hooks
+ * @group Flow
  */
-class HooksTest extends MediaWikiUnitTestCase {
+class HooksTest extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideOnCheckUserInsertChangesRow */
 	public function testOnCheckUserInsertChangesRow( &$row, $rcAttribs, $expectedRowAfterCall ) {
