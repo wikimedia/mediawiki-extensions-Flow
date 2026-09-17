@@ -18,7 +18,6 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverterStatic as PageBundleParserOutputConverter;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 
@@ -77,9 +76,9 @@ abstract class Utils {
 
 		// $parserOutput is body-only, but we want to retain a <body> wrapper
 		// So we'll convert to full-document form and modify the HTML ourselves
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+		$pbpoc = MediaWikiServices::getInstance()->getPageBundleParserOutputConverter();
+		$pb = $pbpoc->htmlPageBundleFromParserOutput(
 			$parserOutput,
-			MediaWikiServices::getInstance()->getParsoidSiteConfig(),
 			bodyOnly: false,
 		);
 		preg_match( "#<body[^>]*>(.*?)</body>#s", $pb->html, $html );
