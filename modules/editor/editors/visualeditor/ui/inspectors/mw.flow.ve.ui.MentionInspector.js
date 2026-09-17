@@ -343,7 +343,6 @@
 				// Cleanup
 				this.$element.removeClass( 'flow-ve-ui-mentionInspector-ready' );
 				this.transclusionModel.disconnect( this );
-				this.transclusionModel.abortAllApiRequests();
 				this.transclusionModel = null;
 
 				this.targetInput.disconnect( this );
