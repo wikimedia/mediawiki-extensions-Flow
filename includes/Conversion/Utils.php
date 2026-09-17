@@ -18,7 +18,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverterStatic as PageBundleParserOutputConverter;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 
