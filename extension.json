@@ -765,9 +765,6 @@
 		}
 	],
 	"config": {
-		"FlowHelpPage": {
-			"value": "//www.mediawiki.org/wiki/Special:MyLanguage/Extension:Flow"
-		},
 		"FlowNotificationTruncateLength": {
 			"value": 200,
 			"description": "If set to an integer value, this is the maximum length in characters to use for content in Flow-generated notifications. \"null\" disables truncation, though a hard-coded maximum will apply."
@@ -791,9 +788,6 @@
 			"value": null
 		},
 		"FlowParsoidTimeout": {
-			"value": null
-		},
-		"FlowParsoidHTTPProxy": {
 			"value": null
 		},
 		"FlowParsoidForwardCookies": {
