@@ -25,5 +25,6 @@
 	"right-flow-edit-post": "Рэдагаваць запісы іншых удзельнікаў у структураваных дыскусіях",
 	"right-flow-suppress": "Хаваньне тэмаў і запісаў структураваных дыскусіяў",
 	"flow-load-more": "Ладаваць болей",
-	"flow-special-type": "Тып"
+	"flow-special-type": "Тып",
+	"flow-dialog-cancelconfirm-discard": "Адкінуць зьмены"
 }
