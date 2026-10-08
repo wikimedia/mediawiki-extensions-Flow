@@ -8,7 +8,7 @@
 		"test": "grunt test"
 	},
 	"devDependencies": {
-		"api-testing": "1.7.3",
+		"api-testing": "1.8.1",
 		"eslint-config-wikimedia": "0.32.6",
 		"grunt": "1.6.3",
 		"grunt-banana-checker": "0.13.0",
