@@ -70,6 +70,7 @@ abstract class Utils {
 	private static function wikitextToHTML( string $wikitext, Title $title ) {
 		$parserOptions = ParserOptions::newFromAnon();
 		$parserOptions->setRenderReason( __METHOD__ );
+		$parserOptions->setUseParsoid();
 
 		$parserFactory = MediaWikiServices::getInstance()->getParsoidParserFactory()->create();
 		$parserOutput = $parserFactory->parse( $wikitext, $title, $parserOptions );
