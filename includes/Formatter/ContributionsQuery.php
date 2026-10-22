@@ -265,15 +265,4 @@ class ContributionsQuery extends AbstractQuery {
 
 		return $revisions;
 	}
-
-	/**
-	 * When retrieving revisions from DB, self::mergeExternalContent will be
-	 * called to fetch the content. This could fail, resulting in the content
-	 * being a 'false' value.
-	 *
-	 * @inheritDoc
-	 */
-	public function validate( array $row ) {
-		return !isset( $row['rev_content'] ) || $row['rev_content'] !== false;
-	}
 }
