@@ -48,7 +48,8 @@ module.exports = function ( grunt ) {
 		banana: Object.assign( { options: { requireLowerCase: false } }, conf.MessagesDirs ),
 		watch: {
 			files: [
-				'.{stylelintrc,eslintrc}.json',
+				'.stylelintrc.json',
+				'eslint.config.js',
 				'<%= eslint.all %>',
 				'<%= stylelint.all %>'
 			],
