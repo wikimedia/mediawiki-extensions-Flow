@@ -23,31 +23,14 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 class View extends ContextSource {
-	/**
-	 * @var UrlGenerator
-	 */
-	protected $urlGenerator;
-
-	/**
-	 * @var TemplateHelper
-	 */
-	protected $lightncandy;
-
-	/**
-	 * @var FlowActions
-	 */
-	protected $actions;
 
 	public function __construct(
-		UrlGenerator $urlGenerator,
-		TemplateHelper $lightncandy,
+		protected UrlGenerator $urlGenerator,
+		protected TemplateHelper $lightncandy,
 		IContextSource $requestContext,
-		FlowActions $actions
+		protected FlowActions $actions,
 	) {
-		$this->urlGenerator = $urlGenerator;
-		$this->lightncandy = $lightncandy;
 		$this->setContext( $requestContext );
-		$this->actions = $actions;
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
@@ -229,12 +212,12 @@ class View extends ContextSource {
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][$block->getName()] = $block->renderApi( $parameters[$block->getName()] )
-								+ [
-									'title' => $apiResponse['title'],
-									'block-action-template' => $block->getTemplate( $action ),
-									'editToken' => $editToken,
-									'editFont' => $editFont,
-								];
+					+ [
+						'title' => $apiResponse['title'],
+						'block-action-template' => $block->getTemplate( $action ),
+						'editToken' => $editToken,
+						'editFont' => $editFont,
+					];
 				if ( $block->getName() == 'topiclist' ) {
 					$topicListBlock = $block;
 				}
@@ -245,9 +228,9 @@ class View extends ContextSource {
 		if ( count( $linkedCategories ) > 0 && isset( $apiResponse['blocks']['header'] ) ) {
 			$apiResponse['blocks']['header']['categories'] = [
 				'link' => MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-						SpecialPage::getTitleFor( 'Categories' ),
-						$this->msg( 'pagecategories' )->params( count( $linkedCategories ) )->text()
-					) . $this->msg( 'colon-separator' )->escaped(),
+					SpecialPage::getTitleFor( 'Categories' ),
+					$this->msg( 'pagecategories' )->params( count( $linkedCategories ) )->text()
+				) . $this->msg( 'colon-separator' )->escaped(),
 				'items' => $linkedCategories
 			];
 		}
