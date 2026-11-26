@@ -53,17 +53,17 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 
 		// run updates only if we have the required source data
 		if ( $dbw->fieldExists( 'flow_workflow', 'workflow_user_text' ) ) {
-			$runUpdate( [ $this, 'updateWorkflow' ] );
+			$runUpdate( $this->updateWorkflow( ... ) );
 		}
 		if ( $dbw->fieldExists( 'flow_tree_revision', 'tree_orig_user_text' ) ) {
-			$runUpdate( [ $this, 'updateTreeRevision' ] );
+			$runUpdate( $this->updateTreeRevision( ... ) );
 		}
 		if (
 			$dbw->fieldExists( 'flow_revision', 'rev_user_text' ) &&
 			$dbw->fieldExists( 'flow_revision', 'rev_mod_user_text' ) &&
 			$dbw->fieldExists( 'flow_revision', 'rev_edit_user_text' )
 		) {
-			$runUpdate( [ $this, 'updateRevision' ] );
+			$runUpdate( $this->updateRevision( ... ) );
 		}
 
 		return true;
@@ -76,7 +76,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	 * @param int|null $continue The next batch starting at rc_id
 	 * @return int|null Start id for the next batch
 	 */
-	public function updateWorkflow( IDatabase $dbw, $continue = null ) {
+	private function updateWorkflow( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->newSelectQueryBuilder()
 			->select( [ 'workflow_id', 'workflow_user_text' ] )
 			->from( 'flow_workflow' )
@@ -107,7 +107,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		return $continue;
 	}
 
-	public function updateTreeRevision( IDatabase $dbw, $continue = null ) {
+	/**
+	 * @param IDatabase $dbw
+	 * @param int|null $continue
+	 * @return int|null
+	 */
+	private function updateTreeRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->newSelectQueryBuilder()
 			->select( [ 'tree_rev_id', 'tree_orig_user_text' ] )
 			->from( 'flow_tree_revision' )
@@ -137,7 +142,12 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		return $continue;
 	}
 
-	public function updateRevision( IDatabase $dbw, $continue = null ) {
+	/**
+	 * @param IDatabase $dbw
+	 * @param int|null $continue
+	 * @return int|null
+	 */
+	private function updateRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->newSelectQueryBuilder()
 			->select( [ 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id',
 				'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ] )

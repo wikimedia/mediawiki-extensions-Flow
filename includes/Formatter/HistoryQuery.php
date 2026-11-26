@@ -40,7 +40,7 @@ abstract class HistoryQuery extends AbstractQuery {
 	 * @param AbstractRevision $revision
 	 * @return bool
 	 */
-	protected function includeInHistory( AbstractRevision $revision ) {
+	private function includeInHistory( AbstractRevision $revision ) {
 		// If you add exclude_from_history to a new type, use doInternalQueries on additional
 		// queries as needed.
 		return !$this->actions->getValue( $revision->getChangeType(), 'exclude_from_history' );
@@ -111,7 +111,7 @@ abstract class HistoryQuery extends AbstractQuery {
 				$internalOverfetched = array_pop( $resultBeforeFiltering );
 			}
 
-			$resultAfterFiltering = array_filter( $resultBeforeFiltering, [ $this, 'includeInHistory' ] );
+			$resultAfterFiltering = array_filter( $resultBeforeFiltering, $this->includeInHistory( ... ) );
 
 			if ( count( $resultBeforeFiltering ) >= 1 ) {
 				$internalOffset = end( $resultBeforeFiltering )->getRevisionId();

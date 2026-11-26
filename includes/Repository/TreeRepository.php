@@ -401,7 +401,7 @@ class TreeRepository {
 		$res = $list->get(
 			'subtree',
 			$roots,
-			[ $this, 'fetchSubtreeNodeListFromDb' ]
+			$this->fetchSubtreeNodeListFromDb( ... )
 		);
 		// $idx is a binary UUID
 		$retval = [];
@@ -411,7 +411,11 @@ class TreeRepository {
 		return $retval;
 	}
 
-	public function fetchSubtreeNodeListFromDb( array $roots ) {
+	/**
+	 * @param array $roots
+	 * @return array<string,array<string,UUID>>
+	 */
+	private function fetchSubtreeNodeListFromDb( array $roots ) {
 		$res = $this->dbFactory->getDB( DB_REPLICA )->newSelectQueryBuilder()
 			->select( [ 'tree_ancestor_id', 'tree_descendant_id' ] )
 			->from( $this->tableName )
@@ -436,12 +440,12 @@ class TreeRepository {
 	 * @param array $nodes
 	 * @return array
 	 */
-	public function fetchParentMap( array $nodes ) {
+	private function fetchParentMap( array $nodes ) {
 		$list = new MultiGetList( $this->cache );
 		return $list->get(
 			'parent',
 			$nodes,
-			[ $this, 'fetchParentMapFromDb' ]
+			$this->fetchParentMapFromDb( ... )
 		);
 	}
 

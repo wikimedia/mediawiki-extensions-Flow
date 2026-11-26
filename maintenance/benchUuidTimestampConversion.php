@@ -34,47 +34,47 @@ class BenchUuidConversions extends Benchmarker {
 
 		$this->bench( [
 			[
-				'function' => [ $id, 'bin2hex' ],
+				'function' => $id->bin2hex( ... ),
 				'args' => [ $binary ],
 			],
 			[
-				'function' => [ $id, 'alnum2hex' ],
+				'function' => $id->alnum2hex( ... ),
 				'args' => [ $alpha ],
 			],
 			[
-				'function' => [ $id, 'hex2bin' ],
+				'function' => $id->hex2bin( ... ),
 				'args' => [ $hex ],
 			],
 			[
-				'function' => [ $id, 'hex2alnum' ],
+				'function' => $id->hex2alnum( ... ),
 				'args' => [ $hex ],
 			],
 			[
-				'function' => [ $id, 'hex2timestamp' ],
+				'function' => $id->hex2timestamp( ... ),
 				'args' => [ $hex ],
 			],
 			[
-				'function' => [ $this, 'oldhex2timestamp' ],
+				'function' => $this->oldhex2timestamp( ... ),
 				'args' => [ $hex ],
 			],
 			[
-				'function' => [ $this, 'oldalphadecimal2timestamp' ],
+				'function' => $this->oldalphadecimal2timestamp( ... ),
 				'args' => [ $alpha ],
 			],
 			[
-				'function' => [ $this, 'case1' ],
+				'function' => $this->case1( ... ),
 				'args' => [ $binary ],
 			],
 			[
-				'function' => [ $this, 'case2' ],
+				'function' => $this->case2( ... ),
 				'args' => [ $binary ],
 			],
 			[
-				'function' => [ $this, 'case3' ],
+				'function' => $this->case3( ... ),
 				'args' => [ $alpha ],
 			],
 			[
-				'function' => [ $this, 'case4' ],
+				'function' => $this->case4( ... ),
 				'args' => [ $alpha ],
 			],
 		] );
@@ -83,13 +83,21 @@ class BenchUuidConversions extends Benchmarker {
 		// $this->output( $this->getFormattedResults() );
 	}
 
-	public function oldhex2timestamp( $hex ) {
+	/**
+	 * @param string $hex
+	 * @return int
+	 */
+	private function oldhex2timestamp( $hex ) {
 		$bits = \Wikimedia\base_convert( $hex, 16, 2, 88 );
 		$msTimestamp = (int)\Wikimedia\base_convert( substr( $bits, 0, 46 ), 2, 10 );
 		return intval( $msTimestamp / 1000 );
 	}
 
-	public function oldalphadecimal2timestamp( $alpha ) {
+	/**
+	 * @param string $alpha
+	 * @return int
+	 */
+	private function oldalphadecimal2timestamp( $alpha ) {
 		$bits = \Wikimedia\base_convert( $alpha, 36, 2, 88 );
 		$msTimestamp = (int)\Wikimedia\base_convert( substr( $bits, 0, 46 ), 2, 10 );
 		return intval( $msTimestamp / 1000 );
@@ -99,7 +107,7 @@ class BenchUuidConversions extends Benchmarker {
 	 * Common case 1: binary from database to alpha and timestamp.
 	 * @param string $binary
 	 */
-	public function case1( $binary ) {
+	private function case1( $binary ) {
 		// clone to avoid internal object caching
 		$id = clone UUID::create( $binary );
 		$id->getAlphadecimal();
@@ -111,7 +119,7 @@ class BenchUuidConversions extends Benchmarker {
 	 * Probably same as case 1, but who knows.
 	 * @param string $binary
 	 */
-	public function case2( $binary ) {
+	private function case2( $binary ) {
 		// clone to avoid internal object caching
 		$id = clone UUID::create( $binary );
 		$id->getTimestampObj();
@@ -122,7 +130,7 @@ class BenchUuidConversions extends Benchmarker {
 	 * Common case 3: alphadecimal from cache to timestamp and binary.
 	 * @param string $alpha
 	 */
-	public function case3( $alpha ) {
+	private function case3( $alpha ) {
 		// clone to avoid internal object caching
 		$id = clone UUID::create( $alpha );
 		$id->getBinary();
@@ -133,7 +141,7 @@ class BenchUuidConversions extends Benchmarker {
 	 * Common case 4: alphadecimal from cache to bianry and timestamp.
 	 * @param string $alpha
 	 */
-	public function case4( $alpha ) {
+	private function case4( $alpha ) {
 		// clone to avoid internal object caching
 		$id = clone UUID::create( $alpha );
 		$id->getTimestampObj();

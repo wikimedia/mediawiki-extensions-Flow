@@ -259,7 +259,7 @@ class ContributionsQuery extends AbstractQuery {
 
 		// we have all required data to build revision
 		$mapper = $this->storage->getStorage( $revisionClass )->getMapper();
-		$revisions = array_map( [ $mapper, 'fromStorageRow' ], $revisions );
+		$revisions = array_map( $mapper->fromStorageRow( ... ), $revisions );
 
 		// @todo: we may already be able to build workflowCache (and rootPostIdCache) from this DB data
 

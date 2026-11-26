@@ -49,14 +49,14 @@ class CachingObjectMapper implements ObjectMapper {
 	}
 
 	/**
-	 * @param string $className Fully qualified class name
+	 * @param class-string $className Fully qualified class name
 	 * @param string[] $primaryKey
-	 * @return CachingObjectMapper
+	 * @return self
 	 */
 	public static function model( $className, array $primaryKey ) {
 		return new self(
-			[ $className, 'toStorageRow' ],
-			[ $className, 'fromStorageRow' ],
+			$className::toStorageRow( ... ),
+			$className::fromStorageRow( ... ),
 			$primaryKey
 		);
 	}

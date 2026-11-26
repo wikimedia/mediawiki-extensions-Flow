@@ -157,20 +157,8 @@ abstract class ExternalStoreMoveCluster extends Maintenance {
 			$writer,
 			$updateGenerator
 		);
-		$updater->setOutput( [ $this, 'output' ] );
+		$updater->setOutput( $this->output( ... ) );
 		$updater->execute();
-	}
-
-	/**
-	 * parent::output() is a protected method, only way to access it from a
-	 * callback in php5.3 is to make a public function. In 5.4 can replace with
-	 * a Closure.
-	 *
-	 * @param string $out
-	 * @param string|null $channel
-	 */
-	public function output( $out, $channel = null ) {
-		parent::output( $out, $channel );
 	}
 
 	/**

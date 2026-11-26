@@ -67,7 +67,7 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 			} while ( $continue !== null );
 		};
 
-		$runUpdate( [ $this, 'updateTreeRevision' ] );
+		$runUpdate( $this->updateTreeRevision( ... ) );
 		foreach ( [ 'rev_user', 'rev_mod_user', 'rev_edit_user' ] as $prefix ) {
 			$runUpdate( function ( $dbw, $continue ) use ( $prefix ) {
 				return $this->updateRevision( $prefix, $dbw, $continue );
@@ -77,7 +77,12 @@ class FlowFixUserIp extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	public function updateTreeRevision( IDatabase $dbw, $continue = null ) {
+	/**
+	 * @param IDatabase $dbw
+	 * @param int|null $continue
+	 * @return int|null
+	 */
+	private function updateTreeRevision( IDatabase $dbw, $continue = null ) {
 		$rows = $dbw->newSelectQueryBuilder()
 			->select( [ 'tree_rev_id' ] )
 			->from( 'flow_tree_revision' )

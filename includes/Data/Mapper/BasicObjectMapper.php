@@ -23,13 +23,21 @@ class BasicObjectMapper implements ObjectMapper {
 	/** @var callable */
 	protected $fromStorageRow;
 
+	/**
+	 * @param callable $toStorageRow
+	 * @param callable $fromStorageRow
+	 */
 	public function __construct( $toStorageRow, $fromStorageRow ) {
 		$this->toStorageRow = $toStorageRow;
 		$this->fromStorageRow = $fromStorageRow;
 	}
 
+	/**
+	 * @param class-string $className
+	 * @return self
+	 */
 	public static function model( $className ) {
-		return new self( [ $className, 'toStorageRow' ], [ $className, 'fromStorageRow' ] );
+		return new self( $className::toStorageRow( ... ), $className::fromStorageRow( ... ) );
 	}
 
 	public function toStorageRow( $object ) {

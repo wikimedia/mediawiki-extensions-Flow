@@ -22,9 +22,9 @@ class UserMerger {
 	protected $storage;
 
 	/**
-	 * @var array[][]
+	 * @var array<string,array<string,mixed>>
 	 */
-	protected $config;
+	private readonly array $config;
 
 	public function __construct( DbFactory $dbFactory, ManagerGroup $storage ) {
 		$this->dbFactory = $dbFactory;
@@ -35,7 +35,7 @@ class UserMerger {
 				'userColumns' => [
 					'tree_orig_user_id' => 'getCreatorTuple',
 				],
-				'load' => [ $this, 'loadFromTreeRevision' ],
+				'load' => $this->loadFromTreeRevision( ... ),
 			],
 
 			'flow_revision' => [
@@ -45,7 +45,7 @@ class UserMerger {
 					'rev_mod_user_id' => 'getModeratedByTuple',
 					'rev_edit_user_id' => 'getLastContentEditUserTuple',
 				],
-				'load' => [ $this, 'loadFromRevision' ],
+				'load' => $this->loadFromRevision( ... ),
 				'loadColumns' => [ 'rev_type' ],
 			],
 		];
@@ -80,6 +80,7 @@ class UserMerger {
 	public function finalizeMerge( $oldUserId, $newUserId ) {
 		$dbw = $this->dbFactory->getDB( DB_PRIMARY );
 		foreach ( $this->config as $table => $config ) {
+			// @phan-suppress-next-line PhanTypeNoPropertiesForeach
 			foreach ( $config['userColumns'] as $column => $userTupleGetter ) {
 				$it = new BatchRowIterator( $dbw, $table, $config['pk'], 500 );
 				// The database is migrated, so look for the new user id
@@ -129,7 +130,7 @@ class UserMerger {
 	 * @param object $row Single row from database
 	 * @return PostRevision|null
 	 */
-	protected function loadFromTreeRevision( $row ) {
+	private function loadFromTreeRevision( $row ) {
 		return $this->storage->get( PostRevision::class, $row->tree_rev_id );
 	}
 
@@ -137,7 +138,7 @@ class UserMerger {
 	 * @param object $row Single row from database
 	 * @return AbstractRevision|null
 	 */
-	protected function loadFromRevision( $row ) {
+	private function loadFromRevision( $row ) {
 		$revTypes = [
 			'header' => \Flow\Model\Header::class,
 			'post-summary' => \Flow\Model\PostSummary::class,

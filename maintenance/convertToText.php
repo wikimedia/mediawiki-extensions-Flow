@@ -358,7 +358,7 @@ class ConvertToText extends Maintenance {
 		if ( $otherContributors &&
 			( count( $otherContributors ) > 1 || !isset( $otherContributors[$firstContributor['name']] ) )
 		) {
-			$signatures = array_map( [ $this, 'getSignature' ], $otherContributors );
+			$signatures = array_map( $this->getSignature( ... ), $otherContributors );
 			$formattedAuthors .= ( $sigForFirstAuthor ? ' ' : '' ) . '(' .
 				wfMessage( $msg )->inContentLanguage()->params(
 					$this->getServiceContainer()->getContentLanguage()->commaList( $signatures )
