@@ -394,7 +394,7 @@ class Importer {
 		$globalUser = CentralAuthUser::newFromId( $globalUserId );
 		$localUser = User::newFromName( $globalUser->getName() );
 
-		if ( $localUser->getId() ) {
+		if ( $localUser->isRegistered() ) {
 			throw new ImportException( "User '{$localUser->getName()}' already exists" );
 		}
 

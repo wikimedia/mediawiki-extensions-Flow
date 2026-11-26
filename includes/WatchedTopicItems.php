@@ -40,7 +40,7 @@ class WatchedTopicItems {
 		$titles = array_unique( $titles );
 		$result = array_fill_keys( $titles, false );
 
-		if ( !$this->user->getId() ) {
+		if ( !$this->user->isRegistered() ) {
 			return $result;
 		}
 

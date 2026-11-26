@@ -80,7 +80,7 @@ class Converter {
 		User $user,
 		IConversionStrategy $strategy
 	) {
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			throw new ImportException( 'User must have id' );
 		}
 		$this->db = $db;
